@@ -26,7 +26,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Allow Reconciliation"','7','(''DA''=''T'')','ECRNSTDIVEZ0','50','H','01','7',NULL,'Allow Reconciliation',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOuID"','1','(''UA''=''T,'')','ECRNSTDIVEZ0','50','D','10','1',NULL,'OU ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOuName"','2','(''UA''=''T,'')','ECRNSTDIVEZ0','50','D','10','2',NULL,'OU Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" "','3','(''DA''=''T,'')','ECRNSTDIVEZ0','50','D','10','3',NULL,'Parent ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvParentID"','3','(''UA''=''T,'')','ECRNSTDIVEZ0','50','D','10','3',NULL,'Parent ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" "','4','(''DA''=''T,'')','ECRNSTDIVEZ0','50','D','10','4',NULL,'Owner Id',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" "','5','(''DA''=''T,'')','ECRNSTDIVEZ0','50','D','10','5',NULL,'Description',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRUE"','6','(''DA''=''T,'')','ECRNSTDIVEZ0','50','D','10','6',NULL,'Active',NULL,NULL);
@@ -58,7 +58,8 @@ CREATE TABLE [dbo].[U_ECRNSTDIVE_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
     [drvOuID] char(6) NULL,
-    [drvOuName] varchar(27) NULL
+    [drvOuName] varchar(27) NULL,
+    [drvParentID] varchar(100) NULL
 );
 IF OBJECT_ID('U_ECRNSTDIVE_EEList') IS NULL
 CREATE TABLE [dbo].[U_ECRNSTDIVE_EEList] (
@@ -157,6 +158,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvOuID = EecOrgLvl
         ,drvOuName = '"' + OrgDesc + '"'
+        ,drvParentID = ''
     INTO dbo.U_ECRNSTDIVE_drvTbl
     FROM ( 
             SELECT DISTINCT EecOrgLvl 
