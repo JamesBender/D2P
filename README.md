@@ -25,3 +25,8 @@ Note: There are some older client/vendor/project folders that might not adhear t
 Unless otherwise instructed, you are feel to push your own new and updated files directly to the Master branch.
 
 **IF** you are making updates to a file created by another author, please send a PR to that author so they are aware of the changes, which will help them save time if/when they take the file back over. If the original author is not currently on the D2P project, a PR is not necessary. You can (ad should) still send the export file through the normal process (to QA, re-test, production, etc.) without waiting for the PR to be reviewed and accepted.
+
+## Questions, Comments, Concerns...
+Please direct them to either [James Bender](JBender@TekPartners.com) or [Marco Lagrosa](MLagrosa@TekPartners.com). 
+
+Thanks!
