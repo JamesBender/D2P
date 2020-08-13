@@ -126,12 +126,12 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200801.txt',NULL,'','','',NULL,NULL,NULL,'BsLfe ADD LTD STD Vol Lfe Exp','202007289','EMPEXPORT','ONDEMAND','Jul 29 2020  5:45PM','EMOALSTDVL',NULL,NULL,NULL,'202007289','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','861','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200801.txt',NULL,'','','',NULL,NULL,NULL,'Scheduled Session','202007289','EMPEXPORT','SCHEDULED','Jul 29 2020  5:46PM','EMOALSTDVL',NULL,NULL,NULL,'202007289','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','861','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200801.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202007289','EMPEXPORT','OEACTIVE','Jul 29 2020  5:44PM','EMOALSTDVL',NULL,NULL,NULL,'202007289','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','18','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200801.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202007289','EMPEXPORT','OEPASSIVE','Jul 29 2020  5:45PM','EMOALSTDVL',NULL,NULL,NULL,'202007289','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','860','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200801.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202007319','EMPEXPORT','TEST','Jul 31 2020  9:51AM','EMOALSTDVL',NULL,NULL,NULL,'202007319','Jul 31 2020 12:00AM','Dec 30 1899 12:00AM','202007101','862','','','202007101',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EMOALSTDVL_20200801.txt' END WHERE expFormatCode = 'EMOALSTDVL';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200813.txt',NULL,'','','',NULL,NULL,NULL,'BsLfe ADD LTD STD Vol Lfe Exp','202008139','EMPEXPORT','ONDEMAND','Jul 29 2020  5:45PM','EMOALSTDVL',NULL,NULL,NULL,'202008139','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','861','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200813.txt',NULL,'','','',NULL,NULL,NULL,'Scheduled Session','202008139','EMPEXPORT','SCHEDULED','Jul 29 2020  5:46PM','EMOALSTDVL',NULL,NULL,NULL,'202008139','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','861','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200813.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202008139','EMPEXPORT','OEACTIVE','Jul 29 2020  5:44PM','EMOALSTDVL',NULL,NULL,NULL,'202008139','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','18','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200813.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202008139','EMPEXPORT','OEPASSIVE','Jul 29 2020  5:45PM','EMOALSTDVL',NULL,NULL,NULL,'202008139','Jul 28 2020  1:56PM','Jul 28 2020  1:56PM','202007011','860','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMOALSTDVL_20200813.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202008139','EMPEXPORT','TEST','Jul 31 2020  9:51AM','EMOALSTDVL',NULL,NULL,NULL,'202008139','Jul 31 2020 12:00AM','Dec 30 1899 12:00AM','202007011','862','','','202007011',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EMOALSTDVL_20200813.txt' END WHERE expFormatCode = 'EMOALSTDVL';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOALSTDVL','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOALSTDVL','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOALSTDVL','InitialSort','C','drvSort');
@@ -213,7 +213,7 @@ CREATE TABLE [dbo].[U_EMOALSTDVL_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] datetime NULL,
+    [drvSort] varchar(14) NULL,
     [drvTransDate] datetime NOT NULL,
     [drvRelationshipCode] varchar(1) NOT NULL,
     [drvEmployeeID] char(11) NULL,
@@ -596,7 +596,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EecDateOfLastHire -- xEEID + ' ' + CASE WHEN BdmRecType = 'EMP' THEN '1' ELSE '2' END
+        ,drvSort = xEEID + ' ' + CASE WHEN BdmRecType = 'EMP' THEN '1' ELSE '2' END
         -- standard fields above and additional driver fields below
         ,drvTransDate = GETDATE()
         ,drvRelationshipCode =    CASE WHEN ConRelationship IN ('SPS','DP') AND ConGender = 'F' THEN 'W'
@@ -615,7 +615,7 @@ BEGIN
         ,drvBillGroupEffectiveDate =    CASE  WHEN BdmRecType = 'EMP' THEN 
                                             CASE WHEN EecDateOfLastHire > '5/1/2020' THEN EecDateOfLastHire ELSE '5/1/2020' END
                                         END
-        ,drvBasicSalaryEffectiveDate = CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END -- JCB
+        ,drvBasicSalaryEffectiveDate = CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire), '5/1/2020') END -- JCB
         ,drvBasicSalaryAmount = CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnPadZero(eecannsalary*100,16,0) END
         ,drv1stAddCompEffDate = CASE  WHEN BdmRecType = 'EMP' THEN GETDATE() END
         ,drv1stAddCompAmt = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnPadZero(PehCurAmtYTD_WAGEH*100,16,0) END
@@ -631,7 +631,7 @@ BEGIN
 
         ,drvBLProductCategory = CASE WHEN BdmRecType = 'EMP' AND BLIFE_DedCode IS NOT NULL THEN '1' END
         ,drvBLEffectiveDate =    CASE WHEN BdmRecType = 'EMP' AND BLIFE_DedCode IS NOT NULL THEN 
-                                    CASE WHEN BLIFE_BenStatus = 'T' THEN DATEADD(DAY, +1, BLIFE_BenStopDate) ELSE BLIFE_BenStartDate END
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN BLIFE_BenStatus = 'T' THEN DATEADD(DAY, +1, BLIFE_BenStopDate) ELSE BLIFE_BenStartDate END, '5/1/2020')
                                 END
         ,drvBLEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND BLIFE_DedCode IS NOT NULL THEN 
                                     CASE WHEN BLIFE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -643,7 +643,7 @@ BEGIN
 
         ,drvBADDProductCategory = CASE WHEN BdmRecType = 'EMP' AND BADD_DedCode IS NOT NULL THEN 'A' END
         ,drvBADDEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND BADD_DedCode IS NOT NULL THEN 
-                                    CASE WHEN BADD_BenStatus = 'T' THEN DATEADD(DAY, +1, BADD_BenStopDate) ELSE BADD_BenStartDate END
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN BADD_BenStatus = 'T' THEN DATEADD(DAY, +1, BADD_BenStopDate) ELSE BADD_BenStartDate END, '5/1/2020')
                                 END
         ,drvBADDEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND BADD_DedCode IS NOT NULL THEN 
                                     CASE WHEN BADD_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -654,7 +654,7 @@ BEGIN
 
         ,drvBSTDProductCategory = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 'S' END
         ,drvBSTDEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 
-                                    CASE WHEN STD_BenStatus = 'T' THEN DATEADD(DAY, +1, STD_BenStopDate) ELSE STD_BenStartDate END
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN STD_BenStatus = 'T' THEN DATEADD(DAY, +1, STD_BenStopDate) ELSE STD_BenStartDate END, '5/1/2020')
                                 END
         ,drvBSTDEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 
                                     CASE WHEN STD_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -667,7 +667,7 @@ BEGIN
 
         ,drvBLTDProductCategory =  CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 'T' END
         ,drvBLTDEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 
-                                    CASE WHEN LTD_BenStatus = 'T' THEN DATEADD(DAY, +1, LTD_BenStopDate) ELSE LTD_BenStartDate END
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LTD_BenStatus = 'T' THEN DATEADD(DAY, +1, LTD_BenStopDate) ELSE LTD_BenStartDate END, '5/1/2020')
                                 END
         ,drvBLTDEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 
                                     CASE WHEN LTD_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -678,7 +678,7 @@ BEGIN
 
         ,drvVolTermLifeEmpProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN '3' END
         ,drvVolTermLifeEmpEffDate =    CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 
-                                        CASE WHEN LIFEE_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEE_BenStopDate) ELSE LIFEE_BenStartDate END
+                                        dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEE_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEE_BenStopDate) ELSE LIFEE_BenStartDate END, '5/1/2020')
                                     END
         ,drvVolTermLifeEmpEligEvent =    CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 
                                             CASE WHEN LIFEE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -691,7 +691,7 @@ BEGIN
 
         ,drvVolTermLifeSpsProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN '4' END
         ,drvVolTermLifeSpsEffDate =    CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 
-                                        CASE WHEN LIFES_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFES_BenStopDate) ELSE LIFES_BenStartDate END
+                                        dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFES_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFES_BenStopDate) ELSE LIFES_BenStartDate END, '5/1/2020')
                                     END
         ,drvVolTermLifeSpsEligEvent =    CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 
                                             CASE WHEN LIFEE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -704,7 +704,7 @@ BEGIN
 
         ,drvVolTermLifeDepProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN '5' END
         ,drvVolTermLifeDepEffDate = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 
-                                        CASE WHEN LIFEC_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEC_BenStopDate) ELSE LIFEC_BenStartDate END
+                                        dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEC_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEC_BenStopDate) ELSE LIFEC_BenStartDate END, '5/1/2020')
                                     END
         ,drvVolTermLifeDepEligEvent =    CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 
                                             CASE WHEN LIFEC_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -712,12 +712,12 @@ BEGIN
         ,drvVolTermLifeDepPlanID = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 'ETL0CDPVAL' END
         ,drvVolTermLifeDepFamilyCvgInd = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 'C' END
         ,drvVolTermLifeDepAppAmtEffDte = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN LIFEC_BenStartDate END
-        ,drvVolTermLifeDepApprovedAmt = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN dbo.dsi_fnPadZero(LIFEC_BenAmt,10,0) END
+        ,drvVolTermLifeDepApprovedAmt = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN dbo.dsi_fnPadZero(LIFEC_BenAmt,10,0) END -- JCB
 
 
         ,drvVolADDCovEmpProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 'c' END
         ,drvVolADDCovEmpEffDate = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 
-                                        CASE WHEN LIFEE_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEE_BenStopDate) ELSE LIFEE_BenStartDate END
+                                        dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEE_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEE_BenStopDate) ELSE LIFEE_BenStartDate END, '5/1/2020')
                                     END
         ,drvVolADDCovEmpEligEvent = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 
                                         CASE WHEN LIFEE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -730,7 +730,7 @@ BEGIN
 
         ,drvVolADDCovSpsProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 'e' END
         ,drvVolADDCovSpsEffDate = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 
-                                    CASE WHEN LIFES_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFES_BenStopDate) ELSE LIFES_BenStartDate END
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFES_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFES_BenStopDate) ELSE LIFES_BenStartDate END, '5/1/2020')
                                 END
         ,drvVolADDCovSpsEligEvent = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 
                                         CASE WHEN LIFEE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -743,7 +743,7 @@ BEGIN
 
         ,drvVolADDCovDepProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 'd' END
         ,drvVolADDCovDepEffDate =    CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 
-                                        CASE WHEN LIFEC_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEC_BenStopDate) ELSE LIFEC_BenStartDate END
+                                        dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEC_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEC_BenStopDate) ELSE LIFEC_BenStartDate END, '5/1/2020')
                                     END
         ,drvVolADDCovDepEligEvent = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 
                                         CASE WHEN LIFEC_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
@@ -817,17 +817,22 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     LEFT JOIN (
-                    SELECT EdhEEID, EdhCOID
-                        ,MAX(CASE WHEN EdhDedCode = 'LIFEE' THEN EdhEEBenAmt END) AS LIFEE_BenAmt
-                        ,MAX(CASE WHEN EdhDedCode = 'LIFES' THEN EdhEEBenAmt END) AS LIFES_BenAmt
-                        ,MAX(CASE WHEN EdhDedCode = 'LIFEC' THEN EdhEEBenAmt END) AS LIFEC_BenAmt
-                    FROM dbo.EmpHDed WITH (NOLOCK) 
-                    WHERE EdhDedCode IN ('LIFEE', 'LIFES', 'LIFEC') 
-                    AND EdhBenStatus = 'A'
-                    GROUP BY EdhEEID, EdhCOID 
+                SELECT EdhEEID, EdhCOID
+                    ,MAX(CASE WHEN EdhDedCode = 'LIFEE' THEN EdhEEBenAmt END) AS LIFEE_BenAmt
+                    ,MAX(CASE WHEN EdhDedCode = 'LIFES' THEN EdhEEBenAmt END) AS LIFES_BenAmt
+                    ,MAX(CASE WHEN EdhDedCode = 'LIFEC' THEN EdhEEBenAmt END) AS LIFEC_BenAmt
+                FROM (
+                        SELECT EdhEEID, EdhCOID, EdhDedCode, EdhEEBenAmt
+                        FROM (
+                                SELECT EdhEEID, EdhCOID, EdhDedCode, EdhEEBenAmt, ROW_NUMBER() OVER (PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhBenStatusDate DESC) AS RN
+                                FROM dbo.EmpHDed WITH (NOLOCK) 
+                                WHERE EdhDedCode IN ('LIFEE', 'LIFES', 'LIFEC') 
+                                    AND EdhBenStatus = 'A') AS T
+                WHERE RN = 1) AS Y
+                GROUP BY EdhEEID, EdhCOID
             ) AS Life_Amount
-            ON EdhEEID = xEEID
-            AND EdhCOID = XCOID
+        ON EdhEEID = xEEID
+        AND EdhCOID = XCOID
     ;
 
     /*
@@ -875,8 +880,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202007011'
        ,expStartPerControl     = '202007011'
-       ,expLastEndPerControl   = '202007289'
-       ,expEndPerControl       = '202007289'
+       ,expLastEndPerControl   = '202008139'
+       ,expEndPerControl       = '202008139'
 WHERE expFormatCode = 'EMOALSTDVL';
 
 **********************************************************************************/
