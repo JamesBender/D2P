@@ -1,0 +1,5 @@
+Interface details (EVSPEXP834)
+Env – EW13
+Server – EW1WUP3DB03 
+Database – ULTIPRO_WPPDMC 
+Export Name – VSP 834 Export

@@ -1,0 +1,5 @@
+Interface details (EFSAPRLEXP)
+Env – NW13   
+Server – NW1WUP3DB02 
+Database – ULTIPRO_WPREDCO 
+Export Name – FSA Payroll Export

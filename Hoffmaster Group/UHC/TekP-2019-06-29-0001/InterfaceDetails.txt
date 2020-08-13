@@ -1,0 +1,5 @@
+Interface details (EHFSAELIGE)
+Env – EW14
+Server – EW1WUP4DB03 
+Database – ULTIPRO_WPHOFFG 
+Export Name – UHC FSA Eligibility Export

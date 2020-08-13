@@ -1,0 +1,5 @@
+Interface details (EDELDEN834)
+Env – EW33
+Server – EW3WUP3DB02 
+Database – ULTIPRO_WPMOSME 
+Export Name – Delta Dental 834 Export

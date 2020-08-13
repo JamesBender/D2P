@@ -1,0 +1,5 @@
+Interface details (ECOMPSFMLA)
+Env – EW21 
+Server – EW2WUP1DB01
+Database – ULTIPRO_WPFCCU
+Export Name – ComPsych FMLA Export

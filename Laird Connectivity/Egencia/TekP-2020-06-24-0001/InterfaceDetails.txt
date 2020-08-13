@@ -1,0 +1,5 @@
+Interface details (EEGENCUKEX)
+Env – NW14 
+Server – NW1WUP4DB01 
+Database – ULTIPRO_WPLCNI 
+Export Name – Egencia UK Export

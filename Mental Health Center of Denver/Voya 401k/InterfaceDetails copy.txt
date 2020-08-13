@@ -1,0 +1,5 @@
+Interface details (EVOYA401K)
+Env – EW44 
+Server – EW4WUP4DB01
+Database – ULTIPRO_WPMHCOD
+Export Name – Voya 401K Export

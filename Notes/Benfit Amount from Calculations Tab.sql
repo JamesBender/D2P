@@ -1,0 +1,1 @@
+select top 100 EedBenAmt, * from EmpDed where EedEEID = 'C3W4GE0000K0' and EedDedCode = 'VLIFE'

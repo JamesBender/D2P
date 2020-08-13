@@ -1,0 +1,1 @@
+select * from dbo.U_ELINLIFPCT_drvTbl where drvEmpLastName = 'Reynoso'

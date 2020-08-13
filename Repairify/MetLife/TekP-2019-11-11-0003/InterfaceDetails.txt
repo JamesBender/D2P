@@ -1,0 +1,5 @@
+Interface details (EMETLIFINT)
+Env – NW13
+Server – NW1WUP3DB02 
+Database – ULTIPRO_WPREPFY 
+Export Name – MetLife CI ACC Hospital Legal Export

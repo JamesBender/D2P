@@ -1,0 +1,5 @@
+Interface details (EMERTINMDV)
+Env – EW13 
+Server – EW1WUP3DB03 
+Database – ULTIPRO_WPPDMC 
+Export Name – Meritain Med/Den/Vis

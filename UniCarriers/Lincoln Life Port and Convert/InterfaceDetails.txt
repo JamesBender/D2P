@@ -1,0 +1,5 @@
+Interface details (EJANDKFSPE)
+Env – EW23
+Server – EW2WUP3DB05 
+Database – ULTIPRO_WPNFCNA   
+Export Name – Lincoln Life Port & Convert Export

@@ -1,0 +1,5 @@
+Interface details (EACEN401EX)
+Env – EW15 
+Server – EW1WUP5DB01 
+Database – ULTIPRO_WPSCHOS
+Export Name – Acensus 401K Eligibilty Export

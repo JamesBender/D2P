@@ -1,0 +1,5 @@
+Interface details (EEFXPAYROL)
+Env – EW34
+Server – EW3WUP4DB01
+Database – ULTIPRO_WPSUNCO
+Export Name – Health EFX Payroll Export

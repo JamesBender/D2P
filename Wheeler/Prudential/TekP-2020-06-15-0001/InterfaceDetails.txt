@@ -1,0 +1,5 @@
+Interface details (EPRUD401KE)
+Env – NW12
+Server – NW1WUP2DB01 
+Database – ULTIPRO_WPWHLR 
+Export Name – Prudendtial 006764 401K

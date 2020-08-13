@@ -1,0 +1,5 @@
+Interface details (E98P6MI834)
+Env – EW31 
+Server – EW3WUP1DB04
+Database – ULTIPRO_WPWADEN
+Export Name – 98point6 Med Interface

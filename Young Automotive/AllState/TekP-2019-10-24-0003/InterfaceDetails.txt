@@ -1,0 +1,5 @@
+Interface details (EALLSTACCI)
+Env – NW14 
+Server – NW1WUP4DB01 
+Database – ULTIPRO_WPYAG 
+Export Name – Allstate ACC CI HOSP Export

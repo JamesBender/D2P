@@ -1,0 +1,47 @@
+Effective Date,Status,ClientID,EmployeeID,MemberFirstName,MemberMiddleName,MemberLastName,MemberSSN,DOB_Month,DOB_Day,DOB_Year,Address1,Address2,City,State,ZipCode,AreaCode,HomePhone,Email,Deduction Method,Customer_Defined,Relationship,Primary,FamilyID,UniqueID,Plan_Type,ProductID
+06/01/2020,Add,4643,549725063,Raymond,Ralph,Banks,549725063,6,24,1955,2415 E Vassar,,Visalia,CA,93292,,,rbanks@tpocc.org,Employer payroll deduction,10170,P,Y,000197,000197,Family,PAP
+06/01/2020,Add,4643,549725063,Jane,,Banks,374701855,11,28,1958,2415 E Vassar,,Visalia,CA,93292,559,3032722,,Employer payroll deduction,10170,S,N,000197,0001971,Family,PAP
+06/01/2020,Add,4643,572155603,Martha,Maya,Arriaga Castro,572155603,2,8,1963,1229 W Kelly Drive,,Dinuba,CA,93618,559,7413395,marriagacastro@tpocc.org,Employer payroll deduction,12049,P,Y,000605,000605,Family,PAP
+06/01/2020,Add,4643,572155603,Daniel,,Castro,571351669,8,20,1963,1229 W Kelly Drive,,Dinuba,CA,93618,559,2600298,,Employer payroll deduction,12049,S,N,000605,0006051,Family,PAP
+06/01/2020,Add,4643,572155603,Daniel,,Castro,614156930,8,27,1999,1229 W Kelly Drive,,Dinuba,CA,93618,559,4808969,,Employer payroll deduction,12049,C,N,000605,0006052,Family,PAP
+06/01/2020,Add,4643,572357071,Eva,,Norman,572357071,6,12,1960,667 San Diego Street,,Tulare,CA,93274,,,enorman@tpocc.org,Employer payroll deduction,12049,P,Y,000713,000713,Individual,PAP
+06/01/2020,Add,4643,553291427,Craig,A,Young,553291427,10,27,1959,836 N Fordham,,Clovis,CA,93611,,,cyoung@tpocc.org,Employer payroll deduction,10114,P,Y,002016,002016,Family,PAP
+06/01/2020,Add,4643,553291427,Debbie,,Young,572061623,10,10,1958,836 N Fordham,,Clovis,CA,93611,,,,Employer payroll deduction,10114,S,N,002016,0020161,Family,PAP
+06/01/2020,Add,4643,566720887,Deborah,A,Carrillo,566720887,9,20,1948,325 Sequoia St,,Salinas,CA,93906,,,dcarrillo@tpocc.org,Employer payroll deduction,10109,P,Y,002275,002275,Family,PAP
+06/01/2020,Add,4643,566720887,Paul,,Carrillo,553666873,11,5,1947,325 Sequoia St,,Salinas,CA,93906,,,,Employer payroll deduction,10109,S,N,002275,0022751,Family,PAP
+06/01/2020,Add,4643,569723980,Moses,R,Soza,569723980,12,10,1948,1265 E Le Parc Drive,,Fresno,CA,93720,,,msoza@tpocc.org,Employer payroll deduction,11735,P,Y,003178,003178,Individual,PAP
+06/01/2020,Add,4643,568986529,Rosemary,,Piedra,568986529,7,17,1956,115 E Cortland,,Fresno,CA,93704,559,2133503,rpiedra@tpocc.org,Employer payroll deduction,11700,P,Y,003752,003752,Individual,PAP
+06/01/2020,Add,4643,478848887,Scott,C,Hollander,478848887,6,1,1960,921 E Buckingham Way,,Fresno,CA,93704,559,9998983,shollander@tpocc.org,Employer payroll deduction,10170,P,Y,003782,003782,Individual,PAP
+06/01/2020,Add,4643,554658206,Violeta,M,Ramirez,554658206,8,15,1980,125 Rall Ave,,Clovis,CA,93612,559,6966921,vramirez@tpocc.org,Employer payroll deduction,13738,P,Y,003989,003989,Individual,PAP
+06/01/2020,Add,4643,519966038,Chantel,B,Anderson,519966038,9,14,1965,870 S Orchard Apt F,,Ukiah,CA,95482,,,canderson@tpocc.org,Employer payroll deduction,13962,P,Y,004052,004052,Individual,PAP
+06/01/2020,Add,4643,569833172,Rosalind,Marie,Charles,569833172,9,30,1968,3615 S University,,Visalia,CA,93277,559,6272046,rcharles@tpocc.org,Employer payroll deduction,14582,P,Y,004101,004101,Individual,PAP
+06/01/2020,Add,4643,573756752,Daniel,P,Carter,573756752,6,30,1969,1504 Longway Ln.,,Bakersfield,CA,93309,,,dcarter@tpocc.org,Employer payroll deduction,14858,P,Y,004220,004220,Individual,PAP
+06/01/2020,Add,4643,567115062,Laurie,Lynn,Martinez,567115062,8,6,1968,3416 W Cambridge Avenue,,Visalia,CA,93277,559,3037223,lmartinez@tpocc.org,Employer payroll deduction,12049,P,Y,004320,004320,Individual,PAP
+06/01/2020,Add,4643,562292676,Paul,D,Moreno,562292676,1,17,1974,2212 Tammy Lane,,Selma,CA,93662,,,pmoreno@tpocc.org,Employer payroll deduction,11065,P,Y,004460,004460,Individual,PAP
+06/01/2020,Add,4643,561694956,Estela,,Torres,561694956,8,22,1981,601 W. Silvercrest Dr.,,Lindsay,CA,93247,559,9012207,etorres@tpocc.org,Employer payroll deduction,12049,P,Y,004499,004499,Individual,PAP
+06/01/2020,Add,4643,559693994,Sonia,,Navarro,559693994,9,9,1981,13235 E. Belmont,,Sanger,CA,93657,,,snavarro@tpocc.org,Employer payroll deduction,11735,P,Y,004503,004503,Individual,PAP
+06/01/2020,Add,4643,545451324,Brian,Alan,Lee,545451324,7,27,1961,4304 E. Rialto Ave,,Fresno,CA,93726,310,3085539,blee@tpocc.org,Employer payroll deduction,18660,P,Y,004505,004505,Individual,PAP
+06/01/2020,Add,4643,546948882,Ramona,,Robinson,546948882,3,12,1954,1542 W. Crystal Ave,,Visalia,CA,93291,559,7868894,rrobinson@tpocc.org,Employer payroll deduction,10150,P,Y,004905,004905,Individual,PAP
+06/01/2020,Add,4643,610729678,Yorbeli,Garcia,Galindo,610729678,9,16,1985,Pobox 627,,Parlier,CA,93648,559,3566132,ygalindo@tpocc.org,Employer payroll deduction,18500,P,Y,005052,005052,Individual,PAP
+06/01/2020,Add,4643,569998577,Marcos,Manuel,Gonzalez,569998577,8,2,1987,486 S Kona Avenue,,Fresno,CA,93727,760,9606871,mgonzalez@tpocc.org,Employer payroll deduction,18500,P,Y,005111,005111,Family,PAP
+06/01/2020,Add,4643,569998577,Analyssa,Marie,Gonzalez,618485060,8,11,1991,486 S Kona Avenue,,Fresno,CA,93727,209,6206051,,Employer payroll deduction,18500,S,N,005111,0051111,Family,PAP
+06/01/2020,Add,4643,345448598,Bruce,James,Tyler,345448598,6,24,1954,3145 E Duran Avenue,,Visalia,CA,93292,559,7361205,btyler@tpocc.org,Employer payroll deduction,10170,P,Y,005284,005284,Family,PAP
+06/01/2020,Add,4643,345448598,Leanne,,Tyler,452239428,7,8,1967,3145 E Duran Avenue,,Visalia,CA,93292,559,6792961,,Employer payroll deduction,10170,S,N,005284,0052841,Family,PAP
+06/01/2020,Add,4643,345448598,Caleb,,Tyler,620842724,9,23,1995,3145 E Duran Avenue,,Visalia,CA,93292,,,,Employer payroll deduction,10170,C,N,005284,0052842,Family,PAP
+06/01/2020,Add,4643,345448598,Rebekah,,Tyler,626042246,4,2,1998,3145 E Duran Avenue,,Visalia,CA,93292,,,,Employer payroll deduction,10170,C,N,005284,0052843,Family,PAP
+06/01/2020,Add,4643,563698616,Melissa,Ann,Johnson,563698616,4,5,1978,8686 East Road 39,,Redwood Valley,CA,95470,707,4894136,mejohnson@tpocc.org,Employer payroll deduction,13966,P,Y,005309,005309,Individual,PAP
+06/01/2020,Add,4643,626308833,Andrea,Stephanie,Herrera,626308833,10,12,1987,2232 Dennis Drive,,Selma,CA,93662,559,8242852,aherrera@tpocc.org,Employer payroll deduction,12049,P,Y,005496,005496,Family,PAP
+06/01/2020,Add,4643,626308833,Selah,Brielle,Herera,708677327,7,9,2016,2232 Dennis Drive,,Selma,CA,93662,559,3490599,,Employer payroll deduction,12049,C,N,005496,0054962,Family,PAP
+06/01/2020,Add,4643,626308833,Jayden,Christopher,Herrera,681732488,9,21,2018,2232 Dennis Drive,,Selma,CA,93662,,,,Employer payroll deduction,12049,C,N,005496,0054963,Family,PAP
+06/01/2020,Add,4643,607247146,Olivia,,Gutierrez,607247146,8,27,1988,1303 Griffith Avenue,,Wasco,CA,93280,661,7174811,ogutierrez@tpocc.org,Employer payroll deduction,11236,P,Y,005533,005533,Individual,PAP
+06/01/2020,Add,4643,605681886,Haley,Lynn,Andersen,605681886,5,11,1993,551 Chablis Ct,,Ukiah,CA,95482,707,9724353,handersen@tpocc.org,Employer payroll deduction,13962,P,Y,005581,005581,Individual,PAP
+06/01/2020,Add,4643,626307279,Annabel,Rocio,Gonzalez,626307279,5,21,1987,P.O Box 961,162 N. Berry RD,Tipton,CA,93272,559,7593011,agonzalez@tpocc.org,Employer payroll deduction,12049,P,Y,006039,006039,Individual,PAP
+06/01/2020,Add,4643,561829216,Brenda,Kay,Fernandes,561829216,12,29,1958,Po Box 1828,14430 Avenue 336 93292,Visalia,CA,932791828,559,4716143,bfernandes@tpocc.org,Employer payroll deduction,10160,P,Y,006169,006169,Individual,PAP
+06/01/2020,Add,4643,563154026,Juanita,Esther,Morales,563154026,4,12,1961,211 Quincy St,,Bakersfield,CA,93305,661,3486995,jmorales@tpocc.org,Employer payroll deduction,14819,P,Y,006273,006273,Individual,PAP
+06/01/2020,Add,4643,578922184,Roderick,Llewellyn,Frye,578922184,6,5,1960,3516 Teal Street,,Bakersfield,CA,93304,661,4876291,rfrye@tpocc.org,Employer payroll deduction,11236,P,Y,006313,006313,Individual,PAP
+06/01/2020,Add,4643,611448996,Gloria,Stephanie,Weisenborn,611448996,6,16,1988,1518 N Green St,,Visalia,CA,93292,559,9679314,gweisenborn@tpocc.org,Employer payroll deduction,12049,P,Y,006345,006345,Family,PAP
+06/01/2020,Add,4643,611448996,Alec,,Weisenborn,613304882,6,26,1989,1518 N Green St,,Visalia,CA,93292,559,9679292,,Employer payroll deduction,12049,S,N,006345,0063451,Family,PAP
+06/01/2020,Add,4643,611448996,Elijah,,Weisenborn,888256034,9,7,2017,1518 N Green St,,Visalia,CA,93292,559,9679314,,Employer payroll deduction,12049,C,N,006345,0063452,Family,PAP
+06/01/2020,Add,4643,611448996,Sebastian,,Weisenborn,520891721,3,14,2013,1518 N Green St,,Visalia,CA,93292,559,9679314,,Employer payroll deduction,12049,C,N,006345,0063453,Family,PAP
+06/01/2020,Add,4643,550592082,Nora,EM,Bickfordhill Lacampagne,550592082,7,21,1963,P O Box 482,,Upper Lake,CA,95482,707,8902840,nbickfordhilllacampagne@tpocc.org,Employer payroll deduction,13962,P,Y,006623,006623,Family,PAP
+06/01/2020,Add,4643,550592082,John,,Lacampagne,154621872,9,12,1961,P O Box 482,,Upper Lake,CA,95482,,,,Employer payroll deduction,13962,S,N,006623,0066231,Family,PAP

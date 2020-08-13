@@ -1,0 +1,5 @@
+Interface details (EEMPOW401K)
+Env – EW33 
+Server – EW3WUP3DB01 
+Database – ULTIPRO_WPNRPIC 
+Export Name – Fifth Third Empower Retire 401k

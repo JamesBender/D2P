@@ -1,0 +1,5 @@
+Interface details (EUNICDD834)
+Env – EW23 
+Server – EW2WUP3DB05
+Database – ULTIPRO_WPNFCNA
+Export Name – Delta Dental 834 Export

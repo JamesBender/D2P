@@ -1,0 +1,5 @@
+Interface details (EFDSTKELIG)
+Env – EW13 
+Server – EW1WUP3DB03 
+Database – ULTIPRO_WPWADU 
+Export Name – Fidelity Stock Eligibilty Export

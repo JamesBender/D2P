@@ -1,0 +1,5 @@
+Interface details (EKECACHEXP)
+Env – EW45 
+Server – EW4WUP5DB02
+Database – ULTIPRO_WPKEAI
+Export Name – Cigna Accident/Critical Illness/Hospital Export

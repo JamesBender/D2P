@@ -1,0 +1,5 @@
+Interface details (EKAISERMED)
+Env – NW15 
+Server – NW1WUP5DB03 
+Database – ULTIPRO_WPBLUM 
+Export Name – Kaiser Medical Export

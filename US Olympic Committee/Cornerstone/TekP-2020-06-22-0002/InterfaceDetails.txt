@@ -1,0 +1,5 @@
+Interface details (ECRNSTCCEX)
+Env – EW33 
+Server – EW2WUP3DB03
+Database – ULTIPRO_WPUSOC 
+Export Name – Cornerstone Cost Center Export

@@ -1,0 +1,5 @@
+Interface details (EWAGEWREXP)
+Env – EW22 
+Server – EW2WUP2DB01 
+Database – ULTIPRO_WPGDS 
+Export Name – WageWorks FSA Export

@@ -1,0 +1,5 @@
+Interface details (ERAVEDGEXP)
+Env – EW23 
+Server – EW2WUP3DB05 
+Database – ULTIPRO_WPNFCNA 
+Export Name – Rave Demographic Export

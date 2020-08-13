@@ -1,0 +1,5 @@
+Interface details (ECIGNDV834)
+Env – NW13 
+Server – NW1WUP3DB03 
+Database – ULTIPRO_WPBPS 
+Export Name – Cigna Dental and Vision 834 Export

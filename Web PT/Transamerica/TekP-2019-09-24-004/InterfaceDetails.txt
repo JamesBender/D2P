@@ -1,0 +1,5 @@
+Interface details (ETRANAM401)
+Env – NW11 
+Server – NW1WUP1DB02 
+Database – ULTIPRO_WPWEBIN 
+Export Name – TransAmerica 401K Export

@@ -1,0 +1,5 @@
+Interface details (ETASCCBRNH)
+Env – EW14 
+Server – EW1WUP4DB03 
+Database – ULTIPRO_WPHOFFG 
+Export Name – TASC Cobra NH Export

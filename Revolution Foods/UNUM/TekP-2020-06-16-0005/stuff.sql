@@ -1,0 +1,59 @@
+
+SELECT BdmEEID, BdmCOID, BdmRecType
+	--,CASE WHEN BdmDedCode IN ('GLIF','LTD1','EXSTD') THEN 'A' ELSE 'B' END AS RD
+	,MAX(CASE WHEN BdmDedCode = 'GLIF' THEN BdmDedCode END) AS GLIF_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'LTD1' THEN BdmDedCode END) AS LTD1_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'EXSTD' THEN BdmDedCode END) AS EXSTD_DedCodeU	
+	,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmDedCode END) AS LIFEE_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmDedCode END) AS LIFEC_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'LIFES' THEN BdmDedCode END) AS LIFES_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'ADDS' THEN BdmDedCode END) AS ADDS_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'ADDC' THEN BdmDedCode END) AS ADDC_DedCodeU
+	,MAX(CASE WHEN BdmDedCode = 'ADDE' THEN BdmDedCode END) AS ADDE_DedCodeU
+	,MAX(BdmBenStartDate) AS Max_BenStartDate
+FROM dbo.U_dsi_BDM_EUNUMLAEXP WITH (NOLOCK)
+--where BdmEEID = '8T2CEX0000Y0'
+GROUP BY BdmEEID, BdmCOID, BdmRecType
+
+
+
+
+SELECT BdmEEID, BdmCOID
+	,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmDedCode END) AS LIFEE_DedCode
+	,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmDedCode END) AS LIFEC_DedCode
+	,MAX(CASE WHEN BdmDedCode = 'LIFES' THEN BdmDedCode END) AS LIFES_DedCode
+	,MAX(CASE WHEN BdmDedCode = 'ADDS' THEN BdmDedCode END) AS ADDS_DedCode
+	,MAX(CASE WHEN BdmDedCode = 'ADDC' THEN BdmDedCode END) AS ADDC_DedCode
+	,MAX(CASE WHEN BdmDedCode = 'ADDE' THEN BdmDedCode END) AS ADDE_DedCode
+
+	,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmChangeReason END) AS LIFEE_ChangeReason
+FROM dbo.U_dsi_BDM_EUNUMLAEXP WITH (NOLOCK)
+WHERE BdmDedCode IN ('LIFEE','LIFEC','LIFES','ADDS','ADDC','ADDE')
+AND BdmEEID = '8T2CEX0000Y0'
+GROUP BY BdmEEID, BdmCOID
+order by BdmEEID
+
+
+select * FROM dbo.U_dsi_BDM_EUNUMLAEXP WITH (NOLOCK) --WHERE BdmDedCode = 'LIFES'
+where BdmEEID = '8T2CEX0000Y0'
+
+sp_getEEID '8T2CJ90000Y0'
+
+
+
+SELECT EjhEEID, EjhCOID, EjhJobEffDate, EjhFullTimeOrPartTime
+FROM (
+		SELECT EjhEEID, EjhCOID, EjhJobEffDate, EjhFullTimeOrPartTime, ROW_NUMBER() OVER (PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+		FROM EmpHJob WITH (NOLOCK) 
+		WHERE EjhIsRateChange = 'Y'
+	) AS X
+WHERE RN = 1
+
+--AND 
+--EjhEEID = '8T2CEX0000Y0'
+--GROUP BY EjhEEID, EjhCOID
+
+
+
+select EdhChangeReason, * from EmpHDed where EdhDedCode = 'LIFEE' --LIFES, --LIFEC -- ADDE, ADDS, ADDC
+AND EdhEEID = '8T2CEX0000Y0'

@@ -1,0 +1,5 @@
+Interface details (ESUPDEN834)
+Env – EW43 
+Server – EW4WUP3DB03 
+Database – ULTIPRO_WPDCUI 
+Export Name – Superior Dental 834 Export

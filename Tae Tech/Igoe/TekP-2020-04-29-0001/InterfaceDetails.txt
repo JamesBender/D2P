@@ -1,0 +1,5 @@
+Interface details (EIGOEFSAEL)
+Env – NW11
+Server – NW1WUP1DB03 
+Database – ULTIPRO_WPTRIAE 
+Export Name – Igoe FSA Eligibility

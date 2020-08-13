@@ -1,0 +1,5 @@
+Interface details (EBCBSMD834)
+Env – EW22 
+Server – EW2WUP2DB03 
+Database – ULTIPRO_WPGHA 
+Export Name – BCBS Med Health and Welfare

@@ -1,0 +1,5 @@
+Interface details (EABSOFTLOA)
+Env – EW13 
+Server – EW1WUP3DB01 
+Database – ULTIPRO_WPELECU
+Export Name – Absense Soft LOA

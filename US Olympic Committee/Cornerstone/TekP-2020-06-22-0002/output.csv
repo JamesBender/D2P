@@ -1,0 +1,111 @@
+Ou ID,Ou Name,Parent ID,Owner ID,Approver ID,Description,Active,Allow Reconciliation
+20061,"Athlete Services",,,,,TRUE,TRUE
+20065,"Training Sites/Comm Part",,,,,TRUE,TRUE
+20066,"Athlete Ombudsman",,,,,TRUE,TRUE
+20067,"Athlete Safety",,,,,TRUE,TRUE
+20072,"Organizational Excellence",,,,,TRUE,TRUE
+20073,"Strategy & Bus Consulting",,,,,TRUE,TRUE
+20075,"Athlete Career and Ed",,,,,TRUE,TRUE
+20080,"U.S. Paralympics",,,,,TRUE,TRUE
+20081,"Paralympic Athletics",,,,,TRUE,TRUE
+20082,"Paralympic Swimming",,,,,TRUE,TRUE
+20083,"Paralympic Cycling",,,,,TRUE,TRUE
+20084,"Para Sport Performance",,,,,TRUE,TRUE
+20087,"Para Development Program",,,,,TRUE,TRUE
+20088,"Paralympic Alpine Skiing",,,,,TRUE,TRUE
+20093,"Paralympic Nordic Skiing",,,,,TRUE,TRUE
+20100,"Sport Performance I",,,,,TRUE,TRUE
+20150,"Team I Sport Science",,,,,TRUE,TRUE
+20185,"Paralympic Sport Science",,,,,TRUE,TRUE
+20200,"Sport Performance II",,,,,TRUE,TRUE
+20250,"Team II Sport Science",,,,,TRUE,TRUE
+20300,"Sport Performance III",,,,,TRUE,TRUE
+20350,"Team III Sport Science",,,,,TRUE,TRUE
+20400,"Sport Performance IV",,,,,TRUE,TRUE
+20450,"Team IV Sport Science",,,,,TRUE,TRUE
+20500,"Sport Performance V",,,,,TRUE,TRUE
+20505,"NGB Services",,,,,TRUE,TRUE
+20510,"NGB Business Development",,,,,TRUE,TRUE
+20530,"Athlete and Sport Svcs",,,,,TRUE,TRUE
+20550,"Team V Sport Science",,,,,TRUE,TRUE
+23010,"USOPC Productions",,,,,TRUE,TRUE
+29000,"Sport Perf Resources",,,,,TRUE,TRUE
+29100,"Comp Analysis, Res&Innov",,,,,TRUE,TRUE
+29200,"Technology & Innovation",,,,,TRUE,TRUE
+30500,"Chief of Sport Operations",,,,,TRUE,TRUE
+31000,"Communications",,,,,TRUE,TRUE
+32000,"International Relations",,,,,TRUE,TRUE
+34010,"CSOPTC Operations",,,,,TRUE,TRUE
+34016,"OPTC Business Development",,,,,TRUE,TRUE
+34020,"CSOPTC Operations",,,,,TRUE,TRUE
+34040,"CSOPTC Food & Nutr Svcs",,,,,TRUE,TRUE
+34050,"CSOPTC Transportation",,,,,TRUE,TRUE
+34060,"CSOPTC Venue Operations",,,,,TRUE,TRUE
+34061,"CSOPTC Velodrome",,,,,TRUE,TRUE
+34062,"CSOPTC Aquatics Center",,,,,TRUE,TRUE
+34066,"CSOPTC Vehicle Maint",,,,,TRUE,TRUE
+34068,"CSOPTC Visitor Center",,,,,TRUE,TRUE
+34069,"Archives",,,,,TRUE,TRUE
+34080,"CSOPTC General Clinic",,,,,TRUE,TRUE
+34090,"CSOPTC Security",,,,,TRUE,TRUE
+34110,"LPOPTC Operations",,,,,TRUE,TRUE
+34120,"LPOPTC Operations",,,,,TRUE,TRUE
+34130,"LPOPTC Housing",,,,,TRUE,TRUE
+34140,"LPOPTC Food & Nutr Svcs",,,,,TRUE,TRUE
+34150,"LPOPTC Transportation",,,,,TRUE,TRUE
+34170,"LPOPTC Facilities",,,,,TRUE,TRUE
+34180,"LPOPTC General Clinic",,,,,TRUE,TRUE
+34210,"CVOTC Program Management",,,,,TRUE,TRUE
+34220,"CVOTC Operations",,,,,TRUE,TRUE
+34240,"CVOTC Food & Nutr Svcs",,,,,TRUE,TRUE
+34250,"CVOTC Transportation",,,,,TRUE,TRUE
+34260,"CVOTC Facilities",,,,,TRUE,TRUE
+34268,"CVOTC Athlete & Comm Rels",,,,,TRUE,TRUE
+34270,"CVOTC Venues",,,,,TRUE,TRUE
+34280,"CVOPTC General Clinic",,,,,TRUE,TRUE
+34290,"CVOTC Security",,,,,TRUE,TRUE
+34480,"Remote General Clinic UT",,,,,TRUE,TRUE
+35000,"Games Operations",,,,,TRUE,TRUE
+36020,"Bid Administration",,,,,TRUE,TRUE
+37050,"Drug Rsrch Collaborative",,,,,TRUE,TRUE
+38000,"Sports Medicine Pgm Mgmt",,,,,TRUE,TRUE
+38100,"National Medical Network",,,,,TRUE,TRUE
+39000,"Athlete Perf Venues",,,,,TRUE,TRUE
+39001,"CSOPTC Strength & Cond",,,,,TRUE,TRUE
+39002,"CVOTC Strength & Cond",,,,,TRUE,TRUE
+39003,"LPOTC Strength & Cond",,,,,TRUE,TRUE
+40000,"Coaching Pgm Mgmt",,,,,TRUE,TRUE
+41000,"Athlete Advisory Council",,,,,TRUE,TRUE
+41205,"Collegiate Partnerships",,,,,TRUE,TRUE
+50000,"Marketing",,,,,TRUE,TRUE
+51030,"Meeting and Event Svcs",,,,,TRUE,TRUE
+51045,"Olympian/Paralympian Rel",,,,,TRUE,TRUE
+53000,"Development",,,,,TRUE,TRUE
+53300,"Team USA Annual Fund",,,,,TRUE,TRUE
+53400,"Development Gen and Admin",,,,,TRUE,TRUE
+53500,"USOPF Planned Giving",,,,,TRUE,TRUE
+54000,"Direct Mail",,,,,TRUE,TRUE
+61000,"Executive Offices",,,,,TRUE,TRUE
+61050,"Strategic Planning",,,,,TRUE,TRUE
+61100,"Business Administration",,,,,TRUE,TRUE
+62000,"Legal",,,,,TRUE,TRUE
+63000,"Finance",,,,,TRUE,TRUE
+63100,"Purchasing",,,,,TRUE,TRUE
+63200,"Risk Management",,,,,TRUE,TRUE
+63300,"NGB Compliance",,,,,TRUE,TRUE
+64000,"People and Culture",,,,,TRUE,TRUE
+66030,"Gov Relations Office",,,,,TRUE,TRUE
+67066,"Diversity & Inclusion",,,,,TRUE,TRUE
+70000,"Travel Services",,,,,TRUE,TRUE
+70010,"Office Services",,,,,TRUE,TRUE
+70050,"Logistics",,,,,TRUE,TRUE
+71000,"Information Tech - Admin",,,,,TRUE,TRUE
+71004,"Technology & Video Ops",,,,,TRUE,TRUE
+71005,"Video Technologies",,,,,TRUE,TRUE
+71006,"Enterprise Applications",,,,,TRUE,TRUE
+71007,"IT Project Management",,,,,TRUE,TRUE
+72000,"Facilities Mgmt Div (FMD)",,,,,TRUE,TRUE
+72200,"FMD - Personnel",,,,,TRUE,TRUE
+74000,"Security",,,,,TRUE,TRUE
+83000,"USOPF Fundraising",,,,,TRUE,TRUE
+83400,"USOPF General & Admin",,,,,TRUE,TRUE

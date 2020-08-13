@@ -1,0 +1,5 @@
+Interface details (ELINFINEXP)
+Env – EW14 
+Server – EW1WUP4DB01
+Database – ULTIPRO_WPDIAHC
+Export Name – Lincoln Financial Export

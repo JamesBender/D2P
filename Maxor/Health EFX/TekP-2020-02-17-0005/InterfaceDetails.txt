@@ -1,0 +1,5 @@
+Interface details (EEFXHLDEMO)
+Env – EW34
+Server – EW3WUP4DB01 
+Database – ULTIPRO_WPMAXOR 
+Export Name – Health EFX Demographics Export

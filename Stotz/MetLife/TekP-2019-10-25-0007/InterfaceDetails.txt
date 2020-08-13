@@ -1,0 +1,5 @@
+Interface details (ETRIAHLEXP)
+Env – EW23 
+Server – EW2WUP3DB03
+Database – ULTIPRO_WPSUNCO
+Export Name – Met Life Vol CI ACC Export

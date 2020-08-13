@@ -1,0 +1,5 @@
+Interface details (EABSDEPEXP)
+Env – EW41
+Server – EW4WUP1DB03
+Database – ULTIPRO_WPMCRES
+Export Name – Absorb Dept Export

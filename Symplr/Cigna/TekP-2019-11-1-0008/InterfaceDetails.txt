@@ -1,0 +1,5 @@
+Interface details (ECIGNAHSAX)
+Env – NW11 
+Server – NW1WUP1DB02
+Database – ULTIPRO_WPVCR
+Export Name – Cigna HSA Export

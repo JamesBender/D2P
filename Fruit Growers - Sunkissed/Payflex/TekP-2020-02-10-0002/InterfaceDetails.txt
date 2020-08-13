@@ -1,0 +1,5 @@
+Interface details (EPFPAYRSN3)
+Env – EW33 
+Server – EW3WUP3DB02
+Database – ULTIPRO_WPSNKST
+Export Name – PayFlex FSA Payroll V3

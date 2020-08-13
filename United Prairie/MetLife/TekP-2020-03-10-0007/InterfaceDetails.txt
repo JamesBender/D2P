@@ -1,0 +1,5 @@
+Interface details (EMETLIFEXP)
+Env – NW15   
+Server – NW1WUP5DB02 
+Database – ULTIPRO_WPUPB 
+Export Name – MetLife LTD/BL/AD&D/Dep/Vol

@@ -1,0 +1,5 @@
+Interface details (EDISCCOBQB)
+Env – EW23 
+Server – EW2WUP3DB02 
+Database – ULTIPRO_WPFXGLC 
+Export Name – Discover COBRA QB Export

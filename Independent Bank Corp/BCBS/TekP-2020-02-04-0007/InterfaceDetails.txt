@@ -1,0 +1,5 @@
+Interface details (EBCBSMEDXP)
+Env – EW21 
+Server – EW2WUP1DB03 
+Database – ULTIPRO_WPINDEP 
+Export Name – BCBS Medical 834 Export

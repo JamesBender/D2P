@@ -1,0 +1,5 @@
+Interface details (EIAPENELIG)
+Env – ATZ12
+Server – TZ1SUP2DB02
+Database – ULTIPRO_HLIFE
+Export Name – iA Pension Eligibility Export

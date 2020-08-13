@@ -1,0 +1,5 @@
+Interface details (EALEFSAHSA)
+Env – EW24 
+Server – EW2WUP4DB03
+Database – ULTIPRO_WPHORTO
+Export Name – Alerus FSA HSA Contributions Export
