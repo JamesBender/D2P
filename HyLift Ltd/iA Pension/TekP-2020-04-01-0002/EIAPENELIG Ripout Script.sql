@@ -88,10 +88,10 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIAPENELIG_20200713.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'iA Pension Eligibility Export','202007139','EMPEXPORT','ONDEMAND',NULL,'EIAPENELIG',NULL,NULL,NULL,'202007139','Jun  1 2020 10:05AM','Jun  1 2020 10:05AM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIAPENELIG_20200713.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202007139','EMPEXPORT','SCHEDULED',NULL,'EIAPENELIG',NULL,NULL,NULL,'202007139','Jun  1 2020 10:05AM','Jun  1 2020 10:05AM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIAPENELIG_20200713.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202007139','EMPEXPORT','TEST','Jul 10 2020  5:34PM','EIAPENELIG',NULL,NULL,NULL,'202007139','Jul 10 2020 12:00AM','Dec 30 1899 12:00AM','202001011','356','','','202001011',dbo.fn_GetTimedKey(),NULL,'LKING01',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EIAPENELIG_20200713.txt' END WHERE expFormatCode = 'EIAPENELIG';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIAPENELIG_20200817.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'iA Pension Eligibility Export','202008179','EMPEXPORT','ONDEMAND',NULL,'EIAPENELIG',NULL,NULL,NULL,'202008179','Jun  1 2020 10:05AM','Jun  1 2020 10:05AM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIAPENELIG_20200817.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202008179','EMPEXPORT','SCHEDULED',NULL,'EIAPENELIG',NULL,NULL,NULL,'202008179','Jun  1 2020 10:05AM','Jun  1 2020 10:05AM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIAPENELIG_20200817.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202008189','EMPEXPORT','TEST','Aug 17 2020 12:10PM','EIAPENELIG',NULL,NULL,NULL,'202008189','Aug 18 2020 12:00AM','Dec 30 1899 12:00AM','202008011','2653','','','202008011',dbo.fn_GetTimedKey(),NULL,'LKING01',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EIAPENELIG_20200817.txt' END WHERE expFormatCode = 'EIAPENELIG';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIAPENELIG','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIAPENELIG','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIAPENELIG','InitialSort','C','drvSort');
@@ -144,7 +144,7 @@ CREATE TABLE [dbo].[U_EIAPENELIG_drvTbl] (
     [drvAddressCountry] varchar(5) NULL,
     [drvAddressEmail] varchar(52) NOT NULL,
     [drvPersonalPhoneNum] varchar(8000) NOT NULL,
-    [srvSINumber] varchar(52) NOT NULL,
+    [srvSINumber] varchar(8000) NULL,
     [drvEligabilityDate] nvarchar(4000) NULL,
     [drvEmplFullOrPartTime] varchar(3) NULL,
     [drvPermOrTemEmpl] varchar(11) NOT NULL,
@@ -277,7 +277,7 @@ BEGIN
         ON adrSystemID = adfSystemID
        AND adrKey = adfKey
     WHERE adrType IN (1,2,5,6) -- Insert/Update; remove this to include Deletes and Viewed
-      AND adrProcessedDateTime BETWEEN @StartDate AND @EndDate;
+      AND adrProcessedDateTime BETWEEN DATEADD(DAY, -21, @StartDate) AND @EndDate;
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EIAPENELIG_Audit ON dbo.U_EIAPENELIG_Audit (audKey1Value, audKey2Value);
 
@@ -322,7 +322,7 @@ BEGIN
         ,drvAddressCountry = '"' + EepAddressCountry + '"'
         ,drvAddressEmail = '"' + ISNULL(CASE WHEN ISNULL(EepAddressEMail, '') <> '' THEN EepAddressEMail ELSE EepAddressEmailAlternate END, '') + '"'
         ,drvPersonalPhoneNum = '"' + ISNULL(REPLACE(EepPhoneHomeNumber, ' ', ''), '') + '"'
-        ,srvSINumber = '"' + EinNationalId + '"'
+        ,srvSINumber = '"' + CASE WHEN ISNULL(EinNationalId, '') = '' THEN REPLACE(EepSSN, ' ','') ELSE EinNationalId END + '"'
         ,drvEligabilityDate = '"' + FORMAT(EecDateOfBenefitSeniority, 'MM/dd/yyyy') + '"'
         ,drvEmplFullOrPartTime = '"' + EecFullTimeOrPartTime + '"'
         ,drvPermOrTemEmpl = '"' + CASE WHEN EecEEType = 'REG' THEN 'Permanent' ELSE 'Temporary' END + '"'
@@ -338,7 +338,7 @@ BEGIN
         AND EecCOID = xCOID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    JOIN dbo.EmpIntl WITH (NOLOCK)
+    LEFT JOIN dbo.EmpIntl WITH (NOLOCK)
         ON xEEID = EinEEID
     JOIN (
             SELECT  EshEEID, EshCOID, EshEmplStatus, EshStatusStopDate
@@ -358,7 +358,7 @@ BEGIN
         ) AS AudTermDate
         ON AudEEID = xEEID
         AND AudCOID = xCOID
-    WHERE EecDateOfBenefitSeniority > '1/1/2020'
+    WHERE EecDateOfBenefitSeniority <> '1/1/2070'
     AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudTermDate > DATEADD(DAY, -21, @EndDate)))
     --    AND TRY_CAST(EecUDFIELD01 AS INT) IS NOT NULL
     ;
@@ -391,10 +391,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202001011'
-       ,expStartPerControl     = '202001011'
-       ,expLastEndPerControl   = '202007139'
-       ,expEndPerControl       = '202007139'
+    SET expLastStartPerControl = '202008011'
+       ,expStartPerControl     = '202008011'
+       ,expLastEndPerControl   = '202008179'
+       ,expEndPerControl       = '202008179'
 WHERE expFormatCode = 'EIAPENELIG';
 
 **********************************************************************************/
