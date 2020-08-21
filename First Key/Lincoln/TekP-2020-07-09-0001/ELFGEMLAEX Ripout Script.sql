@@ -5,6 +5,8 @@ IF OBJECT_ID('dsi_vwELFGEMLAEX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwELFGE
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ELFGEMLAEX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ELFGEMLAEX];
 GO
+IF OBJECT_ID('U_ELFGEMLAEX_TotalMonthsRaw') IS NOT NULL DROP TABLE [dbo].[U_ELFGEMLAEX_TotalMonthsRaw];
+GO
 IF OBJECT_ID('U_ELFGEMLAEX_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ELFGEMLAEX_PEarHist];
 GO
 IF OBJECT_ID('U_ELFGEMLAEX_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ELFGEMLAEX_PDedHist];
@@ -24,12 +26,12 @@ DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE Format
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ELFGEMLAEX';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ELFGEMLAEX';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ELFGEMLAEX';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ELFGEMLAEX','Lincoln FMLA Supp Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','ELFGEMLAEXZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ELFGEMLAEX','Lincoln FMLA Supp Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','810','S','N','ELFGEMLAEXZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"09-LF0188"','1','(''DA''=''F'')','ELFGEMLAEXZ0','9','H','01','1',NULL,'Customer ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNumberOfDetailRecs"','2','(''UA''=''F'')','ELFGEMLAEXZ0','7','H','01','10',NULL,'Number of detailed records',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCreationDate"','3','(''UD112''=''F'')','ELFGEMLAEXZ0','8','H','01','17',NULL,'File Create Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''F'')','ELFGEMLAEXZ0','784','H','01','25',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordDelimiter"','5','(''UA''=''F'')','ELFGEMLAEXZ0','1','H','01','809',NULL,'Record delimiter',NULL,NULL);
+--INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordDelimiter"','5','(''UA''=''F'')','ELFGEMLAEXZ0','1','H','01','809',NULL,'Record delimiter',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"F"','1','(''DA''=''F'')','ELFGEMLAEXZ0','1','D','10','1',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','2','(''UA''=''F'')','ELFGEMLAEXZ0','11','D','10','2',NULL,'Social Security Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeId"','3','(''UA''=''F'')','ELFGEMLAEXZ0','11','D','10','13',NULL,'Employee Identification',NULL,NULL);
@@ -42,7 +44,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','10','(''UA''=''F'')','ELFGEMLAEXZ0','20','D','10','160',NULL,'Employee Address City',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','11','(''UA''=''F'')','ELFGEMLAEXZ0','2','D','10','180',NULL,'Employee Address State Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZip"','12','(''UA''=''F'')','ELFGEMLAEXZ0','9','D','10','182',NULL,'Employee Address Postal Code',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','13','(''UA''=''F'')','ELFGEMLAEXZ0','8','D','10','191',NULL,'Employee Birth Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','13','(''UD112''=''F'')','ELFGEMLAEXZ0','8','D','10','191',NULL,'Employee Birth Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','14','(''UA''=''F'')','ELFGEMLAEXZ0','1','D','10','199',NULL,'Employee Gender',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfOriginalHire"','15','(''UD112''=''F'')','ELFGEMLAEXZ0','8','D','10','200',NULL,'Original Hire Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfLastHire"','16','(''UD112''=''F'')','ELFGEMLAEXZ0','8','D','10','208',NULL,'Latest Hire Date',NULL,NULL);
@@ -77,16 +79,16 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','45','(''DA''=''F'')','ELFGEMLAEXZ0','20','D','10','761',NULL,'Employee Custom Data 6',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','46','(''DA''=''F'')','ELFGEMLAEXZ0','20','D','10','781',NULL,'Employee Custom Data 7',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateCreated"','47','(''UD112''=''F'')','ELFGEMLAEXZ0','8','D','10','801',NULL,'Date Created',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordDelimiter"','48','(''UA''=''F'')','ELFGEMLAEXZ0','1','D','10','809',NULL,'Record Delimiter',NULL,NULL);
+--INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordDelimiter"','48','(''UA''=''F'')','ELFGEMLAEXZ0','1','D','10','809',NULL,'Record Delimiter',NULL,NULL);
 DECLARE @UDENV varchar(3) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' ELSE LEFT(@@SERVERNAME,3) END);
 DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ELFGEMLAEX_20200817.txt',NULL,'','',NULL,NULL,NULL,NULL,'Lincoln FMLA Supp Export','202008179','EMPEXPORT','ONDEM_XOE',NULL,'ELFGEMLAEX',NULL,NULL,NULL,'202008179','Aug 17 2020 12:25PM','Aug 17 2020 12:25PM','202008171',NULL,'','','202008171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ELFGEMLAEX_20200817.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln FMLA Supp Export-Test','202008179','EMPEXPORT','TEST_XOE',NULL,'ELFGEMLAEX',NULL,NULL,NULL,'202008179','Aug 17 2020 12:25PM','Aug 17 2020 12:25PM','202008171',NULL,'','','202008171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ELFGEMLAEX_20200817.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln FMLA Supp Export-Sched','202008179','EMPEXPORT','SCH_ELFGEM',NULL,'ELFGEMLAEX',NULL,NULL,NULL,'202008179','Aug 17 2020 12:25PM','Aug 17 2020 12:25PM','202008171',NULL,'','','202008171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_ELFGEMLAEX_20200817.txt' END WHERE expFormatCode = 'ELFGEMLAEX';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ELFGEMLAEX_20200819.txt',NULL,'','',NULL,NULL,NULL,NULL,'Lincoln FMLA Supp Export','202008179','EMPEXPORT','ONDEM_XOE',NULL,'ELFGEMLAEX',NULL,NULL,NULL,'202008179','Aug 17 2020 12:25PM','Aug 17 2020 12:25PM','202008171',NULL,'','','202008171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ELFGEMLAEX_20200819.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln FMLA Supp Export-Test','202008179','EMPEXPORT','TEST_XOE',NULL,'ELFGEMLAEX',NULL,NULL,NULL,'202008179','Aug 17 2020 12:25PM','Aug 17 2020 12:25PM','202008171',NULL,'','','202008171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ELFGEMLAEX_20200819.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln FMLA Supp Export-Sched','202008179','EMPEXPORT','SCH_ELFGEM',NULL,'ELFGEMLAEX',NULL,NULL,NULL,'202008179','Aug 17 2020 12:25PM','Aug 17 2020 12:25PM','202008171',NULL,'','','202008171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_ELFGEMLAEX_20200819.txt' END WHERE expFormatCode = 'ELFGEMLAEX';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELFGEMLAEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELFGEMLAEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELFGEMLAEX','InitialSort','C','drvSort');
@@ -109,8 +111,8 @@ CREATE TABLE [dbo].[U_ELFGEMLAEX_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvSSN] char(11) NULL,
-    [drvEmployeId] varchar(1) NOT NULL,
+    [drvSSN] varchar(13) NULL,
+    [drvEmployeId] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
@@ -119,27 +121,26 @@ CREATE TABLE [dbo].[U_ELFGEMLAEX_drvTbl] (
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
-    [drvAddressZip] varchar(1) NOT NULL,
+    [drvAddressZip] varchar(50) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvGender] char(1) NULL,
+    [drvGender] varchar(1) NULL,
     [drvDateOfOriginalHire] datetime NULL,
     [drvDateOfLastHire] datetime NULL,
     [drvEmployeeStatus] varchar(1) NOT NULL,
     [drvDateOfTermination] datetime NULL,
     [drvEmploymentType] varchar(1) NOT NULL,
     [drvEmployeeState] varchar(255) NULL,
-    [drvEligAmountDuration] varchar(1) NOT NULL,
-    [drvServiceAmount] varchar(1) NOT NULL,
-    [drvHoursWorkedMon] varchar(1) NOT NULL,
-    [drvHoursWorkedTues] varchar(1) NOT NULL,
-    [drvHoursWorkedWed] varchar(1) NOT NULL,
-    [drvHoursWorkedThurs] varchar(1) NOT NULL,
-    [drvHoursWorkedFri] varchar(1) NOT NULL,
-    [dvDisabilityConNameFirst] varchar(100) NULL,
-    [dvDisabilityConNameLast] varchar(100) NULL,
-    [dvDisabilityConEmailAddress] varchar(50) NULL,
-    [drvDateCreated] varchar(1) NOT NULL,
-    [drvRecordDelimiter] varchar(1) NOT NULL
+    [drvEligAmountDuration] nvarchar(4000) NULL,
+    [drvServiceAmount] nvarchar(4000) NULL,
+    [drvHoursWorkedMon] nvarchar(4000) NULL,
+    [drvHoursWorkedTues] nvarchar(4000) NULL,
+    [drvHoursWorkedWed] nvarchar(4000) NULL,
+    [drvHoursWorkedThurs] nvarchar(4000) NULL,
+    [drvHoursWorkedFri] nvarchar(4000) NULL,
+    [dvDisabilityConNameFirst] varchar(7) NOT NULL,
+    [dvDisabilityConNameLast] varchar(5) NOT NULL,
+    [dvDisabilityConEmailAddress] varchar(24) NOT NULL,
+    [drvDateCreated] datetime NOT NULL
 );
 IF OBJECT_ID('U_ELFGEMLAEX_EEList') IS NULL
 CREATE TABLE [dbo].[U_ELFGEMLAEX_EEList] (
@@ -157,9 +158,8 @@ CREATE TABLE [dbo].[U_ELFGEMLAEX_File] (
 );
 IF OBJECT_ID('U_ELFGEMLAEX_Header') IS NULL
 CREATE TABLE [dbo].[U_ELFGEMLAEX_Header] (
-    [drvNumberOfDetailRecs] varchar(1) NOT NULL,
-    [drvCreationDate] varchar(1) NOT NULL,
-    [drvRecordDelimiter] varchar(1) NOT NULL
+    [drvNumberOfDetailRecs] nvarchar(7) NULL,
+    [drvCreationDate] datetime NOT NULL
 );
 IF OBJECT_ID('U_ELFGEMLAEX_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_ELFGEMLAEX_PDedHist] (
@@ -187,10 +187,16 @@ CREATE TABLE [dbo].[U_ELFGEMLAEX_PEarHist] (
     [PehCurHrs] decimal NULL,
     [PehCurAmtYTD] money NULL,
     [PehCurHrsYTD] decimal NULL,
+    [PehEligibilityAmountDuration] decimal NULL,
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompHrs] decimal NULL,
     [PehInclInDefCompYTD] money NULL,
     [PehInclInDefCompHrsYTD] decimal NULL
+);
+IF OBJECT_ID('U_ELFGEMLAEX_TotalMonthsRaw') IS NULL
+CREATE TABLE [dbo].[U_ELFGEMLAEX_TotalMonthsRaw] (
+    [PayDateEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ELFGEMLAEX]
@@ -324,12 +330,14 @@ BEGIN
     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
+        --,PrgPayDate             = PrgPayDate
         -- Current Payroll Amount/Hours
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
         -- YTD Payroll Amount/Hours
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
+        ,PehEligibilityAmountDuration = SUM(CASE WHEN PehIsRegularPayCode = 'Y' OR PehIsOvertime = 'Y' OR ErnIsProductiveTime = 'Y' THEN PehCurHrs ELSE 0.00 END)
         -- Current Include Deferred Comp Amount/Hours
         ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
         ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
@@ -340,10 +348,28 @@ BEGIN
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
+    JOIN dbo.EarnCode WITH (NOLOCK)
+        ON ErnEarnCode = PehEarnCode
+    WHERE --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    --AND 
+    --PehPerControl <= @EndPerControl
+    LEFT(PehPerControl, 8) BETWEEN DATEADD(YEAR, -1, @ENDDATE) and @ENDDATE
+    GROUP BY PehEEID --, PrgPayDate
     HAVING SUM(PehCurAmt) <> 0.00;
+
+
+
+    /*IF OBJECT_ID('U_ELFGEMLAEX_TotalMonthsRaw','U') IS NOT NULL
+        DROP TABLE dbo.U_ELFGEMLAEX_TotalMonthsRaw
+    SELECT DISTINCT
+         PehEEID AS PayDateEEID
+        ,CAST(DATEPART(YEAR, PrgPayDate) AS VARCHAR) + CAST(DATEPART(MONTH, PrgPayDate) AS VARCHAR) AS PayDates --MAX(PrgPayDate)
+        INTO dbo.U_ELFGEMLAEX_TotalMonthsRaw
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist A WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    Order by A.PehEEID;*/
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -358,8 +384,8 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvSSN = eepSSN
-        ,drvEmployeId = ''
+        ,drvSSN = eepSSN + '  '
+        ,drvEmployeId = EecEmpNo
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
@@ -368,27 +394,28 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
-        ,drvAddressZip = ''
+        ,drvAddressZip = EepAddressZipCode
         ,drvDateOfBirth = EepDateOfBirth
-        ,drvGender = EepGender
+        ,drvGender =    CASE WHEN EepGender = 'M' THEN 'M'
+                            WHEN EepGender = 'F' THEN 'F'
+                        END
         ,drvDateOfOriginalHire = EecDateOfOriginalHire
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvEmployeeStatus = ''
+        ,drvEmployeeStatus = CASE WHEN EecEmplStatus IN ('T', 'R') THEN 'T' ELSE 'A' END
         ,drvDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvEmploymentType = ''
-        ,drvEmployeeState = EepAddressState
-        ,drvEligAmountDuration = ''
-        ,drvServiceAmount = ''
-        ,drvHoursWorkedMon = ''
-        ,drvHoursWorkedTues = ''
-        ,drvHoursWorkedWed = ''
-        ,drvHoursWorkedThurs = ''
-        ,drvHoursWorkedFri = ''
-        ,dvDisabilityConNameFirst = EepNameFirst
-        ,dvDisabilityConNameLast = EepNameLast
-        ,dvDisabilityConEmailAddress = EepAddressEMail
-        ,drvDateCreated = ''
-        ,drvRecordDelimiter = ''
+        ,drvEmploymentType = CASE WHEN EecFullTimeOrPartTime = 'F' THEN '1' ELSE '2' END
+        ,drvEmployeeState = LocAddressState
+        ,drvEligAmountDuration = FORMAT(PehEligibilityAmountDuration, '#0.00')
+        ,drvServiceAmount = FORMAT(DATEDIFF(MONTH, EecDateOfLastHire, GETDATE()), '#0')
+        ,drvHoursWorkedMon = FORMAT(EecScheduledAnnualHrs/52/5, '#0')
+        ,drvHoursWorkedTues = FORMAT(EecScheduledAnnualHrs/52/5, '#0')
+        ,drvHoursWorkedWed = FORMAT(EecScheduledAnnualHrs/52/5, '#0')
+        ,drvHoursWorkedThurs = FORMAT(EecScheduledAnnualHrs/52/5, '#0')
+        ,drvHoursWorkedFri = FORMAT(EecScheduledAnnualHrs/52/5, '#0')
+        ,dvDisabilityConNameFirst = 'Daniese'
+        ,dvDisabilityConNameLast = 'Adams'
+        ,dvDisabilityConEmailAddress = 'dadams@firstkeyhomes.com'
+        ,drvDateCreated = GETDATE()
     INTO dbo.U_ELFGEMLAEX_drvTbl
     FROM dbo.U_ELFGEMLAEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -396,6 +423,17 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.Location WITH (NOLOCK)
+        ON EecLocation = LocCode
+    JOIN dbo.U_ELFGEMLAEX_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+    /*JOIN (
+            SELECT PayDateEEID, COUNT(PayDates) AS MONTHS
+            FROM dbo.U_ELFGEMLAEX_TotalMonthsRaw
+            GROUP BY PayDateEEID
+--Order by PayDateEEID
+        ) AS Months
+        ON PayDateEEID = xEEID*/
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -403,9 +441,8 @@ BEGIN
     IF OBJECT_ID('U_ELFGEMLAEX_Header','U') IS NOT NULL
         DROP TABLE dbo.U_ELFGEMLAEX_Header;
     SELECT DISTINCT
-         drvNumberOfDetailRecs = ''
-        ,drvCreationDate = ''
-        ,drvRecordDelimiter = ''
+         drvNumberOfDetailRecs = RIGHT(SPACE(7) + FORMAT((SELECT COUNT(*) FROM dbo.U_ELFGEMLAEX_drvTbl WITH (NOLOCK)), '#0'), 7)
+        ,drvCreationDate = GETDATE()        
     INTO dbo.U_ELFGEMLAEX_Header
     ;
 

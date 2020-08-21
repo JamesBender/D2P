@@ -391,12 +391,12 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200810.txt',NULL,'','','',NULL,NULL,NULL,'MetLife LTD/BL/AD&D/Dep/Vol','202007319','EMPEXPORT','ONDEMAND','Jun 10 2020  9:23AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','342','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200810.txt',NULL,'','','',NULL,NULL,NULL,'Scheduled Session','202007319','EMPEXPORT','SCHEDULED','Jun 10 2020  9:23AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','342','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200810.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202007319','EMPEXPORT','OEACTIVE','Jun 10 2020  9:22AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','0','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200810.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202007319','EMPEXPORT','OEPASSIVE','Jun 10 2020  9:23AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','342','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200810.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202007319','EMPEXPORT','TEST','Jul 30 2020  2:51PM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jul 30 2020 12:00AM','Dec 30 1899 12:00AM','202005281','340','','','202005281',dbo.fn_GetTimedKey(),NULL,'us3lKiUNI1088',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EMETLIFEXP_20200810.txt' END WHERE expFormatCode = 'EMETLIFEXP';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200820.txt',NULL,'','','',NULL,NULL,NULL,'MetLife LTD/BL/AD&D/Dep/Vol','202007319','EMPEXPORT','ONDEMAND','Jun 10 2020  9:23AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','342','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200820.txt',NULL,'','','',NULL,NULL,NULL,'Scheduled Session','202007319','EMPEXPORT','SCHEDULED','Jun 10 2020  9:23AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','342','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200820.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202007319','EMPEXPORT','OEACTIVE','Jun 10 2020  9:22AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','0','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200820.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202007319','EMPEXPORT','OEPASSIVE','Jun 10 2020  9:23AM','EMETLIFEXP',NULL,NULL,NULL,'202007319','Jun  4 2020 11:39AM','Jun  4 2020 11:39AM','202005281','342','','','202005281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EMETLIFEXP_20200820.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202008199','EMPEXPORT','TEST','Aug 19 2020  4:10PM','EMETLIFEXP',NULL,NULL,NULL,'202008199','Aug 19 2020 12:00AM','Dec 30 1899 12:00AM','202008041','315','','','202008041',dbo.fn_GetTimedKey(),NULL,'us3lKiUNI1088',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EMETLIFEXP_20200820.txt' END WHERE expFormatCode = 'EMETLIFEXP';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETLIFEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETLIFEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETLIFEXP','InitialSort','C','drvSort');
@@ -468,7 +468,7 @@ CREATE TABLE [dbo].[U_EMETLIFEXP_drvTbl] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvMaritalStatus] char(1) NULL,
+    [drvMaritalStatus] varchar(1) NOT NULL,
     [drvGender] char(1) NULL,
     [drvRelationshipCode] varchar(2) NOT NULL,
     [drvEmployeDateOfHire] datetime NULL,
@@ -667,7 +667,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '295,417,418,419,420,421,422,561,562';
+    SET @DedList = '417,418,419,420,421,422,561,562';
 
     IF OBJECT_ID('U_EMETLIFEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EMETLIFEXP_DedList;
@@ -710,6 +710,18 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode
     EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
+
+
+
+    UPDATE A
+    SET A.BdmEEAmt = B.DedEEBenAmt
+    FROM dbo.U_dsi_BDM_EMETLIFEXP a
+    INNER JOIN dbo.U_dsi_BDM_empDeductions B
+        ON B.EedEEID = A.BdmEEID
+        AND B.EedCOID = A.BdmCOID
+        AND B.EedDedCode = A.BdmDedCode
+    WHERE A.BdmDedCode IN ('421', '422');
+    
 
     --==========================================
     -- Build Working Tables
@@ -799,8 +811,11 @@ BEGIN
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvNameFirst = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
         ,drvNameMiddle = CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1) ELSE LEFT(ConNameMiddle,1) END
-        ,drvDateOfBirth = EepDateOfBirth
-        ,drvMaritalStatus = eepMaritalStatus
+        ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
+        ,drvMaritalStatus =    CASE WHEN EepMaritalStatus = 'M' THEN 'M'
+                                WHEN EepMaritalStatus = 'S' THEN 'S'
+                                ELSE 'U'
+                            END
         ,drvGender = EepGender
         ,drvRelationshipCode =    CASE WHEN ConRelationship IN ('DP', 'SPS') THEN '01'
                                     WHEN ConRelationship IN ('CHL', 'STC', 'DPC', 'DCH') THEN '02'
@@ -862,28 +877,28 @@ BEGIN
         ,drvSalaryAmt3 = CASE WHEN DedCode_417 IS NOT NULL OR DedCode_418 IS NOT NULL THEN RIGHT('0000000' + FORMAT(EecAnnSalary, '#0'), 7) END
 
 
-        ,drvCoverageCode4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN 'LT' END
-        ,drvCoverageStartDate4 =    CASE WHEN DedCode_295 IS NOT NULL THEN DedStartDate_295 
+        ,drvCoverageCode4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN 'LT' END
+        ,drvCoverageStartDate4 =    CASE /*WHEN DedCode_295 IS NOT NULL THEN DedStartDate_295*/ 
                                         WHEN DedCode_561 IS NOT NULL THEN DedStartDate_561 
                                         WHEN DedCode_562 IS NOT NULL THEN DedStartDate_562
                                     END
-        ,drvCoverageStopDate4 =    CASE WHEN DedCode_295 IS NOT NULL THEN DedStopDate_295 
+        ,drvCoverageStopDate4 =    CASE /*WHEN DedCode_295 IS NOT NULL THEN DedStopDate_295 */
                                     WHEN DedCode_561 IS NOT NULL THEN DedStopDate_561
                                     WHEN DedCode_562 IS NOT NULL THEN DedStopDate_562
                                 END
-        ,drvGroupNumber4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN '5911460' END
-        ,drvSubcode4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN '0001' END
-        ,drvBranch4 =    CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN
-                            CASE WHEN EecUDField05 = 'Officer' THEN '0001'
+        ,drvGroupNumber4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN '5911460' END
+        ,drvSubcode4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN '0001' END
+        ,drvBranch4 =    CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN
+                            CASE WHEN EecUDField05 IN ('Officer', 'Grandfathered Officer') THEN '0001'
                                 WHEN EecUDField05 = 'Non-Officer' THEN '0002'
                                 WHEN EecUDField05 = 'Executive Officer' THEN '0003'
                             END
                         END
-        ,drvStatusCode4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN 'A' END
-        ,drvMembersCoveredCode4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN '1' END
-        ,drvMonthlyBenefitAmt4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN RIGHT('00000000' + FORMAT(ROUND(EecAnnSalary/12, 0, 1), '#0'),8) END
-        ,drvSalaryMode4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN 'A' END
-        ,drvSalaryAmt4 = CASE WHEN DedCode_295 IS NOT NULL OR DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN RIGHT('0000000' + FORMAT(EecAnnSalary, '#0'), 7) END
+        ,drvStatusCode4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN 'A' END
+        ,drvMembersCoveredCode4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN '1' END
+        ,drvMonthlyBenefitAmt4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN RIGHT('00000000' + FORMAT(ROUND(EecAnnSalary/12, 0, 1), '#0'),8) END
+        ,drvSalaryMode4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN 'A' END
+        ,drvSalaryAmt4 = CASE WHEN /*DedCode_295 IS NOT NULL OR*/ DedCode_561 IS NOT NULL OR DedCode_562 IS NOT NULL THEN RIGHT('0000000' + FORMAT(EecAnnSalary, '#0'), 7) END
 
 
         ,drvCoverageCode6 = CASE WHEN DedCode_421 IS NOT NULL OR DedCode_422 IS NOT NULL THEN 'DL' END
@@ -918,10 +933,10 @@ BEGIN
         ,drvGroupNumber7 = CASE WHEN DedCode_420 IS NOT NULL THEN '5911460' END
         ,drvSubcode7 = CASE WHEN DedCode_420 IS NOT NULL THEN '0001' END
         ,drvBranch7 =    CASE WHEN DedCode_420 IS NOT NULL THEN
-                            CASE WHEN EecUDField05 = 'Officer' THEN '0001'
+                            CASE WHEN EecUDField05 IN ('Officer', 'Grandfathered Officer') THEN '0001'
                                 WHEN EecUDField05 = 'Non-Officer' THEN '0002'
                                 WHEN EecUDField05 = 'Executive Officer' THEN '0003'
-                                WHEN EecUDField05 = 'Grandfathered Officer' THEN '0004'
+                                --WHEN EecUDField05 = 'Grandfathered Officer' THEN '0004'
                             END
                         END
         ,drvStatusCode7 = CASE WHEN DedCode_420 IS NOT NULL THEN 'A' END
@@ -972,7 +987,7 @@ BEGIN
         ON EepEEID = xEEID
     JOIN (
             SELECT BdmEEID, BdmCOID, BdmRecType, BdmDepRecID
-            ,MAX(CASE WHEN BdmDedCode = '295' THEN BdmDedCode END) AS DedCode_295
+            --,MAX(CASE WHEN BdmDedCode = '295' THEN BdmDedCode END) AS DedCode_295
             ,MAX(CASE WHEN BdmDedCode = '417' THEN BdmDedCode END) AS DedCode_417
             ,MAX(CASE WHEN BdmDedCode = '418' THEN BdmDedCode END) AS DedCode_418
             ,MAX(CASE WHEN BdmDedCode = '419' THEN BdmDedCode END) AS DedCode_419
@@ -983,7 +998,7 @@ BEGIN
             ,MAX(CASE WHEN BdmDedCode = '561' THEN BdmDedCode END) AS DedCode_561
             ,MAX(CASE WHEN BdmDedCode = '562' THEN BdmDedCode END) AS DedCode_562
 
-            ,MAX(CASE WHEN BdmDedCode = '295' THEN BdmBenStartDate END) AS DedStartDate_295
+            --,MAX(CASE WHEN BdmDedCode = '295' THEN BdmBenStartDate END) AS DedStartDate_295
             ,MAX(CASE WHEN BdmDedCode = '417' THEN BdmBenStartDate END) AS DedStartDate_417
             ,MAX(CASE WHEN BdmDedCode = '418' THEN BdmBenStartDate END) AS DedStartDate_418
             ,MAX(CASE WHEN BdmDedCode = '419' THEN BdmBenStartDate END) AS DedStartDate_419
@@ -994,7 +1009,7 @@ BEGIN
             ,MAX(CASE WHEN BdmDedCode = '561' THEN BdmBenStartDate END) AS DedStartDate_561
             ,MAX(CASE WHEN BdmDedCode = '562' THEN BdmBenStartDate END) AS DedStartDate_562
     
-            ,MAX(CASE WHEN BdmDedCode = '295' THEN BdmBenStopDate END) AS DedStopDate_295
+            --,MAX(CASE WHEN BdmDedCode = '295' THEN BdmBenStopDate END) AS DedStopDate_295
             ,MAX(CASE WHEN BdmDedCode = '417' THEN BdmBenStopDate END) AS DedStopDate_417
             ,MAX(CASE WHEN BdmDedCode = '418' THEN BdmBenStopDate END) AS DedStopDate_418
             ,MAX(CASE WHEN BdmDedCode = '419' THEN BdmBenStopDate END) AS DedStopDate_419
@@ -1005,6 +1020,8 @@ BEGIN
             ,MAX(CASE WHEN BdmDedCode = '561' THEN BdmBenStopDate END) AS DedStopDate_561
             ,MAX(CASE WHEN BdmDedCode = '562' THEN BdmBenStopDate END) AS DedStopDate_562
 
+            ,MAX(CASE WHEN BdmDedCode = '421' THEN BdmEEAmt END) AS BenAmt_421
+            ,MAX(CASE WHEN BdmDedCode = '422' THEN BdmEEAmt END) AS BenAmt_422
             FROM dbo.U_dsi_BDM_EMETLIFEXP WITH (NOLOCK)
             GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecID ) AS BDM
         ON BdmEEID = xEEID
@@ -1028,8 +1045,8 @@ BEGIN
     LEFT JOIN (
                 SELECT EedEEID, EedCOID 
                 ,MAX(CASE WHEN EedDedCode = '420' THEN EedBenAmt END) AS BenAmt_420
-                ,MAX(CASE WHEN EedDedCode = '421' THEN EedBenAmt END) AS BenAmt_421
-                ,MAX(CASE WHEN EedDedCode = '422' THEN EedBenAmt END) AS BenAmt_422
+                --,MAX(CASE WHEN EedDedCode = '421' THEN EedBenAmt END) AS BenAmt_421
+                --,MAX(CASE WHEN EedDedCode = '422' THEN EedBenAmt END) AS BenAmt_422
                 FROM (
                         SELECT EedEEID, EedCOID, EedDedCode, EedBenAmt, EedDatetimeChanged, ROW_NUMBER() OVER (PARTITION BY EedEEID, EedCOID, EedDedCode ORDER By EedDatetimeChanged DESC) AS RN
                         FROM dbo.EmpDedFull WITH (NOLOCK)

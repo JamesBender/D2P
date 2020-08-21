@@ -1,0 +1,5 @@
+Interface details (ELFGEMLAEX)
+Env – EW44 
+Server – EW4WUP4DB03 
+Database – ULTIPRO_WPFKHL 
+Export Name – Lincoln FMLA Supp Export
