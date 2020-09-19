@@ -11,6 +11,10 @@ IF OBJECT_ID('U_EEFXHLDEMO_EEList') IS NOT NULL DROP TABLE [dbo].[U_EEFXHLDEMO_E
 GO
 IF OBJECT_ID('U_EEFXHLDEMO_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EEFXHLDEMO_drvTbl];
 GO
+IF OBJECT_ID('U_EEFXHLDEMO_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EEFXHLDEMO_AuditFields];
+GO
+IF OBJECT_ID('U_EEFXHLDEMO_Audit') IS NOT NULL DROP TABLE [dbo].[U_EEFXHLDEMO_Audit];
+GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EEFXHLDEMO';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EEFXHLDEMO';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EEFXHLDEMO';
@@ -98,10 +102,10 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXHLDEMO_20200630.txt',NULL,'','',NULL,NULL,NULL,NULL,'Health EFX Demographics Export','202003279','EMPEXPORT','ONDEMAND',NULL,'EEFXHLDEMO',NULL,NULL,NULL,'202003279','May  5 2020 10:40AM','May  5 2020 10:40AM','202003201',NULL,'','','202003201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXHLDEMO_20200630.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202003279','EMPEXPORT','SCHEDULED',NULL,'EEFXHLDEMO',NULL,NULL,NULL,'202003279','May  5 2020 10:40AM','May  5 2020 10:40AM','202003201',NULL,'','','202003201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXHLDEMO_20200630.txt',NULL,'','','Y23F4,1KHF6,1KHLK,1KHQV,FB4R0',NULL,NULL,NULL,'Test Purposes Only','202002159','EMPEXPORT','TEST','Jun 30 2020 12:00AM','EEFXHLDEMO',NULL,NULL,NULL,'202002159','Feb 15 2020 12:00AM','Dec 30 1899 12:00AM','202002071','1015','','','202002071',dbo.fn_GetTimedKey(),NULL,'us3lKiMAX1005',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EEFXHLDEMO_20200630.txt' END WHERE expFormatCode = 'EEFXHLDEMO';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXHLDEMO_20200917.txt',NULL,'','',NULL,NULL,NULL,NULL,'Health EFX Demographics Export','202001319','EMPEXPORT','ONDEMAND',NULL,'EEFXHLDEMO',NULL,NULL,NULL,'202001319','May  5 2020 10:40AM','May  5 2020 10:40AM','202001201',NULL,'','','202001201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXHLDEMO_20200917.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202001319','EMPEXPORT','SCHEDULED',NULL,'EEFXHLDEMO',NULL,NULL,NULL,'202001319','May  5 2020 10:40AM','May  5 2020 10:40AM','202001201',NULL,'','','202001201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXHLDEMO_20200917.txt',NULL,'','','Y23F4,1KHF6,1KHLK,1KHQV,FB4R0',NULL,NULL,NULL,'Test Purposes Only','202001319','EMPEXPORT','TEST','Sep 17 2020 12:00AM','EEFXHLDEMO',NULL,NULL,NULL,'202001319','Jan 24 2020 12:00AM','Dec 30 1899 12:00AM','202001201','962','','','202001201',dbo.fn_GetTimedKey(),NULL,'us3lKiMAX1005',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EEFXHLDEMO_20200917.txt' END WHERE expFormatCode = 'EEFXHLDEMO';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEFXHLDEMO','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEFXHLDEMO','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEFXHLDEMO','SubSort','C','drvSort');
@@ -113,23 +117,40 @@ IF OBJECT_ID('U_EEFXHLDEMO_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EEFXHLDEMO
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EEFXHLDEMO','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EEFXHLDEMO','D10','dbo.U_EEFXHLDEMO_drvTbl',NULL);
+IF OBJECT_ID('U_EEFXHLDEMO_Audit') IS NULL
+CREATE TABLE [dbo].[U_EEFXHLDEMO_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL
+);
+IF OBJECT_ID('U_EEFXHLDEMO_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EEFXHLDEMO_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
 IF OBJECT_ID('U_EEFXHLDEMO_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EEFXHLDEMO_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] datetime NULL,
+    [drvSort] varchar(1) NOT NULL,
     [drvPrimaryFEIN] varchar(10) NULL,
-    [drvSSN] char(11) NULL,
+    [drvSSN] varchar(2000) NULL,
     [drvEmployeeID] char(9) NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(50) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCirty] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
+    [drvNameFirst] varchar(2000) NULL,
+    [drvNameMiddle] varchar(2000) NULL,
+    [drvNameLast] varchar(2000) NULL,
+    [drvAddressLine1] varchar(2000) NULL,
+    [drvAddressLine2] varchar(2000) NULL,
+    [drvAddressCirty] varchar(2000) NULL,
+    [drvAddressState] varchar(2000) NULL,
+    [drvAddressZipCode] varchar(2000) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvDateOfOriginalHire] datetime NULL,
     [drvDateOfReHire] datetime NULL,
@@ -238,12 +259,93 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EEFXHLDEMO_EEList
+    /*DELETE FROM dbo.U_EEFXHLDEMO_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EEFXHLDEMO_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EEFXHLDEMO_EEList GROUP BY xEEID HAVING COUNT(1) > 1);*/
 
     DELETE FROM dbo.U_EEFXHLDEMO_EEList
     WHERE xEEID IN (SELECT EecEEID FROM EmpComp WITH(NOLOCK) WHERE EecEEType = 'TES' );
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EEFXHLDEMO_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EEFXHLDEMO_AuditFields;
+    CREATE TABLE dbo.U_EEFXHLDEMO_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    --INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecCOID');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecEmpNo');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EecSSN');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepNameFirst');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepNameMiddle');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepNameLast');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepAddressLine2');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepAddressCity');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepAddressState');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepAddressZipCode');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepSSN');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EecDateOfOriginalHire');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EhcEmplStatus','EmpHComp');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecEEType');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecSalaryOrHourly');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecHourlyPayRate');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecLocation');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecJobCode');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpHJob','EjhFullTimeOrPartTime');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpHJob','EjhJobEffDate');
+
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecEmplStatusStartDate');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecJobCode');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('JobCode','JbcDesc');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpPers','EepAddressEmail');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecPhoneBusinessNumber');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecOrgLvl1');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecOrgLvl2');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecScheduledWorkHrs');
+    INSERT INTO dbo.U_EEFXHLDEMO_AuditFields VALUES ('EmpComp','EecEEType');
+
+    
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EEFXHLDEMO_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EEFXHLDEMO_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audCOID = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        --,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EEFXHLDEMO_Audit
+    FROM (SELECT audKey1Value
+        ,audKey2Value
+        ,audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EEFXHLDEMO_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime  <= @EndDate
+    --audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE') AS A where audRowNo = 1;
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EEFXHLDEMO_Audit ON dbo.U_EEFXHLDEMO_Audit (audEEID,audCOID);
 
     --==========================================
     -- Build Driver Tables
@@ -257,33 +359,33 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EecDateOfTErmination 
+        ,drvSort = '' --'Ejh: ' + ISNULL(EjhFullTimeOrPartTime, 'nope') + ' || Eec: ' + ISNULL(audEjhFullTimeOrPartTime, 'nope') -- EecDateOfTErmination 
         -- standard fields above and additional driver fields below
-        ,drvPrimaryFEIN = LEFT(@FedTaxID, 2) + '-' + RIGHT(@FedTaxID, 7)
-        ,drvSSN = eepSSN
+        ,drvPrimaryFEIN = LEFT(CmpFedTaxID, 2) + '-' + RIGHT(CmpFedTaxID, 7)
+        ,drvSSN = CASE WHEN audSSN IS NOT NULL THEN AudSSN ELSE eepSSN END
         ,drvEmployeeID = EecEmpNo
-        ,drvNameFirst = EepNameFirst
-        ,drvNameMiddle = EepNameMiddle -- LEFT(EepNameMiddle,1)
-        ,drvNameLast = EepNameLast
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCirty = EepAddressCity
-        ,drvAddressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
-        ,drvDateOfBirth = EepDateOfBirth
+        ,drvNameFirst = CASE WHEN audNameFirst IS NOT NULL THEN audNameFirst ELSE EepNameFirst END
+        ,drvNameMiddle = CASE WHEN audNameMiddle IS NOT NULL THEN audNameMIddle ELSE EepNameMiddle END
+        ,drvNameLast = CASE WHEN audNameLast IS NOT NULL THEN audNameLast ELSE EepNameLast END
+        ,drvAddressLine1 = CASE WHEN audAddressLine1 IS NOT NULL THEN audAddressLine1 ELSE EepAddressLine1 END
+        ,drvAddressLine2 = CASE WHEN audAddressLine2 IS NOT NULL THEN audAddressLine2 ELSE EepAddressLine2 END
+        ,drvAddressCirty = CASE WHEN audAddressCity IS NOT NULL THEN audAddressCity ELSE EepAddressCity END
+        ,drvAddressState = CASE WHEN audAddressState IS NOT NULL THEN audAddressState ELSE EepAddressState END
+        ,drvAddressZipCode = CASE WHEN audAddressZipCode IS NOT NULL THEN audAddressZipCode ELSE EepAddressZipCode END
+        ,drvDateOfBirth = CASE WHEN audDateOFBirth IS NOT NULL THEN audDateOFBirth ELSE EepDateOfBirth END
         ,drvDateOfOriginalHire = EecDateOfOriginalHire
-        ,drvDateOfReHire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire AND EecDateOfLastHire < @EndDate THEN EecDateOfLastHire END
-        ,drvDateOfTermination =    CASE WHEN EecEmplStatus = 'T' AND EecDateOfTermination <= @EndDate THEN EecDateOfTermination 
-                                    WHEN EhcEmplStatus = 'T' AND EecDateOfTermination IS NULL THEN DATEADD(DAY, -1, EhcEmplStatusStartDate)
+        ,drvDateOfReHire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire AND EecDateOfLastHire < @EndDate THEN EecDateOfLastHire END 
+        ,drvDateOfTermination =    CASE WHEN EecEmplStatus = 'T' AND EecDateOfTermination <= @EndDate THEN EecDateOfTermination                
+                                    WHEN EhcEmplStatus = 'T' AND EecDateOfTermination IS NULL THEN DATEADD(DAY, -1, EhcEmplStatusStartDate) -- Empl Status Start Date comes from a history table, don't need to check against audit
                                 END
-        ,drvEmplStatus = EhcEmplStatus -- EecEmplStatus
-        ,drvPositionStatus = CASE WHEN EecEEType IN ('REG', 'PT3', 'PTG') THEN 'FT' ELSE 'PT' END
-        ,drvEmplPayType = EecSalaryOrHourly
+        ,drvEmplStatus = EhcEmplStatus -- Empl Status Start comes from a history table, don't need to check against audit
+        ,drvPositionStatus = CASE WHEN /*EecEEType*/ audEEType IN ('REG', 'PT3', 'PTG') THEN 'FT' ELSE 'PT' END -- JCB -- use audit date
+        ,drvEmplPayType = EecSalaryOrHourly --CASE WHEN EjhFullTimeOrPartTime = 'F' THEN 'FT' ELSE 'PT' END --EecSalaryOrHourly  -- JCB
         ,drvHourlyPayRate = FORMAT(EecHourlyPayRate, '#0.00')
-        ,drvEmployer = @CompanyName
+        ,drvEmployer = CmpCompanyName -- JCB
         ,drvLocationCode = EecLocation
-        ,drvEffDateOfStatusChange =    CASE WHEN EecFullTimeOrPartTime = 'FT' AND EjhFullTimeOrPartTime = 'P' THEN EjhJobEffDate
-                                        WHEN EecFullTimeOrPartTime = 'PT' AND EjhFullTimeOrPartTime = 'F' THEN EjhJobEffDate
+        ,drvEffDateOfStatusChange =    CASE WHEN /*EecFullTimeOrPartTime = 'FT' AND*/ EjhFullTimeOrPartTime = 'P' THEN EjhJobEffDate -- audEjhFullTimeOrPartTime
+                                        WHEN /*EecFullTimeOrPartTime = 'PT' AND*/ EjhFullTimeOrPartTime = 'F' THEN EjhJobEffDate
                                         ELSE EecEmplStatusStartDate
                                     END
         ,drvJobCode = EecJobCode
@@ -293,7 +395,7 @@ BEGIN
         ,drvHiearcySubLvl1 = @CompanyCode
         ,drvHiearcySubLvl2 = EecOrgLvl1
         ,drvHiearcySubLvl3 = EecOrgLvl2
-        ,drvHealthySFOIndicator = CASE WHEN LocAddressCity = 'San Francisco' THEN 'Y' ELSE 'N' END
+        ,drvHealthySFOIndicator = CASE WHEN LocAddressCity = 'San Francisco' THEN 'Y' ELSE 'N' END -- check
         ,drvScheduledHrsPerWeek = FORMAT(EecScheduledWorkHrs, '#0.00')
         ,drvCostCenterDescription = CostCenterDesc
         ,drvDepartmentDescription = DepartmentDesc
@@ -308,12 +410,26 @@ BEGIN
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
-        ON JbcJobCode = EecJobCode
-    JOIN dbo.EmpHJob WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode    
+    JOIN (
+            SELECT EjhEEID, EjhCOID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, EjhJobEffDate
+            FROM (
+                SELECT EjhEEID, EjhCOID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, EjhJobEffDate, ROW_NUMBER() OVER (PARTITION BY EjhEEID, EjhCOID ORDER BY EjhIntegrationEffDate DESC) AS RN
+                FROM dbo.EmpHJob WITH (NOLOCK)
+                --where ejheeid = 'CW0BIU001020'
+                WHERE EjhIntegrationEffDate <= @EndDate
+                ) AS JH
+            WHERE RN = 1 ) AS JHT
         ON EjhEEID = xEEID
         AND EjhCOID = xCOID
+    /*JOIN dbo.EmpHJob WITH (NOLOCK)
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
+        AND EjhIntegrationEffDate BETWEEN @StartDate AND @EndDate*/
     JOIN dbo.Location WITH (NOLOCK)
         ON EecLocation = LocCode
+    JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCOID = xCOID
     JOIN (
             SELECT OrgCode AS CostCenterCode, OrgDesc AS CostCenterDesc
             FROM dbo.OrgLevel WITH (NOLOCK)) AS CostCenter
@@ -342,9 +458,42 @@ BEGIN
                 ) AS U
         ON EhcEEID = xEEID
         AND EhcCOID = xCOID
-    WHERE --(EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination > DATEADD(DAY, -120, @EndDate)))
-        (EhcEmplStatus <> 'T' OR (EhcEmplStatus = 'T' AND EhcEmplStatusStartDate > DATEADD(DAY, -120, @EndDate)))
-        AND (EecDateOfTErmination IS NULL OR EecDateOfTErmination >= '1/1/2020')
+    LEFT JOIN (
+                SELECT audEEID
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEEType' THEN audNewValue END) AS audEEType
+                    /*,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' THEN audNewValue END) AS audEmplStatus
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatusStartDate' THEN audNewValue END) AS audEmplStatusStartDate
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmpNo' THEN audNewValue END) AS audEmpNo
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecFullTimeOrPartTime' THEN audNewValue END) AS audEecFullTimeOrPartTime
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecHourlyPayRate' THEN audNewValue END) AS audHourlyPayRate
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecJobCode' THEN audNewValue END) AS audJobCode
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecLocation' THEN audNewValue END) AS audLocation
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecOrgLvl1' THEN audNewValue END) AS audOrgLvl1
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecOrgLvl2' THEN audNewValue END) AS audOrgLvl2
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecSalaryOrHourly' THEN audNewValue END) AS audSalaryOrHourly
+                    ,MAX(CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecScheduledWorkHrs' THEN audNewValue END) AS audScheduledWorkHrs*/
+                    ,MAX(CASE WHEN audTableName = 'EmpHJob' AND audFieldName = 'EjhFullTimeOrPartTime' THEN audNewValue END) AS audEjhFullTimeOrPartTime
+                    ,MAX(CASE WHEN audTableName = 'EmpHJob' AND audFieldName = 'EjhJobEffDate' THEN audNewValue END) AS audJobEffDate
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepAddressCity' THEN audNewValue END) AS audAddressCity
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'eepAddressEMail' THEN audNewValue END) AS audAddressEMail
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepAddressLine1' THEN audNewValue END) AS audAddressLine1
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepAddressLine2' THEN audNewValue END) AS audAddressLine2
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepAddressState' THEN audNewValue END) AS audAddressState
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepAddressZipCode' THEN audNewValue END) AS audAddressZipCode
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepDateOfBirth' THEN audNewValue END) AS audDateOfBirth
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepNameFirst' THEN audNewValue END) AS audNameFirst
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepNameMiddle' THEN audNewValue END) AS audNameMiddle
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepNameLast' THEN audNewValue END) AS audNameLast
+                    ,MAX(CASE WHEN audTableName = 'EmpPers' AND audFieldName = 'EepSSN' THEN audNewValue END) AS audSSN
+                FROM dbo.U_EEFXHLDEMO_Audit 
+                GROUP BY audEEID
+            ) AS AUD
+        ON audEEID = xEEID
+    WHERE ((EecEmplStatus = 'A' AND (EecDateOfLastHire <= @StartDate OR EecDateOfLastHire BETWEEN @StartDate AND @EndDate)) OR (EecEmplStatus = 'T' AND (EecDateOfTermination BETWEEN @StartDate AND @EndDate OR EecDateOfTermination >= @EndDate)))
+    --((EecEmplStatus = 'A' AND EecDateOfLastHire < @EndDate) OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
+    --(EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination > DATEADD(DAY, -120, @EndDate)))
+        --(EhcEmplStatus <> 'T' OR (EhcEmplStatus = 'T' AND EhcEmplStatusStartDate > DATEADD(DAY, -120, @EndDate)))
+        --AND (EecDateOfTErmination IS NULL OR EecDateOfTErmination >= '1/1/2020')
     /*    AND (EecDateOfTErmination IS NULL OR EecDateOfTermination <= @EndDate)
         AND (EecDateOfOriginalHire IS NULL OR EecDateOfOriginalHire <= @EndDate)
         AND (EecDateOfLastHire IS NULL OR EecDateOfLastHire <= @EndDate)*/
@@ -378,10 +527,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202003201'
-       ,expStartPerControl     = '202003201'
-       ,expLastEndPerControl   = '202003279'
-       ,expEndPerControl       = '202003279'
+    SET expLastStartPerControl = '201912011'
+       ,expStartPerControl     = '201912011'
+       ,expLastEndPerControl   = '201912319'
+       ,expEndPerControl       = '201912319'
 WHERE expFormatCode = 'EEFXHLDEMO';
 
 **********************************************************************************/

@@ -1,0 +1,5 @@
+Interface details (ESEQDEMEXP)
+Env – EW23 
+Server – EW2WUP3DB02 
+Database – ULTIPRO_WPREVO 
+Export Name – Sequoia Demographic Export

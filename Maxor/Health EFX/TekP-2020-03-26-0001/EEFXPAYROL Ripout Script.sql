@@ -40,10 +40,10 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXPAYROL_20200513.txt',NULL,'','','',NULL,NULL,NULL,'Health EFX Payroll Export','202004309','EMPEXPORT','ONDEMAND','May  5 2020  4:08AM','EEFXPAYROL',NULL,NULL,NULL,'202004309','May  1 2020 11:43AM','May  1 2020 11:43AM','202004011','917','','','202004011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXPAYROL_20200513.txt',NULL,'','','',NULL,NULL,NULL,'Scheduled Session','202004309','EMPEXPORT','SCHEDULED','May  5 2020  4:08AM','EEFXPAYROL',NULL,NULL,NULL,'202004309','May  1 2020 11:43AM','May  1 2020 11:43AM','202004011','917','','','202004011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXPAYROL_20200513.txt',NULL,'','','Y23F4,1KHF6,1KHLK,1KHQV,7DO7C,FB4R0',NULL,NULL,NULL,'Test Purposes Only','202004309','EMPEXPORT','TEST','May 11 2020 12:00AM','EEFXPAYROL',NULL,NULL,NULL,'202004309','Apr 30 2020 12:00AM','Dec 30 1899 12:00AM','202004011','49','','GWEXC,GWPAY,GWPAYS,MASPAY,MNPAYS,MNEXC,MNPAY,MPEXC,MPPAY,MPPAYS,NOPAY,PSPAYS,PSPAY','202004011',dbo.fn_GetTimedKey(),NULL,'us3lKiMAX1005',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EEFXPAYROL_20200513.txt' END WHERE expFormatCode = 'EEFXPAYROL';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXPAYROL_20200911.txt',NULL,'','','',NULL,NULL,NULL,'Health EFX Payroll Export','202001319','EMPEXPORT','ONDEMAND','May  5 2020  4:08AM','EEFXPAYROL',NULL,NULL,NULL,'202001319','May  1 2020 11:43AM','May  1 2020 11:43AM','202001011','917','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXPAYROL_20200911.txt',NULL,'','','',NULL,NULL,NULL,'Scheduled Session','202001319','EMPEXPORT','SCHEDULED','May  5 2020  4:08AM','EEFXPAYROL',NULL,NULL,NULL,'202001319','May  1 2020 11:43AM','May  1 2020 11:43AM','202001011','917','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EEFXPAYROL_20200911.txt',NULL,'','','Y23F4,1KHF6,1KHLK,1KHQV,FB4R0',NULL,NULL,NULL,'Test Purposes Only','202001319','EMPEXPORT','TEST','Jun  4 2020 12:00AM','EEFXPAYROL',NULL,NULL,NULL,'202001319','Mar 31 2020 12:00AM','Dec 30 1899 12:00AM','202001011','980','','','202001011',dbo.fn_GetTimedKey(),NULL,'us3lKiMAX1005',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EEFXPAYROL_20200911.txt' END WHERE expFormatCode = 'EEFXPAYROL';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEFXPAYROL','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEFXPAYROL','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEFXPAYROL','InitialSort','C','drvSort');
@@ -176,7 +176,8 @@ BEGIN
         -- Current Payroll Amount/Hours
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
         ,PehCurAmtAll              = SUM(CASE WHEN PehPerControl >= FORMAT(DATEPART(YEAR, GETDATE()), '####') + '01011' THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND PehEarnCode NOT IN ('D075', 'D100', 'D150', 'D200', 'D225', 'D300')  THEN PehCurHrs ELSE 0.00 END)
+        --,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND PehEarnCode NOT IN ('D075', 'D100', 'D150', 'D200', 'D225', 'D300')  THEN PehCurHrs ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND /*PehEarnCode NOT IN ('D075', 'D100', 'D150', 'D200', 'D225', 'D300')*/ ErnExclInTotalHours = 'N'  THEN PehCurHrs ELSE 0.00 END)
         -- YTD Payroll Amount/Hours
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
@@ -190,6 +191,8 @@ BEGIN
     FROM dbo.PayReg WITH (NOLOCK)
     JOIN dbo.PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
+    JOIN dbo.EarnCode WITH (NOLOCK)
+        ON PehEarnCode = ErnEarnCode
     WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
     AND PehPerControl <= @EndPerControl
     GROUP BY PehEEID
@@ -276,10 +279,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202004011'
-       ,expStartPerControl     = '202004011'
-       ,expLastEndPerControl   = '202004309'
-       ,expEndPerControl       = '202004309'
+    SET expLastStartPerControl = '202001011'
+       ,expStartPerControl     = '202001011'
+       ,expLastEndPerControl   = '202001319'
+       ,expEndPerControl       = '202001319'
 WHERE expFormatCode = 'EEFXPAYROL';
 
 **********************************************************************************/

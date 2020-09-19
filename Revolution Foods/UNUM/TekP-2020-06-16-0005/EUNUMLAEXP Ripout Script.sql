@@ -160,13 +160,13 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200818.txt',NULL,'','',NULL,NULL,NULL,NULL,'UNUM Life & ADD Export','202008189','EMPEXPORT','ONDEMAND',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008189','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200818.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202008189','EMPEXPORT','SCHEDULED',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008189','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200818.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202008189','EMPEXPORT','OEACTIVE',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008189','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200818.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202008189','EMPEXPORT','OEPASSIVE',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008189','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200818.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202008189','EMPEXPORT','TEST','Aug 17 2020 11:32AM','EUNUMLAEXP',NULL,NULL,NULL,'202008189','Aug  6 2020 12:00AM','Dec 30 1899 12:00AM','202001011','41','','','202001011',dbo.fn_GetTimedKey(),NULL,'us3cPeREV1004',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200818.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Life & ADD Full File','202008189','EMPEXPORT','FULLFILE','Aug 17 2020 12:01PM','EUNUMLAEXP',NULL,NULL,NULL,'202008189','Aug 17 2020 12:00AM','Dec 30 1899 12:00AM','202001011','851','','','202001011',dbo.fn_GetTimedKey(),NULL,'us3cPeREV1004',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EUNUMLAEXP_20200818.txt' END WHERE expFormatCode = 'EUNUMLAEXP';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200903.txt',NULL,'','',NULL,NULL,NULL,NULL,'UNUM Life & ADD Export','202008249','EMPEXPORT','ONDEMAND',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008249','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202008101',NULL,'','','202008101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200903.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202008249','EMPEXPORT','SCHEDULED',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008249','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202008101',NULL,'','','202008101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200903.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202008249','EMPEXPORT','OEACTIVE',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008249','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202008101',NULL,'','','202008101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200903.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202008249','EMPEXPORT','OEPASSIVE',NULL,'EUNUMLAEXP',NULL,NULL,NULL,'202008249','Jul 30 2020  5:48PM','Jul 30 2020  5:48PM','202008101',NULL,'','','202008101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200903.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202008249','EMPEXPORT','TEST','Aug 17 2020 11:32AM','EUNUMLAEXP',NULL,NULL,NULL,'202008249','Aug  6 2020 12:00AM','Dec 30 1899 12:00AM','202008101','41','','','202008101',dbo.fn_GetTimedKey(),NULL,'us3cPeREV1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNUMLAEXP_20200903.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Life & ADD Full File','202008249','EMPEXPORT','FULLFILE','Aug 24 2020  9:59AM','EUNUMLAEXP',NULL,NULL,NULL,'202008249','Aug 24 2020 12:00AM','Dec 30 1899 12:00AM','202008101','856','','','202008101',dbo.fn_GetTimedKey(),NULL,'us3cPeREV1004',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EUNUMLAEXP_20200903.txt' END WHERE expFormatCode = 'EUNUMLAEXP';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLAEXP','InitialSort','C','drvSort');
@@ -414,6 +414,7 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EUNUMLAEXP' ORD
 Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNUMLAEXP', 'ONDEMAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNUMLAEXP', 'FULLFILE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNUMLAEXP', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNUMLAEXP', 'OEACTIVE';
 
@@ -455,7 +456,7 @@ BEGIN
     DELETE FROM dbo.U_EUNUMLAEXP_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EUNUMLAEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-
+    
         DELETE FROM dbo.U_EUNUMLAEXP_EEList
     WHERE xEEID IN (SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES'));
 
@@ -486,6 +487,8 @@ BEGIN
     INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
     INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
     INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecHourlyRate');
+    INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecAnnSalary');
     -- Dependent Information
     INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('Contacts','ConSSN');
     INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('Contacts','ConNameFirst');
@@ -579,12 +582,16 @@ BEGIN
         ON DbnEEID = xEEID
         AND DbnDedCode = audKey2Value
         AND DbnSystemID = audKey3Value
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    --WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    WHERE audDateTime <= @EndDate
     AND ISNULL(audNewValue, '') <> ''
     AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
         OR (audTableName = 'EmpDed' AND audKey3Value IN (SELECT DedCode FROM dbo.U_EUNUMLAEXP_DedList))
         OR (audTableName = 'DepBPlan' AND audKey2Value IN (SELECT DedCode FROM dbo.U_EUNUMLAEXP_DedList))
     );
+
+
+
     --================
     -- Changes Only
     --================
@@ -594,59 +601,6 @@ BEGIN
         DELETE FROM dbo.U_EUNUMLAEXP_EELIST
         WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EUNUMLAEXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
     END;
-
-
-    /*
-    IF OBJECT_ID('U_EUNUMLAEXP_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EUNUMLAEXP_AuditFields;
-    CREATE TABLE dbo.U_EUNUMLAEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-
-    INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
-    INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
-    INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecDateOfTermination');
-    INSERT INTO dbo.U_EUNUMLAEXP_AuditFields VALUES ('EmpComp','EecEecEmplStatus');
-
-
-    --,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        --,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
-        --,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END
-
-
-        IF OBJECT_ID('U_EUNUMLAEXP_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EUNUMLAEXP_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-        ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
-        ,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END
-    INTO dbo.U_EUNUMLAEXP_Audit
-    FROM dbo.U_EUNUMLAEXP_EEList WITH (NOLOCK)
-    JOIN dbo.vw_AuditData WITH (NOLOCK) 
-        ON audKey1Value = xEEID
-    JOIN dbo.U_EUNUMLAEXP_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE'
-    AND ISNULL(audNewValue,'') <> '';
-
-    DELETE FROM dbo.U_EUNUMLAEXP_Audit WHERE audRowNo > 1;
-
-        CREATE CLUSTERED INDEX CDX_U_EUNUMLAEXP_Audit ON dbo.U_EUNUMLAEXP_Audit (/*audKey1Value, audKey2Value*/ audEEID, audKey2);
-        */
-
-
-        
 
     --==========================================
     -- Create Deduction List
@@ -912,9 +866,9 @@ BEGIN
                         END
                     END
         ,drvSignatureDate = Max_BenStartDate
-        ,drvEfectiveDate =    CASE WHEN AudReHire = 'Y' THEN EecDateOfLastHire
-                                WHEN AudTerm = 'Y' THEN EecDateOfTermination
-                                WHEN AudSalaryChange = 'Y' THEN EjhJobEffDate
+        ,drvEfectiveDate =    CASE WHEN AudReHireB = 'Y' THEN dbo.dsi_fnGetMinMaxDates('MAX',EecDateOfLastHire, Max_BenStartDate) --EecDateOfLastHire -- JCB
+                                WHEN AudTermB = 'Y' THEN dbo.dsi_fnGetMinMaxDates('MAX',EecDateOfTermination, Max_BenStartDate)
+                                WHEN AudSalaryChangeB = 'Y' THEN dbo.dsi_fnGetMinMaxDates('MAX',EjhJobEffDate, Max_BenStartDate)
                                 ELSE Max_BenStartDate
                             END
         ,drvAddType = CASE WHEN EecFullTimeOrPartTime = 'F' AND EjhFullTimeOrPartTime = 'P' THEN 'O' END
@@ -1029,9 +983,27 @@ BEGIN
                 WHERE RN = 1
             ) AS Con
         ON ConEEID = xEEID
-    LEFT JOIN dbo.U_EUNUMLAEXP_Audit WITH (NOLOCK)
+    /*LEFT JOIN dbo.U_EUNUMLAEXP_Audit WITH (NOLOCK)
+        ON xEEID = audEEID
+        AND audKey2 = xCOID*/
+    LEFT JOIN (
+                    SELECT audEEID,audCOID,audConSystemID,audKey1,audKey2,audKey3,audTableName,audFieldName,audAction,audDateTime,audOldValue,audNewValue,audEffectiveDate,audRowNo,audDedChange,audBenOptionChange,audSSNChange,audNameChange,audDemoChange,audAddrChange,audNewlyEnroll,audReEnroll,audTermPlan,audReHire,audTerm,audSalaryChange
+                    FROM dbo.U_EUNUMLAEXP_Audit WITH (NOLOCK)
+                    WHERE audTableName <> 'EmpComp' 
+                        AND audFieldName <> 'EecAnnSalary' 
+                        and audRowNo = 1
+            ) AS AuditTable
         ON xEEID = audEEID
         AND audKey2 = xCOID
+    LEFT JOIN (
+                    SELECT AudReHire AS AudReHireB, AudTerm AS AudTermB, AudSalaryChange AS AudSalaryChangeB, audEEID AS audEEIDB, audCOID AS audCOIDB
+                    FROM dbo.U_EUNUMLAEXP_Audit WITH (NOLOCK)
+                    WHERE audTableName = 'EmpComp' 
+                        AND audFieldName = 'EecAnnSalary' 
+                        AND audRowNo = 1
+            ) AS AuditTableB
+        ON xEEID = audEEIDB
+        AND audKey2 = audCOIDB
     LEFT JOIN (
                 SELECT EjhEEID, EjhCOID, EjhJobEffDate, EjhFullTimeOrPartTime
                 FROM (
@@ -1116,10 +1088,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates 
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202001011'
-       ,expStartPerControl     = '202001011'
-       ,expLastEndPerControl   = '202007309'
-       ,expEndPerControl       = '202007309'
+    SET expLastStartPerControl = '202008101'
+       ,expStartPerControl     = '202008101'
+       ,expLastEndPerControl   = '202008249'
+       ,expEndPerControl       = '202008249'
 WHERE expFormatCode = 'EUNUMLAEXP';
 
 **********************************************************************************/
