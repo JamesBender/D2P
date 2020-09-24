@@ -1,26 +1,14 @@
 SET NOCOUNT ON;
 IF OBJECT_ID('U_EWWCOBCMBX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EWWCOBCMBX_SavePath];
 SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EWWCOBCMBX_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EWWCOBCMBX' AND CfgName LIKE '%Path';
-IF OBJECT_ID('dsi_vwEWWCOBCMBX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEWWCOBCMBX_Export];
-GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EWWCOBCMBX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWWCOBCMBX];
-GO
-IF OBJECT_ID('U_EWWCOBCMBX_File') IS NOT NULL DROP TABLE [dbo].[U_EWWCOBCMBX_File];
-GO
-IF OBJECT_ID('U_EWWCOBCMBX_EEList') IS NOT NULL DROP TABLE [dbo].[U_EWWCOBCMBX_EEList];
-GO
-IF OBJECT_ID('U_EWWCOBCMBX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EWWCOBCMBX_drvTbl];
-GO
-IF OBJECT_ID('U_EWWCOBCMBX_DedList') IS NOT NULL DROP TABLE [dbo].[U_EWWCOBCMBX_DedList];
-GO
-IF OBJECT_ID('U_dsi_BDM_EWWCOBCMBX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EWWCOBCMBX];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EWWCOBCMBX';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EWWCOBCMBX';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EWWCOBCMBX';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EWWCOBCMBX';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EWWCOBCMBX';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EWWCOBCMBX','WageWorks Combind COBRA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','4000','S','N','EWWCOBCMBXZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','CDE','EWWCOBCMBX','WageWorks Combind COBRA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','4000','N','S','N','EWWCOBCMBXZ0','N','Jan  1 1900 12:00AM','C','N');
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"EMPLOYER_EIN"','1','(''DA''=''T,'')','EWWCOBCMBXZ0','50','H','01','1',NULL,'EMPLOYER_EIN',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ACTION_CODE"','2','(''DA''=''T,'')','EWWCOBCMBXZ0','50','H','01','2',NULL,'ACTION_CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"LAST_NAME"','3','(''DA''=''T,'')','EWWCOBCMBXZ0','50','H','01','3',NULL,'LAST_NAME',NULL,NULL);
@@ -160,126 +148,23 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EWWCOBCMBX_20200924.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA Export','202009219','EMPEXPORT','ONDEM_XOE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009219','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EWWCOBCMBX_20200924.txt',NULL,'','',NULL,NULL,NULL,NULL,'WageWorks Combind COBRA -Test','202009219','EMPEXPORT','TEST_XOE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009219','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EWWCOBCMBX_20200924.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA -Sched','202009219','EMPEXPORT','SCH_EWWCOB',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009219','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EWWCOBCMBX_20200924.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202009219','EMPEXPORT','OEACTIVE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009219','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EWWCOBCMBX_20200924.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009219','EMPEXPORT','OEPASSIVE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009219','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EWWCOBCMBX_20200924.txt' END WHERE expFormatCode = 'EWWCOBCMBX';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\EWWCOBCMBX_20200923.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA Export','202009239','EMPEXPORT','ONDEM_XOE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009239','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\EWWCOBCMBX_20200923.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA -Test','202009239','EMPEXPORT','TEST_XOE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009239','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\EWWCOBCMBX_20200923.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA -Sched','202009239','EMPEXPORT','SCH_EWWCOB',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009239','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\EWWCOBCMBX_20200923.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202009239','EMPEXPORT','OEACTIVE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009239','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\EWWCOBCMBX_20200923.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009239','EMPEXPORT','OEPASSIVE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202009239','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\EWWCOBCMBX_20200923.txt' END WHERE expFormatCode = 'EWWCOBCMBX';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','UseFileName','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','UseFileName','V','N');
 UPDATE dbo.U_dsi_Configuration SET CfgValue = CASE WHEN CfgName = 'UseFileName' THEN 'Y' ELSE NULL END WHERE FormatCode = 'EWWCOBCMBX' AND CfgName IN ('UseFileName','ExportPath');
 INSERT INTO dbo.CustomTemplates (CreationDate,Engine,EngineCode,IsActive,ModifiedDate) SELECT CreationDate = GETDATE(), Engine = AdhEngine, EngineCode = AdhFormatCode, IsActive = 1, ModifiedDate = GETDATE() FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EWWCOBCMBX' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode);
 IF OBJECT_ID('U_EWWCOBCMBX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EWWCOBCMBX_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWWCOBCMBX','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWWCOBCMBX','D10','dbo.U_EWWCOBCMBX_drvTbl',NULL);
-IF OBJECT_ID('U_dsi_BDM_EWWCOBCMBX') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_EWWCOBCMBX] (
-    [BdmRecType] varchar(3) NOT NULL,
-    [BdmCOID] char(5) NULL,
-    [BdmEEID] char(12) NOT NULL,
-    [BdmDepRecID] char(12) NULL,
-    [BdmSystemID] char(12) NULL,
-    [BdmRunID] varchar(32) NULL,
-    [BdmDedRowStatus] varchar(256) NULL,
-    [BdmRelationship] char(3) NULL,
-    [BdmDateOfBirth] datetime NULL,
-    [BdmDedCode] char(5) NULL,
-    [BdmDedType] varchar(32) NULL,
-    [BdmBenOption] char(6) NULL,
-    [BdmBenStatus] char(1) NULL,
-    [BdmBenStartDate] datetime NULL,
-    [BdmBenStopDate] datetime NULL,
-    [BdmBenStatusDate] datetime NULL,
-    [BdmBenOptionDate] datetime NULL,
-    [BdmChangeReason] char(6) NULL,
-    [BdmStartDate] datetime NULL,
-    [BdmStopDate] datetime NULL,
-    [BdmIsCobraCovered] char(1) NULL,
-    [BdmCobraReason] char(6) NULL,
-    [BdmDateOfCOBRAEvent] datetime NULL,
-    [BdmIsPQB] char(1) NULL,
-    [BdmIsChildOldest] char(1) NULL,
-    [BdmUSGField1] varchar(256) NULL,
-    [BdmUSGField2] varchar(256) NULL,
-    [BdmUSGDate1] datetime NULL,
-    [BdmUSGDate2] datetime NULL,
-    [BdmTVStartDate] datetime NULL,
-    [BdmSessionID] varchar(32) NULL,
-    [BdmEEAmt] money NULL,
-    [BdmEECalcRateOrPct] decimal NULL,
-    [BdmEEGoalAmt] money NULL,
-    [BdmEEMemberOrCaseNo] char(40) NULL,
-    [BdmERAmt] money NULL,
-    [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL,
-    [BdmNumDomPartners] int NULL,
-    [BdmNumDPChildren] int NULL
-);
-IF OBJECT_ID('U_EWWCOBCMBX_DedList') IS NULL
-CREATE TABLE [dbo].[U_EWWCOBCMBX_DedList] (
-    [DedCode] char(5) NOT NULL,
-    [DedType] char(4) NOT NULL
-);
-IF OBJECT_ID('U_EWWCOBCMBX_drvTbl') IS NULL
-CREATE TABLE [dbo].[U_EWWCOBCMBX_drvTbl] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] char(5) NULL,
-    [drvActionCode] varchar(2) NOT NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvEmployeeSSN] varchar(11) NULL,
-    [drvDependentSSN] varchar(11) NULL,
-    [drvEmployeeNumber] char(9) NULL,
-    [drvRelationship] varchar(1) NULL,
-    [drvGender] varchar(1) NULL,
-    [drvHireDate] datetime NULL,
-    [drvBirthDate] datetime NULL,
-    [drvAddressLine1] varchar(257) NULL,
-    [drvAddressLine2] varchar(8000) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvCobraEligible] varchar(1) NULL,
-    [drvPhoneNumber] varchar(12) NULL,
-    [drvEmailAddress] varchar(50) NULL,
-    [drvInitialNotificationCobra] varchar(1) NULL,
-    [drvWaitingStartDate] datetime NULL,
-    [drvCoverageBeginDate] datetime NULL,
-    [drvQuallifingEventDate] datetime NULL,
-    [drvLastPreCobraCovered] datetime NULL,
-    [drvQuallifingEventType] varchar(2) NULL,
-    [drvPlanName1] varchar(24) NULL,
-    [drvPlanCovCode1] varchar(2) NULL,
-    [drvPlanCovStart1] datetime NULL,
-    [drvPlanName2] varchar(26) NULL,
-    [drvPlanCovCode2] varchar(2) NULL,
-    [drvPlanCovStart2] datetime NULL,
-    [drvPlanName3] varchar(15) NULL,
-    [drvPlanCovCode3] varchar(2) NULL,
-    [drvPlanCovStart3] datetime NULL
-);
-IF OBJECT_ID('U_EWWCOBCMBX_EEList') IS NULL
-CREATE TABLE [dbo].[U_EWWCOBCMBX_EEList] (
-    [xCOID] char(5) NULL,
-    [xEEID] char(12) NULL
-);
-IF OBJECT_ID('U_EWWCOBCMBX_File') IS NULL
-CREATE TABLE [dbo].[U_EWWCOBCMBX_File] (
-    [RecordSet] char(3) NOT NULL,
-    [InitialSort] varchar(100) NOT NULL,
-    [SubSort] varchar(100) NOT NULL,
-    [SubSort2] varchar(100) NULL,
-    [SubSort3] varchar(100) NULL,
-    [Data] varchar(4000) NULL
-);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWWCOBCMBX]
     @SystemID char(12)
@@ -384,7 +269,7 @@ BEGIN
     -- NPM parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','NPM');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- Include deds where DedIsCobraCovered = 'Y'
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeType','2'); -- 2 -- All new enrollees where no previous plan exists
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeType','2'); -- All new enrollees where no previous plan exists
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeIncludeEmps','Y'); -- Include employees when dependent is eligible
 
     /*-- Required OE parameters
@@ -402,7 +287,7 @@ BEGIN
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     --==========================================
-    -- BDM Section - QB
+    -- BDM Section - NPM
     --==========================================
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
@@ -463,7 +348,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         --,drvSort = '' -- 'BdmRunID: ' + BdmRunID + ' | BdmCobraReason: ' + BdmCobraReason + ' | BdmIsPQB: ' + BdmIsPQB + ' | BdmDepRecId: ' + ISNULL(BdmDepRecID, '')    
-        ,drvSort = DedCode_MDK1C -- BdmRecType + ' :: EecEmplStatus - ' + EecEmplStatus + ' :: BdmBenStatus - ' + BdmBenStatus + ' :: BdmRunId - ' + BdmRunId --'BdmRecType: ' + BdmRecType + ' | EecEmplStatus: ' + EecEmplStatus + ' | BdmRunId: '+ BdmRunId + ' | BdmBenStatus: ' + BdmBenStatus
+        ,drvSort = '' --'BdmRecType: ' + BdmRecType + ' | EecEmplStatus: ' + EecEmplStatus + ' | BdmRunId: '+ BdmRunId + ' | BdmBenStatus: ' + BdmBenStatus
         -- standard fields above and additional driver fields below
         ,drvActionCode =    CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmRunID = 'NPM' THEN '01'
                                 WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'A' AND BdmRunID = 'NPM'  THEN '02'
@@ -538,11 +423,11 @@ BEGIN
                                     WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN ConAddressZipCode
                                 END
         ,drvCobraEligible = CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmRunID = 'NPM' THEN 'Y' END
-        ,drvPhoneNumber =    CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmRunID = 'NPM' THEN LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4)
-                                WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'A' AND BdmRunID = 'NPM'  THEN LEFT(ConPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(ConPhoneHomeNumber, 6), 3) + '-' + RIGHT(ConPhoneHomeNumber, 4)
-                                WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' AND BdmRunID = 'QB' THEN LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4)
-                                WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4)
-                                WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN LEFT(ConPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(ConPhoneHomeNumber, 6), 3) + '-' + RIGHT(ConPhoneHomeNumber, 4)
+        ,drvPhoneNumber =    CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmRunID = 'NPM' THEN EepPhoneHomeNumber
+                                WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'A' AND BdmRunID = 'NPM'  THEN ConPhoneHomeNumber
+                                WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' AND BdmRunID = 'QB' THEN EepPhoneHomeNumber
+                                WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN EepPhoneHomeNumber
+                                WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN ConPhoneHomeNumber
                                 WHEN EecEmplStatus = 'L' THEN '90'
                                 ELSE '99'
                             END
@@ -550,11 +435,10 @@ BEGIN
         ,drvInitialNotificationCobra = CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmRunID = 'NPM' THEN 'C' END
         ,drvWaitingStartDate = EecDateOfLastHire
         ,drvCoverageBeginDate = BdmBenStartDate
-        ,drvQuallifingEventDate =    CASE WHEN /*ConRelationship IN ('CHL','DAU','DP','SON','SPS','STC') and*/ BdmBenStatus IN ('A','T') THEN BdmBenStartDate END
-                                    /*CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' AND BdmRunID = 'QB' THEN EepDateOfCOBRAEvent -- JCB
+        ,drvQuallifingEventDate =    CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' AND BdmRunID = 'QB' THEN EepDateOfCOBRAEvent
                                         WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN EepDateOfCOBRAEvent
                                         WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN ConCOBRAStatusDate
-                                    END*/
+                                    END
         ,drvLastPreCobraCovered =    CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' AND BdmRunID = 'QB' THEN BdmBenStopDate
                                         WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN BdmBenStopDate
                                         WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN BdmBenStopDate
@@ -573,7 +457,7 @@ BEGIN
                             WHEN DedCode_MEDM3 IS NOT NULL THEN 'Aetna NJ Silver DHMO'
                             WHEN DedCode_MEDB2 IS NOT NULL OR DedCode_MEDB1 IS NOT NULL THEN 'Aetna Silver (OAMC 3)'
                             WHEN DedCode_MDK2C IS NOT NULL THEN 'Kaiser CA Gold HMO'
-                            WHEN DedCode_MDK1C IS NOT NULL THEN 'Kaiser CA Silver DHMO'
+                            WHEN DedCode_MDK1C IS NOT NULL THEN 'Kaiser CA Silver DH'
                         END
         ,drvPlanCovCode1 =    CASE BenOption_MED
                                 WHEN 'EE' THEN '01'
@@ -711,7 +595,6 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-    WHERE (BdmRunID = 'QB') OR (BdmRunID = 'NPM' AND EecDateOfLastHire BETWEEN @StartDate AND @EndDate)
     ;
 
     --==========================================
@@ -742,10 +625,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202008011'
-       ,expStartPerControl     = '202008011'
-       ,expLastEndPerControl   = '202009219'
-       ,expEndPerControl       = '202009219'
+    SET expLastStartPerControl = '202001011'
+       ,expStartPerControl     = '202001011'
+       ,expLastEndPerControl   = '202009179'
+       ,expEndPerControl       = '202009179'
 WHERE expFormatCode = 'EWWCOBCMBX';
 
 **********************************************************************************/

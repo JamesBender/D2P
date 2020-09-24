@@ -21,8 +21,6 @@ IF OBJECT_ID('U_EDISCFASEX_drvTbl_PT') IS NOT NULL DROP TABLE [dbo].[U_EDISCFASE
 GO
 IF OBJECT_ID('U_EDISCFASEX_drvTbl_EN') IS NOT NULL DROP TABLE [dbo].[U_EDISCFASEX_drvTbl_EN];
 GO
-IF OBJECT_ID('U_EDISCFASEX_drvTbl_CT') IS NOT NULL DROP TABLE [dbo].[U_EDISCFASEX_drvTbl_CT];
-GO
 IF OBJECT_ID('U_EDISCFASEX_DedList') IS NOT NULL DROP TABLE [dbo].[U_EDISCFASEX_DedList];
 GO
 IF OBJECT_ID('U_EDISCFASEX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EDISCFASEX_AuditFields];
@@ -125,20 +123,12 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''DA''=''T|'')','EDISCFASEXZ0','50','D','20','17',NULL,'Time Terms Conditions Accepted ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''DA''=''T|'')','EDISCFASEXZ0','50','D','20','18',NULL,'Change Date ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','19','(''DA''=''T'')','EDISCFASEXZ0','50','D','20','19',NULL,'Spend Down ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"CT"','1','(''DA''=''T|'')','EDISCFASEXZ0','50','D','30','1',NULL,'Record Type ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartFileImpID"','2','(''UA''=''T|'')','EDISCFASEXZ0','50','D','30','2',NULL,'Participant File Import Id ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','3','(''UA''=''T|'')','EDISCFASEXZ0','50','D','30','3',NULL,'Plan Name ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContributionDate"','4','(''UDMDY''=''T|'')','EDISCFASEXZ0','50','D','30','4',NULL,'Contribution Date ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Payroll Deduction"','5','(''DA''=''T|'')','EDISCFASEXZ0','50','D','30','5',NULL,'Contribution Description ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContributionAmount"','6','(''UA''=''T|'')','EDISCFASEXZ0','50','D','30','6',NULL,'Contribution Amount ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Actual"','7','(''DA''=''T|'')','EDISCFASEXZ0','50','D','30','7',NULL,'Amount Type ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Current"','8','(''DA''=''T'')','EDISCFASEXZ0','50','D','30','8',NULL,'Tax Year ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"FF"','1','(''DA''=''T|'')','EDISCFASEXZ0','50','T','90','1',NULL,'Record Type ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordCount"','2','(''UA''=''T|'')','EDISCFASEXZ0','50','T','90','2',NULL,'Record Count ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"DBI"','3','(''DA''=''T|'')','EDISCFASEXZ0','50','T','90','3',NULL,'Administrator Code ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"38130"','4','(''DA''=''T|'')','EDISCFASEXZ0','50','T','90','4',NULL,'Employer Code ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSubmittedDate"','5','(''UDMDY''=''T|'')','EDISCFASEXZ0','50','T','90','5',NULL,'Submitted Date ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSubmittedTime"','6','(''UA''=''T|'')','EDISCFASEXZ0','50','T','90','6',NULL,'Submitted Time ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSubmittedTime"','6','(''UA''=''T'')','EDISCFASEXZ0','50','T','90','6',NULL,'Submitted Time ',NULL,NULL);
 DECLARE @UDENV varchar(3) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' ELSE LEFT(@@SERVERNAME,3) END);
 DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
@@ -162,7 +152,6 @@ GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCFASEX','H01','dbo.U_EDISCFASEX_Header',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCFASEX','D10','dbo.U_EDISCFASEX_drvTbl_PT',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCFASEX','D20','dbo.U_EDISCFASEX_drvTbl_EN',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCFASEX','D30','dbo.U_EDISCFASEX_drvTbl_CT',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCFASEX','T90','dbo.U_EDISCFASEX_Trailer',NULL);
 IF OBJECT_ID('U_dsi_BDM_EDISCFASEX') IS NULL
 CREATE TABLE [dbo].[U_dsi_BDM_EDISCFASEX] (
@@ -229,17 +218,6 @@ CREATE TABLE [dbo].[U_EDISCFASEX_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
 );
-IF OBJECT_ID('U_EDISCFASEX_drvTbl_CT') IS NULL
-CREATE TABLE [dbo].[U_EDISCFASEX_drvTbl_CT] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(16) NULL,
-    [drvPartFileImpID] char(11) NULL,
-    [drvPlanName] varchar(18) NULL,
-    [drvContributionDate] datetime NULL,
-    [drvContributionAmount] nvarchar(4000) NULL
-);
 IF OBJECT_ID('U_EDISCFASEX_drvTbl_EN') IS NULL
 CREATE TABLE [dbo].[U_EDISCFASEX_drvTbl_EN] (
     [drvEEID] char(12) NULL,
@@ -273,7 +251,7 @@ CREATE TABLE [dbo].[U_EDISCFASEX_drvTbl_PT] (
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressPostalCode] varchar(50) NULL,
-    [drvHomePhone] varchar(10) NULL,
+    [drvHomePhone] varchar(50) NULL,
     [drvAddressEmail] varchar(50) NULL,
     [drvHireDate] datetime NULL,
     [drvPayrollFreqEffDate] varchar(1) NOT NULL,
@@ -596,7 +574,7 @@ BEGIN
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressPostalCode = EepAddressZipCode
-        ,drvHomePhone = ''
+        ,drvHomePhone = CASE WHEN ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber ELSE EfoPhoneNumber END
         ,drvAddressEmail = EepAddressEMail
         ,drvHireDate = EecDateOfOriginalHire
         ,drvPayrollFreqEffDate = '' -- pgrPayFrequency
@@ -614,6 +592,16 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EDISCFASEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN (
+                SELECT EfoEEID, EfoPhoneNumber
+                FROM (
+                        SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY AuditKey DESC) AS RN
+                        FROM dbo.EmpMPhon WITH (NOLOCK)
+                        WHERE EfoPhoneType = 'CEL'
+                        ) AS CP
+                WHERE RN = 1
+            ) AS Cel
+        ON EfoEEID = xEEID
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCFASEX_drvTbl_EN
@@ -648,7 +636,7 @@ BEGIN
     ---------------------------------
     -- DETAIL RECORD - U_EDISCFASEX_drvTbl_CT
     ---------------------------------
-    IF OBJECT_ID('U_EDISCFASEX_drvTbl_CT','U') IS NOT NULL
+    /*IF OBJECT_ID('U_EDISCFASEX_drvTbl_CT','U') IS NOT NULL
         DROP TABLE dbo.U_EDISCFASEX_drvTbl_CT;
     SELECT DISTINCT
          drvEEID = xEEID
@@ -685,14 +673,14 @@ BEGIN
         ON EecPayGroup = pgpPayGroup
     JOIN dbo.U_EDISCFASEX_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
-    ;
+    ;*/
 
     DECLARE @RunDate DATETIME, @RunTime VARCHAR(6), @PtCount INT, @EnCount INT, @CtCount INT;
     SELECT @RunDate = GETDATE()
         ,@RunTime = REPLACE(CONVERT(VARCHAR, GETDATE(), 108),':',SPACE(0))
         ,@PtCount = (SELECT COUNT(*) FROM dbo.U_EDISCFASEX_drvTbl_PT WITH (NOLOCK))
         ,@EnCount = (SELECT COUNT(*) FROM dbo.U_EDISCFASEX_drvTbl_EN WITH (NOLOCK))
-        ,@CtCount = (SELECT COUNT(*) FROM dbo.U_EDISCFASEX_drvTbl_CT WITH (NOLOCK))
+--        ,@CtCount = (SELECT COUNT(*) FROM dbo.U_EDISCFASEX_drvTbl_CT WITH (NOLOCK))
         ;
 
     ---------------------------------
