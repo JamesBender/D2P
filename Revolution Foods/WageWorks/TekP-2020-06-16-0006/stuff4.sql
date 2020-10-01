@@ -17,4 +17,7 @@ where drvEEID IN ('8T2CRP0000Y0','AVLLF70000K0');
 
 
 --select * from dbo.U_dsi_BDM_EWWCOBCMBX WITH (NOLOCK) where bdmEEID = '8T2CYN0010Y0'
---select * from dbo.U_dsi_BDM_EWWCOBCMBX WITH (NOLOCK) where bdmEEID IN ('8T2CRP0000Y0','AVLLF70000K0');
+select * from dbo.U_dsi_BDM_EWWCOBCMBX WITH (NOLOCK) where bdmEEID IN ('8T2CRP0000Y0','AVLLF70000K0');
+select EecEEID, EecDAteOfTermination FROM EmpComp Where EecEEID IN ('8T2CRP0000Y0','AVLLF70000K0');
+
+select * from Contacts where ConEEID IN ('8T2CRP0000Y0','AVLLF70000K0');

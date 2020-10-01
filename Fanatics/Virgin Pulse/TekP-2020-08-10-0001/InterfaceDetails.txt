@@ -1,0 +1,5 @@
+Interface details (EVRGNPULSE)
+Env – AE41 
+Server – E4SUP1ST04
+Database – ULTIPRO_FANI
+Export Name – Virgin Pulse Demo

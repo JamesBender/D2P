@@ -236,12 +236,12 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20200921.txt',NULL,'','','',NULL,NULL,NULL,'Changes Only File','202008019','EMPEXPORT','CHANGES','Jun  4 2020  6:18AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2727','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20200921.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202008019','EMPEXPORT','OEACTIVE','Jun  4 2020  6:18AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2535','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20200921.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202008019','EMPEXPORT','OEPASSIVE','Jun  4 2020  6:18AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2638','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20200921.txt',NULL,'','','',NULL,NULL,NULL,'Iowa Bankers Med 834 Export','202008019','EMPEXPORT','SCHEDULED','Jun  4 2020  6:19AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2727','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20200921.txt',NULL,'','','',NULL,NULL,NULL,'Full File Only','202009189','EMPEXPORT','FULLFILE','Sep 17 2020 11:36AM','EIWABNKMED',NULL,NULL,NULL,'202009189','Sep 18 2020 12:00AM','Dec 30 1899 12:00AM','202008271','2162','','','202008271',dbo.fn_GetTimedKey(),NULL,'us3lKiUNI1088',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EIWABNKMED_20200921.txt' END WHERE expFormatCode = 'EIWABNKMED';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20201001.txt',NULL,'','','',NULL,NULL,NULL,'Changes Only File','202008019','EMPEXPORT','CHANGES','Jun  4 2020  6:18AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2727','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20201001.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202008019','EMPEXPORT','OEACTIVE','Jun  4 2020  6:18AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2535','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20201001.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202008019','EMPEXPORT','OEPASSIVE','Jun  4 2020  6:18AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2638','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20201001.txt',NULL,'','','',NULL,NULL,NULL,'Iowa Bankers Med 834 Export','202008019','EMPEXPORT','SCHEDULED','Jun  4 2020  6:19AM','EIWABNKMED',NULL,NULL,NULL,'202008019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202007011','2727','','','202007011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EIWABNKMED_20201001.txt',NULL,'','','',NULL,NULL,NULL,'Full File Only','202010019','EMPEXPORT','FULLFILE','Oct  1 2020  9:40AM','EIWABNKMED',NULL,NULL,NULL,'202010019','Oct  1 2020 12:00AM','Dec 30 1899 12:00AM','202009171','2399','','','202009171',dbo.fn_GetTimedKey(),NULL,'us3lKiUNI1088',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EIWABNKMED_20201001.txt' END WHERE expFormatCode = 'EIWABNKMED';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIWABNKMED','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIWABNKMED','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIWABNKMED','ExportPath','V',NULL);
@@ -704,7 +704,7 @@ BEGIN
     SELECT 
         audEEID  = audKey1Value
         ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
+        ,audKey3 = audKey3Value    
         ,audTableName
         ,audFieldName
         ,audAction
@@ -898,7 +898,7 @@ BEGIN
                                                      ELSE '19'
                                                 END
                                      END
-        ,drvINS03_MaintTypeCode = '030' --Audit or Compare
+        ,drvINS03_MaintTypeCode = CASE WHEN BdmBenStatus IN ('T','C') THEN '024' ELSE '030' END --Audit or Compare
         ,drvINS04_MaintReasonCode = '' --'XN' --Notification Only
         ,drvINS05_BenefitStatusCode = 'A'
         ,drvINS0601_MEDICAREPLANCODE = ''
@@ -1222,7 +1222,7 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     LEFT JOIN (
-                SELECT AudEEID, AudKey2 AS AudCOID, AudOldValue AS OldBenOption, AudNewValue AS NewBenOption
+                SELECT AudEEID, AudKey2 AS AudCOID, AudKey3 AS AudDedCode, AudOldValue AS OldBenOption, AudNewValue AS NewBenOption
                 FROM dbo.U_EIWABNKMED_Audit
                 WHERE audTableName = 'EmpDed'
                     AND audFieldName = 'EedBenOption'
@@ -1233,6 +1233,7 @@ BEGIN
             ) AS Old_Ben_Option
         ON AudEEID = xEEID
         AND AudCOID = xCOID
+        AND AudDedCode = BdmDedCode
     ;
 
 
@@ -1265,7 +1266,7 @@ BEGIN
         ,drvHD04_PlanCoverageDesc =    CASE WHEN OldBenOption IS NOT NULL THEN
                                         CASE WHEN BdmDedCode IN ('427', '430') THEN 'HD20'
                                             WHEN BdmDedCode IN ('428', '431') THEN 'HD35'
-                                            WHEN BdmDedCode IN ('426', '429') THEN 'HD20'
+                                            WHEN BdmDedCode IN ('426', '429') THEN 'HD55'
                                         END
                                     END
                                     /*CASE WHEN BdmDedType IN ('MED') THEN ''
@@ -1370,8 +1371,8 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = drvEEID
         AND ConSystemID = BdmDepRecID
-    LEFT JOIN (
-                SELECT AudEEID, AudKey2 AS AudCOID, AudOldValue AS OldBenOption, AudNewValue AS NewBenOption
+   /* LEFT*/ JOIN (
+                SELECT AudEEID, AudKey2 AS AudCOID, AudKey3 AS AudDedCode, AudOldValue AS OldBenOption, AudNewValue AS NewBenOption
                 FROM dbo.U_EIWABNKMED_Audit
                 WHERE audTableName = 'EmpDed'
                     AND audFieldName = 'EedBenOption'
@@ -1382,6 +1383,7 @@ BEGIN
             ) AS Old_Ben_Option
         ON AudEEID = drvEEID
         AND AudCOID = drvCOID
+        AND AudDedCode = BdmDedCode
     ;
         
 
