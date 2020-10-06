@@ -134,12 +134,12 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20200919.txt',NULL,'','',NULL,NULL,NULL,NULL,'Discovery FSA Export','202009119','EMPEXPORT','ONDEMAND',NULL,'EDISCFASEX',NULL,NULL,NULL,'202009119','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202009111',NULL,'','','202009111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20200919.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202009119','EMPEXPORT','SCHEDULED',NULL,'EDISCFASEX',NULL,NULL,NULL,'202009119','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202009111',NULL,'','','202009111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20200919.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202009119','EMPEXPORT','OEACTIVE',NULL,'EDISCFASEX',NULL,NULL,NULL,'202009119','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202009111',NULL,'','','202009111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20200919.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009119','EMPEXPORT','OEPASSIVE',NULL,'EDISCFASEX',NULL,NULL,NULL,'202009119','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202009111',NULL,'','','202009111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20200919.txt',NULL,'','','R8G17',NULL,NULL,NULL,'Test Purposes Only','202007249','EMPEXPORT','TEST','Sep 18 2020  7:31PM','EDISCFASEX',NULL,NULL,NULL,'202007249','Jul 24 2020 12:00AM','Dec 30 1899 12:00AM','202007011','234','','','202007011',dbo.fn_GetTimedKey(),NULL,'us3cPeTER1003',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EDISCFASEX_20200919.txt' END WHERE expFormatCode = 'EDISCFASEX';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20201004.txt',NULL,'','',NULL,NULL,NULL,NULL,'Discovery FSA Export','202003309','EMPEXPORT','ONDEMAND',NULL,'EDISCFASEX',NULL,NULL,NULL,'202003309','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202003301',NULL,'','','202003301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20201004.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202003309','EMPEXPORT','SCHEDULED',NULL,'EDISCFASEX',NULL,NULL,NULL,'202003309','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202003301',NULL,'','','202003301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20201004.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202003309','EMPEXPORT','OEACTIVE',NULL,'EDISCFASEX',NULL,NULL,NULL,'202003309','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202003301',NULL,'','','202003301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20201004.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202003309','EMPEXPORT','OEPASSIVE',NULL,'EDISCFASEX',NULL,NULL,NULL,'202003309','Jul 15 2020  5:16PM','Jul 15 2020  5:16PM','202003301',NULL,'','','202003301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EDISCFASEX_20201004.txt',NULL,'','','R8G17',NULL,NULL,NULL,'Test Purposes Only','202009251','EMPEXPORT','TEST','Sep 25 2020 12:00PM','EDISCFASEX',NULL,NULL,NULL,'202009251','Sep 25 2020 12:00AM','Sep 20 2020 12:00AM','202007011','119','','','202007011',dbo.fn_GetTimedKey(),NULL,'us3cPeTER1003',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EDISCFASEX_20201004.txt' END WHERE expFormatCode = 'EDISCFASEX';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCFASEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCFASEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCFASEX','InitialSort','C','drvSort');
@@ -602,6 +602,7 @@ BEGIN
                 WHERE RN = 1
             ) AS Cel
         ON EfoEEID = xEEID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCFASEX_drvTbl_EN
@@ -618,7 +619,7 @@ BEGIN
         ,drvPlanName =    CASE WHEN BdmDedCode IN ('53MFS') THEN 'Medical FSA'
                             WHEN BdmDedCode IN ('53DCF') THEN 'Dependent Care FSA'
                         END
-        ,drvEnrollmentEffDate = CASE WHEN BdmDedCode IN ('53MFS','53DCF') THEN BdmBenStartDate END
+        ,drvEnrollmentEffDate = CASE WHEN BdmDedCode IN ('53MFS','53DCF') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate,'3/1/2020') END
         ,drvParticipantEleAmt = CASE WHEN BdmDedCode IN ('53MFS','53DCF') THEN FORMAT(BdmEEGoalAmt, '#0.00') END
         ,drvEnrollmentTermDate = CASE WHEN EecEmplStatus <> 'T' AND BdmDedCode IN ('53MFS','53DCF') THEN BdmBenStopDate END
         ,drvPlanYearStartDate = CASE WHEN GETDATE() < '1/1/2021' THEN '03012020' ELSE  '01/01/' + CAST(YEAR(GETDATE()) AS VARCHAR) END
@@ -632,6 +633,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EDISCFASEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCFASEX_drvTbl_CT
@@ -733,14 +735,14 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202007171'
-       ,expStartPerControl     = '202007171'
-       ,expLastEndPerControl   = '202007179'
-       ,expEndPerControl       = '202007179'
+    SET expLastStartPerControl = '202003301'
+       ,expStartPerControl     = '202003301'
+       ,expLastEndPerControl   = '202003309'
+       ,expEndPerControl       = '202003309'
 WHERE expFormatCode = 'EDISCFASEX';
 
 **********************************************************************************/
 GO
 CREATE VIEW dbo.dsi_vwEDISCFASEX_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EDISCFASEX_File (NOLOCK)
-    ORDER BY /*RIGHT(RecordSet,2),*/ InitialSort, SubSort;
+    ORDER BY /*RIGHT(RecordSet,2),*/ InitialSort, SubSort; 
