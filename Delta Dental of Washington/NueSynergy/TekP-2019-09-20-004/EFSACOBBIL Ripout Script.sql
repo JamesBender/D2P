@@ -1299,7 +1299,7 @@ BEGIN
         ,drvMaritalStatus = eepMaritalStatus
         ,drvTabaccoStatus = EepIsSmoker
         ,drvSalary = EecAnnSalary
-        ,drvPayFrequency = PgrPayFrequency
+        ,drvPayFrequency = PgrPayFrequency 
         ,drvDepartment = ''
         ,drvLocation = '' --EecLocation
         ,drvClass = ''

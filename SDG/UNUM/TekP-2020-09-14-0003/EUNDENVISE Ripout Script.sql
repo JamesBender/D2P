@@ -13,6 +13,10 @@ IF OBJECT_ID('U_EUNDENVISE_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EUNDENVISE_d
 GO
 IF OBJECT_ID('U_EUNDENVISE_DedList') IS NOT NULL DROP TABLE [dbo].[U_EUNDENVISE_DedList];
 GO
+IF OBJECT_ID('U_EUNDENVISE_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EUNDENVISE_AuditFields];
+GO
+IF OBJECT_ID('U_EUNDENVISE_Audit') IS NOT NULL DROP TABLE [dbo].[U_EUNDENVISE_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_EUNDENVISE') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EUNDENVISE];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EUNDENVISE';
@@ -160,7 +164,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"USA"','9','(''DA''=''T,'')','EUNDENVISEZ0','50','D','10','9',NULL,'COUNTRY',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','10','(''UA''=''T,'')','EUNDENVISEZ0','50','D','10','10',NULL,'POSTAL CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''DA''=''T,'')','EUNDENVISEZ0','50','D','10','11',NULL,'PRI DIV',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDoh"','12','(''UA''=''T,'')','EUNDENVISEZ0','50','D','10','12',NULL,'DOH',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDoh"','12','(''UD101''=''T,'')','EUNDENVISEZ0','50','D','10','12',NULL,'DOH',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTermDate"','13','(''UD101''=''T,'')','EUNDENVISEZ0','50','D','10','13',NULL,'TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTermReason"','14','(''UA''=''T,'')','EUNDENVISEZ0','50','D','10','14',NULL,'TERM REASON',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNewMemberId"','15','(''UA''=''T,'')','EUNDENVISEZ0','50','D','10','15',NULL,'NEW MEMBER ID',NULL,NULL);
@@ -282,12 +286,14 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201006.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Dental Vision Elg Export','202010049','EMPEXPORT','ONDEM_XOE',NULL,'EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202010041',NULL,'','','202010041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201006.txt',NULL,'','',NULL,NULL,NULL,NULL,'UNUM Dental Vision Elg E-Test','202010049','EMPEXPORT','TEST_XOE',NULL,'EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202010041',NULL,'','','202010041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201006.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Dental Vision Elg E-Sched','202010049','EMPEXPORT','SCH_EUNDEN',NULL,'EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202010041',NULL,'','','202010041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201006.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010049','EMPEXPORT','OEACTIVE',NULL,'EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202010041',NULL,'','','202010041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201006.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010049','EMPEXPORT','OEPASSIVE',NULL,'EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202010041',NULL,'','','202010041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EUNDENVISE_20201006.txt' END WHERE expFormatCode = 'EUNDENVISE';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg Export','202010049','EMPEXPORT','ONDEM_XOE','Oct  6 2020  5:49PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202008271','107','','','202008271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg Export','202010049','EMPEXPORT','CHANGES','Oct  6 2020  5:46PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202008271','107','','','202008271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg E-Test','202010049','EMPEXPORT','TEST_XOE','Oct  6 2020  5:51PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202008271','107','','','202008271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg E-Sched','202010049','EMPEXPORT','SCH_EUNDEN','Oct  6 2020  5:50PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202008271','107','','','202008271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010049','EMPEXPORT','OEACTIVE','Oct  6 2020  5:48PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202008271','78','','','202008271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010049','EMPEXPORT','OEPASSIVE','Oct  6 2020  5:48PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202008271','558','','','202008271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EUNDENVISE_20201008.txt',NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg Export','202010071','EMPEXPORT','FULLFILE','Oct  7 2020 10:52AM','EUNDENVISE',NULL,NULL,NULL,'202010071','Oct  7 2020 12:00AM','Dec 30 1899 12:00AM','202009231','538','','','202009231',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EUNDENVISE_20201008.txt' END WHERE expFormatCode = 'EUNDENVISE';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNDENVISE','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNDENVISE','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNDENVISE','InitialSort','C','drvSort');
@@ -342,6 +348,41 @@ CREATE TABLE [dbo].[U_dsi_BDM_EUNDENVISE] (
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
 );
+IF OBJECT_ID('U_EUNDENVISE_Audit') IS NULL
+CREATE TABLE [dbo].[U_EUNDENVISE_Audit] (
+    [audEEID] char(12) NULL,
+    [audCOID] char(5) NULL,
+    [audConSystemID] varchar(255) NULL,
+    [audKey1] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL,
+    [audEffectiveDate] smalldatetime NULL,
+    [audRowNo] bigint NULL,
+    [audNewHire] varchar(1) NOT NULL,
+    [audReHire] varchar(1) NOT NULL,
+    [audTerm] varchar(1) NOT NULL,
+    [audSalaryChange] varchar(1) NOT NULL,
+    [audDedChange] varchar(1) NOT NULL,
+    [audBenOptionChange] varchar(1) NOT NULL,
+    [audSSNChange] varchar(1) NOT NULL,
+    [audNameChange] varchar(1) NOT NULL,
+    [audDemoChange] varchar(1) NOT NULL,
+    [audAddrChange] varchar(1) NOT NULL,
+    [audNewlyEnroll] varchar(1) NOT NULL,
+    [audReEnroll] varchar(1) NOT NULL,
+    [audTermPlan] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_EUNDENVISE_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EUNDENVISE_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
 IF OBJECT_ID('U_EUNDENVISE_DedList') IS NULL
 CREATE TABLE [dbo].[U_EUNDENVISE_DedList] (
     [DedCode] char(5) NOT NULL,
@@ -364,7 +405,7 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDoh] datetime NULL,
     [drvTermDate] datetime NULL,
     [drvTermReason] varchar(2) NULL,
-    [drvNewMemberId] char(11) NULL,
+    [drvNewMemberId] varchar(2000) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -382,7 +423,7 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvSpouseEffectiveDate] datetime NULL,
     [drvSpouseTermDate] datetime NULL,
     [drvSignatureDate] datetime NULL,
-    [drvEffecitveDate] varchar(8) NOT NULL,
+    [drvEffecitveDate] datetime NULL,
     [drvAddType] varchar(1) NULL,
     [drvBenefitId] varchar(2) NULL,
     [drvPlanCode] varchar(6) NULL,
@@ -397,8 +438,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate1] datetime NULL,
     [drvDentalDepGender1] char(1) NULL,
     [drvDentalDepDateOfBirth1] datetime NULL,
-    [drvDentalDepRelationship1] char(3) NULL,
-    [drvDentalDepDisabledInd1] char(1) NULL,
+    [drvDentalDepRelationship1] varchar(1) NULL,
+    [drvDentalDepDisabledInd1] varchar(1) NULL,
     [drvDentalDepNameFirst2] varchar(100) NULL,
     [drvDentalDepNameMIddle2] varchar(1) NULL,
     [drvDentalDepNameLast2] varchar(100) NULL,
@@ -408,8 +449,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate2] datetime NULL,
     [drvDentalDepGender2] char(1) NULL,
     [drvDentalDepDateOfBirth2] datetime NULL,
-    [drvDentalDepRelationship2] char(3) NULL,
-    [drvDentalDepDisabledInd2] char(1) NULL,
+    [drvDentalDepRelationship2] varchar(1) NULL,
+    [drvDentalDepDisabledInd2] varchar(1) NULL,
     [drvDentalDepNameFirst3] varchar(100) NULL,
     [drvDentalDepNameMIddle3] varchar(1) NULL,
     [drvDentalDepNameLast3] varchar(100) NULL,
@@ -419,8 +460,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate3] datetime NULL,
     [drvDentalDepGender3] char(1) NULL,
     [drvDentalDepDateOfBirth3] datetime NULL,
-    [drvDentalDepRelationship3] char(3) NULL,
-    [drvDentalDepDisabledInd3] char(1) NULL,
+    [drvDentalDepRelationship3] varchar(1) NULL,
+    [drvDentalDepDisabledInd3] varchar(1) NULL,
     [drvDentalDepNameFirst4] varchar(100) NULL,
     [drvDentalDepNameMIddle4] varchar(1) NULL,
     [drvDentalDepNameLast4] varchar(100) NULL,
@@ -430,8 +471,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate4] datetime NULL,
     [drvDentalDepGender4] char(1) NULL,
     [drvDentalDepDateOfBirth4] datetime NULL,
-    [drvDentalDepRelationship4] char(3) NULL,
-    [drvDentalDepDisabledInd4] char(1) NULL,
+    [drvDentalDepRelationship4] varchar(1) NULL,
+    [drvDentalDepDisabledInd4] varchar(1) NULL,
     [drvDentalDepNameFirst5] varchar(100) NULL,
     [drvDentalDepNameMIddle5] varchar(1) NULL,
     [drvDentalDepNameLast5] varchar(100) NULL,
@@ -441,8 +482,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate5] datetime NULL,
     [drvDentalDepGender5] char(1) NULL,
     [drvDentalDepDateOfBirth5] datetime NULL,
-    [drvDentalDepRelationship5] char(3) NULL,
-    [drvDentalDepDisabledInd5] char(1) NULL,
+    [drvDentalDepRelationship5] varchar(1) NULL,
+    [drvDentalDepDisabledInd5] varchar(1) NULL,
     [drvDentalDepNameFirst6] varchar(100) NULL,
     [drvDentalDepNameMIddle6] varchar(1) NULL,
     [drvDentalDepNameLast6] varchar(100) NULL,
@@ -452,8 +493,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate6] datetime NULL,
     [drvDentalDepGender6] char(1) NULL,
     [drvDentalDepDateOfBirth6] datetime NULL,
-    [drvDentalDepRelationship6] char(3) NULL,
-    [drvDentalDepDisabledInd6] char(1) NULL,
+    [drvDentalDepRelationship6] varchar(1) NULL,
+    [drvDentalDepDisabledInd6] varchar(1) NULL,
     [drvDentalDepNameFirst7] varchar(100) NULL,
     [drvDentalDepNameMIddle7] varchar(1) NULL,
     [drvDentalDepNameLast7] varchar(100) NULL,
@@ -463,8 +504,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate7] datetime NULL,
     [drvDentalDepGender7] char(1) NULL,
     [drvDentalDepDateOfBirth7] datetime NULL,
-    [drvDentalDepRelationship7] char(3) NULL,
-    [drvDentalDepDisabledInd7] char(1) NULL,
+    [drvDentalDepRelationship7] varchar(1) NULL,
+    [drvDentalDepDisabledInd7] varchar(1) NULL,
     [drvDentalDepNameFirst8] varchar(100) NULL,
     [drvDentalDepNameMIddle8] varchar(1) NULL,
     [drvDentalDepNameLast8] varchar(100) NULL,
@@ -474,8 +515,8 @@ CREATE TABLE [dbo].[U_EUNDENVISE_drvTbl] (
     [drvDentalDepTermDate8] datetime NULL,
     [drvDentalDepGender8] char(1) NULL,
     [drvDentalDepDateOfBirth8] datetime NULL,
-    [drvDentalDepRelationship8] char(3) NULL,
-    [drvDentalDepDisabledInd8] char(1) NULL
+    [drvDentalDepRelationship8] varchar(1) NULL,
+    [drvDentalDepDisabledInd8] varchar(1) NULL
 );
 IF OBJECT_ID('U_EUNDENVISE_EEList') IS NULL
 CREATE TABLE [dbo].[U_EUNDENVISE_EEList] (
@@ -520,6 +561,8 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EUNDENVISE' ORD
 Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNDENVISE', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNDENVISE', 'FULLFILE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNDENVISE', 'CHANGES';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNDENVISE', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNDENVISE', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EUNDENVISE', 'OEACTIVE';
@@ -567,6 +610,143 @@ BEGIN
 
     DELETE FROM dbo.U_EUNDENVISE_EEList
     WHERE xEEID IN (SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES'))
+
+    --==========================================
+    -- Audit Code
+    --==========================================
+    -- Get data from audit fields table.  Add fields here if auditing
+    IF OBJECT_ID('U_EUNDENVISE_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EUNDENVISE_AuditFields;
+    CREATE TABLE dbo.U_EUNDENVISE_AuditFields (aTableName VARCHAR(30),aFieldName VARCHAR(30));
+    -- Employee Information
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepSSN');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepNameFirst');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepNameLast');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepNameMiddle');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepNamePrefix');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepNameSuffix');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepAddressLine2');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepAddressCity');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepAddressState');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepAddressZipCode');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepAddressCountry');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepGender');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepIsDisabled');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepMaritalStatus');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    -- Dependent Information
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConSSN');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConNameFirst');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConNameLast');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConNameMiddle');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConNameSuffix');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConDateOfBirth');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConIsDisabled');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConRelationship');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConAddressLine1');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConAddressLine2');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConAddressCity');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConAddressState');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConAddressZipCode');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('Contacts','ConAddressCountry');
+    -- Employee Deduction/Benefit Information
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpDed','EedDedCode');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpDed','EedBenStatus');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpDed','EedBenOption');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpDed','EedBenStartDate');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('EmpDed','EedBenStopDate');
+    -- Dependent Deduction/Benefit Information
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('DepBPlan','DbnDedCode');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('DepBPlan','DbnBenStatus');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('DepBPlan','DbnBenStartDate');
+    INSERT INTO dbo.U_EUNDENVISE_AuditFields VALUES ('DepBPlan','DbnBenStopDate');
+
+    IF OBJECT_ID('U_EUNDENVISE_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EUNDENVISE_Audit;
+    SELECT audEEID = xEEID
+        ,audCOID = xCOID
+        ,audConSystemID =  CASE WHEN audTableName = 'Contacts' THEN audKey3Value
+                                WHEN audTableName = 'DepBPlan' THEN DbnDepRecID
+                           END
+        ,audKey1 = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audEffectiveDate
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
+        ,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END
+        ,audDedChange = CASE WHEN audTableName IN ('EmpDed','DepBPlan','DedCode') THEN 'Y'
+                             ELSE 'N'
+                        END
+        ,audBenOptionChange = CASE WHEN audFieldName IN ('EedBenOption') THEN 'Y'
+                                   ELSE 'N'
+                              END
+        ,audSSNChange = CASE WHEN audFieldName IN ('EepSSN','ConSSN') THEN 'Y'
+                              ELSE 'N'
+                        END
+        ,audNameChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Name%' THEN 'Y'
+                              WHEN audTableName IN ('EmpPers') AND audFieldName LIKE '%Prefix%' THEN 'Y'
+                              WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Suffix%' THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audDemoChange = CASE WHEN audFieldName IN ('EepGender','EepDateOfBirth','EepMaritalStatus','ConGender','ConDateOfBirth','ConRelationship') THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audAddrChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Address%' THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audNewlyEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') = '' AND audNewValue = 'A' THEN 'Y'
+                               ELSE 'N'
+                          END
+        ,audReEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') NOT IN ('A','') AND audNewValue = 'A' THEN 'Y'
+                            WHEN audFieldName IN ('EedBenStartDate','DbnBenStartDate') AND ISNULL(audOldValue,'') <> '' AND ISNULL(audNewValue,'') <> '' THEN 'Y'
+                            ELSE 'N'
+                       END
+        ,audTermPlan = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND audOldValue = 'A' AND ISNULL(audNewValue,'') NOT IN ('A','') THEN 'Y'
+                            WHEN audFieldName IN ('EedBenStopDate','DbnBenStopDate') AND ISNULL(audNewValue,'') <> '' THEN 'Y'
+                            ELSE 'N'
+                       END
+    INTO dbo.U_EUNDENVISE_Audit
+    FROM dbo.U_EUNDENVISE_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK)
+        ON xEEID = audKey1Value
+    JOIN dbo.U_EUNDENVISE_AuditFields WITH (NOLOCK)
+        ON aTableName = audTableName
+        AND aFieldName = audFieldName
+    LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+        ON DbnEEID = xEEID
+        AND DbnDedCode = audKey2Value
+        AND DbnSystemID = audKey3Value
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND ISNULL(audNewValue, '') <> ''
+    AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
+        OR (audTableName = 'EmpDed' AND audKey3Value IN (SELECT DedCode FROM dbo.U_EUNDENVISE_DedList))
+        OR (audTableName = 'DepBPlan' AND audKey2Value IN (SELECT DedCode FROM dbo.U_EUNDENVISE_DedList))
+    );
+    --================
+    -- Changes Only
+    --================
+    IF (@Exportcode NOT IN ('FULLFILE','OEACTIVE','OEPASSIVE'))
+    BEGIN
+        -- Remove Employees with No Changes in Audit
+        DELETE FROM dbo.U_EUNDENVISE_EELIST
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EUNDENVISE_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    END;
+
+
+
 
     --==========================================
     -- Create Deduction List
@@ -649,7 +829,9 @@ BEGIN
                                 WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'RT'
                                 WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') THEN 'TE'
                             END
-        ,drvNewMemberId = CASE WHEN ISNULL(EepSSN, '') <> '' THEN EepSSN END
+        ,drvNewMemberId =    CASE WHEN @Exportcode NOT IN ('FULLFILE','OEACTIVE','OEPASSIVE') THEN (SELECT TOP 1 audNewValue from dbo.U_EUNDENVISE_Audit WITH (NOLOCK) WHERE audTableName = 'EmpPers' AND audFieldName = 'EepSSN' AND audEEID = xEEID AND audCOID = xCOID)
+                            END
+                            --CASE WHEN ISNULL(EepSSN, '') <> '' THEN EepSSN END                    -- JCB
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = EepNameLast
@@ -667,11 +849,15 @@ BEGIN
                             END
         ,drvSpouseDateOfBirth = SpouseDateOfBirth
         ,drvSpouseSSN = SpouseSSN
-        ,drvSpouseEffectiveDate = SpsBenStartDate
+        ,drvSpouseEffectiveDate = dbo.dsi_fnGetMinMaxDates('MAX',SpsBenStartDate,'1/1/2021')
         ,drvSpouseTermDate = SpsBenStopDate
         ,drvSignatureDate = BdmBenStartDate
-        ,drvEffecitveDate =    '1/1/1900' -- This needs audit data
-        ,drvAddType = CASE WHEN EecFullTimeOrPartTime = 'F' AND EjhFullTimeOrPartTime = 'P' THEN 'O' END
+        ,drvEffecitveDate =    CASE WHEN audReHire = 'Y' THEN EecDateOfLastHire
+                                WHEN audTerm = 'Y' THEN EecDateOfTermination
+                                WHEN audSalaryChange = 'Y' THEN XEjhJobEffDate
+                                ELSE BdmBenStartDate
+                            END
+        ,drvAddType = CASE WHEN EecFullTimeOrPartTime = 'F' AND XEjhFullTimeOrPartTime = 'P' THEN 'O' END
         ,drvBenefitId =    CASE WHEN BdmDedCode = 'DEN' THEN 'OA'
                             WHEN BdmDedCode = 'VIS' THEN 'VA'
                         END
@@ -811,9 +997,9 @@ BEGIN
         ON SpsBenEEID= xEEID
         AND SpsBenCOID = xCOID
         AND SpouseDedCode = BdmDedCode
-    JOIN dbo.EmpHJob WITH (NOLOCK)
+/*    JOIN dbo.EmpHJob WITH (NOLOCK)
         ON EjhCOID = xCOID
-        AND EjhEEID = xEEID
+        AND EjhEEID = xEEID*/
     LEFT JOIN (
                 SELECT EdhEEID, EdhCOID, EdhDedCode, EdhChangeReason
                 FROM (
@@ -927,7 +1113,7 @@ BEGIN
                         ,MAX(CASE WHEN RN = 8 THEN BdmBenStopDate END) AS DenDepBdmStopDate8
 
                     FROM (
-                            SELECT ConEEID, ConRelationship, ConSystemId, ConNameLast, ConNameMiddle, ConNameFirst, ConNameSuffix, ConSSN, ConGender, ConIsDisabled, ConDateOfBirth, BdmBenStartDate, BdmBenStopDate, ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY CASE WHEN ConRelationship IN ('SPS','DP') THEN 1 ELSE 2 END) AS RN
+                            SELECT ConEEID, CASE WHEN ConGender = 'M' THEN 'S' WHEN ConGender = 'F' THEN 'D' END AS ConRelationship, ConSystemId, ConNameLast, ConNameMiddle, ConNameFirst, ConNameSuffix, ConSSN, ConGender, CASE WHEN ConIsDisabled = 'Y' THEN 'Y' END AS ConIsDisabled, ConDateOfBirth, BdmBenStartDate, BdmBenStopDate, ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY CASE WHEN ConRelationship IN ('SPS','DP') THEN 1 ELSE 2 END) AS RN
                             FROM dbo.Contacts WITH (NOLOCK)    
                             JOIN dbo.U_dsi_BDM_EUNDENVISE WITH (NOLOCK)
                                 ON ConEEID = BdmEEID
@@ -1036,7 +1222,7 @@ BEGIN
                         ,MAX(CASE WHEN RN = 8 THEN BdmBenStartDate END) AS VisDepBdmStartDate8
                         ,MAX(CASE WHEN RN = 8 THEN BdmBenStopDate END) AS VisDepBdmStopDate8
                     FROM (
-                            SELECT ConEEID, ConRelationship, ConSystemId, ConNameLast, ConNameMiddle, ConNameFirst, ConNameSuffix, ConSSN, ConGender, ConIsDisabled, ConDateOfBirth, BdmBenStartDate, BdmBenStopDate, ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY CASE WHEN ConRelationship IN ('SPS','DP') THEN 1 ELSE 2 END) AS RN
+                            SELECT ConEEID, CASE WHEN ConGender = 'M' THEN 'S' WHEN ConGender = 'F' THEN 'D' END AS ConRelationship, ConSystemId, ConNameLast, ConNameMiddle, ConNameFirst, ConNameSuffix, ConSSN, ConGender, CASE WHEN ConIsDisabled = 'Y' THEN 'Y' END AS ConIsDisabled, ConDateOfBirth, BdmBenStartDate, BdmBenStopDate, ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY CASE WHEN ConRelationship IN ('SPS','DP') THEN 1 ELSE 2 END) AS RN
                             FROM dbo.Contacts WITH (NOLOCK)    
                             JOIN dbo.U_dsi_BDM_EUNDENVISE WITH (NOLOCK)
                                 ON ConEEID = BdmEEID
@@ -1047,6 +1233,22 @@ BEGIN
                     GROUP BY ConEEID
             ) AS VisDeps
         ON VisDepEEID = xEEID
+    LEFT JOIN (
+                    SELECT audEEID, audCOID, MAX(audReHire) AS audReHire, MAX(audTerm) AS audTerm, MAX(audSalaryChange) AS audSalaryChange 
+                    FROM dbo.U_EUNDENVISE_Audit WITH (NOLOCK)
+                    GROUP BY audEEID, audCOID ) AS Audit
+        ON audEEID = xEEID
+        AND audCOID = xCOID
+    LEFT JOIN (
+            SELECT EjhEEID AS XEjhEEID, EjhCOID AS XEjhCOID, EjhFullTimeOrPartTime AS XEjhFullTimeOrPartTime, EjhIntegrationEffDate AS XEjhIntegrationEffDate, EjhJobEffDate AS XEjhJobEffDate
+            FROM (
+                SELECT EjhEEID, EjhCOID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, EjhJobEffDate, ROW_NUMBER() OVER (PARTITION BY EjhEEID, EjhCOID ORDER BY EjhIntegrationEffDate DESC) AS RN
+                FROM dbo.EmpHJob WITH (NOLOCK)
+                WHERE EjhIntegrationEffDate <= @EndDate
+                ) AS JH
+            WHERE RN = 1 ) AS JHT
+        ON XEjhEEID = xEEID
+        AND XEjhCOID = xCOID
     /*JOIN (
             SELECT BdmEEID AS SigEEID, BdmCOID AS SigCOID, MAX(BdmBenStartDate) AS BdmSignatureDate 
             FROM dbo.U_dsi_BDM_EUNDENVISE WITH (NOLOCK) 

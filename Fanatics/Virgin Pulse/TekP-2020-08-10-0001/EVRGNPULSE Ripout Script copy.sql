@@ -80,10 +80,10 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EVRGNPLSEP_20200928.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Virgin Pulse Demo','202009289','EMPEXPORT','ONDEM_XOE',NULL,'EVRGNPLSEP',NULL,NULL,NULL,'202009289','Sep 28 2020  4:31PM','Sep 28 2020  4:31PM','202009281',NULL,'','','202009281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EVRGNPLSEP_20200928.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Virgin Pulse Demo-Test','202009289','EMPEXPORT','TEST_XOE',NULL,'EVRGNPLSEP',NULL,NULL,NULL,'202009289','Sep 28 2020  4:31PM','Sep 28 2020  4:31PM','202009281',NULL,'','','202009281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EVRGNPLSEP_20200928.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Virgin Pulse Demo-Sched','202009289','EMPEXPORT','SCH_EVRGNP',NULL,'EVRGNPLSEP',NULL,NULL,NULL,'202009289','Sep 28 2020  4:31PM','Sep 28 2020  4:31PM','202009281',NULL,'','','202009281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EVRGNPLSEP_20200928.txt' END WHERE expFormatCode = 'EVRGNPLSEP';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EVRGNPLSEP_20201008.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Virgin Pulse Demo','202010079','EMPEXPORT','ONDEM_XOE',NULL,'EVRGNPLSEP',NULL,NULL,NULL,'202010079','Sep 28 2020  4:31PM','Sep 28 2020  4:31PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EVRGNPLSEP_20201008.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Virgin Pulse Demo-Test','202010079','EMPEXPORT','TEST_XOE',NULL,'EVRGNPLSEP',NULL,NULL,NULL,'202010079','Sep 28 2020  4:31PM','Sep 28 2020  4:31PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_EVRGNPLSEP_20201008.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Virgin Pulse Demo-Sched','202010079','EMPEXPORT','SCH_EVRGNP',NULL,'EVRGNPLSEP',NULL,NULL,NULL,'202010079','Sep 28 2020  4:31PM','Sep 28 2020  4:31PM','202009231',NULL,'','','202009231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_EVRGNPLSEP_20201008.txt' END WHERE expFormatCode = 'EVRGNPLSEP';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVRGNPLSEP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVRGNPLSEP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVRGNPLSEP','InitialSort','C','drvSort');
@@ -108,7 +108,7 @@ CREATE TABLE [dbo].[U_EVRGNPLSEP_drvTbl] (
     [drvDateOfBirth] datetime NULL,
     [drvCompany] varchar(25) NULL,
     [drvBusinesUnit] varchar(25) NULL,
-    [drvOfficeLocation] char(6) NULL,
+    [drvOfficeLocation] varchar(25) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvPhoneNumber] varchar(50) NULL,
     [drvEmployeeType] char(3) NULL,
@@ -224,7 +224,7 @@ BEGIN
         ,drvDateOfBirth = EepDateOfBirth
         ,drvCompany = OrgDesc1
         ,drvBusinesUnit = OrgDesc2
-        ,drvOfficeLocation = EecLocation
+        ,drvOfficeLocation = LocDesc
         ,drvEmailAddress = EepAddressEMail
         ,drvPhoneNumber = EepPhoneHomeNumber
         ,drvEmployeeType = EecEEType
@@ -254,6 +254,8 @@ BEGIN
             WHERE OrgLvl = 2
             ) AS Org2
         ON OrgCode2 = EecOrgLvl2
+    JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
     WHERE EecEEType IN ('REG','SEA','INT')
         AND EecEmplStatus <> 'T'
     ;

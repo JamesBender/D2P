@@ -1,0 +1,5 @@
+Record Type|Participant File Import ID|Employer Employee ID|Employee Number|Last Name|First Name|Middle Initial|Gender|Marital Status|Mother’s Maiden Name|Date of Birth|SSN|Address Line 1|Address Line 2|Address Line 3|Address Line 4|City|State|Zip Code|Country|Home Phone|Work Phone|Work Phone Extension|Email Address|Username|Password|Hire Date|Division|Hours Per Week|Employee Class|Payroll Frequency|Payroll Frequency Effective Date|Participant Status|Status Effective Date|Hold Payroll Deductions|Hold Employer Contributions|Incur Services|Final Payroll Process Date|Final Contribution Process Date 
+
+Record Type|Participant File Import Id|Plan Name|Enrollment Effective Date|Participant Election Amount|Enrollment Termination Date|Employer Contribution Level|Employer Contribution Amount|Primary Reimbursement|Alternate Reimbursement|Enrolled in Claims Exchange|ElectionAmount Indicator|HDHP Coverage Level|Plan Year Start Date|Terms and Conditions Accepted|DateTerms Conditions Accepted|TimeTerms Conditions Accepted|ChangeDate
+
+Record Type|Participant File Import Id|Plan Name|Contribution Date|Contribution Description|Contribution Amount|Amount Type|Tax Year|Notes

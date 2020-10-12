@@ -131,12 +131,12 @@ DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
 DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
 SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
 DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201005.txt',NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202009309','EMPEXPORT','ONDEMAND',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201005.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202009309','EMPEXPORT','SCHEDULED',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201005.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202009309','EMPEXPORT','OEACTIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201005.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009309','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201005.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202009309','EMPEXPORT','TEST','Oct  5 2020 10:00AM','ECSB401KEX',NULL,NULL,NULL,'202009309','Sep 30 2020 12:00AM','Sep 30 2020 12:00AM','202009301','272','eecPayGroup','MONTH,SEMIMO','202009301',dbo.fn_GetTimedKey(),NULL,'us3rVaROB1010',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_ECSB401KEX_20201005.txt' END WHERE expFormatCode = 'ECSB401KEX';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201007.txt',NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202009309','EMPEXPORT','ONDEMAND',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201007.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202009309','EMPEXPORT','SCHEDULED',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201007.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202009309','EMPEXPORT','OEACTIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201007.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009309','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ECSB401KEX_20201007.txt',NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202009309','EMPEXPORT','TEST','Oct  7 2020  4:25PM','ECSB401KEX',NULL,NULL,NULL,'202009309','Sep 30 2020 12:00AM','Dec 30 1899 12:00AM','202009301','280','eecPayGroup','MONTH,SEMIMO','202009301',dbo.fn_GetTimedKey(),NULL,'us3rVaROB1010',NULL);
+UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_ECSB401KEX_20201007.txt' END WHERE expFormatCode = 'ECSB401KEX';
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','InitialSort','C','drvSort');
@@ -458,8 +458,8 @@ BEGIN
         ,Pdh401FAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('401F') THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401CAmt        = SUM(CASE WHEN PdhDedCode IN ('401C') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl  THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401CAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('401C') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhRothAmt     = SUM(CASE WHEN PdhDedCode IN ('ROTH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)        
-        ,PdhRothAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhRothAmt     = SUM(CASE WHEN PdhDedCode IN ('ROTH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)        
+        ,PdhRothAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)        
         ,PdhRothCAmt    = SUM(CASE WHEN PdhDedCode IN ('ROTHC') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhRothCAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401L1Amt     = SUM(CASE WHEN PdhDedCode IN ('401L1') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
@@ -528,13 +528,13 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '' --BdmDedCode
+        ,drvSort = '' --FORMAT(PehCurHrsYTD, '#0.00') --BdmDedCode
         -- standard fields above and additional driver fields below
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(EepSSN, 5), 2) + '-' + RIGHT(REPLACE(EepSSN, ' ', ''), 4)
         ,drvName = EepNameLast + ', ' + EepNameFirst + ' ' + ISNULL(EepNameMiddle, '')
         ,drvContribSrc1 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401FAmt*100, '#0'), ''), 12)
         ,drvContribSrc2 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401CAmt*100, '#0'), ''), 12)
-        ,drvContribSrc3 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(RothEEAmt*100, '#0'), ''), 12)
+        ,drvContribSrc3 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothAmt*100, '#0'), ''), 12)
         -- RIGHT(SPACE(12) + FORMAT(PdhRothAmt*100, '#0'), 12)
         ,drvContribSrc4 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothCAmt*100, '#0'), ''), 12)
         ,drvLoanPayment1 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(L1EEAmt*100, '#0'), ''), 12)
@@ -554,7 +554,8 @@ BEGIN
         ,drvYTDPlanTestComp = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PehYTDPlanTestComp*100, '#0'), ''), 12)
         ,drvYTDPlanTotalComp = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PehYTDPlanTotalComp*100, '#0'), ''), 12)
         ,drvSalary = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(EecAnnSalary*100, '#0'), ''), 12)
-        ,drvPlanYTDHoursPaid = RIGHT(REPLICATE('0', 4) + ISNULL(FORMAT(EeeYTDHrs*100, '#0'), ''), 4)
+        ,drvPlanYTDHoursPaid = RIGHT(REPLICATE('0', 4) + ISNULL(FORMAT(PehCurHrsYTD*100, '#0'), ''), 4)                        --- JCB
+            --RIGHT(REPLICATE('0', 4) + ISNULL(FORMAT(EeeYTDHrs*100, '#0'), ''), 4)                        --- JCB
         ,drvPayFrequency =    CASE WHEN PgrPayFrequency = 'W' THEN 'W'
                                 WHEN PgrPayFrequency = 'M' THEN 'M'
                                 WHEN PgrPayFrequency = 'B' THEN 'B'
@@ -603,13 +604,13 @@ BEGIN
         ON PdhEEID = xEEID    
     LEFT JOIN dbo.U_ECSB401KEX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
-    JOIN (
+    /*JOIN (
             SELECT EeeEEID, EeeCOID, SUM(EeeYTDHrs) AS EeeYTDHrs
             FROM dbo.EmpEarn WITH (NOLOCK)
             GROUP BY EeeEEID, EeeCOID
         ) AS Emp_Earnings
         ON EeeEEID = xEEID
-        AND EeeCOID = xCOID
+        AND EeeCOID = xCOID*/
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
     LEFT JOIN (
@@ -651,7 +652,7 @@ BEGIN
             ) AS Retire_StartEnd_Date
         ON RetEEID = xEEID
         AND RetCOID = xCOID
-    LEFT JOIN (
+    /*LEFT JOIN (
                 SELECT EedEEID AS RothEEID, EedCOID AS RothCOID, EedEEAmt AS RothEEAmt
                 FROM (
                         SELECT EedEEID, EedCOID, EedEEAmt, ROW_NUMBER() OVER (PARTITION BY EedEEID, EedCOID ORDER BY EedBenStartDate DESC) AS RN
@@ -661,16 +662,16 @@ BEGIN
                         ) AS R
                 WHERE RN = 1) AS ROTH
         ON RothEEID = xEEID
-        AND RothCOID = xCOID
+        AND RothCOID = xCOID*/
     LEFT JOIN (
                 SELECT EedEEID AS L1EEID, EedCOID AS L1COID, EedEEAmt AS L1EEAmt
                 FROM dbo.EmpDed WITH (NOLOCK)
                 WHERE EedDedcode = '401L1') AS L1
         ON L1EEID = xEEID
         AND L1COID = xCOID
-    JOIN [dbo].[fn_MP_CustomFields_EmpPers_Export] (NULL, NULL, NULL, NULL) AS Elig
+    LEFT JOIN [dbo].[fn_MP_CustomFields_EmpPers_Export] (NULL, NULL, NULL, NULL) AS Elig
         ON xEEID = EEID
-    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEPART(YEAR, EecDateOfTermination) = DATEPART(YEAR, @ENDDATE))
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND PehCurAmtYTD > 0) --- DATEPART(YEAR, EecDateOfTermination) = DATEPART(YEAR, @ENDDATE))
     ;
     ---------------------------------
     -- TRAILER RECORD
