@@ -25,6 +25,7 @@ DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ESEQDEMEXP';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ESEQDEMEXP';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ESEQDEMEXP';
 INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ESEQDEMEXP','Sequoia Demographic Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','3000','S','N','ESEQDEMEXPZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ESEQDEMEXP' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"COMPANY NAME"','1','(''DA''=''T,'')','ESEQDEMEXPZ0','50','H','01','1',NULL,'COMPANY NAME',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"EMPLOYEE ID"','2','(''DA''=''T,'')','ESEQDEMEXPZ0','50','H','01','2',NULL,'EMPLOYEE ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"EMPLOYEE SSN"','3','(''DA''=''T,'')','ESEQDEMEXPZ0','50','H','01','3',NULL,'EMPLOYEE SSN',NULL,NULL);
@@ -129,24 +130,27 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEnrollmentType"','50','(''UA''=''T,'')','ESEQDEMEXPZ0','50','D','10','50',NULL,'ENROLLMENT TYPE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageDescription"','51','(''UA''=''T,'')','ESEQDEMEXPZ0','50','D','10','51',NULL,'COVERAGE DESCRIPTION',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageTier"','52','(''UA''=''T'')','ESEQDEMEXPZ0','50','D','10','52',NULL,'COVERAGE TIER',NULL,NULL);
-DECLARE @UDENV varchar(3) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' ELSE LEFT(@@SERVERNAME,3) END);
-DECLARE @ARNUM varchar(12) = (SELECT RTRIM(CmmContractNo) FROM dbo.CompMast);
-DECLARE @UDSERVER varchar(5) = (SELECT RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)));
-SELECT @UDSERVER = CASE WHEN @UDSERVER = 'EW21' THEN 'WP6' WHEN @UDSERVER = 'EW22' THEN 'WP7' ELSE @UDSERVER END;
-DECLARE @UDCOCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ESEQDEMEXP_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Sequoia Demographic Export','202009169','EMPEXPORT','ONDEM_XOE','Sep 18 2020  4:09PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','5645','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ESEQDEMEXP_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Sequoia Demographic Expo-Sched','202009169','EMPEXPORT','SCH_ESEQDE','Sep 18 2020  4:09PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','5645','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ESEQDEMEXP_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202009169','EMPEXPORT','OEACTIVE','Sep 18 2020  4:08PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','4326','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ESEQDEMEXP_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202009169','EMPEXPORT','OEPASSIVE','Sep 18 2020  4:08PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','5590','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\[UDENV]\[UDSERVER]\Downloads\V10\Exports\[UDCOCODE]\EmployeeHistoryExport\[UDCOCODE]_ESEQDEMEXP_20201008.txt',NULL,'','','',NULL,NULL,NULL,'Sequoia Demographic Expo-Test','202010059','EMPEXPORT','TEST_XOE','Oct  5 2020  3:42PM','ESEQDEMEXP',NULL,NULL,NULL,'202010059','Oct  5 2020 12:00AM','Dec 30 1899 12:00AM','202009211','4570','','','202009211',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
-UPDATE dbo.AscExp SET expAscFileName = CASE WHEN LEFT(@UDENV,2) IN ('NW','EW','WP') THEN REPLACE(REPLACE(REPLACE(expAscFileName,'[UDENV]',@UDENV),'[UDSERVER]',@UDSERVER),'[UDCOCODE]',@UDCOCODE) ELSE '\\us.saas\' + LEFT(@UDENV,2) + '\Public\' + @ARNUM + '\Exports\' + @UDCOCODE + '_ESEQDEMEXP_20201008.txt' END WHERE expFormatCode = 'ESEQDEMEXP';
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESEQDEMEXP_20201016.txt';
+/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202009169','EMPEXPORT','OEACTIVE','Sep 18 2020  4:08PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','4326','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202009169','EMPEXPORT','OEPASSIVE','Sep 18 2020  4:08PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','5590','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Sequoia Demographic Export','202009169','EMPEXPORT','ONDEM_XOE','Sep 18 2020  4:09PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','5645','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Sequoia Demographic Expo-Sched','202009169','EMPEXPORT','SCH_ESEQDE','Sep 18 2020  4:09PM','ESEQDEMEXP',NULL,NULL,NULL,'202009169','Aug 25 2020  5:33PM','Aug 25 2020  5:33PM','202001011','5645','','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Sequoia Demographic Expo-Test','202010149','EMPEXPORT','TEST_XOE','Oct 15 2020  1:53PM','ESEQDEMEXP',NULL,NULL,NULL,'202010149','Oct 14 2020 12:00AM','Dec 30 1899 12:00AM','202009301','4490','','','202009301',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQDEMEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQDEMEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQDEMEXP','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQDEMEXP','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQDEMEXP','UseFileName','V','Y');
-UPDATE dbo.U_dsi_Configuration SET CfgValue = CASE WHEN CfgName = 'UseFileName' THEN 'Y' ELSE NULL END WHERE FormatCode = 'ESEQDEMEXP' AND CfgName IN ('UseFileName','ExportPath');
-INSERT INTO dbo.CustomTemplates (CreationDate,Engine,EngineCode,IsActive,ModifiedDate) SELECT CreationDate = GETDATE(), Engine = AdhEngine, EngineCode = AdhFormatCode, IsActive = 1, ModifiedDate = GETDATE() FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ESEQDEMEXP' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode);
+/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ESEQDEMEXP' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
+/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ESEQDEMEXP' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_ESEQDEMEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ESEQDEMEXP_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESEQDEMEXP','H01','None',NULL);
@@ -240,7 +244,7 @@ CREATE TABLE [dbo].[U_ESEQDEMEXP_drvTbl] (
     [drvAddressState] varchar(257) NULL,
     [drvAddressZip] varchar(52) NULL,
     [drvPhoneHomeNumber] varchar(8000) NOT NULL,
-    [drvWorkEmail] varchar(52) NOT NULL,
+    [drvWorkEmail] varchar(52) NULL,
     [drvJobTitle] varchar(8000) NULL,
     [drvEmployeeLocation] varchar(27) NULL,
     [drvEmpLocEffictiveDate] varchar(32) NULL,
@@ -260,8 +264,8 @@ CREATE TABLE [dbo].[U_ESEQDEMEXP_drvTbl] (
     [drvApprovedAmount] nvarchar(4000) NULL,
     [drvRequestedAmount] nvarchar(4000) NULL,
     [drvEnrollmentType] varchar(3) NULL,
-    [drvCoverageDescription] varchar(9) NULL,
-    [drvCoverageTier] varchar(8000) NULL
+    [drvCoverageDescription] varchar(1) NOT NULL,
+    [drvCoverageTier] varchar(5) NULL
 );
 IF OBJECT_ID('U_ESEQDEMEXP_EEList') IS NULL
 CREATE TABLE [dbo].[U_ESEQDEMEXP_EEList] (
@@ -458,41 +462,68 @@ BEGIN
                                 ELSE
                                     CASE WHEN ConRelationship = 'SPS' THEN 'Spouse'
                                         WHEN ConRelationship = 'DP' THEN 'Domestic Partner'
-                                        WHEN ConRelationship = 'CHL' THEN 'Child'
+                                        WHEN ConRelationship IN ('CHL', 'DDP') THEN 'Child'
                                         WHEN ConRelationship = 'DPC' THEN 'Domestic Partner Child'
+                                        --ELSE ConRelationship
                                     END
                             END + '"'
         ,drvGender = '"' + CASE WHEN BdmRecType = 'EMP' THEN EepGender ELSE ConGender END + '"'
-        ,drvEmployeeStatus =    '"' + CASE WHEN EecEmplStatus = 'T' THEN 'Terminated'
-                                    WHEN EecEmplStatus = 'L' THEN 'L1'
-                                    WHEN EecFullTimeOrPartTime = 'P' THEN 'PT'
-                                    WHEN EecFullTimeOrPartTime = 'F' THEN 'FT'
-                                END + '"'
-        ,drvEmployeeStatusDate = '"' + CONVERT(VARCHAR, EecEmplStatusStartDate, 101) + '"'
-        ,drvHireDate = '"' + CONVERT(VARCHAR, EecDateOfLastHire , 101) + '"'
+        ,drvEmployeeStatus =    CASE WHEN BdmRecType = 'EMP' THEN
+                                    '"' + CASE WHEN EecEmplStatus = 'T' THEN 'Terminated'
+                                        WHEN EecEmplStatus = 'L' THEN 'L1'
+                                        WHEN EecFullTimeOrPartTime = 'P' THEN 'PT'
+                                        WHEN EecFullTimeOrPartTime = 'F' THEN 'FT'
+                                    END + '"'
+                                END
+        ,drvEmployeeStatusDate =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        '"' + CONVERT(VARCHAR, EecEmplStatusStartDate, 101) + '"'
+                                    END
+        ,drvHireDate =    CASE WHEN BdmRecType = 'EMP' THEN
+                            '"' + CONVERT(VARCHAR, EecDateOfLastHire , 101) + '"'
+                        END
         ,drvAddressLine1 = '"' + REPLACE(EepAddressLine1, ',', '') + '"'
         ,drvAddressLine2 = '"' + REPLACE(REPLACE(ISNULL(EepAddressLine2, ''), ',', ''), '  ', '') + '"'
         ,drvAddressCity = '"' + EepAddressCity + '"'
         ,drvAddressState = '"' + EepAddressState + '"'
         ,drvAddressZip = '"' + EepAddressZipCode + '"'
         ,drvPhoneHomeNumber = '"' + ISNULL(REPLACE(EepPhoneHomeNumber, '  ', ''), '') + '"'
-        ,drvWorkEmail = '"' + ISNULL(EepAddressEMail, '') + '"'
-        ,drvJobTitle = '"' + REPLACE(JbcDesc, ',', '') + '"'
-        ,drvEmployeeLocation = '"' + LocDesc + '"'
-        ,drvEmpLocEffictiveDate = '"' + CONVERT(VARCHAR, audDateTime, 101) + '"'
-        ,drvEmployeeClass = CASE WHEN CbgBenGroupCode = 'FTEE' THEN 'Full Time Employee' 
-                                WHEN CbgBenGroupCode = 'PTEE' THEN 'Part Time Employee'
-                                WHEN CbgBenGroupCode = 'TEMPE' THEN 'Temporary Employee'
+        ,drvWorkEmail =    CASE WHEN BdmRecType = 'EMP' THEN
+                            '"' + ISNULL(EepAddressEMail, '') + '"'
+                        END
+        ,drvJobTitle =    CASE WHEN BdmRecType = 'EMP' THEN
+                            '"' + REPLACE(JbcDesc, ',', '') + '"'
+                        END
+        ,drvEmployeeLocation =    CASE WHEN BdmRecType = 'EMP' THEN
+                                    '"' + LocDesc + '"'
+                                END
+        ,drvEmpLocEffictiveDate =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        '"' + CONVERT(VARCHAR, audDateTime, 101) + '"'
+                                    END
+        ,drvEmployeeClass =    CASE WHEN BdmRecType = 'EMP' THEN
+                                CASE WHEN CbgBenGroupCode = 'FTEE' THEN 'Full Time Employee' 
+                                    WHEN CbgBenGroupCode = 'PTEE' THEN 'Part Time Employee'
+                                    WHEN CbgBenGroupCode = 'TEMPE' THEN 'Temporary Employee'
+                                END
                             END
-        ,drvEmployeeDepartment = '"' + REPLACE(EecOrgLvl1, ' ', '') + '"'
-        ,drvEmpDeptEffectiveDate = '"' + CONVERT(VARCHAR, EjhJobEffDate, 101) + '"'
-        ,drvPayFrequency = '"' + PgrPayFrequency + '"'
-        ,drvHoursPerWeek = '"' + FORMAT(EecScheduledWorkHrs, '#0.00') + '"'
-        ,drvAnnualWages = '"' + CAST(EecAnnSalary AS VARCHAR) + '"'
-        ,drvWagesEffectiveDate = '"' + CONVERT(VARCHAR, dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2019', eecDateOfLastHire), 101) + '"'
-        
-        ,drvPlanYear =  '"' + CAST(CASE WHEN EedBenStartDate IS NOT NULL THEN DATEPART(YEAR, EedBenStartDate) END AS VARCHAR) + '"' --CAST(CASE WHEN EedEEEligDate IS NOT NULL THEN DATEPART(YEAR, EedEEEligDate) END AS VARCHAR)
-        
+        ,drvEmployeeDepartment =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        '"' + REPLACE(EecOrgLvl1, ' ', '') + '"'
+                                    END
+        ,drvEmpDeptEffectiveDate =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        '"' + CONVERT(VARCHAR, EjhJobEffDate, 101) + '"'
+                                    END
+        ,drvPayFrequency =    CASE WHEN BdmRecType = 'EMP' THEN
+                                '"' + PgrPayFrequency + '"'
+                            END
+        ,drvHoursPerWeek =    CASE WHEN BdmRecType = 'EMP' THEN
+                                '"' + FORMAT(EecScheduledWorkHrs, '#0.00') + '"'
+                            END
+        ,drvAnnualWages =    CASE WHEN BdmRecType = 'EMP' THEN
+                                '"' + CAST(EecAnnSalary AS VARCHAR) + '"'
+                            END
+        ,drvWagesEffectiveDate =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        '"' + CONVERT(VARCHAR, dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2019', eecDateOfLastHire), 101) + '"'        
+                                    END
+        ,drvPlanYear =  '"' + CAST(CASE WHEN EedBenStartDate IS NOT NULL AND DATEPART(YEAR, EedBenStartDate) >= 2020 THEN DATEPART(YEAR, EedBenStartDate) ELSE 2020 END AS VARCHAR) + '"'         
         ,drvPlanType =    '"' + CASE WHEN BdmDedCode = /*'GTL'*/ 'GLIFE' THEN 'LIF'
                             WHEN BdmDedCode = 'UNVOL' THEN 'LM'
                             WHEN BdmDedCode IN ('MEDFT','MEDPT') THEN 'HSA'
@@ -500,6 +531,9 @@ BEGIN
                             WHEN BdmDedCode = 'LTD' THEN 'LTD'
                             WHEN BdmDedCode IN ('DENFT','DENPT','DEN') THEN 'DEN'
                             WHEN BdmDedCode IN ('VISFT','VISPT') THEN 'VIS'
+                            WHEN BdmDedCode IN ('VOLSP') THEN 'LS'
+                            WHEN BdmDedCode IN ('VOLCH') THEN 'LC'
+                            --ELSE '* ' + BdmDedCode
                         END + '"'
         ,drvPlanGroupNumber =   '"' +  CASE BdmDedCode
                                     WHEN 'MEDFT' THEN '143903'
@@ -519,13 +553,23 @@ BEGIN
                                     WHEN BdmBenStatus = 'W' THEN 'Waived'
                                     ELSE 'Terminated'
                                 END + '"'
-        ,drvEnrollmentStartDate =  '"' + CONVERT(VARCHAR, CASE WHEN BdmDedCode IN ('STD','LTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, '1/1/2020') ELSE BdmBenStartDate END, 101) + '"'
+        ,drvEnrollmentStartDate =  '"' + CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, '1/1/2020'), 101) + '"'
+                                    --'"' + CONVERT(VARCHAR, CASE WHEN BdmDedCode IN ('STD','LTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, '1/1/2020') ELSE BdmBenStartDate END, 101) + '"'
         ,drvEnrollmentStopDate = '"' + CONVERT(VARCHAR, BdmBenStopDate, 101) + '"'
         ,drvApprovedAmount = '"' + CASE WHEN BdmDedCode IN ('UNVOL','VOLCH','VOLSP') THEN FORMAT(EedBenAmt,  '#0.00') END + '"'
         ,drvRequestedAmount = '"' + CASE WHEN BdmDedCode IN ('UNVOL','VOLCH','VOLSP') THEN FORMAT(amtDesiredAmt, '#0.00') END + '"'
-        ,drvEnrollmentType = '"' + CASE WHEN BdmBenStatus = 'A' THEN 'A' END + '"'
-        ,drvCoverageDescription = '"' + CASE WHEN BdmDedCode IN ('DENFT','DENPT') THEN '5664710' END + '"'
-        ,drvCoverageTier = '"' + REPLACE(BdmBenOption, ' ', '') + '"'
+        ,drvEnrollmentType = '"' + CASE WHEN BdmBenStatus IN ('A','T') THEN 'A' END + '"'
+        ,drvCoverageDescription = '' -- '"' + CASE WHEN BdmDedCode IN ('DENFT','DENPT') THEN '5664710' END + '"'
+        ,drvCoverageTier = '"' + 
+                                CASE BdmBenOption
+                                    WHEN 'EE' THEN 'EMP'
+                                    WHEN 'EES' THEN 'ESP'
+                                    WHEN 'EEC' THEN 'ECH'
+                                    WHEN 'EEF' THEN 'FAM'
+                                    WHEN 'EEDP' THEN 'ESP'
+                                    WHEN 'EEDPF' THEN 'FAM'
+                                END
+                                + '"'
     INTO dbo.U_ESEQDEMEXP_drvTbl
     FROM dbo.U_ESEQDEMEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)

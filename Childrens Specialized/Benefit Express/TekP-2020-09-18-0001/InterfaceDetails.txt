@@ -1,0 +1,5 @@
+Interface details (EBENEXPREX)
+Env – AE31 
+Server – E4SUP1ST04 
+Database – ULTIPRO_FANI 
+Export Name – Benefit Express Labor Hours Export

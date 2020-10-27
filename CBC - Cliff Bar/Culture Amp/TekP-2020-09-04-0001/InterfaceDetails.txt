@@ -1,0 +1,5 @@
+Interface details (ECUTRAMPEX)
+Env – EW22
+Server – EW2WUP2DB03 
+Database – ULTIPRO_WPCLIF 
+Export Name – Culture Amp Demographic Export

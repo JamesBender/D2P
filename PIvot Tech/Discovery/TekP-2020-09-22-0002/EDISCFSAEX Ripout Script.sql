@@ -64,7 +64,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHireDate"','27','(''UDMDY''=''T|'')','EDISCFSAEXZ0','50','D','10','27',NULL,'Hire Date ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','28','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','28',NULL,'Division ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','29','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','29',NULL,'Hours Per Week ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"E"','30','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','30',NULL,'Employee Class ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"All Eligible"','30','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','30',NULL,'Employee Class ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayrollFrequency"','31','(''UA''=''T|'')','EDISCFSAEXZ0','50','D','10','31',NULL,'Payroll Frequency ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','32','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','32',NULL,'Payroll Frequency Effective Date ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvParticipantStatus"','33','(''UA''=''T|'')','EDISCFSAEXZ0','50','D','10','33',NULL,'Participant Status ',NULL,NULL);
@@ -95,7 +95,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','58','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','58',NULL,'ID_IssueDate ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','59','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','59',NULL,'ID_ExpirationDate ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','60','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','60',NULL,'Mobile Carrier ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','61','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','10','61',NULL,'Mobile Number ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMobileNumber"','61','(''UA''=''T|'')','EDISCFSAEXZ0','50','D','10','61',NULL,'Mobile Number ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','62','(''DA''=''T'')','EDISCFSAEXZ0','50','D','10','62',NULL,'Time Zone ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"EN"','1','(''DA''=''T|'')','EDISCFSAEXZ0','50','D','20','1',NULL,'Record Type ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvParticipantImportId"','2','(''UA''=''T|'')','EDISCFSAEXZ0','50','D','20','2',NULL,'Participant File Import Id ',NULL,NULL);
@@ -129,13 +129,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCFSAEX_20201009.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCFSAEX_20201022.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010079','EMPEXPORT','OEACTIVE','Oct  7 2020  4:56PM','EDISCFSAEX',NULL,NULL,NULL,'202010079','Oct  7 2020  1:47PM','Oct  7 2020  1:47PM','202010071','2','','','202010071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010079','EMPEXPORT','OEPASSIVE','Oct  7 2020  4:56PM','EDISCFSAEX',NULL,NULL,NULL,'202010079','Oct  7 2020  1:47PM','Oct  7 2020  1:47PM','202010071','358','','','202010071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery FSA Export','202010079','EMPEXPORT','ONDEM_XOE','Oct  7 2020  4:57PM','EDISCFSAEX',NULL,NULL,NULL,'202010079','Oct  7 2020  1:47PM','Oct  7 2020  1:47PM','202010071','358','','','202010071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery FSA Export-Sched','202010079','EMPEXPORT','SCH_EDISCF','Oct  7 2020  4:57PM','EDISCFSAEX',NULL,NULL,NULL,'202010079','Oct  7 2020  1:47PM','Oct  7 2020  1:47PM','202010071','358','','','202010071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery FSA Export-Test','202010081','EMPEXPORT','TEST_XOE','Oct  8 2020 10:46AM','EDISCFSAEX',NULL,NULL,NULL,'202010081','Oct  8 2020 12:00AM','Dec 30 1899 12:00AM','202009241','364','','','202009241',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery FSA Export-Test','202010151','EMPEXPORT','TEST_XOE','Oct 15 2020 10:41AM','EDISCFSAEX',NULL,NULL,NULL,'202010151','Oct 15 2020 12:00AM','Dec 30 1899 12:00AM','202010011','364','','','202010011',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCFSAEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCFSAEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCFSAEX','InitialSort','C','drvSort');
@@ -202,7 +202,7 @@ CREATE TABLE [dbo].[U_EDISCFSAEX_drvTbl_EN] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] varchar(16) NULL,
     [drvParticipantImportId] char(11) NULL,
     [drvPlanName] varchar(19) NULL,
     [drvEnrollmentEffDate] datetime NULL,
@@ -215,7 +215,7 @@ CREATE TABLE [dbo].[U_EDISCFSAEX_drvTbl_PT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] varchar(16) NULL,
     [drvParticipantImportId] char(11) NULL,
     [drvEmployeeNumber] char(9) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -235,7 +235,8 @@ CREATE TABLE [dbo].[U_EDISCFSAEX_drvTbl_PT] (
     [drvHireDate] datetime NULL,
     [drvPayrollFrequency] varchar(12) NULL,
     [drvParticipantStatus] varchar(10) NOT NULL,
-    [drvStatusEffectiveDate] datetime NULL
+    [drvStatusEffectiveDate] datetime NULL,
+    [drvMobileNumber] varchar(50) NULL
 );
 IF OBJECT_ID('U_EDISCFSAEX_EEList') IS NULL
 CREATE TABLE [dbo].[U_EDISCFSAEX_EEList] (
@@ -393,7 +394,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' 1'
+        ,drvSort = '2 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvParticipantImportId = EepSSN
         ,drvEmployeeNumber = EecEmpNo
@@ -409,15 +410,16 @@ BEGIN
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
-        ,drvHomePhone = CASE WHEN ISNULL(EepPhoneHomeNumber,'') <> '' THEN EepPhoneHomeNumber ELSE EfoPhoneNumber END
+        ,drvHomePhone = EepPhoneHomeNumber --CASE WHEN ISNULL(EepPhoneHomeNumber,'') <> '' THEN EepPhoneHomeNumber ELSE EfoPhoneNumber END
         ,drvEmailAddress = EepAddressEMail
-        ,drvHireDate = EecDateOfBenefitSeniority
+        ,drvHireDate = EecDateOfOriginalHire -- EecDateOfBenefitSeniority
         ,drvPayrollFrequency =    CASE WHEN PgrPayFrequency = 'B' THEN 'Bi-Weekly 26'
                                     WHEN PgrPayFrequency = 'M' THEN 'Monthly'
                                     WHEN PgrPayFrequency = 'S' THEN 'Semi-Monthly'
                                 END
         ,drvParticipantStatus = CASE WHEN EecEmplStatus = 'T' THEN 'Terminated' ELSE 'Active' END
-        ,drvStatusEffectiveDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination ELSE EecDateOfBenefitSeniority END
+        ,drvStatusEffectiveDate = CASE WHEN EecEmplStatus = 'T' THEN DATEADD(DAY, 1, EecDateOfTermination) ELSE EecDateOfBenefitSeniority END
+        ,drvMobileNumber = EfoPhoneNumber
     INTO dbo.U_EDISCFSAEX_drvTbl_PT
     FROM dbo.U_EDISCFSAEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -450,16 +452,16 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' 2'
+        ,drvSort = '2 ' + xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvParticipantImportId = EepSSN
         ,drvPlanName =    CASE WHEN BdmDedCode IN ('FSA') THEN 'Medical FSA'
                             WHEN BdmDedCode IN ('FSADC') THEN 'Dependent Care FSA'
                             WHEN BdmDedCode IN ('FSALP') THEN 'Limited Medical FSA'
                         END
-        ,drvEnrollmentEffDate = BdmBenStartDate
+        ,drvEnrollmentEffDate = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2021')
         ,drvParticipantElectionAmt = FORMAT(BdmEEGoalAmt, '#0.00')
-        ,drvEnrollmentTermDate = CASE WHEN EecEmplStatus = 'T' THEN BdmBenStopDate END
+        ,drvEnrollmentTermDate = CASE WHEN EecEmplStatus <> 'T' THEN BdmBenStopDate END --CASE WHEN EecEmplStatus = 'T' THEN BdmBenStopDate END
         ,drvPlanYearStartDate = dbo.dsi_fnGetMinMaxDates('MAX',CAST('1/1/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) AS DATE), CAST('1/1/2021' AS DATE))
     INTO dbo.U_EDISCFSAEX_drvTbl_EN
     FROM dbo.U_EDISCFSAEX_EEList WITH (NOLOCK)

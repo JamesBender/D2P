@@ -1,0 +1,5 @@
+Interface details (EINSTPAYXP)
+Env – EW23 
+Server – E2SUP3DB07
+Database – ULTIPRO_MHTC
+Export Name – Instant Pay Payroll Export

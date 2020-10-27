@@ -5,6 +5,8 @@ IF OBJECT_ID('dsi_vwEBENSOLDEM_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEBENS
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EBENSOLDEM') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBENSOLDEM];
 GO
+IF OBJECT_ID('U_EBENSOLDEM_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EBENSOLDEM_PEarHist];
+GO
 IF OBJECT_ID('U_EBENSOLDEM_File') IS NOT NULL DROP TABLE [dbo].[U_EBENSOLDEM_File];
 GO
 IF OBJECT_ID('U_EBENSOLDEM_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBENSOLDEM_EEList];
@@ -70,7 +72,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Employee Type Code"','50','(''DA''=''T,'')','EBENSOLDEMZ0','50','H','01','50',NULL,'Employee Type Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Employee ID"','51','(''DA''=''T,'')','EBENSOLDEMZ0','50','H','01','51',NULL,'Employee ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"HR Contact ID"','52','(''DA''=''T,'')','EBENSOLDEMZ0','50','H','01','52',NULL,'HR Contact ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Benefits Seniority Date"','53','(''DA''=''T'')','EBENSOLDEMZ0','50','H','01','53',NULL,'Benefits Seniority Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Benefits Seniority Date"','53','(''DA''=''T,'')','EBENSOLDEMZ0','50','H','01','53',NULL,'Benefits Seniority Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Work State','54','(''DA''=''T,'')','EBENSOLDEMZ0','50','H','01','54',NULL,'Work State',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Work Zip Code"','55','(''DA''=''T,'')','EBENSOLDEMZ0','50','H','01','55',NULL,'Work Zip Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Hours Worked"','56','(''DA''=''T'')','EBENSOLDEMZ0','50','H','01','56',NULL,'Hours Worked',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeName"','1','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','1',NULL,'Employee Name (Last Suffix, First MI)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameFirst"','2','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','2',NULL,'First Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameLast"','3','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','3',NULL,'Last Name',NULL,NULL);
@@ -123,7 +128,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeTypeCode"','50','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','50',NULL,'Employee Type Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeID"','51','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','51',NULL,'Employee ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHRContactId"','52','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','52',NULL,'HR Contact ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvenefitsSeniorityDate"','53','(''UD101''=''T'')','EBENSOLDEMZ0','50','D','10','53',NULL,'Benefits Seniority Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvenefitsSeniorityDate"','53','(''UD101''=''T,'')','EBENSOLDEMZ0','50','D','10','53',NULL,'Benefits Seniority Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWorkState"','54','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','54',NULL,'Work State',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWorkZipCode"','55','(''UA''=''T,'')','EBENSOLDEMZ0','50','D','10','55',NULL,'Work Zip Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHoursWorked"','56','(''UA''=''T'')','EBENSOLDEMZ0','50','D','10','56',NULL,'Hours Worked',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -131,11 +139,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBENSOLDEM_20201011.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBENSOLDEM_20201021.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Business Solver Demo Export','202009179','EMPEXPORT','ONDEM_XOE','Sep 22 2020 10:33AM','EBENSOLDEM',NULL,NULL,NULL,'202009179','Sep 17 2020 12:01PM','Sep 17 2020 12:01PM','202008011','1300','','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Business Solver Demo Exp-Sched','202009179','EMPEXPORT','SCH_EBENSO','Sep 22 2020 10:33AM','EBENSOLDEM',NULL,NULL,NULL,'202009179','Sep 17 2020 12:01PM','Sep 17 2020 12:01PM','202008011','1300','','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Business Solver Demo Exp-Test','202009179','EMPEXPORT','TEST_XOE','Sep 22 2020 10:34AM','EBENSOLDEM',NULL,NULL,NULL,'202009179','Sep 17 2020 12:01PM','Sep 17 2020 12:01PM','202008011','1300','','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Business Solver Demo Exp-Test','202010129','EMPEXPORT','TEST_XOE','Oct 12 2020 10:40AM','EBENSOLDEM',NULL,NULL,NULL,'202010129','Oct 12 2020 12:00AM','Dec 30 1899 12:00AM','202009281','1191','','','202009281',dbo.fn_GetTimedKey(),NULL,'us3lKiHOF1002',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBENSOLDEM','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBENSOLDEM','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBENSOLDEM','InitialSort','C','drvSort');
@@ -204,7 +212,10 @@ CREATE TABLE [dbo].[U_EBENSOLDEM_drvTbl] (
     [drvEmployeeTypeCode] char(3) NULL,
     [drvEmployeeID] char(9) NULL,
     [drvHRContactId] varchar(25) NULL,
-    [drvenefitsSeniorityDate] datetime NULL
+    [drvenefitsSeniorityDate] datetime NULL,
+    [drvWorkState] varchar(255) NULL,
+    [drvWorkZipCode] varchar(50) NULL,
+    [drvHoursWorked] nvarchar(4000) NULL
 );
 IF OBJECT_ID('U_EBENSOLDEM_EEList') IS NULL
 CREATE TABLE [dbo].[U_EBENSOLDEM_EEList] (
@@ -219,6 +230,19 @@ CREATE TABLE [dbo].[U_EBENSOLDEM_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] varchar(3000) NULL
+);
+IF OBJECT_ID('U_EBENSOLDEM_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EBENSOLDEM_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBENSOLDEM]
@@ -289,6 +313,38 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EBENSOLDEM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+
+    -----------------------------
+    -- Working Table - PEarHist
+    -----------------------------
+    IF OBJECT_ID('U_EBENSOLDEM_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EBENSOLDEM_PEarHist;
+    SELECT DISTINCT
+         PehEEID
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_EBENSOLDEM_PEarHist
+    FROM dbo.PayReg WITH (NOLOCK)
+    JOIN dbo.PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE CAST(LEFT(PehPerControl, 8) AS DATE) BETWEEN DATEADD(YEAR, -1, GETDATE()) AND GETDATE()
+    --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    --AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID
+    HAVING SUM(PehCurAmt) <> 0.00;
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -357,6 +413,9 @@ BEGIN
         ,drvEmployeeID = EecEmpNo
         ,drvHRContactId = EecUDField14
         ,drvenefitsSeniorityDate = EecDateOfBenefitSeniority
+        ,drvWorkState = LocAddressState
+        ,drvWorkZipCode =    CASE WHEN LocAddressCity = 'Remote' THEN EepAddressZipCode ELSE LocAddressZipCode END
+        ,drvHoursWorked = FORMAT(PehCurHrsYTD, '#0.00')
     INTO dbo.U_EBENSOLDEM_drvTbl
     FROM dbo.U_EBENSOLDEM_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -405,6 +464,8 @@ BEGIN
     ON EecOrgLvl4 = OrgLvl4Code
     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
         ON TchCode = EecTermReason
+    JOIN dbo.U_EBENSOLDEM_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDAte)
     ;
 

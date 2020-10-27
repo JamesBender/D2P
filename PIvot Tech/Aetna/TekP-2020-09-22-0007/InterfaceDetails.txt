@@ -1,0 +1,5 @@
+Interface details (EATNAMD834)
+Env – EW12
+Server – EW1WUP2DB02 
+Database – ULTIPRO_WPACSA 
+Export Name – Aetna Med Dent 834 Export
