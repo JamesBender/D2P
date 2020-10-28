@@ -163,13 +163,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EWWCOBCMBX_20201016.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EWWCOBCMBX_20201028.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010309','EMPEXPORT','OEACTIVE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202010309','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','201611011',NULL,'','','201611011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010309','EMPEXPORT','OEPASSIVE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202010309','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','201611011',NULL,'','','201611011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA Export','202010309','EMPEXPORT','ONDEM_XOE',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202010309','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','201611011',NULL,'','','201611011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WageWorks Combind COBRA -Sched','202010309','EMPEXPORT','SCH_EWWCOB',NULL,'EWWCOBCMBX',NULL,NULL,NULL,'202010309','Sep 23 2020  4:25PM','Sep 23 2020  4:25PM','201611011',NULL,'','','201611011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'WageWorks Combind COBRA -Test','202010309','EMPEXPORT','TEST_XOE','Oct 15 2020  5:20PM','EWWCOBCMBX',NULL,NULL,NULL,'202010309','Sep 21 2020 12:00AM','Dec 30 1899 12:00AM','201611011','1506','','','201611011',dbo.fn_GetTimedKey(),NULL,'us3cPeREV1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'WageWorks Combind COBRA -Test','202010309','EMPEXPORT','TEST_XOE','Oct 21 2020 11:24AM','EWWCOBCMBX',NULL,NULL,NULL,'202010309','Oct 30 2020 12:00AM','Dec 30 1899 12:00AM','201611011','1614','','','201611011',dbo.fn_GetTimedKey(),NULL,'us3cPeREV1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWWCOBCMBX','InitialSort','C','drvSort');
@@ -260,7 +260,7 @@ CREATE TABLE [dbo].[U_EWWCOBCMBX_drvTbl] (
     [drvQuallifingEventDate] datetime NULL,
     [drvLastPreCobraCovered] datetime NULL,
     [drvQuallifingEventType] varchar(2) NULL,
-    [drvPlanName1] varchar(24) NULL,
+    [drvPlanName1] varchar(31) NULL,
     [drvPlanCovCode1] varchar(2) NULL,
     [drvPlanCovStart1] datetime NULL,
     [drvPlanName2] varchar(26) NULL,
@@ -361,7 +361,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'MEDCI, MEDCO, MEDM1, MEDM2, MEDH3, MEDM3, MEDB1, MEDB2, MDK2C, MDK1C, DHPPT, DHPPD, DHPPC, DHPPR, DHPPT, DLPPT, DLPPC, DLPPR, DLPPD, DHMOT, DHMOC, VSP';
+    SET @DedList = 'MEDCI, MEDCO, MEDM1, MEDM2, MEDH3, MEDM3, MEDB1, MEDB2, MDK2C, MDK1C, DHPPT, DHPPD, DHPPC, DHPPR, DHPPT, DLPPT, DLPPC, DLPPR, DLPPD, DHMOT, DHMOC, VSP,MDK2R, MDK3R, MDK2D, MDK3D';
 
     IF OBJECT_ID('U_EWWCOBCMBX_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EWWCOBCMBX_DedList;
@@ -583,6 +583,11 @@ BEGIN
                             WHEN DedCode_MEDB2 IS NOT NULL OR DedCode_MEDB1 IS NOT NULL THEN 'Aetna Silver (OAMC 3)'
                             WHEN DedCode_MDK2C IS NOT NULL THEN 'Kaiser CA Gold HMO'
                             WHEN DedCode_MDK1C IS NOT NULL THEN 'Kaiser CA Silver DHMO'
+                            
+                            WHEN DedCode_MDK2R IS NOT NULL THEN 'Kaiser CO Gold HMO'
+                            WHEN DedCode_MDK3R IS NOT NULL THEN 'Kaiser CO Silver DHMO'
+                            WHEN DedCode_MDK2D IS NOT NULL THEN 'Kaiser Mid-Atlantic Gold HMO'
+                            WHEN DedCode_MDK3D IS NOT NULL THEN 'Kaiser Mid-Atlantic Silver DHMO'
                         END
         ,drvPlanCovCode1 =    CASE BenOption_MED
                                 WHEN 'EE' THEN '01'
@@ -652,11 +657,15 @@ BEGIN
                 ,MAX(CASE WHEN BdmDedCode = 'DLPPC' THEN BdmDedCode END) AS DedCode_DLPPC
                 ,MAX(CASE WHEN BdmDedCode = 'DLPPR' THEN BdmDedCode END) AS DedCode_DLPPR
                 ,MAX(CASE WHEN BdmDedCode = 'DLPPD' THEN BdmDedCode END) AS DedCode_DLPPD
+                /*,MAX(CASE WHEN BdmDedCode = 'MDK2R' THEN BdmDedCode END) AS DedCode_MDK2R
+                ,MAX(CASE WHEN BdmDedCode = 'MDK3R' THEN BdmDedCode END) AS DedCode_MDK3R
+                ,MAX(CASE WHEN BdmDedCode = 'MDK2D' THEN BdmDedCode END) AS DedCode_MDK2D
+                ,MAX(CASE WHEN BdmDedCode = 'MDK3D' THEN BdmDedCode END) AS DedCode_MDK3D    */            
                 ,MAX(CASE WHEN BdmDedCode = 'VSP' THEN BdmDedCode END) AS DedCode_VSP
                 ,MAX(CASE WHEN BdmDedType = 'MED' THEN BdmBenOption END) AS BenOption_MED
                 ,MAX(CASE WHEN BdmDedType = 'DEN' THEN BdmBenOption END) AS BenOption_DEN
                 ,MAX(CASE WHEN BdmDedType = 'VIS' THEN BdmBenOption END) AS BenOption_VIS
-                ,MAX(CASE WHEN BdmDedCode IN ('MEDCI','MEDCO','MEDM1','MEDM2','MEDH3','MEDM3','MEDB1','MEDB2','MDK2C','MDK1C') THEN BdmBenStartDate END) AS BenStartDate_MED
+                ,MAX(CASE WHEN BdmDedCode IN ('MEDCI','MEDCO','MEDM1','MEDM2','MEDH3','MEDM3','MEDB1','MEDB2','MDK2C','MDK1C','MDK2R','MDK3R','MDK2D','MDK3D') THEN BdmBenStartDate END) AS BenStartDate_MED
                 ,MAX(CASE WHEN BdmDedCode IN ('DHPPT','DHPPD','DHPPC','DHPPR','DHPPT','DLPPT','DLPPC','DLPPR','DLPPD','DHMOT','DHMOC') THEN BdmBenStartDate END) AS BenStartDate_DEN
                 ,MAX(CASE WHEN BdmDedCode IN ('VSP') THEN BdmBenStartDate END) AS BenStartDate_VIS
 /*                ,MAX(CASE WHEN BdmDedCode = 'MEDCI' THEN BdmBenOption END) AS BenOption_MEDCI

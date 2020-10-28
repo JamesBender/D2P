@@ -299,7 +299,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNDENVISE_20201027.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNDENVISE_20201028.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg Export','202010049','EMPEXPORT','CHANGES','Oct  6 2020  5:46PM','EUNDENVISE',NULL,NULL,NULL,'202010049','Oct  4 2020  5:13PM','Oct  4 2020  5:13PM','202009271','107','','','202009271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM Dental Vision Elg Export','202010279','EMPEXPORT','FULLFILE','Oct 27 2020 10:57AM','EUNDENVISE',NULL,NULL,NULL,'202010279','Oct 27 2020 12:00AM','Dec 30 1899 12:00AM','202009251','333','','','202009251',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
@@ -940,89 +940,89 @@ BEGIN
         ,drvDentalDepDisabledInd1 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst1 IS NOT NULL THEN DenDepIsDisabled1 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled1 END
         
 
-        ,drvDentalDepNameFirst2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst2 END
-        ,drvDentalDepNameMIddle2 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle2 END, 1)
-        ,drvDentalDepNameLast2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast2 END
-        ,drvDentalDepNameSuffix2 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix2 END, 'Z')
-        ,drvDentalDepSSN2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN2 END
-        ,drvDentalDepEffDate2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate2 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate2, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate2 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate2, '1/1/2021') END
-        ,drvDentalDepTermDate2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate2 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate2 END
-        ,drvDentalDepGender2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender2 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender2 END
-        ,drvDentalDepDateOfBirth2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth2 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth2 END
-        ,drvDentalDepRelationship2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship2 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship2 END
-        ,drvDentalDepDisabledInd2 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled2 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled2 END
+        ,drvDentalDepNameFirst2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepNameFirst2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst2 END
+        ,drvDentalDepNameMIddle2 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepNameMiddle2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle2 END, 1)
+        ,drvDentalDepNameLast2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepNameLast2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast2 END
+        ,drvDentalDepNameSuffix2 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepNameSuffix2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix2 END, 'Z')
+        ,drvDentalDepSSN2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepNameSSN2 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN2 END
+        ,drvDentalDepEffDate2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate2 IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate2, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate2 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate2, '1/1/2021') END
+        ,drvDentalDepTermDate2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepBdmStopDate2 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate2 END
+        ,drvDentalDepGender2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepGender2 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender2 END
+        ,drvDentalDepDateOfBirth2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepDateOFBirth2 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth2 END
+        ,drvDentalDepRelationship2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepRelationship2 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship2 END
+        ,drvDentalDepDisabledInd2 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst2 IS NOT NULL THEN DenDepIsDisabled2 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled2 END
 
-        ,drvDentalDepNameFirst3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst3 END
-        ,drvDentalDepNameMIddle3 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle3 END, 1)
-        ,drvDentalDepNameLast3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast3 END
-        ,drvDentalDepNameSuffix3 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix3 END, 'Z')
-        ,drvDentalDepSSN3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN3 END
-        ,drvDentalDepEffDate3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate3 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate3, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate3 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate3, '1/1/2021') END
-        ,drvDentalDepTermDate3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate3 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate3 END
-        ,drvDentalDepGender3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender3 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender3 END
-        ,drvDentalDepDateOfBirth3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth3 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth3 END
-        ,drvDentalDepRelationship3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship3 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship3 END
-        ,drvDentalDepDisabledInd3 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled3 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled3 END
+        ,drvDentalDepNameFirst3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepNameFirst3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst3 END
+        ,drvDentalDepNameMIddle3 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepNameMiddle3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle3 END, 1)
+        ,drvDentalDepNameLast3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepNameLast3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast3 END
+        ,drvDentalDepNameSuffix3 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepNameSuffix3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix3 END, 'Z')
+        ,drvDentalDepSSN3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepNameSSN3 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN3 END
+        ,drvDentalDepEffDate3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate3 IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate3, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate3 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate3, '1/1/2021') END
+        ,drvDentalDepTermDate3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepBdmStopDate3 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate3 END
+        ,drvDentalDepGender3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepGender3 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender3 END
+        ,drvDentalDepDateOfBirth3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepDateOFBirth3 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth3 END
+        ,drvDentalDepRelationship3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepRelationship3 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship3 END
+        ,drvDentalDepDisabledInd3 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst3 IS NOT NULL THEN DenDepIsDisabled3 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled3 END
 
-        ,drvDentalDepNameFirst4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst4 END
-        ,drvDentalDepNameMIddle4 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle4 END, 1)
-        ,drvDentalDepNameLast4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast4 END
-        ,drvDentalDepNameSuffix4 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix4 END, 'Z')
-        ,drvDentalDepSSN4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN4 END
-        ,drvDentalDepEffDate4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate4 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate4, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate4 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate4, '1/1/2021') END
-        ,drvDentalDepTermDate4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate4 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate4 END
-        ,drvDentalDepGender4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender4 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender4 END
-        ,drvDentalDepDateOfBirth4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth4 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth4 END
-        ,drvDentalDepRelationship4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship4 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship4 END
-        ,drvDentalDepDisabledInd4 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled4 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled4 END
+        ,drvDentalDepNameFirst4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepNameFirst4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst4 END
+        ,drvDentalDepNameMIddle4 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepNameMiddle4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle4 END, 1)
+        ,drvDentalDepNameLast4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepNameLast4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast4 END
+        ,drvDentalDepNameSuffix4 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepNameSuffix4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix4 END, 'Z')
+        ,drvDentalDepSSN4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepNameSSN4 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN4 END
+        ,drvDentalDepEffDate4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate4 IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate4, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate4 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate4, '1/1/2021') END
+        ,drvDentalDepTermDate4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepBdmStopDate4 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate4 END
+        ,drvDentalDepGender4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepGender4 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender4 END
+        ,drvDentalDepDateOfBirth4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepDateOFBirth4 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth4 END
+        ,drvDentalDepRelationship4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepRelationship4 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship4 END
+        ,drvDentalDepDisabledInd4 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst4 IS NOT NULL THEN DenDepIsDisabled4 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled4 END
 
-        ,drvDentalDepNameFirst5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst5 END
-        ,drvDentalDepNameMIddle5 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle5 END, 1)
-        ,drvDentalDepNameLast5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast5 END
-        ,drvDentalDepNameSuffix5 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix5 END, 'Z')
-        ,drvDentalDepSSN5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN5 END
-        ,drvDentalDepEffDate5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate5 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate5, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate5 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate5, '1/1/2021') END
-        ,drvDentalDepTermDate5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate5 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate5 END
-        ,drvDentalDepGender5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender5 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender5 END
-        ,drvDentalDepDateOfBirth5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth5 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth5 END
-        ,drvDentalDepRelationship5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship5 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship5 END
-        ,drvDentalDepDisabledInd5 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled5 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled5 END
+        ,drvDentalDepNameFirst5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepNameFirst5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst5 END
+        ,drvDentalDepNameMIddle5 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepNameMiddle5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle5 END, 1)
+        ,drvDentalDepNameLast5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepNameLast5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast5 END
+        ,drvDentalDepNameSuffix5 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepNameSuffix5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix5 END, 'Z')
+        ,drvDentalDepSSN5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepNameSSN5 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN5 END
+        ,drvDentalDepEffDate5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate5 IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate5, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate5 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate5, '1/1/2021') END
+        ,drvDentalDepTermDate5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepBdmStopDate5 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate5 END
+        ,drvDentalDepGender5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepGender5 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender5 END
+        ,drvDentalDepDateOfBirth5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepDateOFBirth5 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth5 END
+        ,drvDentalDepRelationship5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepRelationship5 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship5 END
+        ,drvDentalDepDisabledInd5 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst5 IS NOT NULL THEN DenDepIsDisabled5 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled5 END
 
-        ,drvDentalDepNameFirst6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst6 END
-        ,drvDentalDepNameMIddle6 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle6 END, 1)
-        ,drvDentalDepNameLast6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast6 END
-        ,drvDentalDepNameSuffix6 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix6 END, 'Z')
-        ,drvDentalDepSSN6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN6 END
-        ,drvDentalDepEffDate6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate6 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate6, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate6 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate6, '1/1/2021') END
-        ,drvDentalDepTermDate6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate6 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate6 END
-        ,drvDentalDepGender6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender6 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender6 END
-        ,drvDentalDepDateOfBirth6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth6 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth6 END
-        ,drvDentalDepRelationship6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship6 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship6 END
-        ,drvDentalDepDisabledInd6 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled6 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled6 END
+        ,drvDentalDepNameFirst6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepNameFirst6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst6 END
+        ,drvDentalDepNameMIddle6 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepNameMiddle6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle6 END, 1)
+        ,drvDentalDepNameLast6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepNameLast6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast6 END
+        ,drvDentalDepNameSuffix6 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepNameSuffix6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix6 END, 'Z')
+        ,drvDentalDepSSN6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepNameSSN6 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN6 END
+        ,drvDentalDepEffDate6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate6 IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate6, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate6 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate6, '1/1/2021') END
+        ,drvDentalDepTermDate6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepBdmStopDate6 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate6 END
+        ,drvDentalDepGender6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepGender6 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender6 END
+        ,drvDentalDepDateOfBirth6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepDateOFBirth6 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth6 END
+        ,drvDentalDepRelationship6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepRelationship6 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship6 END
+        ,drvDentalDepDisabledInd6 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst6 IS NOT NULL THEN DenDepIsDisabled6 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled6 END
 
-        ,drvDentalDepNameFirst7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst7 END
-        ,drvDentalDepNameMIddle7 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle7 END, 1)
-        ,drvDentalDepNameLast7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast7 END
-        ,drvDentalDepNameSuffix7 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix7 END, 'Z')
-        ,drvDentalDepSSN7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN7 END
-        ,drvDentalDepEffDate7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate7 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate7, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate7 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate7, '1/1/2021') END
-        ,drvDentalDepTermDate7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate7 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate7 END
-        ,drvDentalDepGender7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender7 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender7 END
-        ,drvDentalDepDateOfBirth7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth7 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth7 END
-        ,drvDentalDepRelationship7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship7 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship7 END
-        ,drvDentalDepDisabledInd7 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled7 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled7 END
+        ,drvDentalDepNameFirst7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepNameFirst7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst7 END
+        ,drvDentalDepNameMIddle7 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepNameMiddle7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle7 END, 1)
+        ,drvDentalDepNameLast7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepNameLast7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast7 END
+        ,drvDentalDepNameSuffix7 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepNameSuffix7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix7 END, 'Z')
+        ,drvDentalDepSSN7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepNameSSN7 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN7 END
+        ,drvDentalDepEffDate7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate7 IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate7, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate7 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate7, '1/1/2021') END
+        ,drvDentalDepTermDate7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepBdmStopDate7 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate7 END
+        ,drvDentalDepGender7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepGender7 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender7 END
+        ,drvDentalDepDateOfBirth7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepDateOFBirth7 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth7 END
+        ,drvDentalDepRelationship7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepRelationship7 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship7 END
+        ,drvDentalDepDisabledInd7 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst7 IS NOT NULL THEN DenDepIsDisabled7 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled7 END
 
-        ,drvDentalDepNameFirst8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameFirst8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst8 END
-        ,drvDentalDepNameMIddle8 = LEFT(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameMiddle8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle8 END, 1)
-        ,drvDentalDepNameLast8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameLast8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast8 END
-        ,drvDentalDepNameSuffix8 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSuffix8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix8 END, 'Z')
-        ,drvDentalDepSSN8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepNameSSN8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN8 END
-        ,drvDentalDepEffDate8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate8 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate8, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate8 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate8, '1/1/2021') END
-        ,drvDentalDepTermDate8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepBdmStopDate8 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate8 END
-        ,drvDentalDepGender8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepGender8 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender8 END
-        ,drvDentalDepDateOfBirth8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepDateOFBirth8 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth8 END
-        ,drvDentalDepRelationship8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepRelationship8 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship8 END
-        ,drvDentalDepDisabledInd8 = CASE WHEN Den_DedCode IS NOT NULL THEN DenDepIsDisabled8 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled8 END
+        ,drvDentalDepNameFirst8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepNameFirst8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameFirst8 END
+        ,drvDentalDepNameMIddle8 = LEFT(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepNameMiddle8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameMIddle8 END, 1)
+        ,drvDentalDepNameLast8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepNameLast8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameLast8 END
+        ,drvDentalDepNameSuffix8 = NULLIF(CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepNameSuffix8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSuffix8 END, 'Z')
+        ,drvDentalDepSSN8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepNameSSN8 WHEN Vis_DedCode IS NOT NULL THEN VisDepNameSSN8 END
+        ,drvDentalDepEffDate8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepBdmStartDate8 IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DenDepBdmStartDate8, '1/1/2021') WHEN Vis_DedCode IS NOT NULL AND VisDepBdmStartDate8 IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VisDepBdmStartDate8, '1/1/2021') END
+        ,drvDentalDepTermDate8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepBdmStopDate8 WHEN Vis_DedCode IS NOT NULL THEN VisDepBdmStopDate8 END
+        ,drvDentalDepGender8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepGender8 WHEN Vis_DedCode IS NOT NULL THEN VisDepGender8 END
+        ,drvDentalDepDateOfBirth8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepDateOFBirth8 WHEN Vis_DedCode IS NOT NULL THEN VisDepDateOFBirth8 END
+        ,drvDentalDepRelationship8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepRelationship8 WHEN Vis_DedCode IS NOT NULL THEN VisDepRelationship8 END
+        ,drvDentalDepDisabledInd8 = CASE WHEN Den_DedCode IS NOT NULL AND DenDepNameFirst8 IS NOT NULL THEN DenDepIsDisabled8 WHEN Vis_DedCode IS NOT NULL THEN VisDepIsDisabled8 END
     INTO dbo.U_EUNDENVISE_drvTbl
     FROM dbo.U_EUNDENVISE_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -1369,4 +1369,4 @@ WHERE expFormatCode = 'EUNDENVISE';
 GO
 CREATE VIEW dbo.dsi_vwEUNDENVISE_Export AS 
     SELECT TOP 200000000 Data FROM dbo.U_EUNDENVISE_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort 
+    ORDER BY RIGHT(RecordSet,2), InitialSort

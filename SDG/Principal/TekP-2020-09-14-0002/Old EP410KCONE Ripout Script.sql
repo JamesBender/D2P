@@ -13,14 +13,6 @@ IF OBJECT_ID('U_EP410KCONE_File') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_Fil
 GO
 IF OBJECT_ID('U_EP410KCONE_EEList') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_EEList];
 GO
-IF OBJECT_ID('U_EP410KCONE_drvTbl_Seperator') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_drvTbl_Seperator];
-GO
-IF OBJECT_ID('U_EP410KCONE_drvTbl_500') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_drvTbl_500];
-GO
-IF OBJECT_ID('U_EP410KCONE_drvTbl_408') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_drvTbl_408];
-GO
-IF OBJECT_ID('U_EP410KCONE_drvTbl_407') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_drvTbl_407];
-GO
 IF OBJECT_ID('U_EP410KCONE_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_drvTbl];
 GO
 IF OBJECT_ID('U_EP410KCONE_DedList') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_DedList];
@@ -32,7 +24,7 @@ DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE Format
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EP410KCONE';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EP410KCONE';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EP410KCONE';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EP410KCONE','Principal 401K Contribution Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','240','S','N','EP410KCONEZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EP410KCONE','Principal 401K Contribution Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','EP410KCONEZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EP410KCONE' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"407"','1','(''DA''=''F'')','EP410KCONEZ0','3','D','10','1',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''DA''=''F'')','EP410KCONEZ0','1','D','10','4',NULL,'Filler',NULL,NULL);
@@ -80,29 +72,6 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','44','(''DA''=''F'')','EP410KCONEZ0','1','D','10','227',NULL,'Contribution Qualifier Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','45','(''DA''=''F'')','EP410KCONEZ0','3','D','10','228',NULL,'Contribution Qualifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','46','(''DA''=''F'')','EP410KCONEZ0','10','D','10','231',NULL,'Contribution Amount',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"408"','1','(''DA''=''F'')','EP410KCONEZ0','3','D','20','1',NULL,'Record Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''DA''=''F'')','EP410KCONEZ0','1','D','20','4',NULL,'Blank Space',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"724762"','3','(''DA''=''F'')','EP410KCONEZ0','6','D','20','5',NULL,'Contract Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''F'')','EP410KCONEZ0','1','D','20','11',NULL,'Blank Space',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvIdentificationNumber"','5','(''UA''=''F'')','EP410KCONEZ0','9','D','20','12',NULL,'Identification Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','6','(''DA''=''F'')','EP410KCONEZ0','9','D','20','21',NULL,'Blank Spaces',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00"','7','(''DA''=''F'')','EP410KCONEZ0','2','D','20','30',NULL,'Investment Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0031"','8','(''DA''=''F'')','EP410KCONEZ0','4','D','20','32',NULL,'Transaction Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPeriodEndingDate"','9','(''UD101''=''F'')','EP410KCONEZ0','10','D','20','36',NULL,'Pay Period Ending Date/Pay Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''F'')','EP410KCONEZ0','11','D','20','46',NULL,'Blank Spaces',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''DA''=''F'')','EP410KCONEZ0','3','D','20','57',NULL,'Loan Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentAmount"','12','(''UA''=''F'')','EP410KCONEZ0','10','D','20','60',NULL,'Loan Payment Amount',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''DA''=''F'')','EP410KCONEZ0','10','D','20','70',NULL,'Loan Principal Payment Amount (Optional)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''DA''=''F'')','EP410KCONEZ0','161','D','20','80',NULL,'Blank Spaces',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"500"','1','(''DA''=''F'')','EP410KCONEZ0','3','D','30','1',NULL,'Record Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''DA''=''F'')','EP410KCONEZ0','1','D','30','4',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"724762"','3','(''DA''=''F'')','EP410KCONEZ0','6','D','30','5',NULL,'Contract Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''F'')','EP410KCONEZ0','1','D','30','11',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000"','5','(''DA''=''F'')','EP410KCONEZ0','9','D','30','12',NULL,'Identification Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','6','(''DA''=''F'')','EP410KCONEZ0','122','D','30','21',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEFTLocation"','7','(''UA''=''F'')','EP410KCONEZ0','7','D','30','143',NULL,'EFT Location',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''DA''=''F'')','EP410KCONEZ0','91','D','30','150',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFileSperator"','1','(''UA''=''F'')','EP410KCONEZ0','240','D','40','1',NULL,'FileSperator',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -112,11 +81,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
 /*08*/ DECLARE @FILENAME varchar(1000) = 'EP410KCONE_20201028.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010289','EMPEXPORT','OEACTIVE',NULL,'EP410KCONE',NULL,NULL,NULL,'202010289','Oct 28 2020 12:03PM','Oct 28 2020 12:03PM','202010011',NULL,'','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010289','EMPEXPORT','OEPASSIVE',NULL,'EP410KCONE',NULL,NULL,NULL,'202010289','Oct 28 2020 12:03PM','Oct 28 2020 12:03PM','202010011',NULL,'','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal 401K Contribution Ex','202010289','EMPEXPORT','ONDEM_XOE',NULL,'EP410KCONE',NULL,NULL,NULL,'202010289','Oct 28 2020 12:03PM','Oct 28 2020 12:03PM','202010011',NULL,'','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal 401K Contribut-Sched','202010289','EMPEXPORT','SCH_EP410K',NULL,'EP410KCONE',NULL,NULL,NULL,'202010289','Oct 28 2020 12:03PM','Oct 28 2020 12:03PM','202010011',NULL,'','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Principal 401K Contribut-Test','202010289','EMPEXPORT','TEST_XOE',NULL,'EP410KCONE',NULL,NULL,NULL,'202010289','Oct 28 2020 12:03PM','Oct 28 2020 12:03PM','202010011',NULL,'','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010269','EMPEXPORT','OEACTIVE','Oct 26 2020  1:23PM','EP410KCONE',NULL,NULL,NULL,'202010269','Oct 26 2020 12:29PM','Oct 26 2020 12:29PM','202010011','11','','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010269','EMPEXPORT','OEPASSIVE','Oct 26 2020  1:23PM','EP410KCONE',NULL,NULL,NULL,'202010269','Oct 26 2020 12:29PM','Oct 26 2020 12:29PM','202010011','256','','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401K Contribution Ex','202010269','EMPEXPORT','ONDEM_XOE','Oct 26 2020  1:24PM','EP410KCONE',NULL,NULL,NULL,'202010269','Oct 26 2020 12:29PM','Oct 26 2020 12:29PM','202010011','256','','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401K Contribut-Sched','202010269','EMPEXPORT','SCH_EP410K','Oct 26 2020  1:24PM','EP410KCONE',NULL,NULL,NULL,'202010269','Oct 26 2020 12:29PM','Oct 26 2020 12:29PM','202010011','256','','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401K Contribut-Test','202010269','EMPEXPORT','TEST_XOE','Oct 26 2020  5:28PM','EP410KCONE',NULL,NULL,NULL,'202010269','Oct 15 2020 12:00AM','Dec 30 1899 12:00AM','202010011','1','eecPayGroup','CDMON','202010011',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EP410KCONE','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EP410KCONE','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EP410KCONE','InitialSort','C','drvSort');
@@ -127,10 +96,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 IF OBJECT_ID('U_EP410KCONE_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EP410KCONE_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EP410KCONE','H01','None',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EP410KCONE','D10','dbo.U_EP410KCONE_drvTbl_407',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EP410KCONE','D20','dbo.U_EP410KCONE_drvTbl_408',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EP410KCONE','D30','dbo.U_EP410KCONE_drvTbl_500',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EP410KCONE','D40','dbo.U_EP410KCONE_drvTbl_Seperator',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EP410KCONE','D10','dbo.U_EP410KCONE_drvTbl',NULL);
 IF OBJECT_ID('U_dsi_BDM_EP410KCONE') IS NULL
 CREATE TABLE [dbo].[U_dsi_BDM_EP410KCONE] (
     [BdmRecType] varchar(3) NOT NULL,
@@ -191,44 +157,6 @@ CREATE TABLE [dbo].[U_EP410KCONE_drvTbl] (
     [drvContributionAmount2] nvarchar(4000) NULL,
     [drvContributionAmount3] nvarchar(4000) NULL
 );
-IF OBJECT_ID('U_EP410KCONE_drvTbl_407') IS NULL
-CREATE TABLE [dbo].[U_EP410KCONE_drvTbl_407] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(20) NULL,
-    [drvIdentificationNumber] char(11) NULL,
-    [drvPayPeriodEndigDate] datetime NULL,
-    [drvContributionAmount1] nvarchar(4000) NULL,
-    [drvContributionAmount2] nvarchar(4000) NULL,
-    [drvContributionAmount3] nvarchar(4000) NULL
-);
-IF OBJECT_ID('U_EP410KCONE_drvTbl_408') IS NULL
-CREATE TABLE [dbo].[U_EP410KCONE_drvTbl_408] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(20) NULL,
-    [drvIdentificationNumber] char(11) NULL,
-    [drvPayPeriodEndingDate] datetime NULL,
-    [drvLoanPaymentAmount] nvarchar(4000) NULL
-);
-IF OBJECT_ID('U_EP410KCONE_drvTbl_500') IS NULL
-CREATE TABLE [dbo].[U_EP410KCONE_drvTbl_500] (
-    [drvEEID] varchar(1) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(20) NULL,
-    [drvEFTLocation] varchar(7) NULL
-);
-IF OBJECT_ID('U_EP410KCONE_drvTbl_Seperator') IS NULL
-CREATE TABLE [dbo].[U_EP410KCONE_drvTbl_Seperator] (
-    [drvEEID] varchar(1) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(20) NULL,
-    [drvFileSperator] varchar(20) NOT NULL
-);
 IF OBJECT_ID('U_EP410KCONE_EEList') IS NULL
 CREATE TABLE [dbo].[U_EP410KCONE_EEList] (
     [xCOID] char(5) NULL,
@@ -241,7 +169,7 @@ CREATE TABLE [dbo].[U_EP410KCONE_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(240) NULL
+    [Data] char(1000) NULL
 );
 IF OBJECT_ID('U_EP410KCONE_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EP410KCONE_PDedHist] (
@@ -255,8 +183,7 @@ CREATE TABLE [dbo].[U_EP410KCONE_PDedHist] (
     [Pdh401MEEAmt] numeric NULL,
     [Pdh401MERAmt] numeric NULL,
     [PdhROTHFPEEAmt] numeric NULL,
-    [PdhROTHFPERAmt] numeric NULL,
-    [Pdh401LEEAmt] numeric NULL
+    [PdhROTHFPERAmt] numeric NULL
 );
 IF OBJECT_ID('U_EP410KCONE_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EP410KCONE_PEarHist] (
@@ -281,7 +208,7 @@ Client Name: SDG
 
 Created By: James Bender
 Business Analyst: Cheryl Petitti
-Create Date: 10/28/2020
+Create Date: 10/26/2020
 Service Request Number: TekP-2020-09-14-0002
 
 Purpose: Principal 401K Contribution Export
@@ -343,6 +270,10 @@ BEGIN
     DELETE FROM dbo.U_EP410KCONE_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EP410KCONE_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    DELETE FROM dbo.U_EP410KCONE_EEList WHERE xEEID IN (
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WHERE EecEEType IN ('TEST')
+    );
 
     --==========================================
     -- Create Deduction List
@@ -417,11 +348,8 @@ BEGIN
         ,PdhROTHFPEEAmt     = SUM(CASE WHEN PdhDedCode IN ('ROTHF', 'ROTHP') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhROTHFPERAmt     = SUM(CASE WHEN PdhDedCode IN ('ROTHF', 'ROTHP') THEN PdhERCurAmt ELSE 0.00 END)
 
-        ,Pdh401LEEAmt     = SUM(CASE WHEN PdhDedCode IN ('401L', '401L2') THEN PdhEECurAmt ELSE 0.00 END)
 
-        /*,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+        /*,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
         ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
@@ -474,22 +402,22 @@ BEGIN
     -- Build Driver Tables
     --==========================================
     ---------------------------------
-    -- DETAIL RECORD - U_EP410KCONE_drvTbl_407
+    -- DETAIL RECORD - U_EP410KCONE_drvTbl
     ---------------------------------
-    IF OBJECT_ID('U_EP410KCONE_drvTbl_407','U') IS NOT NULL
-        DROP TABLE dbo.U_EP410KCONE_drvTbl_407;
+    IF OBJECT_ID('U_EP410KCONE_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EP410KCONE_drvTbl;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xCOID + ' ' + xEEID + ' 1' 
+        ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,drvIdentificationNumber = EepSSN
         ,drvPayPeriodEndigDate = PrgPayDate
         ,drvContributionAmount1 = FORMAT((Pdh401FPEEAmt)*100, '0000000000')
         ,drvContributionAmount2 = FORMAT((Pdh401MERAmt)*100, '0000000000')
         ,drvContributionAmount3 = FORMAT((PdhROTHFPEEAmt)*100, '0000000000')
-    INTO dbo.U_EP410KCONE_drvTbl_407
+    INTO dbo.U_EP410KCONE_drvTbl
     FROM dbo.U_EP410KCONE_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_EP410KCONE WITH (NOLOCK)
         ON BdmEEID = xEEID 
@@ -500,81 +428,6 @@ BEGIN
         ON PehEEID = xEEID
     JOIN dbo.U_EP410KCONE_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
-    WHERE BdmDedCode IN ('401F','401P','ROTHF','ROTHP','401M')
-    ;
-    ;
-    ---------------------------------
-    -- DETAIL RECORD - U_EP410KCONE_drvTbl_408
-    ---------------------------------
-    IF OBJECT_ID('U_EP410KCONE_drvTbl_408','U') IS NOT NULL
-        DROP TABLE dbo.U_EP410KCONE_drvTbl_408;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xCOID + ' ' + xEEID + ' 2' 
-        -- standard fields above and additional driver fields below
-        ,drvIdentificationNumber = EepSSN
-        ,drvPayPeriodEndingDate = PrgPayDate
-        ,drvLoanPaymentAmount = FORMAT((Pdh401LEEAmt)*100, '0000000000')
-    INTO dbo.U_EP410KCONE_drvTbl_408
-    FROM dbo.U_EP410KCONE_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_EP410KCONE WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.U_EP410KCONE_PEarHist WITH (NOLOCK)
-        ON PehEEID = xEEID
-    JOIN dbo.U_EP410KCONE_PDedHist WITH (NOLOCK)
-        ON PdhEEID = xEEID
-    WHERE BdmDedCode IN ('401L','401L2')
-    ;
-    ---------------------------------
-    -- DETAIL RECORD - U_EP410KCONE_drvTbl_500
-    ---------------------------------
-    IF OBJECT_ID('U_EP410KCONE_drvTbl_500','U') IS NOT NULL
-        DROP TABLE dbo.U_EP410KCONE_drvTbl_500;
-    SELECT DISTINCT
-         drvEEID = '' --xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xCOID + ' ZZZZZZZZZZZZ 3' 
-        -- standard fields above and additional driver fields below
-        ,drvEFTLocation =    CASE WHEN xCOID = 'NBGY8' THEN '0000001'
-                                WHEN xCOID = 'NBGSD' THEN '0000002'
-                                WHEN xCOID = 'NBGQ9' THEN '0000003'
-                                WHEN xCOID = 'NBH0C' THEN '0000004'
-                                WHEN xCOID = 'NBH1Z' THEN '0000005'
-                                WHEN xCOID = 'NBGUH' THEN '0000006'
-                            END
-
-    INTO dbo.U_EP410KCONE_drvTbl_500
-    FROM dbo.U_EP410KCONE_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    JOIN dbo.U_dsi_BDM_EP410KCONE WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    ;
-    ---------------------------------
-    -- DETAIL RECORD - U_EP410KCONE_drvTbl_Seperator
-    ---------------------------------
-    IF OBJECT_ID('U_EP410KCONE_drvTbl_Seperator','U') IS NOT NULL
-        DROP TABLE dbo.U_EP410KCONE_drvTbl_Seperator;
-    SELECT DISTINCT
-         drvEEID = '' --xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xCOID + ' ZZZZZZZZZZZZ 4' 
-        -- standard fields above and additional driver fields below
-        ,drvFileSperator = '99999999999999999999'
-    INTO dbo.U_EP410KCONE_drvTbl_Seperator
-    FROM dbo.U_EP410KCONE_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_EP410KCONE WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
     ;
 
     --==========================================
@@ -596,7 +449,7 @@ END;
 --Alter the View
 ALTER VIEW dbo.dsi_vwEP410KCONE_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EP410KCONE_File (NOLOCK)
-    ORDER BY InitialSort, SubSort;
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
@@ -607,12 +460,12 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202010011'
        ,expStartPerControl     = '202010011'
-       ,expLastEndPerControl   = '202010289'
-       ,expEndPerControl       = '202010289'
+       ,expLastEndPerControl   = '202010269'
+       ,expEndPerControl       = '202010269'
 WHERE expFormatCode = 'EP410KCONE';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEP410KCONE_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EP410KCONE_File (NOLOCK)
-    ORDER BY InitialSort, SubSort;
+CREATE VIEW dbo.dsi_vwEP410KCONE_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EP410KCONE_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
