@@ -15,6 +15,10 @@ IF OBJECT_ID('U_EINSPCENXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EINSPCENXP_d
 GO
 IF OBJECT_ID('U_EINSPCENXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EINSPCENXP_DedList];
 GO
+IF OBJECT_ID('U_EINSPCENXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EINSPCENXP_AuditFields];
+GO
+IF OBJECT_ID('U_EINSPCENXP_Audit') IS NOT NULL DROP TABLE [dbo].[U_EINSPCENXP_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_EINSPCENXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EINSPCENXP];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EINSPCENXP';
@@ -47,7 +51,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobCode"','9','(''UA''=''T,'')','EINSPCENXPZ0','50','D','10','9',NULL,'jobCode',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobInfoName"','10','(''UA''=''T,'')','EINSPCENXPZ0','50','D','10','10',NULL,'jobinfo.name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHourlyRate"','11','(''UA''=''T,'')','EINSPCENXPZ0','50','D','10','11',NULL,'jobInfo.hourlyRate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAnnualSalary"','12','(''UA''=''T,'')','EINSPCENXPZ0','50','D','10','12',NULL,'jobInfo.annualSalary',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAnnualSalary"','12','(''UA''=''T'')','EINSPCENXPZ0','50','D','10','12',NULL,'jobInfo.annualSalary',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -55,7 +59,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EINSPCENXP_20201025.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EINSPCENXP_20201028.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010259','EMPEXPORT','OEACTIVE',NULL,'EINSPCENXP',NULL,NULL,NULL,'202010259','Oct 25 2020  5:18PM','Oct 25 2020  5:18PM','202010251',NULL,'','','202010251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010259','EMPEXPORT','OEPASSIVE',NULL,'EINSPCENXP',NULL,NULL,NULL,'202010259','Oct 25 2020  5:18PM','Oct 25 2020  5:18PM','202010251',NULL,'','','202010251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -116,6 +120,24 @@ CREATE TABLE [dbo].[U_dsi_BDM_EINSPCENXP] (
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
 );
+IF OBJECT_ID('U_EINSPCENXP_Audit') IS NULL
+CREATE TABLE [dbo].[U_EINSPCENXP_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+IF OBJECT_ID('U_EINSPCENXP_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EINSPCENXP_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
 IF OBJECT_ID('U_EINSPCENXP_DedList') IS NULL
 CREATE TABLE [dbo].[U_EINSPCENXP_DedList] (
     [DedCode] char(5) NOT NULL,
@@ -132,11 +154,11 @@ CREATE TABLE [dbo].[U_EINSPCENXP_drvTbl] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvBlockInstantPay] varchar(1) NOT NULL,
+    [drvBlockInstantPay] varchar(5) NOT NULL,
     [drvTerminated] varchar(5) NOT NULL,
     [drvPainOnInstant] varchar(5) NOT NULL,
     [drvJobCode] char(8) NOT NULL,
-    [drvJobInfoName] varchar(25) NOT NULL,
+    [drvJobInfoName] varchar(8000) NULL,
     [drvHourlyRate] nvarchar(4000) NULL,
     [drvAnnualSalary] nvarchar(4000) NULL
 );
@@ -245,10 +267,14 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EINSPCENXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    DELETE FROM dbo.U_EINSPCENXP_EEList WHERE xEEID IN (
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
+    )
+
     --==========================================
     -- Create Deduction List
     --==========================================
-    DECLARE @DedList VARCHAR(MAX)
+   /* DECLARE @DedList VARCHAR(MAX)
     SET @DedList = 'DED1,DED2';
 
     IF OBJECT_ID('U_EINSPCENXP_DedList','U') IS NOT NULL
@@ -259,13 +285,13 @@ BEGIN
     INTO dbo.U_EINSPCENXP_DedList
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
-        ON DedDedCode = Item;
+        ON DedDedCode = Item;*/
 
 
     --==========================================
     -- BDM Section
     --==========================================
-    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+/*    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
@@ -290,6 +316,7 @@ BEGIN
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+*/
 
     --==========================================
     -- Build Working Tables
@@ -298,6 +325,7 @@ BEGIN
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
+/*
     IF OBJECT_ID('U_EINSPCENXP_PDedHist','U') IS NOT NULL
         DROP TABLE dbo.U_EINSPCENXP_PDedHist;
     SELECT DISTINCT
@@ -330,6 +358,41 @@ BEGIN
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
     );
+*/
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EINSPCENXP_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EINSPCENXP_AuditFields;
+    CREATE TABLE dbo.U_EINSPCENXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EINSPCENXP_AuditFields VALUES ('EmpComp','EecEmplStatus');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EINSPCENXP_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EINSPCENXP_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audCOID = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EINSPCENXP_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EINSPCENXP_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate
+    AND audNewValue = 'T'
+    ;
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EINSPCENXP_Audit ON dbo.U_EINSPCENXP_Audit (audEEID,audCOID);
 
 
     --==========================================
@@ -351,11 +414,11 @@ BEGIN
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
         ,drvDateOfBirth = EepDateOfBirth
-        ,drvBlockInstantPay = ''
+        ,drvBlockInstantPay = CASE WHEN GarAmt IS NOT NULL AND GarAmt > 0 THEN 'TRUE' ELSE 'FALSE' END
         ,drvTerminated = CASE WHEN EecEmplStatus = 'T' THEN 'TRUE' ELSE 'FALSE' END
         ,drvPainOnInstant = CASE WHEN EddEEBankRoute = '041208777' THEN 'TRUE' ELSE 'FALSE' END
         ,drvJobCode = JbcJobCode
-        ,drvJobInfoName = jbcDesc
+        ,drvJobInfoName = REPLACE(jbcDesc, ',', '')
         ,drvHourlyRate = CASE WHEN EecSalaryOrHourly = 'H' THEN FORMAT(EecHourlyPayRate, '#0.00') END
         ,drvAnnualSalary = CASE WHEN EecSalaryOrHourly = 'S' THEN FORMAT(EecAnnSalary, '#0.00') END
     INTO dbo.U_EINSPCENXP_drvTbl
@@ -373,6 +436,20 @@ BEGIN
     JOIN dbo.EmpDirDP WITH (NOLOCK)
         ON EddEEID = xEEID 
         AND EddCoID = xCoID
+    LEFT JOIN (
+                SELECT PdhEEID 
+                    ,SUM(PdhEECurAmt) AS GarAmt
+                FROM dbo.PDedHist WITH (NOLOCK)
+                JOIN dbo.DedCode WITH (NOLOCK)
+                    ON pdhDedCode = DedDedCode
+                Where PdhPerControl BETWEEN @StartPerControl AND @EndPerControl
+                AND DedDedType = 'GAR'
+                group by PdhEEID) AS Gar
+        ON PdhEEID = xEEID
+    LEFT JOIN dbo.U_EINSPCENXP_Audit
+        ON xEEID = audEEID
+        AND xCOID = audCOID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime IS NOT NULL)
     ;
 
     --==========================================
