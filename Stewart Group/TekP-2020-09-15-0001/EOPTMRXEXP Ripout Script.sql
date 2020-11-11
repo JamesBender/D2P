@@ -1,14 +1,26 @@
 SET NOCOUNT ON;
 IF OBJECT_ID('U_EOPTMRXEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EOPTMRXEXP_SavePath];
 SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EOPTMRXEXP_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EOPTMRXEXP' AND CfgName LIKE '%Path';
+IF OBJECT_ID('dsi_vwEOPTMRXEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEOPTMRXEXP_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EOPTMRXEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EOPTMRXEXP];
+GO
+IF OBJECT_ID('U_EOPTMRXEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EOPTMRXEXP_File];
+GO
+IF OBJECT_ID('U_EOPTMRXEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EOPTMRXEXP_EEList];
+GO
+IF OBJECT_ID('U_EOPTMRXEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EOPTMRXEXP_drvTbl];
+GO
+IF OBJECT_ID('U_EOPTMRXEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EOPTMRXEXP_DedList];
+GO
+IF OBJECT_ID('U_dsi_BDM_EOPTMRXEXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EOPTMRXEXP];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EOPTMRXEXP';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EOPTMRXEXP';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EOPTMRXEXP';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EOPTMRXEXP';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EOPTMRXEXP';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','SDF','EOPTMRXEXP','Optum Enrollment Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','3000','N','S','N','EOPTMRXEXPZ0','N','Jan  1 1900 12:00AM','C','N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EOPTMRXEXP','Optum Enrollment Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2700','S','N','EOPTMRXEXPZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EOPTMRXEXP' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"THESTEWCO"','1','(''DA''=''F'')','EOPTMRXEXPZ0','9','D','10','1',NULL,'CARRIER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAccount"','2','(''UA''=''F'')','EOPTMRXEXPZ0','15','D','10','10',NULL,'ACCOUNT',NULL,NULL);
@@ -301,24 +313,114 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EOPTMRXEXP_20201024.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EOPTMRXEXP_20201110.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010249','EMPEXPORT','OEACTIVE',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010249','EMPEXPORT','OEACTIVE','Nov  9 2020 12:00AM','EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020 12:00AM','Dec 30 1899 12:00AM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'JBENDER04',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010249','EMPEXPORT','OEPASSIVE',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum Enrollment Export','202010249','EMPEXPORT','ONDEM_XOE',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Optum Enrollment Export','202010249','EMPEXPORT','ONDEM_XOE','Nov 10 2020 10:07AM','EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020 12:00AM','Dec 30 1899 12:00AM','202010241','1999','','','202010241',dbo.fn_GetTimedKey(),NULL,'CPETITTI06',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum Enrollment Export-Sched','202010249','EMPEXPORT','SCH_EOPTMR',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum Enrollment Export-Test','202010249','EMPEXPORT','TEST_XOE',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Optum Enrollment Export-Test','202011069','EMPEXPORT','TEST_XOE','Nov 10 2020  2:07PM','EOPTMRXEXP',NULL,NULL,NULL,'202011069','Nov  6 2020 12:00AM','Dec 30 1899 12:00AM','202010231','2002','','','202010231',dbo.fn_GetTimedKey(),NULL,'JBENDER04',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EOPTMRXEXP' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EOPTMRXEXP' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_EOPTMRXEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EOPTMRXEXP_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EOPTMRXEXP','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EOPTMRXEXP','D10','dbo.U_EOPTMRXEXP_drvTbl',NULL);
+IF OBJECT_ID('U_dsi_BDM_EOPTMRXEXP') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EOPTMRXEXP] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+IF OBJECT_ID('U_EOPTMRXEXP_DedList') IS NULL
+CREATE TABLE [dbo].[U_EOPTMRXEXP_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+IF OBJECT_ID('U_EOPTMRXEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EOPTMRXEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvSort] varchar(15) NULL,
+    [drvAccount] varchar(4) NULL,
+    [drvGroup] varchar(8) NULL,
+    [drvMemberId] char(11) NULL,
+    [drvPersonCode] nvarchar(4000) NULL,
+    [drvRelationshipCode] varchar(1) NULL,
+    [drvNameLast] varchar(100) NULL,
+    [drvNameFirst] varchar(100) NULL,
+    [drvNameMiddle] varchar(1) NULL,
+    [drvGender] varchar(1) NULL,
+    [drvDateOfBirth] datetime NULL,
+    [drvSSN] char(11) NULL,
+    [drvAddressLine1] varchar(255) NULL,
+    [drvAddressLine2] varchar(255) NULL,
+    [drvAddressCity] varchar(255) NULL,
+    [drvAdressState] varchar(255) NULL,
+    [drvAddressZipCode] varchar(50) NULL,
+    [drvPhone] varchar(50) NULL,
+    [drvFamilyFlag] varchar(1) NOT NULL,
+    [drvFamilyType] varchar(1) NULL,
+    [drvMemberFromDate] datetime NULL,
+    [drvMemberToDate] datetime NULL
+);
+IF OBJECT_ID('U_EOPTMRXEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EOPTMRXEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+IF OBJECT_ID('U_EOPTMRXEXP_File') IS NULL
+CREATE TABLE [dbo].[U_EOPTMRXEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] char(2700) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EOPTMRXEXP]
     @SystemID char(12)
@@ -392,11 +494,15 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EOPTMRXEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    DELETE FROM dbo.U_EOPTMRXEXP_EEList WHERE xEEID IN (
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
+    )
+
     --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'DED1,DED2';
+    SET @DedList = 'AMEDB,AMEDG,AMEDS,CMEDB,CMEDG,CMEDS,LMEDB,LMEDG,LMEDS,MEDB,MEDG,MEDS';
 
     IF OBJECT_ID('U_EOPTMRXEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EOPTMRXEXP_DedList;
@@ -415,7 +521,7 @@ BEGIN
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
@@ -450,36 +556,263 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = EecPayGroup + ' :: ' + B.BdmDedCode -- xEEID + ' ' + CASE WHEN B.BdmRecType = 'EMP' THEN '00' ELSE FORMAT(Con_RN, '00') END
         -- standard fields above and additional driver fields below
-        ,drvAccount = ''
-        ,drvGroup = ''
-        ,drvMemberId = ''
-        ,drvPersonCode = ''
-        ,drvRelationshipCode = ''
-        ,drvNameLast = EepNameLast
-        ,drvNameFirst = EepNameFirst
-        ,drvNameMiddle = LEFT(EepNameMiddle,1)
-        ,drvGender = EepGender
-        ,drvDateOfBirth = EepDateOfBirth
-        ,drvSSN = eepSSN
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
-        ,drvAdressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
-        ,drvPhone = ''
-        ,drvFamilyFlag = ''
-        ,drvFamilyType = ''
-        ,drvMemberFromDate = ''
-        ,drvMemberToDate = ''
+        ,drvAccount =    CASE WHEN EecPayGroup = 'OFFCUR' AND B.BdmDedCode = 'MEDG' AND EecEmpNo = '1300039' THEN 'LLC7'
+                            WHEN EecPayGroup = 'MASNRY' AND B.BdmDedCode = 'MEDG' THEN 'LLC7'
+                            WHEN EecPayGroup = 'MASNRY' AND B.BdmDedCode = 'MEDB' THEN 'LLC7'
+                            WHEN EecPayGroup = 'YBPSG' AND B.BdmDedCode = 'MEDG' THEN 'MDSG'
+                            WHEN EecPayGroup = 'YBPSG' AND B.BdmDedCode = 'MEDS' THEN 'MDSG'
+                            WHEN EecPayGroup = 'YBPSG' AND B.BdmDedCode = 'MEDB' THEN 'MDSG'
+                            WHEN EecPayGroup = 'STONE' AND B.BdmDedCode = 'MEDG' THEN 'YBA'
+                            WHEN EecPayGroup = 'STONE' AND B.BdmDedCode = 'MEDS' THEN 'YBA'
+                            WHEN EecPayGroup = 'STONE' AND B.BdmDedCode = 'MEDB' THEN 'YBA'
+                            WHEN EecPayGroup = 'YMG' AND B.BdmDedCode = 'MEDG' THEN 'YMG'
+                            WHEN EecPayGroup = 'YMG' AND B.BdmDedCode = 'MEDS' THEN 'YMG'
+                            WHEN EecPayGroup = 'YMG' AND B.BdmDedCode = 'MEDB    ' THEN 'YMG'
+                            WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND B.BdmDedCode = 'MEDG' THEN 'YBP6'
+                            WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND B.BdmDedCode = 'MEDS' THEN 'YBP6'
+                            WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND B.BdmDedCode = 'MEDB' THEN 'YBP6'
+                            WHEN EecPayGroup = 'SPM' AND B.BdmDedCode = 'MEDG' THEN 'SLD'
+                            WHEN EecPayGroup = 'SPM' AND B.BdmDedCode = 'MEDS' THEN 'SLD'
+                            WHEN EecPayGroup = 'SPM' AND B.BdmDedCode = 'MEDB' THEN 'SLD'
+                            WHEN EecPayGroup = 'ESSG' AND B.BdmDedCode = 'MEDG' THEN 'ESSG'
+                            WHEN EecPayGroup = 'ESSG' AND B.BdmDedCode = 'MEDS' THEN 'ESSG'
+                            WHEN EecPayGroup = 'ESSG' AND B.BdmDedCode = 'MEDB' THEN 'ESSG'
+                            WHEN EecPayGroup = 'WSM' AND B.BdmDedCode = 'CMEDG' THEN 'WSM1'
+                            WHEN EecPayGroup = 'WSM' AND B.BdmDedCode = 'CMEDS' THEN 'WSM1'
+                            WHEN EecPayGroup = 'WSM' AND B.BdmDedCode = 'CMEDB' THEN 'WSM1'
+                            WHEN EecPayGroup = 'WSC' AND B.BdmDedCode = 'CMEDG' THEN 'WSC3'
+                            WHEN EecPayGroup = 'WSC' AND B.BdmDedCode = 'CMEDS' THEN 'WSC3'
+                            WHEN EecPayGroup = 'WSC' AND B.BdmDedCode = 'CMEDB' THEN 'WSC3'
+                            WHEN EecPayGroup = 'AVIAT' AND B.BdmDedCode = 'MEDG' THEN 'YAV5'
+                            WHEN EecPayGroup = 'AVIAT' AND B.BdmDedCode = 'MEDS' THEN 'YAV5'
+                            WHEN EecPayGroup = 'AVIAT' AND B.BdmDedCode = 'MEDB' THEN 'YAV5'
+                            WHEN EecPayGroup IN ('LEWIS','LEWISF') AND B.BdmDedCode IN ('LMEDG','MEDG') THEN 'HHL1'
+                            WHEN EecPayGroup IN ('LEWIS','LEWISF') AND B.BdmDedCode IN ('LMEDS','MEDS') THEN 'HHL1'
+                            WHEN EecPayGroup IN ('LEWIS','LEWISF') AND B.BdmDedCode IN ('LMEDB','MEDB') THEN 'HHL1'
+                            WHEN EecPayGroup = 'RILEY' AND B.BdmDedCode = 'MEDG' THEN 'RWF9'
+                            WHEN EecPayGroup = 'RILEY' AND B.BdmDedCode = 'MEDS' THEN 'RWF9'
+                            WHEN EecPayGroup = 'RILEY' AND B.BdmDedCode = 'MEDB' THEN 'RWF9'
+                            WHEN EecPayGroup IN ('STCON','STCONF') AND B.BdmDedCode = 'MEDG' THEN 'STC3'
+                            WHEN EecPayGroup IN ('STCON','STCONF') AND B.BdmDedCode = 'MEDS' THEN 'STC3'
+                            WHEN EecPayGroup IN ('STCON','STCONF') AND B.BdmDedCode = 'MEDB' THEN 'STC3'
+                            WHEN EecPayGroup = 'STINCF' AND B.BdmDedCode = 'MEDG' THEN 'STE4'
+                            WHEN EecPayGroup = 'STINCF' AND B.BdmDedCode = 'MEDS' THEN 'STE4'
+                            WHEN EecPayGroup = 'STINCF' AND B.BdmDedCode = 'MEDB' THEN 'STE4'
+                            WHEN EecPayGroup = 'STINC' AND B.BdmDedCode = 'MEDG' THEN 'STE4'
+                            WHEN EecPayGroup = 'STINC' AND B.BdmDedCode = 'MEDS' THEN 'STE4'
+                            WHEN EecPayGroup = 'STINC' AND B.BdmDedCode = 'MEDB' THEN 'STE4'
+                            WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND B.BdmDedCode = 'AMEDG' THEN 'WGC7'
+                            WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND B.BdmDedCode = 'AMEDS' THEN 'WGC7'
+                            WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND B.BdmDedCode = 'AMEDB' THEN 'WGC7'
+                            WHEN EecPayGroup = 'APPBMW' AND B.BdmDedCode = 'AMEDG' THEN 'ACB3'
+                            WHEN EecPayGroup = 'APPBMW' AND B.BdmDedCode = 'AMEDS' THEN 'ACB3'
+                            WHEN EecPayGroup = 'APPBMW' AND B.BdmDedCode = 'AMEDB' THEN 'ACB3'
+                            WHEN EecPayGroup = 'APPFOR' AND B.BdmDedCode = 'AMEDG' THEN 'AAG1'
+                            WHEN EecPayGroup = 'APPFOR' AND B.BdmDedCode = 'AMEDS' THEN 'AAG1'
+                            WHEN EecPayGroup = 'APPFOR' AND B.BdmDedCode = 'AMEDB' THEN 'AAG1'
+                            WHEN EecPayGroup = 'APPNIS' AND B.BdmDedCode = 'AMEDG' THEN 'ANI5'
+                            WHEN EecPayGroup = 'APPNIS' AND B.BdmDedCode = 'AMEDS' THEN 'ANI5'
+                            WHEN EecPayGroup = 'APPNIS' AND B.BdmDedCode = 'AMEDB' THEN 'ANI5'
+                            WHEN EecPayGroup = 'APPHON' AND B.BdmDedCode = 'AMEDG' THEN 'AMI4'
+                            WHEN EecPayGroup = 'APPHON' AND B.BdmDedCode = 'AMEDS' THEN 'AMI4'
+                            WHEN EecPayGroup = 'APPHON' AND B.BdmDedCode = 'AMEDB' THEN 'AMI4'
+                            WHEN EecPayGroup = 'RLCHEV' AND B.BdmDedCode = 'AMEDG' THEN 'RLC6'
+                            WHEN EecPayGroup = 'RLCHEV' AND B.BdmDedCode = 'AMEDS' THEN 'RLC6'
+                            WHEN EecPayGroup = 'RLCHEV' AND B.BdmDedCode = 'AMEDB' THEN 'RLC6'
+                            WHEN EecPayGroup = 'CARWA' AND B.BdmDedCode = 'AMEDG' THEN 'ACE2'
+                            WHEN EecPayGroup = 'CARWA' AND B.BdmDedCode = 'AMEDS' THEN 'ACE2'
+                            WHEN EecPayGroup = 'CARWA' AND B.BdmDedCode = 'AMEDB' THEN 'ACE2'
+                            WHEN EecPayGroup = 'BEASFO' AND B.BdmDedCode = 'AMEDG' THEN 'AFY'
+                            WHEN EecPayGroup = 'BEASFO' AND B.BdmDedCode = 'AMEDS' THEN 'AFY'
+                            WHEN EecPayGroup = 'BEASFO' AND B.BdmDedCode = 'AMEDB' THEN 'AFY'
+                            WHEN EecPayGroup = 'PRTZ' AND B.BdmDedCode = 'AMEDG' THEN 'PAB'
+                            WHEN EecPayGroup = 'PRTZ' AND B.BdmDedCode = 'AMEDS' THEN 'PAB'
+                            WHEN EecPayGroup = 'PRTZ' AND B.BdmDedCode = 'AMEDB' THEN 'PAB'
+                            WHEN EecPayGroup = 'HANDOD' AND B.BdmDedCode = 'AMEDG' THEN 'ACD'
+                            WHEN EecPayGroup = 'HANDOD' AND B.BdmDedCode = 'AMEDS' THEN 'ACD'
+                            WHEN EecPayGroup = 'HANDOD' AND B.BdmDedCode = 'AMEDB' THEN 'ACD'
+                            WHEN EecPayGroup = 'RLCOL' AND B.BdmDedCode = 'AMEDG' THEN 'CC3'
+                            WHEN EecPayGroup = 'RLCOL' AND B.BdmDedCode = 'AMEDB' THEN 'CC3'
+                            WHEN EecPayGroup = 'RLCOL' AND B.BdmDedCode = 'AMEDS' THEN 'CC3'
+                            WHEN EecPayGroup = 'EYC' AND B.BdmDedCode = 'AMEDG' THEN 'BCY'
+                            WHEN EecPayGroup = 'EYC' AND B.BdmDedCode = 'AMEDS' THEN 'BCY'
+                            WHEN EecPayGroup = 'EYC' AND B.BdmDedCode = 'AMEDB' THEN 'BCY'
+                            WHEN EecPayGroup = 'YHCOL' AND B.BdmDedCode = 'AMEDG' THEN 'YCC2'
+                            WHEN EecPayGroup = 'YHCOL' AND B.BdmDedCode = 'AMEDS' THEN 'YCC2'
+                            WHEN EecPayGroup = 'YHCOL' AND B.BdmDedCode = 'AMEDB' THEN 'YCC2'
+                            WHEN EecPayGroup = 'HAKES' AND B.BdmDedCode = 'AMEDG' THEN 'HBS'
+                            WHEN EecPayGroup = 'HAKES' AND B.BdmDedCode = 'AMEDS' THEN 'HBS'
+                            WHEN EecPayGroup = 'HAKES' AND B.BdmDedCode = 'AMEDB' THEN 'HBS'
+                            WHEN EecPayGroup = 'EST' AND B.BdmDedCode = 'MEDG' THEN '625'
+                            WHEN EecPayGroup = 'EST' AND B.BdmDedCode = 'MEDS' THEN '625'
+                            WHEN EecPayGroup = 'EST' AND B.BdmDedCode = 'MEDB' THEN '625'
+                            WHEN EecPayGroup = 'HMA' AND B.BdmDedCode = 'MEDG' THEN 'HMA'
+                            WHEN EecPayGroup = 'HMA' AND B.BdmDedCode = 'MEDS' THEN 'HMA'
+                            WHEN EecPayGroup = 'HMA' AND B.BdmDedCode = 'MEDB' THEN 'HMA'
+                            WHEN EecPayGroup = 'HANHON' AND B.BdmDedCode = 'AMEDG' THEN 'AHI' 
+                            WHEN EecPayGroup = 'HANHON' AND B.BdmDedCode = 'AMEDS' THEN 'AHI'
+                            WHEN EecPayGroup = 'HANHON' AND B.BdmDedCode = 'AMEDB' THEN 'AHI' 
+                            WHEN EecPayGroup = 'APPYAS' AND B.BdmDedCode = 'AMEDG' THEN 'YAS'
+                            WHEN EecPayGroup = 'APPYAS' AND B.BdmDedCode = 'AMEDS' THEN 'YAS'
+                            WHEN EecPayGroup = 'APPYAS' AND B.BdmDedCode = 'AMEDB' THEN 'YAS'
+                            WHEN EecPayGroup = 'APPAOL' AND B.BdmDedCode = 'AMEDG' THEN 'AOL'
+                            WHEN EecPayGroup = 'APPAOL' AND B.BdmDedCode = 'AMEDS' THEN 'AOL'
+                            WHEN EecPayGroup = 'APPAOL' AND B.BdmDedCode = 'AMEDB' THEN 'AOL'                            
+                        END
+        ,drvGroup =    CASE WHEN EecPayGroup IN ('OFFCUR') AND B.BdmDedCode = 'MEDG' AND EecEmpNo = '1300039' THEN '2548864'
+                        WHEN EecPayGroup IN ('MASNRY') AND B.BdmDedCode = 'MEDG' THEN '2548800'
+                        WHEN EecPayGroup IN ('MASNRY') AND B.BdmDedCode = 'MEDS' THEN '2548900'
+                        WHEN EecPayGroup IN ('MASNRY') AND B.BdmDedCode = 'MEDB' THEN '2563000'
+                        WHEN EecPayGroup IN ('YBPSG') AND B.BdmDedCode = 'MEDG' THEN '2548802'
+                        WHEN EecPayGroup IN ('YBPSG') AND B.BdmDedCode = 'MEDS' THEN '2548902'
+                        WHEN EecPayGroup IN ('YBPSG') AND B.BdmDedCode = 'MEDB' THEN '2563002'
+                        WHEN EecPayGroup IN ('STONE') AND B.BdmDedCode = 'MEDG' THEN '2548804'
+                        WHEN EecPayGroup IN ('STONE') AND B.BdmDedCode = 'MEDS' THEN '2548904'
+                        WHEN EecPayGroup IN ('STONE') AND B.BdmDedCode = 'MEDB' THEN '2563004'
+                        WHEN EecPayGroup IN ('YMG') AND B.BdmDedCode = 'MEDG' THEN '2548806'
+                        WHEN EecPayGroup IN ('YMG') AND B.BdmDedCode = 'MEDS' THEN '2548906'
+                        WHEN EecPayGroup IN ('YMG') AND B.BdmDedCode = 'MEDB' THEN '2563006'
+                        WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND B.BdmDedCode = 'MEDG' THEN '2548808'
+                        WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND B.BdmDedCode = 'MEDS' THEN '2548908'
+                        WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND B.BdmDedCode = 'MEDB' THEN '2563008'
+                        WHEN EecPayGroup IN ('SPM') AND B.BdmDedCode = 'MEDG' THEN '2548810'
+                        WHEN EecPayGroup IN ('SPM') AND B.BdmDedCode = 'MEDS' THEN '2548910'
+                        WHEN EecPayGroup IN ('SPM') AND B.BdmDedCode = 'MEDB' THEN '2563010'
+                        WHEN EecPayGroup IN ('ESSG') AND B.BdmDedCode = 'MEDG' THEN '2548812'
+                        WHEN EecPayGroup IN ('ESSG') AND B.BdmDedCode = 'MEDS' THEN '2548912'
+                        WHEN EecPayGroup IN ('ESSG') AND B.BdmDedCode = 'MEDB' THEN '2563012'
+                        WHEN EecPayGroup IN ('WSM') AND B.BdmDedCode = 'CMEDG' THEN '2548816'
+                        WHEN EecPayGroup IN ('WSM') AND B.BdmDedCode = 'CMEDS' THEN '2548916'
+                        WHEN EecPayGroup IN ('WSM') AND B.BdmDedCode = 'CMEDB' THEN '2563016'
+                        WHEN EecPayGroup IN ('WSC') AND B.BdmDedCode = 'CMEDG' THEN '2548818'
+                        WHEN EecPayGroup IN ('WSC') AND B.BdmDedCode = 'CMEDS' THEN '2548918'
+                        WHEN EecPayGroup IN ('WSC') AND B.BdmDedCode = 'CMEDB' THEN '2563018'
+                        WHEN EecPayGroup IN ('AVIAT') AND B.BdmDedCode = 'MEDG' THEN '2548820'
+                        WHEN EecPayGroup IN ('AVIAT') AND B.BdmDedCode = 'MEDS' THEN '2548920'
+                        WHEN EecPayGroup IN ('AVIAT') AND B.BdmDedCode = 'MEDB' THEN '2563020'
+                        WHEN EecPayGroup IN ('LEWIS','LEWISF') AND B.BdmDedCode IN ('LMEDG','MEDG') THEN '2548822'
+                        WHEN EecPayGroup IN ('LEWIS','LEWISF') AND B.BdmDedCode IN ('LMEDS','MEDS') THEN '2548922'
+                        WHEN EecPayGroup IN ('LEWIS','LEWISF') AND B.BdmDedCode IN ('LMEDB','MEDB') THEN '2563022'
+                        WHEN EecPayGroup IN ('RILEY') AND B.BdmDedCode = 'MEDG' THEN '2548824'
+                        WHEN EecPayGroup IN ('RILEY') AND B.BdmDedCode = 'MEDS' THEN '2548924'
+                        WHEN EecPayGroup IN ('RILEY') AND B.BdmDedCode = 'MEDB' THEN '2563024'
+                        WHEN EecPayGroup IN ('STCON','STCONF') AND B.BdmDedCode = 'MEDG' THEN '2548826'
+                        WHEN EecPayGroup IN ('STCON','STCONF') AND B.BdmDedCode = 'MEDS' THEN '2548926'
+                        WHEN EecPayGroup IN ('STCON','STCONF') AND B.BdmDedCode = 'MEDB' THEN '2563026'
+                        WHEN EecPayGroup IN ('STINCF') AND B.BdmDedCode = 'MEDG' THEN '2548828'
+                        WHEN EecPayGroup IN ('STINCF') AND B.BdmDedCode = 'MEDS' THEN '2548928'
+                        WHEN EecPayGroup IN ('STINCF') AND B.BdmDedCode = 'MEDB' THEN '2563028'
+                        WHEN EecPayGroup IN ('STINC') AND B.BdmDedCode = 'MEDG' THEN '2548830'
+                        WHEN EecPayGroup IN ('STINC') AND B.BdmDedCode = 'MEDS' THEN '2548930'
+                        WHEN EecPayGroup IN ('STINC') AND B.BdmDedCode = 'MEDB' THEN '2563030'
+                        WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND B.BdmDedCode = 'AMEDG' THEN '2548832'
+                        WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND B.BdmDedCode = 'AMEDS' THEN '2548932'
+                        WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND B.BdmDedCode = 'AMEDB' THEN '2563032'
+                        WHEN EecPayGroup IN ('APPBMW') AND B.BdmDedCode = 'AMEDG' THEN '2548834'
+                        WHEN EecPayGroup IN ('APPBMW') AND B.BdmDedCode = 'AMEDS' THEN '2548934'
+                        WHEN EecPayGroup IN ('APPBMW') AND B.BdmDedCode = 'AMEDB' THEN '2563034'
+                        WHEN EecPayGroup IN ('APPFOR') AND B.BdmDedCode = 'AMEDG' THEN '2548836'
+                        WHEN EecPayGroup IN ('APPFOR') AND B.BdmDedCode = 'AMEDS' THEN '2548936'
+                        WHEN EecPayGroup IN ('APPFOR') AND B.BdmDedCode = 'AMEDB' THEN '2563036'
+                        WHEN EecPayGroup IN ('APPNIS') AND B.BdmDedCode = 'AMEDG' THEN '2548838'
+                        WHEN EecPayGroup IN ('APPNIS') AND B.BdmDedCode = 'AMEDS' THEN '2548938'
+                        WHEN EecPayGroup IN ('APPNIS') AND B.BdmDedCode = 'AMEDB' THEN '2563038'
+                        WHEN EecPayGroup IN ('APPHON') AND B.BdmDedCode = 'AMEDG' THEN '2548840'
+                        WHEN EecPayGroup IN ('APPHON') AND B.BdmDedCode = 'AMEDS' THEN '2548940'
+                        WHEN EecPayGroup IN ('APPHON') AND B.BdmDedCode = 'AMEDB' THEN '2563040'
+                        WHEN EecPayGroup IN ('RLCHEV') AND B.BdmDedCode = 'AMEDG' THEN '2548842'
+                        WHEN EecPayGroup IN ('RLCHEV') AND B.BdmDedCode = 'AMEDS' THEN '2548942'
+                        WHEN EecPayGroup IN ('RLCHEV') AND B.BdmDedCode = 'AMEDB' THEN '2563042'
+                        WHEN EecPayGroup IN ('CARWA') AND B.BdmDedCode = 'AMEDG' THEN '2548844'
+                        WHEN EecPayGroup IN ('CARWA') AND B.BdmDedCode = 'AMEDS' THEN '2548944'
+                        WHEN EecPayGroup IN ('CARWA') AND B.BdmDedCode = 'AMEDB' THEN '2563044'
+                        WHEN EecPayGroup IN ('BEASFO') AND B.BdmDedCode = 'AMEDG' THEN '2548846'
+                        WHEN EecPayGroup IN ('BEASFO') AND B.BdmDedCode = 'AMEDS' THEN '2548946'
+                        WHEN EecPayGroup IN ('BEASFO') AND B.BdmDedCode = 'AMEDB' THEN '2563046'
+                        WHEN EecPayGroup IN ('PRTZ') AND B.BdmDedCode = 'AMEDG' THEN '2548848'
+                        WHEN EecPayGroup IN ('PRTZ') AND B.BdmDedCode = 'AMEDS' THEN '2548948'
+                        WHEN EecPayGroup IN ('PRTZ') AND B.BdmDedCode = 'AMEDB' THEN '2563048'
+                        WHEN EecPayGroup IN ('HANDOD') AND B.BdmDedCode = 'AMEDG' THEN '2548850'
+                        WHEN EecPayGroup IN ('HANDOD') AND B.BdmDedCode = 'AMEDS' THEN '2548950'
+                        WHEN EecPayGroup IN ('HANDOD') AND B.BdmDedCode = 'AMEDB' THEN '2563050'
+                        WHEN EecPayGroup IN ('RLCOL') AND B.BdmDedCode = 'AMEDG' THEN '2548852'
+                        WHEN EecPayGroup IN ('RLCOL') AND B.BdmDedCode = 'AMEDB' THEN '2563052'
+                        WHEN EecPayGroup IN ('RLCOL') AND B.BdmDedCode = 'AMEDS' THEN '2548856'
+                        WHEN EecPayGroup IN ('EYC') AND B.BdmDedCode = 'AMEDG' THEN '2548858'
+                        WHEN EecPayGroup IN ('EYC') AND B.BdmDedCode = 'AMEDS' THEN '2548952'
+                        WHEN EecPayGroup IN ('EYC') AND B.BdmDedCode = 'AMEDB' THEN '2563054'
+                        WHEN EecPayGroup IN ('YHCOL') AND B.BdmDedCode = 'AMEDG' THEN '2549922'
+                        WHEN EecPayGroup IN ('YHCOL') AND B.BdmDedCode = 'AMEDS' THEN '2549924'
+                        WHEN EecPayGroup IN ('YHCOL') AND B.BdmDedCode = 'AMEDB' THEN '2563056'
+                        WHEN EecPayGroup IN ('HAKES') AND B.BdmDedCode = 'AMEDG' THEN '2548860'
+                        WHEN EecPayGroup IN ('HAKES') AND B.BdmDedCode = 'AMEDS' THEN '2548960'
+                        WHEN EecPayGroup IN ('HAKES') AND B.BdmDedCode = 'AMEDB' THEN '2563058'
+                        WHEN EecPayGroup IN ('EST') AND B.BdmDedCode = 'MEDG' THEN '2548862'
+                        WHEN EecPayGroup IN ('EST') AND B.BdmDedCode = 'MEDS' THEN '2548962'
+                        WHEN EecPayGroup IN ('EST') AND B.BdmDedCode = 'MEDB' THEN '2563060'
+                        WHEN EecPayGroup IN ('HMA') AND B.BdmDedCode = 'MEDG' THEN '10502810'
+                        WHEN EecPayGroup IN ('HMA') AND B.BdmDedCode = 'MEDS' THEN '10502812'
+                        WHEN EecPayGroup IN ('HMA') AND B.BdmDedCode = 'MEDB' THEN '10502814'
+                        WHEN EecPayGroup IN ('HANHON') AND B.BdmDedCode = 'AMEDG' THEN '10511072'
+                        WHEN EecPayGroup IN ('HANHON') AND B.BdmDedCode = 'AMEDS' THEN '10511074'
+                        WHEN EecPayGroup IN ('HANHON') AND B.BdmDedCode = 'AMEDB' THEN '10511076'
+                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDG' THEN '10511078'
+                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDS' THEN '10511080'
+                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDB' THEN '10511083'
+                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDG' THEN '10511086'
+                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDS' THEN '10511088'
+                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDB' THEN '10511090'
+                        END
+        ,drvMemberId = EepSSN
+        ,drvPersonCode =    CASE WHEN B.BdmRecType = 'EMP' THEN '00'
+                                ELSE FORMAT(Con_RN, '00')
+                            END
+        ,drvRelationshipCode =    CASE WHEN B.BdmRecType = 'EMP' THEN '1'
+                                    WHEN ConRelationship IN ('SPS') THEN '2'
+                                    WHEN ConRelationship IN ('CHL','STC') THEN '3'
+                                END
+        ,drvNameLast = CASE WHEN B.BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
+        ,drvNameFirst = CASE WHEN B.BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
+        ,drvNameMiddle = CASE WHEN B.BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1) ELSE LEFT(ConNameMiddle,1) END
+        ,drvGender = CASE WHEN B.BdmRecType = 'EMP' THEN CASE WHEN EepGender IN ('M','F','N') THEN EepGender ELSE 'U' END
+                        ELSE CASE WHEN ConGender IN ('M','F','N') THEN ConGender ELSE 'U' END
+                    END
+        ,drvDateOfBirth = CASE WHEN B.BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
+        ,drvSSN = CASE WHEN B.BdmRecType = 'EMP' THEN eepSSN ELSE ConSSN END
+        ,drvAddressLine1 = EepAddressLine1 --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressLine1 ELSE ConAddressLine1 END
+        ,drvAddressLine2 = EepAddressLine2 --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressLine2 ELSE ConAddressLine2 END
+        ,drvAddressCity = EepAddressCity --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressCity ELSE ConAddressCity END
+        ,drvAdressState = EepAddressState --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressState ELSE ConAddressState END
+        ,drvAddressZipCode = EepAddressZipCode --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressZipCode ELSE ConAddressZipCode END
+        ,drvPhone = EepPhoneHomeNumber
+        ,drvFamilyFlag = CASE WHEN B.BdmBenOption = 'EE' THEN 'N' ELSE 'Y' END
+        ,drvFamilyType =    CASE WHEN B.BdmBenOption IN ('EE2','EEFAMW') THEN '1'
+                                WHEN B.BdmBenOption    IN ('EE','EEWI') THEN '2'
+                                WHEN B.BdmBenOption IN ('EESPOU','EESPWI') THEN '3'
+                                WHEN B.BdmBenOption IN ('EECH','EECHW') THEN '4'
+                            END
+        ,drvMemberFromDate = B.BdmBenStatusDate
+        ,drvMemberToDate = B.BdmBenStopDate
     INTO dbo.U_EOPTMRXEXP_drvTbl
     FROM dbo.U_EOPTMRXEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EOPTMRXEXP WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EOPTMRXEXP B WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    LEFT JOIN (
+            SELECT ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY ConEEID, /*ConSystemID*/ CASE WHEN ConRelationship IN ('SPS') THEN 1 ELSE 2 END) AS Con_RN, * 
+            FROM dbo.Contacts WITH (NOLOCK)
+            JOIN dbo.U_dsi_BDM_EOPTMRXEXP A WITH (NOLOCK)
+                ON ConSystemID = A.BdmDepRecID
+        ) AS Con
+        ON ConEEID = xEEID
+        AND ConSystemID = B.BdmDepRecID
     ;
 
     --==========================================
@@ -517,3 +850,7 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EOPTMRXEXP';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEOPTMRXEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EOPTMRXEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort

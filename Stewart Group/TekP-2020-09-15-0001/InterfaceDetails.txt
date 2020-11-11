@@ -1,0 +1,5 @@
+Interface details (EOPTMRXEXP)
+Env – EW41
+Server – E4SUP1DB03
+Database – ULTIPRO_STWRT
+Export Name – Optum Enrollment Export

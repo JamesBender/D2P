@@ -1,5 +1,5 @@
-Interface details (ETRIAHLEXP)
+Interface details (ECIGFMLAEX)
 Env – EW23 
 Server – EW2WUP3DB03
-Database – ULTIPRO_WPSUNCO
-Export Name – Tria Health/RX Benefits Health Interface Export
+Database – ULTIPRO_WPBERRY
+Export Name – Cigna FMLA Disability Export

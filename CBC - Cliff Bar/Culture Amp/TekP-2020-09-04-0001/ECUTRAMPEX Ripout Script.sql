@@ -3,6 +3,8 @@ IF OBJECT_ID('U_ECUTRAMPEX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECUTRAMPEX
 SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_ECUTRAMPEX_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'ECUTRAMPEX' AND CfgName LIKE '%Path';
 IF OBJECT_ID('dsi_vwECUTRAMPEX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECUTRAMPEX_Export];
 GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECUTRAMPEX_G10_BKP_2020_PROD') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECUTRAMPEX_G10_BKP_2020_PROD];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ECUTRAMPEX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECUTRAMPEX];
 GO
 IF OBJECT_ID('U_ECUTRAMPEX_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECUTRAMPEX_PEarHist];
@@ -85,11 +87,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20201014.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20201031.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic Export','202010129','EMPEXPORT','ONDEM_XOE',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic -Sched','202010129','EMPEXPORT','SCH_ECUTRA',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Culture Amp Demographic -Test','202010129','EMPEXPORT','TEST_XOE',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202010299','EMPEXPORT','TEST_XOE','Oct 29 2020  4:23PM','ECUTRAMPEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:00AM','Dec 30 1899 12:00AM','202009201','263','','','202009201',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','InitialSort','C','drvSort');
@@ -137,7 +139,7 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] datetime NULL,
     [drvName] varchar(201) NULL,
     [drvPrefferedName] varchar(100) NULL,
     [drvEmployeeID] char(9) NULL,
@@ -152,11 +154,11 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvDepartment] varchar(25) NULL,
     [drvEmploymentType] char(1) NULL,
     [drvJobTitle] varchar(27) NOT NULL,
-    [drvOrgLvl1Manager] char(12) NULL,
+    [drvOrgLvl1Manager] varchar(201) NOT NULL,
     [drvOrgLvl3Description] varchar(25) NULL,
-    [drvAge] varchar(1) NOT NULL,
+    [drvAge] int NULL,
     [drvTimeInRole] int NULL,
-    [drvRateEthnicity] char(1) NULL,
+    [drvRateEthnicity] varchar(45) NULL,
     [drvOrvLvl2Description] varchar(25) NULL,
     [drvFSLAType] char(1) NULL,
     [drvCompany] varchar(40) NULL,
@@ -191,6 +193,381 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_PEarHist] (
     [PehInclInDefCompYTD] money NULL,
     [PehInclInDefCompHrsYTD] decimal NULL
 );
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECUTRAMPEX]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: CBC
+
+Created By: James Bender
+Business Analyst: Richard Vars
+Create Date: 10/12/2020
+Service Request Number: TekP-2020-09-04-0001
+
+Purpose: Culture Amp Demographic Export
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2020     SR-2020-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECUTRAMPEX';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECUTRAMPEX';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECUTRAMPEX';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECUTRAMPEX';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECUTRAMPEX' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECUTRAMPEX', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECUTRAMPEX', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECUTRAMPEX', 'SCH_ECUTRA';
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ECUTRAMPEX', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'ECUTRAMPEX';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+
+
+
+    --==========================================
+    -- Audit Code
+    --==========================================
+    -- Get data from audit fields table.  Add fields here if auditing
+    IF OBJECT_ID('U_ECUTRAMPEX_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ECUTRAMPEX_AuditFields;
+    CREATE TABLE dbo.U_ECUTRAMPEX_AuditFields (aTableName VARCHAR(30),aFieldName VARCHAR(30));
+    -- Employee Information
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepSSN');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepNameFirst');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepNameLast');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepNameMiddle');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepNamePreferred');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepNamePrefix');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepNameSuffix');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepAddressLine2');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepAddressCity');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepAddressState');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepAddressZipCode');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepAddressCountry');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepGender');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepIsDisabled');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepMaritalStatus');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpPers','EepEthnicID');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecSupervisorId');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecOrgLvl1');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecOrgLvl2');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecOrgLvl3');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecJobCode');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
+
+    -- Dependent Information
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConSSN');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConNameFirst');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConNameLast');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConNameMiddle');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConNameSuffix');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConDateOfBirth');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConIsDisabled');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConRelationship');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressLine1');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressLine2');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressCity');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressState');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressZipCode');
+    INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressCountry');
+    
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_ECUTRAMPEX_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ECUTRAMPEX_Audit;
+    SELECT audEEID = xEEID
+        ,audCOID = xCOID
+        ,audConSystemID =  CASE WHEN audTableName = 'Contacts' THEN audKey3Value
+                                WHEN audTableName = 'DepBPlan' THEN DbnDepRecID
+                           END
+        ,audKey1 = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audEffectiveDate
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        ,audDedChange = CASE WHEN audTableName IN ('EmpDed','DepBPlan','DedCode') THEN 'Y'
+                             ELSE 'N'
+                        END
+        ,audBenOptionChange = CASE WHEN audFieldName IN ('EedBenOption') THEN 'Y'
+                                   ELSE 'N'
+                              END
+        ,audSSNChange = CASE WHEN audFieldName IN ('EepSSN','ConSSN') THEN 'Y'
+                              ELSE 'N'
+                        END
+        ,audNameChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Name%' THEN 'Y'
+                              WHEN audTableName IN ('EmpPers') AND audFieldName LIKE '%Prefix%' THEN 'Y'
+                              WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Suffix%' THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audDemoChange = CASE WHEN audFieldName IN ('EepGender','EepDateOfBirth','EepMaritalStatus','ConGender','ConDateOfBirth','ConRelationship') THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audAddrChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Address%' THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audNewlyEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') = '' AND audNewValue = 'A' THEN 'Y'
+                               ELSE 'N'
+                          END
+        ,audReEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') NOT IN ('A','') AND audNewValue = 'A' THEN 'Y'
+                            WHEN audFieldName IN ('EedBenStartDate','DbnBenStartDate') AND ISNULL(audOldValue,'') <> '' AND ISNULL(audNewValue,'') <> '' THEN 'Y'
+                            ELSE 'N'
+                       END
+        ,audTermPlan = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND audOldValue = 'A' AND ISNULL(audNewValue,'') NOT IN ('A','') THEN 'Y'
+                            WHEN audFieldName IN ('EedBenStopDate','DbnBenStopDate') AND ISNULL(audNewValue,'') <> '' THEN 'Y'
+                            ELSE 'N'
+                       END
+    INTO dbo.U_ECUTRAMPEX_Audit
+    FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK)
+        ON xEEID = audKey1Value
+    JOIN dbo.U_ECUTRAMPEX_AuditFields WITH (NOLOCK)
+        ON aTableName = audTableName
+        AND aFieldName = audFieldName
+    LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+        ON DbnEEID = xEEID
+        AND DbnDedCode = audKey2Value
+        AND DbnSystemID = audKey3Value
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND ISNULL(audNewValue, '') <> ''
+   ;
+
+    --================
+    -- Changes Only
+    --================
+
+    -- Remove Employees with No Changes in Audit
+    DELETE FROM dbo.U_ECUTRAMPEX_EELIST
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_ECUTRAMPEX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+
+
+
+
+
+
+
+
+
+
+
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_ECUTRAMPEX_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ECUTRAMPEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    DELETE FROM dbo.U_ECUTRAMPEX_EEList WHERE xEEID IN (
+        SELECT DISTINCT EecEEID FROM dbo.vw_int_EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
+    )
+
+    -----------------------------
+    -- Working Table - vw_int_PEarHist
+    -----------------------------
+    IF OBJECT_ID('U_ECUTRAMPEX_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECUTRAMPEX_PEarHist;
+    SELECT DISTINCT
+         PehEEID
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_ECUTRAMPEX_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID
+    HAVING SUM(PehCurAmt) <> 0.00;
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_ECUTRAMPEX_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_ECUTRAMPEX_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECUTRAMPEX_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = E.EepDateOfBirth
+        -- standard fields above and additional driver fields below
+        ,drvName = E.EepNameFirst + ' ' + E.EepNameLast
+        ,drvPrefferedName = E.EepNamePreferred
+        ,drvEmployeeID = EecEmpNo
+        ,drvAddressEmail = E.EepAddressEMail
+        ,drvDateOfBirth = E.EepDateOfBirth
+        ,drvStartDate = EecDateOfLastHire
+        ,drvEndDate = EecDateOfTermination
+        ,drvManager = SUP.EepNameFirst + ' ' + SUP.EepNameLast
+        ,drvManagerEmail = SUP.EepAddressEMail
+        ,drvGender = E.EepGender
+        ,drvLocation = LocAddressState
+        ,drvDepartment = OrgDesc1
+        ,drvEmploymentType = EecFulltimeOrPartTime
+        ,drvJobTitle = '"' + JbcDesc + '"'
+        ,drvOrgLvl1Manager = OrgMangerName
+        ,drvOrgLvl3Description = OrgDesc3
+        ,drvAge = DATEDIFF(hour,E.EepDateOfBirth,GETDATE())/8766
+        ,drvTimeInRole = EjhMonthsInJobCode
+        ,drvRateEthnicity = EDesc -- E.EepEthnicID
+        ,drvOrvLvl2Description = OrgDesc2
+        ,drvFSLAType = EjhFLSACategory
+        ,drvCompany =    CASE WHEN CmpCompanyCode = 'CBC' THEN 'Clif Bar & Company'
+                            WHEN CmpCompanyCode = 'CBCCD' THEN 'Clif Bar & Company Canada'
+                            WHEN CmpCompanyCode = 'CIN' THEN 'Clif Bar Baking Company of Indianapolis'
+                            WHEN CmpCompanyCode = 'CTF' THEN 'Clif Bar Baking Company of Twin Falls LL'
+                            WHEN CmpCompanyCode = 'CBENL' THEN 'Clif Bar Europe B.V. NL'
+                            WHEN CmpCompanyCode = 'CBEUK' THEN 'Clif Bar Europe B.V. UK'
+                            WHEN CmpCompanyCode = 'CBEDE' THEN 'Clif Bar Europe Germany'
+                        END
+        ,drvEmploymentStatus = EecEmplStatus
+        ,drvCountry = E.EepAddressCountry
+        ,drvManagerEEID = EecSupervisorId
+    INTO dbo.U_ECUTRAMPEX_drvTbl
+    FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    JOIN dbo.EmpPers E WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
+    JOIN dbo.EmpPers SUP WITH (NOLOCK)
+        ON Sup.EepEEID = EecSupervisorId
+    JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
+    JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoID = xCoID
+    JOIN dbo.U_ECUTRAMPEX_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+    JOIN (
+            SELECT EjhEEID, EjhCOID, EjhJobCode, DATEDIFF(MONTH, MIN(EjhJobEffDate), GETDATE()) AS EjhMonthsInJobCode, MAX(EjhFLSACategory) AS EjhFLSACategory
+            FROM dbo.vw_int_EmpHJob WITH (NOLOCK)
+            GROUP BY EjhEEID, EjhCOID, EjhJobCode ) AS JobMonths
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
+        AND EjhJobCode = EecJobCode
+    JOIN (
+            SELECT DISTINCT OrgCode AS OrgCode1, OrgDesc AS OrgDesc1, OrgManagerId AS OrgManagerId1, ISNULL(EepNameFirst, '') + ' ' + ISNULL(EepNameLast, '') As OrgMangerName
+            FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
+            LEFT JOIN dbo.EmpPers WITH (NOLOCK)
+                ON OrgManagerId = EepEEID
+            WHERE OrgLvl = 1
+            ) AS Org1
+        ON OrgCode1 = EecOrgLvl1
+    JOIN (
+            SELECT DISTINCT OrgCode AS OrgCode3, OrgDesc AS OrgDesc3, OrgManagerId AS OrgManagerId3
+            FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
+            WHERE OrgLvl = 3
+            ) AS Org3
+        ON OrgCode3 = EecOrgLvl3
+    JOIN (
+            SELECT DISTINCT OrgCode AS OrgCode2, OrgDesc AS OrgDesc2, OrgManagerId AS OrgManagerId2
+            FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
+            WHERE OrgLvl = 2
+            ) AS Org2
+        ON OrgCode2 = EecOrgLvl2
+    LEFT JOIN (
+            SELECT CodCode AS ECode, CodDesc AS EDesc
+            FROM dbo.Codes WITH (NOLOCK)
+            WHERE CodTable = 'ETHNICCODE'
+            ) AS EStatus
+        ON E.EepEthnicID = ECode
+    WHERE PehCurAmtYTD > 0
+        AND CmpCompanyCode IN ('CBC','CBCCD','CIN','CTF','CBENL','CBEUK','CBEDE')
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwECUTRAMPEX_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ECUTRAMPEX_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID LIKE 'ECUTRAMPEX%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202009051'
+       ,expStartPerControl     = '202009051'
+       ,expLastEndPerControl   = '202010129'
+       ,expEndPerControl       = '202010129'
+WHERE expFormatCode = 'ECUTRAMPEX';
+
+**********************************************************************************/
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECUTRAMPEX]
     @SystemID char(12)

@@ -17,6 +17,10 @@ IF OBJECT_ID('U_EPNDEMOEXP_drvTbl_181') IS NOT NULL DROP TABLE [dbo].[U_EPNDEMOE
 GO
 IF OBJECT_ID('U_EPNDEMOEXP_drvTbl_180') IS NOT NULL DROP TABLE [dbo].[U_EPNDEMOEXP_drvTbl_180];
 GO
+IF OBJECT_ID('U_EPNDEMOEXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EPNDEMOEXP_AuditFields];
+GO
+IF OBJECT_ID('U_EPNDEMOEXP_Audit') IS NOT NULL DROP TABLE [dbo].[U_EPNDEMOEXP_Audit];
+GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EPNDEMOEXP';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EPNDEMOEXP';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EPNDEMOEXP';
@@ -120,13 +124,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPNDEMOEXP_20201028.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPNDEMOEXP_20201110.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010269','EMPEXPORT','OEACTIVE','Oct 28 2020  1:23PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','7184','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010269','EMPEXPORT','OEPASSIVE','Oct 28 2020  1:23PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','7184','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Export','202010269','EMPEXPORT','ONDEM_XOE','Oct 24 2020 12:50PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 23 2020  5:07PM','Oct 23 2020  5:07PM','202010121','7168','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Expo-Sched','202010269','EMPEXPORT','SCH_EPNDEM','Oct 24 2020 12:50PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 23 2020  5:07PM','Oct 23 2020  5:07PM','202010121','7168','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Expo-Test','202010269','EMPEXPORT','TEST_XOE','Oct 26 2020 12:01PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','7184','','','202010121',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Expo-Test','202010269','EMPEXPORT','TEST_XOE','Nov  7 2020 12:55PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','2532','','','202010121',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPNDEMOEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPNDEMOEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPNDEMOEXP','InitialSort','C','drvSort');
@@ -141,6 +145,24 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPNDEMOEXP','D20','dbo.U_EPNDEMOEXP_drvTbl_181',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPNDEMOEXP','D30','dbo.U_EPNDEMOEXP_drvTbl_220',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPNDEMOEXP','D40','dbo.U_EPNDEMOEXP_drvTbl_240',NULL);
+IF OBJECT_ID('U_EPNDEMOEXP_Audit') IS NULL
+CREATE TABLE [dbo].[U_EPNDEMOEXP_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+IF OBJECT_ID('U_EPNDEMOEXP_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EPNDEMOEXP_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
 IF OBJECT_ID('U_EPNDEMOEXP_drvTbl_180') IS NULL
 CREATE TABLE [dbo].[U_EPNDEMOEXP_drvTbl_180] (
     [drvEEID] char(12) NULL,
@@ -148,11 +170,11 @@ CREATE TABLE [dbo].[U_EPNDEMOEXP_drvTbl_180] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
     [drvEmployeeIdNumber] char(11) NULL,
-    [drvEmployeeName] varchar(203) NULL,
+    [drvEmployeeName] varchar(8000) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvDateOfEmployment] datetime NULL,
     [drvGender] char(1) NULL,
-    [drvLocationNumber] varchar(3) NULL,
+    [drvLocationNumber] varchar(7) NULL,
     [drvSSN] char(11) NULL,
     [drvBenefitEventDate] datetime NULL,
     [drvBenefitEventReason] varchar(4) NULL
@@ -164,7 +186,7 @@ CREATE TABLE [dbo].[U_EPNDEMOEXP_drvTbl_181] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
     [drvEmployeeIdNumber] char(11) NULL,
-    [drvEmployeeName] varchar(203) NULL,
+    [drvEmployeeName] varchar(8000) NULL,
     [drvSSN] char(11) NULL,
     [drvRehireDate] datetime NULL
 );
@@ -266,6 +288,50 @@ BEGIN
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
+
+--==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EPNDEMOEXP_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EPNDEMOEXP_AuditFields;
+    CREATE TABLE dbo.U_EPNDEMOEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EPNDEMOEXP_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EPNDEMOEXP_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EPNDEMOEXP_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value -- COID
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        --,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+    INTO dbo.U_EPNDEMOEXP_Audit
+    FROM dbo.U_EPNDEMOEXP_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK) 
+        ON audKey1Value = xEEID
+        -- <shrug>
+        AND audKey2Value = xCOID
+    JOIN dbo.U_EPNDEMOEXP_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime <= @EndDate
+    AND audAction <> 'DELETE'
+    AND ISNULL(audNewValue,'') <> '';
+    --=====================================================================================
+    -- Retain Most Recent Audit Record by AudKey1, AudKey2, AudKey3 and Audit Field Name
+    --=====================================================================================
+    DELETE FROM dbo.U_EPNDEMOEXP_Audit WHERE audRowNo > 1;
+
+
+
+
     --==========================================
     -- Clean EE List 
     -- Caution: Careful of cleaning EE List if including paycheck data
@@ -295,22 +361,25 @@ BEGIN
         ,drvSort = '2 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvEmployeeIdNumber = EepSSN
-        ,drvEmployeeName = EepNameLast + ' ' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1)
+        ,drvEmployeeName = REPLACE(EepNameLast + ' ' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1), 'ñ', 'n')
         ,drvDateOfBirth = EepDateOfBirth
         ,drvDateOfEmployment = EecDateOfLastHire
         ,drvGender = EepGender
-        ,drvLocationNumber =    CASE WHEN EecCOID = 'NBGY8' THEN '001'
-                                    WHEN EecCOID = 'NBGQ9' THEN '002'
-                                    WHEN EecCOID = 'NBGSD' THEN '003'
-                                    WHEN EecCOID = 'NBH0C' THEN '004'
-                                    WHEN EecCOID = 'NBH1Z' THEN '005'
-                                    WHEN EecCOID = 'NBGUH' THEN '006'
+        ,drvLocationNumber =    CASE WHEN EecCOID = 'NBGY8' THEN '      1'
+                                    WHEN EecCOID = 'NBGQ9' THEN '      2'
+                                    WHEN EecCOID = 'NBGSD' THEN '      3'
+                                    WHEN EecCOID = 'NBH0C' THEN '      4'
+                                    WHEN EecCOID = 'NBH1Z' THEN '      5'
+                                    WHEN EecCOID = 'NBGUH' THEN '      6'
                                 END
         ,drvSSN = eepSSN
-        ,drvBenefitEventDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvBenefitEventDate =    CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
+                                    WHEN EecEmplStatus = 'A' AND EecDateOfOriginalHire <> EecDateOfLastHire THEN audDateTime
+                                END
         ,drvBenefitEventReason =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') THEN '0001'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN '0005'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN '0003'
+                                        WHEN EecEmplStatus = 'A' AND  EecDateOfOriginalHire <> EecDateOfLastHire THEN '0001'
                                     END
     INTO dbo.U_EPNDEMOEXP_drvTbl_180
     FROM dbo.U_EPNDEMOEXP_EEList WITH (NOLOCK)
@@ -319,6 +388,9 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    LEFT JOIN dbo.U_EPNDEMOEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
@@ -333,9 +405,9 @@ BEGIN
         ,drvSort = '2 ' + xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvEmployeeIdNumber = EepSSN
-        ,drvEmployeeName = EepNameLast + ' ' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1)
+        ,drvEmployeeName = REPLACE(EepNameLast + ' ' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1), 'ñ', 'n')
         ,drvSSN = eepSSN
-        ,drvRehireDate = EecDateOfLastHire
+        ,drvRehireDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
     INTO dbo.U_EPNDEMOEXP_drvTbl_181
     FROM dbo.U_EPNDEMOEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -343,7 +415,11 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
+        AND EecDateOfOriginalHire <> EecDateOfLastHire
+        AND EecDateOfLastHire >= DATEADD(DAY, -60, @EndDate)
     ;
+
     ---------------------------------
     -- DETAIL RECORD - U_EPNDEMOEXP_drvTbl_220
     ---------------------------------
@@ -364,8 +440,12 @@ BEGIN
         ,drvZipPlusFour = CASE WHEN LEN(EepAddressZipCode) = 9 THEN RIGHT(EepAddressZipCode, 4) END
     INTO dbo.U_EPNDEMOEXP_drvTbl_220
     FROM dbo.U_EPNDEMOEXP_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EPNDEMOEXP_drvTbl_240
@@ -389,6 +469,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
 
     --==========================================
