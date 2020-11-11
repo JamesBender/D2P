@@ -36,10 +36,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc2"','6','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','62',NULL,'Contribution Source 2',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc3"','7','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','74',NULL,'Contribution Source 3',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc4"','8','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','86',NULL,'Contribution Source 4',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','9','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','98',NULL,'Contribution Source 5',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','10','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','110',NULL,'Contribution Source 6',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','11','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','122',NULL,'Contribution Source 7',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','12','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','134',NULL,'Contribution Source 8',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc5"','9','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','98',NULL,'Contribution Source 5',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc6"','10','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','110',NULL,'Contribution Source 6',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc7"','11','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','122',NULL,'Contribution Source 7',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc8"','12','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','134',NULL,'Contribution Source 8',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','13','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','146',NULL,'Contribution Source 9',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','14','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','158',NULL,'Contribution Source 10',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment1"','15','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','170',NULL,'Loan Payment #1',NULL,NULL);
@@ -56,10 +56,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc2"','26','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','294',NULL,'Plan YTD Contribution Source 2',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc3"','27','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','306',NULL,'Plan YTD Contribution Source 3',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc4"','28','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','318',NULL,'Plan YTD Contribution Source 4',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','29','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','330',NULL,'Plan YTD Contribution Source 5',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','30','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','342',NULL,'Plan YTD Contribution Source 6',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','31','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','354',NULL,'Plan YTD Contribution Source 7',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','32','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','366',NULL,'Plan YTD Contribution Source 8',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc5"','29','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','330',NULL,'Plan YTD Contribution Source 5',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc6"','30','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','342',NULL,'Plan YTD Contribution Source 6',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc7"','31','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','354',NULL,'Plan YTD Contribution Source 7',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc8"','32','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','366',NULL,'Plan YTD Contribution Source 8',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','33','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','378',NULL,'Plan YTD Contribution Source 9',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','34','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','390',NULL,'Plan YTD Contribution Source 10',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDDefAllocComp"','35','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','402',NULL,'Plan YTD Deferral/Allocation Compensation',NULL,NULL);
@@ -117,10 +117,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc2Total"','6','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','42',NULL,'Contribution Source 2 Total',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc3Total"','7','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','54',NULL,'Contribution Source 3 Total',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc4Total"','8','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','66',NULL,'Contribution Source 4 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','10','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','78',NULL,'Contribution Source 6 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','11','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','90',NULL,'Contribution Source 7 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','12','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','102',NULL,'Contribution Source 8 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','13','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','114',NULL,'Contribution Source 9 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc5Total"','10','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','78',NULL,'Contribution Source 6 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc6Total"','11','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','90',NULL,'Contribution Source 7 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc7Total"','12','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','102',NULL,'Contribution Source 8 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc79Total"','13','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','114',NULL,'Contribution Source 9 Total',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','14','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','126',NULL,'Contribution Source 10 Total',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal1"','15','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','138',NULL,'Loan Payment #1 Total',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal2"','16','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','150',NULL,'Loan Payment #2 Total',NULL,NULL);
@@ -134,13 +134,15 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECSB401KEX_20201013.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECSB401KEX_20201104.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202009309','EMPEXPORT','OEACTIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009309','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202009309','EMPEXPORT','ONDEMAND',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202009309','EMPEXPORT','SCHEDULED',NULL,'ECSB401KEX',NULL,NULL,NULL,'202009309','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202009309','EMPEXPORT','TEST','Oct  9 2020  2:14PM','ECSB401KEX',NULL,NULL,NULL,'202009309','Sep 30 2020 12:00AM','Dec 30 1899 12:00AM','202009301','280','eecPayGroup','MONTH,SEMIMO','202009301',dbo.fn_GetTimedKey(),NULL,'us3rVaROB1010',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010319','EMPEXPORT','OEACTIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010319','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202010319','EMPEXPORT','ONDEMAND',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202010319','EMPEXPORT','SCHEDULED',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202010309','EMPEXPORT','TEST','Nov  2 2020  9:05AM','ECSB401KEX',NULL,NULL,NULL,'202010309','Oct 30 2020 12:00AM','Dec 30 1899 12:00AM','202010301','180','eecPayGroup','SEMIMO','202010301',dbo.fn_GetTimedKey(),NULL,'us3rVaROB1010',NULL);
+
+
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','InitialSort','C','drvSort');
@@ -213,6 +215,10 @@ CREATE TABLE [dbo].[U_ECSB401KEX_drvTbl] (
     [drvContribSrc2] nvarchar(12) NULL,
     [drvContribSrc3] nvarchar(12) NULL,
     [drvContribSrc4] nvarchar(12) NULL,
+    [drvContribSrc5] nvarchar(12) NULL,
+    [drvContribSrc6] nvarchar(12) NULL,
+    [drvContribSrc7] nvarchar(12) NULL,
+    [drvContribSrc8] nvarchar(12) NULL,
     [drvLoanPayment1] nvarchar(12) NULL,
     [drvLoanPayment2] nvarchar(12) NULL,
     [drvLoanPayment3] nvarchar(12) NULL,
@@ -226,6 +232,10 @@ CREATE TABLE [dbo].[U_ECSB401KEX_drvTbl] (
     [drvPlanYTDConSrc2] nvarchar(12) NULL,
     [drvPlanYTDConSrc3] nvarchar(12) NULL,
     [drvPlanYTDConSrc4] nvarchar(12) NULL,
+    [drvPlanYTDConSrc5] nvarchar(12) NULL,
+    [drvPlanYTDConSrc6] nvarchar(12) NULL,
+    [drvPlanYTDConSrc7] nvarchar(12) NULL,
+    [drvPlanYTDConSrc8] nvarchar(12) NULL,
     [drvYTDDefAllocComp] nvarchar(12) NULL,
     [drvYTDPlanTestComp] nvarchar(12) NULL,
     [drvYTDPlanTotalComp] nvarchar(12) NULL,
@@ -286,6 +296,14 @@ CREATE TABLE [dbo].[U_ECSB401KEX_PDedHist] (
     [PdhRothAmtYTD] numeric NULL,
     [PdhRothCAmt] numeric NULL,
     [PdhRothCAmtYTD] numeric NULL,
+    [Pdh401FPAmt] numeric NULL,
+    [Pdh401FPAmtYTD] numeric NULL,
+    [Pdh401CUAmt] numeric NULL,
+    [Pdh401CUAmtYTD] numeric NULL,
+    [PdhRothPAmt] numeric NULL,
+    [PdhRothPAmtYTD] numeric NULL,
+    [PdhRotCPAmt] numeric NULL,
+    [PdhRotCPAmtYTD] numeric NULL,
     [Pdh401L1Amt] numeric NULL,
     [Pdh401L2Amt] numeric NULL,
     [Pdh401L3Amt] numeric NULL,
@@ -318,6 +336,10 @@ CREATE TABLE [dbo].[U_ECSB401KEX_Trailer] (
     [drvContribSrc2Total] nvarchar(12) NULL,
     [drvContribSrc3Total] nvarchar(12) NULL,
     [drvContribSrc4Total] nvarchar(12) NULL,
+    [drvContribSrc5Total] nvarchar(12) NULL,
+    [drvContribSrc6Total] nvarchar(12) NULL,
+    [drvContribSrc7Total] nvarchar(12) NULL,
+    [drvContribSrc8Total] nvarchar(12) NULL,
     [drvLoanPaymentTotal1] nvarchar(12) NULL,
     [drvLoanPaymentTotal2] nvarchar(12) NULL,
     [drvLoanPaymentTotal3] nvarchar(12) NULL,
@@ -399,7 +421,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'ROTH,ROTHC,401F,401C,401L,401L2,401L3,401L4,401L5';
+    SET @DedList = 'ROTH,ROTHC,401F,401C,401L,401L2,401L3,401L4,401L5,401FP,401CU,ROTHP,ROTCP';
 
     IF OBJECT_ID('U_ECSB401KEX_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ECSB401KEX_DedList;
@@ -466,6 +488,20 @@ BEGIN
         ,PdhRothAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)        
         ,PdhRothCAmt    = SUM(CASE WHEN PdhDedCode IN ('ROTHC') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhRothCAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+
+        ,Pdh401FPAmt        = SUM(CASE WHEN PdhDedCode IN ('401FP') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,Pdh401FPAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('401FP') THEN PdhEECurAmt ELSE 0.00 END)
+
+        ,Pdh401CUAmt        = SUM(CASE WHEN PdhDedCode IN ('401CU') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,Pdh401CUAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+
+        ,PdhRothPAmt        = SUM(CASE WHEN PdhDedCode IN ('ROTHP') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhRothPAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTHP') THEN PdhEECurAmt ELSE 0.00 END)
+
+        ,PdhRotCPAmt        = SUM(CASE WHEN PdhDedCode IN ('ROTCP') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhRotCPAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('ROTCP') THEN PdhEECurAmt ELSE 0.00 END)
+
+
         ,Pdh401L1Amt     = SUM(CASE WHEN PdhDedCode IN ('401L1') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401L2Amt     = SUM(CASE WHEN PdhDedCode IN ('401L2') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401L3Amt     = SUM(CASE WHEN PdhDedCode IN ('401L3') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
@@ -541,6 +577,12 @@ BEGIN
         ,drvContribSrc3 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothAmt*100, '#0'), ''), 12)
         -- RIGHT(SPACE(12) + FORMAT(PdhRothAmt*100, '#0'), 12)
         ,drvContribSrc4 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothCAmt*100, '#0'), ''), 12)
+
+        ,drvContribSrc5 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401FPAmt*100, '#0'), ''), 12)
+        ,drvContribSrc6 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401CUAmt*100, '#0'), ''), 12)
+        ,drvContribSrc7 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothPAmt*100, '#0'), ''), 12)
+        ,drvContribSrc8 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRotCPAmt*100, '#0'), ''), 12)
+
         ,drvLoanPayment1 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(L1EEAmt*100, '#0'), ''), 12)
         ,drvLoanPayment2 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401L2Amt*100, '#0'), ''), 12)
         ,drvLoanPayment3 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401L3Amt*100, '#0'), ''), 12)
@@ -554,6 +596,12 @@ BEGIN
         ,drvPlanYTDConSrc2 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401CAmtYTD*100, '#0'), ''), 12)
         ,drvPlanYTDConSrc3 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothAmtYTD*100, '#0'), ''), 12)
         ,drvPlanYTDConSrc4 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothCAmtYTD*100, '#0'), ''), 12)
+
+        ,drvPlanYTDConSrc5 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401FPAmtYTD*100, '#0'), ''), 12)
+        ,drvPlanYTDConSrc6 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(Pdh401CUAmtYTD*100, '#0'), ''), 12)
+        ,drvPlanYTDConSrc7 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRothPAmtYTD*100, '#0'), ''), 12)
+        ,drvPlanYTDConSrc8 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PdhRotCPAmtYTD*100, '#0'), ''), 12)
+
         ,drvYTDDefAllocComp = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PehYTDDefAllocComp*100, '#0'), ''), 12)
         ,drvYTDPlanTestComp = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PehYTDPlanTestComp*100, '#0'), ''), 12)
         ,drvYTDPlanTotalComp = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(PehYTDPlanTotalComp*100, '#0'), ''), 12)
@@ -620,7 +668,7 @@ BEGIN
     LEFT JOIN (
             SELECT EedEEID, EedCOID, EedDedCode, MAX(EedEEEligDate) AS EligDate
             FROM dbo.EmpDedFull WITH (NOLOCK)
-            WHERE EedDedCode IN ('ROTH','ROTHC','401F','401L','401L2','401L3','401L4','401L5')
+            WHERE EedDedCode IN ('ROTH','ROTHC','401F','401L','401L2','401L3','401L4','401L5','401FP','401CU','ROTHP','ROTCP')
             GROUP BY EedEEID, EedCOID, EedDedCode
         ) AS Emp_Eligbility
         ON EedEEID = xEEID
@@ -685,6 +733,12 @@ BEGIN
         ,@Contrib2 AS INTEGER
         ,@Contrib3 AS INTEGER
         ,@Contrib4 AS INTEGER
+
+        ,@Contrib5 AS INTEGER
+        ,@Contrib6 AS INTEGER
+        ,@Contrib7 AS INTEGER
+        ,@Contrib8 AS INTEGER
+
         ,@Payment1 AS INTEGER
         ,@Payment2 AS INTEGER
         ,@Payment3 AS INTEGER
@@ -695,6 +749,11 @@ BEGIN
     SET @Contrib2 = (SELECT SUM(CAST(drvContribSrc2 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
     SET @Contrib3 = (SELECT SUM(CAST(drvContribSrc3 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
     SET @Contrib4 = (SELECT SUM(CAST(drvContribSrc4 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
+
+    SET @Contrib5 = (SELECT SUM(CAST(drvContribSrc5 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
+    SET @Contrib6 = (SELECT SUM(CAST(drvContribSrc6 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
+    SET @Contrib7 = (SELECT SUM(CAST(drvContribSrc7 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
+    SET @Contrib8 = (SELECT SUM(CAST(drvContribSrc8 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
 
     SET @Payment1 = (SELECT SUM(CAST(drvLoanPayment1 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
     SET @Payment2 = (SELECT SUM(CAST(drvLoanPayment2 AS INTEGER)) FROM dbo.U_ECSB401KEX_drvTbl);
@@ -718,6 +777,12 @@ BEGIN
         ,drvContribSrc3Total = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Contrib3, '#0'), ''), 12)
         --RIGHT(SPACE(12) + CASE WHEN @Contrib3 > 0 THEN FORMAT(@Contrib3, '#') ELSE '0' END, 12)
         ,drvContribSrc4Total = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Contrib4, '#0'), ''), 12)
+
+        ,drvContribSrc5Total = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Contrib5, '#0'), ''), 12)
+        ,drvContribSrc6Total = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Contrib6, '#0'), ''), 12)
+        ,drvContribSrc7Total = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Contrib7, '#0'), ''), 12)
+        ,drvContribSrc8Total = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Contrib8, '#0'), ''), 12)
+
         --RIGHT(SPACE(12) + CASE WHEN @Contrib4 > 0 THEN FORMAT(@Contrib4, '#') ELSE '0' END, 12)
         ,drvLoanPaymentTotal1 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Payment1, '#0'), ''), 12)
         --RIGHT(SPACE(12) + CASE WHEN @Payment1 > 0 THEN FORMAT(@Payment1, '#') ELSE '0' END, 12)
@@ -762,8 +827,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202009301'
        ,expStartPerControl     = '202009301'
-       ,expLastEndPerControl   = '202009309'
-       ,expEndPerControl       = '202009309'
+       ,expLastEndPerControl   = '202010319'
+       ,expEndPerControl       = '202010319'
 WHERE expFormatCode = 'ECSB401KEX';
 
 **********************************************************************************/

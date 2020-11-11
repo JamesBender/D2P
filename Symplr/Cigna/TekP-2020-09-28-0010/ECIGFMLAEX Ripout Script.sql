@@ -86,7 +86,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','45','(''DA''=''F'')','ECIGFMLAEXZ0','8','D','10','534',NULL,'Adjusted Service Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','46','(''DA''=''F'')','ECIGFMLAEXZ0','20','D','10','542',NULL,'Employee Work-site Location',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','47','(''DA''=''F'')','ECIGFMLAEXZ0','9','D','10','562',NULL,'Employee Annual Salary for Life Benefit',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"A"','48','(''DA''=''F'')','ECIGFMLAEXZ0','1','D','10','571',NULL,'Mode For Disability Earnings',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvModeForDisabEarnings"','48','(''UA''=''F'')','ECIGFMLAEXZ0','1','D','10','571',NULL,'Mode For Disability Earnings',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeErngForDisProd"','49','(''UA''=''F'')','ECIGFMLAEXZ0','9','D','10','572',NULL,'Employee Earnings for Disability Products',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','50','(''DA''=''F'')','ECIGFMLAEXZ0','8','D','10','581',NULL,'Last Earnings Change Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalariedIndicator"','51','(''UA''=''F'')','ECIGFMLAEXZ0','1','D','10','589',NULL,'Salaried Indicator',NULL,NULL);
@@ -231,7 +231,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFMLAEX_20201027.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFMLAEX_20201104.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010319','EMPEXPORT','OEACTIVE','Oct 19 2020  6:11PM','ECIGFMLAEX',NULL,NULL,NULL,'202010319','Oct 16 2020 12:23PM','Oct 16 2020 12:23PM','202010011','572','','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010319','EMPEXPORT','OEPASSIVE','Oct 19 2020  6:12PM','ECIGFMLAEX',NULL,NULL,NULL,'202010319','Oct 16 2020 12:23PM','Oct 16 2020 12:23PM','202010011','572','','','202010011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -322,6 +322,7 @@ CREATE TABLE [dbo].[U_ECIGFMLAEX_drvTbl] (
     [drvEmployeeStatusEffDate] datetime NULL,
     [drvEmployeeType] varchar(1) NOT NULL,
     [drvEmployeeDateOfHire] datetime NULL,
+    [drvModeForDisabEarnings] varchar(1) NOT NULL,
     [drvEmployeeErngForDisProd] nvarchar(4000) NULL,
     [drvSalariedIndicator] varchar(1) NOT NULL,
     [drvFullTimeIndicator] varchar(1) NOT NULL,
@@ -631,10 +632,11 @@ BEGIN
                                     END
         ,drvEmployeeType = CASE WHEN EecEEType = 'REG' THEN 'P' ELSE 'T' END
         ,drvEmployeeDateOfHire = EecDateOfLastHire
+        ,drvModeForDisabEarnings = CASE WHEN EecSalaryOrHourly = 'H' THEN 'H' ELSE 'A' END
         ,drvEmployeeErngForDisProd = FORMAT(CASE WHEN EecSalaryOrHourly = 'H' THEN EecHourlyPayRate*100 ELSE EecAnnSalary*100 END, '000000000')
         ,drvSalariedIndicator = CASE WHEN EecSalaryOrHourly = 'S' THEN 'Y' ELSE 'N' END
-        ,drvFullTimeIndicator = CASE WHEN EecFullTimeOrPartTime = 'FT' THEN 'Y' ELSE 'N' END
-        ,drvCommissionBonusInd = CASE WHEN EecFullTimeOrPartTime = 'FT' AND EecSalaryOrHourly = 'S' THEN 'Y' ELSE 'N' END
+        ,drvFullTimeIndicator = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Y' ELSE 'N' END
+        ,drvCommissionBonusInd = CASE WHEN EecFullTimeOrPartTime = 'F' AND EecSalaryOrHourly = 'S' THEN 'Y' ELSE 'N' END
         ,drvExemptIndicator = CASE WHEN EjhFLSACategory = 'E' THEN 'Y' ELSE 'N' END
         ,drvNumHourPerWeek = FORMAT(PehCurHrs/2, '00.00')
         ,drvTaxFilingStateCode = LocAddressState -- EecSITWorkInStateCode
@@ -675,7 +677,7 @@ BEGIN
             GROUP BY EdhEEID, EdhCOID) AS LTD_Edh
         ON LTD_EdhEEID = xEEID
         AND LTD_EdhCOID = xCOID
-    JOIN dbo.EmpPers Sup WITH (NOLOCK)
+    LEFT JOIN dbo.EmpPers Sup WITH (NOLOCK)
         ON Sup.EepEEID = EecSupervisorID
     /*LEFT JOIN dbo.U_dsi_BDM_ECIGFMLAEX WITH (NOLOCK)
         ON BdmEEID = xEEID 

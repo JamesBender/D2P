@@ -1,0 +1,5 @@
+Interface details (ECRNCEMPEX)
+Env – ANWZ12
+Server – NWZ1WUP2DB03 
+Database – ULTIPRO_WPHORNB
+Export Name – Crunchtime Employee Export

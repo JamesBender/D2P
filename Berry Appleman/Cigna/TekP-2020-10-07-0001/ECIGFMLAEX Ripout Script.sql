@@ -76,7 +76,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"R"','35','(''DA''=''F'')','ECIGFMLAEXZ0','1','D','10','438',NULL,'Type of Address',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','36','(''DA''=''F'')','ECIGFMLAEXZ0','8','D','10','439',NULL,'Effective Date of the Address',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneNumber"','37','(''UA''=''F'')','ECIGFMLAEXZ0','20','D','10','447',NULL,'Phone Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','38','(''DA''=''F'')','ECIGFMLAEXZ0','1','D','10','467',NULL,'Phone Usage code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneUsageCode"','38','(''UA''=''F'')','ECIGFMLAEXZ0','1','D','10','467',NULL,'Phone Usage code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','39','(''DA''=''F'')','ECIGFMLAEXZ0','45','D','10','468',NULL,'Reserved',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','40','(''DA''=''F'')','ECIGFMLAEXZ0','2','D','10','513',NULL,'Reserved',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmploymentStatusCode"','41','(''UA''=''F'')','ECIGFMLAEXZ0','2','D','10','515',NULL,'Employment Status Code',NULL,NULL);
@@ -231,13 +231,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFMLAEX_20201029.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFMLAEX_20201110.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010299','EMPEXPORT','OEACTIVE','Oct 29 2020  6:09PM','ECIGFMLAEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:30PM','Oct 29 2020 12:30PM','202010291','2','','','202010291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010299','EMPEXPORT','OEPASSIVE','Oct 29 2020  6:09PM','ECIGFMLAEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:30PM','Oct 29 2020 12:30PM','202010291','1290','','','202010291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Cigna FMLA Disability Export','202010299','EMPEXPORT','ONDEM_XOE','Oct 29 2020  6:09PM','ECIGFMLAEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:30PM','Oct 29 2020 12:30PM','202010291','1290','','','202010291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Cigna FMLA Disability Ex-Sched','202010299','EMPEXPORT','SCH_ECIGFM','Oct 29 2020  6:09PM','ECIGFMLAEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:30PM','Oct 29 2020 12:30PM','202010291','1290','','','202010291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Cigna FMLA Disability Ex-Test','202010299','EMPEXPORT','TEST_XOE','Oct 29 2020  6:10PM','ECIGFMLAEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:30PM','Oct 29 2020 12:30PM','202010291','1290','','','202010291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','5ZIE7,N2N65,9BD6P,9BD4H,9BD5V,IAGFG,IKX2Y,9BD2G,M8LFS,9BD9V,3VHC8',NULL,NULL,NULL,'Cigna FMLA Disability Ex-Test','202010309','EMPEXPORT','TEST_XOE','Nov 10 2020 12:00AM','ECIGFMLAEX',NULL,NULL,NULL,'202010309','Oct 30 2020 12:00AM','Dec 30 1899 12:00AM','202010161','992','','','202010161',dbo.fn_GetTimedKey(),NULL,'us3jBeBER1011',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGFMLAEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGFMLAEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGFMLAEX','InitialSort','C','drvSort');
@@ -306,7 +306,7 @@ CREATE TABLE [dbo].[U_ECIGFMLAEX_drvTbl] (
     [drvSort] varchar(1) NOT NULL,
     [drvSSN] char(11) NULL,
     [drvEmployeeID] char(9) NULL,
-    [drvNameLast] varchar(100) NULL,
+    [drvNameLast] varchar(8000) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameSuffix] varchar(30) NULL,
@@ -319,6 +319,7 @@ CREATE TABLE [dbo].[U_ECIGFMLAEX_drvTbl] (
     [drvAddressSate] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvPhoneNumber] varchar(50) NULL,
+    [drvPhoneUsageCode] varchar(1) NULL,
     [drvEmploymentStatusCode] varchar(2) NOT NULL,
     [drvEmployeeStatusEffDate] datetime NULL,
     [drvEmployeeType] varchar(1) NOT NULL,
@@ -327,16 +328,16 @@ CREATE TABLE [dbo].[U_ECIGFMLAEX_drvTbl] (
     [drvSalariedIndicator] varchar(1) NOT NULL,
     [drvFullTimeIndicator] varchar(1) NOT NULL,
     [drvExemptIndicator] varchar(1) NOT NULL,
-    [drvHoursWorkedPerWeek] nvarchar(4000) NULL,
+    [drvHoursWorkedPerWeek] nvarchar(4000) NOT NULL,
     [drvTaxFilingStateCode] varchar(255) NULL,
-    [drvOrganizationName] varchar(25) NULL,
-    [drvClientOrganizationCode] varchar(6) NULL,
+    [drvOrganizationName] varchar(8000) NULL,
+    [drvClientOrganizationCode] varchar(10) NULL,
     [drvClientLocationCode] char(6) NULL,
     [drvKeyEmployeeIndicator] varchar(1) NOT NULL,
-    [drvActualAnnualHours] nvarchar(4000) NULL,
+    [drvActualAnnualHours] nvarchar(4000) NOT NULL,
     [drvWorkState] varchar(255) NULL,
     [drvCoverageCodeLoop2] varchar(3) NULL,
-    [drvPolicySymbol2] varchar(2) NULL,
+    [drvPolicySymbol2] varchar(3) NULL,
     [drvPolicyNumber2] varchar(7) NULL,
     [drvProvisionEffDateLoop2] datetime NULL,
     [drvElectedBenefitPct2] varchar(5) NULL,
@@ -617,7 +618,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvEmployeeID = EecEmpNo
-        ,drvNameLast = EepNameLast
+        ,drvNameLast = REPLACE(REPLACE(EepNameLast, '(', ''), ')', '')
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameSuffix = NULLIF(EepNameSuffix,'Z')
@@ -631,8 +632,11 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressSate = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
+        ,drvAddressZipCode =    CASE WHEN LEN(RTRIM(EepAddressZipCode)) = 5 THEN EepAddressZipCode
+                                    ELSE LEFT(EepAddressZipCode, 5) + '-' + RIGHT(RTRIM(EepAddressZipCode), 4)
+                                END
         ,drvPhoneNumber = CASE WHEN ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber ELSE EfoPhoneNumber END
+        ,drvPhoneUsageCode = CASE WHEN (EepPhoneHomeNumber IS NOT NULL AND LEN(EepPhoneHomeNumber) > 0 ) OR EfoPhoneNumber IS NOT NULL THEN 'R' END
         ,drvEmploymentStatusCode =    CASE WHEN EecEmplStatus = 'L' THEN 'L1'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'RT'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DI'
@@ -648,20 +652,23 @@ BEGIN
         ,drvSalariedIndicator = CASE WHEN EecSalaryOrHourly = 'S' THEN 'Y' ELSE 'N' END
         ,drvFullTimeIndicator = CASE WHEN EecFullTimeOrPartTime = 'FT' THEN 'Y' ELSE 'N' END
         ,drvExemptIndicator = CASE WHEN EjhFLSACategory = 'E' THEN 'Y' ELSE 'N' END
-        ,drvHoursWorkedPerWeek = CASE WHEN EecEmpNo IN ('000001','111802','111687','010196','009970','111783','111516') THEN '04000' ELSE FORMAT(EjhWeeklyHours*100, '00000') END
+
+        ,drvHoursWorkedPerWeek = ISNULL(CASE WHEN EecEmpNo IN ('000001','111802','111687','010196','009970','111783','111516') THEN '04000' ELSE FORMAT((EecScheduledWorkHrs*100)/2, '00000') END, '00000')
+                                    --CASE WHEN EecEmpNo IN ('000001','111802','111687','010196','009970','111783','111516') THEN '04000' ELSE FORMAT(EjhWeeklyHours*100, '00000') END
+
         ,drvTaxFilingStateCode = EepAddressState
-        ,drvOrganizationName = OrgDesc1
+        ,drvOrganizationName = REPLACE(UPPER(OrgDesc1), '/', ' ')
         ,drvClientOrganizationCode = EecOrgLvl1
         ,drvClientLocationCode = EecLocation
         ,drvKeyEmployeeIndicator = CASE WHEN JbcJobFamily = '7' THEN 'Y' ELSE 'N' END
-        ,drvActualAnnualHours =    CASE WHEN EecEmpNo IN ('000001','111802','111687','010196','009970','111783','111516') THEN '04000' 
+        ,drvActualAnnualHours = ISNULL(CASE WHEN EecEmpNo IN ('000001','111802','111687','010196','009970','111783','111516') THEN '04000' 
                                     ELSE FORMAT(CAST(CASE WHEN PehCurHrsYTD % 1 >= .45 THEN PehCurHrsYTD+ 1 ELSE PehCurHrsYTD END AS INT), '0000')
                                     --FORMAT(PehCurHrsYTD*100, '00000') 
-                                END
+                                END, '0000')
         ,drvWorkState = LocAddressState
         ,drvCoverageCodeLoop2 = CASE WHEN STDS_DedCode IS NOT NULL THEN 'STD' END
 
-        ,drvPolicySymbol2 = CASE WHEN STDS_DedCode IS NOT NULL THEN 'LK' END
+        ,drvPolicySymbol2 = CASE WHEN STDS_DedCode IS NOT NULL THEN 'SHD' END
         ,drvPolicyNumber2 = CASE WHEN STDS_DedCode IS NOT NULL THEN '0963474' END
 
         ,drvProvisionEffDateLoop2 = CASE WHEN STDS_DedCode IS NOT NULL THEN Min_STDS END
@@ -725,19 +732,15 @@ BEGIN
                 WHERE RN = 1
             ) AS Cel
         ON EfoEEID = xEEID
-    JOIN (
+    LEFT JOIN (
             SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
             FROM (
                     SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
                     FROM dbo.EmpHJob WITH (NOLOCK)) AS X
             WHERE RN = 1) AS EJH
-    /*JOIN (
-            SELECT EjhEEID, EjhCOID, EjhJobCode, DATEDIFF(MONTH, MIN(EjhJobEffDate), GETDATE()) AS EjhMonthsInJobCode, MAX(EjhFLSACategory) AS EjhFLSACategory
-            FROM dbo.EmpHJob WITH (NOLOCK)
-            GROUP BY EjhEEID, EjhCOID, EjhJobCode ) AS JobMonths*/
         ON EjhEEID = xEEID
         AND EjhCOID = xCOID
-        AND EjhJobCode = EecJobCode
+        AND EjhJobCode = EecJobCode 
     JOIN (
             SELECT DISTINCT OrgCode AS OrgCode1, OrgDesc AS OrgDesc1, OrgManagerId AS OrgManagerId1
             FROM dbo.OrgLevel WITH (NOLOCK)
@@ -746,7 +749,7 @@ BEGIN
         ON OrgCode1 = EecOrgLvl1
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    JOIN dbo.U_ECIGFMLAEX_PEarHist WITH (NOLOCK)
+    LEFT JOIN dbo.U_ECIGFMLAEX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
@@ -813,8 +816,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202010221'
        ,expStartPerControl     = '202010221'
-       ,expLastEndPerControl   = '202010299'
-       ,expEndPerControl       = '202010299'
+       ,expLastEndPerControl   = '202011059'
+       ,expEndPerControl       = '202011059'
 WHERE expFormatCode = 'ECIGFMLAEX';
 
 **********************************************************************************/

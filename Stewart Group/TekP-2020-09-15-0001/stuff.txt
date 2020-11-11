@@ -1,0 +1,122 @@
+APPCOR :: MEDS 
+MASNRY :: MEDB 
+RLCHEV :: AMEDB
+RLCHEV :: AMEDG
+RLCHEV :: AMEDS
+
+
+
+
+
+
+OFFCUR	MEDG	EecEmpNo is 1300039	LLC7
+Top row is sproc is fine.
+
+WHEN EecPayGroup = 'MASNRY' AND BdmDedCode = 'MEDG' THEN 'LLC7'
+WHEN EecPayGroup = 'YBPSG' AND BdmDedCode = 'MEDG' THEN 'MDSG'
+WHEN EecPayGroup = 'YBPSG' AND BdmDedCode = 'MEDS' THEN 'MDSG'
+WHEN EecPayGroup = 'YBPSG' AND BdmDedCode = 'MEDB' THEN 'MDSG'
+WHEN EecPayGroup = 'STONE' AND BdmDedCode = 'MEDG' THEN 'YBA'
+WHEN EecPayGroup = 'STONE' AND BdmDedCode = 'MEDS' THEN 'YBA'
+WHEN EecPayGroup = 'STONE' AND BdmDedCode = 'MEDB' THEN 'YBA'
+WHEN EecPayGroup = 'YMG' AND BdmDedCode = 'MEDG' THEN 'YMG'
+WHEN EecPayGroup = 'YMG' AND BdmDedCode = 'MEDS' THEN 'YMG'
+WHEN EecPayGroup = 'YMG' AND BdmDedCode = 'MEDB	' THEN 'YMG'
+
+
+
+WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND BdmDedCode = 'MEDG' THEN 'YBP6'
+WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND BdmDedCode = 'MEDS' THEN 'YBP6'
+WHEN EecPayGroup IN ('OFFICE','OFFCUR') AND BdmDedCode = 'MEDB' THEN 'YBP6'
+
+WHEN EecPayGroup = 'SPM' AND BdmDedCode = 'MEDG' THEN 'SLD'
+WHEN EecPayGroup = 'SPM' AND BdmDedCode = 'MEDS' THEN 'SLD'
+WHEN EecPayGroup = 'SPM' AND BdmDedCode = 'MEDB' THEN 'SLD'
+WHEN EecPayGroup = 'ESSG' AND BdmDedCode = 'MEDG' THEN 'ESSG'
+WHEN EecPayGroup = 'ESSG' AND BdmDedCode = 'MEDS' THEN 'ESSG'
+WHEN EecPayGroup = 'ESSG' AND BdmDedCode = 'MEDB' THEN 'ESSG'
+WHEN EecPayGroup = 'WSM' AND BdmDedCode = 'CMEDG' THEN 'WSM1'
+WHEN EecPayGroup = 'WSM' AND BdmDedCode = 'CMEDS' THEN 'WSM1'
+WHEN EecPayGroup = 'WSM' AND BdmDedCode = 'CMEDB' THEN 'WSM1'
+WHEN EecPayGroup = 'WSC' AND BdmDedCode = 'CMEDG' THEN 'WSC3'
+WHEN EecPayGroup = 'WSC' AND BdmDedCode = 'CMEDS' THEN 'WSC3'
+WHEN EecPayGroup = 'WSC' AND BdmDedCode = 'CMEDB' THEN 'WSC3'
+WHEN EecPayGroup = 'AVIAT' AND BdmDedCode = 'MEDG' THEN 'YAV5'
+WHEN EecPayGroup = 'AVIAT' AND BdmDedCode = 'MEDS' THEN 'YAV5'
+WHEN EecPayGroup = 'AVIAT' AND BdmDedCode = 'MEDB' THEN 'YAV5'
+
+WHEN EecPayGroup IN ('LEWIS',''LEWISF') AND BmdDedCode IN ('LMEDG','MEDG') THEN 'HHL1'
+WHEN EecPayGroup IN ('LEWIS','LEWISF') AND BmdDedCode IN ('LMEDS','MEDS') THEN 'HHL1'
+WHEN EecPayGroup IN ('LEWIS','LEWISF') AND BmdDedCode IN ('LMEDB','MEDB') THEN 'HHL1'
+
+WHEN EecPayGroup = 'RILEY' AND BdmDedCode = 'MEDG' THEN 'RWF9'
+
+WHEN EecPayGroup = 'RILEY' AND BdmDedCode = 'MEDS' THEN 'RWF9'
+WHEN EecPayGroup = 'RILEY' AND BdmDedCode = 'MEDB' THEN 'RWF9'
+WHEN EecPayGroup IN ('STCON','STCONF') AND BdmDedCode = 'MEDG' THEN 'STC3
+WHEN EecPayGroup IN ('STCON','STCONF') AND BdmDedCode = 'MEDS' THEN 'STC3
+WHEN EecPayGroup IN ('STCON','STCONF') AND BdmDedCode = 'MEDB' THEN 'STC3
+WHEN EecPayGroup = 'STINCF' AND BdmDedCode = 'MEDG' THEN 'STE4'
+WHEN EecPayGroup = 'STINCF' AND BdmDedCode = 'MEDS' THEN 'STE4'
+WHEN EecPayGroup = 'STINCF' AND BdmDedCode = 'MEDB' THEN 'STE4'
+WHEN EecPayGroup = 'STINC' AND BdmDedCode = 'MEDG' THEN 'STE4'
+WHEN EecPayGroup = 'STINC' AND BdmDedCode = 'MEDS' THEN 'STE4'
+WHEN EecPayGroup = 'STINC' AND BdmDedCode = 'MEDB' THEN 'STE4'
+WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND BdmDedCode = 'AMEDG' THEN 'WGC7
+WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND BdmDedCode = 'AMEDS' THEN 'WGC7
+WHEN EecPayGroup IN ('APPCOR','APPSUB','WSTCHV') AND BdmDedCode = 'AMEDB' THEN 'WGC7
+WHEN EecPayGroup = 'APPBMW' AND BdmDedCode = 'AMEDG' THEN 'ACB3'
+WHEN EecPayGroup = 'APPBMW' AND BdmDedCode = 'AMEDS' THEN 'ACB3'
+WHEN EecPayGroup = 'APPBMW' AND BdmDedCode = 'AMEDB' THEN 'ACB3'
+
+WHEN EecPayGroup = 'APPFOR' AND BdmDedCode = 'AMEDG' THEN 'AAG1'
+WHEN EecPayGroup = 'APPFOR' AND BdmDedCode = 'AMEDS' THEN 'AAG1'
+WHEN EecPayGroup = 'APPFOR' AND BdmDedCode = 'AMEDB' THEN 'AAG1'
+WHEN EecPayGroup = 'APPNIS' AND BdmDedCode = 'AMEDG' THEN 'ANI5'
+WHEN EecPayGroup = 'APPNIS' AND BdmDedCode = 'AMEDS' THEN 'ANI5'
+WHEN EecPayGroup = 'APPNIS' AND BdmDedCode = 'AMEDB' THEN 'ANI5'
+WHEN EecPayGroup = 'APPHON' AND BdmDedCode = 'AMEDG' THEN 'AMI4'
+WHEN EecPayGroup = 'APPHON' AND BdmDedCode = 'AMEDS' THEN 'AMI4'
+WHEN EecPayGroup = 'APPHON' AND BdmDedCode = 'AMEDB' THEN 'AMI4'
+WHEN EecPayGroup = 'RLCHEVY' AND BdmDedCode = 'AMEDG' THEN 'RLC6'
+WHEN EecPayGroup = 'RLCHEVY' AND BdmDedCode = 'AMEDS' THEN 'RLC6'
+WHEN EecPayGroup = 'RLCHEVY' AND BdmDedCode = 'AMEDB' THEN 'RLC6'
+WHEN EecPayGroup = 'CARWA' AND BdmDedCode = 'AMEDG' THEN 'ACE2'
+WHEN EecPayGroup = 'CARWA' AND BdmDedCode = 'AMEDS' THEN 'ACE2'
+WHEN EecPayGroup = 'CARWA' AND BdmDedCode = 'AMEDB' THEN 'ACE2'
+WHEN EecPayGroup = 'BEASFO' AND BdmDedCode = 'AMEDG' THEN 'AFY'
+WHEN EecPayGroup = 'BEASFO' AND BdmDedCode = 'AMEDS' THEN 'AFY'
+WHEN EecPayGroup = 'BEASFO' AND BdmDedCode = 'AMEDB' THEN 'AFY'
+WHEN EecPayGroup = 'PRTZ' AND BdmDedCode = 'AMEDG' THEN 'PAB'
+WHEN EecPayGroup = 'PRTZ' AND BdmDedCode = 'AMEDS' THEN 'PAB'
+WHEN EecPayGroup = 'PRTZ' AND BdmDedCode = 'AMEDB' THEN 'PAB'
+WHEN EecPayGroup = 'HANDOD' AND BdmDedCode = 'AMEDG' THEN 'ACD'
+WHEN EecPayGroup = 'HANDOD' AND BdmDedCode = 'AMEDS' THEN 'ACD'
+WHEN EecPayGroup = 'HANDOD' AND BdmDedCode = 'AMEDB' THEN 'ACD'
+WHEN EecPayGroup = 'RLCOL' AND BdmDedCode = 'AMEDG' THEN 'CC3'
+WHEN EecPayGroup = 'RLCOL' AND BdmDedCode = 'AMEDB' THEN 'CC3'
+WHEN EecPayGroup = 'RLCOL' AND BdmDedCode = 'AMEDS' THEN 'CC3'
+WHEN EecPayGroup = 'EYC' AND BdmDedCode = 'AMEDG' THEN 'BCY'
+WHEN EecPayGroup = 'EYC' AND BdmDedCode = 'AMEDS' THEN 'BCY'
+WHEN EecPayGroup = 'EYC' AND BdmDedCode = 'AMEDB' THEN 'BCY'
+WHEN EecPayGroup = 'YHCOL' AND BdmDedCode = 'AMEDG' THEN 'YCC2'
+WHEN EecPayGroup = 'YHCOL' AND BdmDedCode = 'AMEDS' THEN 'YCC2'
+WHEN EecPayGroup = 'YHCOL' AND BdmDedCode = 'AMEDB' THEN 'YCC2'
+WHEN EecPayGroup = 'HAKES' AND BdmDedCode = 'AMEDG' THEN 'HBS'
+WHEN EecPayGroup = 'HAKES' AND BdmDedCode = 'AMEDS' THEN 'HBS'
+WHEN EecPayGroup = 'HAKES' AND BdmDedCode = 'AMEDB' THEN 'HBS'
+WHEN EecPayGroup = 'EST' AND BdmDedCode = 'MEDG' THEN '625'
+WHEN EecPayGroup = 'EST' AND BdmDedCode = 'MEDS' THEN '625'
+WHEN EecPayGroup = 'EST' AND BdmDedCode = 'MEDB' THEN '625'
+WHEN EecPayGroup = 'HMA' AND BdmDedCode = 'MEDG' THEN 'HMA'
+WHEN EecPayGroup = 'HMA' AND BdmDedCode = 'MEDS' THEN 'HMA'
+WHEN EecPayGroup = 'HMA' AND BdmDedCode = 'MEDB' THEN 'HMA'
+WHEN EecPayGroup = 'HANHON' AND BdmDedCode = 'AMEDG' THEN 'AHI' 
+WHEN EecPayGroup = 'HANHON' AND BdmDedCode = 'AMEDS' THEN 'AHI'
+WHEN EecPayGroup = 'HANHON' AND BdmDedCode = 'AMEDB' THEN 'AHI' 
+WHEN EecPayGroup = 'APPYAS' AND BdmDedCode = 'AMEDG' THEN 'YAS'
+WHEN EecPayGroup = 'APPYAS' AND BdmDedCode = 'AMEDS' THEN 'YAS'
+WHEN EecPayGroup = 'APPYAS' AND BdmDedCode = 'AMEDB' THEN 'YAS'
+WHEN EecPayGroup = 'APPAOL' AND BdmDedCode = 'AMEDG' THEN 'AOL'
+WHEN EecPayGroup = 'APPAOL' AND BdmDedCode = 'AMEDS' THEN 'AOL'
+WHEN EecPayGroup = 'APPAOL' AND BdmDedCode = 'AMEDB' THEN 'AOL'
