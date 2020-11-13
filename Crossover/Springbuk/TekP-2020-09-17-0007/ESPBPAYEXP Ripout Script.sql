@@ -66,7 +66,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''DA''=''T,'')','ESPBPAYEXPZ0','50','D','10','14',NULL,'Biweekly rate (if Salary Employee)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAnnualRate"','15','(''UA''=''T,'')','ESPBPAYEXPZ0','50','D','10','15',NULL,'Annual Rate (If Salary employee)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGrossYTD"','16','(''UD23''=''T,'')','ESPBPAYEXPZ0','50','D','10','16',NULL,'Gross YTD (If available)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''DA''=''T,'')','ESPBPAYEXPZ0','50','D','10','17',NULL,'FSLA',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFSLA"','17','(''UA''=''T,'')','ESPBPAYEXPZ0','50','D','10','17',NULL,'FSLA',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvActiveStatus"','18','(''UA''=''T,'')','ESPBPAYEXPZ0','50','D','10','18',NULL,'Active status',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLocationMajor"','19','(''UA''=''T,'')','ESPBPAYEXPZ0','50','D','10','19',NULL,'LocationMajor (Company)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLocationMinor"','20','(''UA''=''T,'')','ESPBPAYEXPZ0','50','D','10','20',NULL,'LocationMinor (Site Location)',NULL,NULL);
@@ -83,7 +83,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESPBPAYEXP_20201102.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESPBPAYEXP_20201111.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010229','EMPEXPORT','OEACTIVE',NULL,'ESPBPAYEXP',NULL,NULL,NULL,'202010229','Oct 22 2020  5:47PM','Oct 22 2020  5:47PM','202010151',NULL,'','','202010151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010229','EMPEXPORT','OEPASSIVE',NULL,'ESPBPAYEXP',NULL,NULL,NULL,'202010229','Oct 22 2020  5:47PM','Oct 22 2020  5:47PM','202010151',NULL,'','','202010151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -168,14 +168,15 @@ CREATE TABLE [dbo].[U_ESPBPAYEXP_drvTbl] (
     [drvTermDate] datetime NULL,
     [drvHourlyRate] nvarchar(4000) NULL,
     [drvAnnualRate] nvarchar(4000) NULL,
-    [drvGrossYTD] varchar(1) NOT NULL,
+    [drvGrossYTD] nvarchar(4000) NULL,
+    [drvFSLA] char(1) NULL,
     [drvActiveStatus] char(1) NULL,
     [drvLocationMajor] varchar(36) NULL,
     [drvLocationMinor] varchar(25) NULL,
     [drvEthnicity] char(1) NULL,
-    [drvPlanEnrollment] varchar(1) NOT NULL,
+    [drvPlanEnrollment] char(5) NULL,
     [drvMaritalStatus] char(1) NULL,
-    [drvDeductionBenefitGroup] varchar(1) NOT NULL,
+    [drvDeductionBenefitGroup] varchar(24) NULL,
     [drvBenefitSenorityDate] datetime NULL,
     [drvManagementLevel] varchar(30) NULL
 );
@@ -200,6 +201,7 @@ CREATE TABLE [dbo].[U_ESPBPAYEXP_PEarHist] (
     [PehCurAmt] numeric NULL,
     [PehCurHrs] decimal NULL,
     [PehCurAmtYTD] money NULL,
+    [PehCurGrossAmtYTD] numeric NULL,
     [PehCurHrsYTD] decimal NULL,
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompHrs] decimal NULL,
@@ -283,11 +285,16 @@ BEGIN
         SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
     )
 
+    DELETE FROM dbo.U_ESPBPAYEXP_EEList WHERE xEEID NOT IN (
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecDedGroupCode IN ('FTEE','PTEE','PT401','TEMPE')
+    )
+
     --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'FTEE,PTEE,PT401,TEMPE';
+    --SET @DedList = 'FTEE,PTEE,PT401,TEMPE';
+    SET @DedList = 'XOXO,XOXO2';
 
     IF OBJECT_ID('U_ESPBPAYEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ESPBPAYEXP_DedList;
@@ -342,6 +349,7 @@ BEGIN
         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
         -- YTD Payroll Amount/Hours
         ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurGrossAmtYTD           = SUM(CASE WHEN PehEarnCode IN ('BONUS','REG','OT') THEN PehCurAmt ELSE 0.00 END)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
         -- Current Include Deferred Comp Amount/Hours
         ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
@@ -384,7 +392,8 @@ BEGIN
         ,drvTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvHourlyRate = CASE WHEN EecSalaryOrHourly = 'H' THEN  FORMAT(EecHourlyPayRate, '#0.00') END
         ,drvAnnualRate = CASE WHEN EecSalaryOrHourly = 'S' THEN  FORMAT(EecAnnSalary, '#0.00') END
-        ,drvGrossYTD = ''
+        ,drvGrossYTD = FORMAT(PehCurGrossAmtYTD, '#0.00')
+        ,drvFSLA = EjhFLSACategory
         ,drvActiveStatus = EecEmplStatus
         ,drvLocationMajor =    CASE WHEN xCOID = 'CHMS9' THEN 'Crossover Health Management Services'
                                 WHEN xCOID = 'CHMG9' THEN 'Crossover Health Medical Group'
@@ -393,9 +402,13 @@ BEGIN
                             END
         ,drvLocationMinor = OrgDesc2
         ,drvEthnicity = EepEthnicId
-        ,drvPlanEnrollment = ''
+        ,drvPlanEnrollment = CASE WHEN BdmDedCode IN ('XOXO','XOXO2') THEN BdmDedCode END
         ,drvMaritalStatus = eepMaritalStatus
-        ,drvDeductionBenefitGroup = ''
+        ,drvDeductionBenefitGroup =    CASE WHEN EecDedGroupCode = 'FTEE' THEN 'Full Time'
+                                        WHEN EecDedGroupCode = 'PTEE' THEN 'Part Time'
+                                        WHEN EecDedGroupCode = 'PT401' THEN 'Part Time Less Than Half'
+                                        WHEN EecDedGroupCode = 'TEMPE' THEN 'Temporary Employee'
+                                    END
         ,drvBenefitSenorityDate = BdmBenStartDate
         ,drvManagementLevel = CAST(Job_ManagementLevel AS VARCHAR)
     INTO dbo.U_ESPBPAYEXP_drvTbl
@@ -416,6 +429,17 @@ BEGIN
         ON OrgCode2 = EecOrgLvl2
     JOIN [dbo].[fn_MP_CustomFields_JobCode_Export] (NULL, NULL, NULL, NULL) AS Elig
         ON JbcJobCode = EecJobCode
+    JOIN dbo.U_ESPBPAYEXP_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+    LEFT JOIN (
+            SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
+            FROM (
+                    SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                    FROM dbo.EmpHJob WITH (NOLOCK)) AS X
+            WHERE RN = 1) AS EJH
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
+        AND EjhJobCode = EecJobCode 
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEADD(MONTH, 1, EecDateOfTermination) BETWEEN @StartDate AND @EndDate)
     ;
 
