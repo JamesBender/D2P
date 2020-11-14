@@ -141,8 +141,6 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER06_CommunicationNumber"','7','(''UA''=''T*'')','EANTHLNDEXZ0','256','D','21','7',NULL,'Communication Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER07_CommNumberQualifier"','8','(''UA''=''T*'')','EANTHLNDEXZ0','3','D','21','8',NULL,'Communication Number Qualifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER08_CommunicationNumber"','9','(''UA''=''T*'')','EANTHLNDEXZ0','256','D','21','9',NULL,'Communication Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER09_CommNumberQualifier"','10','(''UA''=''T*'')','EANTHLNDEXZ0','3','D','21','10',NULL,'Communication Number Qualifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER10_CommunicationNumber"','11','(''UA''=''T*'')','EANTHLNDEXZ0','256','D','21','11',NULL,'Communication Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N3"','1','(''DA''=''T*'')','EANTHLNDEXZ0','2','D','22','1',NULL,'N3 Segment ID (Loop 2100A)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN301_AddressLine1"','2','(''UA''=''T*'')','EANTHLNDEXZ0','55','D','22','2',NULL,'Address Line 1',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN302_AddressLine2"','3','(''UA''=''T*'')','EANTHLNDEXZ0','55','D','22','3',NULL,'Address Line 2',NULL,NULL);
@@ -272,7 +270,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D15','U_EANTHLNDEX_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D16','U_EANTHLNDEX_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D20','U_EANTHLNDEX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D21','U_EANTHLNDEX_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''   OR ISNULL(drvPER09_CommNumberQualifier,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D21','U_EANTHLNDEX_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D22','U_EANTHLNDEX_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D23','U_EANTHLNDEX_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D24','U_EANTHLNDEX_DrvTbl',NULL);
@@ -385,10 +383,8 @@ CREATE TABLE [dbo].[U_EANTHLNDEX_DrvTbl] (
     [drvPER04_CommunicationNumber] varchar(50) NULL,
     [drvPER05_CommNumberQualifier] varchar(2) NULL,
     [drvPER06_CommunicationNumber] varchar(50) NULL,
-    [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
-    [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
-    [drvPER09_CommNumberQualifier] varchar(1) NOT NULL,
-    [drvPER10_CommunicationNumber] varchar(1) NOT NULL,
+    [drvPER07_CommNumberQualifier] varchar(2) NULL,
+    [drvPER08_CommunicationNumber] varchar(50) NULL,
     [drvN301_AddressLine1] varchar(6000) NULL,
     [drvN302_AddressLine2] varchar(6000) NULL,
     [drvN401_City] varchar(6000) NULL,
@@ -901,16 +897,10 @@ BEGIN
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'HP' END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NULL AND ISNULL(EfoPhoneNumber,'') <> '' THEN 'CP' END
-        --CASE WHEN BdmRecType = 'EMP' AND ISNULL(EecPhoneBusinessNumber,'') <> '' THEN 'WP' END
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NULL THEN ISNULL(EecPhoneBusinessNumber,'') END
-        ,drvPER07_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail,'') <> '' THEN 'EM' END
-        ,drvPER08_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
-
-        ,drvPER09_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' AND ISNULL(EfoPhoneNumber,'') <> '' THEN 'CP' END
-        ,drvPER10_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EfoPhoneNumber,'') END
-
-
+        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EecPhoneBusinessNumber,'') <> '' THEN 'WP' END
+        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
+        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail,'') <> '' THEN 'EM' END
+        ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
         ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
         ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
@@ -985,18 +975,7 @@ BEGIN
         ON TchCode = EecTermReason
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID
-    LEFT JOIN (
-                SELECT EfoEEID, EfoPhoneNumber
-                FROM (
-                        SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY AuditKey DESC) AS RN
-                        FROM dbo.EmpMPhon WITH (NOLOCK)
-                        WHERE EfoPhoneType = 'CEL'
-                        ) AS CP
-                WHERE RN = 1
-            ) AS Cel
-        ON EfoEEID = xEEID
-    ;
+        AND ConSystemID = BdmDepRecID;
 
     /**************************************************************************************************************
         DETAIL RECORDS
