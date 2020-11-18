@@ -5,9 +5,6 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-<<<<<<< HEAD:A-lign/BASMed/TekP-2020-07-14-0002/EBASMED834.sql
-ALTER PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBASMED834]
-=======
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EBASMED834';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EBASMED834';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EBASMED834';
@@ -555,7 +552,6 @@ BEGIN
 END
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBASMED834]
->>>>>>> 5ee53fd8d1442cb0a8bc2e64f64417722269258f:A-lign/BASMed/TekP-2020-07-14-0002/EBASMED834 Ripout Script.sql
     @systemid CHAR(12)
 AS
 SET NOCOUNT ON;
