@@ -1,28 +1,13 @@
-SET NOCOUNT ON;
-IF OBJECT_ID('U_EBASMED834_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EBASMED834_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EBASMED834' AND CfgName LIKE '%Path';
-IF OBJECT_ID('dsi_vwEBASMED834_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEBASMED834_Export];
+USE [ULTIPRO_YOSHI]
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_EBASMED834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBASMED834];
+/****** Object:  StoredProcedure [dbo].[dsi_sp_BuildDriverTables_EBASMED834]    Script Date: 11/18/2020 1:17:14 PM ******/
+SET ANSI_NULLS ON
 GO
-IF OBJECT_ID('dsi_sp_AfterCollect_EBASMED834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_EBASMED834];
+SET QUOTED_IDENTIFIER ON
 GO
-IF OBJECT_ID('U_EBASMED834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_TrlTbl];
-GO
-IF OBJECT_ID('U_EBASMED834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_HdrTbl];
-GO
-IF OBJECT_ID('U_EBASMED834_File') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_File];
-GO
-IF OBJECT_ID('U_EBASMED834_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_EEList];
-GO
-IF OBJECT_ID('U_EBASMED834_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_DrvTbl_2300];
-GO
-IF OBJECT_ID('U_EBASMED834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_DrvTbl];
-GO
-IF OBJECT_ID('U_EBASMED834_DedList') IS NOT NULL DROP TABLE [dbo].[U_EBASMED834_DedList];
-GO
-IF OBJECT_ID('U_dsi_BDM_EBASMED834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EBASMED834];
-GO
+<<<<<<< HEAD:A-lign/BASMed/TekP-2020-07-14-0002/EBASMED834.sql
+ALTER PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBASMED834]
+=======
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EBASMED834';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EBASMED834';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EBASMED834';
@@ -570,6 +555,7 @@ BEGIN
 END
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBASMED834]
+>>>>>>> 5ee53fd8d1442cb0a8bc2e64f64417722269258f:A-lign/BASMed/TekP-2020-07-14-0002/EBASMED834 Ripout Script.sql
     @systemid CHAR(12)
 AS
 SET NOCOUNT ON;
@@ -631,7 +617,7 @@ BEGIN
         ,@ExportCode      = ExportCode
         ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
-        ,@FileMinCovDate  = '01/01/2020'
+        ,@FileMinCovDate  = '10/01/2020'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'EBASMED834';
 
@@ -898,12 +884,12 @@ BEGIN
 
                                     END
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = 'DX'
+        ,drvDTP00_DateTime1 = 'DTP'
         ,drvDTP01_DateTimeQualifier1 = '303'
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = '' -- TOODO check with BA on the EecOrglevel compare last file sent from activity log or audit date 
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = 'DX'
+        ,drvDTP00_DateTime2 = 'DTP'
         ,drvDTP01_DateTimeQualifier2 = '336'
         ,drvDTP02_DateTimeFormatQual2 = 'D8'
         ,drvDTP03_DateTimePeriod2 = Eecdateoflasthire
@@ -923,8 +909,8 @@ BEGIN
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
         ,drvNM106_NamePrefix1 = '' --leave blank 
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN CASE WHEN EepNameSuffix = 'Z' THEN '' ELSE EepNameSuffix END 
+                                     WHEN BdmRecType = 'DEP' THEN CASE WHEN ConNameSuffix = 'Z' THEN '' ELSE ConNameSuffix END
                                 END
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                           WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN '34'
@@ -959,9 +945,7 @@ BEGIN
         ,drvDMG03_GenderCode1 = CASE WHEN BdmRecType = 'EMP' THEN EepGender
                                      WHEN BdmRecType = 'DEP' THEN ConGender
                                 END
-        ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
-                                                CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
-                                       END
+        ,drvDMG04_MaritalStatusCode1 = '' -- leave blank
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' THEN '' END --'7'
         ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
@@ -1056,7 +1040,7 @@ BEGIN
                                      END
         ,drvHD05_CoverageLevelCode = CASE WHEN BdmDedCode IN ('AQNQ', 'AQPU', 'AQUO')  THEN
                                                 CASE WHEN BdmBenOption IN ('EE') THEN 'EMP'
-                                                     WHEN BdmBenOption IN ('EES') THEN 'ESP'
+                                                     WHEN BdmBenOption IN ('EES', 'EEDP') THEN 'ESP'
                                                      WHEN BdmBenOption IN ('EEC') THEN 'ECH'
                                                      WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN 'FAM'
                                                 END
@@ -1193,7 +1177,3 @@ UPDATE dbo.AscExp
 WHERE ExpFormatCode = 'EBASMED834';
 
 **********************************************************************************/
-GO
-CREATE VIEW dbo.dsi_vwEBASMED834_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_EBASMED834_File (NOLOCK)
-    ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
