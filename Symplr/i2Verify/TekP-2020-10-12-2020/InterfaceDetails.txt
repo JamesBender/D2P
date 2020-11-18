@@ -1,0 +1,5 @@
+Interface details (EI2VRPAYEX)
+Env – ANW11
+Server – NW1WUP1DB02 
+Database – ULTIPRO_WPVCR 
+Export Name – i2Verify Payroll Earnings Export
