@@ -54,8 +54,8 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','30','(''DA''=''F'')','EOPTMRXEXPZ0','18','D','10','314',NULL,'FAMILY ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','31','(''DA''=''F'')','EOPTMRXEXPZ0','7','D','10','332',NULL,'ORIGINAL FROM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','32','(''DA''=''F'')','EOPTMRXEXPZ0','7','D','10','339',NULL,'BENEFIT RESET DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMemberFromDate"','33','(''UD112''=''F'')','EOPTMRXEXPZ0','7','D','10','346',NULL,'MEMBER FROM DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMemberToDate"','34','(''UD112''=''F'')','EOPTMRXEXPZ0','7','D','10','353',NULL,'MEMBER THRU DATE',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMemberFromDate"','33','(''UA''=''F'')','EOPTMRXEXPZ0','7','D','10','346',NULL,'MEMBER FROM DATE',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMemberToDate"','34','(''UA''=''F'')','EOPTMRXEXPZ0','7','D','10','353',NULL,'MEMBER THRU DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','35','(''DA''=''F'')','EOPTMRXEXPZ0','10','D','10','360',NULL,'OVERRIDE PLAN',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','36','(''DA''=''F'')','EOPTMRXEXPZ0','7','D','10','370',NULL,'OVERRIDE PLAN EFFECTIVE DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','37','(''DA''=''F'')','EOPTMRXEXPZ0','5','D','10','377',NULL,'BRAND',NULL,NULL);
@@ -313,13 +313,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EOPTMRXEXP_20201110.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EOPTMRXEXP_20201117.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010249','EMPEXPORT','OEACTIVE','Nov  9 2020 12:00AM','EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020 12:00AM','Dec 30 1899 12:00AM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'JBENDER04',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010249','EMPEXPORT','OEPASSIVE',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Optum Enrollment Export','202010249','EMPEXPORT','ONDEM_XOE','Nov 10 2020 10:07AM','EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020 12:00AM','Dec 30 1899 12:00AM','202010241','1999','','','202010241',dbo.fn_GetTimedKey(),NULL,'CPETITTI06',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum Enrollment Export-Sched','202010249','EMPEXPORT','SCH_EOPTMR',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Optum Enrollment Export-Test','202011069','EMPEXPORT','TEST_XOE','Nov 10 2020  2:07PM','EOPTMRXEXP',NULL,NULL,NULL,'202011069','Nov  6 2020 12:00AM','Dec 30 1899 12:00AM','202010231','2002','','','202010231',dbo.fn_GetTimedKey(),NULL,'JBENDER04',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Optum Enrollment Export-Test','202011101','EMPEXPORT','TEST_XOE','Nov 14 2020  2:43PM','EOPTMRXEXP',NULL,NULL,NULL,'202011101','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202010271','1974','','','202010271',dbo.fn_GetTimedKey(),NULL,'CPETITTI06',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOPTMRXEXP','InitialSort','C','drvSort');
@@ -384,7 +384,7 @@ CREATE TABLE [dbo].[U_EOPTMRXEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(15) NULL,
+    [drvSort] varchar(20) NULL,
     [drvAccount] varchar(4) NULL,
     [drvGroup] varchar(8) NULL,
     [drvMemberId] char(11) NULL,
@@ -404,8 +404,8 @@ CREATE TABLE [dbo].[U_EOPTMRXEXP_drvTbl] (
     [drvPhone] varchar(50) NULL,
     [drvFamilyFlag] varchar(1) NOT NULL,
     [drvFamilyType] varchar(1) NULL,
-    [drvMemberFromDate] datetime NULL,
-    [drvMemberToDate] datetime NULL
+    [drvMemberFromDate] nvarchar(4000) NULL,
+    [drvMemberToDate] nvarchar(4000) NULL
 );
 IF OBJECT_ID('U_EOPTMRXEXP_EEList') IS NULL
 CREATE TABLE [dbo].[U_EOPTMRXEXP_EEList] (
@@ -556,11 +556,12 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EecPayGroup + ' :: ' + B.BdmDedCode -- xEEID + ' ' + CASE WHEN B.BdmRecType = 'EMP' THEN '00' ELSE FORMAT(Con_RN, '00') END
+        ,drvSort = EedBenStatus + ' :: ' + EecPayGroup + ' :: ' + B.BdmDedCode -- xEEID + ' ' + CASE WHEN B.BdmRecType = 'EMP' THEN '00' ELSE FORMAT(Con_RN, '00') END
         -- standard fields above and additional driver fields below
         ,drvAccount =    CASE WHEN EecPayGroup = 'OFFCUR' AND B.BdmDedCode = 'MEDG' AND EecEmpNo = '1300039' THEN 'LLC7'
                             WHEN EecPayGroup = 'MASNRY' AND B.BdmDedCode = 'MEDG' THEN 'LLC7'
                             WHEN EecPayGroup = 'MASNRY' AND B.BdmDedCode = 'MEDB' THEN 'LLC7'
+                            WHEN EecPayGroup = 'MASNRY' AND B.BdmDedCode = 'MEDS' THEN 'LLC7'
                             WHEN EecPayGroup = 'YBPSG' AND B.BdmDedCode = 'MEDG' THEN 'MDSG'
                             WHEN EecPayGroup = 'YBPSG' AND B.BdmDedCode = 'MEDS' THEN 'MDSG'
                             WHEN EecPayGroup = 'YBPSG' AND B.BdmDedCode = 'MEDB' THEN 'MDSG'
@@ -654,6 +655,7 @@ BEGIN
                             WHEN EecPayGroup = 'HANHON' AND B.BdmDedCode = 'AMEDG' THEN 'AHI' 
                             WHEN EecPayGroup = 'HANHON' AND B.BdmDedCode = 'AMEDS' THEN 'AHI'
                             WHEN EecPayGroup = 'HANHON' AND B.BdmDedCode = 'AMEDB' THEN 'AHI' 
+
                             WHEN EecPayGroup = 'APPYAS' AND B.BdmDedCode = 'AMEDG' THEN 'YAS'
                             WHEN EecPayGroup = 'APPYAS' AND B.BdmDedCode = 'AMEDS' THEN 'YAS'
                             WHEN EecPayGroup = 'APPYAS' AND B.BdmDedCode = 'AMEDB' THEN 'YAS'
@@ -758,12 +760,13 @@ BEGIN
                         WHEN EecPayGroup IN ('HANHON') AND B.BdmDedCode = 'AMEDG' THEN '10511072'
                         WHEN EecPayGroup IN ('HANHON') AND B.BdmDedCode = 'AMEDS' THEN '10511074'
                         WHEN EecPayGroup IN ('HANHON') AND B.BdmDedCode = 'AMEDB' THEN '10511076'
-                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDG' THEN '10511078'
-                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDS' THEN '10511080'
-                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDB' THEN '10511083'
-                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDG' THEN '10511086'
-                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDS' THEN '10511088'
-                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDB' THEN '10511090'
+
+                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDG' THEN '10548470'
+                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDS' THEN '10548472'
+                        WHEN EecPayGroup IN ('APPYAS') AND B.BdmDedCode = 'AMEDB' THEN '10548474'
+                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDG' THEN '10548476'
+                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDS' THEN '10548478'
+                        WHEN EecPayGroup IN ('APPAOL') AND B.BdmDedCode = 'AMEDB' THEN '10548480'
                         END
         ,drvMemberId = EepSSN
         ,drvPersonCode =    CASE WHEN B.BdmRecType = 'EMP' THEN '00'
@@ -780,7 +783,7 @@ BEGIN
                         ELSE CASE WHEN ConGender IN ('M','F','N') THEN ConGender ELSE 'U' END
                     END
         ,drvDateOfBirth = CASE WHEN B.BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
-        ,drvSSN = CASE WHEN B.BdmRecType = 'EMP' THEN eepSSN ELSE ConSSN END
+        ,drvSSN = CASE WHEN B.BdmRecType = 'DEP' THEN ConSSN END --EepSSN-- CASE WHEN B.BdmRecType = 'EMP' THEN eepSSN ELSE ConSSN END
         ,drvAddressLine1 = EepAddressLine1 --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressLine1 ELSE ConAddressLine1 END
         ,drvAddressLine2 = EepAddressLine2 --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressLine2 ELSE ConAddressLine2 END
         ,drvAddressCity = EepAddressCity --CASE WHEN B.BdmRecType = 'EMP' THEN EepAddressCity ELSE ConAddressCity END
@@ -793,8 +796,9 @@ BEGIN
                                 WHEN B.BdmBenOption IN ('EESPOU','EESPWI') THEN '3'
                                 WHEN B.BdmBenOption IN ('EECH','EECHW') THEN '4'
                             END
-        ,drvMemberFromDate = B.BdmBenStatusDate
-        ,drvMemberToDate = B.BdmBenStopDate
+        ,drvMemberFromDate = '1' + RIGHT(FORMAT(DATEPART(YEAR, B.BdmBenStatusDate), '00'), 2) + FORMAT(DATEPART(MONTH, B.BdmBenStatusDate), '00') + FORMAT(DATEPART(DAY, B.BdmBenStatusDate), '00')
+        ,drvMemberToDate = '1' + RIGHT(FORMAT(DATEPART(YEAR, B.BdmBenStopDate), '00'), 2) + FORMAT(DATEPART(MONTH, B.BdmBenStopDate), '00') + FORMAT(DATEPART(DAY, B.BdmBenStopDate), '00')
+        --B.BdmBenStopDate
     INTO dbo.U_EOPTMRXEXP_drvTbl
     FROM dbo.U_EOPTMRXEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -808,11 +812,16 @@ BEGIN
     LEFT JOIN (
             SELECT ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY ConEEID, /*ConSystemID*/ CASE WHEN ConRelationship IN ('SPS') THEN 1 ELSE 2 END) AS Con_RN, * 
             FROM dbo.Contacts WITH (NOLOCK)
-            JOIN dbo.U_dsi_BDM_EOPTMRXEXP A WITH (NOLOCK)
-                ON ConSystemID = A.BdmDepRecID
+            /*JOIN dbo.U_dsi_BDM_EOPTMRXEXP A WITH (NOLOCK)
+                ON ConSystemID = A.BdmDepRecID*/
         ) AS Con
         ON ConEEID = xEEID
         AND ConSystemID = B.BdmDepRecID
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND B.BdmDedCode = EedDedCode 
+        AND EedBenStatus = 'A'
     ;
 
     --==========================================

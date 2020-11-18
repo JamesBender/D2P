@@ -141,6 +141,8 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER06_CommunicationNumber"','7','(''UA''=''T*'')','EANTHLNDEXZ0','256','D','21','7',NULL,'Communication Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER07_CommNumberQualifier"','8','(''UA''=''T*'')','EANTHLNDEXZ0','3','D','21','8',NULL,'Communication Number Qualifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER08_CommunicationNumber"','9','(''UA''=''T*'')','EANTHLNDEXZ0','256','D','21','9',NULL,'Communication Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER09_CommNumberQualifier"','10','(''UA''=''T*'')','EANTHLNDEXZ0','3','D','21','10',NULL,'Communication Number Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER10_CommunicationNumber"','11','(''UA''=''T*'')','EANTHLNDEXZ0','256','D','21','11',NULL,'Communication Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N3"','1','(''DA''=''T*'')','EANTHLNDEXZ0','2','D','22','1',NULL,'N3 Segment ID (Loop 2100A)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN301_AddressLine1"','2','(''UA''=''T*'')','EANTHLNDEXZ0','55','D','22','2',NULL,'Address Line 1',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN302_AddressLine2"','3','(''UA''=''T*'')','EANTHLNDEXZ0','55','D','22','3',NULL,'Address Line 2',NULL,NULL);
@@ -234,9 +236,9 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EANTHLNDEX_20201022.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EANTHLNDEX_20201113.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202010141','EMPEXPORT','CHANGES','Oct 14 2020 11:53AM','EANTHLNDEX',NULL,NULL,NULL,'202010141','Oct 14 2020 12:00AM','Dec 30 1899 12:00AM','202010141','2876','','','202010141',dbo.fn_GetTimedKey(),NULL,'us3rVaKLE1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202010141','EMPEXPORT','CHANGES','Oct 28 2020  4:42PM','EANTHLNDEX',NULL,NULL,NULL,'202010141','Oct 14 2020 12:00AM','Dec 30 1899 12:00AM','202010141','2882','','','202010141',dbo.fn_GetTimedKey(),NULL,'us3rVaKLE1001',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202008049','EMPEXPORT','FULLFILE','Aug  5 2020  1:27PM','EANTHLNDEX',NULL,NULL,NULL,'202008049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202008041','2144','','','202008041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202008049','EMPEXPORT','OEACTIVE','Aug  5 2020  1:27PM','EANTHLNDEX',NULL,NULL,NULL,'202008049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202008041','3','','','202008041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202008049','EMPEXPORT','OEPASSIVE','Aug  5 2020  1:27PM','EANTHLNDEX',NULL,NULL,NULL,'202008049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202008041','2129','','','202008041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -270,7 +272,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D15','U_EANTHLNDEX_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D16','U_EANTHLNDEX_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D20','U_EANTHLNDEX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D21','U_EANTHLNDEX_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D21','U_EANTHLNDEX_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''   OR ISNULL(drvPER09_CommNumberQualifier,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D22','U_EANTHLNDEX_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D23','U_EANTHLNDEX_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHLNDEX','D24','U_EANTHLNDEX_DrvTbl',NULL);
@@ -383,8 +385,10 @@ CREATE TABLE [dbo].[U_EANTHLNDEX_DrvTbl] (
     [drvPER04_CommunicationNumber] varchar(50) NULL,
     [drvPER05_CommNumberQualifier] varchar(2) NULL,
     [drvPER06_CommunicationNumber] varchar(50) NULL,
-    [drvPER07_CommNumberQualifier] varchar(2) NULL,
-    [drvPER08_CommunicationNumber] varchar(50) NULL,
+    [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
+    [drvPER09_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER10_CommunicationNumber] varchar(1) NOT NULL,
     [drvN301_AddressLine1] varchar(6000) NULL,
     [drvN302_AddressLine2] varchar(6000) NULL,
     [drvN401_City] varchar(6000) NULL,
@@ -897,10 +901,16 @@ BEGIN
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'HP' END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EecPhoneBusinessNumber,'') <> '' THEN 'WP' END
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
-        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail,'') <> '' THEN 'EM' END
-        ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
+        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NULL AND ISNULL(EfoPhoneNumber,'') <> '' THEN 'CP' END
+        --CASE WHEN BdmRecType = 'EMP' AND ISNULL(EecPhoneBusinessNumber,'') <> '' THEN 'WP' END
+        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NULL THEN ISNULL(EecPhoneBusinessNumber,'') END
+        ,drvPER07_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail,'') <> '' THEN 'EM' END
+        ,drvPER08_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
+
+        ,drvPER09_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' AND ISNULL(EfoPhoneNumber,'') <> '' THEN 'CP' END
+        ,drvPER10_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EfoPhoneNumber,'') END
+
+
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
         ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
         ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
@@ -975,7 +985,18 @@ BEGIN
         ON TchCode = EecTermReason
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID;
+        AND ConSystemID = BdmDepRecID
+    LEFT JOIN (
+                SELECT EfoEEID, EfoPhoneNumber
+                FROM (
+                        SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY AuditKey DESC) AS RN
+                        FROM dbo.EmpMPhon WITH (NOLOCK)
+                        WHERE EfoPhoneType = 'CEL'
+                        ) AS CP
+                WHERE RN = 1
+            ) AS Cel
+        ON EfoEEID = xEEID
+    ;
 
     /**************************************************************************************************************
         DETAIL RECORDS

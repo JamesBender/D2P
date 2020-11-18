@@ -72,13 +72,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMOODENVIS_20201106.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMOODENVIS_20201113.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011019','EMPEXPORT','OEACTIVE',NULL,'EMOODENVIS',NULL,NULL,NULL,'202011019','Nov  1 2020  5:17PM','Nov  1 2020  5:17PM','202011011',NULL,'','','202011011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202011019','EMPEXPORT','OEPASSIVE',NULL,'EMOODENVIS',NULL,NULL,NULL,'202011019','Nov  1 2020  5:17PM','Nov  1 2020  5:17PM','202011011',NULL,'','','202011011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual of Omaha Den/Vis Export','202011019','EMPEXPORT','ONDEM_XOE',NULL,'EMOODENVIS',NULL,NULL,NULL,'202011019','Nov  1 2020  5:17PM','Nov  1 2020  5:17PM','202011011',NULL,'','','202011011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual of Omaha Den/Vis -Sched','202011019','EMPEXPORT','SCH_EMOODE',NULL,'EMOODENVIS',NULL,NULL,NULL,'202011019','Nov  1 2020  5:17PM','Nov  1 2020  5:17PM','202011011',NULL,'','','202011011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Mutual of Omaha Den/Vis -Test','202011051','EMPEXPORT','TEST_XOE','Nov  5 2020  8:01PM','EMOODENVIS',NULL,NULL,NULL,'202011051','Nov  5 2020 12:00AM','Dec 30 1899 12:00AM','202010221','405','','','202010221',dbo.fn_GetTimedKey(),NULL,'us3cPeALI1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Mutual of Omaha Den/Vis -Test','202011121','EMPEXPORT','TEST_XOE','Nov 13 2020 12:39PM','EMOODENVIS',NULL,NULL,NULL,'202011121','Nov 12 2020 12:00AM','Dec 30 1899 12:00AM','202010281','404','','','202010281',dbo.fn_GetTimedKey(),NULL,'us3cPeALI1002',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOODENVIS','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOODENVIS','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOODENVIS','InitialSort','C','drvSort');
@@ -162,7 +162,7 @@ CREATE TABLE [dbo].[U_EMOODENVIS_drvTbl] (
     [drvBasicSalaryEffectiveDate] datetime NULL,
     [drvBasicSalaryAmount] nvarchar(4000) NULL,
     [drvClassEffectiveDate] datetime NULL,
-    [drvClassId] varchar(4) NULL,
+    [drvClassId] varchar(4) NOT NULL,
     [drvProductCategory1] varchar(1) NULL,
     [drvEffecticeDate1] datetime NULL,
     [drvEligibilityEvent1] varchar(2) NULL,
@@ -331,9 +331,10 @@ BEGIN
                                         CASE WHEN ConRelationship IN ('SPS','DP') AND ConGender = 'F' THEN 'W'
                                             WHEN ConRelationship IN ('SPS','DP') AND ConGender = 'M' THEN 'H'
                                             WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'F' THEN 'D'
-                                            WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'F' THEN 'S'
-                                        END
-                                    ELSE 'M'                                    
+                                            WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'M' THEN 'S'
+                                            
+                                        END 
+                                    ELSE 'M'                                                                      
                                 END
         ,drvEmployeeID = EepSSN
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
@@ -353,7 +354,7 @@ BEGIN
         ,drvClassEffectiveDate = dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfLastHire, '10/1/2020')
         ,drvClassId =    CASE WHEN DENHI_DedCode IS NOT NULL THEN 'A001'
                             WHEN DENLO_DedCode IS NOT NULL THEN 'A002'
-                            --ELSE 'A003'
+                            ELSE 'A003'
                         END
         ,drvProductCategory1 = CASE WHEN DENHI_DedCode IS NOT NULL OR DENLO_DedCode IS NOT NULL THEN 'D' END
         ,drvEffecticeDate1 = CASE WHEN DENHI_DedCode IS NOT NULL OR DENLO_DedCode IS NOT NULL THEN

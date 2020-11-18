@@ -43,13 +43,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EFNBOGIEXP_20201110.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EFNBOGIEXP_20201112.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'FNB of Omaha Gen Int FF Export','202011099','EMPEXPORT','FFile_XOE','Nov 10 2020  1:33PM','EFNBOGIEXP',NULL,NULL,NULL,'202011099','Nov  9 2020  4:41PM','Nov  9 2020  4:41PM','202011091','2684','','','202011091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'FNB of Omaha Gen Int Export','202011099','EMPEXPORT','ONDEM_XOE','Nov 10 2020  1:34PM','EFNBOGIEXP',NULL,NULL,NULL,'202011099','Nov  9 2020  4:41PM','Nov  9 2020  4:41PM','202011091','38','','','202011091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'FNB of Omaha Gen Int Exp-Sched','202011099','EMPEXPORT','SCH_EFNBOG','Nov 10 2020  1:34PM','EFNBOGIEXP',NULL,NULL,NULL,'202011099','Nov  9 2020  4:41PM','Nov  9 2020  4:41PM','202011091','38','','','202011091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'FNB of Omaha Gen Int Exp-Test','202011099','EMPEXPORT','TEST_XOE','Nov 10 2020  1:34PM','EFNBOGIEXP',NULL,NULL,NULL,'202011099','Nov  9 2020  4:41PM','Nov  9 2020  4:41PM','202011091','38','','','202011091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'FNB of Omaha Gen Int FF Test','202011099','EMPEXPORT','TEST_XOEFF','Nov 10 2020  1:35PM','EFNBOGIEXP',NULL,NULL,NULL,'202011099','Nov  9 2020  4:41PM','Nov  9 2020  4:41PM','202011091','2684','','','202011091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'FNB of Omaha Gen Int FF Test','202011101','EMPEXPORT','TEST_XOEFF','Nov 11 2020  2:26PM','EFNBOGIEXP',NULL,NULL,NULL,'202011101','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202010271','2684','','','202010271',dbo.fn_GetTimedKey(),NULL,'us3cPeRUN1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFNBOGIEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFNBOGIEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFNBOGIEXP','InitialSort','C','drvSort');
@@ -102,8 +102,8 @@ CREATE TABLE [dbo].[U_EFNBOGIEXP_drvTbl] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvEmailAddress] varchar(50) NULL,
-    [drvSubAgent] varchar(6) NULL,
-    [drvRole] varchar(8000) NULL
+    [drvSubAgent] varchar(3) NULL,
+    [drvRole] varchar(109) NULL
 );
 IF OBJECT_ID('U_EFNBOGIEXP_EEList') IS NULL
 CREATE TABLE [dbo].[U_EFNBOGIEXP_EEList] (
@@ -351,16 +351,18 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '' --EecJobCode + ' :: ' + ISNULL(EecUDField04, 'no 4') + ' :: ' + ISNULL(EecUDField05, 'no 5') + ' :: ' + ISNULL(EecUDField14, 'no 14') + ' :: ' + ISNULL(EecUDField15, 'no 15') 
+        ,drvSort = '' -- EecLocation -- EecJobCode + ' ** ' + ISNULL(EecUDField04, 'no 4') + ' :: ' + ISNULL(EecUDField05, 'no 5') + ' :: ' + ISNULL(EecUDField14, 'no 14') + ' :: ' + ISNULL(EecUDField15, 'no 15') 
         -- standard fields above and additional driver fields below
         ,drvEmployeeHRID = 'RUNN' + EecEmpNo
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
         ,drvEmailAddress = EepAddressEMail
-        ,drvSubAgent = CASE WHEN EecLocation IN ('80') THEN '000' ELSE RIGHT(RTRIM(EecLocation), LEN(RTRIM(EecLocation)) - 3) END                    
-        ,drvRole =    CASE WHEN EecJobCode = 'STORMGR' THEN 'Sales:Administrator'
-                        WHEN EecJObCode IN ('CASH','SALESASS') THEN 'Sales'
-                        ELSE REPLACE(REPLACE(ISNULL(EecUDField04, '') + ':' + ISNULL(EecUDField05, '') + ':' + ISNULL(EecUDField14, '') + ':' + ISNULL(EecUDField15, ''), '::', ':'), '::', '')
+        ,drvSubAgent =    CASE WHEN EecLocation IN ('LOC80') THEN '000' 
+                            WHEN LEFT(EecLocation, 3) = 'LOC' THEN RIGHT('00' + RIGHT(RTRIM(EecLocation), LEN(RTRIM(EecLocation)) - 3), 3)
+                        END                    
+        ,drvRole =    CASE WHEN EecJobCode = 'STORMGR' THEN 'Sales:Administrator:Report Level 2'
+                        WHEN EecJObCode IN ('CASH','SALESASS','ASSTGR','MIT','DEPTMGR','SERVWRIT') THEN 'Sales' + RTRIM(CONCAT(':' + EecUDField04, ':' + EecUDField05, ':' + EecUDField14, ':' + EecUDField15))
+                        ELSE RTRIM(CONCAT(EecUDField04, ':' + EecUDField05, ':' + EecUDField14, ':' + EecUDField15))                            
                     END
     INTO dbo.U_EFNBOGIEXP_drvTbl
     FROM dbo.U_EFNBOGIEXP_EEList WITH (NOLOCK)
@@ -371,6 +373,9 @@ BEGIN
     WHERE EecLocation NOT IN ('99','98','97','96','90')
         AND EecEmplStatus <> 'T'
     ;
+
+    DELETE dbo.U_EFNBOGIEXP_drvTbl WHERE drvRole IS NULL OR drvRole = '';
+
 
     --==========================================
     -- Set FileName

@@ -1,0 +1,5 @@
+Interface details (EDELDENEXP)
+Env – ANW14 
+Server – NW1WUP4DB01
+Database – ULTIPRO_WPPWG
+Export Name – Delta Dental 834 Export
