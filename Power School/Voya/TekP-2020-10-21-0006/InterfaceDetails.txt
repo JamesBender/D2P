@@ -1,0 +1,5 @@
+Interface details (EVOYPORTEX)
+Env – ANW14 
+Server – NW1WUP4DB01
+Database – ULTIPRO_WPPWG
+Export Name – Voya Life & Portability

@@ -141,7 +141,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESEQDEMOEX_20201113.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESEQDEMOEX_20201122.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011129','EMPEXPORT','OEACTIVE',NULL,'ESEQDEMOEX',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202011129','EMPEXPORT','OEPASSIVE',NULL,'ESEQDEMOEX',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -260,16 +260,16 @@ CREATE TABLE [dbo].[U_ESEQDEMOEX_drvTbl] (
     [drvAnnualWages] nvarchar(4000) NULL,
     [drvWagesEffectiveDate] datetime NULL,
     [drvPlanYear] nvarchar(4000) NULL,
-    [drvPlanType] varchar(1) NOT NULL,
-    [drvPlanGroupNumber] varchar(1) NOT NULL,
+    [drvPlanType] varchar(3) NULL,
+    [drvPlanGroupNumber] varchar(10) NULL,
     [drvClassCode] varchar(1) NOT NULL,
-    [drvEnrollmentStatus] varchar(1) NOT NULL,
-    [drvEnrollmentStartDate] varchar(1) NOT NULL,
-    [drvEnrollmentEndDate] varchar(1) NOT NULL,
-    [drvApprovedAmount] varchar(1) NOT NULL,
-    [drvRequestedAmount] varchar(1) NOT NULL,
-    [drvEnrollmentType] varchar(1) NOT NULL,
-    [drvCoverageTier] varchar(1) NOT NULL
+    [drvEnrollmentStatus] varchar(10) NULL,
+    [drvEnrollmentStartDate] datetime NULL,
+    [drvEnrollmentEndDate] datetime NULL,
+    [drvApprovedAmount] nvarchar(4000) NULL,
+    [drvRequestedAmount] nvarchar(4000) NULL,
+    [drvEnrollmentType] varchar(1) NULL,
+    [drvCoverageTier] char(6) NULL
 );
 IF OBJECT_ID('U_ESEQDEMOEX_EEList') IS NULL
 CREATE TABLE [dbo].[U_ESEQDEMOEX_EEList] (
@@ -646,7 +646,7 @@ BEGIN
         ,drvEnrollmentStartDate = BdmBenStartDate
         ,drvEnrollmentEndDate = BdmBenStopDate
         ,drvApprovedAmount = CASE WHEN BdmDedCode IN ('VLP','VLEG','VLPSP','VLDEP') THEN FORMAT(BdmEEAmt, '#0.00') END
-        ,drvRequestedAmount = CASE WHEN BdmDedCode IN ('VLP','VLEG','VLPSP','VLDEP') THEN FORMAT(0, '#0.00') END
+        ,drvRequestedAmount = CASE WHEN BdmDedCode IN ('VLP','VLEG','VLPSP','VLDEP') THEN FORMAT(amtDesiredAmt, '#0.00') END
         ,drvEnrollmentType = CASE WHEN BdmBenStatus = 'A' THEN 'A' END
         ,drvCoverageTier = BdmBenOption
     INTO dbo.U_ESEQDEMOEX_drvTbl
@@ -685,6 +685,15 @@ BEGIN
         AND EjhOrgLvl1 = EecOrgLvl1
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
+    LEFT JOIN (
+                    SELECT EedEEID AS amtEEID, EedCOID AS amtCOID, EedDedCode AS amtDedCode, EedEOIDesiredAmt AS amtDesiredAmt, EedBenAmt AS amtBenAmt
+                    FROM (
+                            SELECT EedEEID, EedCOID, EedDedCode, EedEOIDesiredAmt, EedBenAmt, EedStartDate, ROW_NUMBER() OVER (PARTITION BY EedEEID, EedCOID, EedDedCode ORDER BY EedStartDate DESC) AS RN
+                            FROM dbo.EmpDedFull WITH (NOLOCK)
+                            /*WHERE eedDedCode IN ('UNVOL')*/) AS A
+                    WHERE RN = 1 ) AS Amt
+        ON amtEEID = xEEID
+        AND amtCOID = xCOID
     ;
 
     --==========================================

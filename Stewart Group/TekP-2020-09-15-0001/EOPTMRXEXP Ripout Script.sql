@@ -313,7 +313,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EOPTMRXEXP_20201117.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EOPTMRXEXP_20201120.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010249','EMPEXPORT','OEACTIVE','Nov  9 2020 12:00AM','EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020 12:00AM','Dec 30 1899 12:00AM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'JBENDER04',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010249','EMPEXPORT','OEPASSIVE',NULL,'EOPTMRXEXP',NULL,NULL,NULL,'202010249','Oct 24 2020  2:12PM','Oct 24 2020  2:12PM','202010241',NULL,'','','202010241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -797,7 +797,9 @@ BEGIN
                                 WHEN B.BdmBenOption IN ('EECH','EECHW') THEN '4'
                             END
         ,drvMemberFromDate = '1' + RIGHT(FORMAT(DATEPART(YEAR, B.BdmBenStatusDate), '00'), 2) + FORMAT(DATEPART(MONTH, B.BdmBenStatusDate), '00') + FORMAT(DATEPART(DAY, B.BdmBenStatusDate), '00')
-        ,drvMemberToDate = '1' + RIGHT(FORMAT(DATEPART(YEAR, B.BdmBenStopDate), '00'), 2) + FORMAT(DATEPART(MONTH, B.BdmBenStopDate), '00') + FORMAT(DATEPART(DAY, B.BdmBenStopDate), '00')
+        ,drvMemberToDate =    CASE WHEN B.BdmBenStopDate IS NULL THEN '1391231'
+                                ELSE '1' + RIGHT(FORMAT(DATEPART(YEAR, B.BdmBenStopDate), '00'), 2) + FORMAT(DATEPART(MONTH, B.BdmBenStopDate), '00') + FORMAT(DATEPART(DAY, B.BdmBenStopDate), '00')
+                            END
         --B.BdmBenStopDate
     INTO dbo.U_EOPTMRXEXP_drvTbl
     FROM dbo.U_EOPTMRXEXP_EEList WITH (NOLOCK)

@@ -1,0 +1,5 @@
+Interface details (EBSHLDH834)
+Env – ANW14 
+Server – NW1WUP4DB01
+Database – ULTIPRO_WPPWG
+Export Name – Blue Shield Health 834 Export

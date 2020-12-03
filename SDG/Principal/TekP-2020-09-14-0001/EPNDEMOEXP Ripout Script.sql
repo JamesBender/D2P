@@ -124,13 +124,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPNDEMOEXP_20201110.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPNDEMOEXP_20201123.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010269','EMPEXPORT','OEACTIVE','Oct 28 2020  1:23PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','7184','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010269','EMPEXPORT','OEPASSIVE','Oct 28 2020  1:23PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','7184','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Export','202010269','EMPEXPORT','ONDEM_XOE','Oct 24 2020 12:50PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 23 2020  5:07PM','Oct 23 2020  5:07PM','202010121','7168','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Expo-Sched','202010269','EMPEXPORT','SCH_EPNDEM','Oct 24 2020 12:50PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 23 2020  5:07PM','Oct 23 2020  5:07PM','202010121','7168','','','202010121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Expo-Test','202010269','EMPEXPORT','TEST_XOE','Nov  7 2020 12:55PM','EPNDEMOEXP',NULL,NULL,NULL,'202010269','Oct 26 2020 12:00AM','Dec 30 1899 12:00AM','202010121','2532','','','202010121',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Principal 401k Demo Expo-Test','202011231','EMPEXPORT','TEST_XOE','Nov 23 2020 11:18AM','EPNDEMOEXP',NULL,NULL,NULL,'202011231','Nov 23 2020 12:00AM','Dec 30 1899 12:00AM','202011091','2498','','','202011091',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPNDEMOEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPNDEMOEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPNDEMOEXP','InitialSort','C','drvSort');
@@ -361,7 +361,7 @@ BEGIN
         ,drvSort = '2 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvEmployeeIdNumber = EepSSN
-        ,drvEmployeeName = REPLACE(EepNameLast + ' ' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1), 'ñ', 'n')
+        ,drvEmployeeName = REPLACE(EepNameLast + '*' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1), 'ñ', 'n')
         ,drvDateOfBirth = EepDateOfBirth
         ,drvDateOfEmployment = EecDateOfLastHire
         ,drvGender = EepGender
@@ -374,12 +374,12 @@ BEGIN
                                 END
         ,drvSSN = eepSSN
         ,drvBenefitEventDate =    CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
-                                    WHEN EecEmplStatus = 'A' AND EecDateOfOriginalHire <> EecDateOfLastHire THEN audDateTime
+                                    --WHEN EecEmplStatus = 'A' AND EecDateOfOriginalHire <> EecDateOfLastHire THEN audDateTime
                                 END
         ,drvBenefitEventReason =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') THEN '0001'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN '0005'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN '0003'
-                                        WHEN EecEmplStatus = 'A' AND  EecDateOfOriginalHire <> EecDateOfLastHire THEN '0001'
+                                        --WHEN EecEmplStatus = 'A' AND  EecDateOfOriginalHire <> EecDateOfLastHire THEN '0001'
                                     END
     INTO dbo.U_EPNDEMOEXP_drvTbl_180
     FROM dbo.U_EPNDEMOEXP_EEList WITH (NOLOCK)
@@ -405,7 +405,7 @@ BEGIN
         ,drvSort = '2 ' + xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvEmployeeIdNumber = EepSSN
-        ,drvEmployeeName = REPLACE(EepNameLast + ' ' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1), 'ñ', 'n')
+        ,drvEmployeeName = REPLACE(EepNameLast + '*' + EepNamefirst + ' ' + LEFT(ISNULL(EepNameMiddle, ''), 1), 'ñ', 'n')
         ,drvSSN = eepSSN
         ,drvRehireDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
     INTO dbo.U_EPNDEMOEXP_drvTbl_181

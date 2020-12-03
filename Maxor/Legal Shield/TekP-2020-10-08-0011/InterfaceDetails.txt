@@ -1,0 +1,5 @@
+Interface details (ELGLSLDEXP)
+Env – AEW34 
+Server – EW3WUP4DB01 
+Database – ULTIPRO_WPMAXOR 
+Export Name – Legal Shield Export

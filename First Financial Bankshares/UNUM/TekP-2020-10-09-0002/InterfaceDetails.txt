@@ -1,0 +1,5 @@
+Interface details (EUNUMFSLXP)
+Env – AN13 
+Server – N1SUP3ST60 
+Database – N1SUP3ST60 
+Export Name – UNUM FLMA, STD, LTD Export

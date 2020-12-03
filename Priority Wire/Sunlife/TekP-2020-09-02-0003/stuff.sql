@@ -1,0 +1,3 @@
+select drvEEID, drvREF01_RefNumberQual1, drvREF02_RefNumberQual1, * from dbo.U_ESUNLNC834_DrvTbl where drvREF02_RefNumberQual1 = '!'
+
+select EecOrgLvl1 from EmpComp where EecEEID IN ('DEN8VF000040','DHKL1P001040','D0CSPU043040','D0CSQS05I040','D0CSS602H040','D0CSSH01W040','D0CSSS024040','D0CSTJ00E040')

@@ -1,0 +1,5 @@
+Interface details (ESEQDEMOEX)
+Env – ANW13 
+Server – NW1WUP3DB02
+Database – ULTIPRO_WPCHARG
+Export Name – Sequoia Demographics Export

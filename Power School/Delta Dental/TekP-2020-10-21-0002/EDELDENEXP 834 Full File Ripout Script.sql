@@ -235,10 +235,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDELDENEXP_20201117.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDELDENEXP_20201201.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202011149','EMPEXPORT','CHANGES','Nov 15 2020 11:19AM','EDELDENEXP',NULL,NULL,NULL,'202011149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202011141','31861','','','202011141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202011161','EMPEXPORT','FULLFILE','Nov 16 2020  4:13PM','EDELDENEXP',NULL,NULL,NULL,'202011161','Nov 16 2020 12:00AM','Dec 30 1899 12:00AM','202011021','32112','','','202011021',dbo.fn_GetTimedKey(),NULL,'us3cPePOW1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202011161','EMPEXPORT','FULLFILE','Nov 25 2020  7:39PM','EDELDENEXP',NULL,NULL,NULL,'202011161','Nov 16 2020 12:00AM','Dec 30 1899 12:00AM','202011021','26410','','','202011021',dbo.fn_GetTimedKey(),NULL,'us3cPePOW1008',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202011149','EMPEXPORT','OEACTIVE','Nov 15 2020 11:20AM','EDELDENEXP',NULL,NULL,NULL,'202011149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202011141','3','','','202011141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202011149','EMPEXPORT','OEPASSIVE','Nov 15 2020 11:20AM','EDELDENEXP',NULL,NULL,NULL,'202011149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202011141','32124','','','202011141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Delta Dental 834 Export','202011149','EMPEXPORT','SCHEDULED','Nov 15 2020 11:21AM','EDELDENEXP',NULL,NULL,NULL,'202011149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202011141','31861','','','202011141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -364,11 +364,11 @@ CREATE TABLE [dbo].[U_EDELDENEXP_DrvTbl] (
     [drvREF02_RefNumberQual1] varchar(12) NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
-    [drvDTP00_DateTime1] varchar(3) NOT NULL,
+    [drvDTP00_DateTime1] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] datetime NULL,
-    [drvDTP00_DateTime2] varchar(3) NULL,
+    [drvDTP00_DateTime2] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod2] datetime NULL,
@@ -759,6 +759,8 @@ BEGIN
             - LOOP 1000A/1000B RECORDS - N1 Segments
     ***************************************************************************************************************/
 
+    DELETE dbo.U_dsi_bdm_EDELDENEXP WHERE BdmBenStopDate < '1/1/2021';
+
     -------------------
     -- HEADER RECORD 
     -------------------
@@ -870,12 +872,12 @@ BEGIN
         ,drvREF01_RefNumberQual2 = ''
         ,drvREF02_RefNumberQual2 = ''
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = 'DTP'
+        ,drvDTP00_DateTime1 = '' --'DTP'
         ,drvDTP01_DateTimeQualifier1 = '356'
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = EedEEEligDate
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = CASE WHEN EecEmplStatus = 'T' THEN 'DTP' END
+        ,drvDTP00_DateTime2 = '' -- CASE WHEN EecEmplStatus = 'T' THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier2 = '357'
         ,drvDTP02_DateTimeFormatQual2 = 'D8'
         ,drvDTP03_DateTimePeriod2 = EecDateOfTermination
@@ -883,7 +885,7 @@ BEGIN
         -- LOOP 2100A RECORDS
         --=====================
         ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
-                              CASE WHEN BdmRecType = 'EMP' THEN EepNameLast
+                              CASE WHEN BdmRecType = 'EMP' THEN REPLACE(EepNameLast, 'ü', 'u')
                                    WHEN BdmRecType = 'DEP' THEN ConNameLast
                               END)
         ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-',
@@ -907,14 +909,14 @@ BEGIN
                                  WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' AND ConSSN NOT IN ('000000000','999999999','888888888','123456789') AND LEFT(ConSSN, 3) NOT IN ('999','998') THEN ConSSN
                             END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier =    CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NOT NULL THEN 'HP' 
+        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND (EepPhoneHomeNumber IS NOT NULL AND LEN(RTRIM(EepPhoneHomeNumber)) > 0) THEN 'HP' 
                                             WHEN BdmRecType = 'EMP' AND EepAddressEmail IS NOT NULL THEN 'EM'
                                         END
-        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NOT NULL THEN EepPhoneHomeNumber
+        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND (EepPhoneHomeNumber IS NOT NULL AND LEN(RTRIM(EepPhoneHomeNumber)) > 0) THEN EepPhoneHomeNumber
                                             WHEN BdmRecType = 'EMP' AND EepAddressEmail IS NOT NULL THEN eepAddressEMail
                                         END
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NULL AND EepAddressEmail IS NOT NULL THEN 'EM' END
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NULL AND EepAddressEmail IS NOT NULL THEN eepAddressEMail END
+        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NOT NULL AND EepAddressEmail IS NOT NULL THEN 'EM' END
+        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber IS NOT NULL AND EepAddressEmail IS NOT NULL THEN eepAddressEMail END
         ,drvPER07_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' THEN 'EM' END
         ,drvPER08_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)

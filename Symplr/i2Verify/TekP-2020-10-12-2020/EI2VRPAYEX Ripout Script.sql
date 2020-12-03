@@ -181,13 +181,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EI2VRPAYEX_20201118.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EI2VRPAYEX_20201203.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202011169','EMPEXPORT','OEACTIVE','Nov 18 2020 12:27PM','EI2VRPAYEX',NULL,NULL,NULL,'202011169','Nov 16 2020 11:52AM','Nov 16 2020 11:52AM','202011051','3','','','202011051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202011169','EMPEXPORT','OEPASSIVE','Nov 18 2020 12:28PM','EI2VRPAYEX',NULL,NULL,NULL,'202011169','Nov 16 2020 11:52AM','Nov 16 2020 11:52AM','202011051','549','','','202011051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'i2Verify Payroll Earnings Exp','202011169','EMPEXPORT','ONDEM_XOE','Nov 18 2020 12:28PM','EI2VRPAYEX',NULL,NULL,NULL,'202011169','Nov 16 2020 11:52AM','Nov 16 2020 11:52AM','202011051','549','','','202011051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'i2Verify Payroll Earning-Sched','202011169','EMPEXPORT','SCH_EI2VRP','Nov 18 2020 12:29PM','EI2VRPAYEX',NULL,NULL,NULL,'202011169','Nov 16 2020 11:52AM','Nov 16 2020 11:52AM','202011051','549','','','202011051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'i2Verify Payroll Earning-Test','202011169','EMPEXPORT','TEST_XOE','Nov 18 2020 12:30PM','EI2VRPAYEX',NULL,NULL,NULL,'202011169','Nov 16 2020 11:52AM','Nov 16 2020 11:52AM','202011051','549','','','202011051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'i2Verify Payroll Earning-Test','202011209','EMPEXPORT','TEST_XOE','Dec  2 2020  5:26PM','EI2VRPAYEX',NULL,NULL,NULL,'202011209','Nov 20 2020 12:00AM','Dec 30 1899 12:00AM','202011201','426','','','202011201',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EI2VRPAYEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EI2VRPAYEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EI2VRPAYEX','InitialSort','C','drvSort');
@@ -302,7 +302,7 @@ CREATE TABLE [dbo].[U_EI2VRPAYEX_drvTbl] (
     [drvPayRateFrequency] varchar(1) NOT NULL,
     [drvPayStartDate] datetime NULL,
     [drvPayEndDate] datetime NULL,
-    [drvCheckDate] varchar(8) NULL,
+    [drvCheckDate] date NULL,
     [drvGrossPay] nvarchar(4000) NULL,
     [drvGrossHours] nvarchar(4000) NULL,
     [drvRegular] nvarchar(4000) NULL,
@@ -667,8 +667,9 @@ BEGIN
 
     INTO dbo.U_EI2VRPAYEX_PTaxHist
     FROM dbo.PTaxHist WITH (NOLOCK)
-    WHERE LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
-        AND PthPerControl <= @EndPerControl
+    WHERE --LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
+        --AND PthPerControl <= @EndPerControl
+        PthPerControl BETWEEN @StartPerControl AND @EndPerControl
     GROUP BY PthEEID, PthCOID
 
     --==========================================
@@ -736,7 +737,7 @@ BEGIN
         ,drvOther = FORMAT(PehOtherAmt, '#0.00')
         ,drvShiftDifferential = FORMAT(PehShiftDifferentialAmt, '#0.00')
         ,drvCheckNumber = RTRIM(LTRIM(PrgDocNo))
-        ,drvSocialSecurityWages = FORMAT(PthSSNWages, '#0.00')
+        ,drvSocialSecurityWages = FORMAT(PthSSNWages, '#0.00')  -- JCB
         ,drvMedicuareWagesAndTips = FORMAT(PthMedicareWages, '#0.00')
         ,drvStateWithholding = FORMAT(PthStateWithholding, '#0.00')
         ,drvFederalWithholding = FORMAT(PthFederalWithholding, '#0.00')
@@ -776,16 +777,16 @@ BEGIN
                 GROUP BY BdmEEID, BdmCOID) AS Bdm
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
-    JOIN dbo.DedCode MedCode WITH (NOLOCK)
+    LEFT JOIN dbo.DedCode MedCode WITH (NOLOCK)
         ON MedDedCode = MedCode.DedDedCode
-    JOIN dbo.DedCode DenCode WITH (NOLOCK)
+    LEFT JOIN dbo.DedCode DenCode WITH (NOLOCK)
         ON DenDedCode = DenCode.DedDedCode
     JOIN dbo.EmpTax WITH (NOLOCK)
         ON EetEEID = xEEID
         AND EetCOID = xCOID
         AND RIGHT(RTRIM(EetTaxCode), 3) = 'SIT'
-    JOIN dbo.TaxCode WITH (NOLOCK)
-        ON EetTaxCode = CtcTaxCode
+    --JOIN dbo.TaxCode WITH (NOLOCK)
+      --  ON EetTaxCode = CtcTaxCode
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
     LEFT JOIN (
@@ -799,7 +800,7 @@ BEGIN
                     AND audFieldName = 'EecDateOfTermination') AS PrevTerm
         ON PrevTermEEID = xEEID
         --AND PrevTermCOID = xCOID
-    JOIN (SELECT PgpPayGroup, LEFT(MAX(PgpPeriodControl),8) as PrgPayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
+    JOIN (SELECT PgpPayGroup, CAST(LEFT(MAX(PgpPeriodControl),8) AS DATE) AS PrgPayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
                    FROM dbo.PgPayPer WITH (NOLOCK)
                    WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
                    GROUP BY PgpPayGroup
@@ -810,6 +811,25 @@ BEGIN
     JOIN dbo.U_EI2VRPAYEX_PTaxHist WITH (NOLOCK)
         ON PthEEID = xEEID
         AND PthCoID = xCOID
+    JOIN (
+            SELECT DISTINCT A.PthEEID AS aPthEEID, A.PthCOID AS aPthCOID, A.PthTaxCode AS aPthTaxCode, CtcIdNumber
+            FROM dbo.pTaxHist A WITH (NOLOCK)
+            JOIN ( 
+                    SELECT DISTINCT PehEEID, PehCOID,PehSITWorkInStateCode,  PehPerControl
+                    FROM pEarHist WITH (NOLOCK)
+                    WHERE PehPerControl BETWEEN @StartPerControl AND @EndPerControl) AS Peh
+                ON PthEEID = PehEEID
+                    AND PthCOID = PehCOID
+                    AND PthTaxCode = PehSITWorkInStateCode
+                    AND PthPerControl = PehPerControl
+            JOIN dbo.TaxCode WITH (NOLOCK)
+                ON CtcTaxCode = PthTaxCode
+                AND CtcCOID = PthCOID
+            WHERE PthTypeOfTax = 'SIT'
+                AND A.PthCurTaxAmt > 0
+                AND A.PthPerControl BETWEEN @StartPerControl AND @EndPerControl) AS TaxCodes
+        ON aPthEEID = xEEID
+        AND aPthCOID = xCOID
     WHERE EecEmplStatus <> 'T' AND PehCurAmt > 0
     ;
 
