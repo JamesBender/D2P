@@ -1,0 +1,5 @@
+Interface details (ECPFMLAEXP)
+Env – EW41 
+Server – EW4WUP1DB03
+Database – ULTIPRO_WPCHCW
+Export Name – ComPsych FMLA Export

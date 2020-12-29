@@ -66,7 +66,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameLast"','4','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','4',NULL,'LastName',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','5','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','5',NULL,'Gender*',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','6','(''UD112''=''T|'')','EMSHEDEMXPZ0','50','D','10','6',NULL,'BirthDate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''DA''=''T|'')','EMSHEDEMXPZ0','50','D','10','7',NULL,'Language',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLanguage"','7','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','7',NULL,'Language',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneNumber"','8','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','8',NULL,'PhoneNumber',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAltNumber"','9','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','9',NULL,'AltNumber',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWorkPhoneNumber"','10','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','10',NULL,'WorkPhone Number',NULL,NULL);
@@ -85,13 +85,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressProvince"','23','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','23',NULL,'EmployeeProvince',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','24','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','24',NULL,'EmployeePostal',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCountry"','25','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','25',NULL,'EmployeeCountry',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfHire"','26','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','26',NULL,'DateofHire',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfHire"','26','(''UD112''=''T|'')','EMSHEDEMXPZ0','50','D','10','26',NULL,'DateofHire',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeType"','27','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','27',NULL,'EmployeeType',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','28','(''DA''=''T|'')','EMSHEDEMXPZ0','50','D','10','28',NULL,'EmpWageCode',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','29','(''DA''=''T|'')','EMSHEDEMXPZ0','50','D','10','29',NULL,'EmpWage',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeUnion"','30','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','30',NULL,'EmployeeUnion',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobTitleDesc"','31','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','31',NULL,'JobTitleDesc',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','32','(''DA''=''T|'')','EMSHEDEMXPZ0','50','D','10','32',NULL,'ARNotifyEmail',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvARNotifyEmail"','32','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','32',NULL,'ARNotifyEmail',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','33','(''DA''=''T|'')','EMSHEDEMXPZ0','50','D','10','33',NULL,'WCNotifyEmail',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','34','(''DA''=''T|'')','EMSHEDEMXPZ0','50','D','10','34',NULL,'WCPayrollEmail',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDMNotifyEmail"','35','(''UA''=''T|'')','EMSHEDEMXPZ0','50','D','10','35',NULL,'DMNotifyEmail',NULL,NULL);
@@ -102,7 +102,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvManagerEmail"','40','(''UA''=''T'')','EMSHEDEMXPZ0','50','D','10','40',NULL,'ManagerEmail',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRL"','1','(''DA''=''T|'')','EMSHEDEMXPZ0','50','T','90','1',NULL,'TrailerTag',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRunDateOfFile"','2','(''UD112''=''T|'')','EMSHEDEMXPZ0','50','T','90','2',NULL,'Run Date of the file',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordCountTotal"','3','(''DA''=''T'')','EMSHEDEMXPZ0','50','T','90','3',NULL,'RecordCountTotal',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordCountTotal"','3','(''UA''=''T'')','EMSHEDEMXPZ0','50','T','90','3',NULL,'RecordCountTotal',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -110,11 +110,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMSHEDEMXP_20201123.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMSHEDEMXP_20201216.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Morneau Shepell Demo Export','202011229','EMPEXPORT','ONDEM_XOE',NULL,'EMSHEDEMXP',NULL,NULL,NULL,'202011229','Nov 22 2020  5:12PM','Nov 22 2020  5:12PM','202011221',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Morneau Shepell Demo Exp-Sched','202011229','EMPEXPORT','SCH_EMSHED',NULL,'EMSHEDEMXP',NULL,NULL,NULL,'202011229','Nov 22 2020  5:12PM','Nov 22 2020  5:12PM','202011221',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Morneau Shepell Demo Exp-Test','202011229','EMPEXPORT','TEST_XOE',NULL,'EMSHEDEMXP',NULL,NULL,NULL,'202011229','Nov 22 2020  5:12PM','Nov 22 2020  5:12PM','202011221',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Morneau Shepell Demo Export','202011229','EMPEXPORT','ONDEM_XOE','Dec  3 2020 12:00AM','EMSHEDEMXP',NULL,NULL,NULL,'202011229','Nov 22 2020 12:00AM','Dec 30 1899 12:00AM','202011221',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Morneau Shepell Demo Exp-Sched','202011229','EMPEXPORT','SCH_EMSHED','Dec  3 2020 12:00AM','EMSHEDEMXP',NULL,NULL,NULL,'202011229','Nov 22 2020 12:00AM','Dec 30 1899 12:00AM','202011221',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','CMCOX',NULL,NULL,NULL,'Morneau Shepell Demo Exp-Test','202012169','EMPEXPORT','TEST_XOE','Dec 16 2020  9:50AM','EMSHEDEMXP',NULL,NULL,NULL,'202012169','Dec 16 2020 12:00AM','Dec 30 1899 12:00AM','202012021','401','','','202012021',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMSHEDEMXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMSHEDEMXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMSHEDEMXP','InitialSort','C','drvSort');
@@ -132,12 +132,13 @@ CREATE TABLE [dbo].[U_EMSHEDEMXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(11) NOT NULL,
     [drvEmployeeNo] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvGender] char(1) NULL,
     [drvDateOfBirth] datetime NULL,
+    [drvLanguage] char(2) NOT NULL,
     [drvPhoneNumber] varchar(50) NULL,
     [drvAltNumber] varchar(50) NULL,
     [drvWorkPhoneNumber] varchar(50) NULL,
@@ -149,22 +150,23 @@ CREATE TABLE [dbo].[U_EMSHEDEMXP_drvTbl] (
     [drvWorkAddressCit] varchar(255) NULL,
     [drvWorkAddressProvince] varchar(255) NULL,
     [drvWorkAddressPostal] varchar(50) NULL,
-    [drvWorkAddressCountry] char(3) NULL,
+    [drvWorkAddressCountry] varchar(3) NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressProvince] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
-    [drvAddressCountry] char(3) NULL,
+    [drvAddressCountry] varchar(3) NULL,
     [drvDateOfHire] datetime NULL,
     [drvEmployeeType] varchar(9) NULL,
-    [drvEmployeeUnion] varchar(3) NULL,
-    [drvJobTitleDesc] VARCHAR(40) NULL,
+    [drvEmployeeUnion] varchar(3) NOT NULL,
+    [drvJobTitleDesc] varchar(25) NOT NULL,
+    [drvARNotifyEmail] varchar(41) NULL,
     [drvDMNotifyEmail] varchar(50) NULL,
-    [drvMangerEmployeID] varchar(1) NOT NULL,
+    [drvMangerEmployeID] char(9) NULL,
     [drvManagerFirstName] varchar(100) NULL,
     [drvManagerLastName] varchar(100) NULL,
-    [drvManagerPhone] varchar(1) NOT NULL,
+    [drvManagerPhone] varchar(50) NULL,
     [drvManagerEmail] varchar(50) NULL
 );
 IF OBJECT_ID('U_EMSHEDEMXP_EEList') IS NULL
@@ -183,7 +185,8 @@ CREATE TABLE [dbo].[U_EMSHEDEMXP_File] (
 );
 IF OBJECT_ID('U_EMSHEDEMXP_Trailer') IS NULL
 CREATE TABLE [dbo].[U_EMSHEDEMXP_Trailer] (
-    [drvRunDateOfFile] varchar(1) NOT NULL
+    [drvRunDateOfFile] datetime NOT NULL,
+    [drvRecordCountTotal] int NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EMSHEDEMXP]
@@ -275,60 +278,68 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = ISNULL(EMPC.EecLocation, '') + ' :: ' + ISNULL(EMPC.EecSalaryOrHourly, '')
         -- standard fields above and additional driver fields below
-        ,drvEmployeeNo = EecEmpNo
-        ,drvNameFirst = EepNameFirst
-        ,drvNameLast = EepNameLast
-        ,drvGender = EepGender
-        ,drvDateOfBirth = EepDateOfBirth
-        ,drvPhoneNumber = EepPhoneHomeNumber
+        ,drvEmployeeNo = EMPC.EecEmpNo
+        ,drvNameFirst = EMPP.EepNameFirst
+        ,drvNameLast = EMPP.EepNameLast
+        ,drvGender = EMPP.EepGender
+        ,drvDateOfBirth = EMPP.EepDateOfBirth
+        ,drvLanguage = EMPC.EecLanguageCode
+        ,drvPhoneNumber = EMPP.EepPhoneHomeNumber
         ,drvAltNumber = EfoPhoneNumber
-        ,drvWorkPhoneNumber = EecPhoneBusinessNumber
-        ,drvEmployeeEmail1 = EepAddressEMailAlternate
-        ,drvEmployeeEmail2 = EepAddressEMail
+        ,drvWorkPhoneNumber = EMPC.EecPhoneBusinessNumber
+        ,drvEmployeeEmail1 = EMPP.EepAddressEMailAlternate
+        ,drvEmployeeEmail2 = EMPP.EepAddressEMail
         ,drvWorkplaceLocation = LocDesc
         ,drvWorkAddressLine1 = LocAddressLine1
         ,drvWorkAddressLine2 = LocAddressLine2
         ,drvWorkAddressCit = LocAddressCity
         ,drvWorkAddressProvince = LocAddressState
         ,drvWorkAddressPostal = LocAddressZipCode
-        ,drvWorkAddressCountry = LocAddressCountry
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
-        ,drvAddressProvince = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
-        ,drvAddressCountry = EepAddressCountry
-        ,drvDateOfHire = EecDateOfOriginalHire
-        ,drvEmployeeType =    CASE WHEN EecEEType = 'CON' THEN 'Contract'
-                                WHEN EecEEType = 'TMP' AND EecFullTimeOrPartTime = 'F' THEN 'Full Time'
-                                WHEN EecEEType = 'TMP' AND EecFullTimeOrPartTime = 'P' THEN 'Part Time'
-                                WHEN EecEEType = 'REG' AND EecSalaryOrHourly = 'S' THEN 'Salary'
-                                WHEN EecEEType = 'REG' AND EecSalaryOrHourly = 'H' THEN 'Unionized'
-                                ELSE EecEEType
+        ,drvWorkAddressCountry = CASE WHEN LocAddressCountry = 'CAN' THEN 'CA' ELSE LocAddressCountry END
+        ,drvAddressLine1 = EMPP.EepAddressLine1
+        ,drvAddressLine2 = EMPP.EepAddressLine2
+        ,drvAddressCity = EMPP.EepAddressCity
+        ,drvAddressProvince = EMPP.EepAddressState
+        ,drvAddressZipCode = EMPP.EepAddressZipCode
+        ,drvAddressCountry = CASE WHEN EMPP.EepAddressCountry = 'CAN' THEN 'CA' ELSE EMPP.EepAddressCountry END
+        ,drvDateOfHire = EMPC.EecDateOfOriginalHire
+        ,drvEmployeeType =    CASE WHEN EMPC.EecEEType = 'CON' THEN 'Contract'
+                                WHEN EMPC.EecEEType = 'TMP' AND EMPC.EecFullTimeOrPartTime = 'F' THEN 'Full Time'
+                                WHEN EMPC.EecEEType = 'TMP' AND EMPC.EecFullTimeOrPartTime = 'P' THEN 'Part Time'
+                                WHEN EMPC.EecEEType = 'REG' AND EMPC.EecSalaryOrHourly = 'S' THEN 'Salary'
+                                WHEN EMPC.EecEEType = 'REG' AND EMPC.EecSalaryOrHourly = 'H' THEN 'Unionized'
+                                ELSE EMPC.EecEEType
                             END
-        ,drvEmployeeUnion =    CASE WHEN EecSalaryOrHourly = 'H' THEN 
-                                CASE WHEN EecLocation = 'PTC' THEN '144'
-                                    WHEN EecLocation = 'SUR' THEN '178'
-                                    WHEN EecLocation = 'CAL' THEN '14'
-                                    WHEN EecLocation = 'VIS' THEN '307'
+        ,drvEmployeeUnion =   -- CASE WHEN EMPC.EecSalaryOrHourly = 'H' THEN 
+                                CASE WHEN EMPC.EecLocation = 'PTC' AND EMPC.EecSalaryOrHourly = 'H' THEN '144'
+                                    WHEN EMPC.EecLocation = 'SUR' AND EMPC.EecSalaryOrHourly = 'H' THEN '178'
+                                    WHEN EMPC.EecLocation = 'CAL' AND EMPC.EecSalaryOrHourly = 'H' THEN '14'
+                                    WHEN EMPC.EecLocation = 'VIS' AND EMPC.EecSalaryOrHourly = 'H' THEN 
+                                        CASE WHEN EMPC.EecSalaryOrHourly = 'H' THEN '307' ELSE '93' END
+                                    ELSE '93'
                                 END
+                            --END
+        ,drvJobTitleDesc = JbcDesc
+        ,drvARNotifyEmail =    CASE WHEN EMPC.EecLocation = 'SUR' THEN 'CAN-PhoneDL-SurreySickLine@refresco.com'
+                                WHEN EMPC.EecLocation = 'PTC' THEN 'CAN-PhoneDL-PtClaireSickLine@refresco.com'
+                                WHEN EMPC.EecLocation = 'CAL' THEN 'CAN-PhoneDL-CalgarySickLine@refresco.com'
+                                WHEN EMPC.EecLocation = 'VIS' THEN 'CAN-PhoneDL-ViscountSickLine@refresco.com'
                             END
-        ,drvJobTitleDesc = ''
-        ,drvDMNotifyEmail = EepAddressEMail
-        ,drvMangerEmployeID = ''
-        ,drvManagerFirstName = EepNameFirst
-        ,drvManagerLastName = EepNameLast
-        ,drvManagerPhone = ''
-        ,drvManagerEmail = EepAddressEMail
+        ,drvDMNotifyEmail = (SELECT TOP 1 EepAddressEmail FROM dbo.EmpPers WITH (NOLOCK)  JOIN dbo.vw_int_EmpComp WITH (NOLOCK) ON EecEEID = EepEEID WHERE Coddesc= EecempNo AND EepAddressEmail IS NOT NULL)
+        ,drvMangerEmployeID = SUPC.EecEmpNo
+        ,drvManagerFirstName = SUPP.EepNameFirst
+        ,drvManagerLastName = SUPP.EepNameLast
+        ,drvManagerPhone = SUPC.EecPhoneBusinessNumber
+        ,drvManagerEmail = SUPP.EepAddressEMail
     INTO dbo.U_EMSHEDEMXP_drvTbl
     FROM dbo.U_EMSHEDEMXP_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    JOIN dbo.vw_int_EmpComp EMPC WITH (NOLOCK)
+        ON EMPC.EecEEID = xEEID 
+        AND EMPC.EecCoID = xCoID
+    JOIN dbo.EmpPers EMPP WITH (NOLOCK)
+        ON EMPP.EepEEID = xEEID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
     LEFT JOIN (
@@ -341,6 +352,16 @@ BEGIN
                 WHERE RN = 1
             ) AS Cel
         ON EfoEEID = xEEID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EMPC.EecJobCode
+    JOIN dbo.vw_int_EmpComp SUPC WITH (NOLOCK)
+        ON SUPC.EecEEID = EMPC.EecSupervisorId
+        AND SUPC.EecCOID = xCOID
+    JOIN dbo.EmpPers SUPP WITH (NOLOCK)
+        ON SUPP.EepEEID = EMPC.EecSupervisorId
+    JOIN dbo.Codes WITH (NOLOCK)
+        ON EMPC.EecLocation = CodCode
+        AND codtable = 'CO_HRMANAGERBYLOCATI'
     WHERE LocAddressCountry = 'CAN'
     ;
     ---------------------------------
@@ -349,7 +370,8 @@ BEGIN
     IF OBJECT_ID('U_EMSHEDEMXP_Trailer','U') IS NOT NULL
         DROP TABLE dbo.U_EMSHEDEMXP_Trailer;
     SELECT DISTINCT
-         drvRunDateOfFile = ''
+         drvRunDateOfFile = GETDATE()
+         ,drvRecordCountTotal = (SELECT COUNT(*) FROM dbo.U_EMSHEDEMXP_drvTbl)
     INTO dbo.U_EMSHEDEMXP_Trailer
     ;
 

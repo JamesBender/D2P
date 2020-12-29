@@ -87,11 +87,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20201031.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20201215.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic Export','202010129','EMPEXPORT','ONDEM_XOE',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic -Sched','202010129','EMPEXPORT','SCH_ECUTRA',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202010299','EMPEXPORT','TEST_XOE','Oct 29 2020  4:23PM','ECUTRAMPEX',NULL,NULL,NULL,'202010299','Oct 29 2020 12:00AM','Dec 30 1899 12:00AM','202009201','263','','','202009201',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202012109','EMPEXPORT','TEST_XOE','Dec 14 2020  5:42PM','ECUTRAMPEX',NULL,NULL,NULL,'202012109','Dec 10 2020 12:00AM','Dec 30 1899 12:00AM','201911011','1173','','','201911011',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','InitialSort','C','drvSort');
@@ -151,7 +151,7 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvManagerEmail] varchar(50) NULL,
     [drvGender] char(1) NULL,
     [drvLocation] varchar(255) NULL,
-    [drvDepartment] varchar(25) NULL,
+    [drvDepartment] varchar(45) NULL,
     [drvEmploymentType] char(1) NULL,
     [drvJobTitle] varchar(27) NOT NULL,
     [drvOrgLvl1Manager] varchar(201) NOT NULL,
@@ -448,18 +448,18 @@ BEGIN
         ,drvSort = E.EepDateOfBirth
         -- standard fields above and additional driver fields below
         ,drvName = E.EepNameFirst + ' ' + E.EepNameLast
-        ,drvPrefferedName = E.EepNamePreferred
-        ,drvEmployeeID = EecEmpNo
+        ,drvPrefferedName = CASE WHEN E.EepNamePreferred IS NOT NULL THEN E.EepNamePreferred ELSE E.EepNameFirst END
+        ,drvEmployeeID = EC.EecEmpNo
         ,drvAddressEmail = E.EepAddressEMail
         ,drvDateOfBirth = E.EepDateOfBirth
-        ,drvStartDate = EecDateOfLastHire
-        ,drvEndDate = EecDateOfTermination
+        ,drvStartDate = EC.EecDateOfLastHire
+        ,drvEndDate = EC.EecDateOfTermination
         ,drvManager = SUP.EepNameFirst + ' ' + SUP.EepNameLast
         ,drvManagerEmail = SUP.EepAddressEMail
         ,drvGender = E.EepGender
         ,drvLocation = LocAddressState
-        ,drvDepartment = OrgDesc1
-        ,drvEmploymentType = EecFulltimeOrPartTime
+        ,drvDepartment = CodDesc -- CustomFields.Employment_CultureAmpDepartment -- OrgDesc1
+        ,drvEmploymentType = EC.EecFulltimeOrPartTime
         ,drvJobTitle = '"' + JbcDesc + '"'
         ,drvOrgLvl1Manager = OrgMangerName
         ,drvOrgLvl3Description = OrgDesc3
@@ -476,22 +476,22 @@ BEGIN
                             WHEN CmpCompanyCode = 'CBEUK' THEN 'Clif Bar Europe B.V. UK'
                             WHEN CmpCompanyCode = 'CBEDE' THEN 'Clif Bar Europe Germany'
                         END
-        ,drvEmploymentStatus = EecEmplStatus
+        ,drvEmploymentStatus = EC.EecEmplStatus
         ,drvCountry = E.EepAddressCountry
-        ,drvManagerEEID = EecSupervisorId
+        ,drvManagerEEID = EC.EecSupervisorId
     INTO dbo.U_ECUTRAMPEX_drvTbl
     FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
+    JOIN dbo.vw_int_EmpComp EC WITH (NOLOCK)
+        ON EC.EecEEID = xEEID 
+        AND EC.EecCoID = xCoID
     JOIN dbo.EmpPers E WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
-        ON JbcJobCode = EecJobCode
+        ON JbcJobCode = EC.EecJobCode
     JOIN dbo.EmpPers SUP WITH (NOLOCK)
-        ON Sup.EepEEID = EecSupervisorId
+        ON Sup.EepEEID = EC.EecSupervisorId
     JOIN dbo.Location WITH (NOLOCK)
-        ON LocCode = EecLocation
+        ON LocCode = EC.EecLocation
     JOIN dbo.Company WITH (NOLOCK)
         ON CmpCoID = xCoID
     JOIN dbo.U_ECUTRAMPEX_PEarHist WITH (NOLOCK)
@@ -502,7 +502,7 @@ BEGIN
             GROUP BY EjhEEID, EjhCOID, EjhJobCode ) AS JobMonths
         ON EjhEEID = xEEID
         AND EjhCOID = xCOID
-        AND EjhJobCode = EecJobCode
+        AND EjhJobCode = EC.EecJobCode
     JOIN (
             SELECT DISTINCT OrgCode AS OrgCode1, OrgDesc AS OrgDesc1, OrgManagerId AS OrgManagerId1, ISNULL(EepNameFirst, '') + ' ' + ISNULL(EepNameLast, '') As OrgMangerName
             FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
@@ -510,25 +510,31 @@ BEGIN
                 ON OrgManagerId = EepEEID
             WHERE OrgLvl = 1
             ) AS Org1
-        ON OrgCode1 = EecOrgLvl1
+        ON OrgCode1 = EC.EecOrgLvl1
     JOIN (
             SELECT DISTINCT OrgCode AS OrgCode3, OrgDesc AS OrgDesc3, OrgManagerId AS OrgManagerId3
             FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
             WHERE OrgLvl = 3
             ) AS Org3
-        ON OrgCode3 = EecOrgLvl3
+        ON OrgCode3 = EC.EecOrgLvl3
     JOIN (
             SELECT DISTINCT OrgCode AS OrgCode2, OrgDesc AS OrgDesc2, OrgManagerId AS OrgManagerId2
             FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
             WHERE OrgLvl = 2
             ) AS Org2
-        ON OrgCode2 = EecOrgLvl2
+        ON OrgCode2 = EC.EecOrgLvl2
     LEFT JOIN (
             SELECT CodCode AS ECode, CodDesc AS EDesc
             FROM dbo.Codes WITH (NOLOCK)
             WHERE CodTable = 'ETHNICCODE'
             ) AS EStatus
         ON E.EepEthnicID = ECode
+    JOIN (select * from [dbo].[fn_MP_CustomFields_EmpComp_Export] (null, null, null, null)) AS CustomFields
+        ON EC.EecEEID = CustomFields.EecEEID
+        AND EC.EecCOID = CustomFields.EecCOID
+    JOIN dbo.Codes WITH (NOLOCK)
+        ON CustomFields.Employment_CultureAmpDepartment = CodCode
+        AND CodTable = 'CO_CULTUREAMPDEP'
     WHERE PehCurAmtYTD > 0
         AND CmpCompanyCode IN ('CBC','CBCCD','CIN','CTF','CBENL','CBEUK','CBEDE')
     ;

@@ -1,0 +1,17 @@
+select  drvCoverageTier, * 
+from dbo.U_ESEQDEMOEX_drvTbl
+--where drvEEID IN ('CDB4AG00L0K0', 'CDB4DI0110K0','CDB4IT00H0K0','CH5HOU001030') --,*/('CDB4C00000K0')
+where drvEEID IN ('CDB4C00000K0')
+and drvCoverageTier is null
+
+select * from dbo.U_dsi_BDM_ESEQDEMOEX WITH (NOLOCK) 
+--where BdmEEID IN ('CDB4AG00L0K0','CDB4DI0110K0','CDB4IT00H0K0','CH5HOU001030') --'CDB4C00000K0')
+where BdmEEID IN ('CDB4C00000K0')
+and BdmDedCode IN ('ADDEE','ADDSP','BADD ','DPDEN','DPMED','LIFER','LTDER','STDER','VLP','VLPSP')
+
+
+--sp_getEEID 'Hernandez'
+
+/* DPDEN
+DPMED
+DPVIS*/

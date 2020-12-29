@@ -1,0 +1,5 @@
+Interface details (EOCRSDEMEX)
+Env – EW11 
+Server – EW1WUP1DB01 
+Database – ULTIPRO_WPSPCCU 
+Export Name – OnCourse Demo Export

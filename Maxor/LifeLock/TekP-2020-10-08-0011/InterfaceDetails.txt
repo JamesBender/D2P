@@ -1,0 +1,5 @@
+Interface details (ELIFLCKEXP)
+Env – AEW34 
+Server – EW3WUP4DB01 
+Database – ULTIPRO_WPMAXOR 
+Export Name – LifeLock Export

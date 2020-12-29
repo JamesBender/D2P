@@ -197,7 +197,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ERELFMLAXP_20201201.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ERELFMLAXP_20201214.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011199','EMPEXPORT','OEACTIVE',NULL,'ERELFMLAXP',NULL,NULL,NULL,'202011199','Nov 19 2020  5:29PM','Nov 19 2020  5:29PM','202011191',NULL,'','','202011191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202011199','EMPEXPORT','OEPASSIVE',NULL,'ERELFMLAXP',NULL,NULL,NULL,'202011199','Nov 19 2020  5:29PM','Nov 19 2020  5:29PM','202011191',NULL,'','','202011191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -666,11 +666,13 @@ BEGIN
         ,drvSubGroupD = EecOrgLvl3
         ,drvSuBGroupE = EecOrgLvl4
         ,drvIsSTDEligible = CASE WHEN STD_DedCode IS NOT NULL THEN 'Y' ELSE 'N' END -- CASE WHEN BdmDedCode IN ('SA040','SAAAR','SAAMG','SACLC','SACOR','SALAB','SASPC','SSADY','SAWBC','SAMOR','SAARB','SAROA','STCB','SAAPL') THEN 'Y' ELSE 'N' END
-        ,drvSTDPlanEffective = CASE WHEN STD_DedCode IS NOT NULL THEN STD_BenStartDate END --CASE WHEN BdmDedCode IN ('SA040','SAAAR','SAAMG','SACLC','SACOR','SALAB','SASPC','SSADY','SAWBC','SAMOR','SAARB','SAROA','STCB','SAAPL') THEN BdmBenStartDate END
+        ,drvSTDPlanEffective = CASE WHEN STD_DedCode IS NOT NULL THEN STD_StartDate /*STD_BenStartDate*/ END --CASE WHEN BdmDedCode IN ('SA040','SAAAR','SAAMG','SACLC','SACOR','SALAB','SASPC','SSADY','SAWBC','SAMOR','SAARB','SAROA','STCB','SAAPL') THEN BdmBenStartDate END
         ,drvIsLTDEligible = CASE WHEN LTD_DedCode IS NOT NULL THEN 'Y' ELSE 'N' END --CASE WHEN BdmDedCode IN ('LTD3','LTDC') THEN 'Y' ELSE 'N' END
-        ,drvLTDEffectiveDate = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_BenStartDate END --CASE WHEN BdmDedCode IN ('LTD3','LTDC') THEN BdmBenStartDate END
+        
+        ,drvLTDEffectiveDate = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_StartDate /*LTD_BenStartDate*/ END --CASE WHEN BdmDedCode IN ('LTD3','LTDC') THEN BdmBenStartDate END
+        
         ,IsLTDSuppBuUpEligible = CASE WHEN LTDSUP_DedCode IS NOT NULL THEN 'Y' ELSE 'N' END  --CASE WHEN BdmDedCode IN ('LTD4','LTD5') THEN 'Y' ELSE 'N' END
-        ,drvLTDSuppBuyUpEffecticeDate = CASE WHEN LTDSUP_DedCode IS NOT NULL THEN LTDSUP_BenStartDate END
+        ,drvLTDSuppBuyUpEffecticeDate = CASE WHEN LTDSUP_DedCode IS NOT NULL THEN LTDSUP_StartDate /*LTDSUP_BenStartDate*/ END
         ,drvHourWorked = FORMAT(PehCurHrsWorked, '#0.00')
         ,drvAddData01 = AddData01
         ,drvAddData02 = CASE WHEN AddData02 <> 'LTD3' OR AddData02 IS NULL THEN AddData02 
@@ -714,6 +716,16 @@ BEGIN
             GROUP BY BdmEEID, BdmCOID) AS BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN (
+            SELECT EedEEID, EedCOID
+                ,MAX(CASE WHEN EedDedCode IN ('SA040','SAAAR','SAAMG','SACLC','SACOR','SALAB','SASPC','SSADY','SAWBC','SAMOR','SAARB','SAROA','STCB','SAAPL') THEN EedStartDate END) AS STD_StartDate
+                ,MAX(CASE WHEN EedDedCode IN ('LTD3','LTDC') THEN EedStartDate END) AS LTD_StartDate
+                ,MAX(CASE WHEN EedDedCode IN ('LTD4','LTD5') THEN EedStartDate END) AS LTDSUP_StartDate
+            FROM dbo.EmpDed WITH (NOLOCK)
+            WHERE EedDedCode IN ('SA040','SAAAR','SAAMG','SACLC','SACOR','SALAB','SASPC','SSADY','SAWBC','SAMOR','SAARB','SAROA','STCB','SAAPL','LTD3','LTDC','LTD4','LTD5')
+            GROUP BY EedEEID, EedCOID) AS BenStart
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
     LEFT JOIN dbo.U_ERELFMLAXP_Audit
         ON audEEID = xEEID
         AND audKey2 = xCOID

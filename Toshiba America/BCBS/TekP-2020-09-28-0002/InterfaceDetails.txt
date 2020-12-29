@@ -1,0 +1,5 @@
+Interface details (EBCBSMDEXP)
+Env – EW42 
+Server – EW4WUP2DB03
+Database – ULTIPRO_WPTOAM
+Export Name – BCBS Health & Welfare 834 Export

@@ -1,16 +1,34 @@
---select * from dbo.U_EIWABNKMED_DrvTbl where drvNM103_NameLast1 = 'Test' -- DDYMIB000030
+SELECT drvEEID, drvDTP03_DateTimePeriod_348, drvDTP03_DateTimePeriod_349, * 
+from dbo.U_EIWABNKMED_DrvTbl_2300
+--where drvEEID = 'COCIET043030'
+where drvEEID = 'CY331U000030'
+--where drvDTP03_DateTimePeriod_349 = '1/1/1900'
 
-select drvSubSort, drvDTP00_DateTime_348, drvDTP03_DateTimePeriod_348, drvDTP00_DateTime_349, drvDTP03_DateTimePeriod_349, * from dbo.U_EIWABNKMED_DrvTbl_2300 where drvEEID = 'DDYMIB000030'
 
 
-select * from dbo.U_dsi_bdm_EIWABNKMED WITH (NOLOCK) where bdmEEID = 'DDYMIB000030'
 
-SELECT AudEEID, AudKey2 AS AudCOID, AudOldValue AS OldBenOption, AudNewValue AS NewBenOption
-                FROM dbo.U_EIWABNKMED_Audit
-                WHERE audTableName = 'EmpDed'
-                    AND audFieldName = 'EedBenOption'
-                    AND audAction = 'Update'
-                    AND AudRowNo = 1
-                    AND AudOldValue NOT IN ('Z')
-                    AND AudNewValue NOT IN ('Z')
-					and audEEID = 'DDYMIB000030'	
+SELECT * from dbo.U_EIWABNKMED_OldBenOptions
+where ObEEID IN (/*'COCIET043030',*/'CY331U000030')
+
+--sp_getEEID 'Schlagel' -- COCIET043030
+--sp_getEEID 'Madsen' -- CY331U000030
+
+select * from dbo.U_dsi_bdm_EIWABNKMED WITH (NOLOCK) 
+--where BdmEEID = 'COCIET043030'	
+where BdmEEID = 'CY331U000030'
+
+--select * from dbo.U_dsi_bdm_Configuration
+--where FormatCode = 'EIWABNKMED'
+
+--select top 10 * from EmpHDed where EdhEEID = 'COCIET043030'	and EdhDedCode = '429'
+
+--select top 10 * from EmpDed--
+
+
+
+
+
+
+
+
+

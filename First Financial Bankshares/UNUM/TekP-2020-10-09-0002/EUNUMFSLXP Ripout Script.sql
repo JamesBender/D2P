@@ -153,7 +153,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNUMFSLXP_20201203.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNUMFSLXP_20201204.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011249','EMPEXPORT','OEACTIVE',NULL,'EUNUMFSLXP',NULL,NULL,NULL,'202011249','Nov 24 2020 10:57AM','Nov 24 2020 10:57AM','202011241',NULL,'','','202011241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202011249','EMPEXPORT','OEPASSIVE',NULL,'EUNUMFSLXP',NULL,NULL,NULL,'202011249','Nov 24 2020 10:57AM','Nov 24 2020 10:57AM','202011241',NULL,'','','202011241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -224,7 +224,7 @@ CREATE TABLE [dbo].[U_EUNUMFSLXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(5) NULL,
     [drvSSN] char(11) NULL,
     [drvEmployeID] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -462,7 +462,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '' --EecDateOfLastHire
+        ,drvSort = LTD_DedCode --EecDateOfLastHire
         -- standard fields above and additional driver fields below
         ,drvSSN = Emp.EepSSN
         ,drvEmployeID = EecEmpNo
@@ -507,7 +507,7 @@ BEGIN
                                         END
         ,drvEESalaryMode = CASE WHEN EecSalaryOrHourly = 'S' THEN 'S' ELSE 'H' END
         ,drvProduct1 =    CASE WHEN VSTD_DedCode IS NOT NULL THEN '31'
-                            WHEN LTD_DedCode IS NOT NULL AND LTD_DedCode <> 'LTDIM' THEN '38'
+                            WHEN LTD_DedCode IS NOT NULL THEN '38'
                         END
         ,drvPolicyNumber1 =    CASE WHEN VSTD_DedCode IS NOT NULL THEN '571709'
                                 WHEN LTD_DedCode IS NOT NULL THEN '571708'
@@ -587,9 +587,14 @@ BEGIN
                     ,MAX(CASE WHEN BdmDedCode IN ('VSTD') THEN BdmDedCode END) AS VSTD_DedCode
                     ,MAX(CASE WHEN BdmDedCode IN ('VSTD') THEN BdmBenStartDate END) AS VSTD_BenStartDate
                     ,MAX(CASE WHEN BdmDedCode IN ('VSTD') THEN BdmBenStopDate END) AS VSTD_BenStopDate
+                    ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX') THEN BdmDedCode END) AS LTD_DedCode
+                    ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX') THEN BdmBenStartDate END) AS LTD_BenStartDate
+                    ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX') THEN BdmBenStopDate END) AS LTD_BenStopDate
+
+                    /*
                     ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX','LTDIM') THEN BdmDedCode END) AS LTD_DedCode
                     ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX','LTDIM') THEN BdmBenStartDate END) AS LTD_BenStartDate
-                    ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX','LTDIM') THEN BdmBenStopDate END) AS LTD_BenStopDate
+                    ,MAX(CASE WHEN BdmDedCode IN ('LTD','LTDEX','LTDIM') THEN BdmBenStopDate END) AS LTD_BenStopDate*/
                 FROM dbo.U_dsi_BDM_EUNUMFSLXP WITH (NOLOCK)
                 GROUP BY BdmEEID, BdmCOID) AS BDM
         ON BdmEEID = xEEID 

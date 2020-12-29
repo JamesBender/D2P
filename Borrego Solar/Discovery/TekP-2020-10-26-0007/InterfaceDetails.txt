@@ -1,0 +1,5 @@
+Interface details (EDISFHSAEX)
+Env – NW15
+Server – NW1WUP5DB02
+Database – ULTIPRO_WPBORSS
+Export Name – Discovery FSA/HSA Export

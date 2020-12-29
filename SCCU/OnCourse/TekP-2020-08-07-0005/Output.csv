@@ -1,0 +1,957 @@
+Username,FirstName,LastName,Email,HireDate,JobRoleCode,LocationCode,SupervisorCode,ReportingSupervisorCode,Status
+54539,Valerie,France,ValerieF@sccu.com,06/19/1995,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+54690,Janita,Boulay,janb@sccu.com,08/19/1985,Operations Officer Retail,Retail Admin,066621,066621,A
+54708,Meredith,Vernon,meredithv@sccu.com,03/31/1997,Express Mort Originator,Express Mortgages,066777,066777,A
+55993,Curt,Feltner,curtf@sccu.com,09/28/1998,Secondary Market Spec,Finance,057492,057492,A
+56237,Vicki,Tucker,VickiT@sccu.com,06/19/2000,Sr Member Serv Specialist,Deland South Branch,057665,057665,A
+56826,Chanda,Miller-Hansell,ChandaM@sccu.com,08/15/2005,Help Desk Support,Information Technology,058338,058338,A
+56906,Catherine,Wendt,cathyw@sccu.com,03/27/2006,Executive Admin Asst,Executive,054679,054679,A
+57006,Liana,O'Brien,lianao@sccu.com,09/15/2008,Member Service Spec,Port Orange Branch,057542,057542,A
+57012,Debra,Peeler,DebraP@sccu.com,03/12/2007,Member Service Spec,Port St. John Branch,057873,057873,A
+57066,Kimberly,Tyree,KimberlyT@sccu.com,02/05/2007,VP Retail Services,Executive,054754,054754,A
+57139,Jeremy,Pearson,jeremyp@sccu.com,05/21/2007,App Support Analyst I,Information Technology,058338,058338,A
+57269,Jenny,Rathburn,JennyR@sccu.com,06/09/2008,Acctg Assoc II,Accounting - Operational,057415,057415,A
+66138,Jennifer,Forero,JennyF@sccu.com,08/08/1994,Training Specialist,Training,066381,066381,A
+66171,Alshams,Ladha,Alshamsl@sccu.com,01/02/2018,Contact Center Associate,Member Service Center,066531,066531,A
+66190,Frank,Orduna,franko@sccu.com,10/27/1997,Facility Svs Supervisor,Facilities,057256,057256,A
+57515,Denny,Chiong,dennyc@sccu.com,12/13/2010,Underwriter I,Underwriting,057683,057683,A
+66232,Andrea,Vanzie,AndreaV@sccu.com,02/11/2019,Contact Center Associate,Member Service Center,066531,066531,A
+66263,Shanta,Gildharry,ShantaG@sccu.com,02/14/2001,Member Service Spec,Sunrise Town Center Branc,067156,067156,A
+66293,Shabnam,Charania,ShabnamC@sccu.com,08/19/2002,Sr Member Serv Specialist,Pines Hiatus Branch,066822,066822,A
+66327,Gustavo,Sousa,gustavos@sccu.com,11/10/2003,Branch Maintenance Tech,Facilities,066190,066190,A
+66375,Xiomara,Diaz,xiomarad@sccu.com,02/22/2005,Member Service Spec,Pines Hiatus Branch,066822,066822,A
+66432,Gretchen,Canoto,Gretchenco@sccu.com,01/23/2006,Retail Branch Lead,Kendall Breeze Branch,066267,066267,A
+66452,Geovanny,Palacios,GeovannyP@sccu.com,11/02/2009,Member Service Spec,Palm Springs Branch,066538,066538,A
+66491,Catherine,Ripoll,CatherineR@sccu.com,01/08/2007,Card Specialist I,Card Services,066321,066321,A
+66958,Antoinette,Rawcliffe,annr@sccu.com,06/02/2014,Sales Rep - Indirect Lend,Indirect Sales,057090,057090,A
+57311,Joey,Acosta,JoeyA@sccu.com,09/02/2008,Online Serv Specialist,E-Banking,057476,057476,A
+57414,Cecilia,Rhyner,ceciliar@sccu.com,09/05/2011,Retail Branch Lead,Indian Harbour Beach Bran,057163,057163,A
+57415,Rochelle,Hunt,rochelleh@sccu.com,04/11/2016,Mgr Accounting,Accounting - Operational,058547,058547,A
+57495,Susan,Lanier,susanla@sccu.com,10/12/2010,Loan Servicing Spec I,Loan Servicing,058140,058140,A
+57528,Andrea,Mortonson,andream@sccu.com,01/24/2011,Sr Card Specialist,Card Services,057524,057524,A
+57546,Jina,Sundstrom,jinar@sccu.com,02/28/2011,Branch Mgr,Rockledge South,056879,056879,A
+57542,Michelle,Prats,michellepr@sccu.com,02/28/2011,Branch Mgr,Port Orange Branch,057233,057233,A
+66771,Pamela,van der Aa,pamelav@sccu.com,03/28/2011,Underwriter III,Underwriting,058671,058671,A
+66777,Malik,Wilkes,malikw@sccu.com,05/02/2011,Mgr Express Mortgage,Express Mortgages,058246,058246,A
+57575,Kelly,Wachowski,kellyw@sccu.com,06/20/2011,Member Service Spec,Rockledge Branch,054769,054769,A
+57600,Michelle,Mancini,michellema@sccu.com,04/23/2018,Branch Mgr,Cocoa Beach Branch,056879,056879,A
+66822,Cindy,Saint Aime,cindys@sccu.com,01/23/2012,Branch Mgr,Pines Hiatus Branch,066534,066534,A
+57683,Amanda,Clermont,amandac@sccu.com,06/18/2012,Mgr Underwriting,Underwriting,058649,058649,A
+66862,Lourdes,Enriquez,lourdese@sccu.com,08/27/2012,Sales Rep - Indirect Lend,Indirect Sales,057090,057090,A
+66895,Noris,Bargallo,norisb@sccu.com,04/15/2013,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+57820,Parwaneh,Behdin,pamab@sccu.com,06/10/2013,Loan Processor I,Indirect Sales,057858,057858,A
+57840,Christina,Butler,christinab@sccu.com,08/19/2013,Recovery Specialist,Credit Solutions,058202,058202,A
+57876,Paige,Jarriel,paigej@sccu.com,10/28/2013,Sr Member Serv Specialist,Oslo Branch,057192,057192,A
+66939,Cristina,Lozza,cristinal@sccu.com,01/27/2014,Contact Center Assoc II,Member Service Center,057930,057930,A
+57936,Karen,Rock,karenro@sccu.com,05/12/2014,Member Service Spec,Port Orange Branch,057542,057542,A
+57946,Daniel,Chiappone,danielc@sccu.com,06/02/2014,VP Credit Solutions,Executive,058205,058205,A
+57980,Kimberly,Williams,kimberlyw@sccu.com,08/18/2014,Loan Servicing Spec II,Loan Servicing,058140,058140,A
+57994,Norman,Urbanski,normanu@sccu.com,09/15/2014,Info Security Analyst,Operations,056268,056268,A
+58027,Terri,Lusk,terril@sccu.com,12/01/2014,Member Service Spec,Port Orange Branch,057542,057542,A
+58039,Keisha,Baptiste,keishab@sccu.com,12/15/2014,Loan Processor IV,Express Mortgages,058844,058844,A
+66995,Bonnie,Stoller,bonnies@sccu.com,01/12/2015,Training Specialist,Training,066381,066381,A
+58054,Marianna,Faure,mariannah@sccu.com,02/17/2015,Loan Processor IV,Express Mortgages,058844,058844,A
+67015,Kristina,Torres,kristinat@sccu.com,04/27/2015,Member Service Spec,Hollywood Branch,066496,066496,A
+58098,Maria,Garcia,mariag@sccu.com,05/18/2015,Loan Processor III,Express Mortgages,058844,058844,A
+58096,Valerie,Clavell,valeriec@sccu.com,05/18/2015,Underwriter II,Underwriting,057683,057683,A
+67019,Thaimi,Alonso-Cartaya,thaimia@sccu.com,05/19/2015,Exp Services Associate,Express Services,067113,067113,A
+58115,Kimberly,Cothran,kimberlyc@sccu.com,06/08/2015,Loan Processor IV,Express Mortgages,058844,058844,A
+58142,Christopher,Stidham,christopherst@sccu.com,07/27/2015,Member Service Spec,Palm Coast West Branch,057667,057667,A
+58165,Audrey,Ramsingh,audreyr@sccu.com,09/28/2015,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+58182,Vikash,Sewdath,vikashs@sccu.com,10/26/2015,Recovery Specialist,Credit Solutions,058202,058202,A
+67091,Emmanuel,Leiva,emmanuell@sccu.com,01/25/2016,Underwriter I,Underwriting,057683,057683,A
+58219,Shantelle,DeCosey,shantelleb@sccu.com,02/01/2016,Loan Processor II,Express Processing,058677,058677,A
+58252,Tsedale,McCalla,tsedalem@sccu.com,04/25/2016,Exp Services Associate,Express Services,058046,058046,A
+67133,Elicia,McCrea,eliciam@sccu.com,06/06/2016,Contact Center Associate,Member Service Center,066531,066531,A
+67150,Elexus,McDuffie,elexusm@sccu.com,06/20/2016,Member Service Spec,West Miramar Branch,066700,066700,A
+67153,Brooke,Ramsey,brooker@sccu.com,06/27/2016,Contact Center Assoc II,Member Service Center,057930,057930,A
+67154,Jerome,McLeod,jeromem@sccu.com,07/11/2016,Member Service Spec,West Miramar Branch,066700,066700,A
+58350,Melissa,Hearn,melissah@sccu.com,08/01/2016,Payments Specialist I,Payment Services,058079,058079,A
+58361,Jessica,Hinkamp,jessicahi@sccu.com,08/15/2016,Member Service Spec,Indialantic Branch,057555,057555,A
+58349,Stephanie,Robaina,stephaniero@sccu.com,08/15/2016,Sales Rep - Indirect Lend,Indirect Sales,057090,057090,A
+58357,Rebecca,Reel,rebeccar@sccu.com,08/22/2016,Loan Processor I,Indirect Sales,057858,057858,A
+67192,Bernadette,Tannuzzo,bernadettet@sccu.com,10/03/2016,Member Service Spec,East Miramar Branch,066470,066470,A
+58425,Dezrene,Harris Johnson,dezreneh@sccu.com,02/13/2017,Vault Document Specialist,Operations,056633,056633,A
+67212,Aleta,Henderson,aletah@sccu.com,04/17/2017,Asst Branch Mgr,East Hollywood Branch,066470,066470,A
+58437,Dane,Lopes,danel@sccu.com,04/24/2017,Member Service Spec,DuPont Lake Branch,057665,057665,A
+58442,Taylor,Sipes,taylors@sccu.com,06/19/2017,Loan Processor IV,Express Mortgages,058844,058844,A
+58483,Rudolph,Cardone,rudolphc@sccu.com,08/28/2017,Payments Specialist II,Payment Services,058079,058079,A
+58486,Courtney,Ramsey,courtneyr@sccu.com,09/05/2017,Member Service Spec,Daytona Beach Branch,057698,057698,A
+58489,Merida,Donnelly,meridad@sccu.com,09/05/2017,Exp Services Associate,Express Services,058046,058046,A
+58495,Marie,Martinez,mariem@sccu.com,09/18/2017,Member Service Spec,Vero Beach Branch,058277,058277,A
+58499,Austin,Jones,austinj@sccu.com,09/25/2017,Exp Services Associate,Express Services,058046,058046,A
+58509,James,Cannon,jamesc@sccu.com,11/13/2017,Business Intell Analyst,Business Intelligence,058705,058705,A
+58510,Jessica,Pena,jessicape@sccu.com,12/04/2017,Credit Solutions Assoc II,Credit Solutions,057039,057039,A
+67249,Raul,Llano-Amaya,raull@sccu.com,01/08/2018,Member Service Spec,Homestead Branch,066184,066184,A
+58517,Malika,Hutchinson,malikah@sccu.com,01/08/2018,Contact Center Assoc II,Member Service Center,057930,057930,A
+58524,Darien,Davis,dariend@sccu.com,01/16/2018,Contact Center Associate,Member Service Center,058481,058481,A
+58540,Jeanette,Malave,jeanettem@sccu.com,02/20/2018,Member Service Spec,Melbourne Branch,054776,054776,A
+67256,Sarah,McCaskill,sarahm@sccu.com,02/20/2018,Card Specialist I,Card Services,066321,066321,A
+58570,April,Lawler,aprill@sccu.com,06/04/2018,Member Service Spec,Melbourne Branch,054776,054776,A
+58618,Christopher,Gilliland,christopherg@sccu.com,10/29/2018,Web Developer,Information Technology,058847,058847,A
+58626,Robert,DeVault,robertd@sccu.com,11/05/2018,Network Admin I,Information Technology,058338,058338,A
+58631,Joy,Murphy,joymu@sccu.com,11/26/2018,Member Service Spec,Palm Bay West Branch,058126,058126,A
+58638,Vanessa,Sablon,vanessas@sccu.com,12/31/2018,Business Services Advisor,Business Services,058206,058206,A
+58641,Anthony,Monteleone,anthonymo@sccu.com,01/14/2019,Operations Serv Spec II,Operations,056633,056633,A
+67313,Savier,Figueroa-Arroyo,savierf@sccu.com,03/11/2019,Member Service Spec,Cypress Creek Branch,066183,066183,A
+67312,Chestine,Ray,chestiner@sccu.com,03/11/2019,Contact Center Associate,Member Service Center,066531,066531,A
+67322,Bella,Dezore,bellacruzd@sccu.com,04/29/2019,Exp Services Associate,Express Services,067113,067113,A
+58678,Spencer,Ferch,spencerf@sccu.com,05/06/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58690,Dawn,Quinn,dawnq@sccu.com,05/13/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58703,Jennifer,Gangle,jenniferg@sccu.com,06/10/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58701,John,Foley,johnf@sccu.com,06/10/2019,Mgr Express Service,Express Mortgages,058246,058246,A
+67329,Enrique,Calvo,enriquec@sccu.com,06/17/2019,Express Mort Originator,Express Mortgages,066777,066777,A
+58712,Emma-Jo,Duzan,emmajod@sccu.com,07/08/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+67335,Juan,Espinoza,juane@sccu.com,07/29/2019,Exp Services Associate,Express Services,067113,067113,A
+58732,Hector,Misuraca,hectorm@sccu.com,08/19/2019,Member Service Spec,Palm Bay West Branch,058126,058126,A
+58723,Kimberly,Brown,kimberlyb@sccu.com,08/26/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58774,Jacob,Woodward,jacobw@sccu.com,11/12/2019,Member Service Spec,Oslo Branch,057192,057192,A
+58776,Spencer,Hunt,spencerh@sccu.com,11/18/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+67362,Carlos,De Armas,carlosd@sccu.com,12/09/2019,Contact Center Associate,Member Service Center,066384,066384,A
+58781,Cory,Caplinger,coryc@sccu.com,12/16/2019,Member Service Spec,New Smyrna Beach Branch,057665,057665,A
+58784,Miranda,Bennett,mirandab@sccu.com,12/16/2019,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+58782,Boyce,Poleon,boycep@sccu.com,01/06/2020,Systems Developer I,Information Technology,058847,058847,A
+58793,Jade,Hardeman-Willis,jadeh@sccu.com,01/13/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+67369,Jahmeil,Rogers,jahmeilr@sccu.com,01/27/2020,Member Service Spec,Sunrise Town Center Branc,067156,067156,A
+58800,John,Colome,johnc@sccu.com,02/10/2020,Acctg Assoc II,Accounting - Operational,057415,057415,A
+58794,Caralys,Fernandez,caralysf@sccu.com,02/10/2020,Member Service Spec,Port Malabar Branch,057448,057448,A
+58812,Robert,Speigner,robertsp@sccu.com,03/02/2020,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+58821,Nicholas,Smith,nicholass@sccu.com,03/30/2020,Card Specialist I,Card Services,057524,057524,A
+58825,Willie,Lewis,williel@sccu.com,04/06/2020,Loan Processor II,Express Processing,057602,057602,A
+67387,Ricardo,Moran,ricardom@sccu.com,04/06/2020,Exp Services Associate,Express Services,067113,067113,A
+67396,Osmani,de la Vega,osmanid@sccu.com,05/26/2020,Contact Center Associate,Member Service Center,067023,067023,A
+67401,Kiutsa,Hodgson,kiutsah@sccu.com,05/26/2020,Contact Center Associate,Member Service Center,067023,067023,A
+58863,Destiny,White,destinyw@sccu.com,06/22/2020,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+58867,James,Sansbury,jamessa@sccu.com,06/29/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58885,Amanda,Marvin,amandama@sccu.com,07/13/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58926,Amber,Dittemer,amberd@sccu.com,11/02/2020,Member Service Spec,Merritt Island Branch,057043,057043,A
+58930,Amber,McCoy,amberm@sccu.com,11/09/2020,Member Service Spec,Baytree Branch,057630,057630,A
+58933,Sarah,McGinn,sarahmc@sccu.com,11/30/2020,Member Service Spec,Merritt Island Branch,057043,057043,A
+56166,Jacqueline,Williams,jacquelinew@sccu.com,09/13/1999,Member Service Spec,Palm Coast West Branch,057667,057667,L
+56231,Donnalee,Latford,donnaleel@sccu.com,06/19/2000,Loan Processor II,Express Processing,057602,057602,A
+56301,Karlene,Nephew,karleneg@sccu.com,03/12/2001,Credit Solutions Assoc II,Credit Solutions,066701,066701,A
+56524,Lauren,Donato,laurend@sccu.com,03/26/2018,Card Specialist II,Card Services,057524,057524,A
+56720,Neil,Woodings,neilw@sccu.com,02/14/2005,Accountant II,Accounting - General,058263,058263,A
+56832,Andrea,Gordon,andreag@sccu.com,09/06/2005,Mgr Member Serv Center,Member Service Center,056641,056641,A
+56879,Beverly,Smith,beverlyb@sccu.com,01/09/2006,Dir Retail Services,Retail Admin,057066,057066,A
+57118,Christopher,Rye,ChristopherR@sccu.com,11/03/2008,Systems Administrator I,Information Technology,057814,057814,A
+57156,James,Shonts,JamesS@sccu.com,06/06/2016,Network Admin I,Information Technology,058338,058338,A
+57163,Deborah,Whisenant,DeborahW@sccu.com,06/25/2007,Branch Mgr,Indian Harbour Beach Bran,056879,056879,A
+57276,Allen,Bourbeau,AllenB@sccu.com,06/02/2008,Recovery Specialist,Credit Solutions,058202,058202,A
+66146,Diana,Hernandez,dianah@sccu.com,11/02/2009,Member Service Spec,Sunset Branch,066467,066467,A
+66167,Julienne,Mullings,JulienneM@sccu.com,11/02/2009,Member Service Spec,Cypress Creek Branch,066183,066183,A
+66168,Marie,Leger,MarieL@sccu.com,11/16/2009,Sr Contact Center Assoc,Member Service Center,066384,066384,A
+66218,Victor,Barrios,VictorB@sccu.com,01/11/1999,Member Service Spec,NW 36th St Branch,066139,066139,A
+66286,Maria,Alfaro,MariaA2@sccu.com,06/03/2002,Member Service Spec,Kendall Breeze Branch,066267,066267,A
+66321,Silvana,Polanco Silvestri,SilvanaP@sccu.com,08/18/2003,Mgr Card Services,Card Services,066210,066210,A
+66496,Kelly,Houston,KellyH@sccu.com,02/12/2007,Branch Mgr,Hollywood Branch,066534,066534,A
+66538,Josue,De La Torre,JosueD@sccu.com,07/23/2007,Asst Branch Mgr,Palm Springs Branch,066431,066431,A
+57312,Erin,Freeman,erinf@sccu.com,09/08/2008,Dir Operations,Operations,056268,056268,A
+66591,Kristina,Calzadilla,KristinaC@sccu.com,11/24/2008,Member Service Spec,Hialeah Gardens Branch,066431,066431,A
+66661,Leonel,Llanes,leonell@sccu.com,09/21/2009,Express Mort Originator,Express Mortgages,066777,066777,A
+57389,Ashley,Partridge,ashleyp@sccu.com,10/26/2009,Internal Auditor,Internal Audit,054679,054679,A
+66681,Ieshia,Thomas,ieshiat@sccu.com,11/16/2009,Credit Solutions Assoc II,Credit Solutions,066701,066701,A
+57420,Sascha,de la Fuente,saschad@sccu.com,02/08/2010,Member Service Spec,New Smyrna Beach Branch,057665,057665,A
+57436,Jacqueline,Diaz,jackied@sccu.com,03/18/2013,Online Services Associate,E-Banking,057476,057476,A
+66715,Pamela,Goss,pamelago@sccu.com,05/03/2010,Member Service Spec,Margate Branch,067094,067094,A
+57469,Terry,Lopes,terryl@sccu.com,08/30/2010,Sr Member Serv Specialist,Deland South Branch,057665,057665,A
+57661,Keith,Brands,keithb@sccu.com,02/27/2012,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+66852,Ivonne,Carratala Esquivel,ivonnec@sccu.com,06/18/2012,Asst Branch Mgr,Coral Gables Branch,066122,066122,A
+57762,Maite,Torres Labayen,maitet@sccu.com,03/25/2013,Sr Mkting Spec,Marketing,057717,057717,A
+57781,Crystal,Thomas,crystalt@sccu.com,05/13/2013,Member Service Spec,Rockledge Branch,054769,054769,A
+57811,Deanna,Quinn,deannaq@sccu.com,06/17/2013,Member Service Spec,New Smyrna Beach Branch,057665,057665,A
+57858,Kelli,St. Pierre,kellis@sccu.com,10/22/2018,Asst Mgr Indirect Proc,Indirect Sales,057090,057090,A
+57881,Georgina,Luna-Ackerman,georginaa@sccu.com,11/12/2013,Member Service Spec,Ormond Beach Branch,057535,057535,A
+66961,Jessica,Terrelonge,jessicat@sccu.com,06/09/2014,Contact Center Associate,Member Service Center,066531,066531,A
+66990,Sheila,Perez,sheilap@sccu.com,10/20/2014,Contact Center Associate,Member Service Center,066531,066531,A
+58037,Shelma,Williams Scott,shelmas@sccu.com,12/08/2014,Loan Servicing Spec II,Loan Servicing,058140,058140,A
+58047,Ryan,McKinsey,ryanm@sccu.com,01/30/2017,Underwriter III,Underwriting,058772,058772,A
+58065,Janet,Brady,janetb@sccu.com,03/16/2015,Loss Mitigation Assoc I,Credit Solutions,058202,058202,A
+67033,Rodine,Ferdinand,rodinef@sccu.com,07/06/2015,Contact Center Associate,Member Service Center,067023,067023,A
+67055,Syndia,Bontemps,Syndiab@sccu.com,07/27/2015,Member Service Spec,West Coral Springs Branch,066882,066882,A
+58154,Dana,Abt,danaa@sccu.com,08/31/2015,Sr Member Serv Specialist,Viera Branch,058247,058247,A
+58196,Tony,Swaim,tonys@sccu.com,11/30/2015,Exp Services Associate,Express Services,058046,058046,A
+58207,Lisa,Henderson,lisahe@sccu.com,12/28/2015,Mgr Human Resources,Human Resources,058193,058193,A
+58213,Ninoshka,Febus,ninoshkaf@sccu.com,08/27/2018,Loan Processor II,Express Processing,058677,058677,A
+58220,Jill,Hartung-Gypp,jillh@sccu.com,02/16/2016,Contact Center Associate,Member Service Center,058481,058481,A
+58249,Beth,Cline,bethc@sccu.com,04/11/2016,Member Service Spec,Ormond Beach Branch,057535,057535,A
+58277,Melissa,Haggard,melissaha@sccu.com,05/31/2016,Asst Branch Mgr,Vero Beach Branch,057192,057192,A
+58272,John,Bigelow,johnb@sccu.com,06/06/2016,Credit Solutions Assoc II,Credit Solutions,057039,057039,A
+58271,Carolina,Mieles,carolinam@sccu.com,06/06/2016,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58288,Danielle,Templar,daniellet@sccu.com,06/06/2016,Contact Center Assoc II,Member Service Center,057930,057930,A
+67146,Nedecia,Richards,nedeciar@sccu.com,06/06/2016,Contact Center Associate,Member Service Center,066531,066531,A
+58328,Shawanda,Smokes,shawandas@sccu.com,06/27/2016,Vault Document Specialist,Operations,056633,056633,A
+67156,Brooke,Robinson,brookero@sccu.com,07/18/2016,Branch Mgr,Sunrise Town Center Branc,066534,066534,A
+58373,Hailee,Findley,haileef@sccu.com,09/06/2016,Loan Processor I,Indirect Sales,057858,057858,A
+58381,Stephanie,Vargas,stephanieva@sccu.com,09/19/2016,Express Mort Originator,Express Mortgages,066777,066777,A
+67205,Javier,Rodriguez,javierr@sccu.com,02/06/2017,Express Mort Originator,Express Mortgages,066777,066777,A
+67223,Sara,Harmon,sarah@sccu.com,07/24/2017,Contact Center Assoc II,Member Service Center,057930,057930,A
+58469,Eric,Sprayberry,erics@sccu.com,07/31/2017,Asst Mgr Loan Servicing,Loan Servicing,057864,057864,A
+58472,Christian,Salaman,christians@sccu.com,08/07/2017,Business Services Special,Business Services,057799,057799,A
+58482,Bailey,Cox,Baileyc@sccu.com,08/21/2017,Retail Branch Lead,Airport Branch,056971,056971,A
+58488,Yoanny,Peguero Feliz,Yoannyf@sccu.com,09/05/2017,Loan Processor IV,Express Mortgages,058844,058844,A
+67231,Vicky,Chavannes,vickyc@sccu.com,09/25/2017,Contact Center Associate,Member Service Center,066531,066531,A
+67245,Imani,Sierra,imanis@sccu.com,12/18/2017,Member Service Spec,Pine Island Branch,066235,066235,A
+58521,Nilda,Richards,nildar@sccu.com,01/08/2018,Member Service Spec,Enterprise Road Branch,057746,057746,A
+58537,Cassie,Williams,cassiew@sccu.com,02/20/2018,Marketing Specialist II,Marketing,058879,058879,A
+67255,Nicole,Lopez,nicolelo@sccu.com,02/20/2018,Member Service Spec,West Miramar Branch,066700,066700,A
+58541,Elizabeth,Belt,elizabethbe@sccu.com,03/05/2018,Member Service Spec,Merritt Island Branch,057043,057043,A
+58557,Melissa,Robles Ramos,melissarr@sccu.com,04/09/2018,Contact Center Assoc II,Member Service Center,057930,057930,A
+58573,Joy,Madery,joym@sccu.com,06/04/2018,Business Services Special,Business Services,057799,057799,A
+58587,Alicia,Jackson,aliciaj@sccu.com,08/13/2018,Loan Processor III,Express Mortgages,058844,058844,A
+67289,Etchnaydine,Poliard,etchnaydinep@sccu.com,08/27/2018,Contact Center Associate,Member Service Center,067023,067023,A
+58599,Johnathan,McDade,johnathanm@sccu.com,09/04/2018,Online Serv Specialist,E-Banking,057476,057476,A
+58612,Dawn,Keith,dawnk@sccu.com,09/17/2018,Member Service Spec,Rockledge Branch,054769,054769,A
+58621,Josua,Romroth,josuar@sccu.com,10/09/2018,Loan Processor IV,Express Mortgages,058844,058844,A
+58619,Alex,Marrero,alexm@sccu.com,10/15/2018,Contact Center Associate,Member Service Center,058119,058119,A
+58630,Gina,Sinatra,ginas@sccu.com,11/26/2018,Contact Center Associate,Member Service Center,058481,058481,A
+58634,Ramses,Mena Moquete,ramsesm@sccu.com,12/03/2018,Sr Contact Center Assoc,Member Service Center,056832,056832,A
+58639,Jose,Gonzalez Ocasio,joseg@sccu.com,01/07/2019,Contact Center Associate,Member Service Center,058119,058119,A
+67304,Miguel,Marrero,miguelm@sccu.com,01/14/2019,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+58674,Destiny,Cook,destinyc@sccu.com,04/15/2019,Member Service Spec,Titusville Branch,057097,057097,A
+67320,Claudio,Santander,claudios@sccu.com,04/15/2019,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+58683,Sandra,Simon,sandras@sccu.com,04/22/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58700,Kristin,Eversoll,kristine@sccu.com,05/28/2019,Member Service Spec,Enterprise Road Branch,057746,057746,A
+58718,Elisabeth,Sardi,elisabeths@sccu.com,07/15/2019,Operations Serv Spec I,Operations,056633,056633,A
+58725,Gabrielle,Jones,gabriellej@sccu.com,08/05/2019,Member Service Spec,Airport Branch,056971,056971,A
+58727,Shae,Clark,shaec@sccu.com,08/12/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+67338,Narky,Peralta Gonzalez,narkyp@sccu.com,08/12/2019,Member Service Spec,Doral Branch,066394,066394,A
+67342,Alberta,Collier,albertac@sccu.com,08/26/2019,Member Service Spec,Cutler Bay Branch,066378,066378,A
+58743,Mackenzie,Price,mackenziep@sccu.com,09/23/2019,Member Service Spec,Oslo Branch,057192,057192,A
+58744,Gabriel,Arroyave Valencia,gabrielv@sccu.com,10/15/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58751,Jennifer,Diaz Ortiz,jenniferdi@sccu.com,10/21/2019,Loan Processor II,Express Processing,058677,058677,A
+58758,Jill,Fox,jillfo@sccu.com,10/28/2019,Member Service Spec,Lake Washington Branch,057352,057352,A
+58770,Shelby,Fillenwarth,shelbyf@sccu.com,11/04/2019,Member Service Spec,Baytree Branch,057630,057630,A
+58772,Karen,Ketcham,karenk@sccu.com,11/04/2019,Mgr Underwriting,Underwriting,058649,058649,A
+58789,Taimy,Santos Fregel,taimys@sccu.com,12/23/2019,Member Service Spec,Port Malabar Branch,057448,057448,A
+58788,Christie,Holford,christieh@sccu.com,12/30/2019,Member Service Spec,Sebastian Branch,057192,057192,A
+58808,Sarah,Bloom,sarahb@sccu.com,03/09/2020,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+58824,Temia,Blas,temiab@sccu.com,03/23/2020,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+58822,Ray,Miller,raym@sccu.com,03/30/2020,Exp Services Associate,Express Services,058046,058046,A
+58828,Gopinath,Manne,gopinathm@sccu.com,03/30/2020,Business Intell Analyst,Business Intelligence,058705,058705,A
+58815,Mia,Ruggeri,miar@sccu.com,04/06/2020,Acctg Assoc II,Accounting - Operational,057415,057415,A
+67390,Pauline,Taylor,paulinet@sccu.com,05/11/2020,Underwriter IV,Underwriting,058772,058772,A
+67395,Joshua,Lopez,joshual@sccu.com,05/18/2020,Member Service Spec,Cutler Bay Branch,066378,066378,A
+67402,Jimmy,Rayo,jimmyr@sccu.com,05/26/2020,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58853,Destinee,Hyman-Collins,destineehc@sccu.com,06/01/2020,Member Service Spec,Airport Branch,056971,056971,A
+58856,Tanika,Blake,tanikab@sccu.com,06/08/2020,Contact Center Associate,Member Service Center,058481,058481,A
+58861,Fritz,Lormistois,fritzderlinel@sccu.com,06/22/2020,Contact Center Associate,Member Service Center,058481,058481,A
+58868,Altony,Nathan,altonyn@sccu.com,06/22/2020,Loan Processor III,Express Mortgages,058844,058844,A
+58899,Roselys,Guerra,roselysg@sccu.com,07/13/2020,Loan Processor III,Express Mortgages,058844,058844,A
+58879,Lesley,Cook,lesleyc@sccu.com,08/03/2020,Mgr Marketing,Marketing,057717,057717,A
+58909,Charles,Williams,charlesw@sccu.com,08/17/2020,Member Service Spec,Merritt Island Branch,057043,057043,A
+67415,Albert,Gonzalez,albertg@sccu.com,08/24/2020,Contact Center Associate,Member Service Center,066531,066531,A
+58923,Gregory,McBride,gregorym@sccu.com,10/26/2020,Member Service Spec,Cocoa Beach Branch,057600,057600,A
+67425,Bryan,Rubio,bryanr@sccu.com,10/26/2020,Member Service Spec,Pine Island Branch,066235,066235,A
+67411,Cherrlyn,Roberts,cherrlynr@sccu.com,11/02/2020,Member Service Spec,Pine Island Branch,066235,066235,A
+58928,Roily,Jamardo,roilyj@sccu.com,11/09/2020,Member Service Spec,North Merritt Island,057222,057222,A
+58938,Jason,Spencer,jasons@sccu.com,11/30/2020,Member Service Spec,DuPont Lake Branch,057665,057665,A
+54769,Deborah,Batts,debbieb@sccu.com,08/01/1988,Branch Mgr,Rockledge Branch,056879,056879,A
+54776,Brenda,Civita,brendac@sccu.com,07/20/1998,Branch Mgr,Melbourne Branch,058061,058061,A
+56011,Cynthia,Clevenger,cindycl@sccu.com,11/30/1998,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+56268,Kim,Lynn,kiml@sccu.com,09/29/2014,VP Operations,Executive,057724,057724,A
+56328,Tina,Clark,tinac@sccu.com,06/18/2001,Express Mort Originator,Express Mortgages,066777,066777,A
+56458,Anthony,Abbott,AnthonyA@sccu.com,01/21/2003,App Support Analyst I,Information Technology,058338,058338,A
+56679,Tina,Daniels,tinad@sccu.com,10/25/2004,Sr Member Serv Specialist,Rockledge South,057546,057546,A
+56972,Kelley,Woolf,kelleyc@sccu.com,07/03/2006,Sales Rep - Indirect Lend,Indirect Sales,057090,057090,A
+56976,Ashley,Lane,ashleyl@sccu.com,07/10/2006,Sales Rep - Indirect Lend,Indirect Sales,057090,057090,A
+57013,Lorraine,Woods,LorraineW@sccu.com,09/18/2006,Loan Processor I,Indirect Sales,057858,057858,A
+57050,Heriberto,Vazquez,HerbV@sccu.com,12/18/2006,Custodian,Facilities,057256,057256,A
+57057,Anna,McFadden,MichelleF@sccu.com,03/26/2018,Sr Credit Solutions Assoc,Credit Solutions,057039,057039,A
+57077,Christina,Depelteau,ChristinaD@sccu.com,02/05/2007,Associate System Admin,Information Technology,057814,057814,A
+57133,Vincent,Pinto,VincentP@sccu.com,05/14/2007,Express Mort Originator,Express Mortgages,066777,066777,A
+57222,Stacy,Surette,stacys@sccu.com,11/19/2007,Asst Branch Mgr,North Merritt Island,057043,057043,A
+66210,Christopher,Matthews,chrism@sccu.com,10/24/2016,VP Card Services,Executive,057724,057724,A
+66308,Avis,Kelley,AvisP@sccu.com,11/16/2009,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+66309,Doreen,Suarez,DoreenS@sccu.com,04/14/2003,Retail Branch Lead,West Miramar Branch,066700,066700,A
+66378,Sabrina,Evans,SabrinaE@sccu.com,03/07/2005,Asst Branch Mgr,Cutler Bay Branch,066184,066184,A
+66486,Adolfo,Vaca,AdolfoV@sccu.com,12/04/2006,Branch Mgr,South Dixie Branch,066124,066124,A
+66534,Michelle,Ashley,MichelleA@sccu.com,07/09/2007,Dir Retail Services,Retail Admin,066621,066621,A
+66621,Carmen,Tapanes,CarmenT@sccu.com,04/01/1990,VP Retail Services,Executive,054754,054754,A
+66600,Gianelis,Paderni Curotz,Gianelisc@sccu.com,11/02/2009,Member Service Spec,Palm Springs Branch,066538,066538,A
+57448,Melissa,Locke,melissal@sccu.com,03/29/2010,Branch Mgr,Port Malabar Branch,058061,058061,A
+57584,Gerardo,Costas Torres,gerardoc@sccu.com,06/20/2011,Underwriter II,Underwriting,058671,058671,A
+57651,Karen,Johnson,karenj@sccu.com,02/06/2012,Loss Mitigation Assoc II,Credit Solutions,058202,058202,A
+57716,Michael,Atwood,michaela@sccu.com,10/22/2012,ATM Systems Technician,E-Banking,057476,057476,A
+57899,Amber,Haraldsen,amberh@sccu.com,01/13/2014,Member Service Spec,Sebastian Branch,057888,057888,A
+57930,Evelyn,Serrano,evelyns@sccu.com,08/28/2017,Mgr Member Serv Center,Member Service Center,056641,056641,A
+57944,Jeanne,Wild-Moeller,jeannem@sccu.com,06/02/2014,Executive Admin Asst,Retail Admin,054754,054754,A
+66986,Alvaro,Reyes,alvaror@sccu.com,10/20/2014,Exp Services Associate,Express Services,067113,067113,A
+67001,Angelia,Beaumont,angeliab@sccu.com,01/20/2015,Contact Center Associate,Member Service Center,066531,066531,A
+58052,Frances,Crump,francesc@sccu.com,02/23/2015,Loan Processor IV,Express Mortgages,058844,058844,A
+67009,Deborah,Wollery-Dennison,deborahwo@sccu.com,03/16/2015,QA Rep,Member Service Center,066384,066384,A
+58068,Michael,Greene,seang@sccu.com,10/27/2017,Underwriter II,Underwriting,058671,058671,A
+58079,Kimberly,Roberson,kimberlyr@sccu.com,02/13/2017,Mgr Payment Services,Payment Services,057312,057312,A
+58075,Michael,Wilson-Stovall,michaelst@sccu.com,04/13/2015,Branch Mgr,DuPont Lake Branch,057233,057233,A
+67031,Christopher,Wilson,christopherw@sccu.com,07/06/2015,Member Service Spec,Bird Road Branch,066122,066122,A
+58130,Alicia,Villafane,aliciav@sccu.com,07/13/2015,Loss Mitigation Assoc II,Credit Solutions,057039,057039,A
+67046,Sherly,Philogene Cineus,sherlyc@sccu.com,07/27/2015,Contact Center Associate,Member Service Center,067023,067023,A
+58263,Jodene,Stowe,jodenes@sccu.com,05/16/2016,Mgr Accounting,Accounting - General,058547,058547,A
+58266,Althea,Robinson,althear@sccu.com,04/29/2019,Contact Center Associate,Member Service Center,058481,058481,A
+67152,Yusuan,Flores,yusuanf@sccu.com,06/20/2016,Member Service Spec,Palm Springs Branch,066538,066538,A
+58329,Rebecca,Smith,rebeccas@sccu.com,06/27/2016,Loan Processor IV,Express Mortgages,058844,058844,A
+58300,David,Livingstone,davidl@sccu.com,07/18/2016,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+67162,Mellissa,Brown Parker,mellissab@sccu.com,08/01/2016,Contact Center Associate,Member Service Center,067023,067023,A
+67178,Amy,Pulling,amyp@sccu.com,09/06/2016,Member Service Spec,Hialeah Gardens Branch,066431,066431,A
+58374,Ashley,Walker,ashleyw@sccu.com,09/12/2016,Retail Branch Lead,Daytona Beach Branch,057698,057698,A
+58391,Joanna,Robinson,joannar@sccu.com,10/03/2016,Loan Processor IV,Express Mortgages,058844,058844,A
+58420,Allison,Matteson,allisonm@sccu.com,10/09/2017,Dir Learning and Develop,Training,058193,058193,A
+58446,Daisy,Vazquez,daisyv@sccu.com,06/19/2017,Contact Center Associate,Member Service Center,058481,058481,A
+58447,Peter,Nagy,petern@sccu.com,06/26/2017,Exp Services Associate,Express Services,058046,058046,A
+58458,Victoria,Livermore,victorial@sccu.com,07/03/2017,Loan Processor II,Express Processing,057602,057602,A
+58481,Tanya,Cannon,tanyac@sccu.com,08/28/2017,Asst Mgr Mem Svs Ctr,Member Service Center,056832,056832,A
+58485,Jessica,Bernal,jessicab@sccu.com,09/05/2017,Member Service Spec,Daytona Beach Branch,057698,057698,L
+67254,Lorraine,Cox,Lorrainec@sccu.com,02/05/2018,Loan Processor IV,Express Mortgages,058844,058844,A
+67258,Leonel,Picun,gastonp@sccu.com,02/26/2018,Exp Services Associate,Express Services,067113,067113,A
+67263,Jennifer,Stanley,jennifers@sccu.com,03/12/2018,Member Service Spec,West Coral Springs Branch,066882,066882,A
+58553,Shameka,McKenzie,shamekam@sccu.com,04/02/2018,Contact Center Associate,Member Service Center,058119,058119,A
+58565,Samantha,Gorman,samanthag@sccu.com,05/21/2018,Member Service Spec,Merritt Island Branch,057043,057043,A
+58597,Jassi,Camden,jassic@sccu.com,08/20/2018,Member Service Spec,Palm Coast West Branch,057667,057667,A
+58605,Amy,Weldon Green,amyw@sccu.com,09/04/2018,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+58629,Amanda,McDonald,amandam@sccu.com,11/19/2018,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+58636,Angela,Enyart,angelae@sccu.com,12/10/2018,Member Service Spec,Palm Bay West Branch,058126,058126,A
+58645,Yanreyli,Pina,yanreylip@sccu.com,01/22/2019,Loan Processor III,Express Mortgages,058844,058844,A
+67310,C'Arra,Thompson,carrat@sccu.com,02/19/2019,Contact Center Associate,Member Service Center,066531,066531,A
+58657,Jullieanna,Giambanco,jullieannag@sccu.com,03/04/2019,Underwriter III,Underwriting,058772,058772,A
+58662,Andrea,Wilson,andreaw@sccu.com,03/11/2019,Member Service Spec,Enterprise Road Branch,057746,057746,A
+67318,Deandra,Palmer,deandrap@sccu.com,04/01/2019,Member Service Spec,Pine Island Branch,066235,066235,A
+58671,Duane,Daski,duaned@sccu.com,04/08/2019,Mgr Underwriting,Underwriting,058649,058649,A
+58672,Jessica,Kinney,jessicak@sccu.com,04/08/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58680,Benjamin,Shumate,benjamins@sccu.com,04/15/2019,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+67330,Carlette,Salley,carlettes@sccu.com,06/17/2019,Member Service Spec,Skylake Branch,066193,066193,A
+67334,Brandon,Rattan,brandonr@sccu.com,07/08/2019,Contact Center Associate,Member Service Center,066531,066531,A
+67333,Beneisy,Hernandez,beneisyh@sccu.com,07/08/2019,Member Service Spec,Palm Springs Branch,066538,066538,A
+58715,Loni,Mercier,lonim@sccu.com,07/15/2019,Loan Processor III,Express Mortgages,058844,058844,A
+67336,Haylen,Sabate Medrano,haylens@sccu.com,07/22/2019,Member Service Spec,Kendall Breeze Branch,066267,066267,A
+58736,Ariana,Garrison,arianag@sccu.com,08/26/2019,Loan Processor III,Express Mortgages,058844,058844,A
+58739,Crystal,Fischbach,crystalf@sccu.com,09/09/2019,Member Service Spec,Ormond Beach Branch,057535,057535,A
+67344,Diandra,Tineo,diandrat@sccu.com,09/09/2019,Express Mort Originator,Express Mortgages,066777,066777,A
+58741,Karen,George-St. Bernard,karens@sccu.com,09/23/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+67348,Miguel,Martin Jimenez,miguelma@sccu.com,09/30/2019,Member Service Spec,West Coral Springs Branch,066882,066882,A
+67352,Matthew,Dougherty,matthewd@sccu.com,10/21/2019,Network Admin I,Information Technology,058338,058338,A
+58767,Nakasha,Williams,Nakashaw@sccu.com,10/28/2019,Contact Center Associate,Member Service Center,058481,058481,A
+67355,Cayla,Floyd,caylaf@sccu.com,10/28/2019,Contact Center Associate,Member Service Center,066531,066531,A
+67353,Zaina,Jasmin,zainaj@sccu.com,10/28/2019,Member Service Spec,Boca Raton Branch,066930,066930,A
+58775,Christopher,Galarza,christopherga@sccu.com,11/12/2019,Member Service Spec,Melbourne Branch,054776,054776,A
+58783,Jessica,Fineman,jessicaf@sccu.com,12/16/2019,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+67366,Michael,Martinez,michaelma@sccu.com,01/06/2020,Contact Center Associate,Member Service Center,066531,066531,A
+58514,Derrick,Folston,derrickf@sccu.com,01/21/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+67378,Fern,Robinson,fernr@sccu.com,02/24/2020,Card Specialist II,Card Services,066321,066321,A
+67386,Andry,Pena,andryp@sccu.com,04/06/2020,Exp Services Associate,Express Services,067113,067113,A
+67389,Nicholas,Salazar,nicholassa@sccu.com,04/06/2020,Exp Services Associate,Express Services,067113,067113,A
+58843,Jeremy,Tarrant,jeremyt@sccu.com,05/11/2020,Member Service Spec,Lake Washington Branch,057352,057352,A
+58846,Amanda,Fike,amandaf@sccu.com,05/18/2020,Member Service Spec,Port Orange Branch,057542,057542,A
+67406,Yulia,Hernandez,yuliah@sccu.com,06/15/2020,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58886,Phetmalay,Ago,pata@sccu.com,06/30/2020,Loan Processor II,Express Processing,057602,057602,A
+67407,Daneyis,Dominguez Duran,daneyisd@sccu.com,06/29/2020,Member Service Spec,Coral Gables Branch,066852,066852,A
+58891,Magaly,Escovar,magalye@sccu.com,07/06/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58873,Baylee,Phelps,bayleep@sccu.com,07/13/2020,Member Service Spec,Titusville Branch,057097,057097,A
+67414,Lesmer,Agudelo Camargo,lesmera@sccu.com,08/10/2020,Member Service Spec,East Miramar Branch,066470,066470,A
+58915,Dana,MacDonald,danam@sccu.com,09/21/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+54676,Regina,Mobley,reginam@sccu.com,12/08/2003,Member Service Spec,Daytona Beach Branch,057698,057698,A
+54679,Timothy,Antonition,tima@sccu.com,10/26/1992,CEO/President,Executive,,,A
+54843,Diana,Carey,DianaC@sccu.com,03/12/1990,Loan Processor III,Express Mortgages,058844,058844,A
+56489,Alison,Stanback,alisons@sccu.com,05/27/2003,Business Intell Analyst,Business Intelligence,058705,058705,A
+56622,Shane,McChesney,ShaneH@sccu.com,06/21/2004,Mgr Member Experience,Member Experience,057643,057643,A
+56805,Christina,Morales,Christinam@sccu.com,07/05/2005,Retail Branch Lead,Baytree Branch,057630,057630,A
+57039,Caroline,Roberts,CarolineR@sccu.com,11/23/2015,Mgr Credit Solutions,Credit Solutions,057946,057946,A
+57042,Hillarie,Moseley,hillariem@sccu.com,08/28/2017,Contact Center Associate,Member Service Center,058481,058481,A
+57047,Linda,Monroe,LindaMo@sccu.com,07/02/2007,Member Service Spec,Enterprise Road Branch,057746,057746,A
+57098,Kurt,Wolfe,KurtW@sccu.com,03/12/2007,Loan Processor I,Indirect Sales,057858,057858,A
+57190,Gary,Prager,garyp@sccu.com,10/24/2016,VP Consumer Sales,Executive,054754,054754,A
+57199,Lisa,Watson,lisaw@sccu.com,10/09/2007,Member Service Spec,Patrick Air Force Base Br,057163,057163,A
+57249,Vicky,Fletcher,vickyf@sccu.com,04/07/2008,Loan Processor IV,Express Mortgages,058844,058844,A
+66122,Raisa,Sebastian,RaisaS@sccu.com,04/21/1993,Branch Mgr,Coral Gables Branch,066124,066124,A
+66131,Luisa,Velasquez,LuisaV@sccu.com,10/25/1993,Member Service Spec,Kendall Breeze Branch,066267,066267,A
+66145,Adriana,Gutierrez,AdrianaG@sccu.com,06/08/2015,Contact Center Associate,Member Service Center,066384,066384,A
+66183,Ricky,Mahabir,RickyM@sccu.com,07/21/1997,Branch Mgr,Cypress Creek Branch,066534,066534,A
+66197,Nolvia,Yanez,Nolviay@sccu.com,12/08/1997,Asst Branch Mgr,Homestead Branch,066184,066184,A
+66270,Maxely,Chiong,maxelyc@sccu.com,06/28/2001,Underwriter III,Underwriting,058772,058772,A
+66381,Sheron,Tyrell,SheronT@sccu.com,03/28/2005,Mgr Learning/Development,Training,058420,058420,A
+66387,Doreen,Ordonez,DoreenO@sccu.com,11/02/2009,Member Service Spec,Pines Hiatus Branch,066822,066822,A
+66443,Karen,Gonzalez-Zavala,KarenG@sccu.com,03/20/2006,Exp Services Associate,Express Services,067113,067113,A
+66484,Feroz,Nasir,ferozn@sccu.com,01/06/2020,Card Specialist I,Card Services,066321,066321,A
+66607,Wood,Alce,WoodA@sccu.com,03/16/2009,HR Generalist I,Human Resources,057579,057579,A
+57352,Kimberly,Eaton,kime@sccu.com,03/23/2009,Branch Mgr,Lake Washington Branch,058061,058061,A
+57378,Kathleen,Branch,kathleenb@sccu.com,08/10/2009,Web Support Analyst I,Information Technology,058847,058847,A
+57407,Wanda,Hunt,wandah@sccu.com,12/14/2009,Loan Processor IV,Express Mortgages,058844,058844,A
+66700,Jekylle,Jones-Sullivan,jekyllej@sccu.com,02/22/2010,Branch Mgr,West Miramar Branch,066534,066534,A
+57430,LoAmmi,Gensel,loammig@sccu.com,03/01/2010,Loan Processor II,Express Processing,057602,057602,A
+57452,Kami,Tindle,kamit@sccu.com,05/10/2010,Marketing Specialist I,Marketing,058879,058879,A
+66727,Kenneth,Crane,kennethc2@sccu.com,08/09/2010,Credit Solutions Assoc II,Credit Solutions,057039,057039,A
+66738,Patricia,David,patriciad@sccu.com,09/07/2010,Credit Solutions Assoc II,Credit Solutions,066701,066701,A
+57507,Julie,Hutchinson,julieh@sccu.com,11/08/2010,Loss Mitigation Assoc II,Credit Solutions,057039,057039,A
+57552,Mario,Atkins,marioa@sccu.com,04/04/2011,Asst Branch Mgr,Lake Washington Branch,057352,057352,A
+57579,Delaney,Hedrick,delaneyh@sccu.com,04/25/2016,Mgr Human Resources,Human Resources,058193,058193,A
+66827,Idania,Sargenton,idanias@sccu.com,01/23/2012,Member Service Spec,Pine Island Branch,066235,066235,A
+57643,Shane,Hoyle,shaneho@sccu.com,05/06/2019,VP Member Experience,Executive,054754,054754,A
+57698,Jessica,Rodriguez,jessicaro@sccu.com,08/27/2012,Branch Mgr,Daytona Beach Branch,057233,057233,A
+66874,Nagib,Aboud,nagiba@sccu.com,11/26/2012,Express Mort Originator,Express Mortgages,066777,066777,A
+57807,Ashley,Johnson,ashleyv@sccu.com,09/26/2016,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+57804,Monica,Cornely,monicaw@sccu.com,06/03/2013,Underwriter I,Underwriting,057683,057683,A
+57847,Dennis,Hayes,paulh@sccu.com,09/03/2013,Systems Administrator I,Information Technology,057814,057814,A
+57848,Ryan,Bragg,ryanb@sccu.com,09/09/2013,Underwriter II,Underwriting,058671,058671,A
+57888,Vanessa,Lott,vanessal@sccu.com,08/28/2017,Asst Branch Mgr,Sebastian Branch,057192,057192,A
+57896,Jeremy,Ross,jeremyr@sccu.com,12/02/2013,Help Desk Support,Information Technology,058338,058338,A
+57945,Lucy,Funkhouser,lucyf@sccu.com,05/27/2014,Payments Specialist II,Payment Services,058079,058079,A
+57972,Nathaniel,Degnan,nathanield@sccu.com,08/04/2014,Underwriter III,Underwriting,058772,058772,A
+57991,Malarie,Esposito,malariee@sccu.com,09/15/2014,Underwriter II,Underwriting,057683,057683,A
+58064,Ariel,Jankowski,arielj@sccu.com,09/25/2017,Exp Services Associate,Express Services,058046,058046,A
+58099,Michael,Ramos,michaelr@sccu.com,06/08/2015,Member Service Spec,Miracle Mile Branch,058278,058278,A
+58131,Kyle,Scheler,kyles@sccu.com,07/06/2015,Member Service Spec,New Smyrna Beach Branch,057665,057665,A
+58140,Lauren,McNulty,laurenm@sccu.com,06/20/2016,Asst Mgr Loan Servicing,Loan Servicing,057864,057864,A
+58148,Julia,Scott,julias@sccu.com,07/27/2015,Retail Branch Lead,Port Malabar Branch,057448,057448,A
+58206,Anthony,Blunt,anthonyb@sccu.com,12/07/2015,Dir Business Services,Business Services,057643,057643,A
+58208,Dennis,Ellsworth,dennise@sccu.com,12/21/2015,Payments Specialist II,Payment Services,058079,058079,A
+58209,Jamia,Hamilton,jamiah@sccu.com,01/11/2016,Contact Center Associate,Member Service Center,058481,058481,A
+58246,Timothy,Alexander,timal@sccu.com,04/04/2016,Dir Express Mortgage,Express Mortgages,057190,057190,A
+67120,Jason,Brown,jasonb@sccu.com,03/18/2019,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+67143,Harold,Duque,haroldd@sccu.com,06/06/2016,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58322,Renee,Aiello-Bunk,reneeb@sccu.com,06/27/2016,Contact Center Associate,Member Service Center,058481,058481,A
+58321,Robin,Welch,robinw@sccu.com,06/27/2016,Contact Center Assoc II,Member Service Center,057930,057930,A
+58377,Michael,Elliott,michaele@sccu.com,09/12/2016,Oracle Database Admin,Information Technology,058338,058338,A
+58416,Elimari,Marrero,elimarim@sccu.com,12/19/2016,Loss Mitigation Assoc I,Credit Solutions,058202,058202,A
+67202,Jacqueline,Robaina,jacqueliner@sccu.com,01/30/2017,Contact Center Assoc II,Member Service Center,057930,057930,A
+67208,Taylor,Crocker,taylorc@sccu.com,03/27/2017,Member Service Spec,Margate Branch,067094,067094,A
+67225,Claudia,Guibert,claudiag@sccu.com,07/24/2017,Contact Center Associate,Member Service Center,066531,066531,A
+58473,Erin,Ellis,erine@sccu.com,08/07/2017,Contact Center Associate,Member Service Center,058481,058481,L
+58471,Christopher,Jolliffe,christopherj@sccu.com,08/28/2017,Network Administrator II,Information Technology,058338,058338,A
+58492,Kristin,Kelly,kristink@sccu.com,09/05/2017,Retail Branch Lead,Enterprise Road Branch,057746,057746,A
+58494,Rebecca,Beal,rebeccab@sccu.com,09/18/2017,Member Service Spec,Lake Washington Branch,057352,057352,A
+58496,Linda,Walker,lindaw@sccu.com,10/02/2017,Contact Center Associate,Member Service Center,058119,058119,A
+67237,Wilson,Negron,wilsonn@sccu.com,11/06/2017,Member Service Spec,Bird Road Branch,066122,066122,A
+58526,Yolanda,Harris,yolandah@sccu.com,01/22/2018,Contact Center Assoc II,Member Service Center,057930,057930,A
+58545,Michal,Bennett,michalb@sccu.com,03/05/2018,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+67261,Naomi,Samuels,naomis@sccu.com,03/12/2018,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+67264,Thomas,DiLillo,thomasd@sccu.com,03/19/2018,HR Generalist I,Human Resources,057579,057579,A
+58554,Ellie,McArthur,elliem@sccu.com,04/02/2018,Member Service Spec,Palm Coast West Branch,057667,057667,A
+58580,Chaneen,Walker,chaneenw@sccu.com,07/02/2018,Loan Processor II,Express Processing,058677,058677,A
+58596,Tiffany,Clayton,tiffanycla@sccu.com,08/27/2018,Loan Processor III,Express Mortgages,058844,058844,A
+58604,Lisseth,Stevens,lisseths@sccu.com,08/05/2019,Member Service Spec,Baytree Branch,057630,057630,A
+58666,Leslie,Eure,lesliee@sccu.com,03/25/2019,Coord Operations,Operations,056633,056633,A
+58677,Jennifer,Shiakallis,jennifersh@sccu.com,04/08/2019,Asst Mgr Express Process,Express Processing,057602,057602,A
+58670,Nicole,Soper,nicoles@sccu.com,04/08/2019,Exp Services Associate,Express Services,058046,058046,A
+67326,Iris,Ruiz,irisr@sccu.com,05/28/2019,Member Service Spec,Skylake Branch,066193,066193,A
+58726,Sydnie,McClary,sydniem@sccu.com,08/05/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58729,Jacob,Neverton,jacobn@sccu.com,08/19/2019,Member Service Spec,Daytona Beach Branch,057698,057698,A
+58737,Andrew,Heil,andrewh@sccu.com,08/26/2019,Payments Specialist II,Payment Services,058079,058079,A
+58779,Toria,Ferraer,Toriaf@sccu.com,12/09/2019,Loan Processor I,Indirect Sales,057858,057858,A
+67361,Luis,Canga,luisc@sccu.com,12/09/2019,Member Service Spec,Sunset Branch,066467,066467,A
+67365,Claudia,Navarro,claudian@sccu.com,01/06/2020,Underwriter IV,Underwriting,058772,058772,A
+58795,Mia,Matsubara,miam@sccu.com,01/27/2020,Member Service Spec,Rockledge South,057546,057546,A
+58799,Ernest,Chevrette,ernestc@sccu.com,02/03/2020,Business Services Advisor,Business Services,058206,058206,A
+58804,Daniel,Buonocore-Smith,daniels@sccu.com,02/24/2020,Member Service Spec,DuPont Lake Branch,057665,057665,A
+58810,Abigail,Floyd,abigailf@sccu.com,03/02/2020,Member Service Spec,Enterprise Road Branch,057746,057746,A
+58816,Daris,Genaro,darisg@sccu.com,03/09/2020,Member Service Spec,Enterprise Road Branch,057746,057746,A
+67384,Jacqueline,Alvarez,jacquelinea@sccu.com,03/23/2020,Card Specialist I,Card Services,066321,066321,A
+58820,Elizabeth,Washington,elizabethw@sccu.com,03/30/2020,Loan Processor II,Express Processing,058677,058677,A
+58833,Melissa,Taggart,melissat@sccu.com,04/20/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58838,Christopher,Dufort,christopherd@sccu.com,05/11/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58845,Tymeka,Cavuto,tymekac@sccu.com,05/18/2020,Member Service Spec,Port Malabar Branch,057448,057448,A
+67394,Yazmin,Louis,yazminl@sccu.com,05/18/2020,Member Service Spec,Pines Hiatus Branch,066822,066822,A
+58855,Alyssa,Lovett,alyssal@sccu.com,06/01/2020,Member Service Spec,North Merritt Island,057222,057222,A
+58872,Damaris,Garcia,damarisg@sccu.com,06/29/2020,Loan Processor I,Indirect Sales,057858,057858,A
+58880,Bethany,Lu,bethanyl@sccu.com,06/29/2020,Member Service Spec,Cocoa Beach Branch,057600,057600,A
+58890,Irania,Rivera,iraniar@sccu.com,06/30/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58874,Trashonda,Coven,trashondac@sccu.com,07/06/2020,Contact Center Associate,Member Service Center,058481,058481,A
+58895,Kyle,Goins,kyleg@sccu.com,07/13/2020,Exp Services Associate,Express Services,058046,058046,A
+58900,Jordan,Rickerd,jordanr@sccu.com,07/13/2020,Member Service Spec,Viera Branch,058247,058247,A
+58901,Loretta,Robb,lorettar@sccu.com,07/27/2020,Member Service Spec,Daytona Beach Branch,057698,057698,A
+67412,Ursula,Chiquin Vallve,ursulav@sccu.com,08/10/2020,Member Service Spec,Hollywood Branch,066496,066496,A
+58911,Krista,Lukens,kristal@sccu.com,09/08/2020,Member Service Spec,Baytree Branch,057630,057630,A
+67423,Michael,Penha,michaelp@sccu.com,09/28/2020,Member Service Spec,Homestead Branch,066184,066184,A
+58920,Rebecca,Smith,rebeccasm@sccu.com,09/28/2020,Member Service Spec,Sebastian Branch,057888,057888,A
+58917,Melissa,Fishman,melissafi@sccu.com,09/28/2020,Acctg Assoc II,Accounting - General,058263,058263,A
+67424,Dylan,Pesi,dylanp@sccu.com,10/19/2020,Member Service Spec,Hialeah Gardens Branch,066431,066431,A
+67426,Ivette,Borges,ivetteb@sccu.com,10/26/2020,Member Service Spec,West Miramar Branch,066700,066700,A
+67429,Kendra,Durand,kendrad@sccu.com,11/02/2020,Member Service Spec,Sunrise Town Center Branc,067156,067156,A
+67428,Maydelin,Azua Garcia,maydelina@sccu.com,11/02/2020,Member Service Spec,Hialeah Gardens Branch,066431,066431,A
+54724,Jason,Hume,jasonh@sccu.com,07/14/1997,Training Specialist,Training,066381,066381,A
+56017,Omar,Fuentes,omarf@sccu.com,08/31/1998,Computer Operator,Information Technology,057814,057814,A
+56136,Ruenrudee,Rowe-Diquollo,SevenR@sccu.com,03/13/2006,Member Service Spec,Patrick Air Force Base Br,057163,057163,A
+56601,Glenn,Buback,GLENNB@sccu.com,04/26/2004,Underwriter II,Underwriting,058671,058671,A
+56691,Juliette,Brown-Thomas,julietteb@sccu.com,11/08/2004,Sr Payments Specialist,Payment Services,058079,058079,A
+56811,Meneta,McLeod,menetam@sccu.com,07/11/2005,Loan Servicing Spec II,Loan Servicing,058140,058140,A
+56971,Nicole,Lherisse,nicolel@sccu.com,10/19/2009,Branch Mgr,Airport Branch,058061,058061,A
+57016,Shelly,Valentine,ShellyV@sccu.com,10/23/2006,Contact Center Associate,Member Service Center,058481,058481,A
+57043,Lisa,Marble,lisam@sccu.com,11/27/2006,Branch Mgr,Merritt Island Branch,056879,056879,A
+56634,Christopher,Chapman,chrisc@sccu.com,03/19/2007,Express Mort Originator,Express Mortgages,066777,066777,A
+57233,Carrie,Washington,carriew@sccu.com,01/08/2008,Dir Retail Services,Retail Admin,057066,057066,A
+57290,Roudy,Morisset,RoudyM@sccu.com,07/07/2008,Loan Processor II,Express Processing,057602,057602,A
+66355,Erik,Sanchez,ErikS@sccu.com,11/02/2009,Asst Branch Mgr,Pines Hiatus Branch,066822,066822,A
+66435,Raymond,La Barrie,RaymondL@sccu.com,12/28/2009,Sr Member Serv Specialist,Homestead Branch,066184,066184,A
+66467,Lissette,Outumuro-Perez,LissetteO@sccu.com,08/21/2006,Branch Mgr,Sunset Branch,066124,066124,A
+66489,Joseph,Bondanella,JosephB@sccu.com,01/08/2007,Sr Member Serv Specialist,Margate Branch,067094,067094,A
+66614,Laura,Gutierrez,LauraG@sccu.com,09/29/2014,Sr Member Serv Specialist,Cutler Bay Branch,066378,066378,A
+57397,Mara,Mena,maram@sccu.com,11/09/2009,Business Services Special,Business Services,057799,057799,A
+66686,Charlene,Henry,charleneh@sccu.com,12/07/2009,Contact Center Associate,Member Service Center,067023,067023,A
+57460,Rhonda,Edwards,rhondae@sccu.com,04/18/2016,Accountant I,Accounting - Operational,057415,057415,A
+57472,Stacy,Jones,stacyj@sccu.com,08/30/2010,Info Systems Technician,Information Technology,058338,058338,A
+57480,Judith,Gaines,judithg@sccu.com,08/30/2010,QA Rep,Member Service Center,056832,056832,A
+66749,Carlos,Gomez,carlosg@sccu.com,12/20/2010,Exp Services Associate,Express Services,067113,067113,A
+57530,Crystal,Coleman,ccoleman@sccu.com,01/24/2011,Retail Branch Lead,Palm Coast West Branch,057667,057667,A
+57533,Cody,Tahtinen,codyt@sccu.com,02/07/2011,Exp Services Associate,Express Services,058046,058046,A
+57580,Donald,Kennedy,donke@sccu.com,04/25/2016,Underwriter III,Underwriting,058671,058671,A
+57602,Virginia,Wilson,virginiaw@sccu.com,08/08/2011,Mgr Processing,Express Processing,057190,057190,A
+57665,Christine,Kinsey,christinek@sccu.com,04/16/2012,Branch Mgr,New Smyrna Beach Branch,057233,057233,A
+57671,Diana,LaMonica,dianal@sccu.com,04/16/2012,Express Mort Originator,Express Mortgages,066777,066777,A
+57687,Warren,Kirby,keithk@sccu.com,06/18/2012,Exp Services Associate,Express Services,058046,058046,A
+57696,Shannone,Cabot,shannonec@sccu.com,08/20/2012,Operations Serv Spec II,Operations,056633,056633,A
+57717,Laura,Richard,laurar@sccu.com,10/24/2016,Sr VP Marketing,Executive,054754,054754,A
+57757,Haley,Klarich,haleyk@sccu.com,03/04/2013,Retail Branch Lead,Port Orange Branch,057542,057542,A
+57764,Roberto,Vazquez,robertov@sccu.com,03/25/2013,Systems Analyst 1,Information Technology,057814,057814,A
+57800,Matthew,Morales,matthewm@sccu.com,06/03/2013,Training Specialist,Training,066381,066381,A
+57986,Lisa,Macy,lisama@sccu.com,08/25/2014,Loan Processor I,Indirect Sales,057858,057858,A
+66974,Kymme-Iska,Williams,kymmew@sccu.com,08/25/2014,Asst Branch Mgr,Ft Lauderdale Branch,066183,066183,A
+58018,Tamara,Husbands-Jackman,tamarah@sccu.com,07/18/2016,Sr Contact Center Assoc,Member Service Center,056832,056832,L
+67002,Donna,Burnside,donnabw@sccu.com,01/20/2015,Card Specialist I,Card Services,066321,066321,A
+58090,Melissa,Moller,melissam@sccu.com,04/24/2017,Exp Services Associate,Express Services,058046,058046,A
+67027,Brandon,Bermudez,brandonb@sccu.com,06/22/2015,Express Mort Originator,Express Mortgages,066777,066777,A
+58121,David,Snook,davids@sccu.com,06/22/2015,Info Systems Technician,Information Technology,058338,058338,A
+58126,Nicholas,Vicos,nicholasv@sccu.com,07/06/2015,Asst Branch Mgr,Bayside Lakes Branch,057569,057569,A
+58197,Shauni,Simmons,shaunis@sccu.com,02/26/2018,Underwriter I,Underwriting,057683,057683,A
+67107,Suleidy,Figueroa,suleidyf@sccu.com,03/21/2016,Member Service Spec,Doral Branch,066394,066394,A
+67113,Renzo,Talero,renzot@sccu.com,03/28/2016,Mgr Express Service,Express Services,057190,057190,A
+58248,Alicia,Davis,aliciad@sccu.com,04/18/2016,Acctg Assoc II,Accounting - General,058263,058263,A
+58327,Delvin,Morrison,delvinm@sccu.com,06/27/2016,Contact Center Associate,Member Service Center,058119,058119,A
+58334,Charles,Manley,charlesm@sccu.com,07/11/2016,Contact Center Assoc II,Member Service Center,057930,057930,A
+58336,Stacy,McKane,stacym@sccu.com,07/11/2016,Contact Center Associate,Member Service Center,058481,058481,A
+67159,Sabrina,Santana,sabrinas@sccu.com,07/25/2016,Contact Center Associate,Member Service Center,067023,067023,A
+67161,Marsharie,Fenderson,marsharief@sccu.com,08/22/2016,Member Service Spec,Ft Lauderdale Branch,066974,066974,A
+67177,Armando,Gonzalez,armandog@sccu.com,09/06/2016,Exp Services Associate,Express Services,067113,067113,A
+67180,Anthony,Berrios,anthonybe@sccu.com,09/12/2016,Member Service Spec,Cypress Creek Branch,066183,066183,A
+67186,Marie Denise,Joseph,mariedenisej@sccu.com,09/26/2016,Exp Services Associate,Express Services,067113,067113,A
+58390,Deanne,Gottschalck,deanneg@sccu.com,10/03/2016,Asst Branch Mgr,New Smyrna Beach Branch,057665,057665,A
+58410,Catrina,Anderson,catrinaa@sccu.com,11/28/2016,Loan Servicing Spec I,Loan Servicing,058140,058140,A
+58429,Logan,Cremeans,loganc@sccu.com,09/16/2019,Underwriter IV,Underwriting,058772,058772,A
+58428,Josue,Suarez,josues@sccu.com,02/21/2017,Exp Services Associate,Express Services,058046,058046,A
+58457,Natalie,Speakman,natalies@sccu.com,07/03/2017,Member Service Spec,Port Orange Branch,057542,057542,A
+58459,Marissa,Lee,marissal@sccu.com,07/03/2017,Member Service Spec,Daytona Beach Branch,057698,057698,A
+58463,Amir,Jeffress,amirj@sccu.com,07/24/2017,Exp Services Associate,Express Services,058046,058046,A
+58474,Nathanael,Doctor,nathanaeld@sccu.com,08/07/2017,Contact Center Assoc II,Member Service Center,057930,057930,A
+67253,Ashley,Webb,ashleywe@sccu.com,01/22/2018,Loan Processor III,Express Mortgages,058844,058844,A
+58534,Candace,McIlroy,candaceM@sccu.com,02/05/2018,Member Service Spec,Miracle Mile Branch,058278,058278,A
+58561,Sara,Cunningham,sarac@sccu.com,04/30/2018,Payments Specialist II,Payment Services,058079,058079,A
+58577,Marissa,Quintana,marissaq@sccu.com,06/18/2018,BSA Analyst,Operations Loss Prev/Comp,066444,066444,A
+58590,Nicole,Burgoyne,nicoleb@sccu.com,08/20/2018,Contact Center Associate,Member Service Center,058481,058481,A
+58608,Alexandra,Kent,alexandrak@sccu.com,09/17/2018,Member Service Spec,Palm Coast West Branch,057667,057667,A
+58613,Rachelle,Russo,racheller@sccu.com,09/24/2018,Member Service Spec,Rockledge South,057546,057546,A
+58622,Rachel,Roberts,rachelr@sccu.com,10/22/2018,Loan Processor IV,Express Mortgages,058844,058844,A
+67299,Kimberly,Cervera,kimberlyce@sccu.com,11/26/2018,Member Service Spec,West Miramar Branch,066700,066700,A
+67303,Javier,Milian,javierm@sccu.com,12/31/2018,Member Service Spec,West Miramar Branch,066700,066700,A
+58643,Andrew,Papworth,andrewp@sccu.com,01/22/2019,Contact Center Associate,Member Service Center,058119,058119,A
+67311,Cristobal,Garcia,cristobalg@sccu.com,03/11/2019,Member Service Spec,NW 36th St Branch,066139,066139,A
+67314,La'brusha,Kelley,labrushak@sccu.com,03/18/2019,Contact Center Associate,Member Service Center,066531,066531,A
+58681,Christie,Jok,christiej@sccu.com,04/15/2019,Marketing Specialist I,Marketing,058879,058879,A
+58675,Katie,Schnell,katies@sccu.com,04/15/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58673,Brian,Hunt,brianh@sccu.com,04/15/2019,Member Service Spec,Port St. John Branch,057873,057873,A
+67321,Mario,Mendez Raxach,mariom@sccu.com,04/15/2019,Member Service Spec,Sunset Branch,066467,066467,A
+67324,Ashley,Charlisme,ashleych@sccu.com,05/13/2019,Contact Center Associate,Member Service Center,067023,067023,A
+67328,Vernise,Fleur-Aime,vernisef@sccu.com,06/10/2019,Member Service Spec,Skylake Branch,066193,066193,A
+58714,Ashley,Emo,ashleye@sccu.com,07/15/2019,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+58731,Sheila,Hickerson,sheilah@sccu.com,08/19/2019,Acctg Assoc II,Accounting - General,058263,058263,A
+67350,Andrea,Fleming,andreaf@sccu.com,10/07/2019,Member Service Spec,Miami Gardens Walmart,066193,066193,A
+58753,Megan,Berckhemer,meganb@sccu.com,10/21/2019,Coordinator Marketing,Marketing,058879,058879,A
+58771,Amanda,Kicker,amandak@sccu.com,11/04/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58777,Ketsy,Rivas,ketsyr@sccu.com,11/12/2019,Operations Serv Spec I,Operations,056633,056633,A
+58801,Andrew,Despard,andrewd@sccu.com,02/03/2020,Member Service Spec,Airport Branch,056971,056971,A
+58802,Zeynep,Willis,zeynepw@sccu.com,02/10/2020,Loan Processor I,Indirect Sales,057858,057858,A
+58806,Christina,Curtis,christinac@sccu.com,02/24/2020,Member Service Spec,Lake Washington Branch,057352,057352,A
+67380,Larissa,Joseph,larissaj@sccu.com,03/02/2020,Member Service Spec,Skylake Branch,066193,066193,A
+58834,Matthew,Hosken,matth@sccu.com,04/13/2020,Systems Developer II,Information Technology,058847,058847,A
+67391,Carlos,Del Carpio,carlosdc@sccu.com,04/27/2020,Underwriter IV,Underwriting,058772,058772,A
+58837,Natasha,Nelson,natashan@sccu.com,05/11/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58847,Timothy,Wright,timothyw@sccu.com,05/18/2020,Mgr Systems Development,Information Technology,057814,057814,A
+58844,Rachel,Channell,rachelc@sccu.com,05/18/2020,Asst Mgr Mtg Processing,Express Mortgages,058701,058701,A
+58854,Tiffany,Grgurich Gasman,tiffanyg@sccu.com,06/08/2020,Member Service Spec,Merritt Island Branch,057043,057043,A
+67405,Olvia,Gonzalez,olviag@sccu.com,06/08/2020,Member Service Spec,Pines Hiatus Branch,066822,066822,A
+58858,Jessica,Perkins,jessicapek@sccu.com,06/15/2020,Member Service Spec,Lake Washington Branch,057352,057352,A
+58869,Elias,Arguello,Eliasa@sccu.com,06/29/2020,Contact Center Associate,Member Service Center,058119,058119,A
+58870,Andre,Massie,andrem@sccu.com,06/29/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58866,Lacey,Sargent,laceys@sccu.com,06/29/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58881,Lynne,Hash,lynneh@sccu.com,07/06/2020,Loan Processor II,Express Processing,058677,058677,A
+58896,Rita,Lott,rital@sccu.com,07/06/2020,Card Specialist I,Card Services,057524,057524,A
+58884,Anthony,McLeod,anthonymc@sccu.com,07/06/2020,Contact Center Associate,Member Service Center,058119,058119,A
+67408,Sandrese,Lewis,sandresel@sccu.com,07/06/2020,Member Service Spec,Hollywood Branch,066496,066496,A
+58894,Deborah,Simone,deborahs@sccu.com,07/06/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58875,Gloria,Torres,gloriat@sccu.com,07/06/2020,Loan Processor III,Express Mortgages,058844,058844,A
+58902,GeAnna,Barnes,geannab@sccu.com,07/20/2020,Member Service Spec,Airport Branch,056971,056971,A
+58904,Sarah,Krobath,sarahk@sccu.com,07/20/2020,Member Service Spec,New Smyrna Beach Branch,057665,057665,A
+58906,Stephanie,Tharpe,stephaniet@sccu.com,08/03/2020,Business Services Special,Business Services,057799,057799,A
+67417,Melissa,Rivers,melissar@sccu.com,08/31/2020,Member Service Spec,West Coral Springs Branch,066882,066882,A
+67419,Latina,Cooper Maloy,latinac@sccu.com,08/31/2020,Member Service Spec,Cypress Creek Branch,066183,066183,A
+58916,Sandra,Abel,sandraa@sccu.com,09/14/2020,Member Experience Analyst,Member Experience,056622,056622,A
+58929,Donna,Bruton,donnabr@sccu.com,11/09/2020,Loss Mitigation Assoc I,Credit Solutions,058202,058202,A
+58936,Amanda,Pabon,amandap@sccu.com,11/23/2020,Member Service Spec,Deland South Branch,057665,057665,A
+58931,Shavonne,Carter,shavonnec@sccu.com,11/23/2020,Member Service Spec,North Merritt Island,057222,057222,A
+54754,Heather,Hickman,heatherh@sccu.com,08/10/1992,EVP/Chief of Retail Deliv,Executive,054679,054679,A
+54892,Vickie,Guy,vickieg@sccu.com,08/18/1997,Loan Processor III,Express Mortgages,058844,058844,A
+56432,Caleris,Jackson,calerisj@sccu.com,10/07/2002,Loan Processor IV,Express Mortgages,058844,058844,A
+56440,Melanie,Adams,melaniea@sccu.com,11/04/2002,Contact Center Associate,Member Service Center,058481,058481,A
+56483,Anita,Johnson,anitaj@sccu.com,05/12/2003,Member Service Spec,Rockledge Branch,054769,054769,A
+54817,Barbara,Kelly,barbk@sccu.com,11/30/2009,Sr Member Serv Specialist,Patrick Air Force Base Br,057163,057163,A
+57203,Janie,Dempsey,janied@sccu.com,10/22/2007,Underwriter II,Underwriting,058671,058671,A
+66182,Cynthia,Parella,cynthiap@sccu.com,03/14/2016,Sr Member Serv Specialist,West Miramar Branch,066700,066700,A
+66265,Leandra,Martinez,LeandraM@sccu.com,11/02/2009,Retail Branch Lead,East Miramar Branch,066470,066470,A
+66330,Anara,Lluch-Mesa,AnaraL@sccu.com,09/25/2017,Retail Branch Lead,Sunset Branch,066467,066467,A
+66335,Kim,Rebeiro,KimR@sccu.com,01/26/2004,Card Specialist II,Card Services,066321,066321,A
+66431,Martha,Corzo,MarthaCo@sccu.com,01/17/2006,Branch Mgr,Hialeah Gardens Branch,066124,066124,A
+66466,Emily,Ruiz,EmilyR@sccu.com,06/06/2016,Sr Member Serv Specialist,Hollywood Branch,066496,066496,A
+66481,Ernesto,Forero,ErnestoF@sccu.com,03/25/2002,Info System Technician II,Information Technology,058338,058338,A
+66589,Jerelyn,Scarlett,Jerelyns@sccu.com,02/29/2016,Loan Processor IV,Express Mortgages,058844,058844,A
+57412,Ashley,Pustay,ashleypu@sccu.com,09/23/2019,Retail Branch Lead,Rockledge Branch,054769,054769,A
+66701,Christopher,Bloom,chrisbl@sccu.com,03/08/2010,Mgr Credit Solutions,Credit Solutions,057946,057946,A
+57476,Kyle,Wilson,kylew@sccu.com,08/30/2010,Dir E-Banking,E-Banking,056641,056641,A
+57522,Jesse,Merkley,jessem@sccu.com,01/10/2011,Exp Services Associate,Express Services,058046,058046,A
+57524,Tiffany,Westphal,tiffanyw@sccu.com,01/10/2011,Mgr Card Services,Card Services,066210,066210,A
+57535,Amber,Peters,amberg@sccu.com,04/09/2018,Branch Mgr,Ormond Beach Branch,057233,057233,A
+57630,Heather,Taylor,heathert@sccu.com,11/28/2011,Branch Mgr,Baytree Branch,056879,056879,A
+57633,Crystal,Widemer,crystalv@sccu.com,11/28/2011,Contact Center Assoc II,Member Service Center,057930,057930,L
+57704,Harlam,Andino,harlama@sccu.com,09/17/2012,Loss Mitigation Assoc I,Credit Solutions,057039,057039,A
+57713,MaryMolly,Haggarty,maryh@sccu.com,10/15/2012,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+66875,Emil,Gonzales,emilg@sccu.com,11/26/2012,Express Mort Originator,Express Mortgages,066777,066777,A
+57798,Rachel,Sanchez,rachels@sccu.com,06/03/2013,Member Service Spec,Rockledge South,057546,057546,A
+57822,Robert,McGill,robertm@sccu.com,02/02/2015,Sr HR Generalist,Human Resources,058207,058207,A
+66930,Juan,Montoya Castellanos,juanm@sccu.com,11/12/2013,Asst Branch Mgr,Boca Raton Branch,066882,066882,A
+57910,Michele,Cooke,michelec@sccu.com,02/03/2014,Coord Credit Solutions,Credit Solutions,058202,058202,A
+57915,Triyonna,King,triyonnak@sccu.com,02/24/2014,Loan Servicing Spec I,Loan Servicing,058140,058140,A
+57934,Mark,Mashiotta,markm@sccu.com,05/12/2014,Member Service Spec,Bayside Lakes Branch,058126,058126,A
+57969,Miranda,Eddy-Vanyo,mirandae@sccu.com,08/18/2014,Payments Specialist II,Payment Services,058079,058079,A
+57995,Jason,Rhode,jasonr@sccu.com,09/15/2014,Network Administrator II,Information Technology,058338,058338,A
+67023,Shalal,Saturne,Shalals@sccu.com,06/08/2015,Asst Mgr Mem Svs Ctr,Member Service Center,066384,066384,A
+67050,Alexis,Valdes,alexisv@sccu.com,05/11/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58153,Nicole,Davidson,nicoleda@sccu.com,08/31/2015,Underwriter III,Underwriting,058772,058772,A
+58159,Becky,Davis,beckyd@sccu.com,08/31/2015,Sr Acctg Assoc,Accounting - Operational,057415,057415,A
+58174,Michael,Livolsi,michaell@sccu.com,10/05/2015,Business Services Special,Business Services,057799,057799,A
+67077,Ruth,Martin,ruthm@sccu.com,11/02/2015,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+67078,Gloria,Vallina,gloriav@sccu.com,11/09/2015,Retail Branch Lead,Hialeah Gardens Branch,066431,066431,A
+67089,Tanscia,Rose Anderson,tansciara@sccu.com,12/14/2015,Contact Center Assoc II,Member Service Center,057930,057930,A
+67094,Krystal,Ho-choy,krystalh@sccu.com,02/16/2016,Asst Branch Mgr,Margate Branch,067156,067156,A
+67098,Paul,Mullings,anthonym@sccu.com,02/22/2016,Business Services Advisor,Business Services,058206,058206,A
+67101,Jaime,Marles,jaimem@sccu.com,02/29/2016,Exp Services Associate,Express Services,067113,067113,A
+58278,Diyanira,Medina Lopez,diyaniram@sccu.com,05/31/2016,Asst Branch Mgr,Miracle Mile Branch,057192,057192,A
+58402,Penny,Woodman,pennyw@sccu.com,10/24/2016,Loss Prevention Spec,Operations Loss Prev/Comp,066444,066444,A
+58408,Samantha,Ader,samanthaa@sccu.com,11/07/2016,Retail Branch Lead,NW Palm Bay Branch,057569,057569,A
+67206,Sharmine,Rhone,sharminer@sccu.com,02/21/2017,Retail Branch Lead,Pine Island Branch,066235,066235,A
+58433,Edyie,McCormick,edyiem@sccu.com,03/20/2017,Member Service Spec,Daytona Beach Branch,057698,057698,A
+58452,Atahualpa,Guzman,atahualpag@sccu.com,06/19/2017,Loan Processor II,Express Processing,057602,057602,A
+58453,Phyllis,Corso,phyllisco@sccu.com,06/19/2017,Contact Center Assoc II,Member Service Center,057930,057930,A
+67215,Maxie,Williams,maxiew@sccu.com,06/26/2017,Contact Center Associate,Member Service Center,067023,067023,A
+58477,Nija,Armond,nijaa@sccu.com,08/07/2017,Member Service Spec,Palm Coast West Branch,057667,057667,A
+67239,Verline,Smith,verlines@sccu.com,11/13/2017,Contact Center Associate,Member Service Center,066531,066531,A
+58523,James,Pordon,Jamesp@sccu.com,01/08/2018,Sr Acctg Assoc,Accounting - General,058263,058263,A
+58536,Rachelle,Violante,rachellev@sccu.com,02/20/2018,Custodian,Facilities,057256,057256,A
+58555,Victoria,Richter,victoriar@sccu.com,04/02/2018,Member Service Spec,Palm Coast West Branch,057667,057667,A
+58567,Jennifer,Harrell,jenniferh@sccu.com,05/14/2018,Member Service Spec,Rockledge South,057546,057546,A
+58571,Jasmine,Ginory,jasmineg@sccu.com,05/29/2018,Member Service Spec,Airport Branch,056971,056971,A
+58589,Emilie,Russell,emilier@sccu.com,08/13/2018,Member Service Spec,Port Orange Branch,057542,057542,A
+58606,Jennifer,Peck,jenniferp@sccu.com,09/17/2018,Member Service Spec,Indialantic Branch,057555,057555,A
+58610,Linson,Franklin,linsonf@sccu.com,09/17/2018,Contact Center Associate,Member Service Center,058119,058119,A
+67297,Destiny,Rivera,destinyr@sccu.com,11/13/2018,Member Service Spec,Sunrise Town Center Branc,067156,067156,A
+67298,Christopher,Orta,christophero@sccu.com,11/13/2018,Retail Branch Lead,NW 36th St Branch,066139,066139,A
+58633,Thyatera,Zone,thyateraz@sccu.com,12/03/2018,Contact Center Associate,Member Service Center,058481,058481,A
+58650,Ylaura,Calloway,ylaurac@sccu.com,02/04/2019,Payroll Administrator,Human Resources,058207,058207,A
+67307,Daniella,Riley,daniellar@sccu.com,02/11/2019,Contact Center Associate,Member Service Center,067023,067023,A
+58649,Michael,Higgins,michaelh@sccu.com,02/19/2019,Dir Underwriting Ops,Underwriting,056268,056268,A
+58654,Mykhia,Myers,mykhiam@sccu.com,02/19/2019,Contact Center Associate,Member Service Center,058119,058119,A
+58656,Denise,Lord,denisel@sccu.com,02/25/2019,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+58659,Amber,Cummings,ambercu@sccu.com,03/04/2019,Loan Processor I,Indirect Sales,057858,057858,A
+58655,Jordan,Samaco,jordans@sccu.com,03/04/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58669,Zachary,Sparrow,zacharys@sccu.com,04/15/2019,Member Service Spec,Viera Branch,058247,058247,A
+67323,Patrice,Simms Nicholson,patrices@sccu.com,04/29/2019,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58693,Erica,Senior,ericas@sccu.com,05/06/2019,Member Service Spec,Port Orange Branch,057542,057542,A
+58688,Jeneishia,Tucker,jeneishiat@sccu.com,05/13/2019,Online Services Associate,E-Banking,057476,057476,A
+58717,Alexandra,Kalita,alexandraka@sccu.com,07/22/2019,Member Service Spec,Palm Bay West Branch,058126,058126,A
+67345,Anabel,Cruz Sanchez Toledo,anabelc@sccu.com,09/09/2019,Business Services Advisor,Business Services,058206,058206,A
+67349,Yeslee,Wilson,yesleew@sccu.com,10/07/2019,Member Service Spec,Hialeah Gardens Branch,066431,066431,A
+58750,Carolina,Leiva,carolinal@sccu.com,10/21/2019,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58769,Angela,Morales,angelamo@sccu.com,10/28/2019,Contact Center Associate,Member Service Center,058481,058481,L
+58773,Aubriellyn,Kennedy,aubriellynk@sccu.com,11/04/2019,Loan Processor III,Express Mortgages,058844,058844,A
+58756,Jennifer,Buback,jenniferb@sccu.com,11/04/2019,Operations Serv Spec II,Operations,056633,056633,A
+67359,Yorling,Hurtado,yorlingh@sccu.com,11/25/2019,Member Service Spec,Kendall Breeze Branch,066267,066267,A
+58780,Scott,Morrison,scottm@sccu.com,12/02/2019,Custodian,Facilities,057256,057256,A
+67360,Carlos,Collazo Ortiz,carlosc@sccu.com,12/09/2019,Member Service Spec,Sunset Branch,066467,066467,A
+67373,Jermaine,Franca,jermainef@sccu.com,02/10/2020,Contact Center Associate,Member Service Center,067023,067023,A
+58809,Natalie,Keller,nataliek@sccu.com,02/24/2020,Member Service Spec,Vero Beach Branch,058277,058277,A
+58813,Shymyah,York-Walker,shymyahy@sccu.com,03/02/2020,Exp Services Associate,Express Services,058046,058046,A
+58823,Vanessa,Moller,vanessamo@sccu.com,04/06/2020,Member Service Spec,Airport Branch,056971,056971,A
+58835,Rebecca,Fletcher,rebeccaf@sccu.com,04/27/2020,Card Specialist I,Card Services,057524,057524,A
+67393,Ricardo,Ramirez Montiel,ricardor@sccu.com,05/11/2020,Member Service Spec,Doral Branch,066394,066394,A
+67400,Avril,Sayers,avrils@sccu.com,06/01/2020,Member Service Spec,East Miramar Branch,066470,066470,A
+58849,Nyhia,Garcia,nyhiag@sccu.com,06/01/2020,Member Service Spec,Port Malabar Branch,057448,057448,A
+58851,Jessica,Hoffman,jessicah@sccu.com,06/01/2020,Member Service Spec,Oslo Branch,057192,057192,A
+58860,Rommel,Despeignes,rommeld@sccu.com,06/08/2020,Contact Center Associate,Member Service Center,058481,058481,A
+58862,Nicholas,Rodriguez,nicholasr@sccu.com,06/15/2020,Card Specialist I,Card Services,057524,057524,A
+58871,Angel,Baez-Colon,angelb@sccu.com,06/29/2020,Member Service Spec,Port Malabar Branch,057448,057448,A
+58883,Rebecca,Wagner,rebeccaw@sccu.com,07/06/2020,Loan Processor II,Express Processing,058677,058677,A
+58893,Kimberly,Ellet,kimberlyel@sccu.com,07/13/2020,Accountant I,Accounting - General,058263,058263,A
+67413,Saundra,Lee,saundral@sccu.com,08/10/2020,Member Service Spec,East Miramar Branch,066470,066470,A
+58910,Joshua,Lefdal,josuale@sccu.com,08/17/2020,Sr Acctg Assoc,Accounting - Operational,057415,057415,A
+67418,Katherin,Beron,katherinb@sccu.com,08/31/2020,Member Service Spec,Boca Raton Branch,066930,066930,A
+67421,Mariana,Ramos Urey,marianar@sccu.com,09/08/2020,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58914,Michael,Maldonado,michaelmal@sccu.com,09/21/2020,Member Service Spec,Palm Bay West Branch,058126,058126,A
+58925,Jeffrey,Hillman,jeffreyh@sccu.com,10/19/2020,Sr Acctg Assoc,Accounting - General,058263,058263,A
+58932,Rebecca,Indelicato,rebeccaj@sccu.com,11/09/2020,Member Service Spec,Palm Bay Walmart Branch,057569,057569,A
+67427,Tahja,Heron,tahjah@sccu.com,11/16/2020,Member Service Spec,Sunrise Town Center Branc,067156,067156,A
+54484,Martha,Cruz,marthac@sccu.com,09/16/1996,Training Specialist,Training,066381,066381,A
+54865,Lynn,Dierksen,lynnd@sccu.com,08/10/1998,Systems Analyst II,Information Technology,057814,057814,A
+56202,Jaydee,Yearty,jaydeey@sccu.com,02/22/2000,Sr ATM Spec,E-Banking,057476,057476,A
+56529,Matthew,Narvaez,matthewn@sccu.com,02/03/2014,Systems Administrator III,Information Technology,057814,057814,A
+56633,Melissa,Guzman,MelissaG@sccu.com,06/28/2004,Mgr Operations,Operations,057312,057312,A
+56641,Gregory,DeRoy,gregd@sccu.com,07/26/2004,VP MSC & E-Banking,Executive,054754,054754,A
+56716,Debbie,Larson,DebbieSt@sccu.com,02/14/2005,Retail Branch Lead,Titusville Branch,057097,057097,A
+56873,Tracey,Martin,traceym@sccu.com,04/25/2016,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+57097,Jessica,Propst,Jessicap@sccu.com,07/04/2016,Branch Mgr,Titusville Branch,056879,056879,A
+57107,Diana,Waite,Dianaw@sccu.com,04/16/2007,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+57129,Angelo,Carrieri,AngeloC@sccu.com,05/21/2007,Sr Member Serv Specialist,Port Orange Branch,057542,057542,A
+57192,Daniel,Bryant,DanielB@sccu.com,09/04/2007,Market Mgr,Oslo Branch,058061,058061,A
+57297,Jaime,Jimenez,jaimej@sccu.com,07/28/2008,BSA Analyst,Operations Loss Prev/Comp,066444,066444,A
+66108,Linda,Perez,LindaP@sccu.com,11/02/2009,Member Service Spec,South Dixie Branch,066486,066486,A
+66139,Esther,Jacomino,EstherJ@sccu.com,10/03/1994,Branch Mgr,NW 36th St Branch,066124,066124,A
+66165,Elizabeth,Phillips,elizabethp@sccu.com,11/02/2009,Member Service Spec,East Hollywood Branch,067212,067212,A
+66170,Maria,Rodriguez,mariaro@sccu.com,11/02/2009,Member Service Spec,Skylake Branch,066193,066193,A
+66225,Vivienne,Wint,viviennew@sccu.com,07/27/1998,Underwriter II,Underwriting,057683,057683,A
+66384,Diana,Baez,DianaB@sccu.com,04/04/2005,Mgr Member Serv Center,Member Service Center,056641,056641,A
+66394,Jessica,Marrero Medina,JessicaMa@sccu.com,07/25/2005,Asst Branch Mgr,Doral Branch,066139,066139,A
+66415,Katie,Ramos,KatieR@sccu.com,10/17/2005,Contact Center Associate,Member Service Center,067023,067023,A
+66470,Jillion,Freckleton-McIntosh,JillionF@sccu.com,08/28/2006,Branch Mgr,East Miramar Branch,066534,066534,A
+57300,Michelle,James,michellej@sccu.com,05/14/2012,Business Services Advisor,Business Services,058206,058206,A
+57316,Jessica,More,JessicaM@sccu.com,03/30/2015,Sr Member Serv Specialist,New Smyrna Beach Branch,057665,057665,A
+66592,Andy,Suarez,AndyS@sccu.com,11/24/2008,Training Specialist,Training,066381,066381,A
+57331,Mark,Atkinson,marka@sccu.com,12/08/2008,Computer Operator,Information Technology,057814,057814,A
+66604,Allan,Montero,allanm@sccu.com,05/09/2016,Sr Member Serv Specialist,Bird Road Branch,066122,066122,A
+57359,Christine,Lockard,christinel@sccu.com,06/01/2009,Loan Processor IV,Express Mortgages,058844,058844,A
+57396,Jacquay,Williams,jacquayw@sccu.com,11/09/2009,Mgr Express Service,Express Services,057190,057190,A
+66716,Jessica,Garcia-Suarez,jessicag@sccu.com,05/10/2010,Exp Services Associate,Express Services,067113,067113,A
+57517,Lisa,Arthur,lisaa@sccu.com,12/13/2010,Member Service Spec,Titusville Branch,057097,057097,A
+57555,Oleria,Davis,oleriad@sccu.com,04/04/2011,Asst Branch Mgr,Indialantic Branch,056971,056971,A
+57746,Demetrius,Christian,demetriusc@sccu.com,01/28/2013,Branch Mgr,Enterprise Road Branch,057233,057233,A
+57792,Kathryn,Hoffmanns,kathrynh2@sccu.com,05/06/2013,Loan Processor IV,Express Mortgages,058844,058844,A
+57814,Nicole,Williams,nicolew@sccu.com,06/17/2013,VP Info Technology,Executive,057724,057724,A
+57833,Michael,McCay,mmccay@sccu.com,07/22/2013,Business Serv Advisor II,Business Services,058206,058206,A
+57864,Stephanie,Nesius,stephanien@sccu.com,10/28/2013,Mgr Loan Servicing,Loan Servicing,057312,057312,A
+57873,Stephanie,Shroble,stephanies@sccu.com,06/11/2018,Branch Mgr,Port St. John Branch,056879,056879,A
+57932,Diana,Gonzalez,dianag@sccu.com,04/28/2014,Business Services Special,Business Services,057799,057799,A
+57938,Alexander,Hernandez,alexanderhe@sccu.com,05/05/2014,Express Mort Originator,Express Mortgages,066777,066777,A
+57951,David,Barkholz,davidb@sccu.com,06/02/2014,Marketing Specialist II,Marketing,057717,057717,A
+57956,Barbara,Gibeck,barbarag@sccu.com,06/23/2014,HR Generalist I,Human Resources,058207,058207,A
+57959,Jeffrey,Loomis,jeffreyl@sccu.com,07/07/2014,Express Mort Originator,Express Mortgages,066777,066777,A
+57961,Jesse,Garcia,jesseg@sccu.com,07/21/2014,Loan Processor I,Indirect Sales,057858,057858,A
+57975,Lu Ann,Foggan,luannf@sccu.com,08/18/2014,Contact Center Associate,Member Service Center,058119,058119,A
+58050,Julia,Rogers,juliar@sccu.com,02/02/2015,Member Service Spec,Indian Harbour Beach Bran,057163,057163,A
+58053,Rachael,Nash,rachaeln@sccu.com,02/17/2015,Retail Branch Lead,Palm Bay West Branch,058126,058126,A
+58057,Gail,Anderson,gaila@sccu.com,02/23/2015,Member Service Spec,Sebastian Branch,057888,057888,A
+67006,Randy,Gonzalez,randyg@sccu.com,03/16/2015,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58100,Verolyn,Porter,verolynp@sccu.com,05/18/2015,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+58119,Orlando,Mazara,orlandom@sccu.com,06/22/2015,Asst Mgr Mem Svs Ctr,Member Service Center,056832,056832,A
+58133,Victoria,Weldon,victoriaw@sccu.com,06/29/2015,Member Service Spec,Cocoa Beach Branch,057600,057600,A
+58129,Shannon,Raymond,shannonr@sccu.com,01/02/2017,Operations Serv Spec II,Operations,056633,056633,A
+67056,Solanch,Blanco,solanchb@sccu.com,07/27/2015,Member Service Spec,Cutler Bay Branch,066378,066378,A
+58168,Christian,Erazo,christiane@sccu.com,09/21/2015,Loss Mitigation Assoc I,Credit Solutions,057039,057039,A
+58202,Paul,Deuschle,pauld@sccu.com,12/21/2015,Mgr Credit Solutions,Credit Solutions,057946,057946,A
+67092,Karla,Zeledon,karlaz@sccu.com,02/01/2016,Credit Solutions Assoc II,Credit Solutions,066701,066701,A
+67110,Yeliset,Garcia,yelisetg@sccu.com,03/21/2016,Member Service Spec,Kendall Breeze Branch,066267,066267,A
+58247,Tasha,Holliday,tashah@sccu.com,11/20/2017,Branch Mgr,Viera Branch,056879,056879,L
+58256,Brittany,Seay,brittanys@sccu.com,05/09/2016,Member Service Spec,Ormond Beach Branch,057535,057535,A
+58269,Kaye,Leslie,kayel@sccu.com,06/06/2016,Sr Contact Center Assoc,Member Service Center,056832,056832,A
+58286,Victor,Elphage Padilla,victore@sccu.com,06/06/2016,Contact Center Assoc II,Member Service Center,057930,057930,A
+67137,Carol,Reid Jones,carolr@sccu.com,06/06/2016,Sr Contact Center Assoc,Member Service Center,066384,066384,A
+58338,Jose,Davila Jr.,josed@sccu.com,07/25/2016,Mgr Sys Architect & Del,Information Technology,057814,057814,A
+67163,Edwin,Rivera,edwinr@sccu.com,08/01/2016,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58351,Julia,Cox,juliac@sccu.com,08/08/2016,Retail Branch Lead,Merritt Island Branch,057043,057043,L
+58376,Joshua,Pennington,joshuap@sccu.com,09/12/2016,Sr Acctg Assoc,Accounting - Operational,057415,057415,A
+67179,Vivette,Blackwood,vivetteb@sccu.com,09/12/2016,Member Service Spec,Ft Lauderdale Branch,066974,066974,A
+67184,Duanne,Campbell,duannec@sccu.com,09/19/2016,Member Service Spec,Pines Hiatus Branch,066822,066822,A
+58434,Ava,Tomlinson,avat@sccu.com,04/03/2017,Coord Credit Solutions,Credit Solutions,058202,058202,A
+58515,Lantoinette,Stewart,lantoinettes@sccu.com,03/06/2018,Sr Contact Center Assoc,Member Service Center,057930,057930,A
+67247,Kaisha,Austin,kaishaa@sccu.com,01/08/2018,Member Service Spec,Homestead Branch,066184,066184,A
+58547,Patrick,Wood,patrickw@sccu.com,03/30/2018,Dir Accounting,Accounting - General,058205,058205,A
+58564,Jennifer,Lindsay,jenniferli@sccu.com,05/14/2018,Loan Processor IV,Express Mortgages,058844,058844,A
+67276,Marcus,Candelaria,marcusc@sccu.com,06/04/2018,Contact Center Associate,Member Service Center,066531,066531,A
+67282,Tamara,Alexis,tamaraa@sccu.com,07/09/2018,Contact Center Associate,Member Service Center,067023,067023,A
+67292,Islande,Mathurin,islandem@sccu.com,09/04/2018,Contact Center Associate,Member Service Center,066384,066384,A
+67294,David,Moliner-Diaz,davidm@sccu.com,10/01/2018,Member Service Spec,South Dixie Branch,066486,066486,A
+58632,Porsche,Daniels,porsched@sccu.com,01/07/2019,Contact Center Associate,Member Service Center,058119,058119,A
+67305,Ebonique,Fenton,eboniquef@sccu.com,01/14/2019,Contact Center Associate,Member Service Center,067023,067023,L
+58653,Kali,Gillette,kalig@sccu.com,02/19/2019,Member Service Spec,Port St. John Branch,057873,057873,A
+58663,Rynicia,Santiago-Weiser,rynicias@sccu.com,04/01/2019,Loan Processor III,Express Mortgages,058844,058844,A
+67317,Jarvis,Peters,jarvisp@sccu.com,04/01/2019,Member Service Spec,Skylake Branch,066193,066193,A
+58685,Paola,Solis,paolag@sccu.com,05/13/2019,Exp Services Associate,Express Services,058046,058046,A
+58689,Nina,Johnson,ninaj@sccu.com,05/13/2019,Contact Center Associate,Member Service Center,058481,058481,A
+58686,Deborah,Choban,deborahc@sccu.com,05/13/2019,Reception/Security Admin,Operations,056633,056633,A
+58702,Marcus,Wheeler,marcusw@sccu.com,06/10/2019,Exp Services Associate,Express Services,058046,058046,A
+58724,Erica,Ward,ericaw@sccu.com,07/29/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58728,Raquel,Rojas,raquelr@sccu.com,08/12/2019,Member Service Spec,Port Malabar Branch,057448,057448,A
+58738,Israel,Torres Pagan,israelt@sccu.com,08/26/2019,Member Service Spec,Daytona Beach Branch,057698,057698,A
+58735,Natacha,Colfer,natachac@sccu.com,08/26/2019,Member Service Spec,Vero Beach Branch,058277,058277,A
+67351,Karla,Zeledon,karlavz@sccu.com,10/15/2019,Member Service Spec,NW 36th St Branch,066139,066139,A
+58755,Rachel,Taylor,rachelt@sccu.com,10/21/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58764,Emily,Graham,emilyg@sccu.com,10/28/2019,Marketing Specialist I,Marketing,057717,057717,A
+67354,Alicia,Silva,alicias@sccu.com,10/28/2019,Member Service Spec,NW 36th St Branch,066139,066139,A
+58778,Dylan,Sola,dylans@sccu.com,11/25/2019,Contact Center Associate,Member Service Center,058119,058119,A
+67363,Ana,Rodriguez Gallo,anar@sccu.com,01/13/2020,Member Service Spec,East Hollywood Branch,067212,067212,A
+58786,Maricel,Hawley,maricelh@sccu.com,12/23/2019,Card Specialist I,Card Services,057524,057524,A
+58787,Brandy,Geesey,brandyg@sccu.com,12/30/2019,Member Service Spec,Cocoa Beach Branch,057600,057600,A
+67368,Shanice,Edwards,shanicee@sccu.com,01/27/2020,Member Service Spec,Sunrise Town Center Branc,067156,067156,A
+58798,Erin,Kuhn,erink@sccu.com,02/03/2020,Member Experience Coord,Member Experience,056622,056622,A
+67381,Yanesky,Arias,yaneskya@sccu.com,03/09/2020,Member Service Spec,NW 36th St Branch,066139,066139,A
+58807,Erika,Marin-Rodriguez,erikam@sccu.com,03/16/2020,Loan Processor II,Express Processing,058677,058677,A
+67382,Luz,Vargas,luzv@sccu.com,03/16/2020,Member Service Spec,Bird Road Branch,066122,066122,A
+67385,Maria,Pileta,mariap@sccu.com,03/23/2020,Member Service Spec,NW 36th St Branch,066139,066139,A
+58831,Noah,Brode,noahb@sccu.com,04/13/2020,Systems Developer II,Information Technology,058847,058847,A
+58836,Chadrick,Davis,chadrickd@sccu.com,04/27/2020,Loss Mitigation Assoc I,Credit Solutions,058202,058202,A
+58841,Cassie,Moore,cassiem@sccu.com,05/11/2020,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58848,Maria,Molina,mariam@sccu.com,05/26/2020,Acctg Assoc II,Accounting - Operational,057415,057415,A
+67398,Carlos,Rivera,carlosr@sccu.com,05/26/2020,Member Service Spec,Hialeah Gardens Branch,066431,066431,A
+58857,Ryan,Johnson,ryanj@sccu.com,06/08/2020,Systems Developer I,Information Technology,058847,058847,A
+58888,Melissa,Farmer,melissafa@sccu.com,06/30/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58887,Marcel,Castellanos Fondeur,marcelf@sccu.com,07/06/2020,Loan Processor II,Express Processing,057602,057602,A
+58892,Lashaunda,Riddick,lashaundar@sccu.com,07/06/2020,Contact Center Associate,Member Service Center,058481,058481,A
+67409,Bryan,Ward,bryanw@sccu.com,07/13/2020,Member Service Spec,Sunset Branch,066467,066467,A
+58905,Shaneen,Soto Rojas,shaneens@sccu.com,08/03/2020,Member Service Spec,Bayside Lakes Branch,058126,058126,A
+58918,Delores,Cunningham,deloresc@sccu.com,09/21/2020,Member Service Spec,Airport Branch,056971,056971,A
+58921,Sheri,Swim,sheris@sccu.com,10/26/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+58927,Caleb,Moyer,calebm@sccu.com,11/02/2020,Member Service Spec,Merritt Island Branch,057043,057043,A
+58934,Stephanie,Lonis,stephaniel@sccu.com,11/16/2020,Member Service Spec,Port St. John Branch,057873,057873,A
+58935,Madison,Jacques,madisonj@sccu.com,11/16/2020,Member Service Spec,Viera Branch,058247,058247,A
+58937,Ryan,Hart,ryanha@sccu.com,11/23/2020,Member Service Spec,DuPont Lake Branch,057665,057665,A
+58939,Rosalyn,Roberts,rosalynr@sccu.com,12/07/2020,Member Service Spec,Palm Bay West Branch,058126,058126,A
+54826,Ruth,Rodriguez,ruthr@sccu.com,06/23/1997,Contact Center Associate,Member Service Center,058119,058119,A
+56236,Ana,Darby,AnaD@sccu.com,06/19/2000,Loan Processor II,Express Processing,058677,058677,A
+56724,Laniese,Lee,laniesel@sccu.com,02/16/2015,Retail Branch Lead,Melbourne Branch,054776,054776,A
+56836,Jeronda,Davis,jerondad@sccu.com,09/12/2005,Member Service Spec,Rockledge Branch,054769,054769,A
+56929,Angela,Jordan,angelam@sccu.com,05/01/2006,Training Specialist,Training,066381,066381,A
+56946,Sarah,Fino,sarahf@sccu.com,06/05/2006,Sr Member Serv Specialist,Miracle Mile Branch,058278,058278,A
+56981,Tomas,Zapata,tomasz@sccu.com,07/31/2006,Express Mort Originator,Express Mortgages,066777,066777,A
+57090,Jodie,Kinley-Smith,JodieK@sccu.com,03/12/2007,Mgr Indirect Lending,Indirect Sales,057190,057190,A
+57142,Alisha,Howard,AlishaH@sccu.com,05/24/2007,BSA Analyst,Operations Loss Prev/Comp,066444,066444,A
+57256,Aaron,Bauer,AaronB@sccu.com,04/28/2008,Mgr Facilities,Facilities,056268,056268,A
+66106,Deborah,Walker,DeborahWa@sccu.com,01/03/1991,Sr Member Serv Specialist,Sunrise Town Center Branc,067156,067156,A
+66124,Luz,Escoto,LuzE@sccu.com,06/07/1993,Dir Retail Services,Retail Admin,066621,066621,A
+66184,Armanda,Bonitto,ArmandaB@sccu.com,07/28/1997,Branch Mgr,Homestead Branch,066124,066124,A
+66193,Yolanda,Medina,YolandaM@sccu.com,11/17/1997,Branch Mgr,Skylake Branch,066124,066124,A
+66235,Natalie,Bullock,NatalieB@sccu.com,08/16/1999,Branch Mgr,Pine Island Branch,066534,066534,A
+66267,Layla,Salem,LaylaS@sccu.com,05/21/2001,Branch Mgr,Kendall Breeze Branch,066124,066124,A
+66310,Raiza,Martinez,RaizaM@sccu.com,11/02/2009,Member Service Spec,Palm Springs Branch,066538,066538,A
+66417,Jeanneth,Pena,JeannethP@sccu.com,10/17/2005,Contact Center Associate,Member Service Center,066531,066531,A
+66444,Olga,Campo,OlgaC@sccu.com,03/20/2006,Mgr Loss Prev/Compliance,Operations Loss Prev/Comp,057312,057312,A
+66458,Carolyn,Reynolds,CarolynR@sccu.com,01/14/2014,Sr Member Serv Specialist,Hollywood Branch,066496,066496,A
+66531,Annabelle,Chancy,AnnabelleC@sccu.com,05/17/2007,Asst Mgr Mem Svs Ctr,Member Service Center,066384,066384,A
+66679,Peter,Freystaetter,peterf@sccu.com,05/05/2014,Express Mort Originator,Express Mortgages,066777,066777,A
+66710,Vanessa,Martinez,vanessafa@sccu.com,04/05/2010,Member Service Spec,NW 36th St Branch,066139,066139,A
+66736,Jenny,Uzcategui,jennyu@sccu.com,08/23/2010,Contact Center Associate,Member Service Center,066531,066531,A
+57473,Rebecca,Hanicak,rebeccah@sccu.com,08/30/2010,Member Service Spec,Titusville Branch,057097,057097,A
+57492,Yonnette,Anderson,yonnettea@sccu.com,10/12/2010,Mgr Finance,Finance,058205,058205,A
+57569,Tiffany,Simmons,tiffanys@sccu.com,05/16/2011,Branch Mgr,NW Palm Bay Branch,058061,058061,A
+57576,Eleanor,Sudduth,eleanorh@sccu.com,05/23/2011,Internal Auditor,Internal Audit,054679,054679,A
+57639,Angela,Cabrera,nicic@sccu.com,01/23/2012,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+57667,Stephanie,Reed,stephanier@sccu.com,02/17/2014,Branch Mgr,Palm Coast West Branch,057233,057233,A
+66845,Angeline,Londono,angelinel@sccu.com,05/14/2012,Member Service Spec,Palm Springs Branch,066538,066538,A
+57724,Joseph,Lewis,alanl@sccu.com,11/26/2012,EVP Chief Opertating Off,Executive,054679,054679,A
+66882,Rohan,McCalla,rohanm@sccu.com,01/14/2013,Branch Mgr,West Coral Springs Branch,066534,066534,A
+57751,Yesenia,Lindo-Santana,yesenias@sccu.com,02/11/2013,Loss Mitigation Assoc II,Credit Solutions,058202,058202,A
+57752,James,Watzek,jamesw@sccu.com,02/25/2013,Exp Services Associate,Express Services,058046,058046,A
+57753,Michael,Williams,michaelwi@sccu.com,03/04/2013,Help Desk Support,Information Technology,058338,058338,A
+57799,Morgan,Green,morgang@sccu.com,05/28/2013,Asst Mgr Business Serv,Business Services,058206,058206,A
+57827,Glenda Elisea,Foster,glendaf@sccu.com,07/01/2013,Network Admin I,Information Technology,058338,058338,A
+57861,Juan,Garcia,juang@sccu.com,10/07/2013,Loan Processor II,Express Processing,058677,058677,A
+57879,Lauren,Squatrito,laurens@sccu.com,11/12/2013,Payments Specialist II,Payment Services,058079,058079,A
+57900,Jacqueline,Skinner,jacquelines@sccu.com,01/13/2014,Financial Analyst,Finance,057492,057492,A
+57935,Stacie,Omeara,stacieo@sccu.com,05/12/2014,Member Service Spec,Ormond Beach Branch,057535,057535,A
+58001,Sherry,Gove,sherryg@sccu.com,09/15/2014,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+58003,Juan,Duarte,juand@sccu.com,09/22/2014,Contact Center Associate,Member Service Center,067023,067023,A
+58019,Nicole,Horatio,nhoratio@sccu.com,11/03/2014,Loan Processor I,Indirect Sales,057858,057858,A
+58021,Jonathan,Charlett,jonathanc@sccu.com,11/03/2014,Contact Center Associate,Member Service Center,058119,058119,A
+66992,Brittney,Cameron,brittneyca@sccu.com,11/24/2014,Credit Solutions Assoc II,Credit Solutions,066701,066701,A
+58046,Brian,Jeffers,brianj@sccu.com,01/04/2016,Asst Mgr Express Service,Express Services,057396,057396,A
+58061,Ann,Roberts,annro@sccu.com,03/09/2015,Dir Retail Services,Retail Admin,057066,057066,A
+67008,Violeta,Godoy Zuniga,violetag@sccu.com,03/16/2015,Contact Center Associate,Member Service Center,066531,066531,A
+58066,Shannon,Murray,shannonmu@sccu.com,03/16/2015,Loss Mitigation Assoc II,Credit Solutions,058202,058202,A
+67014,Henry,Gonzalez Abondano,henryg@sccu.com,04/20/2015,Sr Credit Solutions Assoc,Credit Solutions,066701,066701,A
+58087,Stephanie,Hall,stephanieh@sccu.com,04/27/2015,Loan Processor I,Indirect Sales,057858,057858,A
+58105,Mary Beth,Knudsen,bessk@sccu.com,05/26/2015,Loan Processor III,Express Mortgages,058844,058844,A
+67063,Angela,Gonzalez Perea,angelag@sccu.com,09/21/2015,Member Service Spec,Homestead Branch,066184,066184,A
+67068,Wesley,Gehy,wesleyg@sccu.com,09/28/2015,Sr Contact Center Assoc,Member Service Center,066384,066384,A
+58193,Linda,Hart,lindah@sccu.com,11/16/2015,VP Human Resources,Executive,054679,054679,A
+58205,Hilary,Eisbrenner,hilarye@sccu.com,01/11/2016,SVP/Chief Financial Offic,Executive,054679,054679,A
+58218,Elvira,Zorovich,elviraz@sccu.com,02/01/2016,Contact Center Associate,Member Service Center,058481,058481,A
+58232,Sylwia,Litts,sylwial@sccu.com,03/14/2016,Loan Servicing Spec I,Loan Servicing,058140,058140,A
+58245,Haydee,Dixon,haydeed@sccu.com,03/21/2016,Loan Servicing Spec I,Loan Servicing,058469,058469,A
+58255,Sidney,Paje,sidneyp@sccu.com,05/09/2016,Member Service Spec,Deland South Branch,057665,057665,A
+58290,Gaylea,Montijo,gayleam@sccu.com,05/31/2016,Operations Serv Spec II,Operations,056633,056633,A
+58270,Ashley,Robinson,ashleyro@sccu.com,09/25/2017,Sr Contact Center Assoc,Member Service Center,056832,056832,A
+58282,Lauren,Weir,laurenw@sccu.com,06/06/2016,Member Service Spec,Merritt Island Branch,057043,057043,A
+67141,Lisa,Lopez,lisal@sccu.com,06/06/2016,Contact Center Associate,Member Service Center,066531,066531,A
+67138,Sharon,Cornelius,sharonw@sccu.com,06/06/2016,Sr Contact Center Assoc,Member Service Center,066384,066384,A
+58298,Jamalia,Scott,jamalias@sccu.com,06/06/2016,Exp Services Associate,Express Services,058046,058046,A
+58296,Tiffani,Hatcher,tiffanih@sccu.com,06/06/2016,Member Service Spec,Melbourne Branch,054776,054776,A
+67171,Diana,Jimenez,dianaj@sccu.com,08/15/2016,Exp Services Associate,Express Services,067113,067113,A
+67183,Yesi,Stewart,yesis@sccu.com,09/12/2016,Exp Services Associate,Express Services,067113,067113,A
+58407,Natasha,Bush,natashab@sccu.com,11/07/2016,Payments Specialist I,Payment Services,058079,058079,A
+67198,Francelene,Amisial,francelenea@sccu.com,11/28/2016,Member Service Spec,Margate Branch,067094,067094,A
+58450,Joanne,McGuire,joannem@sccu.com,06/19/2017,Member Service Spec,Sebastian Branch,057888,057888,A
+67213,Yuleika,Villar Baez,yuleikav@sccu.com,06/19/2017,Credit Solutions Assoc I,Credit Solutions,066701,066701,A
+58448,Norman,Watts,normanw@sccu.com,06/26/2017,Express Mort Originator,Express Mortgages,066777,066777,A
+58455,Kerlyn,Kitlas,kerlynk@sccu.com,06/26/2017,Loan Processor IV,Express Mortgages,058844,058844,A
+67218,Elizabeth,Hernandez Blanco,elizabethh@sccu.com,07/17/2017,Contact Center Associate,Member Service Center,067023,067023,A
+67230,Jonathan,Camacho,jonathanca@sccu.com,08/28/2017,Member Service Spec,Doral Branch,066394,066394,A
+67233,Nicola,Francis,nicolaf@sccu.com,10/02/2017,Member Service Spec,East Miramar Branch,066470,066470,A
+58487,Timothy,Smith,tims@sccu.com,10/02/2017,Underwriter II,Underwriting,058671,058671,A
+67240,Keely,Simpson,keelys@sccu.com,11/06/2017,Contact Center Associate,Member Service Center,067023,067023,A
+67248,Jennifer,Fernandez,jenniferfe@sccu.com,12/18/2017,Member Service Spec,South Dixie Branch,066486,066486,A
+58519,Antonia,Miller,antoniam@sccu.com,12/26/2017,HR Generalist I,Human Resources,058207,058207,A
+67257,Alan,Smith,alans@sccu.com,02/26/2018,Member Service Spec,East Hollywood Branch,067212,067212,A
+58546,Ramon,Lopez,ramonl@sccu.com,03/12/2018,Member Service Spec,Port Malabar Branch,057448,057448,A
+58538,Danielle,Kosh,daniellek@sccu.com,03/12/2018,Marketing Specialist II,Marketing,058879,058879,A
+58562,Nola,Musgrove,nolam@sccu.com,05/07/2018,Loan Processor IV,Express Mortgages,058844,058844,A
+67277,Tisha,Perriott,tishap@sccu.com,06/11/2018,Contact Center Associate,Member Service Center,066531,066531,A
+67281,Claudia,Cruz Sanchez,claudiacr@sccu.com,06/11/2018,Member Service Spec,East Miramar Branch,066470,066470,A
+67283,Jocely,Comeau,jocelyc@sccu.com,07/09/2018,Contact Center Associate,Member Service Center,067023,067023,A
+67286,Darlene,Batista,darleneb@sccu.com,08/06/2018,Member Service Spec,Kendall Breeze Branch,066267,066267,A
+58601,Serai,Vega,seraiv@sccu.com,09/04/2018,Member Service Spec,Lake Washington Branch,057352,057352,A
+58594,Maria,Bonilla,mariabo@sccu.com,09/10/2018,Member Service Spec,Enterprise Road Branch,057746,057746,A
+67293,Douglas,Yount,douglasy@sccu.com,10/01/2018,Member Service Spec,Coral Gables Branch,066852,066852,A
+58623,Lorraine,Hernandez,lorraineh@sccu.com,10/22/2018,Contact Center Associate,Member Service Center,058119,058119,A
+67300,Neilson,Fagan,neilsonf@sccu.com,11/26/2018,Member Service Spec,East Miramar Branch,066470,066470,A
+58637,Martine,Marcelin,martinem@sccu.com,12/03/2018,Loan Processor II,Express Processing,058677,058677,A
+67302,Yumatie,Bansie,yumatieb@sccu.com,12/10/2018,Member Service Spec,Pines Hiatus Branch,066822,066822,A
+58660,Kalisah,Colvin,kalishac@sccu.com,03/04/2019,Contact Center Associate,Member Service Center,058119,058119,A
+67315,Cristian,Cortez,cristianc@sccu.com,03/25/2019,Member Service Spec,Coral Gables Branch,066852,066852,A
+58676,Sonja,Nelson,sonjan@sccu.com,07/06/2020,Underwriter IV,Underwriting,058772,058772,A
+58679,Constanza,Krause,constanzak@sccu.com,04/22/2019,Asst Mgr Mtg Processing,Express Mortgages,058701,058701,A
+58684,Kenneth,Subrin,kenneths@sccu.com,05/06/2019,Member Service Spec,Indialantic Branch,057555,057555,A
+58697,Christina,Barroso,christinaba@sccu.com,05/28/2019,Member Service Spec,Enterprise Road Branch,057746,057746,A
+58706,Rachel,McDuffie,rachelm@sccu.com,06/10/2019,Member Service Spec,Port Orange Branch,057542,057542,L
+58707,Johnny,McCrary,johnnym@sccu.com,06/10/2019,Exp Services Associate,Express Services,058046,058046,A
+58704,Brittany,Dancy,brittanyd@sccu.com,06/17/2019,Member Service Spec,Titusville Branch,057097,057097,A
+58705,Thomas,Tanner,thomast@sccu.com,06/24/2019,Mgr Business Intelli,Business Intelligence,057814,057814,L
+58710,Andrew,Gosztyla,andrewg@sccu.com,07/08/2019,Member Service Spec,Daytona Beach Branch,057698,057698,A
+67337,Justin,Maldonado,justinm@sccu.com,07/29/2019,Member Service Spec,South Dixie Branch,066486,066486,A
+67339,Ekaterina,Luzon,ekaterinal@sccu.com,08/12/2019,Member Service Spec,Hollywood Branch,066496,066496,A
+58722,Shannon,Hutchinson,shannonh@sccu.com,08/26/2019,Contact Center Associate,Member Service Center,058481,058481,A
+67347,Safiya,Elliott,safiyae@sccu.com,09/23/2019,Loan Processor IV,Express Mortgages,058844,058844,A
+58752,Charlie,Serrano,charlies@sccu.com,10/21/2019,Credit Solutions Assoc I,Credit Solutions,057039,057039,A
+58757,Kateryna,Kasian,katerynak@sccu.com,10/21/2019,Member Service Spec,Port Malabar Branch,057448,057448,A
+58765,Luke,Wry,lukew@sccu.com,11/04/2019,Member Service Spec,Airport Branch,056971,056971,A
+58790,Bryan,Gill,bryang@sccu.com,12/23/2019,Business Intell Analyst,Business Intelligence,058705,058705,A
+58792,Kelsie,Sandage,kelsies@sccu.com,01/06/2020,Member Service Spec,Merritt Island Branch,057043,057043,A
+67367,Judith,Velloza,judithv@sccu.com,01/13/2020,Member Service Spec,Ft Lauderdale Branch,066974,066974,A
+58796,Sara,Pearl,sarap@sccu.com,01/27/2020,Member Service Spec,Lake Washington Branch,057352,057352,A
+67372,Kayla,Komal,kaylak@sccu.com,01/27/2020,Member Service Spec,Cypress Creek Branch,066183,066183,A
+58805,Sarah,Evans,sarahe@sccu.com,02/24/2020,Member Service Spec,Deland South Branch,057665,057665,A
+58818,Corey,Justice,coreyj@sccu.com,03/09/2020,Member Service Spec,Melbourne Branch,054776,054776,A
+58814,Margaret,Ingold,margareti@sccu.com,03/09/2020,Custodian,Facilities,057256,057256,A
+67388,Samuel,Batista,samuelb@sccu.com,04/06/2020,Exp Services Associate,Express Services,067113,067113,A
+58842,Marcie,Sanders,Marcies@sccu.com,05/11/2020,Member Service Spec,Baytree Branch,057630,057630,A
+67397,Erasmo,Acevedo,erasmoa@sccu.com,06/01/2020,Member Service Spec,NW 36th St Branch,066139,066139,A
+58859,Marvin,Hubbard,marvinh@sccu.com,06/08/2020,Loan Processor IV,Express Mortgages,058844,058844,A
+67403,Curt,Martin,curtm@sccu.com,06/08/2020,Member Service Spec,East Miramar Branch,066470,066470,A
+58878,Michelle,Perez,michellep@sccu.com,06/29/2020,Underwriter III,Underwriting,058772,058772,A
+58864,Michelle,Kleeberg,michellek@sccu.com,07/06/2020,Loan Processor II,Express Processing,058677,058677,L
+58898,Erika,Matos,erikama@sccu.com,07/13/2020,Member Service Spec,NW Palm Bay Branch,057569,057569,A
+58912,Allyssa,Torrey,allyssat@sccu.com,08/24/2020,Member Service Spec,Baytree Branch,057630,057630,A
+67416,Norma,Rico Fernandez,normaf@sccu.com,08/24/2020,Contact Center Associate,Member Service Center,067023,067023,A
+58913,Maddison,Clyne,maddisonc@sccu.com,09/08/2020,Loan Processor II,Express Processing,058677,058677,A
+67422,Katiria,Rivas,katiriar@sccu.com,09/14/2020,Member Service Spec,South Dixie Branch,066486,066486,A
+58922,Marlee,Vodek,marleev@sccu.com,10/13/2020,Member Service Spec,Deland South Branch,057665,057665,A
+67430,Rafael,Mijares-Tapia,rafaelm@sccu.com,11/16/2020,Member Service Spec,Bird Road Branch,066122,066122,A

@@ -121,13 +121,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOYPORTEX_20201128.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOYPORTEX_20201210.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202011279','EMPEXPORT','OEACTIVE','Nov 25 2020  2:18PM','EVOYPORTEX',NULL,NULL,NULL,'202011279','Nov 25 2020  9:48AM','Nov 25 2020  9:48AM','202011131','134','','','202011131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202011279','EMPEXPORT','OEPASSIVE','Nov 25 2020  2:18PM','EVOYPORTEX',NULL,NULL,NULL,'202011279','Nov 25 2020  9:48AM','Nov 25 2020  9:48AM','202011131','134','','','202011131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya Life & Portability','202011279','EMPEXPORT','ONDEM_XOE','Nov 25 2020  2:19PM','EVOYPORTEX',NULL,NULL,NULL,'202011279','Nov 25 2020  9:48AM','Nov 25 2020  9:48AM','202011131','134','','','202011131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya Life & Portability-Sched','202011279','EMPEXPORT','SCH_EVOYPO','Nov 25 2020  2:19PM','EVOYPORTEX',NULL,NULL,NULL,'202011279','Nov 25 2020  9:48AM','Nov 25 2020  9:48AM','202011131','134','','','202011131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya Life & Portability-Test','202011279','EMPEXPORT','TEST_XOE','Nov 27 2020 11:37AM','EVOYPORTEX',NULL,NULL,NULL,'202011279','Nov 27 2020 12:00AM','Dec 30 1899 12:00AM','202011131','8','','','202011131',dbo.fn_GetTimedKey(),NULL,'us3cPePOW1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya Life & Portability-Test','202011279','EMPEXPORT','TEST_XOE','Dec  1 2020  9:35PM','EVOYPORTEX',NULL,NULL,NULL,'202011279','Nov 27 2020 12:00AM','Dec 30 1899 12:00AM','202011131','8','','','202011131',dbo.fn_GetTimedKey(),NULL,'us3cPePOW1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYPORTEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYPORTEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYPORTEX','InitialSort','C','drvSort');
@@ -390,6 +390,7 @@ BEGIN
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
 
     --==========================================
     -- Build Working Tables
@@ -493,18 +494,18 @@ BEGIN
         ,drvReasonForTermination =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','NORRET','203') THEN 'Termination' 
                                         WHEN EecEmplStatus = 'T' AND EecTermReason IN ('NORRET','202') THEN 'Retired'
                                     END
-        ,drvEEBasicLifeCoverageAmount = CASE WHEN USLAD_DedCode IS NOT NULL THEN FORMAT(USLAD_BenAmt, '#0.00') END
-        ,drvEESuppLifeCoverageAmount = CASE WHEN USESL_DedCode IS NOT NULL THEN FORMAT(USESL_BenAmt, '#0.00') END
-        ,drvEEBasicADDCoverageAmount = CASE WHEN USADD_DedCode IS NOT NULL THEN FORMAT(USADD_BenAmt, '#0.00') END
-        ,drvEESuppADDCoverageAmt = CASE WHEN USSA_DedCode IS NOT NULL THEN FORMAT(USSA_BenAmt, '#0.00') END
+        ,drvEEBasicLifeCoverageAmount = CASE WHEN USLAD_DedCode IS NOT NULL THEN FORMAT(USLAD_BenAmt, '#0.00') END --EEBL
+        ,drvEESuppLifeCoverageAmount = CASE WHEN USESL_DedCode IS NOT NULL THEN FORMAT(USESL_BenAmt, '#0.00') END -- EESL
+        ,drvEEBasicADDCoverageAmount = CASE WHEN USADD_DedCode IS NOT NULL THEN FORMAT(USADD_BenAmt, '#0.00') END -- EEBA
+        ,drvEESuppADDCoverageAmt = CASE WHEN USSA_DedCode IS NOT NULL THEN FORMAT(USSA_BenAmt, '#0.00') END -- EESA
         ,drvSpLastName = ConNameLast
         ,drvSpFirstName = ConNameFirst
         ,drvSpSSN = ConSSN
         ,drvSpDateOfBirth = ConDateOfBirth
-        ,drvSPSuppLifeCoverageAmount = CASE WHEN USSL_DedCode IS NOT NULL THEN FORMAT(USSL_BenAmt, '#0.00') END
-        ,drvSPSuppADDCoverageAmount = CASE WHEN USSAS_DedCode IS NOT NULL THEN FORMAT(USSAS_BenAmt, '#0.00') END
-        ,drvCHSupplementalLife = CASE WHEN USDL_DedCode IS NOT NULL THEN FORMAT(USDL_BenAmt, '#0.00') END
-        ,spChildSupplementalADD = CASE WHEN USSA_DedCode IS NOT NULL THEN FORMAT(USSAC_BenAmt, '#0.00') END
+        ,drvSPSuppLifeCoverageAmount = CASE WHEN USSL_DedCode IS NOT NULL THEN FORMAT(USSL_BenAmt, '#0.00') END -- SPSL
+        ,drvSPSuppADDCoverageAmount = CASE WHEN USSAS_DedCode IS NOT NULL THEN FORMAT(USSAS_BenAmt, '#0.00') END -- SPSA
+        ,drvCHSupplementalLife = CASE WHEN USDL_DedCode IS NOT NULL THEN FORMAT(USDL_BenAmt, '#0.00') END -- CHSL
+        ,spChildSupplementalADD = CASE WHEN USSA_DedCode IS NOT NULL THEN FORMAT(USSAC_BenAmt, '#0.00') END -- CHSA
     INTO dbo.U_EVOYPORTEX_drvTbl
     FROM dbo.U_EVOYPORTEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
