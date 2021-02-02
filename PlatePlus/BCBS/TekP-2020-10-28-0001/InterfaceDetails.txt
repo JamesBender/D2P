@@ -1,0 +1,5 @@
+Interface details (EBCSHSA834)
+Env – NW23 
+Server – NW1WUP5DB01
+Database – ULTIPRO_WPPLAPL
+Export Name – BCBS Med HRA HSA 834

@@ -87,11 +87,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20201215.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20210105.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic Export','202010129','EMPEXPORT','ONDEM_XOE',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic -Sched','202010129','EMPEXPORT','SCH_ECUTRA',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202012109','EMPEXPORT','TEST_XOE','Dec 14 2020  5:42PM','ECUTRAMPEX',NULL,NULL,NULL,'202012109','Dec 10 2020 12:00AM','Dec 30 1899 12:00AM','201911011','1173','','','201911011',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',IAGFG,HG0SP,XI0GS,Y5USD,VLYMR,368IV,B57L5',NULL,NULL,NULL,'Culture Amp Demographic -Sched','202010129','EMPEXPORT','SCH_ECUTRA',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202012109','EMPEXPORT','TEST_XOE','Dec 15 2020  6:22PM','ECUTRAMPEX',NULL,NULL,NULL,'202012109','Dec 10 2020 12:00AM','Dec 30 1899 12:00AM','201911011','1173','','','201911011',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','InitialSort','C','drvSort');
@@ -139,7 +139,7 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] datetime NULL,
+    [drvSort] char(9) NULL,
     [drvName] varchar(201) NULL,
     [drvPrefferedName] varchar(100) NULL,
     [drvEmployeeID] char(9) NULL,
@@ -164,7 +164,7 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvCompany] varchar(40) NULL,
     [drvEmploymentStatus] char(1) NULL,
     [drvCountry] char(3) NULL,
-    [drvManagerEEID] char(12) NULL
+    [drvManagerEEID] char(9) NULL
 );
 IF OBJECT_ID('U_ECUTRAMPEX_EEList') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_EEList] (
@@ -445,7 +445,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = E.EepDateOfBirth
+        ,drvSort = EC.EecEmpNo -- E.EepDateOfBirth
         -- standard fields above and additional driver fields below
         ,drvName = E.EepNameFirst + ' ' + E.EepNameLast
         ,drvPrefferedName = CASE WHEN E.EepNamePreferred IS NOT NULL THEN E.EepNamePreferred ELSE E.EepNameFirst END
@@ -478,7 +478,7 @@ BEGIN
                         END
         ,drvEmploymentStatus = EC.EecEmplStatus
         ,drvCountry = E.EepAddressCountry
-        ,drvManagerEEID = EC.EecSupervisorId
+        ,drvManagerEEID = (SELECT TOP 1 SUP.EecEmpNo FROM dbo.EmpComp SUP WITH (NOLOCK) WHERE SUP.EecEEID = EC.EecSupervisorId)
     INTO dbo.U_ECUTRAMPEX_drvTbl
     FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp EC WITH (NOLOCK)

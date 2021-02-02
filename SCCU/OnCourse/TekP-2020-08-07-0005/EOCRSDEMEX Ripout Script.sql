@@ -45,11 +45,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EOCRSDEMEX_20201216.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EOCRSDEMEX_20210108.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'OnCourse Demo Export','202012159','EMPEXPORT','ONDEM_XOE',NULL,'EOCRSDEMEX',NULL,NULL,NULL,'202012159','Dec 15 2020  5:44PM','Dec 15 2020  5:44PM','202012151',NULL,'','','202012151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'OnCourse Demo Export-Sched','202012159','EMPEXPORT','SCH_EOCRSD',NULL,'EOCRSDEMEX',NULL,NULL,NULL,'202012159','Dec 15 2020  5:44PM','Dec 15 2020  5:44PM','202012151',NULL,'','','202012151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'OnCourse Demo Export-Test','202012159','EMPEXPORT','TEST_XOE',NULL,'EOCRSDEMEX',NULL,NULL,NULL,'202012159','Dec 15 2020  5:44PM','Dec 15 2020  5:44PM','202012151',NULL,'','','202012151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'OnCourse Demo Export-Test','202012169','EMPEXPORT','TEST_XOE','Dec 16 2020 12:53PM','EOCRSDEMEX',NULL,NULL,NULL,'202012169','Dec 16 2020 12:00AM','Dec 30 1899 12:00AM','202012021','961','','','202012021',dbo.fn_GetTimedKey(),NULL,'us3lKiSPA1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOCRSDEMEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOCRSDEMEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EOCRSDEMEX','InitialSort','C','drvSort');
@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[U_EOCRSDEMEX_drvTbl] (
     [drvLocationCode] varchar(25) NULL,
     [drvSupervisorCode] char(9) NULL,
     [drvReportingSupervisorCode] char(9) NULL,
-    [drvStatus] char(1) NULL
+    [drvStatus] varchar(8) NOT NULL
 );
 IF OBJECT_ID('U_EOCRSDEMEX_EEList') IS NULL
 CREATE TABLE [dbo].[U_EOCRSDEMEX_EEList] (
@@ -184,7 +184,7 @@ BEGIN
         ,drvLocationCode = OrgDesc3
         ,drvSupervisorCode = Sup.EecEmpNo
         ,drvReportingSupervisorCode = Sup.EecEmpNo
-        ,drvStatus = E.EecEmplStatus
+        ,drvStatus = CASE WHEN E.EecEmplStatus = 'T' THEN 'Inactive' ELSE 'Active' END
     INTO dbo.U_EOCRSDEMEX_drvTbl
     FROM dbo.U_EOCRSDEMEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp E WITH (NOLOCK)

@@ -1,0 +1,5 @@
+Interface details (ECRDEMOEXP)
+Env – EW42
+Server – EW4WUP2DB03
+Database – ULTIPRO_WPCORT
+Export Name – Certent Demographics Export

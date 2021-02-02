@@ -1,0 +1,22 @@
+QB
+Type, Client Name ,Client Division Name ,Salutation ,First Name ,Middle Initial ,Last Name ,SSN ,Individual ID ,Email ,Phone ,Phone 2 ,Address 1 ,Address 2 ,City ,State or Province ,Postal Code ,Country ,Premium Address Same As Primary ,Premium Address 1 ,Premium Address 2 ,Premium City ,Premium State Or Province ,Premium Postal Code ,Premium Country ,Sex ,DOB ,Tobacco Use ,Employee Type ,Employee Payroll Type ,Years of Service ,Premium Coupon Type ,Uses HCTC ,Active ,Allow Member SSO ,Benefit Group ,Account Structure ,Client Specific Data 
+
+QBEVENT
+Type, Event Type ,Event Date ,Enrollment Date ,Employee SSN ,Employee Name ,Second Event Original FDOC 
+
+QBPLANINTIAL
+TYPE, Plan Name,Coverage Level ,Number Of Units 
+
+QBDEPENDENT
+Type, SSN ,Relationship ,Salutation ,First Name ,Middle Initial ,Last Name ,Email ,Phone ,Phone 2 ,Address Same As QB ,Address 1 ,Address 2 ,City ,State Or Province ,Postal Code ,Country ,Enrollment Date ,Sex ,DOB ,Is QMCSO 
+
+QBDEPENDENTPLANINITIAL
+Type, Plan Name
+
+
+QBPLANMEMBERSPECIFICRATEINITIAL
+Type,Plan Name ,Rate 
+
+
+NPM
+Type,SSN ,Individual Identifier ,Client Name ,Client Division ,Name ,First Name ,Middle Initial ,Last Name ,Salutation ,Email ,Phone ,Phone 2 ,Address 1 ,Address 2 ,City ,State Or Province ,Postal Code ,Country ,Sex ,Uses Family In Address ,Has Waived All Coverage ,Send GR Notice ,Hire Date 

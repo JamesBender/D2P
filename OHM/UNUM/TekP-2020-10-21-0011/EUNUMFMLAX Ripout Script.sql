@@ -129,13 +129,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNUMFMLAX_20201223.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNUMFMLAX_20210114.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202012229','EMPEXPORT','OEACTIVE','Dec 22 2020  1:19PM','EUNUMFMLAX',NULL,NULL,NULL,'202012229','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202012221','529','','','202012221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202012229','EMPEXPORT','OEPASSIVE','Dec 22 2020  1:19PM','EUNUMFMLAX',NULL,NULL,NULL,'202012229','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202012221','529','','','202012221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export','202012229','EMPEXPORT','ONDEM_XOE','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202012229','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202012221','529','','','202012221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export-Sched','202012229','EMPEXPORT','SCH_EUNUMF','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202012229','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202012221','529','','','202012221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export-Test','202012239','EMPEXPORT','TEST_XOE','Dec 23 2020 10:55AM','EUNUMFMLAX',NULL,NULL,NULL,'202012239','Dec 23 2020 12:00AM','Dec 30 1899 12:00AM','202012091','533','','','202012091',dbo.fn_GetTimedKey(),NULL,'us3lKiOHM1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202101119','EMPEXPORT','OEACTIVE','Dec 22 2020  1:19PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202101119','EMPEXPORT','OEPASSIVE','Dec 22 2020  1:19PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export','202101119','EMPEXPORT','ONDEM_XOE','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export-Sched','202101119','EMPEXPORT','SCH_EUNUMF','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export-Test','202101119','EMPEXPORT','TEST_XOE','Jan 11 2021  7:21PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Jan 11 2021 12:00AM','Dec 30 1899 12:00AM','202101011','1','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3lKiOHM1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMFMLAX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMFMLAX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMFMLAX','InitialSort','C','drvSort');
@@ -508,7 +508,7 @@ BEGIN
         ,drvManagerNameFirst = SUP.EepNameFirst
         ,drvManagerNameLast = SUP.EepNameLast
         ,drvManagerEmail = SUP.EepAddressEMail
-        ,drvHoursWorkedInPast12Months = FORMAT(PehCurHrsYTD, '#0.00')
+        ,drvHoursWorkedInPast12Months = FORMAT(PehCurHrs, '#0.00')
         ,drvSalaryOrHourly = EecSalaryOrHourly
     INTO dbo.U_EUNUMFMLAX_drvTbl
     FROM dbo.U_EUNUMFMLAX_EEList WITH (NOLOCK)
@@ -523,8 +523,14 @@ BEGIN
         ON LocCode = EecLocation
     JOIN dbo.EmpPers SUP WITH (NOLOCK)
         ON EecSupervisorID = SUP.EepEEID
-    JOIN dbo.U_EUNUMFMLAX_PEarHist
-        ON PehEEID = xEEID
+    JOIN (
+            SELECT PehEEID, SUM(PehCurHrs) AS PehCurHrs
+            FROM dbo.vw_int_PEarHist WITH (NOLOCK)
+            WHERE PehPerControl BETWEEN FORMAT(DATEADD(YEAR, -1, @StartDate), 'yyyyMMdd') + '1' AND FORMAT(@EndDate, 'yyyyMMdd') + '9'    
+            GROUP BY PehEEID) AS CurHrs
+        ON PehEEID = xEEID 
+--    JOIN dbo.U_EUNUMFMLAX_PEarHist
+--        ON PehEEID = xEEID
     /*JOIN dbo.U_dsi_BDM_EUNUMFMLAX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID*/
@@ -559,10 +565,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202012151'
-       ,expStartPerControl     = '202012151'
-       ,expLastEndPerControl   = '202012229'
-       ,expEndPerControl       = '202012229'
+    SET expLastStartPerControl = '202101011'
+       ,expStartPerControl     = '202101011'
+       ,expLastEndPerControl   = '202101159'
+       ,expEndPerControl       = '202101159'
 WHERE expFormatCode = 'EUNUMFMLAX';
 
 **********************************************************************************/

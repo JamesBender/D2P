@@ -44,7 +44,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmailAddress"','5','(''UA''=''T,'')','EDLYPAYEXPZ0','50','D','10','5',NULL,'email',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneNumber"','6','(''UA''=''T,'')','EDLYPAYEXPZ0','50','D','10','6',NULL,'phone_number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''DA''=''T,'')','EDLYPAYEXPZ0','50','D','10','7',NULL,'pay_group',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''DA''=''T,'')','EDLYPAYEXPZ0','50','D','10','8',NULL,'location',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLocation"','8','(''UA''=''T,'')','EDLYPAYEXPZ0','50','D','10','8',NULL,'location',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayRate"','9','(''UA''=''T,'')','EDLYPAYEXPZ0','50','D','10','9',NULL,'pay_rate',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''T,'')','EDLYPAYEXPZ0','50','D','10','10',NULL,'alternative_id',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeType"','11','(''UA''=''T,'')','EDLYPAYEXPZ0','50','D','10','11',NULL,'Employee_type',NULL,NULL);
@@ -57,11 +57,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDLYPAYEXP_20201014.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDLYPAYEXP_20210201.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay Export','202009309','EMPEXPORT','ONDEM_XOE',NULL,'EDLYPAYEXP',NULL,NULL,NULL,'202009309','Sep 30 2020 12:59PM','Sep 30 2020 12:59PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay Export-Sched','202009309','EMPEXPORT','SCH_EDLYPA',NULL,'EDLYPAYEXP',NULL,NULL,NULL,'202009309','Sep 30 2020 12:59PM','Sep 30 2020 12:59PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'DailyPay Export-Test','202009309','EMPEXPORT','TEST_XOE','Oct  5 2020  5:09PM','EDLYPAYEXP',NULL,NULL,NULL,'202009309','Sep 30 2020 12:00AM','Dec 30 1899 12:00AM','202009301','842','','','202009301',dbo.fn_GetTimedKey(),NULL,'us3rVaCYP1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay Export','202101229','EMPEXPORT','ONDEM_XOE',NULL,'EDLYPAYEXP',NULL,NULL,NULL,'202101229','Sep 30 2020 12:59PM','Sep 30 2020 12:59PM','202101221',NULL,'','','202101221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','P5IPR,P5IWN,VLUBT',NULL,NULL,NULL,'DailyPay Export-Sched','202101229','EMPEXPORT','SCH_EDLYPA',NULL,'EDLYPAYEXP',NULL,NULL,NULL,'202101229','Sep 30 2020 12:59PM','Sep 30 2020 12:59PM','202101221',NULL,'','','202101221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'DailyPay Export-Test','202101229','EMPEXPORT','TEST_XOE','Jan 29 2021 12:24PM','EDLYPAYEXP',NULL,NULL,NULL,'202101229','Jan 22 2021 12:00AM','Dec 30 1899 12:00AM','202101221','550','','','202101221',dbo.fn_GetTimedKey(),NULL,'us3rVaCYP1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDLYPAYEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDLYPAYEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDLYPAYEXP','InitialSort','C','drvSort');
@@ -90,6 +90,7 @@ CREATE TABLE [dbo].[U_EDLYPAYEXP_drvTbl] (
     [drvAccountNumber] varchar(4) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvPhoneNumber] varchar(50) NULL,
+    [drvLocation] char(5) NULL,
     [drvPayRate] nvarchar(4000) NULL,
     [drvEmployeeType] varchar(6) NULL,
     [drvAnnualSalary] nvarchar(4000) NULL,
@@ -306,6 +307,7 @@ BEGIN
         ,drvAccountNumber = RIGHT(RTRIM(EddAcct), 4)
         ,drvEmailAddress = EepAddressEMail
         ,drvPhoneNumber = EfoPhoneNumber
+        ,drvLocation = CmpCompanyCode
         ,drvPayRate = FORMAT(EecHourlyPayRate, '#0.00')
         ,drvEmployeeType =    CASE WHEN EecSalaryOrHourly = 'H' THEN 'Hourly'
                                 WHEN EecSalaryOrHourly = 'S' THEN 'Salary'
@@ -319,8 +321,8 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_EDLYPAYEXP_PEarHist WITH (NOLOCK)
-        on PehEEID = xEEID
+--    JOIN dbo.U_EDLYPAYEXP_PEarHist WITH (NOLOCK)
+--        on PehEEID = xEEID
 /*    JOIN dbo.PDirHist WITH (NOLOCK)
         ON PrhEEID = xEEID
         AND PrhCOID = xCOID*/
@@ -329,7 +331,9 @@ BEGIN
     LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
         ON EfoEEID = xEEID
         AND efoPhoneType = 'CEL'
-    WHERE PehCurAmtYTD > 0
+    JOIN dbo.Company WITH (NOLOCK)
+        ON xCOID = CmpCOID
+    --WHERE PehCurAmtYTD > 0
     ;
 
     --==========================================
@@ -360,10 +364,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202009231'
-       ,expStartPerControl     = '202009231'
-       ,expLastEndPerControl   = '202009309'
-       ,expEndPerControl       = '202009309'
+    SET expLastStartPerControl = '202101221'
+       ,expStartPerControl     = '202101221'
+       ,expLastEndPerControl   = '202101229'
+       ,expEndPerControl       = '202101229'
 WHERE expFormatCode = 'EDLYPAYEXP';
 
 **********************************************************************************/

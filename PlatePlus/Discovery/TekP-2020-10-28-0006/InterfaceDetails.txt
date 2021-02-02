@@ -1,0 +1,5 @@
+Interface details (EDISCOBREX)
+Env – ANW15 
+Server – NW1WUP5DB01
+Database – ULTIPRO_WPPLAPL
+Export Name – Discovery Cobra Export

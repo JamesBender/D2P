@@ -117,13 +117,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPINHSAEXP_20201030.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPINHSAEXP_20210201.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202010159','EMPEXPORT','OEACTIVE','Oct 23 2020  2:19PM','EPINHSAEXP',NULL,NULL,NULL,'202010159','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202010151','23','','','202010151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202010159','EMPEXPORT','OEPASSIVE','Oct 23 2020  2:19PM','EPINHSAEXP',NULL,NULL,NULL,'202010159','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202010151','1028','','','202010151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pinnacle HSA Combined Export','202010159','EMPEXPORT','ONDEM_XOE','Oct 23 2020  2:19PM','EPINHSAEXP',NULL,NULL,NULL,'202010159','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202010151','1031','','','202010151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pinnacle HSA Combined Ex-Sched','202010159','EMPEXPORT','SCH_EPINHS','Oct 23 2020  2:20PM','EPINHSAEXP',NULL,NULL,NULL,'202010159','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202010151','1031','','','202010151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pinnacle HSA Combined Ex-Test','202010159','EMPEXPORT','TEST_XOE','Oct 28 2020  2:48PM','EPINHSAEXP',NULL,NULL,NULL,'202010159','Oct 15 2020 12:00AM','Dec 30 1899 12:00AM','202010151','1173','eecPayGroup','EPSSM,IHCSM,MHCSM,NPSSM','202010151',dbo.fn_GetTimedKey(),NULL,'us3lKiMEN1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202101299','EMPEXPORT','OEACTIVE','Oct 23 2020  2:19PM','EPINHSAEXP',NULL,NULL,NULL,'202101299','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202101291','23','','','202101291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202101299','EMPEXPORT','OEPASSIVE','Oct 23 2020  2:19PM','EPINHSAEXP',NULL,NULL,NULL,'202101299','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202101291','1028','','','202101291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pinnacle HSA Combined Export','202101299','EMPEXPORT','ONDEM_XOE','Oct 23 2020  2:19PM','EPINHSAEXP',NULL,NULL,NULL,'202101299','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202101291','1031','','','202101291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pinnacle HSA Combined Ex-Sched','202101299','EMPEXPORT','SCH_EPINHS','Oct 23 2020  2:20PM','EPINHSAEXP',NULL,NULL,NULL,'202101299','Oct 23 2020 12:40PM','Oct 23 2020 12:40PM','202101291','1031','','','202101291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','1ZGJJ,1ZGD2,1ZGB9,JBM4S,1ZGHP',NULL,NULL,NULL,'Pinnacle HSA Combined Ex-Test','202101299','EMPEXPORT','TEST_XOE','Feb  1 2021  8:33AM','EPINHSAEXP',NULL,NULL,NULL,'202101299','Jan 29 2021 12:00AM','Dec 30 1899 12:00AM','202101291','1295','','','202101291',dbo.fn_GetTimedKey(),NULL,'us3lKiMEN1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPINHSAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPINHSAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPINHSAEXP','InitialSort','C','drvSort');
@@ -204,7 +204,7 @@ CREATE TABLE [dbo].[U_EPINHSAEXP_drvTbl_EN] (
     [drvSort] varchar(16) NULL,
     [drvParticipantFileId] char(11) NULL,
     [drvEnrollmentEffectiveDate] datetime NULL,
-    [drvHDHPCoverageLevel] varchar(6) NOT NULL
+    [drvHDHPCoverageLevel] varchar(6) NULL
 );
 IF OBJECT_ID('U_EPINHSAEXP_drvTbl_PT') IS NULL
 CREATE TABLE [dbo].[U_EPINHSAEXP_drvTbl_PT] (
@@ -255,6 +255,7 @@ IF OBJECT_ID('U_EPINHSAEXP_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EPINHSAEXP_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
+    [PdhEECurAmt_CT] numeric NULL,
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
     [PdhERCurAmtYTD] money NULL,
@@ -352,7 +353,10 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'HSAF,HSAI';
+    DECLARE @DedListSupp VARCHAR(MAX)
+    --SET @DedList = 'HSAF,HSAI';
+    SET @DedList = 'HSAF,HSAI,HSAER';
+    SET @DedListSupp = 'HDH,HDHB,OAP,OAPB';
 
     IF OBJECT_ID('U_EPINHSAEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EPINHSAEXP_DedList;
@@ -374,7 +378,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate'); --'AuditDate');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'RunID', 'Main')
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -394,6 +399,40 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+
+
+
+    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+
+    -- Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedListSupp);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'AddToPreviousRun', 'Y')
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'RunID', 'Supp')
+
+    -- Non-Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+
+    -- Required OE parameters
+    IF @ExportCode LIKE '%PASSIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+    END;
+
+    IF @ExportCode LIKE '%ACTIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+    END;
+
+
+    -- Run BDM Module
+    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+
+
+
     --==========================================
     -- Build Working Tables
     --==========================================
@@ -407,6 +446,7 @@ BEGIN
          PdhEEID
         -- Current Payroll Amounts
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhEECurAmt_CT    = SUM(CASE WHEN PdhDedCode NOT IN ('HSAER') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         -- YTD Payroll Amounts
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
@@ -467,7 +507,14 @@ BEGIN
         ,drvHireDate = EecDateOfLastHire
         ,drvPayrollFreqEffDate = EecDateOfLastHire
         ,drvParticipantStatus = CASE WHEN EecEmplStatus = 'T' THEN 'Terminated' ELSE 'Active' END
-        ,drvEffectiveDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination ELSE EecEmplStatusStartDate END
+        ,drvEffectiveDate =    CASE WHEN EecEmplStatus = 'T' THEN --DATEADD(DAY, 30, BdmBenStopDate) 
+                                    CASE WHEN BdmBenStopDate IS NOT NULL THEN DATEADD(DAY, 30, BdmBenStopDate) 
+                                        ELSE DATEADD(DAY, 30, (SELECT DISTINCT MAX(EedBenStopDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedDedCode IN ('HSAI','HSAF')))
+                                        --(SELECT DISTINCT DATEADD(DAY, 30, BDMX.BdmBenStopDate) FROM dbo.U_dsi_BDM_EPINHSAEXP BDMX WITH (NOLOCK) WHERE BDMX.BdmEEID = xEEID AND BDMX.BdmCOID = xCOID AND BDMX.BdmBenStopDate IS NOT NULL)
+                                    END
+                                ELSE EecEmplStatusStartDate  --'1/1/1900' 
+                            END
+        --EecDateOfTermination ELSE EecEmplStatusStartDate END
     INTO dbo.U_EPINHSAEXP_drvTbl_PT
     FROM dbo.U_EPINHSAEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -475,13 +522,16 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    LEFT JOIN dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmRunId = 'Main'
     --JOIN dbo.U_EPINHSAEXP_PDedHist WITH (NOLOCK)
     --    ON PdhEEID = xEEID
     WHERE --PdhEECurAmt > 0
         --AND 
+        --(BdmDedCodE NOT IN ('HSAER') OR (BdmDedCode = 'HSAER' AND BdmBenStopDate IS NOT NULL)         AND
+        (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EPINHSAEXP WHERE BdmDedCode <> 'HSAER' AND BdmEEID = xEEID) > 0 AND
         (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEDIFF(DAY, EecDateOfTermination, GETDATE()) <= 30))
         AND (xEEID IN (SELECT DISTINCT BdmEEID FROM dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)) 
             OR xEEID IN (
@@ -506,19 +556,32 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort =  '2 ' + xEEID + ' 2'
+        ,drvSort = '2 ' + xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvParticipantFileId = EepSSN
-        ,drvEnrollmentEffectiveDate = dbo.dsi_fnGetMinMaxDates('MAX',CASE WHEN ISNULL(BdmBenStartDate, '') <> '' THEN BdmBenStartDate ELSE EedBenStartDate END, '1/1/2021')
+        ,drvEnrollmentEffectiveDate =    CASE WHEN BdmDedCode = 'HSAER' THEN (SELECT MAX(HBDM.BdmBenStartDate) FROM dbo.U_dsi_BDM_EPINHSAEXP HBDM WITH (NOLOCK) WHERE HBDM.BdmEEID = xEEID AND HBDM.BdmCOID = xCOID)
+                                            ELSE  dbo.dsi_fnGetMinMaxDates('MAX',CASE WHEN ISNULL(BdmBenStartDate, '') <> '' THEN BdmBenStartDate ELSE EedBenStartDate END, '1/1/2021')
+                                        END
         ,drvHDHPCoverageLevel = CASE WHEN BdmDedCode IS NOT NULL THEN
-                                    CASE WHEN BdmDedCode = 'HSAI' THEN 'Single' ELSE 'Family' END
-                                    ELSE CASE WHEN PdhDedCode = 'HSAI' THEN 'Single' ELSE 'Family' END
+                                    CASE WHEN BdmDedCode IN ('HSAI') THEN 'Single' 
+                                        WHEN BdmDedCode IN ('HSAF') THEN 'Family'
+                                        WHEN SuppBdmDedCode IN ('HDH','HDHB','OAP','OAPB') THEN
+                                            CASE WHEN SuppBdmBenOption = 'EE' THEN 'Single' ELSE 'Family' END                                        
+                                    END
                                 END
     INTO dbo.U_EPINHSAEXP_drvTbl_EN
     FROM dbo.U_EPINHSAEXP_EEList WITH (NOLOCK)
-    LEFT JOIN dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmRunId = 'Main'
+        --AND BdmDedCode <> 'HSAER'
+    LEFT JOIN (
+                SELECT DISTINCT BdmEEID AS SuppBdmEEID, BdmCOID AS SuppBdmCOID, BdmDedCode AS SuppBdmDedCode, BdmBenOption AS SuppBdmBenOption
+                FROM dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK) 
+                WHERE BdmRunId = 'SUPP') AS SUPP
+        ON SuppBdmEEID = xEEID
+        AND SuppBdmCOID = xCOID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -540,7 +603,8 @@ BEGIN
     --JOIN dbo.U_EPINHSAEXP_PDedHist WITH (NOLOCK)
     --    ON PdhEEID = xEEID
     WHERE --PdhEECurAmt > 0
-        --AND 
+        --AND         
+        (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EPINHSAEXP WHERE BdmDedCode <> 'HSAER' AND BdmEEID = xEEID) > 0 AND
         (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEDIFF(DAY, EecDateOfTermination, GETDATE()) <= 30))
         AND (xEEID IN (SELECT DISTINCT BdmEEID FROM dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)) 
             OR xEEID IN (
@@ -569,12 +633,14 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvParticipantFileId = eepSSN
         ,drvContributionDate = PayDate -- PgrPayDate
-        ,drvContributionAmount = FORMAT(PdhEECurAmt, '#0.00')
+        ,drvContributionAmount = FORMAT(PdhEECurAmt_CT, '#0.00') 
     INTO dbo.U_EPINHSAEXP_drvTbl_CT
     FROM dbo.U_EPINHSAEXP_EEList WITH (NOLOCK)
     LEFT JOIN dbo.U_dsi_BDM_EPINHSAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmRunId = 'Main'
+        AND BdmDedCode <> 'HSAER'
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
@@ -582,6 +648,7 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.U_EPINHSAEXP_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
+    
 --    JOIN dbo.PayGroup WITH (NOLOCK)
 --        ON PgrPayGroup = EecPayGroup
     JOIN (
@@ -591,7 +658,7 @@ BEGIN
                   AND PgpPeriodType = 'R'
                 GROUP BY PgpPayGroup) as Pay_Dates
         ON EecPayGroup = PgpPayGroup
-    WHERE PdhEECurAmt > 0
+    WHERE PdhEECurAmt_CT > 0
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEDIFF(DAY, EecDateOfTermination, GETDATE()) <= 30))
     ;
     ---------------------------------
@@ -652,10 +719,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202010151'
-       ,expStartPerControl     = '202010151'
-       ,expLastEndPerControl   = '202010159'
-       ,expEndPerControl       = '202010159'
+    SET expLastStartPerControl = '202101291'
+       ,expStartPerControl     = '202101291'
+       ,expLastEndPerControl   = '202101299'
+       ,expEndPerControl       = '202101299'
 WHERE expFormatCode = 'EPINHSAEXP';
 
 **********************************************************************************/

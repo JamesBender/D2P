@@ -1,0 +1,5 @@
+Interface details (EAPAFHSAXP)
+Env – ANW11 
+Server – NW1WUP1DB01 
+Database – ULTIPRO_WPCROS 
+Export Name – APA HSA FSA Export

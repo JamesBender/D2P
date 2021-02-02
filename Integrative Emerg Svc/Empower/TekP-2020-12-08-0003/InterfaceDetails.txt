@@ -1,0 +1,5 @@
+Interface details (EEMP401KXP)
+Env – EW41 
+Server – EW4WUP1DB03	
+Database – ULTIPRO_WPIESPG
+Export Name – Empower 401k Elig and Payroll Export
