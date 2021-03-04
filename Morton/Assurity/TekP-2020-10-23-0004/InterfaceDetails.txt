@@ -1,0 +1,5 @@
+Interface details (EASSCENSUS)
+Env – NW13 
+Server – NW1WUP3DB04 
+Database – ULTIPRO_WPMOIN 
+Export Name – Assurity Census Export

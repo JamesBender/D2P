@@ -133,13 +133,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOYAEOIEX_20210121.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOYAEOIEX_20210303.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202012149','EMPEXPORT','OEACTIVE','Dec 14 2020  5:40PM','EVOYAEOIEX',NULL,NULL,NULL,'202012149','Dec 14 2020  4:04PM','Dec 14 2020  4:04PM','202012141','1','','','202012141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202012149','EMPEXPORT','OEPASSIVE','Dec 14 2020  5:40PM','EVOYAEOIEX',NULL,NULL,NULL,'202012149','Dec 14 2020  4:04PM','Dec 14 2020  4:04PM','202012141','660','','','202012141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya EOI Export','202012149','EMPEXPORT','ONDEM_XOE','Dec 14 2020  5:41PM','EVOYAEOIEX',NULL,NULL,NULL,'202012149','Dec 14 2020  4:04PM','Dec 14 2020  4:04PM','202012141','660','','','202012141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya EOI Export-Sched','202012149','EMPEXPORT','SCH_EVOYAE','Dec 14 2020  5:41PM','EVOYAEOIEX',NULL,NULL,NULL,'202012149','Dec 14 2020  4:04PM','Dec 14 2020  4:04PM','202012141','660','','','202012141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya EOI Export-Test','202101191','EMPEXPORT','TEST_XOE','Jan 19 2021  2:18PM','EVOYAEOIEX',NULL,NULL,NULL,'202101191','Jan 19 2021 12:00AM','Dec 30 1899 12:00AM','202101051','642','','','202101051',dbo.fn_GetTimedKey(),NULL,'us3cPePOW1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',JO25E',NULL,NULL,NULL,'Voya EOI Export-Sched','202102269','EMPEXPORT','SCH_EVOYAE','Dec 14 2020  5:41PM','EVOYAEOIEX',NULL,NULL,NULL,'202102269','Dec 14 2020  4:04PM','Dec 14 2020  4:04PM','202102261','660','','','202102261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Voya EOI Export-Test','202102261','EMPEXPORT','TEST_XOE','Feb 26 2021  1:20PM','EVOYAEOIEX',NULL,NULL,NULL,'202102261','Feb 26 2021 12:00AM','Feb 28 2021 12:00AM','202101011','45','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3cPePOW1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYAEOIEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYAEOIEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYAEOIEX','InitialSort','C','drvSort');
@@ -227,12 +227,12 @@ CREATE TABLE [dbo].[U_EVOYAEOIEX_drvTbl] (
     [drvEESupplementalLife] varchar(1) NULL,
     [drvEETotalAmountDesired] nvarchar(4000) NULL,
     [drcEECurrentAmount] nvarchar(4000) NULL,
-    [drvEEGuarIssedAmount] nvarchar(4000) NULL,
+    [drvEEGuarIssedAmount] varchar(1) NOT NULL,
     [drvEEAmtToBeUW] nvarchar(4000) NULL,
     [drvSPSupplementalLife] varchar(1) NULL,
     [drvSPTotalAmountDesired] nvarchar(4000) NULL,
     [drvSPCurrentAmount] nvarchar(4000) NULL,
-    [drvSPGuarIssueAmount] nvarchar(4000) NULL,
+    [drvSPGuarIssueAmount] varchar(1) NOT NULL,
     [drvSPAmtToBeUW] nvarchar(4000) NULL,
     [drvSpouseNameFirst] varchar(100) NULL,
     [drvSpouseNameMiddle] varchar(1) NULL,
@@ -399,7 +399,7 @@ BEGIN
         ,drvNameLast = EepNameLast
         ,drvDateOfBirth = EepDateOfBirth
         ,drvGender = CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'M' END
-        ,drvHireDate = EecDateOfLastHire
+        ,drvHireDate = EecDateOfBenefitSeniority -- EecDateOfLastHire
         ,drvJobTitle = REPLACE(JbcDesc, ',', '')
         ,drvEmployeeID = EecEmpNo
         ,drvAnnualSalary = FORMAT(EecAnnSalary, '#0')
@@ -412,27 +412,32 @@ BEGIN
         ,drvEmployeeHomePhone = EepPhoneHomeNumber
         ,drvEmployeeCellPhone = efoPhoneNumber
         ,drvEmployeeEmailAddress = EepAddressEMail
-        ,drvEESupplementalLife =    CASE WHEN USESL_EedNeedEOI = 'Y' THEN
+        ,drvEESupplementalLife =    CASE WHEN USESL_DedCode IS NOT NULL AND ISNULL(USESL_EedNeedEOI, '') = 'Y' AND USESL_EedEOIDesiredAmt > 200000 THEN 'Y' END -- if this is Y
+        
+                                    /*CASE WHEN USESL_EedNeedEOI = 'Y' THEN
                                         CASE WHEN USESL_DedCode IS NOT NULL AND ISNULL(USESL_EedNeedEOI, '') = 'Y' THEN 'Y' 
                                             WHEN USESL_DedCode IS NOT NULL AND USESL_EedEOIDesiredAmt > 200000 THEN 'Y'
                                             ELSE 'N'
                                         END
-                                    END
-        ,drvEETotalAmountDesired = CASE WHEN USESL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USESL_DedCode IS NOT NULL THEN USESL_EedEOIDesiredAmt END, '#0') END
-        ,drcEECurrentAmount = CASE WHEN USESL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USESL_DedCode IS NOT NULL THEN USESL_EedBenAmt END, '#0') END
-        ,drvEEGuarIssedAmount = CASE WHEN USESL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USESL_DedCode IS NOT NULL AND USESL_EedEOIDesiredAmt > 200000 THEN 200000 ELSE USESL_EedBenAmt END, '#0') END
-        ,drvEEAmtToBeUW =CASE WHEN USESL_EedNeedEOI = 'Y' THEN CASE WHEN USESL_DedCode IS NOT NULL AND (USESL_EedEOIDesiredAmt - USESL_EedBenAmt) > 0 THEN FORMAT(USESL_EedEOIDesiredAmt - USESL_EedBenAmt, '#0') END END
+                                    END*/
+        ,drvEETotalAmountDesired = CASE WHEN USESL_EedNeedEOI = 'Y' AND USESL_EedEOIDesiredAmt > 0 THEN FORMAT(CASE WHEN USESL_DedCode IS NOT NULL THEN USESL_EedEOIDesiredAmt END, '#0') END -- and this is zero
+        ,drcEECurrentAmount =  CASE WHEN USESL_DedCode IS NOT NULL AND ISNULL(USESL_EedNeedEOI, '') = 'Y' AND USESL_EedEOIDesiredAmt > 200000 THEN FORMAT(USESL_EedBenAmt, '#0') END -- if this is Y
+        --CASE WHEN USESL_EedNeedEOI = 'Y' AND USESL_DedCode IS NOT NULL THEN FORMAT(USESL_EedBenAmt, '#0') END
+        ,drvEEGuarIssedAmount = '' --CASE WHEN USESL_EedNeedEOI = 'Y' AND USESL_DedCode IS NOT NULL THEN FORMAT(CASE WHEN USESL_EedEOIDesiredAmt > 200000 THEN 200000 ELSE USESL_EedBenAmt END, '#0') END
+        ,drvEEAmtToBeUW =    CASE WHEN USESL_EedNeedEOI = 'Y' THEN  -- is also 
+                                CASE WHEN USESL_DedCode IS NOT NULL AND (USESL_EedEOIDesiredAmt - USESL_EedBenAmt) > 0 THEN FORMAT(USESL_EedEOIDesiredAmt - USESL_EedBenAmt, '#0') END 
+                            END
 
 
         ,drvSPSupplementalLife =    CASE WHEN USSL_EedNeedEOI = 'Y' THEN
                                         CASE WHEN USSL_DedCode IS NOT NULL AND ISNULL(USSL_EedNeedEOI, '') = 'Y' THEN 'Y' 
                                             WHEN USSL_DedCode IS NOT NULL AND USSL_EedEOIDesiredAmt > 25000 THEN 'Y'
-                                            ELSE 'N'
+                                            --ELSE 'N'
                                         END
-                                    END
+                                    END -- and this is blank/zero then doen't send at all.
         ,drvSPTotalAmountDesired = CASE WHEN USSL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USSL_DedCode IS NOT NULL THEN USSL_EedEOIDesiredAmt END, '#0') END
         ,drvSPCurrentAmount = CASE WHEN USSL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USSL_DedCode IS NOT NULL THEN USSL_EedBenAmt END, '#0') END
-        ,drvSPGuarIssueAmount = CASE WHEN USSL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USSL_DedCode IS NOT NULL AND USSL_EedEOIDesiredAmt > 200000 THEN 200000 ELSE USSL_EedBenAmt END, '#0') END
+        ,drvSPGuarIssueAmount = '' --CASE WHEN USSL_EedNeedEOI = 'Y' THEN FORMAT(CASE WHEN USSL_DedCode IS NOT NULL AND USSL_EedEOIDesiredAmt > 200000 THEN 200000 ELSE USSL_EedBenAmt END, '#0') END
         ,drvSPAmtToBeUW =    CASE WHEN USSL_EedNeedEOI = 'Y' THEN 
                                 CASE WHEN USSL_DedCode IS NOT NULL AND (USSL_EedEOIDesiredAmt - USSL_EedBenAmt) > 0 THEN FORMAT(USSL_EedEOIDesiredAmt - USSL_EedBenAmt, '#0') END
                             END
@@ -503,6 +508,35 @@ BEGIN
     WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
         AND ((USESL_DedCode IS NOT NULL AND USESL_EedNeedEOI = 'Y') OR (USSL_DedCode IS NOT NULL AND USSL_EedNeedEOI = 'Y'))
     ;
+
+
+    -- Clean out the table to remove rows without employee or spouse EOI
+    DELETE dbo.U_EVOYAEOIEX_drvTbl
+    WHERE (drvEESupplementalLife IS NULL
+        OR (drvEETotalAmountDesired is NULL AND drvEEAmtToBeUW IS NULL))
+        AND drvSPSupplementalLife IS NULL
+    ;
+
+    UPDATE dbo.U_EVOYAEOIEX_drvTbl
+        SET drvSPSupplementalLife = NULL
+            ,drvSPTotalAmountDesired = NULL
+            ,drvSPCurrentAmount = NULL
+            --,drvSPGuarIssueAmount = NULL
+            ,drvSPAmtToBeUW = NULL
+            ,drvSpouseNameFirst = NULL
+            ,drvSpouseNameMiddle = NULL
+            ,drvSpouseNameLast = NULL
+            ,drvRelationshipToEmployee = NULL
+            ,drvSpouseDateOfBirth = NULL
+            ,drvSpouseSSN = NULL
+            ,drvSpouseGender = NULL
+            ,drvSpouseEmailAddress = NULL
+    WHERE drvSPSupplementalLife = 'Y'
+        AND drvSPTotalAmountDesired = '0'
+        AND drvspAmtToBeUW IS NULL
+    ;
+
+    DELETE dbo.U_EVOYAEOIEX_drvTbl WHERE drvEESupplementalLife IS NULL AND drvSPSupplementalLife IS NULL;
 
     --==========================================
     -- Set FileName

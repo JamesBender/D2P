@@ -1,0 +1,5 @@
+Interface details (EFHSAENROL)
+Env – EW31 
+Server – EW3WUP1DB01 
+Database – ULTIPRO_WPTYL 
+Export Name – Anthem Med 834 Export

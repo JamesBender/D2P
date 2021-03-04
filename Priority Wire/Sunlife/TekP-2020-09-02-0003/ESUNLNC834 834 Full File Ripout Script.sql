@@ -240,12 +240,12 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESUNLNC834_20201215.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESUNLNC834_20210222.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202011309','EMPEXPORT','CHANGES','Dec  1 2020  6:15PM','ESUNLNC834',NULL,NULL,NULL,'202011309','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202011301','23361','','','202011301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Full File Only','202012121','EMPEXPORT','FULLFILE','Dec 12 2020  9:21PM','ESUNLNC834',NULL,NULL,NULL,'202012121','Dec 12 2020 12:00AM','Dec 30 1899 12:00AM','202012011','21038','','','202012011',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Active Open Enrollment','202101011','EMPEXPORT','OEACTIVE','Dec 12 2020 10:21PM','ESUNLNC834',NULL,NULL,NULL,'202101011','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202101011','17156','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Passive Open Enrollment','202101011','EMPEXPORT','OEPASSIVE','Dec 12 2020 10:18PM','ESUNLNC834',NULL,NULL,NULL,'202101011','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202101011','24964','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Full File Only','202101291','EMPEXPORT','FULLFILE','Jan 29 2021  1:23PM','ESUNLNC834',NULL,NULL,NULL,'202101291','Jan 29 2021 12:00AM','Jan 31 2021 12:00AM','202101021','28377','','','202101021',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Active Open Enrollment','202101011','EMPEXPORT','OEACTIVE','Dec 26 2020  4:44PM','ESUNLNC834',NULL,NULL,NULL,'202101011','Jan  1 2021 12:00AM','Dec 26 2020 12:00AM','202101011','21675','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Passive Open Enrollment','202101011','EMPEXPORT','OEPASSIVE','Dec 26 2020  4:23PM','ESUNLNC834',NULL,NULL,NULL,'202101011','Jan  1 2021 12:00AM','Dec 26 2020 12:00AM','202101011','26924','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'SunLIfe Non-Cancer 834 Export','202011309','EMPEXPORT','SCHEDULED','Dec  1 2020  6:19PM','ESUNLNC834',NULL,NULL,NULL,'202011309','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202011301','23361','','','202011301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLNC834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLNC834','EEList','V','Y');
@@ -930,7 +930,7 @@ BEGIN
         ,drvPER07_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' THEN 'EM' END  -- TODO check if blank to be sent or field completely removed based on above sending email or primary phonw.
         ,drvPER08_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
-        ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
+        ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-:;',EepAddressLine2)
         ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
         ,drvN402_State = EepAddressState
         ,drvN403_Zip = EepAddressZipCode
@@ -1029,7 +1029,59 @@ BEGIN
         ,drvINS12_DateTimePeriod
         ,drvINS17_BirthSequenceNumber
         ,drvREF01_RefNumberQual1 = '3H'
-        ,drvREF02_RefNumberQual1 = CASE EecOrgLvl1
+        ,drvREF02_RefNumberQual1 =    CASE WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '300' THEN '329302'
+                                        WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '200' THEN '329303'
+                                        WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '000' THEN '329304'
+                                        WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '150' THEN '329305'
+                                        WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '110' THEN '329306'
+                                        WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '120' THEN '329307'
+                                        WHEN EecOrgLvl1 = '00' AND EecOrgLvl2 = '100' THEN '329308'
+                                        WHEN EecOrgLvl1 = '23' AND EecOrgLvl2 = '000' THEN '329309'
+                                        WHEN EecOrgLvl1 = '0094' AND EecOrgLvl2 = '0051' THEN '329310'
+                                        WHEN EecOrgLvl1 = '0094' AND EecOrgLvl2 = '0037' THEN '329311'
+                                        WHEN EecOrgLvl1 = '0094' AND EecOrgLvl2 = '0000' THEN '329312'
+                                        WHEN EecOrgLvl1 = '0094' AND EecOrgLvl2 = '0025' THEN '329313'
+                                        WHEN EecOrgLvl1 = '0094' AND EecOrgLvl2 = '0045' THEN '329314'
+                                        WHEN EecOrgLvl1 = '0090' AND EecOrgLvl2 = '0000' THEN '329315'
+                                        WHEN EecOrgLvl1 = '0090' AND EecOrgLvl2 = '0028' THEN '329316'
+                                        WHEN EecOrgLvl1 = '0090' AND EecOrgLvl2 = '0034' THEN '329317'
+                                        WHEN EecOrgLvl1 = '0090' AND EecOrgLvl2 = '0098' THEN '329318'
+                                        WHEN EecOrgLvl1 = '0090' AND EecOrgLvl2 = '0099' THEN '329319'
+                                        WHEN EecOrgLvl1 = '0090' AND EecOrgLvl2 = '0032' THEN '329320'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0051' THEN '329321'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0016' THEN '329322'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0037' THEN '329323'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0061' THEN '329324'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0052' THEN '329325'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0054' THEN '329326'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0007' THEN '329327'
+                                        WHEN EecOrgLvl1 = '0095' AND EecOrgLvl2 = '0007' THEN '329328'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0025' THEN '329329'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0001' THEN '329330'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0045' THEN '329331'
+                                        WHEN EecOrgLvl1 = '0092' AND EecOrgLvl2 = '0065' THEN '329332'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0016' THEN '329333'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0034' THEN '329334'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0025' THEN '329335'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0029' THEN '329336'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0030' THEN '329337'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0033' THEN '329338'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0031' THEN '329339'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0035' THEN '329340'
+                                        WHEN EecOrgLvl1 = '0093' AND EecOrgLvl2 = '0032' THEN '329341'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0051' THEN '329342'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0016' THEN '329343'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0049' THEN '329344'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0062' THEN '329345'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0037' THEN '329346'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0061' THEN '329347'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0052' THEN '329348'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0054' THEN '329349'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0007' THEN '329350'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0068' THEN '329351'
+                                        WHEN EecOrgLvl1 = '0091' AND EecOrgLvl2 = '0025' THEN '329352'
+                                    END
+                                    /*CASE EecOrgLvl1
                                         WHEN '00' THEN '327053'
                                         WHEN '0092' THEN '327055'
                                         WHEN '0095' THEN '327056'
@@ -1067,7 +1119,7 @@ BEGIN
                                         WHEN '09' THEN '327088'
                                         WHEN '23' THEN '327054'
                                         ELSE '!' -- + EecOrgLvl1
-                                    END
+                                    END*/
         ,drvREF01_RefNumberQual2 
         ,drvREF02_RefNumberQual2     
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
@@ -1261,7 +1313,7 @@ BEGIN
         ,drvREF01_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         ,drvREF02_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('LTDH','LTD','LIF','LIFS','LIFC','SHO','CRI','CRIES','CRICH') THEN 'AMT' END 
+        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('LIF','LIFS','LIFC','CRI','CRIES','CRICH') THEN 'AMT' END 
         ,drvAMT01_AmountQualifierCode1 = 'B9' 
         ,drvAMT02_MonetaryAmount1 =    CASE WHEN BdmDedCode IN ('LTDH','LIF','CRI') THEN BdmUSGField1 
                                         WHEN BdmDedCode IN ('CRIES') THEN 

@@ -246,13 +246,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGVOLLEX_20210130.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGVOLLEX_20210302.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202101309','EMPEXPORT','OEACTIVE',NULL,'ECIGVOLLEX',NULL,NULL,NULL,'202101309','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202101301',NULL,'','','202101301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202101309','EMPEXPORT','OEPASSIVE',NULL,'ECIGVOLLEX',NULL,NULL,NULL,'202101309','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202101301',NULL,'','','202101301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Cigna EOI Vol Life Export','202101309','EMPEXPORT','ONDEM_XOE',NULL,'ECIGVOLLEX',NULL,NULL,NULL,'202101309','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202101301',NULL,'','','202101301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna EOI Vol Life Expor-Sched','202101309','EMPEXPORT','SCH_ECIGVO',NULL,'ECIGVOLLEX',NULL,NULL,NULL,'202101309','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202101301',NULL,'','','202101301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Cigna EOI Vol Life Expor-Test','202101309','EMPEXPORT','TEST_XOE',NULL,'ECIGVOLLEX',NULL,NULL,NULL,'202101309','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202101301',NULL,'','','202101301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202102089','EMPEXPORT','OEACTIVE','Jan 30 2021 12:42PM','ECIGVOLLEX',NULL,NULL,NULL,'202102089','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202102011','2','','','202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202102089','EMPEXPORT','OEPASSIVE','Jan 30 2021 12:42PM','ECIGVOLLEX',NULL,NULL,NULL,'202102089','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202102011','320','','','202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Cigna EOI Vol Life Export','202102089','EMPEXPORT','ONDEM_XOE','Jan 30 2021 12:42PM','ECIGVOLLEX',NULL,NULL,NULL,'202102089','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202102011','320','','','202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Cigna EOI Vol Life Expor-Sched','202102089','EMPEXPORT','SCH_ECIGVO','Jan 30 2021 12:43PM','ECIGVOLLEX',NULL,NULL,NULL,'202102089','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202102011','320','','','202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Cigna EOI Vol Life Expor-Test','202102259','EMPEXPORT','TEST_XOE','Feb 25 2021  6:58PM','ECIGVOLLEX',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102111','329','','','202102111',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGVOLLEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGVOLLEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGVOLLEX','InitialSort','C','drvSort');
@@ -516,7 +516,9 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'AllowMultiDedType', 'Y')
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -635,7 +637,9 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
+        ,drvAddressZipCode = CASE WHEN LEN(RTRIM(EepAddressZipCode)) > 5 THEN LEFT(EepAddressZipCode, 5) + '-' + RIGHT(RTRIM(EepAddressZipCode), 4)
+                                ELSE EepAddressZipCode
+                            END
         ,drvResidenceState = EepAddressState
         ,drvEmploymentStatusCode =    CASE WHEN EecEmplStatus = 'L' THEN 'L1'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'RT'
@@ -666,8 +670,14 @@ BEGIN
         ,drvPolicyNumber = CASE WHEN LIFEE_DedCode IS NOT NULL OR LIFES_DedCode IS NOT NULL THEN '969612' END
         ,drvEmployeeIssuedAmount = FORMAT(CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_BenAmt END, '000000000')
         ,drvSpouseIssuedAmount = FORMAT(CASE WHEN LIFES_DedCode IS NOT NULL THEN LIFES_BenAmt END, '000000000')
-        ,drvEmployeeAppliedAmount = FORMAT(CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_EoiAmt END, '000000000')
-        ,drvSpouseAppliedAmount = FORMAT(CASE WHEN LIFES_DedCode IS NOT NULL THEN LIFES_EoiAmt END, '000000000')
+        ,drvEmployeeAppliedAmount = FORMAT(
+                                            CASE WHEN LIFEE_DedCode IS NOT NULL THEN 
+                                                CASE WHEN LIFEE_EoiAmt <> 0.00 THEN LIFEE_EoiAmt ELSE LIFEE_BenAmt END
+                                            END, '000000000')
+        ,drvSpouseAppliedAmount = FORMAT(
+                                            CASE WHEN LIFES_DedCode IS NOT NULL THEN 
+                                                CASE WHEN LIFES_EoiAmt <> 0.0 THEN LIFES_EoiAmt ELSE LIFES_BenAmt END
+                                            END, '000000000')
         ,drvEmployeeEnrolleeDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_StartDate END
         ,drvSpouseEnrolleeDate = CASE WHEN LIFES_DedCode IS NOT NULL THEN LIFES_StartDate END
         ,drvAddressEmail = EepAddressEMail
@@ -753,10 +763,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202101231'
-       ,expStartPerControl     = '202101231'
-       ,expLastEndPerControl   = '202101309'
-       ,expEndPerControl       = '202101309'
+    SET expLastStartPerControl = '202102011'
+       ,expStartPerControl     = '202102011'
+       ,expLastEndPerControl   = '202102089'
+       ,expEndPerControl       = '202102089'
 WHERE expFormatCode = 'ECIGVOLLEX';
 
 **********************************************************************************/

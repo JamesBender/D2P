@@ -1,0 +1,2 @@
+
+Employer Code ,Record Type ,Participant Id ,Plan Name ,Contribution Date ,Contribution Description ,Contribution ,Amount ,Amount Type ,Tax Year ,Notes ,Plan Year Start Date ,Plan Year End Date 

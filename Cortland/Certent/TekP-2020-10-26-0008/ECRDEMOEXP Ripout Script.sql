@@ -101,11 +101,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECRDEMOEXP_20210125.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECRDEMOEXP_20210211.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Demographics Export','202101159','EMPEXPORT','ONDEM_XOE',NULL,'ECRDEMOEXP',NULL,NULL,NULL,'202101159','Jan 15 2021 12:31PM','Jan 15 2021 12:31PM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Demographics Exp-Sched','202101159','EMPEXPORT','SCH_ECRDEM',NULL,'ECRDEMOEXP',NULL,NULL,NULL,'202101159','Jan 15 2021 12:31PM','Jan 15 2021 12:31PM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Certent Demographics Exp-Test','202101201','EMPEXPORT','TEST_XOE','Jan 22 2021 10:00AM','ECRDEMOEXP',NULL,NULL,NULL,'202101201','Jan 20 2021 12:00AM','Dec 30 1899 12:00AM','202101201','1729','','','202101201',dbo.fn_GetTimedKey(),NULL,'us3rVaCOR1027',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Certent Demographics Exp-Test','202101201','EMPEXPORT','TEST_XOE','Feb 11 2021 10:00AM','ECRDEMOEXP',NULL,NULL,NULL,'202101201','Jan 20 2021 12:00AM','Dec 30 1899 12:00AM','202101201','1728','','','202101201',dbo.fn_GetTimedKey(),NULL,'us3rVaCOR1027',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECRDEMOEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECRDEMOEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECRDEMOEXP','InitialSort','C','drvSort');
@@ -123,7 +123,7 @@ CREATE TABLE [dbo].[U_ECRDEMOEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvParticipantID] char(12) NOT NULL,
+    [drvParticipantID] char(9) NULL,
     [drvSSN] char(11) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(8000) NULL,
@@ -144,7 +144,7 @@ CREATE TABLE [dbo].[U_ECRDEMOEXP_drvTbl] (
     [drvTerminationType] varchar(25) NULL,
     [drvCurrentJobTitle] varchar(8000) NULL,
     [drvCurrentDepartment] varchar(8000) NULL,
-    [drvCurrentBranch] varchar(25) NULL,
+    [drvCurrentBranch] varchar(255) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvAsOfDate] datetime NOT NULL
 );
@@ -290,7 +290,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvParticipantID = EecEEID
+        ,drvParticipantID = EecEmpNo
         ,drvSSN = eepSSN
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = REPLACE(EepNameLast, ',', '')
@@ -306,12 +306,12 @@ BEGIN
         ,drvWorkAddressZipCode = LocAddressZipCode
         ,drvWorkAddressCountry = EepAddressCountry
         ,drvAddressWorkEmail = EepAddressEMail
-        ,drvRelationshipStarted = EecDateOfOriginalHire
+        ,drvRelationshipStarted = EecDateOfLastHire -- EecDateOfOriginalHire
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvTerminationType = TchDesc
         ,drvCurrentJobTitle = REPLACE(REPLACE(REPLACE(EecJobtitle, CHAR(13), ''), CHAR(10), ''), ',', '')
         ,drvCurrentDepartment = REPLACE(O2.OrgDesc, ',', '')
-        ,drvCurrentBranch = O4.OrgDesc
+        ,drvCurrentBranch = LocAddressState -- O4.OrgDesc
         ,drvDateOfBirth = EepDateOfBirth
         ,drvAsOfDate = GETDATE()
     INTO dbo.U_ECRDEMOEXP_drvTbl

@@ -1,0 +1,5 @@
+Interface details (EALEFHSAEX)
+Env – EW12 
+Server – EW1WUP2DB03
+Database – ULTIPRO_WPJBG
+Export Name – Alerus FSA & HAS Payroll Export
