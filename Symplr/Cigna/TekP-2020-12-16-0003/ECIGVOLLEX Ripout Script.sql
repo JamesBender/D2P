@@ -246,7 +246,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGVOLLEX_20210302.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGVOLLEX_20210311.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202102089','EMPEXPORT','OEACTIVE','Jan 30 2021 12:42PM','ECIGVOLLEX',NULL,NULL,NULL,'202102089','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202102011','2','','','202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202102089','EMPEXPORT','OEPASSIVE','Jan 30 2021 12:42PM','ECIGVOLLEX',NULL,NULL,NULL,'202102089','Jan 30 2021 10:55AM','Jan 30 2021 10:55AM','202102011','320','','','202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -654,7 +654,7 @@ BEGIN
         ,drvAnnualSalary = FORMAT(EecAnnSalary, '000000000')
         ,drvJobDescription = JbcDesc
         ,drvCompensationFrequency = CASE WHEN EecSalaryOrHourly = 'H' THEN 'H' ELSE 'A' END
-        ,drvCompensationAmount = FORMAT(CASE WHEN EecSalaryOrHourly = 'H' THEN ISNULL(EecHourlyPayRate, '0') ELSE ISNULL(EecAnnSalary, '0') END, '000000000')
+        ,drvCompensationAmount = FORMAT(CASE WHEN EecSalaryOrHourly = 'H' THEN ISNULL(EecHourlyPayRate*100, '0') ELSE ISNULL(EecAnnSalary, '0') END, '000000000')
         ,drvMaintenanceReasonCode = CASE WHEN LIFES_DedCode IS NOT NULL THEN '25' END
         ,drvSpouseSSN = CASE WHEN LIFES_DedCode IS NOT NULL THEN ConSSN END
         ,drvSpouseNameLast = CASE WHEN LIFES_DedCode IS NOT NULL THEN ConNameLast END
