@@ -11,6 +11,8 @@ IF OBJECT_ID('U_EFD401KHSA_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA
 GO
 IF OBJECT_ID('U_EFD401KHSA_File') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_File];
 GO
+IF OBJECT_ID('U_EFD401KHSA_Employees') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_Employees];
+GO
 IF OBJECT_ID('U_EFD401KHSA_EEList') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_EEList];
 GO
 IF OBJECT_ID('U_EFD401KHSA_drvTbl_TestHeader') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_drvTbl_TestHeader];
@@ -43,6 +45,10 @@ IF OBJECT_ID('U_EFD401KHSA_drvTbl_01') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHS
 GO
 IF OBJECT_ID('U_EFD401KHSA_DedList') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_DedList];
 GO
+IF OBJECT_ID('U_EFD401KHSA_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_AuditFields];
+GO
+IF OBJECT_ID('U_EFD401KHSA_Audit') IS NOT NULL DROP TABLE [dbo].[U_EFD401KHSA_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_EFD401KHSA') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EFD401KHSA];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EFD401KHSA';
@@ -50,7 +56,7 @@ DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE Format
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EFD401KHSA';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EFD401KHSA';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EFD401KHSA';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EFD401KHSA','Fidelity 401K HSA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','EFD401KHSAZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EFD401KHSA','Fidelity 401K HSA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','80','S','N','EFD401KHSAZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EFD401KHSA' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTestIdentifier"','1','(''UA''=''F'')','EFD401KHSAZ0','7','D','10','1',NULL,'TEST FILE IDENTIFIER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''DA''=''F'')','EFD401KHSAZ0','73','D','10','8',NULL,'FILLER',NULL,NULL);
@@ -160,7 +166,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''DA''=''F'')','EFD401KHSAZ0','8','D','50','33',NULL,'PARTICIPANT DISTRICT',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''DA''=''F'')','EFD401KHSAZ0','8','D','50','41',NULL,'PARTICIPANT DEPARTMENT',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''F'')','EFD401KHSAZ0','8','D','50','49',NULL,'PARTICIPANT LOCATION/STORE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''DA''=''F'')','EFD401KHSAZ0','8','D','50','57',NULL,'PARTICIPANT UNION CODE',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"NU"','11','(''DA''=''F'')','EFD401KHSAZ0','8','D','50','57',NULL,'PARTICIPANT UNION CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvParticipantPaymentFreq"','12','(''UA''=''F'')','EFD401KHSAZ0','1','D','50','65',NULL,'PARTICIPANT PAYMENT FREQUENCY',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''DA''=''F'')','EFD401KHSAZ0','8','D','50','66',NULL,'MISCELLANEOUS CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''DA''=''F'')','EFD401KHSAZ0','1','D','50','74',NULL,'HIGHLY COMPENSATED FLAG',NULL,NULL);
@@ -258,13 +264,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EFD401KHSA_20210303.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EFD401KHSA_20210324.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102249','EMPEXPORT','OEACTIVE',NULL,'EFD401KHSA',NULL,NULL,NULL,'202102249','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202102101',NULL,'','','202102101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102249','EMPEXPORT','OEPASSIVE',NULL,'EFD401KHSA',NULL,NULL,NULL,'202102249','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202102101',NULL,'','','202102101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Fidelity 401K HSA Export','202102249','EMPEXPORT','ONDEM_XOE',NULL,'EFD401KHSA',NULL,NULL,NULL,'202102249','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202102101',NULL,'','','202102101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Fidelity 401K HSA Export-Sched','202102249','EMPEXPORT','SCH_EFD401',NULL,'EFD401KHSA',NULL,NULL,NULL,'202102249','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202102101',NULL,'','','202102101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Fidelity 401K HSA Export-Test','202102249','EMPEXPORT','TEST_XOE',NULL,'EFD401KHSA',NULL,NULL,NULL,'202102249','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202102101',NULL,'','','202102101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103159','EMPEXPORT','OEACTIVE','Mar  3 2021  1:54PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','104','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202103159','EMPEXPORT','OEPASSIVE','Mar  3 2021  1:56PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','3487','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401K HSA Export','202103159','EMPEXPORT','ONDEM_XOE','Mar  3 2021  1:57PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','3522','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401K HSA Export-Sched','202103159','EMPEXPORT','SCH_EFD401','Mar  3 2021  1:57PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','3522','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','JEY43',NULL,NULL,NULL,'Fidelity 401K HSA Export-Test','202102269','EMPEXPORT','TEST_XOE','Mar 23 2021 12:49PM','EFD401KHSA',NULL,NULL,NULL,'202102269','Feb 26 2021 12:00AM','Dec 30 1899 12:00AM','202102261','363','eecPayGroup','SEMIE,SEMI','202102261',dbo.fn_GetTimedKey(),NULL,'us3jBePLA1016',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','InitialSort','C','drvSort');
@@ -331,6 +337,24 @@ CREATE TABLE [dbo].[U_dsi_BDM_EFD401KHSA] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+IF OBJECT_ID('U_EFD401KHSA_Audit') IS NULL
+CREATE TABLE [dbo].[U_EFD401KHSA_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+IF OBJECT_ID('U_EFD401KHSA_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EFD401KHSA_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
 );
 IF OBJECT_ID('U_EFD401KHSA_DedList') IS NULL
 CREATE TABLE [dbo].[U_EFD401KHSA_DedList] (
@@ -501,6 +525,61 @@ CREATE TABLE [dbo].[U_EFD401KHSA_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
+IF OBJECT_ID('U_EFD401KHSA_Employees') IS NULL
+CREATE TABLE [dbo].[U_EFD401KHSA_Employees] (
+    [xEEID] char(12) NULL,
+    [xCOID] char(5) NULL,
+    [EepSSN] char(11) NULL,
+    [EepNameFirst] varchar(100) NULL,
+    [EepNameMiddle] varchar(50) NULL,
+    [EepNameLast] varchar(100) NULL,
+    [EepGender] char(1) NULL,
+    [EepDateOfBirth] datetime NULL,
+    [EepMaritalStatus] char(1) NULL,
+    [EepAddressLine1] varchar(255) NULL,
+    [EepAddressLine2] varchar(255) NULL,
+    [EepAddressLine3] varchar(255) NULL,
+    [EepAddressCity] varchar(255) NULL,
+    [EepAddressState] varchar(255) NULL,
+    [EepAddressZipCode] varchar(50) NULL,
+    [EepAddressCountry] char(3) NULL,
+    [EecEmpNo] char(9) NULL,
+    [EecEmplStatus] char(1) NULL,
+    [EecDateOfOriginalHire] datetime NULL,
+    [EecDateOfLastHire] datetime NULL,
+    [EecDateOfTermination] datetime NULL,
+    [EecDateOfRetirement] datetime NULL,
+    [EecLocation] char(6) NULL,
+    [EecFullTimeOrPartTime] char(1) NULL,
+    [EecPayPeriod] char(1) NULL,
+    [EecUnionLocal] char(12) NULL,
+    [EecOrgLvl1] char(10) NULL,
+    [EecOrgLvl2] char(10) NULL,
+    [EecPayGroup] char(6) NULL,
+    [OrgLvl2Desc] varchar(25) NULL,
+    [Record01Change] varchar(1) NULL,
+    [Record02DChange] varchar(1) NULL,
+    [Record02EChange] varchar(1) NULL,
+    [Record03Change] varchar(1) NULL,
+    [Record04Change] varchar(1) NULL,
+    [Record05Change] varchar(1) NULL,
+    [Record06Change] varchar(1) NULL,
+    [Record11Change] varchar(1) NULL,
+    [Record36Change] varchar(1) NULL,
+    [Record60Change] varchar(1) NULL,
+    [Record61Change] varchar(1) NULL,
+    [audNewHire] varchar(1) NULL,
+    [audReHire] varchar(1) NULL,
+    [audTerm] varchar(1) NULL,
+    [audSalaryChange] varchar(1) NULL,
+    [EecDateOfSeniority] datetime NULL,
+    [EecAnnSalary] money NULL,
+    [EecTermReason] char(6) NULL,
+    [EecEmplStatusStartDate] datetime NULL,
+    [emailAddress] varchar(1) NULL,
+    [eepAddressEMail] varchar(50) NULL,
+    [EecLeaveReason] char(6) NULL
+);
 IF OBJECT_ID('U_EFD401KHSA_File') IS NULL
 CREATE TABLE [dbo].[U_EFD401KHSA_File] (
     [RecordSet] char(3) NOT NULL,
@@ -508,7 +587,7 @@ CREATE TABLE [dbo].[U_EFD401KHSA_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(1000) NULL
+    [Data] char(80) NULL
 );
 IF OBJECT_ID('U_EFD401KHSA_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EFD401KHSA_PDedHist] (
@@ -597,6 +676,72 @@ BEGIN
         ,@ExportCode      = ExportCode
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
+
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EFD401KHSA_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EFD401KHSA_AuditFields;
+    CREATE TABLE dbo.U_EFD401KHSA_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecDateOfRetirement');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecEmpNo');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecLocation');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecOrgLvl1');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecOrgLvl2');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecPayPeriod');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpComp','EecUnionLocal');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepAddressCity');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepAddressCountry');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepAddressLine2');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepAddressState');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepAddressZipCode');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepGender');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepMaritalStatus');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepNameFirst');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepNameLast');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepNameMiddle');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepSSN');
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('EmpPers','EepEmailAddress');
+
+    INSERT INTO dbo.U_EFD401KHSA_AuditFields VALUES ('OrgLevel','OrgDesc');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EFD401KHSA_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EFD401KHSA_Audit;
+    SELECT DISTINCT
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EFD401KHSA_Audit
+    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK) 
+        ON audKey1Value = xEEID
+    JOIN dbo.U_EFD401KHSA_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @EndDate -30 AND @EndDate 
+    AND audAction <> 'DELETE'
+    AND ISNULL(audNewValue,'') <> '';
+
+
+
+
 
     --==========================================
     -- Clean EE List 
@@ -728,6 +873,108 @@ BEGIN
     AND PehPerControl <= @EndPerControl
     GROUP BY PehEEID
     HAVING SUM(PehCurAmt) <> 0.00;
+
+
+
+    -------------------------------
+    -- Working Table - Employees
+    -------------------------------
+    IF OBJECT_ID('U_EFD401KHSA_Employees','U') IS NOT NULL
+        DROP TABLE dbo.U_EFD401KHSA_Employees;
+    SELECT xEEID
+        ,xCOID
+        ,EepSSN
+        ,EepNameFirst
+        ,EepNameMiddle
+        ,EepNameLast
+        ,EepGender
+        ,EepDateOfBirth
+        ,EepMaritalStatus
+        ,EepAddressLine1
+        ,EepAddressLine2
+        ,EepAddressLine3
+        ,EepAddressCity
+        ,EepAddressState
+        ,EepAddressZipCode
+        ,EepAddressCountry
+        ,EecEmpNo
+        ,EecEmplStatus
+        ,EecDateOfOriginalHire
+        ,EecDateOfLastHire
+        ,EecDateOfTermination
+        ,EecDateOfRetirement
+        ,EecLocation
+        ,EecFullTimeOrPartTime
+        ,EecPayPeriod
+        ,EecUnionLocal
+        ,EecOrgLvl1
+        ,EecOrgLvl2
+        ,EecPayGroup
+        ,OrgLvl2Desc = O2.OrgDesc
+        ,Record01Change
+        ,Record02DChange
+        ,Record02EChange
+        ,Record03Change
+        ,Record04Change
+        ,Record05Change
+        ,Record06Change
+        ,Record11Change
+        ,Record36Change
+        ,Record60Change
+        ,Record61Change
+        ,audNewHire
+        ,audReHire
+        ,audTerm
+        ,audSalaryChange
+        ,EecDateOfSeniority
+        ,EecAnnSalary
+        ,EecTermReason 
+        ,EecEmplStatusStartDate
+        ,emailAddress
+        ,eepAddressEMail
+        ,EecLeaveReason
+    INTO dbo.U_EFD401KHSA_Employees
+    FROM dbo.U_EFD401KHSA_EEList
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    LEFT JOIN dbo.OrgLevel O2 WITH (NOLOCK)
+        ON O2.OrgCode = EecOrgLvl2
+        AND O2.OrgLvl = '2'
+    LEFT JOIN (
+        -- Get Record Set Changes based on Audit Fields
+        SELECT audEEID
+            ,Record01Change = MAX(CASE WHEN audFieldName IN ('EepNameFirst','EepNameLast','EepNameMiddle','EepGender','EepMaritalStatus') THEN 'Y' ELSE 'N' END)
+            ,Record02DChange = MAX(CASE WHEN audFieldName IN ('EecDateOfOriginalHire','EepDateOfBirth','EecDateOfTermination') THEN 'Y' ELSE 'N' END)
+            ,Record02EChange = MAX(CASE WHEN audFieldName IN ('EecEmpNo') THEN 'Y' ELSE 'N' END)
+            ,Record03Change = MAX(CASE WHEN audFieldName IN ('EepAddressLine1','EepAddressLine2','EepAddressLine3') THEN 'Y' ELSE 'N' END)
+            ,Record04Change = MAX(CASE WHEN audFieldName IN ('EepAddressCity','EepAddressState','EepAddressZipCode') THEN 'Y' ELSE 'N' END)
+            ,Record05Change = MAX(CASE WHEN audFieldName IN ('EepAddressCountry') THEN 'Y' ELSE 'N' END)
+            ,Record06Change = MAX(CASE WHEN audFieldName IN ('OrgDesc') THEN 'Y' ELSE 'N' END)
+            ,Record11Change = MAX(CASE WHEN audFieldName IN ('EecEmplStatus') THEN 'Y' ELSE 'N' END)
+            ,Record36Change = MAX(CASE WHEN audFieldName IN ('EecOrglvl2') THEN 'Y' ELSE 'N' END)
+            ,Record60Change = MAX(CASE WHEN audFieldName IN ('EecFullTimeOrPartTime','EecOrgLvl1','EecOrgLvl2','EecLocation','EecUnionLocal','EecPayPeriod') THEN 'Y' ELSE 'N' END)
+            ,Record61Change = MAX(CASE WHEN audFieldName IN ('EecDateOfLastHire','EecDateOfRetirement') THEN 'Y' ELSE 'N' END)
+            ,audNewHire = max(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END)
+            ,audReHire = max(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END)
+            ,audTerm = MAX(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END)
+            ,audSalaryChange = max(CASE  WHEN  audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END)
+            ,emailAddress = max(CASE  WHEN  audFieldName = 'EepEmailAddress' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END)
+
+        FROM dbo.U_EFD401KHSA_Audit
+        GROUP BY audEEID
+    ) AuditRecords
+        ON audEEID = xEEID;
+
+    Delete from U_EFD401KHSA_Employees where xeeid not in ( Select xeeid from U_EFD401KHSA_Employees  where Record60Change = 'Y' or Record61Change = 'Y' or emailAddress = 'Y')
+
+
+
+
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -766,14 +1013,17 @@ BEGIN
                             END
         ,drvGender = CASE WHEN EepGender IN ('M','F') THEN EepGender END
     INTO dbo.U_EFD401KHSA_drvTbl_01
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+    --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --    ON EepEEID = xEEID        
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record01Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y'    
     ;
+
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_02D
     ---------------------------------
@@ -793,16 +1043,18 @@ BEGIN
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN FORMAT(EecDateOfTermination, 'MMddyyyy') ELSE '00000000' END
         ,drvDateSwitch = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN '5' END
     INTO dbo.U_EFD401KHSA_drvTbl_02D
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    --JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    --    ON EecEEID = xEEID 
+    --    AND EecCoID = xCoID
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --    ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' ;
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_02E
@@ -819,16 +1071,18 @@ BEGIN
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvEmployeeNumber = EecEmpNo
     INTO dbo.U_EFD401KHSA_drvTbl_02E
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record02EChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_03
@@ -846,13 +1100,15 @@ BEGIN
         ,drvAddressLineNo = '01'
         ,drvAddressLine = EepAddressLine1
     INTO dbo.U_EFD401KHSA_drvTbl_03
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --    ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
     ;
 
     INSERT INTO dbo.U_EFD401KHSA_drvTbl_03
@@ -866,13 +1122,15 @@ BEGIN
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvAddressLineNo = '02'
         ,drvAddressLine = EepAddressLine2    
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
 
     INSERT INTO dbo.U_EFD401KHSA_drvTbl_03
@@ -886,13 +1144,15 @@ BEGIN
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvAddressLineNo = '03'
         ,drvAddressLine = ''
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --    ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_04
@@ -912,13 +1172,15 @@ BEGIN
         ,drvAddressZipCode = LEFT(EepAddressZipCode, 5)
         ,drvAddressZipCode4 = CASE WHEN LEN(RTRIM(EepAddressZipCode)) > 5 THEN RIGHT(RTRIM(EepAddressZipCode), 4) END
     INTO dbo.U_EFD401KHSA_drvTbl_04
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --    ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_06
@@ -934,13 +1196,15 @@ BEGIN
         ,drvPlanNumber = CASE WHEN BdmDedCode IN ('401L','401L2','401M','ROP','40P') THEN '29475' END
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
     INTO dbo.U_EFD401KHSA_drvTbl_06
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_11
@@ -972,16 +1236,18 @@ BEGIN
                                 WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202','203') THEN EecDateOfTermination
                             END
     INTO dbo.U_EFD401KHSA_drvTbl_11
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK)
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_60
@@ -1001,18 +1267,20 @@ BEGIN
                                             WHEN PgrPayFrequency = 'W' THEN 'W'
                                         END
     INTO dbo.U_EFD401KHSA_drvTbl_60
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK) 
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+        ON EepEEID = xEEID*/
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_61
@@ -1029,16 +1297,18 @@ BEGIN
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvAdjustedDateOfHire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
     INTO dbo.U_EFD401KHSA_drvTbl_61
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK) 
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE audReHire = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_EA
@@ -1056,13 +1326,15 @@ BEGIN
         ,drvEmailRecSeqNumber = 1
         ,drvEmailAddress = LEFT(EepAddressEMail, 35)
     INTO dbo.U_EFD401KHSA_drvTbl_EA
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK) 
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
+    WHERE emailAddress = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y'
     ;
 
 
@@ -1077,14 +1349,16 @@ BEGIN
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvEmailRecSeqNumber = 2
         ,drvEmailAddress = RIGHT(EepAddressEMail, LEN(EepAddressEmail) - 35) 
-    FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+    FROM dbo.U_EFD401KHSA_Employees WITH (NOLOCK) 
+        --dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
+    /*JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID*/
     JOIN dbo.U_dsi_BDM_EFD401KHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
     WHERE LEN(EepAddressEMail) > 35
+    AND (emailAddress = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_HS
@@ -1215,10 +1489,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202102101'
-       ,expStartPerControl     = '202102101'
-       ,expLastEndPerControl   = '202102249'
-       ,expEndPerControl       = '202102249'
+    SET expLastStartPerControl = '202103151'
+       ,expStartPerControl     = '202103151'
+       ,expLastEndPerControl   = '202103159'
+       ,expEndPerControl       = '202103159'
 WHERE expFormatCode = 'EFD401KHSA';
 
 **********************************************************************************/

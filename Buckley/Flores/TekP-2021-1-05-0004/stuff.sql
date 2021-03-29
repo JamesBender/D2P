@@ -4,10 +4,20 @@
 
 select * from  dbo.U_dsi_BDM_EFLROCQBXP BDM WITH (NOLOCK) where BdmEEID = 'CR6M9H02U030'
 
-select distinct EdhChangeReason from EmpHDed where EdhEEID = 'CR6M9H02U030'
+select EdhBenstatusDate,* from EmpHDed where EdhEEID = 'CR6M9H02U030'
+AND EdhChangeReason = '204'
+order by EdhBenStartDate DESC
+
+select * from dbo.U_EFLROCQBXP_drvTbl_Insured where drvEEID = 'CR6M9H02U030'
+select * from dbo.U_EFLROCQBXP_drvTbl_Dependent where drvEEID = 'CR6M9H02U030'
+select * from dbo.U_EFLROCQBXP_drvTbl_Election where drvEEID = 'CR6M9H02U030'
+
+
+--EdhBenStartDate
 
 
 select ConRelationship, ConNameLast, ConNameFirst, ConCobraReason, ConDAteOFCobraEvent, ConSystemId, * from contacts where ConEEID = 'CR6M9H02U030' --and ConRelationship IN ('SPS','DP')
+select * from EmpPers where EepEEID = 'CR6M9H02U030'
 
 
 --select * from dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) where EedEEID = 'CR6M9H02U030' AND EedFormatCode = 'EFLROCQBXP'

@@ -1,0 +1,5 @@
+Interface details (ELUCMEDEXP)
+Env – NW13 
+Server – NW1WUP3DB04 
+Database – ULTIPRO_WPMOIN 
+Export Name – Lucent Med 834 Export
