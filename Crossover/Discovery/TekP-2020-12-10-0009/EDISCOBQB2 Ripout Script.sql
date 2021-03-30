@@ -140,9 +140,9 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
 /*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210330.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery COBRA QB','202101259','EMPEXPORT','ONDEMAND','Jan  2 2020 12:00AM','EDISCOBQB2',NULL,NULL,NULL,'202101259','Jan  2 2020 12:00AM','Dec 30 1899 12:00AM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPCHMS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'SPXBO,SPXK9',NULL,NULL,NULL,'Discovery COBRA QB','202101259','EMPEXPORT','SCHEDULED',NULL,'EDISCOBQB2',NULL,NULL,NULL,'202101259','Nov  5 2019  4:57PM','Nov  5 2019  4:57PM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','SPXBO,SPXK9',NULL,NULL,NULL,'Test Purposes Only','202102261','EMPEXPORT','TEST','Mar 23 2021  5:35PM','EDISCOBQB2',NULL,NULL,NULL,'202102261','Feb 26 2021 12:00AM','Dec 30 1899 12:00AM','202102121','99','','','202102121',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery COBRA QB','202103309','EMPEXPORT','ONDEMAND','Jan  2 2020 12:00AM','EDISCOBQB2',NULL,NULL,NULL,'202103309','Jan  2 2020 12:00AM','Dec 30 1899 12:00AM','202006301',NULL,'','','202006301',dbo.fn_GetTimedKey(),NULL,'ULTI_WPCHMS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'SPXBO,SPXK9',NULL,NULL,NULL,'Discovery COBRA QB','202103309','EMPEXPORT','SCHEDULED',NULL,'EDISCOBQB2',NULL,NULL,NULL,'202103309','Nov  5 2019  4:57PM','Nov  5 2019  4:57PM','202006301',NULL,'','','202006301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','SPXBO,SPXK9',NULL,NULL,NULL,'Test Purposes Only','202103309','EMPEXPORT','TEST','Mar 23 2021  5:35PM','EDISCOBQB2',NULL,NULL,NULL,'202103309','Feb 26 2021 12:00AM','Dec 30 1899 12:00AM','202006301','99','','','202006301',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','SubSort','C','drvSubSort');
@@ -681,7 +681,7 @@ BEGIN
         ,drvRecordIdentifier = '[QBPLAN]'
         ,drvPlanName =    CASE WHEN A.BdmDedCode IN ('XOMFT','XOMPT') THEN 'Aetna Medical XO First PPO' END                    
         ,drvStartDate = DATEADD(DAY, 1, A.BdmBenStopDate)
-        ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('204','LEVNT4','201','LEVNT3','210') THEN
+        ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('200','201','202','204','205','206','207','208','209','210','LEVNT1','LEVNT2','LEVNT3','LEVNT4','LEVNT5') THEN
                                 CASE WHEN A.BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
                                     WHEN A.BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
                                     WHEN A.BdmRelationship IN ('CHL','DPC','STC','DCH') THEN 'EE+CHILDREN'
@@ -709,9 +709,9 @@ BEGIN
         ,drvCoID = bdmCoID
         ,drvDepRecID = '' --drvDepRecID
         ,drvRecordIdentifier = '[QBPLAN]'
-        ,drvPlanName =    CASE WHEN BdmDedCode IN ('XOMFT','XOMPT') THEN 'Aetna Medical XO First PPO' END                    
+        ,drvPlanName =    CASE WHEN BdmDedCode IN ('XOMFT','XOMPT') THEN 'Discovery Benefits HRA' END                    
         ,drvStartDate = DATEADD(DAY, 1, BdmBenStopDate)
-        ,drvCoverageLevel =    CASE WHEN BdmCobraReason IN ('204','LEVNT4','201','LEVNT3','210') THEN
+        ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('200','201','202','204','205','206','207','208','209','210','LEVNT1','LEVNT2','LEVNT3','LEVNT4','LEVNT5') THEN
                                 CASE WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
                                     WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
                                     WHEN BdmRelationship IN ('CHL','DPC','STC','DCH') THEN 'EE+CHILDREN'
@@ -906,10 +906,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '201907011'
-       ,expStartPerControl     = '201907011'
-       ,expLastEndPerControl   = '201911059'
-       ,expEndPerControl       = '201911059'
+    SET expLastStartPerControl = '202006301'
+       ,expStartPerControl     = '202006301'
+       ,expLastEndPerControl   = '202103309'
+       ,expEndPerControl       = '202103309'
 WHERE expFormatCode = 'EDISCOBQB2';
 
 **********************************************************************************/
