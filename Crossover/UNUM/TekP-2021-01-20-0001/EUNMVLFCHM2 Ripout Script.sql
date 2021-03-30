@@ -115,12 +115,12 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNMVLFCH2_20210218.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNMVLFCH2_20210330.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','SPXF3,SPXML,SPXBO,SPXK9',NULL,NULL,NULL,'UNUM Voluntary Life','201903299','EMPEXPORT','EUNMVLFCH2','Apr  4 2019 12:10PM','EUNMVLFCH2',NULL,NULL,NULL,'202101149','Mar 29 2019 12:00AM','Dec 30 1899 12:00AM','202101071','11','','','201903151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPCHMS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Voluntary Life - OEACT','201903299','EMPEXPORT','OEACTIVE',NULL,'EUNMVLFCH2',NULL,NULL,NULL,'201903299',NULL,NULL,'201903151',NULL,NULL,NULL,'201903151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Voluntary Life - OEPAS','201903299','EMPEXPORT','OEPASSIVE',NULL,'EUNMVLFCH2',NULL,NULL,NULL,'201903299',NULL,NULL,'201903151',NULL,NULL,NULL,'201903151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM Voluntary Life - TEST','202102091','EMPEXPORT','TEST','Feb  9 2021  5:21PM','EUNMVLFCH2',NULL,NULL,NULL,'202102091','Feb  9 2021 12:00AM','Dec 30 1899 12:00AM','202101011','70','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM Voluntary Life - TEST','202103221','EMPEXPORT','TEST','Mar 30 2021  2:54PM','EUNMVLFCH2',NULL,NULL,NULL,'202103221','Mar 22 2021 12:00AM','Mar 15 2021 12:00AM','202101011','311','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNMVLFCH2','CountFilter','C',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNMVLFCH2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNMVLFCH2','ExportDescription','C','UNUM - Voluntary Life');
@@ -214,13 +214,13 @@ CREATE TABLE [dbo].[U_Dsi_DrvTbl_EUNMVLFCH2] (
     [drvPlanCode1] varchar(6) NULL,
     [drvBenQualDate1] varchar(1) NOT NULL,
     [drvBenTermDate1] varchar(10) NULL,
-    [drvBenSelAmt1] varchar(20) NULL,
+    [drvBenSelAmt1] char(20) NULL,
     [drvBenSel1] varchar(1) NOT NULL,
     [drvBenID2] varchar(2) NULL,
     [drvPlanCode2] varchar(6) NULL,
     [drvBenQualDate2] varchar(1) NOT NULL,
     [drvBenTermDate2] varchar(10) NULL,
-    [drvBenSelAmt2] varchar(20) NULL,
+    [drvBenSelAmt2] char(20) NULL,
     [drvBenSel2] varchar(1) NOT NULL,
     [drvBenID3] varchar(2) NULL,
     [drvPlanCode3] varchar(6) NULL,
@@ -585,14 +585,22 @@ drvBenID1       = CASE WHEN eelife.BdmEEID IS NOT NULL THEN 'LM'     ELSE CONVER
 drvPlanCode1    = CASE WHEN eelife.BdmEEID IS NOT NULL THEN '5.0N22' ELSE CONVERT(VARCHAR(2), '') END,
 drvBenQualDate1 = '',
 drvBenTermDate1 = CASE WHEN eelife.BdmBenStopDate IS NOT NULL THEN CONVERT(VARCHAR(10), eelife.BdmBenStopDate, 101) ELSE '' END,
-drvBenSelAmt1   = CASE WHEN eelife.BdmEEID IS NOT NULL THEN CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(eelife.BdmEEAmt/10000.0) * 10000)) ELSE '' END,
+drvBenSelAmt1   =    CASE WHEN eelife.BdmEEID IS NOT NULL THEN -- CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(eelife.BdmEEAmt/10000.0) * 10000)) ELSE '' END, -- JCB
+                        CASE WHEN eeLife.BdmEEAmt > EEmpDed.EedEOIDesiredAmt THEN CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(eelife.BdmEEAmt/10000.0) * 10000)) 
+                            ELSE CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(EEmpDed.EedEOIDesiredAmt/10000.0) * 10000))
+                        END
+                    END,
 drvBenSel1      = '',
 
 drvBenID2       = CASE WHEN splife.BdmEEID IS NOT NULL THEN 'LS'     ELSE CONVERT(VARCHAR(2), '') END,
 drvPlanCode2    = CASE WHEN splife.BdmEEID IS NOT NULL THEN '5.AN47' ELSE CONVERT(VARCHAR(2), '') END,
 drvBenQualDate2 = '',
 drvBenTermDate2 = CASE WHEN splife.BdmBenStopDate IS NOT NULL THEN CONVERT(VARCHAR(10), splife.BdmBenStopDate, 101) ELSE '' END,
-drvBenSelAmt2   = CASE WHEN splife.BdmEEID IS NOT NULL THEN CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(splife.BdmEEAmt/5000.0) * 5000)) ELSE '' END,
+drvBenSelAmt2   =    CASE WHEN splife.BdmEEID IS NOT NULL THEN --CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(splife.BdmEEAmt/5000.0) * 5000)) ELSE '' END, -- JCB
+                        CASE WHEN spLife.BdmEEAmt > SEmpDed.EedEOIDesiredAmt THEN CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(splife.BdmEEAmt/10000.0) * 10000)) 
+                            ELSE  CONVERT(CHAR(20), CONVERT(NUMERIC(12,0), ceiling(SEmpDed.EedEOIDesiredAmt/10000.0) * 10000))
+                        END
+                    END,
 drvBenSel2      = '',
 
 drvBenID3       = CASE WHEN chlife.BdmEEID IS NOT NULL THEN 'LC'     ELSE CONVERT(VARCHAR(2), '') END,
@@ -632,6 +640,10 @@ LEFT JOIN dbo.fn_mp_customFields_Jobcode_Export(null,null,null,null) jcPCF on jc
 LEFT JOIN U_dsi_bdm_EUNMVLFCH2 eelife WITH (NOLOCK) ON eelife.BdmEEID = MstEEID AND eelife.BdmDedCode = 'UNVOL'
 LEFT JOIN U_dsi_bdm_EUNMVLFCH2 splife WITH (NOLOCK) ON splife.BdmEEID = MstEEID AND splife.BdmDedCode = 'VOLSP'
 LEFT JOIN U_dsi_bdm_EUNMVLFCH2 chlife WITH (NOLOCK) ON chlife.BdmEEID = MstEEID AND chlife.BdmDedCode = 'VOLCH'
+
+LEFT JOIN dbo.EmpDed EEmpDed WITH (NOLOCK) ON EEmpDed.EedEEID = MstEEID AND EEmpDed.EedDedCode = 'UNVOL'
+LEFT JOIN dbo.EmpDed SEmpDed WITH (NOLOCK) ON SEmpDed.EedEEID = MstEEID AND SEmpDed.EedDedCode = 'VOLSP'
+LEFT JOIN dbo.EmpDed CEmpDed WITH (NOLOCK) ON CEmpDed.EedEEID = MstEEID AND CEmpDed.EedDedCode = 'VOLCH'
 
 -- LEFT JOIN U_dsi_bdm_EUNMVLFCH2 eeadd WITH (NOLOCK) ON eeadd.BdmEEID = MstEEID AND eeadd.BdmDedCode = 'ADD'
 -- LEFT JOIN U_dsi_bdm_EUNMVLFCH2 spadd WITH (NOLOCK) ON spadd.BdmEEID = MstEEID AND spadd.BdmDedCode = 'ADDS'
