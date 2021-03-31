@@ -117,37 +117,37 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitQualDate1"','28','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','28',NULL,'BENEFIT QUALIFYING DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitTermDate1"','29','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','29',NULL,'BENEFIT TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelectionAmt1"','30','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','30',NULL,'BENEFIT SELECTION AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelection1"','31','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','31',NULL,'BENEFIT SELECTION',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','31','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','31',NULL,'BENEFIT SELECTION',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitId2"','32','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','32',NULL,'BENEFIT ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanCode2"','33','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','33',NULL,'PLAN CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitQualDate2"','34','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','34',NULL,'BENEFIT QUALIFYING DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitTermDate2"','35','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','35',NULL,'BENEFIT TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelectionAmt2"','36','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','36',NULL,'BENEFIT SELECTION AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelection2"','37','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','37',NULL,'BENEFIT SELECTION',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','37','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','37',NULL,'BENEFIT SELECTION',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitId3"','38','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','38',NULL,'BENEFIT ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanCode3"','39','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','39',NULL,'PLAN CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitQualDate3"','40','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','40',NULL,'BENEFIT QUALIFYING DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitTermDate3"','41','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','41',NULL,'BENEFIT TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelectionAmt3"','42','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','42',NULL,'BENEFIT SELECTION AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelection3"','43','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','43',NULL,'BENEFIT SELECTION',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','43','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','43',NULL,'BENEFIT SELECTION',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitId4"','44','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','44',NULL,'BENEFIT ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanCode4"','45','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','45',NULL,'PLAN CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitQualDate4"','46','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','46',NULL,'BENEFIT QUALIFYING DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitTermDate4"','47','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','47',NULL,'BENEFIT TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelectionAmt4"','48','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','48',NULL,'BENEFIT SELECTION AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelection4"','49','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','49',NULL,'BENEFIT SELECTION',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','49','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','49',NULL,'BENEFIT SELECTION',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitId5"','50','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','50',NULL,'BENEFIT ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanCode5"','51','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','51',NULL,'PLAN CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitQualDate5"','52','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','52',NULL,'BENEFIT QUALIFYING DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitTermDate5"','53','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','53',NULL,'BENEFIT TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelectionAmt5"','54','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','54',NULL,'BENEFIT SELECTION AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelection5"','55','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','55',NULL,'BENEFIT SELECTION',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','55','(''DA''=''T,'')','EBVLADDEXPZ0','50','D','10','55',NULL,'BENEFIT SELECTION',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitId6"','56','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','56',NULL,'BENEFIT ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanCode6"','57','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','57',NULL,'PLAN CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitQualDate6"','58','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','58',NULL,'BENEFIT QUALIFYING DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitTermDate6"','59','(''UD101''=''T,'')','EBVLADDEXPZ0','50','D','10','59',NULL,'BENEFIT TERM DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelectionAmt6"','60','(''UA''=''T,'')','EBVLADDEXPZ0','50','D','10','60',NULL,'BENEFIT SELECTION AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitSelection6"','61','(''DA''=''T'')','EBVLADDEXPZ0','50','D','10','61',NULL,'BENEFIT SELECTION',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','61','(''DA''=''T'')','EBVLADDEXPZ0','50','D','10','61',NULL,'BENEFIT SELECTION',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -155,13 +155,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210330.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210331.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202103229','EMPEXPORT','OEACTIVE',NULL,'EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202103229','EMPEXPORT','OEPASSIVE',NULL,'EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM B ADD LTD L ADD Export','202103229','EMPEXPORT','ONDEM_XOE',NULL,'EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Sched','202103229','EMPEXPORT','SCH_EBVLAD',NULL,'EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Test','202103229','EMPEXPORT','TEST_XOE',NULL,'EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103229','EMPEXPORT','OEACTIVE','Mar 31 2021  1:31PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','92','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202103229','EMPEXPORT','OEPASSIVE','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','190','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Export','202103229','EMPEXPORT','ONDEM_XOE','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','193','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Sched','202103229','EMPEXPORT','SCH_EBVLAD','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','193','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Test','202103229','EMPEXPORT','TEST_XOE','Mar 31 2021  1:33PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','193','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBVLADDEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBVLADDEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBVLADDEXP','InitialSort','C','drvSort');
@@ -272,26 +272,26 @@ CREATE TABLE [dbo].[U_EBVLADDEXP_drvTbl] (
     [drvSignatureDate] datetime NULL,
     [drvEffectiveDate] datetime NULL,
     [drvAddType] varchar(1) NULL,
-    [drvBenefitId1] varchar(1) NOT NULL,
-    [drvPlanCode1] varchar(1) NOT NULL,
-    [drvBenefitQualDate1] varchar(1) NOT NULL,
-    [drvBenefitTermDate1] varchar(1) NOT NULL,
-    [drvBenefitSelectionAmt1] varchar(1) NOT NULL,
-    [drvBenefitId2] varchar(1) NOT NULL,
-    [drvPlanCode2] varchar(1) NOT NULL,
-    [drvBenefitQualDate2] varchar(1) NOT NULL,
-    [drvBenefitTermDate2] varchar(1) NOT NULL,
-    [drvBenefitSelectionAmt2] varchar(1) NOT NULL,
-    [drvBenefitId3] varchar(1) NOT NULL,
-    [drvPlanCode3] varchar(1) NOT NULL,
-    [drvBenefitQualDate3] varchar(1) NOT NULL,
-    [drvBenefitTermDate3] varchar(1) NOT NULL,
-    [drvBenefitSelectionAmt3] varchar(1) NOT NULL,
-    [drvBenefitId4] varchar(1) NOT NULL,
-    [drvPlanCode4] varchar(1) NOT NULL,
-    [drvBenefitQualDate4] varchar(1) NOT NULL,
-    [drvBenefitTermDate4] varchar(1) NOT NULL,
-    [drvBenefitSelectionAmt4] varchar(1) NOT NULL,
+    [drvBenefitId1] varchar(2) NULL,
+    [drvPlanCode1] varchar(6) NULL,
+    [drvBenefitQualDate1] datetime NULL,
+    [drvBenefitTermDate1] datetime NULL,
+    [drvBenefitSelectionAmt1] nvarchar(4000) NULL,
+    [drvBenefitId2] varchar(2) NULL,
+    [drvPlanCode2] varchar(6) NULL,
+    [drvBenefitQualDate2] datetime NULL,
+    [drvBenefitTermDate2] datetime NULL,
+    [drvBenefitSelectionAmt2] nvarchar(4000) NULL,
+    [drvBenefitId3] varchar(2) NULL,
+    [drvPlanCode3] varchar(6) NULL,
+    [drvBenefitQualDate3] datetime NULL,
+    [drvBenefitTermDate3] datetime NULL,
+    [drvBenefitSelectionAmt3] nvarchar(4000) NULL,
+    [drvBenefitId4] varchar(2) NULL,
+    [drvPlanCode4] varchar(6) NULL,
+    [drvBenefitQualDate4] datetime NULL,
+    [drvBenefitTermDate4] datetime NULL,
+    [drvBenefitSelectionAmt4] nvarchar(4000) NULL,
     [drvBenefitId5] varchar(1) NOT NULL,
     [drvPlanCode5] varchar(1) NOT NULL,
     [drvBenefitQualDate5] varchar(1) NOT NULL,
@@ -552,7 +552,7 @@ BEGIN
         ,drvEnroll2 = ''
         ,drvPolicy =    CASE WHEN GTL1_DedCode IS NOT NULL OR GTL2_DedCode IS NOT NULL OR GTL3_DedCode IS NOT NULL OR GTL4_DedCode IS NOT NULL OR GTLP_DedCode IS NOT NULL 
                             AND LTD10_DedCode IS NOT NULL OR LTD20_DedCode IS NOT NULL OR LTDP_DedCode IS NOT NULL THEN '656271'
-                            WHEN VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLX_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL THEN '656272'
+                            WHEN VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLC_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL THEN '656272'
                         END
         /*CASE WHEN BdmDedCode IN ('GTL1','GTL2','GTL3','GTL4','GTLP','LTD10','LTD20','LTDP') THEN '656271'
                             WHEN BdmDedCode IN ('VLE','VLS','VLC','VADD') THEN '656272'
@@ -572,7 +572,7 @@ BEGIN
                                 WHEN LTDP_DedCode IS NOT NULL THEN LTDP_BenStopDate
                                 WHEN VLE_DedCode IS NOT NULL THEN VLE_BenStopDate
                                 WHEN VLS_DedCode IS NOT NULL THEN VLS_BenStopDate
-                                WHEN VLX_DedCode IS NOT NULL THEN VLX_BenStopDate
+                                WHEN VLC_DedCode IS NOT NULL THEN VLC_BenStopDate
                                 WHEN VADD_DedCode IS NOT NULL THEN VADD_BenStopDate
                             END
                         END
@@ -593,45 +593,51 @@ BEGIN
         ,drvSpouseNameFirst = Spouse.ConNameFirst
         ,drvSpouseGender = Spouse.ConGender
         ,drvSpouseDateOfBirth = Spouse.ConDateOfBirth
-        ,drvClass =    CASE WHEN EecDedGroupCode = 'PART' THEN '1000'
-                        WHEN (VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLX_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL) AND EecDedGroupCode <> 'PART' THEN '2000'
-                        WHEN  GTL1_DedCode IS NOT NULL OR GTL2_DedCode IS NOT NULL OR GTL3_DedCode IS NOT NULL OR GTL4_DedCode IS NOT NULL OR GTLP_DedCode IS NOT NULL OR LTD10_DedCode IS NOT NULL OR LTD20_DedCode IS NOT NULL OR LTDP_DedCode IS NOT NULL THEN
-                            CASE WHEN EecDedGroupCode IN ('ASDT1','ASDT2','ASDT3','ASDT4','ASDT5','ASDT6') THEN '2002'
-                                WHEN EecDedGroupCode IN ('DMT1','DMT2','DMT3','DMT4','DMT5','DMT6') THEN '3003'
-                                WHEN EecDedGroupCode IN ('FTT1','FTT2','FTT3','FTT4','FTT5','FTT6') THEN '4004'
-                            END
+        ,drvClass =    CASE WHEN EecDedGroupCode = 'PART' AND LTD10_DedCode IS NULL AND LTD20_DedCode IS NULL AND LTDP_DedCode IS NULL THEN '1000'
+                    WHEN EecDedGroupCode = 'PART' AND (LTD10_DedCode IS NOT NULL OR LTD20_DedCode IS NOT NULL OR LTDP_DedCode IS NOT NULL) THEN '1001'
+                    WHEN (VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLC_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL) AND EecDedGroupCode <> 'PART' THEN '2000'
+                    WHEN  GTL1_DedCode IS NOT NULL OR GTL2_DedCode IS NOT NULL OR GTL3_DedCode IS NOT NULL OR GTL4_DedCode IS NOT NULL OR GTLP_DedCode IS NOT NULL OR LTD10_DedCode IS NOT NULL OR LTD20_DedCode IS NOT NULL OR LTDP_DedCode IS NOT NULL THEN
+                        CASE WHEN EecDedGroupCode IN ('ASDT1','ASDT2','ASDT3','ASDT4','ASDT5','ASDT6') THEN '2002'
+                            WHEN EecDedGroupCode IN ('DMT1','DMT2','DMT3','DMT4','DMT5','DMT6') THEN '3003'
+                            WHEN EecDedGroupCode IN ('FTT1','FTT2','FTT3','FTT4','FTT5','FTT6') THEN '4004'
+                        END
                     END
-        ,drvSignatureDate = CASE WHEN VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLX_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL THEN VOL_StartDate END
+        ,drvSignatureDate = CASE WHEN VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLC_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL THEN VOL_StartDate END
         ,drvEffectiveDate =    CASE WHEN audReHire = 'Y' THEN eecDateOfLastHire
                                 WHEN audTerm = 'Y' THEN EecDateOfTermination
                                 WHEN audSalaryChange = 'Y' THEN EjhJobEffDate
                             END
         ,drvAddType = CASE WHEN EecFullTimeOrPartTime = 'F' AND EjhFullTimeOrPartTime = 'P' THEN 'O' END
-        ,drvBenefitId1 = ''
-        ,drvPlanCode1 = ''
-        ,drvBenefitQualDate1 = ''
-        ,drvBenefitTermDate1 = ''
-        ,drvBenefitSelectionAmt1 = ''
-        ,drvBenefitId2 = ''
-        ,drvPlanCode2 = ''
-        ,drvBenefitQualDate2 = ''
-        ,drvBenefitTermDate2 = ''
-        ,drvBenefitSelectionAmt2 = ''
-        ,drvBenefitId3 = ''
-        ,drvPlanCode3 = ''
-        ,drvBenefitQualDate3 = ''
-        ,drvBenefitTermDate3 = ''
-        ,drvBenefitSelectionAmt3 = ''
-        ,drvBenefitId4 = ''
-        ,drvPlanCode4 = ''
-        ,drvBenefitQualDate4 = ''
-        ,drvBenefitTermDate4 = ''
-        ,drvBenefitSelectionAmt4 = ''
+        ,drvBenefitId1 = CASE WHEN VLE_DedCode IS NOT NULL THEN 'LM' END
+        ,drvPlanCode1 = CASE WHEN VLE_DedCode IS NOT NULL THEN '5.0N22' END
+        ,drvBenefitQualDate1 = CASE WHEN VLE_DedCode IS NOT NULL AND VLE_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLE_EligDate END
+        ,drvBenefitTermDate1 = CASE WHEN VLE_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLE_BenStopDate END
+        ,drvBenefitSelectionAmt1 = FORMAT(CASE WHEN VLE_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLE_BenAmt END, '#0.00')
+
+        ,drvBenefitId2 = CASE WHEN VLS_DedCode IS NOT NULL THEN 'LS' END
+        ,drvPlanCode2 = CASE WHEN VLS_DedCode IS NOT NULL THEN '5.AN47' END
+        ,drvBenefitQualDate2 = CASE WHEN VLS_DedCode IS NOT NULL AND VLS_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLS_EligDate END
+        ,drvBenefitTermDate2 = CASE WHEN VLS_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLS_BenStopDate END
+        ,drvBenefitSelectionAmt2 = FORMAT(CASE WHEN VLS_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLS_BenAmt END, '#0.00')
+
+        ,drvBenefitId3 = CASE WHEN VLC_DedCode IS NOT NULL THEN 'LC' END
+        ,drvPlanCode3 = CASE WHEN VLC_DedCode IS NOT NULL THEN '5.0M04' END
+        ,drvBenefitQualDate3 = CASE WHEN VLC_DedCode IS NOT NULL AND VLC_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLC_EligDate END
+        ,drvBenefitTermDate3 = CASE WHEN VLC_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLC_BenStopDate END
+        ,drvBenefitSelectionAmt3 = FORMAT(CASE WHEN VLC_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLC_BenAmt END, '#0.00')
+
+        ,drvBenefitId4 = CASE WHEN VADD_DedCode IS NOT NULL THEN 'AM' END
+        ,drvPlanCode4 = CASE WHEN VADD_DedCode IS NOT NULL THEN '5.0S17' END
+        ,drvBenefitQualDate4 = CASE WHEN VADD_DedCode IS NOT NULL AND VADD_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VADD_EligDate END
+        ,drvBenefitTermDate4 = CASE WHEN VADD_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VADD_BenStopDate END
+        ,drvBenefitSelectionAmt4 = FORMAT(CASE WHEN VADD_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VADD_BenAmt END, '#0.00')
+
         ,drvBenefitId5 = ''
         ,drvPlanCode5 = ''
         ,drvBenefitQualDate5 = ''
         ,drvBenefitTermDate5 = ''
         ,drvBenefitSelectionAmt5 = ''
+
         ,drvBenefitId6 = ''
         ,drvPlanCode6 = ''
         ,drvBenefitQualDate6 = ''
@@ -648,74 +654,62 @@ BEGIN
     JOIN (
             SELECT BdmEEID, BdmCOID
                 ,MAX(CASE WHEN BdmDedCode = 'GTL1' THEN BdmDedCode END) AS GTL1_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'GTL2' THEN BdmDedCode END) AS GTL2_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'GTL3' THEN BdmDedCode END) AS GTL3_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'GTL4' THEN BdmDedCode END) AS GTL4_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'GTLP' THEN BdmDedCode END) AS GTLP_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'LTD10' THEN BdmDedCode END) AS LTD10_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'LTD20' THEN BdmDedCode END) AS LTD20_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'LTDP' THEN BdmDedCode END) AS LTDP_DedCode
-
-
-
-    ,MAX(CASE WHEN BdmDedCode = 'GTL1' THEN BdmBenStopDate END) AS GTL1_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'GTL2' THEN BdmBenStopDate END) AS GTL2_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'GTL3' THEN BdmBenStopDate END) AS GTL3_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'GTL4' THEN BdmBenStopDate END) AS GTL4_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'GTLP' THEN BdmBenStopDate END) AS GTLP_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'LTD10' THEN BdmBenStopDate END) AS LTD10_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'LTD20' THEN BdmBenStopDate END) AS LTD20_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'LTDP' THEN BdmBenStopDate END) AS LTDP_BenStopDate
-
-
-    ,NULL AS VLE_DedCode
-    ,NULL AS VLS_DedCode
-    ,NULL AS VLX_DedCode
-    ,NULL AS VADD_DedCode
-
-    ,NULL AS VLE_BenStopDate
-    ,NULL AS VLS_BenStopDate
-    ,NULL AS VLX_BenStopDate
-    ,NULL AS VADD_BenStopDate
-    ,NULL AS VOL_StartDate
-FROM dbo.U_dsi_BDM_EBVLADDEXP WITH (NOLOCK)
-GROUP BY BdmEEID, BdmCOID
-UNION
-SELECT BdmEEID, BdmCOID
-    ,NULL AS GTL1_DedCode
-    ,NULL AS GTL2_DedCode
-    ,NULL AS GTL3_DedCode
-    ,NULL AS GTL4_DedCode
-    ,NULL AS GTLP_DedCode
-    ,NULL AS LTD10_DedCode
-    ,NULL AS LTD20_DedCode
-    ,NULL AS LTDP_DedCode
-
-    ,NULL AS GTL1_BenStopDate
-    ,NULL AS GTL2_BenStopDate
-    ,NULL AS GTL3_BenStopDate
-    ,NULL AS GTL4_BenStopDate
-    ,NULL AS GTLP_BenStopDate
-    ,NULL AS LTD10_BenStopDate
-    ,NULL AS LTD20_BenStopDate
-    ,NULL AS LTDP_BenStopDate
-
-
-
-    ,MAX(CASE WHEN BdmDedCode = 'VLE' THEN BdmDedCode END) AS VLE_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'VLS' THEN BdmDedCode END) AS VLS_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'VLC' THEN BdmDedCode END) AS VLX_DedCode
-    ,MAX(CASE WHEN BdmDedCode = 'VADD' THEN BdmDedCode END) AS VADD_DedCode
-
-
-
-    ,MAX(CASE WHEN BdmDedCode = 'VLE' THEN BdmBenStopDate END) AS VLE_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'VLS' THEN BdmBenStopDate END) AS VLS_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'VLC' THEN BdmBenStopDate END) AS VLX_BenStopDate
-    ,MAX(CASE WHEN BdmDedCode = 'VADD' THEN BdmBenStopDate END) AS VADD_BenStopDate
-
-    ,MAX(CASE WHEN BdmDedCode IN ('VLE','VLS','VLC','VADD') THEN BdmBenStartDate END) AS VOL_StartDate
+                ,MAX(CASE WHEN BdmDedCode = 'GTL2' THEN BdmDedCode END) AS GTL2_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'GTL3' THEN BdmDedCode END) AS GTL3_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'GTL4' THEN BdmDedCode END) AS GTL4_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'GTLP' THEN BdmDedCode END) AS GTLP_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LTD10' THEN BdmDedCode END) AS LTD10_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LTD20' THEN BdmDedCode END) AS LTD20_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LTDP' THEN BdmDedCode END) AS LTDP_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'GTL1' THEN BdmBenStopDate END) AS GTL1_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'GTL2' THEN BdmBenStopDate END) AS GTL2_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'GTL3' THEN BdmBenStopDate END) AS GTL3_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'GTL4' THEN BdmBenStopDate END) AS GTL4_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'GTLP' THEN BdmBenStopDate END) AS GTLP_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LTD10' THEN BdmBenStopDate END) AS LTD10_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LTD20' THEN BdmBenStopDate END) AS LTD20_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LTDP' THEN BdmBenStopDate END) AS LTDP_BenStopDate
+                ,NULL AS VLE_DedCode
+                ,NULL AS VLS_DedCode
+                ,NULL AS VLC_DedCode
+                ,NULL AS VADD_DedCode
+                ,NULL AS VLE_BenStopDate
+                ,NULL AS VLS_BenStopDate
+                ,NULL AS VLC_BenStopDate
+                ,NULL AS VADD_BenStopDate
+                ,NULL AS VOL_StartDate
             FROM dbo.U_dsi_BDM_EBVLADDEXP WITH (NOLOCK)
+            WHERE BdmDedCode IN ('GTL1','GTL2','GTL3','GTL4','GTLP','LTD10','LTD20','LTDP')
+            GROUP BY BdmEEID, BdmCOID
+            UNION
+            SELECT BdmEEID, BdmCOID
+                ,NULL AS GTL1_DedCode
+                ,NULL AS GTL2_DedCode
+                ,NULL AS GTL3_DedCode
+                ,NULL AS GTL4_DedCode
+                ,NULL AS GTLP_DedCode
+                ,NULL AS LTD10_DedCode
+                ,NULL AS LTD20_DedCode
+                ,NULL AS LTDP_DedCode
+                ,NULL AS GTL1_BenStopDate
+                ,NULL AS GTL2_BenStopDate
+                ,NULL AS GTL3_BenStopDate
+                ,NULL AS GTL4_BenStopDate
+                ,NULL AS GTLP_BenStopDate
+                ,NULL AS LTD10_BenStopDate
+                ,NULL AS LTD20_BenStopDate
+                ,NULL AS LTDP_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLE' THEN BdmDedCode END) AS VLE_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLS' THEN BdmDedCode END) AS VLS_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLC' THEN BdmDedCode END) AS VLC_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VADD' THEN BdmDedCode END) AS VADD_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLE' THEN BdmBenStopDate END) AS VLE_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLS' THEN BdmBenStopDate END) AS VLS_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLC' THEN BdmBenStopDate END) AS VLC_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VADD' THEN BdmBenStopDate END) AS VADD_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode IN ('VLE','VLS','VLC','VADD') THEN BdmBenStartDate END) AS VOL_StartDate
+            FROM dbo.U_dsi_BDM_EBVLADDEXP WITH (NOLOCK)
+            WHERE BdmDedCode IN ('VLE','VADD','VLS','VLC')
             GROUP BY BdmEEID, BdmCOID) AS BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
@@ -737,7 +731,63 @@ SELECT BdmEEID, BdmCOID
                 ) AS Ejh
         ON EjhEEID = xEEID
         AND EjhCOID = xCOID
+    LEFT JOIN (
+                SELECT EdhEEID AS VLE_EEID, EdhCOID AS VLE_COID, EdhChangeReason AS VLE_ChangeReason
+                FROM (
+                        SELECT EDHEEID, EdhCOID, EdhDedCode, edhChangeReason, EdhEffDate, ROW_NUMBER() OVER(PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEffDate DESC) AS rn 
+                                FROM dbo.EmpHDed a WITH (NOLOCK)
+                                WHERE EdhDedCode = 'VLE') AS X    
+                WHERE RN = 1 ) AS VLE_Reason
+        ON VLE_EEID = xEEID
+        AND VLE_COID = xCOID
 
+        LEFT JOIN (
+                SELECT EdhEEID AS VLS_EEID, EdhCOID AS VLS_COID, EdhChangeReason AS VLS_ChangeReason
+                FROM (
+                        SELECT EDHEEID, EdhCOID, EdhDedCode, edhChangeReason, EdhEffDate, ROW_NUMBER() OVER(PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEffDate DESC) AS rn 
+                                FROM dbo.EmpHDed a WITH (NOLOCK)
+                                WHERE EdhDedCode = 'VLS') AS X    
+                WHERE RN = 1 ) AS VLS_Reason
+        ON VLS_EEID = xEEID
+        AND VLS_COID = xCOID
+
+        LEFT JOIN (
+                SELECT EdhEEID AS VLC_EEID, EdhCOID AS VLC_COID, EdhChangeReason AS VLC_ChangeReason
+                FROM (
+                        SELECT EDHEEID, EdhCOID, EdhDedCode, edhChangeReason, EdhEffDate, ROW_NUMBER() OVER(PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEffDate DESC) AS rn 
+                                FROM dbo.EmpHDed a WITH (NOLOCK)
+                                WHERE EdhDedCode = 'VLC') AS X    
+                WHERE RN = 1 ) AS VLC_Reason
+        ON VLC_EEID = xEEID
+        AND VLC_COID = xCOID
+
+        LEFT JOIN (
+                SELECT EdhEEID AS VADD_EEID, EdhCOID AS VADD_COID, EdhChangeReason AS VADD_ChangeReason
+                FROM (
+                        SELECT EDHEEID, EdhCOID, EdhDedCode, edhChangeReason, EdhEffDate, ROW_NUMBER() OVER(PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEffDate DESC) AS rn 
+                                FROM dbo.EmpHDed a WITH (NOLOCK)
+                                WHERE EdhDedCode = 'VLC') AS X    
+                WHERE RN = 1 ) AS VADD_Reason
+        ON VADD_EEID = xEEID
+        AND VADD_COID = xCOID
+
+
+        AND VLE_COID = xCOID
+    LEFT JOIN (
+                    SELECT EedEEID, EedCOID 
+                        ,MAX(CASE WHEN EedDedCode = 'VLE' THEN EedEEEligDate END) AS VLE_EligDate
+                        ,MAX(CASE WHEN EedDedCode = 'VLE' THEN EedBenAmt END) AS VLE_BenAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VLS' THEN EedEEEligDate END) AS VLS_EligDate
+                        ,MAX(CASE WHEN EedDedCode = 'VLS' THEN EedBenAmt END) AS VLS_BenAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VLC' THEN EedEEEligDate END) AS VLC_EligDate
+                        ,MAX(CASE WHEN EedDedCode = 'VLC' THEN EedBenAmt END) AS VLC_BenAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VADD' THEN EedEEEligDate END) AS VADD_EligDate
+                        ,MAX(CASE WHEN EedDedCode = 'VADD' THEN EedBenAmt END) AS VADD_BenAmt
+                    FROM dbo.EmpDed WITH (NOLOCK)
+                    WHERE EedDedCode IN ('VLE','VLS','VLC','VADD')
+                    GROUP BY EedEEID, EedCOID) AS EligDates
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
     ;
 
     --==========================================
