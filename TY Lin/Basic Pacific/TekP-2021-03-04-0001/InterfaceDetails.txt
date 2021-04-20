@@ -1,0 +1,5 @@
+Interface details (EBAPFSAEXP)
+Env – EW31 
+Server – EW3WUP1DB01 
+Database – ULTIPRO_WPTYL 
+Export Name – Basic Pacific FSA Census Export

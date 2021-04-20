@@ -1,0 +1,13 @@
+header,ClientName ,ClientDivisionName ,Salutation ,FirstName ,MiddleInitial ,LastName ,SSN ,IndividualID ,Email ,Phone ,Phone2 ,Address1 ,Address2 ,City ,StateOrProvince ,PostalCode ,Country ,PremiumAddressSameAsPrimary ,PremiumAddress1 ,PremiumAddress2 ,PremiumCity ,PremiumStateOrProvince ,PremiumPostalCode ,PremiumCountry ,Sex ,DOB ,TobaccoUse ,EmployeeType ,EmployeePayrollType ,YearsOfService ,PremiumCouponType ,UsesHCTC ,Active ,AllowMemberSSO ,BenefitGroup ,AccountStructure ,ClientSpecificData 
+
+
+header,EventType ,EventDate ,EnrollmentDate ,EmployeeSSN ,EmployeeName ,SecondEventOriginalFDOC 
+
+
+header,PlanName ,CoverageLevel ,NumberOfUnits 
+
+
+header,SSN ,Relationship ,Salutation ,FirstName ,MiddleInitial ,LastName ,Email ,Phone ,Phone2 ,AddressSameAsQB ,Address1 ,Address2 ,City ,StateOrProvince ,PostalCode ,Country ,EnrollmentDate ,Sex ,DOB ,IsQMCSO 
+
+
+header, 

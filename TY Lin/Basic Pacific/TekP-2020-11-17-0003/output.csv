@@ -1,0 +1,693 @@
+SSN ,IndividualIdentifier ,ClientName ,ClientDivisionName ,FirstName ,MiddleInitial ,LastName ,Salutation ,Email ,Phone ,Phone2 ,Address1 ,Address2 ,City ,StateOrProvince ,PostalCode ,Country ,Sex ,UsesFamilyInAddress ,HasWaivedAllCoverage ,SendGRNotice 
+555925321,,T.Y. Lin International,T.Y. Lin International,James,C,"Tai",,,,,"50 Shelley Dr",,Mill Valley,CA,94941,,M,TRUE,FALSE,TRUE
+560452130,,T.Y. Lin International,T.Y. Lin International,Siu Fu,J,"Chan",,,,,"111 Mission Siena Terrace",,Fremont,CA,94539,,M,TRUE,FALSE,TRUE
+517622698,,T.Y. Lin International,T.Y. Lin International,Karen,E,"Cormier",,,,,"2640 Banbury Place",,Los Angeles,CA,90065,,F,TRUE,FALSE,TRUE
+413251738,,T.Y. Lin International,T.Y. Lin International,Tien-Hung,,"Ho",,,,,"434 Moraga Way",,Orinda,CA,94563,,M,TRUE,FALSE,TRUE
+556853477,,T.Y. Lin International,T.Y. Lin International,Marwan,N,"Nader",,,,,"512 Matisse Court",,Walnut Creek,CA,94597,,M,TRUE,FALSE,TRUE
+625744442,,T.Y. Lin International,T.Y. Lin International,Jan,,"Krizek",,,,,"861 Idylberry Rd",,San Rafael,CA,94903,,M,TRUE,FALSE,TRUE
+556067968,,T.Y. Lin International,T.Y. Lin International,Tim,J,"Ingham",,,,,"400 Beale Street",#413,San Francisco,CA,94105,,M,TRUE,FALSE,TRUE
+465519807,,T.Y. Lin International,T.Y. Lin International,Siew,W,"Chee",,,,,"1032 Francisca Court",,Pinole,CA,94564,,M,TRUE,FALSE,TRUE
+609407006,,T.Y. Lin International,T.Y. Lin International,You,L,"Shi",,,,,"3115 Diablo Shadow Dr",,Walnut Creek,CA,94598,,M,TRUE,FALSE,TRUE
+545730038,,T.Y. Lin International,T.Y. Lin International,Sajid,,"Abbas",,,,,"P.O. Box 194",,Lafayette,CA,94549,,M,TRUE,FALSE,TRUE
+586545522,,T.Y. Lin International,T.Y. Lin International,Nhan,T,"Vo",,,,,"2760 Matthias Court",,San Jose,CA,95121,,M,TRUE,FALSE,TRUE
+545737160,,T.Y. Lin International,T.Y. Lin International,Shuan Ann,,"Lee",,,,,"1458 #e Wharton Way",,Concord,CA,94521,,F,TRUE,FALSE,TRUE
+474802870,,T.Y. Lin International,T.Y. Lin International,Daniel,R,"Ziegler",,,,,"1390 Market St",#2615,San Francisco,CA,94102,,M,TRUE,FALSE,TRUE
+622386589,,T.Y. Lin International,T.Y. Lin International,Joseph,W,"Cheng",,,,,"93 Rockport Ct",,Richmond,CA,94804,,M,TRUE,FALSE,TRUE
+217086393,,T.Y. Lin International,T.Y. Lin International,James,P,"Duxbury",,,,,"300 Lincoln Vlg Cir Apt 120",,Larkspur,CA,94939,,M,TRUE,FALSE,TRUE
+567890789,,T.Y. Lin International,T.Y. Lin International,Henry,H,"Luo",,,,,"2001 43rd Ave.",,San Francisco,CA,94116,,M,TRUE,FALSE,TRUE
+572089707,,T.Y. Lin International,T.Y. Lin International,Roger,,"Loo",,,,,"77 Van Ness Ave. #404",,San Francisco,CA,94102,,M,TRUE,FALSE,TRUE
+560915000,,T.Y. Lin International,T.Y. Lin International,Eddie,C,"Alferez",,,,,"331 Philip Drive",#101,Daly City,CA,94015,,M,TRUE,FALSE,TRUE
+004561101,,T.Y. Lin International,T.Y. Lin International,Darin,W,"Bryant",,,,,"14 Royal Oak Circle",,Topsham,ME,04086,,M,TRUE,FALSE,TRUE
+004761032,,T.Y. Lin International,T.Y. Lin International,Richard,,"Hebert",,,,,"50 Chase Road",,West Baldwin,ME,04091,,M,TRUE,FALSE,TRUE
+134609376,,T.Y. Lin International,T.Y. Lin International,Thomas,A,"Errico",,,,,"31 Park Street",,Kennebunk,ME,04043,,M,TRUE,FALSE,TRUE
+006624757,,T.Y. Lin International,T.Y. Lin International,Kevin,,"Ducharme",,,,,"3986 Blossom Dew Dr",,Kissimmee,FL,34746,,M,TRUE,FALSE,TRUE
+008669913,,T.Y. Lin International,T.Y. Lin International,David,W,"Burhans",,,,,"396 Preble St",APT 3,South Portland,ME,04106,,M,TRUE,FALSE,TRUE
+006588285,,T.Y. Lin International,T.Y. Lin International,Jeffrey,H,"Andrews",,,,,"16 Willow Lane",,Cumberland,ME,04021,,M,TRUE,FALSE,TRUE
+005720405,,T.Y. Lin International,T.Y. Lin International,Jeffrey,,"Davis",,,,,"38 Interurban Drive",,Cumberland,ME,04021,,M,TRUE,FALSE,TRUE
+004606519,,T.Y. Lin International,T.Y. Lin International,Scott,A,"Morgan",,,,,"2 Forest Lane",,Cumberland,ME,04021,,M,TRUE,FALSE,TRUE
+006765887,,T.Y. Lin International,T.Y. Lin International,Timothy,S,"Kelley",,,,,"1130 Bridgton Road",,Westbrook,ME,04092,,M,TRUE,FALSE,TRUE
+007747961,,T.Y. Lin International,T.Y. Lin International,Christopher,P,"Taylor",,,,,"50 Desert Rd.",,Freeport,ME,04032,,M,TRUE,FALSE,TRUE
+152844347,,T.Y. Lin International,T.Y. Lin International,Santiago,,"Rodriguez",,,,,"7410 Galanis Dr.",,Annandale,VA,22003,,M,TRUE,FALSE,TRUE
+173526856,,T.Y. Lin International,T.Y. Lin International,John,W,"Grove",,,,,"4811 W. Braddock Rd.",#201,Alexandria,VA,22311,,M,TRUE,FALSE,TRUE
+332568558,,T.Y. Lin International,T.Y. Lin International,Bruce,R,"Bushnell",,,,,"17801 Westbridge Rd",,Tinley Park,IL,60487,,M,TRUE,FALSE,TRUE
+324548434,,T.Y. Lin International,T.Y. Lin International,Douglas,M,"Jakalski",,,,,"343 Wentworth Lane",,Bartlett,IL,60103,,M,TRUE,FALSE,TRUE
+346762998,,T.Y. Lin International,T.Y. Lin International,Spiros,,"Pantazis",,,,,"515 Briarwood Lane",,Elk Grove Village,IL,60007,,M,TRUE,FALSE,TRUE
+410960672,,T.Y. Lin International,T.Y. Lin International,Daniel,N,"Heller",,,,,"20595 S. 187th Way",,Queen Crk,AZ,85142,,M,TRUE,FALSE,TRUE
+324529989,,T.Y. Lin International,T.Y. Lin International,Joel,P,"Marhoul",,,,,"200 Blackhawk Rd",,Riverside,IL,60546,,M,TRUE,FALSE,TRUE
+358668435,,T.Y. Lin International,T.Y. Lin International,Ronnie,J,"Crawford",,,,,"1825 West 107th Place",,Chicago,IL,60643,,M,TRUE,FALSE,TRUE
+553498474,,T.Y. Lin International,T.Y. Lin International,Anthony,J,"Macias",,,,,"5535 West Carol Ave",,Glendale,AZ,85302,,M,TRUE,FALSE,TRUE
+330589625,,T.Y. Lin International,T.Y. Lin International,Joyce,A,"Barnes",,,,,"10843 S. Hermosa",,Chicago,IL,60643,,F,TRUE,FALSE,TRUE
+515783100,,T.Y. Lin International,T.Y. Lin International,Mark,P,"Gormely",,,,,"614 N STONE AVE",,LA GRANGE PARK,IL,60526,,M,TRUE,FALSE,TRUE
+601213551,,T.Y. Lin International,T.Y. Lin International,Kooi-lim,,"Hoe",,,,,"3716 E Donald Dr",,Phoenix,AZ,85050,,M,TRUE,FALSE,TRUE
+382701282,,T.Y. Lin International,T.Y. Lin International,William,M,"Ashley",,,,,"5170 Finlandia Way",,Carmichael,CA,95608,,M,TRUE,FALSE,TRUE
+559894105,,T.Y. Lin International,T.Y. Lin International,Oscar,M,"Colcol",,,,,"986 Merced River Rd",,Chula Vista,CA,91913,,M,TRUE,FALSE,TRUE
+547394579,,T.Y. Lin International,T.Y. Lin International,James,L,"Rucker",,,,,"4357 Vetter Place",,La Mesa,CA,91942,,M,TRUE,FALSE,TRUE
+545278029,,T.Y. Lin International,T.Y. Lin International,Constance,L,"McKibben",,,,,"38 Interurban Drive",,Cumberland,ME,04021,,F,TRUE,FALSE,TRUE
+601185004,,T.Y. Lin International,T.Y. Lin International,Wade,T,"Durant",,,,,"3706 Orion Drive",,La Mesa,CA,91941,,M,TRUE,FALSE,TRUE
+463535395,,T.Y. Lin International,T.Y. Lin International,Roya,,"Golchoobian",,,,,"2999 Racetrack View",Dr.,Del Mar,CA,92014,,F,TRUE,FALSE,TRUE
+526717913,,T.Y. Lin International,T.Y. Lin International,Cathy,D,"Salas",,,,,"1121 Vista Grande Rd",,El Cajon,CA,92019,,F,TRUE,FALSE,TRUE
+569793780,,T.Y. Lin International,T.Y. Lin International,Brett,D,"Makley",,,,,"2116 McDonough Lane",,San Diego,CA,92106,,M,TRUE,FALSE,TRUE
+373706621,,T.Y. Lin International,T.Y. Lin International,Norman,R,"Smit",,,,,"3814 Giles Road Ne",,Olympia,WA,98506,,M,TRUE,FALSE,TRUE
+537763044,,T.Y. Lin International,T.Y. Lin International,Jeff,J,"Schiewe",,,,,"PO BOX 566",,TENINO,WA,985890566,,M,TRUE,FALSE,TRUE
+524623594,,T.Y. Lin International,T.Y. Lin International,David,M,"Griffith",,,,,"10450 Lavender Ct",,Rancho Cucamonga,CA,91737,,M,TRUE,FALSE,TRUE
+104446822,,T.Y. Lin International,T.Y. Lin International,Man-Chung,,"Tang",,,,,"4310 Kissena Blvd.",Apt. 14H,Flushing,NY,11355,,M,TRUE,FALSE,TRUE
+558754225,,T.Y. Lin International,T.Y. Lin International,Zun Min,,"Huang",,,,,"11 Lydia Ave.",,San Francisco,CA,94124,,M,TRUE,FALSE,TRUE
+607229303,,T.Y. Lin International,T.Y. Lin International,Carol,,"Choi",,,,,"4080 Oroville Ct",,Fremont,CA,94555,,F,TRUE,FALSE,TRUE
+577111940,,T.Y. Lin International,T.Y. Lin International,Zahra-El-Hayat,,"Tazir",,,,,"1750 Franklin St",Apt 5,San Francisco,CA,94109,,F,TRUE,FALSE,TRUE
+572705468,,T.Y. Lin International,T.Y. Lin International,Glendon,G,"Toy",,,,,"184 Overlook Terrace",,Hercules,CA,94547,,M,TRUE,FALSE,TRUE
+568896236,,T.Y. Lin International,T.Y. Lin International,Maribel,J,"Castillo",,,,,"87 Coleridge Street",,San Francisco,CA,94110,,F,TRUE,FALSE,TRUE
+561752031,,T.Y. Lin International,T.Y. Lin International,Pamela,S,"Ching",,,,,"304 Newman Road",,Okemos,MI,48864,,F,TRUE,FALSE,TRUE
+558894476,,T.Y. Lin International,T.Y. Lin International,Norman,T,"Quach",,,,,"1001 Harvey Drive Apt 239",,Walnut Creek,CA,94597,,M,TRUE,FALSE,TRUE
+555834846,,T.Y. Lin International,T.Y. Lin International,Hanh,T,"Tran",,,,,"4431 Gem Avenue",,Castro Valley,CA,94546,,F,TRUE,FALSE,TRUE
+363909871,,T.Y. Lin International,T.Y. Lin International,Shen Fu,,"Cheng",,,,,"8642 Wood Duck Way,",,Blaine,WA,98230,,M,TRUE,FALSE,TRUE
+571973677,,T.Y. Lin International,T.Y. Lin International,Timothy,B,"Hwung",,,,,"1986 Channing Ave",,Palo Alto,CA,94303,,M,TRUE,FALSE,TRUE
+168667636,,T.Y. Lin International,T.Y. Lin International,Carlos,,"Zuritz",,,,,"4605 SW 1ST",,Miami,FL,33134,,M,TRUE,FALSE,TRUE
+377256847,,T.Y. Lin International,T.Y. Lin International,Jun,,"Wu",,,,,"1309 Avoset Ter",,Sunnyvale,CA,94087,,M,TRUE,FALSE,TRUE
+626732314,,T.Y. Lin International,T.Y. Lin International,Praveen,,"Purushothaman",,,,,"3180 Vittoria Loop",,Dublin,CA,94568,,M,TRUE,FALSE,TRUE
+356541615,,T.Y. Lin International,T.Y. Lin International,Jessica,,"Lam",,,,,"7550 Balmoral Way",,San Ramon,CA,94582,,F,TRUE,FALSE,TRUE
+623080608,,T.Y. Lin International,T.Y. Lin International,Apollo,C,"Rivera",,,,,"2508 Johns Way",,Antioch,CA,94531,,M,TRUE,FALSE,TRUE
+115404584,,T.Y. Lin International,T.Y. Lin International,George,S,"Baker",,,,,"5 Admiral Drive",#F405,Emeryville,CA,94608,,M,TRUE,FALSE,TRUE
+592543253,,T.Y. Lin International,T.Y. Lin International,Francisco,J,"Alonso",,,,,"12850 N. Calusa Club Drive",,Miami,FL,33186,,M,TRUE,FALSE,TRUE
+158564352,,T.Y. Lin International,T.Y. Lin International,Adolfo,O,"Canal",,,,,"12103 Sw 107th Court",,Miami,FL,33176,,M,TRUE,FALSE,TRUE
+525136383,,T.Y. Lin International,T.Y. Lin International,Darryl,K,"Dansby",,,,,"5470 Nw 88th Ave",Bldg F Apt#204,Lauderhill,FL,333514884,,M,TRUE,FALSE,TRUE
+594994489,,T.Y. Lin International,T.Y. Lin International,Hector,F,"Garcia",,,,,"423 Lakeview Dr Unit 206",,Weston,FL,33326,,M,TRUE,FALSE,TRUE
+557554879,,T.Y. Lin International,T.Y. Lin International,Colin,P,"Henderson",,,,,"8020 Sw 163rd Street",,Miami,FL,33157,,M,TRUE,FALSE,TRUE
+026489702,,T.Y. Lin International,T.Y. Lin International,Christopher,L,"Kruger",,,,,"2877 Linda Dr.",,DeLand,FL,32720,,M,TRUE,FALSE,TRUE
+335464453,,T.Y. Lin International,T.Y. Lin International,Michael,K,"Miller",,,,,"2111 Nova Village Drive",,Davie,FL,33317,,M,TRUE,FALSE,TRUE
+478823814,,T.Y. Lin International,T.Y. Lin International,Brent,L,"Molendyk",,,,,"5518 Bohlander Ave",,Berkeley,IL,60163,,M,TRUE,FALSE,TRUE
+589226998,,T.Y. Lin International,T.Y. Lin International,Jose,M,"Nessi",,,,,"16313 SW 44th Street",,Miami,FL,33185,,M,TRUE,FALSE,TRUE
+024640377,,T.Y. Lin International,T.Y. Lin International,Juan,M,"Nunez",,,,,"484 NE 50th Terrace",,Miami,FL,33137,,M,TRUE,FALSE,TRUE
+592291609,,T.Y. Lin International,T.Y. Lin International,James,R,"Rosales",,,,,"4293 Sw 148 Ave",,Miami,FL,33185,,M,TRUE,FALSE,TRUE
+266535352,,T.Y. Lin International,T.Y. Lin International,Enrique,,"Sosa",,,,,"3931 SW 2 Terrace",,Miami,FL,33134,,M,TRUE,FALSE,TRUE
+050664155,,T.Y. Lin International,T.Y. Lin International,Ricardo,,"Tavares",,,,,"251 Valencia Ave. - No. 5218",,Coral Gables,FL,33134,,M,TRUE,FALSE,TRUE
+592556983,,T.Y. Lin International,T.Y. Lin International,Mehmet,Y,"Ulutas",,,,,"8811 W 34th Ct",,Hialeah,FL,33018,,M,TRUE,FALSE,TRUE
+590055366,,T.Y. Lin International,T.Y. Lin International,Rodrick,N,"Tavares",,,,,"125 Ne 129th Street",,North Miami,FL,33161,,M,TRUE,FALSE,TRUE
+371239931,,T.Y. Lin International,T.Y. Lin International,Ahmad,A,"Hammoud",,,,,"12757 SW 117th Street",,Miami,FL,33186,,M,TRUE,FALSE,TRUE
+599109926,,T.Y. Lin International,T.Y. Lin International,Jose,A,"Anadon Vazquez",,,,,"770 NE 69th Street",Unit 2C,Miami,FL,33138,,M,TRUE,FALSE,TRUE
+213174379,,T.Y. Lin International,T.Y. Lin International,Jose,,"Martinez",,,,,"250 Old Ivy",,Fayetteville,GA,30215,,M,TRUE,FALSE,TRUE
+189462526,,T.Y. Lin International,T.Y. Lin International,Richard,A,"Waters",,,,,"10180 W Bay Harbor Drive",Apt. 6B,Bay Harbor Islands,FL,33154,,M,TRUE,FALSE,TRUE
+214781356,,T.Y. Lin International,T.Y. Lin International,Elisa,,"Dimitropoulos",,,,,"10180 W BAY HARBOR DR",APT 6B,BAY HARBOR ISLANDS,FL,33154,,F,TRUE,FALSE,TRUE
+261655986,,T.Y. Lin International,T.Y. Lin International,Jenny,K,"Alonso",,,,,"8500 SW 133 Avenue Road",Apt. 424,Miami,FL,33183,,F,TRUE,FALSE,TRUE
+591881029,,T.Y. Lin International,T.Y. Lin International,Roberto,H,"Bustamante",,,,,"133 SW 3rd Street",,Pompano Beach,FL,33060,,M,TRUE,FALSE,TRUE
+593996015,,T.Y. Lin International,T.Y. Lin International,Daniel,,"Diaz",,,,,"15213 sw 24th st",,Miami,FL,33185,,M,TRUE,FALSE,TRUE
+321683791,,T.Y. Lin International,T.Y. Lin International,Deandre,,"Bell",,,,,"7994 Red Mahogany Road",,Boynton Beach,FL,33437,,M,TRUE,FALSE,TRUE
+262983503,,T.Y. Lin International,T.Y. Lin International,Maximo,A,"Fajardo",,,,,"7781 Sw 94 Terrace",,Miami,FL,33156,,M,TRUE,FALSE,TRUE
+546083299,,T.Y. Lin International,T.Y. Lin International,Stacey,M,"Mello",,,,,"1517 Tamarisk Lane",,Tracy,CA,95377,,F,TRUE,FALSE,TRUE
+570356028,,T.Y. Lin International,T.Y. Lin International,Allan,R,"Morris",,,,,"870 St. Mary Avenue",,San Leandro,CA,94577,,M,TRUE,FALSE,TRUE
+413938953,,T.Y. Lin International,T.Y. Lin International,Snehalatha,,"Pavuluri",,,,,"517 Deldrin Court",,San Ramon,CA,94582,,F,TRUE,FALSE,TRUE
+006740777,,T.Y. Lin International,T.Y. Lin International,Jennifer,L,"Wakeman",,,,,"11 Newell Brook Rd",,Durham,ME,04222,,F,TRUE,FALSE,TRUE
+004744325,,T.Y. Lin International,T.Y. Lin International,Phillip,E,"McClure",,,,,"3 Wilton Lane",,Cape Elizabeth,ME,04107,,M,TRUE,FALSE,TRUE
+006382936,,T.Y. Lin International,T.Y. Lin International,Deryle,E,"Sponberg",,,,,"26 Berce St",P.o. Box 293,Washburn,ME,04786,,M,TRUE,FALSE,TRUE
+229888156,,T.Y. Lin International,T.Y. Lin International,John,W,"Ware",,,,,"12805 Frontier Ln",,Woodbridge,VA,22192,,M,TRUE,FALSE,TRUE
+340624694,,T.Y. Lin International,T.Y. Lin International,Daniel,W,"Anderson",,,,,"344 N Larch Avenue",,Elmhurst,IL,60126,,M,TRUE,FALSE,TRUE
+526824551,,T.Y. Lin International,T.Y. Lin International,James,R,"Pyne",,,,,"3321 W. Drake St",,Chandler,AZ,85226,,M,TRUE,FALSE,TRUE
+330820997,,T.Y. Lin International,T.Y. Lin International,Anabel,,"Colindres",,,,,"2714 S. Homan",,Chicago,IL,60623,,F,TRUE,FALSE,TRUE
+340664271,,T.Y. Lin International,T.Y. Lin International,Lawrence,W,"Mestan",,,,,"321 Hazelwood Drive",,Naperville,IL,60540,,M,TRUE,FALSE,TRUE
+296542947,,T.Y. Lin International,T.Y. Lin International,Phillip,D,"Frey",,,,,"644 Knollwood Dr",,Cary,IL,60013,,M,TRUE,FALSE,TRUE
+308941658,,T.Y. Lin International,T.Y. Lin International,Jeffery,D,"Fine",,,,,"145 Grace Avenue",,Elmhurst,IL,60126,,M,TRUE,FALSE,TRUE
+601727939,,T.Y. Lin International,T.Y. Lin International,Joseph,D,"Heller",,,,,"500 N. Ash Dr.",,Chandler,AZ,85224,,M,TRUE,FALSE,TRUE
+225138418,,T.Y. Lin International,T.Y. Lin International,David,R,"Reynolds",,,,,"1509 SE 20th Ave",,Cape Coral,FL,33990,,M,TRUE,FALSE,TRUE
+600386825,,T.Y. Lin International,T.Y. Lin International,Brandi,L,"Barr",,,,,"32621 N. 57th Street",,Cave Creek,AZ,85331,,F,TRUE,FALSE,TRUE
+526838787,,T.Y. Lin International,T.Y. Lin International,James,A,"Barr",,,,,"32621 N. 57th Street",,Cave Creek,AZ,85331,,M,TRUE,FALSE,TRUE
+601933299,,T.Y. Lin International,T.Y. Lin International,Carlos,,"Sanchez Soria",,,,,"12085 N. 109th Way",,Scottsdale,AZ,85259,,M,TRUE,FALSE,TRUE
+320743270,,T.Y. Lin International,T.Y. Lin International,Rebecca,L,"Dahlstrom",,,,,"406 W. Clarendon",,Prospect Heights,IL,60070,,F,TRUE,FALSE,TRUE
+359722983,,T.Y. Lin International,T.Y. Lin International,Daniel,B,"Drew",,,,,"2111 Keeney St",,Evanston,IL,60202,,M,TRUE,FALSE,TRUE
+554350267,,T.Y. Lin International,T.Y. Lin International,Dennis,,"Ray",,,,,"8173 W. Adam Ave",,Peoria,AZ,85382,,M,TRUE,FALSE,TRUE
+526633794,,T.Y. Lin International,T.Y. Lin International,Lloyd,A,"Vick",,,,,"1204 E. Divot Dr",,Tempe,AZ,85283,,M,TRUE,FALSE,TRUE
+560414926,,T.Y. Lin International,T.Y. Lin International,Enrique,,"Hidalgo",,,,,"7511 Summerwind Way",,Sacramento,CA,95831,,M,TRUE,FALSE,TRUE
+559578934,,T.Y. Lin International,T.Y. Lin International,Brian,R,"Rochelle",,,,,"16733 Prairie Fawn Court",,San Diego,CA,92127,,M,TRUE,FALSE,TRUE
+455231719,,T.Y. Lin International,T.Y. Lin International,Peter,B,"Smith",,,,,"3136 West Canyon Ave",,San Diego,CA,92123,,M,TRUE,FALSE,TRUE
+558638480,,T.Y. Lin International,T.Y. Lin International,Jeremy,J,"Lahaye",,,,,"7929 Windsor Dr.",,La Mesa,CA,91941,,M,TRUE,FALSE,TRUE
+552579194,,T.Y. Lin International,T.Y. Lin International,Daniel,J,"Fitzwilliam",,,,,"14867 Chesfield Ct",,San Diego,CA,92127,,M,TRUE,FALSE,TRUE
+605059433,,T.Y. Lin International,T.Y. Lin International,Pieter,G,"Goedhart",,,,,"3812 Morales Way",,Corona,CA,92883,,M,TRUE,FALSE,TRUE
+552757203,,T.Y. Lin International,T.Y. Lin International,Isaac,A,"O'Neill",,,,,"8688 Grant Line Rd.",,Elk Grove,CA,95624,,M,TRUE,FALSE,TRUE
+555734213,,T.Y. Lin International,T.Y. Lin International,Toni,L,"Waller",,,,,"3970 Arrowhead St",,West Sacramento,CA,95691,,F,TRUE,FALSE,TRUE
+520214164,,T.Y. Lin International,T.Y. Lin International,Yihong,,"Wang",,,,,"9306 Galvin Ave",,San Diego,CA,92126,,F,TRUE,FALSE,TRUE
+618287744,,T.Y. Lin International,T.Y. Lin International,Mark,R,"Philipps",,,,,"2978 Lily Pl.",,West Sacramento,CA,95691,,M,TRUE,FALSE,TRUE
+625050399,,T.Y. Lin International,T.Y. Lin International,Alfred,N,"Shamble",,,,,"500 Monterey Ave",Unit A,Los Gatos,CA,95030,,M,TRUE,FALSE,TRUE
+263296338,,T.Y. Lin International,T.Y. Lin International,Fitzrandolph,C,"Fernon",,,,,"2457 Capitan Ave",,San Diego,CA,921045410,,M,TRUE,FALSE,TRUE
+535907786,,T.Y. Lin International,T.Y. Lin International,Brian,R,"Tetzlaff",,,,,"749 Summit Lake Shore Rd NW",,Olympia,WA,98502,,M,TRUE,FALSE,TRUE
+525633100,,T.Y. Lin International,T.Y. Lin International,Kimberly,T,"Yazzie",,,,,"1703 Sulky Dr. SE",#A,Lacey,WA,98503,,F,TRUE,FALSE,TRUE
+381983137,,T.Y. Lin International,T.Y. Lin International,Joshua,M,"VandenBerg",,,,,"520 104th Lane SE",,Olympia,WA,98501,,M,TRUE,FALSE,TRUE
+558498984,,T.Y. Lin International,T.Y. Lin International,John,W,"Kooistra",,,,,"4912 Textrum St. SE",,Salem,OR,97302,,M,TRUE,FALSE,TRUE
+469041064,,T.Y. Lin International,T.Y. Lin International,Kevin,,"Almer",,,,,"1552 Diamond Rd",,Lacey,WA,98503,,M,TRUE,FALSE,TRUE
+408473455,,T.Y. Lin International,T.Y. Lin International,Jeremy,M,"Ryding",,,,,"1642 Derby Lane SE",,Olympia,WA,98501,,M,TRUE,FALSE,TRUE
+436571814,,T.Y. Lin International,T.Y. Lin International,Boon,K,"Chong",,,,,"5038 Devon Park Drive",,Tampa,FL,33647,,M,TRUE,FALSE,TRUE
+374700261,,T.Y. Lin International,T.Y. Lin International,James,W,"Molnar",,,,,"6888 Hartland St.",,Fort Myers,FL,33966,,M,TRUE,FALSE,TRUE
+584712265,,T.Y. Lin International,T.Y. Lin International,Ramfis,,"Morales",,,,,"10635 Sparrow Landing Way",,Orlando,FL,32832,,M,TRUE,FALSE,TRUE
+592097569,,T.Y. Lin International,T.Y. Lin International,Richard,W,"White",,,,,"110 Pinebrook Dr",,Ft Myers,FL,33907,,M,TRUE,FALSE,TRUE
+175523974,,T.Y. Lin International,T.Y. Lin International,Jeffrey,M,"McCloskey",,,,,"777 N. Ashley Drive",Unit 1309,Tampa,FL,33602,,M,TRUE,FALSE,TRUE
+103768577,,T.Y. Lin International,T.Y. Lin International,Brian,J,"Werner",,,,,"1249 SE 8th St",APT 4,Cape Coral,FL,33990,,M,TRUE,FALSE,TRUE
+607176627,,T.Y. Lin International,T.Y. Lin International,Antonio,,"Luo",,,,,"1096 Lehigh Valley Cir",,Danville,CA,94526,,M,TRUE,FALSE,TRUE
+525062245,,T.Y. Lin International,T.Y. Lin International,Diane,D,"Dillon",,,,,"1532 Tredegar Drive",,Fort Myers,FL,33919,,F,TRUE,FALSE,TRUE
+595240088,,T.Y. Lin International,T.Y. Lin International,Daniel,F,"Balter",,,,,"14913 Gentilly Place",,Tampa,FL,33624,,M,TRUE,FALSE,TRUE
+124647566,,T.Y. Lin International,T.Y. Lin International,Randy,L,"Bebout",,,,,"158 Erath Drive",,Rochester,NY,14626,,M,TRUE,FALSE,TRUE
+064729751,,T.Y. Lin International,T.Y. Lin International,Jamie,J,"Beck",,,,,"84 Bleacker Road",,Rochester,NY,14609,,M,TRUE,FALSE,TRUE
+052603271,,T.Y. Lin International,T.Y. Lin International,Mark,D,"Bellavia",,,,,"20 Jewelberry Drive",,Webster,NY,14580,,M,TRUE,FALSE,TRUE
+001682738,,T.Y. Lin International,T.Y. Lin International,Christine,A,"Bianchi",,,,,"P.o. Box 223",,York,NY,14592,,F,TRUE,FALSE,TRUE
+054728494,,T.Y. Lin International,T.Y. Lin International,Tara,H,"Boggio",,,,,"35 Gravel Hill Lane",,Honeoye Falls,NY,14472,,F,TRUE,FALSE,TRUE
+128725997,,T.Y. Lin International,T.Y. Lin International,Nathan,E,"Buczek",,,,,"75 South Main St",,Elba,NY,14058,,M,TRUE,FALSE,TRUE
+099508942,,T.Y. Lin International,T.Y. Lin International,James,R,"Burton",,,,,"235 Watson Road",,Fairport,NY,14450,,M,TRUE,FALSE,TRUE
+119485875,,T.Y. Lin International,T.Y. Lin International,Anne,M,"Chiruck",,,,,"32 Whittier Road",,Rochester,NY,14624,,F,TRUE,FALSE,TRUE
+127640272,,T.Y. Lin International,T.Y. Lin International,Brandy,A,"Claar",,,,,"40 Robert Court",,Cheektowaga,NY,14225,,F,TRUE,FALSE,TRUE
+084701835,,T.Y. Lin International,T.Y. Lin International,Aaron,,"DiLapi",,,,,"54 Brentwood Lane",,Fairport,NY,14450,,M,TRUE,FALSE,TRUE
+095643611,,T.Y. Lin International,T.Y. Lin International,Holly,A,"Johnson",,,,,"7 Valley Lane",,Avon,NY,14414,,F,TRUE,FALSE,TRUE
+111423545,,T.Y. Lin International,T.Y. Lin International,Dennis,J,"Kennelly",,,,,"126 Tryon Park",,Rochester,NY,14609,,M,TRUE,FALSE,TRUE
+095547225,,T.Y. Lin International,T.Y. Lin International,Richard,P,"Kosciolek",,,,,"2592 Pratt Road",,Pembroke,NY,14020,,M,TRUE,FALSE,TRUE
+159440457,,T.Y. Lin International,T.Y. Lin International,James,R,"Krapf",,,,,"30 Saddle Brook",,Pittsford,NY,14534,,M,TRUE,FALSE,TRUE
+418081150,,T.Y. Lin International,T.Y. Lin International,Xavier,D,"Major",,,,,"12 Bradfield Street",,Rochester,NY,14611,,M,TRUE,FALSE,TRUE
+099680763,,T.Y. Lin International,T.Y. Lin International,Steven,M,"Marsceill",,,,,"5117 North Byron Road",,Elba,NY,14058,,M,TRUE,FALSE,TRUE
+051561356,,T.Y. Lin International,T.Y. Lin International,Michael,D,"Martello",,,,,"16 Bradgate Park",,West Henrietta,NY,14586,,M,TRUE,FALSE,TRUE
+056607049,,T.Y. Lin International,T.Y. Lin International,Michael,,"Melino",,,,,"6866 Maple Ave",,Sodus,NY,14551,,M,TRUE,FALSE,TRUE
+113768362,,T.Y. Lin International,T.Y. Lin International,Kaley,M,"Ostanek",,,,,"110 Cliffordale Park",,Rochester,NY,14609,,F,TRUE,FALSE,TRUE
+050586145,,T.Y. Lin International,T.Y. Lin International,Louis,C,"Petix",,,,,"7465 Eddy Road",,Bloomfield,NY,14469,,M,TRUE,FALSE,TRUE
+132643615,,T.Y. Lin International,T.Y. Lin International,Nicholas,,"Presciutti",,,,,"92 Carrie Marie Lane",,Hilton,NY,14468,,M,TRUE,FALSE,TRUE
+128505370,,T.Y. Lin International,T.Y. Lin International,Robert,J,"Radley",,,,,"23 Allanview Drive",,Batavia,NY,14020,,M,TRUE,FALSE,TRUE
+096764812,,T.Y. Lin International,T.Y. Lin International,Jerry,S,"Scheirer",,,,,"18 Boulevard Parkway",,Rochester,NY,14612,,M,TRUE,FALSE,TRUE
+096548681,,T.Y. Lin International,T.Y. Lin International,Andrea,L,"Seifert",,,,,"4833 Jones Lane",,Avon,NY,14414,,F,TRUE,FALSE,TRUE
+080680940,,T.Y. Lin International,T.Y. Lin International,Amanda,M,"Turpyn",,,,,"165 Webster Road",,Spencerport,NY,14559,,F,TRUE,FALSE,TRUE
+106687194,,T.Y. Lin International,T.Y. Lin International,Patrick,M,"White",,,,,"2300 Fort Hill Road",,Phelps,NY,14532,,M,TRUE,FALSE,TRUE
+083685161,,T.Y. Lin International,T.Y. Lin International,Andrew,P,"Gartley",,,,,"79 Lettington Ave",,Rochester,NY,14624,,M,TRUE,FALSE,TRUE
+129623938,,T.Y. Lin International,T.Y. Lin International,Christopher,M,"Sargeant",,,,,"3868 Cornell St",,Hamburg,NY,14075,,M,TRUE,FALSE,TRUE
+073621231,,T.Y. Lin International,T.Y. Lin International,James,A,"Schillaci",,,,,"13701 Shadowglade Place",,Manor,TX,78653,,M,TRUE,FALSE,TRUE
+110385570,,T.Y. Lin International,T.Y. Lin International,William,S,"Copp",,,,,"37 Roselawn Ave",,Fairport,NY,14450,,M,TRUE,FALSE,TRUE
+568271189,,T.Y. Lin International,T.Y. Lin International,Archie,N,"Stone",,,,,"3604 Chaps Ranch Ave",,North Las Vegas,NV,89031,,M,TRUE,FALSE,TRUE
+261652265,,T.Y. Lin International,T.Y. Lin International,Kenneth,F,"Ulrich",,,,,"3364 Austin St.",,Sarasota,FL,34231,,M,TRUE,FALSE,TRUE
+121663744,,T.Y. Lin International,T.Y. Lin International,Jeffrey,,"Buzzard",,,,,"3616 Ontario Center Rd.",,Walworth,NY,14568,,M,TRUE,FALSE,TRUE
+594054334,,T.Y. Lin International,T.Y. Lin International,Atiq,,"Alvi",,,,,"6218 Bridleford Dr.",,Wesley Chapel,FL,33545,,M,TRUE,FALSE,TRUE
+021624468,,T.Y. Lin International,T.Y. Lin International,Joseph,S,"Smith",,,,,"3394 29th St.",,San Diego,CA,92104,,M,TRUE,FALSE,TRUE
+157825078,,T.Y. Lin International,T.Y. Lin International,Natalie,R,"Rigby",,,,,"1040 Stanton Lebanon Road",,Lebanon,NJ,08833,,F,TRUE,FALSE,TRUE
+095584078,,T.Y. Lin International,T.Y. Lin International,Sicto,I,"Bracero",,,,,"1017 South 8th. St.",,Allentown,PA,18103,,M,TRUE,FALSE,TRUE
+138086306,,T.Y. Lin International,T.Y. Lin International,Sandeep,R,"Singh",,,,,"75 Winding Hill Driv",,Hackettstown,NJ,07840,,M,TRUE,FALSE,TRUE
+149159951,,T.Y. Lin International,T.Y. Lin International,Hetal,S,"Panchal",,,,,"190 Winding Hills Drive",,Hackettstown,NJ,07840,,F,TRUE,FALSE,TRUE
+158803963,,T.Y. Lin International,T.Y. Lin International,Kevin,R,"Carroll",,,,,"29 Ann Road",,Long Valley,NJ,07853,,M,TRUE,FALSE,TRUE
+146067924,,T.Y. Lin International,T.Y. Lin International,Samuel,,"Charles",,,,,"530 Sweetland Avenue",,Hillside,NJ,07205,,M,TRUE,FALSE,TRUE
+155727248,,T.Y. Lin International,T.Y. Lin International,Kenneth,A,"Rozansky",,,,,"215 Navesink Avenue",,Atlantic Highlands,NJ,07716,,M,TRUE,FALSE,TRUE
+729016665,,T.Y. Lin International,T.Y. Lin International,Dina,K,"Kasawdish",,,,,"1821 Sonett St",,El Cajon,CA,92019,,F,TRUE,FALSE,TRUE
+262929570,,T.Y. Lin International,T.Y. Lin International,Joseph,,"Yesbeck",,,,,"7441 SW 15th St.",,Plantation,FL,33317,,M,TRUE,FALSE,TRUE
+147239702,,T.Y. Lin International,T.Y. Lin International,Bharatkumar,P,"Gadara",,,,,"338 Halsey Road",,Parsippany,NJ,07054,,M,TRUE,FALSE,TRUE
+605341062,,T.Y. Lin International,T.Y. Lin International,Sierra,L,"McKeever",,,,,"1635 coolidge st.",,San Diego,CA,92111,,F,TRUE,FALSE,TRUE
+562519655,,T.Y. Lin International,T.Y. Lin International,George,J,"Holombo",,,,,"2249 Tokalon Street",,San Diego,CA,92110,,M,TRUE,FALSE,TRUE
+130706523,,T.Y. Lin International,T.Y. Lin International,Laura-Anne,,"Hill",,,,,"5 Gordon Lane",,Blairstown,NJ,07825,,F,TRUE,FALSE,TRUE
+113961864,,T.Y. Lin International,T.Y. Lin International,Aswathram,,"Balasubramanian",,,,,"10354 Hampshire Green Avenue",,Fairfax,VA,22032,,M,TRUE,FALSE,TRUE
+180486601,,T.Y. Lin International,T.Y. Lin International,Todd,A,"Koons",,,,,"976 Grosvenor Pl.",,Oakland,CA,94610,,M,TRUE,FALSE,TRUE
+316965076,,T.Y. Lin International,T.Y. Lin International,Bethany,G,"Dawa",,,,,"9651 West Canyon Terrace, #5",,San Diego,CA,92123,,F,TRUE,FALSE,TRUE
+085704379,,T.Y. Lin International,T.Y. Lin International,Andrew,,"Collini",,,,,"316 Chadlee Drive",,Brockport,NY,14420,,M,TRUE,FALSE,TRUE
+257514958,,T.Y. Lin International,T.Y. Lin International,Emir,M,"Modarres",,,,,"12724 Stanwyck Cir",,Tampa,FL,33626,,M,TRUE,FALSE,TRUE
+248233524,,T.Y. Lin International,T.Y. Lin International,John,M,"Young",,,,,"39 Havens Street",,San Francisco,CA,94133,,M,TRUE,FALSE,TRUE
+545895524,,T.Y. Lin International,T.Y. Lin International,Jamie,P,"Layco",,,,,"3153 Middleton Street",,Oakland,CA,94605,,F,TRUE,FALSE,TRUE
+148783168,,T.Y. Lin International,T.Y. Lin International,Brian,E,"Salfelder",,,,,"176 West Shore Trail",,Sparta,NJ,07871,,M,TRUE,FALSE,TRUE
+602283109,,T.Y. Lin International,T.Y. Lin International,Crystal,C,"Lui",,,,,"2301 valleywood Dr",,San Bruno,CA,94066,,F,TRUE,FALSE,TRUE
+247678292,,T.Y. Lin International,T.Y. Lin International,Ashley,G,"Montgomery",,,,,"3325 W 157th Street",,Overland Park,KS,66224,,F,TRUE,FALSE,TRUE
+098787001,,T.Y. Lin International,T.Y. Lin International,Kyle,W,"Lombardo",,,,,"18 Boulevard pkwy",,Rochester,NY,14612,,M,TRUE,FALSE,TRUE
+004808391,,T.Y. Lin International,T.Y. Lin International,Johanna,K,"Hoite",,,,,"1874 Capistrano Ave.",,Berkeley,CA,94707,,F,TRUE,FALSE,TRUE
+764179811,,T.Y. Lin International,T.Y. Lin International,Gerard,P,"O'Rourke",,,,,"902 Gina Ct SE",,Olympia,WA,98513,,M,TRUE,FALSE,TRUE
+004626592,,T.Y. Lin International,T.Y. Lin International,James,O,"Ferguson",,,,,"4 Edna Lane",,N. Yarmouth,ME,04097,,M,TRUE,FALSE,TRUE
+012609760,,T.Y. Lin International,T.Y. Lin International,Tammie,J,"Crocker",,,,,"26 Bryant Road",,Hebron,ME,04238,,F,TRUE,FALSE,TRUE
+128743949,,T.Y. Lin International,T.Y. Lin International,Thomas,J,"Harding",,,,,"600 STARIN AVE",,BUFFALO,NY,14216,,M,TRUE,FALSE,TRUE
+005862277,,T.Y. Lin International,T.Y. Lin International,Shane,P,"Amoroso",,,,,"64 Mountain View Drive",,Peru,ME,04290,,M,TRUE,FALSE,TRUE
+447969947,,T.Y. Lin International,T.Y. Lin International,Daniel,S,"Myers",,,,,"23 Maturo Drive",,Casco,ME,04015,,M,TRUE,FALSE,TRUE
+594509066,,T.Y. Lin International,T.Y. Lin International,Farzin,,"Zafaranian",,,,,"14645 Canopy Drive",,Tampa,FL,33626,,M,TRUE,FALSE,TRUE
+611984615,,T.Y. Lin International,T.Y. Lin International,King,Y,"Wong",,,,,"35253 Santiago St",,Fremont,CA,94536,,M,TRUE,FALSE,TRUE
+486908760,,T.Y. Lin International,T.Y. Lin International,Ryan,M,"Elwood",,,,,"167 Cedar Bluff Cir. N",,Keizer,OR,97303,,M,TRUE,FALSE,TRUE
+609260911,,T.Y. Lin International,T.Y. Lin International,Cathleen,S,"Ma",,,,,"1117 Montecito Drive",,San Gabriel,CA,91776,,F,TRUE,FALSE,TRUE
+040764221,,T.Y. Lin International,T.Y. Lin International,Catherine,G,"Hovell",,,,,"3110 S DAKOTA ST",,SEATTLE,WA,981081621,,F,TRUE,FALSE,TRUE
+323829440,,T.Y. Lin International,T.Y. Lin International,Justin,M,"Wiater",,,,,"3559 Donovan Dr.",,Crete,IL,60417,,M,TRUE,FALSE,TRUE
+325803716,,T.Y. Lin International,T.Y. Lin International,Daniel,,"Schmit",,,,,"5240 North Sheridan Road",Apt 1106,Chicago,IL,60640,,M,TRUE,FALSE,TRUE
+768220406,,T.Y. Lin International,T.Y. Lin International,Alejandro,,"Salas",,,,,"6500 Sunset Dr",,South Miami,FL,33143,,M,TRUE,FALSE,TRUE
+205461845,,T.Y. Lin International,T.Y. Lin International,John,F,"Buckley",,,,,"44743 Pillar Rock Ct.",,Temecula,CA,92592,,M,TRUE,FALSE,TRUE
+458572217,,T.Y. Lin International,T.Y. Lin International,Veronica,G,"Fennie",,,,,"315 Molimo Drive",,San Francisco,CA,94127,,F,TRUE,FALSE,TRUE
+469069286,,T.Y. Lin International,T.Y. Lin International,Gregory,H,"Kourosh",,,,,"1527 1st St NW",,Washington,DC,20001,,M,TRUE,FALSE,TRUE
+590886367,,T.Y. Lin International,T.Y. Lin International,Adriano,I,"Foti",,,,,"12461 SW 109 Ave",,Miami,FL,33176,,M,TRUE,FALSE,TRUE
+593888598,,T.Y. Lin International,T.Y. Lin International,Nicolas,A,"Cadena",,,,,"3938 Nighthawk Dr.",,Weston,FL,33331,,M,TRUE,FALSE,TRUE
+335023625,,T.Y. Lin International,T.Y. Lin International,Rodrigo,,"Hoyos",,,,,"1201 S. Prairie Ave.",Apt 806,Chicago,IL,60605,,M,TRUE,FALSE,TRUE
+029749009,,T.Y. Lin International,T.Y. Lin International,Lynda,H,"Richards-Stocks",,,,,"98 Colchester Dr.",,South Portland,ME,04106,,F,TRUE,FALSE,TRUE
+561153497,,T.Y. Lin International,T.Y. Lin International,Anthea,M,"Billings",,,,,"183 Countryhaven Road",,Encinitas,CA,92024,,F,TRUE,FALSE,TRUE
+569674638,,T.Y. Lin International,T.Y. Lin International,Robert,T,"Barton",,,,,"6215 Primrose Drive",,La Mesa,CA,91942,,M,TRUE,FALSE,TRUE
+228873310,,T.Y. Lin International,T.Y. Lin International,Dante,,"Lius",,,,,"4925 Collins Ave. 10 B",,Miami,FL,33140,,M,TRUE,FALSE,TRUE
+220589399,,T.Y. Lin International,T.Y. Lin International,Adam,M,"Goldsmith",,,,,"117 Hollybrook Rd.",,Rochester,NY,14623,,M,TRUE,FALSE,TRUE
+658100020,,T.Y. Lin International,T.Y. Lin International,Vikas,U,"Jain",,,,,"9026 Dupont Place",,Wellington,FL,33414,,M,TRUE,FALSE,TRUE
+099507805,,T.Y. Lin International,T.Y. Lin International,Michael,R,"McEntee",,,,,"39 White Birch Circle",,Rochester,NY,14624,,M,TRUE,FALSE,TRUE
+613301432,,T.Y. Lin International,T.Y. Lin International,Robert,C,"Sokolowski",,,,,"7212 Pintail Drive",,Carlsbad,CA,92011,,M,TRUE,FALSE,TRUE
+613720603,,T.Y. Lin International,T.Y. Lin International,Nardin,M,"Metwashla",,,,,"38478 Tranquila Ave",,Murrieta,CA,92563,,F,TRUE,FALSE,TRUE
+005903784,,T.Y. Lin International,T.Y. Lin International,Patrick,J,"Bryant",,,,,"144 Merrill Rd.",,Gray,ME,04039,,M,TRUE,FALSE,TRUE
+565996940,,T.Y. Lin International,T.Y. Lin International,Philip,A,"Brand",,,,,"14771 Laurelwood Street",,Poway,CA,92064,,M,TRUE,FALSE,TRUE
+378608074,,T.Y. Lin International,T.Y. Lin International,James,R,"Currie",,,,,"4209 Collwood Lane",,San Diego,CA,92115,,M,TRUE,FALSE,TRUE
+769909997,,T.Y. Lin International,T.Y. Lin International,Yongyang,,"Tang",,,,,"30482 Ceasar Park Drive",,Wesley Chapel,FL,33543,,M,TRUE,FALSE,TRUE
+007885845,,T.Y. Lin International,T.Y. Lin International,Jack,J,"Blanchard",,,,,"30 River Road",,Windham,ME,04062,,M,TRUE,FALSE,TRUE
+569370154,,T.Y. Lin International,T.Y. Lin International,Stacey,C,"Bracco",,,,,"9075 Christata Way",,Lakeside,CA,92040,,F,TRUE,FALSE,TRUE
+540021728,,T.Y. Lin International,T.Y. Lin International,Reuben,J,"Stone",,,,,"7824 Whelan Dr.",,San Diego,CA,92119,,M,TRUE,FALSE,TRUE
+048629707,,T.Y. Lin International,T.Y. Lin International,Christopher,D,"Wallace",,,,,"7904 Sunkist Drive",,Oakland,CA,94605,,M,TRUE,FALSE,TRUE
+572830229,,T.Y. Lin International,T.Y. Lin International,Fransane,,"Thach",,,,,"330 Athol Ave",#4,Oakland,CA,94606,,M,TRUE,FALSE,TRUE
+616325030,,T.Y. Lin International,T.Y. Lin International,Leonidas,A,"Melgar-Salvador",,,,,"708 Sip Street  APT.4C",,Union City,NJ,07087,,M,TRUE,FALSE,TRUE
+612353148,,T.Y. Lin International,T.Y. Lin International,Kumar,K,"Ghosh",,,,,"8919 Stimson Ct",,San Diego,CA,92129,,M,TRUE,FALSE,TRUE
+561497636,,T.Y. Lin International,T.Y. Lin International,Kristina,G,"Donovan",,,,,"4720 Beech Street",,San Diego,CA,92102,,F,TRUE,FALSE,TRUE
+358781607,,T.Y. Lin International,T.Y. Lin International,Jeffrey,J,"Burdick",,,,,"1464 Pacific Beach Drive",,San Diego,CA,92109,,M,TRUE,FALSE,TRUE
+331845162,,T.Y. Lin International,T.Y. Lin International,Kyle,J,"Schweizer",,,,,"2190 Gill Village Way",#1412,San Diego,CA,92108,,M,TRUE,FALSE,TRUE
+609307761,,T.Y. Lin International,T.Y. Lin International,Hunter,A,"Ruthrauff",,,,,"1851 32nd Street",,San Diego,CA,92102,,M,TRUE,FALSE,TRUE
+591625665,,T.Y. Lin International,T.Y. Lin International,Rodolfo,,"Tobon",,,,,"8625 NW 8th street Apt 424",,Miami,FL,33126,,M,TRUE,FALSE,TRUE
+329603980,,T.Y. Lin International,T.Y. Lin International,James,A,"Eriksen",,,,,"7871 SW 97th St.",,Miami,FL,33156,,M,TRUE,FALSE,TRUE
+593559740,,T.Y. Lin International,T.Y. Lin International,Damion,A,"English",,,,,"2019 Jackson Street",Apt 106,Hollywood,FL,33020,,M,TRUE,FALSE,TRUE
+766261776,,T.Y. Lin International,T.Y. Lin International,Tessi,B,"Ludena",,,,,"7623 SW 129 Pl",,Miami,FL,33183,,F,TRUE,FALSE,TRUE
+592833402,,T.Y. Lin International,T.Y. Lin International,Rosmary,S,"Bohorquez",,,,,"14401 Pedigree Lane",,Southwest Ranches,FL,33330,,F,TRUE,FALSE,TRUE
+601925094,,T.Y. Lin International,T.Y. Lin International,Daniel,P,"Fromm",,,,,"4638 E Mountain Vista Dr",,Phoenix,AZ,85048,,M,TRUE,FALSE,TRUE
+200344180,,T.Y. Lin International,T.Y. Lin International,John,B,"Renton",,,,,"2958 Eagle Estates Circle West",,Clearwater,FL,33761,,M,TRUE,FALSE,TRUE
+429717337,,T.Y. Lin International,T.Y. Lin International,Davis,J,"Mbekelu",,,,,"128 Sunnybrook Dr",,Syracuse,NY,13219,,M,TRUE,FALSE,TRUE
+530572585,,T.Y. Lin International,T.Y. Lin International,Steven,D,"Landolt",,,,,"222 South Helix Ave",Unit 1,Solana Beach,CA,92075,,M,TRUE,FALSE,TRUE
+604626029,,T.Y. Lin International,T.Y. Lin International,Roberto,,"Ruvalcaba",,,,,"1543 Jason Street",,San Diego,CA,92154,,M,TRUE,FALSE,TRUE
+574847550,,T.Y. Lin International,T.Y. Lin International,Alex,,"Herting",,,,,"623 W. Crofton St.",,Chandler,AZ,85225,,M,TRUE,FALSE,TRUE
+547806497,,T.Y. Lin International,T.Y. Lin International,John,M,"Bartholomew",,,,,"4780 Marblehead Bay Drive",,Oceanside,CA,92057,,M,TRUE,FALSE,TRUE
+892816114,,T.Y. Lin International,T.Y. Lin International,Sandra,L,"McCormack",,,,,"14807 Clarendon Dr.",,Tampa,FL,33624,,F,TRUE,FALSE,TRUE
+005867366,,T.Y. Lin International,T.Y. Lin International,Benjamin,L,"Toothaker",,,,,"2 Narragansett St",,Gorham,ME,04038,,M,TRUE,FALSE,TRUE
+221484462,,T.Y. Lin International,T.Y. Lin International,Daniel,W,"Detwiler",,,,,"PO Box 28",,Islamorada,FL,33036,,M,TRUE,FALSE,TRUE
+615445786,,T.Y. Lin International,T.Y. Lin International,Marlene,R,"Ashley",,,,,"2760 Escala Circle",,San Diego,CA,92108,,F,TRUE,FALSE,TRUE
+609321880,,T.Y. Lin International,T.Y. Lin International,Gina,,"Choi",,,,,"460 South Spring Street",Unit 402,Los Angeles,CA,90013,,F,TRUE,FALSE,TRUE
+374986223,,T.Y. Lin International,T.Y. Lin International,Raymond,M,"Fares",,,,,"768 South Stoneman Ave.",Unit C,Alhambra,CA,91801,,M,TRUE,FALSE,TRUE
+590046381,,T.Y. Lin International,T.Y. Lin International,Trung,T,"Nguyen",,,,,"10836 Cypress Trail Dr",,Orlando,FL,32825,,M,TRUE,FALSE,TRUE
+017464870,,T.Y. Lin International,T.Y. Lin International,Lisa,M,"Marzilli",,,,,"403 Broxburn Ave",,Temple Terrace,FL,33617,,F,TRUE,FALSE,TRUE
+084024344,,T.Y. Lin International,T.Y. Lin International,Ivan,,"Nikolskiy",,,,,"2601 24th Avenu, apt. 2a",,Astoria,NY,11102,,M,TRUE,FALSE,TRUE
+084547797,,T.Y. Lin International,T.Y. Lin International,Neil,A,"Porto",,,,,"107 Oakland Ave",,Tuackahoe,NY,10707,,M,TRUE,FALSE,TRUE
+333749819,,T.Y. Lin International,T.Y. Lin International,Steven,J,"Del Favero",,,,,"5329 Oak Grove Drive",,Long Grove,IL,60047,,M,TRUE,FALSE,TRUE
+354508433,,T.Y. Lin International,T.Y. Lin International,Susan,M,"Diaz-Sonnefeldt",,,,,"7041 N. Ozanam Ave",,Chicago,IL,60631,,F,TRUE,FALSE,TRUE
+216640581,,T.Y. Lin International,T.Y. Lin International,James,M,"Kanter",,,,,"20407 SW 54th Place",,Fort Lauderdale,FL,33332,,M,TRUE,FALSE,TRUE
+353401065,,T.Y. Lin International,T.Y. Lin International,Barbara,J,"Weaver",,,,,"1558 Crossbeam Drive",,Casselberry,FL,32707,,F,TRUE,FALSE,TRUE
+151605934,,T.Y. Lin International,T.Y. Lin International,Karen,I,"Chapman",,,,,"1132 La Limonar Road",,North Tustin,CA,92705,,F,TRUE,FALSE,TRUE
+620402029,,T.Y. Lin International,T.Y. Lin International,Ryan,J,"Lau",,,,,"1721 Modoc Street",,Orange,CA,92867,,M,TRUE,FALSE,TRUE
+483080282,,T.Y. Lin International,T.Y. Lin International,Christopher,E,"Milner",,,,,"1509 E Westwind Way",,Tempe,AZ,85283,,M,TRUE,FALSE,TRUE
+626831974,,T.Y. Lin International,T.Y. Lin International,Fady,,"Bou-Shebel",,,,,"501 Waterlily lane",,Redwood City,CA,94065,,M,TRUE,FALSE,TRUE
+495584733,,T.Y. Lin International,T.Y. Lin International,Joe,,"Johnson",,,,,"1747 W. Sumac Lane Apt. 1",,Anaheim,CA,92804,,M,TRUE,FALSE,TRUE
+206823568,,T.Y. Lin International,T.Y. Lin International,Yuan,,"Zhang",,,,,"818 El Paseo Cir",,Walnut Creek,CA,94597,,F,TRUE,FALSE,TRUE
+336866145,,T.Y. Lin International,T.Y. Lin International,Patrick,A,"Lodding",,,,,"3042 W. Diversey Ave.",Apt 2N,Chicago,IL,60647,,M,TRUE,FALSE,TRUE
+154503798,,T.Y. Lin International,T.Y. Lin International,Miriam,L,"Eichler",,,,,"54 Broad Avenue, 4B",,Palisades Park,NJ,07650,,F,TRUE,FALSE,TRUE
+061500345,,T.Y. Lin International,T.Y. Lin International,Mahesh,A,"Shah",,,,,"211 Garfield Street",,Edison,NJ,08820,,M,TRUE,FALSE,TRUE
+334463250,,T.Y. Lin International,T.Y. Lin International,Patricia,R,"Davidson",,,,,"807 W. Lincoln Avenue",,Wheaton,IL,60187,,F,TRUE,FALSE,TRUE
+222706948,,T.Y. Lin International,T.Y. Lin International,Jonathan,,"Stephens",,,,,"11586 Erins Walk",,Bridgeville,DE,19933,,M,TRUE,FALSE,TRUE
+214174380,,T.Y. Lin International,T.Y. Lin International,Ryan,M,"Becraft",,,,,"408 Prestwick Place",,Townsend,DE,19734,,M,TRUE,FALSE,TRUE
+617322455,,T.Y. Lin International,T.Y. Lin International,Stephanie,,"Kaya",,,,,"1301 S. Gladys Ave.",,San Gabriel,CA,91776,,F,TRUE,FALSE,TRUE
+341984524,,T.Y. Lin International,T.Y. Lin International,Mitesh,,"Deshpande",,,,,"3107 Austin St",,Naperville,IL,60564,,M,TRUE,FALSE,TRUE
+548866926,,T.Y. Lin International,T.Y. Lin International,Gregory,,"Campbell",,,,,"1063 Ellen Lane",,El Cajon,CA,92019,,M,TRUE,FALSE,TRUE
+359821257,,T.Y. Lin International,T.Y. Lin International,Kari,D,"Watson",,,,,"1515 S Prairie Ave",Unit 404,Chicago,IL,60605,,F,TRUE,FALSE,TRUE
+518087192,,T.Y. Lin International,T.Y. Lin International,Eric,L,"Johnson",,,,,"76 Summerland Circle",,Aliso Viejo,CA,92656,,M,TRUE,FALSE,TRUE
+519318367,,T.Y. Lin International,T.Y. Lin International,Bradley,J,"Wilton",,,,,"15710 Via Calanova",,San Diego,CA,92128,,M,TRUE,FALSE,TRUE
+574669650,,T.Y. Lin International,T.Y. Lin International,Omar,K,"Gloria",,,,,"2241 E La Salle St",,Phoenix,AZ,85040,,M,TRUE,FALSE,TRUE
+772122296,,T.Y. Lin International,T.Y. Lin International,Ivan,A,"Gualtero",,,,,"1676 Virginia Willow Dr",,Tampa,FL,33544,,M,TRUE,FALSE,TRUE
+474210785,,T.Y. Lin International,T.Y. Lin International,Anna,R,"Tuura",,,,,"7117 E Orange Blossom Ln",,Scottsdale,AZ,85253,,F,TRUE,FALSE,TRUE
+090409079,,T.Y. Lin International,T.Y. Lin International,Charles,,"Lirio",,,,,"100 Elgar Place",Apt 15-B,Bronx,NY,10475,,M,TRUE,FALSE,TRUE
+359961293,,T.Y. Lin International,T.Y. Lin International,Qian,,"Xiong",,,,,"42 Beekman Ave",,Croton on Hudson,NY,10520,,F,TRUE,FALSE,TRUE
+294783589,,T.Y. Lin International,T.Y. Lin International,Matthew,,"Frantz",,,,,"1589 Weather Vane Lane",,Lutz,FL,33558,,M,TRUE,FALSE,TRUE
+850247191,,T.Y. Lin International,T.Y. Lin International,Joel,,"Trejo",,,,,"1311 S. Hickory St.",,Anaheim,CA,92805,,M,TRUE,FALSE,TRUE
+486088639,,T.Y. Lin International,T.Y. Lin International,Shawn,W,"Ficker",,,,,"913 W Sunnyside Ave",Apt 2,Chicago,IL,60640,,M,TRUE,FALSE,TRUE
+520399654,,T.Y. Lin International,T.Y. Lin International,Shahriar,,"Mahmood",,,,,"4452 Wyndcliff Ct.",,Orlando,FL,32817,,M,TRUE,FALSE,TRUE
+616643288,,T.Y. Lin International,T.Y. Lin International,Shawn,K,"Chow",,,,,"16046 Plummer St",,North Hills,CA,91343,,M,TRUE,FALSE,TRUE
+112585219,,T.Y. Lin International,T.Y. Lin International,Felisha,C,"Burns",,,,,"14614 184th Street",,Springfield Gardens,NY,11413,,F,TRUE,FALSE,TRUE
+548954805,,T.Y. Lin International,T.Y. Lin International,Buenaventura,,"Tallud",,,,,"6930 N. Central Ave",,Chicago,IL,60646,,M,TRUE,FALSE,TRUE
+739352796,,T.Y. Lin International,T.Y. Lin International,Yongguan,,"Ouyang",,,,,"3716 E Donald Dr",,Phoenix,AZ,85050,,M,TRUE,FALSE,TRUE
+357849801,,T.Y. Lin International,T.Y. Lin International,Phillip,M,"Prince",,,,,"3959 Alabama St.",Apt 7,San Diego,CA,92014,,M,TRUE,FALSE,TRUE
+566817831,,T.Y. Lin International,T.Y. Lin International,Christina,I,"Diaz",,,,,"507 S Ross Street",,Santa Ana,CA,92701,,F,TRUE,FALSE,TRUE
+573938172,,T.Y. Lin International,T.Y. Lin International,Todd,,"Wilkinson",,,,,"756 S. Broadway #901",,Los Angeles,CA,90014,,M,TRUE,FALSE,TRUE
+318780797,,T.Y. Lin International,T.Y. Lin International,Jamie,J,"Le",,,,,"3819 N. Greenview Avenue",Apt 2S,Chicago,IL,60613,,F,TRUE,FALSE,TRUE
+602500799,,T.Y. Lin International,T.Y. Lin International,Marissa,S,"Thomas",,,,,"3535 Madison Ave",Unit 211,San Diego,CA,92116,,F,TRUE,FALSE,TRUE
+004809657,,T.Y. Lin International,T.Y. Lin International,Brian,,"Malo",,,,,"31 Townsend Road",,Hebron,ME,04238,,M,TRUE,FALSE,TRUE
+586784432,,T.Y. Lin International,T.Y. Lin International,Glenn,,"Yamanaka",,,,,"1581 Dunsmuir Court",,Chula Vista,CA,91913,,M,TRUE,FALSE,TRUE
+583678452,,T.Y. Lin International,T.Y. Lin International,Juan,A,"Avila",,,,,"PO Box 2014",,Goose Creek,SC,29445,,M,TRUE,FALSE,TRUE
+464297248,,T.Y. Lin International,T.Y. Lin International,Dennis,L,"Blaschke",,,,,"1873 Palmetto Isle Dr.",,Mt. Pleasant,SC,29466,,M,TRUE,FALSE,TRUE
+251904116,,T.Y. Lin International,T.Y. Lin International,Kenneth,O,"Bolin",,,,,"1669 Fairway Place Ln",,Mt. Pleasant,SC,29464,,M,TRUE,FALSE,TRUE
+250885911,,T.Y. Lin International,T.Y. Lin International,Charles,M,"Harbin",,,,,"1514 Candlewood Dr.",,Mt. Pleasant,SC,29464,,M,TRUE,FALSE,TRUE
+249339273,,T.Y. Lin International,T.Y. Lin International,John,F,"McKenzie",,,,,"1708 Lotus Ln",,Charleston,SC,29412,,M,TRUE,FALSE,TRUE
+268764697,,T.Y. Lin International,T.Y. Lin International,Emily,C,"Newman-Butler",,,,,"1472 Allen St.",,Mt. Pleasant,SC,29464,,F,TRUE,FALSE,TRUE
+248815437,,T.Y. Lin International,T.Y. Lin International,Ray,M,"Nix",,,,,"367 Muirfield Pkwy",,Charleston,SC,29414,,M,TRUE,FALSE,TRUE
+248770328,,T.Y. Lin International,T.Y. Lin International,Matthew,T,"Perry",,,,,"301 Hickory Street",,Charleston,SC,29407,,M,TRUE,FALSE,TRUE
+250498402,,T.Y. Lin International,T.Y. Lin International,Brendon,D,"Wilson",,,,,"5412 Overland Trl",,N Charleston,SC,29420,,M,TRUE,FALSE,TRUE
+081783955,,T.Y. Lin International,T.Y. Lin International,Taylor,,"Reedhead",,,,,"5450 S Livonia Road",,Conesus,NY,14435,,M,TRUE,FALSE,TRUE
+526271641,,T.Y. Lin International,T.Y. Lin International,James,,"Meredith",,,,,"8138 El Extenso CT",,San Diego,CA,92119,,M,TRUE,FALSE,TRUE
+001728015,,T.Y. Lin International,T.Y. Lin International,Jacqueline,,"Rivers",,,,,"2266 Gill Village Way",Apt 1108,San Diego,CA,92108,,F,TRUE,FALSE,TRUE
+538787736,,T.Y. Lin International,T.Y. Lin International,Douglas,T,"Conyers",,,,,"P.O. Box 12845",,Marina Del Rey,CA,90295,,M,TRUE,FALSE,TRUE
+540888337,,T.Y. Lin International,T.Y. Lin International,James,,"Faber",,,,,"23632 Avenida Topanga",,Mission Viejo,CA,92691,,M,TRUE,FALSE,TRUE
+620848547,,T.Y. Lin International,T.Y. Lin International,Nader,,"Naderi",,,,,"27191 Delemos",,Mission Viejo,CA,92692,,M,TRUE,FALSE,TRUE
+262892223,,T.Y. Lin International,T.Y. Lin International,Lucien,,"Tender",,,,,"8201 Stoner Hills Drive",,Riverview,FL,33569,,M,TRUE,FALSE,TRUE
+573660341,,T.Y. Lin International,T.Y. Lin International,Robert,,"Sergeant",,,,,"3643 Hadley Hill Drive",,Santa Rosa,CA,95404,,M,TRUE,FALSE,TRUE
+359525403,,T.Y. Lin International,T.Y. Lin International,Sharon,,"Tanner",,,,,"525 Wing Park Blvd",,Elgin,IL,60123,,F,TRUE,FALSE,TRUE
+054680823,,T.Y. Lin International,T.Y. Lin International,Daniel,J,"Turner",,,,,"952 Sutter Street",#504,San Francisco,CA,94109,,M,TRUE,FALSE,TRUE
+351884360,,T.Y. Lin International,T.Y. Lin International,Rhyan,,"Crawford",,,,,"1825 West 107th Place",,Chicago,IL,60643,,F,TRUE,FALSE,TRUE
+062760287,,T.Y. Lin International,T.Y. Lin International,Bryant,,"Schram",,,,,"217 Earl Ave",,Syracuse,NY,13211,,M,TRUE,FALSE,TRUE
+621405029,,T.Y. Lin International,T.Y. Lin International,Andrew,W,"Carson",,,,,"5080 Pine St",,La Mesa,CA,91942,,M,TRUE,FALSE,TRUE
+435883490,,T.Y. Lin International,T.Y. Lin International,Mercedes,M,"San German",,,,,"12981 SW 54 St.",,Miami,FL,33175,,F,TRUE,FALSE,TRUE
+266497316,,T.Y. Lin International,T.Y. Lin International,Victor,M,"Borges",,,,,"11525 SW 109 Ave",,Miami,FL,33176,,M,TRUE,FALSE,TRUE
+735758781,,T.Y. Lin International,T.Y. Lin International,Nadim,,"Kawwa",,,,,"2412A Jones",,San Francisco,CA,94133,,M,TRUE,FALSE,TRUE
+287139778,,T.Y. Lin International,T.Y. Lin International,Abir,,"Sengupta",,,,,"110 Alexandria Drive",,Hackettstown,NJ,07840,,M,TRUE,FALSE,TRUE
+079683510,,T.Y. Lin International,T.Y. Lin International,Anthony,,"Sacchetti",,,,,"2072 Holland Way",,Merrick,NY,11566,,M,TRUE,FALSE,TRUE
+575821048,,T.Y. Lin International,T.Y. Lin International,William,,"Harnagel",,,,,"621 Logan Lane",,Danville,CA,94526,,M,TRUE,FALSE,TRUE
+154442941,,T.Y. Lin International,T.Y. Lin International,Mike,,"Widmann",,,,,"13184 Woodmont Street",,Poway,CA,92064,,M,TRUE,FALSE,TRUE
+055723701,,T.Y. Lin International,T.Y. Lin International,Jason,,"Dominguez",,,,,"518 W 148th Street",Apt 2B,New York,NY,10031,,M,TRUE,FALSE,TRUE
+569552411,,T.Y. Lin International,T.Y. Lin International,Homayoon,,"Gerami",,,,,"12236 Prado Way",,San Diego,CA,92128,,M,TRUE,FALSE,TRUE
+379713604,,T.Y. Lin International,T.Y. Lin International,Zekarias,T,"Woldegebriel",,,,,"63 Countryside Apartments",,Hackettstown,NJ,07840,,M,TRUE,FALSE,TRUE
+266270913,,T.Y. Lin International,T.Y. Lin International,Gustavo,,"Sanin",,,,,"1901 brickell ave",B605,Miami,FL,33129,,M,TRUE,FALSE,TRUE
+604882900,,T.Y. Lin International,T.Y. Lin International,Valeria,,"Ceron-Santiago",,,,,"2141 Bluewater Lane",,Chula Vista,CA,91913,,F,TRUE,FALSE,TRUE
+117647755,,T.Y. Lin International,T.Y. Lin International,Marykate,,"DeFazio",,,,,"80 Archwood Ave",,Staten Island,NY,10312,,F,TRUE,FALSE,TRUE
+602414021,,T.Y. Lin International,T.Y. Lin International,Juan,C,"Gray",,,,,"1888 Broadford Drive",,Folsom,CA,95630,,M,TRUE,FALSE,TRUE
+615744736,,T.Y. Lin International,T.Y. Lin International,Shelley,L,"Rodriguez",,,,,"6098 La Canada Circle",,Buena Park,CA,90620,,F,TRUE,FALSE,TRUE
+255886705,,T.Y. Lin International,T.Y. Lin International,Thomas,B,"Barnett",,,,,"2100 Floral Avenue",,Charlotte,NC,28203,,M,TRUE,FALSE,TRUE
+562257931,,T.Y. Lin International,T.Y. Lin International,David,H,"Russell",,,,,"2400 S. Ocean Dr",C416,Fort Pierce,FL,34949,,M,TRUE,FALSE,TRUE
+563996969,,T.Y. Lin International,T.Y. Lin International,Kali,K,"Rice",,,,,"371 Arbor Court",,Benicia,CA,94510,,F,TRUE,FALSE,TRUE
+589709639,,T.Y. Lin International,T.Y. Lin International,Wael,S,"Odeh",,,,,"1649 Beaconsfield Dr.",,Wesley Chapel,FL,33543,,M,TRUE,FALSE,TRUE
+137909849,,T.Y. Lin International,T.Y. Lin International,Kyle,R,"Frederick",,,,,"567 Jersey Ave",Apt 3,Jersey City,NJ,07302,,M,TRUE,FALSE,TRUE
+600133034,,T.Y. Lin International,T.Y. Lin International,Tate,J,"Toledo",,,,,"2826 La Luz Circle NE",,Rio Rancho,NM,87144,,F,TRUE,FALSE,TRUE
+576633932,,T.Y. Lin International,T.Y. Lin International,Alysia,M,"Klein",,,,,"2190 Gill Village Way",Apt #1412,San Diego,CA,92108,,F,TRUE,FALSE,TRUE
+528459745,,T.Y. Lin International,T.Y. Lin International,Maziyar,N,"Goodarzi",,,,,"38 Bryant St.",#403,San Francisco,CA,94105,,M,TRUE,FALSE,TRUE
+103762261,,T.Y. Lin International,T.Y. Lin International,Ashley,M,"Freeman",,,,,"30 Hal Bar Road",,Avon,NY,14414,,F,TRUE,FALSE,TRUE
+551175341,,T.Y. Lin International,T.Y. Lin International,Robert,C,"Fish",,,,,"133 Taunton Way",,Folsom,CA,95630,,M,TRUE,FALSE,TRUE
+608860306,,T.Y. Lin International,T.Y. Lin International,April,C,"del Castillo",,,,,"2038 Avila Place",,Oxnard,CA,93036,,F,TRUE,FALSE,TRUE
+106727450,,T.Y. Lin International,T.Y. Lin International,Richard,J,"Perrin",,,,,"17 Country Corner Lane",,Fairport,NY,14450,,M,TRUE,FALSE,TRUE
+608526284,,T.Y. Lin International,T.Y. Lin International,Omar,L,"Gutierrez",,,,,"2881 Pacific Street",,Concord,CA,94518,,M,TRUE,FALSE,TRUE
+144904204,,T.Y. Lin International,T.Y. Lin International,Ishvarprasad,N,"Panchani",,,,,"45 sapphire lane",,Franklin park,NJ,08823,,M,TRUE,FALSE,TRUE
+116324239,,T.Y. Lin International,T.Y. Lin International,Joseph,J,"Oswald",,,,,"12309 Point View Road",,Bishopville,MD,21813,,M,TRUE,FALSE,TRUE
+617442843,,T.Y. Lin International,T.Y. Lin International,Albert,M,"Lee",,,,,"414 Rhythm",,Irvine,CA,92603,,M,TRUE,FALSE,TRUE
+594905627,,T.Y. Lin International,T.Y. Lin International,Eliecer,A,"Bustamante",,,,,"4391 SW 133 Lane",,Miramar,FL,33027,,M,TRUE,FALSE,TRUE
+368255099,,T.Y. Lin International,T.Y. Lin International,Anel,E,"Melkic",,,,,"2615 Marina Blvd",Apt #18,San Leandro,CA,94577,,M,TRUE,FALSE,TRUE
+222724851,,T.Y. Lin International,T.Y. Lin International,Bryna,A,"Wierzbicki",,,,,"106 Seven Seas Drive",,Havelock,NC,28532,,F,TRUE,FALSE,TRUE
+244319608,,T.Y. Lin International,T.Y. Lin International,Steven,A,"Williams",,,,,"1523 Barbee Rd.",,Shelby,NC,28150,,M,TRUE,FALSE,TRUE
+622927498,,T.Y. Lin International,T.Y. Lin International,Stephane,P,"Dulor",,,,,"20965 Barclay Ln.",,Lake Forest,CA,92630,,M,TRUE,FALSE,TRUE
+305829293,,T.Y. Lin International,T.Y. Lin International,Steven,J,"Ollo",,,,,"24201 Zancon",,Mission Viejo,CA,92623,,M,TRUE,FALSE,TRUE
+530441337,,T.Y. Lin International,T.Y. Lin International,Samuel,C,"Dunnam",,,,,"4016 Villa Flora Street",,Las Vegas,NV,89130,,M,TRUE,FALSE,TRUE
+138195099,,T.Y. Lin International,T.Y. Lin International,Hardik,M,"Rao",,,,,"119 F, The Orchard",,Cranbury,NJ,08512,,M,TRUE,FALSE,TRUE
+541330167,,T.Y. Lin International,T.Y. Lin International,Daniel,J,"Clem",,,,,"120 Olivine Cir",,Townsend,DE,19734,,M,TRUE,FALSE,TRUE
+888944808,,T.Y. Lin International,T.Y. Lin International,Diego,L,"Buitrago Gutierrez",,,,,"132 Duncan St., #1",,San Francisco,CA,94110,,M,TRUE,FALSE,TRUE
+337484157,,T.Y. Lin International,T.Y. Lin International,Michael,F,"Pyrz",,,,,"352 Bridgewater Drive",,Brentwood,CA,94513,,M,TRUE,FALSE,TRUE
+601436595,,T.Y. Lin International,T.Y. Lin International,Allison,K,"Sadow",,,,,"125 N 22nd Pl",Unit 16,Mesa,AZ,85213,,F,TRUE,FALSE,TRUE
+004960797,,T.Y. Lin International,T.Y. Lin International,Benjamin,T,"Smith",,,,,"55 West Street",Apt. 1,Freeport,ME,04032,,M,TRUE,FALSE,TRUE
+382112592,,T.Y. Lin International,T.Y. Lin International,Mitchell,A,"Wilkos",,,,,"2815 N Leavitt St",401,Chicago,IL,60618,,M,TRUE,FALSE,TRUE
+635969183,,T.Y. Lin International,T.Y. Lin International,Jin Mei,,"Peng",,,,,"3011 Roosevelt Ave.",,Richmond,CA,94804,,F,TRUE,FALSE,TRUE
+525953819,,T.Y. Lin International,T.Y. Lin International,Erin,,"Provo",,,,,"1809 South 2300 East",,Salt Lake City,UT,84108,,F,TRUE,FALSE,TRUE
+591932415,,T.Y. Lin International,T.Y. Lin International,Michelle,M,"Arana",,,,,"13125 SW 80 Ave",,Pinecrest,FL,33156,,F,TRUE,FALSE,TRUE
+526994476,,T.Y. Lin International,T.Y. Lin International,David,C,"Holman",,,,,"11955 Tivoli Park Row #8",,San Diego,CA,92128,,M,TRUE,FALSE,TRUE
+176465422,,T.Y. Lin International,T.Y. Lin International,Kevin,A,"Murphy",,,,,"109 Curtis Court",,Woolwich,NJ,08085,,M,TRUE,FALSE,TRUE
+589863530,,T.Y. Lin International,T.Y. Lin International,Krishna,,"Sandepudi",,,,,"4402 Casella Drive",,Wesley Chapel,FL,33543,,M,TRUE,FALSE,TRUE
+572692761,,T.Y. Lin International,T.Y. Lin International,Samuel,G,"Chui",,,,,"1098 Purdue Street",,San Leandro,CA,94579,,M,TRUE,FALSE,TRUE
+113841870,,T.Y. Lin International,T.Y. Lin International,Wyatt,A,"Benda",,,,,"9544 Warsaw Road",,Pavilion,NY,14525,,M,TRUE,FALSE,TRUE
+356794677,,T.Y. Lin International,T.Y. Lin International,Alessandro Cesar,,"Dias Gomes Filho",,,,,"1043 SW 9th Ct.",,Miami,FL,33130,,M,TRUE,FALSE,TRUE
+451877914,,T.Y. Lin International,T.Y. Lin International,Jonathan,E,"Hernandez",,,,,"374 Fairmount Ave. #4",,Oakland,CA,94611,,M,TRUE,FALSE,TRUE
+546653007,,T.Y. Lin International,T.Y. Lin International,Jennifer,N,"Lee",,,,,"600 Wawona St.",,San Francisco,CA,94116,,F,TRUE,FALSE,TRUE
+146231955,,T.Y. Lin International,T.Y. Lin International,Abhishek,C,"Purohit",,,,,"60 Amber Drive",,Old Bridge,NJ,08857,,M,TRUE,FALSE,TRUE
+780349086,,T.Y. Lin International,T.Y. Lin International,Nyree,Y,"Quintero Galindo",,,,,"701 Brickell Key Boulevard",Apt 712,Miami,FL,33131,,F,TRUE,FALSE,TRUE
+537040605,,T.Y. Lin International,T.Y. Lin International,Andrew,C,"Dohrmann",,,,,"800 Central Ave",,Alameda,CA,94501,,M,TRUE,FALSE,TRUE
+605661946,,T.Y. Lin International,T.Y. Lin International,Shelby,N,"Matlock",,,,,"4966 February Street",,San Diego,CA,92110,,F,TRUE,FALSE,TRUE
+196602293,,T.Y. Lin International,T.Y. Lin International,Veronica,I,"Pereira",,,,,"10944 San Pablo Avenue #116",,El Cerrito,CA,94530,,F,TRUE,FALSE,TRUE
+223590615,,T.Y. Lin International,T.Y. Lin International,Dinh,V,"Vu",,,,,"16060 Mullein Circle",,Fountain Valley,CA,92708,,M,TRUE,FALSE,TRUE
+299862573,,T.Y. Lin International,T.Y. Lin International,Edmund,R,"Thomas",,,,,"8 Patrick Henry Court",,Newark,DE,19711,,M,TRUE,FALSE,TRUE
+634728543,,T.Y. Lin International,T.Y. Lin International,Li Chen,A,"Pan",,,,,"3265 Armsley Dr.",,Chino Hills,CA,91709,,M,TRUE,FALSE,TRUE
+218253283,,T.Y. Lin International,T.Y. Lin International,Jeffrey,O,"Hoge",,,,,"9434 Dunkerrin Way",,Elk Grove,CA,95758,,M,TRUE,FALSE,TRUE
+765285252,,T.Y. Lin International,T.Y. Lin International,Ana,P,"Calapez",,,,,"6610 E. University Drive,# 105",#105,Mesa,AZ,85205,,F,TRUE,FALSE,TRUE
+547452600,,T.Y. Lin International,T.Y. Lin International,Heather,L,"Vaillancourt",,,,,"2855 Pinecreek Dr. #B228",,Costa Mesa,CA,92626,,F,TRUE,FALSE,TRUE
+568727824,,T.Y. Lin International,T.Y. Lin International,Regina,L,"Bigornia",,,,,"14534 Locust St",,San Leandro,CA,94579,,F,TRUE,FALSE,TRUE
+618584096,,T.Y. Lin International,T.Y. Lin International,David,J,"Hui",,,,,"64 Maitland Dr.",,Alameda,CA,94502,,M,TRUE,FALSE,TRUE
+523928031,,T.Y. Lin International,T.Y. Lin International,John,D,"Kenyon",,,,,"132 Arlene Drive",,Walnut Creek,CA,94595,,M,TRUE,FALSE,TRUE
+463338371,,T.Y. Lin International,T.Y. Lin International,Anatoly,,"Turok",,,,,"1831 Moraga St",,San Francisco,CA,94122,,M,TRUE,FALSE,TRUE
+600510316,,T.Y. Lin International,T.Y. Lin International,Baily,N,"Alka",,,,,"739 W 3rd St",,Mesa,AZ,85201,,F,TRUE,FALSE,TRUE
+331882433,,T.Y. Lin International,T.Y. Lin International,Brittany,J,"Klutcharch",,,,,"4123 Arnold Place",,Oak Lawn,IL,60453,,F,TRUE,FALSE,TRUE
+559952443,,T.Y. Lin International,T.Y. Lin International,Claire,C,"Jasareno",,,,,"32308 Pensador St.",,Temecula,CA,92592,,F,TRUE,FALSE,TRUE
+006963966,,T.Y. Lin International,T.Y. Lin International,Thomas,W,"Antz",,,,,"66 Victor Road",,Portland,ME,04103,,M,TRUE,FALSE,TRUE
+615906413,,T.Y. Lin International,T.Y. Lin International,Pui Kei,R,"Ng",,,,,"8601 Lincoln Blvd, #1228",,Los Angeles,CA,90045,,F,TRUE,FALSE,TRUE
+548739994,,T.Y. Lin International,T.Y. Lin International,Jessica,,"Unden",,,,,"10436 Aquilla Drive",,Lakeside,CA,92040,,F,TRUE,FALSE,TRUE
+007940764,,T.Y. Lin International,T.Y. Lin International,Jonathan,T,"Rollins",,,,,"25 old wood road",,Parsonsfield,ME,04047,,M,TRUE,FALSE,TRUE
+247777250,,T.Y. Lin International,T.Y. Lin International,William,C,"Tolleson",,,,,"3038 Greenmont Circle",,Belmont,NC,28012,,M,TRUE,FALSE,TRUE
+539195238,,T.Y. Lin International,T.Y. Lin International,Alex,P,"Carolino",,,,,"1836 N New Hampshire Ave #302",,Los Angeles,CA,90027,,M,TRUE,FALSE,TRUE
+527773221,,T.Y. Lin International,T.Y. Lin International,Paul,T,"Baca",,,,,"4844 W Evans Drive",,Glendale,AZ,85306,,M,TRUE,FALSE,TRUE
+492862138,,T.Y. Lin International,T.Y. Lin International,Robert,L,"Melsheimer",,,,,"33 8th Street",Apt 333,San Francisco,CA,94103,,M,TRUE,FALSE,TRUE
+030542141,,T.Y. Lin International,T.Y. Lin International,Lila,A,"Saremi",,,,,"8245 Soft Winds dr",,Corona,CA,92883,,F,TRUE,FALSE,TRUE
+613470588,,T.Y. Lin International,T.Y. Lin International,Eva,,"Cheung",,,,,"718 Old San Francisco Rd",Apt. 238,Sunnyvale,CA,94086,,F,TRUE,FALSE,TRUE
+202684408,,T.Y. Lin International,T.Y. Lin International,Edward,A,"Korab",,,,,"12 Longview Lane",,Newtown Square,PA,19073,,M,TRUE,FALSE,TRUE
+600916194,,T.Y. Lin International,T.Y. Lin International,Madhu,H,"Reddy",,,,,"8214 E Appaloosa Trail",,Scottsdale,AZ,85258,,M,TRUE,FALSE,TRUE
+578905151,,T.Y. Lin International,T.Y. Lin International,James,A,"Thomas",,,,,"4718 Laurel Canyon St.",,Las Vegas,NV,89129,,M,TRUE,FALSE,TRUE
+864555255,,T.Y. Lin International,T.Y. Lin International,Pamela,A,"Belalcazar Monroy",,,,,"13111 sw 44th st",,Miramar,FL,33027,,F,TRUE,FALSE,TRUE
+601862859,,T.Y. Lin International,T.Y. Lin International,Brenan,E,"Poe",,,,,"26 E Palmcroft Dr",,Tempe,AZ,85282,,M,TRUE,FALSE,TRUE
+556878409,,T.Y. Lin International,T.Y. Lin International,Alejandro,,"Armendariz",,,,,"8423 Chesterfield Rd",,Riverside,CA,92508,,M,TRUE,FALSE,TRUE
+061809900,,T.Y. Lin International,T.Y. Lin International,Daniel,E,"Honig",,,,,"410 W 24th Street",Apt 11E,New York,NY,10011,,M,TRUE,FALSE,TRUE
+099440578,,T.Y. Lin International,T.Y. Lin International,Martin,P,"Phillips",,,,,"2434 Manzana Way",,San Diego,CA,92139,,M,TRUE,FALSE,TRUE
+589530744,,T.Y. Lin International,T.Y. Lin International,Lazaro,J,"Sanchez",,,,,"10207 SW 2nd Street",,Miami,FL,33174,,M,TRUE,FALSE,TRUE
+366813515,,T.Y. Lin International,T.Y. Lin International,Alexander,,"Tskhovrebadze",,,,,"264 Prescott Avenue",,Staten Island,NY,10306,,M,TRUE,FALSE,TRUE
+303082898,,T.Y. Lin International,T.Y. Lin International,Bradley,R,"Huff",,,,,"2309 N Maplewood Avenue",,Chicago,IL,60647,,M,TRUE,FALSE,TRUE
+623947742,,T.Y. Lin International,T.Y. Lin International,Jazmin,E,"Martinez",,,,,"17866 Haines St",,Perris,CA,92570,,F,TRUE,FALSE,TRUE
+546711510,,T.Y. Lin International,T.Y. Lin International,Behzad,,"Mozaffarian",,,,,"31526 Royal Oaks Drive",,Temecula,CA,92591,,M,TRUE,FALSE,TRUE
+361462896,,T.Y. Lin International,T.Y. Lin International,Herbert,H,"Buchholz",,,,,"1801 L Street",#419,Sacramento,CA,95811,,M,TRUE,FALSE,TRUE
+149942988,,T.Y. Lin International,T.Y. Lin International,Joseph,,"Crowley",,,,,"938 Rutledge Avenue",,Charleston,SC,29403,,M,TRUE,FALSE,TRUE
+555272186,,T.Y. Lin International,T.Y. Lin International,Shahram,,"Tabari",,,,,"17804 Collins St.",,Encino,CA,91316,,M,TRUE,FALSE,TRUE
+159953691,,T.Y. Lin International,T.Y. Lin International,Harshilkumar,J,"Joshi",,,,,"134 Cottage St",Apt 3,Jersey City,NJ,07306,,M,TRUE,FALSE,TRUE
+365082471,,T.Y. Lin International,T.Y. Lin International,John,A,"Pickering",,,,,"814 W Sunnyside Ave",2a,Chicago,IL,60640,,M,TRUE,FALSE,TRUE
+487517319,,T.Y. Lin International,T.Y. Lin International,Samira,,"Jilani Kojouri",,,,,"18958 Sherman Way",Apt. 17,Reseda,CA,91335,,F,TRUE,FALSE,TRUE
+621704211,,T.Y. Lin International,T.Y. Lin International,Sophia,,"Huynh",,,,,"25458 Brooks Way",,Hayward,CA,94544,,F,TRUE,FALSE,TRUE
+239293413,,T.Y. Lin International,T.Y. Lin International,Rickey,E,"Farrar",,,,,"10 Brainerd Dr",,Stony Point,NY,10980,,M,TRUE,FALSE,TRUE
+623621796,,T.Y. Lin International,T.Y. Lin International,Michael,A,"Domingo",,,,,"8856 Gaviota Ave",,North Hills,CA,91343,,M,TRUE,FALSE,TRUE
+515952402,,T.Y. Lin International,T.Y. Lin International,Fouad,Y,"Elezaby",,,,,"33 Salamanca Ave. Apt. 7",,Coral Gables,FL,33134,,M,TRUE,FALSE,TRUE
+028747326,,T.Y. Lin International,T.Y. Lin International,Zachary,,"Peart",,,,,"94 Park Street",Unit 2E,Montclair,NJ,07042,,M,TRUE,FALSE,TRUE
+033545747,,T.Y. Lin International,T.Y. Lin International,Andrew,J,"Latosek",,,,,"41 Blackford ave  1 flr",,Yonkers,NY,10704,,M,TRUE,FALSE,TRUE
+536410965,,T.Y. Lin International,T.Y. Lin International,Neal,A,"Turner",,,,,"5037 Tri Lake Lp SE",,Olympia,WA,98513,,M,TRUE,FALSE,TRUE
+080908669,,T.Y. Lin International,T.Y. Lin International,Tricia,D,"Quan Kep",,,,,"15 Stanley Court",,Ronkonkoma,NY,11779,,F,TRUE,FALSE,TRUE
+199761675,,T.Y. Lin International,T.Y. Lin International,Thomas,,"Lam",,,,,"3957 West Roundabout Circle",,Chandler,AZ,85226,,M,TRUE,FALSE,TRUE
+595935123,,T.Y. Lin International,T.Y. Lin International,Rosa,S,"Taveras",,,,,"15886 SW 26 St",,Miramar,FL,33027,,F,TRUE,FALSE,TRUE
+138923038,,T.Y. Lin International,T.Y. Lin International,Daniel,,"Gomez",,,,,"66 Elm St.",,West Orange,NJ,07052,,M,TRUE,FALSE,TRUE
+006605194,,T.Y. Lin International,T.Y. Lin International,Peter,L,"Brown",,,,,"145 Warren Rd",,Buxton,ME,04093,,M,TRUE,FALSE,TRUE
+111748109,,T.Y. Lin International,T.Y. Lin International,Brittany,L,"Daniel",,,,,"211 Avery Street",,Rochester,NY,14606,,F,TRUE,FALSE,TRUE
+301723352,,T.Y. Lin International,T.Y. Lin International,Christina,A,"Fix",,,,,"1050 Aubrey Lane",#104,Fort Mill,SC,29708,,F,TRUE,FALSE,TRUE
+102809010,,T.Y. Lin International,T.Y. Lin International,Foley,,"Chew",,,,,"472 44th Street",,Brooklyn,NY,11220,,M,TRUE,FALSE,TRUE
+648071749,,T.Y. Lin International,T.Y. Lin International,Patrick,W,"Dolce",,,,,"4516 Douglas MacArthur Rd. NE",,Albuquerque,NM,87110,,M,TRUE,FALSE,TRUE
+005729965,,T.Y. Lin International,T.Y. Lin International,Jeffrey,J,"Legere",,,,,"31 Valley View Drive",,Gorham,ME,04038,,M,TRUE,FALSE,TRUE
+625187900,,T.Y. Lin International,T.Y. Lin International,Katharine,E,"Baker",,,,,"3907 Biddle Street",,San Diego,CA,92111,,F,TRUE,FALSE,TRUE
+602624769,,T.Y. Lin International,T.Y. Lin International,Jessica,K,"Skarupski",,,,,"5011 Meadow Grove Ct.",,Las Vegas,NV,89120,,F,TRUE,FALSE,TRUE
+378259536,,T.Y. Lin International,T.Y. Lin International,Philip,T,"Yartey",,,,,"5 Haggerty Drive",,West Orange,NJ,07052,,M,TRUE,FALSE,TRUE
+310049122,,T.Y. Lin International,T.Y. Lin International,Wassim,E,"Ashy",,,,,"6833 SW 106th Court",,Miami,FL,33173,,M,TRUE,FALSE,TRUE
+066566456,,T.Y. Lin International,T.Y. Lin International,Albertina,,"McLeod",,,,,"1560 E. 102nd St",#5G,Brooklyn,NY,11236,,F,TRUE,FALSE,TRUE
+600432197,,T.Y. Lin International,T.Y. Lin International,Madison,A,"Lopez",,,,,"2930 W McRae Way",,Phoenix,AZ,85027,,F,TRUE,FALSE,TRUE
+084925982,,T.Y. Lin International,T.Y. Lin International,Alicia,V,"Elias",,,,,"2433 Gerritsen Avenue",,Brooklyn,NY,11229,,F,TRUE,FALSE,TRUE
+109748127,,T.Y. Lin International,T.Y. Lin International,Alaaeldin,M,"Refai",,,,,"6901 Narrows Avenue",Apt 3F,Brooklyn,NY,11209,,M,TRUE,FALSE,TRUE
+432893759,,T.Y. Lin International,T.Y. Lin International,Elaina,R,"Baldwin",,,,,"4730 Noyes St",#214,San Diego,CA,92109,,F,TRUE,FALSE,TRUE
+131862059,,T.Y. Lin International,T.Y. Lin International,Mohammad,,"Zaman",,,,,"3401 Avenue J",Apt #9F,Brooklyn,NY,11210,,M,TRUE,FALSE,TRUE
+695146036,,T.Y. Lin International,T.Y. Lin International,Solomon,H,"Tecleab",,,,,"15703 Cranberry Ct",,Dumfries,VA,22025,,M,TRUE,FALSE,TRUE
+090581974,,T.Y. Lin International,T.Y. Lin International,Naima,B,"Holley",,,,,"51 Cortland Street",1L,Newark,NJ,07105,,F,TRUE,FALSE,TRUE
+613724573,,T.Y. Lin International,T.Y. Lin International,Conrad,F,"Petraborg",,,,,"277 Lexington Rd.",,Kensington,CA,94707,,M,TRUE,FALSE,TRUE
+614889868,,T.Y. Lin International,T.Y. Lin International,Tony,H,"Ly",,,,,"1791 Larkspur Ave",,Pomona,CA,91767,,M,TRUE,FALSE,TRUE
+139944106,,T.Y. Lin International,T.Y. Lin International,Alexander,T,"Timber",,,,,"74 Union Street Apt. 12A",,Newark,NJ,07105,,M,TRUE,FALSE,TRUE
+620582088,,T.Y. Lin International,T.Y. Lin International,Shahswar,A,"Kassamali",,,,,"8228 Swann Hollow Drive",,Tampa,FL,33647,,M,TRUE,FALSE,TRUE
+607566708,,T.Y. Lin International,T.Y. Lin International,Jose David,A,"Santana",,,,,"805 Otsego Drive",,San Diego,CA,92103,,M,TRUE,FALSE,TRUE
+165766456,,T.Y. Lin International,T.Y. Lin International,Anna,P,"Casey",,,,,"172 East 91st Street",Apt 4D,New York,NY,10128,,F,TRUE,FALSE,TRUE
+478089704,,T.Y. Lin International,T.Y. Lin International,Michael,G,"Howells",,,,,"112 Meyers Ridge Road",,Cramerton,NC,28032,,M,TRUE,FALSE,TRUE
+546992700,,T.Y. Lin International,T.Y. Lin International,Michiyo,,"Takaishi",,,,,"185 Channel Street",Apt 512,San Francisco,CA,94158,,F,TRUE,FALSE,TRUE
+051847447,,T.Y. Lin International,T.Y. Lin International,Shane,J,"Todd",,,,,"1815 Lake Rd",,Webster,NY,14580,,M,TRUE,FALSE,TRUE
+594350879,,T.Y. Lin International,T.Y. Lin International,Kevin,,"Carabeo",,,,,"1829 SW 17th St",,Miami,FL,33145,,M,TRUE,FALSE,TRUE
+589048063,,T.Y. Lin International,T.Y. Lin International,Sara,U,"Gutekunst",,,,,"801 S Federal Hwy",415,Pompano Beach,FL,33062,,F,TRUE,FALSE,TRUE
+591435665,,T.Y. Lin International,T.Y. Lin International,Sarah,A,"Eljaua",,,,,"6520 Lake Como Terrace",,Miami Lakes,FL,33014,,F,TRUE,FALSE,TRUE
+151928847,,T.Y. Lin International,T.Y. Lin International,Christian,M,"Anzuini",,,,,"350 W 85th Street, Apt. 61",,New York,NY,10024,,M,TRUE,FALSE,TRUE
+071848730,,T.Y. Lin International,T.Y. Lin International,Wael,M,"Omar",,,,,"205 Horizon Dr.",,Edison,NJ,08817,,M,TRUE,FALSE,TRUE
+619988970,,T.Y. Lin International,T.Y. Lin International,Nikolette,M,"Mazzuola",,,,,"2012 Coolidge st",89,San Diego,CA,92111,,F,TRUE,FALSE,TRUE
+004805606,,T.Y. Lin International,T.Y. Lin International,Shawn,R,"Davis",,,,,"61 West Shore Rd",PO Box 283,East Machias,ME,04630,,M,TRUE,FALSE,TRUE
+555892620,,T.Y. Lin International,T.Y. Lin International,Jon,M,"Gagnon",,,,,"1321 Dobson Drive",,Waxhaw,NC,28173,,M,TRUE,FALSE,TRUE
+063849890,,T.Y. Lin International,T.Y. Lin International,Muhammad,,"Ali",,,,,"8 Timothy Ave",,Kendall Park,NJ,08824,,M,TRUE,FALSE,TRUE
+067823819,,T.Y. Lin International,T.Y. Lin International,Abraham,,"Naim",,,,,"2 Cow Lane",,Great Neck,NY,11024,,M,TRUE,FALSE,TRUE
+604409253,,T.Y. Lin International,T.Y. Lin International,Jason,M,"Byrne",,,,,"19972 Stanton Ave",Apt #14,Castro Valley,CA,94546,,M,TRUE,FALSE,TRUE
+116607238,,T.Y. Lin International,T.Y. Lin International,Herbert,K,"Guenther",,,,,"8689 Nottingham Terrace",,Williamsville,NY,14221,,M,TRUE,FALSE,TRUE
+336928417,,T.Y. Lin International,T.Y. Lin International,Haris,,"Latic",,,,,"3130 N. Lake Shore Dr.",Apt 902,Chicago,IL,60657,,M,TRUE,FALSE,TRUE
+121762728,,T.Y. Lin International,T.Y. Lin International,John,G,"Velez",,,,,"6299 Broadway",Apt. C7,Bronx,NY,10471,,M,TRUE,FALSE,TRUE
+211647215,,T.Y. Lin International,T.Y. Lin International,Jill,K,"Bolt",,,,,"1128 Dunsinane Hill",,Chester Springs,PA,19425,,F,TRUE,FALSE,TRUE
+608825669,,T.Y. Lin International,T.Y. Lin International,Javier,,"Lopez",,,,,"3028 Juniper St",Apt 3,San Diego,CA,92104,,M,TRUE,FALSE,TRUE
+001884042,,T.Y. Lin International,T.Y. Lin International,Aaron,A,"Flemming",,,,,"10 E Ontario St.",#1405,Chicago,IL,60611,,M,TRUE,FALSE,TRUE
+189861134,,T.Y. Lin International,T.Y. Lin International,Xing,,"Han",,,,,"4 Crescent Rd",,Pine Brook,NJ,07058,,M,TRUE,FALSE,TRUE
+592733956,,T.Y. Lin International,T.Y. Lin International,Deborah,A,"Parsons",,,,,"470 Oak Grove Drive",# 307,Santa Clara,CA,95054,,F,TRUE,FALSE,TRUE
+527859065,,T.Y. Lin International,T.Y. Lin International,Roy,G,"Hookey",,,,,"15657 N 91st Dr",,Peoria,AZ,85382,,M,TRUE,FALSE,TRUE
+608157956,,T.Y. Lin International,T.Y. Lin International,Hemangi,G,"Pandit",,,,,"1870 Laurel Place",,Concord,CA,94521,,F,TRUE,FALSE,TRUE
+768023768,,T.Y. Lin International,T.Y. Lin International,Miguel,E,"Lara",,,,,"5165 NW 105th Ct",,Doral,FL,33178,,M,TRUE,FALSE,TRUE
+035704624,,T.Y. Lin International,T.Y. Lin International,Edry,Y,"Hilario",,,,,"234 S. Figeroa",#1040,Los Angeles,CA,90012,,M,TRUE,FALSE,TRUE
+623542572,,T.Y. Lin International,T.Y. Lin International,Curtis,B,"Musashi",,,,,"38951 Red Post Cir",,Murrieta,CA,92563,,M,TRUE,FALSE,TRUE
+352387403,,T.Y. Lin International,T.Y. Lin International,Stan-Lee,C,"Kaderbek",,,,,"5722 N. West Circle Avenue",,Chicago,IL,60631,,M,TRUE,FALSE,TRUE
+878038679,,T.Y. Lin International,T.Y. Lin International,Luis,A,"Rivero Filardo",,,,,"7850 Camino Real",Apt-117,Miami,FL,33143,,M,TRUE,FALSE,TRUE
+051680553,,T.Y. Lin International,T.Y. Lin International,Lissette,A,"Ferreira",,,,,"8134 NW 108th Pl",,Doral,FL,33178,,F,TRUE,FALSE,TRUE
+352685735,,T.Y. Lin International,T.Y. Lin International,Lynn,M,"Stock",,,,,"430 Gateshead Drive",,Naperville,IL,60565,,F,TRUE,FALSE,TRUE
+171645375,,T.Y. Lin International,T.Y. Lin International,Richard,T,"Rezer",,,,,"228 Friendship Road",,Drexel Hill,PA,19026,,M,TRUE,FALSE,TRUE
+129686866,,T.Y. Lin International,T.Y. Lin International,Shintani,T,"Waldron",,,,,"122 Cherry Street",Unit G2,Jersey City,NJ,07305,,F,TRUE,FALSE,TRUE
+677725997,,T.Y. Lin International,T.Y. Lin International,Mohamadreza,,"Shafieifar",,,,,"2939 Santos Ln.",#1828,Walnut Creek,CA,94597,,M,TRUE,FALSE,TRUE
+622836873,,T.Y. Lin International,T.Y. Lin International,Rami,J,"Bushebel",,,,,"440 Davis st",612,San Francisco,CA,94111,,M,TRUE,FALSE,TRUE
+486191191,,T.Y. Lin International,T.Y. Lin International,Huanzi,,"Wang",,,,,"1862 Harvest Road",,Pleasanton,CA,94566,,M,TRUE,FALSE,TRUE
+142961704,,T.Y. Lin International,T.Y. Lin International,Alexandra,,"Borrelli",,,,,"49 Prospect St",,Little Falls,NJ,07424,,F,TRUE,FALSE,TRUE
+555458089,,T.Y. Lin International,T.Y. Lin International,Perfect,,"Soo",,,,,"20 Newport Landing Dr",,Novato,CA,94949,,F,TRUE,FALSE,TRUE
+527996618,,T.Y. Lin International,T.Y. Lin International,Howard,R,"Cake",,,,,"3636 Georgia ST NE",,Albuquerque,NM,87110,,M,TRUE,FALSE,TRUE
+622166866,,T.Y. Lin International,T.Y. Lin International,William,R,"Faber",,,,,"19762 Cambridge Ln",,Huntington Beach,CA,92646,,M,TRUE,FALSE,TRUE
+617588846,,T.Y. Lin International,T.Y. Lin International,Eva,,"Pong",,,,,"14973 Edgemoor St.",,San Leandro,CA,94579,,F,TRUE,FALSE,TRUE
+848370658,,T.Y. Lin International,T.Y. Lin International,Jinxiang,,"Liao",,,,,"1517 S Loren Ln",,Gilbert,AZ,85296,,M,TRUE,FALSE,TRUE
+051764721,,T.Y. Lin International,T.Y. Lin International,Emil,P,"Katsarov",,,,,"333 Green Ave.",Apt. 4,Lyndhurst,NJ,070712244,,M,TRUE,FALSE,TRUE
+055881984,,T.Y. Lin International,T.Y. Lin International,Salman,,"Zafar",,,,,"345 86th Street",Apt 202,Brooklyn,NY,11209,,M,TRUE,FALSE,TRUE
+527998349,,T.Y. Lin International,T.Y. Lin International,Michael,W,"Bruning",,,,,"840 Allerton Court",,San Diego,CA,92109,,M,TRUE,FALSE,TRUE
+216379685,,T.Y. Lin International,T.Y. Lin International,Asm,,"Islam",,,,,"10 Arlyne Dr",,Somerville,NJ,08876,,M,TRUE,FALSE,TRUE
+556779866,,T.Y. Lin International,T.Y. Lin International,Nelson,,"Chu",,,,,"1225 Felton Street",,San Francisco,CA,94134,,M,TRUE,FALSE,TRUE
+258332432,,T.Y. Lin International,T.Y. Lin International,Hayden,R,"Gellineau",,,,,"915 Bramlett Way",,Powder Springs,GA,30127,,M,TRUE,FALSE,TRUE
+423804142,,T.Y. Lin International,T.Y. Lin International,Joure,N,"Alexander",,,,,"635 Highland Overlook",,Atlanta,GA,30349,,M,TRUE,FALSE,TRUE
+683855956,,T.Y. Lin International,T.Y. Lin International,Vidya Sagar,,"Ronanki",,,,,"2044 NW Steelrake PL",UNIT N100,Issaquah,WA,98027,,M,TRUE,FALSE,TRUE
+134526875,,T.Y. Lin International,T.Y. Lin International,Sammy,J,"Mercado",,,,,"3 Cottage Ln",,Suffern,NY,10901,,M,TRUE,FALSE,TRUE
+761373653,,T.Y. Lin International,T.Y. Lin International,Kaveh,,"Afshinnia",,,,,"12188 Waveland Street",,Fairfax,VA,22033,,M,TRUE,FALSE,TRUE
+333722764,,T.Y. Lin International,T.Y. Lin International,Kofi,,"Sasu",,,,,"76 Orange Avenue",,Staten Island,NY,10302,,M,TRUE,FALSE,TRUE
+331847946,,T.Y. Lin International,T.Y. Lin International,Tiffany,N,"Johnson",,,,,"2823 N 49th Street",,Phoenix,AZ,85008,,F,TRUE,FALSE,TRUE
+560553972,,T.Y. Lin International,T.Y. Lin International,David,U,"Mancini",,,,,"532 S. San Vincente Lane",,Anaheim Hills,CA,92807,,M,TRUE,FALSE,TRUE
+124737989,,T.Y. Lin International,T.Y. Lin International,Gideon,U,"Crocker",,,,,"9060 Palisade Ave",APT 601,North Bergen,NJ,07047,,M,TRUE,FALSE,TRUE
+252734975,,T.Y. Lin International,T.Y. Lin International,Blake,,"Belluso",,,,,"4593 River Parkway  Apt. L",,Atlanta,GA,30339,,M,TRUE,FALSE,TRUE
+325848584,,T.Y. Lin International,T.Y. Lin International,Matthew,,"Crumpton",,,,,"1701 N. Mango",,Chicago,IL,60639,,M,TRUE,FALSE,TRUE
+089375442,,T.Y. Lin International,T.Y. Lin International,Nilipt,,"Patel",,,,,"1212 Samuel Ct",,Naperville,IL,60540,,M,TRUE,FALSE,TRUE
+137233973,,T.Y. Lin International,T.Y. Lin International,Jesus,,"Gutierrez",,,,,"172 E. Central Ave",,Wharton,NJ,07885,,M,TRUE,FALSE,TRUE
+170403025,,T.Y. Lin International,T.Y. Lin International,Matthew,G,"Cummings",,,,,"1919 Creek Road",,Bethlehem,PA,18015,,M,TRUE,FALSE,TRUE
+895779819,,T.Y. Lin International,T.Y. Lin International,Amjed,M,"Altamimi",,,,,"6003 Soaring Ave",,Tampa,FL,33617,,M,TRUE,FALSE,TRUE
+624027408,,T.Y. Lin International,T.Y. Lin International,Poonam,,"Bhakta",,,,,"16812 Sunny Ridge Ct",,Cerritos,CA,90703,,F,TRUE,FALSE,TRUE
+046603851,,T.Y. Lin International,T.Y. Lin International,Willie,,"Vereen",,,,,"84-A Yaremich Drive",,Bridgeport,CT,06606,,M,TRUE,FALSE,TRUE
+157138177,,T.Y. Lin International,T.Y. Lin International,Darshan,D,"Patel",,,,,"15 West Airmount Road",,Mahwah,NJ,07430,,M,TRUE,FALSE,TRUE
+125702275,,T.Y. Lin International,T.Y. Lin International,Gaetano,G,"Pietrobuono",,,,,"6 Sage Court",,Huntington Station,NY,11746,,M,TRUE,FALSE,TRUE
+331907495,,T.Y. Lin International,T.Y. Lin International,Steven,,"Khatchadourian",,,,,"3634 W. Montrose Ave.",Apt 1E,Chicago,IL,60618,,M,TRUE,FALSE,TRUE
+402430460,,T.Y. Lin International,T.Y. Lin International,Ellen,,"Gilbert",,,,,"1041 Briarwood Way",,Lawrenceburg,KY,40342,,F,TRUE,FALSE,TRUE
+575270977,,T.Y. Lin International,T.Y. Lin International,Alicia,D,"Stewart",,,,,"303 Market Street",Apt 104,San Diego,CA,92101,,F,TRUE,FALSE,TRUE
+339825761,,T.Y. Lin International,T.Y. Lin International,Matthew,W,"Kuehn",,,,,"1529 S. State Street",Unit 18H,Chicago,IL,60605,,M,TRUE,FALSE,TRUE
+381945513,,T.Y. Lin International,T.Y. Lin International,James,,"Dooley",,,,,"2543 E Sweetwater Ave",,Phoenix,AZ,85032,,M,TRUE,FALSE,TRUE
+670462227,,T.Y. Lin International,T.Y. Lin International,Suleman,,"Rana",,,,,"2965 Links View Way",,Cumming,GA,30041,,M,TRUE,FALSE,TRUE
+006504360,,T.Y. Lin International,T.Y. Lin International,Michael,,"Cyr",,,,,"7093 Brunswick Circle",,Boynton Beach,FL,33472,,M,TRUE,FALSE,TRUE
+399550653,,T.Y. Lin International,T.Y. Lin International,Vraj,,"Parikh",,,,,"2175 Decoto Road",Apt 143,Union City,CA,94587,,M,TRUE,FALSE,TRUE
+106715336,,T.Y. Lin International,T.Y. Lin International,Kathyayani,,"Grandhe",,,,,"301 1st Street",Apt #119,Harrison,NJ,07029,,F,TRUE,FALSE,TRUE
+004989068,,T.Y. Lin International,T.Y. Lin International,Kathryn,M,"Male",,,,,"207 East Geneva Drive",,Tempe,AZ,85282,,F,TRUE,FALSE,TRUE
+364813378,,T.Y. Lin International,T.Y. Lin International,Pranjal,P,"Shah",,,,,"3883 18th Street",,San Francisco,CA,94114,,M,TRUE,FALSE,TRUE
+325906020,,T.Y. Lin International,T.Y. Lin International,Ivan,M,"Romero-Martinez",,,,,"6545 S Knox Avenue",,Chicago,IL,60629,,M,TRUE,FALSE,TRUE
+322908016,,T.Y. Lin International,T.Y. Lin International,Michael,P,"Hogan",,,,,"165 W. Superior Street, #3001",,Chicago,IL,60654,,M,TRUE,FALSE,TRUE
+151849810,,T.Y. Lin International,T.Y. Lin International,Vernon,J,"Aversa",,,,,"6101  Normandy Drive",,Mount Laurel,NJ,08054,,M,TRUE,FALSE,TRUE
+161764823,,T.Y. Lin International,T.Y. Lin International,Prescott,H,"Bliss",,,,,"337 Commercial Avenue",,South San Francisco,CA,94080,,M,TRUE,FALSE,TRUE
+631125036,,T.Y. Lin International,T.Y. Lin International,Joel,B,"Rogers",,,,,"9524  Pinedrop Dr SE",,Lacey,WA,98513,,M,TRUE,FALSE,TRUE
+354903593,,T.Y. Lin International,T.Y. Lin International,Charles,R,"Hawn",,,,,"3602 N Pine Grove",Unit 2D,Chicago,IL,60613,,M,TRUE,FALSE,TRUE
+326969240,,T.Y. Lin International,T.Y. Lin International,Katie,F,"Chou",,,,,"5318 Heritage Place",,Culver City,CA,90230,,F,TRUE,FALSE,TRUE
+525691461,,T.Y. Lin International,T.Y. Lin International,Shu-wen,L,"Lumbreras",,,,,"7530 Bannister Lane",,San Diego,CA,92126,,F,TRUE,FALSE,TRUE
+819434964,,T.Y. Lin International,T.Y. Lin International,Hemali,,"Ardesana",,,,,"700 Knoll Road",,Boonton,NJ,07005,,F,TRUE,FALSE,TRUE
+081726153,,T.Y. Lin International,T.Y. Lin International,Amber,,"Tellez",,,,,"2932 21st Street",,San Francisco,CA,94110,,F,TRUE,FALSE,TRUE
+220576243,,T.Y. Lin International,T.Y. Lin International,Hassan,W,"Dergham",,,,,"5902 Cove Landing Rd.",Apt 302,Burke,VA,22015,,M,TRUE,FALSE,TRUE
+149843441,,T.Y. Lin International,T.Y. Lin International,Joseph,,"Kannankara",,,,,"818 Highland Avenue",,Paramus,NJ,07652,,M,TRUE,FALSE,TRUE
+114481746,,T.Y. Lin International,T.Y. Lin International,Mark,A,"Cosmedy",,,,,"95 Windsor Road",,Rye Brook,NY,10573,,M,TRUE,FALSE,TRUE
+155986027,,T.Y. Lin International,T.Y. Lin International,Angelo,S,"Ramos",,,,,"281 Holmes Street",,Belleville,NJ,07109,,M,TRUE,FALSE,TRUE
+648095253,,T.Y. Lin International,T.Y. Lin International,Chloe,,"Simion",,,,,"8532 Animas Pl NW",,Alburquerque,NM,87120,,F,TRUE,FALSE,TRUE
+193274193,,T.Y. Lin International,T.Y. Lin International,Mohammad,,"Ansar",,,,,"2169 W. 5th Street",,Brooklyn,NY,11223,,M,TRUE,FALSE,TRUE
+116884802,,T.Y. Lin International,T.Y. Lin International,Carlos,A,"Cruz",,,,,"132-36 Booth Memorial Ave #2",,Flushing,NY,11355,,M,TRUE,FALSE,TRUE
+136746876,,T.Y. Lin International,T.Y. Lin International,John,L,"Ratti",,,,,"36 Laura Road",,Monroe,NY,10950,,M,TRUE,FALSE,TRUE
+603102361,,T.Y. Lin International,T.Y. Lin International,Stephen,R,"Morton",,,,,"11488 Forty Niner Circle",,Gold River,CA,95670,,M,TRUE,FALSE,TRUE
+513193424,,T.Y. Lin International,T.Y. Lin International,Mamadou,S,"Diallo",,,,,"3838 Bronxwood Avenue",Apt 2,Bronx,NY,10469,,M,TRUE,FALSE,TRUE
+177445361,,T.Y. Lin International,T.Y. Lin International,Hugh,J,"Fuller",,,,,"612 South Flower Street",Unit 1209,Los Angeles,CA,90017,,M,TRUE,FALSE,TRUE
+067765699,,T.Y. Lin International,T.Y. Lin International,Jacek,,"Muszynski",,,,,"6153 W. Fletcher Street",,Chicago,IL,60634,,M,TRUE,FALSE,TRUE
+081644834,,T.Y. Lin International,T.Y. Lin International,Tariq,,"Iqbal",,,,,"15502 Comfort Court",,Cypress,TX,77429,,M,TRUE,FALSE,TRUE
+625756293,,T.Y. Lin International,T.Y. Lin International,Lisi,,"Zhang",,,,,"219 Santa Fe Drive",,Walnut Creek,CA,94598,,F,TRUE,FALSE,TRUE
+615947267,,T.Y. Lin International,T.Y. Lin International,Aileen,M,"Santos-Redman",,,,,"1269 Cabrillo Park Drive",,Santa Ana,CA,92701,,F,TRUE,FALSE,TRUE
+560517010,,T.Y. Lin International,T.Y. Lin International,Victor,Z,"Ortega",,,,,"1823 Dawnelle Way",,Sacramento,CA,95835,,M,TRUE,FALSE,TRUE
+208726576,,T.Y. Lin International,T.Y. Lin International,Vincent,P,"Scarpa",,,,,"550 W. Harrison St",Apt 353,Chicago,IL,60607,,M,TRUE,FALSE,TRUE
+671708119,,T.Y. Lin International,T.Y. Lin International,Xiao,,"Zhang",,,,,"18 Pleasant Valley Dr",,Walnut Creek,CA,94597,,M,TRUE,FALSE,TRUE
+327723541,,T.Y. Lin International,T.Y. Lin International,Dorota,,"Dabrowski",,,,,"843 Adams Street",Unit 508,Chicago,IL,60607,,F,TRUE,FALSE,TRUE
+153947884,,T.Y. Lin International,T.Y. Lin International,Gavin,,"Stobie",,,,,"41 Summit Road",,Andover,NJ,07821,,M,TRUE,FALSE,TRUE
+571491291,,T.Y. Lin International,T.Y. Lin International,Brandon,M,"Schoradt",,,,,"1332 Milano Drive",#3,West Sacramento,CA,95691,,M,TRUE,FALSE,TRUE
+077669808,,T.Y. Lin International,T.Y. Lin International,Sonya,,"Weekes",,,,,"2885 W 15th Street",Apt. 5K,Brooklyn,NY,11224,,F,TRUE,FALSE,TRUE
+649848128,,T.Y. Lin International,T.Y. Lin International,Nadim,,"Hamad",,,,,"437 S Hill St",Apt 711,Los Angeles,CA,90013,,M,TRUE,FALSE,TRUE
+503685568,,T.Y. Lin International,T.Y. Lin International,Wade,P,"Myrabo",,,,,"2751 Rutherford Way",,Charleston,SC,29414,,M,TRUE,FALSE,TRUE
+393848398,,T.Y. Lin International,T.Y. Lin International,Barbara,J,"Sloan",,,,,"1525 S. Michigan Avenue",Apt 210,Chicago,IL,60605,,F,TRUE,FALSE,TRUE
+335823815,,T.Y. Lin International,T.Y. Lin International,Stephen,J,"Long",,,,,"501 Homestead Road",,La Grange Park,IL,60526,,M,TRUE,FALSE,TRUE
+322908123,,T.Y. Lin International,T.Y. Lin International,Michael,V,"McKevitt",,,,,"9829 S. Kenneth",,Oak Lawn,IL,60453,,M,TRUE,FALSE,TRUE
+319028398,,T.Y. Lin International,T.Y. Lin International,Khaliun,L,"Odgiiv",,,,,"4 Wheatstone Farm",,Ladera Ranch,CA,92694,,F,TRUE,FALSE,TRUE
+321940574,,T.Y. Lin International,T.Y. Lin International,Catherine,,"Newell",,,,,"5157 N. Nottingham Avenue",,Chicago,IL,60656,,F,TRUE,FALSE,TRUE
+359502288,,T.Y. Lin International,T.Y. Lin International,Heidi,M,"Belz",,,,,"41 Tanglewood Drive",,Glen Ellyn,IL,60137,,F,TRUE,FALSE,TRUE
+618924911,,T.Y. Lin International,T.Y. Lin International,Tiffany,S,"Cheng",,,,,"4037 Cabrillo Street",,San Francisco,CA,94121,,F,TRUE,FALSE,TRUE
+341709971,,T.Y. Lin International,T.Y. Lin International,Jamie,,"Ontiveros",,,,,"1151 West 14th Place #231",,Chicago,IL,60608,,F,TRUE,FALSE,TRUE
+625524451,,T.Y. Lin International,T.Y. Lin International,Aliza,B,"Medina",,,,,"10311 Aura Avenue",,Porter Ranch,CA,91326,,F,TRUE,FALSE,TRUE
+600424226,,T.Y. Lin International,T.Y. Lin International,Rochelle,,"Mitchell",,,,,"210 N. Wells Street #2203",,Chicago,IL,60606,,F,TRUE,FALSE,TRUE
+095786753,,T.Y. Lin International,T.Y. Lin International,Bashar,,"Albashir",,,,,"19914 Bluff Oak Blvd.",,Tampa,FL,33647,,M,TRUE,FALSE,TRUE
+522595480,,T.Y. Lin International,T.Y. Lin International,John,D,"Wood, III",,,,,"12249 Deerfield Way",,Broomfield,CO,80020,,M,TRUE,FALSE,TRUE
+350445339,,T.Y. Lin International,T.Y. Lin International,Catherine,D,"Zembruski",,,,,"3185 Contra Loma Blvd",Apt. # 227,Antioch,CA,94509,,F,TRUE,FALSE,TRUE
+062720183,,T.Y. Lin International,T.Y. Lin International,Timothy,K,"Skrypnik",,,,,"665 Colby Street",,Spencerport,NY,14559,,M,TRUE,FALSE,TRUE
+183521838,,T.Y. Lin International,T.Y. Lin International,Paul,G,"Archibald",,,,,"397 Walker Road",,Wayne,PA,19087,,M,TRUE,FALSE,TRUE
+610869464,,T.Y. Lin International,T.Y. Lin International,Gregory,L,"Blanpied",,,,,"13263 W Utah Cir",,Lakewood,CO,80228,,M,TRUE,FALSE,TRUE
+103649785,,T.Y. Lin International,T.Y. Lin International,Bala,,"Sivakumar",,,,,"473 Bluehill Terrace",,Franklin Lakes,NJ,07417,,M,TRUE,FALSE,TRUE
+222449309,,T.Y. Lin International,T.Y. Lin International,Michele,,"Donaghy",,,,,"480 Fairmont Drive",,Chester Springs,PA,19425,,F,TRUE,FALSE,TRUE
+489045392,,T.Y. Lin International,T.Y. Lin International,Brandon,L,"Griffith",,,,,"805 E Ironwood Drive",,Mount Prospect,IL,60056,,M,TRUE,FALSE,TRUE
+642487381,,T.Y. Lin International,T.Y. Lin International,Omar,,"Rubio",,,,,"6138 South Kilpatrick Avenue",,Chicago,IL,60629,,M,TRUE,FALSE,TRUE
+598018828,,T.Y. Lin International,T.Y. Lin International,Jesika,,"Ruiz",,,,,"4705 West Village Way",Apt 3650,Smyrna,GA,30080,,F,TRUE,FALSE,TRUE
+068620850,,T.Y. Lin International,T.Y. Lin International,Michael,P,"Camerlengo",,,,,"21 Maple Avenue",,East Hanover,NJ,07936,,M,TRUE,FALSE,TRUE
+250974617,,T.Y. Lin International,T.Y. Lin International,Jesse,,"Morton",,,,,"1421 Shucker Cir",309,Mount Pleasant,SC,29464,,M,TRUE,FALSE,TRUE
+563413268,,T.Y. Lin International,T.Y. Lin International,George,,"Rowe",,,,,"19651 Sandy Beach Ct",,Wilder,ID,83676,,M,TRUE,FALSE,TRUE
+168660670,,T.Y. Lin International,T.Y. Lin International,Christopher,S,"Fronheiser",,,,,"3175 Wheatfield Road",,Finksburg,MD,21048,,M,TRUE,FALSE,TRUE
+076842725,,T.Y. Lin International,T.Y. Lin International,Terrance,,"James",,,,,"2212 Ford Street",Apt. 15,Golden,CO,80401,,M,TRUE,FALSE,TRUE
+868881666,,T.Y. Lin International,T.Y. Lin International,Tareq,,"Salhabaltamimi",,,,,"13030 Tampa Oaks Blvd",Apt 3211,Temple Terrace,FL,33637,,M,TRUE,FALSE,TRUE
+463779666,,T.Y. Lin International,T.Y. Lin International,Mark,,"Ince",,,,,"1011  Wee Burn Drive",,Juneau,AK,99801,,M,TRUE,FALSE,TRUE
+505557441,,T.Y. Lin International,T.Y. Lin International,Saeed,,"Doust",,,,,"4508 Gilbertson Road",,Fairfax,VA,22032,,M,TRUE,FALSE,TRUE
+265817321,,T.Y. Lin International,T.Y. Lin International,William,H,"Hayslip",,,,,"116 Waterview Way",,Royal Palm Beach,FL,33411,,M,TRUE,FALSE,TRUE
+266664395,,T.Y. Lin International,T.Y. Lin International,Steve,D,"Womble",,,,,"16115 E. LK Burrell Drive",,Lutz,FL,33549,,M,TRUE,FALSE,TRUE
+635340767,,T.Y. Lin International,T.Y. Lin International,Alpesh,,"Dani",,,,,"28 Oak Drive",,New Hyde Park,NY,11040,,M,TRUE,FALSE,TRUE
+274438169,,T.Y. Lin International,T.Y. Lin International,Maria,E,"Pacheco",,,,,"1937 Hovenweep Rd",,Wesley Chapel,FL,33543,,F,TRUE,FALSE,TRUE
+393963699,,T.Y. Lin International,T.Y. Lin International,Cathryn,C,"Fizer-Rau",,,,,"945 Hollister St",Apt 10,San Diego,CA,92154,,F,TRUE,FALSE,TRUE
+156117286,,T.Y. Lin International,T.Y. Lin International,Mukesh,G,"Patel",,,,,"54 Plafsky Drive",,Edison,NJ,08817,,M,TRUE,FALSE,TRUE
+177406432,,T.Y. Lin International,T.Y. Lin International,Mark,A,"Wisthuff",,,,,"230 S Ashland Ave",,LaGrange,IL,60525,,M,TRUE,FALSE,TRUE
+503904784,,T.Y. Lin International,T.Y. Lin International,Chad,H,"Andrews",,,,,"6871 W. Remuda Drive",,Peoria,AZ,85383,,M,TRUE,FALSE,TRUE
+592765757,,T.Y. Lin International,T.Y. Lin International,Bryon,C,"Letourneau",,,,,"4091 Hooch Landing",,Duluth,GA,30097,,M,TRUE,FALSE,TRUE
+259739799,,T.Y. Lin International,T.Y. Lin International,Prima,D,"Lewis",,,,,"245 East Trinity Place",Unit 1625,Atlanta,GA,30030,,F,TRUE,FALSE,TRUE
+058986233,,T.Y. Lin International,T.Y. Lin International,Manjinderjit,,"Singh",,,,,"8411 257th Street",,Floral Park,NY,11001,,M,TRUE,FALSE,TRUE
+063886798,,T.Y. Lin International,T.Y. Lin International,Jose,A,"Paredes",,,,,"1278 America Avenue",,West Babylon,NY,11704,,M,TRUE,FALSE,TRUE
+616580694,,T.Y. Lin International,T.Y. Lin International,Miguel,A,"Gracia",,,,,"1033 Calla Ave",,Imperial Beach,CA,91932,,M,TRUE,FALSE,TRUE
+568752161,,T.Y. Lin International,T.Y. Lin International,Gene,,"Ching",,,,,"421 Los Altos Ave",,Arcadia,CA,91007,,M,TRUE,FALSE,TRUE
+772401464,,T.Y. Lin International,T.Y. Lin International,Ricardo,A,"Diaz Maestre",,,,,"2101 Ludlam Rd",Apt 444,Miami,FL,33155,,M,TRUE,FALSE,TRUE
+052660587,,T.Y. Lin International,T.Y. Lin International,Sean,M,"Crotty",,,,,"22 Sunrise Drive",,Stony Point,NY,10980,,M,TRUE,FALSE,TRUE
+006748593,,T.Y. Lin International,T.Y. Lin International,Edward,A,"Clark",,,,,"105 Village Road",,Stetson,ME,04488,,M,TRUE,FALSE,TRUE
+743719907,,T.Y. Lin International,T.Y. Lin International,Karl,,"Icho",,,,,"5031 Fair Avenue Apt.454",,North Hollywood,CA,91601,,M,TRUE,FALSE,TRUE
+096644344,,T.Y. Lin International,T.Y. Lin International,Amy,R,"Kohn",,,,,"39 Peter Lane",,Plainview,NY,11803,,F,TRUE,FALSE,TRUE
+595134679,,T.Y. Lin International,T.Y. Lin International,Javier,,"Rodriguez-Fernandez",,,,,"110 Potters Run",,Princeton,NJ,08540,,M,TRUE,FALSE,TRUE
+533217236,,T.Y. Lin International,T.Y. Lin International,Gabriela,M,"Brocklehurst",,,,,"14969 Del Diablo Lane",,San Diego,CA,92129,,F,TRUE,FALSE,TRUE
+258553327,,T.Y. Lin International,T.Y. Lin International,Susan,S,"Johnson",,,,,"449 Claire Drive NE",,Atlanta,GA,30307,,F,TRUE,FALSE,TRUE
+595128316,,T.Y. Lin International,T.Y. Lin International,Eduardo,J,"Palacio",,,,,"15321 SW 74th Place",,Palmetto Bay,FL,33157,,M,TRUE,FALSE,TRUE
+584598032,,T.Y. Lin International,T.Y. Lin International,Edil,H,"Pena",,,,,"8885 NW 98 Ct.",,Doral,FL,33178,,M,TRUE,FALSE,TRUE
+615027230,,T.Y. Lin International,T.Y. Lin International,Austin,,"De La Cruz",,,,,"10596 Cypress Ave.",,Riverside,CA,92505,,M,TRUE,FALSE,TRUE
+148598924,,T.Y. Lin International,T.Y. Lin International,Raya,H,"Harkus",,,,,"88 Morgan Street  APT.4008",,Jersey City,NJ,07302,,F,TRUE,FALSE,TRUE
+608854225,,T.Y. Lin International,T.Y. Lin International,Zhouyang,,"Xia",,,,,"4324 Muscatel Ave",,Rosemead,CA,91770,,M,TRUE,FALSE,TRUE
+004666796,,T.Y. Lin International,T.Y. Lin International,Troy,L,"DeVoe",,,,,"454 Fuller Road",,Hermon,ME,04401,,M,TRUE,FALSE,TRUE
+693493208,,T.Y. Lin International,T.Y. Lin International,Wendy,D,"Tulu",,,,,"3312 Hampton Point Dr. Apt.B",,Silver Spring,MD,20904,,M,TRUE,FALSE,TRUE
+155587867,,T.Y. Lin International,T.Y. Lin International,Gerard,,"Salernitano",,,,,"333 Hillside Ave",,Nutley,NJ,07110,,M,TRUE,FALSE,TRUE
+567499302,,T.Y. Lin International,T.Y. Lin International,Jolene,L,"Masanda",,,,,"23321 35th Ave W",,Brier,WA,98036,,F,TRUE,FALSE,TRUE
+267919576,,T.Y. Lin International,T.Y. Lin International,James,P,"Gregg",,,,,"5442 Barrister Place",,Alexandria,VA,22304,,M,TRUE,FALSE,TRUE
+103565309,,T.Y. Lin International,T.Y. Lin International,Martin,F,"Gagliardi",,,,,"76 Crestwood Blvd.",,Farmingdale,NY,11735,,M,TRUE,FALSE,TRUE
+396088000,,T.Y. Lin International,T.Y. Lin International,Glenn,D,"Schwantes",,,,,"526 17th Ave E Apt. 5",,Seattle,WA,98112,,M,TRUE,FALSE,TRUE
+623765723,,T.Y. Lin International,T.Y. Lin International,Juan Carlos,,"Montano",,,,,"12811 Soule Street",,Poway,CA,92064,,M,TRUE,FALSE,TRUE
+662394698,,T.Y. Lin International,T.Y. Lin International,Seyyed Farshid,,"Hosseini Khasheh Heiran",,,,,"5 Mariah",,Aliso Viejo,CA,926561372,,M,TRUE,FALSE,TRUE
+090587330,,T.Y. Lin International,T.Y. Lin International,Lesly,C,"Pierre",,,,,"131 Heathcote Road",,Elmont,NY,11003,,M,TRUE,FALSE,TRUE
+355947696,,T.Y. Lin International,T.Y. Lin International,Colleen,E,"Kelch",,,,,"8426 W. Windsor Ave",,Chicago,IL,60656,,F,TRUE,FALSE,TRUE
+155211603,,T.Y. Lin International,T.Y. Lin International,Kebede,B,"Kebede",,,,,"1061 Inman Ave A-309",,Edison,NJ,08820,,M,TRUE,FALSE,TRUE
+845297262,,T.Y. Lin International,T.Y. Lin International,Sandra,P,"De Cicco",,,,,"8912 SW142 Ave",408,Miami,FL,33186,,F,TRUE,FALSE,TRUE
+591885852,,T.Y. Lin International,T.Y. Lin International,Michael,A,"Roos",,,,,"13000 SW 92nd Ave",APT B-211,Miami,FL,33176,,M,TRUE,FALSE,TRUE
+066560620,,T.Y. Lin International,T.Y. Lin International,Trevor,A,"Frazer",,,,,"13 Giera Ct",,Parlin,NJ,08859,,M,TRUE,FALSE,TRUE
+238958579,,T.Y. Lin International,T.Y. Lin International,Ali,,"Hamza",,,,,"40 Spotswood Ave",,Monroe Twp,NJ,08831,,M,TRUE,FALSE,TRUE
+057885533,,T.Y. Lin International,T.Y. Lin International,Ahmed,S,"Mohamed",,,,,"3392 Cypress CT",,Monmouth JCT,NJ,08852,,M,TRUE,FALSE,TRUE
+369110688,,T.Y. Lin International,T.Y. Lin International,Kurt,A,"Facknitz II",,,,,"5007 N Ashland Ave APT.2E",,Chicago,IL,60640,,M,TRUE,FALSE,TRUE
+375646203,,T.Y. Lin International,T.Y. Lin International,Brian,J,"Bass",,,,,"103 S. Narberth Ave Apt. A",,Narberth,PA,19072,,M,TRUE,FALSE,TRUE
+123789233,,T.Y. Lin International,T.Y. Lin International,Ricky,R,"Cabral",,,,,"917 Sheridan St",,Union,NJ,07083,,M,TRUE,FALSE,TRUE
+546673917,,T.Y. Lin International,T.Y. Lin International,Thomas,J,"Price",,,,,"29 Monte Vista Drive",,Woodland,CA,95695,,M,TRUE,FALSE,TRUE
+150785874,,T.Y. Lin International,T.Y. Lin International,Christopher,L,"Kabachinski",,,,,"918 Grover Avenue",,Winter Park,FL,32789,,M,TRUE,FALSE,TRUE
+084844542,,T.Y. Lin International,T.Y. Lin International,Samuel,,"Dekyem",,,,,"110 Pendleton Place",,Staten Island,NY,10301,,M,TRUE,FALSE,TRUE
+095804596,,T.Y. Lin International,T.Y. Lin International,Zena,,"Vasiltsova",,,,,"98-01 67th Ave. Apt.1-D",,Rego Park,NY,11374,,F,TRUE,FALSE,TRUE
+216778047,,T.Y. Lin International,T.Y. Lin International,Risheng,,"Wang",,,,,"3401 149th Street",,Flushing,NY,11354,,F,TRUE,FALSE,TRUE
+144603996,,T.Y. Lin International,T.Y. Lin International,Antonio,,"Mosquera",,,,,"1821 Binnacle Rd",,Forked River,NJ,08731,,M,TRUE,FALSE,TRUE
+591492226,,T.Y. Lin International,T.Y. Lin International,Michael,G,"Allen",,,,,"2104 Bronx Park East Apt.3B",,Bronx,NY,10462,,M,TRUE,FALSE,TRUE
+799515945,,T.Y. Lin International,T.Y. Lin International,Yasmin,A,"Hassan",,,,,"37 Towsen Road",,Wayen,NJ,07470,,F,TRUE,FALSE,TRUE
+152647868,,T.Y. Lin International,T.Y. Lin International,Nathan,B,"Maack",,,,,"8446 Sedan Avenue",,West Hills,CA,91304,,M,TRUE,FALSE,TRUE
+056481009,,T.Y. Lin International,T.Y. Lin International,Joseph,,"Edge",,,,,"412 Washington Street  APT 3B",,Hoboken,NJ,07030,,M,TRUE,FALSE,TRUE
+616960351,,T.Y. Lin International,T.Y. Lin International,Leonardo,A,"Van-Whervin",,,,,"127 Henry Street",,Valley Stream,NY,11580,,M,TRUE,FALSE,TRUE
+336726111,,T.Y. Lin International,T.Y. Lin International,Jeremy,M,"Lambert",,,,,"46 Log Hill Lane",,Ballwin,MO,63011,,M,TRUE,FALSE,TRUE
+641245691,,T.Y. Lin International,T.Y. Lin International,Alejandro,,"Gonzalez",,,,,"3033 N 39th St Unit 6",,Phoenix,AZ,85018,,M,TRUE,FALSE,TRUE
+600267400,,T.Y. Lin International,T.Y. Lin International,Kenneth,E,"Brown",,,,,"3993 N 3rd Ave #167",,Phoenix,AZ,85013,,M,TRUE,FALSE,TRUE
+067465670,,T.Y. Lin International,T.Y. Lin International,Victor,R,"Simuoli",,,,,"579 20th Street",,Brooklyn,NY,11218,,M,TRUE,FALSE,TRUE
+608096518,,T.Y. Lin International,T.Y. Lin International,Nancy,,"Cruz",,,,,"2907 6th Avenue",,Los Angeles,CA,90018,,F,TRUE,FALSE,TRUE
+573950215,,T.Y. Lin International,T.Y. Lin International,Richard,A,"Hicks",,,,,"15026 S 46th Place",,Phoenix,AZ,85044,,M,TRUE,FALSE,TRUE
+505214646,,T.Y. Lin International,T.Y. Lin International,Lora,L,"Supencheck",,,,,"2710 West Agatite Avenue",Apt 2,Chicago,IL,60625,,F,TRUE,FALSE,TRUE
+346702956,,T.Y. Lin International,T.Y. Lin International,Brenda,,"Le",,,,,"5300 N. Lincoln Avenue",Apt 2A,Chicago,IL,60625,,F,TRUE,FALSE,TRUE
+578891448,,T.Y. Lin International,T.Y. Lin International,Turyalai,,"Momand",,,,,"53-27 97th Street",Apt 3F,Corona,NY,11368,,M,TRUE,FALSE,TRUE
+525939551,,T.Y. Lin International,T.Y. Lin International,Paul,L,"Morton",,,,,"3210 Squire Street",,Las Vegas,NV,89135,,M,TRUE,FALSE,TRUE
+143685378,,T.Y. Lin International,T.Y. Lin International,Georgios,K,"Savva",,,,,"14 Glenn Terrace",,Newton,NJ,07860,,M,TRUE,FALSE,TRUE
+354840372,,T.Y. Lin International,T.Y. Lin International,Hasan,,"Ahmed",,,,,"320 E 21st Street",Unit 208,Chicago,IL,60616,,M,TRUE,FALSE,TRUE
+539600784,,T.Y. Lin International,T.Y. Lin International,Scott,L,"Witt",,,,,"729 2nd Street",,Woodland,CA,95695,,M,TRUE,FALSE,TRUE
+115580258,,T.Y. Lin International,T.Y. Lin International,Benjamin,,"Barresi",,,,,"2744 Bath Avenue",Apt 2,Brooklyn,NY,11214,,M,TRUE,FALSE,TRUE
+578021970,,T.Y. Lin International,T.Y. Lin International,David,,"Tingley",,,,,"2264 Rock Creek Drive",,Charlotte,NC,28226,,M,TRUE,FALSE,TRUE
+765664410,,T.Y. Lin International,T.Y. Lin International,Eric,,"Sam",,,,,"2134 E Broadway Rd #1045",,Tempe,AZ,85282,,M,TRUE,FALSE,TRUE
+531239266,,T.Y. Lin International,T.Y. Lin International,Tony,,"Nguyen",,,,,"2302 E DENNY WAY",UNIT 415,SEATTLE,WA,98122,,M,TRUE,FALSE,TRUE
+314044952,,T.Y. Lin International,T.Y. Lin International,Michael,,"Morin",,,,,"5916 Laurel Lane #2011",,Willowbrook,IL,60527,,M,TRUE,FALSE,TRUE
+649168127,,T.Y. Lin International,T.Y. Lin International,Shelby,,"Reinke",,,,,"3919 East Brighton Way",,Queen Creek,AZ,85140,,F,TRUE,FALSE,TRUE
+340705115,,T.Y. Lin International,T.Y. Lin International,Michael,,"Luhning",,,,,"110 Autumn Lane",,Belleville,IL,62223,,M,TRUE,FALSE,TRUE
+522398959,,T.Y. Lin International,T.Y. Lin International,Amy,,"Bates",,,,,"1140 Grove Ave APT D",,Bensenville,IL,60106,,F,TRUE,FALSE,TRUE
+092500967,,T.Y. Lin International,T.Y. Lin International,Mansour,,"Niknam",,,,,"20 Redwood Drive",,Hagerstown,MD,21740,,M,TRUE,FALSE,TRUE
+124782553,,T.Y. Lin International,T.Y. Lin International,Caroline,H,"Herman",,,,,"3052 SW 27th Ave Unit 201",,Miami,FL,33133,,F,TRUE,FALSE,TRUE
+054748445,,T.Y. Lin International,T.Y. Lin International,Jessica,L,"Lomas",,,,,"2457 N Lincoln Ave, #4",,Chicago,IL,60614,,F,TRUE,FALSE,TRUE

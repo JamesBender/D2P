@@ -64,13 +64,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EFLROCQBXP_20210329.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EFLROCQBXP_20210405.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202103319','EMPEXPORT','OEACTIVE',NULL,'EFLROCQBXP',NULL,NULL,NULL,'202103319','Feb 16 2021  5:13PM','Feb 16 2021  5:13PM','201901011',NULL,'','','201901011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202103319','EMPEXPORT','OEPASSIVE',NULL,'EFLROCQBXP',NULL,NULL,NULL,'202103319','Feb 16 2021  5:13PM','Feb 16 2021  5:13PM','201901011',NULL,'','','201901011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores Cobra QB Export','202103319','EMPEXPORT','ONDEM_XOE',NULL,'EFLROCQBXP',NULL,NULL,NULL,'202103319','Feb 16 2021  5:13PM','Feb 16 2021  5:13PM','201901011',NULL,'','','201901011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores Cobra QB Export-Sched','202103319','EMPEXPORT','SCH_EFLROC',NULL,'EFLROCQBXP',NULL,NULL,NULL,'202103319','Feb 16 2021  5:13PM','Feb 16 2021  5:13PM','201901011',NULL,'','','201901011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Flores Cobra QB Export-Test','202103169','EMPEXPORT','TEST_XOE','Mar 15 2021  7:21PM','EFLROCQBXP',NULL,NULL,NULL,'202103169','Mar 16 2021 12:00AM','Dec 30 1899 12:00AM','201912011','198','','','201912011',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Flores Cobra QB Export-Test','202104059','EMPEXPORT','TEST_XOE','Apr  5 2021 12:01PM','EFLROCQBXP',NULL,NULL,NULL,'202104059','Apr  5 2021 12:00AM','Dec 30 1899 12:00AM','201912011','329','','','201912011',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLROCQBXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLROCQBXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLROCQBXP','InitialSort','C','drvSort');
@@ -139,7 +139,7 @@ CREATE TABLE [dbo].[U_EFLROCQBXP_drvTbl_Dependent] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(45) NULL,
     [drvEmployeeIdNumber] char(11) NULL,
-    [drvDependentNumber] bigint NULL,
+    [drvDependentNumber] bigint NOT NULL,
     [drvDepNameFirst] varchar(100) NULL,
     [drvDepNameLast] varchar(100) NULL,
     [drvRelationToInsured] varchar(1) NULL,
@@ -449,15 +449,26 @@ BEGIN
           , [BdmBenOption]
  
     )
-Select rectype = 'DEP', dbncoid, dbneeid, DbnDepRecID, DbnDepRecID, 'QB', 'Data Inserted for 201 Chg reason',
-            DbnRelationship, DbnDateOfBirth, dbnDedcode, (Select top 1 edhBenStartDate from emphded A where A.edhdedcode = dbnDedcode and A.edheeid =  dbneeid and A.edhcoid = dbncoid order by Auditkey asc ) as bdmBenstartDate,edhBenStopDate, edhEffDate,'201'
+    Select rectype = 'DEP'
+        ,dbncoid
+        ,dbneeid
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 201 Chg reason'
+        ,DbnRelationship
+        ,DbnDateOfBirth
+        ,dbnDedcode
+        ,(Select top 1 edhBenStartDate from emphded A where A.edhdedcode = dbnDedcode and A.edheeid =  dbneeid and A.edhcoid = dbncoid order by Auditkey asc ) as bdmBenstartDate
+        ,DbnBenStopDate --edhBenStopDate
+        ,edhEffDate,'201'
             ,edhStartDate, edhStopDate, 'Y',edhbenoption
             from dbo.emphded with (nolock)
             JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = @FormatCode
             
             WHERE edhChangeReason in ('201') and dbnBenstopdate between @startdate and @enddate and dbnValidForExport = 'N'
                 AND DbnRelationship = 'CHL'
-            Group by dbncoid, dbneeid,DbnDepRecID,DbnRelationship,DbnDateOfBirth,dbnDedcode,edhBenStopDate,edhEffDate,edhStartDate,edhStopDate,edhbenoption
+            Group by dbncoid, dbneeid,DbnDepRecID,DbnRelationship,DbnDateOfBirth,dbnDedcode,DbnBenStopDate /*edhBenStopDate*/,edhEffDate,edhStartDate,edhStopDate,edhbenoption
 
             INSERT INTO [dbo].[U_dsi_BDM_EFLROCQBXP]
            ([BdmRecType]
@@ -523,7 +534,7 @@ Select rectype = 'DEP', dbnCoid, dbneeid, DbnDepRecID, DbnDepRecID, 'QB', 'Data 
         ,drvAddressZipCode = EepAddressZipCode
         ,drvPhoneNumber = EepPhoneHOmeNumber
         ,drvEmailAddress = EepAddressEMail
-        ,drvDateOfBirth = EepDateOfBirth
+        ,drvDateOfBirth = CASE WHEN BdmChangeReason IN ('204','LEVNT4','201','LEVNT3') OR BdmCobraReason IN ('204','LEVNT4','201','LEVNT3') OR EecTermReason = '203' THEN ConDateOfBirth ELSE EepDateOfBirth END        
         ,drvTypeOfEvent =    CASE WHEN BdmChangeReason IN ('204','LEVNT4') or BdmCobraReason IN ('204','LEVNT4') THEN '4'
                                 WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN '3'
                                 WHEN BdmCobraReason IN ('205') THEN '6'
@@ -571,14 +582,14 @@ Select rectype = 'DEP', dbnCoid, dbneeid, DbnDepRecID, DbnDepRecID, 'QB', 'Data 
         ,drvSort = xEEID + ' 2 ' + CAST(RN AS VARCHAR)
         -- standard fields above and additional driver fields below
         ,drvEmployeeIdNumber = EepSSN
-        ,drvDependentNumber = RN
-        ,drvDepNameFirst = ConNameFirst
-        ,drvDepNameLast = ConNameLast
+        ,drvDependentNumber = ISNULL(RN, '0')
+        ,drvDepNameFirst = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
+        ,drvDepNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvRelationToInsured =    CASE WHEN BdmRelationship IN ('SPS','DP') THEN 'S' 
                                     WHEN BdmRelationship IN ('CHL','DPC','STC') THEN 'C'
                                 END
-        ,drvDateOfBirth = ConDateOfBirth
-        ,drvGender = EepGender
+        ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
+        ,drvGender = CASE WHEN BdmRecType = 'EMP' THEN EepGender ELSE ConGender END
     INTO dbo.U_EFLROCQBXP_drvTbl_Dependent
     FROM dbo.U_EFLROCQBXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -588,21 +599,23 @@ Select rectype = 'DEP', dbnCoid, dbneeid, DbnDepRecID, DbnDepRecID, 'QB', 'Data 
         ON EepEEID = xEEID
     --JOIN dbo.U_dsi_BDM_EFLROCQBXP WITH (NOLOCK)
     JOIN (
-            SELECT BdmEEID, BdmCOID, BdmRecType, BdmRelationship, BdmDepRecId,  ROW_NUMBER() OVER (PARTITION BY BdmEEID, BdmCOID ORDER BY CASE WHEN BdmRelationship IN ('SPS','DP') THEN 1 ELSE 2 END, CDOB) AS RN
+            SELECT BdmEEID, BdmCOID, BdmRecType, BdmRelationship, BdmDepRecId,  (ROW_NUMBER() OVER (PARTITION BY BdmEEID, BdmCOID ORDER BY CASE WHEN BdmRecType = 'EMP' THEN 0 WHEN BdmRelationship IN ('SPS','DP') THEN 1 ELSE 2 END, CDOB)-1) AS RN
             FROM (
                     SELECT DISTINCT BdmEEID, BdmCOID, BdmRecType, BdmRelationship, Con.ConDateOfBirth AS CDOB, BdmDepRecId
                     FROM dbo.U_dsi_BDM_EFLROCQBXP WITH (NOLOCK)
-                    JOIN dbo.Contacts Con WITH (NOLOCK)
+                    LEFT JOIN dbo.Contacts Con WITH (NOLOCK)
                         ON ConEEID = BdmEEID
                         AND ConSystemID = BdmDepRecID
-                    WHERE BdmRecType = 'DEP'
-                    AND BdmIsPQB = 'N') AS A) AS Bdm
+                    --WHERE BdmRecType = 'DEP'
+                    --AND BdmIsPQB = 'N'
+                    ) AS A) AS Bdm
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         --AND BdmRecType = 'DEP'
-    JOIN dbo.Contacts WITH (NOLOCK)
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
+    WHERE (RN IS NOT NULL AND RN > 0) -- this might change (which is why I left the ISNULL on RN above, but for now don't show them.
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFLROCQBXP_drvTbl_Election
@@ -644,14 +657,24 @@ Select rectype = 'DEP', dbnCoid, dbneeid, DbnDepRecID, DbnDepRecID, 'QB', 'Data 
         ON EepEEID = xEEID
     --JOIN dbo.U_dsi_BDM_EFLROCQBXP WITH (NOLOCK)
     LEFT JOIN (
-            SELECT BdmEEID AS RBdmEEID, BdmCOID AS RBdmCOID,  BdmDepRecId AS RBdmDepRecId,  ROW_NUMBER() OVER (PARTITION BY BdmEEID, BdmCOID ORDER BY CASE WHEN BdmRelationship IN ('SPS','DP') THEN 1 ELSE 2 END, CDOB) AS RN
+            /*SELECT BdmEEID AS RBdmEEID, BdmCOID AS RBdmCOID,  BdmDepRecId AS RBdmDepRecId,  ROW_NUMBER() OVER (PARTITION BY BdmEEID, BdmCOID ORDER BY CASE WHEN BdmRelationship IN ('SPS','DP') THEN 1 ELSE 2 END, CDOB) AS RN
             FROM (
                     SELECT DISTINCT BdmEEID, BdmCOID, BdmRecType, BdmRelationship, Con.ConDateOfBirth AS CDOB, BdmDepRecId
                     FROM dbo.U_dsi_BDM_EFLROCQBXP WITH (NOLOCK)
                     JOIN dbo.Contacts Con WITH (NOLOCK)
                         ON ConEEID = BdmEEID
                         AND ConSystemID = BdmDepRecID
-                    WHERE BdmRecType = 'DEP') AS A) AS Bdm
+                    WHERE BdmRecType = 'DEP') AS A) AS Bdm*/
+            SELECT  BdmEEID AS RBdmEEID, BdmCOID AS RBdmCOID,  BdmDepRecId AS RBdmDepRecId,  (ROW_NUMBER() OVER (PARTITION BY BdmEEID, BdmCOID ORDER BY CASE WHEN BdmRecType = 'EMP' THEN 0 WHEN BdmRelationship IN ('SPS','DP') THEN 1 ELSE 2 END, CDOB)-1) AS RN
+            FROM (
+                    SELECT DISTINCT BdmEEID, BdmCOID, BdmRecType, BdmRelationship, Con.ConDateOfBirth AS CDOB, BdmDepRecId
+                    FROM dbo.U_dsi_BDM_EFLROCQBXP WITH (NOLOCK)
+                    LEFT JOIN dbo.Contacts Con WITH (NOLOCK)
+                        ON ConEEID = BdmEEID
+                        AND ConSystemID = BdmDepRecID
+                    --WHERE BdmRecType = 'DEP'
+                    --AND BdmIsPQB = 'N'
+                    ) AS A) AS Bdm
         ON RBdmEEID = xEEID 
         AND RBdmCoID = xCoID
     JOIN dbo.U_dsi_BDM_EFLROCQBXP WITH (NOLOCK)

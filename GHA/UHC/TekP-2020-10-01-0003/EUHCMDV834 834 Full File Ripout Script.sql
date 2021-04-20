@@ -231,10 +231,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCMDV834_20210325.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCMDV834_20210406.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202103231','EMPEXPORT','CHANGES','Mar 23 2021 11:13AM','EUHCMDV834',NULL,NULL,NULL,'202103231','Mar 23 2021 12:00AM','Dec 30 1899 12:00AM','202103231','10387','','','202103231',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Full File Only','202101229','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202101229','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101221',NULL,'','','202101221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202103231','EMPEXPORT','CHANGES','Apr  2 2021 11:44AM','EUHCMDV834',NULL,NULL,NULL,'202103231','Mar 23 2021 12:00AM','Dec 30 1899 12:00AM','202103231','11815','','','202103231',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202104021','EMPEXPORT','FULLFILE','Apr  2 2021 12:00PM','EUHCMDV834',NULL,NULL,NULL,'202104021','Apr  2 2021 12:00AM','Mar 26 2021 12:00AM','202104021','11654','','','202104021',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202101229','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202101229','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101221',NULL,'','','202101221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202101229','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202101229','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101221',NULL,'','','202101221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Med Dent Vis 834 Export','202101229','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202101229','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101221',NULL,'','','202101221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -992,43 +992,43 @@ BEGIN
         ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z182' THEN '01040104TT'
                                         WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z183' THEN '00110011TT'
                                         WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z398' THEN '00190019TT'
-                                        WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z720' THEN '00270027TT'
+                                        WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode IN ('Z720','Z721') THEN '00270027TT'
                                         WHEN BdmDedCode = 'DPPOH' AND CmpCompanyCode = 'Z182' THEN '01060106TT'
                                         WHEN BdmDedCode = 'DPPOH' AND CmpCompanyCode = 'Z183' THEN '00130013TT'
                                         WHEN BdmDedCode = 'DPPOH' AND CmpCompanyCode = 'Z398' THEN '00210021TT'
-                                        WHEN BdmDedCode = 'DPPOH' AND CmpCompanyCode = 'Z720' THEN '00290029TT'
+                                        WHEN BdmDedCode = 'DPPOH' AND CmpCompanyCode IN ('Z720','Z721') THEN '00290029TT'
                                         WHEN BdmDedCode = 'DPPOL' AND CmpCompanyCode = 'Z182' THEN '01070107TT'
                                         WHEN BdmDedCode = 'DPPOL' AND CmpCompanyCode = 'Z183' THEN '00140014TT'
                                         WHEN BdmDedCode = 'DPPOL' AND CmpCompanyCode = 'Z398' THEN '00220022TT'
-                                        WHEN BdmDedCode = 'DPPOL' AND CmpCompanyCode = 'Z720' THEN '00300030TT'
+                                        WHEN BdmDedCode = 'DPPOL' AND CmpCompanyCode IN ('Z720','Z721') THEN '00300030TT'
                                         WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z182' THEN '01080108TT'
                                         WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z182' THEN '01090109TT'
                                         WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z183' THEN '00150015TT'
                                         WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z183' THEN '00160016TT'
                                         WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z398' THEN '00230023TT'
                                         WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z398' THEN '00240024TT'
-                                        WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z720' THEN '00310031TT'
-                                        WHEN BdmDedCode = 'HMO' AND CmpCompanyCode = 'Z720' THEN '00320032TT'
+                                        WHEN BdmDedCode = 'HMO' AND CmpCompanyCode IN ('Z720','Z721') AND EepAddressState IN ('MD','DC','VA','TX') THEN '00310031TT'
+                                        WHEN BdmDedCode = 'HMO' AND CmpCompanyCode IN ('Z720','Z721') AND EepAddressState IN ('WV') THEN '00320032TT'
                                         WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z182' THEN '00450045TT'
                                         WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z182' THEN '00460046TT'
                                         WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z183' THEN '00470047TT'
                                         WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z183' THEN '00480048TT'
                                         WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z398' THEN '00490049TT'
                                         WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z398' THEN '00500050TT'
-                                        WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z720' THEN '00510051TT'
-                                        WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode = 'Z720' THEN '00520052TT'
+                                        WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode IN ('Z720','Z721') AND EepAddressState IN ('MD','DC','VA','TX') THEN '00510051TT'
+                                        WHEN BdmDedCode = 'HSAM' AND CmpCompanyCode IN ('Z720','Z721') AND EepAddressState IN ('WV')  THEN '00520052TT'
                                         WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z182' THEN '01020102TT'
                                         WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z182' THEN '01030103TT'
                                         WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z183' THEN '00090009TT'
                                         WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z183' THEN '00100010TT'
                                         WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z398' THEN '00170017TT'
                                         WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z398' THEN '00180018TT'
-                                        WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z720' THEN '00250025TT'
-                                        WHEN BdmDedCode = 'POS' AND CmpCompanyCode = 'Z720' THEN '00260026TT'
+                                        WHEN BdmDedCode = 'POS' AND CmpCompanyCode IN ('Z720','Z721') AND EepAddressState IN ('MD','DC','VA','TX') THEN '00250025TT'
+                                        WHEN BdmDedCode = 'POS' AND CmpCompanyCode IN ('Z720','Z721') AND EepAddressState IN ('WV') THEN '00260026TT'
                                         WHEN BdmDedCode = 'VIS' AND CmpCompanyCode = 'Z182' THEN '01050105TT'
                                         WHEN BdmDedCode = 'VIS' AND CmpCompanyCode = 'Z183' THEN '00120012TT'
                                         WHEN BdmDedCode = 'VIS' AND CmpCompanyCode = 'Z398' THEN '00200020TT'
-                                        WHEN BdmDedCode = 'VIS' AND CmpCompanyCode = 'Z720' THEN '00280028TT'
+                                        WHEN BdmDedCode = 'VIS' AND CmpCompanyCode IN ('Z720','Z721') THEN '00280028TT'
                                     END
         /*CASE WHEN BdmDedType IN ('MED') THEN ''
                                            WHEN BdmDedType IN ('DEN') THEN ''

@@ -1,0 +1,5 @@
+Interface details (EBPACNPMXP)
+Env – EW31 
+Server – EW3WUP1DB01 
+Database – ULTIPRO_WPTYL 
+Export Name – Basic Pacific NPM Export

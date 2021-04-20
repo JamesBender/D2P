@@ -5,6 +5,8 @@ IF OBJECT_ID('dsi_vwENAVFSAEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwENAVF
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ENAVFSAEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ENAVFSAEXP];
 GO
+IF OBJECT_ID('U_ENAVFSAEXP_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ENAVFSAEXP_PDedHist];
+GO
 IF OBJECT_ID('U_ENAVFSAEXP_File') IS NOT NULL DROP TABLE [dbo].[U_ENAVFSAEXP_File];
 GO
 IF OBJECT_ID('U_ENAVFSAEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_ENAVFSAEXP_EEList];
@@ -149,13 +151,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAVFSAEXP_20210308.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAVFSAEXP_20210405.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',DBW13',NULL,NULL,NULL,'Active Open Enrollment Export','202101019','EMPEXPORT','OEACTIVE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202101019','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009309','EMPEXPORT','OEPASSIVE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202009309','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navia FSA Export','202009309','EMPEXPORT','ONDEM_XOE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202009309','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navia FSA Export-Sched','202009309','EMPEXPORT','SCH_ENAVFS',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202009309','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Navia FSA Export-Test','202101151','EMPEXPORT','TEST_XOE','Feb  4 2021  5:06PM','ENAVFSAEXP',NULL,NULL,NULL,'202101151','Jan 15 2021 12:00AM','Jan 15 2021 12:00AM','202101151','293','','','202101151',dbo.fn_GetTimedKey(),NULL,'us3rVaARM1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Navia FSA Export-Test','202101151','EMPEXPORT','TEST_XOE','Apr  5 2021  9:57AM','ENAVFSAEXP',NULL,NULL,NULL,'202101151','Jan 15 2021 12:00AM','Jan 15 2021 12:00AM','202101151','281','','','202101151',dbo.fn_GetTimedKey(),NULL,'us3rVaARM1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAVFSAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAVFSAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAVFSAEXP','InitialSort','C','drvSort');
@@ -239,9 +241,9 @@ CREATE TABLE [dbo].[U_ENAVFSAEXP_drvTbl] (
     [drvWorkEmail] varchar(50) NULL,
     [drvPayCode] varchar(11) NULL,
     [drvBenefitCode] varchar(6) NULL,
-    [drvEEDeduction] varchar(1) NOT NULL,
-    [drvEEPlanYrElec] varchar(1) NOT NULL,
-    [drvTotalAnnElect] varchar(1) NOT NULL,
+    [drvEEDeduction] nvarchar(4000) NULL,
+    [drvEEPlanYrElec] nvarchar(4000) NULL,
+    [drvTotalAnnElect] nvarchar(4000) NULL,
     [drvDebitCard] varchar(1) NOT NULL,
     [drvBenefitEffDate] datetime NULL,
     [drvBenefitStopDate] datetime NULL
@@ -259,6 +261,17 @@ CREATE TABLE [dbo].[U_ENAVFSAEXP_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
+);
+IF OBJECT_ID('U_ENAVFSAEXP_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_ENAVFSAEXP_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhEEDeduction] numeric NULL,
+    [PdhEEPlanYrElect] numeric NULL,
+    [PdhTotAnnElect] numeric NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ENAVFSAEXP]
@@ -375,6 +388,42 @@ BEGIN
         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
     END;
 
+    -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+    IF OBJECT_ID('U_ENAVFSAEXP_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ENAVFSAEXP_PDedHist;
+    SELECT DISTINCT
+         PdhEEID
+        -- Current Payroll Amounts
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        -- Categorize Payroll Amounts
+        ,PdhEEDeduction        = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl AND PdhDedCode IN ('FSAHC','FSADC','FSALP') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhEEPlanYrElect    = SUM(CASE WHEN PdhDedCode IN ('FSAHC','FSADC','FSALP') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhTotAnnElect     = SUM(CASE WHEN PdhDedCode IN ('FSAHC','FSADC','FSALP') THEN PdhEECurAmt ELSE 0.00 END)        
+        /*,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)*/
+    INTO dbo.U_ENAVFSAEXP_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_ENAVFSAEXP_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );
+
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
@@ -423,9 +472,9 @@ BEGIN
                                 WHEN 'FSADC' THEN 'DCFSA'
                                 WHEN 'FSALP' THEN 'LHCFSA'
                             END
-        ,drvEEDeduction = ''
-        ,drvEEPlanYrElec = ''
-        ,drvTotalAnnElect = ''
+        ,drvEEDeduction = FORMAT(PdhEEDeduction, '#0.00')
+        ,drvEEPlanYrElec = FORMAT(PdhEEPlanYrElect, '#0.00')
+        ,drvTotalAnnElect = CASE WHEN BdmDedCode IN ('FSAHC','FSADC','FSALP') THEN FORMAT(BdmEEGoalAmt, '#0.00') END --FORMAT(PdhTotAnnElect, '#0.00')
         ,drvDebitCard = CASE WHEN BdmDedCode IN ('FSAHC','FSADC','FSALP') THEN 'Y' ELSE 'N' END
         ,drvBenefitEffDate = BdmBenStartDate
         ,drvBenefitStopDate = BdmBenStopDate
@@ -448,6 +497,8 @@ BEGIN
                    GROUP BY PgpPayGroup
         ) Prg
             ON EecPayGroup = PgpPayGroup
+    JOIN  dbo.U_ENAVFSAEXP_PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
     ;
 
     --==========================================

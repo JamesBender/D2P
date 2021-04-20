@@ -1,0 +1,5 @@
+Interface details (EBAPCQBEXP)
+Env – EW31 
+Server – EW3WUP1DB01 
+Database – ULTIPRO_WPTYL 
+Export Name – Basic Pacific QB File Export

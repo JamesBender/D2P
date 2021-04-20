@@ -235,7 +235,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''DA''=''F'')','EFD401KHSAZ0','4','D','70','59',NULL,'RESERVED (space-fill)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiscalYear"','16','(''UA''=''F'')','EFD401KHSAZ0','4','D','70','63',NULL,'FISCAL YEAR (current year default)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''DA''=''F'')','EFD401KHSAZ0','1','D','70','67',NULL,'CORRECTION METHOD',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPostingDate"','18','(''UDMDY''=''F'')','EFD401KHSAZ0','8','D','70','68',NULL,'POSTING DATE (HSA)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPostingDate"','18','(''UD112''=''F'')','EFD401KHSAZ0','8','D','70','68',NULL,'POSTING DATE (HSA)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','19','(''DA''=''F'')','EFD401KHSAZ0','5','D','70','76',NULL,'RESERVED',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanNumber"','1','(''UA''=''F'')','EFD401KHSAZ0','5','D','75','1',NULL,'PLAN NUMBER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"PLUS"','2','(''DA''=''F'')','EFD401KHSAZ0','4','D','75','6',NULL,'BATCH GROUP ID',NULL,NULL);
@@ -264,13 +264,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EFD401KHSA_20210324.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EFD401KHSA_20210420.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103159','EMPEXPORT','OEACTIVE','Mar  3 2021  1:54PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','104','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103159','EMPEXPORT','OEACTIVE','Apr  5 2021 11:32AM','EFD401KHSA',NULL,NULL,NULL,'202103159','Mar 15 2021 12:00AM','Dec 30 1899 12:00AM','202103151','0','eecPayGroup','SEMIE,SEMI','202103151',dbo.fn_GetTimedKey(),NULL,'us3jBePLA1016',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202103159','EMPEXPORT','OEPASSIVE','Mar  3 2021  1:56PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','3487','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401K HSA Export','202103159','EMPEXPORT','ONDEM_XOE','Mar  3 2021  1:57PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','3522','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401K HSA Export-Sched','202103159','EMPEXPORT','SCH_EFD401','Mar  3 2021  1:57PM','EFD401KHSA',NULL,NULL,NULL,'202103159','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202103151','3522','','','202103151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','JEY43',NULL,NULL,NULL,'Fidelity 401K HSA Export-Test','202102269','EMPEXPORT','TEST_XOE','Mar 23 2021 12:49PM','EFD401KHSA',NULL,NULL,NULL,'202102269','Feb 26 2021 12:00AM','Dec 30 1899 12:00AM','202102261','363','eecPayGroup','SEMIE,SEMI','202102261',dbo.fn_GetTimedKey(),NULL,'us3jBePLA1016',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','JEY43',NULL,NULL,NULL,'Fidelity 401K HSA Export-Test','202103151','EMPEXPORT','TEST_XOE','Apr 16 2021  5:31PM','EFD401KHSA',NULL,NULL,NULL,'202103151','Mar 15 2021 12:00AM','Mar 15 2021 12:00AM','202103151','278','eecPayGroup','SEMIE,SEMI','202103151',dbo.fn_GetTimedKey(),NULL,'us3cPePLA1016',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','InitialSort','C','drvSort');
@@ -451,7 +451,7 @@ CREATE TABLE [dbo].[U_EFD401KHSA_drvTbl_19] (
     [drvPlanNumber] varchar(5) NULL,
     [drvSSN] varchar(11) NULL,
     [drvSource] varchar(2) NULL,
-    [drvAmount] nvarchar(4000) NULL,
+    [drvAmount] varchar(13) NULL,
     [drvFiscalYear] nvarchar(4000) NULL,
     [drvPostingDate] datetime NULL
 );
@@ -464,7 +464,7 @@ CREATE TABLE [dbo].[U_EFD401KHSA_drvTbl_21] (
     [drvPlanNumber] varchar(5) NULL,
     [drvSSN] varchar(11) NULL,
     [drvLoanIdentification] varchar(6) NULL,
-    [drvRepaymentAmount] nvarchar(4000) NULL
+    [drvRepaymentAmount] varchar(13) NULL
 );
 IF OBJECT_ID('U_EFD401KHSA_drvTbl_60') IS NULL
 CREATE TABLE [dbo].[U_EFD401KHSA_drvTbl_60] (
@@ -597,9 +597,13 @@ CREATE TABLE [dbo].[U_EFD401KHSA_PDedHist] (
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
     [PdhERCurAmtYTD] money NULL,
-    [Pdh4OPROPAmt] numeric NULL,
+    [Pdh4OPAmt] numeric NULL,
+    [PdhRopAmt] numeric NULL,
     [Pdh401MAmt] numeric NULL,
-    [PdhHSAAmt] numeric NULL
+    [PdhHSA1Amt] numeric NULL,
+    [PdhHSA2Amt] numeric NULL,
+    [PdhHSA3Amt] numeric NULL,
+    [PdhLoanAmt] numeric NULL
 );
 IF OBJECT_ID('U_EFD401KHSA_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EFD401KHSA_PEarHist] (
@@ -822,9 +826,13 @@ BEGIN
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,Pdh4OPROPAmt     = SUM(CASE WHEN PdhDedCode IN ('40P','ROP') THEN PdhEECurAmt ELSE 0.00 END)
+        ,Pdh4OPAmt     = SUM(CASE WHEN PdhDedCode IN ('40P') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhRopAmt     = SUM(CASE WHEN PdhDedCode IN ('ROP') THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401MAmt     = SUM(CASE WHEN PdhDedCode IN ('401M') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhHSAAmt     = SUM(CASE WHEN PdhDedCode IN ('HSACF','HSACI','HSAF','HSAI','HSAER') THEN PdhEECurAmt ELSE 0.00 END)        
+        ,PdhHSA1Amt     = SUM(CASE WHEN PdhDedCode IN ('HSAF','HSAI') THEN PdhEECurAmt ELSE 0.00 END)  
+        ,PdhHSA2Amt     = SUM(CASE WHEN PdhDedCode IN ('HSACF','HSACI') THEN PdhEECurAmt ELSE 0.00 END)  
+        ,PdhHSA3Amt     = SUM(CASE WHEN PdhDedCode IN ('HSAER') THEN PdhEECurAmt ELSE 0.00 END)  
+        ,PdhLoanAmt     = SUM(CASE WHEN PdhDedCode IN ('401L','401L2') THEN PdhEECurAmt ELSE 0.00 END)      
         /*,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
@@ -879,6 +887,45 @@ BEGIN
     -------------------------------
     -- Working Table - Employees
     -------------------------------
+    INSERT INTO [dbo].[U_dsi_BDM_EFD401KHSA]
+    ([BdmRecType]
+        ,[BdmCOID]
+        ,[BdmEEID]
+        ,[BdmDepRecID]
+        ,[BdmSystemID]
+        ,[BdmRunID]
+        ,[BdmDedRowStatus]
+        ,[BdmRelationship]
+        ,[BdmDateOfBirth]
+        ,[BdmDedCode]
+        ,[BdmBenStartDate]
+        ,[BdmBenStopDate]
+        ,[BdmBenStatusDate]
+        ,[BdmDateOFCobraEvent]
+        ,[BdmChangeReason]
+        ,[BdmCobraReason]
+        ,[BdmStartDate]
+        ,[BdmStopDate]
+        ,[BdmIsPQB]
+    )
+    SELECT 'EMP', EedCOID, EedEEID, NULL, NULL, '', '', 'Emp', EepDateOfBirth, EedDedCode, EedBenStartDate, EedBenStopDate, EedBenStatusDate, NULL, '', NULL, EedStartDate, EedStopDate, 'N'
+    FROM dbo.U_dsi_BDM_EmpDeductions  WITH (NOLOCK) 
+    JOIN dbo.U_EFD401KHSA_PDedHist WITH (NOLOCK)
+        ON EedEEID = PdhEEID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON PdhEEID = EepEEID 
+WHERE EedFormatCode = 'EFD401KHSA'
+    AND (
+            (EedDedCode = '40P' AND Pdh4OPAmt > 0)
+            OR (EedDedCode = 'ROP' AND PdhRopAmt > 0)
+            OR (EedDedCode = '401M' AND Pdh401MAmt > 0)
+            OR (EedDedCode IN ('HSAF','HSAI')  AND PdhHSA1Amt > 0)
+            OR (EedDedCode IN ('HSACF','HSACI') AND PdhHSA2Amt > 0)
+            OR (EedDedCode = 'HSAER' AND PdhHSA3Amt > 0)
+                            )
+    AND EedDedCode IN ('40P','ROP','401M','HSAF','HSAI','HSACF','HSACI','HSAER')
+
+
     IF OBJECT_ID('U_EFD401KHSA_Employees','U') IS NOT NULL
         DROP TABLE dbo.U_EFD401KHSA_Employees;
     SELECT xEEID
@@ -968,7 +1015,7 @@ BEGIN
     ) AuditRecords
         ON audEEID = xEEID;
 
-    Delete from U_EFD401KHSA_Employees where xeeid not in ( Select xeeid from U_EFD401KHSA_Employees  where Record60Change = 'Y' or Record61Change = 'Y' or emailAddress = 'Y')
+    --Delete from U_EFD401KHSA_Employees where xeeid not in ( Select xeeid from U_EFD401KHSA_Employees  where Record60Change = 'Y' or Record61Change = 'Y' or emailAddress = 'Y')
 
 
 
@@ -1054,7 +1101,7 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('401L','401L2','401M','ROP','40P')
-    WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' ;
+    WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' 
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_02E
@@ -1377,7 +1424,7 @@ BEGIN
         ,drvCoverageTier =    CASE WHEN BdmDedCode IN ('HSAI','HSACI') THEN '05'
                                 WHEN BdmDedCode IN ('HSACF','HSAF') THEN '13'
                             END
-        ,drvEnrollmentStatusDate = BdmBenStartDate
+        ,drvEnrollmentStatusDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, CAST('1/1/' + FORMAT(DATEPART(YEAR, GETDATE()), '####') AS DATE))
         ,drvEnrollmentStatus = CASE WHEN BdmBenStatus IN ('T','C') THEN 'I' ELSE 'A' END
         ,drvClientBillingFlag = CASE WHEN EecEmplStatus = 'T' THEN 'N' ELSE 'Y' END
     INTO dbo.U_EFD401KHSA_drvTbl_HS
@@ -1391,6 +1438,7 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') 
+        AND BdmBenStatus = 'A'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFD401KHSA_drvTbl_19
@@ -1414,10 +1462,14 @@ BEGIN
                             WHEN BdmDedCode IN ('HSACF','HSACI') THEN '02'
                             WHEN BdmDedCode IN ('HSAER') THEN '04'
                         END
-        ,drvAmount = FORMAT(
-                            CASE WHEN BdmDedCode IN ('40P','ROP') THEN Pdh4OPROPAmt
-                            END, '00000000000')
-        ,drvFiscalYear = CASE WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI','HSAER') THEN FORMAT(DATEPART(YEAR,GETDATE()), '0000') END
+        ,drvAmount =    CASE WHEN BdmDedCode IN ('40P') THEN CONVERT(VARCHAR(13),Pdh4OPAmt) 
+                            WHEN BdmDedCode IN ('ROP') THEN CONVERT(VARCHAR(13),PdhRopAmt) 
+                            WHEN BdmDedCode IN ('401M') THEN CONVERT(VARCHAR(13),Pdh401MAmt) 
+                            WHEN BdmDedCode IN ('HSAF','HSAI') THEN CONVERT(VARCHAR(13),PdhHSA1Amt) 
+                            WHEN BdmDedCode IN ('HSACF','HSACI') THEN CONVERT(VARCHAR(13),PdhHSA2Amt) 
+                            WHEN BdmDedCode IN ('HSAER') THEN CONVERT(VARCHAR(13),PdhHSA3Amt) 
+                        END
+                ,drvFiscalYear = CASE WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI','HSAER') THEN FORMAT(DATEPART(YEAR,GETDATE()), '0000') END
         ,drvPostingDate = CASE WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI','HSAER') THEN PdhPayDate END
     INTO dbo.U_EFD401KHSA_drvTbl_19
     FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
@@ -1430,6 +1482,23 @@ BEGIN
     JOIN dbo.U_EFD401KHSA_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
     ;
+
+    DELETE dbo.U_EFD401KHSA_drvTbl_19 WHERE drvAmount = '0.0000';
+
+    UPDATE dbo.U_EFD401KHSA_drvTbl_19 set drvAmount = CONVERT(VARCHAR,dbo.dsi_fnPadZero( (cast (drvAmount as money)) *100,13,0));
+
+    Update dbo.U_EFD401KHSA_drvTbl_19 set drvAmount  =   CONCAT(LEFT(REPLACE(drvAmount,'.',''),(LEN( REPLACE(drvAmount,'.','')) -1)),CASE WHEN RIGHT(drvAmount,1) = '1' THEN 'A'
+         WHEN RIGHT(drvAmount,1) = '2' THEN 'B'
+         WHEN RIGHT(drvAmount,1) = '3' THEN 'C'
+         WHEN RIGHT(drvAmount,1) = '4' THEN 'D'
+         WHEN RIGHT(drvAmount,1) = '5' THEN 'E'
+         WHEN RIGHT(drvAmount,1) = '6' THEN 'F'
+         WHEN RIGHT(drvAmount,1) = '7' THEN 'G'
+         WHEN RIGHT(drvAmount,1) = '8' THEN 'H'
+         WHEN RIGHT(drvAmount,1) = '9' THEN 'I'
+         WHEN RIGHT(drvAmount,1) = '0' THEN '{'
+
+    END) 
 
     /*Pdh4OPROPAmt     = SUM(CASE WHEN PdhDedCode IN ('40P','ROP') THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401MAmt     = SUM(CASE WHEN PdhDedCode IN ('401M') THEN PdhERCurAmt ELSE 0.00 END)
@@ -1448,7 +1517,8 @@ BEGIN
         ,drvPlanNumber = CASE WHEN BdmDedCode IN ('401L','401L2') THEN '29475' END
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvLoanIdentification = CASE WHEN BdmDedCode IN ('401L','401L2') THEN 'LOAN 1' END
-        ,drvRepaymentAmount = FORMAT(PdhEECurAmt*100, '00000')
+        ,drvRepaymentAmount = CONVERT(VARCHAR(13),PdhLoanAmt)
+        --FORMAT(PdhLoanAmt*100, '00000')
     INTO dbo.U_EFD401KHSA_drvTbl_21
     FROM dbo.U_EFD401KHSA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1460,6 +1530,23 @@ BEGIN
     JOIN dbo.U_EFD401KHSA_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
     ;
+
+    DELETE dbo.U_EFD401KHSA_drvTbl_21 WHERE drvRepaymentAmount = '0.0000';
+
+    UPDATE dbo.U_EFD401KHSA_drvTbl_21 set drvRepaymentAmount = CONVERT(VARCHAR,dbo.dsi_fnPadZero( (cast (drvRepaymentAmount as money)) *100,7,0));
+
+    Update dbo.U_EFD401KHSA_drvTbl_21 set drvRepaymentAmount  =   CONCAT(LEFT(REPLACE(drvRepaymentAmount,'.',''),(LEN( REPLACE(drvRepaymentAmount,'.','')) -1)),CASE WHEN RIGHT(drvRepaymentAmount,1) = '1' THEN 'A'
+         WHEN RIGHT(drvRepaymentAmount,1) = '2' THEN 'B'
+         WHEN RIGHT(drvRepaymentAmount,1) = '3' THEN 'C'
+         WHEN RIGHT(drvRepaymentAmount,1) = '4' THEN 'D'
+         WHEN RIGHT(drvRepaymentAmount,1) = '5' THEN 'E'
+         WHEN RIGHT(drvRepaymentAmount,1) = '6' THEN 'F'
+         WHEN RIGHT(drvRepaymentAmount,1) = '7' THEN 'G'
+         WHEN RIGHT(drvRepaymentAmount,1) = '8' THEN 'H'
+         WHEN RIGHT(drvRepaymentAmount,1) = '9' THEN 'I'
+         WHEN RIGHT(drvRepaymentAmount,1) = '0' THEN '{'
+
+    END) 
 
     --==========================================
     -- Set FileName

@@ -1,0 +1,3 @@
+
+Effective date,Status,ClientID,EmployeeID,MemberFirstName,MemberMiddleName,MemberLastName,MemberSSN,DOB_Month,DOB_Day,DOB_Year *Required,Address1 *Required,Address2,City,State,ZipCode *Required,AreaCode,HomePhone,Email,Deduction Method,Customer_Defined Non-Required Field,Relationship,Primary,FamilyID,UniqueID,Plan_Type,ProductID
+
