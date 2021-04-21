@@ -1,0 +1,5 @@
+Interface details (ESTNLSTDEX)
+Env – EW34 
+Server – EW4WUP5DB03 
+Database – ULTIPRO_WPLNG 
+Export Name – Standad STD LTD ACC Crit Export

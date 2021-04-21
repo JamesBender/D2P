@@ -239,7 +239,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTNLSTDEX_20210420.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTNLSTDEX_20210421.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104169','EMPEXPORT','OEACTIVE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104169','EMPEXPORT','OEPASSIVE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -396,10 +396,10 @@ CREATE TABLE [dbo].[U_ESTNLSTDEX_drvTbl] (
     [drvAiTerminationDate] datetime NULL,
     [drvAiFamilyElectionIndicator] varchar(1) NULL,
     [drvCiProductId] varchar(2) NULL,
-    [drvCiEmployeeAmtCancer] varchar(1) NOT NULL,
+    [drvCiEmployeeAmtCancer] varchar(20) NULL,
     [drvCiEmployeeEffectiveDate] datetime NULL,
     [drvCiEmployeeTerminationDate] datetime NULL,
-    [drvCiSpouseAmtCancer] varchar(1) NOT NULL,
+    [drvCiSpouseAmtCancer] varchar(20) NULL,
     [drvCiSpouseEffectiveDate] datetime NULL,
     [drvCiSpouseTerminationDate] datetime NULL
 );
@@ -691,6 +691,15 @@ BEGIN
     --==========================================
     -- Build Driver Tables
     --==========================================
+
+    DECLARE @CHSA5 VARCHAR(20)
+        ,@CIS10 VARCHAR(20)
+        ,@CIS5 VARCHAR(20)
+
+    SELECT @CHSA5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CHSA5')
+    SELECT @CIS10 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIS10')
+    SELECT @CIS5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIS5')
+
     ---------------------------------
     -- DETAIL RECORD - U_ESTNLSTDEX_drvTbl
     ---------------------------------
@@ -790,10 +799,12 @@ BEGIN
                                             END
                                         END
         ,drvCiProductId = CASE WHEN CI_DedCode IS NOT NULL AND (CI_StopDate  IS NULL OR CI_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN 'CI' END
-        ,drvCiEmployeeAmtCancer = ''
+        ,drvCiEmployeeAmtCancer = CASE WHEN CHS_DedCode IS NOT NULL THEN @CHSA5 END
         ,drvCiEmployeeEffectiveDate = CASE WHEN CI_DedCode IS NOT NULL AND (CI_StopDate  IS NULL OR CI_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI_StartDate END
         ,drvCiEmployeeTerminationDate = CASE WHEN CI_DedCode IS NOT NULL AND (CI_StopDate  IS NULL OR CI_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI_StopDate END
-        ,drvCiSpouseAmtCancer = ''
+        ,drvCiSpouseAmtCancer =    CASE WHEN CIS10_DedCode IS NOT NULL THEN @CIS10
+                                    WHEN CIS5_DedCode IS NOT NULL THEN @CIS5
+                                END
         ,drvCiSpouseEffectiveDate = CASE WHEN CI_SpouseDedCode IS NOT NULL AND (CI_SpouseStopDate  IS NULL OR CI_SpouseStopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI_SpouseStartDate END
         ,drvCiSpouseTerminationDate = CASE WHEN CI_SpouseDedCode IS NOT NULL AND (CI_SpouseStopDate  IS NULL OR CI_SpouseStopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI_SpouseStopDate END
     INTO dbo.U_ESTNLSTDEX_drvTbl
@@ -829,6 +840,9 @@ BEGIN
                     ,MAX(CASE WHEN BdmDedCode IN ('CIS10','CIS5') THEN BdmBenStartDate END) AS CI_SpouseStartDate
                     ,MAX(CASE WHEN BdmDedCode IN ('CIS10','CIS5') THEN BdmBenStopDate END) AS CI_SpouseStopDate
 
+                    ,MAX(CASE WHEN BdmDedCode IN ('CHSA5') THEN BdmDedCode END) AS CHS_DedCode
+                    ,MAX(CASE WHEN BdmDedCode IN ('CIS10') THEN BdmDedCode END) AS CIS10_DedCode
+                    ,MAX(CASE WHEN BdmDedCode IN ('CIS5') THEN BdmDedCode END) AS CIS5_DedCode
 
                 FROM dbo.U_dsi_BDM_ESTNLSTDEX WITH (NOLOCK) 
                 GROUP BY BdmEEID, BdmCOID) AS BDM
@@ -865,6 +879,11 @@ BEGIN
     LEFT JOIN dbo.U_ESTNLSTDEX_Audit
         ON audEEID = xEEID
         AND audKey2 = xCOID
+    /*LEFT JOIN (
+                SELECT DedDedCode, DedBenAmtMax
+                FROM DedCode WITH (NOLOCK)
+                WHERE DedDedCode IN ('CHSA5','CIS10','CIS5')) AS CI_Amts
+        ON DedDedCode = BdmDedcode*/
     WHERE EecEmplStatus <> 'T' OR audNewValue IS NOT NULL
     ;
     ---------------------------------
