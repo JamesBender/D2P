@@ -1,0 +1,5 @@
+Interface details (EDISFHSAEX)
+Env – AE23 
+Server – E2SUP3ST20 
+Database – ULTIPRO_AMDPI 
+Export Name – Discovery FSA/HSA Contrb

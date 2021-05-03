@@ -155,13 +155,14 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210405.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210429.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Full File','202104199','EMPEXPORT','FULLFILE','Apr 19 2021  3:46PM','EBVLADDEXP',NULL,NULL,NULL,'202104199','Apr 19 2021 12:00AM','Dec 30 1899 12:00AM','190004011','720','','','190004011',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103229','EMPEXPORT','OEACTIVE','Mar 31 2021  1:31PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','92','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202103229','EMPEXPORT','OEPASSIVE','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','190','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Export','202103229','EMPEXPORT','ONDEM_XOE','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','193','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Sched','202103229','EMPEXPORT','SCH_EBVLAD','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','193','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Test','202104019','EMPEXPORT','TEST_XOE','Apr  1 2021  4:12PM','EBVLADDEXP',NULL,NULL,NULL,'202104019','Apr  1 2021 12:00AM','Dec 30 1899 12:00AM','202103181','28','','','202103181',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Exp-Test','202104199','EMPEXPORT','TEST_XOE','Apr 19 2021  3:46PM','EBVLADDEXP',NULL,NULL,NULL,'202104199','Apr 19 2021 12:00AM','Dec 30 1899 12:00AM','190004011','720','','','190004011',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBVLADDEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBVLADDEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBVLADDEXP','InitialSort','C','drvSort');
@@ -347,6 +348,7 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBVLADDEXP', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBVLADDEXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBVLADDEXP', 'FULLFILE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBVLADDEXP', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBVLADDEXP', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBVLADDEXP', 'SCH_EBVLAD';
@@ -410,17 +412,17 @@ BEGIN
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepNameMiddle');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepNamePrefix');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepNameSuffix');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    /*INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressLine1');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressLine2');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressCity');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressState');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressZipCode');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressCountry');
+    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepAddressCountry');*/
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepGender');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepDateOfBirth');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepIsDisabled');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepMaritalStatus');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
+    --INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepIsDisabled');
+    --INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepMaritalStatus');
+    --INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpComp','EecDateOfTermination');
     -- Dependent Information
@@ -430,14 +432,14 @@ BEGIN
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConNameMiddle');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConNameSuffix');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConDateOfBirth');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConIsDisabled');
+--    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConIsDisabled');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConRelationship');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressLine1');
+    /*INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressLine1');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressLine2');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressCity');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressState');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressZipCode');
-    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressCountry');
+    INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('Contacts','ConAddressCountry');*/
 
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpDed','EedDedCode');
     INSERT INTO dbo.U_EBVLADDEXP_AuditFields VALUES ('EmpDed','EedBenStatus');
@@ -483,11 +485,16 @@ BEGIN
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EBVLADDEXP_Audit ON dbo.U_EBVLADDEXP_Audit (audEEID,audKey2);
 
+    --SELECT @ExportCode;
+
     --================
     -- Changes Only
     --================
-    DELETE FROM dbo.U_EBVLADDEXP_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EBVLADDEXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    IF @ExportCode <> 'FULLFILE' 
+    BEGIN
+        DELETE FROM dbo.U_EBVLADDEXP_EEList
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EBVLADDEXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    END
 
     --==========================================
     -- Create Deduction List
@@ -547,7 +554,9 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '' --NVOL_StartDate 
+                    --VOL_StartDate
+                    --audDateTime
         -- standard fields above and additional driver fields below
         ,drvEnroll2 = ''
         ,drvPolicy =    CASE WHEN GTL1_DedCode IS NOT NULL OR GTL2_DedCode IS NOT NULL OR GTL3_DedCode IS NOT NULL OR GTL4_DedCode IS NOT NULL OR GTLP_DedCode IS NOT NULL 
@@ -607,6 +616,10 @@ BEGIN
                                 WHEN audTerm = 'Y' THEN EecDateOfTermination
                                 WHEN audSalaryChange = 'Y' THEN EjhJobEffDate
                                 ELSE CASE WHEN NVOL_StartDate IS NOT NULL THEN NVOL_StartDate ELSE VOL_StartDate END
+                                /*ELSE 
+                                    CASE WHEN NVOL_StartDate IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', NVOL_StartDate, DedAudEffDate) 
+                                    ELSE dbo.dsi_fnGetMinMaxDates('MAX', VOL_StartDate, DedAudEffDate) 
+                                    END*/
                             END
         ,drvAddType = CASE WHEN EecFullTimeOrPartTime = 'F' AND EjhFullTimeOrPartTime = 'P' THEN 'O' END
         ,drvBenefitId1 = CASE WHEN VLE_DedCode IS NOT NULL THEN 'LM' END
@@ -773,8 +786,6 @@ BEGIN
                 WHERE RN = 1 ) AS VADD_Reason
         ON VADD_EEID = xEEID
         AND VADD_COID = xCOID
-
-
         AND VLE_COID = xCOID
     LEFT JOIN (
                     SELECT EedEEID, EedCOID 
@@ -791,6 +802,13 @@ BEGIN
                     GROUP BY EedEEID, EedCOID) AS EligDates
         ON EedEEID = xEEID
         AND EedCOID = xCOID
+    /*LEFT JOIN (
+                SELECT audEEID AS DedAudEEID, audKey2 AS DedAudCOID, DATEADD(DAY, 1, MAX(audDateTime)) AS DedAudEffDate
+                FROM dbo.U_EBVLADDEXP_Audit WITH (NOLOCK)
+                WHERE audFieldName = 'EedDedCode'
+                    --AND audEEID = 'CR6M3R02L030'
+                GROUP BY audEEID, audKey2) AS AudDed
+        ON DedAudEEID = xEEID*/
     ;
 
     --==========================================
