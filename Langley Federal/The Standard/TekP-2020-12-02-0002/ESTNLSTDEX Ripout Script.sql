@@ -73,7 +73,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWorkState"','32','(''UA''=''T|'')','ESTNLSTDEXZ0','2','D','10','32',NULL,'Work State ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobTitle"','33','(''UA''=''T|'')','ESTNLSTDEXZ0','50','D','10','33',NULL,'Job Title ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvScheduledWorkHours"','34','(''UA''=''T|'')','ESTNLSTDEXZ0','8','D','10','34',NULL,'Scheduled Work Hours ',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Bi-Weekly"','35','(''DA''=''T|'')','ESTNLSTDEXZ0','12','D','10','35',NULL,'Scheduled Work Hours Frequency ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Weekly"','35','(''DA''=''T|'')','ESTNLSTDEXZ0','12','D','10','35',NULL,'Scheduled Work Hours Frequency ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeePayType"','36','(''UA''=''T|'')','ESTNLSTDEXZ0','11','D','10','36',NULL,'Employee Pay Type ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFullPartTime"','37','(''UA''=''T|'')','ESTNLSTDEXZ0','9','D','10','37',NULL,'Full / Part Time ',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmploymentType"','38','(''UA''=''T|'')','ESTNLSTDEXZ0','9','D','10','38',NULL,'Employment Type ',NULL,NULL);
@@ -241,13 +241,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTNLSTDEX_20210427.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTNLSTDEX_20210503.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104169','EMPEXPORT','OEACTIVE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104169','EMPEXPORT','OEPASSIVE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Standad STD LTD ACC Crit Ex','202104169','EMPEXPORT','ONDEM_XOE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Standad STD LTD ACC Crit-Sched','202104169','EMPEXPORT','SCH_ESTNLS',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Standad STD LTD ACC Crit-Test','202104221','EMPEXPORT','TEST_XOE','Apr 27 2021  1:36PM','ESTNLSTDEX',NULL,NULL,NULL,'202104221','Apr 22 2021 12:00AM','Dec 30 1899 12:00AM','202104081','593','','','202104081',dbo.fn_GetTimedKey(),NULL,'us3cPeLAN1016',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Standad STD LTD ACC Crit-Test','202104301','EMPEXPORT','TEST_XOE','May  1 2021  5:02PM','ESTNLSTDEX',NULL,NULL,NULL,'202104301','Apr 30 2021 12:00AM','Apr 25 2021 12:00AM','202104081','599','','','202104081',dbo.fn_GetTimedKey(),NULL,'us3cPeLAN1016',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTNLSTDEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTNLSTDEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTNLSTDEX','InitialSort','C','drvSort');
@@ -357,7 +357,7 @@ CREATE TABLE [dbo].[U_ESTNLSTDEX_drvTbl] (
     [drvFullPartTime] varchar(9) NULL,
     [drvEmploymentType] varchar(9) NOT NULL,
     [drvWorkEmailAddress] varchar(50) NULL,
-    [drvExemptStatus] varchar(9) NOT NULL,
+    [drvExemptStatus] varchar(10) NOT NULL,
     [drvEmployeeAffiliate] varchar(40) NULL,
     [drvEmployerLocationCode] char(6) NULL,
     [drvEmployerLocationName] varchar(25) NULL,
@@ -423,7 +423,7 @@ CREATE TABLE [dbo].[U_ESTNLSTDEX_File] (
 );
 IF OBJECT_ID('U_ESTNLSTDEX_Header') IS NULL
 CREATE TABLE [dbo].[U_ESTNLSTDEX_Header] (
-    [drvFileRunDate] datetime NULL
+    [drvFileRunDate] datetime NOT NULL
 );
 IF OBJECT_ID('U_ESTNLSTDEX_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_ESTNLSTDEX_PDedHist] (
@@ -770,7 +770,7 @@ BEGIN
                             END
         ,drvEmploymentType = CASE WHEN EecEmplStatus = 'TMP' THEN 'Temporary' ELSE 'Regular' END
         ,drvWorkEmailAddress = EepAddressEMail
-        ,drvExemptStatus = CASE WHEN EjhFLSACategory IN ('E','Z') THEN 'EXEMPT' ELSE 'NONEXEMPT' END
+        ,drvExemptStatus = CASE WHEN EjhFLSACategory IN ('E','Z') THEN 'Exempt' ELSE 'Non-Exempt' END
         ,drvEmployeeAffiliate = CmpCompanyName
         ,drvEmployerLocationCode = EecLocation
         ,drvEmployerLocationName = LocDesc
@@ -801,15 +801,16 @@ BEGIN
         ,drvHoursWorkPast12Months = FORMAT(PehCurHrsYTD, '00000.00')
         ,drvHoursWorkPast12ThruDate = PrgPayDate
         ,drvAmsReportingGroup1 = CASE WHEN EecUDField05 = 'Yes' THEN 'Y' ELSE 'N' END
-        ,drvPolicy0 = CASE WHEN GL_DedCode IS NOT NULL THEN '168393' END
-        ,drvBillingDivision = CASE WHEN GS_DedCode IS NOT NULL OR GL_DedCode IS NOT NULL THEN '0001' END
-        ,drvBillingCategory = CASE WHEN GS_DedCode IS NOT NULL OR GL_DedCode IS NOT NULL THEN '0100' END
+        ,drvPolicy0 = CASE WHEN O_DedCode IS NOT NULL THEN '168393' END
+                        --CASE WHEN GL_DedCode IS NOT NULL THEN '168393' END
+        ,drvBillingDivision = CASE WHEN O_DedCode IS NOT NULL THEN '0001' END
+        ,drvBillingCategory = CASE WHEN O_DedCode IS NOT NULL THEN '0100' END
         ,drvPolicy1 = CASE WHEN GS_DedCode IS NOT NULL AND (GS_StopDate  IS NULL OR GS_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN '760060' END
         ,drvPlanId1 = CASE WHEN GS_DedCode IS NOT NULL AND (GS_StopDate  IS NULL OR GS_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN 'A' END
         ,drvProductId1 = CASE WHEN GS_DedCode IS NOT NULL AND (GS_StopDate  IS NULL OR GS_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN 'ST' END
         ,drvEffectiveDate1 = CASE WHEN GS_DedCode IS NOT NULL AND (GS_StopDate  IS NULL OR GS_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN GS_StartDate END
         ,drvTerminationDate1 = CASE WHEN GS_DedCode IS NOT NULL AND (GS_StopDate  IS NULL OR GS_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN GS_StopDate  END
-        ,drvPolicy2 = CASE WHEN GL_DedCode IS NOT NULL AND (GL_StopDate  IS NULL OR GL_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN '760060' END
+        ,drvPolicy2 = CASE WHEN GL_DedCode IS NOT NULL AND (GL_StopDate  IS NULL OR GL_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN '168393' END
         ,drvPlanId2 = CASE WHEN GL_DedCode IS NOT NULL AND (GL_StopDate  IS NULL OR GL_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN 'B' END
         ,drvProductId2 = CASE WHEN GL_DedCode IS NOT NULL AND (GL_StopDate  IS NULL OR GL_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN 'LT' END
         ,drvEffectiveDate2 = CASE WHEN GL_DedCode IS NOT NULL AND (GL_StopDate  IS NULL OR GL_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN GL_StartDate END
@@ -821,7 +822,7 @@ BEGIN
         ,drvAiEffectiveDate = CASE WHEN ACC_DedCode IS NOT NULL AND (ACC_StopDate  IS NULL OR ACC_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN  ACC_StartDate END
         ,drvAiTerminationDate = CASE WHEN ACC_DedCode IS NOT NULL AND (ACC_StopDate  IS NULL OR ACC_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN  ACC_StopDate END
         ,drvAiFamilyElectionIndicator =    CASE WHEN ACC_DedCode IS NOT NULL AND (ACC_StopDate  IS NULL OR ACC_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN  
-                                            CASE WHEN ACC_BenOption IN ('EFF','EEDEP') THEN 'A'
+                                            CASE WHEN ACC_BenOption IN ('EEF','EEDEP') THEN 'A'
                                                 WHEN ACC_BenOption IN ('EES') THEN 'B'
                                                 WHEN ACC_BenOption IN ('EE') THEN 'C'
                                                 WHEN ACC_BenOption IN ('EEC','EECC','EC') THEN 'D'
@@ -857,6 +858,7 @@ BEGIN
     --LEFT JOIN dbo.U_dsi_BDM_ESTNLSTDEX WITH (NOLOCK)
     LEFT JOIN (
                 SELECT BdmEEID, BdmCOID
+                    ,MAX(CASE WHEN BdmDedCode IN ('ACC','CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5','CHSA5') THEN BdmDedCode END) AS O_DedCode
                     ,MAX(CASE WHEN BdmDedCode IN ('GSTDE','GSTD') THEN BdmDedCode END) AS GS_DedCode
                     ,MAX(CASE WHEN BdmDedCode IN ('GSTDE','GSTD') THEN BdmBenStartDate END) AS GS_StartDate
                     ,MAX(CASE WHEN BdmDedCode IN ('GSTDE','GSTD') THEN BdmBenStopDate  END) AS GS_StopDate    
@@ -946,7 +948,7 @@ BEGIN
     IF OBJECT_ID('U_ESTNLSTDEX_Header','U') IS NOT NULL
         DROP TABLE dbo.U_ESTNLSTDEX_Header;
     SELECT DISTINCT
-         drvFileRunDate = @CurrentDate
+         drvFileRunDate = GETDATE()
     INTO dbo.U_ESTNLSTDEX_Header
 
     ---------------------------------
