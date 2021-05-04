@@ -105,13 +105,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBAPFSAEXP_20210409.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBAPFSAEXP_20210503.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104099','EMPEXPORT','OEACTIVE',NULL,'EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104099','EMPEXPORT','OEPASSIVE',NULL,'EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Basic Pacific FSA Export','202104099','EMPEXPORT','ONDEM_XOE',NULL,'EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Basic Pacific FSA Export-Sched','202104099','EMPEXPORT','SCH_EBAPFS',NULL,'EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Basic Pacific FSA Export-Test','202104099','EMPEXPORT','TEST_XOE',NULL,'EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202104099','EMPEXPORT','OEACTIVE','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','1','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202104099','EMPEXPORT','OEPASSIVE','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','143','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export','202104099','EMPEXPORT','ONDEM_XOE','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','143','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export-Sched','202104099','EMPEXPORT','SCH_EBAPFS','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','143','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export-Test','202104271','EMPEXPORT','TEST_XOE','Apr 27 2021  9:23AM','EBAPFSAEXP',NULL,NULL,NULL,'202104271','Apr 27 2021 12:00AM','Dec 30 1899 12:00AM','202104131','146','','','202104131',dbo.fn_GetTimedKey(),NULL,'us3cPeTYL1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAPFSAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAPFSAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAPFSAEXP','InitialSort','C','drvSort');
@@ -177,7 +177,7 @@ CREATE TABLE [dbo].[U_EBAPFSAEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvIndividualId] char(11) NULL,
+    [drvIndividualId] varchar(1) NOT NULL,
     [drvEmployeeId] char(9) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -188,12 +188,12 @@ CREATE TABLE [dbo].[U_EBAPFSAEXP_drvTbl] (
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
-    [drvPhoneNumber] varchar(50) NULL,
+    [drvPhoneNumber] varchar(12) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvDateOfDeath] datetime NULL,
     [drvGender] varchar(6) NULL,
     [drvHireDate] datetime NULL,
-    [drvDivision] varchar(2) NULL,
+    [drvDivision] varchar(12) NULL,
     [drvEmploymentTermDate] datetime NULL,
     [drvRetired] varchar(1) NULL,
     [drvLoaStartDate] datetime NULL,
@@ -451,7 +451,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvIndividualId = EepSSN
+        ,drvIndividualId = '' --EepSSN
         ,drvEmployeeId = EecEmpNo
         ,drvNameLast = EepNameLast
         ,drvNameFirst = EepNameFirst
@@ -462,23 +462,27 @@ BEGIN
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
-        ,drvPhoneNumber = eepPhoneHomeNumber
+        ,drvPhoneNumber = LEFT(eepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(RTRIM(EepPhoneHomeNumber), 4)
         ,drvDateOfBirth = EepDateOfBirth
         ,drvDateOfDeath = EepDateDeceased
         ,drvGender =    CASE WHEN EepGender = 'M' THEN 'Male'
                             WHEN EepGender = 'F' THEN 'Female'
                         END
         ,drvHireDate = EecDateOfOriginalHire
-        ,drvDivision =    CASE WHEN xCOID = 'KLTLH' THEN '16'
-                            WHEN xCOID = 'UEB6V' THEN '10'
-                            WHEN xCOID = 'UEBCJ' THEN '12'
-                            WHEN xCOID = 'UEB8U' THEN '05'
+        ,drvDivision =    CASE WHEN xCOID = 'KLTLH' THEN '16-Lindbergh'
+                            WHEN xCOID = 'UEB6V' THEN '10-Int''l'
+                            WHEN xCOID = 'UEBCJ' THEN '12-Eng'
+                            WHEN xCOID = 'UEB8U' THEN '5-Grp'
                         END
         ,drvEmploymentTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvRetired = CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'Y' END
-        ,drvLoaStartDate = CASE WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate END
+        ,drvLoaStartDate =    CASE WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate 
+                                WHEN EecEmplStatus = 'A' AND EshEmplStatus = 'L' THEN EshStatusStartDate 
+                            END
         ,drvLoaEndDate = CASE WHEN EecEmplStatus = 'A' AND EshEmplStatus = 'L' THEN EshStatusStopDate END
-        ,drvLoaWithBenefits = CASE WHEN EecEmplStatus = 'L' AND EecEmplStatusStartDate IS NOT NULL THEN 'Y' END
+        ,drvLoaWithBenefits =    CASE WHEN EecEmplStatus = 'L' AND EecEmplStatusStartDate IS NOT NULL THEN 'Y' 
+                                    WHEN EecEmplStatus = 'A' AND EshEmplStatus = 'L' AND ISNULL(EecEmplStatusStartDate, '') <> '' THEN 'Y'
+                                END
     INTO dbo.U_EBAPFSAEXP_drvTbl
     FROM dbo.U_EBAPFSAEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
