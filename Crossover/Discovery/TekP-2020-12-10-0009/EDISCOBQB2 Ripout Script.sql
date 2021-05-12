@@ -138,11 +138,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210427.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210507.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery COBRA QB','202103309','EMPEXPORT','ONDEMAND','Jan  2 2020 12:00AM','EDISCOBQB2',NULL,NULL,NULL,'202103309','Jan  2 2020 12:00AM','Dec 30 1899 12:00AM','202006301',NULL,'','','202006301',dbo.fn_GetTimedKey(),NULL,'ULTI_WPCHMS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'SPXBO,SPXK9',NULL,NULL,NULL,'Discovery COBRA QB','202103309','EMPEXPORT','SCHEDULED',NULL,'EDISCOBQB2',NULL,NULL,NULL,'202103309','Nov  5 2019  4:57PM','Nov  5 2019  4:57PM','202006301',NULL,'','','202006301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','SPXBO,SPXK9',NULL,NULL,NULL,'Test Purposes Only','202104209','EMPEXPORT','TEST','Apr 27 2021  3:26PM','EDISCOBQB2',NULL,NULL,NULL,'202104209','Apr 20 2021 12:00AM','Dec 30 1899 12:00AM','202101011','620','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','SPXBO,SPXK9',NULL,NULL,NULL,'Test Purposes Only','202104209','EMPEXPORT','TEST','May  4 2021  9:04AM','EDISCOBQB2',NULL,NULL,NULL,'202104209','Apr 20 2021 12:00AM','Dec 30 1899 12:00AM','202101011','274','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','SubSort','C','drvSubSort');
@@ -253,7 +253,7 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QB] (
     [drvBenefitGroup] varchar(1) NOT NULL,
     [drvAccountStructure] varchar(1) NOT NULL,
     [drvClientSpecificData] varchar(1) NOT NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(1) NOT NULL,
     [drvSubSort3] varchar(208) NULL
 );
@@ -283,7 +283,7 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBDEPENDENT] (
     [drvSex] char(1) NULL,
     [drvDOB] datetime NULL,
     [drvIsQMCSO] varchar(1) NOT NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(33) NULL,
     [drvSubSort3] varchar(208) NULL
 );
@@ -310,7 +310,7 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBEVENT] (
     [drvEmployeeSSN] char(11) NULL,
     [drvEmployeeName] varchar(201) NULL,
     [drvSecondEventOriginalFDOC] varchar(1) NOT NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(1) NOT NULL,
     [drvSubSort3] varchar(208) NULL
 );
@@ -323,7 +323,7 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBPLAN] (
     [drvPlanName] varchar(26) NULL,
     [drvStartDate] datetime NULL,
     [drvCoverageLevel] varchar(11) NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(1) NOT NULL,
     [drvSubSort3] varchar(1) NOT NULL
 );
@@ -487,6 +487,8 @@ BEGIN
     -- Run BDM for QB
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+    DELETE dbo.U_dsi_BDM_EDISCOBQB2 WHERE BdmBenStatus = 'C';
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -541,9 +543,9 @@ BEGIN
         ,drvBenefitGroup = ''
         ,drvAccountStructure = ''
         ,drvClientSpecificData = ''
-        ,drvSubSort        = CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+        ,drvSubSort        = EepSSN /* CASE WHEN BdmRecType = 'EMP' THEN eepSSN
                                       ELSE ISNULL(NULLIF(ConSSN,''),eepSSN) + CONVERT(char(8),ConDateOfBirth,112)
-                                 END
+                                 END*/
         ,drvSubSort2       = '1'
         ,drvSubSort3       = CASE WHEN BdmRecType = 'EMP' THEN '2'
                                       ELSE CONVERT(char(8),ConDateOfBirth,112) + RTRIM(ConNameLast) + ConNameFirst
@@ -561,6 +563,7 @@ BEGIN
     LEFT JOIN dbo.Company WITH (NOLOCK)
         ON CmpCOID = BdmCOID
     WHERE BdmIsPQB = 'Y'
+        AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBEVENT
@@ -614,11 +617,15 @@ BEGIN
                 ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
                 ,BdmUSGDate1 = MAX(BdmUSGDate1)
               FROM dbo.U_dsi_BDM_EDISCOBQB2 WITH (NOLOCK)
-              WHERE BdmIsPQB = 'Y'
+              WHERE BdmIsPQB = 'Y' AND BdmDedCode IN ('XOMFT','XOMPT')
               GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType) BDM
          ON BdmEEID = drvEEID
          AND BdmCoID = drvCoID
          AND ISNULL(BdmDepRecID,'') = drvDepRecID
+    --JOIN dbo.U_dsi_BDM_EDISCOBQB2 BDM WITH (NOLOCK)
+        --ON Bdm.BdmEEID = EecEEID
+        --AND Bdm.BdmCOID = EecCoID
+    --WHERE BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBPLANINITIAL
@@ -680,7 +687,7 @@ BEGIN
         ,drvCoID = bdmCoID
         ,drvDepRecID = '' --drvDepRecID
         ,drvRecordIdentifier = '[QBPLAN]'
-        ,drvPlanName =    CASE WHEN A.BdmDedCode IN ('XOMFT','XOMPT') THEN 'Aetna Medical XO First PPO' END                    
+        ,drvPlanName = CASE WHEN A.BdmDedCode IN ('XOMFT','XOMPT') THEN 'Aetna Medical XO First PPO' END                    
         ,drvStartDate = DATEADD(DAY, 1, A.BdmBenStopDate)
         ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('200','201','202','204','205','206','207','208','209','210','LEVNT1','LEVNT2','LEVNT3','LEVNT4','LEVNT5') THEN
                                 CASE WHEN A.BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
@@ -689,9 +696,9 @@ BEGIN
                                     ELSE 'EE'
                                 END
                             END
-        ,drvSubSort =    CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+        ,drvSubSort =    EepSSN /*CASE WHEN BdmRecType = 'EMP' THEN eepSSN
                             ELSE ISNULL(NULLIF(ConSSN,''),eepSSN) + CONVERT(char(8),ConDateOfBirth,112)
-                        END
+                        END*/
         ,drvSubSort2 = '2'
         ,drvSubSort3 = ''
     INTO dbo.U_EDISCOBQB2_drvTbl_QBPLAN
@@ -710,7 +717,7 @@ BEGIN
         ,drvCoID = bdmCoID
         ,drvDepRecID = '' --drvDepRecID
         ,drvRecordIdentifier = '[QBPLAN]'
-        ,drvPlanName =    CASE WHEN BdmDedCode IN ('XOMFT','XOMPT') THEN 'Discovery Benefits HRA' END                    
+        ,drvPlanName = CASE WHEN BdmDedCode IN ('XOMFT','XOMPT') THEN 'Discovery Benefits HRA' END                    
         ,drvStartDate = DATEADD(DAY, 1, BdmBenStopDate)
         ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('200','201','202','204','205','206','207','208','209','210','LEVNT1','LEVNT2','LEVNT3','LEVNT4','LEVNT5') THEN
                                 CASE WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
@@ -719,9 +726,9 @@ BEGIN
                                     ELSE 'EE'
                                 END
                             END
-        ,drvSubSort =    CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+        ,drvSubSort =    EepSSN /*CASE WHEN BdmRecType = 'EMP' THEN eepSSN
                             ELSE ISNULL(NULLIF(ConSSN,''),eepSSN) + CONVERT(char(8),ConDateOfBirth,112)
-                        END
+                        END*/
         ,drvSubSort2 = '2'
         ,drvSubSort3 = ''    
     FROM dbo.U_dsi_BDM_EDISCOBQB2 A WITH (NOLOCK)
@@ -783,6 +790,7 @@ BEGIN
         ON ConEEID = bdmEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmIsPQB = 'N'
+    AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBDEPENDENTPLANINITIAL
@@ -811,6 +819,7 @@ BEGIN
         ON ConEEID = BdmEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmIsPQB = 'N'
+    AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE
@@ -892,6 +901,7 @@ BEGIN
         ON CmpCOID = BdmCOID
     WHERE BdmIsPQB = 'Y'
     AND EepAddressState IN ('CA','CT','MN','OR','TX','NY','IL','RI','GA','VA')
+    AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     
 END;
