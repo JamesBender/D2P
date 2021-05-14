@@ -15,6 +15,8 @@ IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE') IS NOT NULL DROP TABLE [dbo
 GO
 IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBPLANINITIAL];
 GO
+IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLAN') IS NOT NULL DROP TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBPLAN];
+GO
 IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBEVENT') IS NOT NULL DROP TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBEVENT];
 GO
 IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBDEPENDENTPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBDEPENDENTPLANINITIAL];
@@ -85,6 +87,22 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q,'')','EDISCOBQB2Z0','50','D','30','2',NULL,'PlanName',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageLevel"','3','(''UA''=''Q,'')','EDISCOBQB2Z0','35','D','30','3',NULL,'CoverageLevel',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNumberOfUnits"','4','(''UA''=''Q'')','EDISCOBQB2Z0','50','D','30','4',NULL,'NumberOfUnits',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordIdentifier"','1','(''UA''=''Q,'')','EDISCOBQB2Z0','50','D','35','1',NULL,'Record Identifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q,'')','EDISCOBQB2Z0','50','D','35','2',NULL,'Plan Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvStartDate"','3','(''UD101''=''Q,'')','EDISCOBQB2Z0','50','D','35','3',NULL,'Start Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','4',NULL,'End Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageLevel"','5','(''UA''=''Q,'')','EDISCOBQB2Z0','50','D','35','5',NULL,'Coverage Level',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','6','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','6',NULL,'First Day Of COBRA',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','7',NULL,'Last Day Of COBRA',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','8',NULL,'COBRA Duration Months',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','9',NULL,'Days To Elect',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','10',NULL,'Days To Make 1st Payment',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','11',NULL,'Days To Make Subsequent Payments',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','12',NULL,'Election Postmark Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','13',NULL,'Last Date Rates Notified',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','14',NULL,'Number Of Units',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"FALSE"','15','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','15',NULL,'Send Plan Change Letter For Legacy',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Aetna Medical XO First PPO/Discovery Benefits HRA"','16','(''DA''=''Q,'')','EDISCOBQB2Z0','50','D','35','16',NULL,'Plan Bundle Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordIdentifier"','1','(''UA''=''Q,'')','EDISCOBQB2Z0','50','D','40','1',NULL,'Record Identifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','2','(''UA''=''Q,'')','EDISCOBQB2Z0','9','D','40','2',NULL,'SSN',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship"','3','(''UA''=''Q,'')','EDISCOBQB2Z0','35','D','40','3',NULL,'Relationship',NULL,NULL);
@@ -120,11 +138,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210329.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210514.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery COBRA QB','202101259','EMPEXPORT','ONDEMAND','Jan  2 2020 12:00AM','EDISCOBQB2',NULL,NULL,NULL,'202101259','Jan  2 2020 12:00AM','Dec 30 1899 12:00AM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPCHMS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'SPXBO,SPXK9',NULL,NULL,NULL,'Discovery COBRA QB','202101259','EMPEXPORT','SCHEDULED',NULL,'EDISCOBQB2',NULL,NULL,NULL,'202101259','Nov  5 2019  4:57PM','Nov  5 2019  4:57PM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','SPXBO,SPXK9',NULL,NULL,NULL,'Test Purposes Only','202102261','EMPEXPORT','TEST','Mar 23 2021  5:35PM','EDISCOBQB2',NULL,NULL,NULL,'202102261','Feb 26 2021 12:00AM','Dec 30 1899 12:00AM','202102121','99','','','202102121',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery COBRA QB','202103309','EMPEXPORT','ONDEMAND','Jan  2 2020 12:00AM','EDISCOBQB2',NULL,NULL,NULL,'202103309','Jan  2 2020 12:00AM','Dec 30 1899 12:00AM','202006301',NULL,'','','202006301',dbo.fn_GetTimedKey(),NULL,'ULTI_WPCHMS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'SPXBO,SPXK9',NULL,NULL,NULL,'Discovery COBRA QB','202103309','EMPEXPORT','SCHEDULED',NULL,'EDISCOBQB2',NULL,NULL,NULL,'202103309','Nov  5 2019  4:57PM','Nov  5 2019  4:57PM','202006301',NULL,'','','202006301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','SPXBO,SPXK9',NULL,NULL,NULL,'Test Purposes Only','202105139','EMPEXPORT','TEST','May 13 2021 10:39AM','EDISCOBQB2',NULL,NULL,NULL,'202105139','May 13 2021 12:00AM','Dec 30 1899 12:00AM','202101011','151','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaCRO1006',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','SubSort','C','drvSubSort');
@@ -139,6 +157,7 @@ GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D10','dbo.U_EDISCOBQB2_drvTbl_QB',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D20','dbo.U_EDISCOBQB2_drvTbl_QBEVENT',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D30','dbo.U_EDISCOBQB2_drvTbl_QBPLANINITIAL',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D35','dbo.U_EDISCOBQB2_drvTbl_QBPLAN',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D40','dbo.U_EDISCOBQB2_drvTbl_QBDEPENDENT',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D50','dbo.U_EDISCOBQB2_drvTbl_QBDEPENDENTPLANINITIAL',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISCOBQB2','D60','dbo.U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE',NULL);
@@ -234,7 +253,7 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QB] (
     [drvBenefitGroup] varchar(1) NOT NULL,
     [drvAccountStructure] varchar(1) NOT NULL,
     [drvClientSpecificData] varchar(1) NOT NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(1) NOT NULL,
     [drvSubSort3] varchar(208) NULL
 );
@@ -264,7 +283,7 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBDEPENDENT] (
     [drvSex] char(1) NULL,
     [drvDOB] datetime NULL,
     [drvIsQMCSO] varchar(1) NOT NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(33) NULL,
     [drvSubSort3] varchar(208) NULL
 );
@@ -291,9 +310,22 @@ CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBEVENT] (
     [drvEmployeeSSN] char(11) NULL,
     [drvEmployeeName] varchar(201) NULL,
     [drvSecondEventOriginalFDOC] varchar(1) NOT NULL,
-    [drvSubSort] char(19) NULL,
+    [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(1) NOT NULL,
     [drvSubSort3] varchar(208) NULL
+);
+IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLAN') IS NULL
+CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBPLAN] (
+    [drvEEID] char(12) NOT NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(1) NOT NULL,
+    [drvRecordIdentifier] varchar(8) NOT NULL,
+    [drvPlanName] varchar(26) NULL,
+    [drvStartDate] datetime NULL,
+    [drvCoverageLevel] varchar(11) NULL,
+    [drvSubSort] char(11) NULL,
+    [drvSubSort2] varchar(1) NOT NULL,
+    [drvSubSort3] varchar(1) NOT NULL
 );
 IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANINITIAL') IS NULL
 CREATE TABLE [dbo].[U_EDISCOBQB2_drvTbl_QBPLANINITIAL] (
@@ -455,6 +487,8 @@ BEGIN
     -- Run BDM for QB
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+    DELETE dbo.U_dsi_BDM_EDISCOBQB2 WHERE BdmBenStatus = 'C';
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -509,9 +543,9 @@ BEGIN
         ,drvBenefitGroup = ''
         ,drvAccountStructure = ''
         ,drvClientSpecificData = ''
-        ,drvSubSort        = CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+        ,drvSubSort        = EepSSN /* CASE WHEN BdmRecType = 'EMP' THEN eepSSN
                                       ELSE ISNULL(NULLIF(ConSSN,''),eepSSN) + CONVERT(char(8),ConDateOfBirth,112)
-                                 END
+                                 END*/
         ,drvSubSort2       = '1'
         ,drvSubSort3       = CASE WHEN BdmRecType = 'EMP' THEN '2'
                                       ELSE CONVERT(char(8),ConDateOfBirth,112) + RTRIM(ConNameLast) + ConNameFirst
@@ -529,6 +563,7 @@ BEGIN
     LEFT JOIN dbo.Company WITH (NOLOCK)
         ON CmpCOID = BdmCOID
     WHERE BdmIsPQB = 'Y'
+        AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBEVENT
@@ -582,16 +617,20 @@ BEGIN
                 ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
                 ,BdmUSGDate1 = MAX(BdmUSGDate1)
               FROM dbo.U_dsi_BDM_EDISCOBQB2 WITH (NOLOCK)
-              WHERE BdmIsPQB = 'Y'
+              WHERE BdmIsPQB = 'Y' AND BdmDedCode IN ('XOMFT','XOMPT')
               GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType) BDM
          ON BdmEEID = drvEEID
          AND BdmCoID = drvCoID
          AND ISNULL(BdmDepRecID,'') = drvDepRecID
+    --JOIN dbo.U_dsi_BDM_EDISCOBQB2 BDM WITH (NOLOCK)
+        --ON Bdm.BdmEEID = EecEEID
+        --AND Bdm.BdmCOID = EecCoID
+    --WHERE BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBPLANINITIAL
     ---------------------------------
-    IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANINITIAL','U') IS NOT NULL
+    /*IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANINITIAL','U') IS NOT NULL
         DROP TABLE dbo.U_EDISCOBQB2_drvTbl_QBPLANINITIAL;
     SELECT DISTINCT
          drvEEID = drvEEID
@@ -636,8 +675,72 @@ BEGIN
         ON BdmEEID = drvEEID 
         AND BdmCoID = drvCoID
         AND ISNULL(BdmDepRecID,'') = drvDepRecID
+        AND BdmDedCode NOT IN ('XOMPT')
     WHERE BdmIsPQB = 'Y'
+    ;*/
+    DELETE dbo.U_EDISCOBQB2_drvTbl_QBPLANINITIAL;
+
+    IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLAN','U') IS NOT NULL -- JCB
+        DROP TABLE dbo.U_EDISCOBQB2_drvTbl_QBPLAN;
+    SELECT DISTINCT
+         drvEEID = bdmEEID
+        ,drvCoID = bdmCoID
+        ,drvDepRecID = '' --drvDepRecID
+        ,drvRecordIdentifier = '[QBPLAN]'
+        ,drvPlanName = CASE WHEN A.BdmDedCode IN ('XOMFT','XOMPT') THEN 'Aetna Medical XO First PPO' END                    
+        ,drvStartDate = DATEADD(DAY, 1, A.BdmBenStopDate)
+        ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('200','201','202','204','205','206','207','208','209','210','LEVNT1','LEVNT2','LEVNT3','LEVNT4','LEVNT5') THEN
+                                CASE WHEN A.BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
+                                    WHEN A.BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
+                                    WHEN A.BdmRelationship IN ('CHL','DPC','STC','DCH') THEN 'EE+CHILDREN'
+                                    ELSE 'EE'
+                                END
+                            END
+        ,drvSubSort =    EepSSN /*CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+                            ELSE ISNULL(NULLIF(ConSSN,''),eepSSN) + CONVERT(char(8),ConDateOfBirth,112)
+                        END*/
+        ,drvSubSort2 = '2'
+        ,drvSubSort3 = ''
+    INTO dbo.U_EDISCOBQB2_drvTbl_QBPLAN
+    FROM dbo.U_dsi_BDM_EDISCOBQB2 A WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = A.BdmEEID
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = A.BdmEEID
+        AND ConSystemID = A.BdmDepRecID
+    WHERE BdmDedCode IN ('XOMFT','XOMPT')
     ;
+
+    INSERT INTO dbo.U_EDISCOBQB2_drvTbl_QBPLAN
+    SELECT DISTINCT
+         drvEEID = bdmEEID
+        ,drvCoID = bdmCoID
+        ,drvDepRecID = '' --drvDepRecID
+        ,drvRecordIdentifier = '[QBPLAN]'
+        ,drvPlanName = CASE WHEN BdmDedCode IN ('XOMFT','XOMPT') THEN 'Discovery Benefits HRA' END                    
+        ,drvStartDate = DATEADD(DAY, 1, BdmBenStopDate)
+        ,drvCoverageLevel =    CASE WHEN A.BdmCobraReason IN ('200','201','202','204','205','206','207','208','209','210','LEVNT1','LEVNT2','LEVNT3','LEVNT4','LEVNT5') THEN
+                                CASE WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
+                                    WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EDISCOBQB2 B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
+                                    WHEN BdmRelationship IN ('CHL','DPC','STC','DCH') THEN 'EE+CHILDREN'
+                                    ELSE 'EE'
+                                END
+                            END
+        ,drvSubSort =    EepSSN /*CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+                            ELSE ISNULL(NULLIF(ConSSN,''),eepSSN) + CONVERT(char(8),ConDateOfBirth,112)
+                        END*/
+        ,drvSubSort2 = '2'
+        ,drvSubSort3 = ''    
+    FROM dbo.U_dsi_BDM_EDISCOBQB2 A WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = A.BdmEEID
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = A.BdmEEID
+        AND ConSystemID = A.BdmDepRecID
+    WHERE BdmDedCode IN ('XOMFT','XOMPT')
+    ;
+
+
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBDEPENDENT
     ---------------------------------
@@ -687,6 +790,7 @@ BEGIN
         ON ConEEID = bdmEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmIsPQB = 'N'
+    AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBDEPENDENTPLANINITIAL
@@ -715,11 +819,12 @@ BEGIN
         ON ConEEID = BdmEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmIsPQB = 'N'
+    AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE
     ---------------------------------
-    IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE','U') IS NOT NULL
+    /*IF OBJECT_ID('U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE','U') IS NOT NULL
         DROP TABLE dbo.U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE;
     SELECT DISTINCT
          drvEEID = drvEEID
@@ -749,7 +854,9 @@ BEGIN
         AND EecCoID = BdmCoID
     WHERE BdmIsPQB = 'Y'
     AND BdmDedtype = 'FSA'
-    ;
+    ;*/
+
+    DELETE dbo.U_EDISCOBQB2_drvTbl_QBPLANMBRSPCRATE;
 
     -- DETAIL RECORD - U_EDISCOBQB2_drvTbl_QBSTATEINSERTS
     ---------------------------------
@@ -794,6 +901,7 @@ BEGIN
         ON CmpCOID = BdmCOID
     WHERE BdmIsPQB = 'Y'
     AND EepAddressState IN ('CA','CT','MN','OR','TX','NY','IL','RI','GA','VA')
+    AND BdmDedCode IN ('XOMFT','XOMPT')
     ;
     
 END;
@@ -811,10 +919,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '201907011'
-       ,expStartPerControl     = '201907011'
-       ,expLastEndPerControl   = '201911059'
-       ,expEndPerControl       = '201911059'
+    SET expLastStartPerControl = '202006301'
+       ,expStartPerControl     = '202006301'
+       ,expLastEndPerControl   = '202103309'
+       ,expEndPerControl       = '202103309'
 WHERE expFormatCode = 'EDISCOBQB2';
 
 **********************************************************************************/
