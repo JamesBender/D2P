@@ -281,7 +281,7 @@ BEGIN
         ,ACT_CASE_APPROVER_MATCH_ID = ''
         ,AGGREGATE_STD_DAILY_HOURS = ''
         ,AGGREGATE_FTE_PCT = ''
-        ,SSN = EepSSN -- Used to remove test employees (see delete statement below)
+        --,SSN = EepSSN -- Used to remove test employees (see delete statement below)
     INTO dbo.U_EWORKFCROS_drvTbl
     FROM dbo.U_EWORKFCROS_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -294,10 +294,11 @@ BEGIN
 	LEFT JOIN dbo.EmpComp EC2 WITH (NOLOCK) -- supervisor  
     ON EC2.EecEEID = EC.EecSupervisorID  
     AND EC2.EecCOID = EC.EecCOID  
+    WHERE EepSSN NOT IN ('123456789', '111119999')
     ;
 
-    DELETE dbo.U_EWORKFCROS_drvTbl WHERE SSN = '123456789';  -- Delete test employee
-    DELETE dbo.U_EWORKFCROS_drvTbl WHERE SSN = '111119999';  -- Delete test employee
+    --DELETE dbo.U_EWORKFCROS_drvTbl WHERE SSN = '123456789';  -- Delete test employee
+    --DELETE dbo.U_EWORKFCROS_drvTbl WHERE SSN = '111119999';  -- Delete test employee
 
     --==========================================
     -- Set FileName
