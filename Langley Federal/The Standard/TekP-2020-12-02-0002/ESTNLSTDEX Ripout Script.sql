@@ -241,13 +241,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTNLSTDEX_20210505.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTNLSTDEX_20210517.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104169','EMPEXPORT','OEACTIVE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104169','EMPEXPORT','OEPASSIVE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Standad STD LTD ACC Crit Ex','202104169','EMPEXPORT','ONDEM_XOE',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Standad STD LTD ACC Crit-Sched','202104169','EMPEXPORT','SCH_ESTNLS',NULL,'ESTNLSTDEX',NULL,NULL,NULL,'202104169','Apr 16 2021  5:15PM','Apr 16 2021  5:15PM','202104161',NULL,'','','202104161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Standad STD LTD ACC Crit-Test','202104301','EMPEXPORT','TEST_XOE','May  4 2021  7:51PM','ESTNLSTDEX',NULL,NULL,NULL,'202104301','Apr 30 2021 12:00AM','Apr 25 2021 12:00AM','202104081','596','','','202104081',dbo.fn_GetTimedKey(),NULL,'us3cPeLAN1016',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Standad STD LTD ACC Crit-Test','202105071','EMPEXPORT','TEST_XOE','May  7 2021  9:43AM','ESTNLSTDEX',NULL,NULL,NULL,'202105071','May  7 2021 12:00AM','Dec 30 1899 12:00AM','202104231','589','','','202104231',dbo.fn_GetTimedKey(),NULL,'us3cPeLAN1016',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTNLSTDEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTNLSTDEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTNLSTDEX','InitialSort','C','drvSort');
@@ -369,7 +369,7 @@ CREATE TABLE [dbo].[U_ESTNLSTDEX_drvTbl] (
     [drvSpouseGender] varchar(1) NULL,
     [drvSpouseTobacorInd] varchar(1) NULL,
     [drvEarningsAmount] nvarchar(4000) NULL,
-    [drvEarningsAmountExpression] varchar(6) NULL,
+    [drvEarningsAmountExpression] varchar(9) NOT NULL,
     [drvEarningsEffectiveDate] datetime NULL,
     [drvEarningsAmount2] nvarchar(4000) NULL,
     [drvEarningsAmountExpression2] varchar(6) NULL,
@@ -400,10 +400,10 @@ CREATE TABLE [dbo].[U_ESTNLSTDEX_drvTbl] (
     [drvAiTerminationDate] datetime NULL,
     [drvAiFamilyElectionIndicator] varchar(1) NULL,
     [drvCiProductId] varchar(2) NULL,
-    [drvCiEmployeeAmtCancer] varchar(20) NULL,
+    [drvCiEmployeeAmtCancer] nvarchar(4000) NULL,
     [drvCiEmployeeEffectiveDate] datetime NULL,
     [drvCiEmployeeTerminationDate] datetime NULL,
-    [drvCiSpouseAmtCancer] varchar(20) NULL,
+    [drvCiSpouseAmtCancer] money NULL,
     [drvCiSpouseEffectiveDate] datetime NULL,
     [drvCiSpouseTerminationDate] datetime NULL
 );
@@ -700,29 +700,29 @@ BEGIN
     -- Build Driver Tables
     --==========================================
 
-    DECLARE @CHSA5 VARCHAR(20)
-        ,@CIS10 VARCHAR(20)
-        ,@CIS5 VARCHAR(20)
-        ,@CIC10 VARCHAR(20)
-        ,@CIC5 VARCHAR(20)
-        ,@CIE10 VARCHAR(20)
-        ,@CIE5 VARCHAR(20)
-        ,@CIF10 VARCHAR(20)
-        ,@CIF5 VARCHAR(20);
+    DECLARE @CHSA5 MONEY -- VARCHAR(20)
+        ,@CIS10 MONEY --VARCHAR(20)
+        ,@CIS5 MONEY --VARCHAR(20)
+        ,@CIC10 MONEY --VARCHAR(20)
+        ,@CIC5 MONEY --VARCHAR(20)
+        ,@CIE10 MONEY --VARCHAR(20)
+        ,@CIE5 MONEY --VARCHAR(20)
+        ,@CIF10 MONEY --VARCHAR(20)
+        ,@CIF5 MONEY --VARCHAR(20);
 
 
         --select DedDedCode, DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5','CHSA5')
 
 
-    SELECT @CHSA5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CHSA5')
-    SELECT @CIS10 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIS10')
-    SELECT @CIS5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIS5')
-    SELECT @CIC10 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIC10')
-    SELECT @CIC5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIC5')
-    SELECT @CIE10 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIE10')
-    SELECT @CIE5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIE5')
-    SELECT @CIF10 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIF10')
-    SELECT @CIF5 = FORMAT(DedBenAmtMax, '#0.00') FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIF5')
+    SELECT @CHSA5 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CHSA5')
+    SELECT @CIS10 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIS10')
+    SELECT @CIS5 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIS5')
+    SELECT @CIC10 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIC10')
+    SELECT @CIC5 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIC5')
+    SELECT @CIE10 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIE10')
+    SELECT @CIE5 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIE5')
+    SELECT @CIF10 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIF10')
+    SELECT @CIF5 = DedBenAmtMax FROM DedCode WITH (NOLOCK) WHERE DedDedCode IN ('CIF5')
 
     ---------------------------------
     -- DETAIL RECORD - U_ESTNLSTDEX_drvTbl
@@ -774,7 +774,7 @@ BEGIN
         ,drvEmployeeAffiliate = CmpCompanyName
         ,drvEmployerLocationCode = EecLocation
         ,drvEmployerLocationName = LocDesc
-        ,drvDepartmentCode = EecOrgLvl3
+        ,drvDepartmentCode = EecOrgLvl2
         ,drvDepartmentName = OrgDesc
         ,drvSpouseNameFirst = ConNameFirst
         ,drvSpouseNameLast = ConNameLast
@@ -786,19 +786,19 @@ BEGIN
         ,drvSpouseTobacorInd = CASE WHEN ConRelationship = 'SPS' THEN 'B' END
         ,drvEarningsAmount =    FORMAT(CASE WheN EecSalaryOrHourly = 'S' THEN EecAnnSalary
                                     WHEN EecSalaryOrHourly = 'H' THEN EecHourlyPayRate
-                                END, '0000000000.00')
-        ,drvEarningsAmountExpression =    CASE WHEN EecSalaryOrHourly = 'S' THEN 'Annual'
+                                END, '#.##') -- '0000000000.00')
+        ,drvEarningsAmountExpression = 'Bi-Weekly' /*    CASE WHEN EecSalaryOrHourly = 'S' THEN 'Annual'
                                             WHEN EecSalaryOrHourly = 'H' THEN 'Hourly'
-                                        END
+                                        END*/
         ,drvEarningsEffectiveDate = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2021', EecDateOfLastHire)
-        ,drvEarningsAmount2 = FORMAT(PehCurAmtEA2, '0000000000.00')
+        ,drvEarningsAmount2 = FORMAT(PehCurAmtEA2, '#.##') -- '0000000000.00')
         ,drvEarningsAmountExpression2 = CASE WHEN EecSalaryOrHourly = 'S' THEN 'Annual'
                                             WHEN EecSalaryOrHourly = 'H' THEN 'Hourly'
                                         END
         ,drvEarningsPayDate2 = PrgPayDate
         ,drvPayStartDate = PrgPeriodStartDate
         ,drvPayEndDate = PrgPeriodEndDate
-        ,drvHoursWorkPast12Months = FORMAT(PehCurHrsYTD, '00000.00')
+        ,drvHoursWorkPast12Months = FORMAT(PehCurHrsYTD, '#.##') --'00000.00')
         ,drvHoursWorkPast12ThruDate = PrgPayDate
         ,drvAmsReportingGroup1 = CASE WHEN EecUDField05 = 'Yes' THEN 'Y' ELSE 'N' END
         ,drvPolicy0 = CASE WHEN O_DedCode IS NOT NULL THEN '168393' END
@@ -829,8 +829,8 @@ BEGIN
                                             END
                                         END
         ,drvCiProductId = CASE WHEN CI_DedCode IS NOT NULL AND (CI_StopDate  IS NULL OR CI_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN 'CI' END
-        ,drvCiEmployeeAmtCancer =    CASE WHEN CHS_DedCode IS NOT NULL THEN @CHSA5 
-                                        WHEN CIC10_DedCode IS NOT NULL THEN @CIC10
+        ,drvCiEmployeeAmtCancer =    FORMAT(CASE WHEN CHS_DedCode IS NOT NULL THEN @CHSA5 ELSE 0.00 END +
+                                      CASE  WHEN CIC10_DedCode IS NOT NULL THEN @CIC10
                                         WHEN CIC5_DedCode IS NOT NULL THEN @CIC5 
                                         WHEN CIS10_DedCode IS NOT NULL THEN @CIS10
                                         WHEN CIS5_DedCode IS NOT NULL THEN @CIS5 
@@ -838,9 +838,10 @@ BEGIN
                                         WHEN CIE5_DedCode IS NOT NULL THEN @CIE5
                                         WHEN CIF10_DedCode IS NOT NULL THEN @CIF10 
                                         WHEN CIF5_DedCode IS NOT NULL THEN @CIF5
-                                    END
-        ,drvCiEmployeeEffectiveDate = CASE WHEN CI_DedCode IS NOT NULL AND (CI_StopDate  IS NULL OR CI_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI_StartDate END
-        ,drvCiEmployeeTerminationDate = CASE WHEN CI_DedCode IS NOT NULL AND (CI_StopDate  IS NULL OR CI_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI_StopDate END
+                                        ELSE 0.00
+                                    END, '#0.00')
+        ,drvCiEmployeeEffectiveDate = CASE WHEN CI2_DedCode IS NOT NULL AND (CI2_StopDate  IS NULL OR CI2_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI2_StartDate END
+        ,drvCiEmployeeTerminationDate = CASE WHEN CI2_DedCode IS NOT NULL AND (CI2_StopDate  IS NULL OR CI2_StopDate  >= DATEADD(DAY, -30, @EndDate)) THEN CI2_StopDate END
         ,drvCiSpouseAmtCancer =    CASE WHEN CIS10_DedCode IS NOT NULL THEN @CIS10
                                     WHEN CIS5_DedCode IS NOT NULL THEN @CIS5
                                 END
@@ -874,6 +875,13 @@ BEGIN
                     --,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5','CHSA5') THEN BdmBenOption END) AS ACC_BenOption
                     ,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5','CHSA5') AND BdmRecType = 'EMP' THEN BdmBenStartDate END) AS CI_StartDate
                     ,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5','CHSA5') THEN BdmBenStopDate END) AS CI_StopDate
+
+
+                    ,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5') THEN BdmDedCode END) AS CI2_DedCode
+                    ,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5') AND BdmRecType = 'EMP' THEN BdmBenStartDate END) AS CI2_StartDate
+                    ,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5') THEN BdmBenStopDate END) AS CI2_StopDate
+
+
 
                     ,MAX(CASE WHEN BdmDedCode IN ('CIS10','CIS5') THEN BdmDedCode END) AS CI_SpouseDedCode
                     --,MAX(CASE WHEN BdmDedCode IN ('CIC10','CIC5','CIS10','CIS5','CIE10','CIE5','CIF10','CIF5','CHSA5') THEN BdmBenOption END) AS ACC_BenOption
@@ -917,8 +925,8 @@ BEGIN
     JOIN dbo.Company WITH (NOLOCK)
         ON xCOID = CmpCoID
     JOIN dbo.OrgLevel WITH (NOLOCK)
-        ON OrgCode = EecOrgLvl3
-        AND OrgLvl = 3
+        ON OrgCode = EecOrgLvl2
+        AND OrgLvl = 2
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConRelationship = 'SPS'
