@@ -1,6 +1,8 @@
 SET NOCOUNT ON;
 IF OBJECT_ID('U_EASSCENSUS_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EASSCENSUS_SavePath];
 SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EASSCENSUS_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EASSCENSUS' AND CfgName LIKE '%Path';
+IF OBJECT_ID('fn_AddDoubleQuotes_EASSCENSUS') IS NOT NULL DROP FUNCTION [dbo].[fn_AddDoubleQuotes_EASSCENSUS];
+GO
 IF OBJECT_ID('dsi_vwEASSCENSUS_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEASSCENSUS_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EASSCENSUS') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EASSCENSUS];
@@ -179,13 +181,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EASSCENSUS_20210205.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EASSCENSUS_20210518.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102029','EMPEXPORT','OEACTIVE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102029','EMPEXPORT','OEPASSIVE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assurity Census Export','202102029','EMPEXPORT','ONDEM_XOE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assurity Census Export-Sched','202102029','EMPEXPORT','SCH_EASSCE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Assurity Census Export-Test','202102029','EMPEXPORT','TEST_XOE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Assurity Census Export-Test','202104011','EMPEXPORT','TEST_XOE','May  5 2021  8:03AM','EASSCENSUS',NULL,NULL,NULL,'202104011','Apr  1 2021 12:00AM','Dec 30 1899 12:00AM','202104011','538','','','202104011',dbo.fn_GetTimedKey(),NULL,'us3rVaMOR1021',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASSCENSUS','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASSCENSUS','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASSCENSUS','InitialSort','C','drvSort');
@@ -270,7 +272,7 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvDepRecID] char(12) NULL,
     [drvSort] varchar(1) NOT NULL,
     [drvEmployeeSSN] char(11) NULL,
-    [drvRelation] char(3) NULL,
+    [drvRelation] varchar(2) NULL,
     [drvSpouseandorChildSSN] char(11) NULL,
     [drvFirstName] varchar(100) NULL,
     [drvLastName] varchar(100) NULL,
@@ -285,8 +287,8 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvHeightFT] varchar(1) NOT NULL,
     [drvHeightIN] varchar(1) NOT NULL,
     [drvWeight] varchar(1) NOT NULL,
-    [drvMailingAddress1] varchar(257) NULL,
-    [drvMailingAddress2] varchar(257) NULL,
+    [drvMailingAddress1] varchar(8000) NULL,
+    [drvMailingAddress2] varchar(8000) NULL,
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
     [drvZip] varchar(50) NULL,
@@ -295,18 +297,18 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvBeneficiaryRelationship] char(3) NULL,
     [drvBeneficiarySharePercent] varchar(1) NOT NULL,
     [drvCompStateSpecificHlthQues] varchar(255) NULL,
-    [drvAEPlanType] varchar(8) NOT NULL,
+    [drvAEPlanType] varchar(8) NULL,
     [drvAEInsuredOption] varchar(3) NULL,
     [drvAEPremiumAmount] varchar(1) NOT NULL,
-    [drvAEIssueDate] varchar(1) NOT NULL,
+    [drvAEIssueDate] datetime NULL,
     [drvAESignedDate] datetime NULL,
     [drvAETerminationDate] datetime NULL,
     [drvDIPlanType] varchar(1) NOT NULL,
     [drvDIBenefitAmount] varchar(1) NOT NULL,
     [drvDIPremiumAmount] varchar(1) NOT NULL,
-    [drvDIIssueDate] varchar(1) NOT NULL,
-    [drvDISignedDate] varchar(1) NOT NULL,
-    [drvDITerminationDate] varchar(1) NOT NULL,
+    [drvDIIssueDate] int NULL,
+    [drvDISignedDate] int NULL,
+    [drvDITerminationDate] int NULL,
     [drvCIPlanType] varchar(6) NULL,
     [drvCIInsuredOption] varchar(3) NULL,
     [drvCIBenefitAmount] varchar(5) NULL,
@@ -318,10 +320,10 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvCEInsuredOption] varchar(1) NOT NULL,
     [drvCEBenefitAmount] varchar(1) NOT NULL,
     [drvCEPremiumAmount] varchar(1) NOT NULL,
-    [drvCEIssueDate] varchar(1) NOT NULL,
-    [drvCESignedDate] varchar(1) NOT NULL,
-    [drvCETerminationDate] varchar(1) NOT NULL,
-    [drvHIPlanType] varchar(2) NOT NULL,
+    [drvCEIssueDate] int NULL,
+    [drvCESignedDate] int NULL,
+    [drvCETerminationDate] int NULL,
+    [drvHIPlanType] varchar(2) NULL,
     [drvHIInsuredOption] varchar(3) NULL,
     [drvHIBenefitAmount] varchar(256) NULL,
     [drvHIPremiumAmount] varchar(1) NOT NULL,
@@ -332,8 +334,8 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvLifeCertificateAmount] varchar(1) NOT NULL,
     [drvLifeInsuredOption] varchar(1) NOT NULL,
     [drvLifePremiumAmount] varchar(1) NOT NULL,
-    [drvLifeIssueDate] varchar(1) NOT NULL,
-    [drvLifeSignedDate] varchar(1) NOT NULL,
+    [drvLifeIssueDate] int NULL,
+    [drvLifeSignedDate] int NULL,
     [drvLevelTermRiderYN] varchar(1) NOT NULL,
     [drvSpouseCertYN] varchar(1) NOT NULL,
     [drvSpouseCertAmount] varchar(1) NOT NULL,
@@ -341,7 +343,7 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvChildCertAmount] varchar(1) NOT NULL,
     [drvChildrensTermInsRider] varchar(1) NOT NULL,
     [drvChildrensTermInsRiderAmnt] varchar(1) NOT NULL,
-    [drvLifeTerminationDate] varchar(1) NOT NULL
+    [drvLifeTerminationDate] int NULL
 );
 IF OBJECT_ID('U_EASSCENSUS_EEList') IS NULL
 CREATE TABLE [dbo].[U_EASSCENSUS_EEList] (
@@ -358,339 +360,35 @@ CREATE TABLE [dbo].[U_EASSCENSUS_File] (
     [Data] varchar(4000) NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EASSCENSUS]
-    @SystemID char(12)
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EASSCENSUS]     @SystemID char(12) AS SET NOCOUNT ON; /********************************************************************************** Client Name: Morton Industries LLC  Created By: Inshan Singh Business Analyst: Richard Vars Create Date: 02/02/2021 Service Request Number: TekP-2020-10-23-0004  Purpose: Assurity Census Export  Revision History ---------------- Update By           Date           Request Num        Desc XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX  SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EASSCENSUS'; SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EASSCENSUS'; SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EASSCENSUS'; SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EASSCENSUS'; SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EASSCENSUS' ORDER BY RunID DESC;  Execute Export -------------- EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'ONDEM_XOE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'TEST_XOE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'OEPASSIVE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'OEACTIVE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'SCH_EASSCE';  EXEC dbo.dsi_BDM_sp_ErrorCheck 'EASSCENSUS';  EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EASSCENSUS', @AllObjects = 'Y', @IsWeb = 'Y' **********************************************************************************/ BEGIN      --==========================================     -- Declare variables     --==========================================     DECLARE  @FormatCode        VARCHAR(10)             ,@ExportCode        VARCHAR(10)             ,@StartDate         DATETIME             ,@EndDate           DATETIME             ,@StartPerControl   VARCHAR(9)             ,@EndPerControl     VARCHAR(9);      -- Set FormatCode     SELECT @FormatCode = 'EASSCENSUS';      -- Declare dates from Parameter file     SELECT          @StartPerControl = StartPerControl         ,@EndPerControl   = EndPerControl         ,@StartDate       = LEFT(StartPerControl,8)         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))         ,@ExportCode      = ExportCode     FROM dbo.U_dsi_Parameters WITH (NOLOCK)     WHERE FormatCode = @FormatCode;      --==========================================     -- Clean EE List      -- Caution: Careful of cleaning EE List if including paycheck data     --==========================================      -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company     DELETE FROM dbo.U_EASSCENSUS_EEList     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)     AND xEEID IN (SELECT xEEID FROM dbo.U_EASSCENSUS_EEList GROUP BY xEEID HAVING COUNT(1) > 1);       --==========================================     -- Audit Section     --==========================================     -- Get data from audit fields table. Add fields here if auditing     IF OBJECT_ID('U_EASSCENSUS_AuditFields','U') IS NOT NULL         DROP TABLE dbo.U_EASSCENSUS_AuditFields;     CREATE TABLE dbo.U_EASSCENSUS_AuditFields (aTableName varchar(30),aFieldName varchar(30));      INSERT INTO dbo.U_EASSCENSUS_AuditFields VALUES ('EmpComp','EecEmplStatus');     INSERT INTO dbo.U_EASSCENSUS_AuditFields VALUES ('EmpDed','EedDatetimeChanged');      -- Create audit table based on fields defined above     IF OBJECT_ID('U_EASSCENSUS_Audit','U') IS NOT NULL         DROP TABLE dbo.U_EASSCENSUS_Audit;     SELECT          audEEID  = audKey1Value         ,audKey2 = audKey2Value         ,audKey3 = audKey3Value         ,audTableName         ,audFieldName         ,audAction         ,audDateTime         ,audOldValue         ,audNewValue         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)     INTO dbo.U_EASSCENSUS_Audit     FROM dbo.vw_AuditData WITH (NOLOCK)      JOIN dbo.U_EASSCENSUS_AuditFields WITH (NOLOCK)          ON audTableName = aTableName         AND audFieldName = aFieldName     WHERE audDateTime BETWEEN @StartDate AND @EndDate     AND audAction <> 'DELETE';      -- Create Index     CREATE CLUSTERED INDEX CDX_U_EASSCENSUS_Audit ON dbo.U_EASSCENSUS_Audit (audEEID,audKey2);      --================     -- Changes Only     --================     --DELETE FROM dbo.U_EASSCENSUS_EEList     --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EASSCENSUS_Audit WHERE audEEID = xEEID AND audRowNo = 1);      --==========================================     -- Create Deduction List     --==========================================     DECLARE @DedList VARCHAR(MAX)     SET @DedList = 'ASHOS,ASACC,ECI10,ECI20,ECI30,ECS10,ECS20,ECS30';      IF OBJECT_ID('U_EASSCENSUS_DedList','U') IS NOT NULL         DROP TABLE dbo.U_EASSCENSUS_DedList;     SELECT DISTINCT          DedCode = DedDedCode         ,DedType = DedDedType     INTO dbo.U_EASSCENSUS_DedList     FROM dbo.fn_ListToTable(@DedList)     JOIN dbo.DedCode WITH (NOLOCK)         ON DedDedCode = Item;       --==========================================     -- BDM Section     --==========================================     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;      -- Required parameters     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'BuildConsolidatedTable', 'Standard')      -- Required OE parameters     IF @ExportCode LIKE '%PASSIVE'     BEGIN         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');     END;      IF @ExportCode LIKE '%ACTIVE'     BEGIN         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');     END;       -- Run BDM Module     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;      --==========================================     -- Build Driver Tables     --==========================================     ---------------------------------     -- DETAIL RECORD - U_EASSCENSUS_drvTbl     ---------------------------------     IF OBJECT_ID('U_EASSCENSUS_drvTbl','U') IS NOT NULL         DROP TABLE dbo.U_EASSCENSUS_drvTbl;     SELECT DISTINCT          drvEEID = xEEID         ,drvCoID = xCoID         ,drvDepRecID = ConSystemID --DELETE IF NOT USING DEPENDENT DATA         ,drvSort = ''         -- standard fields above and additional driver fields below         ,drvEmployeeSSN = eepSSN         ,drvRelation =  CASE WHEN bdmRectype= 'EMP' THEN 'EE'                              WHEN bdmRectype = 'DEP' and Conrelationship = 'SPS' THEN 'SP'                              WHEN bdmRecType = 'DEP' and Conrelationship = 'CHL' THEN 'CH'                          END         ,drvSpouseandorChildSSN = ConSSN         ,drvFirstName = EepNameFirst         ,drvLastName = EepNameLast         ,drvMiddleName = LEFT(EepNameMiddle,1)         ,drvGender = EepGender         ,drvDOB = EepDateOfBirth         ,drvDateofHire = EecDateOfLastHire         ,drvGroupIdentifier = '' -- leave blank         ,drvHoursWorkedPerWeek = CONVERT(VARCHAR, CONVERT(DECIMAL(10,0), EecScheduledWorkHrs))         ,drvAnnualSalary = CONVERT(VARCHAR, CONVERT(MONEY, EecAnnSalary))         ,drvUsedtobaccoLast12mths = '' -- leave blank         ,drvHeightFT = '' -- leave blank         ,drvHeightIN = '' -- leave blank         ,drvWeight = '' -- leave blank         ,drvMailingAddress1 =[dbo].[fn_AddDoubleQuotes_EASSCENSUS](EepAddressLine1)         ,drvMailingAddress2 = [dbo].[fn_AddDoubleQuotes_EASSCENSUS](EepAddressLine2)         ,drvCity = EepAddressCity         ,drvState = EepAddressState         ,drvZip = EepAddressZipCode         ,drvPhoneNumber = EepPhoneHomeNumber         ,drvEmailAddress = EepAddressEMail         ,drvBeneficiaryRelationship = ConRelationship         ,drvBeneficiarySharePercent = ''         ,drvCompStateSpecificHlthQues = EepAddressState         ,drvAEPlanType = BdmAEPlanType         ,drvAEInsuredOption = BdmAEInsuredOption         ,drvAEPremiumAmount = '' --leave blank         ,drvAEIssueDate = BdmAEIssueDate         ,drvAESignedDate = BdmAESignedDate         ,drvAETerminationDate =  BdmAETerminationDate         ,drvDIPlanType = '' -- leave blank         ,drvDIBenefitAmount =  '' -- leave blank         ,drvDIPremiumAmount =  '' -- leave blank         ,drvDIIssueDate =  NULL -- leave blank         ,drvDISignedDate =  NULL -- leave blank         ,drvDITerminationDate = NULL -- leave blank         ,drvCIPlanType = BdmCIPlanType         ,drvCIInsuredOption = BdmCIInsuredOption                                 --CASE WHEN Bdmdedcode = 'ECI10' THEN                                  -- CASE                                     --WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'                                     --WHEN BdmBenOption IN ('EES', 'EEDP', 'EESTSPS2', 'SPS3') THEN 'ESP'                                     --WHEN BdmBenOption IN ('EEC', 'EECT')  THEN 'ECH'                                     --WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM'                                   -- END                               --END         ,drvCIBenefitAmount = BdmCIBenefitAmount         ,drvCIPremiumAmount = ''         ,drvCIIssueDate = BdmCIIssueDate         ,drvCISignedDate = BdmCISignedDate         ,drvCITerminationDate = BdmCITerminationDate         ,drvCEPlanType = '' -- leave blank          ,drvCEInsuredOption = '' -- leave blank          ,drvCEBenefitAmount = '' -- leave blank          ,drvCEPremiumAmount = '' -- leave blank          ,drvCEIssueDate = NULL -- leave blank          ,drvCESignedDate = NULL -- leave blank          ,drvCETerminationDate = NULL -- leave blank          ,drvHIPlanType = BdmHIPlanType         ,drvHIInsuredOption = BdmHIInsuredOption         ,drvHIBenefitAmount = BdmHIBenefitAmount         ,drvHIPremiumAmount = '' -- leave blank         ,drvHIIssueDate =  BdmHIIssueDate         ,drvHISignedDate = BdmHISignedDate         ,drvHITerminationDate = BdmHITerminationDate         ,drvLifePlanType = '' -- leave blank          ,drvLifeCertificateAmount = '' -- leave blank          ,drvLifeInsuredOption =  '' -- leave blank          ,drvLifePremiumAmount = '' -- leave blank         ,drvLifeIssueDate = NULL -- leave blank          ,drvLifeSignedDate = NULL -- leave blank           ,drvLevelTermRiderYN = '' -- leave blank          ,drvSpouseCertYN = '' -- leave blank          ,drvSpouseCertAmount = '' -- leave blank          ,drvChildCertYN = '' -- leave blank          ,drvChildCertAmount = '' -- leave blank          ,drvChildrensTermInsRider = '' -- leave blank          ,drvChildrensTermInsRiderAmnt = '' -- leave blank          ,drvLifeTerminationDate = NULL -- leave blank      INTO dbo.U_EASSCENSUS_drvTbl     FROM dbo.U_EASSCENSUS_EEList WITH (NOLOCK)     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)         ON EecEEID = xEEID          AND EecCoID = xCoID     JOIN dbo.EmpPers WITH (NOLOCK)         ON EepEEID = xEEID     JOIN (SELECT  BdmEEID, BdmCOID, BdmDepRecID                 ,BdmRecType = MAX(bdmRectype)                 ,BdmAEPlanType = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN 'Accident' ELSE '' END)                 ,BdmAEInsuredOption = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN                                   CASE                                     WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'                                     WHEN BdmBenOption IN ('EES', 'EEDP', 'EESTSPS2', 'SPS3') THEN 'ESP'                                     WHEN BdmBenOption IN ('EEC', 'EECT')  THEN 'ECH'                                     WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM'                                    END                               END)         ,BdmAEIssueDate = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN BdmBenStartDate ELSE NULL END)         ,BdmAESignedDate = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN  DATEADD(D, -1, BdmBenStartDate) ELSE NULL END)         ,BdmAETerminationDate = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN bdmBenStopDate ELSE NULL END)           ,BdmCIPlanType = MAX(CASE                              WHEN Bdmdedcode IN ('ECI10','ECS10') THEN 'CI 10K'                             WHEN Bdmdedcode IN ('ECI20','ECS20') THEN 'CI 20K'                             WHEN Bdmdedcode IN ('ECI30','ECS30') THEN 'CI 30K'                          END)         ,BdmCIInsuredOption = MAX(CASE                                  WHEN Bdmdedcode IN('ECI10','ECI20','ECI30') THEN 'EE'                                 WHEN Bdmdedcode IN ('ECS10','ECS20','ECS30') THEN 'ESP'                              END )         ,BdmCIBenefitAmount = MAX(CASE                                  WHEN Bdmdedcode IN ('ECI10','ECS10') THEN '10000'                                 WHEN Bdmdedcode IN ('ECI20','ECS20') THEN '20000'                                 WHEN Bdmdedcode IN ('ECI30','ECS30') THEN '30000'                               END)         ,BdmCIIssueDate = MAX(CASE WHEN Bdmdedcode IN ('ECI10','ECS10','ECS30') THEN bdmBenStartDate ELSE NULL END) -- TODO use the audit date (per vendor: The signed date would be the date that is was last modified)         ,BdmCISignedDate = MAX(CASE WHEN Bdmdedcode IN ('ECI10','ECS10','ECS30') THEN DATEADD(D, -1, bdmBenStartDate) ELSE NULL END )         ,BdmCITerminationDate = MAX(CASE WHEN Bdmdedcode IN ('ECI10','ECS10','ECS30') THEN BdmBenStopDate ELSE NULL END )         ,BdmHIPlanType = MAX(CASE WHEN BdmDedCode = 'ASHOS' THEN 'HI' ELSE '' END)         ,BdmHIInsuredOption = MAX(CASE WHEN Bdmdedcode = 'ASHOS' THEN                                   CASE                                     WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'                                     WHEN BdmBenOption IN ('EES', 'EEDP', 'EESTSPS2', 'SPS3') THEN 'ESP'                                     WHEN BdmBenOption IN ('EEC', 'EECT')  THEN 'ECH'                                     WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM'                                    END                               END)         ,BdmHIBenefitAmount = MAX(CASE WHEN Bdmdedcode = 'ASHOS' THEN                                           CASE WHEN BdmDedCode = 'ASHOS' and bdmRecType = 'DEP' THEN bdmUSGField1                                              WHEN BdmDedCode = 'ASHOS' and bdmRecType = 'EMP' THEN bdmUSGField1                                         END                                     END)         ,BdmHIIssueDate =  MAX(CASE WHEN Bdmdedcode = 'ASHOS' THEN BdmBenStartDate ELSE NULL END)  -- TODO use the audit date (per vendor: The signed date would be the date that is was last modified)         ,BdmHISignedDate = MAX(CASE WHEN Bdmdedcode = 'ASHOS' THEN  DATEADD(D, -1, bdmBenStartDate) ELSE NULL END)  --CASE WHEN Bdmdedcode = 'ASHOS' THEN bdmBenStartDate ELSE NULL END         ,BdmHITerminationDate = MAX(CASE WHEN Bdmdedcode = 'ASHOS' THEN bdmBenStopDate ELSE NULL END)     FROM dbo.U_DSI_BDM_EASSCENSUS WITH (NOLOCK)     GROUP BY BdmEEID, BdmCOID, BdmDepRecID     ) Benefits     ON BdmEEID = xEEID      and BdmCOID = xCOID     LEFT JOIN dbo.Contacts WITH (NOLOCK)         ON conSystemId = BdmDepRecID        AND xEEID = ConEEID     --JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)     --    ON EedEEID = xEEID      --    AND EedCoID = xCoID     --    AND EedFormatCode = @FormatCode      --    AND EedValidForExport = 'Y'     ;      --==========================================     -- Set FileName     --==========================================     IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')     BEGIN         UPDATE dbo.U_dsi_Parameters             SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'                                   WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'                                   ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'                              END         WHERE FormatCode = @FormatCode;     END  END; /**********************************************************************************  --Alter the View ALTER VIEW dbo.dsi_vwEASSCENSUS_Export AS     SELECT TOP 20000000 Data FROM dbo.U_EASSCENSUS_File (NOLOCK)     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;  --Check out AscDefF SELECT * FROM dbo.AscDefF WHERE AdfHeaderSystemID LIKE 'EASSCENSUS%' ORDER BY AdfSetNumber, AdfFieldNumber;  --Update Dates UPDATE dbo.AscExp     SET expLastStartPerControl = '202101261'        ,expStartPerControl     = '202101261'        ,expLastEndPerControl   = '202102029'        ,expEndPerControl       = '202102029' WHERE expFormatCode = 'EASSCENSUS';  **********************************************************************************/ 
+GO
+CREATE VIEW dbo.dsi_vwEASSCENSUS_Export AS      SELECT TOP 200000000 Data FROM dbo.U_EASSCENSUS_File WITH (NOLOCK)     ORDER BY RIGHT(RecordSet,2), InitialSort
+GO
+CREATE FUNCTION [dbo].[fn_AddDoubleQuotes_EASSCENSUS] (@InputString VARCHAR(MAX))
+RETURNS VARCHAR(8000)
+WITH EXECUTE AS CALLER
 AS
-SET NOCOUNT ON;
-/**********************************************************************************
-Client Name: Morton Industries LLC
 
-Created By: Inshan Singh
-Business Analyst: Richard Vars
-Create Date: 02/02/2021
-Service Request Number: TekP-2020-10-23-0004
+/************************************************************
 
-Purpose: Assurity Census Export
+Created By: Ethan Lee
+Create Date: 06/13/2014
+
+Purpose: Wrap string in double quotes if the string contains a comma.
+
+Command: PRINT dbo.fn_AddDoubleQuotes('He,llo')
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+Update By         Date          CP Num         Descr
+xxxxxxxxxxxxxxxx  xx/xx/xxxxx   CS-xxxx-xxxxx  xxxxxxxx
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EASSCENSUS';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EASSCENSUS';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EASSCENSUS';
-SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EASSCENSUS';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EASSCENSUS' ORDER BY RunID DESC;
+************************************************************/
 
-Execute Export
---------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'ONDEM_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASSCENSUS', 'SCH_EASSCE';
-
-EXEC dbo.dsi_BDM_sp_ErrorCheck 'EASSCENSUS';
-
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EASSCENSUS', @AllObjects = 'Y', @IsWeb = 'Y'
-**********************************************************************************/
 BEGIN
 
-    --==========================================
-    -- Declare variables
-    --==========================================
-    DECLARE  @FormatCode        VARCHAR(10)
-            ,@ExportCode        VARCHAR(10)
-            ,@StartDate         DATETIME
-            ,@EndDate           DATETIME
-            ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
-
-    -- Set FormatCode
-    SELECT @FormatCode = 'EASSCENSUS';
-
-    -- Declare dates from Parameter file
-    SELECT
-         @StartPerControl = StartPerControl
-        ,@EndPerControl   = EndPerControl
-        ,@StartDate       = LEFT(StartPerControl,8)
-        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
-        ,@ExportCode      = ExportCode
-    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = @FormatCode;
-
-    --==========================================
-    -- Clean EE List 
-    -- Caution: Careful of cleaning EE List if including paycheck data
-    --==========================================
-
-    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EASSCENSUS_EEList
-    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EASSCENSUS_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-
-
-    --==========================================
-    -- Audit Section
-    --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_EASSCENSUS_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EASSCENSUS_AuditFields;
-    CREATE TABLE dbo.U_EASSCENSUS_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-
-    INSERT INTO dbo.U_EASSCENSUS_AuditFields VALUES ('EmpComp','EecEmplStatus');
-    INSERT INTO dbo.U_EASSCENSUS_AuditFields VALUES ('EmpDed','EedDatetimeChanged');
-
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_EASSCENSUS_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EASSCENSUS_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_EASSCENSUS_Audit
-    FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_EASSCENSUS_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE';
-
-    -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EASSCENSUS_Audit ON dbo.U_EASSCENSUS_Audit (audEEID,audKey2);
-
-    --================
-    -- Changes Only
-    --================
-    --DELETE FROM dbo.U_EASSCENSUS_EEList
-    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EASSCENSUS_Audit WHERE audEEID = xEEID AND audRowNo = 1);
-
-    --==========================================
-    -- Create Deduction List
-    --==========================================
-    DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'ASHOS,ASACC,ECI10,ECI20,ECI30';
-
-    IF OBJECT_ID('U_EASSCENSUS_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_EASSCENSUS_DedList;
-    SELECT DISTINCT
-         DedCode = DedDedCode
-        ,DedType = DedDedType
-    INTO dbo.U_EASSCENSUS_DedList
-    FROM dbo.fn_ListToTable(@DedList)
-    JOIN dbo.DedCode WITH (NOLOCK)
-        ON DedDedCode = Item;
-
-
-    --==========================================
-    -- BDM Section
-    --==========================================
-    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
-
-    -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'BuildConsolidatedTable', 'Standard')
-
-    -- Required OE parameters
-    IF @ExportCode LIKE '%PASSIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
-    END;
-
-    IF @ExportCode LIKE '%ACTIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
-    END;
-
-
-    -- Run BDM Module
-    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
-
-    --==========================================
-    -- Build Driver Tables
-    --==========================================
-    ---------------------------------
-    -- DETAIL RECORD - U_EASSCENSUS_drvTbl
-    ---------------------------------
-    IF OBJECT_ID('U_EASSCENSUS_drvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_EASSCENSUS_drvTbl;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = bdmDepRecID --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
-        -- standard fields above and additional driver fields below
-        ,drvEmployeeSSN = eepSSN
-        ,drvRelation =ConRelationship
-        ,drvSpouseandorChildSSN = ConSSN
-        ,drvFirstName = EepNameFirst
-        ,drvLastName = EepNameLast
-        ,drvMiddleName = LEFT(EepNameMiddle,1)
-        ,drvGender = EepGender
-        ,drvDOB = EepDateOfBirth
-        ,drvDateofHire = EecDateOfLastHire
-        ,drvGroupIdentifier = '' -- leave blank
-        ,drvHoursWorkedPerWeek = CONVERT(VARCHAR, CONVERT(DECIMAL(10,0), EecScheduledWorkHrs))
-        ,drvAnnualSalary = CONVERT(VARCHAR, CONVERT(MONEY, EecAnnSalary))
-        ,drvUsedtobaccoLast12mths = '' -- leave blank
-        ,drvHeightFT = '' -- leave blank
-        ,drvHeightIN = '' -- leave blank
-        ,drvWeight = '' -- leave blank
-        ,drvMailingAddress1 = '"' + EepAddressLine1 + '"' -- [dbo].[fn_AddDoubleQuotes](EepAddressLine1)
-        ,drvMailingAddress2 = '"' + RTRIM(ISNULL(EepAddressLine2, '')) + '"' --[dbo].[fn_AddDoubleQuotes](EepAddressLine2)
-        ,drvCity = EepAddressCity
-        ,drvState = EepAddressState
-        ,drvZip = EepAddressZipCode
-        ,drvPhoneNumber = EepPhoneHomeNumber
-        ,drvEmailAddress = EepAddressEMail
-        ,drvBeneficiaryRelationship = ConRelationship
-        ,drvBeneficiarySharePercent = ''
-        ,drvCompStateSpecificHlthQues = EepAddressState
-        ,drvAEPlanType = CASE WHEN bdmdedcode = 'ASACC' THEN 'Accident' ELSE '' END
-        ,drvAEInsuredOption = CASE WHEN bdmdedcode = 'ASACC' THEN
-                                  CASE
-                                    WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'
-                                    WHEN BdmBenOption IN ('EES', 'EEDP', 'EESTSPS2', 'SPS3') THEN 'ESP'
-                                    WHEN BdmBenOption IN ('EEC', 'EECT')  THEN 'ECH'
-                                    WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM' 
-                                  END
-                              END
-        ,drvAEPremiumAmount = '' --leave blank
-        ,drvAEIssueDate = ''
-        ,drvAESignedDate = CASE WHEN bdmdedcode = 'ASACC' THEN BdmBenStartDate END
-        ,drvAETerminationDate =CASE WHEN bdmdedcode = 'ASACC' THEN bdmBenStopDate END  
-        ,drvDIPlanType = '' -- leave blank
-        ,drvDIBenefitAmount =  '' -- leave blank
-        ,drvDIPremiumAmount =  '' -- leave blank
-        ,drvDIIssueDate =  '' -- leave blank
-        ,drvDISignedDate =  '' -- leave blank
-        ,drvDITerminationDate = '' -- leave blank
-        ,drvCIPlanType = CASE 
-                            WHEN Bdmdedcode = 'ECI10' THEN 'CI 10K'
-                            WHEN Bdmdedcode = 'ECI20' THEN 'CI 20K'
-                            WHEN Bdmdedcode = 'ECI30' THEN 'CI 30K'
-                         END
-        ,drvCIInsuredOption = CASE WHEN Bdmdedcode = 'ECI10' THEN
-                                  CASE
-                                    WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'
-                                    WHEN BdmBenOption IN ('EES', 'EEDP', 'EESTSPS2', 'SPS3') THEN 'ESP'
-                                    WHEN BdmBenOption IN ('EEC', 'EECT')  THEN 'ECH'
-                                    WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM' 
-                                  END
-                              END
-        ,drvCIBenefitAmount = CASE
-                                WHEN BdmDedCode = 'ECI10' THEN '10000'
-                                WHEN BdmDedCode = 'ECI20' THEN '20000'
-                                WHEN BdmDedCode = 'ECI30' THEN '30000' 
-                               END
-        ,drvCIPremiumAmount = ''
-        ,drvCIIssueDate = CASE WHEN Bdmdedcode = 'ECI10' THEN BdmBenStatusDate END -- TODO use the audit date (per vendor: The signed date would be the date that is was last modified)
-        ,drvCISignedDate = CASE WHEN Bdmdedcode = 'ECI10' THEN bdmBenStartDate END 
-        ,drvCITerminationDate =CASE WHEN Bdmdedcode = 'ECI10' THEN BdmBenStopDate END 
-        ,drvCEPlanType = '' -- leave blank 
-        ,drvCEInsuredOption = '' -- leave blank 
-        ,drvCEBenefitAmount = '' -- leave blank 
-        ,drvCEPremiumAmount = '' -- leave blank 
-        ,drvCEIssueDate = '' -- leave blank 
-        ,drvCESignedDate = '' -- leave blank 
-        ,drvCETerminationDate = '' -- leave blank 
-        ,drvHIPlanType = CASE WHEN BdmDedCode = 'ASHOS' THEN 'HI' ELSE '' END
-        ,drvHIInsuredOption = CASE WHEN Bdmdedcode = 'ASHOS' THEN
-                                  CASE
-                                    WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'
-                                    WHEN BdmBenOption IN ('EES', 'EEDP', 'EESTSPS2', 'SPS3') THEN 'ESP'
-                                    WHEN BdmBenOption IN ('EEC', 'EECT')  THEN 'ECH'
-                                    WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM' 
-                                  END
-                              END
-        ,drvHIBenefitAmount = CASE WHEN Bdmdedcode = 'ASHOS' THEN  
-                                        CASE WHEN BdmDedCode = 'ASHOS' and bdmRecType = 'DEP' THEN bdmUSGField1
-                                             WHEN BdmDedCode = 'ASHOS' and bdmRecType = 'EMP' THEN bdmUSGField1
-                                        END
-                                    END
-        ,drvHIPremiumAmount = '' -- leave blank
-        ,drvHIIssueDate =  CASE WHEN Bdmdedcode = 'ASHOS' THEN BdmBenStatusDate END  -- TODO use the audit date (per vendor: The signed date would be the date that is was last modified)
-        ,drvHISignedDate = CASE WHEN Bdmdedcode = 'ASHOS' THEN bdmBenStartDate END
-        ,drvHITerminationDate = CASE WHEN Bdmdedcode = 'ASHOS' THEN bdmBenStopDate END
-        ,drvLifePlanType = '' -- leave blank 
-        ,drvLifeCertificateAmount = '' -- leave blank 
-        ,drvLifeInsuredOption =  '' -- leave blank 
-        ,drvLifePremiumAmount = '' -- leave blank
-        ,drvLifeIssueDate = '' -- leave blank 
-        ,drvLifeSignedDate = '' -- leave blank  
-        ,drvLevelTermRiderYN = '' -- leave blank 
-        ,drvSpouseCertYN = '' -- leave blank 
-        ,drvSpouseCertAmount = '' -- leave blank 
-        ,drvChildCertYN = '' -- leave blank 
-        ,drvChildCertAmount = '' -- leave blank 
-        ,drvChildrensTermInsRider = '' -- leave blank 
-        ,drvChildrensTermInsRiderAmnt = '' -- leave blank 
-        ,drvLifeTerminationDate = '' -- leave blank 
-    INTO dbo.U_EASSCENSUS_drvTbl
-    FROM dbo.U_EASSCENSUS_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.U_DSI_BDM_EASSCENSUS WITH (NOLOCK)
-    ON BdmEEID = xEEID and BdmCOID = xCOID
-    LEFT JOIN dbo.Contacts WITH (NOLOCK)
-        ON conSystemId = BdmDepRecID
-    --JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
-    --    ON EedEEID = xEEID 
-    --    AND EedCoID = xCoID
-    --    AND EedFormatCode = @FormatCode 
-    --    AND EedValidForExport = 'Y'
-    ;
-
-    --==========================================
-    -- Set FileName
-    --==========================================
-    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
-    BEGIN
-        UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                             END
-        WHERE FormatCode = @FormatCode;
-    END
-
-END;
-/**********************************************************************************
-
---Alter the View
-ALTER VIEW dbo.dsi_vwEASSCENSUS_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EASSCENSUS_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
-
---Check out AscDefF
-SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'EASSCENSUS%'
-ORDER BY AdfSetNumber, AdfFieldNumber;
-
---Update Dates
-UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202101261'
-       ,expStartPerControl     = '202101261'
-       ,expLastEndPerControl   = '202102029'
-       ,expEndPerControl       = '202102029'
-WHERE expFormatCode = 'EASSCENSUS';
-
-**********************************************************************************/
-GO
-CREATE VIEW dbo.dsi_vwEASSCENSUS_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EASSCENSUS_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+    IF CHARINDEX(',',@InputString) > 0    RETURN '"' + @InputString + '"'
+    
+    RETURN @InputString
+    
+END
