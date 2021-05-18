@@ -146,13 +146,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDSQBNPMEX_20210512.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDSQBNPMEX_20210518.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202105119','EMPEXPORT','OEACTIVE',NULL,'EDSQBNPMEX',NULL,NULL,NULL,'202105119','May 11 2021  3:59PM','May 11 2021  3:59PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202105119','EMPEXPORT','OEPASSIVE',NULL,'EDSQBNPMEX',NULL,NULL,NULL,'202105119','May 11 2021  3:59PM','May 11 2021  3:59PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery QB and NPM Export','202105119','EMPEXPORT','ONDEM_XOE',NULL,'EDSQBNPMEX',NULL,NULL,NULL,'202105119','May 11 2021  3:59PM','May 11 2021  3:59PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discovery QB and NPM Exp-Sched','202105119','EMPEXPORT','SCH_EDSQBN',NULL,'EDSQBNPMEX',NULL,NULL,NULL,'202105119','May 11 2021  3:59PM','May 11 2021  3:59PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202105119','EMPEXPORT','TEST_XOE',NULL,'EDSQBNPMEX',NULL,NULL,NULL,'202105119','May 11 2021  3:59PM','May 11 2021  3:59PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202105179','EMPEXPORT','OEACTIVE','May 12 2021  2:35PM','EDSQBNPMEX',NULL,NULL,NULL,'202105179','May 11 2021  3:59PM','May 11 2021  3:59PM','202104011','300','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202105179','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EDSQBNPMEX',NULL,NULL,NULL,'202105179','May 11 2021  3:59PM','May 11 2021  3:59PM','202104011','300','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202105179','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EDSQBNPMEX',NULL,NULL,NULL,'202105179','May 11 2021  3:59PM','May 11 2021  3:59PM','202104011','300','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Sched','202105179','EMPEXPORT','SCH_EDSQBN','May 12 2021  2:38PM','EDSQBNPMEX',NULL,NULL,NULL,'202105179','May 11 2021  3:59PM','May 11 2021  3:59PM','202104011','300','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202105179','EMPEXPORT','TEST_XOE','May 17 2021  8:14PM','EDSQBNPMEX',NULL,NULL,NULL,'202105179','May 17 2021 12:00AM','Dec 30 1899 12:00AM','202104011','160','','','202104011',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDSQBNPMEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDSQBNPMEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDSQBNPMEX','InitialSort','C','drvSort');
@@ -223,7 +223,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_NPM] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(14) NULL,
     [drvSSN] char(11) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
@@ -241,7 +241,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_QB] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -259,7 +259,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_QBDEPENDENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(31) NULL,
     [drvSSN] char(11) NULL,
     [drvRelationship] varchar(15) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -273,7 +273,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(30) NULL,
     [drvPlanName] varchar(42) NULL
 );
 IF OBJECT_ID('U_EDSQBNPMEX_drvTbl_QBEVENT') IS NULL
@@ -281,7 +281,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_QBEVENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvEventType] varchar(29) NULL,
     [drvEventDate] datetime NULL,
     [drvEnrollmentDate] datetime NULL,
@@ -293,7 +293,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_QBPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvPlanName] varchar(42) NULL,
     [drvCoverageLevel] varchar(18) NULL
 );
@@ -302,7 +302,7 @@ CREATE TABLE [dbo].[U_EDSQBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvFieldHeader] varchar(33) NOT NULL,
     [drvPlanName] varchar(7) NULL,
     [drvRate] nvarchar(4000) NULL
@@ -717,7 +717,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvNameFirst = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConNameFirst ELSE EepNameFirst END
         ,drvNameMiddle = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN LEFT(ConNameMiddle,1) ELSE LEFT(EepNameMiddle,1) END
@@ -767,7 +767,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvEventType =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') AND EecTermType = 'V' THEN 'TERMINATION'
                             WHEN EecEmplStatus ='T' AND EecTermReason = '203' THEN 'DEATH'
@@ -831,7 +831,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 3'
         -- standard fields above and additional driver fields below
         ,drvPlanName =    CASE WHEN BdmDedCode = 'DPPO' THEN 'Aetna Dental PPO PTSC'
                             WHEN BdmDedCode = 'DDMO' AND EepAddressState IN ('CA','AZ','NJ','NC','TX','GA') THEN 'Aetna Dental PTSC DMO LE CA AZ NJ NC TX GA'
@@ -884,7 +884,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 4 ' +  + BdmDepRecID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvSSN = ConSSN
         ,drvRelationship =    CASE WHEN ConRelationship IN ('CHL','DCH','DPC','STC') THEN 'CHILD'
@@ -918,7 +918,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 4 ' + BdmDepRecID + '2'
         -- standard fields above and additional driver fields below
         ,drvPlanName =    CASE WHEN BdmDedCode = 'DPPO' THEN 'Aetna Dental PPO PTSC'
                             WHEN BdmDedCode = 'DDMO' AND EepAddressState IN ('CA','AZ','NJ','NC','TX','GA') THEN 'Aetna Dental PTSC DMO LE CA AZ NJ NC TX GA'
@@ -937,6 +937,12 @@ JOIN dbo.Contacts WITH (NOLOCK)
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
         AND BdmDedCode NOT IN ('FSA')
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecID
+    WHERE BdmRecType = 'DEP'
+        AND ((ConRelationship NOT IN ('SPS', 'DP') AND BdmCobraReason NOT IN ('201', 'LEVNT3'))
+            OR (ConRelationship IN ('SPS', 'DP') AND BdmCobraReason NOT IN ('210', '204', 'LEVNT4')))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDSQBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
@@ -947,7 +953,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 6'
         -- standard fields above and additional driver fields below
         ,drvFieldHeader = '[QBPLANMEMBERSPECIFICRATEINITIAL]'
         ,drvPlanName = CASE WHEN BdmDedCode = 'FSA' THEN 'DBI FSA' END
@@ -969,7 +975,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '2 ' + xEEID 
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvNameFirst = EepNameFirst
@@ -993,6 +999,8 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'NPM'
+        AND BdmRelationship IN ('Emp','SPS','DP')
+    WHERE BdmBenStartDate BETWEEN @StartDate AND @EndDate    
     ;
 
     --==========================================
@@ -1023,14 +1031,14 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202101011'
-       ,expStartPerControl     = '202101011'
-       ,expLastEndPerControl   = '202105119'
-       ,expEndPerControl       = '202105119'
+    SET expLastStartPerControl = '202104011'
+       ,expStartPerControl     = '202104011'
+       ,expLastEndPerControl   = '202105179'
+       ,expEndPerControl       = '202105179'
 WHERE expFormatCode = 'EDSQBNPMEX';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEDSQBNPMEX_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EDSQBNPMEX_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwEDSQBNPMEX_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EDSQBNPMEX_File (NOLOCK)
+    ORDER BY  InitialSort, SubSort;
