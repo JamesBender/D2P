@@ -155,9 +155,9 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210429.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210513.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Full File','202104199','EMPEXPORT','FULLFILE','Apr 19 2021  3:46PM','EBVLADDEXP',NULL,NULL,NULL,'202104199','Apr 19 2021 12:00AM','Dec 30 1899 12:00AM','190004011','720','','','190004011',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Full File','202105119','EMPEXPORT','FULLFILE','May 11 2021 11:37AM','EBVLADDEXP',NULL,NULL,NULL,'202105119','May 11 2021 12:00AM','Dec 30 1899 12:00AM','202104271','455','','','202104271',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103229','EMPEXPORT','OEACTIVE','Mar 31 2021  1:31PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','92','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202103229','EMPEXPORT','OEPASSIVE','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','190','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Export','202103229','EMPEXPORT','ONDEM_XOE','Mar 31 2021  1:32PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','193','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -599,9 +599,9 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateOfBirth = EepDateOfBirth
         ,drvEmailAddress = EepAddressEMail
-        ,drvSpouseNameFirst = CASE WHEN VLS_DedCode IS NOT NULL THEN Spouse.ConNameFirst END
-        ,drvSpouseGender = CASE WHEN VLS_DedCode IS NOT NULL THEN Spouse.ConGender END
-        ,drvSpouseDateOfBirth = Spouse.ConDateOfBirth
+        ,drvSpouseNameFirst = CASE WHEN VLS_DedCode IS NOT NULL AND ConIsDependent = 'Y' THEN Spouse.ConNameFirst END
+        ,drvSpouseGender = CASE WHEN VLS_DedCode IS NOT NULL AND ConIsDependent = 'Y' THEN Spouse.ConGender END
+        ,drvSpouseDateOfBirth = CASE WHEN VLS_DedCode IS NOT NULL AND ConIsDependent = 'Y' THEN Spouse.ConDateOfBirth END
         ,drvClass =    CASE WHEN EecDedGroupCode = 'PART' AND LTD10_DedCode IS NULL AND LTD20_DedCode IS NULL AND LTDP_DedCode IS NULL THEN '1000'
                     WHEN EecDedGroupCode = 'PART' AND (LTD10_DedCode IS NOT NULL OR LTD20_DedCode IS NOT NULL OR LTDP_DedCode IS NOT NULL) THEN '1001'
                     WHEN (VLE_DedCode IS NOT NULL OR VLS_DedCode IS NOT NULL OR VLC_DedCode IS NOT NULL OR VADD_DedCode IS NOT NULL) AND EecDedGroupCode <> 'PART' THEN '2000'
@@ -626,13 +626,14 @@ BEGIN
         ,drvPlanCode1 = CASE WHEN VLE_DedCode IS NOT NULL THEN '5.0N22' END
         ,drvBenefitQualDate1 = CASE WHEN VLE_DedCode IS NOT NULL AND VLE_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLE_EligDate END
         ,drvBenefitTermDate1 = CASE WHEN VLE_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLE_BenStopDate END
-        ,drvBenefitSelectionAmt1 = FORMAT(CASE WHEN VLE_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLE_BenAmt END, '#0.00')
+        ,drvBenefitSelectionAmt1 = FORMAT(CASE WHEN VLE_DedCode IS NOT NULL AND VLE_NeedEoi = 'Y' THEN VLE_EoiDesiredAmt ELSE VLE_BenAmt END, '#0.00')
+        -- VLE_EoiDesiredAmt  VLE_NeedEoi
 
         ,drvBenefitId2 = CASE WHEN VLS_DedCode IS NOT NULL THEN 'LS' END
         ,drvPlanCode2 = CASE WHEN VLS_DedCode IS NOT NULL THEN '5.AN47' END
         ,drvBenefitQualDate2 = CASE WHEN VLS_DedCode IS NOT NULL AND VLS_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLS_EligDate END
         ,drvBenefitTermDate2 = CASE WHEN VLS_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLS_BenStopDate END
-        ,drvBenefitSelectionAmt2 = FORMAT(CASE WHEN VLS_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLS_BenAmt END, '#0.00')
+        ,drvBenefitSelectionAmt2 = FORMAT(CASE WHEN VLS_DedCode IS NOT NULL AND VLS_NeedEoi = 'Y' THEN VLS_EoiDesiredAmt ELSE VLS_BenAmt END, '#0.00')
 
         ,drvBenefitId3 = CASE WHEN VLC_DedCode IS NOT NULL THEN 'LC' END
         ,drvPlanCode3 = CASE WHEN VLC_DedCode IS NOT NULL THEN '5.0M04' END
@@ -733,6 +734,7 @@ BEGIN
     LEFT JOIN dbo.Contacts Spouse WITH (NOLOCK)
         ON Spouse.ConEEID = xEEID
         --AND Spouse.ConIsActive = 'Y'
+        AND Spouse.ConIsDependent = 'Y'
         AND Spouse.ConRelationship = 'SPS'
     LEFT JOIN dbo.U_EBVLADDEXP_Audit WITH (NOLOCK)
         ON audEEID = xEEID
@@ -791,8 +793,12 @@ BEGIN
                     SELECT EedEEID, EedCOID 
                         ,MAX(CASE WHEN EedDedCode = 'VLE' THEN EedEEEligDate END) AS VLE_EligDate
                         ,MAX(CASE WHEN EedDedCode = 'VLE' THEN EedBenAmt END) AS VLE_BenAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VLE' THEN EedEOIDesiredAmt END) AS VLE_EoiDesiredAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VLE' THEN EedNeedEOI END) AS VLE_NeedEoi
                         ,MAX(CASE WHEN EedDedCode = 'VLS' THEN EedEEEligDate END) AS VLS_EligDate
                         ,MAX(CASE WHEN EedDedCode = 'VLS' THEN EedBenAmt END) AS VLS_BenAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VLS' THEN EedEOIDesiredAmt END) AS VLS_EoiDesiredAmt
+                        ,MAX(CASE WHEN EedDedCode = 'VLS' THEN EedNeedEOI END) AS VLS_NeedEoi
                         ,MAX(CASE WHEN EedDedCode = 'VLC' THEN EedEEEligDate END) AS VLC_EligDate
                         ,MAX(CASE WHEN EedDedCode = 'VLC' THEN EedBenAmt END) AS VLC_BenAmt
                         ,MAX(CASE WHEN EedDedCode = 'VADD' THEN EedEEEligDate END) AS VADD_EligDate

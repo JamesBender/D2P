@@ -73,7 +73,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCertificateNumber"','41','(''UA''=''F'')','EDRBMUSEXPZ0','10','D','10','41',NULL,'Certificate Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentSequence"','42','(''UA''=''F'')','EDRBMUSEXPZ0','2','D','10','42',NULL,'Dependent Sequence',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvForeignAddressIndicator"','43','(''UA''=''F'')','EDRBMUSEXPZ0','1','D','10','43',NULL,'Foreign Address Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller4"','44','(''UA''=''F'')','EDRBMUSEXPZ0','617','D','10','44',NULL,'Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller4"','44','(''UA''=''F'')','EDRBMUSEXPZ0','616','D','10','44',NULL,'Filler',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDelimitingCharacter"','45','(''UA''=''F'')','EDRBMUSEXPZ0','1','D','10','45',NULL,'Delimiting Character',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEndofLineCharacter"','46','(''UA''=''F'')','EDRBMUSEXPZ0','1','D','10','46',NULL,'End of Line Character',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
@@ -83,13 +83,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210503.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210513.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104099','EMPEXPORT','OEACTIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104099','EMPEXPORT','OEPASSIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export','202104099','EMPEXPORT','ONDEM_XOE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export-Sched','202104099','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202104171','EMPEXPORT','TEST_XOE','Apr 28 2021 10:57AM','EDRBMUSEXP',NULL,NULL,NULL,'202104171','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104031','1143','','','202104031',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202104171','EMPEXPORT','TEST_XOE','May  8 2021  1:34PM','EDRBMUSEXP',NULL,NULL,NULL,'202104171','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104031','1434','','','202104031',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','InitialSort','C','drvInitialSort');
@@ -175,7 +175,7 @@ CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] char(11) NULL,
     [drvSubSort] char(100) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
+    [drvSubSort2] varchar(13) NOT NULL,
     [drvSubSort3] varchar(1) NOT NULL,
     [drvRecordType] varchar(2) NULL,
     [drvGroupNumber] varchar(7) NULL,
@@ -183,7 +183,7 @@ CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl] (
     [drvNewParticipantId] char(9) NULL,
     [drvAccountNumber] varchar(5) NULL,
     [drvDependentSSN] char(9) NULL,
-    [drvMemberEffectiveDate] varchar(8000) NULL,
+    [drvMemberEffectiveDate] varchar(30) NULL,
     [drvIDNumber] varchar(1) NOT NULL,
     [drvLastName] varchar(100) NULL,
     [drvFirstName] varchar(100) NULL,
@@ -199,25 +199,25 @@ CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl] (
     [drvZipCode] varchar(50) NULL,
     [drvRelationshipCode] varchar(1) NOT NULL,
     [drvGender] varchar(1) NULL,
-    [drvDateofBirth] varchar(8000) NULL,
+    [drvDateofBirth] varchar(30) NULL,
     [drvSmokerIndicator] varchar(1) NULL,
-    [drvDateofHire] varchar(8000) NULL,
+    [drvDateofHire] varchar(30) NULL,
     [drvLocationNumber] varchar(7) NULL,
-    [drvLocationDate] varchar(8000) NULL,
+    [drvLocationDate] varchar(30) NULL,
     [drvReportedSalary] varchar(30) NULL,
     [drvSalaryMode] varchar(1) NULL,
-    [drvSalaryEffectiveDate] varchar(8000) NULL,
+    [drvSalaryEffectiveDate] varchar(30) NULL,
     [drvWeeklyHours] char(5) NULL,
     [drvProductId] varchar(7) NULL,
-    [drvTerminationDate] varchar(8000) NULL,
+    [drvTerminationDate] varchar(30) NULL,
     [drvTerminationReasonCode] varchar(2) NULL,
     [drvCoverageOption] varchar(1) NOT NULL,
     [drvPlanCode] varchar(7) NULL,
-    [drvUnits] char(9) NULL,
+    [drvUnits] varchar(9) NOT NULL,
     [drvProductSetId] varchar(5) NULL,
     [drvUnderwritingStatsInd] varchar(1) NULL,
-    [drvApplicationReceivedDate] char(8) NULL,
-    [drvCertificateNumber] char(10) NULL,
+    [drvApplicationReceivedDate] varchar(8) NOT NULL,
+    [drvCertificateNumber] varchar(10) NOT NULL,
     [drvDependentSequence] char(2) NULL,
     [drvForeignAddressIndicator] varchar(1) NOT NULL,
     [drvFiller4] varchar(1) NOT NULL,
@@ -409,30 +409,32 @@ BEGIN
         AND E.BdmDedCode = D.BdmDedCode
     WHERE D.BdmRecType = 'DEP' AND E.BdmRecType = 'EMP';
 
+
     --=====================================================
     -- Update BdmUSGField2 with EmpDedTVID for Employees
     --=====================================================
     UPDATE dbo.U_dsi_bdm_EDRBMUSEXP
-        SET BdmUSGField2 = EedEmpDedTVID
+        SET /*BdmUSGField2*/ BdmEEAmt = DedEEBenAmt -- EedEmpDedTVID
     FROM dbo.U_dsi_bdm_EDRBMUSEXP
     JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = BdmEEID
         AND EedCOID = BdmCOID
         AND EedDedCode = BdmDedCode
-    WHERE BdmRecType = 'EMP' AND EedFormatCode = @FormatCode AND EedValidForExport = 'Y';
-
+    WHERE --BdmRecType = 'EMP' AND 
+        EedFormatCode = @FormatCode AND EedValidForExport = 'Y';
+/*
     --=======================================================
     -- Update BdmUSGField2 with DepBPlanTVID for Dependents
     --=======================================================
     UPDATE dbo.U_dsi_bdm_EDRBMUSEXP
-        SET BdmUSGField2 = DbnDepBPlanTVID
+        SET BdmUSGField2 = DedEEBenAmt DbnDepBPlanTVID
     FROM dbo.U_dsi_bdm_EDRBMUSEXP
     JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
         ON DbnEEID = BdmEEID
         AND DbnCOID = BdmCOID
         AND DbnDedCode = BdmDedCode
     WHERE BdmRecType = 'DEP' AND DbnFormatCode = @FormatCode AND DbnValidForExport = 'Y';
-
+*/
     --======================================================
     -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
     --======================================================
@@ -565,8 +567,8 @@ BEGIN
         ,drvInitialSort = eepSSN
         ,drvSubSort = CONVERT(CHAR(100),  CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))  + CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN '1'
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '2'
-                         END  )
-        ,drvSubSort2 = ''
+                         END  ) 
+        ,drvSubSort2 = '             ' --BdmDedCode
         ,drvSubSort3 = ''
         -- standard fields above and additional driver fields below
         ,drvRecordType = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN '01'
@@ -577,7 +579,7 @@ BEGIN
                          END
         ,drvEmployeeSSN = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN eepSSN
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN Conssn
-                         END
+                         END 
         ,drvNewParticipantId = CONVERT(CHAR(9),'000000000')
         ,drvAccountNumber = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN '00001'
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '00001'
@@ -585,9 +587,11 @@ BEGIN
         ,drvDependentSSN = CONVERT(CHAR(9),'000000000')
 
         
-        ,drvMemberEffectiveDate =   replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-                         END, 110),'-','')
+        ,drvMemberEffectiveDate =   --replace(
+                                    convert(varchar, 
+                                                CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+                                                    WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+                                                END, 112) --,'-','')
         ,drvIDNumber = ''
         ,drvLastName = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN EepNameLast
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN ConNameLast
@@ -627,9 +631,10 @@ BEGIN
                                          WHEN ConGender = 'F' THEN 'F'
                                     END
                          END 
-        ,drvDateofBirth = replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN EepDateOfBirth
+        ,drvDateofBirth = --replace(
+                            convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN EepDateOfBirth
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN ConDateOfBirth
-                         END , 110),'-','')
+                         END , 112) --,'-','')
         ,drvSmokerIndicator = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
                                     CASE WHEN EepIsSmoker  = 'N' THEN 'N'
                                     END
@@ -637,9 +642,10 @@ BEGIN
                                 CASE WHEN ConIsSmoker  = 'N' THEN 'N'
                                     END
                          END 
-        ,drvDateofHire = replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',EecDateOfLastHire , @FileMinCovDate)
+        ,drvDateofHire = --replace(
+                            convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',EecDateOfLastHire , @FileMinCovDate)
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX',EecDateOfLastHire , @FileMinCovDate)
-                         END, 110) ,'-','')
+                         END, 112) -- ,'-','')
         ,drvLocationNumber = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
 
                                 CASE WHEN  EecOrgLvl1 = 'NEOK' THEN '0000001'
@@ -668,7 +674,8 @@ BEGIN
                          ---If those deduction code and there are changes on the orglevel1 send the changedate
                          -- otherwise send the drvMemberEffectiveDate
 
-        ,drvLocationDate = replace(convert(varchar, 
+        ,drvLocationDate = --replace(
+            convert(varchar, 
             ( CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') and exists (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) THEN dbo.dsi_fnGetMinMaxDates('MAX', (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) , @FileMinCovDate)
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') and exists (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) THEN dbo.dsi_fnGetMinMaxDates('MAX', (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) , @FileMinCovDate)
                               ELSE
@@ -677,7 +684,7 @@ BEGIN
                          END
                                     
                          END )
-        , 110),'-','')
+        , 112) --,'-','')
 
         ,drvReportedSalary = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero(EecAnnSalary*100,11,0))  
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero(EecAnnSalary*100,11,0)) 
@@ -686,19 +693,28 @@ BEGIN
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 'A'
                          END
 
-        ,drvSalaryEffectiveDate = replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN   dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)                           
+        ,drvSalaryEffectiveDate = --replace(
+        convert(varchar, 
+                        DATEADD(DAY, 1, EOMONTH(CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN   dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)                           
 
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)    
-                         END, 110) ,'-','')
+                         END))
+                         , 112) -- ,'-','')
         ,drvWeeklyHours = CONVERT(CHAR(5),'00000')
         ,drvProductId =  SPACE(7)
-        ,drvTerminationDate = replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
-                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then bdmbenstopdate end
-                        
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
-                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then bdmbenstopdate end
-                                        ELSE '0000000'
-                                END, 110) ,'-','')
+        ,drvTerminationDate = --replace(
+        convert(varchar, 
+                            CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN                                 
+                                CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then bdmbenstopdate 
+                                    WHEN EecEmplStatus = 'T' THEN EecDateOfTermination    
+                                    --ELSE '0000000'
+                                END
+                                WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
+                                    CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then bdmbenstopdate 
+                                    --ELSE '0000000'
+                                    END
+                                --ELSE '0000000'
+                                END, 112) -- ,'-','')
 
         ,drvTerminationReasonCode =  CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
                                         CASE WHEN eecEmplStatus = 'T'  THEN '32'
@@ -708,20 +724,20 @@ BEGIN
                                         END
                         
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
-                                        CASE WHEN bdmbenstatus = 'T' Then '12' end
+                                        CASE WHEN bdmbenstatus = 'T' Then '12' ELSE '00' end
                                 END
         ,drvCoverageOption = ''
         ,drvPlanCode = SPACE(7)
-        ,drvUnits = CONVERT(char(9),'00000000')
+        ,drvUnits = '000000000' --  CONVERT(char(9),'00000000')
         ,drvProductSetId = SPACE(5)
         ,drvUnderwritingStatsInd = SPACE(1)
-        ,drvApplicationReceivedDate = CONVERT(char(8),'0000000')
-        ,drvCertificateNumber = CONVERT(char(10),'000000000')
+        ,drvApplicationReceivedDate = '00000000' --  CONVERT(char(8),'0000000')
+        ,drvCertificateNumber = '0000000000' -- CONVERT(char(10),'000000000')
         ,drvDependentSequence = CONVERT(char(2),'00')
         ,drvForeignAddressIndicator = ''
         ,drvFiller4 = ''
-        ,drvDelimitingCharacter = '*'
-        ,drvEndofLineCharacter = ''
+        ,drvDelimitingCharacter = ''
+        ,drvEndofLineCharacter = '*'
     INTO dbo.U_EDRBMUSEXP_drvTbl
     FROM dbo.U_EDRBMUSEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -738,6 +754,9 @@ BEGIN
         
     WHERE ( bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') and bdmrectype ='EMP') or (bdmdedcode in ('LIFES','CRILS') and bdmrelationship = 'SPS' )
 
+    UPDATE dbo.U_EDRBMUSEXP_drvTbl
+        SET drvTerminationDate = '00000000'
+        WHERE ISNULL(drvTerminationDate, '') = '';
 
     ---02 Record
  INSERT INTO dbo.U_EDRBMUSEXP_drvTbl
@@ -752,14 +771,14 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvRecordType = CASE WHEN bdmdedcode in ('VIS') THEN '02' END 
         ,drvGroupNumber =CASE WHEN bdmdedcode in ('VIS') THEN 'F026358' END
-        ,drvEmployeeSSN = CASE WHEN bdmdedcode in ('VIS') THEN Conssn END 
+        ,drvEmployeeSSN = CASE WHEN bdmdedcode in ('VIS') THEN Eepssn END 
                          
         ,drvNewParticipantId = CONVERT(CHAR(9),'000000000')
         ,drvAccountNumber = '00001'
         ,drvDependentSSN = conSSN
 
         
-        ,drvMemberEffectiveDate =  replace(dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate),'-','')
+        ,drvMemberEffectiveDate =  CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate), 112)
         ,drvIDNumber = ''
         ,drvLastName = CASE WHEN bdmdedcode in ('VIS') THEN ConNameLast END 
         ,drvFirstName =  CASE WHEN bdmdedcode in ('VIS') THEN ConNameFirst END 
@@ -779,7 +798,7 @@ BEGIN
                                          WHEN ConGender = 'F' THEN 'F'
                         END 
                     END  
-        ,drvDateofBirth =  replace(convert(varchar, CASE WHEN bdmdedcode in ('VIS') THEN ConDateOfBirth END , 110) ,'-','')
+        ,drvDateofBirth =  replace(convert(varchar, CASE WHEN bdmdedcode in ('VIS') THEN ConDateOfBirth END , 112) ,'-','')
         ,drvSmokerIndicator = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
                                     CASE WHEN EepIsSmoker  = 'N' THEN 'N'
                                     END
@@ -791,22 +810,22 @@ BEGIN
         ,drvLocationNumber = CONVERT(CHAR(7),'0000000')
         ,drvLocationDate = CONVERT(CHAR(8),'00000000')
 
-        ,drvReportedSalary = CONVERT(CHAR(11),'0000000000')
+        ,drvReportedSalary = '00000000000' -- CONVERT(CHAR(11),'0000000000')
         ,drvSalaryMode = ''
         ,drvSalaryEffectiveDate =CONVERT(CHAR(8),'00000000')
         ,drvWeeklyHours = CONVERT(CHAR(5),'00000')
         ,drvProductId =  SPACE(7)
-        ,drvTerminationDate =replace( CASE WHEN bdmdedcode in ('VIS') and bdmBenStatus ='T' THEN convert(varchar, bdmbenstopdate, 110)   ELSE CONVERT(CHAR(8),'00000000') END ,'-','')
+        ,drvTerminationDate =replace( CASE WHEN bdmdedcode in ('VIS') and bdmBenStatus ='T' THEN convert(varchar, bdmbenstopdate, 112)   ELSE CONVERT(CHAR(8),'00000000') END ,'-','')
         
                         
 
         ,drvTerminationReasonCode =  CASE WHEN bdmdedcode in ('VIS') and bdmBenStatus ='T' THEN '12'
-                                          WHEN bdmdedcode in ('VIS') and bdmBenStatus ='A' THEN '13'
+                                          --WHEN bdmdedcode in ('VIS') and bdmBenStatus ='A' THEN '13'
                                           ELSE '00'
                              END 
         ,drvCoverageOption = ''
         ,drvPlanCode = ''
-        ,drvUnits = CONVERT(CHAR(9),'00000000')
+        ,drvUnits = '000000000' -- CONVERT(CHAR(9),'00000000')
         ,drvProductSetId = ''
         ,drvUnderwritingStatsInd = ''
         ,drvApplicationReceivedDate = CONVERT(CHAR(8),'00000000')
@@ -814,8 +833,8 @@ BEGIN
         ,drvDependentSequence = CONVERT(CHAR(2),'00')
         ,drvForeignAddressIndicator = ''
         ,drvFiller4 = ''
-        ,drvDelimitingCharacter = '*'
-        ,drvEndofLineCharacter = ''
+        ,drvDelimitingCharacter = ''
+        ,drvEndofLineCharacter = '*'
     FROM dbo.U_EDRBMUSEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -849,8 +868,8 @@ BEGIN
                             END
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES') THEN '50'
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('CRILS ') THEN '51'    
-                         END ))
-        ,drvSubSort2 = ''
+                         END )) 
+        ,drvSubSort2 = BdmDedCode
         ,drvSubSort3 = ''
         -- standard fields above and additional driver fields below
         ,drvRecordType = '05' 
@@ -859,11 +878,11 @@ BEGIN
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN Conssn
                          END
                          
-        ,drvNewParticipantId = CONVERT(CHAR(9),'00000000')
+        ,drvNewParticipantId = '000000000' -- CONVERT(CHAR(9),'00000000')
         ,drvAccountNumber = '00001'
-        ,drvDependentSSN = CONVERT(CHAR(9),'00000000')
-        ,drvMemberEffectiveDate =   replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN convert(varchar, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate), 110) 
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN convert(varchar, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate), 110) 
+        ,drvDependentSSN = '000000000' -- CONVERT(CHAR(9),'00000000')
+        ,drvMemberEffectiveDate =   replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN convert(varchar, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate), 112) 
+                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN convert(varchar, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate), 112) 
                          END, 110) ,'-','')
         ,drvIDNumber = ''
         ,drvLastName = ''
@@ -886,7 +905,7 @@ BEGIN
         ,drvLocationNumber = CONVERT(CHAR(7),'0000000')
         ,drvLocationDate = CONVERT(CHAR(8),'00000000')
 
-        ,drvReportedSalary = CONVERT(CHAR(11),'0000000000')
+        ,drvReportedSalary = '00000000000' -- CONVERT(CHAR(11),'0000000000')
         ,drvSalaryMode = ''
         ,drvSalaryEffectiveDate = CONVERT(CHAR(8),'00000000')
         ,drvWeeklyHours = CONVERT(CHAR(5),'00000')
@@ -903,17 +922,20 @@ BEGIN
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('CRILS ') THEN 'CRITVS'    
                          END
 
-        ,drvTerminationDate =  replace(convert(varchar, CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
-                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then bdmbenstopdate 
-                                             WHEN eecEmplStatus = 'T' THEN eecdateoftermination
+        ,drvTerminationDate =  --replace(
+                                 CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
+                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then convert(varchar, bdmbenstopdate , 112)
+                                             WHEN eecEmplStatus = 'T' THEN convert(varchar,eecdateoftermination, 112)
+                                             ELSE '00000000'
                                         end
                         
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
-                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then bdmbenstopdate 
-                                             WHEN eecEmplStatus = 'T' THEN eecdateoftermination
+                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then convert(varchar,bdmbenstopdate , 112)
+                                             WHEN eecEmplStatus = 'T' THEN convert(varchar,eecdateoftermination, 112)
+                                             ELSE '00000000'
                                         END
                                 ELSE '00000000'
-                                END, 110),'-','')
+                                END --, 112) --,'-','')
                     
                         
 
@@ -925,7 +947,7 @@ BEGIN
                                         END
                         
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
-                                        CASE WHEN bdmbenstatus = 'T' Then '12' end
+                                        CASE WHEN bdmbenstatus = 'T' Then '12' ELSE '00' end
                                 END 
         ,drvCoverageOption = CASE WHEN bdmrectype = 'EMP' and bdmdedcode IN('GACC','VIS') THEN
                                     CASE WHEN Bdmbenoption  = 'EE' THEN 'E'
@@ -950,14 +972,15 @@ BEGIN
                         END
 
         ,drvUnits = CASE WHEN Bdmdedcode = 'GACC' THEN '000000100'
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('LIFEE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('LIFEC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('CRILE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('CRILC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
+                            --WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('LIFEE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('LIFEC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('CRILE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('CRILC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
                             WHEN Bdmdedcode IN ('VIS') THEN '000000100'
-                            WHEN Bdmdedcode IN ('LIFES') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('CRILS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('LIFES') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('CRILS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
                             ELSE ''
                         END
         ,drvProductSetId = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN
@@ -966,19 +989,26 @@ BEGIN
                                 END
                                 WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '3'
                             END
-        ,drvUnderwritingStatsInd = CASE WHEN bdmdedcode = 'LIFEE' THEN
+        ,drvUnderwritingStatsInd =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode = 'LIFEE'THEN
+                                        CASE WHEN EedEOIDesiredAmt <= BdmEEAmt THEN '0' ELSE '2' END
+                                    WHEN BdmRelationship IN ('SPS','DP') AND BdmDedCode = 'LIFES'THEN
+                                        CASE WHEN EedEOIDesiredAmt <= BdmEEAmt THEN '0' ELSE '2' END
+                                    ELSE '0'
+                                    END
+        
+                                    /*CASE WHEN bdmdedcode = 'LIFEE' THEN
                                          CASE WHEN BdmUsgField2 = 0 THEN '0' ELSE '2'  END
                                        WHEN bdmdedcode = 'LIFES' THEN
                                         CASE WHEN BdmUsgField2 = 0 THEN '0' ELSE '2'  END
                                         ELSE ''
-                                   END
+                                   END*/
         ,drvApplicationReceivedDate = CONVERT(char(8),'00000000')
         ,drvCertificateNumber = CONVERT(char(10),'0000000000')
         ,drvDependentSequence = CONVERT(char(8),'00')
         ,drvForeignAddressIndicator = ''
         ,drvFiller4 = ''
-        ,drvDelimitingCharacter = '*'
-        ,drvEndofLineCharacter = ''
+        ,drvDelimitingCharacter = ''
+        ,drvEndofLineCharacter = '*'
     FROM dbo.U_EDRBMUSEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -991,12 +1021,16 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK) 
         ON ConEEID = xEEID 
         AND ConSystemID = BdmDepRecID
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND EedDedCode = BdmDedCode
     WHERE ( bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') and bdmrectype ='EMP') or (bdmdedcode in ('LIFES','CRILS') and bdmrelationship = 'SPS' )
 
     
 
     --05 for ADD
-    INSERT INTO dbo.U_EDRBMUSEXP_drvTbl
+    /*INSERT INTO dbo.U_EDRBMUSEXP_drvTbl
          SELECT DISTINCT
          drvEEID 
         ,drvCoID 
@@ -1072,7 +1106,7 @@ BEGIN
         ,drvDelimitingCharacter
         ,drvEndofLineCharacter 
     FROM dbo.U_EDRBMUSEXP_drvTbl WITH (NOLOCK)
-    WHERE  drvProductId IN('LIFE' , 'LIFSUP1', 'DEPSUPC', 'DEPSUPS')
+    WHERE  drvProductId IN('LIFE' , 'LIFSUP1', 'DEPSUPC', 'DEPSUPS')*/
     --==========================================
     -- Set FileName
     --==========================================
@@ -1111,4 +1145,4 @@ WHERE expFormatCode = 'EDRBMUSEXP';
 GO
 CREATE VIEW dbo.dsi_vwEDRBMUSEXP_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EDRBMUSEXP_File (NOLOCK)
-    ORDER BY  InitialSort, SubSort;
+    ORDER BY  InitialSort, SubSort; 

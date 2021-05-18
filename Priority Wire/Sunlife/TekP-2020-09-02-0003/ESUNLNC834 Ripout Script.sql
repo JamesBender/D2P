@@ -240,7 +240,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESUNLNC834_20210423.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESUNLNC834_20210504.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202103249','EMPEXPORT','CHANGES','Dec  1 2020  6:15PM','ESUNLNC834',NULL,NULL,NULL,'202103249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101011','23361','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XRAEE,XRS43',NULL,NULL,NULL,'Full File Only','202104191','EMPEXPORT','FULLFILE','Apr 22 2021  7:06PM','ESUNLNC834',NULL,NULL,NULL,'202104191','Apr 19 2021 12:00AM','Dec 30 1899 12:00AM','202104011','29969','','','202104011',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
@@ -1126,8 +1126,8 @@ BEGIN
 
                                         WHEN EecOrgLvl1 = '26' AND EecOrgLvl2 = '000' THEN '332140'
                                         WHEN EecOrgLvl1 = '27' AND EecOrgLvl2 = '000' THEN '332141'
-
-                                        ELSE ''
+                                        WHEN ISNULL(EecUDField03, '') <> '' THEN EecUDField03
+                                        ELSE '329387'
                                     END
                                     /*CASE EecOrgLvl1
                                         WHEN '00' THEN '327053'
