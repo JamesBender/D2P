@@ -55,11 +55,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EINTFULAC2_20210507.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EINTFULAC2_20210519.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',Q6TZY,IAGFG',NULL,NULL,NULL,'TEST FILE FOR CHANGES','201508149','EMPEXPORT','ADFILE',NULL,'EINTFULAC2',NULL,NULL,NULL,'201508149',NULL,NULL,'201508141',NULL,'','','201508141',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','XBOEJ,XBO8J,XBOH9,XBORR,QV6J9,Q6TZY,XBOY6,IAGFG,XMKY0,T5TDY,6B0HR,ND73A',NULL,NULL,NULL,'Export to AD File feed','201504299','EMPEXPORT','EINTFULAC2','Apr  2 2015  3:43PM','EINTFULAC2',NULL,NULL,NULL,'202103109','Apr  1 2015 12:00AM','Dec 30 1899 12:00AM','202103031','1002','','','201504291',dbo.fn_GetTimedKey(),NULL,'USGTDIMAIO',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'TEST','202103301','EMPEXPORT','TEST','Mar 30 2021 11:06AM','EINTFULAC2',NULL,NULL,NULL,'202103301','Mar 30 2021 12:00AM','Dec 30 1899 12:00AM','202103301','1087','','','202103301',dbo.fn_GetTimedKey(),NULL,'us3rVaACS1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'TEST','202103301','EMPEXPORT','TEST','May 12 2021  3:36PM','EINTFULAC2',NULL,NULL,NULL,'202103301','Mar 30 2021 12:00AM','Dec 30 1899 12:00AM','202103301','1092','','','202103301',dbo.fn_GetTimedKey(),NULL,'us3rVaACS1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EINTFULAC2','CountFilter','C',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EINTFULAC2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EINTFULAC2','ExportDescription','C','Internal - Full File - ACSA');
@@ -92,8 +92,8 @@ CREATE TABLE [dbo].[U_dsi_EINTFULAC2_drvTbl] (
     [drvEmpNo] char(9) NULL,
     [drvSupEmpNo] char(9) NULL,
     [drvSupEEID] varchar(1) NOT NULL,
-    [drvSupNameFull] varchar(205) NULL,
-    [drvSupEmail] varchar(255) NULL,
+    [drvSupNameFull] varchar(207) NULL,
+    [drvSupEmail] varchar(50) NULL,
     [drvEECudfield29] varchar(1) NOT NULL,
     [drvPlus1SupEEID] varchar(1) NOT NULL,
     [drvEECudfield01] varchar(1) NOT NULL,
@@ -292,8 +292,8 @@ if object_id('dbo.U_dsi_EINTFULAC2_drvTbl') is not null
     drvEmpNo = EecEmpNo,
     drvSupEmpNo = super.empno,
     drvSupEEID = '',--super.seeid,--TD 4/2/15 added new column
-    drvSupNameFull = rtrim(super.lname)+', '+rtrim(super.fname)+
-                  case when isnull(super.mname,'') <> '' then ' '+left(super.mname,1)+'.' else '' end,
+    drvSupNameFull = '"' + rtrim(super.lname)+', '+rtrim(super.fname)+
+                  case when isnull(super.mname,'') <> '' then ' '+left(super.mname,1)+'.' else '' end + '"',
     drvSupEmail = super.sEmail,
     drvEECudfield29 = '',--EecUDField29,
     drvPlus1SupEEID = '',--p1super.eeid,--TD 4/2/15 added new column
