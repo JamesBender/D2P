@@ -83,13 +83,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210513.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210519.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104099','EMPEXPORT','OEACTIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104099','EMPEXPORT','OEPASSIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export','202104099','EMPEXPORT','ONDEM_XOE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export-Sched','202104099','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202104171','EMPEXPORT','TEST_XOE','May  8 2021  1:34PM','EDRBMUSEXP',NULL,NULL,NULL,'202104171','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104031','1434','','','202104031',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202104171','EMPEXPORT','TEST_XOE','May 14 2021  6:36PM','EDRBMUSEXP',NULL,NULL,NULL,'202104171','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104031','1191','','','202104031',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','InitialSort','C','drvInitialSort');
@@ -1030,7 +1030,7 @@ BEGIN
     
 
     --05 for ADD
-    /*INSERT INTO dbo.U_EDRBMUSEXP_drvTbl
+    INSERT INTO dbo.U_EDRBMUSEXP_drvTbl
          SELECT DISTINCT
          drvEEID 
         ,drvCoID 
@@ -1068,16 +1068,18 @@ BEGIN
         ,drvZipCode = ''
         ,drvRelationshipCode = ''
         ,drvGender = ''
-        ,drvDateofBirth = ''
-        ,drvSmokerIndicator = ''
-        ,drvDateofHire = ''
-        ,drvLocationNumber = ''
-        ,drvLocationDate = ''
 
-        ,drvReportedSalary = ''
+        ,drvDateofBirth = CONVERT(CHAR(8),'00000000')
+        ,drvSmokerIndicator = ''
+        ,drvDateofHire = CONVERT(CHAR(8),'00000000')
+        ,drvLocationNumber = CONVERT(CHAR(7),'0000000')
+        ,drvLocationDate = CONVERT(CHAR(8),'00000000')
+
+        ,drvReportedSalary = '00000000000' -- CONVERT(CHAR(11),'0000000000')
         ,drvSalaryMode = ''
-        ,drvSalaryEffectiveDate =''
-        ,drvWeeklyHours = ''
+        ,drvSalaryEffectiveDate = CONVERT(CHAR(8),'00000000')
+        ,drvWeeklyHours = CONVERT(CHAR(5),'00000')
+        
         ,drvProductId = CASE WHEN drvProductId = 'LIFE' THEN 'ADD'
                              WHEN drvProductId = 'LIFSUP1' THEN 'ADDSUP1'
                              WHEN drvProductId = 'DEPSUPC' THEN 'ADDSUPC'
@@ -1106,7 +1108,7 @@ BEGIN
         ,drvDelimitingCharacter
         ,drvEndofLineCharacter 
     FROM dbo.U_EDRBMUSEXP_drvTbl WITH (NOLOCK)
-    WHERE  drvProductId IN('LIFE' , 'LIFSUP1', 'DEPSUPC', 'DEPSUPS')*/
+    WHERE  drvProductId IN('LIFE' , 'LIFSUP1', 'DEPSUPC', 'DEPSUPS')
     --==========================================
     -- Set FileName
     --==========================================

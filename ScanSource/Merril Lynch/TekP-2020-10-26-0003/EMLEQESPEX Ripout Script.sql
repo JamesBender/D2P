@@ -45,7 +45,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''DA''=''F'')','EMLEQESPEXZ0','8','H','01','54',NULL,'IBSH00_PAYCHECK_END_DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''DA''=''F'')','EMLEQESPEXZ0','8','H','01','62',NULL,'IBSH00_ELIG_DATE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFileStatus"','9','(''UA''=''F'')','EMLEQESPEXZ0','1','H','01','70',NULL,'IBSH00_FILE_STATUS',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''F'')','EMLEQESPEXZ0','5430','H','01','71',NULL,'Super Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''F'')','EMLEQESPEXZ0','47','H','01','71',NULL,'Super Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"01"','11','(''DA''=''F'')','EMLEQESPEXZ0','2','H','01','118',NULL,'Super Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''DA''=''F'')','EMLEQESPEXZ0','160','H','01','120',NULL,'Super Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','13','(''DA''=''F'')','EMLEQESPEXZ0','1','H','01','280',NULL,'Super Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''DA''=''F'')','EMLEQESPEXZ0','5220','H','01','281',NULL,'Super Filler',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IBEN01"','1','(''DA''=''F'')','EMLEQESPEXZ0','6','D','10','1',NULL,'IB_RECORD_TYPE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"40992"','2','(''DA''=''F'')','EMLEQESPEXZ0','10','D','10','7',NULL,'IB_COMPANY_ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvProductType"','3','(''UA''=''F'')','EMLEQESPEXZ0','10','D','10','17',NULL,'IBEN01_PRODUCT_TYPE',NULL,NULL);
@@ -62,7 +66,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''F'')','EMLEQESPEXZ0','10','D','20','27',NULL,'IB_CASE_NUMBER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''DA''=''F'')','EMLEQESPEXZ0','9','D','20','37',NULL,'IB_PLAN_NUMBER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','6','(''DA''=''F'')','EMLEQESPEXZ0','3','D','20','46',NULL,'IBSH01_Plan_Version_Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''DA''=''F'')','EMLEQESPEXZ0','10','D','20','49',NULL,'IBSH01_PART_NUMBER',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartNumber"','7','(''UA''=''F'')','EMLEQESPEXZ0','10','D','20','49',NULL,'IBSH01_PART_NUMBER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSearchKey"','8','(''UA''=''F'')','EMLEQESPEXZ0','9','D','20','59',NULL,'IBSH01_SEARCH_KEY',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','68',NULL,'FILLER',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''F'')','EMLEQESPEXZ0','10','D','20','69',NULL,'IBSH01_EMPLOYEE_NUMBER',NULL,NULL);
@@ -231,14 +235,14 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','173','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4926',NULL,'IBSH01_AC_EE_LEVEL_RESTRICTION_CODE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','174','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4927',NULL,'IBSH01_AC_AFFILIATE_CODE_FLAG',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','175','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4928',NULL,'IBSH01_AC_YTD_MEDICARE_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','176','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4929',NULL,'IBSH01_AC_YTD_TAX_FIELD_1_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','177','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4930',NULL,'IBSH01_AC_YTD_TAX_FIELD_2_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','178','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4931',NULL,'IBSH01_AC_YTD_TAX_FIELD_3_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','179','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4932',NULL,'IBSH01_AC_YTD_TAX_FIELD_4_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','180','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4933',NULL,'IBSH01_AC_YTD_TAX_FIELD_5_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','181','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4934',NULL,'IBSH01_AC_YTD_TAX_FIELD_6_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','182','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4935',NULL,'IBSH01_AC_YTD_TAX_FIELD_7_FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','183','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4936',NULL,'IBSH01_AC_YTD_TAX_FIELD_8_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','176','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4929',NULL,'IBSH01_AC_YTD_TAX_FIELD_1_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','177','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4930',NULL,'IBSH01_AC_YTD_TAX_FIELD_2_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','178','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4931',NULL,'IBSH01_AC_YTD_TAX_FIELD_3_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','179','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4932',NULL,'IBSH01_AC_YTD_TAX_FIELD_4_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','180','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4933',NULL,'IBSH01_AC_YTD_TAX_FIELD_5_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','181','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4934',NULL,'IBSH01_AC_YTD_TAX_FIELD_6_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','182','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4935',NULL,'IBSH01_AC_YTD_TAX_FIELD_7_FLAG',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','183','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4936',NULL,'IBSH01_AC_YTD_TAX_FIELD_8_FLAG',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','184','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4937',NULL,'IBSH01_AC_GRANT_TYPES_TO_APPLY_FICA_OAS_FLAG',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','185','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4938',NULL,'IBSH01_AC_GRANT_TYPES_TO_APPLY_MEDICARE',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','186','(''DA''=''F'')','EMLEQESPEXZ0','1','D','20','4939',NULL,'IBSH01_AC_MSOP_IND_FLAG',NULL,NULL);
@@ -470,7 +474,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMLEQESPEX_20210419.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMLEQESPEX_20210519.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202104089','EMPEXPORT','OEACTIVE','Apr 15 2021  5:12PM','EMLEQESPEX',NULL,NULL,NULL,'202104089','Apr  8 2021  1:04PM','Apr  8 2021  1:04PM','202104081','832','','','202104081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202104089','EMPEXPORT','OEPASSIVE','Apr 15 2021  5:12PM','EMLEQESPEX',NULL,NULL,NULL,'202104089','Apr  8 2021  1:04PM','Apr  8 2021  1:04PM','202104081','832','','','202104081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -580,6 +584,7 @@ CREATE TABLE [dbo].[U_EMLEQESPEX_drvTbl_IBSH01] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(14) NULL,
+    [drvPartNumber] char(11) NULL,
     [drvSearchKey] char(11) NULL,
     [drvTaxIdNumer] varchar(25) NULL,
     [drvTinType] varchar(1) NOT NULL,
@@ -604,7 +609,7 @@ CREATE TABLE [dbo].[U_EMLEQESPEX_drvTbl_IBSH01] (
     [drvOptionEdID] char(11) NULL,
     [drvACTaxCode] varchar(2) NULL,
     [drvYtdFicaOas] nvarchar(4000) NULL,
-    [drvEELevelRestrCode] varchar(3) NULL,
+    [drvEELevelRestrCode] varchar(3) NOT NULL,
     [drvYtdMedicare] nvarchar(4000) NULL,
     [drvSupplementalComp] nvarchar(4000) NULL,
     [drvAnnualSalary] nvarchar(4000) NULL
@@ -621,7 +626,7 @@ CREATE TABLE [dbo].[U_EMLEQESPEX_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(6000) NULL
+    [Data] char(5500) NULL
 );
 IF OBJECT_ID('U_EMLEQESPEX_Header') IS NULL
 CREATE TABLE [dbo].[U_EMLEQESPEX_Header] (
@@ -876,20 +881,26 @@ BEGIN
         ,drvSort = xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvProductType =    CASE WHEN EepUDField01 = 'STOCK' AND EepUDField02 = 'BLACKOUT' THEN 'AC' --filter EE to remove anyone who doesn't have STOCK as EepUDField01
-                                WHEN BdmDedCode = 'STOCK' THEN 'ESPP'
+                                WHEN BdmDedCode = 'STOCK' AND FLOOR(DATEDIFF(DAY, EepDateOfBirth,GETDATE()) / 365.25) > 18 AND EecFullTimeOrPartTime = 'F' THEN 'ESPP'                                
                             END
         ,drvPlanNumber = CASE WHEN EepUDField01 = 'STOCK' AND EepUDField02 = 'BLACKOUT' THEN 'XOP 1590'
-                                WHEN BdmDedCode = 'STOCK' THEN 'SCSC'
+                                WHEN BdmDedCode = 'STOCK' AND FLOOR(DATEDIFF(DAY, EepDateOfBirth,GETDATE()) / 365.25) > 18 AND EecFullTimeOrPartTime = 'F' THEN 'SCSC'
                             END
         ,drvPartNumer = EepSSN
     INTO dbo.U_EMLEQESPEX_drvTbl_IBEN01
     FROM dbo.U_EMLEQESPEX_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
     JOIN dbo.EmpPers WIHT (NOLOCK)
         ON EepEEID = xEEID
     LEFT JOIN dbo.U_dsi_BDM_EMLEQESPEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     ;
+
+    DELETE dbo.U_EMLEQESPEX_drvTbl_IBEN01 WHERE drvProductType IS NULL;
+
     ---------------------------------
     -- DETAIL RECORD - U_EMLEQESPEX_drvTbl_IBSH01
     ---------------------------------
@@ -901,6 +912,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = xEEID + ' 2'
         -- standard fields above and additional driver fields below
+        ,drvPartNumber = EepSSN
         ,drvSearchKey = eepSSN
         ,drvTaxIdNumer = CASE WHEN EinUDField01 IS NULL THEN EepSSN ELSE EinUDField01 END
         ,drvTinType = CASE WHEN EepAddressCountry NOT IN ('US','USA') THEN 'C' ELSE 'S' END
@@ -927,8 +939,8 @@ BEGIN
         ,drvTerminationIDFlag = CASE WHEN EecEmplStatus IN ('A','L') THEN 'N' ELSE 'Y' END
         ,drvOptionEdID = EepSSN
         ,drvACTaxCode = LEFT(EetTaxCode, 2)
-        ,drvYtdFicaOas = FORMAT(OasAmount*1000, '000000000000000')
-        ,drvEELevelRestrCode = CASE WHEN EecTermReason = '203' THEN '100' END
+        ,drvYtdFicaOas = FORMAT(OasAmount*10000000, '000000000000000')
+        ,drvEELevelRestrCode = CASE WHEN EecTermReason = '203' THEN '100' ELSE '163' END
         ,drvYtdMedicare = FORMAT(YtdMedicareAmt*1000, '000000000000000')
         ,drvSupplementalComp = FORMAT(PehCurBonusAmtYTD*1000, '000000000000000')
         ,drvAnnualSalary = FORMAT(EecAnnSalary*1000, '000000000000000')
