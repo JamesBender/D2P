@@ -1,0 +1,3 @@
+-- Record NULL issue for names where middle name is NULL
+EepNameFirst + CASE WHEN LEFT(EepNameMiddle, 1) IS NULL THEN ' '
+												WHEN LEFT(EepNameMiddle, 1) IS NOT NULL THEN ' ' + LEFT(EepNameMiddle, 1) END + EepNameLast

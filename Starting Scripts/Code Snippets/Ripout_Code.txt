@@ -1,0 +1,1 @@
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EALLFEDEXP', @AllObjects = 'Y', @IsWeb = 'Y'

@@ -1,0 +1,38 @@
+
+    -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+       IF OBJECT_ID('U_EHRSYGREN_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EHRSYGREN_PDedHist;
+    SELECT DISTINCT
+         PdhEEID
+        ,PdhCOID
+        ,PdhDedCode
+        -- Current Payroll Amounts
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        -- Categorize Payroll Amounts
+        ,PdhSource1     = CAST(SUM(CASE WHEN PdhDedCode IN ('FSAMD', 'FSADC', 'TSAMT', 'TSAPK') THEN PdhEECurAmt ELSE 0.00 END) AS NUMERIC(12,2))
+        ,PdhSource2     = CAST(SUM(CASE WHEN PdhDedCode IN ('FSAMD', 'FSADC', 'TSAMT', 'TSAPK') THEN PdhERCurAmt ELSE 0.00 END) AS NUMERIC(12,2))
+    --     ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+    --     ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+    --     ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+    --     ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --     ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --     ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --     ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --     ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+     INTO dbo.U_EHRSYGREN_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EHRSYGREN_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID, PdhCOID, PdhDedCode
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );

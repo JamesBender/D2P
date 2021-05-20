@@ -1,0 +1,166 @@
+Useful Code:
+sp_geteeid 'lastname' 
+OR
+sp_geteeid 'firstname'
+OR
+sp_geteeid 'empid' = gives you the users eeid to search in bdm tables.
+empcomp table = compensation information
+empded table = plans 
+empers = personal info
+\\ez2sup4db01\ultiprodata\AndyP\Layouts\
+*Ultimate01 for EZ24
+
+Access:
+EZ24
+Citrix ID: us3aPiEZ24
+PW: **843!
+ez2sup4db01 access
+SQL Server Authentication
+User: apineda
+PW: Ultimate01
+
+FAC1003 (Factor Systems, Inc)
+User: us3aPiFAC1003
+PW: **843!
+BO URL: https://aew43.ultipro.com/
+Server: EW4WUP3DB01
+Database: ULTIPRO_WPFSINC
+BO PW: Ks95FiYo
+CC: FSINC
+
+REM1008 (Remitly, Inc)
+User: us3aPiREM1008A
+PW: fQ{91?bFL6!krK5
+BO URL: s6EAj3x1
+Server: NW1WUP3DB04
+Database: ULTIPRO_WPREMY
+BO PW: s6EAj3x1
+CC: REMY
+
+TOP1004 (Toptal, LLC)
+User: us3aPiTOP1004
+PW: **843!
+BO URL: https://anw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPTOPT
+BO PW: **843!
+CC: TOPT
+
+ALI1002 (A-LIGN Compliance and Security)
+User: us3aPiALI1002
+PW: P?r21bB+M7%t4$zDZ
+BO URL: https://aew45.ultipro.com/
+Server: EW4WUP5DB03
+Database: ULTIPRO_WPALCS
+BO PW: i5Y8Kmd3
+CC: ALCS
+
+BAY1005 (Bay.org)
+User: us3aPiBAY1005
+PW: o*2E_Kq31k%YS{8p!j
+BO URL: https://anw13.ultipro.com/
+Server: NW1WUP3DB01
+Database: ULTIPRO_WPBAYO
+BO PW: f2MXz95T
+CC: BAYO
+
+SUR1007 (Surety Title Company)
+User: us3aPiSUR1007
+PW: w%4FZk}25*Bn_Wx
+BO URL: https://aew15.ultipro.com/
+Server: EW1WUP5DB04
+Database: ULTIPRO_WPSURE
+BO PW: o2P5Xct4
+CC: SURE
+
+TEN1000 (TYP Restaurant Group, Inc)
+User: us3aPiTEN1000
+PW: g?9A5F%iE}j38tY$
+BO URL: https://aew22.ultipro.com/
+Server: EW2WUP2DB02
+Database: ULTIPRO_WPTEN
+BO PW: Cx82Xas5
+CC: TEN
+
+JAM1002 (The Barry Robinson Center)
+User: us3aPiJAM1002
+PW: g?6L%Wr4Ji9_2T
+BO URL: https://aew34.ultipro.com/
+Server: EW3WUP4DB01
+Database: ULTIPRO_WPBARRY
+BO PW: s1W3Zkf4
+CC: BARRY
+
+BOW1003 (Bowman Consulting)
+User: us3aPiBOW1003
+PW: 6Aw+!3DpoY?27}eM*
+BO URL: https://aew42.ultipro.com/
+Server: EW4WUP2DB01
+Database: ULTIPRO_WPBOWMN
+BO PW: n1M3RcEr
+CC: BOWMN
+
+JET1001 (JETSUITEX, INC)
+User: us3aPiJET1001
+PW: Ei5?r8{L+zS1fJ3!%
+BO URL: https://anw11.ultipro.com/
+Server: NW1WUP1DB03
+Database: ULTIPRO_WPJETS
+BO PW: e1MZa83L
+CC: JETS
+
+NUC1003 (NuCOZ)
+User: us3aPiNUC1003
+PW: 6e%ZC9p}4_Ai*t5D
+BO URL: https://aew13.ultipro.com/
+Server: EW1WUP3DB02
+Database: ULTIPRO_WPNUCSU
+BO PW: Rt29YsNg
+CC: NUCOZ
+
+FLA1000 (Flatiron Health, Inc)
+User: us3aPiFLA1000
+PW: 2Sq{+e3Q7%TxoP8}?r
+BO URL: https://aew41.ultipro.com/
+Server: EW4WUP1DB02
+Database: ULTIPRO_WPFLTRN
+BO PW: g8J9Bsf7
+CC: FLTRN
+
+CEN1014 (Center for Shared Services Trust)
+User: us3aPiCEN1014
+PW: t}5FD2r%q_4Q7kT!
+BO URL: https://aew14.ultipro.com/
+Server: EW1WUP4DB02
+Database: ULTIPRO_WPCSST
+BO PW: Tp25BzWt
+CC: CSST
+
+UNI1070 (UPG Enterprises LLC)
+User: us3aPiUNI1070
+PW: 2g+Wo?P5X6*r_w
+BO URL: https://aew41.ultipro.com/
+Server: EW4WUP1DB01
+Database: ULTIPRO_WPUPI
+BO PW: q1BAe3f9
+CC: UPI
+
+TIL1001 (The Tile Shop, LLC)
+User: us3aPiTIL1001
+PW: zX}36*sLEg5?2%
+BO URL: https://anw12.ultipro.com/
+Server: NW1WUP2DB02
+Database: ULTIPRO_WPTTLLC
+BO PW: w5B8Nmb4
+CC: TTLLC
+
+University of Phoenix
+User: us3aPiAPO1003
+PW: **843!
+BO URL (prod): https://an2d.ultipro.com
+BO URL (test): https://aez3d.ultipro.com/
+Server (prod): N2D023DB01
+Server (test): EZ3D023DB01
+Database: ULTIPRO_APGRP
+CC: APGRP
+

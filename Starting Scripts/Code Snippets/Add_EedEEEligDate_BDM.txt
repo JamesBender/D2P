@@ -1,0 +1,8 @@
+   --======================================================  
+    -- Update BdmUSGDate1 with EedEEEligDate from empded  
+    --======================================================  
+    UPDATE dbo.U_dsi_bdm_EREGDAV834  
+        SET BdmUSGDate1 = EedEEEligDate  
+    FROM dbo.U_dsi_bdm_EREGDAV834  
+    JOIN dbo.EmpDedFull WITH (NOLOCK)  
+        ON EedEmpDedTVID = BdmUSGField2;  

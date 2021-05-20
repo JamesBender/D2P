@@ -1,0 +1,1 @@
+First day of next month: DATEADD(d, 1, EOMONTH(current_timestamp))

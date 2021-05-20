@@ -1,0 +1,18 @@
+select bmssessioncode,bmssessionstatus,bmspendingeffdate, case when
+bmsuseexistingbenstartdate = '1' then 'Y' else 'N' end keepbenstartdate,
+case when bmsUseExistingBenStopDate = '1' then 'Y' else 'N' end
+keepbenstopdate,
+case when bmsuseexistingdedstartdate = '1' then 'Y' else 'N' end
+keepdedstartdate,
+case when bmsuseexistingdedstopdate = '1' then 'Y' else 'N' end
+keepdedstopdate
+from bmsession
+where bmsPlanYear = '2020'--ensure to update the year accordingly--
+--Example for 2021
+--and bmssessionstatus = 'L'
+
+-- Note:
+-- By design, if the OEACTIVE date in the system is LESS THAN the date
+-- in the @startdate variable within the main dsi_sp procedure code, then the 
+-- records will be deleted. Before careful that this isn't affecting the 
+-- output report.

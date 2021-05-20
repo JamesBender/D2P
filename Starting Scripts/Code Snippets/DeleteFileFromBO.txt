@@ -1,0 +1,4 @@
+DELETE ascexp 
+where EXPFORMATCODE = '<format code>'
+
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = '<format code>';

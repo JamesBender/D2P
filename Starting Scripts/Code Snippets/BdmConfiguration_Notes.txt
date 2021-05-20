@@ -1,0 +1,6 @@
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'NewEnrolleeType', '1')
+1. Anyone newly enrolled in any deduction is valid
+2. All new enrollees with no previous plan since their Date of Last Hire (eecDateOfLastHire)
+3. All new enrollees with no previous plan in all history.
+4. All new enrollees & re-enrollees with no active plan since their Date of Last Hire (eecDateOfLastHire). Re-enrollments into the same DedCode are
+considered under this option. For example, the employee may have been enrolled in MED1 during his/her original employment and then was rehired at a later date and re-enrolled in MED1. NewEnrolleeType = '4' will consider this re-enrollment scenario as valid in the New Enrollee Module.

@@ -1,0 +1,3 @@
+--GetAnnSalary function requirements
+
+dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(BdmEEID, BdmCOID, '01/01/2021',EecDateOfLastHire)

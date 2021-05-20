@@ -1,0 +1,24 @@
+DECLARE @Source TABLE
+(
+Col1 VARCHAR(10),
+Col2 VARCHAR(10)
+)
+
+INSERT INTO @Source 
+SELECT '1','1' UNION ALL
+SELECT '2','2' UNION ALL
+SELECT '3','3' UNION ALL
+SELECT '4A','4' UNION ALL
+SELECT '5','5' 
+
+
+DECLARE @Destination TABLE
+(
+Col1 INT,
+Col2 VARCHAR(10)
+)
+
+INSERT INTO @Destination 
+OUTPUT inserted.*
+SELECT * 
+FROM @Source

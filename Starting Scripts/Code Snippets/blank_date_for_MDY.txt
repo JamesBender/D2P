@@ -1,0 +1,5 @@
+ISNULL((CASE WHEN EecEmplStatus = 'T' THEN REPLACE(CONVERT (CHAR(10), EecDateOfTermination, 101),'/','') END), '')
+
+OR 
+
+ISNULL(REPLACE(CONVERT(CHAR(10), BdmBenStartDate, 101), '/', ''), '')

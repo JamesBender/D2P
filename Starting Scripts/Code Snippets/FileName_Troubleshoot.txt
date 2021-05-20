@@ -1,0 +1,14 @@
+  --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'Y')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN '<CompanyCode>_<FormatCode>_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE 'OE%' THEN '<CompanyCode>_<FormatCode>_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE '<CompanyCode>_<FormatCode>_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;

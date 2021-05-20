@@ -1,0 +1,22 @@
+SELECT count(1)
+FROM (
+	SELECT TOP 12
+
+
+
+		CAST(
+
+			CAST(YEAR(GETDATE()) AS CHAR(4)) +
+
+			RIGHT('0' + CAST(ROW_NUMBER() OVER (ORDER BY OBJECT_ID) AS VARCHAR(2)),2) +
+
+			'01'
+
+
+
+		AS DATETIME) col
+
+	FROM master.sys.all_columns
+	) a
+
+	WHERE MONTH(a.col) >= MONTH(GETDATE())

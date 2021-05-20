@@ -1,0 +1,132 @@
+--==========================================
+    -- Audit Code
+    --==========================================
+    -- Get data from audit fields table.  Add fields here if auditing
+    IF OBJECT_ID('U_EDISCOYON_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EDISCOYON_AuditFields;
+    CREATE TABLE dbo.U_EDISCOYON_AuditFields (aTableName VARCHAR(30),aFieldName VARCHAR(30));
+    -- Employee Information
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepSSN');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepNameFirst');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepNameLast');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepNameMiddle');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepNamePrefix');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepNameSuffix');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepAddressLine2');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepAddressCity');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepAddressState');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepAddressZipCode');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepAddressCountry');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepGender');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepIsDisabled');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepMaritalStatus');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    -- Dependent Information
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConSSN');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConNameFirst');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConNameLast');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConNameMiddle');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConNameSuffix');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConDateOfBirth');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConIsDisabled');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConRelationship');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConAddressLine1');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConAddressLine2');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConAddressCity');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConAddressState');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConAddressZipCode');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('Contacts','ConAddressCountry');
+    -- Employee Deduction/Benefit Information
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpDed','EedDedCode');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpDed','EedBenStatus');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpDed','EedBenOption');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpDed','EedBenStartDate');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('EmpDed','EedBenStopDate');
+    -- Dependent Deduction/Benefit Information
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('DepBPlan','DbnDedCode');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('DepBPlan','DbnBenStatus');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('DepBPlan','DbnBenStartDate');
+    INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('DepBPlan','DbnBenStopDate');
+    -- Deduction/Benefit Information
+    --INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('DedCode','DedBenAmt');
+    --INSERT INTO dbo.U_EDISCOYON_AuditFields VALUES ('DedCode','DedBenAmtRateOrPct');
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EDISCOYON_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EDISCOYON_Audit;
+    SELECT audEEID = xEEID
+        ,audCOID = xCOID
+        ,audConSystemID =  CASE WHEN audTableName = 'Contacts' THEN audKey3Value
+                                WHEN audTableName = 'DepBPlan' THEN DbnDepRecID
+                           END
+        ,audKey1 = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audEffectiveDate
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        ,audDedChange = CASE WHEN audTableName IN ('EmpDed','DepBPlan','DedCode') THEN 'Y'
+                             ELSE 'N'
+                        END
+        ,audBenOptionChange = CASE WHEN audFieldName IN ('EedBenOption') THEN 'Y'
+                                   ELSE 'N'
+                              END
+        ,audSSNChange = CASE WHEN audFieldName IN ('EepSSN','ConSSN') THEN 'Y'
+                              ELSE 'N'
+                        END
+        ,audNameChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Name%' THEN 'Y'
+                              WHEN audTableName IN ('EmpPers') AND audFieldName LIKE '%Prefix%' THEN 'Y'
+                              WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Suffix%' THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audDemoChange = CASE WHEN audFieldName IN ('EepGender','EepDateOfBirth','EepMaritalStatus','ConGender','ConDateOfBirth','ConRelationship') THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audAddrChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Address%' THEN 'Y'
+                              ELSE 'N'
+                         END
+        ,audNewlyEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') = '' AND audNewValue = 'A' THEN 'Y'
+                               ELSE 'N'
+                          END
+        ,audReEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') NOT IN ('A','') AND audNewValue = 'A' THEN 'Y'
+                            WHEN audFieldName IN ('EedBenStartDate','DbnBenStartDate') AND ISNULL(audOldValue,'') <> '' AND ISNULL(audNewValue,'') <> '' THEN 'Y'
+                            ELSE 'N'
+                       END
+        ,audTermPlan = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND audOldValue = 'A' AND ISNULL(audNewValue,'') NOT IN ('A','') THEN 'Y'
+                            WHEN audFieldName IN ('EedBenStopDate','DbnBenStopDate') AND ISNULL(audNewValue,'') <> '' THEN 'Y'
+                            ELSE 'N'
+                       END
+    INTO dbo.U_EDISCOYON_Audit
+    FROM dbo.U_EDISCOYON_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK)
+        ON xEEID = audKey1Value
+    JOIN dbo.U_EDISCOYON_AuditFields WITH (NOLOCK)
+        ON aTableName = audTableName
+        AND aFieldName = audFieldName
+    LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+        ON DbnEEID = xEEID
+        AND DbnDedCode = audKey2Value
+        AND DbnSystemID = audKey3Value
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND ISNULL(audNewValue, '') <> ''
+    AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
+        OR (audTableName = 'EmpDed' AND audKey3Value IN (SELECT DedCode FROM dbo.U_EDISCOYON_DedList))
+        OR (audTableName = 'DepBPlan' AND audKey2Value IN (SELECT DedCode FROM dbo.U_EDISCOYON_DedList))
+    );
+    --================
+    -- Changes Only
+    --================
+    IF (@Exportcode NOT IN ('FULLFILE','SCH_FFL','TEST_FFL'))
+    BEGIN
+        -- Remove Employees with No Changes in Audit
+        DELETE FROM dbo.U_EDISCOYON_EELIST
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EDISCOYON_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    END;
