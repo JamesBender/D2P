@@ -51,9 +51,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '12',@AdhSystemID,'1','H','01','12',NULL,'Repetition Separator',NULL,NULL,'"^"','(''DA''=''F*'')';
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '13',@AdhSystemID,'5','H','01','13',NULL,'Interchange Control Ver #',NULL,NULL,'"00501"','(''DA''=''F*'')';
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '14',@AdhSystemID,'9','H','01','14',NULL,'Interchange Control #',NULL,NULL,'"000000001"','(''DA''=''F*'')';
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '15',@AdhSystemID,'1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"1"','(''DA''=''F*'')';
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '15',@AdhSystemID,'1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"0"','(''DA''=''F*'')';
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '16',@AdhSystemID,'1','H','01','16',NULL,'Usage Indicator',NULL,NULL,'"drvISA15_UsageIndicator"','(''UA''=''F*'')';
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '17',@AdhSystemID,'1','H','01','17',NULL,'Component Element Separator',NULL,NULL,'">"','(''DA''=''F*'')';
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '17',@AdhSystemID,'1','H','01','17',NULL,'Component Element Separator',NULL,NULL,'":"','(''DA''=''F*'')';
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '1',@AdhSystemID,'2','H','02','1',NULL,'GS Segment ID (Header)',NULL,NULL,'"GS"','(''DA''=''T*'')';
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '2',@AdhSystemID,'2','H','02','2',NULL,'Functional ID Code',NULL,NULL,'"BE"','(''DA''=''T*'')';
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '3',@AdhSystemID,'15','H','02','3',NULL,'Sender ID',NULL,NULL,'"drvGS02_SenderID"','(''UA''=''T*'')';
@@ -524,6 +524,12 @@ BEGIN
     DELETE FROM dbo.U_ECIGNA834_EEList
     WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ECIGNA834_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
 
+	--Remove Test Employees and Z employee types
+-- Cleans EE List of Employees Where EecEmpType = TES
+    DELETE FROM dbo.U_ECIGNA834_EEList 
+	WHERE xEEID IN (SELECT DISTINCT EecEEID  FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('Z'))
+	   OR xEEID IN (SELECT DISTINCT EepEEID  FROM dbo.EmpPers WITH (NOLOCK) WHERE LEFT(EepSSN,3) = '999')
+	;
     --==========================================
     -- BDM Section
     --==========================================
@@ -544,6 +550,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS, DP');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CH, CHL, DIS, DPC, STC');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
+	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStartDateDays', '30')
+	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30')
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -710,60 +718,51 @@ BEGIN
         ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
         ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual1 = '0F'
-        ,drvREF02_RefNumberQual1 = EepSSN
+        ,drvREF01_RefNumberQual1 = CASE WHEN BdmRecType = 'EMP' THEN '1L' END
+        ,drvREF02_RefNumberQual1 = CASE WHEN BdmRecType = 'EMP' THEN '00632379-F' END
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual2 = '1L'
-        ,drvREF02_RefNumberQual2 = '00632379-F'
+        ,drvREF01_RefNumberQual2 = CASE WHEN BdmRecType = 'EMP' THEN 'DX' END
+        ,drvREF02_RefNumberQual2 = CASE WHEN BdmRecType = 'EMP' THEN '0001' END
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual3 = CASE WHEN EecOrgLvl1 = 'CORP' AND EecLocation <> 'IL' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'CORP' AND EecLocation <> 'IL' AND PgrPayFrequency = 'W' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'CORP' AND EecLocation = 'IL' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'CORP' AND EecLocation = 'IL' AND PgrPayFrequency = 'W' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'MO' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'MO' AND PgrPayFrequency = 'W' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'OH' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'OH' AND PgrPayFrequency = 'W' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'VA' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'VA' AND PgrPayFrequency = 'W' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'BMC' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'BMC' AND PgrPayFrequency = 'W' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'CA' AND PgrPayFrequency = 'B' THEN 'ZZ'
-										WHEN EecOrgLvl1 = 'CA' AND PgrPayFrequency = 'W' THEN 'ZZ'
-									ELSE
-										'DX'
-									END
-        ,drvREF02_RefNumberQual3 = CASE WHEN EecOrgLvl1 = 'CORP' AND EecLocation <> 'IL' AND PgrPayFrequency = 'B' THEN 'A001'
-										WHEN EecOrgLvl1 = 'CORP' AND EecLocation <> 'IL' AND PgrPayFrequency = 'W' THEN 'A002'
-										WHEN EecOrgLvl1 = 'CORP' AND EecLocation = 'IL' AND PgrPayFrequency = 'B' THEN 'A003'
-										WHEN EecOrgLvl1 = 'CORP' AND EecLocation = 'IL' AND PgrPayFrequency = 'W' THEN 'A004'
-										WHEN EecOrgLvl1 = 'MO' AND PgrPayFrequency = 'B' THEN 'A005'
-										WHEN EecOrgLvl1 = 'MO' AND PgrPayFrequency = 'W' THEN 'A006'
-										WHEN EecOrgLvl1 = 'OH' AND PgrPayFrequency = 'B' THEN 'A007'
-										WHEN EecOrgLvl1 = 'OH' AND PgrPayFrequency = 'W' THEN 'A008'
-										WHEN EecOrgLvl1 = 'VA' AND PgrPayFrequency = 'B' THEN 'A009'
-										WHEN EecOrgLvl1 = 'VA' AND PgrPayFrequency = 'W' THEN 'A010'
-										WHEN EecOrgLvl1 = 'BMC' AND PgrPayFrequency = 'B' THEN 'A011'
-										WHEN EecOrgLvl1 = 'BMC' AND PgrPayFrequency = 'W' THEN 'A012'
-										WHEN EecOrgLvl1 = 'CA' AND PgrPayFrequency = 'B' THEN 'A013'
-										WHEN EecOrgLvl1 = 'CA' AND PgrPayFrequency = 'W' THEN 'A014'
-									ELSE '0001'
+        ,drvREF01_RefNumberQual3 = CASE WHEN BdmRecType = 'EMP' THEN 'ZZ' END
+        ,drvREF02_RefNumberQual3 = CASE WHEN BdmRecType = 'EMP' THEN 
+										CASE WHEN EecOrgLvl1 = 'CORP' AND EecLocation <> 'IL' AND PgrPayFrequency = 'B' THEN 'A001'
+											WHEN EecOrgLvl1 = 'CORP' AND EecLocation <> 'IL' AND PgrPayFrequency = 'W' THEN 'A002'
+											WHEN EecOrgLvl1 = 'CORP' AND EecLocation = 'IL' AND PgrPayFrequency = 'B' THEN 'A003'
+											WHEN EecOrgLvl1 = 'CORP' AND EecLocation = 'IL' AND PgrPayFrequency = 'W' THEN 'A004'
+											WHEN EecOrgLvl1 = 'MO' AND PgrPayFrequency = 'B' THEN 'A005'
+											WHEN EecOrgLvl1 = 'MO' AND PgrPayFrequency = 'W' THEN 'A006'
+											WHEN EecOrgLvl1 = 'OH' AND PgrPayFrequency = 'B' THEN 'A007'
+											WHEN EecOrgLvl1 = 'OH' AND PgrPayFrequency = 'W' THEN 'A008'
+											WHEN EecOrgLvl1 = 'VA' AND PgrPayFrequency = 'B' THEN 'A009'
+											WHEN EecOrgLvl1 = 'VA' AND PgrPayFrequency = 'W' THEN 'A010'
+											WHEN EecOrgLvl1 = 'BMC' AND PgrPayFrequency = 'B' THEN 'A011'
+											WHEN EecOrgLvl1 = 'BMC' AND PgrPayFrequency = 'W' THEN 'A012'
+											WHEN EecOrgLvl1 = 'CA' AND PgrPayFrequency = 'B' THEN 'A013'
+											WHEN EecOrgLvl1 = 'CA' AND PgrPayFrequency = 'W' THEN 'A014'
+										END
 									END
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = 'DTP'
-        ,drvDTP01_DateTimeQualifier1 = '303'
-        ,drvDTP02_DateTimeFormatQual1 = 'D8'
-        ,drvDTP03_DateTimePeriod1 = CASE WHEN (SELECT MAX(audDateTime) FROM dbo.U_ECIGNA834_Audit WITH (NOLOCK) WHERE audEEID = xEEID and audCOID = xCOID) IS NULL THEN [dbo].[dsi_fnlib_GetAnnSalary_EffDate_WithStartDate] (xEEID, xCOID, @StartDate,EecDateOfLastHire) ELSE  (SELECT MAX(audDateTime) FROM dbo.U_ECIGNA834_Audit WITH (NOLOCK) WHERE audEEID = xEEID and audCOID = xCOID) END
+        ,drvDTP00_DateTime1 =CASE WHEN BdmRecType = 'EMP' THEN  'DTP' END
+        ,drvDTP01_DateTimeQualifier1 = CASE WHEN BdmRecType = 'EMP' THEN '303' END
+        ,drvDTP02_DateTimeFormatQual1 = CASE WHEN BdmRecType = 'EMP' THEN 'D8' END
+        ,drvDTP03_DateTimePeriod1 = CASE WHEN BdmRecType = 'EMP' THEN 
+										 CONVERT(VARCHAR(8),
+										 CASE WHEN (SELECT MAX(audDateTime) FROM dbo.U_ECIGNA834_Audit WITH (NOLOCK) WHERE audEEID = xEEID and audCOID = xCOID) IS NULL 
+											  THEN [dbo].[dsi_fnlib_GetAnnSalary_EffDate_WithStartDate] (xEEID, xCOID, @StartDate,EecDateOfLastHire) 
+									     ELSE  (SELECT MAX(audDateTime) FROM dbo.U_ECIGNA834_Audit WITH (NOLOCK) WHERE audEEID = xEEID and audCOID = xCOID) 
+										 END,112)
+									END
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = 'DTP'
-        ,drvDTP01_DateTimeQualifier2 = '336'
-        ,drvDTP02_DateTimeFormatQual2 = 'D8'
-        ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
+        ,drvDTP00_DateTime2 = CASE WHEN BdmRecType = 'EMP' THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier2 = CASE WHEN BdmRecType = 'EMP' THEN '336' END
+        ,drvDTP02_DateTimeFormatQual2 = CASE WHEN BdmRecType = 'EMP' THEN 'D8' END
+        ,drvDTP03_DateTimePeriod2 = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112) END
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
         ,drvDTP00_DateTime3 = 'DTP'
         ,drvDTP01_DateTimeQualifier3 = '356'
         ,drvDTP02_DateTimeFormatQual3 = 'D8'
-        ,drvDTP03_DateTimePeriod3 = (SELECT MIN(EdhBenStartDate) FROM dbo.EmpHDed WITH (NOLOCK) WHERE EdhEEID = xEEID) 
+        ,drvDTP03_DateTimePeriod3 = CONVERT(VARCHAR(8),BdmBenStartDate,112)
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
@@ -784,33 +783,17 @@ BEGIN
                                      WHEN BdmRecType = 'DEP' THEN ConNameSuffix
                                 END */
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
-                                          WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' 
-										  --CHECK FOR TEST Employees									
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^0]%'
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^1]%'
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^8]%'
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^9]%'
-										   AND ISNULL(LEFT(ConSSN,3), '') <> '999'
-										   AND ISNULL(LEFT(ConSSN,3), '') <> '998'
-										  THEN '34'
+                                          WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN '34'
 									 END
         ,drvNM109_IDCode1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN EepSSN
-                                          WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' 
-										  --CHECK FOR TEST Employees									
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^0]%'
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^1]%'
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^8]%'
-										   AND ISNULL(ConSSN, '') NOT LIKE '%[^9]%'
-										   AND ISNULL(LEFT(ConSSN,3), '') <> '999'
-										   AND ISNULL(LEFT(ConSSN,3), '') <> '998'
-										  THEN ConSSN
+                                 WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN ConSSN
                             END
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' THEN 'HP' END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
         ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' THEN 'WP' END
         ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
-        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' THEN 'EM' END
+        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail,'') <> '' THEN 'EM' END
         ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
         ,drvN301_AddressLine1 = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1) END
         ,drvN302_AddressLine2 = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2) END
@@ -889,6 +872,13 @@ BEGIN
         AND ConSystemID = BdmDepRecID
 	JOIN dbo.PayGroup WITH (NOLOCK)
 		ON PgrPayGroup= EecPayGroup
+	WHERE LTRIM(RTRIM(ConSSN)) <> '000000000'
+		AND LTRIM(RTRIM(ConSSN)) <> '111111111'
+		AND LTRIM(RTRIM(ConSSN)) <> '888888888'
+		AND LEFT(LTRIM(ConSSN),3) <> '999'
+		AND LEFT(LTRIM(ConSSN),3) <> '998'
+		AND LTRIM(RTRIM(ConSSN)) <> '123456789'
+		OR ConSSN IS NULL
 		;
 
     /**************************************************************************************************************
@@ -922,7 +912,7 @@ BEGIN
                                            WHEN BdmDedCode IN ('MHSMO', 'MHSO', 'MHSOH', 'MHSVA') THEN 'MHDP0071'
                                            WHEN BdmDedCode IN ('MBUMO', 'MBUO', 'MBUOH', 'MBUVA') THEN 'MOAP0041'
                                      END
-        ,drvHD05_CoverageLevelCode = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN
+        ,drvHD05_CoverageLevelCode = CASE WHEN BdmRecType = 'EMP' THEN
                                                 CASE WHEN BdmBenOption IN ('EE', 'EET', 'EEBU', 'EEW') THEN 'EMP'
                                                      WHEN BdmBenOption IN ('EES', 'EESBU', 'EEST', 'EESW') THEN 'ESP'
                                                      WHEN BdmBenOption IN ('EEC', 'EECT', 'EECBU', 'EECW') THEN 'ECH'
@@ -933,12 +923,12 @@ BEGIN
         ,drvDTP00_DateTime_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '348' END
         ,drvDTP02_DateTimeFormatQual_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN 'D8' END
-        ,drvDTP03_DateTimePeriod_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) END
+        ,drvDTP03_DateTimePeriod_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN CONVERT(VARCHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate),112) END
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
         ,drvDTP00_DateTime_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') AND BdmBenStopDate IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') AND BdmBenStopDate IS NOT NULL THEN '349' END
         ,drvDTP02_DateTimeFormatQual_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') AND BdmBenStopDate IS NOT NULL THEN 'D8' END
-        ,drvDTP03_DateTimePeriod_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN BdmBenStopDate END
+        ,drvDTP03_DateTimePeriod_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN CONVERT(VARCHAR(8),BdmBenStopDate,112) END
         -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
         ,drvDTP00_DateTime_303 = CASE WHEN BdmDedType IN ('MED') THEN '' END
         ,drvDTP01_DateTimeQualifier_303 = CASE WHEN BdmDedType IN ('MED') THEN '303' END
@@ -1007,7 +997,17 @@ BEGIN
         AND BdmCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID;
+        AND ConSystemID = BdmDepRecID
+	JOIN dbo.PayGroup WITH (NOLOCK)
+		ON PgrPayGroup= EecPayGroup
+	WHERE LTRIM(RTRIM(ConSSN)) <> '000000000'
+		AND LTRIM(RTRIM(ConSSN)) <> '111111111'
+		AND LTRIM(RTRIM(ConSSN)) <> '888888888'
+		AND LEFT(LTRIM(ConSSN),3) <> '999'
+		AND LEFT(LTRIM(ConSSN),3) <> '998'
+		AND LTRIM(RTRIM(ConSSN)) <> '123456789'
+		OR ConSSN IS NULL
+		;
 
     /**************************************************************************************************
         TRAILER RECORDS
