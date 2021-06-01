@@ -1,0 +1,5 @@
+Interface details (EF401COMXP)
+Env – NW15 
+Server – NW1WUP5DB01 
+Database – ULTIPRO_WPMEES 
+Export Name – Fidelity Combined 401k Export

@@ -1,5 +1,5 @@
-Interface details (ESNL834EXP)
-Env – ANW11 
-Server – NW1WUP1DB03
-Database – ULTIPRO_WPJETS
-Export Name – Sunlife 834 Export
+Interface details (ETRIAHLEXP)
+Env – EW23 
+Server – EW2WUP3DB03
+Database – ULTIPRO_WPSUNCO
+Export Name – Tria Health/RX Benefits Health Interface Export

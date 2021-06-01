@@ -202,10 +202,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRINC4012_20210519.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRINC4012_20210524.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K OnDemand','202105079','EMPEXPORT','ONDEM_XOE','May 18 2021  1:02PM','EPRINC4012',NULL,NULL,NULL,'202105079','May  7 2021 12:00AM','Dec 30 1899 12:00AM','202105071','1600','eecPayGroup','BWPAY','202105071',dbo.fn_GetTimedKey(),NULL,'us3cPeCRO1008',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K Scheduled','202101299','EMPEXPORT','SCH_PRINOE','Apr 27 2020  3:17PM','EPRINC4012',NULL,NULL,NULL,'202102189','Mar 27 2000 12:00AM','Dec 30 1899 12:00AM','202102111','132','','','202101291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K OnDemand','202104279','EMPEXPORT','ONDEM_XOE','May 24 2021 12:00AM','EPRINC4012',NULL,NULL,NULL,'202104279','Apr 23 2021 12:00AM','Dec 30 1899 12:00AM','202104271','1627','','BWPAY,DTTBW,MTSBW,NALBW,NASBW,PRICBW,RACBW','202104271',dbo.fn_GetTimedKey(),NULL,'us3jBeCRO1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K Scheduled','202104279','EMPEXPORT','SCH_PRINOE','Apr 27 2020  3:17PM','EPRINC4012',NULL,NULL,NULL,'202104279','Mar 27 2000 12:00AM','Dec 30 1899 12:00AM','202104271','132','','','202104271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRINC4012','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRINC4012','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRINC4012','InitialSort','C','drvInitialSort');
@@ -704,6 +704,7 @@ BEGIN
     --SELECT COUNT(*) AS PreCoount FROM dbo.U_EPRINC4012_EEList;
     --SELECT @PayGroupList AS PayGroups;
 
+    
     IF @PayGroupList IS NOT NULL
         DELETE FROM dbo.U_EPRINC4012_EEList WHERE xEEID NOT IN (
         SELECT DISTINCT EecEEID
@@ -732,7 +733,7 @@ BEGIN
       FROM dbo.U_EPRINC4012_EEList WITH (NOLOCK)
       JOIN dbo.U_EPRINC4012_AuditFields WITH (NOLOCK) ON 1 = 1
       JOIN dbo.vw_AuditData WITH (NOLOCK) ON xEEID = audKey1Value AND xcoid = audKey2Value
-      AND audDateTime BETWEEN @StartDate AND @EndDate
+      AND audDateTime BETWEEN DATEADD(DAY,-30,@StartDate) /*@StartDate*/ AND DATEADD(DAY,30,@EndDate) -- @EndDate
       AND audTableName = aTableName AND audFieldName = aFieldName
  
 -- Delete Record if termination is over 2 weeks old
@@ -1229,10 +1230,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202101291'
-       ,expStartPerControl     = '202101291'
-       ,expLastEndPerControl   = '202101299'
-       ,expEndPerControl       = '202101299'
+    SET expLastStartPerControl = '202104231'
+       ,expStartPerControl     = '202104231'
+       ,expLastEndPerControl   = '202104239'
+       ,expEndPerControl       = '202104239'
 WHERE expFormatCode = 'EPRINC4012';
 
 **********************************************************************************/
