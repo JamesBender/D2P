@@ -83,13 +83,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210519.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210528.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104099','EMPEXPORT','OEACTIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104099','EMPEXPORT','OEPASSIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export','202104099','EMPEXPORT','ONDEM_XOE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export-Sched','202104099','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104091',NULL,'','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202104171','EMPEXPORT','TEST_XOE','May 14 2021  6:36PM','EDRBMUSEXP',NULL,NULL,NULL,'202104171','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104031','1191','','','202104031',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202105219','EMPEXPORT','OEACTIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202105219','EMPEXPORT','OEPASSIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export','202105219','EMPEXPORT','ONDEM_XOE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export-Sched','202105219','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202105219','EMPEXPORT','TEST_XOE','May 20 2021  9:01PM','EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104021','1206','','','202104021',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','InitialSort','C','drvInitialSort');
@@ -179,7 +179,7 @@ CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl] (
     [drvSubSort3] varchar(1) NOT NULL,
     [drvRecordType] varchar(2) NULL,
     [drvGroupNumber] varchar(7) NULL,
-    [drvEmployeeSSN] char(11) NULL,
+    [drvEmployeeSSN] varchar(11) NULL,
     [drvNewParticipantId] char(9) NULL,
     [drvAccountNumber] varchar(5) NULL,
     [drvDependentSSN] char(9) NULL,
@@ -395,6 +395,7 @@ BEGIN
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode
 
 
     --=========================================
@@ -578,7 +579,7 @@ BEGIN
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 'F026358'
                          END
         ,drvEmployeeSSN = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN eepSSN
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN Conssn
+                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '0000' + RIGHT(RTRIM(EepSSN), 5) -- Conssn
                          END 
         ,drvNewParticipantId = CONVERT(CHAR(9),'000000000')
         ,drvAccountNumber = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN '00001'
@@ -695,10 +696,22 @@ BEGIN
 
         ,drvSalaryEffectiveDate = --replace(
         convert(varchar, 
-                        DATEADD(DAY, 1, EOMONTH(CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN   dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)                           
+                        --DATEADD(DAY, 1, 
+                        dbo.dsi_fnGetMinMaxDates('MAX', EOMONTH(
+                                                    CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN   
+                                --dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)                           
+                                                                --dbo.dsi_fnGetMinMaxDates('MAX', 
+                                                                dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)  
+                                                                -- , @FileMinCovDate)                           
 
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)    
-                         END))
+                                                        WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
+                                                                --dbo.dsi_fnGetMinMaxDates('MAX', 
+                                                                dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire) 
+                                                                --  , @FileMinCovDate)    
+                                --dbo.dsi_fnGetMinMaxDates('MIN', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire)   , @FileMinCovDate)    
+                                
+                                                    END), @FileMinCovDate)                           
+                                                    --)
                          , 112) -- ,'-','')
         ,drvWeeklyHours = CONVERT(CHAR(5),'00000')
         ,drvProductId =  SPACE(7)
@@ -722,10 +735,9 @@ BEGIN
                                              WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' THEN '13'
                                              ELSE '00'
                                         END
-                        
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
+                                    WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
                                         CASE WHEN bdmbenstatus = 'T' Then '12' ELSE '00' end
-                                END
+                                    END
         ,drvCoverageOption = ''
         ,drvPlanCode = SPACE(7)
         ,drvUnits = '000000000' --  CONVERT(char(9),'00000000')
@@ -775,7 +787,7 @@ BEGIN
                          
         ,drvNewParticipantId = CONVERT(CHAR(9),'000000000')
         ,drvAccountNumber = '00001'
-        ,drvDependentSSN = conSSN
+        ,drvDependentSSN = '0000' + RIGHT(RTRIM(EepSSN), 5) -- Conssn conSSN
 
         
         ,drvMemberEffectiveDate =  CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate), 112)
@@ -815,7 +827,10 @@ BEGIN
         ,drvSalaryEffectiveDate =CONVERT(CHAR(8),'00000000')
         ,drvWeeklyHours = CONVERT(CHAR(5),'00000')
         ,drvProductId =  SPACE(7)
-        ,drvTerminationDate =replace( CASE WHEN bdmdedcode in ('VIS') and bdmBenStatus ='T' THEN convert(varchar, bdmbenstopdate, 112)   ELSE CONVERT(CHAR(8),'00000000') END ,'-','')
+        ,drvTerminationDate =  replace( 
+                                        CASE WHEN bdmdedcode in ('VIS') and bdmBenStatus ='T' THEN convert(varchar, EedBenStopDate /*bdmBenStatusDate*/, 112)
+                                        ELSE CONVERT(CHAR(8),'00000000') 
+                                        END ,'-','')
         
                         
 
@@ -847,6 +862,11 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK) 
         ON ConEEID = xEEID 
         AND ConSystemID = BdmDepRecID
+        -- select * from EmpDed where EedEEID ='CMK29G000020' and EedDedCode = 'VIS'
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND EedDedCode = 'VIS'
     WHERE (bdmdedcode in ('VIS') and bdmrectype = 'DEP' )
 
     
@@ -875,7 +895,7 @@ BEGIN
         ,drvRecordType = '05' 
         ,drvGroupNumber = 'F026358'
         ,drvEmployeeSSN =  CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN eepSSN
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN Conssn
+                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '0000' + RIGHT(RTRIM(EepSSN), 5) -- ConssnConssn
                          END
                          
         ,drvNewParticipantId = '000000000' -- CONVERT(CHAR(9),'00000000')
@@ -924,13 +944,13 @@ BEGIN
 
         ,drvTerminationDate =  --replace(
                                  CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN 
-                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then convert(varchar, bdmbenstopdate , 112)
+                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then convert(varchar, bdmstopdate , 112)
                                              WHEN eecEmplStatus = 'T' THEN convert(varchar,eecdateoftermination, 112)
                                              ELSE '00000000'
                                         end
                         
                               WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN 
-                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then convert(varchar,bdmbenstopdate , 112)
+                                        CASE WHEN eecEmplStatus = 'A' and bdmbenstatus = 'T' Then convert(varchar,bdmstopdate , 112)
                                              WHEN eecEmplStatus = 'T' THEN convert(varchar,eecdateoftermination, 112)
                                              ELSE '00000000'
                                         END
@@ -959,8 +979,9 @@ BEGIN
                                 ELSE ''
                             END
         ,drvPlanCode = CASE WHEN Bdmdedcode = 'GACC' THEN '0008201'
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'S'  THEN '0001001'
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'H'  THEN '0001002'
+                            -- EecFullTimeOrPartTime,EecSalaryOrHourly
+                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'S'  THEN '0002001'
+                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'H'  THEN '0002002'
                             WHEN Bdmdedcode IN ('LIFEE') THEN '0001101'
                             WHEN Bdmdedcode IN ('LIFEC') THEN '0001301'
                             WHEN Bdmdedcode IN ('CRILE') THEN '0001501'
@@ -973,7 +994,7 @@ BEGIN
 
         ,drvUnits = CASE WHEN Bdmdedcode = 'GACC' THEN '000000100'
                             --WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((/*BdmEEAmt*/BcaBenAmtCalc /1000)*100,9,0))  
                             WHEN Bdmdedcode IN ('LIFEE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
                             WHEN Bdmdedcode IN ('LIFEC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
                             WHEN Bdmdedcode IN ('CRILE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
@@ -1025,6 +1046,12 @@ BEGIN
         ON EedEEID = xEEID
         AND EedCOID = xCOID
         AND EedDedCode = BdmDedCode
+    JOIN dbo.u_dsi_Bdm_BenCalculationAmounts WITH (NOLOCK)
+        ON BcaEEID = xEEID
+        AND BcaCOID = xCOID
+        AND BcaDedCode = BdmDedCode
+        AND BcaFormatCode = 'EDRBMUSEXP'
+    --select top 10 BcaBenAmtCalc, BcaDedCode, BcaCOID,* from dbo.u_dsi_Bdm_BenCalculationAmounts WHERE BcaFormatCode = 'EDRBMUSEXP' AND BcaEEID = 'CLNKCB000020'
     WHERE ( bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') and bdmrectype ='EMP') or (bdmdedcode in ('LIFES','CRILS') and bdmrelationship = 'SPS' )
 
     
@@ -1139,8 +1166,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202104021'
        ,expStartPerControl     = '202104021'
-       ,expLastEndPerControl   = '202104099'
-       ,expEndPerControl       = '202104099'
+       ,expLastEndPerControl   = '202105219'
+       ,expEndPerControl       = '202105219'
 WHERE expFormatCode = 'EDRBMUSEXP';
 
 **********************************************************************************/

@@ -155,7 +155,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210513.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBVLADDEXP_20210520.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM B ADD LTD L ADD Full File','202105119','EMPEXPORT','FULLFILE','May 11 2021 11:37AM','EBVLADDEXP',NULL,NULL,NULL,'202105119','May 11 2021 12:00AM','Dec 30 1899 12:00AM','202104271','455','','','202104271',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202103229','EMPEXPORT','OEACTIVE','Mar 31 2021  1:31PM','EBVLADDEXP',NULL,NULL,NULL,'202103229','Mar 22 2021  5:43PM','Mar 22 2021  5:43PM','202101011','92','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -626,14 +626,18 @@ BEGIN
         ,drvPlanCode1 = CASE WHEN VLE_DedCode IS NOT NULL THEN '5.0N22' END
         ,drvBenefitQualDate1 = CASE WHEN VLE_DedCode IS NOT NULL AND VLE_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLE_EligDate END
         ,drvBenefitTermDate1 = CASE WHEN VLE_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLE_BenStopDate END
-        ,drvBenefitSelectionAmt1 = FORMAT(CASE WHEN VLE_DedCode IS NOT NULL AND VLE_NeedEoi = 'Y' THEN VLE_EoiDesiredAmt ELSE VLE_BenAmt END, '#0.00')
+        ,drvBenefitSelectionAmt1 =    CASE WHEN VLE_DedCode IS NOT NULL AND VLE_NeedEoi = 'Y' THEN FORMAT(VLE_EoiDesiredAmt, '#0.00') 
+                                        WHEN VLE_DedCode IS NOT NULL AND VLE_NeedEoi <> 'Y' THEN FORMAT(VLE_BenAmt, '#0.00') 
+                                    END
         -- VLE_EoiDesiredAmt  VLE_NeedEoi
 
         ,drvBenefitId2 = CASE WHEN VLS_DedCode IS NOT NULL THEN 'LS' END
         ,drvPlanCode2 = CASE WHEN VLS_DedCode IS NOT NULL THEN '5.AN47' END
         ,drvBenefitQualDate2 = CASE WHEN VLS_DedCode IS NOT NULL AND VLS_ChangeReason IN ('LEVNT2','LEVNT3','LEVNT4','LEVNT5','105','201','202','203','204','210','300','303') THEN VLS_EligDate END
         ,drvBenefitTermDate2 = CASE WHEN VLS_DedCode IS NOT NULL and EecEmplStatus <> 'T' THEN VLS_BenStopDate END
-        ,drvBenefitSelectionAmt2 = FORMAT(CASE WHEN VLS_DedCode IS NOT NULL AND VLS_NeedEoi = 'Y' THEN VLS_EoiDesiredAmt ELSE VLS_BenAmt END, '#0.00')
+        ,drvBenefitSelectionAmt2 =    CASE WHEN VLS_DedCode IS NOT NULL AND VLS_NeedEoi = 'Y' THEN FORMAT(VLS_EoiDesiredAmt, '#0.00')
+                                        WHEN VLS_DedCode IS NOT NULL AND VLS_NeedEoi <> 'Y' THEN  FORMAT(VLS_BenAmt, '#0.00')
+                                    END
 
         ,drvBenefitId3 = CASE WHEN VLC_DedCode IS NOT NULL THEN 'LC' END
         ,drvPlanCode3 = CASE WHEN VLC_DedCode IS NOT NULL THEN '5.0M04' END
@@ -726,7 +730,7 @@ BEGIN
                 ,MAX(CASE WHEN BdmDedCode = 'VADD' THEN BdmBenStopDate END) AS VADD_BenStopDate
                 ,MAX(CASE WHEN BdmDedCode IN ('VLE','VLS','VLC','VADD') THEN BdmBenStartDate END) AS VOL_StartDate
             FROM dbo.U_dsi_BDM_EBVLADDEXP WITH (NOLOCK)
-            WHERE BdmDedCode IN ('VLE','VADD','VLS','VLC')
+            WHERE BdmDedCode IN ('VLE','VADD','VLS','VLC') AND BdmBenStatus = 'A'
             GROUP BY BdmEEID, BdmCOID) AS BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
