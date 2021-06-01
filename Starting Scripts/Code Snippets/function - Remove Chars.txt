@@ -1,0 +1,29 @@
+USE [ULTIPRO_YOSHI]
+GO
+/****** Object:  UserDefinedFunction [dbo].[fn_RemoveChars]    Script Date: 11/3/2020 3:59:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER FUNCTION [dbo].[fn_RemoveChars] (@Replacelist varchar(100),@string varchar(6000))
+RETURNS VARCHAR(6000)
+AS
+-- V1.01  05-19-2006  dsy  Tweaked CL's function
+--	works for spaces too but must not be last in replace list
+BEGIN
+
+DECLARE @PuncCount AS INT
+
+SET @PuncCount = LEN(@ReplaceList)
+
+WHILE @PuncCount != 0
+	SELECT  @String = REPLACE(@String, SUBSTRING(@ReplaceList,@PuncCount,1), ''),
+		@PuncCount = @PuncCount - 1
+
+RETURN  @String
+
+END
+
+--- HOW TO APPLY EXAMPLE
+--- dbo.dsi_fnremovechars(',-#.''’', EepAddressLine2)

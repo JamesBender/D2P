@@ -1,0 +1,1 @@
+ LEFT JOIN OrgLevel O2 with (nolock) on EecOrgLvl2 = O2.OrgCode AND O2.OrgLvl = '2'  

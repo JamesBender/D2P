@@ -1,0 +1,5 @@
+-- Most recent benefit option effective date from history on the EMP record and actual benefit coverage date as keyed...
+INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CalcBenOptionDate','1');
+
+-- Most recent benefit option effective date from history on the EMP and DEP records
+INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CalcBenOptionDate','2');

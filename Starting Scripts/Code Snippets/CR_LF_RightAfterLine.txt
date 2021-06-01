@@ -1,0 +1,8 @@
+Add <CR><LF> right after line:
+
+1.) Add this code above EELIST U_dsi_configuration
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPLRENA','BCPParms','V','-c -t -r"0x0D0A"');
+
+2.) Remove 013010 
+
+3.) Modify delimiter to be CDE

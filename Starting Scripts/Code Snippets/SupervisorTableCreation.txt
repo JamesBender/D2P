@@ -1,0 +1,23 @@
+ IF OBJECT_ID('U_SupervisorTable_pre', 'U') IS NOT NULL
+    DROP TABLE dbo.U_SupervisorTable_pre
+
+    SELECT DISTINCT Emp.EecEEID AS EmpEecEEID, Sup.EecEEID AS SupEecEEID, SupPers.EepSSN AS SupEepSSN, Sup.EecEmpNo AS SupEecEmpNo, Emp.EecDateOfLastHire
+    INTO dbo.U_SupervisorTable_pre
+    FROM dbo.EmpComp Emp WITH(NOLOCK) JOIN dbo.EmpComp Sup WITH(NOLOCK)
+    ON Emp.EecSupervisorID = Sup.EecEEID JOIN dbo.EmpPers SupPers WITH(NOLOCK)
+    ON Sup.EecEEID = SupPers.EepEEID
+
+    IF OBJECT_ID('U_Supervisor_rn', 'U') IS NOT NULL
+    DROP TABLE dbo.U_Supervisor_rn
+
+    SELECT *, row_number() over(partition by empeeceeid order by empeeceeid, eecdateoflasthire desc) as rn
+    INTO dbo.U_Supervisor_rn
+    FROM dbo.U_SupervisorTable_pre WITH(NOLOCK)
+
+    IF OBJECT_ID('U_Supervisor_final', 'U') IS NOT NULL
+    DROP TABLE dbo.U_Supervisor_final
+
+    SELECT *
+    INTO dbo.U_Supervisor_final
+    FROM dbo.U_Supervisor_rn WITH(NOLOCK)
+    WHERE rn = 1

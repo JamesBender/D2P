@@ -1,0 +1,5 @@
+JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
+        ON EedEEID = xEEID 
+        AND EedCOID = xCoID
+		AND EedFormatCode = @FormatCode
+		AND EedValidForExport = 'Y'

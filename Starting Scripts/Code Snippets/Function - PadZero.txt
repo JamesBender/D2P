@@ -1,0 +1,1 @@
+   ,drvEmpNum = dbo.dsi_fnPadZero(EecEmpNo,6,0) 

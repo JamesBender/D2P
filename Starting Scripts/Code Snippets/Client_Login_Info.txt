@@ -1,0 +1,1359 @@
+Useful Code:
+sp_geteeid 'lastname' 
+OR
+sp_geteeid 'firstname'
+OR
+sp_geteeid 'empid' = gives you the users eeid to search in bdm tables.
+empcomp table = compensation information
+empded table = plans 
+empers = personal info
+\\ez2sup4db01\ultiprodata\AndyP\Layouts\
+*Ultimate01 for EZ24
+
+Access:
+EZ24
+Citrix ID: us3aPiEZ24
+PW: **843!
+ez2sup4db01 access
+SQL Server Authentication
+User: apineda
+PW: Ultimate01
+
+VIS1010
+User: us3aPiVIS1010
+PW: **2555844!
+PRODUCTION
+https://aew15.ultipro.com/vpn/index.html
+Server: EW1WUP5DB02
+Database: ULTIPRO_WPVFCU
+Company Code: VFCU
+Format Code: EDELVIS834
+
+ADV1020 
+User: us3aPiADV1020
+PW: My System PW
+PRODUCTION
+https://anw13.ultipro.com
+Server: NW1WUP3DB02
+Database: ULTIPRO_WPAICU
+Backoffice PW: My System PW
+Company Code: AICU
+
+DAV1004
+User: us3aPiDAV1004
+PW: **2555844!
+PRODUCTION
+https://aew42.ultipro.com/
+Server: EW4WUP2DB03
+Database: ULTIPRO_WPDSLLC
+Backoffice PW: My System PW
+
+FED1004
+User: us3aPiFED1004
+PW: My System PW
+PRODUCTION
+https://aew15.ultipro.com
+Server: ew1wup5db03
+Database: ULTIPRO_WPFEDN
+Backoffice PW: My System PW
+Company Code: FEDN
+
+MER1025
+User: us3aPiMER1025
+PW: My System PW
+PRODUCTION
+https://aew45.ultipro.com/
+Server: EW4WUP5DB01
+Database: ULTIPRO_WPMERA
+Backoffice PW: My System PW
+Company Code: MERA
+
+RAP1001
+User: us3aPiRAP1001
+PW: My System PW
+PRODUCTION
+https://aew33.ultipro.com
+Server: EW3WUP3DB02
+Database: ULTIPRO_WPRAPID
+Backoffice PW: My System PW 
+Company Code: RAPID
+
+CEN1028
+User: us3aPiCEN1028
+PW: **2555844!
+PRODUCTION
+https://aew45.ultipro.com
+Server: EW4WUP5DB02
+Database: ULTIPRO_WPCENU
+Backoffice PW: My System PW
+Company Code: CENU
+
+GWV1000 (G.W. Van Keppel Company)
+User: us3aPiGWV1000 
+PW: My System PW
+PRODUCTION
+https://anw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPGWK
+Backoffice PW: My System PW
+Company Code: GWK
+
+NYE1000 (Nyemaster Goode, P.C.)
+User: us3aPiNYE1000
+PW: **843!
+PRODUCTION
+https://anw15.ultipro.com
+Server: nw1wup5db03 
+Database: ULTIPRO_WPNYEM
+Backoffice PW: **3801204!
+Company Code: NYEM
+
+STR1017 (StrongMind, Inc)
+User: us3aPiSTR1017
+PW: My System PW
+PRODUCTION
+https://anw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPSMINC
+Backoffice PW: My System PW
+Company Code: SMINC
+
+SRS1001 (Acquiom Holdings LLC)
+User: us3aPiSRS1001
+PW: **5319357!
+PRODUCTION
+https://anw15.ultipro.com
+Server: nw1wup5db03
+Database: ULTIPRO_WPSRSA
+Backoffice PW: My System PW
+SMC PW: My System PW
+Company Code: SRSA
+Format Codes: EDISCACQ & EDISCCON
+
+EMC1000 (Emcore Corporation)
+User: us3aPiEMC1000
+PW: **5319357!
+PRODUCTION
+https://aew11.ultipro.com
+Server: EW1WUP1DB01
+Database: ULTIPRO_WPEMCCO
+Backoffice: f2T7Ait6
+Company Code: EMCCO
+
+YGR1000 (YGrene Energy Fund Inc)
+User: us3aPiYGR1000
+PW: My System PW
+PRODUCTION
+https://anw13.ultipro.com
+Server: nw1wup3db01
+Database: ULTIPRO_WPYEFI
+Backoffice: My System PW
+Company Code: YEFI
+
+NOR1057 (North Central Health Care Facilities)
+User: us3aPiNOR1057
+PW: My System PW
+PRODUCTION
+https://anw14.ultipro.com
+Server: NW1WUP4DB02
+Database: ULTIPRO_WPNCHC
+Backoffice: My System PW
+Company Code: NCHC
+Format Code: ESTANNORC
+
+GOO1033 (Goodway Group)
+User: us3aPiGOO1033
+PW: My System PW
+PRODUCTION
+https://aew15.ultipro.com
+Server: EW1WUP5DB02
+Database: ULTIPRO_WPGOODG
+Backoffice: Yc96Gka4
+Company Code: GOODG
+
+KET1002 (Kettler Management, Inc)
+User: us3aPiKET1002
+PW: My System PW
+PRODUCTION
+https://aew11.ultipro.com
+Server: EW1WUP1DB03
+Database: ULTIPRO_WPKETT
+Backoffice: My System PW
+Company Code: KETT
+
+MCA1000 (McAngus, Goudelock and Courie)
+User: us3aPiMCA1000
+PW: My System PW 
+PRODUCTION
+https://aew15.ultipro.com
+Server: ew1wup5db03
+Database: ULTIPRO_WPMCAN
+Backoffice: My System PW
+Company Code: MCAN
+
+BOO1001 (Boom Technology)
+User: us3aPiBOO1001
+PW: My System PW
+PRODUCTION
+https://anw13.ultipro.com
+Server: NW1WUP3DB03
+Database: ULTIPRO_WPBOOM
+Backoffice: My System PW
+Company Code: BOOM
+
+YOU1008 (Youth Family Alliance)
+User: us3aPiYOU1008
+PW: **2555844!
+PRODUCTION
+https://anw11.ultipro.com
+Server: nw1wup1db04
+Database: ULTIPRO_WPLWKS
+Backoffice: **3801204!
+Company Code: LWKS
+
+TEX1008 (Texans Credit Union)
+User: us3aPiTEX1008
+PW: My System PW
+PRODUCTION
+https://aew23.ultipro.com
+Server: EW2WUP3DB02
+Database: ULTIPRO_WPTEXAN
+Backoffice: My System PW
+Company Code: TEXAN
+
+GCO1000 (G2.com Inc)
+User: us3aPiGCO1000
+PW: My System PW
+PRODUCTION
+https://anw11.ultipro.com
+Server: NW1WUP1DB03
+Database: ULTIPRO_WPGCOM
+BO: My System PW
+CC: GCOM
+EG2AADP401
+
+STI1008 (STIHL Inc)
+User: us3aPiSTI1008
+PW: **2555844!
+PW (test): s!9EN8d+{rS7Y}6
+PRODUCTION
+https://aew46.ultipro.com
+TEST
+https://anwz13.ultipro.com
+Server: EW4WUP6DB01	
+Server (test): NWZ1WUP3DB03
+Database: ULTIPRO_WPSTIHL
+BO: My System PW
+CC: STIHL
+
+SUN1019 (Sunrise Windows & Doors)
+User: us3aPiSUN1019
+PW: My System PW
+PRODUCTION
+https://aew15.ultipro.com/
+Server: ew1wup5db03
+Database: ULTIPRO_WPSWD
+BO: My System PW
+CC: SWD
+
+HAR1024 (Harnish Group Inc)
+User: us3aPiHAR1024
+PW: My System PW
+PRODUCTION
+https://anw12.ultipro.com
+Server: NW1WUP2DB03
+Database: ULTIPRO_WPHARNG
+BO: My System PW
+CC: HARNG
+
+VOL1007 (Volunteers of America of Oregon Inc)
+User: us3aPiVOL1007
+PW: My System PW
+PRODUCTION
+https://aew13.ultipro.com
+Server: EW1WUP3DB01
+Database: ULTIPRO_WPVOLAO
+BO: My System PW
+CC: VOLAO
+
+SBA1000 (SBA Network Services)
+User: us3aPiSBA1000
+PW: My System PW
+PRODUCTION
+https://aew21.ultipro.com/
+Server: EW2WUP1DB02
+Database: ULTIPRO_WPSBA
+BO: Yn17TpRt
+CC: SBA
+Formatcode: EMARKSBAC
+
+BET1004 (Bettcher Industries, Inc)
+User: us3aPiBET1004
+PW: My System PW
+PRODUCTION
+https://aew45.ultipro.com/
+Server: EW4WUP5DB02
+Database: ULTIPRO_WPBETIN
+BO: My System PW
+CC: BETIN
+
+KCG1000 (KCG Inc)
+User: us3aPiKCG1000
+PW: **843!
+PRODUCTION
+https://aew42.ultipro.com
+Server: EW4WUP2DB03
+Database: ULTIPRO_WPKCGI
+BO: My System PW
+CC: KCGI
+
+AVO1000 (Avocado Green Brands)
+User: us3aPiAVO1000
+PW: **5319357!
+PRODUCTION
+https://aew15.ultipro.com/
+Server: EW1WUP5DB02
+Database: ULTIPRO_WPAVOC
+BO: My System PW
+CC: AVOC
+
+MAN1018 (Management Data Systems)
+User: us3aPiMAN1018
+PW: **5319357!
+PRODUCTION
+https://aew15.ultipro.com
+Server: EW1WUP5DB03
+Database: ULTIPRO_WPMDSI
+BO: My System PW
+CC: MDSI
+
+REN1011 (Renaissance Learning Inc)
+User: us3aPiREN1011
+PW: **2555844!
+PRODUCTION
+https://anw14.ultipro.com/
+Server: NW1WUP4DB02
+Database: ULTIPRO_WPRNL
+BO: My System PW
+CC: RNL
+
+CLE1013 (Clear Creek County)
+User: us3aPiCLE1013
+PW: My System PW
+PRODUCTION
+https://anw15.ultipro.com
+Server: NW1WUP5DB01
+Database: ULTIPRO_WPCLRC
+BO: My System PW
+CC: CLRC
+
+SUP1006 (Superior Trim)
+User: us3aPiSUP1006
+PW: My System PW
+PRODUCTION
+https://aew15.ultipro.com
+Server: EW1WUP5DB03
+Database: ULTIPRO_WPSPTR
+BO: My System PW
+CC: SPTR
+
+BAR1008 (Bar Harbor Bank and Trust)
+User: us3aPiBAR1008
+PW: **5319357!
+PRODUCTION
+https://aew31.ultipro.com
+Server: EW3WUP1DB01
+Database: ULTIPRO_WPBHBT
+BO: My System PW
+CC: BHBT
+
+KTG1000 (KTGY Group, Inc)
+User: us3aPiKTG1000
+PW: My System PW
+PRODUCTION
+https://anw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPKTGY
+BO: My System PW
+CC: KTGY
+
+TWI1001 (Infinite Health Collaborative, PA)
+User: us3aPiTWI1001
+PW: **5319357!
+PRODUCTION
+https://aew22.ultipro.com/
+Server: EW2WUP2DB01
+Database: ULTIPRO_WPTWICO
+BO: My System PW
+CC: TWICO
+
+MUN1001 (Munchkin, Inc)
+User: us3aPiMUN1001
+PW: My System PW
+PRODUCTION
+https://anw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPMCHK
+BO: x8M6NmGr
+CC: MCHK
+
+PRI1023 (Pride Mobility Products Corp)
+User: us3aPiPRI1023
+PW: My System PW
+PRODUCTION
+https://aew44.ultipro.com
+Server: EW4WUP4DB03
+Database: ULTIPRO_WPPMPC
+BO: My System PW
+CC: PMPC
+
+COR1012 (Corporate Office Properties, LP)
+User: us3aPiCOR1012
+PW: **843!
+PRODUCTION
+https://aew32.ultipro.com
+Server: EW3WUP2DB01
+Database: ULTIPRO_WPCOP
+BO: q5YXc4i9
+CC: COP
+
+APP1011 (Appian Corp)
+User: us3aPiAPP1011
+PW: My System PW
+PRODUCTION
+https://aew44.ultipro.com
+Server: EW4WUP4DB02
+Database: ULTIPRO_WPAPN
+BO: z5MYm68J
+CC: APN
+
+COU1007 (Cousins Subs System, Inc)
+User: us3aPiCOU1007
+PW: My System PW
+PRODUCTION
+https://anw15.ultipro.com
+Server: NW1WUP5DB01
+Database: ULTIPRO_WPCSUBS
+BO: My System PW
+CC: CSUBS
+
+GAT1004 (Gates, Hudson Associates, Inc)
+User: us3aPiGAT1004
+PW: My System PW
+PRODUCTION
+https://aew44.ultipro.com
+Server: EW4WUP4DB03
+Database: ULTIPRO_WPGHAI
+BO: d3BRy2q4
+CC: GHAI
+
+COL1035 (Cole, Scott & Kissane, P.A.)
+User: us3aPiCOL1035
+PW: My System PW
+PRODUCTION
+https://aew46.ultipro.com
+Server: EW4WUP6DB02
+Database: ULTIPRO_WPCSKK
+BO: c2G8Yit5
+CC: CSKK
+
+CHE1016 (Cherry Health)
+User: us3aPiCHE1016
+PW: **843!
+BO URL: https://aew46.ultipro.com
+WEB URL: https://ew46.ultipro.com
+Server: EW4WUP6DB02
+Database: ULTIPRO_WPCHRH
+BO: g9YPx5k1
+WEB: K$s43Q?z*7
+CC: CHRH
+
+MUZ1001 (Muza Metal Products, LLC)
+User: us3aPiMUZ1001
+PW: My System PW
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPMMPL
+BO: My System PW
+WEB: My System PW 
+CC: MMPL
+
+DEA1003 (Dead River Company)
+User: us3aPiDEA1003
+PW: aR*24$xJYy6_w+P
+BO URL: https://aew34.ultipro.com
+WEB URL: https://ew34.ultipro.com
+Server: EW3WUP4DB02
+Database: ULTIPRO_WPDRC
+BO PW: m1WGe8r9
+WEB PW: b!9SN8n}+q
+CC: DRC
+
+GOH1001 (GoHealth LLC)
+User: us3aPiGOH1001
+PW: **2555844!
+BO URL: https://anw12.ultipro.com/
+WEB URL: https://nw12.ultipro.com
+Server: NW1WUP2DB01
+Database: ULTIPRO_WPGHEAL
+BO PW: My System PW
+WEB PW: My System PW
+CC: GHEAL
+
+AVE1002  (Aveshka, Inc)
+User: us3aPiAVE1002
+PW: **5319357!
+BO URL: https://aew33.ultipro.com
+WEB URL: https://ew33.ultipro.com
+Server: EW3WUP3DB03
+Database: ULTIPRO_WPAVESH
+BO PW: My System PW
+WEB PW: My System PW
+CC: AVESH
+
+SCO1002 (Scott-McRae Automotive Group, LLLP)
+User: us3aPiSCO1002
+PW: **843!
+BO URL: https://aew32.ultipro.com
+WEB URL: https://ew32.ultipro.com
+Server: EW3WUP2DB04
+Database: ULTIPRO_WPSCTMA
+BO PW: c7X4SjLg
+WEB PW: Xi2%8N$wZt
+CC: SCTMA
+
+VIE1001 (Viela Bio, Inc)
+User: us3aPiVIE1001
+PW: **843!
+BO URL: https://aew15.ultipro.com
+WEB URL: https://ew15.ultipro.com
+Server: EW1WUP5DB03
+Database: ULTIPRO_WPVIEL
+BO PW: Ea78Azt2
+WEB PW: X{d95E$z*t
+CC: VIEL
+
+ANA1003 (Analogic Corporation)
+User: us3aPiANA1003
+PW: My System PW
+BO URL: https://aew46.ultipro.com
+WEB URL: https://ew46.ultipro.com
+Server: EW4WUP6DB01
+Database: ULTIPRO_WPALOG
+BO PW: Zi8w3FHx
+WEB PW: 9Cs}F!4o7r
+CC: ALOG
+
+NOR1038 (Nordco Inc)
+User: us3aPiNOR1038
+PW: **843!
+BO URL: https://aew24.ultipro.com
+WEB URL: https://ew24.ultipro.com
+Server: EW2WUP4DB03
+Database: ULTIPRO_WPNORD
+BO PW: My System PW
+WEB PW: My System PW
+CC: NORD
+
+YAS1000 (Yaskawa America Inc)
+User: us3aPiYAS1000
+PW: z{3LZ1g*_tW89}aT$
+BO URL: https://aew44.ultipro.com/vpn/index.html
+WEB URL: https://ew44.ultipro.com/
+Server: EW4WUP4DB01
+Database: ULTIPRO_WPYAAMI 
+BO PW: Rp8a9CNg
+WEB PW: 6f_L+8Xsk$
+CC: YAAMI
+
+CRI1003 (Critical Nurse Staffing, LLC) 
+User: us3aPiCRI1003
+PW: **843!
+BO URL: https://anw14.ultipro.com
+WEB URL: https://nw14.ultipro.com
+Server: NW1WUP4DB01
+Database: ULTIPRO_WPCNRS
+BO PW: b3NXi9y1
+WEB PW: Cc5?g_A36f
+CC:CNRS
+
+ARM1005 (Armanino LLP)
+User: us3aPiARM1005
+PW: 3Hi%z1$K*mJ9W8x!dL
+BO URL: https://aew41.ultipro.com
+WEB URL: https://ew41.ultipro.com
+Server: EW4WUP1DB03
+Database: ULTIPRO_WPARMAN
+BO PW: a4C6ZmAj
+WEB PW: 2Zw*?k1TE8
+CC: ARMAN
+
+NOR1056 (Northstar Behavioral Health LLC)
+User: us3aPiNOR1056
+PW: **5319357!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPNBHL
+BO PW: Sc36LxDa
+WEB PW: J{q7%f3DC*
+CC: NBHL
+
+MDB1001 (M-D Building Products Inc)
+User: us3aPiMDB1001
+PW: **5319357!
+BO URL: https://anw11.ultipro.com
+WEB URL: https://nw11.ultipro.com
+Server: NW1WUP1DB01
+Database: ULTIPRO_WPMDB
+BO PW: Te76Jyf9
+WEB PW: 3Sq*?n1Fo8
+CC: MDB
+
+AME1051 (American Software Inc)
+User: us3aPiAME1051
+PW: **843!
+BO URL: https://aew12.ultipro.com
+WEB URL: https://ew12.ultipro.com
+Server: EW1WUP2DB03
+Database: ULTIPRO_WPAMESI
+BO PW: b4NZg89G
+WEB PW: 7c{QP%1p}9
+CC: AMESI
+
+FIS1006 (Fisher Titus Health)
+User: us3aPiFIS1006
+PW: My System PW
+BO URL: https://aew44.ultipro.com
+WEB URL: https://ew44.ultipro.com
+Server: EW4WUP4DB01
+Database: ULTIPRO_WPFSHR
+BO PW: x8GDb1w6
+WEB PW: 1Ti+%p5LZ2
+CC: FSHR
+
+CUL1006 (Culmen International LLC)
+User: us3aPiCUL1006
+PW: My System PW
+BO URL: https://aew45.ultipro.com
+WEB URL: https://ew45.ultipro.com
+Server: EW4WUP5DB02
+Database: ULTIPRO_WPINTLL
+BO PW: Xf6t1Q9WPBBA
+WEB PW: Cz2!5{fH+p
+CC: INTLL
+
+PBB100 (P.B. Bell Asset Management, Inc)
+User: us3aPiPBB1000
+PW: Td4?8*gCR6$f3_xFS
+BO URL: https://anw13.ultipro.com
+WEB URL: https://nw13.ultipro.com
+Server: NW1WUP3DB04
+Database: ULTIPRO_WPPBBA
+BO PW: Jn3m5A9R
+WEB PW: 7e?B}Lm3Gf
+CC: PBBA
+
+SOU1041 (Southwest Community Health Center, Inc)
+User: us3aPiSOU1041
+PW: **843!
+BO URL: https://aew41.ultipro.com
+WEB URL: https://ew41.ultipro.com
+Server: EW4WUP1DB02
+Database: ULTIPRO_WPSCHC
+BO PW: My System PW
+WEB PW: Ar7{$Sm42p
+CC: SCHC
+
+AME1097 (American Society for Microbiology)
+User: us3aPiAME1097
+PW: **843!
+BO URL: https://aEW45.ultipro.com/
+WEB URL: https://EW45.ultipro.com/
+Server: EW4WUP5DB02
+Database: ULTIPRO_WPAMESO
+BO PW: i1K9Ean5
+WEB PW: M{d6zQ4!9?
+CC: AMESO
+
+HOS1018 (Hospice Of Northwest Ohio)
+User: us3aPiHOS1018
+PW: **843!
+BO URL: https://aew15.ultipro.com
+WEB URL: https://ew15.ultipro.com
+Server: EW1WUP5DB04
+Database: ULTIPRO_WPHNOH
+BO PW: Px2w7K9C
+WEB PW: Y!n7*4NiSt
+CC: HNOH
+
+WAL1011 (Walter P. Moore and Associates, Inc)
+User: us3aPiWAL1011
+PW: **843!
+BO URL: https://aew42.ultipro.com/
+WEB URL: https://ew42.ultipro.com/
+Server: EW4WUP2DB03
+Database: ULTIPRO_WPWALT
+BO PW: n4HPp7i1
+WEB PW: Kp7_z+N6$E
+CC: WALT
+
+BRA1010 (Brain Corporation)
+User: us3aPiBRA1010
+PW: My System PW
+BO URL: https://anw13.ultipro.com/
+WEB URL: https://nw13.ultipro.com/
+Server: nw1wup3db04
+Database: ULTIPRO_WPBRAN
+BO PW: k4JKc16X
+WEB PW: 4p%GgA2+P8
+CC: BRAN
+
+REM1008 (Remitly, Inc)
+User: us3aPiREM1008
+PW: **843!
+BO URL: https://anw13.ultipro.com
+WEB URL: https://nw13.ultipro.com
+Server: NW1WUP3DB04
+Database: ULTIPRO_WPREMY
+BO PW: w_5N9iK?{L
+WEB PW: g3S2Dms5
+CC: REMY
+
+JIM1002 (Jim Koons Management Company)
+User: us3aPiJIM1002
+PW: **843!
+BO URL: https://aew46.ultipro.com
+WEB URL: https://ew46.ultipro.com
+Server: EW4WUP6DB02
+Database: ULTIPRO_WPJKMC
+BO PW: Kn53Wdt9
+WEB PW: 5e}LR+8b3k
+CC: JKMC
+
+RBA1000 (RBA, Inc)
+User: us3aPiRBA1000
+PW: My System PW
+BO URL: https://aew13.ultipro.com
+WEB URL: https://ew13.ultipro.com
+Server: EW1WUP3DB03
+Database: ULTIPRO_WPRBA
+BO PW: Jk6d2AYs
+WEB PW: S*i2?1WdX{
+CC: RBA
+
+LIG1002 (Lignetics, Inc)
+User: us3aPiLIG1002
+PW: 3Mz*d}P1_9bQ8G+ 
+BO URL: https://anw11.ultipro.com
+Server: NW1WUP1DB02
+Database: ULTIPRO_WPLIGI
+
+BRO1012 (OmniTrax, Inc (f/k/a Broe Management Company, LLC))
+User: us3aPiBRO1012
+PW: **843!
+BO URL: https://aew33.ultipro.com
+WEB URL: https://ew33.ultipro.com
+Server: EW3WUP3DB02
+Database: ULTIPRO_WPBROE
+BO PW: Se28Ftx5
+WEB PW: 4Tn${2LagS
+CC: BROE
+
+WED1002 (Wedgewood)
+User: us3aPiWED1002
+PW: **843!
+BO URL: https://aew41.ultipro.com
+WEB URL: https://ew41.ultipro.com
+Server: EW4WUP1DB03
+Database: ULTIPRO_WPWEWD
+BO PW: **3801204!
+WEB PW: 3Kb?Ax$6_Q
+CC: WEWD
+
+COR1027 (Cortland Partners, LLC)
+User: us3aPiCOR1027
+PW: **843!
+BO URL: https://aew42.ultipro.com
+WEB URL: https://ew42.ultipro.com
+Server: EW4WUP2DB03
+Database: ULTIPRO_WPCORT
+BO PW: x7K3Hgb6
+WEB PW: jM!1$4KdeC
+CC: CORT
+
+BUL1002 (Bullhorn, Inc)
+User: us3aPiBUL1002
+PW: **843!
+BO URL: https://aew44.ultipro.com/
+WEB URL: https://ew44.ultipro.com
+Server: EW4WUP4DB03
+Database: ULTIPRO_WPBULLH
+BO PW: Qy3c7AKw
+WEB PW: iJ!69sQ?$4
+CC: BULLH
+
+OZA1000 (Ozark Guidance Center, Inc)
+User: us3aPiOZA1000
+PW: iK*52%yC?F4nN6b{9
+BO URL: https://aew33.ultipro.com
+WEB URL: https://ew33.ultipro.com
+Server: EW3WUP3DB03
+Database: ULTIPRO_WPOZRKG
+BO PW: Ez13Yks6
+WEB PW: 9Dt*$z7GZ!
+CC: OZRKG
+
+WES1042 (West Yost & Associates, Inc)
+User: us3aPiWES1042
+PW: **843!
+BO URL: https://anw13.ultipro.com
+WEB URL: https://nw13.ultipro.com
+Server: NW1WUP3DB03
+Database: ULTIPRO_WPWYAI
+BO PW: **3801204!
+WEB PW: 4f}F$Ao29n
+CC: WYAI
+
+EVB1000 (Sonabank)
+User: us3aPiEVB1000
+PW: **843!
+BO URL: https://aew33.ultipro.com
+WEB URL: https://ew33.ultipro.com
+Server: EW3WUP3DB03
+Database: ULTIPRO_WPEVB
+BO PW: apin321
+WEB PW: e?6HJ2b+_q
+CC: EVB
+
+BLO1003 (Blommer Chocolate Company)
+User: us3aPiBLO1003
+PW: **843!
+BO URL: https://anw12.ultipro.com
+WEB URL: https://nw12.ultipro.com
+Server: NW1WUP2DB01
+Database: ULTIPRO_WPBCCO
+BO PW: Kt42Aba1
+WEB PW: H}d3bE8{1!
+CC: BCCO
+
+UNI1059 (United States Distilled Products Co.)
+User: us3aPiUNI1059
+PW: **843!
+BO URL: https://aew21.ultipro.com
+WEB URL: https://ew21.ultipro.com
+Server: EW2WUP1DB02
+Database: ULTIPRO_WPUSDP
+BO PW: Sy5e4YHs
+WEB PW: nP$3E+9e5m
+CC: USDP
+
+AKE1002 (Akebia Therapeutics, Inc.)
+User: us3aPiAKE1002
+PW: **843!
+PW (test): **843!
+BO URL: https://aew45.ultipro.com
+BO URL (test): https://anwz14.ultipro.com
+WEB URL: https://ew45.ultipro.com
+Server: EW4WUP5DB03
+Server (test): NWZ1WUP4DB02
+Database: ULTIPRO_WPAKEBI
+BO PW: g4DWo9e1
+WEB PW: Zi3$?Bw5k1
+CC: AKEBI
+
+ACV1000 (ACV Auctions, Inc)
+User: us3aPiACV1000
+PW: **5319357!
+BO URL: https://aew15.ultipro.com
+WEB URL: https://ew15.ultipro.com
+Server: EW1WUP5DB01
+Database: ULTIPRO_WPACV
+BO PW: Sr8a5LYe
+WEB PW: R{q48S$a*6
+CC: ACV
+
+QUI1003 (Quidel Corporation)
+User: us3aPiQUI1003
+PW: **843!
+BO URL: https://aew11.ultipro.com
+WEB URL: https://ew11.ultipro.com
+Server: EW1WUP1DB01
+Database: ULTIPRO_WPQUICO
+BO PW: Pk6m3BAp
+WEB PW: o+5A!2Yw7Q
+CC: QUICO
+
+PIR1000 (PIRCH, INC)
+User: us3aPiPIR1000
+PW: **843!
+BO URL: https://anw11.ultipro.com
+WEB URL: https://nw11.ultipro.com
+Server: NW1WUP1DB01
+Database: ULTIPRO_WPPIINC
+BO PW: Gi57KqJp
+WEB PW: 4Xo}Ta%3*5
+CC: PIINC
+
+STA1032 (Stanford Youth Solutions)
+User: us3aPiSTA1032
+PW: **843!
+BO URL: https://anw11.ultipro.com
+WEB URL: https://nw11.ultipro.com
+Server: NW1WUP1DB04
+Database: ULTIPRO_WPSTFY
+BO PW: n8L9ZkHb
+WEB PW: Mw4!r3}JS$
+CC: STFY
+
+YEL1000 (Yellowstone Landscape, Inc)
+User: us3aPiYEL1000
+PW: **843!
+BO URL: https://aew44.ultipro.com/
+WEB URL: https://ew44.ultipro.com/
+Server: EW4WUP4DB02
+Database: ULTIPRO_WPYLINC
+BO PW: Gs53Hqx2
+WEB PW: z+9P$1BoDe
+CC: YLINC
+
+NET1009 (NetImpact Strategies, Inc)
+User: us3aPiNET1009
+PW: Khu!78dUchsn!e
+BO URL: https://aew24.ultipro.com
+WEB URL: https://ew24.ultipro.com
+Server: EW2WUP4DB02
+Database: ULTIPRO_WPNETS
+BO PW: Qd43Ssz7
+WEB PW: F%s21kR?H6
+CC: NETS
+
+HIG1012 (Higginbotham Brothers)
+User: us3aPiHIG1012
+PW: **843!    t2Z9LeCm (just in case for BO)
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB04
+Database: ULTIPRO_WPHIGB
+BO PW: i8Y4Hze5
+WEB PW: **3801204!
+CC: HIGB
+
+PRO1040 (Cricut, Inc)
+User: us3aPiPRO1040
+PW: P!e!e2dUchsn!e
+BO URL: https://anw13.ultipro.com
+WEB URL: https://nw13.ultipro.com/
+Server: NW1WUP3DB01
+Database: ULTIPRO_WPPCNI
+BO PW: k5T9PdMz
+WEB PW: 2z!EQ6k?{p
+CC: PCNI
+
+WHA1000 (The Whalen Company)
+User: us3aPiWHA1000
+PW: **843!
+BO URL: https://aew45.ultipro.com
+WEB URL: https://ew45.ultipro.com
+Server: EW4WUP5DB02
+Database: ULTIPRO_WPWHAL
+BO PW: **3801204!
+WEB PW: B_g5y3$JFa
+CC: WHAL
+
+GOP1000 (Gopher Resource LLC)
+User: us3aPiGOP1000
+PW: **3801204!
+BO URL: https://aew13.ultipro.com
+WEB URL: https://ew13.ultipro.com
+Server: EW1WUP3DB02
+Database: ULTIPRO_WPGOP
+BO PW: Pa6c7B8J
+WEB PW: B?t6bR1*A{
+CC: GOP
+
+NOR1040 (Nortek Security & Control)
+User: us3aPiNOR1040
+PW: **3801204!
+BO URL: https://aew41.ultipro.com
+WEB URL: https://ew41.ultipro.com
+Server: EW4WUP1DB03
+Database: ULTIPRO_WPNSCL
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: NSCL
+
+TAN1005 (Tandem Diabetes Care, Inc)
+User: us3aPiTAN1005
+PW: P!e!e2dUchsn!e
+BO URL: https://anw14.ultipro.com
+WEB URL: https://nw14.ultipro.com
+Server: NW1WUP4DB01
+Database: ULTIPRO_WPTDCI
+BO PW: q3DWe78C
+WEB PW: 1a?C%Ni4Dp
+CC: TDCI
+
+WOO1008 (Woodbury University)
+User: us3aPiWOO1008
+PW: **3801204!
+BO URL: https://aew21.ultipro.com
+WEB URL: https://ew21.ultipro.com
+Server: EW2WUP1DB01
+Database: ULTIPRO_WPWBURY
+BO PW: Qz82ZrRc
+WEB PW: Z?b84sW%a{
+CC: WBURY
+
+BAN1017 (Banyan Treatment and Recovery) 
+User: us3aPiBAN1017
+PW: **3801204!
+BO URL: https://aew44.ultipro.com
+WEB URL: https://ew44.ultipro.com
+Server: EW4WUP4DB03
+Database: ULTIPRO_WPBTAR
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: BTAR
+
+PRO1047 (Proterra Inc)
+User: us3aPiPRO1047
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPPROTI
+BO PW: **3801204!
+WEB PW: M?x96T!tj$
+CC: PROTI
+
+HHA1000 (H&H Automotive LLC)
+User: us3aPiHHA1000
+PW: **3801204!
+BO URL: https://anw11.ultipro.com
+WEB URL: https://nw11.ultipro.com
+Server: NW1WUP1DB02
+Database: ULTIPRO_WPHHA
+BO PW: Wd5o4X6Q
+WEB PW: E!g7*e4P6$
+CC: HHA
+
+KEP1000 (KEPRO)
+User: us3aPiKEP1000
+PW: **3801204!
+BO URL: https://aew44.ultipro.com
+WEB URL: https://ew44.ultipro.com
+Server: EW4WUP4DB02
+Database: ULTIPRO_WPKEP
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: KEP
+
+BUR1010 (Burns Engineering Inc)
+User: us3aPiBUR1010
+PW: **3801204!
+BO URL: https://aew43.ultipro.com/
+WEB URL: https://ew43.ultipro.com
+Server: EW4WUP3DB01
+Database: ULTIPRO_WPBUENI
+BO PW: e4N2Zoc5
+WEB PW: N%y93fM{cW
+CC: BUENI
+
+PIN1010 (Pinnacle Data Systems LLC)
+User: us3aPiPIN1010
+PW: **843!
+BO URL: https://anw13.ultipro.com
+WEB URL: https://nw13.ultipro.com
+Server: NW1WUP3DB01
+Database: ULTIPRO_WPPDS
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: PDS
+
+XER1000 (Xerium Technologies Inc)
+User: us3aPiXER1000
+PW: **3801204!
+BO URL: https://aew22.ultipro.com
+WEB URL: https://ew22.ultipro.com
+Server: EW2WUP2DB01
+Database: ULTIPRO_WPXER
+BO PW: **3801204!
+WEB PW: a*7P5qT{F4
+CC: XER
+
+REM1007 (Remote Medical International)
+User: us3aPiREM1007
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTI_WPREMI
+BO PW: Wq4t2D1G
+WEB PW: 8t*H}9Kg5Z
+CC: REMI
+
+URB1002 (Urban Resource Institute)
+User: us3aPiURB1002
+PW: **3801204!
+BO URL: https://aew45.ultipro.com
+WEB URL: https://ew45.ultipro.com
+Server: EW4WUP5DB03
+Database: ULTIPRO_WPURBN
+BO PW: Fn28AySo
+WEB PW: qM$7_n1YK+
+CC: URBN
+
+SEZ1000 (Sezzle Inc)
+User: us3aPiSEZ1000
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB04
+Database: ULTIPRO_WPSEZZ
+BO PW: Zf69Dgs5
+WEB PW:6Wg!G*9q7o
+CC: SEZZ
+
+AME1064 (American Orthodontics Corp)
+User: us3aPiAME1064
+PW: **843!
+BO URL: https://aew22.ultipro.com
+WEB URL: https://ew22.ultipro.com
+Server: EW2WUP2DB01
+Database: ULTIPRO_WPAMEOR
+BO PW: Ho97Xzr8
+WEB PW: cC*2N7d}t$
+CC: AMEOR
+
+VAN1009 (Van Drunen Farms)
+User: us3aPiVAN1009
+PW: **3801204!
+BO URL: https://aew42.ultipro.com
+WEB URL: https://ew42.ultipro.com
+Server: EW4WUP2DB01
+Database: ULTIPRO_WPVDF
+BO PW: Fi4n2R1S
+WEB PW: 4y*KH3p%$F
+CC: VDF
+
+CHE1006 (Cherry Bekaert LLP)
+User: us3aPiCHE1006
+PW: **3801204!
+BO URL: https://aew13.ultipro.com
+WEB URL: https://ew13.ultipro.com
+Server: EW1WUP3DB01
+Database: ULTIPRO_WPCBH
+BO PW: **3801204!
+WEB PW: q_7STx{4e2
+CC: CBH
+
+ALP1002 (Alps Electric North America Inc)
+User: us3aPiALP1002
+PW: **3801204!
+BO URL: https://aew11.ultipro.com
+WEB URL: https://ew11.ultipro.com
+Server: EW1WUP1DB03
+Database: ULTIPRO_WPALPSE
+BO PW: Cn7i9LHe
+WEB PW: 1Qs!o?Z78z
+CC: ALPSE
+
+BIO1005 (BioMatrix Specialty Pharmacy LLC)
+User: us3aPiBIO1005
+PW: **3801204!
+BO URL: https://aew24.ultipro.com
+WEB URL: https://ew24.ultipro.com
+Server: EW2WUP4DB03
+Database: ULTIPRO_WPBIOMT
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: BIOMT
+
+CAY1000 (Cayman Chemical Company Inc)
+User: us3aPiCAY1000
+PW: 5c$Gg+W72Ma_}n4K9
+BO URL: https://aew45.ultipro.com
+WEB URL: https://ew45.ultipro.com
+Server: EW4WUP5DB02
+Database: ULTIPRO_WPCAY
+BO PW: e8R7GpWg
+WEB PW: tA*9R8o{!s
+CC: CAY
+
+HUN1012 (Hunter Museum of American Art)
+User: us3aPiHUN1012
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPHMOAA
+BO PW: Jk5f1HEb
+WEB PW: r{1P%5Ad6t
+CC: HMOAA
+
+TEN1003 (Tennessee Aquarium)
+User: us3aPiTEN1003
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPTNAQ
+BO PW: i3P4MrKe
+WEB PW: oR+48?mWS5
+CC: TNAQ
+
+PUF1000 (Puffer Sweiven LP)
+User: us3aPiPUF1000
+PW: **3801204!
+BO URL: https://anw14.ultipro.com
+WEB URL: https://nw14.ultipro.com
+Server: NW1WUP4DB02
+Database: ULTIPRO_WPPFRS
+BO PW: a9M4Nie7
+WEB PW: oG!3+a6W5S
+CC: PFRS
+
+COU1003 (Cousins Properties Incorporated)
+User: us3aPiCOU1003A
+PW: **3801204!
+BO URL: https://aew13.ultipro.com
+WEB URL: https://ew13.ultipro.com
+Server: EW1WUP3DB01
+Database: ULTIPRO_WPCOUPR
+BO PW: i4FJw1k6
+WEB PW: eL?94dQ{$C
+CC: COUPR
+
+GUI1002 (Guild Incorporated)
+User: us3aPiGUI1002
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPGDINC
+BO PW: Wk62MmCf
+WEB PW: **3801204!
+CC: GDINC
+
+IGD1000 (IGD Industries Inc)
+User: us3aPiIGD1000
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPIGD
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: IGD
+
+STB1001 (S&T Bank)
+User: us3aPiSTB1001
+PW: **3801204!
+BO URL: https://aew33.ultipro.com
+WEB URL: https://ew33.ultipro.com
+Server: EW3WUP3DB03
+Database: ULTIPRO_WPSTBNK
+BO PW: w2L3Zce1
+WEB PW: **3801204!
+CC: STBNK
+
+LIQ1001 (Liquid Environmental Solutions Corp)
+User: us3aPiLIQ1001
+PW: **843!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB02
+Database: ULTIPRO_WPLENVS
+BO PW: k6T8QdEb
+WEB PW: Rg3{%1JiQ+
+CC: LENVS
+
+BOW1005 (Bowery Farming Inc)
+User: us3aPiBOW1005
+PW: **3801204!
+BO URL: https://aew11.ultipro.com
+WEB URL: https://ew11.ultipro.com
+Server: EW1WUP1DB04
+Database: ULTIPRO_WPBOWF
+BO PW: La1k4X9E
+WEB PW: E+f8*t1DL$
+CC: BOWF
+
+HIG1011 (Higher Logic, LLC)
+User: us3aPiHIG1011
+PW: **3801204!
+BO URL: https://aew15.ultipro.com
+WEB URL: https://ew15.ultipro.com
+Server: EW1WUP5DB04
+Database: ULTIPRO_WPHIGL
+BO PW: k1JEm24D
+WEB PW: Fq4?x_G3+M
+CC: HIGL
+
+INT1065 (International Research and Exchanges Board)
+User: us3aPiINT1065
+PW: **3801204!
+BO URL: https://aew15.ultipro.com
+WEB URL: https://ew15.ultipro.com
+Server: EW1WUP5DB02
+Database: ULTIPRO_WPINRE
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: INRE
+
+MES1004 (Messer Construction Co)
+User: us3aPiMES1004
+PW: **3801204!
+BO URL: https://aew12.ultipro.com
+WEB URL: https://ew12.ultipro.com
+Server: EW1WUP2DB01
+Database: ULTIPRO_WPMSSR
+BO PW: Lo14BgZf
+WEB PW: **3801204!
+CC: MSSR
+
+BRI1012 (BNB Bank)
+User: us3aPiBRI1012
+PW: **3801204!
+BO URL: https://aew41.ultipro.com
+WEB URL: https://ew41.ultipro.com
+Server: EW4WUP1DB02
+Database: ULTIPRO_WPTBNB
+BO PW: **3801204!
+WEB PW: **3801204!
+CC: TBNB
+
+CRE1020 (Creative Discovery Museum)
+User: us3aPiCRE1020
+PW: **3801204!
+BO URL: https://anw15.ultipro.com
+WEB URL: https://nw15.ultipro.com
+Server: NW1WUP5DB03
+Database: ULTIPRO_WPCDMU
+BO PW: **3801204!
+WEB PW: pN!8J}4a$1
+CC: CDMU
+
+GRU1002 (Grunt Style LLC)
+User: us3aPiGRU1002
+PW: 5En!Az_84Gs{T}1r+b
+BO URL: https://anw13.ultipro.com
+WEB URL: https://nw13.ultipro.com
+Server: NW1WUP3DB01
+Database: ULTIPRO_WPGRUNT
+BO PW: Xn12Qbs7
+WEB PW: 8Jr$%1Gg7P
+CC: GRUNT
+
+FAC1003 (Factor Systems, Inc)
+User: us3aPiFAC1003
+PW: **843!
+BO URL: https://aew43.ultipro.com/
+WEB URL: https://ew43.ultipro.com/
+Server: EW4WUP3DB01
+Database: ULTIPRO_WPFSINC
+BO PW: Ks95FiYo
+WEB PW: Nj9_4*zML5
+CC: FSINC

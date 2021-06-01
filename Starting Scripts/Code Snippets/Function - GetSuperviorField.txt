@@ -1,0 +1,1 @@
+dbo.dsi_fnlib_GetSupervisorField_v2(EecCOID, EecEEID, 'EmpNo')

@@ -1,0 +1,35 @@
+----Remove dependent children over the age of 26
+	DELETE u_dsi_bdm_EREGDAV834
+	WHERE BdmDepRecID = (SELECT DISTINCT CASE WHEN DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) >= 26 and bdmrelationship in ('chl', 'stc', 'dpc') then ConSystemID END
+	FROM dbo.Contacts WITH(NOLOCK)
+	WHERE    ConEEID = bdmEEID
+	AND ConSystemID = BdmDepRecID)
+
+--Remove dependent children >= the age of 26
+    DELETE u_dsi_bdm_EREGDAV834
+    WHERE BdmDepRecID = (SELECT DISTINCT CASE WHEN DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) >= 26 and bdmrelationship in ('chl', 'stc', 'dpc')
+					AND substring(convert(varchar, (DATEADD(d, 1, EOMONTH(getdate()))), 112), 5, 9) >= substring(convert(varchar, (DATEADD(d, 1, EOMONTH(condateofbirth))), 112), 5, 9)   then ConSystemID END
+    FROM dbo.Contacts WITH(NOLOCK)
+    WHERE    ConEEID = bdmEEID
+    AND ConSystemID = BdmDepRecID
+	AND ConIsDisabled = 'N')
+
+	--UPDATE dbo.u_dsi_bdm_EREGDAV834
+	--SET BdmBenStopDate = (SELECT DISTINCT CASE WHEN DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) = 26 and bdmrelationship in ('chl', 'stc', 'dpc')
+	--								AND convert(varchar, getdate(), 112) >= convert(varchar, condateofbirth, 112)
+	--								then cast(year(GETDATE()) as varchar) + substring(convert(varchar, (DATEADD(d, 0, EOMONTH(condateofbirth))), 112), 5, 9) END
+	--								FROM dbo.Contacts WITH(NOLOCK)
+	--								WHERE    ConEEID = BdmEEID
+	--								AND ConSystemID = BdmDepRecID)
+
+	--Add term date to end of month of birthday for those dependents turning 26
+	UPDATE dbo.u_dsi_bdm_EREGDAV834
+	SET BdmBenStopDate = cast(year(GETDATE()) as varchar) + substring(convert(varchar, (DATEADD(d, 0, EOMONTH(condateofbirth))), 112), 5, 9)
+							FROM dbo.u_dsi_bdm_EREGDAV834 WITH(NOLOCK) JOIN dbo.Contacts WITH(NOLOCK)
+							ON ConEEID = BdmEEID
+							AND ConSystemID = BdmDepRecID
+							WHERE DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) = 26
+							AND bdmrelationship in ('chl', 'stc', 'dpc')
+						    AND convert(varchar, getdate(), 112) >= convert(varchar, condateofbirth, 112)
+							AND ConIsDisabled = 'N'
+	

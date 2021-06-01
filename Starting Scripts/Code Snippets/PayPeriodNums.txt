@@ -1,0 +1,5 @@
+CASE EecPayPeriod
+                            WHEN 'W' THEN EecScheduledWorkHrs
+                            WHEN 'B' THEN EecScheduledWorkHrs / 2
+                            WHEN 'S' THEN ((EecScheduledWorkHrs * 24) / 52)
+                            WHEN 'M' THEN ((EecScheduledWorkHrs * 12) / 52) END

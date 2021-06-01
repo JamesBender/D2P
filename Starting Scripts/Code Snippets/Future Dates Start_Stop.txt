@@ -1,0 +1,11 @@
+Future-Dated Stops and Starts
+The vendor can't take any records with future-dated start dates.
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'ExclFutureDatedStartDates', 'Y') If set to Y, any deduction with a start date after the EndDateTime is discarded
+They can take future-dated start dates, but only within a certain range.
+Set the below variable and any start date sixty dates after the EndDateTime is discarded.
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStartDateDays', '60')
+The vendor can't take any records with future-dated stop dates.
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'ExclFutureDatedStopDates', 'Y') If set to Y, any deduction with a stop date after the EndDateTime is set to active.
+They can take future-dated stop dates, but only within a certain range.
+Set the below variable and any stop date sixty dates after the EndDateTime is set to active.
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '60')

@@ -1,0 +1,1 @@
+EXEC dbo.dsi_sp_UpdateConfig '<FORMATCODE>', 'Testing', 'V',  'N'

@@ -1,0 +1,4 @@
+--File minimum coverage start date
+
+DECLARE @FileMinCovDate datetime = CAST('01/01/2020' as DATETIME)
+dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)

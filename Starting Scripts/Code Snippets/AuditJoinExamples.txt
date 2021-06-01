@@ -1,0 +1,31 @@
+LEFT JOIN (
+        -- Get NewHire, ReHire, Terms from Audit
+        SELECT audEEID
+            ,audNewHire = MAX(audNewHire)
+            ,audReHire = MAX(audReHire)
+            ,audTerm = MAX(audTerm)
+            ,audSalaryChange = MAX(audSalaryChange)
+            ,audSigTime = MAX(audDateTime)
+        --    ,audFillTimeChange = MAX(audFullTimeChange)
+        FROM dbo.U_EUNNORLTD_Audit
+        WHERE audRowNo = 1
+        AND (audNewHire = 'Y'
+            OR audReHire = 'Y'
+            OR audTerm = 'Y'
+            OR audSalaryChange = 'Y'
+        )
+        GROUP BY audEEID
+    ) AuditRecords
+        ON audEEID = xEEID
+    LEFT JOIN (select audEEID eeid, audDateTime chgDate
+        FROM dbo.U_EUNNORLTD_Audit
+        WHERE audFieldName = 'eecFullTimeOrPartTIme'
+        and audOldValue = 'P'
+        and audNewValue = 'F'
+        ) PTF on PTF.eeid = xEEID
+    LEFT JOIN (select audEEID eeid, audDateTime chgDate
+        FROM dbo.U_EUNNORLTD_Audit
+        WHERE audFieldName = 'EecEEType'
+        and audOldValue <> 'REG'
+        and audNewValue = 'REG'
+        ) PTR on PTR.eeid = xEEID

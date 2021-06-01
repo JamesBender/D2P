@@ -1,0 +1,7 @@
+---PLATFORM CONFIG FIELDS
+select distinct 'PCFs' as 'TABLE',
+classuniqueID, fielduniqueId, *
+FROM dbo.MetaFieldValue
+    JOIN dbo.MetaObject
+        ON ObjectID = ID
+order by 3

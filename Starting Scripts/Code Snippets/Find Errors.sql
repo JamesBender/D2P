@@ -1,0 +1,1 @@
+select * from [dbo].[U_dsi_InterfaceProcesses] where FormatCode = 'ERELFMLAMD'

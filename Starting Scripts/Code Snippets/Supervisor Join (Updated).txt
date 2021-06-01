@@ -1,0 +1,6 @@
+ LEFT JOIN dbo.EmpComp EC2 WITH (NOLOCK) -- supervisor  
+    ON EC2.EecEEID = Ec.EecSupervisorID  
+    AND Ec2.EecCOID = Ec.EecCOID  
+        --AND SUP.EecEmplStatus <> 'T' 
+    LEFT JOIN dbo.EmpPers pers2 WITH(NOLOCK)
+    ON Ec2.EecEEID = pers2.EepEEID;

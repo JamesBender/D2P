@@ -1,0 +1,11 @@
+CASE WHEN DbnRelationship IN ('QMCSO') THEN 'TRUE'
+                                      ELSE 'FALSE'
+                                 END
+
+-- JOIN
+
+dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)  
+        ON DbnEEID = xEEID   
+        AND DbnCoID = xCoID  
+        AND DbnFormatCode = @FormatCode   
+        AND DbnValidForExport = 'Y' 

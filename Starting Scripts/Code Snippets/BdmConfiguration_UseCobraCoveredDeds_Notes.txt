@@ -1,0 +1,2 @@
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'UseCobraCoveredDeds', 'Y') X will tell the module to use deduction codes or deduction types specified where DedIsCobraCovered = Y.
+Y will tell the module to ignore deduction codes or deduction types specified and use deductions where DedIsCobraCovered = Y. If no Dedcodes and/or types are specified, then it will return all deductions where DedIsCobraCovered = Y

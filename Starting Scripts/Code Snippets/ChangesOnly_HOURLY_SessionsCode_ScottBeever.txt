@@ -1,0 +1,63 @@
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EXXXXXXXXX','LastRun','V','2018-07-09 17:21:03.160');
+---------
+DECLARE @FormatCode VARCHAR(10)
+        ,@ExportCode VARCHAR(10)
+        ,@StartDate DATETIME
+        ,@EndDate DATETIME
+        ,@EndDateString varchar(50);
+----------
+SELECT @FormatCode = FormatCode
+        ,@ExportCode = ExportCode
+        ,@StartDate = CASE 
+        WHEN ExportCode in ('SCHEDULED') -- SCH_WHATEVER
+                THEN isnull(TRY_CONVERT(datetime, dbo.dsi_fnVariable('EXXXXXXXXX','LastRun') ), DateAdd(dd, - 1, GetDate()))
+            WHEN ExportCode in ('FULLFILE') THEN CONVERT(CHAR(8),GetDate()-1,112) 
+            ELSE Convert(DATETIME, Left(StartPerControl, 8))
+            END
+        ,@EndDate = CASE 
+            WHEN ExportCode in ('SCHEDULED')
+                THEN GetDate()
+            ELSE DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+            END
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = 'EXXXXXXXXX';
+------------------
+    --Update LastRun datetime stamp for next interface run
+    IF @ExportCode in ('SCHEDULED')
+    BEGIN 
+         SET @EndDateString = CONVERT(VARCHAR(26), @EndDate, 121)
+         EXEC dbo.dsi_sp_UpdateConfig 'EXXXXXXXXX', 'LastRun',              'V',  @EndDateString
+    END
+
+-- THIS IS THE ONE TO USE FOR UP TO 24 SCHEDULED SESSIONS FOR EACH HOUR
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EXXXXXXXXX','LastRun','V','2018-07-09 17:21:03.160');
+---------
+DECLARE @FormatCode VARCHAR(10)
+        ,@ExportCode VARCHAR(10)
+        ,@StartDate DATETIME
+        ,@EndDate DATETIME
+        ,@EndDateString varchar(50);
+----------
+SELECT @FormatCode = FormatCode
+        ,@ExportCode = ExportCode
+        ,@StartDate = CASE 
+        WHEN ExportCode LIKE ('SCH%')
+                THEN isnull(TRY_CONVERT(datetime, dbo.dsi_fnVariable('EXXXXXXXXX','LastRun') ), DateAdd(dd, - 1, GetDate()))
+            WHEN ExportCode in ('FULLFILE') THEN CONVERT(CHAR(8),GetDate()-1,112) 
+            ELSE Convert(DATETIME, Left(StartPerControl, 8))
+            END
+        ,@EndDate = CASE 
+            WHEN ExportCode LIKE ('SCH%')
+                THEN GetDate()
+            ELSE DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+            END
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = 'EXXXXXXXXX';
+------------------
+    --Update LastRun datetime stamp for next interface run
+    IF @ExportCode LIKE ('SCH%')
+    BEGIN 
+         SET @EndDateString = CONVERT(VARCHAR(26), @EndDate, 121)
+         EXEC dbo.dsi_sp_UpdateConfig 'EXXXXXXXXX', 'LastRun',              'V',  @EndDateString
+    END

@@ -1,0 +1,10 @@
+(SELECT DISTINCT rurEEID
+				,srlRoleName = 'MANAGER'
+				,srlIsManager = MAX(CASE WHEN srlRoleName IN ('MANAGER') THEN 'Y' ELSE 'N' END)
+				FROM dbo.RbsUserRoles WITH (NOLOCK)
+				JOIN dbo.SecRoles WITH (NOLOCK)
+				ON RurRoleID = SrlRoleID
+				WHERE srlRoleName IN ('MANAGER','MANAGEREDIT','2NDLVL')
+				GROUP BY rurEEID
+				) SecurityRoles
+				ON SecurityRoles.rurEEID = xEEID

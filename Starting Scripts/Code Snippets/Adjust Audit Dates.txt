@@ -1,0 +1,4 @@
+  INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'StartDateTime',@EndDate -30 );
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'EndDateTime',@EndDate);
+
+-- Can also just adjust StartDateTime, @StartDate to StartDateTime, @EndDate - 30

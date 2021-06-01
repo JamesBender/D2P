@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRU401K72','NoEmpty','V','Y');

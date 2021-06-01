@@ -1,0 +1,12 @@
+ LEFT JOIN dbo.U_EVOYA401KZ_PDedHist K WITH (NOLOCK) 
+        ON K.PdhEEID = xEEID
+        AND K.PdhDedCode = '401K'
+    LEFT JOIN dbo.U_EVOYA401KZ_PDedHist KC WITH (NOLOCK) 
+        ON KC.PdhEEID = xEEID
+        AND KC.PdhDedCode = '401KC'
+    LEFT JOIN dbo.U_EVOYA401KZ_PDedHist R WITH (NOLOCK)
+        ON R.PdhEEID = xEEID 
+        AND R.PdhDedCode = 'ROTH'
+    LEFT JOIN dbo.U_EVOYA401KZ_PDedHist S WITH (NOLOCK)
+        ON S.PdhEEID = xEEID
+        AND S.PdhDedCode = 'SHARB' 

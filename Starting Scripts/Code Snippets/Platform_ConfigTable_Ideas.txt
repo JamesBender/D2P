@@ -1,0 +1,13 @@
+select * from  fn_MP_CustomFields_EmpComp_export (null, null, null, null)
+where employment_acquisitionsenioritydate is not null
+
+select * from  fn_MP_CustomFields_Contacts (null, null, null, null)
+
+select * from  fn_MP_CustomFields_EmphJob_export (null, null, null, null)
+where employmenthistory_acquisitionsenioritydate is not null
+
+select * from  fn_MP_CustomFields_Emppers (null, null, null, null)
+
+select * from  fn_MP_CustomFields_JobCode (null, null, null, null)
+
+select * from  fn_MP_CustomFields_OrgLevel (null, null, null, null)

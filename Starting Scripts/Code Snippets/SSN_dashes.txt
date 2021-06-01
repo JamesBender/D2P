@@ -1,0 +1,11 @@
+DECLARE @ssn VARCHAR(11)
+SET @ssn = '123456789'
+ 
+SELECT SUBSTRING(@ssn, 1, 3)+'-'+
+       SUBSTRING(@ssn, 4, 2)+'-'+
+       SUBSTRING(@ssn, 6, 4) AS [ssn]
+
+
+SUBSTRING(EepSSN, 1, 3)+'-'+
+                    SUBSTRING(EepSSN, 4, 2)+'-'+
+                    SUBSTRING(EepSSN, 6, 4) 
