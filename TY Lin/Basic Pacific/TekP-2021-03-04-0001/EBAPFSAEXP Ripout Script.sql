@@ -79,7 +79,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"US"','15','(''DA''=''T,'')','EBAPFSAEXPZ0','50','D','10','15',NULL,'Country',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Primary"','16','(''DA''=''T,'')','EBAPFSAEXPZ0','50','D','10','16',NULL,'Address Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneNumber"','17','(''UA''=''T,'')','EBAPFSAEXPZ0','50','D','10','17',NULL,'Phone Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Home"','18','(''DA''=''T,'')','EBAPFSAEXPZ0','50','D','10','18',NULL,'Phone Type',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneType"','18','(''UA''=''T,'')','EBAPFSAEXPZ0','50','D','10','18',NULL,'Phone Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','19','(''DA''=''T,'')','EBAPFSAEXPZ0','50','D','10','19',NULL,'Phone Number 2',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','20','(''DA''=''T,'')','EBAPFSAEXPZ0','50','D','10','20',NULL,'Phone Type 2',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','21','(''UD101''=''T,'')','EBAPFSAEXPZ0','50','D','10','21',NULL,'Date of Birth',NULL,NULL);
@@ -105,13 +105,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBAPFSAEXP_20210503.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBAPFSAEXP_20210609.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202104099','EMPEXPORT','OEACTIVE','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','1','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202104099','EMPEXPORT','OEPASSIVE','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','143','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export','202104099','EMPEXPORT','ONDEM_XOE','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','143','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export-Sched','202104099','EMPEXPORT','SCH_EBAPFS','Apr  9 2021  1:17PM','EBAPFSAEXP',NULL,NULL,NULL,'202104099','Apr  9 2021 11:55AM','Apr  9 2021 11:55AM','202104091','143','','','202104091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export-Test','202104271','EMPEXPORT','TEST_XOE','Apr 27 2021  9:23AM','EBAPFSAEXP',NULL,NULL,NULL,'202104271','Apr 27 2021 12:00AM','Dec 30 1899 12:00AM','202104131','146','','','202104131',dbo.fn_GetTimedKey(),NULL,'us3cPeTYL1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Basic Pacific FSA Export-Test','202104229','EMPEXPORT','TEST_XOE','Jun  9 2021 10:51AM','EBAPFSAEXP',NULL,NULL,NULL,'202104229','Apr 22 2021 12:00AM','Dec 30 1899 12:00AM','202104071','147','','','202104071',dbo.fn_GetTimedKey(),NULL,'us3cPeTYL1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAPFSAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAPFSAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAPFSAEXP','InitialSort','C','drvSort');
@@ -189,6 +189,7 @@ CREATE TABLE [dbo].[U_EBAPFSAEXP_drvTbl] (
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvPhoneNumber] varchar(12) NULL,
+    [drvPhoneType] varchar(4) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvDateOfDeath] datetime NULL,
     [drvGender] varchar(6) NULL,
@@ -463,6 +464,7 @@ BEGIN
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
         ,drvPhoneNumber = LEFT(eepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(RTRIM(EepPhoneHomeNumber), 4)
+        ,drvPhoneType = CASE WHEN EepPhoneHomeNumber IS NOT NULL THEN 'Home' END
         ,drvDateOfBirth = EepDateOfBirth
         ,drvDateOfDeath = EepDateDeceased
         ,drvGender =    CASE WHEN EepGender = 'M' THEN 'Male'
@@ -475,7 +477,9 @@ BEGIN
                             WHEN xCOID = 'UEB8U' THEN '5-Grp'
                         END
         ,drvEmploymentTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvRetired = CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'Y' END
+        ,drvRetired =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'Y' 
+                            WHEN EecEmplStatus = 'T' AND EecTermReason <> '202' THEN 'N' 
+                        END
         ,drvLoaStartDate =    CASE WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate 
                                 WHEN EecEmplStatus = 'A' AND EshEmplStatus = 'L' THEN EshStatusStartDate 
                             END

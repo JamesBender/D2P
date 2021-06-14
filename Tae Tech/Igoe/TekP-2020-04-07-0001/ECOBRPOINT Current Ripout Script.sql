@@ -106,8 +106,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISQMCO"','21','(''UA''=''Q'')','ECOBRPOINTZ0','50','D','50','21',NULL,'IsQMCSO',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBDEPENDENTPLANINITIAL]"','1','(''DA''=''Q,'')','ECOBRPOINTZ0','50','D','60','1',NULL,'Record Identifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q'')','ECOBRPOINTZ0','50','D','60','2',NULL,'PlanName',NULL,NULL);
+
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBSTATEINSERTS]"','1','(''DA''=''Q,'')','ECOBRPOINTZ0','50','D','65','1',NULL,'Record Identifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvStateSpecs"','2','(''UA''=''Q,'')','ECOBRPOINTZ0','50','D','65','2',NULL,'StateSpecificDocumentName',NULL,NULL);
+
+
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBPLANMEMBERSPECIFICRATEINITIAL]"','1','(''DA''=''Q,'')','ECOBRPOINTZ0','50','D','70','1',NULL,'Record Identifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q,'')','ECOBRPOINTZ0','50','D','70','2',NULL,'PlanName',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRate"','3','(''UA''=''Q'')','ECOBRPOINTZ0','50','D','70','3',NULL,'Rate',NULL,NULL);
@@ -244,7 +247,7 @@ CREATE TABLE [dbo].[U_ECOBRPOINT_drvTbl_QBDEPPLAN] (
     [drvSubSort2] varchar(38) NULL,
     [drvSubSort3] varchar(208) NULL
 );
-IF OBJECT_ID('U_ECOBRPOINT_drvTbl_QBDEPPLAN_QBSTATEINSERTS') IS NULL
+IF OBJECT_ID('U_ECOBRPOINT_drvTbl_QBDEPPLAN_QBSTATEINSERTS') IS NULL 
 CREATE TABLE [dbo].[U_ECOBRPOINT_drvTbl_QBDEPPLAN_QBSTATEINSERTS] (
     [drvEEID] char(12) NOT NULL,
     [drvCoID] char(5) NULL,
