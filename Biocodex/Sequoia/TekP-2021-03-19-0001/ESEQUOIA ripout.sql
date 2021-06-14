@@ -141,12 +141,12 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESEQUOIA_20210527.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESEQUOIA_20210604.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011129','EMPEXPORT','OEACTIVE',NULL,'ESEQUOIA',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202011129','EMPEXPORT','OEPASSIVE',NULL,'ESEQUOIA',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sequoia Export','202011129','EMPEXPORT','ONDEM_XOE',NULL,'ESEQUOIA',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Sequoia Exp-Test','202105109','EMPEXPORT','TEST_XOE','May 10 2021  5:30PM','ESEQUOIA',NULL,NULL,NULL,'202105109','May 10 2021 12:00AM','Dec 30 1899 12:00AM','202104261','1176','','','202104261',dbo.fn_GetTimedKey(),NULL,'us3lKiRPX1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Sequoia Exp-Test','202106029','EMPEXPORT','TEST_XOE','Jun  2 2021  2:23PM','ESEQUOIA',NULL,NULL,NULL,'202106029','Jun  2 2021 12:00AM','Dec 30 1899 12:00AM','202105251','713','','','202105251',dbo.fn_GetTimedKey(),NULL,'us3lKiBIO1002',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQUOIA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQUOIA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESEQUOIA','InitialSort','C','drvSort');
@@ -236,7 +236,7 @@ CREATE TABLE [dbo].[U_ESEQUOIA_drvTbl] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvRelationship] varchar(22) NULL,
+    [drvRelationship] varchar(8) NULL,
     [drvGender] char(1) NULL,
     [drvMaritalStatus] varchar(1) NULL,
     [drvEmployeeStatus] varchar(10) NULL,
@@ -273,7 +273,7 @@ CREATE TABLE [dbo].[U_ESEQUOIA_drvTbl] (
     [drvApprovedAmount] nvarchar(4000) NULL,
     [drvRequestedAmount] nvarchar(4000) NULL,
     [drvEnrollmentType] varchar(1) NOT NULL,
-    [drvCoverateDesc] varchar(5) NULL,
+    [drvCoverateDesc] varchar(1) NOT NULL,
     [drvCoverageTier] varchar(3) NULL
 );
 IF OBJECT_ID('U_ESEQUOIA_EEList') IS NULL
@@ -370,8 +370,8 @@ BEGIN
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
-			;
-			
+            ;
+            
 
     -- Set FormatCode
     SELECT @FormatCode = 'ESEQUOIA';
@@ -399,12 +399,11 @@ BEGIN
     DELETE FROM dbo.U_ESEQUOIA_EEList WHERE xEEID IN (
         SELECT DISTINCT EecEEID  FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType = 'TES' or EecEEID IN ('9A8UWL0010J0','9I9KJJ0010J0')
     )
-
     --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'DENST,DENPR,VISPR,HDHP,PPO,STD,LTD,GTL,LFADD,GTLEE,GLTSP,GTLCH,';
+    SET @DedList = 'DENST,DENPR,VISPR,HDHP,PPO,STD,LTD,LFADD,GTLEE,GTLSP,GTLCH,';
 
     IF OBJECT_ID('U_ESEQUOIA_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ESEQUOIA_DedList;
@@ -472,8 +471,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStartDateDays', '30');
-	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStartDateDays', '30');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -601,31 +600,29 @@ BEGIN
         ,drvWagesEffectiveDate = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GetDATE(), eecDateOfLastHire) END
         ,drvPlanYear = CAST( CASE WHEN YEAR(BdmBenStartDAte) < 2021 THEN '2021' ELSE  YEAR(BdmBenStartDAte) END as varchar) -- FORMAT(DATEPART(YEAR, BdmBenStartDate), '0000')
         ,drvPlanType =    CASE  WHEN Bdmdedcode = 'DENST' THEN 'DEN'
-								WHEN Bdmdedcode = 'DENPR' THEN 'DEN'
-								WHEN Bdmdedcode = 'VISPR' THEN 'VIS'
-								WHEN Bdmdedcode = 'HDHP' THEN 'HSA'
-								WHEN Bdmdedcode = 'PPO' THEN 'PPO'
-								WHEN Bdmdedcode = 'STD' THEN 'STD'
-								WHEN Bdmdedcode = 'LTD' THEN 'LTD'
-								WHEN Bdmdedcode = 'GTL' THEN 'LIF'
-								WHEN Bdmdedcode = 'LFADD' THEN 'AJ'
-								WHEN Bdmdedcode = 'GTLEE' THEN 'LM'
-								WHEN Bdmdedcode = 'GLTSP' THEN 'LS'
-								WHEN Bdmdedcode = 'GTLCH' THEN 'LC'
+                                WHEN Bdmdedcode = 'DENPR' THEN 'DEN'
+                                WHEN Bdmdedcode = 'VISPR' THEN 'VIS'
+                                WHEN Bdmdedcode = 'HDHP' THEN 'HSA'
+                                WHEN Bdmdedcode = 'PPO' THEN 'PPO'
+                                WHEN Bdmdedcode = 'STD' THEN 'STD'
+                                WHEN Bdmdedcode = 'LTD' THEN 'LTD'
+                                WHEN Bdmdedcode = 'LFADD' THEN 'LIF'
+                                WHEN Bdmdedcode = 'GTLEE' THEN 'LM'
+                                WHEN Bdmdedcode = 'GTLSP' THEN 'LS'
+                                WHEN Bdmdedcode = 'GTLCH' THEN 'LC'
                            END
         ,drvPlanGroupNumber =    CASE   
-										WHEN Bdmdedcode = 'DENST' THEN 'DPPO0002'
-										WHEN Bdmdedcode = 'DENPR' THEN 'DPPO0037'
-										WHEN Bdmdedcode = 'VISPR' THEN 'VVIS0001'
-										WHEN Bdmdedcode = 'HDHP' THEN 'MHDP0004'
-										WHEN Bdmdedcode = 'PPO' THEN 'MOAP0001'
-										WHEN Bdmdedcode = 'STD' THEN 'SGD612636'
-										WHEN Bdmdedcode = 'LTD' THEN 'SGD612637'
-										WHEN Bdmdedcode = 'GTL' THEN 'SGM611462'
-										WHEN Bdmdedcode = 'LFADD' THEN 'SOK608573'
-										WHEN Bdmdedcode = 'GTLEE' THEN 'SGM611462'
-										WHEN Bdmdedcode = 'GLTSP' THEN 'SGM611462'
-										WHEN Bdmdedcode = 'GTLCH' THEN 'SGM611462'
+                                        WHEN Bdmdedcode = 'DENST' THEN 'DPPO0002'
+                                        WHEN Bdmdedcode = 'DENPR' THEN 'DPPO0037'
+                                        WHEN Bdmdedcode = 'VISPR' THEN 'VVIS0001'
+                                        WHEN Bdmdedcode = 'HDHP' THEN 'MHDP0004'
+                                        WHEN Bdmdedcode = 'PPO' THEN 'MOAP0001'
+                                        WHEN Bdmdedcode = 'STD' THEN 'SGD612636'
+                                        WHEN Bdmdedcode = 'LTD' THEN 'SGD612637'
+                                        WHEN Bdmdedcode = 'LFADD' THEN 'SGM611462'
+                                        WHEN Bdmdedcode = 'GTLEE' THEN 'SGM611462'
+                                        WHEN Bdmdedcode = 'GTLSP' THEN 'SGM611462'
+                                        WHEN Bdmdedcode = 'GTLCH' THEN 'SGM611462'
                                 END
         ,drvClassCode = ''
         ,drvEnrollmentStatus =    --CASE WHEN BdmRecType = 'EMP' THEN
@@ -638,8 +635,8 @@ BEGIN
         ,drvEnrollmentStartDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDAte, '1/1/2021') --'1/1/' + FORMAT(DATEPART(YEAR, GETDATE()), '0000') --2020' --BdmBenStartDate
         ,drvEnrollmentEndDate = BdmBenStopDate
         ,drvOriginalEnrollmentDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDAte, '1/1/2021')
-        ,drvApprovedAmount = CASE WHEN BdmDedCode IN ('GTLEE', 'GLTSP', 'GTLCH') THEN FORMAT( cast(isnull( (Select max(bdmusgfield1) from dbo.U_dsi_BDM_ESEQUOIA A where A.bdmeeid =  xeeid and A.bdmdedcode = bdmdedcode),0) as money), '#0.00') END
-        ,drvRequestedAmount = CASE WHEN BdmDedCode IN ('GTLEE', 'GLTSP', 'GTLCH') THEN FORMAT(isnull(amtDesiredAmt,0), '#0.00') END
+        ,drvApprovedAmount = CASE WHEN BdmDedCode IN ('GTLEE', 'GTLSP', 'GTLCH') THEN FORMAT( cast(isnull( (Select max(bdmusgfield1) from dbo.U_dsi_BDM_ESEQUOIA A where A.bdmeeid =  xeeid and A.bdmdedcode = bdmdedcode),0) as money), '#0.00') END
+        ,drvRequestedAmount = CASE WHEN BdmDedCode IN ('GTLEE', 'GTLSP', 'GTLCH') THEN FORMAT(isnull(amtDesiredAmt,0), '#0.00') END
         ,drvEnrollmentType = 'A'  --CASE WHEN BdmBenStatus = 'A' THEN 'A' END
 
         ,drvCoverateDesc =    ''
@@ -695,6 +692,61 @@ BEGIN
         ON EecDedGroupCode = CbgBenGroupCode
     ;
 
+    INSERT INTO dbo.U_ESEQUOIA_drvTbl
+    SELECT DISTINCT
+         drvEEID
+        ,drvCoID 
+        ,drvDepRecID
+        ,drvSort 
+        -- standard fields above and additional driver fields below
+        ,drvEmployeeID 
+        ,drvSSN 
+        ,drvMemberSSN 
+        ,drvNameFirst
+        ,drvNameLast
+        ,drvDateOfBirth
+        ,drvRelationship 
+        ,drvGender
+        ,drvMaritalStatus 
+        ,drvEmployeeStatus
+        ,drvEmployeeStatusDate
+        ,drvHireDate
+        ,drvAddressLine1
+        ,drvAddressLine2
+        ,drvAddressCity 
+        ,drvAddressState
+        ,drvAddressZipCode
+        ,drvHomePhone 
+        ,drvWorkEmail 
+        ,drvJobTitle 
+        ,drvEmployeeLocation 
+        ,drvEmployeeLocationEffDate
+        ,drvEmployeeClass 
+        ,drvEmployeeClassEffDate
+        ,drvEmployeeDivision 
+        ,drvEmployeeDivisionEffectiveDate
+        ,drvEmployeeDepartment 
+        ,drvEmployeeDepartmentEffDate
+        ,drvPayFrequency
+        ,drvHoursPerWeek
+        ,drvAnnualWages
+        ,drvWagesEffectiveDate
+        ,drvPlanYear 
+        ,drvPlanType =   'AJ'
+        ,drvPlanGroupNumber =   'SOK608573'
+        ,drvClassCode 
+        ,drvEnrollmentStatus 
+        ,drvEnrollmentStartDate
+        ,drvEnrollmentEndDate 
+        ,drvOriginalEnrollmentDate
+        ,drvApprovedAmount
+        ,drvRequestedAmount
+        ,drvEnrollmentType
+
+        ,drvCoverateDesc 
+        ,drvCoverageTier 
+    FROM dbo.U_ESEQUOIA_drvTbl
+    WHERE drvPlanType = 'LIF';
 
     Delete from dbo.U_ESEQUOIA_drvTbl where drvPlanType in ('LS','LC') and drvDeprecid is null
     --==========================================
@@ -736,4 +788,3 @@ GO
 CREATE VIEW dbo.dsi_vwESEQUOIA_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_ESEQUOIA_File (NOLOCK)
     ORDER BY  InitialSort, SubSort;
-

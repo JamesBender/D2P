@@ -230,7 +230,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202105249','EMPEXPORT','OEACTIVE',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202105249','EMPEXPORT','OEPASSIVE',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian 834 Export','202105249','EMPEXPORT','SCHEDULED',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_EGUARD834_20210514.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202105281','EMPEXPORT','TEST','May 28 2021 12:19PM','EGUARD834',NULL,NULL,NULL,'202105281','May 28 2021 12:00AM','May 22 2021 12:00AM','202105141','11210','','','202105141',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_EGUARD834_20210602.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202106071','EMPEXPORT','TEST','Jun  7 2021  9:33PM','EGUARD834',NULL,NULL,NULL,'202106071','Jun  7 2021 12:00AM','Dec 30 1899 12:00AM','202106021','11586','','','202106021',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','ExportPath','V',NULL);
@@ -350,10 +350,10 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl] (
     [drvINS11_DateTimeFormatQual] varchar(1) NOT NULL,
     [drvINS12_DateTimePeriod] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual1] char(11) NULL,
+    [drvREF02_RefNumberQual1] varchar(8) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual2] varchar(8) NOT NULL,
-    [drvREF01_RefNumberQual3] varchar(2) NULL,
+    [drvREF02_RefNumberQual2] varchar(4) NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual3] varchar(4) NULL,
     [drvDTP00_DateTime1] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
@@ -370,13 +370,13 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl] (
     [drvNM107_NameSuffix1] varchar(1) NOT NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
-    [drvPER02_Name] varchar(1) NOT NULL,
-    [drvPER03_CommNumberQualifier] varchar(2) NULL,
+    [drvPER02_Name] varchar(50) NOT NULL,
+    [drvPER03_CommNumberQualifier] varchar(50) NULL,
     [drvPER04_CommunicationNumber] varchar(50) NULL,
-    [drvPER05_CommNumberQualifier] varchar(1) NOT NULL,
-    [drvPER06_CommunicationNumber] varchar(1) NOT NULL,
-    [drvPER07_CommNumberQualifier] varchar(2) NULL,
-    [drvPER08_CommunicationNumber] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(50) NULL,
+    [drvPER06_CommunicationNumber] varchar(50) NULL,
+    [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
     [drvN301_AddressLine1] varchar(6000) NULL,
     [drvN302_AddressLine2] varchar(6000) NULL,
     [drvN401_City] varchar(6000) NULL,
@@ -386,7 +386,7 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl] (
     [drvDMG02_DateTimePeriod1] varchar(8) NULL,
     [drvDMG03_GenderCode1] char(1) NULL,
     [drvDMG04_MaritalStatusCode1] varchar(1) NULL,
-    [drvICM01_FrequencyCode] varchar(1) NOT NULL,
+    [drvICM01_FrequencyCode] varchar(1) NULL,
     [drvICM02_MonetaryAmount] money NULL,
     [drvICM03_Quantity] money NULL,
     [drvICM04_LocationID] varchar(8) NULL,
@@ -396,7 +396,7 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl] (
     [drvAMT00_SegmentID2] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
-    [drvHLH00_SegmentID] varchar(1) NOT NULL,
+    [drvHLH00_SegmentID] varchar(3) NOT NULL,
     [drvHLH01_HealthRelatedCode] varchar(1) NULL,
     [drvHLH02_Height] varchar(1) NOT NULL,
     [drvHLH03_Weight1] varchar(1) NOT NULL,
@@ -541,10 +541,11 @@ BEGIN
     BEGIN
         UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
-
+	
     --========================================
     -- Remove Extra Records from PER Segment
     --========================================
+	UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'IP****','IP**') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%IP**%';
     UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
     UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
     UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
@@ -646,7 +647,7 @@ BEGIN
     --==========================================
     -- Clean EE List
     --==========================================
-	
+    
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
     DELETE FROM dbo.U_EGUARD834_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
@@ -661,16 +662,16 @@ BEGIN
         SELECT DISTINCT EecEEID  FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
     )
     OR xEEID IN (
-				SELECT DISTINCT EepEEID  
-				  FROM dbo.EmpPers WITH (NOLOCK) 
-				 WHERE LTRIM(RTRIM(EepSSN)) = '000000000'
-					OR LTRIM(RTRIM(EepSSN)) = '111111111'
-					OR LTRIM(RTRIM(EepSSN)) = '888888888'
-					OR LEFT(LTRIM(EepSSN),3) = '999'
-					OR LEFT(LTRIM(EepSSN),3) = '998'
-					OR LTRIM(RTRIM(EepSSN)) = '123456789'
-					OR EepSSN IS NULL
-				)
+                SELECT DISTINCT EepEEID  
+                  FROM dbo.EmpPers WITH (NOLOCK) 
+                 WHERE LTRIM(RTRIM(EepSSN)) = '000000000'
+                    OR LTRIM(RTRIM(EepSSN)) = '111111111'
+                    OR LTRIM(RTRIM(EepSSN)) = '888888888'
+                    OR LEFT(LTRIM(EepSSN),3) = '999'
+                    OR LEFT(LTRIM(EepSSN),3) = '998'
+                    OR LTRIM(RTRIM(EepSSN)) = '123456789'
+                    OR EepSSN IS NULL
+                )
     OR xEEID IN(
     SELECT DISTINCT EecEEID  FROM dbo.EmpComp WITH (NOLOCK) WHERE  EecEEType = 'Z'
     )
@@ -747,7 +748,7 @@ BEGIN
     --======================================================
     -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
     --======================================================
-    UPDATE dbo.U_dsi_bdm_EGUARD834
+	UPDATE dbo.U_dsi_bdm_EGUARD834
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
     FROM dbo.U_dsi_bdm_EGUARD834
     JOIN dbo.EmpDedFull WITH (NOLOCK)
@@ -868,7 +869,7 @@ BEGIN
                                         WHEN EecOrgLvl1 = 'VA'    THEN '0003'
                                         WHEN EecOrgLvl1 = 'BMC'    THEN '0005'
                                         WHEN EecOrgLvl1 = 'CA'    THEN '0006'
-									END
+                                    END
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'ZZ'
         ,drvREF02_RefNumberQual3 = CASE 
@@ -916,10 +917,10 @@ BEGIN
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(EepPhoneHomeNumber),'') <> '' THEN 'HP' END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(RTRIM(EepPhoneHomeNumber),'') END
-        ,drvPER05_CommNumberQualifier = ''--CASE WHEN BdmRecType = 'EMP' THEN 'WP' END
-        ,drvPER06_CommunicationNumber = ''--CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
-        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(eepAddressEMail),'') <> '' THEN 'EM' END
-        ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(RTRIM(eepAddressEMail),'') END
+        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(eepAddressEMail),'') <> '' THEN 'EM' END
+        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(RTRIM(eepAddressEMail),'') END
+        ,drvPER07_CommNumberQualifier = ''
+        ,drvPER08_CommunicationNumber = ''
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
         ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
         ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
@@ -952,9 +953,8 @@ BEGIN
                                     WHEN 'M' THEN ((CONVERT(MONEY,EecScheduledWorkHrs) * 12) / 52)
                                 END
                             END
-        ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' THEN  CONVERT(VARCHAR(8),dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETdate(),EecDateOfLastHire) , @EndDate),112)
-                               END
-        -- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
+        ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' THEN  CONVERT(VARCHAR(8), dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GetDate() ,EecDateOfLastHire),112) END
+		-- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
         ,drvAMT00_SegmentID1 = ''
         ,drvAMT01_AmountQualifierCode1 = ''
         ,drvAMT02_MonetaryAmount1 = ''
@@ -1006,13 +1006,6 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-        AND (       LTRIM(RTRIM(ConSSN)) <> '000000000'
-				AND LTRIM(RTRIM(ConSSN)) <> '111111111'
-				AND LTRIM(RTRIM(ConSSN)) <> '888888888'
-				AND LEFT(LTRIM(ConSSN),3) <> '999'
-				AND LEFT(LTRIM(ConSSN),3) <> '998'
-				AND LTRIM(RTRIM(ConSSN)) <> '123456789'
-			)
     ;
 
     /**************************************************************************************************************
@@ -1076,17 +1069,18 @@ BEGIN
                                          WHEN LTRIM(RTRIM(BdmDedCode)) IN ('DNBUO', 'DENBU')  THEN 'BUYUP'
                                     ELSE ''
                                      END
-        ,drvHD05_CoverageLevelCode = CASE WHEN BdmRecType = 'EMP' THEN
-										  CASE 
-											  WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LBW10', 'LW10', 'LBW30', 'LBW50', 'LTDBW', 'LIFEE', 'ADEBW', 'ADEW') THEN 'EMP' 
-											  WHEN LTRIM(RTRIM(BdmDedCode)) IN ('DENB', 'DNBUO', 'DENBU', 'VISO', 'VIS') AND BdmBenOption IN ('EE', 'EET', 'EEBU', 'EEW') THEN 'EMP'
-											  WHEN BdmBenOption IN ('EES', 'EESBU', 'EEST', 'EESW') THEN 'ESP'
-											  WHEN BdmBenOption IN ('EEC','EECT', 'EECBU', 'EECW') THEN 'ECH'
-											  WHEN BdmBenOption IN ('EEF', 'EEFBU', 'EEFT', 'EECW', 'EEFW') THEN 'FAM'
-											  WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LIFES', 'ADSBW', 'ADSW') THEN 'SPO'
-											  WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW', 'ADCBW', 'ADCW') THEN 'CHD'
-										  END
-									  END
+        ,drvHD05_CoverageLevelCode = CASE 
+                                          WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LBW10', 'LW10', 'LBW30', 'LBW50', 'LTDBW', 'LIFEE', 'ADEBW', 'ADEW') THEN 'EMP' 
+                                          WHEN BdmRecType = 'EMP' AND LTRIM(RTRIM(BdmDedCode)) IN ('DENB', 'DNBUO', 'DENBU', 'VISO', 'VIS') THEN
+											   CASE WHEN BdmBenOption IN ('EE', 'EET', 'EEBU', 'EEW') THEN 'EMP'
+											 	    WHEN BdmBenOption IN ('EES', 'EESBU', 'EEST', 'EESW') THEN 'ESP'
+													WHEN BdmBenOption IN ('EEC','EECT', 'EECBU', 'EECW') THEN 'ECH'
+													WHEN BdmBenOption IN ('EEF', 'EEFBU', 'EEFT', 'EECW', 'EEFW') THEN 'FAM'
+												END
+                                          WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LIFES', 'ADSBW', 'ADSW') THEN 'SPO'
+                                          WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW', 'ADCBW', 'ADCW') THEN 'CHD'
+                                      END
+                                     
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP' 
         ,drvDTP01_DateTimeQualifier_348 =  '348' 
