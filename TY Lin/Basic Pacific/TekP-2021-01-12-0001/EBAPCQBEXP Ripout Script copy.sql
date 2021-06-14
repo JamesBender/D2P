@@ -13,8 +13,6 @@ IF OBJECT_ID('U_EBAPCQBEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EBAPCQBEXP_Fil
 GO
 IF OBJECT_ID('U_EBAPCQBEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBAPCQBEXP_EEList];
 GO
-IF OBJECT_ID('U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS') IS NOT NULL DROP TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS];
-GO
 IF OBJECT_ID('U_EBAPCQBEXP_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL];
 GO
 IF OBJECT_ID('U_EBAPCQBEXP_drvTbl_QBPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBPLANINITIAL];
@@ -117,8 +115,6 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBPLANMEMBERSPECIFICRATEINITIAL]"','1','(''DA''=''T,'')','EBAPCQBEXPZ0','50','D','60','1',NULL,'Record Header',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''T,'')','EBAPCQBEXPZ0','50','D','60','2',NULL,'PlanName',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRate"','3','(''UA''=''T'')','EBAPCQBEXPZ0','50','D','60','3',NULL,'Rate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBSTATEINSERTS]"','1','(''DA''=''T,'')','EBAPCQBEXPZ0','50','D','65','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvStateSpecs"','2','(''UA''=''T'')','EBAPCQBEXPZ0','50','D','65','2',NULL,'StateSpecificDocumentName',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -149,7 +145,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBAPCQBEXP','D40','dbo.U_EBAPCQBEXP_drvTbl_QBDEPENDENT',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBAPCQBEXP','D50','dbo.U_EBAPCQBEXP_drvTbl_QBDEPENDENTPLANINITIAL',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBAPCQBEXP','D60','dbo.U_EBAPCQBEXP_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBAPCQBEXP','D65','dbo.U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS',NULL);
 IF OBJECT_ID('U_dsi_BDM_EBAPCQBEXP') IS NULL
 CREATE TABLE [dbo].[U_dsi_BDM_EBAPCQBEXP] (
     [BdmRecType] varchar(3) NOT NULL,
@@ -242,7 +237,7 @@ CREATE TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBDEPENDENTPLANINITIAL] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(33) NULL,
-    [drvPlanName] varchar(39) NULL
+    [drvPlanName] varchar(32) NULL
 );
 IF OBJECT_ID('U_EBAPCQBEXP_drvTbl_QBEVENT') IS NULL
 CREATE TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBEVENT] (
@@ -273,7 +268,7 @@ CREATE TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] char(6) NULL,
     [drvPlanName] varchar(46) NULL,
     [drvCoverageLevel] varchar(11) NULL
 );
@@ -282,17 +277,9 @@ CREATE TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(16) NULL,
+    [drvSort] varchar(14) NULL,
     [drvPlanName] varchar(45) NULL,
     [drvRate] nvarchar(4000) NULL
-);
-IF OBJECT_ID('U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS') IS NULL
-CREATE TABLE [dbo].[U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(16) NULL,
-    [drvStateSpecs] varchar(13) NULL
 );
 IF OBJECT_ID('U_EBAPCQBEXP_EEList') IS NULL
 CREATE TABLE [dbo].[U_EBAPCQBEXP_EEList] (
@@ -726,8 +713,8 @@ BEGIN
         ,drvPlanName =    CASE WHEN BdmDedCode IN ('ANPPO','APPPT') THEN 'Anthem Classic PPO 250'
                             
                             -- 200?
-                            WHEN BdmDedCode IN ('ANHD','AHPT') AND (BdmBenOption = 'EE' OR edhChangeReason IN ('LEVNT3','LEVNT4','204','210','201','302'))  THEN 'Anthem PPO HSA -H 2500/2800/5000 (QB Only)'
-                            WHEN BdmDedCode IN ('ANHD','AHPT') AND (BdmBenOption <> 'EE' OR edhChangeReason IN ('LEVNT3','LEVNT4','204','210','201','302'))  THEN 'Anthem PPO HSA -H 2500/2800/5000 (Family Only)'
+                            WHEN BdmDedCode IN ('ANHD','AHPT') AND BdmBenOption = 'EE' AND edhChangeReason IN ('LEVNT3','LEVNT4','204','210','201','302')  THEN 'Anthem PPO HSA -H 2500/2800/5000 (QB Only)'
+                            WHEN BdmDedCode IN ('ANHD','AHPT') AND BdmBenOption <> 'EE' AND edhChangeReason IN ('LEVNT3','LEVNT4','204','210','201','302')  THEN 'Anthem PPO HSA -H 2500/2800/5000 (Family Only)'
                             
                             
                             WHEN BdmDedCode IN ('DEN','DENA','PTDD','DENPA') THEN 'Delta Dental PPO'
@@ -882,7 +869,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' 5 2'
+        ,drvSort = xEEID + ' 5'
         -- standard fields above and additional driver fields below
         ,drvPlanName =    CASE WHEN BdmDedCode IN ('FSA19') THEN 'T.Y. Lin International Flexible Benefits Plan'
                             WHEN BdmDedCode IN ('LPF19','LPT19') THEN '.Y. Lin International Limited Use FSA'
@@ -895,36 +882,6 @@ BEGIN
         AND BdmCoID = xCoID
         AND BdmDedCode IN ('FSA19','LPF19','LPT19')
     ;
-
-    ------------------
-    -- U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS DETAIL RECORD
-    ------------------
-    IF OBJECT_ID('U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS') IS NOT NULL
-        DROP TABLE dbo.U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS;
-    SELECT DISTINCT
-        drvEEID     = xEEID
-        ,drvCoID     = xCOID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort  = xEEID + ' 5 1'
-        ,drvStateSpecs =    CASE WHEN EepAddressState = 'CA' THEN 'CA-SRINSERT'
-                                WHEN EepAddressState = 'OR' THEN 'OR-SRINSERT'
-                                WHEN EepAddressState = 'NY' THEN 'NY-SR INSERT'
-                                WHEN EepAddressState = 'IL' THEN 'ILSRINSERT'
-                                WHEN EepAddressState = 'MN' THEN 'MN-CONTINSERT'
-                                WHEN EepAddressState = 'CT' THEN 'CT-SRINSERT'
-                                WHEN EepAddressState = 'TX' THEN 'TX-SRINSERT'
-                                WHEN EepAddressState = 'RI' THEN 'RI-SRINSERT'
-                                WHEN EepAddressState = 'GA' THEN 'GA-SRINSERT'
-                                WHEN EepAddressState = 'VA' THEN 'VA-SRINSERT'
-                            END
-    INTO dbo.U_EBAPCQBEXP_drvTbl_QBSTATEINSERTS
-    FROM dbo.U_EBAPCQBEXP_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_EBAPCQBEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-        AND BdmDedCode IN ('FSA19','LPF19','LPT19')
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
 
     --==========================================
     -- Set FileName

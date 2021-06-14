@@ -139,13 +139,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ETRACOL401_20210524.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ETRACOL401_20210602.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202106239','EMPEXPORT','OEACTIVE','May 14 2021 12:00AM','ETRACOL401',NULL,NULL,NULL,'202106239','Apr  2 2021 12:00AM','Mar 27 2021 12:00AM','202106231',NULL,'','BDRSHR,BDRSSL,CHSTHR,CHSTSL,CMCSAL,CMCHRL,FRMTHR,FRMTSB,FRMTSL,KANEHR,KANESL,KLTHHR,KLTHSL,PRTLND,RCWDHR,RCWDSL','202106231',dbo.fn_GetTimedKey(),NULL,'JBENDER11',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202106239','EMPEXPORT','OEPASSIVE','Mar 30 2021 12:00AM','ETRACOL401',NULL,NULL,NULL,'202106239','Mar 29 2021 12:00AM','Dec 30 1899 12:00AM','202106231',NULL,'','','202106231',dbo.fn_GetTimedKey(),NULL,'MLAGROSA14',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TransAmerica 401k Export','202106239','EMPEXPORT','ONDEM_XOE','Mar 30 2021 12:00AM','ETRACOL401',NULL,NULL,NULL,'202106239','Mar 29 2021 12:00AM','Dec 30 1899 12:00AM','202106231',NULL,'','','202106231',dbo.fn_GetTimedKey(),NULL,'MLAGROSA14',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TransAmerica 401k Export-Sched','202106239','EMPEXPORT','SCH_ETRACO','Mar 30 2021 12:00AM','ETRACOL401',NULL,NULL,NULL,'202106239','Mar 29 2021 12:00AM','Dec 30 1899 12:00AM','202106231',NULL,'','','202106231',dbo.fn_GetTimedKey(),NULL,'MLAGROSA14',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'TransAmerica 401k Export-Test','202106239','EMPEXPORT','TEST_XOE','May 20 2021 12:00AM','ETRACOL401',NULL,NULL,NULL,'202106239','May 14 2021 12:00AM','Dec 30 1899 12:00AM','202106231','75','','BDRSHR,BDRSSL,CHSTHR,CHSTSL,CMCSAL,CMCHRL,FRMTHR,FRMTSB,FRMTSL,KANEHR,KANESL,KLTHHR,KLTHSL,PRTLND,RCWDHR,RCWDSL','202106231',dbo.fn_GetTimedKey(),NULL,'JBENDER11',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'TransAmerica 401k Export-Test','202105079','EMPEXPORT','TEST_XOE','Jun  2 2021 12:00AM','ETRACOL401',NULL,NULL,NULL,'202105079','May  7 2021 12:00AM','Dec 30 1899 12:00AM','202105071','94','','','202105071',dbo.fn_GetTimedKey(),NULL,'JBENDER11',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRACOL401','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRACOL401','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRACOL401','InitialSort','C','drvInitialSort');
@@ -397,7 +397,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '401AN, 401AP, 401CF, 401CN, 401CP, 401F, 401NM, 401P';
+    SET @DedList = '401AN, 401AP, 401CF, 401CN, 401CP, 401F, 401NM, 401P, 401FN';
 
     IF OBJECT_ID('U_ETRACOL401_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ETRACOL401_DedList;
@@ -469,7 +469,7 @@ BEGIN
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
         ,PdhEmpAferTax     = SUM(CASE WHEN PdhDedCode IN ('401AN', '401AP') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhEmpBeforeTax     = SUM(CASE WHEN PdhDedCode IN ('401NM', '401P', '401CF', '401CN', '401CP', '401F') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhEmpBeforeTax     = SUM(CASE WHEN PdhDedCode IN ('401NM', '401P', '401CF', '401CN', '401CP', '401F','401FN') THEN PdhEECurAmt ELSE 0.00 END)
     INTO dbo.U_ETRACOL401_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_ETRACOL401_DedList WITH (NOLOCK)
@@ -651,7 +651,7 @@ BEGIN
                    GROUP BY PgpPayGroup) as PayGRP
         on PayGRP.PgpPayGroup =  eecpaygroup
     WHERE --(EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (PdhEmpAferTax > 0 OR PdhEmpBeforeTax > 0 OR PehCurHrs > 0 OR PehCurAmt > 0))) OR (EecEmplStatus = 'T' AND @StartDate BETWEEN EecDateOfTermination AND DATEADD(DAY,30,EecDateOfTermination))
-    (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (PdhEmpAferTax > 0 OR PdhEmpBeforeTax > 0 OR PehCurHrs > 0 AND PehCurAmt > 0)) OR (EecEmplStatus = 'T' AND (@StartDate BETWEEN EecDateOfTermination AND DATEADD(DAY,30,EecDateOfTermination) OR @StartDAte < EecDateOfTermination)))
+    (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (PdhEmpAferTax > 0 OR PdhEmpBeforeTax > 0 OR PehCurHrs > 0 OR PehCurAmt > 0)) OR (EecEmplStatus = 'T' AND (@StartDate BETWEEN EecDateOfTermination AND DATEADD(DAY,30,EecDateOfTermination) OR @StartDAte < EecDateOfTermination)))
     ;
 
     Delete from dbo.U_ETRACOL401_drvTbl where dbo.dsi_BDM_fn_GetCurrentCOID(drveeid) <> drvcoid

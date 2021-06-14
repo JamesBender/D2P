@@ -202,9 +202,9 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRINC4012_20210524.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRINC4012_20210609.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K OnDemand','202104279','EMPEXPORT','ONDEM_XOE','May 24 2021 12:00AM','EPRINC4012',NULL,NULL,NULL,'202104279','Apr 23 2021 12:00AM','Dec 30 1899 12:00AM','202104271','1627','','BWPAY,DTTBW,MTSBW,NALBW,NASBW,PRICBW,RACBW','202104271',dbo.fn_GetTimedKey(),NULL,'us3jBeCRO1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K OnDemand','202105219','EMPEXPORT','ONDEM_XOE','Jun  9 2021 12:00AM','EPRINC4012',NULL,NULL,NULL,'202105219','May 21 2021 12:00AM','Dec 30 1899 12:00AM','202105211','2008','','BWPAY,DTTBW,MTSBW,NALBW,NASBW,PRICBW,RACBW','202105211',dbo.fn_GetTimedKey(),NULL,'us3jBeCRO1008',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','M8C6I,JE6DL,EV7Z8,EDV92,CJC4Y,EV2EI,JG341',NULL,NULL,NULL,'Principal 401K Scheduled','202104279','EMPEXPORT','SCH_PRINOE','Apr 27 2020  3:17PM','EPRINC4012',NULL,NULL,NULL,'202104279','Mar 27 2000 12:00AM','Dec 30 1899 12:00AM','202104271','132','','','202104271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRINC4012','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRINC4012','ExportPath','V',NULL);
@@ -246,7 +246,7 @@ CREATE TABLE [dbo].[U_EPRINC4012_D10] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] char(9) NOT NULL,
-    [drvSubSort] varchar(1) NOT NULL,
+    [drvSubSort] char(1) NULL,
     [drvEmployeeIDNumber] char(11) NULL,
     [drvEmployeeName] varchar(203) NULL,
     [drvDateofBirth] varchar(30) NULL,
@@ -681,7 +681,7 @@ BEGIN
     AND ExpSelectbyField = 'EecPayGroup'
 
 
-    
+    --SELECT @PayGroupList;
 
 
     --==========================================
@@ -701,8 +701,8 @@ BEGIN
             OR LEFT(EepSSN, 3) IN ('999','123','111')
     );
 
-    --SELECT COUNT(*) AS PreCoount FROM dbo.U_EPRINC4012_EEList;
-    --SELECT @PayGroupList AS PayGroups;
+--    SELECT COUNT(*) AS PreCoount FROM dbo.U_EPRINC4012_EEList;
+--    SELECT @PayGroupList AS PayGroups;
 
     
     IF @PayGroupList IS NOT NULL
@@ -710,7 +710,7 @@ BEGIN
         SELECT DISTINCT EecEEID
         FROM dbo.EmpComp WITH (NOLOCK)
         WHERE EecPayGroup IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable(@PayGroupList))
-            AND EecEmplStatus <>'T'
+            --AND EecEmplStatus <>'T'
         );
 
 
@@ -730,11 +730,16 @@ BEGIN
     SELECT audKey1Value audEEID, audKey2Value audKey2, audKey3Value audKey3,
      audTableName, audFieldName, audAction, audDateTime, audOldValue, audNewValue
       INTO dbo.U_EPRINC4012_Audit
-      FROM dbo.U_EPRINC4012_EEList WITH (NOLOCK)
+      FROM dbo.vw_AuditData WITH (NOLOCK)         
+      JOIN dbo.U_EPRINC4012_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName 
+        AND audFieldName = aFieldName
+        AND audDateTime BETWEEN DATEADD(DAY,-30,@StartDate) /*@StartDate*/ AND DATEADD(DAY,30,@EndDate)
+      /*FROM dbo.U_EPRINC4012_EEList WITH (NOLOCK)
       JOIN dbo.U_EPRINC4012_AuditFields WITH (NOLOCK) ON 1 = 1
       JOIN dbo.vw_AuditData WITH (NOLOCK) ON xEEID = audKey1Value AND xcoid = audKey2Value
-      AND audDateTime BETWEEN DATEADD(DAY,-30,@StartDate) /*@StartDate*/ AND DATEADD(DAY,30,@EndDate) -- @EndDate
-      AND audTableName = aTableName AND audFieldName = aFieldName
+      --AND audDateTime BETWEEN DATEADD(DAY,-30,@StartDate) /*@StartDate*/ AND DATEADD(DAY,30,@EndDate) -- @EndDate
+      AND audTableName = aTableName AND audFieldName = aFieldName*/
  
 -- Delete Record if termination is over 2 weeks old
     DELETE a
@@ -742,7 +747,7 @@ BEGIN
     INNER JOIN EmpComp b ON b.eeceeid = a.xeeid
     and b.eeccoid = a.xcoid
     WHERE b.EecEmplStatus = 'T' and NOT EXISTS (SELECT 1 FROM U_EPRINC4012_Audit WHERE a.xeeid = audeeid)
-    AND EecTermReason != 'TRO'
+    --AND EecTermReason != 'TRO' 
 
     --==========================================
     -- Create Deduction List
@@ -848,7 +853,7 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1')
         ,drvInitialSort = ISNULL(EECEMPNO,'')
-        ,drvSubSort = 'A'
+        ,drvSubSort = EecEmplStatus
         -- standard fields above and additional driver fields below
         ,drvEmployeeIDNumber = EepSSN
         ,drvEmployeeName = rtrim(EepNameLast) + ',' +  rtrim(rtrim(EepNameFirst) + ' ' +   isnull(Substring(rtrim(nullif(EepNameMiddle,'Z')),1,1),''))
