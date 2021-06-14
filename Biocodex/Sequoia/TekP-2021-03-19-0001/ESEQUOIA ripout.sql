@@ -472,8 +472,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStartDateDays', '30'
-	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30'
+	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStartDateDays', '30');
+	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -638,17 +638,15 @@ BEGIN
         ,drvEnrollmentStartDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDAte, '1/1/2021') --'1/1/' + FORMAT(DATEPART(YEAR, GETDATE()), '0000') --2020' --BdmBenStartDate
         ,drvEnrollmentEndDate = BdmBenStopDate
         ,drvOriginalEnrollmentDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDAte, '1/1/2021')
-        ,drvApprovedAmount = CASE WHEN BdmDedCode IN ('LIFEE', 'SSLFE', 'SCLFE') THEN FORMAT( cast(isnull( (Select max(bdmusgfield1) from dbo.U_dsi_BDM_ESEQUOIA A where A.bdmeeid =  xeeid and A.bdmdedcode = bdmdedcode),0) as money), '#0.00') END
-        ,drvRequestedAmount = CASE WHEN BdmDedCode IN ('LIFEE', 'SSLFE', 'SCLFE') THEN FORMAT(isnull(amtDesiredAmt,0), '#0.00') END
+        ,drvApprovedAmount = CASE WHEN BdmDedCode IN ('GTLEE', 'GLTSP', 'GTLCH') THEN FORMAT( cast(isnull( (Select max(bdmusgfield1) from dbo.U_dsi_BDM_ESEQUOIA A where A.bdmeeid =  xeeid and A.bdmdedcode = bdmdedcode),0) as money), '#0.00') END
+        ,drvRequestedAmount = CASE WHEN BdmDedCode IN ('GTLEE', 'GLTSP', 'GTLCH') THEN FORMAT(isnull(amtDesiredAmt,0), '#0.00') END
         ,drvEnrollmentType = 'A'  --CASE WHEN BdmBenStatus = 'A' THEN 'A' END
 
-        ,drvCoverateDesc =    CASE WHEN BdmDedCode IN ('SSTD', 'SLTD','VIS') THEN 'BASE'
-                            WHEN BdmDedCode IN ('SLTDB', 'SSTDB' ,'VISBU' ) THEN 'BUYUP'
-                            END
-        ,drvCoverageTier =    CASE WHEN BdmBenOption = '1EE' THEN 'EMP' 
-                                WHEN BdmBenOption IN ('2EES','3EEDP') THEN 'ESP'
-                                WHEN BdmBenOption IN ('4EEC') THEN 'ECH'
-                                WHEN BdmBenOption IN ('5EEF') THEN 'FAM'
+        ,drvCoverateDesc =    ''
+        ,drvCoverageTier =    CASE WHEN BdmBenOption = 'EE' THEN 'EMP' 
+                                WHEN BdmBenOption IN ('EES','3EEDP') THEN 'ESP'
+                                WHEN BdmBenOption IN ('EEC') THEN 'ECH'
+                                WHEN BdmBenOption IN ('EEF') THEN 'FAM'
                             END
     INTO dbo.U_ESEQUOIA_drvTbl
     FROM dbo.U_ESEQUOIA_EEList WITH (NOLOCK)

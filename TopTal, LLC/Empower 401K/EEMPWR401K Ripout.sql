@@ -70,7 +70,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAEndDate"','44','(''UD101''=''F'')','EEMPWR401KZ0','10','D','10','464',NULL,'LOA End Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressEmail"','45','(''UA''=''F'')','EEMPWR401KZ0','40','D','10','474',NULL,'Work Email Address',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAnnSalary"','46','(''UA''=''F'')','EEMPWR401KZ0','17','D','10','514',NULL,'Salary Amount',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"A"','47','(''DA''=''F'')','EEMPWR401KZ0','2','D','10','531',NULL,'Salary Amount Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryQualifier"','47','(''UA''=''F'')','EEMPWR401KZ0','2','D','10','531',NULL,'Salary Amount Qualifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTermReason"','48','(''UA''=''F'')','EEMPWR401KZ0','20','D','10','533',NULL,'Termination Reason Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','49','(''SS''=''F'')','EEMPWR401KZ0','1','D','10','553',NULL,'Sarbanes Oxley Reporting Indicator',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','50','(''SS''=''F'')','EEMPWR401KZ0','6','D','10','554',NULL,'Filler',NULL,NULL);
@@ -84,11 +84,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EEMPWR401K_20210506.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EEMPWR401K_20210602.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Empower 401K','202105059','EMPEXPORT','ONDEM_XOE',NULL,'EEMPWR401K',NULL,NULL,NULL,'202105059','May  5 2021  3:36PM','May  5 2021  3:36PM','202105051',NULL,'','','202105051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Empower 401K-Sched','202105059','EMPEXPORT','SCH_EEMPWR',NULL,'EEMPWR401K',NULL,NULL,NULL,'202105059','May  5 2021  3:36PM','May  5 2021  3:36PM','202105051',NULL,'','','202105051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Empower 401K-Test','202105059','EMPEXPORT','TEST_XOE',NULL,'EEMPWR401K',NULL,NULL,NULL,'202105059','May  5 2021  3:36PM','May  5 2021  3:36PM','202105051',NULL,'','','202105051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Empower 401K-Test','202105141','EMPEXPORT','TEST_XOE','May 25 2021  8:02PM','EEMPWR401K',NULL,NULL,NULL,'202105141','May 14 2021 12:00AM','May 15 2021 12:00AM','202105141','232','eecPayGroup','CRTEAM','202105141',dbo.fn_GetTimedKey(),NULL,'us3cPeTOP1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPWR401K','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPWR401K','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPWR401K','Testing','V','Y');
@@ -136,6 +136,7 @@ CREATE TABLE [dbo].[U_EEMPWR401K_drvTbl] (
     [drvLOAEndDate] datetime NULL,
     [drvAddressEmail] varchar(50) NULL,
     [drvAnnSalary] money NULL,
+	[drvSalaryQualifier] varchar(2) NULL,
     [drvTermReason] varchar(21) NULL
 );
 IF OBJECT_ID('U_EEMPWR401K_EEList') IS NULL
@@ -231,10 +232,16 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EEMPWR401K_EEList
-    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EEMPWR401K_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    DELETE EEs
+    FROM dbo.U_EEMPWR401K_EEList EEs
+    JOIN dbo.EmpPers ON eepEEID = xEEID
+    WHERE(xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EEMPWR401K_EEList GROUP BY xEEID HAVING COUNT(1) > 1))
+    --Remove Test Employees
+    OR LEFT(eepSSN,3) = '999'
+    ;
 
+    
    --==========================================
     -- Create Deduction List
     --==========================================
@@ -328,7 +335,7 @@ BEGIN
                                     WHEN EecEmplStatus = 'A' AND EecDateOfOriginalHire <> EecDateOfLastHire THEN (SELECT MAX(EshStatusStartDate) FROM dbo.EmpHStat WHERE EshEEID = xEEID AND EshEmplStatus = 'T' AND EshStatusStartDate <= @EndDate)
                                 END
         ,drvDateOfReHire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
-        ,drvPayDate = PrgPayDate
+        ,drvPayDate =(SELECT MAX(PrgPayDate) FROM dbo.U_EEMPWR401K_PEarHist)
         ,drvContAmt1 = dbo.dsi_fnPadZero(PdhEEContAmt_1,10,2)
         ,drvContAmt2 = dbo.dsi_fnPadZero(PdhEEContAmt_2,10,2)
         ,drvContAmt3 = dbo.dsi_fnPadZero(PdhEEContAmt_3,10,2)
@@ -339,12 +346,13 @@ BEGIN
         ,drvLOAStartDate = CASE WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate END
         ,drvLOAEndDate = CASE WHEN EecEmplStatus = 'A' THEN (SELECT MAX(EshStatusStopDate) FROM dbo.EmpHStat WHERE EshEEID = xEEID AND EshEmplStatus = 'L' AND EshStatusStartDate <= @EndDate) END
         ,drvAddressEmail = COALESCE(EepAddressEMail, EepAddressEmailAlternate)
-        ,drvAnnSalary = EecAnnSalary
-        ,drvTermReason = CASE WHEN EecEmplStatus = 'T' THEN 
+        ,drvAnnSalary = CAST(CASE WHEN EecSalaryOrHourly = 'H' THEN EecHourlyPayRate ELSE EecAnnSalary END AS MONEY)
+        ,drvSalaryQualifier = CASE WHEN EecSalaryOrHourly = 'H' THEN 'H' ELSE 'A' END
+		,drvTermReason = CASE WHEN EecEmplStatus = 'T' THEN 
                             CASE EecTermReason
-                                WHEN '203' THEN 'Death'
-                                WHEN '202' THEN 'Retirement'
-                            ELSE 'Seperation of Service'
+                                WHEN '203' THEN 'DE'
+                                WHEN '202' THEN 'R'
+                            ELSE 'S'
                             END
                          END
     INTO dbo.U_EEMPWR401K_drvTbl
@@ -358,13 +366,17 @@ BEGIN
     JOIN dbo.EmpMPhon WITH (NOLOCK)
         ON EfoEEID = xEEID
         AND EfoPhoneType = 'CEL'
-    LEFT 
     JOIN dbo.U_EEMPWR401K_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
     LEFT 
     JOIN dbo.U_EEMPWR401K_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
-    ;
+    WHERE EecDateOfTermination >= @StartDate
+    OR EecDateOfTermination IS NULL  
+    OR PdhEEContAmt_1 IS NOT NULL
+    OR PdhEEContAmt_2 IS NOT NULL
+    OR PdhEEContAmt_3 IS NOT NULL
+      ; 
 
     --==========================================
     -- Set FileName
