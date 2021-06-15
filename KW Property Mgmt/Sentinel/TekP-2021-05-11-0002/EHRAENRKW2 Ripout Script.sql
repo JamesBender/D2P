@@ -270,6 +270,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHRAENRKW2', 'ONDEMAND';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHRAENRKW2', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHRAENRKW2', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHRAENRKW2', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHRAENRKW2', 'TEST';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EHRAENRKW2';
 
@@ -324,7 +325,7 @@ BEGIN
     DELETE FROM dbo.U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','HMHR,HMHRT');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','HMHR,HMHRT,HMHR,SHMHR');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@EndDate-30);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
@@ -347,12 +348,12 @@ BEGIN
     --HRINP (HRA Inpatient)
     INSERT INTO dbo.U_dsi_bdm_EmpDeductions (eedformatcode, eedcoid, eedeeid, eedbenamt, eedbenoption, eedbenstatus, eedbenstartdate, eedbenstopdate, eeddedcode, eedvalidforexport, deddedcode, deddedtype)
      (select eedformatcode, eedcoid, eedeeid, eedbenamt, eedbenoption, eedbenstatus, eedbenstartdate, eedbenstopdate, 'HRINP', eedvalidforexport, 'HRINP', deddedtype
-    FROM dbo.U_dsi_bdm_EmpDeductions with (nolock) WHERE eedformatcode = @FormatCode and eeddedcode IN ('HMHR','HMHRT') and eedValidForExport = 'Y');
+    FROM dbo.U_dsi_bdm_EmpDeductions with (nolock) WHERE eedformatcode = @FormatCode and eeddedcode IN ('HMHR','HMHRT','HMHR','SHMHR') and eedValidForExport = 'Y');
 
     --HROTP (HRA Outpatient)
     INSERT INTO dbo.U_dsi_bdm_EmpDeductions (eedformatcode, eedcoid, eedeeid, eedbenamt, eedbenoption, eedbenstatus, eedbenstartdate, eedbenstopdate, eeddedcode, eedvalidforexport, deddedcode, deddedtype)
      (select eedformatcode, eedcoid, eedeeid, eedbenamt, eedbenoption, eedbenstatus, eedbenstartdate, eedbenstopdate, 'HROTP', eedvalidforexport, 'HROTP', deddedtype
-    FROM dbo.U_dsi_bdm_EmpDeductions with (nolock) WHERE eedformatcode = @FormatCode and eeddedcode IN ('HMHR','HMHRT') and eedValidForExport = 'Y');
+    FROM dbo.U_dsi_bdm_EmpDeductions with (nolock) WHERE eedformatcode = @FormatCode and eeddedcode IN ('HMHR','HMHRT','HMHR','SHMHR') and eedValidForExport = 'Y');
 
 
     --==========================================
@@ -481,7 +482,8 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvPlanName = CASE EedDedCode
                         WHEN 'HMHR' THEN 'HRA ER ' +  CAST(YEAR(@PlanYearStart) AS VARCHAR(4)) 
-                        WHEN 'HMHRT' THEN 'HRA ER ' +  CAST(YEAR(@PlanYearStart) AS VARCHAR(4)) 
+                        WHEN 'SHMHR' THEN 'HRA ER ' +  CAST(YEAR(@PlanYearStart) AS VARCHAR(4)) 
+                        --WHEN 'HMHRT' THEN 'HRA ER ' +  CAST(YEAR(@PlanYearStart) AS VARCHAR(4)) 
                         WHEN 'HRINP' THEN 'HRA Inpatient ' +  CAST(YEAR(@PlanYearStart) AS VARCHAR(4)) 
                         WHEN 'HROTP' THEN 'HRA Outpatient ' +  CAST(YEAR(@PlanYearStart) AS VARCHAR(4)) 
                         END
@@ -489,10 +491,10 @@ BEGIN
         ,drvEEGoalAmt = ''
         ,drvBenStopDate = CASE WHEN EecEmplStatus <> 'T' THEN replace(convert(varchar, EedBenStopDate,101),'/','') END
         ,drvERContLevel = CASE 
-                            WHEN EedBenOPtion = 'EE' THEN 'Ind'
-                            WHEN EedBenoption = 'EES' THEN 'IndSpouse'
-                            WHEN EedBenOption = 'EEC' THEN 'IndChild'
-                            WHEN EedBenOption = 'EEF' THEN 'Family'
+                            WHEN EedBenOPtion IN ('EE','EENW','EEO') THEN 'Ind'
+                            WHEN EedBenoption IN ('EES','EECNW','EECNW') THEN 'IndSpouse'
+                            WHEN EedBenOption IN ('EEC', 'EESNW','EESNW','EEDP') THEN 'IndChild'
+                            WHEN EedBenOption IN ('EEF', 'EEFNW','EEFNW','EEDPF') THEN 'Family'
                             ELSE '' 
                             END 
         ,drvERContAmt = ''    --EedERAmt -- Not being used. Update Ascdeff to ('UNT2'='T|') if needed.
