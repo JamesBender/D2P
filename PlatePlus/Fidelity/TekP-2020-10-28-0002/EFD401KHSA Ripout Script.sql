@@ -264,13 +264,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EFD401KHSA_20210614.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EFD401KHSA_20210616.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202105219','EMPEXPORT','OEACTIVE','Jun 14 2021 12:00AM','EFD401KHSA',NULL,NULL,NULL,'202105219','May 21 2021 12:00AM','Dec 30 1899 12:00AM','202105211','0','','CONTR,SEMIE,SEMI,WKLY,WEEKS','202105211',dbo.fn_GetTimedKey(),NULL,'us3jBePLA1016',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202105219','EMPEXPORT','OEPASSIVE','Mar  3 2021  1:56PM','EFD401KHSA',NULL,NULL,NULL,'202105219','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202105211','3487','','','202105211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401K HSA Export','202105219','EMPEXPORT','ONDEM_XOE','Mar  3 2021  1:57PM','EFD401KHSA',NULL,NULL,NULL,'202105219','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202105211','3522','','','202105211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401K HSA Export-Sched','202105219','EMPEXPORT','SCH_EFD401','Mar  3 2021  1:57PM','EFD401KHSA',NULL,NULL,NULL,'202105219','Feb 24 2021 12:34PM','Feb 24 2021 12:34PM','202105211','3522','','','202105211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','JEY43',NULL,NULL,NULL,'Fidelity 401K HSA Export-Test','202105219','EMPEXPORT','TEST_XOE','Jun 14 2021 10:37AM','EFD401KHSA',NULL,NULL,NULL,'202105219','May 21 2021 12:00AM','Dec 30 1899 12:00AM','202105211','465','','CONTR,SEMIE,SEMI,WKLY,WEEKS','202105211',dbo.fn_GetTimedKey(),NULL,'us3jBePLA1016',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','JEY43',NULL,NULL,NULL,'Fidelity 401K HSA Export-Test','202105289','EMPEXPORT','TEST_XOE','Jun 14 2021  7:39PM','EFD401KHSA',NULL,NULL,NULL,'202105289','May 28 2021 12:00AM','Dec 30 1899 12:00AM','202105281','682','eecPayGroup','SEMIE,SEMI,WKLY,WEEKS','202105281',dbo.fn_GetTimedKey(),NULL,'us3cPePLA1016',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFD401KHSA','InitialSort','C','drvSort');
@@ -503,7 +503,7 @@ CREATE TABLE [dbo].[U_EFD401KHSA_drvTbl_HS] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] char(6) NULL,
+    [drvSort] varchar(16) NULL,
     [drvPlanNumber] varchar(5) NULL,
     [drvSSN] varchar(11) NULL,
     [drvPlanYear] nvarchar(4000) NULL,
@@ -1416,7 +1416,7 @@ WHERE EedFormatCode = 'EFD401KHSA'
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EdhChangeReason --'2 ' + xEEID + ' C'
+        ,drvSort = '2 ' + xEEID + ' C'
         -- standard fields above and additional driver fields below
         ,drvPlanNumber = CASE WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') THEN '91507' END
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(RTRIM(eepSSN),5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
@@ -1425,10 +1425,10 @@ WHERE EedFormatCode = 'EFD401KHSA'
                                 WHEN BdmDedCode IN ('HSACF','HSAF') THEN '13'
                             END
         ,drvEnrollmentStatusDate =    CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
-                                        --ELSE dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, CAST('1/1/' + FORMAT(DATEPART(YEAR, GETDATE()), '####') AS DATE)) 
-                                        WHEN EdhChangeReason IN ('204','107','LEVNT4','105','201') THEN dbo.dsi_fnGetMinMaxDates('MIN', '1/1/2021',
-                                                                (SELECT MAX(A.BdmBenStartDate) FROM dbo.U_dsi_BDM_EFD401KHSA A WITH (NOLOCK) WHERE A.BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') AND A.BdmEEID = xEEID AND A.BdmCOID = xCOID))
-                                        ELSE '1/1/2021'
+                                        WHEN EecEmplStatus = 'A' AND EecDateOfOriginalHire BETWEEN '1/1/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) AND '12/31/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) THEN BdmBenStartDate
+                                        WHEN EdhChangeReason IN ('204','107','LEVNT4','105','201') THEN dbo.dsi_fnGetMinMaxDates('MAX', '1/1/2021',
+                                                                (SELECT MIN(A.BdmBenStartDate) FROM dbo.U_dsi_BDM_EFD401KHSA A WITH (NOLOCK) WHERE A.BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') AND A.BdmEEID = xEEID AND A.BdmCOID = xCOID))
+                                        ELSE '1/1/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR)
                                     END
         ,drvEnrollmentStatus = CASE WHEN BdmBenStatus IN ('T','C') THEN 'I' ELSE 'A' END
         ,drvClientBillingFlag = CASE WHEN EecEmplStatus = 'T' THEN 'N' ELSE 'Y' END
