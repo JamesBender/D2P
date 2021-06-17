@@ -1670,115 +1670,6 @@ BEGIN
 
      /*Updates for Table to insert dependent for LIFES*/
      
-     SELECT '--Start LIFES (I think its actually LIFEC)';
-
-     INSERT INTO dbo.U_ESUN834EX2_DrvTbl
-    SELECT distinct drvINS01_YesNoCond = 'N'
-     ,drvINS02_RelationshipCode = '19'
-     ,drvINS03_MaintTypeCode 
-     ,drvINS04_MaintReasonCode
-     ,drvINS05_BenefitStatusCode
-     ,drvINS0601_MEDICAREPLANCODE 
-     ,drvINS0602_EligibilityRsnCode 
-     ,drvINS07_COBRAQualEventCode 
-     ,drvINS08_EmploymentStatusCode = ''
-     ,drvINS09_StudentStatusCode = ''
-     ,drvINS10_ResponseCode = CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
-                                 ELSE 'N'
- 
-                                 END
-     ,drvINS11_DateTimeFormatQual 
-     ,drvINS12_DateTimePeriod
-     ,drvINS17 = ''
-     ,drvREF01_RefNumberQual1 
-     ,drvREF02_RefNumberQual1 
-     -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-     ,drvREF01_RefNumberQual2 
-     ,drvREF02_RefNumberQual2 
-     -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-     ,drvDTP00_DateTime1 
-     ,drvDTP01_DateTimeQualifier1 
-     ,drvDTP02_DateTimeFormatQual1
-     ,drvDTP03_DateTimePeriod1
-     -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-     ,drvDTP00_DateTime2 
-     ,drvDTP01_DateTimeQualifier2
-     ,drvDTP02_DateTimeFormatQual2 
-     ,drvDTP03_DateTimePeriod2 
-     --=====================
-     -- LOOP 2100A RECORDS
-     --=====================
-     ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-', ConNameLast)
-     ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-', ConNameFirst)
-     ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',LEFT(ConNameMiddle,1))
-     ,drvNM106_NamePrefix1 = ''
-     ,drvNM107_NameSuffix1 = '' --ConNameSuffix
- 
-     ,drvNM108_IDCodeQualifier1 = CASE WHEN ISNULL(ConSSN, '') <> '' THEN '34' END
-     ,drvNM109_IDCode1 = CASE WHEN ISNULL(ConSSN, '') <> '' THEN ConSSN END
-     ,drvPER02_Name = ''
-     ,drvPER03_CommNumberQualifier = '' 
-     ,drvPER04_CommunicationNumber = ''
-     ,drvPER05_CommNumberQualifier = ''
-     ,drvPER06_CommunicationNumber = ''
-     ,drvPER07_CommNumberQualifier = ''
-     ,drvPER08_CommunicationNumber = ''
-     ,drvN301_AddressLine1
-     ,drvN302_AddressLine2
-     ,drvN401_City 
-     ,drvN402_State 
-     ,drvN403_Zip 
-     ,drvN404_CountryCode
-     ,drvDMG02_DateTimePeriod1 = CONVERT(VARCHAR(8),ConDateOfBirth,112)
-     ,drvDMG03_GenderCode1 = CASE WHEN ConGender = 'M' THEN 'Male'
-                                  WHEN ConGender = 'F' THEN 'Female'
-                             END
-     ,drvDMG04_MaritalStatusCode1
-     --If drvICM01_FrequencyCode is Populated, then send ICM Segment
-     ,drvICM01_FrequencyCode = ''
-     ,drvICM02_MonetaryAmount = ''
-     ,drvICM03_Quantity = ''
-     ,drvICM04_LocationID = ''
-     -- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
-     ,drvAMT00_SegmentID1 
-     ,drvAMT01_AmountQualifierCode1 
-     ,drvAMT02_MonetaryAmount1
-     -- If drvAMT00_AmountQualifierCode2 = 'AMT' is Populated, then Send AMT Segment
-     ,drvAMT00_SegmentID2 
-     ,drvAMT01_AmountQualifierCode2 
-     ,drvAMT02_MonetaryAmount2 
-     -- If drvHLH00_SegmentID = 'HLH' is Populated, then Send HLH Segment
-     ,drvHLH00_SegmentID 
-     ,drvHLH01_HealthRelatedCode 
-     ,drvHLH02_Height
-     ,drvHLH03_Weight1
-     ,drvHLH04_Weight2
-     ,drvHLH05_Description1
-     ,drvHLH06_CurrentHealthConditionCode 
-     ,drvHLH07_Description2 
-     ---------------------------------
-     ,drvEEID 
-     ,drvCOID 
-     ,drvDepRecID = ConSystemID
-     ,drvSSN 
-     ,drvInitialSort 
-     ,drvSubSort = CONVERT(CHAR(9),RTRIM(drvSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-     FROM dbo.U_ESUN834EX2_DrvTbl
-     JOIN (
-     Select * from contacts where ConEEID in (
-     Select distinct drveeid from dbo.U_ESUN834EX2_DrvTbl_2300 A where 
- 
-     drvHD03_InsuranceLineCode in('AF') 
-     and drvHD05_CoverageLevelCode = 'CHD' and not exists 
-     (SELECT 1 FROM dbo.U_ESUN834EX2_DrvTbl B WHERE A.drveeid = B.drveeid and B.drvdeprecid is not null and drvINS02_RelationshipCode = '19'))
-     ) A
-     ON ConEEID = drveeid
-     and drvINS01_YesNoCond = 'Y'
-     AND ConIsDependent = 'Y' and ConIsActive = 'Y'
-     And ConRelationship IN ('CHL','STC', 'DPC') 
-
-    Delete from dbo.U_ESUN834EX2_DrvTbl_2300 where drvsubsort is null -- JCB
-
     
 
      --Duplicate LIFEC 
@@ -1874,6 +1765,119 @@ BEGIN
     and drvHD03_InsuranceLineCode in ('AF') and drvHD05_CoverageLevelCode = 'EMP' and exists(Select 1 from U_dsi_bdm_ESUN834EX2 where bdmeeid = drveeid and bdmdedcode = 'LIFEC')
     --End LIFEC
     
+
+     --Start LIFES (I think its actually LIFEC)';
+
+     INSERT INTO dbo.U_ESUN834EX2_DrvTbl
+    SELECT distinct drvINS01_YesNoCond = 'N'
+     ,drvINS02_RelationshipCode = '19'
+     ,drvINS03_MaintTypeCode 
+     ,drvINS04_MaintReasonCode
+     ,drvINS05_BenefitStatusCode
+     ,drvINS0601_MEDICAREPLANCODE 
+     ,drvINS0602_EligibilityRsnCode 
+     ,drvINS07_COBRAQualEventCode 
+     ,drvINS08_EmploymentStatusCode = ''
+     ,drvINS09_StudentStatusCode = ''
+     ,drvINS10_ResponseCode = CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
+                                 ELSE 'N'
+ 
+                                 END
+     ,drvINS11_DateTimeFormatQual 
+     ,drvINS12_DateTimePeriod
+     ,drvINS17 = ''
+     ,drvREF01_RefNumberQual1 
+     ,drvREF02_RefNumberQual1 
+     -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
+     ,drvREF01_RefNumberQual2 
+     ,drvREF02_RefNumberQual2 
+     -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
+     ,drvDTP00_DateTime1 
+     ,drvDTP01_DateTimeQualifier1 
+     ,drvDTP02_DateTimeFormatQual1
+     ,drvDTP03_DateTimePeriod1
+     -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
+     ,drvDTP00_DateTime2 
+     ,drvDTP01_DateTimeQualifier2
+     ,drvDTP02_DateTimeFormatQual2 
+     ,drvDTP03_DateTimePeriod2 
+     --=====================
+     -- LOOP 2100A RECORDS
+     --=====================
+     ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-', ConNameLast)
+     ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-', ConNameFirst)
+     ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',LEFT(ConNameMiddle,1))
+     ,drvNM106_NamePrefix1 = ''
+     ,drvNM107_NameSuffix1 = '' --ConNameSuffix
+ 
+     ,drvNM108_IDCodeQualifier1 = CASE WHEN ISNULL(ConSSN, '') <> '' THEN '34' END
+     ,drvNM109_IDCode1 = CASE WHEN ISNULL(ConSSN, '') <> '' THEN ConSSN END
+     ,drvPER02_Name = ''
+     ,drvPER03_CommNumberQualifier = '' 
+     ,drvPER04_CommunicationNumber = ''
+     ,drvPER05_CommNumberQualifier = ''
+     ,drvPER06_CommunicationNumber = ''
+     ,drvPER07_CommNumberQualifier = ''
+     ,drvPER08_CommunicationNumber = ''
+     ,drvN301_AddressLine1
+     ,drvN302_AddressLine2
+     ,drvN401_City 
+     ,drvN402_State 
+     ,drvN403_Zip 
+     ,drvN404_CountryCode
+     ,drvDMG02_DateTimePeriod1 = CONVERT(VARCHAR(8),ConDateOfBirth,112)
+     ,drvDMG03_GenderCode1 = CASE WHEN ConGender = 'M' THEN 'Male'
+                                  WHEN ConGender = 'F' THEN 'Female'
+                             END
+     ,drvDMG04_MaritalStatusCode1
+     --If drvICM01_FrequencyCode is Populated, then send ICM Segment
+     ,drvICM01_FrequencyCode = ''
+     ,drvICM02_MonetaryAmount = ''
+     ,drvICM03_Quantity = ''
+     ,drvICM04_LocationID = ''
+     -- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
+     ,drvAMT00_SegmentID1 
+     ,drvAMT01_AmountQualifierCode1 
+     ,drvAMT02_MonetaryAmount1
+     -- If drvAMT00_AmountQualifierCode2 = 'AMT' is Populated, then Send AMT Segment
+     ,drvAMT00_SegmentID2 
+     ,drvAMT01_AmountQualifierCode2 
+     ,drvAMT02_MonetaryAmount2 
+     -- If drvHLH00_SegmentID = 'HLH' is Populated, then Send HLH Segment
+     ,drvHLH00_SegmentID 
+     ,drvHLH01_HealthRelatedCode 
+     ,drvHLH02_Height
+     ,drvHLH03_Weight1
+     ,drvHLH04_Weight2
+     ,drvHLH05_Description1
+     ,drvHLH06_CurrentHealthConditionCode 
+     ,drvHLH07_Description2 
+     ---------------------------------
+     ,drvEEID 
+     ,drvCOID 
+     ,drvDepRecID = ConSystemID
+     ,drvSSN 
+     ,drvInitialSort 
+     ,drvSubSort = CONVERT(CHAR(9),RTRIM(drvSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+     FROM dbo.U_ESUN834EX2_DrvTbl
+     JOIN (
+            Select * from contacts where ConEEID in (
+                                                        Select distinct drveeid 
+                                                        from dbo.U_ESUN834EX2_DrvTbl_2300 A 
+                                                        where  drvHD03_InsuranceLineCode in('AF') 
+                                                            and drvHD05_CoverageLevelCode = 'CHD' 
+                                                            and not exists (SELECT 1 FROM dbo.U_ESUN834EX2_DrvTbl B WHERE A.drveeid = B.drveeid and B.drvdeprecid is not null and drvINS02_RelationshipCode = '19'))
+                                                    ) A
+         ON ConEEID = drveeid
+         and drvINS01_YesNoCond = 'Y'
+         AND ConIsDependent = 'Y' and ConIsActive = 'Y'
+         And ConRelationship IN ('CHL','STC', 'DPC') 
+
+    Delete from dbo.U_ESUN834EX2_DrvTbl_2300 where drvsubsort is null -- JCB
+
+    
+
+
 
 
      INSERT INTO dbo.U_ESUN834EX2_DrvTbl_2300
