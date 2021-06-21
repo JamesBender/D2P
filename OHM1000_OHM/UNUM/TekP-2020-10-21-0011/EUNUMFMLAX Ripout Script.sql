@@ -17,6 +17,8 @@ IF OBJECT_ID('U_EUNUMFMLAX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EUNUMFMLAX_d
 GO
 IF OBJECT_ID('U_EUNUMFMLAX_DedList') IS NOT NULL DROP TABLE [dbo].[U_EUNUMFMLAX_DedList];
 GO
+IF OBJECT_ID('U_EUNUMFMLAX_12mo_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EUNUMFMLAX_12mo_PEarHist];
+GO
 IF OBJECT_ID('U_dsi_BDM_EUNUMFMLAX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EUNUMFMLAX];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EUNUMFMLAX';
@@ -173,13 +175,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNUMFMLAX_20210324.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUNUMFMLAX_20210615.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202101119','EMPEXPORT','OEACTIVE','Dec 22 2020  1:19PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202101119','EMPEXPORT','OEPASSIVE','Dec 22 2020  1:19PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export','202101119','EMPEXPORT','ONDEM_XOE','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',5Q675',NULL,NULL,NULL,'UNUM FMLA Disa - Fridays 7am','202101119','EMPEXPORT','SCH_EUNUMF','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202101119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202101011','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export-Test','202103199','EMPEXPORT','TEST_XOE','Mar 19 2021  9:07AM','EUNUMFMLAX',NULL,NULL,NULL,'202103199','Mar 19 2021 12:00AM','Dec 30 1899 12:00AM','202103051','527','','','202103051',dbo.fn_GetTimedKey(),NULL,'us3lKiOHM1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',5Q675',NULL,NULL,NULL,'UNUM FMLA Disa - Fridays 7am','202101119','EMPEXPORT','SCH_EUNUMF','Dec 22 2020  1:20PM','EUNUMFMLAX',NULL,NULL,NULL,'202106119','Dec 22 2020 12:18PM','Dec 22 2020 12:18PM','202106041','529','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA Export-Test','202106159','EMPEXPORT','TEST_XOE','Jun 15 2021  5:27PM','EUNUMFMLAX',NULL,NULL,NULL,'202106159','Jun 15 2021 12:00AM','Dec 30 1899 12:00AM','202106011','573','','','202106011',dbo.fn_GetTimedKey(),NULL,'us3lKiOHM1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMFMLAX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMFMLAX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMFMLAX','InitialSort','C','drvSort');
@@ -233,6 +235,12 @@ CREATE TABLE [dbo].[U_dsi_BDM_EUNUMFMLAX] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+IF OBJECT_ID('U_EUNUMFMLAX_12mo_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EUNUMFMLAX_12mo_PEarHist] (
+    [Peh12MoEEID] char(12) NOT NULL,
+    [PehBonusCurrentYear] numeric NULL,
+    [PehBonusPreviousYear] numeric NULL
 );
 IF OBJECT_ID('U_EUNUMFMLAX_DedList') IS NULL
 CREATE TABLE [dbo].[U_EUNUMFMLAX_DedList] (
@@ -532,6 +540,27 @@ BEGIN
     AND PehPerControl <= @EndPerControl
     GROUP BY PehEEID
     HAVING SUM(PehCurAmt) <> 0.00;
+
+    IF OBJECT_ID('U_EUNUMFMLAX_12mo_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EUNUMFMLAX_12mo_PEarHist;
+    SELECT DISTINCT
+         Peh12MoEEID = PehEEID                            --6/1/2021
+         ,PehBonusCurrentYear           = SUM(CASE WHEN PehEarnCode = 'BONUS' AND CAST(LEFT(PehPerControl,8) AS DATE) BETWEEN '1/1/' + CAST(DATEPART(YEAR,  @EndDate) AS VARCHAR) AND @EndDate THEN PehCurAmt ELSE 0.00 END) --6/1/2020 and 6/1/2021
+         ,PehBonusPreviousYear           = SUM(CASE WHEN PehEarnCode = 'BONUS' AND CAST(LEFT(PehPerControl,8) AS DATE) BETWEEN '1/1/' + CAST(DATEPART(YEAR, DATEADD(YEAR, -1, @EndDate)) AS VARCHAR) AND '12/31/' + CAST(DATEPART(YEAR, DATEADD(YEAR, -1, @EndDate)) AS VARCHAR) THEN PehCurAmt ELSE 0.00 END) -- 6/1/2019 and 6/1/2020
+         /*,x = @EndDate
+         ,y = '1/1/' + CAST(DATEPART(YEAR,  @EndDate) AS VARCHAR)
+         ,z = '1/1/' + CAST(DATEPART(YEAR, DATEADD(YEAR, -1, @EndDate)) AS VARCHAR) 
+         ,zz = '12/31/' + CAST(DATEPART(YEAR, DATEADD(YEAR, -1, @EndDate)) AS VARCHAR)*/
+         --DATEADD(YEAR, -2, @EndDate) AND DATEADD(YEAR, -1, @EndDate) THEN PehCurAmt ELSE 0.00 END) -- 6/1/2019 and 6/1/2020
+    INTO dbo.U_EUNUMFMLAX_12mo_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist A WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    --WHERE CAST(LEFT(PehPerControl,8) AS DATE) BETWEEN DATEADD(YEAR, -1, @EndDate) AND @EndDate
+    GROUP BY PehEEID
+
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -591,11 +620,26 @@ BEGIN
         ,drvChoice = CASE WHEN Std_DedCode IS NOT NULL OR Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL THEN '1' END
         ,drvPstTaxCntPct = CASE WHEN Std_DedCode IS NOT NULL OR Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL THEN '100' END
         
-        ,drvEarnings =    FORMAT(CASE WHEN Std_DedCode IS NOT NULL AND EMP.EepUDField10 <> 0 THEN EMP.EepUDField10/52
-                            WHEN Std_DedCode IS NOT NULL AND EMP.EepUDField10 = 0 THEN EecAnnSalary/52
-                            WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL AND EMP.EepUDField10 <> 0 THEN EMP.EepUDField10/12
-                            WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL AND EMP.EepUDField10 = 0 THEN EecAnnSalary/12
-                        END, '#0.00')
+        ,drvEarnings =    FORMAT(
+                            CASE WHEN DATEPART(YEAR, EecDateOfLastHire) < DATEPART(YEAR, GETDATE()) THEN
+                                CASE WHEN Std_DedCode IS NOT NULL THEN (EecAnnSalary + PehBonusPreviousYear)/52
+                                    WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL THEN (EecAnnSalary + PehBonusPreviousYear)/12
+                                END
+                            WHEN DATEPART(YEAR, EecDateOfLastHire) = DATEPART(YEAR, GETDATE()) THEN
+                                CASE WHEN Std_DedCode IS NOT NULL THEN (EecAnnSalary + PehBonusCurrentYear)/52
+                                    WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL THEN (EecAnnSalary + PehBonusCurrentYear)/12
+                                END
+                            END
+
+
+
+                            /*CASE WHEN Std_DedCode IS NOT NULL AND EMP.EepUDField10 <> 0 THEN EMP.EepUDField10/52
+                                WHEN Std_DedCode IS NOT NULL AND EMP.EepUDField10 = 0 THEN EecAnnSalary/52
+                                WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN '' 
+                                WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL AND EMP.EepUDField10 <> 0 THEN EMP.EepUDField10/12
+                                WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL AND EMP.EepUDField10 = 0 THEN EecAnnSalary/12
+                            END*/
+                        , '#0.00')
         
                         /*CASE WHEN Std_DedCode IS NOT NULL THEN FORMAT(Std_Amount, '#0.00') 
                             WHEN Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL THEN FORMAT(Ltd_Amount, '#0.00') 
@@ -618,7 +662,10 @@ BEGIN
                             END
         ,drvChoice2 = CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN '1' END
         ,drvPstTaxCntPct2 = CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN '100' END
-        ,drvEarnings2 = CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN FORMAT(Ltd_Amount, '#0.00') END
+        ,drvEarnings2 = FORMAT(CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) AND EMP.EepUDField10 <> 0 THEN EMP.EepUDField10/12
+                            WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) AND EMP.EepUDField10 = 0 THEN EecAnnSalary/12
+                        END, '#0.00')
+                        --CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN FORMAT(Ltd_Amount, '#0.00') END
         ,drvEarningsPrd2 = CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN 'MO' END 
         ,drvDateOFEECoverage2 = CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN dbo.dsi_fnGetMinMaxDates('MAX', Ltd_StartDate, '1/1/2021') END 
         ,drvCovgTermDate2 = CASE WHEN Std_DedCode IS NOT NULL AND (Ltd_DedCode IS NOT NULL OR Ltdb_DedCode IS NOT NULL) THEN Ltd_StopDate END 
@@ -676,6 +723,8 @@ BEGIN
         AND BcaCoID = xCoID
 --        AND BcaFormatCode = @FormatCode
  --       AND BcaDedCode = BdmDedCode                **************************** FIX THIS!!! *****************************
+    LEFT JOIN dbo.U_EUNUMFMLAX_12mo_PEarHist
+        ON Peh12MoEEID = xEEID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
 
