@@ -17,6 +17,10 @@ IF OBJECT_ID('U_EMETBUCLIF_DedList') IS NOT NULL DROP TABLE [dbo].[U_EMETBUCLIF_
 GO
 IF OBJECT_ID('U_EMETBUCLIF_Consolidated') IS NOT NULL DROP TABLE [dbo].[U_EMETBUCLIF_Consolidated];
 GO
+IF OBJECT_ID('U_EMETBUCLIF_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EMETBUCLIF_AuditFields];
+GO
+IF OBJECT_ID('U_EMETBUCLIF_Audit') IS NOT NULL DROP TABLE [dbo].[U_EMETBUCLIF_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_EMETBUCLIF') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EMETBUCLIF];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EMETBUCLIF';
@@ -401,13 +405,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETBUCLIF_20210530.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETBUCLIF_20210617.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102099','EMPEXPORT','OEACTIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102099','EMPEXPORT','OEPASSIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Metlife Life Export','202102099','EMPEXPORT','ONDEMAND',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202102099','EMPEXPORT','SCH_METEXP',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202105171','EMPEXPORT','TEST','May 17 2021  9:23AM','EMETBUCLIF',NULL,NULL,NULL,'202105171','May 17 2021 12:00AM','Dec 30 1899 12:00AM','202105031','652','','','202105031',dbo.fn_GetTimedKey(),NULL,'us3cPeBUC1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202105311','EMPEXPORT','TEST','May 31 2021 12:39PM','EMETBUCLIF',NULL,NULL,NULL,'202105311','May 31 2021 12:00AM','Dec 30 1899 12:00AM','202105171','652','','','202105171',dbo.fn_GetTimedKey(),NULL,'us3cPeBUC1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','InitialSort','C','drvInitialSort');
@@ -462,6 +466,25 @@ CREATE TABLE [dbo].[U_dsi_BDM_EMETBUCLIF] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+IF OBJECT_ID('U_EMETBUCLIF_Audit') IS NULL
+CREATE TABLE [dbo].[U_EMETBUCLIF_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCoID] varchar(255) NOT NULL,
+    [audDedCode] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audEffectiveDate] smalldatetime NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+IF OBJECT_ID('U_EMETBUCLIF_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EMETBUCLIF_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
 );
 IF OBJECT_ID('U_EMETBUCLIF_Consolidated') IS NULL
 CREATE TABLE [dbo].[U_EMETBUCLIF_Consolidated] (
@@ -769,7 +792,7 @@ BEGIN
         ,@FileMinCovDate  = '20160101'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
-
+    
     --==========================================
     -- Clean EE List 
     -- Caution: Careful of cleaning EE List if including paycheck data
@@ -796,6 +819,42 @@ BEGIN
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
 
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EMETBUCLIF_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EMETBUCLIF_AuditFields;
+    CREATE TABLE dbo.U_EMETBUCLIF_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EMETBUCLIF_AuditFields VALUES ('EmpDed','EedBenOption');
+    
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EMETBUCLIF_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EMETBUCLIF_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audCoID = audKey2Value
+        ,audDedCode = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime = audProcessedDateTime
+        ,audEffectiveDate
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EMETBUCLIF_Audit
+    FROM dbo.U_EMETBUCLIF_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK) 
+        ON audKey1Value = xEEID
+    JOIN dbo.U_EMETBUCLIF_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    JOIN dbo.U_EMETBUCLIF_DedList WITH (NOLOCK)
+        ON DedCode = audKey3Value 
+    WHERE audProcessedDateTime < @StartDate
+    AND audAction = 'UPDATE'
+    AND ISNULL(audNewValue,'') <> '';
 
     --==========================================
     -- BDM Section
@@ -806,7 +865,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -873,14 +932,30 @@ BEGIN
     WHERE BdmRecType = 'DEP' AND DbnFormatCode = @FormatCode AND DbnValidForExport = 'Y';
 
     --======================================================
-    -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
+    -- Update Dates and Coverage Levels to Match EmpHDed
     --======================================================
-   /* UPDATE dbo.U_dsi_bdm_EMETBUCLIF
-        SET BdmUSGField1 = CONVERT(VARCHAR(20),EedeeBenAmt)
-    FROM dbo.U_dsi_bdm_EMETBUCLIF
-    JOIN dbo.EmpDedFull WITH (NOLOCK)
-        ON EedEmpDedTVID = BdmUSGField2;
-    */
+    UPDATE dbo.U_dsi_bdm_EMETBUCLIF
+        SET BdmBenOption = edhBenOption
+           ,BdmBenStartDate = COALESCE(audEffectiveDate, edhBenStartDate)
+           ,BdmBenStopDate = edhBenStopDate
+    FROM dbo.U_dsi_bdm_EMETBUCLIF WITH (NOLOCK)
+    LEFT
+    JOIN dbo.U_EMETBUCLIF_Audit WITH (NOLOCK)
+        ON audEEID = BdmEEID
+       AND audRowNo = 1
+       AND audDedCode = BdmDedCode
+    JOIN (SELECT edhEEID, edhCoID, edhDedCode, edhBenStartDate, edhBenStopDate, edhBenOption
+                ,edhRowNo = ROW_NUMBER() OVER (PARTITION BY edhEEID, edhCoID, edhDedCode ORDER BY edhEffDate DESC)
+          FROM dbo.EmpHDed WITH (NOLOCK) 
+         WHERE edhEffDate < @EndDate
+          ) Edh
+        ON edhEEID = BdmEEID
+       AND edhCoid = BdmCoID
+       AND edhDedCode = BdmDedCode
+       AND edhRowNo = 1
+    ;
+
+    
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------

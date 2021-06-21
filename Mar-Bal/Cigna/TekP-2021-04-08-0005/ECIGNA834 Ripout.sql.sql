@@ -238,7 +238,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\ECIGNA834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202105259','EMPEXPORT','OEACTIVE',NULL,'ECIGNA834',NULL,NULL,NULL,'202105259',NULL,'Dec 30 1899 12:00AM','202105251',NULL,'','','202105251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\ECIGNA834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202105259','EMPEXPORT','OEPASSIVE',NULL,'ECIGNA834',NULL,NULL,NULL,'202105259',NULL,'Dec 30 1899 12:00AM','202105251',NULL,'','','202105251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\ECIGNA834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CIGNA 834','202105259','EMPEXPORT','SCHEDULED',NULL,'ECIGNA834',NULL,NULL,NULL,'202105259',NULL,'Dec 30 1899 12:00AM','202105251',NULL,'','','202105251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_ECIGNA834_20210601.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202106091','EMPEXPORT','TEST','Jun  9 2021  9:02PM','ECIGNA834',NULL,NULL,NULL,'202106091','Jun  9 2021 12:00AM','Dec 30 1899 12:00AM','202106011','3909','','','202106011',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_ECIGNA834_20210614C.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202106149','EMPEXPORT','TEST','Jun 15 2021 10:15AM','ECIGNA834',NULL,NULL,NULL,'202106149','Jun 14 2021 12:00AM','Dec 30 1899 12:00AM','202106141','3840','','','202106141',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGNA834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGNA834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGNA834','ExportPath','V',NULL);
@@ -406,8 +406,8 @@ CREATE TABLE [dbo].[U_ECIGNA834_DrvTbl] (
     [drvPER02_Name] varchar(1) NOT NULL,
     [drvPER03_CommNumberQualifier] varchar(2) NULL,
     [drvPER04_CommunicationNumber] varchar(50) NULL,
-    [drvPER05_CommNumberQualifier] varchar(2) NULL,
-    [drvPER06_CommunicationNumber] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER06_CommunicationNumber] varchar(1) NOT NULL,
     [drvPER07_CommNumberQualifier] varchar(2) NULL,
     [drvPER08_CommunicationNumber] varchar(50) NULL,
     [drvN301_AddressLine1] varchar(6000) NULL,
@@ -572,7 +572,7 @@ BEGIN
     BEGIN
         UPDATE dbo.U_ECIGNA834_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
-    select * from U_ECIGNA834_File
+
     --========================================
     -- Remove Extra Records from PER Segment
     --========================================
@@ -1005,8 +1005,8 @@ BEGIN
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(EepPhoneHomeNumber),'') <> '' THEN 'HP' END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(EecPhoneBusinessNumber),'') <> '' THEN 'WP' END
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
+        ,drvPER05_CommNumberQualifier = ''--CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(EecPhoneBusinessNumber),'') <> '' THEN 'WP' END
+        ,drvPER06_CommunicationNumber = ''--CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
         ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(LTRIM(RTRIM(eepAddressEMail)),'') <> '' THEN 'EM' END
         ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(LTRIM(RTRIM(eepAddressEMail)),'') END
         ,drvN301_AddressLine1 = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1) END

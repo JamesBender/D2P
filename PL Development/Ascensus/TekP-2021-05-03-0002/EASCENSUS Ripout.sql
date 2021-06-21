@@ -28,7 +28,7 @@ DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE Format
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EASCENSUS';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EASCENSUS';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EASCENSUS';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','SDF','EASCENSUS','Ascensus 401k','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','N','S','N','EASCENSUS0Z0','N','Jan  1 1900 12:00AM','C','N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EASCENSUS','Ascensus 401k','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','EASCENSUS0Z0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EASCENSUS' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"HDR"','1','(''DA''=''F'')','EASCENSUS0Z0','5','H','01','1',NULL,'Header',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"CENS"','2','(''DA''=''F'')','EASCENSUS0Z0','12','H','01','6',NULL,'File Type',NULL,NULL);
@@ -95,9 +95,6 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','26','(''SS''=''F'')','EASCENSUS0Z0','1','D','10','231',NULL,'Insider Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','27','(''DA''=''F'')','EASCENSUS0Z0','1','D','10','232',NULL,'Union Classification Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryOrHourly"','28','(''UA''=''F'')','EASCENSUS0Z0','4','D','10','233',NULL,'Payroll Status Code',NULL,NULL);
-
-
-
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -105,17 +102,21 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EASCENSUS_20210614.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EASCENSUS_20210617.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ascensus 401k','202106149','EMPEXPORT','ONDEM_XOE',NULL,'EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 11:32AM','Jun 14 2021 11:32AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Ascensus 401K CA Scheduled','202106149','EMPEXPORT','SCH_EASCCA','Jun 17 2021 12:00AM','EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 12:00AM','Dec 30 1899 12:00AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'us3kMcPLD1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ascensus 401k-Sched','202106149','EMPEXPORT','SCH_EASCEN',NULL,'EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 11:32AM','Jun 14 2021 11:32AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ascensus 401k-Test','202106149','EMPEXPORT','TEST_XOE',NULL,'EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 11:32AM','Jun 14 2021 11:32AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Ascensus 401K FL2 Scheduled','202106149','EMPEXPORT','SCH_EASCFL','Jun 17 2021 12:00AM','EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 12:00AM','Dec 30 1899 12:00AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'us3kMcPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Ascensus 401K NY Scheduled','202106149','EMPEXPORT','SCH_EASCNY','Jun 17 2021 12:00AM','EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 12:00AM','Dec 30 1899 12:00AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'us3kMcPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Ascensus 401K SC Scheduled','202106149','EMPEXPORT','SCH_EASCSC','Jun 17 2021 12:00AM','EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 12:00AM','Dec 30 1899 12:00AM','202106141',NULL,'','','202106141',dbo.fn_GetTimedKey(),NULL,'us3kMcPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Ascensus 401k-Test','202106149','EMPEXPORT','TEST_XOE','Jun 14 2021  3:09PM','EASCENSUS',NULL,NULL,NULL,'202106149','Jun 14 2021 12:00AM','Dec 30 1899 12:00AM','202105311','1309','','','202105311',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCENSUS','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EASCENSUS' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EASCENSUS' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_EASCENSUS_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EASCENSUS_SavePath];
@@ -149,14 +150,13 @@ IF OBJECT_ID('U_EASCENSUS_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EASCENSUS_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] char(11) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvSSN] char(11) NULL,
-    [drvNameLast] varchar(100) NULL,
+    [drvNameLast] varchar(131) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameFirst] varchar(100) NULL,
-    [drvPayGroup] char(6) NULL,
+    [drvPayGroup] varchar(4) NULL,
     [drvEmpNo] char(9) NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
@@ -168,8 +168,11 @@ CREATE TABLE [dbo].[U_EASCENSUS_drvTbl] (
     [drvDateOfLastHire] datetime NULL,
     [drvDateOfTermination] datetime NULL,
     [drvDateOfOriginalHire] datetime NULL,
-    [drvDateOfLastTermination] varchar(1) NOT NULL,
-    [drvAnnSalary] varchar(1) NOT NULL
+    [drvDateOfLastTermination] datetime NULL,
+    [drvAnnSalary] money NULL,
+    [drvMaritalStatus] varchar(1) NULL,
+    [drvTermReason] varchar(4) NOT NULL,
+    [drvSalaryOrHourly] varchar(4) NOT NULL
 );
 IF OBJECT_ID('U_EASCENSUS_EEList') IS NULL
 CREATE TABLE [dbo].[U_EASCENSUS_EEList] (
@@ -302,10 +305,10 @@ BEGIN
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameFirst = UPPER(EepNameFirst)
         ,drvPayGroup = CASE EecPayGroup 
-                           WHEN 'WKNY' THEN 'A'
-                           WHEN 'WKFL2' THEN 'B'
-                           WHEN 'WKCA' THEN 'F'
-                           WHEN 'WKSC' THEN 'G'
+                           WHEN 'WKNY' THEN '0001'
+                           WHEN 'WKFL2' THEN '0002'
+                           WHEN 'WKCA' THEN '0004'
+                           WHEN 'WKSC' THEN '0003'
                        END
         ,drvEmpNo = EecEmpNo
         ,drvAddressLine1 = EepAddressLine1
@@ -318,34 +321,34 @@ BEGIN
         ,drvDateOfLastHire = EecDateOfLastHire
         ,drvDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvDateOfOriginalHire = EecDateOfOriginalHire
-		,drvDateOfLastTermination = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN (SELECT MAX(EjhJobEffDate) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhEmplStatus = 'T' AND EjhReason <> 'TRO' And EjhJobEffDate <= @EndDate) END
-		,drvAnnSalary = EecAnnSalary
-		,drvMaritalStatus = CASE EepMaritalStatus
-								WHEN 'M' THEN '1'
-								WHEN 'D' THEN '2'
-								WHEN 'W' THEN '3'
-								WHEN 'S' THEN '4'
-							END
-		,drvTermReason= CASE eecEmplStatus 
-							WHEN 'T' THEN
-								CASE WHEN EecTermReason = '203' THEN '0004'
-									 WHEN EecTermReason = '202' THEN '0007'
-								ELSE
-									'0001'
-								END
-							WHEN 'A' THEN '0003'
-							WHEN 'L' THEN '0006'
-						END
-		,drvSalaryOrHourly= CASE WHEN EecSalaryOrHourly = 'S' THEN 'SLRY' ELSE 'HRLY' END
-	INTO dbo.U_EASCENSUS_drvTbl
+        ,drvDateOfLastTermination = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN (SELECT MAX(EjhJobEffDate) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhEmplStatus = 'T' AND EjhReason <> 'TRO' And EjhJobEffDate <= @EndDate) END
+        ,drvAnnSalary = EecAnnSalary
+        ,drvMaritalStatus = CASE EepMaritalStatus
+                                WHEN 'M' THEN '1'
+                                WHEN 'D' THEN '2'
+                                WHEN 'W' THEN '3'
+                                WHEN 'S' THEN '4'
+                            END
+        ,drvTermReason= CASE eecEmplStatus 
+                            WHEN 'T' THEN
+                                CASE WHEN EecTermReason = '203' THEN '0004'
+                                     WHEN EecTermReason = '202' THEN '0007'
+                                ELSE
+                                    '0001'
+                                END
+                            WHEN 'L' THEN '0006'
+                            ELSE '0003'
+                        END
+        ,drvSalaryOrHourly= CASE WHEN EecSalaryOrHourly = 'S' THEN 'SLRY' ELSE 'HRLY' END
+    INTO dbo.U_EASCENSUS_drvTbl
     FROM dbo.U_EASCENSUS_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-	WHERE EecEmplStatus <> 'T'
-	   OR DATEDIFF(d, EecDateOfTermination, @EndDate) <= 30
+    WHERE EecEmplStatus <> 'T'
+       OR DATEDIFF(d, EecDateOfTermination, @EndDate) <= 30
     ;
     ---------------------------------
     -- HEADER RECORD
