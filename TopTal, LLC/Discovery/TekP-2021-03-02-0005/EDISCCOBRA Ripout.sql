@@ -145,16 +145,17 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCCOBRA_20210612.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCCOBRA_20210621.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102019','EMPEXPORT','OEACTIVE',NULL,'EDISCCOBRA',NULL,NULL,NULL,'202102019','Jan 24 2021  1:23PM','Jan 24 2021  1:23PM','202012011',NULL,'','','202012011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102019','EMPEXPORT','OEPASSIVE',NULL,'EDISCCOBRA',NULL,NULL,NULL,'202102019','Jan 24 2021  1:23PM','Jan 24 2021  1:23PM','202012011',NULL,'','','202012011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discover Cobra and NPM Export','202102019','EMPEXPORT','ONDEM_XOE',NULL,'EDISCCOBRA',NULL,NULL,NULL,'202102019','Jan 24 2021  1:23PM','Jan 24 2021  1:23PM','202012011',NULL,'','','202012011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Discover Cobra and NPM E-Sched','202102019','EMPEXPORT','SCH_EDSICC',NULL,'EDISCCOBRA',NULL,NULL,NULL,'202102019','Jan 24 2021  1:23PM','Jan 24 2021  1:23PM','202012011',NULL,'','','202012011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discover Cobra and NPM E-Test','202106039','EMPEXPORT','TEST_XOE','Jun 11 2021  4:18PM','EDISCCOBRA',NULL,NULL,NULL,'202106039','Jun  3 2021 12:00AM','Dec 30 1899 12:00AM','202103011','180','','','202103011',dbo.fn_GetTimedKey(),NULL,'us3cPeTOP1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',NC84P,ORGW6,626JV,PFLDO,PFLFA,S4IC4,PFLEJ,PFPU1,PFPVJ,PFPW2,PFPWP,RRHRU,PFPXK,PFPY8,PFPZ6,PFPZR,PFQ0D,PFQ16,PFQ1T,PFQ2G,5J9HB,RQS8B,5J9JG,3ZLLP,PFQ2Y,PFQ3J,QKN38,QKN42,QKN52,QKN62,QKN6R,QL27F,RLDHD,QL0KY,QL0LU,QL27Y,QL0MK,QL0NC,QL0O4,QL0OP,RLDGH,QL28U,RLDJW,QL0PL,RLDI9,QL0R7,M70U1,QL0RT,QL29G,QL0SW,QL14L,QL15I,ZYSBX,QL16T,QL17M,QL2A3,SOC5R,QL18E,RLDN1,RQS9G,QL1AE,QL1B1,QL1BU,QL2AL,QL1D2,QL1DV,QL1F2,QL1FR,QL1GB,QL1H7,QL2BD,QL1IV,QL1JL,QL1I9',NULL,NULL,NULL,'Discover Cobra and NPM E-Sched','202102019','EMPEXPORT','SCH_EDSICC',NULL,'EDISCCOBRA',NULL,NULL,NULL,'202102019','Jan 24 2021  1:23PM','Jan 24 2021  1:23PM','202012011',NULL,'','','202012011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Discover Cobra and NPM E-Test','202106159','EMPEXPORT','TEST_XOE','Jun 15 2021  5:59PM','EDISCCOBRA',NULL,NULL,NULL,'202106159','Jun 15 2021 12:00AM','Dec 30 1899 12:00AM','202103011','235','','','202103011',dbo.fn_GetTimedKey(),NULL,'us3cPeTOP1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCCOBRA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCCOBRA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCCOBRA','InitialSort','C','drvSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCCOBRA','NoEmpty','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCCOBRA','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCCOBRA','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EDISCCOBRA' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
@@ -228,8 +229,8 @@ CREATE TABLE [dbo].[U_EDISCCOBRA_drvTbl_NPM] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(102) NULL,
-    [drvAddressLine1] varchar(257) NULL,
-    [drvAddressLine2] varchar(257) NOT NULL,
+    [drvAddressLine1] varchar(8000) NOT NULL,
+    [drvAddressLine2] varchar(8000) NOT NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
@@ -385,6 +386,7 @@ SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EDISCCOBRA';
 SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EDISCCOBRA';
 SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EDISCCOBRA' ORDER BY RunID DESC;
 
+
 Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDISCCOBRA', 'ONDEM_XOE';
@@ -431,10 +433,6 @@ BEGIN
     DELETE FROM dbo.U_EDISCCOBRA_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EDISCCOBRA_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-
-    DELETE FROM dbo.U_EDISCCOBRA_EEList WHERE xEEID IN (
-        SELECT DISTINCT EecEEID  FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
-    )
 
     --==========================================
     -- Create Deduction List
@@ -641,6 +639,34 @@ BEGIN
     FROM dbo.U_dsi_BDM_EDISCCOBRA  X
     WHERE BdmDedRowStatus IN ('Data Inserted for 302 Chg reason','Data Inserted for 204 Chg reason')
 
+
+    --DELETE TEST/BAD EMPLOYEES AND DEPENDENTS FROM BDM
+    DELETE EE
+    FROM dbo.U_dsi_BDM_EDISCCOBRA EE
+    JOIN dbo.EmpPers WITH (NOLOCK)
+      ON EepEEID = BdmEEID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = BdmEEID
+       AND EecCoID = BdmCoID
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConSystemID = BdmDepRecID
+    WHERE LTRIM(RTRIM(EepSSN)) = '000000000'
+       OR LTRIM(RTRIM(EepSSN)) = '111111111'
+       OR LTRIM(RTRIM(EepSSN)) = '888888888'
+       OR LEFT(LTRIM(EepSSN),3) = '999'
+       OR LEFT(LTRIM(EepSSN),3) = '998'
+       OR LTRIM(RTRIM(EepSSN)) = '123456789'
+       OR EepSSN IS NULL
+       OR EecEEType = 'TES'
+       OR LTRIM(RTRIM(ConSSN)) = '000000000'
+       OR LTRIM(RTRIM(ConSSN)) = '111111111'
+       OR LTRIM(RTRIM(ConSSN)) = '888888888'
+       OR LEFT(LTRIM(ConSSN),3) = '999'
+       OR LEFT(LTRIM(ConSSN),3) = '998'
+       OR LTRIM(RTRIM(ConSSN)) = '123456789'
+       OR ConSSN IS NULL
+       ;
+
     --==========================================
     -- Build Working Tables
     --==========================================
@@ -833,7 +859,7 @@ BEGIN
                     JOIN dbo.BenChRsn WITH (NOLOCK)
                         ON EdhChangeReason = BchCode
                     WHERE EdhDedCode IN ('FSA','DENTE','MDHSA','MDPPO','VISNE') 
-                        AND edhChangeReason IN ('200','201','204','210','LEVNT3','LEVNT4')
+                        AND edhChangeReason IN ('201','200','204','210','LEVNT3','LEVNT4')
                         AND BchIsCobraQualifiedEvent = 'Y'
                         ) AS T
             WHERE RN = 1
@@ -860,7 +886,7 @@ BEGIN
         ,drvNameFirst = ConNameFirst
         ,drvNameMiddle = LEFT(ConNameMiddle,1)
         ,drvNameLast = '"' + ConNameLast + '"'
-        ,drvAddressSameAsQB = CASE WHEN ConAddressIsDifferent = 'N' THEN 'TRUE' ELSE 'FALS' END
+        ,drvAddressSameAsQB = 'TRUE'--CASE WHEN ConAddressIsDifferent = 'N' THEN 'TRUE' ELSE 'FALS' END
         ,drvAddressLine1 = ''-- CASE WHEN ConAddressIsDifferent = 'N' THEN EepAddressLine1 ELSE ConAddressLine1 END
         ,drvAddressLine2 = ''-- CASE WHEN ConAddressIsDifferent = 'N' THEN EepAddressLine2 ELSE ConAddressLine2 END
         ,drvAddressCity =  ''--CASE WHEN ConAddressIsDifferent = 'N' THEN EepAddressCity ELSE ConAddressCity END
@@ -878,11 +904,11 @@ BEGIN
         AND BdmRecType = 'DEP'
         AND BdmRunId = 'QB'
         AND BdmIsPQB = 'N'
-        --AND BdmCobraReason <> '302'
+        AND BdmCobraReason NOT IN ('204','201')
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecId
-    WHERE BdmCobraReason <> '302' OR (BdmCobraReason = '302' AND ConRelationship NOT IN ('SPS','DP'))
+    WHERE (BdmCobraReason <> '302' OR (BdmCobraReason = '302' AND ConRelationship NOT IN ('SPS','DP')))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCCOBRA_drvTbl_QBDEPENDENTPLANINITIAL
@@ -911,6 +937,7 @@ BEGIN
         AND BdmRecType = 'DEP'
         AND BdmRunId = 'QB'
         AND BdmIsPQB = 'N'
+        AND BdmCobraReason NOT IN ('204','201')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCCOBRA_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
@@ -955,8 +982,8 @@ BEGIN
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = '"' + EepNameLast + '"'
-        ,drvAddressLine1 = '"' + EepAddressLine1 + '"'
-        ,drvAddressLine2 = '"' + ISNULL(EepAddressLine2, '') + '"'
+        ,drvAddressLine1 = '"' + ISNULL(REPLACE(RTRIM(EepAddressLine1),'"',''),'') + '"'
+        ,drvAddressLine2 = '"' + ISNULL(REPLACE(RTRIM(EepAddressLine2),'"',''),'') + '"'
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
@@ -1023,10 +1050,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EDISCCOBRA';
 
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202105011'
-       ,expStartPerControl     = '202105011'
-       ,expLastEndPerControl   = '202106039'
-       ,expEndPerControl       = '202106039'
+    SET expLastStartPerControl = '202103011'
+       ,expStartPerControl     = '202103011'
+       ,expLastEndPerControl   = '202106159'
+       ,expEndPerControl       = '202106159'
 WHERE expFormatCode = 'EDISCCOBRA' and expExportCode = 'TEST_XOE';
 **********************************************************************************/
 GO
