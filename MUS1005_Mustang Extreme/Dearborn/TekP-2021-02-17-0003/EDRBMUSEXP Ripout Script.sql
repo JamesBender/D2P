@@ -13,6 +13,10 @@ IF OBJECT_ID('U_EDRBMUSEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EDRBMUSEXP_Fil
 GO
 IF OBJECT_ID('U_EDRBMUSEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EDRBMUSEXP_EEList];
 GO
+IF OBJECT_ID('U_EDRBMUSEXP_drvTbl_TEMP') IS NOT NULL DROP TABLE [dbo].[U_EDRBMUSEXP_drvTbl_TEMP];
+GO
+IF OBJECT_ID('U_EDRBMUSEXP_drvTbl_') IS NOT NULL DROP TABLE [dbo].[U_EDRBMUSEXP_drvTbl_];
+GO
 IF OBJECT_ID('U_EDRBMUSEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EDRBMUSEXP_drvTbl];
 GO
 IF OBJECT_ID('U_EDRBMUSEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EDRBMUSEXP_DedList];
@@ -83,13 +87,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210528.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210623.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202105219','EMPEXPORT','OEACTIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202105219','EMPEXPORT','OEPASSIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export','202105219','EMPEXPORT','ONDEM_XOE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export-Sched','202105219','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202105219','EMPEXPORT','TEST_XOE','May 20 2021  9:01PM','EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr 17 2021 12:00AM','Dec 30 1899 12:00AM','202104021','1206','','','202104021',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202106181','EMPEXPORT','TEST_XOE','Jun 18 2021  6:49PM','EDRBMUSEXP',NULL,NULL,NULL,'202106181','Jun 18 2021 12:00AM','Dec 30 1899 12:00AM','202103011','1286','','','202103011',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','InitialSort','C','drvInitialSort');
@@ -170,6 +174,118 @@ CREATE TABLE [dbo].[U_EDRBMUSEXP_DedList] (
 );
 IF OBJECT_ID('U_EDRBMUSEXP_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] char(11) NULL,
+    [drvSubSort] char(100) NULL,
+    [drvSubSort2] varchar(13) NOT NULL,
+    [drvSubSort3] varchar(1) NOT NULL,
+    [drvRecordType] varchar(2) NULL,
+    [drvGroupNumber] varchar(7) NULL,
+    [drvEmployeeSSN] varchar(11) NULL,
+    [drvNewParticipantId] char(9) NULL,
+    [drvAccountNumber] varchar(5) NULL,
+    [drvDependentSSN] char(9) NULL,
+    [drvMemberEffectiveDate] varchar(30) NULL,
+    [drvIDNumber] varchar(1) NOT NULL,
+    [drvLastName] varchar(100) NULL,
+    [drvFirstName] varchar(100) NULL,
+    [drvMiddleInitial] varchar(1) NULL,
+    [drvAddressLine1] varchar(255) NULL,
+    [drvFiller1] varchar(1) NOT NULL,
+    [drvAddressLine2] varchar(255) NULL,
+    [drvFiller2] varchar(1) NOT NULL,
+    [drvAddressLine3] varchar(1) NOT NULL,
+    [drvCity] varchar(255) NULL,
+    [drvFiller3] varchar(1) NOT NULL,
+    [drvState] varchar(255) NULL,
+    [drvZipCode] varchar(50) NULL,
+    [drvRelationshipCode] varchar(1) NOT NULL,
+    [drvGender] varchar(1) NULL,
+    [drvDateofBirth] varchar(30) NULL,
+    [drvSmokerIndicator] varchar(1) NULL,
+    [drvDateofHire] varchar(30) NULL,
+    [drvLocationNumber] varchar(7) NULL,
+    [drvLocationDate] varchar(30) NULL,
+    [drvReportedSalary] varchar(30) NULL,
+    [drvSalaryMode] varchar(1) NULL,
+    [drvSalaryEffectiveDate] varchar(30) NULL,
+    [drvWeeklyHours] char(5) NULL,
+    [drvProductId] varchar(7) NULL,
+    [drvTerminationDate] varchar(30) NULL,
+    [drvTerminationReasonCode] varchar(2) NULL,
+    [drvCoverageOption] varchar(1) NOT NULL,
+    [drvPlanCode] varchar(7) NULL,
+    [drvUnits] varchar(9) NOT NULL,
+    [drvProductSetId] varchar(5) NULL,
+    [drvUnderwritingStatsInd] varchar(1) NULL,
+    [drvApplicationReceivedDate] varchar(8) NOT NULL,
+    [drvCertificateNumber] varchar(10) NOT NULL,
+    [drvDependentSequence] char(2) NULL,
+    [drvForeignAddressIndicator] varchar(1) NOT NULL,
+    [drvFiller4] varchar(1) NOT NULL,
+    [drvDelimitingCharacter] varchar(1) NOT NULL,
+    [drvEndofLineCharacter] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_EDRBMUSEXP_drvTbl_') IS NULL
+CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl_] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] char(11) NULL,
+    [drvSubSort] char(100) NULL,
+    [drvSubSort2] varchar(1) NOT NULL,
+    [drvSubSort3] varchar(1) NOT NULL,
+    [drvRecordType] varchar(2) NULL,
+    [drvGroupNumber] varchar(7) NULL,
+    [drvEmployeeSSN] char(11) NULL,
+    [drvNewParticipantId] char(9) NULL,
+    [drvAccountNumber] varchar(5) NOT NULL,
+    [drvDependentSSN] varchar(9) NULL,
+    [drvMemberEffectiveDate] varchar(30) NULL,
+    [drvIDNumber] varchar(1) NOT NULL,
+    [drvLastName] varchar(100) NULL,
+    [drvFirstName] varchar(100) NULL,
+    [drvMiddleInitial] varchar(1) NULL,
+    [drvAddressLine1] varchar(1) NOT NULL,
+    [drvFiller1] varchar(1) NOT NULL,
+    [drvAddressLine2] varchar(1) NOT NULL,
+    [drvFiller2] varchar(1) NOT NULL,
+    [drvAddressLine3] varchar(1) NOT NULL,
+    [drvCity] varchar(1) NOT NULL,
+    [drvFiller3] varchar(1) NOT NULL,
+    [drvState] varchar(1) NOT NULL,
+    [drvZipCode] varchar(1) NOT NULL,
+    [drvRelationshipCode] varchar(1) NOT NULL,
+    [drvGender] varchar(1) NULL,
+    [drvDateofBirth] varchar(8000) NULL,
+    [drvSmokerIndicator] varchar(1) NULL,
+    [drvDateofHire] char(8) NULL,
+    [drvLocationNumber] char(7) NULL,
+    [drvLocationDate] char(8) NULL,
+    [drvReportedSalary] varchar(11) NOT NULL,
+    [drvSalaryMode] varchar(1) NOT NULL,
+    [drvSalaryEffectiveDate] char(8) NULL,
+    [drvWeeklyHours] char(5) NULL,
+    [drvProductId] varchar(7) NULL,
+    [drvTerminationDate] varchar(8000) NULL,
+    [drvTerminationReasonCode] varchar(2) NOT NULL,
+    [drvCoverageOption] varchar(1) NOT NULL,
+    [drvPlanCode] varchar(1) NOT NULL,
+    [drvUnits] varchar(9) NOT NULL,
+    [drvProductSetId] varchar(1) NOT NULL,
+    [drvUnderwritingStatsInd] varchar(1) NOT NULL,
+    [drvApplicationReceivedDate] char(8) NULL,
+    [drvCertificateNumber] char(10) NULL,
+    [drvDependentSequence] char(2) NULL,
+    [drvForeignAddressIndicator] varchar(1) NOT NULL,
+    [drvFiller4] varchar(1) NOT NULL,
+    [drvDelimitingCharacter] varchar(1) NOT NULL,
+    [drvEndofLineCharacter] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_EDRBMUSEXP_drvTbl_TEMP') IS NULL
+CREATE TABLE [dbo].[U_EDRBMUSEXP_drvTbl_TEMP] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -443,7 +559,9 @@ BEGIN
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
     FROM dbo.U_dsi_bdm_EDRBMUSEXP
     JOIN dbo.EmpDedFull WITH (NOLOCK)
-        ON EedEmpDedTVID = BdmUSGField2;
+        ON EedEEID = BdmEEID
+       AND EedCOID = BdmCOID
+       AND EedDedCode = BdmDedCode;
 
     --==========================================
     -- Build Working Tables
@@ -590,7 +708,7 @@ BEGIN
         
         ,drvMemberEffectiveDate =   --replace(
                                     convert(varchar, 
-                                                CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+                                                CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GLIFE', 'GTLII' ) THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
                                                     WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
                                                 END, 112) --,'-','')
         ,drvIDNumber = ''
@@ -677,14 +795,41 @@ BEGIN
 
         ,drvLocationDate = --replace(
             convert(varchar, 
-            ( CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') and exists (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) THEN dbo.dsi_fnGetMinMaxDates('MAX', (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) , @FileMinCovDate)
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') and exists (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) THEN dbo.dsi_fnGetMinMaxDates('MAX', (Select top 1 audDateTime from dbo.U_EDRBMUSEXP_Audit where audOldValue <> audNewValue and audOldValue is not null and audKey1Value = xeeid and audkey2Value = xcoid) , @FileMinCovDate)
-                              ELSE
-                              CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-                              WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-                         END
-                                    
-                         END )
+            ( CASE WHEN bdmrectype = 'EMP' THEN
+                    CASE WHEN bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') 
+                          AND EXISTS (SELECT 1 
+                                          FROM dbo.U_EDRBMUSEXP_Audit 
+                                        WHERE audOldValue <> audNewValue 
+                                           AND audOldValue is not null 
+                                          AND audKey1Value = xeeid 
+                                          AND audkey2Value = xcoid) 
+                         THEN dbo.dsi_fnGetMinMaxDates('MAX', (Select top 1 audDateTime 
+                                                                     from dbo.U_EDRBMUSEXP_Audit 
+                                                                    where audOldValue <> audNewValue 
+                                                                      and audOldValue is not null 
+                                                                      and audKey1Value = xeeid 
+                                                                      and audkey2Value = xcoid) , @FileMinCovDate)
+                         ELSE
+                            dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+                          END
+                  WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' THEN
+                   CASE WHEN bdmdedcode in ('LIFES','CRILS') 
+                         and exists (Select MAX(audDateTime) 
+                                       from dbo.U_EDRBMUSEXP_Audit 
+                                      where audOldValue <> audNewValue 
+                                        and audOldValue is not null 
+                                        and audKey1Value = xeeid 
+                                        and audkey2Value = xcoid) 
+                        THEN dbo.dsi_fnGetMinMaxDates('MAX', (Select top 1 audDateTime 
+                                                                from dbo.U_EDRBMUSEXP_Audit 
+                                                               where audOldValue <> audNewValue 
+                                                                 and audOldValue is not null 
+                                                                 and audKey1Value = xeeid 
+                                                                 and audkey2Value = xcoid) , @FileMinCovDate)
+                        ELSE
+                            dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+                     END                  
+                  END )
         , 112) --,'-','')
 
         ,drvReportedSalary = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero(EecAnnSalary*100,11,0))  
@@ -769,6 +914,14 @@ BEGIN
     UPDATE dbo.U_EDRBMUSEXP_drvTbl
         SET drvTerminationDate = '00000000'
         WHERE ISNULL(drvTerminationDate, '') = '';
+--CHECK TO MAKE SURE SALARY DATE IS NOT LESS THAN MEMBER EFFECTIVE DATE
+    UPDATE dbo.U_EDRBMUSEXP_drvTbl
+        SET drvSalaryEffectiveDate = drvMemberEffectiveDate
+        WHERE drvSalaryEffectiveDate < drvMemberEffectiveDate;
+    
+    --CLEAR DUPLICATE RECORDS
+    DELETE FROM dbo.U_EDRBMUSEXP_drvTbl WHERE drvMemberEffectiveDate IS NULL 
+            AND drvEEID IN (SELECT drvEEID FROM (SELECT * FROM (SELECT drveeid, drvcoid, drvdeprecid, CNT=count(*) FROM U_EDRBMUSEXP_drvTbl GROUP BY drvEEID, drvCOID, drvDepRecID HAVING COUNT(*) > 1) TBL) TBL2)
 
     ---02 Record
  INSERT INTO dbo.U_EDRBMUSEXP_drvTbl
@@ -980,8 +1133,8 @@ BEGIN
                             END
         ,drvPlanCode = CASE WHEN Bdmdedcode = 'GACC' THEN '0008201'
                             -- EecFullTimeOrPartTime,EecSalaryOrHourly
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'S'  THEN '0002001'
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'H'  THEN '0002002'
+                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'S'  THEN '0001001'
+                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII') and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'H'  THEN '0001002'
                             WHEN Bdmdedcode IN ('LIFEE') THEN '0001101'
                             WHEN Bdmdedcode IN ('LIFEC') THEN '0001301'
                             WHEN Bdmdedcode IN ('CRILE') THEN '0001501'
@@ -992,17 +1145,25 @@ BEGIN
                             ELSE ''
                         END
 
-        ,drvUnits = CASE WHEN Bdmdedcode = 'GACC' THEN '000000100'
+        ,drvUnits = CASE WHEN BdmRecType = 'EMP' THEN
+                            CASE 
+                            WHEN Bdmdedcode = 'GACC' THEN '000000100'
                             --WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmUsgField2 /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('GLIFE', 'GTLII')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((/*BdmEEAmt*/BcaBenAmtCalc /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('LIFEE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('LIFEC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('CRILE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('CRILC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('GLIFE')  THEN  CONVERT(VARCHAR,dbo.dsi_fnPadZero((/*BdmEEAmt*/BcaBenAmtCalc /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('GTLII') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY) /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('LIFEE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY)  /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('LIFEC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY)  /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('CRILE') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY)  /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('CRILC') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY)  /1000)*100,9,0))  
                             WHEN Bdmdedcode IN ('VIS') THEN '000000100'
-                            WHEN Bdmdedcode IN ('LIFES') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
-                            WHEN Bdmdedcode IN ('CRILS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((BdmEEAmt /1000)*100,9,0))  
                             ELSE ''
+                            END
+                        ELSE
+                            CASE
+                            WHEN Bdmdedcode IN ('LIFES') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY)  /1000)*100,9,0))  
+                            WHEN Bdmdedcode IN ('CRILS') THEN CONVERT(VARCHAR,dbo.dsi_fnPadZero((CAST(BdmUSGField1 AS MONEY)  /1000)*100,9,0))  
+                            ELSE ''
+                            END
                         END
         ,drvProductSetId = CASE WHEN bdmrectype = 'EMP' and bdmdedcode in ('GACC', 'GLIFE', 'GTLII', 'LIFEE', 'LIFEC', 'CRILE', 'CRILC', 'VIS') THEN
                                 CASE    WHEN EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'S'  THEN '1'
@@ -1010,11 +1171,11 @@ BEGIN
                                 END
                                 WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '3'
                             END
-        ,drvUnderwritingStatsInd =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode = 'LIFEE'THEN
+        ,drvUnderwritingStatsInd =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('LIFEE', 'LIFEC', 'CRILE', 'CRILC') THEN
                                         CASE WHEN EedEOIDesiredAmt <= BdmEEAmt THEN '0' ELSE '2' END
-                                    WHEN BdmRelationship IN ('SPS','DP') AND BdmDedCode = 'LIFES'THEN
+                                    WHEN BdmRelationship IN ('SPS','DP') AND BdmDedCode IN ('CRILS', 'LIFES') THEN
                                         CASE WHEN EedEOIDesiredAmt <= BdmEEAmt THEN '0' ELSE '2' END
-                                    ELSE '0'
+                                    ELSE '2'
                                     END
         
                                     /*CASE WHEN bdmdedcode = 'LIFEE' THEN
@@ -1118,7 +1279,8 @@ BEGIN
 
         ,drvTerminationReasonCode
         ,drvCoverageOption
-        ,drvPlanCode = CASE WHEN drvProductId = 'LIFE' THEN '0002001'
+        ,drvPlanCode = CASE WHEN drvProductId = 'LIFE' and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'S'  THEN '0002001'
+                            WHEN drvProductId = 'LIFE' and EecFullTimeOrPartTime  = 'F' and eecsalaryOrHourly = 'H'  THEN '0002002'
                              WHEN drvProductId = 'LIFSUP1' THEN '0002101'
                              WHEN drvProductId = 'DEPSUPC' THEN '0002301'
                               WHEN drvProductId = 'DEPSUPS' THEN '0002201'
@@ -1135,6 +1297,9 @@ BEGIN
         ,drvDelimitingCharacter
         ,drvEndofLineCharacter 
     FROM dbo.U_EDRBMUSEXP_drvTbl WITH (NOLOCK)
+    JOIN dbo.EmpComp WITH (NOLOCK)
+      ON EecEEID = drvEEID
+     AND EecCoID = drvCoID
     WHERE  drvProductId IN('LIFE' , 'LIFSUP1', 'DEPSUPC', 'DEPSUPS')
     --==========================================
     -- Set FileName
