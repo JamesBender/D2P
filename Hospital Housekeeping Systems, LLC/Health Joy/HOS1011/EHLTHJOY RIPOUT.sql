@@ -9,10 +9,6 @@ IF OBJECT_ID('U_EHLTHJOY_File') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_File];
 GO
 IF OBJECT_ID('U_EHLTHJOY_EEList') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_EEList];
 GO
-IF OBJECT_ID('U_EHLTHJOY_drvTblD10') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_drvTblD10];
-GO
-IF OBJECT_ID('U_EHLTHJOY_drvTbl_2') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_drvTbl_2];
-GO
 IF OBJECT_ID('U_EHLTHJOY_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_drvTbl];
 GO
 IF OBJECT_ID('U_EHLTHJOY_DedList') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_DedList];
@@ -20,8 +16,6 @@ GO
 IF OBJECT_ID('U_EHLTHJOY_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_AuditFields];
 GO
 IF OBJECT_ID('U_EHLTHJOY_Audit') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_Audit];
-GO
-IF OBJECT_ID('U_dsi_BDM_EHLTHJOY') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EHLTHJOY];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EHLTHJOY';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EHLTHJOY';
@@ -121,9 +115,9 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMobileNumber"','12','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','12',NULL,'Mobile Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','13','(''UD101''=''T,'')','EHLTHJOY00Z0','50','D','10','13',NULL,'Date of Birth',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','14','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','14',NULL,'Gender',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','15','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','15',NULL,'Address Line 1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','16','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','16',NULL,'Address Line 2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','17','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','17',NULL,'City',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','15','(''UA''=''Q,'')','EHLTHJOY00Z0','50','D','10','15',NULL,'Address Line 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','16','(''UA''=''Q,'')','EHLTHJOY00Z0','50','D','10','16',NULL,'Address Line 2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','17','(''UA''=''Q,'')','EHLTHJOY00Z0','50','D','10','17',NULL,'City',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','18','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','18',NULL,'State',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','19','(''UA''=''T,'')','EHLTHJOY00Z0','50','D','10','19',NULL,'Zip',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','20','(''SS''=''T,'')','EHLTHJOY00Z0','50','D','10','20',NULL,'Benefit Class',NULL,NULL);
@@ -191,13 +185,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EHLTHJOY_20210622.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EHLTHJOY_20210625.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202106229','EMPEXPORT','OEACTIVE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202106229','EMPEXPORT','OEPASSIVE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy','202106229','EMPEXPORT','ONDEM_XOE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy-Sched','202106229','EMPEXPORT','SCH_EHLTHJ',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy-Test','202106229','EMPEXPORT','TEST_XOE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy-Test','202106241','EMPEXPORT','TEST_XOE','Jun 24 2021 12:00AM','EHLTHJOY',NULL,NULL,NULL,'202106241','Jun 24 2021 12:00AM','Dec 30 1899 12:00AM','202106101','24442','','','202106101',dbo.fn_GetTimedKey(),NULL,'CPETITTI20',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHLTHJOY','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHLTHJOY','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHLTHJOY','InitialSort','C','drvInitialSort');
@@ -209,90 +203,51 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 IF OBJECT_ID('U_EHLTHJOY_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EHLTHJOY_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EHLTHJOY','D10','dbo.U_EHLTHJOY_drvTbl',NULL);
-IF OBJECT_ID('U_dsi_BDM_EHLTHJOY') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_EHLTHJOY] (
-    [BdmRecType] varchar(3) NOT NULL,
-    [BdmCOID] char(5) NULL,
-    [BdmEEID] char(12) NOT NULL,
-    [BdmDepRecID] char(12) NULL,
-    [BdmSystemID] char(12) NULL,
-    [BdmRunID] varchar(32) NULL,
-    [BdmDedRowStatus] varchar(256) NULL,
-    [BdmRelationship] char(3) NULL,
-    [BdmDateOfBirth] datetime NULL,
-    [BdmDedCode] char(5) NULL,
-    [BdmDedType] varchar(32) NULL,
-    [BdmBenOption] char(6) NULL,
-    [BdmBenStatus] char(1) NULL,
-    [BdmBenStartDate] datetime NULL,
-    [BdmBenStopDate] datetime NULL,
-    [BdmBenStatusDate] datetime NULL,
-    [BdmBenOptionDate] datetime NULL,
-    [BdmChangeReason] char(6) NULL,
-    [BdmStartDate] datetime NULL,
-    [BdmStopDate] datetime NULL,
-    [BdmIsCobraCovered] char(1) NULL,
-    [BdmCobraReason] char(6) NULL,
-    [BdmDateOfCOBRAEvent] datetime NULL,
-    [BdmIsPQB] char(1) NULL,
-    [BdmIsChildOldest] char(1) NULL,
-    [BdmUSGField1] varchar(256) NULL,
-    [BdmUSGField2] varchar(256) NULL,
-    [BdmUSGDate1] datetime NULL,
-    [BdmUSGDate2] datetime NULL,
-    [BdmTVStartDate] datetime NULL,
-    [BdmSessionID] varchar(32) NULL,
-    [BdmEEAmt] money NULL,
-    [BdmEECalcRateOrPct] decimal NULL,
-    [BdmEEGoalAmt] money NULL,
-    [BdmEEMemberOrCaseNo] char(40) NULL,
-    [BdmERAmt] money NULL,
-    [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL,
-    [BdmNumDomPartners] int NULL,
-    [BdmNumDPChildren] int NULL
-);
 IF OBJECT_ID('U_EHLTHJOY_Audit') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_Audit] (
+    [audEEID] char(12) NULL,
+    [audCOID] char(5) NULL,
+    [audKey1] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
     [audTableName] varchar(128) NOT NULL,
     [audFieldName] varchar(128) NOT NULL,
-    [audKey1Value] varchar(255) NOT NULL,
-    [audKey2Value] varchar(255) NOT NULL,
-    [audKey3Value] varchar(255) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
     [audDateTime] datetime NOT NULL,
     [audOldValue] varchar(2000) NULL,
     [audNewValue] varchar(2000) NULL,
+    [audEffectiveDate] smalldatetime NULL,
     [audRowNo] bigint NULL
 );
 IF OBJECT_ID('U_EHLTHJOY_AuditFields') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_AuditFields] (
-    [aTableName] varchar(128) NULL,
-    [aFieldName] varchar(128) NULL
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
 );
 IF OBJECT_ID('U_EHLTHJOY_DedList') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
-);
+); 
 IF OBJECT_ID('U_EHLTHJOY_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] char(9) NULL,
-    [drvSubSort] varchar(10) NULL,
+    [drvSubSort] varchar(21) NULL,
     [drvEmpNo] char(9) NULL,
     [drvDateOfLastHire] datetime NULL,
     [drvEmplstatus] char(1) NULL,
     [drvDateOfTermination] datetime NULL,
     [drvNameFirst] varchar(100) NULL,
-    [drvNameLast] varchar(100) NULL,
+    [drvNameLast] varchar(8000) NULL,
     [drvSSN] varchar(11) NULL,
     [drvRelationship] varchar(8) NOT NULL,
     [drvAddressEMail] varchar(50) NULL,
     [drvMobileNumber] varchar(50) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvGender] char(1) NULL,
+    [drvGender] varchar(1) NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
@@ -308,181 +263,15 @@ CREATE TABLE [dbo].[U_EHLTHJOY_drvTbl] (
     [drvVisEffDate] datetime NULL,
     [drvVisPlanTermDate] datetime NULL,
     [drvHFSAPlan] varchar(27) NULL,
-    [drvHFSAGoalAmount] money NULL,
+    [drvHFSAGoalAmount] varchar(10) NULL,
     [drvHFSAPlanDate] datetime NULL,
     [drvHFSAPlanTermDate] datetime NULL,
     [drvDepFSAPlan] varchar(18) NULL,
-    [drvDepFSAGoalAmt] money NULL,
+    [drvDepFSAGoalAmt] varchar(10) NULL,
     [drvDepFSAPlanDate] datetime NULL,
     [drvDepFSAPlanTermDate] datetime NULL
 );
-IF OBJECT_ID('U_EHLTHJOY_drvTbl_2') IS NULL
-CREATE TABLE [dbo].[U_EHLTHJOY_drvTbl_2] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] char(9) NULL,
-    [drvSubSort] varchar(21) NULL,
-    [drvEmpNo] char(9) NULL,
-    [drvDateOfLastHire] datetime NULL,
-    [drvEmplstatus] char(1) NULL,
-    [drvDateOfTermination] datetime NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvSSN] varchar(11) NULL,
-    [drvRelationship] varchar(6) NULL,
-    [drvAddressEMail] varchar(50) NULL,
-    [drvMobileNumber] varchar(50) NULL,
-    [drvDateOfBirth] datetime NULL,
-    [drvGender] char(1) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvMedPlan] varchar(21) NULL,
-    [drvMedEffDate] datetime NULL,
-    [drvMedPlanTermDate] datetime NULL,
-    [drvDenPlan] varchar(20) NULL,
-    [drvDenEffDate] datetime NULL,
-    [drvDenPlanTermDate] datetime NULL,
-    [drvVisPlan] varchar(12) NULL,
-    [drvVisEffDate] varchar(12) NULL,
-    [drvVisPlanTermDate] datetime NULL,
-    [drvHFSAPlan] varchar(27) NULL,
-    [drvHFSAGoalAmount] money NULL,
-    [drvHFSAPlanDate] datetime NULL,
-    [drvHFSAPlanTermDate] datetime NULL,
-    [drvDepFSAPlan] varchar(18) NULL,
-    [drvDepFSAGoalAmt] money NULL,
-    [drvDepFSAPlanDate] datetime NULL,
-    [drvDepFSAPlanTermDate] datetime NULL
-);
-IF OBJECT_ID('U_EHLTHJOY_drvTblD10') IS NULL
-CREATE TABLE [dbo].[U_EHLTHJOY_drvTblD10] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] char(9) NULL,
-    [drvSubSort] varchar(1) NOT NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(1) NOT NULL,
-    [drvEmployeeID] char(9) NULL,
-    [drvStartDate] datetime NULL,
-    [drvEmploymentTermDate] datetime NULL,
-    [drvEmploymentStatus] varchar(1) NOT NULL,
-    [drvFirstName] varchar(100) NULL,
-    [drvLastName] varchar(100) NULL,
-    [drvSocialSecurityNumber] varchar(11) NULL,
-    [drvRelationship] varchar(8) NULL,
-    [drvEmail] varchar(50) NULL,
-    [drvMobileNumber] varchar(50) NULL,
-    [drvDOB] datetime NULL,
-    [drvGender] varchar(1) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvCity] varchar(255) NULL,
-    [drvState] varchar(255) NULL,
-    [drvZip] varchar(5) NULL,
-    [drvMedicalInsurancePlanName] varchar(40) NULL,
-    [drvMedicalGroupID] varchar(5) NULL,
-    [drvMedicalPlanEffDate] datetime NULL,
-    [drvMedicalPlanExpirationDate] datetime NULL,
-    [drvDentalInsurancePlanName] varchar(40) NULL,
-    [drvDentalGroupID] varchar(6) NULL,
-    [drvDentalPlanEffDate] datetime NULL,
-    [drvDentalPlanExpirationDate] datetime NULL,
-    [drvVisionInsurancePlanName] varchar(40) NULL,
-    [drvVisionGroupID] varchar(7) NULL,
-    [drvVisionPlanEffDate] datetime NULL,
-    [drvVisionPlanExpirationDate] datetime NULL,
-    [drvAccidentPlanName] varchar(40) NULL,
-    [drvAccidentGroupNumber] varchar(8) NULL,
-    [drvAccidentEffDate] datetime NULL,
-    [drvAccidentTerminationDate] datetime NULL,
-    [drvLifePlanName] varchar(40) NULL,
-    [drvLifeGroupNumber] varchar(9) NULL,
-    [drvLifeEffDate] datetime NULL,
-    [drvLifePolicyTerminationDate] datetime NULL,
-    [drvLTDPlanName] varchar(40) NULL,
-    [drvLTDGroupNumber] varchar(9) NULL,
-    [drvLTDEffDate] datetime NULL,
-    [drvLTDTerminationDate] datetime NULL,
-    [drvSTDPlanName] varchar(40) NULL,
-    [drvSTDGroupNumber] varchar(9) NULL,
-    [drvSTDEffDate] datetime NULL,
-    [drvSTDTerminationDate] datetime NULL,
-    [drvOptionalEmployeeLifePlanName] varchar(40) NULL,
-    [drvOptionalEmployeeLifeGroupNumber] varchar(9) NULL,
-    [drvOptionalEmployeeLifePolicyAmount] money NULL,
-    [drvOptionalEmployeeLifeEffDate] datetime NULL,
-    [drvOptionalEmployeeLifeTerminationDate] datetime NULL,
-    [drvOptionalSpouseLifePlanName] varchar(40) NULL,
-    [drvOptionalSpouseLifeGroupNumber] varchar(9) NULL,
-    [drvOptionalSpouseLifePolicyAmount] money NULL,
-    [drvOptionalSpouseLifeEffDate] datetime NULL,
-    [drvOptionalSpouseLifeTerminationDate] datetime NULL,
-    [drvOptionalChildLifePlanName] varchar(40) NULL,
-    [drvOptionalChildLifeGroupNumber] varchar(9) NULL,
-    [drvOptionalChildLifePolicyAmount] money NULL,
-    [drvOptionalChildLifeEffDate] datetime NULL,
-    [drvOptionalChildLifeTerminationDate] datetime NULL,
-    [drvOptionalEmployeeADDPlanName] varchar(40) NULL,
-    [drvOptionalEmployeeADDGroupNumber] varchar(9) NULL,
-    [drvOptionalEmployeeADDPolicyAmount] money NULL,
-    [drvOptionalEmployeeADDEffDate] datetime NULL,
-    [drvOptionalEmployeeADDTerminationDate] datetime NULL,
-    [drvOptionalSpouseADDPlanName] varchar(40) NULL,
-    [drvOptionalSpouseADDGroupNumber] varchar(9) NULL,
-    [drvOptionalSpouseADDPolicyAmount] money NULL,
-    [drvOptionalSpouseADDEffDate] datetime NULL,
-    [drvOptionalSpouseADDTerminationDate] datetime NULL,
-    [drvOptionalChildADDPlanName] varchar(40) NULL,
-    [drvOptionalChildADDGroupNumber] varchar(9) NULL,
-    [drvOptionalChildADDPolicyAmount] money NULL,
-    [drvOptionalChildADDEffDate] datetime NULL,
-    [drvOptionalChildADDTerminationDate] datetime NULL,
-    [drvHealthcareFSAPlanName] varchar(40) NULL,
-    [drvHealthcareFSAGroupNumber] varchar(14) NULL,
-    [drvHealthcareFSAAnnualElection] money NULL,
-    [drvHealthcareFSAEffDate] datetime NULL,
-    [drvHealthcareFSATerminationDate] datetime NULL,
-    [drvDependentCareFSAPlanName] varchar(40) NULL,
-    [drvDependentCareFSAGroupNumber] varchar(14) NULL,
-    [drvDependentCareFSAAnnualElection] money NULL,
-    [drvDependentCareFSAEffDate] datetime NULL,
-    [drvDependentCareFSATerminationDate] datetime NULL,
-    [drvHealthSavingsAccountPlanName] varchar(40) NULL,
-    [drvHealthSavingsAccountGroupNumber] varchar(6) NULL,
-    [drvHealthSavingsAccountAnnualElection] money NULL,
-    [drvHealthSavingsAccountEffDate] datetime NULL,
-    [drvHealthSavingsAccountTerminationDate] datetime NULL,
-    [drvHealthSavingsCatchUpAccountPlanName] varchar(40) NULL,
-    [drvHealthSavingsCatchUpGroupNumber] varchar(6) NULL,
-    [drvHealthSavingsCatchUpAnnualElection] money NULL,
-    [drvHealthSavingsCatchUpEffDate] datetime NULL,
-    [drvHealthSavingsCatchUpTerminationDate] datetime NULL,
-    [drv401kPercentageAccountPlanName] varchar(40) NULL,
-    [drv401kPercentageGroupNumber] varchar(6) NULL,
-    [drv401kPercentageEffDate] datetime NULL,
-    [drv401kPercentageTerminationDate] datetime NULL,
-    [drv401kCatchUpPercentageAccountPlanName] varchar(40) NULL,
-    [drv401kCatchUpPercentageGroupNumber] varchar(6) NULL,
-    [drv401kCatchUpPercentageEffDate] datetime NULL,
-    [drv401kCatchUpPercentageTerminationDate] datetime NULL,
-    [drv401kRothPercentageAccountPlanName] varchar(40) NULL,
-    [drv401kRothPercentageGroupNumber] varchar(6) NULL,
-    [drv401kRothPercentageEffDate] datetime NULL,
-    [drv401kRothPercentageTerminationDate] datetime NULL,
-    [drv401kRothCatchUpPercentageAccountPlanName] varchar(40) NULL,
-    [drv401kRothCatchUpPercentageGroupNumber] varchar(6) NULL,
-    [drv401kRothCatchUpPercentageEffDate] datetime NULL,
-    [drv401kRothCatchUpPercentageTerminationDate] datetime NULL,
-    [drv401kERMatchPercentageAccountPlanName] varchar(40) NULL,
-    [drv401kERMatchGroupNumber] varchar(6) NULL,
-    [drv401kERMatchEffDate] datetime NULL,
-    [drv401kERMatchTerminationDate] datetime NULL
-);
+
 IF OBJECT_ID('U_EHLTHJOY_EEList') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_EEList] (
     [xCOID] char(5) NULL,
@@ -495,7 +284,7 @@ CREATE TABLE [dbo].[U_EHLTHJOY_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] varchar(5000) NULL
+    [Data] varchar(4000) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHLTHJOY]
@@ -574,43 +363,48 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EHLTHJOY_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+     --==========================================
+    -- Audit Code
     --==========================================
-    -- "terminations sent one time only". 
-    -- One time means sent one time during the per control range.
-    --==========================================
-    --Audit Table
+    -- Get data from audit fields table.  Add fields here if auditing
     IF OBJECT_ID('U_EHLTHJOY_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EHLTHJOY_AuditFields;
-    CREATE TABLE dbo.U_EHLTHJOY_AuditFields (aTableName varchar(128),aFieldName varchar(128));
-    -- Insert tables/fields to be audited
-    INSERT INTO dbo.U_EHLTHJOY_AuditFields VALUES ('Empcomp','EecEmplStatus');    
-    -- Create audit table
+    CREATE TABLE dbo.U_EHLTHJOY_AuditFields (aTableName VARCHAR(30),aFieldName VARCHAR(30));
+    -- Employee Information
+    INSERT INTO dbo.U_EHLTHJOY_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EHLTHJOY_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EHLTHJOY_Audit;
-    SELECT
-         audTableName = adrTableName
-        ,audFieldName = adfFieldName
-        ,audKey1Value = ISNULL(adrKey1,'')
-        ,audKey2Value = ISNULL(adrKey2,'')
-        ,audKey3Value = ISNULL(adrKey3,'')
-        ,audDateTime  = adrProcessedDateTime
-        ,audOldValue  = adfOldData
-        ,audNewValue  = adfNewData
-        ,audRowNo     = ROW_NUMBER() OVER(PARTITION BY adrKey1, adrKey2, adrKey3, adfFieldName ORDER BY adrRecID DESC)
+    SELECT audEEID = xEEID
+        ,audCOID = xCOID
+        ,audKey1 = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audEffectiveDate
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
     INTO dbo.U_EHLTHJOY_Audit
-    FROM (SELECT *
-          FROM dbo.AuditRecords WITH (NOLOCK)
-          WHERE adrTableName IN (SELECT aTableName FROM dbo.U_EHLTHJOY_AuditFields WITH (NOLOCK))) ADR
-    JOIN (SELECT *
-          FROM dbo.AuditFields WITH (NOLOCK)
-          WHERE adfFieldName IN (SELECT aFieldName FROM dbo.U_EHLTHJOY_AuditFields WITH (NOLOCK))) ADF
-        ON adrSystemID = adfSystemID
-       AND adrKey = adfKey
-    WHERE adrType IN (1,2,5,6) -- Insert/Update; remove this to include Deletes and Viewed
-      AND adrProcessedDateTime BETWEEN @StartDate AND @EndDate;
-  
+    FROM dbo.U_EHLTHJOY_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK)
+        ON xEEID = audKey1Value
+    JOIN dbo.U_EHLTHJOY_AuditFields WITH (NOLOCK)
+        ON aTableName = audTableName
+        AND aFieldName = audFieldName
+    LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+        ON DbnEEID = xEEID
+        AND DbnDedCode = audKey2Value
+        AND DbnSystemID = audKey3Value
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND ISNULL(audNewValue, '') = 'T'
+    ;
+
     -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EHLTHJOY_Audit ON dbo.U_EHLTHJOY_Audit (audKey1Value, audKey2Value);
+    CREATE CLUSTERED INDEX CDX_U_EHLTHJOY_Audit ON dbo.U_EHLTHJOY_Audit (audCOID, audEEID);
 
     --==========================================
     -- Create Deduction List
@@ -684,8 +478,8 @@ BEGIN
         ,drvMobileNumber = EfoPhoneNumber
         ,drvDateOfBirth = EepDateOfBirth
         ,drvGender =  CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'X' END
-        ,drvAddressLine1 = REPLACE(EepAddressLine1,',',' ')
-        ,drvAddressLine2 = REPLACE(EepAddressLine2,',',' ')
+        ,drvAddressLine1 = EepAddressLine1
+        ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
@@ -699,11 +493,11 @@ BEGIN
         ,drvVisEffDate = EedVisEffDate
         ,drvVisPlanTermDate = EedVisPlanTermDate
         ,drvHFSAPlan = EedHFSAPlan
-        ,drvHFSAGoalAmount = EedHFSAGoalAmount
+        ,drvHFSAGoalAmount = CASE WHEN EedHFSAGoalAmount = 0 THEN NULL ELSE CONVERT(VARCHAR,EedHFSAGoalAmount) END
         ,drvHFSAPlanDate = EedHFSAPlanDate
         ,drvHFSAPlanTermDate = EedHFSAPlanTermDate
         ,drvDepFSAPlan = EedDepFSAPlan
-        ,drvDepFSAGoalAmt = EedDepFSAGoalAmt
+        ,drvDepFSAGoalAmt = CASE WHEN EedDepFSAGoalAmt = 0 THEN NULL ELSE CONVERT(VARCHAR,EedDepFSAGoalAmt) END
         ,drvDepFSAPlanDate = EedDepFSAPlanDate
         ,drvDepFSAPlanTermDate = EedDepFSAPlanTermDate
     INTO dbo.U_EHLTHJOY_drvTbl
@@ -711,9 +505,6 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
        AND EecCoID = xCoID
-       AND EecEEType = 'REG'
-        AND (eecemplstatus <> 'T' OR (eecemplstatus= 'T' AND eectermreason <>'TRO' 
-       AND EXISTS(SELECT 1 FROM dbo.U_EHLTHJOY_Audit WITH (NOLOCK) WHERE  audKey1Value = xEEID AND audKey2Value = xcoid AND Audfieldname = 'eecemplstatus' AND audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     LEFT
@@ -749,6 +540,10 @@ BEGIN
     JOIN (SELECT TOP 1 EfoEEID, EfoPhoneNumber FROM dbo.EmpMPhon WITH(NOLOCK) 
            WHERE efoPhoneType = 'CEL') AS M 
         ON M.EfoEEID = xEEID
+    WHERE EecEEType = 'REG'
+       AND (eecemplstatus <> 'T'
+       OR (eecemplstatus = 'T' AND EXISTS(SELECT 1 FROM dbo.U_EHLTHJOY_Audit WITH (NOLOCK) WHERE audEEID = xEEID AND audCOID = xcoid ) ))
+
     ;
      ---------------------------------
     -- DETAIL RECORD - U_EHLTHJOY_drvTbl
@@ -771,6 +566,7 @@ BEGIN
         ,drvSSN =  SUBSTRING(ConSSN, 1, 3) + '-' + SUBSTRING(ConSSN, 4, 2) + '-' + SUBSTRING(ConSSN, 6,4)  
         ,drvRelationship = CASE WHEN ConRelationship = 'SPS' THEN 'Spouse'
                                 WHEN ConRelationship IN ('CHL','STC') THEN 'Child'
+                                ELSE ConRelationship
                             END
         ,drvAddressEMail
         ,drvMobileNumber
@@ -791,17 +587,16 @@ BEGIN
         ,drvVisEffDate = DbnVisEffDate
         ,drvVisPlanTermDate = DbnVisPlanTermDate
         ,drvHFSAPlan = DbnHFSAPlan
-        ,drvHFSAGoalAmount 
+        ,drvHFSAGoalAmount = CASE WHEN DbnHFSAGoalAmount = 'Y' THEN drvHFSAGoalAmount END
         ,drvHFSAPlanDate = DbnHFSAPlanDate
         ,drvHFSAPlanTermDate = DbnHFSAPlanTermDate
         ,drvDepFSAPlan = DbnDepFSAPlan
-        ,drvDepFSAGoalAmt 
+        ,drvDepFSAGoalAmt = CASE WHEN DbnDepFSAGoalAmt = 'Y' THEN drvDepFSAGoalAmt END
         ,drvDepFSAPlanDate = DbnDepFSAPlanDate
         ,drvDepFSAPlanTermDate = DbnDepFSAPlanTermDate
     FROM dbo.U_EHLTHJOY_drvTbl WITH (NOLOCK)
     JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = drvEEID
-       AND ConRelationship IN ('SPS','CHL','STC') 
     LEFT
     JOIN (SELECT DbnEEID, DbnCOID, DbnDepRecID
                 ,DbnMedPlan = MAX(CASE WHEN DbnDedCode = 'MED1' THEN 'UMR Choice Plus Buyup'
@@ -819,10 +614,12 @@ BEGIN
                 ,DbnVisPlanTermDate = MAX(CASE WHEN DbnDedCode = 'VPP' THEN DbnBenStopDate END)
                 ,DbnHFSAPlan = MAX(CASE WHEN DbnDedCode = 'FSA' THEN 'FSA Health Spending Account' END)
                 ,DbnHFSAPlanDate = MAX(CASE WHEN DbnDedCode = 'FSA' THEN dbo.dsi_fnGetMinMaxDates('MAX',DbnBenStartDate, @FileMinCovDate) END)
+                ,DbnHFSAGoalAmount = MAX(CASE WHEN DbnDedCode = 'FSA' THEN 'Y' END)
                 ,DbnHFSAPlanTermDate = MAX(CASE WHEN DbnDedCode = 'FSA' THEN DbnBenStopDate END)
                 ,DbnDepFSAPlan = MAX(CASE WHEN DbnDedCode = 'DCA' THEN 'Dependent Care FSA' END)
                 ,DbnDepFSAPlanDate = MAX(CASE WHEN DbnDedCode = 'DCA' THEN dbo.dsi_fnGetMinMaxDates('MAX',DbnBenStartDate, @FileMinCovDate) END)
                 ,DbnDepFSAPlanTermDate = MAX(CASE WHEN DbnDedCode = 'DCA' THEN DbnBenStopDate END)
+                ,DbnDepFSAGoalAmt = MAX(CASE WHEN DbnDedCode = 'DCA' THEN 'Y' END)
             FROM dbo.U_dsi_bdm_DepDeductions 
            WHERE DbnFormatCode = @FormatCode 
              AND DbnValidForExport = 'Y'
@@ -830,6 +627,8 @@ BEGIN
         ON DbnCOID = drvCOID 
        AND DbnEEID = drvEEID
        AND DbnDepRecID = ConSystemID
+       WHERE ConIsDependent='Y'
+       AND ConRelationship IN ('SPS','CHL','STC') 
     ;
     --==========================================
     -- Set FileName

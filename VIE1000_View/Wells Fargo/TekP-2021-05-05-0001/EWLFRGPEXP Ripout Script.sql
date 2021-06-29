@@ -71,11 +71,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EWLFRGPEXP_20210623.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EWLFRGPEXP_20210628.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wells Fargo Payroll Export','202106049','EMPEXPORT','ONDEM_XOE',NULL,'EWLFRGPEXP',NULL,NULL,NULL,'202106049','Jun 17 2021 10:10AM','Jun 17 2021 10:10AM','202106041',NULL,'','','202106041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wells Fargo Payroll Expo-Sched','202106049','EMPEXPORT','SCH_EWLFRG',NULL,'EWLFRGPEXP',NULL,NULL,NULL,'202106049','Jun 17 2021 10:10AM','Jun 17 2021 10:10AM','202106041',NULL,'','','202106041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Wells Fargo Payroll Expo-Test','202106049','EMPEXPORT','TEST_XOE','Jun 18 2021  5:21PM','EWLFRGPEXP',NULL,NULL,NULL,'202106049','Jun 17 2021 10:10AM','Jun 17 2021 10:10AM','202106041','955','','','202106041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Wells Fargo Payroll Expo-Test','202106049','EMPEXPORT','TEST_XOE','Jun 28 2021  6:26PM','EWLFRGPEXP',NULL,NULL,NULL,'202106049','Jun 17 2021 10:10AM','Jun 17 2021 10:10AM','202106041','15','','','202106041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWLFRGPEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWLFRGPEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWLFRGPEXP','InitialSort','C','drvSort');
@@ -95,7 +95,7 @@ CREATE TABLE [dbo].[U_EWLFRGPEXP_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
     [drvPaymentAmount] nvarchar(4000) NULL,
-    [drvDateFundsAvailable] varchar(5) NULL,
+    [drvDateFundsAvailable] varchar(6) NULL,
     [drvInstituteIdNumber] varchar(9) NULL,
     [drvPayeeAccountNumber] char(22) NOT NULL,
     [drvPayeeName] varchar(201) NULL,
@@ -211,7 +211,7 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EWLFRGPEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     DELETE FROM dbo.U_EWLFRGPEXP_EEList WHERE xEEID IN (
-        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType = 'TES'
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType = 'TES' OR EecPayGroup <> 'CANBW'
     )
 
     -----------------------------
@@ -260,7 +260,7 @@ BEGIN
         ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,drvPaymentAmount = FORMAT(PrhDepositAmt*100, '0000000000')
-        ,drvDateFundsAvailable = RIGHT(CAST(YEAR(PrgPayDate) AS CHAR(4)),2) + RIGHT('000' + CAST(DATEPART(dy, PrgPayDate) AS varchar(3)),3) 
+        ,drvDateFundsAvailable = RIGHT('000'+CAST(YEAR(PrgPayDate) AS VARCHAR(4)),3) + RIGHT('000' + CAST(DATEPART(dy, PrgPayDate) AS varchar(3)),3) 
         ,drvInstituteIdNumber =  Right('000000000' + rtrim(ltrim(isnull(EddEEInstitutionNo,''))) + rtrim(ltrim(isnull(EddEeBankRoute,''))),9)
         ,drvPayeeAccountNumber = EddAcct
         ,drvPayeeName = EepNameFirst + ' ' + EepNameLast
@@ -284,7 +284,6 @@ BEGIN
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     WHERE PrhPerControl BETWEEN @StartPerControl AND @EndPerControl
-    
     ;
     ---------------------------------
     -- HEADER RECORD
