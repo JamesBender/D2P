@@ -185,13 +185,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EHLTHJOY_20210625.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EHLTHJOY_20210630.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202106229','EMPEXPORT','OEACTIVE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202106229','EMPEXPORT','OEPASSIVE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy','202106229','EMPEXPORT','ONDEM_XOE',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy-Sched','202106229','EMPEXPORT','SCH_EHLTHJ',NULL,'EHLTHJOY',NULL,NULL,NULL,'202106229','Jun 22 2021  1:24PM','Jun 22 2021  1:24PM','202106221',NULL,'','','202106221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Joy-Test','202106241','EMPEXPORT','TEST_XOE','Jun 24 2021 12:00AM','EHLTHJOY',NULL,NULL,NULL,'202106241','Jun 24 2021 12:00AM','Dec 30 1899 12:00AM','202106101','24442','','','202106101',dbo.fn_GetTimedKey(),NULL,'CPETITTI20',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Health Joy-Test','202106241','EMPEXPORT','TEST_XOE','Jun 30 2021 12:22PM','EHLTHJOY',NULL,NULL,NULL,'202106241','Jun 24 2021 12:00AM','Dec 30 1899 12:00AM','202106101','2550','','','202106101',dbo.fn_GetTimedKey(),NULL,'CPETITTI20',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHLTHJOY','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHLTHJOY','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHLTHJOY','InitialSort','C','drvInitialSort');
@@ -228,7 +228,7 @@ IF OBJECT_ID('U_EHLTHJOY_DedList') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
-); 
+);
 IF OBJECT_ID('U_EHLTHJOY_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_drvTbl] (
     [drvEEID] char(12) NULL,
@@ -263,15 +263,14 @@ CREATE TABLE [dbo].[U_EHLTHJOY_drvTbl] (
     [drvVisEffDate] datetime NULL,
     [drvVisPlanTermDate] datetime NULL,
     [drvHFSAPlan] varchar(27) NULL,
-    [drvHFSAGoalAmount] varchar(10) NULL,
+    [drvHFSAGoalAmount] varchar(30) NULL,
     [drvHFSAPlanDate] datetime NULL,
     [drvHFSAPlanTermDate] datetime NULL,
     [drvDepFSAPlan] varchar(18) NULL,
-    [drvDepFSAGoalAmt] varchar(10) NULL,
+    [drvDepFSAGoalAmt] varchar(30) NULL,
     [drvDepFSAPlanDate] datetime NULL,
     [drvDepFSAPlanTermDate] datetime NULL
 );
-
 IF OBJECT_ID('U_EHLTHJOY_EEList') IS NULL
 CREATE TABLE [dbo].[U_EHLTHJOY_EEList] (
     [xCOID] char(5) NULL,
@@ -400,7 +399,7 @@ BEGIN
         AND DbnDedCode = audKey2Value
         AND DbnSystemID = audKey3Value
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND ISNULL(audNewValue, '') = 'T'
+    AND ISNULL(audNewValue, '') <> ''
     ;
 
     -- Create Index
@@ -505,9 +504,10 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
        AND EecCoID = xCoID
+       AND (eecemplstatus <> 'T'
+            OR (eecemplstatus = 'T' AND EXISTS(SELECT 1 FROM dbo.U_EHLTHJOY_Audit WITH (NOLOCK) WHERE audEEID = xEEID AND audCOID = xcoid ) ))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    LEFT
     JOIN (SELECT EedEEID, EedCOID
                 ,EedMedPlan = MAX(CASE WHEN EedDedCode = 'MED1' THEN 'UMR Choice Plus Buyup'
                                    WHEN EedDedCode = 'MED2' THEN 'UMR Choice Plus Core'
@@ -523,11 +523,11 @@ BEGIN
                 ,EedVisEffDate = MAX(CASE WHEN EedDedCode = 'VPP' THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate) END)
                 ,EedVisPlanTermDate = MAX(CASE WHEN EedDedCode = 'VPP' THEN EedBenStopDate END)
                 ,EedHFSAPlan = MAX(CASE WHEN EedDedCode = 'FSA' THEN 'FSA Health Spending Account' END)
-                ,EedHFSAGoalAmount = SUM(EedEEGoalAmt)
+                ,EedHFSAGoalAmount = SUM(CASE WHEN EedDedCode = 'FSA' THEN EedEEGoalAmt END)
                 ,EedHFSAPlanDate = MAX(CASE WHEN EedDedCode = 'FSA' THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate) END)
                 ,EedHFSAPlanTermDate = MAX(CASE WHEN EedDedCode = 'FSA' THEN EedBenStopDate END)
                 ,EedDepFSAPlan = MAX(CASE WHEN EedDedCode = 'DCA' THEN 'Dependent Care FSA' END)
-                ,EedDepFSAGoalAmt = SUM(EedEEGoalAmt)
+                ,EedDepFSAGoalAmt =  SUM(CASE WHEN EedDedCode = 'DCA' THEN EedEEGoalAmt END)
                 ,EedDepFSAPlanDate = MAX(CASE WHEN EedDedCode = 'DCA' THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate) END)
                 ,EedDepFSAPlanTermDate = MAX(CASE WHEN EedDedCode = 'DCA' THEN EedBenStopDate END)
             FROM dbo.U_dsi_bdm_EmpDeductions 
@@ -541,8 +541,7 @@ BEGIN
            WHERE efoPhoneType = 'CEL') AS M 
         ON M.EfoEEID = xEEID
     WHERE EecEEType = 'REG'
-       AND (eecemplstatus <> 'T'
-       OR (eecemplstatus = 'T' AND EXISTS(SELECT 1 FROM dbo.U_EHLTHJOY_Audit WITH (NOLOCK) WHERE audEEID = xEEID AND audCOID = xcoid ) ))
+
 
     ;
      ---------------------------------
@@ -597,7 +596,6 @@ BEGIN
     FROM dbo.U_EHLTHJOY_drvTbl WITH (NOLOCK)
     JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = drvEEID
-    LEFT
     JOIN (SELECT DbnEEID, DbnCOID, DbnDepRecID
                 ,DbnMedPlan = MAX(CASE WHEN DbnDedCode = 'MED1' THEN 'UMR Choice Plus Buyup'
                                    WHEN DbnDedCode = 'MED2' THEN 'UMR Choice Plus Core'
