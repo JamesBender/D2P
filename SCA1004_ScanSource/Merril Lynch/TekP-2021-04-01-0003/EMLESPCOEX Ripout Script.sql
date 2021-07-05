@@ -52,16 +52,17 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMLESPCOEX_20210514.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMLESPCOEX_20210701.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202104219','EMPEXPORT','OEACTIVE','Apr 21 2021  4:01PM','EMLESPCOEX',NULL,NULL,NULL,'202104219','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202104011','6','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202104219','EMPEXPORT','OEPASSIVE','Apr 21 2021  4:02PM','EMLESPCOEX',NULL,NULL,NULL,'202104219','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202104011','301','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Lynch ESSP Contrib Exp','202104219','EMPEXPORT','ONDEM_XOE','Apr 21 2021  4:02PM','EMLESPCOEX',NULL,NULL,NULL,'202104219','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202104011','302','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Lynch ESSP Contr-Sched','202104219','EMPEXPORT','SCH_EMLESP','Apr 21 2021  4:02PM','EMLESPCOEX',NULL,NULL,NULL,'202104219','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202104011','302','','','202104011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Lynch ESSP Contr-Test','202104291','EMPEXPORT','TEST_XOE','May 11 2021 12:00AM','EMLESPCOEX',NULL,NULL,NULL,'202104291','Apr 29 2021 12:00AM','May  1 2021 12:00AM','202104291','298','','','202104291',dbo.fn_GetTimedKey(),NULL,'us3rVaSCA1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202107099','EMPEXPORT','OEACTIVE','Apr 21 2021  4:01PM','EMLESPCOEX',NULL,NULL,NULL,'202107099','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202107091','6','','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202107099','EMPEXPORT','OEPASSIVE','Apr 21 2021  4:02PM','EMLESPCOEX',NULL,NULL,NULL,'202107099','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202107091','301','','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Lynch ESSP Contrib Exp','202107099','EMPEXPORT','ONDEM_XOE','Apr 21 2021  4:02PM','EMLESPCOEX',NULL,NULL,NULL,'202107099','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202107091','302','','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Lynch ESSP Contr-Sched','202107099','EMPEXPORT','SCH_EMLESP','Apr 21 2021  4:02PM','EMLESPCOEX',NULL,NULL,NULL,'202107099','Apr 21 2021  1:38PM','Apr 21 2021  1:38PM','202107091','302','','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Lynch ESSP Contr-Test','202107099','EMPEXPORT','TEST_XOE','Jun 29 2021  3:32PM','EMLESPCOEX',NULL,NULL,NULL,'202107099','Apr 29 2021 12:00AM','May  1 2021 12:00AM','202107091','298','','','202107091',dbo.fn_GetTimedKey(),NULL,'us3rVaSCA1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLESPCOEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLESPCOEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLESPCOEX','InitialSort','C','drvSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLESPCOEX','Last Purchase Period Number','V','4');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLESPCOEX','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLESPCOEX','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EMLESPCOEX' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
@@ -127,7 +128,7 @@ CREATE TABLE [dbo].[U_EMLESPCOEX_drvTbl] (
     [drvSort] varchar(1) NOT NULL,
     [drvParticipantId] char(11) NULL,
     [drvOfferingPeriodNumber] varchar(10) NOT NULL,
-    [drvPurchasePeriodNumber] varchar(1) NULL,
+    [drvPurchasePeriodNumber] int NULL,
     [drvContributionDate] datetime NULL,
     [drvUsContributionAmount] nvarchar(4000) NULL
 );
@@ -223,7 +224,9 @@ BEGIN
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
+            ,@EndPerControl     VARCHAR(9)
+            ,@LastPurchasePeriodNumber INT
+            ;
 
     -- Set FormatCode
     SELECT @FormatCode = 'EMLESPCOEX';
@@ -237,6 +240,21 @@ BEGIN
         ,@ExportCode      = ExportCode
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
+
+    SELECT @LastPurchasePeriodNumber = (DATEDIFF (DAY, '6/25/21', @StartDate)/14) + 26;
+
+    SELECT @LastPurchasePeriodNumber;
+
+    /*SELECT TOP 1 @LastPurchasePeriodNumber = CAST(CfgValue AS INT) + 1 FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EMLESPCOEX' AND CfgName = 'Last Purchase Period Number'
+
+    SELECT @LastPurchasePeriodNumber AS TestMe;
+
+    UPDATE dbo.U_dsi_Configuration
+    SET CfgValue = CAST(@LastPurchasePeriodNumber AS VARCHAR)
+    WHERE FormatCode = 'EMLESPCOEX'
+    AND CfgName = 'Last Purchase Period Number'*/
+    
+
 
     --==========================================
     -- Clean EE List 
@@ -382,16 +400,18 @@ BEGIN
         ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,drvParticipantId = EepSSN
-        ,drvOfferingPeriodNumber =  'OFR0000001'/*  CASE WHEN DATEPART(MONTH, GETDATE()) BETWEEN 1 AND 3 THEN 'OFR0000001'
+        ,drvOfferingPeriodNumber = 'OFR0000001' -- 'OFR0000001'
+                                    /*  CASE WHEN DATEPART(MONTH, GETDATE()) BETWEEN 1 AND 3 THEN 'OFR0000001'
                                         WHEN DATEPART(MONTH, GETDATE()) BETWEEN 4 AND 6 THEN 'OFR0000002'
                                         WHEN DATEPART(MONTH, GETDATE()) BETWEEN 7 AND 10 THEN 'OFR0000003'
                                         WHEN DATEPART(MONTH, GETDATE()) BETWEEN 11 AND 12 THEN 'OFR0000004'
                                     END*/
-        ,drvPurchasePeriodNumber =    CASE WHEN DATEPART(MONTH, GETDATE()) BETWEEN 1 AND 3 THEN '1'
+        ,drvPurchasePeriodNumber = @LastPurchasePeriodNumber
+                                   /*CASE WHEN DATEPART(MONTH, GETDATE()) BETWEEN 1 AND 3 THEN '1'
                                         WHEN DATEPART(MONTH, GETDATE()) BETWEEN 4 AND 6 THEN '2'
                                         WHEN DATEPART(MONTH, GETDATE()) BETWEEN 7 AND 10 THEN '3'
                                         WHEN DATEPART(MONTH, GETDATE()) BETWEEN 11 AND 12 THEN '4'
-                                    END
+                                    END*/
         ,drvContributionDate = PrgPayDate
         ,drvUsContributionAmount = FORMAT(PdhUsAndCan*100, REPLICATE('0', 15))
     INTO dbo.U_EMLESPCOEX_drvTbl
@@ -453,10 +473,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202104011'
-       ,expStartPerControl     = '202104011'
-       ,expLastEndPerControl   = '202104219'
-       ,expEndPerControl       = '202104219'
+    SET expLastStartPerControl = '202106261'
+       ,expStartPerControl     = '202106261'
+       ,expLastEndPerControl   = '202105269'
+       ,expEndPerControl       = '202106269'
 WHERE expFormatCode = 'EMLESPCOEX';
 
 **********************************************************************************/
