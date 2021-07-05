@@ -22,7 +22,7 @@ DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE Format
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ESTANDARD';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ESTANDARD';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ESTANDARD';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','CDE','ESTANDARD','The Standard','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','5000','N','S','N','ESTANDARD0Z0','N','Jan  1 1900 12:00AM','C','N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ESTANDARD','The Standard','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','5000','S','N','ESTANDARD0Z0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ESTANDARD' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"10152739"','1','(''DA''=''T|'')','ESTANDARD0Z0','8','D','10','1',NULL,'Organization ID Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''SS''=''T|'')','ESTANDARD0Z0','50','D','10','2',NULL,'Sub Org Text',NULL,NULL);
@@ -271,15 +271,17 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTANDARD_20210624.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESTANDARD_20210705.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011129','EMPEXPORT','OEACTIVE',NULL,'ESTANDARD',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202011129','EMPEXPORT','OEPASSIVE',NULL,'ESTANDARD',NULL,NULL,NULL,'202011129','Nov 12 2020  2:08PM','Nov 12 2020  2:08PM','202011121',NULL,'','','202011121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'The Standard Export','202106249','EMPEXPORT','ONDEM_XOE',NULL,'ESTANDARD',NULL,NULL,NULL,'202106249','Jun 24 2021  1:15PM','Jun 24 2021  1:15PM','202106241',NULL,'','','202106241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'The Standard Export-Sched','202106249','EMPEXPORT','SCH_ESTAND',NULL,'ESTANDARD',NULL,NULL,NULL,'202106249','Jun 24 2021  1:15PM','Jun 24 2021  1:15PM','202106241',NULL,'','','202106241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'The Standard Export-Test','202106249','EMPEXPORT','TEST_XOE',NULL,'ESTANDARD',NULL,NULL,NULL,'202106249','Jun 24 2021  1:15PM','Jun 24 2021  1:15PM','202106241',NULL,'','','202106241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'The Standard Export-Test','202107011','EMPEXPORT','TEST_XOE','Jul  1 2021  8:33PM','ESTANDARD',NULL,NULL,NULL,'202107011','Jul  1 2021 12:00AM','Dec 30 1899 12:00AM','202106171','492','','','202106171',dbo.fn_GetTimedKey(),NULL,'us3cPeMER1017',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ESTANDARD' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ESTANDARD' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_ESTANDARD_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ESTANDARD_SavePath];
@@ -307,7 +309,7 @@ CREATE TABLE [dbo].[U_ESTANDARD_drvTbl] (
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZip] varchar(50) NULL,
-    [drvAddressCountry] char(3) NULL,
+    [drvAddressCountry] varchar(45) NULL,
     [drvNonWorkPhone] varchar(50) NULL,
     [drvDateOfLastHire] datetime NULL,
     [drvDateOfOriginalHire] datetime NULL,
@@ -316,12 +318,12 @@ CREATE TABLE [dbo].[U_ESTANDARD_drvTbl] (
     [drvJobTitle] varchar(25) NOT NULL,
     [drvEmpStatus] varchar(16) NULL,
     [drvScheduledWorkHrs] decimal NULL,
-    [drvSalaryOrHourly] char(1) NULL,
-    [drvFullTimeOrPartTime] char(1) NULL,
-    [drvEmpType] varchar(6) NULL,
+    [drvSalaryOrHourly] varchar(6) NULL,
+    [drvFullTimeOrPartTime] varchar(9) NULL,
+    [drvEmpType] varchar(9) NOT NULL,
     [drvEarningsAmt1] decimal NULL,
-    [drvEarningsExp1] varchar(6) NULL,
-    [drvEarningsDate1] varchar(1) NOT NULL,
+    [drvEarningsAmtExp1] varchar(6) NULL,
+    [drvEarningsDate1] datetime NULL,
     [drvSTDPolicy] varchar(6) NULL,
     [drvSTDPlan] varchar(1) NULL,
     [drvSTDProduct] varchar(2) NULL,
@@ -386,6 +388,8 @@ Execute Export
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESTANDARD', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESTANDARD', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESTANDARD', 'SCH_ESTAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESTANDARD', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESTANDARD', 'OEACTIVE';
 
 EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ESTANDARD', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
@@ -425,22 +429,22 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_ESTANDARD_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-	--DELETE TEST/BAD EMPLOYEES
-	DELETE EE
-	FROM dbo.U_ESTANDARD_EEList EE
-	JOIN dbo.EmpComp WITH (NOLOCK)
-	  ON EecEEID = xEEID
-	 AND EecCOID = xCOID
-		JOIN dbo.EmpPers WITH (NOLOCK)
-	  ON EepEEID = xEEID
-	WHERE LTRIM(RTRIM(EepSSN)) = '000000000'
-	   OR LTRIM(RTRIM(EepSSN)) = '111111111'
-	   OR LTRIM(RTRIM(EepSSN)) = '888888888'
-	   OR LEFT(LTRIM(EepSSN),3) = '999'
-	   OR LEFT(LTRIM(EepSSN),3) = '998'
-	   OR LTRIM(RTRIM(EepSSN)) = '123456789'
-	   OR EepSSN IS NULL
-	   OR EecEEType = 'TES';
+    --DELETE TEST/BAD EMPLOYEES
+    DELETE EE
+    FROM dbo.U_ESTANDARD_EEList EE
+    JOIN dbo.EmpComp WITH (NOLOCK)
+      ON EecEEID = xEEID
+     AND EecCOID = xCOID
+        JOIN dbo.EmpPers WITH (NOLOCK)
+      ON EepEEID = xEEID
+    WHERE LTRIM(RTRIM(EepSSN)) = '000000000'
+       OR LTRIM(RTRIM(EepSSN)) = '111111111'
+       OR LTRIM(RTRIM(EepSSN)) = '888888888'
+       OR LEFT(LTRIM(EepSSN),3) = '999'
+       OR LEFT(LTRIM(EepSSN),3) = '998'
+       OR LTRIM(RTRIM(EepSSN)) = '123456789'
+       OR EepSSN IS NULL
+       OR EecEEType = 'TES';
 
 
  --==========================================
@@ -469,8 +473,18 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'ExclFutureDatedStartDates', 'Y');
-	INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'ExclFutureDatedStartDates', 'Y');     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'FutureDatedStopDateDays', '30');
+
+    -- Required OE parameters
+    IF @ExportCode LIKE '%PASSIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+    END;
+
+    IF @ExportCode LIKE '%ACTIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+    END;
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
@@ -490,7 +504,7 @@ BEGIN
         ,drvSSN = eepSSN
         ,drvEmpNo = RIGHT('00000000000000000000'+ RTRIM(EecEmpNo),20)
         ,drvNameFirst = EepNameFirst
-        ,drvNameMiddle = EepNameMiddle
+        ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = EepNameLast
         ,drvDateOfBirth = EepDateOfBirth
         ,drvGender = CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
@@ -500,7 +514,7 @@ BEGIN
         ,drvAddressState = EepAddressState
         ,drvAddressZip = EepAddressZipCode
         ,drvAddressCountry = CASE WHEN EepAddressCountry = 'USA' THEN Country.CodDesc END
-        ,drvNonWorkPhone = EecPhoneBusinessNumber
+        ,drvNonWorkPhone = CASE WHEN ISNULL(RTRIM(EepPhoneHomeNumber),'') = '' THEN EfoPhoneNumber else EepPhoneHomeNumber END
         ,drvDateOfLastHire = EecDateOfLastHire
         ,drvDateOfOriginalHire = EecDateOfOriginalHire
         ,drvDateOfTermination = EecDateOfTermination
@@ -515,13 +529,13 @@ BEGIN
                              END
         ,drvScheduledWorkHrs = EecScheduledWorkHrs
         ,drvSalaryOrHourly = CASE EecSalaryOrHourly
-								 WHEN 'H' THEN 'Hourly'
-								 WHEN 'S' THEN 'Salary'
-							  END
+                                 WHEN 'H' THEN 'Hourly'
+                                 WHEN 'S' THEN 'Salary'
+                              END
         ,drvFullTimeOrPartTime = CASE EecFullTimeOrPartTime
-									 WHEN 'F' THEN 'Full Time'
-									 WHEN 'P' THEN 'Part Time'
-								 END
+                                     WHEN 'F' THEN 'Full Time'
+                                     WHEN 'P' THEN 'Part Time'
+                                 END
         ,drvEmpType = CASE WHEN EecEEType = 'TMP' THEN 'Temporary'
                            ELSE 'Regular'
                            END
@@ -549,7 +563,7 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-		AND (EecEmplStatus <> 'T' OR DATEDIFF(day,EecDateOfTermination,@EndDate)  <= 30)
+        AND (EecEmplStatus <> 'T' OR DATEDIFF(day,EecDateOfTermination,@EndDate)  <= 30)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
@@ -557,27 +571,31 @@ BEGIN
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
     JOIN (SELECT EedEEID, EEdCOID
-				,EedSTDPolicy = MAX(CASE WHEN EedDedCode = 'STD'  THEN '759799' END)
-				,EedSTDPlan =  MAX(CASE WHEN EedDedCode = 'STD'  THEN 'A' END)
-				,EedSTDProduct =  MAX(CASE WHEN EedDedCode = 'STD' THEN 'ST' END)
-				,EedSTDEffectiveDate =  MAX(CASE WHEN EedDedCode = 'STD' THEN EedBenStartDate END)
-				,EedSTDTermDate =  MAX(CASE WHEN EedDedCode = 'STD' THEN EedBenStopDate END)
-				,EedLTDPolicy =  MAX(CASE WHEN EedDedCode = 'LTD' THEN '168230' END)
-				,EedLTDPlan =  MAX(CASE WHEN EedDedCode = 'LTD' THEN 'B' END)
-				,EedLTDProduct =  MAX(CASE WHEN EedDedCode = 'LTD' THEN 'LT' END)
-				,EedLTDEffectiveDate = MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStartDate END)
-				,EedLTDTermDate =  MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStopDate END)
-		    FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
-	       WHERE EedFormatCode = @FormatCode 
+                ,EedSTDPolicy = MAX(CASE WHEN EedDedCode = 'STD'  THEN '759799' END)
+                ,EedSTDPlan =  MAX(CASE WHEN EedDedCode = 'STD'  THEN 'A' END)
+                ,EedSTDProduct =  MAX(CASE WHEN EedDedCode = 'STD' THEN 'ST' END)
+                ,EedSTDEffectiveDate =  MAX(CASE WHEN EedDedCode = 'STD' THEN EedBenStartDate END)
+                ,EedSTDTermDate =  MAX(CASE WHEN EedDedCode = 'STD' THEN EedBenStopDate END)
+                ,EedLTDPolicy =  MAX(CASE WHEN EedDedCode = 'LTD' THEN '168230' END)
+                ,EedLTDPlan =  MAX(CASE WHEN EedDedCode = 'LTD' THEN 'B' END)
+                ,EedLTDProduct =  MAX(CASE WHEN EedDedCode = 'LTD' THEN 'LT' END)
+                ,EedLTDEffectiveDate = MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStartDate END)
+                ,EedLTDTermDate =  MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStopDate END)
+            FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
+           WHERE EedFormatCode = @FormatCode 
              AND EedValidForExport = 'Y' 
-		GROUP BY EedEEID, EedCOID
-		) Deductions
+        GROUP BY EedEEID, EedCOID
+        ) Deductions
         ON EedEEID = xEEID 
         AND EedCoID = xCoID
-		AND (EedLTDEffectiveDate IS NOT NULL OR EedSTDEffectiveDate IS NOT NULL)
-	JOIN dbo.Codes AS Country WITH (NOLOCK) 
-		ON CodCode = EepAddressCountry
-	   AND CodTable = 'COUNTRY'
+        AND (EedLTDEffectiveDate IS NOT NULL OR EedSTDEffectiveDate IS NOT NULL)
+    JOIN dbo.Codes AS Country WITH (NOLOCK) 
+        ON CodCode = EepAddressCountry
+       AND CodTable = 'COUNTRY'
+    LEFT 
+    JOIN (SELECT EfoEEID, EfoPhoneNumber FROM dbo.EmpMPhon WITH(NOLOCK) 
+           WHERE efoPhoneType = 'CEL') AS M 
+        ON M.EfoEEID = xEEID
     ;
     --==========================================
     -- Set FileName

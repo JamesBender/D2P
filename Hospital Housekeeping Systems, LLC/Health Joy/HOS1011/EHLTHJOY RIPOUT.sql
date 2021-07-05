@@ -537,7 +537,7 @@ BEGIN
         ON EedCOID = xCOID 
        AND EedEEID = xEEID
     LEFT 
-    JOIN (SELECT TOP 1 EfoEEID, EfoPhoneNumber FROM dbo.EmpMPhon WITH(NOLOCK) 
+    JOIN (SELECT EfoEEID, EfoPhoneNumber FROM dbo.EmpMPhon WITH(NOLOCK) 
            WHERE efoPhoneType = 'CEL') AS M 
         ON M.EfoEEID = xEEID
     WHERE EecEEType = 'REG'
