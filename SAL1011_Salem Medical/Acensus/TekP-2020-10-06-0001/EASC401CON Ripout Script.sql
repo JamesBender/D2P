@@ -106,7 +106,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EASC401CON_20210702.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EASC401CON_20210706.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202104029','EMPEXPORT','OEACTIVE',NULL,'EASC401CON',NULL,NULL,NULL,'202104029','Jan 28 2021  1:04PM','Jan 28 2021  1:04PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202104029','EMPEXPORT','OEPASSIVE',NULL,'EASC401CON',NULL,NULL,NULL,'202104029','Jan 28 2021  1:04PM','Jan 28 2021  1:04PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -486,7 +486,10 @@ BEGIN
         -- Current Payroll Amount/Hours
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl  THEN PehCurAmt ELSE 0.00 END)
         ,PehCurAmtWithoutGTIMP  = SUM(CASE WHEN PehPerControl >= @StartPerControl and pehearncode <> 'GTIMP' THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurAmtDtlP          = SUM(CASE WHEN PehPerControl >= @StartPerControl  and pehearncode in ('BNCB', 'CHRG','CHRG5','FLOAT','IC20','IC300','IC500','OC10','OC3','OC5','OT','OTP','OTPS2','OTPS3','PTO','PTOCA','REG','REG2','REG3','RP','SALEM','TRIN2','TRINS','TROR2','TROR3','TRORI') THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtDtlP          = SUM(CASE WHEN PehPerControl >= @StartPerControl  and pehearncode 
+                                            --in ('BNCB', 'CHRG','CHRG5','FLOAT','IC20','IC300','IC500','OC10','OC3','OC5','OT','OTP','OTPS2','OTPS3','PTO','PTOCA','REG','REG2','REG3','RP','SALEM','TRIN2','TRINS','TROR2','TROR3','TRORI') 
+                                            IN ('BFAMT','BFGFT','BFTUT','BN','BNINC','BNLTC','BRVMT','CB','CHRG','CHRG5','COCHD','COFML','COSCK','EEYR','FLOAT','HOLID','HOLPH','HWOV2','HWOV3','HWOVT','HWWK2','HWWK3','IC10','IC15','IC20','IC200','IC250','IC300','IC400','IC500','INC','INC20','JURY','LEGAL','MDDIR','MILES','NONPR','NOPHR','OC10','OC3','OC5','OCOR','OT','OTADJ','OTP','OTPS2','OTPS3','PHCON','PHOC','PHYGU','PTO','PTOCA','REG','REG2','REG3','RFNT','RFT','RP','SALEM','SICK','STPND','SVFLT','SVHRS','TPSCK','TRIN2','TRIN3','TRINS','TRIO2','TRIO3','TRIOT','TROFF','TROO2','TROO3','TROOT','TROR2','TROR3','TRORI','VS130','VST50','VST64','VST70','VST85','VSTPT')
+                                        THEN PehCurAmt ELSE 0.00 END)
         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
         ,PehCurHrsDTL              = SUM(CASE WHEN PehPerControl >= @StartPerControl and pehearncode in ('REG') THEN PehCurHrs ELSE 0.00 END)
 
@@ -494,7 +497,10 @@ BEGIN
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
         ,PehCurAmtWithoutGTIMPYTD  = SUM(CASE WHEN pehearncode <> 'GTIMP' THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurAmtDtlPYTD          = SUM(CASE WHEN pehearncode in ('BNCB', 'CHRG','CHRG5','FLOAT','IC20','IC300','IC500','OC10','OC3','OC5','OT','OTP','OTPS2','OTPS3','PTO','PTOCA','REG','REG2','REG3','RP','SALEM','TRIN2','TRINS','TROR2','TROR3','TRORI') THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtDtlPYTD          = SUM(CASE WHEN pehearncode 
+                                            --in ('BNCB', 'CHRG','CHRG5','FLOAT','IC20','IC300','IC500','OC10','OC3','OC5','OT','OTP','OTPS2','OTPS3','PTO','PTOCA','REG','REG2','REG3','RP','SALEM','TRIN2','TRINS','TROR2','TROR3','TRORI') 
+                                            IN ('BFAMT','BFGFT','BFTUT','BN','BNINC','BNLTC','BRVMT','CB','CHRG','CHRG5','COCHD','COFML','COSCK','EEYR','FLOAT','HOLID','HOLPH','HWOV2','HWOV3','HWOVT','HWWK2','HWWK3','IC10','IC15','IC20','IC200','IC250','IC300','IC400','IC500','INC','INC20','JURY','LEGAL','MDDIR','MILES','NONPR','NOPHR','OC10','OC3','OC5','OCOR','OT','OTADJ','OTP','OTPS2','OTPS3','PHCON','PHOC','PHYGU','PTO','PTOCA','REG','REG2','REG3','RFNT','RFT','RP','SALEM','SICK','STPND','SVFLT','SVHRS','TPSCK','TRIN2','TRIN3','TRINS','TRIO2','TRIO3','TRIOT','TROFF','TROO2','TROO3','TROOT','TROR2','TROR3','TRORI','VS130','VST50','VST64','VST70','VST85','VSTPT')
+                                        THEN PehCurAmt ELSE 0.00 END)
 
 
         -- Current Include Deferred Comp Amount/Hours
