@@ -1,0 +1,1 @@
+SELECT *  FROM [dbo].[fn_MP_CustomFields_EmpPers_Export] (NULL,NULL,NULL,NULL)
