@@ -116,14 +116,17 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGUARD8340Z0','3','D','15','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual3"','2','(''UA''=''T*'')','EGUARD8340Z0','3','D','15','2',NULL,'Reference Number Identificatio',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual3"','3','(''UA''=''T*'')','EGUARD8340Z0','50','D','15','3',NULL,'Reference Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime1"','1','(''UA''=''T*'')','EGUARD8340Z0','3','D','16','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier1"','2','(''UA''=''T*'')','EGUARD8340Z0','3','D','16','2',NULL,'Date/Time Qualifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual1"','3','(''UA''=''T*'')','EGUARD8340Z0','3','D','16','3',NULL,'Date/Time Format',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod1"','4','(''UD112''=''T*'')','EGUARD8340Z0','35','D','16','4',NULL,'Date/Time Period',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime2"','1','(''UA''=''T*'')','EGUARD8340Z0','3','D','17','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier2"','2','(''UA''=''T*'')','EGUARD8340Z0','3','D','17','2',NULL,'Date/Time Qualifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual2"','3','(''UA''=''T*'')','EGUARD8340Z0','3','D','17','3',NULL,'Date/Time Format',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod2"','4','(''UD112''=''T*'')','EGUARD8340Z0','35','D','17','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGUARD8340Z0','3','D','16','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual4"','2','(''UA''=''T*'')','EGUARD8340Z0','3','D','16','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual4"','3','(''UA''=''T*'')','EGUARD8340Z0','50','D','16','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime1"','1','(''UA''=''T*'')','EGUARD8340Z0','3','D','17','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier1"','2','(''UA''=''T*'')','EGUARD8340Z0','3','D','17','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual1"','3','(''UA''=''T*'')','EGUARD8340Z0','3','D','17','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod1"','4','(''UD112''=''T*'')','EGUARD8340Z0','35','D','17','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime2"','1','(''UA''=''T*'')','EGUARD8340Z0','3','D','18','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier2"','2','(''UA''=''T*'')','EGUARD8340Z0','3','D','18','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual2"','3','(''UA''=''T*'')','EGUARD8340Z0','3','D','18','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod2"','4','(''UD112''=''T*'')','EGUARD8340Z0','35','D','18','4',NULL,'Date/Time Period',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"NM1"','1','(''DA''=''T*'')','EGUARD8340Z0','3','D','20','1',NULL,'NM1 Segment ID (Loop 2100A)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IL"','2','(''DA''=''T*'')','EGUARD8340Z0','3','D','20','2',NULL,'Entity Identifier Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','3','(''DA''=''T*'')','EGUARD8340Z0','1','D','20','3',NULL,'Entity Type Qualifier',NULL,NULL);
@@ -230,7 +233,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202105249','EMPEXPORT','OEACTIVE',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202105249','EMPEXPORT','OEPASSIVE',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian 834 Export','202105249','EMPEXPORT','SCHEDULED',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_EGUARD834_20210602.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202106071','EMPEXPORT','TEST','Jun  7 2021  9:33PM','EGUARD834',NULL,NULL,NULL,'202106071','Jun  7 2021 12:00AM','Dec 30 1899 12:00AM','202106021','11586','','','202106021',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_EGUARD834_20210618a.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202106231','EMPEXPORT','TEST','Jun 23 2021 11:55AM','EGUARD834',NULL,NULL,NULL,'202106231','Jun 23 2021 12:00AM','Dec 30 1899 12:00AM','202106181','11445','','','202106181',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','ExportPath','V',NULL);
@@ -258,8 +261,9 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D13','U_EGUARD834_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D14','U_EGUARD834_DrvTbl','ISNULL(drvREF01_RefNumberQual2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D15','U_EGUARD834_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D16','U_EGUARD834_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D17','U_EGUARD834_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D16','U_EGUARD834_DrvTbl','ISNULL(drvREF01_RefNumberQual4,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D17','U_EGUARD834_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D18','U_EGUARD834_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D20','U_EGUARD834_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D21','U_EGUARD834_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUARD834','D22','U_EGUARD834_DrvTbl',NULL);
@@ -355,6 +359,8 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl] (
     [drvREF02_RefNumberQual2] varchar(4) NULL,
     [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual3] varchar(4) NULL,
+    [drvREF01_RefNumberQual4] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual4] varchar(4) NULL,
     [drvDTP00_DateTime1] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
@@ -370,10 +376,10 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl] (
     [drvNM107_NameSuffix1] varchar(1) NOT NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
-    [drvPER02_Name] varchar(50) NOT NULL,
-    [drvPER03_CommNumberQualifier] varchar(50) NULL,
+    [drvPER02_Name] varchar(1) NOT NULL,
+    [drvPER03_CommNumberQualifier] varchar(2) NULL,
     [drvPER04_CommunicationNumber] varchar(50) NULL,
-    [drvPER05_CommNumberQualifier] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(2) NULL,
     [drvPER06_CommunicationNumber] varchar(50) NULL,
     [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
     [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
@@ -418,7 +424,7 @@ CREATE TABLE [dbo].[U_EGUARD834_DrvTbl_2300] (
     [drvHD01_MaintTypeCode] varchar(3) NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NULL,
-    [drvHD04_PlanCoverageDesc] varchar(256) NULL,
+    [drvHD04_PlanCoverageDesc] varchar(20) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
@@ -541,11 +547,11 @@ BEGIN
     BEGIN
         UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
-	
+    
     --========================================
     -- Remove Extra Records from PER Segment
     --========================================
-	UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'IP****','IP**') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%IP**%';
+    UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'IP****','IP**') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%IP**%';
     UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
     UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
     UPDATE dbo.U_EGUARD834_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
@@ -748,7 +754,7 @@ BEGIN
     --======================================================
     -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
     --======================================================
-	UPDATE dbo.U_dsi_bdm_EGUARD834
+    UPDATE dbo.U_dsi_bdm_EGUARD834
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
     FROM dbo.U_dsi_bdm_EGUARD834
     JOIN dbo.EmpDedFull WITH (NOLOCK)
@@ -877,6 +883,16 @@ BEGIN
                                         WHEN EecDedGroupCode IN ('SAL','SALCA','SALMO','SALOH','SALVA') THEN '0002'
                                         WHEN EecDedGroupCode IN ('HRBW','HRWMO','HRWOH','HRWVA') THEN '0003'
                                     END
+          -- If drvREF01_RefNumberQual4 is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual4 = 'DX'
+        ,drvREF02_RefNumberQual4 = CASE EecOrgLvl1 
+                                        WHEN 'CORP' THEN '0000'
+                                        WHEN 'OH' THEN '0001'
+                                        WHEN 'MO' THEN '0002'
+                                        WHEN 'VA' THEN '0003'
+                                        WHEN 'BMC' THEN '0005'
+                                        WHEN 'CA' THEN '0006'
+                                    END
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
         ,drvDTP00_DateTime1 = 'DTP'
         ,drvDTP01_DateTimeQualifier1 = '336'
@@ -909,10 +925,26 @@ BEGIN
                                      WHEN BdmRecType = 'DEP' THEN ConNameSuffix
                                 END*/
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
-                                          WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN '34'
+                                          WHEN BdmRecType = 'DEP' 
+                                           AND ISNULL(ConSSN, '') <> '' 
+                                           AND LTRIM(RTRIM(ConSSN)) <> '000000000'
+                                           AND LTRIM(RTRIM(ConSSN)) <> '111111111'
+                                           AND LTRIM(RTRIM(ConSSN)) <> '888888888'
+                                           AND LEFT(LTRIM(ConSSN),3) <> '999'
+                                           AND LEFT(LTRIM(ConSSN),3) <> '998'
+                                           AND LTRIM(RTRIM(ConSSN)) <> '123456789'
+                                           AND ConSSN IS NOT NULL THEN '34'
                                      END
         ,drvNM109_IDCode1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN EepSSN
-                                 WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN ConSSN
+                                 WHEN BdmRecType = 'DEP'
+                                  AND ISNULL(ConSSN, '') <> '' 
+                                  AND LTRIM(RTRIM(ConSSN)) <> '000000000'
+                                  AND LTRIM(RTRIM(ConSSN)) <> '111111111'
+                                  AND LTRIM(RTRIM(ConSSN)) <> '888888888'
+                                  AND LEFT(LTRIM(ConSSN),3) <> '999'
+                                  AND LEFT(LTRIM(ConSSN),3) <> '998'
+                                  AND LTRIM(RTRIM(ConSSN)) <> '123456789'
+                                  AND ConSSN IS NOT NULL THEN ConSSN
                             END
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(RTRIM(EepPhoneHomeNumber),'') <> '' THEN 'HP' END
@@ -954,7 +986,7 @@ BEGIN
                                 END
                             END
         ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' THEN  CONVERT(VARCHAR(8), dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GetDate() ,EecDateOfLastHire),112) END
-		-- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
+        -- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
         ,drvAMT00_SegmentID1 = ''
         ,drvAMT01_AmountQualifierCode1 = ''
         ,drvAMT02_MonetaryAmount1 = ''
@@ -1059,12 +1091,12 @@ BEGIN
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW') THEN 'FAC'
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN 'FAC'
                                      END
-        ,drvHD04_PlanCoverageDesc = CASE WHEN BdmRecType = 'EMP' AND LTRIM(RTRIM(BdmDedCode)) = 'LIFEE'  THEN BdmUSGField1
-                                         WHEN LTRIM(RTRIM(BdmDedCode)) IN ('ADEBW', 'ADEW')  THEN BdmUSGField1  
-                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) = 'LIFES'  THEN BdmUSGField1   
-                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADSBW', 'ADSW')  THEN BdmUSGField1   
-                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW')  THEN BdmUSGField1   
-                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN BdmUSGField1  
+        ,drvHD04_PlanCoverageDesc = CASE WHEN BdmRecType = 'EMP' AND LTRIM(RTRIM(BdmDedCode)) = 'LIFEE'  THEN CONVERT(VARCHAR(20),EedBenAmt)
+                                         WHEN LTRIM(RTRIM(BdmDedCode)) IN ('ADEBW', 'ADEW')  THEN CONVERT(VARCHAR(20),EedBenAmt)  
+                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) = 'LIFES'  THEN CONVERT(VARCHAR(20),EedBenAmt)
+                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADSBW', 'ADSW')  THEN CONVERT(VARCHAR(20),EedBenAmt)   
+                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW')  THEN CONVERT(VARCHAR(20),EedBenAmt)
+                                         WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN CONVERT(VARCHAR(20),EedBenAmt)  
                                          WHEN LTRIM(RTRIM(BdmDedCode)) = 'DENB' THEN 'BASE'
                                          WHEN LTRIM(RTRIM(BdmDedCode)) IN ('DNBUO', 'DENBU')  THEN 'BUYUP'
                                     ELSE ''
@@ -1072,11 +1104,11 @@ BEGIN
         ,drvHD05_CoverageLevelCode = CASE 
                                           WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LBW10', 'LW10', 'LBW30', 'LBW50', 'LTDBW', 'LIFEE', 'ADEBW', 'ADEW') THEN 'EMP' 
                                           WHEN BdmRecType = 'EMP' AND LTRIM(RTRIM(BdmDedCode)) IN ('DENB', 'DNBUO', 'DENBU', 'VISO', 'VIS') THEN
-											   CASE WHEN BdmBenOption IN ('EE', 'EET', 'EEBU', 'EEW') THEN 'EMP'
-											 	    WHEN BdmBenOption IN ('EES', 'EESBU', 'EEST', 'EESW') THEN 'ESP'
-													WHEN BdmBenOption IN ('EEC','EECT', 'EECBU', 'EECW') THEN 'ECH'
-													WHEN BdmBenOption IN ('EEF', 'EEFBU', 'EEFT', 'EECW', 'EEFW') THEN 'FAM'
-												END
+                                               CASE WHEN BdmBenOption IN ('EE', 'EET', 'EEBU', 'EEW') THEN 'EMP'
+                                                     WHEN BdmBenOption IN ('EES', 'EESBU', 'EEST', 'EESW') THEN 'ESP'
+                                                    WHEN BdmBenOption IN ('EEC','EECT', 'EECBU', 'EECW') THEN 'ECH'
+                                                    WHEN BdmBenOption IN ('EEF', 'EEFBU', 'EEFT', 'EECW', 'EEFW') THEN 'FAM'
+                                                END
                                           WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LIFES', 'ADSBW', 'ADSW') THEN 'SPO'
                                           WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW', 'ADCBW', 'ADCW') THEN 'CHD'
                                       END
@@ -1172,15 +1204,11 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-        WHERE LTRIM(RTRIM(ConSSN)) <> '000000000'
-        AND LTRIM(RTRIM(ConSSN)) <> '111111111'
-        AND LTRIM(RTRIM(ConSSN)) <> '888888888'
-        AND LEFT(LTRIM(ConSSN),3) <> '999'
-        AND LEFT(LTRIM(ConSSN),3) <> '998'
-        AND LTRIM(RTRIM(ConSSN)) <> '123456789'
-        OR ConSSN IS NULL
+    LEFT JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
+        ON EedEEID = xEEID
+       AND EedCoID = xCoID
+       AND EedDedCode = BdmDedCode
     ;
-    
 
 
     -------------------
@@ -1307,7 +1335,7 @@ ALTER VIEW dbo.dsi_vwEGUARD834_Export AS
 GO
 
 --Check out AscDefF
-SELECT * FROM dbo.AscDefFEEOnlyBenOpti
+SELECT * FROM dbo.AscDefF
 WHERE AdfHeaderSystemID LIKE 'EGUARD834%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
