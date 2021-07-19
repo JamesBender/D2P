@@ -11,6 +11,8 @@ IF OBJECT_ID('U_ELINCNLIF_EEList') IS NOT NULL DROP TABLE [dbo].[U_ELINCNLIF_EEL
 GO
 IF OBJECT_ID('U_ELINCNLIF_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ELINCNLIF_drvTbl];
 GO
+IF OBJECT_ID('U_ELINCNLIF_Dependents') IS NOT NULL DROP TABLE [dbo].[U_ELINCNLIF_Dependents];
+GO
 IF OBJECT_ID('U_ELINCNLIF_DedList') IS NOT NULL DROP TABLE [dbo].[U_ELINCNLIF_DedList];
 GO
 IF OBJECT_ID('U_ELINCNLIF_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ELINCNLIF_AuditFields];
@@ -317,7 +319,97 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code "','289','(''DA''=''Q,'')','ELINCNLIF0Z0','50','H','01','289',NULL,'Dep Student Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N "','290','(''DA''=''Q,'')','ELINCNLIF0Z0','50','H','01','290',NULL,'Dep Disabled Y/N',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator "','291','(''DA''=''Q,'')','ELINCNLIF0Z0','50','H','01','291',NULL,'Dep Cvg Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP  "','292','(''DA''=''Q'')','ELINCNLIF0Z0','50','H','01','292',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP  "','292','(''DA''=''Q,'')','ELINCNLIF0Z0','50','H','01','292',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','293','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','293',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','294','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','294',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','295','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','295',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','296','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','296',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','297','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','297',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','298','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','298',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','299','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','299',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','300','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','300',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','301','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','301',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','302','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','302',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','303','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','303',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','304','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','304',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','305','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','305',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','306','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','306',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','307','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','307',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','308','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','308',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','309','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','309',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','310','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','310',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','311','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','311',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','312','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','312',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','313','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','313',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','314','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','314',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','315','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','315',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','316','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','316',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','317','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','317',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','318','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','318',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','319','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','319',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','320','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','320',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','321','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','321',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','322','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','322',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','323','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','323',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','324','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','324',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','325','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','325',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','326','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','326',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','327','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','327',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','328','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','328',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','329','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','329',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','330','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','330',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','331','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','331',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','332','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','332',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','333','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','333',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','334','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','334',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','335','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','335',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','336','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','336',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','337','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','337',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','338','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','338',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','339','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','339',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','340','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','340',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','341','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','341',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','342','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','342',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','343','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','343',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','344','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','344',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','345','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','345',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','346','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','346',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','347','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','347',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','348','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','348',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','349','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','349',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','350','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','350',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','351','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','351',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','352','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','352',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','353','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','353',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','354','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','354',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','355','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','355',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','356','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','356',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','357','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','357',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','358','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','358',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','359','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','359',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','360','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','360',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','361','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','361',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','362','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','362',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','363','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','363',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','364','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','364',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','365','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','365',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','366','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','366',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','367','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','367',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','368','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','368',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','369','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','369',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','370','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','370',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','371','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','371',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','372','(''DA''=''Q,'')','ELINCNLIF0Z0','208','H','01','372',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep First Name"','373','(''DA''=''Q,'')','ELINCNLIF0Z0','199','H','01','373',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Last Name"','374','(''DA''=''Q,'')','ELINCNLIF0Z0','200','H','01','374',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep M I"','375','(''DA''=''Q,'')','ELINCNLIF0Z0','201','H','01','375',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Gender"','376','(''DA''=''Q,'')','ELINCNLIF0Z0','202','H','01','376',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DOB"','377','(''DA''=''Q,'')','ELINCNLIF0Z0','203','H','01','377',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Relationship Code"','378','(''DA''=''Q,'')','ELINCNLIF0Z0','204','H','01','378',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Student Code"','379','(''DA''=''Q,'')','ELINCNLIF0Z0','205','H','01','379',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Disabled Y/N"','380','(''DA''=''Q,'')','ELINCNLIF0Z0','206','H','01','380',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep Cvg Indicator"','381','(''DA''=''Q,'')','ELINCNLIF0Z0','207','H','01','381',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Dep DHMO PCP"','382','(''DA''=''Q'')','ELINCNLIF0Z0','208','H','01','382',NULL,'Dep DHMO PCP',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmpNo"','1','(''UA''=''Q,'')','ELINCNLIF0Z0','20','D','10','1',NULL,'Employee ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvChangeDate"','2','(''UD101''=''T,'')','ELINCNLIF0Z0','10','D','10','2',NULL,'Change Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepChangeDate"','3','(''UD101''=''T,'')','ELINCNLIF0Z0','10','D','10','3',NULL,'Dep Change Date',NULL,NULL);
@@ -600,16 +692,106 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvIsSmoker"','280','(''UA''=''Q,'')','ELINCNLIF0Z0','196','D','10','280',NULL,'Mbr Smoker',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSpouseSmoker"','281','(''UA''=''Q,'')','ELINCNLIF0Z0','197','D','10','281',NULL,'Spouse Smoker',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSpouseDOB"','282','(''UD101''=''T,'')','ELINCNLIF0Z0','198','D','10','282',NULL,'Spouse DOB',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst"','283','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','283',NULL,'Dep First Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast"','284','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','284',NULL,'Dep Last Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle"','285','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','285',NULL,'Dep M I',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender"','286','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','286',NULL,'Dep Gender',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth"','287','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','287',NULL,'Dep DOB',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship"','288','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','288',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst1"','283','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','283',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast1"','284','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','284',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle1"','285','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','285',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender1"','286','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','286',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth1"','287','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','287',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship1"','288','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','288',NULL,'Dep Relationship Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','289','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','289',NULL,'Dep Student Code',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled"','290','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','290',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled1"','290','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','290',NULL,'Dep Disabled Y/N',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','291','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','291',NULL,'Dep Cvg Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','292','(''SS''=''Q'')','ELINCNLIF0Z0','208','D','10','292',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','292','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','292',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst2"','293','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','293',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast2"','294','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','294',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle2"','295','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','295',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender2"','296','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','296',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth2"','297','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','297',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship2"','298','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','298',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','299','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','299',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled2"','300','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','300',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','301','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','301',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','302','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','302',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst3"','303','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','303',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast3"','304','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','304',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle3"','305','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','305',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender3"','306','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','306',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth3"','307','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','307',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship3"','308','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','308',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','309','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','309',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled3"','310','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','310',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','311','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','311',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','312','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','312',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst4"','313','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','313',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast4"','314','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','314',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle4"','315','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','315',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender4"','316','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','316',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth4"','317','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','317',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship4"','318','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','318',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','319','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','319',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled4"','320','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','320',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','321','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','321',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','322','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','322',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst5"','323','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','323',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast5"','324','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','324',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle5"','325','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','325',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender5"','326','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','326',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth5"','327','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','327',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship5"','328','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','328',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','329','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','329',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled5"','330','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','330',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','331','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','331',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','332','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','332',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst6"','333','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','333',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast6"','334','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','334',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle6"','335','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','335',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender6"','336','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','336',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth6"','337','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','337',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship6"','338','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','338',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','339','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','339',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled6"','340','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','340',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','341','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','341',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','342','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','342',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst7"','343','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','343',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast7"','344','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','344',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle7"','345','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','345',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender7"','346','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','346',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth7"','347','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','347',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship7"','348','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','348',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','349','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','349',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled7"','350','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','350',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','351','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','351',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','352','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','352',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst8"','353','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','353',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast8"','354','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','354',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle8"','355','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','355',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender8"','356','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','356',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth8"','357','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','357',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship8"','358','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','358',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','359','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','359',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled8"','360','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','360',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','361','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','361',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','362','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','362',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst9"','363','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','363',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast9"','364','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','364',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle9"','365','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','365',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender9"','366','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','366',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth9"','367','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','367',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship9"','368','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','368',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','369','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','369',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled9"','370','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','370',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','371','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','371',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','372','(''SS''=''Q,'')','ELINCNLIF0Z0','208','D','10','372',NULL,'Dep DHMO PCP',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameFirst10"','373','(''UA''=''Q,'')','ELINCNLIF0Z0','199','D','10','373',NULL,'Dep First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameLast10"','374','(''UA''=''Q,'')','ELINCNLIF0Z0','200','D','10','374',NULL,'Dep Last Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepNameMiddle10"','375','(''UA''=''Q,'')','ELINCNLIF0Z0','201','D','10','375',NULL,'Dep M I',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepGender10"','376','(''UA''=''Q,'')','ELINCNLIF0Z0','202','D','10','376',NULL,'Dep Gender',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDateOfBirth10"','377','(''UD101''=''T,'')','ELINCNLIF0Z0','203','D','10','377',NULL,'Dep DOB',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship10"','378','(''UA''=''Q,'')','ELINCNLIF0Z0','204','D','10','378',NULL,'Dep Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N"','379','(''DA''=''Q,'')','ELINCNLIF0Z0','205','D','10','379',NULL,'Dep Student Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepDisabled10"','380','(''UA''=''Q,'')','ELINCNLIF0Z0','206','D','10','380',NULL,'Dep Disabled Y/N',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','381','(''SS''=''Q,'')','ELINCNLIF0Z0','207','D','10','381',NULL,'Dep Cvg Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','382','(''SS''=''Q'')','ELINCNLIF0Z0','208','D','10','382',NULL,'Dep DHMO PCP',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -617,11 +799,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINCNLIF_20210702.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINCNLIF_20210716.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life','202106299','EMPEXPORT','ONDEM_XOE',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life-Sched','202106299','EMPEXPORT','SCH_ELINCN',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Lincoln Basic Life-Test','202106299','EMPEXPORT','TEST_XOE',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202107129','EMPEXPORT','TEST_XOE','Jul 12 2021  7:32PM','ELINCNLIF',NULL,NULL,NULL,'202107129','Jul 12 2021 12:00AM','Dec 30 1899 12:00AM','202106281','1430','','','202106281',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','InitialSort','C','drvInitialSort');
@@ -698,6 +880,20 @@ CREATE TABLE [dbo].[U_ELINCNLIF_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
 );
+IF OBJECT_ID('U_ELINCNLIF_Dependents') IS NULL
+CREATE TABLE [dbo].[U_ELINCNLIF_Dependents] (
+    [ConEEID] char(12) NOT NULL,
+    [ConSystemID] char(12) NOT NULL,
+    [ConNameFirst] varchar(100) NULL,
+    [ConNameMiddle] varchar(50) NULL,
+    [ConNameLast] varchar(100) NULL,
+    [ConRelationship] char(3) NULL,
+    [ConIsDisabled] char(1) NULL,
+    [ConGender] char(1) NULL,
+    [ConDateOfBirth] datetime NULL,
+    [ConIsSmoker] varchar(1) NULL,
+    [ConDepNo] bigint NULL
+);
 IF OBJECT_ID('U_ELINCNLIF_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvEEID] char(12) NULL,
@@ -733,7 +929,7 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvLifeEffDate] datetime NULL,
     [drvLifePlanCode] varchar(1) NULL,
     [drvLifeClassCode] varchar(1) NULL,
-    [drvLICvgs] varchar(26) NULL,
+    [drvLICvgs] varchar(262) NULL,
     [drvLITermDate] datetime NULL,
     [drvADCvgs] varchar(4) NULL,
     [drvADTermDate] datetime NULL,
@@ -756,26 +952,89 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvVLIFEffDate] datetime NULL,
     [drvVLIFPlanCode] varchar(1) NULL,
     [drvVLIFClassCode] varchar(1) NULL,
-    [drvVLICvgs] varchar(24) NULL,
+    [drvVLICvgs] varchar(260) NULL,
     [drvVLITermDate] datetime NULL,
-    [drvVADCvgs] varchar(24) NULL,
+    [drvVADCvgs] varchar(260) NULL,
     [drvVADTermDate] datetime NULL,
-    [drvVSLICvgs] varchar(25) NULL,
+    [drvVSLICvgs] varchar(261) NULL,
     [drvVLSITermDate] datetime NULL,
-    [drvVSADCvgs] varchar(25) NULL,
+    [drvVSADCvgs] varchar(261) NULL,
     [drvVSADTermDate] datetime NULL,
-    [drvVCLICvgs] varchar(25) NULL,
+    [drvVCLICvgs] varchar(261) NULL,
     [drvVCLITermDate] datetime NULL,
     [drvIsSmoker] varchar(1) NULL,
     [drvSpouseSmoker] varchar(1) NULL,
     [drvSpouseDOB] datetime NULL,
-    [drvDepNameFirst] varchar(100) NULL,
-    [drvDepNameLast] varchar(100) NULL,
-    [drvDepNameMiddle] varchar(1) NULL,
-    [drvDepGender] char(1) NULL,
-    [drvDepDateOfBirth] datetime NULL,
-    [drvRelationship] varchar(1) NOT NULL,
-    [drvDepDisabled] varchar(1) NULL
+    [drvDepNameFirst1] varchar(100) NULL,
+    [drvDepNameLast1] varchar(100) NULL,
+    [drvDepNameMiddle1] varchar(1) NULL,
+    [drvDepGender1] char(1) NULL,
+    [drvDepDateOfBirth1] datetime NULL,
+    [drvRelationship1] varchar(1) NOT NULL,
+    [drvDepDisabled1] varchar(1) NULL,
+    [drvDepNameFirst2] varchar(100) NULL,
+    [drvDepNameLast2] varchar(100) NULL,
+    [drvDepNameMiddle2] varchar(2) NULL,
+    [drvDepGender2] char(1) NULL,
+    [drvDepDateOfBirth2] datetime NULL,
+    [drvRelationship2] varchar(1) NOT NULL,
+    [drvDepDisabled2] varchar(1) NULL,
+    [drvDepNameFirst3] varchar(100) NULL,
+    [drvDepNameLast3] varchar(100) NULL,
+    [drvDepNameMiddle3] varchar(3) NULL,
+    [drvDepGender3] char(1) NULL,
+    [drvDepDateOfBirth3] datetime NULL,
+    [drvRelationship3] varchar(1) NOT NULL,
+    [drvDepDisabled3] varchar(1) NULL,
+    [drvDepNameFirst4] varchar(100) NULL,
+    [drvDepNameLast4] varchar(100) NULL,
+    [drvDepNameMiddle4] varchar(4) NULL,
+    [drvDepGender4] char(1) NULL,
+    [drvDepDateOfBirth4] datetime NULL,
+    [drvRelationship4] varchar(1) NOT NULL,
+    [drvDepDisabled4] varchar(1) NULL,
+    [drvDepNameFirst5] varchar(100) NULL,
+    [drvDepNameLast5] varchar(100) NULL,
+    [drvDepNameMiddle5] varchar(5) NULL,
+    [drvDepGender5] char(1) NULL,
+    [drvDepDateOfBirth5] datetime NULL,
+    [drvRelationship5] varchar(1) NOT NULL,
+    [drvDepDisabled5] varchar(1) NULL,
+    [drvDepNameFirst6] varchar(100) NULL,
+    [drvDepNameLast6] varchar(100) NULL,
+    [drvDepNameMiddle6] varchar(6) NULL,
+    [drvDepGender6] char(1) NULL,
+    [drvDepDateOfBirth6] datetime NULL,
+    [drvRelationship6] varchar(1) NOT NULL,
+    [drvDepDisabled6] varchar(1) NULL,
+    [drvDepNameFirst7] varchar(100) NULL,
+    [drvDepNameLast7] varchar(100) NULL,
+    [drvDepNameMiddle7] varchar(7) NULL,
+    [drvDepGender7] char(1) NULL,
+    [drvDepDateOfBirth7] datetime NULL,
+    [drvRelationship7] varchar(1) NOT NULL,
+    [drvDepDisabled7] varchar(1) NULL,
+    [drvDepNameFirst8] varchar(100) NULL,
+    [drvDepNameLast8] varchar(100) NULL,
+    [drvDepNameMiddle8] varchar(8) NULL,
+    [drvDepGender8] char(1) NULL,
+    [drvDepDateOfBirth8] datetime NULL,
+    [drvRelationship8] varchar(1) NOT NULL,
+    [drvDepDisabled8] varchar(1) NULL,
+    [drvDepNameFirst9] varchar(100) NULL,
+    [drvDepNameLast9] varchar(100) NULL,
+    [drvDepNameMiddle9] varchar(9) NULL,
+    [drvDepGender9] char(1) NULL,
+    [drvDepDateOfBirth9] datetime NULL,
+    [drvRelationship9] varchar(1) NOT NULL,
+    [drvDepDisabled9] varchar(1) NULL,
+    [drvDepNameFirst10] varchar(100) NULL,
+    [drvDepNameLast10] varchar(100) NULL,
+    [drvDepNameMiddle10] varchar(10) NULL,
+    [drvDepGender10] char(1) NULL,
+    [drvDepDateOfBirth10] datetime NULL,
+    [drvRelationship10] varchar(1) NOT NULL,
+    [drvDepDisabled10] varchar(1) NULL
 );
 IF OBJECT_ID('U_ELINCNLIF_EEList') IS NULL
 CREATE TABLE [dbo].[U_ELINCNLIF_EEList] (
@@ -880,6 +1139,7 @@ BEGIN
        OR LTRIM(RTRIM(EepSSN)) = '123456789'
        OR EepSSN IS NULL
        OR EecEEType = 'TES';
+ 
     --==========================================
     -- Audit Section
     --==========================================
@@ -947,7 +1207,57 @@ BEGIN
     -- Run Bdm Module
     EXEC dbo.dsi_Bdm_sp_PopulateDeductionsTable @FormatCode;
 
-    
+    --======================================================
+    -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
+    --======================================================
+    UPDATE dbo.U_dsi_BDM_EmpDeductions
+        SET EedUSGField1 =  CONVERT(VARCHAR(20),EDF.EedBenAmt)
+    FROM dbo.U_dsi_BDM_EmpDeductions BDM
+    JOIN dbo.EmpDedFull EDF WITH (NOLOCK)
+        ON EDF.EedEmpDedTVID = BDM.EedEmpDedTVID
+       AND BDM.EedFormatCode = @FormatCode;
+
+
+
+    --==========================================
+    -- Working Tables
+    --==========================================    
+    IF OBJECT_ID('U_ELINCNLIF_Dependents','U') IS NOT NULL
+        DROP TABLE dbo.U_ELINCNLIF_Dependents;
+    SELECT ConEEID
+          ,ConSystemID
+          ,ConNameFirst
+          ,ConNameMiddle
+          ,ConNameLast
+          ,ConRelationship
+          ,ConIsDisabled
+          ,ConGender 
+          ,ConDateOfBirth 
+          ,ConIsSmoker
+          ,ConDepNo = ROW_NUMBER() OVER (PARTITION BY RTRIM(ConEEID) ORDER BY conDateOfBirth ASC) 
+      INTO dbo.U_ELINCNLIF_Dependents
+      FROM dbo.Contacts WITH (NOLOCK)
+      JOIN dbo.U_ELINCNLIF_EEList WITH (NOLOCK)
+        ON ConEEID = xEEID
+     WHERE ConRelationship IN ('CH','CHL','DPC','STC')
+     UNION
+     SELECT ConEEID
+          ,ConSystemID
+          ,ConNameFirst
+          ,ConNameMiddle
+          ,ConNameLast
+          ,ConRelationship
+          ,ConIsDisabled
+          ,ConGender 
+          ,ConDateOfBirth
+          ,ConIsSmoker 
+          ,ConDepNo = 0
+      FROM dbo.Contacts WITH (NOLOCK)
+      JOIN dbo.U_ELINCNLIF_EEList WITH (NOLOCK)
+        ON ConEEID = xEEID
+     WHERE ConRelationship IN ('SPS','DP')
+     ;
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -1069,15 +1379,88 @@ BEGIN
         ,drvVCLICvgs = CASE WHEN EedDepHasLFDEP = 'Y' THEN EedVCLICvgs END 
         ,drvVCLITermDate = CASE WHEN EedDepHasLFDEP = 'Y' THEN EedVCLITermDate END
         ,drvIsSmoker = EepIsSmoker
-        ,drvSpouseSmoker = CASE WHEN ConRelationship IN ('SPS','DP') AND EedDepHasLFSPO = 'Y' THEN ConIsSmoker END
-        ,drvSpouseDOB = CASE WHEN ConRelationship IN ('SPS','DP') AND  EedDepHasLFSPO = 'Y' THEN ConDateOfBirth END
-        ,drvDepNameFirst = CASE WHEN EedHasDepBen = 'Y' THEN ConNameFirst END
-        ,drvDepNameLast = CASE WHEN EedHasDepBen = 'Y' THEN ConNameLast END
-        ,drvDepNameMiddle = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(ConNameMiddle,1) END
-        ,drvDepGender = CASE WHEN EedHasDepBen = 'Y' THEN ConGender END
-        ,drvDepDateOfBirth = CASE WHEN EedHasDepBen = 'Y' THEN ConDateOFBirth END
-        ,drvRelationship = CASE WHEN EedHasDepBen = 'Y' AND ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-        ,drvDepDisabled = CASE WHEN EedHasDepBen = 'Y' THEN ConIsDisabled ELSE 'N' END
+        ,drvSpouseSmoker = CASE WHEN EedDepHasLFSPO = 'Y' THEN Sps.ConIsSmoker END
+        ,drvSpouseDOB = CASE WHEN EedDepHasLFSPO = 'Y' THEN Sps.ConDateOfBirth END
+        --DEP1
+        ,drvDepNameFirst1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConNameFirst END
+        ,drvDepNameLast1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConNameLast END
+        ,drvDepNameMiddle1 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep1.ConNameMiddle,1) END
+        ,drvDepGender1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConGender END
+        ,drvDepDateOfBirth1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConDateOFBirth END
+        ,drvRelationship1 = CASE WHEN EedHasDepBen = 'Y' AND Dep1.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConIsDisabled ELSE 'N' END
+        --DEP2
+        ,drvDepNameFirst2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConNameFirst END
+        ,drvDepNameLast2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConNameLast END
+        ,drvDepNameMiddle2 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep2.ConNameMiddle,2) END
+        ,drvDepGender2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConGender END
+        ,drvDepDateOfBirth2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConDateOFBirth END
+        ,drvRelationship2 = CASE WHEN EedHasDepBen = 'Y' AND Dep2.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConIsDisabled ELSE 'N' END
+        --DEP3
+        ,drvDepNameFirst3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConNameFirst END
+        ,drvDepNameLast3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConNameLast END
+        ,drvDepNameMiddle3 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep3.ConNameMiddle,3) END
+        ,drvDepGender3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConGender END
+        ,drvDepDateOfBirth3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConDateOFBirth END
+        ,drvRelationship3 = CASE WHEN EedHasDepBen = 'Y' AND Dep3.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConIsDisabled ELSE 'N' END
+        --DEP4
+        ,drvDepNameFirst4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConNameFirst END
+        ,drvDepNameLast4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConNameLast END
+        ,drvDepNameMiddle4 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep4.ConNameMiddle,4) END
+        ,drvDepGender4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConGender END
+        ,drvDepDateOfBirth4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConDateOFBirth END
+        ,drvRelationship4 = CASE WHEN EedHasDepBen = 'Y' AND Dep4.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConIsDisabled ELSE 'N' END
+        --DEP5
+        ,drvDepNameFirst5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConNameFirst END
+        ,drvDepNameLast5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConNameLast END
+        ,drvDepNameMiddle5 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep5.ConNameMiddle,5) END
+        ,drvDepGender5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConGender END
+        ,drvDepDateOfBirth5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConDateOFBirth END
+        ,drvRelationship5 = CASE WHEN EedHasDepBen = 'Y' AND Dep5.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConIsDisabled ELSE 'N' END
+        --DEP6
+        ,drvDepNameFirst6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConNameFirst END
+        ,drvDepNameLast6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConNameLast END
+        ,drvDepNameMiddle6 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep6.ConNameMiddle,6) END
+        ,drvDepGender6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConGender END
+        ,drvDepDateOfBirth6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConDateOFBirth END
+        ,drvRelationship6 = CASE WHEN EedHasDepBen = 'Y' AND Dep6.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConIsDisabled ELSE 'N' END
+        --DEP7
+        ,drvDepNameFirst7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConNameFirst END
+        ,drvDepNameLast7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConNameLast END
+        ,drvDepNameMiddle7 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep7.ConNameMiddle,7) END
+        ,drvDepGender7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConGender END
+        ,drvDepDateOfBirth7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConDateOFBirth END
+        ,drvRelationship7 = CASE WHEN EedHasDepBen = 'Y' AND Dep7.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConIsDisabled ELSE 'N' END
+        --DEP8
+        ,drvDepNameFirst8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConNameFirst END
+        ,drvDepNameLast8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConNameLast END
+        ,drvDepNameMiddle8 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep8.ConNameMiddle,8) END
+        ,drvDepGender8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConGender END
+        ,drvDepDateOfBirth8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConDateOFBirth END
+        ,drvRelationship8 = CASE WHEN EedHasDepBen = 'Y' AND Dep8.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConIsDisabled ELSE 'N' END
+        --DEP9
+        ,drvDepNameFirst9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConNameFirst END
+        ,drvDepNameLast9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConNameLast END
+        ,drvDepNameMiddle9 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep9.ConNameMiddle,9) END
+        ,drvDepGender9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConGender END
+        ,drvDepDateOfBirth9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConDateOFBirth END
+        ,drvRelationship9 = CASE WHEN EedHasDepBen = 'Y' AND Dep9.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConIsDisabled ELSE 'N' END
+        --DEP10
+        ,drvDepNameFirst10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConNameFirst END
+        ,drvDepNameLast10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConNameLast END
+        ,drvDepNameMiddle10 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep10.ConNameMiddle,10) END
+        ,drvDepGender10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConGender END
+        ,drvDepDateOfBirth10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConDateOFBirth END
+        ,drvRelationship10 = CASE WHEN EedHasDepBen = 'Y' AND Dep10.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+        ,drvDepDisabled10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConIsDisabled ELSE 'N' END
     INTO dbo.U_ELINCNLIF_drvTbl
     FROM dbo.U_ELINCNLIF_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -1095,7 +1478,7 @@ BEGIN
                 ,EedHasDepBen = MAX(CASE WHEN EedDedCode IN ('LFSPO','LFDEP') THEN 'Y' END)
                 ,EedHasLife = MAX(CASE WHEN EedDedCode IN ('GTL','GTLB','GTLCP','GTLW') THEN 'Y' END)
                 ,EedLifeEffDate = MAX(CASE  WHEN EedDedCode IN ('GTL','GTLB','GTLCP','GTLW') THEN EedBenStartDate END)
-                ,EedLICvgs = MAX(CASE WHEN EedDedCode IN ('GTL','GTLB','GTLCP','GTLW') THEN 'LI-' + CONVERT(VARCHAR(20),EedBenAmt) END) 
+                ,EedLICvgs = MAX(CASE WHEN EedDedCode IN ('GTL','GTLB','GTLCP','GTLW') THEN 'LI-' + EedUSGField1 END) 
                 ,EedADTermDate = MAX(CASE WHEN EedDedCode IN ('GTL','GTLB','GTLCP','GTLW') THEN EedBenStopDate END)
                 ,EedHasWI = MAX(CASE WHEN EedDedCode IN ('WKSTD') THEN 'Y'END)
                 ,EedWIEffDate = MAX(CASE WHEN EedDedCode = 'WKSTD' THEN EedBenStartDate END)
@@ -1105,15 +1488,15 @@ BEGIN
                 ,EedLTDTermDate = MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStopDate END)
                 ,EedHasLIFEE = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN 'Y' END)
                 ,EedVLIFEffDate = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN EedBenStartDate END)
-                ,EedVLICvgs = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN 'VLI-' + CONVERT(VARCHAR(20),EedBenAmt) END) 
+                ,EedVLICvgs = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN 'VLI-' + EedUSGField1 END) 
                 ,EedVLITermDate = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN EedBenStopDate END)
-                ,EedVADCvgs = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN 'VAD-' + CONVERT(VARCHAR(20),EedBenAmt) END) 
+                ,EedVADCvgs = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN 'VAD-' + EedUSGField1 END) 
                 ,EedVADTermDate = MAX(CASE WHEN EedDedCode IN ('LIFEE') THEN EedBenStopDate END)
-                ,EedVSLICvgs = MAX(CASE WHEN EedDedCode IN ('LFSPO') THEN 'VSLI-' + CONVERT(VARCHAR(20),EedBenAmt) END) 
+                ,EedVSLICvgs = MAX(CASE WHEN EedDedCode IN ('LFSPO') THEN 'VSLI-' + EedUSGField1 END) 
                 ,EedVLSITermDate = MAX(CASE WHEN EedDedCode = 'LFSPO' THEN EedBenStopDate END)
-                ,EedVSADCvgs = MAX(CASE WHEN EedDedCode IN ('LFSPO') THEN 'VSAD-' + CONVERT(VARCHAR(20),EedBenAmt) END) 
+                ,EedVSADCvgs = MAX(CASE WHEN EedDedCode IN ('LFSPO') THEN 'VSAD-' + EedUSGField1 END) 
                 ,EedVSADTermDate = MAX(CASE WHEN EedDedCode = 'LFSPO' THEN EedBenStopDate END)
-                ,EedVCLICvgs = MAX(CASE WHEN EedDedCode IN ('LFDEP') THEN 'VCLI-' + CONVERT(VARCHAR(20),EedBenAmt) END) 
+                ,EedVCLICvgs = MAX(CASE WHEN EedDedCode IN ('LFDEP') THEN 'VCLI-' + EedUSGField1 END) 
                 ,EedVCLITermDate = MAX(CASE WHEN EedDedCode = 'LFDEP' THEN EedBenStopDate END)
                 ,EedDepHasLFSPO = MAX(CASE WHEN EedDedCode IN ('LFSPO') THEN  'Y' END)
                 ,EedDepHasLFDEP = MAX(CASE WHEN EedDedCode IN ('LFDEP') THEN  'Y' END)
@@ -1127,10 +1510,51 @@ BEGIN
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
      LEFT 
-     JOIN dbo.Contacts WITH (NOLOCK)
-        ON ConEEID = xEEID
-       AND ConRelationship IN ('SPS','DP','CHL','STC')
-    ; 
+     JOIN dbo.U_ELINCNLIF_Dependents Sps WITH (NOLOCK)
+        ON Sps.ConEEID = xEEID
+       AND Sps.ConDepNo = 0
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep1 WITH (NOLOCK)
+        ON Dep1.ConEEID = xEEID
+       AND Dep1.ConDepNo = 1
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep2 WITH (NOLOCK)
+        ON Dep2.ConEEID = xEEID
+       AND Dep2.ConDepNo = 2
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep3 WITH (NOLOCK)
+        ON Dep3.ConEEID = xEEID
+       AND Dep3.ConDepNo = 3
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep4 WITH (NOLOCK)
+        ON Dep4.ConEEID = xEEID
+       AND Dep4.ConDepNo = 4
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep5 WITH (NOLOCK)
+        ON Dep5.ConEEID = xEEID
+       AND Dep5.ConDepNo = 5
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep6 WITH (NOLOCK)
+        ON Dep6.ConEEID = xEEID
+       AND Dep6.ConDepNo = 6
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep7 WITH (NOLOCK)
+        ON Dep7.ConEEID = xEEID
+       AND Dep7.ConDepNo = 7
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep8 WITH (NOLOCK)
+        ON Dep8.ConEEID = xEEID
+       AND Dep8.ConDepNo = 8
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep9 WITH (NOLOCK)
+        ON Dep9.ConEEID = xEEID
+       AND Dep9.ConDepNo = 9
+     LEFT 
+     JOIN dbo.U_ELINCNLIF_Dependents Dep10 WITH (NOLOCK)
+        ON Dep10.ConEEID = xEEID
+       AND Dep10.ConDepNo = 10
+    ;
+ 
     --==========================================
     -- Set FileName
     --==========================================
