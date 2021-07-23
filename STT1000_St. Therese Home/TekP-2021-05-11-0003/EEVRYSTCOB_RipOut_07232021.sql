@@ -277,7 +277,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Everything Benefits COBRA','202107159','EMPEXPORT','ONDEM_XOE',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202107159','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202107151',NULL,'','','202107151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Everything Benefits COBR-Sched','202107159','EMPEXPORT','SCH_EEVRYS',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202107159','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202107151',NULL,'','','202107151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Everything Benefits COBR-Test','202107221','EMPEXPORT','TEST_XOE','Jul 22 2021  1:50PM','EEVRYSTCOB',NULL,NULL,NULL,'202107221','Jul 22 2021 12:00AM','Dec 30 1899 12:00AM','202107081','446','','','202107081',dbo.fn_GetTimedKey(),NULL,'us3cPeSTT1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Everything Benefits COBR-Test','202107221','EMPEXPORT','TEST_XOE','Jul 23 2021 12:00AM','EEVRYSTCOB',NULL,NULL,NULL,'202107221','Jul 22 2021 12:00AM','Dec 30 1899 12:00AM','202107081','2745','','','202107081',dbo.fn_GetTimedKey(),NULL,'us3cPeSTT1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','InitialSort','C','drvInitialSort');
@@ -417,7 +417,7 @@ CREATE TABLE [dbo].[U_EEVRYSTCOB_drvTbl] (
     [drvEmptDep] varchar(1) NOT NULL,
     [drvEmptLoc] varchar(1) NOT NULL,
     [drvEmptJobTitle] varchar(1) NOT NULL,
-    [drvEmptJobCode] char(8) NULL,
+    [drvEmptJobCode] varchar(1) NOT NULL,
     [drvEmptPerc] varchar(1) NOT NULL,
     [drvEmptIsCorpOf] varchar(1) NOT NULL,
     [drvEmptIsKeyEmp] varchar(1) NOT NULL,
@@ -458,11 +458,11 @@ CREATE TABLE [dbo].[U_EEVRYSTCOB_drvTbl] (
     [drvConLangu] varchar(1) NOT NULL,
     [drvConIRSQual] varchar(1) NOT NULL,
     [drvConFullTimeStuddent] varchar(1) NOT NULL,
-    [drvBenCarName] varchar(18) NULL,
+    [drvBenCarName] varchar(25) NULL,
     [drvBenCarEIN] varchar(1) NOT NULL,
-    [drvBenType] varchar(27) NULL,
-    [drvBenPlanName] varchar(8) NULL,
-    [drvBenPolNum1] varchar(1) NOT NULL,
+    [drvBenType] varchar(50) NULL,
+    [drvBenPlanName] varchar(50) NULL,
+    [drvBenPolNum1] varchar(30) NULL,
     [drvBenPolNum2] varchar(1) NOT NULL,
     [drvBenPolNum3] varchar(1) NOT NULL,
     [drvBenPolNum4] varchar(1) NOT NULL,
@@ -552,12 +552,12 @@ Revision History
         - Per request removed audit from use in the file.
 
 07/23/2021 by AP:
-		- Removed audit table from emp and spouse (error left from before).
-		- Work Phone and Home Phone dashes showing when there is no number has been fixed.
-		- Set JobCode to BLANK.
-		- Fixed suffix with Z for dependents.
-		- Updated plan name value and added the prior existing plan name fields to benefit policy number 1.
-		- Added employment term reason to child dependent records.
+        - Removed audit table from emp and spouse (error left from before).
+        - Work Phone and Home Phone dashes showing when there is no number has been fixed.
+        - Set JobCode to BLANK.
+        - Fixed suffix with Z for dependents.
+        - Updated plan name value and added the prior existing plan name fields to benefit policy number 1.
+        - Added employment term reason to child dependent records.
 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEVRYSTCOB';
@@ -827,39 +827,39 @@ BEGIN
         ,drvConLangu = ''
         ,drvConIRSQual = ''
         ,drvConFullTimeStuddent = ''
-        ,drvBenCarName = CASE WHEN EedDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'PreferredOne'
+        ,drvBenCarName = CAST(CASE WHEN EedDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'PreferredOne'
                                 WHEN EedDedCode = 'PTDEN' THEN 'HealthPartners'
                                 WHEN EedDedCode = 'VVIS' THEN 'EyeMed Vision Care'
                                 WHEN EedDedCode IN ('FCHI', 'FMED') THEN 'OptumHealth'
                                  WHEN EedDedCode IN ('BLD', 'BLEE') THEN 'Voya'
-                                WHEN EedDedCode IN ('BLD', 'BLEE') THEN 'Vital WorkLife' 
-                                WHEN EedDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN 'Voya' END
+                              --  WHEN EedDedCode IN ('BLD', 'BLEE') THEN 'Vital WorkLife' 
+                                WHEN EedDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN 'Voya' END AS VARCHAR(50))
         ,drvBenCarEIN = ''
-        ,drvBenType = CASE WHEN EedDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'Medical'
+        ,drvBenType = CAST(CASE WHEN EedDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'Medical'
                                 WHEN EedDedCode = 'PTDEN' THEN 'Dental'
                                 WHEN EedDedCode = 'VVIS' THEN 'Vision'
                                 WHEN EedDedCode IN ('FCHI', 'FMED') THEN 'Flexible Spending Account'
-                                WHEN EedDedCode IN ('BLD', 'BLEE') THEN 'Employee Assistance Program' 
+                             --   WHEN EedDedCode IN ('BLD', 'BLEE') THEN 'Employee Assistance Program' 
                                 WHEN EedDedCode IN ('BLD', 'BLEE') THEN 'Basic Employee Life' 
-                                WHEN EedDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN 'Voluntary Life' END
-        ,drvBenPlanName = CASE WHEN EedDedCode = 'MDP1' THEN 'Medical Copay Plan 1'
-								WHEN EedDedCode = 'MDP2' THEN 'Medical HSA Plan 2'
-								WHEN EedDedCode = 'MDP3' THEN 'Medical HD HSA Plan 3'
-								WHEN EedDedCode = 'PTDEN' THEN 'Dental Insurance PreTax'
-								WHEN EedDedCode = 'VVIS' THEN 'Vision'
-								WHEN EedDedCode = 'FCHI' THEN 'Flex Child Care'
-								WHEN EedDedCode = 'FMED' THEN 'Flex Medical'
-								WHEN EedDedcode = 'BLD' THEN 'Basic Life Directors'
-								WHEN EedDedCode = 'BLEE' THEN 'Basic Life EE Only'
-								WHEN EedDedCode = 'LIFEC' THEN 'Supplemental Life - Child'
-								WHEN EedDedCode = 'LIFEE' THEN 'Supplemental Life - Employee'
-								WHEN EedDedCode = 'LIFES' THEN 'Supplemental Life - Spouse' END
-        ,drvBenPolNum1 = CASE WHEN EedDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'PKA20366'
+                                WHEN EedDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN 'Voluntary Life' END AS VARCHAR(50))
+        ,drvBenPlanName = CAST(CASE WHEN EedDedCode = 'MDP1' THEN 'Medical Copay Plan 1'
+                                WHEN EedDedCode = 'MDP2' THEN 'Medical HSA Plan 2'
+                                WHEN EedDedCode = 'MDP3' THEN 'Medical HD HSA Plan 3'
+                                WHEN EedDedCode = 'PTDEN' THEN 'Dental Insurance PreTax'
+                                WHEN EedDedCode = 'VVIS' THEN 'Vision'
+                                WHEN EedDedCode = 'FCHI' THEN 'Flex Child Care'
+                                WHEN EedDedCode = 'FMED' THEN 'Flex Medical'
+                                WHEN EedDedcode = 'BLD' THEN 'Basic Life Directors'
+                                WHEN EedDedCode = 'BLEE' THEN 'Basic Life EE Only'
+                                WHEN EedDedCode = 'LIFEC' THEN 'Supplemental Life - Child'
+                                WHEN EedDedCode = 'LIFEE' THEN 'Supplemental Life - Employee'
+                                WHEN EedDedCode = 'LIFES' THEN 'Supplemental Life - Spouse' END AS VARCHAR(50))
+        ,drvBenPolNum1 = CAST(CASE WHEN EedDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'PKA20366'
                                 WHEN EedDedCode = 'PTDEN' THEN '19096'
                                 WHEN EedDedCode = 'VVIS' THEN '9894049'
                                 WHEN EedDedCode IN ('FCHI', 'FMED') THEN '775992'
                                 WHEN EedDedCode IN ('BLD', 'BLEE') THEN '290319' 
-                                WHEN EedDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN '363707' END
+                                WHEN EedDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN '363707' END AS VARCHAR(50))
         ,drvBenPolNum2 = ''
         ,drvBenPolNum3 = ''
         ,drvBenPolNum4 = ''
@@ -908,6 +908,179 @@ BEGIN
         ON EecTermReason =   TchCode 
     WHERE --audNewHire = 'Y' OR audTerm = 'Y'
      EecEEType NOT IN ('AG', 'CON', 'INT', 'SUM', 'Z')
+
+    INSERT INTO dbo.U_EEVRYSTCOB_drvTbl
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        -- standard fields above and additional driver fields below
+        ,drvRecType = 'S'
+        ,drvReltoEmp = CAST('Self' AS VARCHAR(10))
+        ,drvOrgSysId = EecOrgLvl1
+        ,drvOrgName = OrgDesc 
+        ,drvOrgEIN = ''
+        ,drvEmpSysId = EecEmpNo
+        ,drvEmpUser = EepNameFirst + '.' + EepNameLast
+        ,drvEmpSSN = SUBSTRING(EepSSN, 1, 3)+'-'+
+                     SUBSTRING(EepSSN, 4, 2)+'-'+
+                     SUBSTRING(EepSSN, 6, 4) 
+        ,drvEmpNum = EecEmpNo
+        ,drvEmpFName = EepNameFirst
+        ,drvEmpLName = EepNameLast
+        ,drvEmpMName = EepNameMiddle
+        ,drvEmpSuffi = EepNameSuffix
+        ,drvEmpPrefi = ''
+        ,drvEmpDOB = LEFT(CONVERT(VARCHAR, EepDateOfBirth, 126), 10) -- yyyy-mm-dd format
+        ,drvEmpDOD = LEFT(CONVERT(VARCHAR, EepDateDeceased, 126), 10)
+        ,drvEmpEmail = EepAddressEMail
+        ,drvEmpAdd1 = REPLACE(EepAddressLine1, ',', '')
+        ,drvEmpAdd2 = REPLACE(EepAddressLine2, ',', '')
+        ,drvEmpAdd3 = ''
+        ,drvEmpCity = EepAddressCity
+        ,drvEmpCount = ''
+        ,drvEmpState = EepAddressState
+        ,drvEmpZip = EepAddressZipCode
+        ,drvEmpHPh = CASE WHEN EepPhoneHomeNumber IS NOT NULL THEN SUBSTRING(EepPhoneHomeNumber, 1, 3) + '-' + 
+                     SUBSTRING(EepPhoneHomeNumber, 4, 3) + '-' + 
+                     SUBSTRING(EepPhoneHomeNumber, 7, 4) ELSE '' END
+        ,drvEmpWPh = CASE WHEN EecPhoneBusinessNumber <> '' THEN SUBSTRING(EecPhoneBusinessNumber, 1, 3) + '-' + 
+                     SUBSTRING(EecPhoneBusinessNumber, 4, 3) + '-' + 
+                     SUBSTRING(EecPhoneBusinessNumber, 7, 4) ELSE '' END
+        ,drvEmpGen = CASE WHEN EepGender = 'M' THEN 'M' 
+                            WHEN EepGender = 'F' THEN 'F' ELSE 'U' END
+        ,drvEmpMarit = CASE EepMaritalStatus
+                            WHEN 'S' THEN 'Single'
+                            WHEN 'D' THEN 'Divorced'
+                            WHEN 'M' THEN 'Married'
+                            WHEN 'W' THEN 'Widowed' ELSE '' END
+        ,drvEmpDtMar = ''
+        ,drvEmpRace = ''
+        ,drvEmpCitiz = ''
+        ,drvEmpHandi = ''
+        ,drvEmpHospi = ''
+        ,drvEmpSmoke = CASE WHEN EepIsSmoker = 'Y' THEN 'Yes' ELSE 'No' END
+        ,drvEmpLangu = ''
+        ,drvEmptDtSt = LEFT(CONVERT(VARCHAR, EecDateOfLastHire, 126), 10)
+        ,drvEmptDtTerm = LEFT(ISNULL(CONVERT(VARCHAR, EecDateOfTermination, 126), ''), 10)
+        ,drvEmptTermReason = TchDesc -- TscDesc WHERE TrmReasn = EecTermReason (send the description) 
+        --CASE WHEN EecEmplStatus = 'T' THEN EecTermReason END
+        ,drvEmptDtHire = ''
+        ,drvEmptDtOrigHire = LEFT(CONVERT(VARCHAR, EecDateOfOriginalHire, 126), 10)
+        ,drvEmptDtBenEligh = ''
+        ,drvEmptDtRet = ''
+        ,drvEmptNum = ''
+        ,drvEmptStat = CASE EecEmplStatus
+                            WHEN 'A' THEN 'Active'
+                            WHEN 'T' THEN 'Terminated'
+                            WHEN 'L' THEN 'LOA' END
+        ,drvEmptType = ''
+        ,drvEmptFull = ''
+        ,drvEmptExStat = ''
+        ,drvEmptRegion = ''
+        ,drvEmptDiv = ''
+        ,drvEmptDep = ''
+        ,drvEmptLoc = ''
+        ,drvEmptJobTitle = ''
+        ,drvEmptJobCode = ''
+        ,drvEmptPerc = ''
+        ,drvEmptIsCorpOf = ''
+        ,drvEmptIsKeyEmp = ''
+        ,drvEmptIsHighComp = ''
+        ,drvEmptUnion = ''
+        ,drvEmptMedElig = ''
+        ,drvEmptCompAnnAmt = ''
+        ,drvEmpCompNumPay = ''
+        ,drvEmpCompHrlyRate = ''
+        ,drvEmptCompEffFrom = ''
+        ,drvEmptWeeklyHrs = ''
+        ,drvConSysId = ''
+        ,drvConSSN = CAST('' as varchar(50))
+        ,drvConFName = CAST('' as varchar(50))
+        ,drvConLName = CAST('' as varchar(50))
+        ,drvConMName = CAST('' as varchar(50))
+        ,drvConNameSuff = CAST('' as varchar(50))
+        ,drvConNamePref = ''
+        ,drvConDOB = CAST('' as varchar(50))
+        ,drvConDOD = ''
+        ,drvConEmail = ''
+        ,drvConAddr1 = ''
+        ,drvConAddr2 = ''
+        ,drvConAddr3 = ''
+        ,drvConAddCity = ''
+        ,drvConAddCounty = ''
+        ,drvConAddState = ''
+        ,drvConAddZip = ''
+        ,drvConHPh = CAST('' as varchar(50))
+        ,drvConWPh = ''
+        ,drvConGen = CAST('' as varchar(50))
+        ,drvConMaritalStat = ''
+        ,drvConRace = ''
+        ,drvConCitiz = ''
+        ,drvConHandi = ''
+        ,drvConHospi = ''
+        ,drvConSmoke = ''
+        ,drvConLangu = ''
+        ,drvConIRSQual = ''
+        ,drvConFullTimeStuddent = ''
+        ,drvBenCarName = 'Vital WorkLife' 
+        ,drvBenCarEIN = ''
+        ,drvBenType = 'Employee Assitance Program' 
+ 
+        ,drvBenPlanName = CASE 
+                                WHEN EedDedcode = 'BLD' THEN 'Basic Life Directors'
+                                WHEN EedDedCode = 'BLEE' THEN 'Basic Life EE Only'
+                                 END
+        ,drvBenPolNum1 = '290319' 
+        ,drvBenPolNum2 = ''
+        ,drvBenPolNum3 = ''
+        ,drvBenPolNum4 = ''
+        ,drvBenPolNum5 = ''
+        ,drvBenEffFrom = LEFT(CONVERT(VARCHAR, EedBenStartDate, 126), 10)
+        ,drvBenEffLastDt = LEFT(ISNULL(CONVERT(VARCHAR, EedBenStopDate, 126), ''), 10)
+        ,drvBenOrigEffFrom = ''
+        ,drvBenCovLevel = CASE WHEN EedBenOption = 'EE' THEN 'EMP'
+                                WHEN EedBenOption IN ('EES', 'EEDP') THEN 'ESP'
+                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN 'FAM'
+                                WHEN EedBenOption IN ('EEC', 'EECH') THEN 'ECH' END
+        ,drvBenIsWaived = ''
+        ,drvBenBaseCovAmt = ''
+        ,drvBenAppCovAmt = ''
+        ,drvBenReqCovAmt = ''
+        ,drvBenEmpPrem = ''
+        ,drvBenEmployerPrem = ''
+        ,drvBenNumDedPerYear = ''
+        ,drvBenSalary = ''
+        ,drvBenMedOfficeNum = ''
+        ,drvBenMedOfficeProvName = ''
+        ,drvBenMedOfficeProvAdd = ''
+        ,drvBenPercent = ''
+        ,drvInitialSort = '1' + EepSSN
+        ,drvSubSort = '1'
+   -- INTO dbo.U_EEVRYSTCOB_drvTbl
+    FROM dbo.U_EEVRYSTCOB_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
+    JOIN dbo.u_dsi_bdm_EmpDeductions WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND EedFormatCode = @FormatCode
+        AND EedValidForExport = 'Y'
+    JOIN dbo.OrgLevel WITH(NOLOCK)
+        ON OrgCode = EecOrgLvl1
+    --JOIN dbo.U_EEVRYSTCOB_Audit 
+    --    ON audEEID = xEEID
+    --    AND audKey2 = xCOID
+     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)  
+        ON EecTermReason =   TchCode 
+    WHERE --audNewHire = 'Y' OR audTerm = 'Y'
+     EecEEType NOT IN ('AG', 'CON', 'INT', 'SUM', 'Z')
+     AND EedDedCode IN ('BLD', 'BLEE')
     
 -- Spouse Record
     INSERT INTO dbo.U_EEVRYSTCOB_drvTbl
@@ -942,7 +1115,7 @@ BEGIN
         ,drvEmpCount = ''
         ,drvEmpState = EepAddressState
         ,drvEmpZip = EepAddressZipCode
-		,drvEmpHPh = CASE WHEN EepPhoneHomeNumber IS NOT NULL THEN SUBSTRING(EepPhoneHomeNumber, 1, 3) + '-' + 
+        ,drvEmpHPh = CASE WHEN EepPhoneHomeNumber IS NOT NULL THEN SUBSTRING(EepPhoneHomeNumber, 1, 3) + '-' + 
                      SUBSTRING(EepPhoneHomeNumber, 4, 3) + '-' + 
                      SUBSTRING(EepPhoneHomeNumber, 7, 4) ELSE '' END
         ,drvEmpWPh = CASE WHEN EecPhoneBusinessNumber <> '' THEN SUBSTRING(EecPhoneBusinessNumber, 1, 3) + '-' + 
@@ -1046,17 +1219,17 @@ BEGIN
                                 WHEN DbnDedCode IN ('BLD', 'BLEE') THEN 'Basic Employee Life' 
                                 WHEN DbnDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN 'Voluntary Life' END
         ,drvBenPlanName = CASE WHEN DbnDedCode = 'MDP1' THEN 'Medical Copay Plan 1'
-								WHEN DbnDedCode = 'MDP2' THEN 'Medical HSA Plan 2'
-								WHEN DbnDedCode = 'MDP3' THEN 'Medical HD HSA Plan 3'
-								WHEN DbnDedCode = 'PTDEN' THEN 'Dental Insurance PreTax'
-								WHEN DbnDedCode = 'VVIS' THEN 'Vision'
-								--WHEN DbnDedCode = 'FCHI' THEN 'Flex Child Care'
-								--WHEN DbnDedCode = 'FMED' THEN 'Flex Medical'
-								--WHEN DbnDedCode = 'BLD' THEN 'Basic Life Directors'
-								--WHEN DbnDedCode = 'BLEE' THEN 'Basic Life EE Only'
-								WHEN DbnDedCode = 'LIFEC' THEN 'Supplemental Life - Child'
-								--WHEN DbnDedCode = 'LIFEE' THEN 'Supplemental ife - Employee'
-								WHEN DbnDedCode = 'LIFES' THEN 'Supplemental Life - Spouse' END
+                                WHEN DbnDedCode = 'MDP2' THEN 'Medical HSA Plan 2'
+                                WHEN DbnDedCode = 'MDP3' THEN 'Medical HD HSA Plan 3'
+                                WHEN DbnDedCode = 'PTDEN' THEN 'Dental Insurance PreTax'
+                                WHEN DbnDedCode = 'VVIS' THEN 'Vision'
+                                --WHEN DbnDedCode = 'FCHI' THEN 'Flex Child Care'
+                                --WHEN DbnDedCode = 'FMED' THEN 'Flex Medical'
+                                --WHEN DbnDedCode = 'BLD' THEN 'Basic Life Directors'
+                                --WHEN DbnDedCode = 'BLEE' THEN 'Basic Life EE Only'
+                                WHEN DbnDedCode = 'LIFEC' THEN 'Supplemental Life - Child'
+                                --WHEN DbnDedCode = 'LIFEE' THEN 'Supplemental ife - Employee'
+                                WHEN DbnDedCode = 'LIFES' THEN 'Supplemental Life - Spouse' END
         ,drvBenPolNum1 = CASE WHEN DbnDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'PKA20366'
                                 WHEN DbnDedCode = 'PTDEN' THEN '19096'
                                 WHEN DbnDedCode = 'VVIS' THEN '9894049'
@@ -1253,17 +1426,17 @@ BEGIN
                                 WHEN DbnDedCode IN ('BLD', 'BLEE') THEN 'Basic Employee Life' 
                                 WHEN DbnDedCode IN ('LIFEC', 'LIFEE', 'LIFES') THEN 'Voluntary Life' END
         ,drvBenPlanName = CASE WHEN DbnDedCode = 'MDP1' THEN 'Medical Copay Plan 1'
-								WHEN DbnDedCode = 'MDP2' THEN 'Medical HSA Plan 2'
-								WHEN DbnDedCode = 'MDP3' THEN 'Medical HD HSA Plan 3'
-								WHEN DbnDedCode = 'PTDEN' THEN 'Dental Insurance PreTax'
-								WHEN DbnDedCode = 'VVIS' THEN 'Vision'
-								--WHEN DbnDedCode = 'FCHI' THEN 'Flex Child Care'
-								--WHEN DbnDedCode = 'FMED' THEN 'Flex Medical'
-								--WHEN DbnDedCode = 'BLD' THEN 'Basic Life Directors'
-								--WHEN DbnDedCode = 'BLEE' THEN 'Basic Life EE Only'
-								WHEN DbnDedCode = 'LIFEC' THEN 'Supplemental Life - Child'
-								--WHEN DbnDedCode = 'LIFEE' THEN 'Supplemental ife - Employee'
-								WHEN DbnDedCode = 'LIFES' THEN 'Supplemental Life - Spouse' END
+                                WHEN DbnDedCode = 'MDP2' THEN 'Medical HSA Plan 2'
+                                WHEN DbnDedCode = 'MDP3' THEN 'Medical HD HSA Plan 3'
+                                WHEN DbnDedCode = 'PTDEN' THEN 'Dental Insurance PreTax'
+                                WHEN DbnDedCode = 'VVIS' THEN 'Vision'
+                                --WHEN DbnDedCode = 'FCHI' THEN 'Flex Child Care'
+                                --WHEN DbnDedCode = 'FMED' THEN 'Flex Medical'
+                                --WHEN DbnDedCode = 'BLD' THEN 'Basic Life Directors'
+                                --WHEN DbnDedCode = 'BLEE' THEN 'Basic Life EE Only'
+                                WHEN DbnDedCode = 'LIFEC' THEN 'Supplemental Life - Child'
+                                --WHEN DbnDedCode = 'LIFEE' THEN 'Supplemental ife - Employee'
+                                WHEN DbnDedCode = 'LIFES' THEN 'Supplemental Life - Spouse' END
         ,drvBenPolNum1 = CASE WHEN DbnDedCode IN ('MDP1', 'MDP2', 'MDP3') THEN 'PKA20366'
                                 WHEN DbnDedCode = 'PTDEN' THEN '19096'
                                 WHEN DbnDedCode = 'VVIS' THEN '9894049'
