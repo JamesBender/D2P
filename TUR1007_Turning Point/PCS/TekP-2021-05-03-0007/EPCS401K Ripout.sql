@@ -73,28 +73,28 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMaritalStatus"','10','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','10',NULL,'Marital Status',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''T,'')','EPCS401K00Z0','50','D','10','11',NULL,'Company/Division Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''T,'')','EPCS401K00Z0','50','D','10','12',NULL,'Union Status',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','13','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','13',NULL,'Address 1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','14','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','14',NULL,'Address 2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','15','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','15',NULL,'City',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','13','(''UA''=''Q,'')','EPCS401K00Z0','50','D','10','13',NULL,'Address 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','14','(''UA''=''Q,'')','EPCS401K00Z0','50','D','10','14',NULL,'Address 2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','15','(''UA''=''Q,'')','EPCS401K00Z0','50','D','10','15',NULL,'City',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','16','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','16',NULL,'State',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','17','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','17',NULL,'Zip',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','18','(''UD101''=''T,'')','EPCS401K00Z0','50','D','10','18',NULL,'Birth Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfOriginalHire"','19','(''UD101''=''T,'')','EPCS401K00Z0','50','D','10','19',NULL,'Hire Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfTermination"','20','(''UD101''=''T,'')','EPCS401K00Z0','50','D','10','20',NULL,'Termination Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRehireDate"','21','(''UD101''=''T,'')','EPCS401K00Z0','50','D','10','21',NULL,'Rehire Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGrossEarn"','22','(''UNT2''=''T,'')','EPCS401K00Z0','50','D','10','22',NULL,'Gross Earnings',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPrdHours"','23','(''UNT2''=''T,'')','EPCS401K00Z0','50','D','10','23',NULL,'Pay Period Hours',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','24','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','24',NULL,'Employee Deferral',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','25','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','25',NULL,'Employee Roth',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayments"','26','(''UNT2''=''T,'')','EPCS401K00Z0','50','D','10','26',NULL,'Loan Payments',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','27','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','27',NULL,'Employee After Tax',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','28','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','28',NULL,'Employer Match',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','29','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','29',NULL,'Safe Harbor Match',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','30','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','30',NULL,'Safe Harbor Non-Elective',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','31','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','31',NULL,'Qualified Matching Contribution',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','32','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','32',NULL,'Qualified Non-Elective Contribution',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0.00"','33','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','33',NULL,'Profit Sharing',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMoneyPur"','34','(''UNT2''=''T,'')','EPCS401K00Z0','50','D','10','34',NULL,'Money Purchase',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGrossEarn"','22','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','22',NULL,'Gross Earnings',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPrdHours"','23','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','23',NULL,'Pay Period Hours',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','24','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','24',NULL,'Employee Deferral',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','25','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','25',NULL,'Employee Roth',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayments"','26','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','26',NULL,'Loan Payments',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','27','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','27',NULL,'Employee After Tax',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','28','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','28',NULL,'Employer Match',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','29','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','29',NULL,'Safe Harbor Match',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','30','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','30',NULL,'Safe Harbor Non-Elective',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','31','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','31',NULL,'Qualified Matching Contribution',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','32','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','32',NULL,'Qualified Non-Elective Contribution',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','33','(''DA''=''T,'')','EPCS401K00Z0','50','D','10','33',NULL,'Profit Sharing',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMoneyPur"','34','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','34',NULL,'Money Purchase',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayFreq"','35','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','35',NULL,'Pay Frequency',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressEmail"','36','(''UA''=''T,'')','EPCS401K00Z0','50','D','10','36',NULL,'Email',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneHomeNumber"','37','(''UA''=''T'')','EPCS401K00Z0','50','D','10','37',NULL,'Phone Number',NULL,NULL);
@@ -105,11 +105,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPCS401K_20210715.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPCS401K_20210723.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PCS 401K  Export','202107149','EMPEXPORT','ONDEM_XOE',NULL,'EPCS401K',NULL,NULL,NULL,'202107149','Jul 14 2021  8:36AM','Jul 14 2021  8:36AM','202106071',NULL,'','','202106071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PCS 401K  Export-Sched','202107149','EMPEXPORT','SCH_EPCS40',NULL,'EPCS401K',NULL,NULL,NULL,'202107149','Jul 14 2021  8:36AM','Jul 14 2021  8:36AM','202106071',NULL,'','','202106071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'PCS 401K  Export-Test','202107149','EMPEXPORT','TEST_XOE',NULL,'EPCS401K',NULL,NULL,NULL,'202107149','Jul 14 2021  8:36AM','Jul 14 2021  8:36AM','202106071',NULL,'','','202106071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'PCS 401K  Export-Test','202107079','EMPEXPORT','TEST_XOE','Jul 21 2021 10:26PM','EPCS401K',NULL,NULL,NULL,'202107079','Jul  7 2021 12:00AM','Dec 30 1899 12:00AM','202107071','658','eecPayGroup','001','202107071',dbo.fn_GetTimedKey(),NULL,'us3cPeTUR1007',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPCS401K','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPCS401K','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPCS401K','InitialSort','C','drvInitialSort');
@@ -131,7 +131,7 @@ CREATE TABLE [dbo].[U_EPCS401K_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(1) NOT NULL,
-    [drvPrgPayDate] varchar(1) NOT NULL,
+    [drvPrgPayDate] datetime NULL,
     [drvSSN] varchar(11) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
@@ -150,10 +150,10 @@ CREATE TABLE [dbo].[U_EPCS401K_drvTbl] (
     [drvDateOfOriginalHire] datetime NULL,
     [drvDateOfTermination] datetime NULL,
     [drvRehireDate] datetime NULL,
-    [drvGrossEarn] numeric NULL,
-    [drvPayPrdHours] decimal NULL,
-    [drvLoanPayments] numeric NULL,
-    [drvMoneyPur] numeric NULL,
+    [drvGrossEarn] varchar(8) NULL,
+    [drvPayPrdHours] varchar(8) NULL,
+    [drvLoanPayments] varchar(8) NULL,
+    [drvMoneyPur] varchar(8) NULL,
     [drvPayFreq] char(1) NULL,
     [drvAddressEmail] varchar(50) NULL,
     [drvPhoneHomeNumber] varchar(50) NULL
@@ -175,14 +175,14 @@ CREATE TABLE [dbo].[U_EPCS401K_File] (
 IF OBJECT_ID('U_EPCS401K_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EPCS401K_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
-    [Pdh401A] numeric NULL,
-    [PdhRLOAN] numeric NULL
+    [Pdh401A] money NULL,
+    [PdhRLOAN] money NULL
 );
 IF OBJECT_ID('U_EPCS401K_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EPCS401K_PEarHist] (
     [PehEEID] char(12) NOT NULL,
     [PrgPayDate] datetime NULL,
-    [PehCurAmt] numeric NULL,
+    [PehCurAmt] money NULL,
     [PehCurHrs] decimal NULL
 );
 GO
@@ -196,7 +196,7 @@ Client Name: Turning Point of Central California
 Created By: Keary McCutchen
 Business Analyst: Cheryl Petitti
 Create Date: 07/14/2021
-Service Request Number: SR-2016-00012345
+Service Request Number: SR-2021-00312731 / TekP-2021-05-03-0007
 
 Purpose: PCS 401K  Export
 
@@ -291,16 +291,19 @@ BEGIN
     SELECT DISTINCT
          PdhEEID
         -- Categorize Payroll Amounts
-        ,Pdh401A        = SUM(CASE WHEN PdhDedCode IN ('401A') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhRLOAN       = SUM(CASE WHEN PdhDedCode IN ('RLOAN') THEN PdhEECurAmt ELSE 0.00 END)
+        ,Pdh401A        = SUM(CASE WHEN PdhDedCode IN ('401A') THEN PdhERCurAmt END)
+        ,PdhRLOAN       = SUM(CASE WHEN PdhDedCode IN ('RLOAN') THEN PdhEECurAmt END)
     INTO dbo.U_EPCS401K_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
+    FROM dbo.U_EPCS401K_EEList WITH (NOLOCK)
+    JOIN dbo.PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
     JOIN dbo.U_EPCS401K_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
     WHERE PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
     GROUP BY PdhEEID
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-    );
+    HAVING SUM(CASE WHEN PdhDedCode IN ('401A') THEN PdhERCurAmt END) IS NOT NULL 
+        OR SUM(CASE WHEN PdhDedCode IN ('RLOAN') THEN PdhEECurAmt END) IS NOT NULL
+    ;
 
     -----------------------------
     -- Working Table - PEarHist
@@ -310,16 +313,19 @@ BEGIN
     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
-        ,PehCurAmt              = SUM(CASE WHEN PehEarnCode NOT IN ('MIL') THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehEarnCode NOT IN ('HRWK','MIL','LWOP') THEN PehCurHrs ELSE 0.00 END)
+        ,PehCurAmt              = SUM(CASE WHEN PehEarnCode NOT IN ('MIL') THEN PehCurAmt END)
+        ,PehCurHrs              = SUM(CASE WHEN PehEarnCode NOT IN ('HRWK','MIL','LWOP') THEN PehCurHrs END)
     INTO dbo.U_EPCS401K_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    FROM dbo.U_EPCS401K_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_PayReg WITH (NOLOCK)
+        ON xEEID = PrgEEID
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
     WHERE PehPerControl BETWEEN @StartPerControl AND @EndPerControl
     GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
-
+    HAVING SUM(CASE WHEN PehEarnCode NOT IN ('MIL') THEN PehCurAmt END) IS NOT NULL
+        OR SUM(CASE WHEN PehEarnCode NOT IN ('HRWK','MIL','LWOP') THEN PehCurHrs END) IS NOT NULL
+    ;
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -334,7 +340,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = ''
         -- standard fields above and additional driver fields below
-        ,drvPrgPayDate = ''
+        ,drvPrgPayDate = (SELECT MAX(PrgPayDate) FROM dbo.U_EPCS401K_PEarHist WITH (NOLOCK))
         ,drvSSN =  SUBSTRING(eepSSN, 1, 3) + '-' + SUBSTRING(eepSSN, 4, 2) + '-' + SUBSTRING(eepSSN, 6,4)  
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
@@ -358,10 +364,10 @@ BEGIN
         ,drvDateOfOriginalHire = EecDateOfOriginalHire
         ,drvDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvRehireDate = EecDateOfLastHire
-        ,drvGrossEarn = PehCurAmt
-        ,drvPayPrdHours = PehCurHrs
-        ,drvLoanPayments = PdhRLOAN
-        ,drvMoneyPur = Pdh401A
+        ,drvGrossEarn = LTRIM(STR(CASE WHEN PehCurAmt = 0.00 THEN NULL ELSE PehCurAmt END,8,2))
+        ,drvPayPrdHours = LTRIM(STR(CASE WHEN PehCurHrs = 0.00 THEN NULL ELSE PehCurHrs END ,8,2))
+        ,drvLoanPayments = LTRIM(STR(CASE WHEN PdhRLOAN = 0.00 THEN NULL ELSE PdhRLOAN END ,8,2))
+        ,drvMoneyPur = LTRIM(STR(CASE WHEN Pdh401A = 0.00 THEN NULL ELSE Pdh401A END ,8,2))
         ,drvPayFreq = CASE WHEN PgrPayFrequency = 'S' THEN PgrPayFrequency END
         ,drvAddressEmail = EepAddressEMail
         ,drvPhoneHomeNumber = EepPhoneHomeNumber
