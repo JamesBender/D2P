@@ -21,7 +21,7 @@ IF OBJECT_ID('U_EMETBUCLIF_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EMETBUC
 GO
 IF OBJECT_ID('U_EMETBUCLIF_Audit') IS NOT NULL DROP TABLE [dbo].[U_EMETBUCLIF_Audit];
 GO
-IF OBJECT_ID('U_dsi_BDM_EMETBUCLIF') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EMETBUCLIF];
+IF OBJECT_ID('U_dsi_bdm_EMETBUCLIF') IS NOT NULL DROP TABLE [dbo].[U_dsi_bdm_EMETBUCLIF];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EMETBUCLIF';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EMETBUCLIF';
@@ -405,13 +405,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETBUCLIF_20210617.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETBUCLIF_20210723.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102099','EMPEXPORT','OEACTIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102099','EMPEXPORT','OEPASSIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Metlife Life Export','202102099','EMPEXPORT','ONDEMAND',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202102099','EMPEXPORT','SCH_METEXP',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202105311','EMPEXPORT','TEST','May 31 2021 12:39PM','EMETBUCLIF',NULL,NULL,NULL,'202105311','May 31 2021 12:00AM','Dec 30 1899 12:00AM','202105171','652','','','202105171',dbo.fn_GetTimedKey(),NULL,'us3cPeBUC1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202107209','EMPEXPORT','OEACTIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202107209','EMPEXPORT','OEPASSIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Metlife Life Export','202107209','EMPEXPORT','ONDEMAND',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202107209','EMPEXPORT','SCH_METEXP',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202107209','EMPEXPORT','TEST','Jul 19 2021  7:16PM','EMETBUCLIF',NULL,NULL,NULL,'202107209','Jul 20 2021 12:00AM','Dec 30 1899 12:00AM','202107051','626','','','202107051',dbo.fn_GetTimedKey(),NULL,'us3cPeBUC1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','InitialSort','C','drvInitialSort');
@@ -424,48 +424,81 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 IF OBJECT_ID('U_EMETBUCLIF_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EMETBUCLIF_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMETBUCLIF','D10','dbo.U_EMETBUCLIF_drvTbl',NULL);
-IF OBJECT_ID('U_dsi_BDM_EMETBUCLIF') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_EMETBUCLIF] (
+IF OBJECT_ID('U_dsi_bdm_EMETBUCLIF') IS NULL
+CREATE TABLE [dbo].[U_dsi_bdm_EMETBUCLIF] (
     [BdmRecType] varchar(3) NOT NULL,
     [BdmCOID] char(5) NULL,
     [BdmEEID] char(12) NOT NULL,
     [BdmDepRecID] char(12) NULL,
     [BdmSystemID] char(12) NULL,
-    [BdmRunID] varchar(32) NULL,
-    [BdmDedRowStatus] varchar(256) NULL,
-    [BdmRelationship] char(3) NULL,
-    [BdmDateOfBirth] datetime NULL,
-    [BdmDedCode] char(5) NULL,
-    [BdmDedType] varchar(32) NULL,
+    [BdmRelationship] varchar(3) NULL,
+    [BdmBenAmt] money NULL,
+    [BdmBenAmtRateOrPct] decimal NULL,
     [BdmBenOption] char(6) NULL,
-    [BdmBenStatus] char(1) NULL,
     [BdmBenStartDate] datetime NULL,
-    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatus] char(1) NULL,
     [BdmBenStatusDate] datetime NULL,
-    [BdmBenOptionDate] datetime NULL,
-    [BdmChangeReason] char(6) NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmDedCode] char(5) NOT NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEECalcRule] char(2) NULL,
+    [BdmEEEligDate] datetime NULL,
+    [BdmEEFiscalYTDAmt] money NULL,
+    [BdmEEGTDAmt] money NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmEEPerCapAmt] money NULL,
+    [BdmEEPerCapCalcRule] char(2) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNotes] text(2147483647) NULL,
+    [BdmPayeeID] char(10) NULL,
+    [BdmPendingUpdateID] char(20) NULL,
+    [BdmPrimaryCarePhys] varchar(30) NULL,
+    [BdmPrimaryCarePhysID] char(10) NULL,
     [BdmStartDate] datetime NULL,
     [BdmStopDate] datetime NULL,
-    [BdmIsCobraCovered] char(1) NULL,
+    [BdmEmpDedTVID] int NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
     [BdmCobraReason] char(6) NULL,
     [BdmDateOfCOBRAEvent] datetime NULL,
     [BdmIsPQB] char(1) NULL,
-    [BdmIsChildOldest] char(1) NULL,
+    [BdmValidForExport] char(1) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRunID] varchar(32) NULL,
     [BdmUSGField1] varchar(256) NULL,
     [BdmUSGField2] varchar(256) NULL,
     [BdmUSGDate1] datetime NULL,
     [BdmUSGDate2] datetime NULL,
-    [BdmTVStartDate] datetime NULL,
-    [BdmSessionID] varchar(32) NULL,
-    [BdmEEAmt] money NULL,
-    [BdmEECalcRateOrPct] decimal NULL,
-    [BdmEEGoalAmt] money NULL,
-    [BdmEEMemberOrCaseNo] char(40) NULL,
-    [BdmERAmt] money NULL,
-    [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL,
-    [BdmNumDomPartners] int NULL,
-    [BdmNumDPChildren] int NULL
+    [DedBenPlanAdmin] char(10) NULL,
+    [DedBenPlanProvider] char(10) NULL,
+    [DedDedCode] char(5) NOT NULL,
+    [DedDedType] varchar(32) NOT NULL,
+    [DedEEBenAmt] money NULL,
+    [DedEECalcRateOrPct] decimal NULL,
+    [DedEECalcRule] char(2) NULL,
+    [DedEEGoalAmt] money NULL,
+    [DedEELoanType] char(6) NULL,
+    [DedERAnnCapAmt] money NULL,
+    [DedImputedEarn] char(5) NULL,
+    [DedIncInImpInc] char(1) NULL,
+    [DedInclInAddlChk] char(1) NULL,
+    [DedInclInManlChk] char(1) NULL,
+    [DedIsBenefit] char(1) NULL,
+    [DedIsCobraCovered] char(1) NULL,
+    [DedIsDedOffSet] char(1) NULL,
+    [DedLongDesc] varchar(40) NULL,
+    [DedStubDesc] char(15) NULL,
+    [DedTimeclockCode] char(5) NULL,
+    [DedVendor] char(10) NULL,
+    [DedDedcodeTVID] int NULL
 );
 IF OBJECT_ID('U_EMETBUCLIF_Audit') IS NULL
 CREATE TABLE [dbo].[U_EMETBUCLIF_Audit] (
@@ -496,7 +529,7 @@ CREATE TABLE [dbo].[U_EMETBUCLIF_Consolidated] (
     [VIS_BdmBenOption] char(6) NULL,
     [VIS_BdmBenStartDate] datetime NULL,
     [VIS_BdmBenStopDate] datetime NULL,
-    [VIS_BdmBenStatus] char(6) NULL
+    [VIS_BdmBenStatus] varchar(1) NULL
 );
 IF OBJECT_ID('U_EMETBUCLIF_DedList') IS NULL
 CREATE TABLE [dbo].[U_EMETBUCLIF_DedList] (
@@ -865,10 +898,11 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
     -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    --I'm Manually Building a Consolidated Table later because it doesn't seem to be working properly 
 
     -- Required OE parameters
     IF @ExportCode LIKE '%PASSIVE'
@@ -881,55 +915,176 @@ BEGIN
         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
     END;
 
-
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
-
-
+    
+    -- Manually Building Consolidated Table because BenOptions, Dates, etc aren't showing up correctly
+    IF OBJECT_ID('U_dsi_bdm_EMETBUCLIF','U') IS NOT NULL
+        DROP TABLE dbo.U_dsi_bdm_EMETBUCLIF;
+    SELECT BdmRecType = 'EMP'
+          ,BdmCOID = EedCoID
+          ,BdmEEID = EedEEID
+          ,BdmDepRecID = NULL
+          ,BdmSystemID = NULL
+          ,BdmRelationship = 'EMP'
+          ,BdmBenAmt = EedBenAmt
+          ,BdmBenAmtRateOrPct = EedBenAmtRateOrPct
+          ,BdmBenOption = EedBenOption
+          ,BdmBenStartDate = EedBenStartDate
+          ,BdmBenStatus = EedBenStatus
+          ,BdmBenStatusDate = EedBenStatusDate
+          ,BdmBenStopDate = EedBenStopDate
+          ,BdmDedCode = EedDedCode
+          ,BdmEEAmt = EedEEAmt
+          ,BdmEECalcRateOrPct = EedEECalcRateOrPct
+          ,BdmEECalcRule = EedEECalcRule
+          ,BdmEEEligDate = EedEEEligDate
+          ,BdmEEFiscalYTDAmt = EedEEFiscalYTDAmt
+          ,BdmEEGTDAmt = EedEEGTDAmt
+          ,BdmEEGoalAmt = EedEEGoalAmt
+          ,BdmEEMemberOrCaseNo = EedEEMemberOrCaseNo
+          ,BdmEEPerCapAmt = EedEEPerCapAmt
+          ,BdmEEPerCapCalcRule = EedEEPerCapCalcRule
+          ,BdmERAmt = EedERAmt
+          ,BdmNotes = EedNotes
+          ,BdmPayeeID = EedPayeeID
+          ,BdmPendingUpdateID = EedPendingUpdateID
+          ,BdmPrimaryCarePhys = EedPrimaryCarePhys
+          ,BdmPrimaryCarePhysID = EedPrimaryCarePhysID
+          ,BdmStartDate = EedStartDate
+          ,BdmStopDate = EedStopDate
+          ,BdmEmpDedTVID = EedEmpDedTVID
+          ,BdmTVStartDate = EedTVStartDate
+          ,BdmSessionID = EedSessionID
+          ,BdmNumSpouses = EedNumSpouses
+          ,BdmNumChildren = EedNumChildren
+          ,BdmNumDomPartners = EedNumDomPartners
+          ,BdmNumDPChildren = EedNumDPChildren
+          ,BdmBenOptionDate = EedBenOptionDate
+          ,BdmChangeReason = EedChangeReason
+          ,BdmCobraReason = EedCobraReason
+          ,BdmDateOfCOBRAEvent = EedDateOfCOBRAEvent
+          ,BdmIsPQB = EedIsPQB
+          ,BdmValidForExport = EedValidForExport
+          ,BdmDedRowStatus = EedDedRowStatus
+          ,BdmRunID = EedRunID
+          ,BdmUSGField1 = EedUSGField1
+          ,BdmUSGField2 = EedUSGField2
+          ,BdmUSGDate1 = EedUSGDate1
+          ,BdmUSGDate2 = EedUSGDate2
+          ,DedBenPlanAdmin = DedBenPlanAdmin
+          ,DedBenPlanProvider = DedBenPlanProvider
+          ,DedDedCode = DedDedCode
+          ,DedDedType = DedDedType
+          ,DedEEBenAmt = DedEEBenAmt
+          ,DedEECalcRateOrPct = DedEECalcRateOrPct
+          ,DedEECalcRule = DedEECalcRule
+          ,DedEEGoalAmt = DedEEGoalAmt
+          ,DedEELoanType = DedEELoanType
+          ,DedERAnnCapAmt = DedERAnnCapAmt
+          ,DedImputedEarn = DedImputedEarn
+          ,DedIncInImpInc = DedIncInImpInc
+          ,DedInclInAddlChk = DedInclInAddlChk
+          ,DedInclInManlChk = DedInclInManlChk
+          ,DedIsBenefit = DedIsBenefit
+          ,DedIsCobraCovered = DedIsCobraCovered
+          ,DedIsDedOffSet = DedIsDedOffSet
+          ,DedLongDesc = DedLongDesc
+          ,DedStubDesc = DedStubDesc
+          ,DedTimeclockCode = DedTimeclockCode
+          ,DedVendor = DedVendor
+          ,DedDedcodeTVID = DedDedcodeTVID
+    INTO dbo.U_dsi_bdm_EMETBUCLIF
+    FROM dbo.U_dsi_BDM_EmpDeductions 
+    WHERE EedFormatCode = @FormatCode 
+      AND EedValidForExport = 'Y'
+    UNION ALL
+    SELECT BdmRecType = 'DEP'
+          ,BdmCOID = DbnCoID
+          ,BdmEEID = DbnEEID
+          ,BdmDepRecID = DbnDepRecID
+          ,BdmSystemID = DbnSystemID
+          ,BdmRelationship = DbnRelationship
+          ,BdmBenAmt = EedBenAmt
+          ,BdmBenAmtRateOrPct = EedBenAmtRateOrPct
+          ,BdmBenOption = DbnBenOption
+          ,BdmBenStartDate = DbnBenStartDate
+          ,BdmBenStatus = DbnBenStatus
+          ,BdmBenStatusDate = DbnBenStatusDate
+          ,BdmBenStopDate = DbnBenStopDate
+          ,BdmDedCode = DbnDedCode
+          ,BdmEEAmt = EedEEAmt
+          ,BdmEECalcRateOrPct = EedEECalcRateOrPct
+          ,BdmEECalcRule = EedEECalcRule
+          ,BdmEEEligDate = EedEEEligDate
+          ,BdmEEFiscalYTDAmt = EedEEFiscalYTDAmt
+          ,BdmEEGTDAmt = EedEEGTDAmt
+          ,BdmEEGoalAmt = EedEEGoalAmt
+          ,BdmEEMemberOrCaseNo = EedEEMemberOrCaseNo
+          ,BdmEEPerCapAmt = EedEEPerCapAmt
+          ,BdmEEPerCapCalcRule = EedEEPerCapCalcRule
+          ,BdmERAmt = EedERAmt
+          ,BdmNotes = EedNotes
+          ,BdmPayeeID = EedPayeeID
+          ,BdmPendingUpdateID = EedPendingUpdateID
+          ,BdmPrimaryCarePhys = EedPrimaryCarePhys
+          ,BdmPrimaryCarePhysID = EedPrimaryCarePhysID
+          ,BdmStartDate = EedStartDate
+          ,BdmStopDate = EedStopDate
+          ,BdmDepBPlanTVID = DbnDepBPlanTVID
+          ,BdmTVStartDate = DbnTVStartDate
+          ,BdmSessionID = DbnSessionID
+          ,BdmNumSpouses = EedNumSpouses
+          ,BdmNumChildren = EedNumChildren
+          ,BdmNumDomPartners = EedNumDomPartners
+          ,BdmNumDPChildren = EedNumDPChildren
+          ,BdmBenOptionDate = DbnBenOptionDate
+          ,BdmChangeReason = EedChangeReason
+          ,BdmCobraReason = DbnCobraReason
+          ,BdmDateOfCOBRAEvent = DbnDateOfCOBRAEvent
+          ,BdmIsPQB = DbnIsPQB
+          ,BdmValidForExport = DbnValidForExport
+          ,BdmDedRowStatus = DbnDedRowStatus
+          ,BdmRunID = DbnRunID
+          ,BdmUSGField1 = DbnUSGField1
+          ,BdmUSGField2 = DbnUSGField2
+          ,BdmUSGDate1 = DbnUSGDate1
+          ,BdmUSGDate2 = DbnUSGDate2
+          ,DedBenPlanAdmin = Dbn.DedBenPlanAdmin
+          ,DedBenPlanProvider = Dbn.DedBenPlanProvider
+          ,DedDedCode = Dbn.DedDedCode
+          ,DedDedType = Dbn.DedDedType
+          ,DedEEBenAmt = Dbn.DedEEBenAmt
+          ,DedEECalcRateOrPct = Dbn.DedEECalcRateOrPct
+          ,DedEECalcRule = Dbn.DedEECalcRule
+          ,DedEEGoalAmt = Dbn.DedEEGoalAmt
+          ,DedEELoanType = Dbn.DedEELoanType
+          ,DedERAnnCapAmt = Dbn.DedERAnnCapAmt
+          ,DedImputedEarn = Dbn.DedImputedEarn
+          ,DedIncInImpInc = Dbn.DedIncInImpInc
+          ,DedInclInAddlChk = Dbn.DedInclInAddlChk
+          ,DedInclInManlChk = Dbn.DedInclInManlChk
+          ,DedIsBenefit = Dbn.DedIsBenefit
+          ,DedIsCobraCovered = Dbn.DedIsCobraCovered
+          ,DedIsDedOffSet = Dbn.DedIsDedOffSet
+          ,DedLongDesc = Dbn.DedLongDesc
+          ,DedStubDesc = Dbn.DedStubDesc
+          ,DedTimeclockCode = Dbn.DedTimeclockCode
+          ,DedVendor = Dbn.DedVendor
+          ,DedDedCodeTVID = Dbn.DedDedCodeTVID
+      FROM dbo.U_dsi_BDM_DepDeductions Dbn WITH (NOLOCK)
+      JOIN dbo.U_dsi_BDM_EmpDeductions Eed WITH (NOLOCK)
+         ON EedEEID = DbnEEID
+        AND EedCOID = DbnCOID
+        AND EedDedCode = DbnDedCode
+      WHERE EedFormatCode = @FormatCode 
+        AND DbnValidForExport = 'Y'
+;
     --==========================================
     -- Build Working Tables
     --==========================================
-
-
-    --=========================================
-    -- Update BdmChangeReason For Dependents
-    --=========================================
-    UPDATE D
-        SET D.BdmChangeReason = E.BdmChangeReason
-    FROM dbo.U_dsi_bdm_EMETBUCLIF D
-    JOIN dbo.U_dsi_bdm_EMETBUCLIF E
-        ON E.BdmEEID = D.BdmEEID
-        AND E.BdmCOID = D.BdmCOID
-        AND E.BdmDedCode = D.BdmDedCode
-    WHERE D.BdmRecType = 'DEP' AND E.BdmRecType = 'EMP';
-
-    --=====================================================
-    -- Update BdmUSGField2 with EmpDedTVID for Employees
-    --=====================================================
-    UPDATE dbo.U_dsi_bdm_EMETBUCLIF
-        SET BdmUSGField2 = EedEmpDedTVID
-        ,BdmUSGField1 = case when eedbenamt is not null then eedbenamt else dedeebenamt end
-    FROM dbo.U_dsi_bdm_EMETBUCLIF
-    JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
-        ON EedEEID = BdmEEID
-        AND EedCOID = BdmCOID
-        AND EedDedCode = BdmDedCode
-    WHERE BdmRecType = 'EMP' AND EedFormatCode = @FormatCode AND EedValidForExport = 'Y';
-
-    --=======================================================
-    -- Update BdmUSGField2 with DepBPlanTVID for Dependents
-    --=======================================================
-    UPDATE dbo.U_dsi_bdm_EMETBUCLIF
-        SET BdmUSGField2 = DbnDepBPlanTVID
-        ,BdmUSGField1 = dedeebenamt
-    FROM dbo.U_dsi_bdm_EMETBUCLIF
-    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
-        ON DbnEEID = BdmEEID
-        AND DbnCOID = BdmCOID
-        AND DbnDedCode = BdmDedCode
-    WHERE BdmRecType = 'DEP' AND DbnFormatCode = @FormatCode AND DbnValidForExport = 'Y';
 
     --======================================================
     -- Update Dates and Coverage Levels to Match EmpHDed
@@ -954,8 +1109,6 @@ BEGIN
        AND edhDedCode = BdmDedCode
        AND edhRowNo = 1
     ;
-
-    
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
@@ -991,9 +1144,13 @@ BEGIN
             --VISION
             ,MAX(CASE WHEN BdmDedCode IN ('VIS') THEN BdmDedCode END) AS VIS_Code
             ,MAX(CASE WHEN BdmDedCode IN ('VIS') THEN BdmBenOption END) AS VIS_BdmBenOption
-            ,MAX(CASE WHEN BdmDedCode IN ('VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)  END) AS VIS_BdmBenStartDate
-            ,MAX(CASE WHEN BdmDedCode IN ('VIS') THEN BdmBenStopDate END) AS VIS_BdmBenStopDate
-            ,MAX(CASE WHEN BdmDedCode IN ('VIS') THEN BdmBenOption END) AS VIS_BdmBenStatus
+            ,MAX(CASE WHEN BdmDedCode IN ('VIS') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate)  END) AS VIS_BdmBenStartDate
+            ,MAX(CASE WHEN BdmDedCode IN ('VIS') AND BdmBenStatus <> 'A' THEN BdmBenStopDate END) AS VIS_BdmBenStopDate
+            ,CASE WHEN ISNULL(BdmBenOption,'Z') IN ('Z','EE')  THEN '1'
+                    WHEN BdmBenOption IN ('EEC','EE1') THEN '2'
+                  WHEN BdmBenOption IN ('EES','EEDP')THEN '3'
+                  WHEN BdmBenOption IN ('EEF','EEDPF') THEN '4'
+              END AS VIS_BdmBenStatus
             /*
             --Dental
             ,MAX(CASE WHEN BdmDedCode IN ('DENB', 'DENC', 'DENA', 'DEN') THEN BdmDedCode END) AS Dental_Code
@@ -1102,7 +1259,11 @@ BEGIN
             */
             INTO dbo.U_EMETBUCLIF_Consolidated
             FROM dbo.U_dsi_BDM_EMETBUCLIF WITH (NOLOCK)
-            GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId
+            GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId, CASE WHEN ISNULL(BdmBenOption,'Z') IN ('Z','EE') THEN '1'
+                    WHEN BdmBenOption IN ('EEC','EE1') THEN '2'
+                  WHEN BdmBenOption IN ('EES','EEDP')THEN '3'
+                  WHEN BdmBenOption IN ('EEF','EEDPF') THEN '4'
+              END
 
     --==========================================
     -- Build Driver Tables
@@ -1139,7 +1300,7 @@ BEGIN
                                         END
                                 END  
         ,drvEmployeesDateofHire = CASE WHEN BdmRecType = 'EMP' THEN EecDateOfLastHire END
-        ,drvPersonnelIdentification = eecempno
+        ,drvPersonnelIdentification = EecEmpNo
         ,drvEmployeeSmokerCode = CASE WHEN bdmrectype = 'EMP' THEN 'U' END
         ,drvSpouseSmokerCode = CASE WHEN bdmrectype = 'DEP' and ConRelationShip IN ('DP', 'SPS') THEN 'U' END
         ,drvPhoneNumber = CASE WHEN BdmRecType = 'EMP' THEN EepPhoneHomeNumber ELSE ConPhoneHomeNumber END
@@ -1365,13 +1526,7 @@ BEGIN
         ,drvSubCode17 = CASE WHEN VIS_Code IS NOT NULL THEN '0001' END
         ,drvBranch17 = CASE WHEN VIS_Code IS NOT NULL THEN '0001' END
         ,drvStatusCode17 = CASE WHEN VIS_Code IS NOT NULL THEN 'A' END
-        ,drvMembersCode17 = CASE WHEN VIS_Code IS NOT NULL THEN 
-                                    CASE WHEN VIS_BdmBenStatus = 'EE' THEN '1'
-                                         WHEN VIS_BdmBenStatus IN ('EEC','EE1') THEN '2'
-                                         WHEN VIS_BdmBenStatus IN ('EES','EEDP')THEN '3'
-                                         WHEN VIS_BdmBenStatus IN ('EEF','EEDPF') THEN '4'
-                                    END
-                             END
+        ,drvMembersCode17 = VIS_BdmBenStatus
         ,drvCancelReason17 = ''
         ,drvCoverageCode19 = ''--CASE WHEN CritIllness_Code IS NOT NULL and BdmRecType = 'EMP' THEN 'GE' END
         ,drvCoverageStartDate19 = ''--CASE WHEN CritIllness_Code IS NOT NULL  and BdmRecType = 'EMP' THEN CritIllness_BdmBenStartDate END
@@ -1476,10 +1631,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202102021'
-       ,expStartPerControl     = '202102021'
-       ,expLastEndPerControl   = '202102099'
-       ,expEndPerControl       = '202102099'
+    SET expLastStartPerControl = '202107051'
+       ,expStartPerControl     = '202107051'
+       ,expLastEndPerControl   = '202107209'
+       ,expEndPerControl       = '202107209'
 WHERE expFormatCode = 'EMETBUCLIF';
 
 **********************************************************************************/
