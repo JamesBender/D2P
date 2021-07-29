@@ -245,10 +245,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EGRD834EXP_20210709.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EGRD834EXP_20210720.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202107069','EMPEXPORT','CHANGES','Jul  9 2021  9:09AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34080','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202107069','EMPEXPORT','FULLFILE','Jul  9 2021  9:09AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34080','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202107169','EMPEXPORT','FULLFILE','Jul 15 2021  7:05PM','EGRD834EXP',NULL,NULL,NULL,'202107169','Jul 16 2021 12:00AM','Dec 30 1899 12:00AM','202107161','29538','','','202107161',dbo.fn_GetTimedKey(),NULL,'us3lKiMGA1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202107069','EMPEXPORT','OEACTIVE','Jul  9 2021  9:09AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','3','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202107069','EMPEXPORT','OEPASSIVE','Jul  9 2021  9:10AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34065','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Guardian 834 Export','202107069','EMPEXPORT','SCHEDULED','Jul  9 2021  9:11AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34120','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -381,7 +381,7 @@ CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl] (
     [drvREF02_RefNumberQual3] varchar(4) NULL,
     [drvREF01_RefNumberQual4] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual4] char(6) NULL,
-    [drvDTP00_DateTime1] varchar(3) NOT NULL,
+    [drvDTP00_DateTime1] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] datetime NULL,
@@ -389,7 +389,7 @@ CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl] (
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod2] datetime NULL,
-    [drvDTP00_DateTime3] varchar(3) NOT NULL,
+    [drvDTP00_DateTime3] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier3] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual3] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod3] datetime NULL,
@@ -397,7 +397,7 @@ CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl] (
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
     [drvNM106_NamePrefix1] varchar(30) NULL,
-    [drvNM107_NameSuffix1] varchar(30) NULL,
+    [drvNM107_NameSuffix1] varchar(1) NOT NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
     [drvPER02_Name] varchar(1) NOT NULL,
@@ -419,7 +419,7 @@ CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl] (
     [drvICM01_FrequencyCode] varchar(1) NULL,
     [drvICM02_MonetaryAmount] money NULL,
     [drvICM03_Quantity] money NULL,
-    [drvICM04_LocationID] datetime NULL,
+    [drvICM04_LocationID] varchar(30) NULL,
     [drvAMT00_SegmentID1] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
@@ -453,7 +453,7 @@ CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl_2300] (
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_348] datetime NULL,
-    [drvDTP00_DateTime_349] varchar(3) NOT NULL,
+    [drvDTP00_DateTime_349] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier_349] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual_349] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_349] datetime NULL,
@@ -722,6 +722,20 @@ BEGIN
 
     EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
 
+
+    UPDATE BDM
+    SET BDM.BdmBenStopDate = ED.EedBenStopDate
+        ,BDM.BdmBenStatus = ED.EedBenStatus
+    FROM dbo.U_dsi_bdm_EGRD834EXP AS BDM
+    JOIN dbo.EmpDed AS ED
+        ON ED.EedEEID = BDM.BdmEEID
+        AND ED.EedDedCode = Bdm.BdmDedCode
+    WHERE Bdm.BdmBenStopDate IS NULL
+        AND ED.EedBenStatus = 'T'
+        ;
+
+    DELETE dbo.U_dsi_bdm_EGRD834EXP WHERE BdmBenStopDate < @StartDate AND BdmBenStatus = 'T';
+
     --=========================================
     -- Update BdmChangeReason For Dependents
     --=========================================
@@ -896,7 +910,7 @@ BEGIN
         ,drvREF01_RefNumberQual4 = 'DX'
         ,drvREF02_RefNumberQual4 = EecLocation
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = 'DTP'
+        ,drvDTP00_DateTime1 = CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier1 = '286'
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN EecDateOfTermination END
@@ -906,7 +920,7 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual2 = 'D8'
         ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 = 'DTP'
+        ,drvDTP00_DateTime3 = CASE WHEN EecEmplStatus = 'T' THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier3 = '337'
         ,drvDTP02_DateTimeFormatQual3 = 'D8'
         ,drvDTP03_DateTimePeriod3 = EecDateOfTermination
@@ -917,18 +931,18 @@ BEGIN
                               CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameLast
                                    WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConNameLast
                               END)
-        ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-',
+        ,drvNM104_NameFirst1 = LTRIM(dbo.dsi_fnRemoveChars('.,/-',
                                CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameFirst
                                     WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConNameFirst
-                               END)
+                               END))
         ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
                                        CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN LEFT(ConNameMiddle,1)
                                        END)
         ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameSuffix
+        ,drvNM107_NameSuffix1 = '' /*CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameSuffix
                                      WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConNameSuffix
-                                END
+                                END*/
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepSSN, '') <> '' THEN '34'
                                           WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL AND ISNULL(ConSSN, '') <> '' THEN '34'
                                      END
@@ -969,7 +983,7 @@ BEGIN
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN '7' END --'7'
         ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(MONEY,EecAnnSalary) END
         ,drvICM03_Quantity = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(MONEY,EecScheduledWorkHrs/2) END
-        ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2021', EecDateOfLastHire) END
+        ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(VARCHAR, dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2021', EecDateOfLastHire), 112) END
                                             
                                         /*CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
                                             ELSE CONVERT(CHAR(4),YEAR(GETDATE())) + '0101'
@@ -985,7 +999,7 @@ BEGIN
         ,drvAMT02_MonetaryAmount2 = ''
         -- If drvHLH00_SegmentID = 'HLH' is Populated, then Send HLH Segment
         ,drvHLH00_SegmentID = ''
-        ,drvHLH01_HealthRelatedCode = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN
+        ,drvHLH01_HealthRelatedCode = CASE WHEN BdmRecType = 'EMP' THEN --AND ConRelationship IS NULL THEN
                                                 CASE EepIsSmoker
                                                      WHEN 'Y' THEN 'T' --Tobacco Use
                                                      ELSE 'N' --None
@@ -1025,7 +1039,7 @@ BEGIN
         ON TchCode = EecTermReason
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND (ConSystemID = BdmDepRecID OR (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('LIFES','ADDS') AND ConIsDependent = 'Y'))
+        AND (ConSystemID = BdmDepRecID OR (ConRelationship IN ('SPS','DP','CHL') AND BdmDedCode IN ('LIFES','ADDS','LIFEC','ADDC') AND ConIsDependent = 'Y'))
     ;
 
     /**************************************************************************************************************
@@ -1079,7 +1093,7 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual_348 = 'D8' 
         ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
-        ,drvDTP00_DateTime_349 = 'DTP'
+        ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN  'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = '349'
         ,drvDTP02_DateTimeFormatQual_349 = 'D8'
         ,drvDTP03_DateTimePeriod_349 = BdmBenStopDate

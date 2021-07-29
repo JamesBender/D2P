@@ -1,5 +1,0 @@
-Interface details (EGUARDE834)
-Env – EW11 
-Server – EW1WUP1DB01 
-Database – ULTIPRO_WPBAD 
-Export Name – Guardian 834 Export

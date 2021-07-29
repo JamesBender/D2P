@@ -422,7 +422,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOccupation"','12','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','12',NULL,'Occupation?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"40"','13','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','13',NULL,'Hrs Per Week?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryAmt"','14','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','14',NULL,'Salary Amt?',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"A"','15','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','15',NULL,'Salary Code?',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryCode"','15','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','15',NULL,'Salary Code?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalEffDate"','16','(''UD101''=''T,'')','ELINFINEXPZ0','50','D','10','16',NULL,'Sal Eff Date?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','17','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','17',NULL,'Mbr Addr 1?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','18','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','18',NULL,'Mbr Addr 2?',NULL,NULL);
@@ -797,13 +797,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210708.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210727.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202107069','EMPEXPORT','OEACTIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','8','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202107069','EMPEXPORT','OEPASSIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1552','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export','202107069','EMPEXPORT','ONDEM_XOE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Sched','202107069','EMPEXPORT','SCH_ELINFI','Jul  8 2021  5:15AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202107069','EMPEXPORT','TEST_XOE','Jul  8 2021  5:15AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202107261','EMPEXPORT','TEST_XOE','Jul 26 2021  9:10AM','ELINFINEXP',NULL,NULL,NULL,'202107261','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121','1558','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','SubSort','C','drvSort');
@@ -880,6 +880,7 @@ CREATE TABLE [dbo].[U_ELINFINEXP_drvTbl] (
     [drvAppSignDate] datetime NULL,
     [drvOccupation] varchar(25) NOT NULL,
     [drvSalaryAmt] nvarchar(4000) NULL,
+    [drvSalaryCode] varchar(1) NULL,
     [drvSalEffDate] datetime NULL,
     [drvAddressLine1] varchar(257) NULL,
     [drvAddressLine2] varchar(255) NULL,
@@ -931,7 +932,7 @@ CREATE TABLE [dbo].[U_ELINFINEXP_drvTbl] (
     [drvVSLITerminationDate] datetime NULL,
     [drvVSADCvgs] nvarchar(4000) NULL,
     [drvVSADTerminationDate] datetime NULL,
-    [drvVCLICvgs] nvarchar(4000) NULL,
+    [drvVCLICvgs] varchar(10) NULL,
     [drvVCLITerminationDate] datetime NULL,
     [drvSpouseDOB] datetime NULL,
     [drvDepFirstName] varchar(1) NOT NULL,
@@ -1153,6 +1154,14 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_ELINFINEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    DELETE FROM dbo.U_ELINFINEXP_EEList WHERE xEEID IN (
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType = 'TES'
+    )
+
+    DELETE FROM dbo.U_ELINFINEXP_EEList WHERE xEEID IN (
+        SELECT DISTINCT EepEEID FROM dbo.EmpPers WITH (NOLOCK) WHERE EepSSN = '999999997'
+    )
+
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -1271,6 +1280,16 @@ BEGIN
     --==========================================
     -- Build Driver Tables
     --==========================================
+
+    DECLARE @LIFEC_EedBenAmt VARCHAR(5);
+
+    SELECT @LIFEC_EedBenAmt = FORMAT(DedEEBenAmt, '#0')
+    FROM dbo.DedCode WITH (NOLOCK)
+    WHERE DedDedCode = 'LIFEC'
+    ;
+    
+
+
     ---------------------------------
     -- DETAIL RECORD - U_ELINFINEXP_drvTbl
     ---------------------------------
@@ -1282,7 +1301,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvChangeDate = Max_StartDate
+        ,drvChangeDate = dbo.dsi_fnGetMinMaxDates('MAX', Max_StartDate, '1/1/2020')  
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = '"' + EepNameLast + '"'
@@ -1294,7 +1313,14 @@ BEGIN
                                 WHEN GLIFE_DedCode IS NOT NULL THEN GLIFE_BdmBenStartDate 
                             END
         ,drvOccupation = JbcDesc
-        ,drvSalaryAmt = FORMAT(EecAnnSalary, '#0.00')
+        ,drvSalaryAmt = FORMAT(
+                                CASE WHEN EecSalaryOrHourly = 'S' THEN EecAnnSalary
+                                    WHEN EecSalaryOrHourly = 'H' THEN EecHourlyPayRate
+                                END
+                                , '#0.00')
+        ,drvSalaryCode =    CASE WHEN EecSalaryOrHourly = 'H' THEN 'H'
+                                WHEN EecSalaryOrHourly = 'S' THEN 'A'
+                            END
         ,drvSalEffDate = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2021', eecDateOfLastHire) 
         ,drvAddressLine1 = '"' + EepAddressLine1 + '"'
         ,drvAddressLine2 = EepAddressLine2
@@ -1378,7 +1404,7 @@ BEGIN
         ,drvWiClassCode =    CASE WHEN STD_DedCode IS NOT NULL THEN 
                                 CASE WHEN EecDedGroupCode = 'EXEC' THEN '2' ELSE '1' END
                             END 
-        ,divWiCvgs = CASE WHEN GLIFE_DedCode IS NOT NULL THEN 'WI- 1' END 
+        ,divWiCvgs = CASE WHEN STD_DedCode IS NOT NULL THEN 'WI- 1' END 
         ,drvWiTerminationDate = CASE WHEN STD_DedCode IS NOT NULL THEN STD_BdmBenStopDate END 
         ,drvOwiCvgs = ''
         ,drvOwiTerminationDate = ''
@@ -1421,47 +1447,49 @@ BEGIN
         ,drvLtdTerminationDate = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_BdmBenStopDate END 
         ,drvVLIFPolicyNumber = CASE WHEN LIFEE_DedCode IS NOT NULL THEN '000400001000-25817' END
         ,drvVLIFBillLocACNum = CASE WHEN LIFEE_DedCode IS NOT NULL THEN '1648211 ' END
-        ,drvVLIFSortGroup =    CASE WHEN EepHomeCoID = 'Y305K' THEN '1 EDURO HEALTH CARE'
-                                WHEN EepHomeCoID = 'XGNEO' THEN '13 SPEARFISH NURSING & REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGNPN' THEN '17 STOCKTON NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGMRE' THEN '5 SUITES FORT COLLINS LLC'
-                                WHEN EepHomeCoID = 'AFJQO' THEN 'AURORA'
-                                WHEN EepHomeCoID = 'DK362' THEN 'HELENA'
-                                WHEN EepHomeCoID = 'XGN1Y' THEN 'VALLEY VIEW'
-                                WHEN EepHomeCoID = 'XGN5C' THEN '10 ABERDEEN NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGNHV' THEN '14 BELLE FOURCHE NURSING & REHAB CENTER'
-                                WHEN EepHomeCoID = 'XGM9Z' THEN '2 BEAVER VALLEY HOSPITAL'
-                                WHEN EepHomeCoID = 'XGMUJ' THEN '7 COPPER RIDGE HEALTH AND REHAB'
-                                WHEN EepHomeCoID = 'DCILO' THEN 'CLANCY'
-                                WHEN EepHomeCoID = 'O5F1B' THEN 'HURST HURST NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGN9H' THEN '11 FARGO NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGNKJ' THEN '15 BOISE NURSING AND REHAB'
-                                WHEN EepHomeCoID = 'XGMKS' THEN '3 BETHANY NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGMY5' THEN '8 CABEZON NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'O5EU5' THEN 'CLEB CLEBURNE NURSING AND REHAB CENTER'
-                                WHEN EepHomeCoID = 'B54NT' THEN 'OAKHURST'
-                                WHEN EepHomeCoID = 'XGNBV' THEN '12 PARKER NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGNMP' THEN '16 FRESNO NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'XGMOF' THEN '4 FOX VALLEY TRANSITIONAL CARE LLC'
-                                WHEN EepHomeCoID = 'O5E2U' THEN 'ANGLETON NURSING AND REHAB CENTER LLC'
-                                WHEN EepHomeCoID = 'O5DLK' THEN 'HACOA HACIENDA OAKS NURSING AND REHAB'
-                                WHEN EepHomeCoID = 'EY15H' THEN 'SWMVH'
+        ,drvVLIFSortGroup =    CASE WHEN LIFEE_DedCode IS NOT NULL THEN
+                                CASE WHEN EepHomeCoID = 'Y305K' THEN '1 EDURO HEALTH CARE'
+                                    WHEN EepHomeCoID = 'XGNEO' THEN '13 SPEARFISH NURSING & REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGNPN' THEN '17 STOCKTON NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGMRE' THEN '5 SUITES FORT COLLINS LLC'
+                                    WHEN EepHomeCoID = 'AFJQO' THEN 'AURORA'
+                                    WHEN EepHomeCoID = 'DK362' THEN 'HELENA'
+                                    WHEN EepHomeCoID = 'XGN1Y' THEN 'VALLEY VIEW'
+                                    WHEN EepHomeCoID = 'XGN5C' THEN '10 ABERDEEN NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGNHV' THEN '14 BELLE FOURCHE NURSING & REHAB CENTER'
+                                    WHEN EepHomeCoID = 'XGM9Z' THEN '2 BEAVER VALLEY HOSPITAL'
+                                    WHEN EepHomeCoID = 'XGMUJ' THEN '7 COPPER RIDGE HEALTH AND REHAB'
+                                    WHEN EepHomeCoID = 'DCILO' THEN 'CLANCY'
+                                    WHEN EepHomeCoID = 'O5F1B' THEN 'HURST HURST NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGN9H' THEN '11 FARGO NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGNKJ' THEN '15 BOISE NURSING AND REHAB'
+                                    WHEN EepHomeCoID = 'XGMKS' THEN '3 BETHANY NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGMY5' THEN '8 CABEZON NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'O5EU5' THEN 'CLEB CLEBURNE NURSING AND REHAB CENTER'
+                                    WHEN EepHomeCoID = 'B54NT' THEN 'OAKHURST'
+                                    WHEN EepHomeCoID = 'XGNBV' THEN '12 PARKER NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGNMP' THEN '16 FRESNO NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'XGMOF' THEN '4 FOX VALLEY TRANSITIONAL CARE LLC'
+                                    WHEN EepHomeCoID = 'O5E2U' THEN 'ANGLETON NURSING AND REHAB CENTER LLC'
+                                    WHEN EepHomeCoID = 'O5DLK' THEN 'HACOA HACIENDA OAKS NURSING AND REHAB'
+                                    WHEN EepHomeCoID = 'EY15H' THEN 'SWMVH'
+                                END
                             END
         ,drvVLIFEffDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', LIFEE_BdmBenStartDate, '1/1/2020') END 
         ,drvVLIFPlanCode = CASE WHEN LIFEE_DedCode IS NOT NULL THEN '1' END
         ,drvVLIFClassCode =    CASE WHEN LIFEE_DedCode IS NOT NULL THEN 
                                 CASE WHEN EecDedGroupCode = 'EXEC' THEN '2' ELSE '1' END
                             END 
-        ,drvVLICvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VLI-' + FORMAT(EedBenAmt, '#0') END
+        ,drvVLICvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VLI-' + FORMAT(LIFEE_EedBenAmt, '#0') END
         ,drvVLITerminationDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_BdmBenStopDate END 
-        ,drvVADCvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VAD-' + FORMAT(EedBenAmt, '#0') END
+        ,drvVADCvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VAD-' + FORMAT(LIFEE_EedBenAmt, '#0') END
         ,drvVADTerminationDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_BdmBenStopDate END 
-        ,drvVSLICvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VSLI-' + FORMAT(EedBenAmt, '#0') END
-        ,drvVSLITerminationDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_BdmBenStopDate END 
-        ,drvVSADCvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VSAD-' + FORMAT(EedBenAmt, '#0') END
-        ,drvVSADTerminationDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_BdmBenStopDate END 
-        ,drvVCLICvgs = CASE WHEN LIFEE_DedCode IS NOT NULL THEN 'VCLI-' + FORMAT(EedBenAmt, '#0') END
-        ,drvVCLITerminationDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN LIFEE_BdmBenStopDate END 
+        ,drvVSLICvgs = CASE WHEN LIFES_DedCode IS NOT NULL THEN 'VSLI-' + FORMAT(LIFES_EedBenAmt, '#0') END
+        ,drvVSLITerminationDate = CASE WHEN LIFES_DedCode IS NOT NULL THEN LIFES_BdmBenStopDate END 
+        ,drvVSADCvgs = CASE WHEN LIFES_DedCode IS NOT NULL THEN 'VSAD-' + FORMAT(LIFES_EedBenAmt, '#0') END 
+        ,drvVSADTerminationDate = CASE WHEN LIFES_DedCode IS NOT NULL THEN LIFES_BdmBenStopDate END 
+        ,drvVCLICvgs = CASE WHEN LIFEC_DedCode IS NOT NULL THEN 'VCLI-' + @LIFEC_EedBenAmt END 
+        ,drvVCLITerminationDate = CASE WHEN LIFEC_DedCode IS NOT NULL THEN LIFEC_BdmBenStopDate END 
         ,drvSpouseDOB = ConDateOfBirth
         ,drvDepFirstName = ''
         ,drvDepLastName = ''
@@ -1599,11 +1627,23 @@ BEGIN
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
     LEFT JOIN (
-                SELECT EedEEID, EedCOID, EedBenAmt 
-                FROM EmpDed WITH (NOLOCK) 
+                SELECT EedEEID AS LIFEE_EedEEID, EedCOID AS LIFEE_EedCOID, EedBenAmt AS LIFEE_EedBenAmt
+                FROM dbo.EmpDed WITH (NOLOCK) 
                 WHERE EedDedCode= 'LIFEE') AS LIFEE_BenAmt
-        ON xEEID = EedEEID
-        AND xCOID = EedCOID
+        ON xEEID = LIFEE_EedEEID
+        AND xCOID = LIFEE_EedCOID
+    LEFT JOIN (
+                SELECT EedEEID AS LIFES_EedEEID, EedCOID AS LIFES_EedCOID, EedBenAmt AS LIFES_EedBenAmt
+                FROM dbo.EmpDed WITH (NOLOCK) 
+                WHERE EedDedCode= 'LIFES') AS LIFES_BenAmt
+        ON xEEID = LIFES_EedEEID
+        AND xCOID = LIFES_EedCOID
+    /*LEFT JOIN (
+                SELECT EedEEID AS LIFEC_EedEEID, EedCOID AS LIFEC_EedCOID, EedBenAmt AS LIFEC_EedBenAmt
+                FROM dbo.EmpDed WITH (NOLOCK) 
+                WHERE EedDedCode= 'LIFEC') AS LIFEC_BenAmt
+        ON xEEID = LIFEC_EedEEID
+        AND xCOID = LIFEC_EedCOID*/    
     LEFT JOIN (
                 SELECT DISTINCT BdmEEID, BdmCOID, BdmDepRecId, BdmRelationship
                 FROM dbo.U_dsi_BDM_ELINFINEXP WITH (NOLOCK)

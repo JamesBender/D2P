@@ -1,0 +1,5 @@
+Interface details (EGPAMED834)
+Env – EW11 
+Server – EW1WUP1DB01 
+Database – ULTIPRO_WPBAD 
+Export Name – GPA Medical 834 Export

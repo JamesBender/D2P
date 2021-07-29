@@ -126,10 +126,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EAMFLCOBRA_20210702.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EAMFLCOBRA_20210716.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','KU74I,455X6,455QO,455V4,455LJ,454X8,455BC,454NU,45461,9551F,4554E,455IC,455YU,455T2',NULL,NULL,NULL,'Cobra QB Export Tuesday 12noon','202102269','EMPEXPORT','QBFILE','Jan 28 2021 12:00AM','EAMFLCOBRA',NULL,NULL,NULL,'202106299','Jan 28 2021 12:00AM','Dec 30 1899 12:00AM','202106221',NULL,'','','202102221',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Test Cobra QB Export','202106299','EMPEXPORT','TESTQB','Jun 30 2021 10:52AM','EAMFLCOBRA',NULL,NULL,NULL,'202106299','Jun  8 2021 12:00AM','Dec 30 1899 12:00AM','202106221','16','','','202106221',dbo.fn_GetTimedKey(),NULL,'LKING15',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','KU74I,455X6,455QO,455V4,455LJ,454X8,455BC,454NU,45461,9551F,4554E,455IC,455YU,455T2',NULL,NULL,NULL,'Cobra QB Export Tuesday 12noon','202102269','EMPEXPORT','QBFILE','Jan 28 2021 12:00AM','EAMFLCOBRA',NULL,NULL,NULL,'202107139','Jan 28 2021 12:00AM','Dec 30 1899 12:00AM','202107061',NULL,'','','202102221',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Test Cobra QB Export','202107169','EMPEXPORT','TESTQB','Jun 30 2021 10:52AM','EAMFLCOBRA',NULL,NULL,NULL,'202107169','Jun  8 2021 12:00AM','Dec 30 1899 12:00AM','202107061','16','','','202107061',dbo.fn_GetTimedKey(),NULL,'LKING15',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMFLCOBRA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMFLCOBRA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMFLCOBRA','SubSort','C','drvSubSort');
@@ -482,7 +482,7 @@ INSERT INTO [dbo].[U_dsi_BDM_EAMFLCOBRA]
             ,edhStartDate, edhStopDate, 'Y'
             from dbo.emphded with (nolock)
             JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = @formatcode AND EdhDedCode = DbnDedCode
-            WHERE edhChangeReason in ('201') and DbnBenStatusDate between @startdate and @enddate and dbnValidForExport = 'Y' -- 'N'
+            WHERE edhChangeReason in ('201') and DbnBenStatusDate between @startdate and @enddate and dbnValidForExport = 'N'
     
 
 
@@ -887,10 +887,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202106221'
-       ,expStartPerControl     = '202106221'
-       ,expLastEndPerControl   = '202106299'
-       ,expEndPerControl       = '202106299'
+    SET expLastStartPerControl = '202107061'
+       ,expStartPerControl     = '202107061'
+       ,expLastEndPerControl   = '202107169'
+       ,expEndPerControl       = '202107169'
 WHERE expFormatCode = 'EAMFLCOBRA'
   AND expExportCode LIKE '%TEST%';
 */ --202003011 09:15:48.333
