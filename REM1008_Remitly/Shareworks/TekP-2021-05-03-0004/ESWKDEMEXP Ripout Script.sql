@@ -45,11 +45,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESWKDEMEXP_20210712.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESWKDEMEXP_20210729.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Shareworks Demo Export','202106289','EMPEXPORT','ONDEM_XOE',NULL,'ESWKDEMEXP',NULL,NULL,NULL,'202106289','Jun 28 2021  5:47AM','Jun 28 2021  5:47AM','202106281',NULL,'','','202106281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Shareworks Demo Export-Sched','202106289','EMPEXPORT','SCH_ESWKDE',NULL,'ESWKDEMEXP',NULL,NULL,NULL,'202106289','Jun 28 2021  5:47AM','Jun 28 2021  5:47AM','202106281',NULL,'','','202106281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Shareworks Demo Export-Test','202107011','EMPEXPORT','TEST_XOE','Jul  1 2021  5:26PM','ESWKDEMEXP',NULL,NULL,NULL,'202107011','Jul  1 2021 12:00AM','Dec 30 1899 12:00AM','202106171','1708','','','202106171',dbo.fn_GetTimedKey(),NULL,'us3cPeREM1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Shareworks Demo Export-Test','202107271','EMPEXPORT','TEST_XOE','Jul 27 2021  7:18PM','ESWKDEMEXP',NULL,NULL,NULL,'202107271','Jul 27 2021 12:00AM','Dec 30 1899 12:00AM','202107131','1731','','','202107131',dbo.fn_GetTimedKey(),NULL,'us3cPeREM1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESWKDEMEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESWKDEMEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESWKDEMEXP','InitialSort','C','drvSort');
@@ -67,22 +67,22 @@ CREATE TABLE [dbo].[U_ESWKDEMEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvEmployeeNumber] char(9) NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(50) NULL,
-    [drvNameLast] varchar(100) NULL,
+    [drvEmployeeNumber] varchar(9) NULL,
+    [drvNameFirst] varchar(8000) NULL,
+    [drvNameMiddle] varchar(8000) NULL,
+    [drvNameLast] varchar(8000) NULL,
     [drvSSN] char(11) NULL,
     [drvDateOfHire] varchar(8000) NULL,
     [DrvDateOfBirth] varchar(8000) NULL,
     [drvCompanyEmail] varchar(50) NULL,
-    [drvAddressLine1] varchar(128) NULL,
+    [drvAddressLine1] varchar(8000) NULL,
     [drvAddressLine2] varchar(8000) NULL,
-    [drvAddressCity] varchar(257) NULL,
+    [drvAddressCity] varchar(8000) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressCountry] varchar(45) NULL,
     [drvAddressZipCode] varchar(52) NULL,
     [drvDepartment] varchar(10) NULL,
-    [drvEntityRepOffice] varchar(42) NULL,
+    [drvEntityRepOffice] varchar(10) NULL,
     [drvStockOptionStatus] varchar(16) NULL,
     [drvStockOptionDate] varchar(8000) NULL
 );
@@ -170,7 +170,7 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_ESWKDEMEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     DELETE FROM dbo.U_ESWKDEMEXP_EEList WHERE xEEID IN (
-        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('STU','SUM','TES','TMP')
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType IN ('STU','SUM','TES','TMP','CON')
     );
 
     --==========================================
@@ -187,22 +187,22 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvEmployeeNumber = EecEmpNo
-        ,drvNameFirst = EepNameFirst
-        ,drvNameMiddle = EepNameMiddle
-        ,drvNameLast = EepNameLast
+        ,drvEmployeeNumber = SUBSTRING(EecEmpNo, PATINDEX('%[^0]%', EecEmpNo+'.'), LEN(EecEmpNo)) -- EecEmpNo
+        ,drvNameFirst = REPLACE(EepNameFirst, 'ñ', 'n')
+        ,drvNameMiddle = REPLACE(EepNameMiddle, 'ñ', 'n')
+        ,drvNameLast = REPLACE(EepNameLast, 'ñ', 'n')
         ,drvSSN = eepSSN
         ,drvDateOfHire = REPLACE(CONVERT(CHAR(11), EecDateOfOriginalHire, 106), ' ', '-')
         ,DrvDateOfBirth = REPLACE(CONVERT(CHAR(11), EepDateOfBirth, 106), ' ', '-')
         ,drvCompanyEmail = EepAddressEMail
-        ,drvAddressLine1 = LEFT('"' + REPLACE(REPLACE(REPLACE(EepAddressLine1, '"', ''), '”', ''), '“', ''), 127) + '"'
-        ,drvAddressLine2 = CASE WHEN EepAddressLine2 IS NOT NULL THEN '"' + REPLACE(RTRIM(EepAddressLine2), '"', '') + '"' END
-        ,drvAddressCity = '"' + EepAddressCity + '"'
+        ,drvAddressLine1 = REPLACE(LEFT('"' + REPLACE(REPLACE(REPLACE(EepAddressLine1, '"', ''), '”', ''), '“', ''), 127) + '"', 'ñ', 'n')
+        ,drvAddressLine2 = CASE WHEN EepAddressLine2 IS NOT NULL THEN '"' + REPLACE(REPLACE(RTRIM(EepAddressLine2), '"', ''), 'ñ', 'n') + '"' END
+        ,drvAddressCity = '"' + REPLACE(EepAddressCity, 'ñ', 'n') + '"'
         ,drvAddressState = EepAddressState
         ,drvAddressCountry = CodDesc --EepAddressCountry
         ,drvAddressZipCode = CASE WHEN ISNULL(EepAddressZipCode, '') <> '' THEN '"' + RTRIM(EepAddressZipCode) + '"' ELSE 'N/A' END
         ,drvDepartment = EecOrgLvl1
-        ,drvEntityRepOffice = '"' + CmpCompanyName + '"'
+        ,drvEntityRepOffice = EecOrgLvl2 --'"' + REPLACE(OrgDesc2, ',','') + '"' -- '"' + CmpCompanyName + '"'
         ,drvStockOptionStatus = CASE WHEN EecEmplStatus = 'A' THEN 'Active'
                                     WHEN EecEmplStatus = 'T' THEN 'Termination'
                                     WHEN EecEmplStatus = 'L' THEN 'Leave of Absence'
@@ -210,7 +210,10 @@ BEGIN
                                     WHEN EecEmplStatus = 'T' and EecTermReason = '202' THEN 'Retired'
                                     WHEN EecEmplStatus = 'T' and EecTermReason = '203' THEN 'Death'
                                 END
-        ,drvStockOptionDate = REPLACE(CONVERT(CHAR(11), CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination ELSE EecDateOfLastHire END, 106), ' ', '-')
+        ,drvStockOptionDate = REPLACE(CONVERT(CHAR(11), 
+                                                        CASE WHEN EecEmplStatus = 'T' AND EjhReason <> 'TRO' THEN EecDateOfTermination 
+                                                            WHEN EecEmplStatus = 'T' AND EjhReason = 'TRO' THEN EecDateOfLastHire 
+                                                            WHEN EecEmplStatus <> 'T' THEN EecDateOfLastHire  END, 106), ' ', '-')
     INTO dbo.U_ESWKDEMEXP_drvTbl
     FROM dbo.U_ESWKDEMEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -223,6 +226,20 @@ BEGIN
     JOIN dbo.Codes WITH (NOLOCK)
         ON CodTable = 'COUNTRY'
         AND EepAddressCountry = CodCode
+    LEFT JOIN (
+            SELECT DISTINCT OrgCode AS OrgCode2, OrgDesc AS OrgDesc2, OrgManagerId AS OrgManagerId2
+            FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
+            WHERE OrgLvl = 2
+            ) AS Org2
+        ON OrgCode2 = EecOrgLvl2
+    LEFT JOIN (
+                SELECT EjhEEID, EjhCOID, EjhReason
+                FROM (
+                        SELECT EjhEEID, EjhCOID, EjhReason, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                        FROM dbo.EmpHJob WITH (NOLOCK)) AS InnerEjh
+                WHERE RN = 1) AS Ejh
+        ON EjhEEID = xEEID
+        AND EjhCoID    = xCOID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
 
