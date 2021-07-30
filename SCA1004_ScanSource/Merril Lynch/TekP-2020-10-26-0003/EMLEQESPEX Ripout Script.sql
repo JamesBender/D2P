@@ -560,7 +560,7 @@ CREATE TABLE [dbo].[U_EMLEQESPEX_drvTbl_IBCS01] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] datetime NULL,
     [drvSearchKey] char(11) NULL,
     [drvPartNumber] char(11) NULL,
     [drvAwardDate] date NULL,
@@ -1046,6 +1046,8 @@ BEGIN
     /*JOIN dbo.U_dsi_BDM_EMLEQESPEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID*/
+    WHERE EepAddressCountry NOT IN ('BRA','GBR')
+    AND EepDateOfBirth <= CAST(CAST(DATEADD(YEAR, -18, GETDATE()) AS DATE) AS DATETIME)
     ;
     ---------------------------------
     -- HEADER RECORD

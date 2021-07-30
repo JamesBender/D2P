@@ -126,10 +126,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EAMFLCOBRA_20210716.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EAMFLCOBRA_20210730.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','KU74I,455X6,455QO,455V4,455LJ,454X8,455BC,454NU,45461,9551F,4554E,455IC,455YU,455T2',NULL,NULL,NULL,'Cobra QB Export Tuesday 12noon','202102269','EMPEXPORT','QBFILE','Jan 28 2021 12:00AM','EAMFLCOBRA',NULL,NULL,NULL,'202107139','Jan 28 2021 12:00AM','Dec 30 1899 12:00AM','202107061',NULL,'','','202102221',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Test Cobra QB Export','202107169','EMPEXPORT','TESTQB','Jun 30 2021 10:52AM','EAMFLCOBRA',NULL,NULL,NULL,'202107169','Jun  8 2021 12:00AM','Dec 30 1899 12:00AM','202107061','16','','','202107061',dbo.fn_GetTimedKey(),NULL,'LKING15',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','KU74I,455X6,455QO,455V4,455LJ,454X8,455BC,454NU,45461,9551F,4554E,455IC,455YU,455T2',NULL,NULL,NULL,'Cobra QB Export Tuesday 12noon','202102269','EMPEXPORT','QBFILE','Jan 28 2021 12:00AM','EAMFLCOBRA',NULL,NULL,NULL,'202107279','Jan 28 2021 12:00AM','Dec 30 1899 12:00AM','202107201',NULL,'','','202102221',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Test Cobra QB Export','202107279','EMPEXPORT','TESTQB','Jul 29 2021  2:30PM','EAMFLCOBRA',NULL,NULL,NULL,'202107279','Jul 27 2021 12:00AM','Dec 30 1899 12:00AM','202107201','105','','','202107201',dbo.fn_GetTimedKey(),NULL,'LKING15',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMFLCOBRA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMFLCOBRA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMFLCOBRA','SubSort','C','drvSubSort');
@@ -450,7 +450,7 @@ BEGIN
 
     )
  Select rectype = 'DEP', EdhCoid, EdhEEID, DbnDepRecID, DbnDepRecID, 'QB', 'Data Inserted for 204 Chg reason', 
-            DbnRelationship, DbnDateOfBirth, EdhDedCode, edhBenStartDate,EdhDateTimeCreated, edhBenStatusDate,'204'
+            DbnRelationship, DbnDateOfBirth, EdhDedCode, edhBenStartDate,/*EdhDateTimeCreated*/ DbnBenStopDate, edhBenStatusDate,'204'
             ,edhStartDate, edhStopDate, CASE WHEN dbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
             from dbo.emphded with (nolock)
             JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = @formatcode AND EdhDedCode = DbnDedCode
@@ -703,12 +703,11 @@ INSERT INTO [dbo].[U_dsi_BDM_EAMFLCOBRA]
                                     WHEN BdmDedCode = 'DENT2' THEN 'Delta Dental Alternate PPO buyup Event'
                                     WHEN BdmDedCode = 'VIS' THEN 'PHI Davis Vision Event'
                                 END
-            ,drvStartDate     = DATEADD(M,DATEDIFF(M,0,drvEventDate)+1,0)
-            ,drvCoverageLevel = CASE 
-                                      WHEN BdmChangeReason IN ('204', 'LEVNT4','210' )
-                                        or BdmCobraReason IN ('204', 'LEVNT4', '210' ) THEN
-                                        CASE WHEN BdmNumChildren = 1 or BdmNumSpouses = 1 then 'EE+CHILD'
-                                        WHEN BdmNumChildren > 1 or BdmNumSpouses = 1 then 'EE+CHILDREN'
+            ,drvStartDate     = DATEADD(M,DATEDIFF(M,0,BdmBenStopDate)+1,0)
+            ,drvCoverageLevel = CASE                                         
+                                      WHEN BdmChangeReason IN ('204', 'LEVNT4','210' ) OR BdmCobraReason IN ('204', 'LEVNT4', '210' ) THEN
+                                        CASE WHEN BdmNumChildren = 1 AND BdmNumSpouses = 1 then 'EE+CHILD'
+                                        WHEN BdmNumChildren > 1 AND BdmNumSpouses = 1 then 'EE+CHILDREN'
                                         ELSE 'EE'
                                         END
                                       WHEN BdmChangeReason IN ( '201', 'LEVNT3' )
