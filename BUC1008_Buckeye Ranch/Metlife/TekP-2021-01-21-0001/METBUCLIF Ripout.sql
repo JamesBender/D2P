@@ -405,13 +405,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETBUCLIF_20210723.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETBUCLIF_20210729.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202107209','EMPEXPORT','OEACTIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202107209','EMPEXPORT','OEPASSIVE',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Metlife Life Export','202107209','EMPEXPORT','ONDEMAND',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202107209','EMPEXPORT','SCH_METEXP',NULL,'EMETBUCLIF',NULL,NULL,NULL,'202107209','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202107051',NULL,'','','202107051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202107209','EMPEXPORT','TEST','Jul 19 2021  7:16PM','EMETBUCLIF',NULL,NULL,NULL,'202107209','Jul 20 2021 12:00AM','Dec 30 1899 12:00AM','202107051','626','','','202107051',dbo.fn_GetTimedKey(),NULL,'us3cPeBUC1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202107261','EMPEXPORT','TEST','Jul 26 2021 11:15AM','EMETBUCLIF',NULL,NULL,NULL,'202107261','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107191','625','','','202107191',dbo.fn_GetTimedKey(),NULL,'us3cPeBUC1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETBUCLIF','InitialSort','C','drvInitialSort');
@@ -1082,32 +1082,18 @@ BEGIN
       WHERE EedFormatCode = @FormatCode 
         AND DbnValidForExport = 'Y'
 ;
-    --==========================================
-    -- Build Working Tables
-    --==========================================
 
     --======================================================
     -- Update Dates and Coverage Levels to Match EmpHDed
     --======================================================
     UPDATE dbo.U_dsi_bdm_EMETBUCLIF
-        SET BdmBenOption = edhBenOption
-           ,BdmBenStartDate = COALESCE(audEffectiveDate, edhBenStartDate)
-           ,BdmBenStopDate = edhBenStopDate
+        SET BdmBenStatusDate = COALESCE(audEffectiveDate, BdmBenStatusDate)
     FROM dbo.U_dsi_bdm_EMETBUCLIF WITH (NOLOCK)
     LEFT
     JOIN dbo.U_EMETBUCLIF_Audit WITH (NOLOCK)
         ON audEEID = BdmEEID
        AND audRowNo = 1
        AND audDedCode = BdmDedCode
-    JOIN (SELECT edhEEID, edhCoID, edhDedCode, edhBenStartDate, edhBenStopDate, edhBenOption
-                ,edhRowNo = ROW_NUMBER() OVER (PARTITION BY edhEEID, edhCoID, edhDedCode ORDER BY edhEffDate DESC)
-          FROM dbo.EmpHDed WITH (NOLOCK) 
-         WHERE edhEffDate < @EndDate
-          ) Edh
-        ON edhEEID = BdmEEID
-       AND edhCoid = BdmCoID
-       AND edhDedCode = BdmDedCode
-       AND edhRowNo = 1
     ;
     -----------------------------
     -- Working Table - PDedHist
@@ -1126,7 +1112,9 @@ BEGIN
         -- Categorize Payroll Amounts
         
     INTO dbo.U_EMETBUCLIF_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
+    FROM dbo.U_EMETBUCLIF_EEList WITH (NOLOCK)
+    JOIN dbo.PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
     JOIN dbo.U_EMETBUCLIF_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
