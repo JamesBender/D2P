@@ -1,317 +1,316 @@
 SET NOCOUNT ON;
-IF OBJECT_ID('U_EFIDEL403B_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EFIDEL403B_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EFIDEL403B' AND CfgName LIKE '%Path';
-IF OBJECT_ID('dsi_vwEFIDEL403B_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEFIDEL403B_Export];
+IF OBJECT_ID('U_EGRD834EXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_SavePath];
+SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EGRD834EXP_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EGRD834EXP' AND CfgName LIKE '%Path';
+IF OBJECT_ID('dsi_vwEGRD834EXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEGRD834EXP_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_EFIDEL403B_G10_BKP_2020') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFIDEL403B_G10_BKP_2020];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EGRD834EXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EGRD834EXP];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_EFIDEL403B') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFIDEL403B];
+IF OBJECT_ID('dsi_sp_AfterCollect_EGRD834EXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_EGRD834EXP];
 GO
-IF OBJECT_ID('U_EFIDEL403B_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_PEarHist];
+IF OBJECT_ID('U_EGRD834EXP_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_TrlTbl];
 GO
-IF OBJECT_ID('U_EFIDEL403B_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_PDedHist];
+IF OBJECT_ID('U_EGRD834EXP_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_HdrTbl];
 GO
-IF OBJECT_ID('U_EFIDEL403B_File') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_File];
+IF OBJECT_ID('U_EGRD834EXP_File') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_File];
 GO
-IF OBJECT_ID('U_EFIDEL403B_Employees') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_Employees];
+IF OBJECT_ID('U_EGRD834EXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_EEList];
 GO
-IF OBJECT_ID('U_EFIDEL403B_EEList') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_EEList];
+IF OBJECT_ID('U_EGRD834EXP_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_DrvTbl_2300];
 GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_EA') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_EA];
+IF OBJECT_ID('U_EGRD834EXP_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_DrvTbl];
 GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_61') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_61];
+IF OBJECT_ID('U_EGRD834EXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_DedList];
 GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_60') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_60];
+IF OBJECT_ID('U_dsi_BDM_EGRD834EXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EGRD834EXP];
 GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_36') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_36];
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EGRD834EXP';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EGRD834EXP';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EGRD834EXP';
+DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EGRD834EXP';
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EGRD834EXP';
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EGRD834EXP','Guardian 834 Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','S','N','EGRD834EXPZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EGRD834EXP' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ISA"','1','(''DA''=''F*'')','EGRD834EXPZ0','3','H','01','1',NULL,'ISA  Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00"','2','(''DA''=''F*'')','EGRD834EXPZ0','2','H','01','2',NULL,'Authorization Info Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F*'')','EGRD834EXPZ0','10','H','01','3',NULL,'Authorization Info',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00"','4','(''DA''=''F*'')','EGRD834EXPZ0','2','H','01','4',NULL,'Security Info Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F*'')','EGRD834EXPZ0','10','H','01','5',NULL,'Security Info',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA05_SenderIDQual"','6','(''UA''=''F*'')','EGRD834EXPZ0','2','H','01','6',NULL,'Sender ID Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA06_SenderID"','7','(''UA''=''F*'')','EGRD834EXPZ0','15','H','01','7',NULL,'Sender ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA07_ReceiverIDQual"','8','(''UA''=''F*'')','EGRD834EXPZ0','2','H','01','8',NULL,'Receiver ID Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA08_ReceiverID"','9','(''UA''=''F*'')','EGRD834EXPZ0','15','H','01','9',NULL,'Receiver ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA09_InterchangeDate"','10','(''UD12''=''F*'')','EGRD834EXPZ0','6','H','01','10',NULL,'Interchange Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA10_InterchangeTime"','11','(''UA''=''F*'')','EGRD834EXPZ0','4','H','01','11',NULL,'Interchange Time',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"^"','12','(''DA''=''F*'')','EGRD834EXPZ0','1','H','01','12',NULL,'Repetition Separator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00501"','13','(''DA''=''F*'')','EGRD834EXPZ0','5','H','01','13',NULL,'Interchange Control Ver #',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000001"','14','(''DA''=''F*'')','EGRD834EXPZ0','9','H','01','14',NULL,'Interchange Control #',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','15','(''DA''=''F*'')','EGRD834EXPZ0','1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISA15_UsageIndicator"','16','(''UA''=''F*'')','EGRD834EXPZ0','1','H','01','16',NULL,'Usage Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('":"','17','(''DA''=''F*'')','EGRD834EXPZ0','1','H','01','17',NULL,'Component Element Separator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"GS"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','H','02','1',NULL,'GS Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"BE"','2','(''DA''=''T*'')','EGRD834EXPZ0','2','H','02','2',NULL,'Functional ID Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS02_SenderID"','3','(''UA''=''T*'')','EGRD834EXPZ0','15','H','02','3',NULL,'Sender ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS03_ReceiverID"','4','(''UA''=''T*'')','EGRD834EXPZ0','15','H','02','4',NULL,'Receiver ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS04_Date"','5','(''UD112''=''T*'')','EGRD834EXPZ0','8','H','02','5',NULL,'Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS05_Time"','6','(''UA''=''T*'')','EGRD834EXPZ0','8','H','02','6',NULL,'Time',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','7','(''DA''=''T*'')','EGRD834EXPZ0','9','H','02','7',NULL,'Group Control Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"X"','8','(''DA''=''T*'')','EGRD834EXPZ0','2','H','02','8',NULL,'Responsible Agency Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"005010X220A1"','9','(''DA''=''T*'')','EGRD834EXPZ0','12','H','02','9',NULL,'Version/Release  Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ST"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','H','03','1',NULL,'ST Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"834"','2','(''DA''=''T*'')','EGRD834EXPZ0','3','H','03','2',NULL,'Transaction ID Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','3','(''DA''=''T*'')','EGRD834EXPZ0','9','H','03','3',NULL,'Transaction Set Control #',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"005010X220A1"','4','(''DA''=''T*'')','EGRD834EXPZ0','35','H','03','4',NULL,'Implementation Convention Refe',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"BGN"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','H','04','1',NULL,'BGN Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00"','2','(''DA''=''T*'')','EGRD834EXPZ0','2','H','04','2',NULL,'Transaction Set Purpose',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','3','(''DA''=''T*'')','EGRD834EXPZ0','50','H','04','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBGN03_Date"','4','(''UD112''=''T*'')','EGRD834EXPZ0','8','H','04','4',NULL,'Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBGN04_Time"','5','(''UA''=''T*'')','EGRD834EXPZ0','8','H','04','5',NULL,'Time',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBGN05_TimeCode"','6','(''UA''=''T*'')','EGRD834EXPZ0','2','H','04','6',NULL,'Time Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBGN06_RefID"','7','(''UA''=''T*'')','EGRD834EXPZ0','50','H','04','7',NULL,'Reference Identification',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBGN07_TransTypeCode"','8','(''UA''=''T*'')','EGRD834EXPZ0','2','H','04','8',NULL,'Transaction Type Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBGN08_ActionCode"','9','(''UA''=''T*'')','EGRD834EXPZ0','2','H','04','9',NULL,'Action Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','H','05','1',NULL,'REF Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','H','05','2',NULL,'Reference Number Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','H','05','3',NULL,'Reference Number Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"QTY"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','H','06','1',NULL,'QTY Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvQTY01_QuantityQual1"','2','(''UA''=''T*'')','EGRD834EXPZ0','2','H','06','2',NULL,'Quantity Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvQTY02_Quantity1"','3','(''UA''=''T*'')','EGRD834EXPZ0','15','H','06','3',NULL,'Quantity',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"QTY"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','H','07','1',NULL,'QTY Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvQTY01_QuantityQual2"','2','(''UA''=''T*'')','EGRD834EXPZ0','2','H','07','2',NULL,'Quantity Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvQTY02_Quantity2"','3','(''UA''=''T*'')','EGRD834EXPZ0','15','H','07','3',NULL,'Quantity',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"QTY"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','H','08','1',NULL,'QTY Segment ID (Header)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvQTY01_QuantityQual3"','2','(''UA''=''T*'')','EGRD834EXPZ0','2','H','08','2',NULL,'Quantity Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvQTY02_Quantity3"','3','(''UA''=''T*'')','EGRD834EXPZ0','15','H','08','3',NULL,'Quantity',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime0"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','H','09','1',NULL,'DTP Header',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier0"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','H','09','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual0"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','H','09','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod0"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','H','09','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N1"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','H','10','1',NULL,'N1 Segment ID (Loop1000A/B)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN101_EntityIDCodeSponsor1"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','H','10','2',NULL,'Entity Identifier Code/Sponsor',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN102_Name1"','3','(''UA''=''T*'')','EGRD834EXPZ0','60','H','10','3',NULL,'Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN103_IDCodeQual1"','4','(''UA''=''T*'')','EGRD834EXPZ0','2','H','10','4',NULL,'Identification Code Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN104_IDCode1"','5','(''UA''=''T*'')','EGRD834EXPZ0','80','H','10','5',NULL,'Identification Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N1"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','H','11','1',NULL,'N1 Segment ID (Loop1000A/B)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN101_EntityIDCodeSponsor2"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','H','11','2',NULL,'Entity Identifier Code/Sponsor',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN102_Name2"','3','(''UA''=''T*'')','EGRD834EXPZ0','60','H','11','3',NULL,'Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN103_IDCodeQual2"','4','(''UA''=''T*'')','EGRD834EXPZ0','2','H','11','4',NULL,'Identification Code Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN104_IDCode2"','5','(''UA''=''T*'')','EGRD834EXPZ0','80','H','11','5',NULL,'Identification Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"INS"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','12','1',NULL,'INS Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS01_YesNoCond"','2','(''UA''=''T*'')','EGRD834EXPZ0','1','D','12','2',NULL,'Yes/No Condition',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS02_RelationshipCode"','3','(''UA''=''T*'')','EGRD834EXPZ0','2','D','12','3',NULL,'Individual Relationship Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS03_MaintTypeCode"','4','(''UA''=''T*'')','EGRD834EXPZ0','3','D','12','4',NULL,'Maintenance Type Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS04_MaintReasonCode"','5','(''UA''=''T*'')','EGRD834EXPZ0','3','D','12','5',NULL,'Maintenance Reason Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS05_BenefitStatusCode"','6','(''UA''=''T*'')','EGRD834EXPZ0','1','D','12','6',NULL,'Benefit Status Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS0601_MEDICAREPLANCODE"','7','(''UA''=''T'')','EGRD834EXPZ0','1','D','12','7',NULL,'MEDICARE PLAN CODE',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS0602_EligibilityRsnCode"','8','(''UA''=''T*'')','EGRD834EXPZ0','1','D','12','8',NULL,'Eligibility Reason Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS07_COBRAQualEventCode"','9','(''UA''=''T*'')','EGRD834EXPZ0','2','D','12','9',NULL,'COBRA Qualifying Event Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS08_EmploymentStatusCode"','10','(''UA''=''T*'')','EGRD834EXPZ0','2','D','12','10',NULL,'Employment Status Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS09_StudentStatusCode"','11','(''UA''=''T*'')','EGRD834EXPZ0','1','D','12','11',NULL,'Student Status Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS10_ResponseCode"','12','(''UA''=''T*'')','EGRD834EXPZ0','1','D','12','12',NULL,'Response Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS11_DateTimeFormatQual"','13','(''UA''=''T*'')','EGRD834EXPZ0','3','D','12','13',NULL,'Date Time Period Format Qualif',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvINS12_DateTimePeriod"','14','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','12','14',NULL,'Date Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','13','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0F"','2','(''DA''=''T*'')','EGRD834EXPZ0','3','D','13','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','13','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','14','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual1"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','14','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual1"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','14','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','15','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual2"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','15','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual2"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','15','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','16','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual3"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','16','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual3"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','16','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','17','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual4"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','17','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual4"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','17','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime1"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','18','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier1"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','18','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual1"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','18','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod1"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','18','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime2"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','19','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier2"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','19','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual2"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','19','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod2"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','19','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime3"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','20','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier3"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','20','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual3"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','20','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod3"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','20','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"NM1"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','21','1',NULL,'NM1 Segment ID (Loop 2100A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IL"','2','(''DA''=''T*'')','EGRD834EXPZ0','3','D','21','2',NULL,'Entity Identifier Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','3','(''DA''=''T*'')','EGRD834EXPZ0','1','D','21','3',NULL,'Entity Type Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM103_NameLast1"','4','(''UA''=''T*'')','EGRD834EXPZ0','60','D','21','4',NULL,'Name Last',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM104_NameFirst1"','5','(''UA''=''T*'')','EGRD834EXPZ0','35','D','21','5',NULL,'Name First',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM105_NameMiddleInitial1"','6','(''UA''=''T*'')','EGRD834EXPZ0','25','D','21','6',NULL,'Name Middle Initial',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM106_NamePrefix1"','7','(''UA''=''T*'')','EGRD834EXPZ0','10','D','21','7',NULL,'Name Prefix',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM107_NameSuffix1"','8','(''UA''=''T*'')','EGRD834EXPZ0','10','D','21','8',NULL,'Name Suffix',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM108_IDCodeQualifier1"','9','(''UA''=''T*'')','EGRD834EXPZ0','2','D','21','9',NULL,'Identification Code Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM109_IDCode1"','10','(''UA''=''T*'')','EGRD834EXPZ0','80','D','21','10',NULL,'Identification Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"PER"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','22','1',NULL,'PER Segment ID (Loop 2100A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IP"','2','(''DA''=''T*'')','EGRD834EXPZ0','2','D','22','2',NULL,'Contact Function Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER02_Name"','3','(''UA''=''T*'')','EGRD834EXPZ0','60','D','22','3',NULL,'Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER03_CommNumberQualifier"','4','(''UA''=''T*'')','EGRD834EXPZ0','3','D','22','4',NULL,'Communication Number Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER04_CommunicationNumber"','5','(''UA''=''T*'')','EGRD834EXPZ0','256','D','22','5',NULL,'Communication Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER05_CommNumberQualifier"','6','(''UA''=''T*'')','EGRD834EXPZ0','3','D','22','6',NULL,'Communication Number Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER06_CommunicationNumber"','7','(''UA''=''T*'')','EGRD834EXPZ0','256','D','22','7',NULL,'Communication Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER07_CommNumberQualifier"','8','(''UA''=''T*'')','EGRD834EXPZ0','3','D','22','8',NULL,'Communication Number Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPER08_CommunicationNumber"','9','(''UA''=''T*'')','EGRD834EXPZ0','256','D','22','9',NULL,'Communication Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N3"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','D','23','1',NULL,'N3 Segment ID (Loop 2100A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN301_AddressLine1"','2','(''UA''=''T*'')','EGRD834EXPZ0','55','D','23','2',NULL,'Address Line 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN302_AddressLine2"','3','(''UA''=''T*'')','EGRD834EXPZ0','55','D','23','3',NULL,'Address Line 2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N4"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','D','24','1',NULL,'N4 Segment ID (Loop 2100A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN401_City"','2','(''UA''=''T*'')','EGRD834EXPZ0','30','D','24','2',NULL,'City',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN402_State"','3','(''UA''=''T*'')','EGRD834EXPZ0','2','D','24','3',NULL,'State',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN403_Zip"','4','(''UA''=''T*'')','EGRD834EXPZ0','15','D','24','4',NULL,'Zip',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN404_CountryCode"','5','(''UA''=''T*'')','EGRD834EXPZ0','3','D','24','5',NULL,'Country Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"DMG"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','25','1',NULL,'DMG Segment ID (Loop 2100A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"D8"','2','(''DA''=''T*'')','EGRD834EXPZ0','3','D','25','2',NULL,'Date/Time Format Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDMG02_DateTimePeriod1"','3','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','25','3',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDMG03_GenderCode1"','4','(''UA''=''T*'')','EGRD834EXPZ0','1','D','25','4',NULL,'Gender Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDMG04_MaritalStatusCode1"','5','(''UA''=''T*'')','EGRD834EXPZ0','1','D','25','5',NULL,'Marital Status Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ICM"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','26','1',NULL,'ICM Segment ID (Loop1000A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvICM01_FrequencyCode"','2','(''UA''=''T*'')','EGRD834EXPZ0','1','D','26','2',NULL,'Frequency Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvICM02_MonetaryAmount"','3','(''UA''=''T*'')','EGRD834EXPZ0','18','D','26','3',NULL,'Monetary Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvICM03_Quantity"','4','(''UA''=''T*'')','EGRD834EXPZ0','15','D','26','4',NULL,'Quantity',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvICM04_LocationID"','5','(''UA''=''T*'')','EGRD834EXPZ0','30','D','26','5',NULL,'Location Identifier Description',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT00_SegmentID1"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','27','1',NULL,'ACM Segment ID (Loop1000A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT01_AmountQualifierCode1"','2','(''UA''=''T*'')','EGRD834EXPZ0','18','D','27','2',NULL,'Monetary Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT02_MonetaryAmount1"','3','(''UA''=''T*'')','EGRD834EXPZ0','1','D','27','3',NULL,'Credit/Debit Flag Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT00_SegmentID2"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','28','1',NULL,'ACM Segment ID (Loop1000A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT01_AmountQualifierCode2"','2','(''UA''=''T*'')','EGRD834EXPZ0','18','D','28','2',NULL,'Monetary Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT02_MonetaryAmount2"','3','(''UA''=''T*'')','EGRD834EXPZ0','1','D','28','3',NULL,'Credit/Debit Flag Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH00_SegmentID"','1','(''UA''=''T*'')','EGRD834EXPZ0','1','D','29','1',NULL,'HLH Segment ID (Loop1000A)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH01_HealthRelatedCode"','2','(''UA''=''T*'')','EGRD834EXPZ0','8','D','29','2',NULL,'Health-Related Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH02_Height"','3','(''UA''=''T*'')','EGRD834EXPZ0','10','D','29','3',NULL,'Height',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH03_Weight1"','4','(''UA''=''T*'')','EGRD834EXPZ0','10','D','29','4',NULL,'Weight',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH04_Weight2"','5','(''UA''=''T*'')','EGRD834EXPZ0','10','D','29','5',NULL,'Weight',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH05_Description1"','6','(''UA''=''T*'')','EGRD834EXPZ0','10','D','29','6',NULL,'Description',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH06_CurrentHealthConditionCode"','7','(''UA''=''T*'')','EGRD834EXPZ0','10','D','29','7',NULL,'Current Health Condition Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHLH07_Description2"','8','(''UA''=''T*'')','EGRD834EXPZ0','10','D','29','8',NULL,'Description',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHD00_HealthCoverage"','1','(''UA''=''T*'')','EGRD834EXPZ0','2','D','40','1',NULL,'HD Segment ID (Loop 2300) - Loop 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHD01_MaintTypeCode"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','40','2',NULL,'Maintenance Type Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHD02_MaintReasonCode"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','40','3',NULL,'Maintenance Reason Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHD03_InsuranceLineCode"','4','(''UA''=''T*'')','EGRD834EXPZ0','3','D','40','4',NULL,'Insurance Line Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHD04_PlanCoverageDesc"','5','(''UA''=''T*'')','EGRD834EXPZ0','50','D','40','5',NULL,'Plan Coverage Description',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHD05_CoverageLevelCode"','6','(''UA''=''T*'')','EGRD834EXPZ0','3','D','40','6',NULL,'Coverage Level Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime_348"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','41','1',NULL,'DTP Segment ID (Loop 2300) - Loop 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier_348"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','41','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual_348"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','41','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod_348"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','41','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime_349"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','42','1',NULL,'DTP Segment ID (Loop 2300) - Loop 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier_349"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','42','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual_349"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','42','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod_349"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','42','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP00_DateTime_303"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','43','1',NULL,'DTP Segment ID (Loop 2300) - Loop 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP01_DateTimeQualifier_303"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','43','2',NULL,'Date/Time Qualifier',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP02_DateTimeFormatQual_303"','3','(''UA''=''T*'')','EGRD834EXPZ0','3','D','43','3',NULL,'Date/Time Format',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDTP03_DateTimePeriod_303"','4','(''UD112''=''T*'')','EGRD834EXPZ0','35','D','43','4',NULL,'Date/Time Period',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF00_RefNumberQual1"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','45','1',NULL,'REF Segment ID (Loop 2300)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual1"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','45','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual1"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','45','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF00_RefNumberQual2"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','46','1',NULL,'REF Segment ID (Loop 2300)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual2"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','46','2',NULL,'Reference Number Identificatio',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual2"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','46','3',NULL,'Reference Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT00_AmountQualifierCode1"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','50','1',NULL,'AMT Segment ID (Loop 2300) - Loop 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT01_AmountQualifierCode1"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','50','2',NULL,'Amount Qualifier Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT02_MonetaryAmount1"','3','(''UA''=''T*'')','EGRD834EXPZ0','18','D','50','3',NULL,'Monetary Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT00_AmountQualifierCode2"','1','(''UA''=''T*'')','EGRD834EXPZ0','3','D','51','1',NULL,'AMT Segment ID (Loop 2300) - Loop 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT01_AmountQualifierCode2"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','51','2',NULL,'Amount Qualifier Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMT02_MonetaryAmount2"','3','(''UA''=''T*'')','EGRD834EXPZ0','18','D','51','3',NULL,'Monetary Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"LS"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','D','80','1',NULL,'LS Segment ID (Loop 2700)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLS01_LoopIDCode"','2','(''UA''=''T*'')','EGRD834EXPZ0','6','D','80','2',NULL,'Loop ID Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"LX"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','D','81','1',NULL,'LX Segment ID (Loop 2700)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLX01_AssignedNumber"','2','(''UA''=''T*'')','EGRD834EXPZ0','6','D','81','2',NULL,'Assigned Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"N1"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','D','85','1',NULL,'N1 Segment ID (Loop 2750)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN101_EntityIDCodeSponsor"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','85','2',NULL,'Entity Identifier Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvN102_Name"','3','(''UA''=''T*'')','EGRD834EXPZ0','60','D','85','3',NULL,'Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','86','1',NULL,'REF Segment ID (Loop 2750)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual"','2','(''UA''=''T*'')','EGRD834EXPZ0','3','D','86','2',NULL,'Reference Identification Quali',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberDesc"','3','(''UA''=''T*'')','EGRD834EXPZ0','50','D','86','3',NULL,'Reference Identification Descr',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"LE"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','D','87','1',NULL,'LE Segment ID (Loop 2750)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLE01_LoopIDCode"','2','(''UA''=''T*'')','EGRD834EXPZ0','6','D','87','2',NULL,'Loop ID Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"SE"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','T','90','1',NULL,'SE Segment ID (Trailer)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSE01_SegmentCount"','2','(''UA''=''T*'')','EGRD834EXPZ0','10','T','90','2',NULL,'Number of Included Segments',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','3','(''DA''=''T*'')','EGRD834EXPZ0','9','T','90','3',NULL,'Transaction Set Control Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"GE"','1','(''DA''=''T*'')','EGRD834EXPZ0','2','T','91','1',NULL,'GE Segment ID (Trailer)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','2','(''DA''=''T*'')','EGRD834EXPZ0','6','T','91','2',NULL,'Number of Transaction Sets Inc',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','3','(''DA''=''T*'')','EGRD834EXPZ0','9','T','91','3',NULL,'Group Control Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IEA"','1','(''DA''=''T*'')','EGRD834EXPZ0','3','T','92','1',NULL,'IEA Segment ID (Trailer)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','2','(''DA''=''T*'')','EGRD834EXPZ0','5','T','92','2',NULL,'Number of Functional Groups In',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000001"','3','(''DA''=''T*'')','EGRD834EXPZ0','9','T','92','3',NULL,'Interchange Control Number',NULL,NULL);
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EGRD834EXP_20210721.txt';
+/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202107069','EMPEXPORT','CHANGES','Jul  9 2021  9:09AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34080','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202107219','EMPEXPORT','FULLFILE','Jul 20 2021  9:03AM','EGRD834EXP',NULL,NULL,NULL,'202107219','Jul 21 2021 12:00AM','Dec 30 1899 12:00AM','202107211','26055','','','202107211',dbo.fn_GetTimedKey(),NULL,'us3lKiMGA1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202107069','EMPEXPORT','OEACTIVE','Jul  9 2021  9:09AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','3','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202107069','EMPEXPORT','OEPASSIVE','Jul  9 2021  9:10AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34065','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Guardian 834 Export','202107069','EMPEXPORT','SCHEDULED','Jul  9 2021  9:11AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34120','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','834LineFeed','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','InitialSort','C','LEFT(drvInitialSort,20)');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','Is834','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','UseFileName','V','Y');
+/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EGRD834EXP' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
+/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EGRD834EXP' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
+IF OBJECT_ID('U_EGRD834EXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EGRD834EXP_SavePath];
 GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_21') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_21];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_19Q') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_19Q];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_11') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_11];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_08') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_08];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_06') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_06];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_05') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_05];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_04') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_04];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_03') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_03];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_02E') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_02E];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_02D') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_02D];
-GO
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_01') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_drvTbl_01];
-GO
-IF OBJECT_ID('U_EFIDEL403B_DedList') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_DedList];
-GO
-IF OBJECT_ID('U_EFIDEL403B_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_AuditFields];
-GO
-IF OBJECT_ID('U_EFIDEL403B_Audit') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_Audit];
-GO
-IF OBJECT_ID('U_dsi_BDM_EFIDEL403B') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EFIDEL403B];
-GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EFIDEL403B';
-DELETE [dbo].[U_dsi_RecordSetDetails] FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode = 'EFIDEL403B';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EFIDEL403B';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EFIDEL403B';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EFIDEL403B';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EFIDEL403B';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EFIDEL403B','Fidelity 403B Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','80','S','N','EFIDEL403BZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TESTEDT"','1','(''DA''=''F'')','EFIDEL403BZ0','7','H','01','1',NULL,'TEST FILE IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''SS''=''F'')','EFIDEL403BZ0','73','H','01','8',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','10','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','10','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','10','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','10','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','10','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"01"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','10','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLASTNAME"','7','(''UA''=''F'')','EFIDEL403BZ0','20','D','10','32',NULL,'LAST NAME (FREE FORM)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFIRSTNAMEMIDDLEINITIAL"','8','(''UA''=''F'')','EFIDEL403BZ0','15','D','10','52',NULL,'FIRST NAME MIDDLE INITIAL (FREE FORM)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000"','9','(''DA''=''F'')','EFIDEL403BZ0','9','D','10','67',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMARITALSTATUS"','10','(''UA''=''F'')','EFIDEL403BZ0','1','D','10','76',NULL,'MARITAL STATUS',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGENDER"','11','(''UA''=''F'')','EFIDEL403BZ0','1','D','10','77',NULL,'GENDER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''F'')','EFIDEL403BZ0','1','D','10','78',NULL,'SPECIAL TAX TYPE ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','1','D','10','79',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''SS''=''F'')','EFIDEL403BZ0','1','D','10','80',NULL,'BENE/QDRO PAYEE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','15','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','15','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','15','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','15','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','15','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"02"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','15','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"D"','7','(''DA''=''F'')','EFIDEL403BZ0','1','D','15','32',NULL,'FIELD TYPE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''SS''=''F'')','EFIDEL403BZ0','4','D','15','33',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHIREDATE"','9','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','15','37',NULL,'HIRE DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00000000"','10','(''DA''=''F'')','EFIDEL403BZ0','8','D','15','45',NULL,'PARTICIPATION DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVestingDAte"','11','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','15','53',NULL,'VESTING DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDATEOFBIRTH"','12','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','15','61',NULL,'DATE-OF-BIRTH',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTERMINATIONDATE"','13','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','15','69',NULL,'TERMINATION DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateSwitch"','14','(''UDMDY''=''F'')','EFIDEL403BZ0','1','D','15','77',NULL,'DATE SWITCH',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''SS''=''F'')','EFIDEL403BZ0','1','D','15','78',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','16','(''SS''=''F'')','EFIDEL403BZ0','1','D','15','79',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''SS''=''F'')','EFIDEL403BZ0','1','D','15','80',NULL,'ASSOCIATION INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','20','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','20','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','20','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','20','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','20','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"02"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','20','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"E"','7','(''DA''=''F'')','EFIDEL403BZ0','1','D','20','32',NULL,'FIELD TYPE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEMPLOYEENUMBER"','8','(''UA''=''F'')','EFIDEL403BZ0','11','D','20','33',NULL,'EMPLOYEE NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''F'')','EFIDEL403BZ0','1','D','20','44',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','2','D','20','45',NULL,'EMPLOYEE NUMBER STATUS CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','12','D','20','47',NULL,'CLIENT PROVIDED ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''F'')','EFIDEL403BZ0','22','D','20','59',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','25','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','25','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','25','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','25','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','25','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"03"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','25','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"P"','7','(''DA''=''F'')','EFIDEL403BZ0','1','D','25','32',NULL,'RECORD TYPE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvADDRESSLINENUMBER"','8','(''UA''=''F'')','EFIDEL403BZ0','2','D','25','33',NULL,'ADDRESS LINE NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvADDRESS"','9','(''UA''=''F'')','EFIDEL403BZ0','32','D','25','35',NULL,'ADDRESS',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','11','D','25','67',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','1','D','25','78',NULL,'DATA SEARCH INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''F'')','EFIDEL403BZ0','1','D','25','79',NULL,'OMIT STATEMENT INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','1','D','25','80',NULL,'ASSOCIATION INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','30','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','30','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','30','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','30','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','30','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"04"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','30','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"P"','7','(''DA''=''F'')','EFIDEL403BZ0','1','D','30','32',NULL,'RECORD TYPE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCITY"','8','(''UA''=''F'')','EFIDEL403BZ0','20','D','30','33',NULL,'CITY',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSTATE"','9','(''UA''=''F'')','EFIDEL403BZ0','2','D','30','53',NULL,'STATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','8','D','30','55',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvZIPCODE"','11','(''UA''=''F'')','EFIDEL403BZ0','5','D','30','63',NULL,'ZIP CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvZIP4CODE"','12','(''UA''=''F'')','EFIDEL403BZ0','4','D','30','68',NULL,'ZIP + 4 CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','6','D','30','72',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''SS''=''F'')','EFIDEL403BZ0','1','D','30','78',NULL,'DATA SEARCH INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''SS''=''F'')','EFIDEL403BZ0','1','D','30','79',NULL,'OMIT STATEMENT INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','16','(''SS''=''F'')','EFIDEL403BZ0','1','D','30','80',NULL,'ASSOCIATION INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','35','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','35','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','35','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','35','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','35','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"05"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','35','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"P"','7','(''DA''=''F'')','EFIDEL403BZ0','1','D','35','32',NULL,'RECORD TYPE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCOUNTRY"','8','(''UA''=''F'')','EFIDEL403BZ0','23','D','35','33',NULL,'COUNTRY',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''F'')','EFIDEL403BZ0','1','D','35','56',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Y"','10','(''DA''=''F'')','EFIDEL403BZ0','1','D','35','57',NULL,'SPECIAL HANDLING',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','19','D','35','58',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMAILINGINDICATOR"','12','(''UA''=''F'')','EFIDEL403BZ0','1','D','35','77',NULL,'MAILING INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','1','D','35','78',NULL,'DATA SEARCH INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''SS''=''F'')','EFIDEL403BZ0','1','D','35','79',NULL,'OMIT STATEMENT INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''SS''=''F'')','EFIDEL403BZ0','1','D','35','80',NULL,'ASSOCIATION INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','40','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','40','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','40','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','40','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','40','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"06"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','40','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDIVISIONID"','7','(''UA''=''F'')','EFIDEL403BZ0','20','D','40','32',NULL,'DIVISION ID (Name)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''SS''=''F'')','EFIDEL403BZ0','20','D','40','52',NULL,'REGION ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''F'')','EFIDEL403BZ0','3','D','40','72',NULL,'SITE SECURITY CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','4','D','40','75',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','2','D','40','79',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','43','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','2','(''SS''=''F'')','EFIDEL403BZ0','7','D','43','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','3','(''UA''=''F'')','EFIDEL403BZ0','11','D','43','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''SS''=''F'')','EFIDEL403BZ0','1','D','43','24',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00000"','5','(''SS''=''F'')','EFIDEL403BZ0','5','D','43','25',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"08"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','43','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalary"','7','(''UA''=''F'')','EFIDEL403BZ0','13','D','43','32',NULL,'SALARY',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryInd"','8','(''UA''=''F'')','EFIDEL403BZ0','1','D','43','45',NULL,'SALARY INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''F'')','EFIDEL403BZ0','2','D','43','46',NULL,'SPACES',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalPayDate"','10','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','43','46',NULL,'SALARY PAY DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','8','D','43','46',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','45','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','45','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','45','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','45','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','45','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"11"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','45','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSTATUSCODE"','7','(''UA''=''F'')','EFIDEL403BZ0','1','D','45','32',NULL,'STATUS CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''SS''=''F'')','EFIDEL403BZ0','5','D','45','33',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvStatusDate"','9','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','45','38',NULL,'STATUS CHANGE DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','1','D','45','46',NULL,'LITERATURE KIT INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','32','D','45','47',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''F'')','EFIDEL403BZ0','1','D','45','79',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','1','D','45','80',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','50','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','50','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','50','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','50','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','50','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"36"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','50','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''SS''=''F'')','EFIDEL403BZ0','4','D','50','32',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDIVISIONCODE"','8','(''UA''=''F'')','EFIDEL403BZ0','4','D','50','36',NULL,'DIVISION CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''F'')','EFIDEL403BZ0','40','D','50','40',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','1','D','50','80',NULL,'DIVISION CODE EXISTS INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','55','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','55','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','55','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','55','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','55','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"60"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','55','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPARTICIPANTCLASS"','7','(''UA''=''F'')','EFIDEL403BZ0','1','D','55','32',NULL,'PARTICIPANT CLASS',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPARTICIPANTDISTRICT"','8','(''UA''=''F'')','EFIDEL403BZ0','8','D','55','33',NULL,'PARTICIPANT DISTRICT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPARTICIPANTDEPARTMENT"','9','(''UA''=''F'')','EFIDEL403BZ0','8','D','55','41',NULL,'PARTICIPANT DEPARTMENT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPARTICIPANTLOCATIONSTORE"','10','(''UA''=''F'')','EFIDEL403BZ0','8','D','55','49',NULL,'PARTICIPANT LOCATION/STORE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPARTICIPANTUNIONCODE"','11','(''UA''=''F'')','EFIDEL403BZ0','8','D','55','57',NULL,'PARTICIPANT UNION CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPARTICIPANTPAYMENTFREQ"','12','(''UA''=''F'')','EFIDEL403BZ0','1','D','55','65',NULL,'PARTICIPANT PAYMENT FREQUENCY',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','8','D','55','66',NULL,'MISCELLANEOUS CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''SS''=''F'')','EFIDEL403BZ0','1','D','55','74',NULL,'HIGHLY COMPENSATED FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''SS''=''F'')','EFIDEL403BZ0','1','D','55','75',NULL,'OFFICER / 16 (B) FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','16','(''SS''=''F'')','EFIDEL403BZ0','1','D','55','76',NULL,'DE MINIMUS ELIGIBILITY INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''SS''=''F'')','EFIDEL403BZ0','1','D','55','77',NULL,'AGE PAYOUT ELIGIBILITY INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''SS''=''F'')','EFIDEL403BZ0','1','D','55','78',NULL,'PARTICIPANT RESTRICTION CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','19','(''SS''=''F'')','EFIDEL403BZ0','2','D','55','79',NULL,'PARTICIPANT RESTRICTION REASON',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','60','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','60','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','60','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','60','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','6','D','60','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"61"','6','(''DA''=''F'')','EFIDEL403BZ0','2','D','60','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEligDate"','7','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','60','32',NULL,'ELIGIBILITY DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvADJUSTEDDATEOFHIRE"','8','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','60','40',NULL,'ADJUSTED DATE OF HIRE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRETIREMENTDATE"','9','(''UDMDY''=''F'')','EFIDEL403BZ0','8','D','60','48',NULL,'RETIREMENT DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','5','D','60','56',NULL,' RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''F'')','EFIDEL403BZ0','8','D','60','61',NULL,'BIS ACCRUAL START DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''F'')','EFIDEL403BZ0','12','D','60','69',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','63','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','63','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','63','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','63','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeId"','5','(''UA''=''F'')','EFIDEL403BZ0','1','D','63','24',NULL,'EMPLOYEEID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','6','(''SS''=''F'')','EFIDEL403BZ0','5','D','63','25',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"EA"','7','(''DA''=''F'')','EFIDEL403BZ0','2','D','63','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"A"','8','(''DA''=''F'')','EFIDEL403BZ0','1','D','63','32',NULL,'E-MAIL ADDRESS STATUS CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ER"','9','(''DA''=''F'')','EFIDEL403BZ0','2','D','63','33',NULL,'E-MAIL TYPE CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''DA''=''F'')','EFIDEL403BZ0','2','D','63','35',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmailRecSeq"','11','(''UA''=''F'')','EFIDEL403BZ0','1','D','63','37',NULL,'E-MAIL RECORD SEQUENCE NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmailAddress"','12','(''UA''=''F'')','EFIDEL403BZ0','35','D','63','38',NULL,'E-MAIL ADDRESS TEXT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','1','D','63','73',NULL,'NON SAFE HARBOR INDICATOR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''SS''=''F'')','EFIDEL403BZ0','1','D','63','74',NULL,'EDELIVERY CONSENT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''SS''=''F'')','EFIDEL403BZ0','6','D','63','76',NULL,'EDELIVERY CONSENT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','65','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','65','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','65','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','65','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','1','D','65','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00000"','6','(''DA''=''F'')','EFIDEL403BZ0','5','D','65','25',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"19"','7','(''DA''=''F'')','EFIDEL403BZ0','2','D','65','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''SS''=''F'')','EFIDEL403BZ0','4','D','65','32',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"220"','9','(''DA''=''F'')','EFIDEL403BZ0','3','D','65','36',NULL,'TRANSACTION CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','2','D','65','39',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOURCE"','11','(''UA''=''F'')','EFIDEL403BZ0','2','D','65','41',NULL,'SOURCE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"01"','12','(''DA''=''F'')','EFIDEL403BZ0','2','D','65','43',NULL,'ITEM NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','13','(''SS''=''F'')','EFIDEL403BZ0','1','D','65','45',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAMOUNT"','14','(''UNPN''=''F'')','EFIDEL403BZ0','13','D','65','46',NULL,'AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','15','(''SS''=''F'')','EFIDEL403BZ0','4','D','65','59',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','16','(''SS''=''F'')','EFIDEL403BZ0','4','D','65','63',NULL,'FISCAL YEAR',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''SS''=''F'')','EFIDEL403BZ0','1','D','65','67',NULL,'ADJUSTMENT REASON',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''SS''=''F'')','EFIDEL403BZ0','8','D','65','68',NULL,'ORIGINAL PAY DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','19','(''SS''=''F'')','EFIDEL403BZ0','5','D','65','76',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPLANNUMBER"','1','(''UA''=''F'')','EFIDEL403BZ0','5','D','70','1',NULL,'PLAN NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBATCHGROUPID"','2','(''UA''=''F'')','EFIDEL403BZ0','4','D','70','6',NULL,'BATCH GROUP ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F'')','EFIDEL403BZ0','3','D','70','10',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSOCIALSECURITYNUMBER"','4','(''UA''=''F'')','EFIDEL403BZ0','11','D','70','13',NULL,'SOCIAL SECURITY NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','5','(''SS''=''F'')','EFIDEL403BZ0','1','D','70','24',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00000"','6','(''DA''=''F'')','EFIDEL403BZ0','5','D','70','25',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"21"','7','(''DA''=''F'')','EFIDEL403BZ0','2','D','70','30',NULL,'RECORD IDENTIFIER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''SS''=''F'')','EFIDEL403BZ0','4','D','70','32',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOANIDENTIFICATION"','9','(''UA''=''F'')','EFIDEL403BZ0','12','D','70','36',NULL,'LOAN IDENTIFICATION',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''F'')','EFIDEL403BZ0','1','D','70','48',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"260"','11','(''DA''=''F'')','EFIDEL403BZ0','3','D','70','49',NULL,'TRANSACTION CODE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"14"','12','(''DA''=''F'')','EFIDEL403BZ0','2','D','70','52',NULL,'ITEM NUMBER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00"','13','(''DA''=''F'')','EFIDEL403BZ0','2','D','70','54',NULL,'RESERVED',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','14','(''SS''=''F'')','EFIDEL403BZ0','1','D','70','56',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREPAYMENTAMOUNT"','15','(''UNPN''=''F'')','EFIDEL403BZ0','7','D','70','57',NULL,'REPAYMENT AMOUNT',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','16','(''SS''=''F'')','EFIDEL403BZ0','1','D','70','64',NULL,'ADJUSTMENT REASON',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''SS''=''F'')','EFIDEL403BZ0','8','D','70','65',NULL,'ORIGINAL PAY DATE',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''SS''=''F'')','EFIDEL403BZ0','1','D','70','73',NULL,'PRINCIPAL ONLY FLAG',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','19','(''SS''=''F'')','EFIDEL403BZ0','1','D','70','74',NULL,'NEW REPAYMENT FREQUENCY',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','20','(''SS''=''F'')','EFIDEL403BZ0','6','D','70','75',NULL,'REGION',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\NWZ\NWZ11\Downloads\V10\Exports\OXFUP\EmployeeHistoryExport\OXFUP_EFIDEL403B_20200319.txt',NULL,'','',NULL,NULL,NULL,NULL,'Fidelity 403B Export','201702019','EMPEXPORT','ONDEMAND','Feb  1 2017 12:00AM','EFIDEL403B',NULL,NULL,NULL,'201702019','Feb  1 2017 12:00AM','Dec 30 1899 12:00AM','201702011',NULL,'','','201702011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\NWZ\NWZ11\Downloads\V10\Exports\OXFUP\EmployeeHistoryExport\OXFUP_EFIDEL403B_20200319.txt',NULL,'','','',NULL,NULL,NULL,'Fidelity 403B Export','202003241','EMPEXPORT','SCH_FID403','Mar 24 2020  5:26PM','EFIDEL403B',NULL,NULL,NULL,'202003241','Mar 24 2020 12:00AM','Dec 30 1899 12:00AM','201701011','8210','','','201701011',dbo.fn_GetTimedKey(),NULL,'us3mLaOXF1001',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\NWZ\NWZ11\Downloads\V10\Exports\OXFUP\EmployeeHistoryExport\OXFUP_EFIDEL403B_20210224.txt',NULL,'','','Z86NN,IAGFG',NULL,NULL,NULL,'Fidelity 403B Export','202102249','EMPEXPORT','TEST','Feb 24 2021  5:37PM','EFIDEL403B',NULL,NULL,NULL,'202102249','Feb 24 2021 12:00AM','Dec 30 1899 12:00AM','201910011','3088','','','201910011',dbo.fn_GetTimedKey(),NULL,'us3lKiOXF1001',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','SubSort','C','drvSubSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','Upper','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFIDEL403B','UseFileName','V','Y');
-UPDATE dbo.U_dsi_Configuration SET CfgValue = svCfgValue FROM dbo.U_EFIDEL403B_SavePath WHERE CfgName = svCfgName AND FormatCode = svFormatCode AND svCfgValue IS NOT NULL;
-IF OBJECT_ID('U_EFIDEL403B_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EFIDEL403B_SavePath];
-GO
-INSERT INTO [dbo].[U_dsi_RecordSetDetails] (FormatCode,ExportCode,RecType,SetNo,SkipSet,SetType) VALUES ('EFIDEL403B','ONDEMAND','H','01','Y','C');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D10','dbo.U_EFIDEL403B_drvTbl_01',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D15','dbo.U_EFIDEL403B_drvTbl_02D',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D20','dbo.U_EFIDEL403B_drvTbl_02E',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D25','dbo.U_EFIDEL403B_drvTbl_03',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D30','dbo.U_EFIDEL403B_drvTbl_04',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D35','dbo.U_EFIDEL403B_drvTbl_05',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D40','dbo.U_EFIDEL403B_drvTbl_06',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D43','dbo.U_EFIDEL403B_drvTbl_08',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D45','dbo.U_EFIDEL403B_drvTbl_11',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D50','dbo.U_EFIDEL403B_drvTbl_36',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D55','dbo.U_EFIDEL403B_drvTbl_60',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D60','dbo.U_EFIDEL403B_drvTbl_61',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D63','dbo.U_EFIDEL403B_drvTbl_EA',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D65','dbo.U_EFIDEL403B_drvTbl_19Q',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFIDEL403B','D70','dbo.U_EFIDEL403B_drvTbl_21',NULL);
-IF OBJECT_ID('U_dsi_BDM_EFIDEL403B') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_EFIDEL403B] (
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H01','U_EGRD834EXP_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H02','U_EGRD834EXP_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H03','U_EGRD834EXP_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H04','U_EGRD834EXP_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H05','U_EGRD834EXP_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H06','U_EGRD834EXP_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H07','U_EGRD834EXP_HdrTbl','ISNULL(drvQTY01_QuantityQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H08','U_EGRD834EXP_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H09','U_EGRD834EXP_HdrTbl','ISNULL(drvDTP00_DateTime0,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H10','U_EGRD834EXP_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','H11','U_EGRD834EXP_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D12','U_EGRD834EXP_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D13','U_EGRD834EXP_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D14','U_EGRD834EXP_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D15','U_EGRD834EXP_DrvTbl','ISNULL(drvREF01_RefNumberQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D16','U_EGRD834EXP_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D17','U_EGRD834EXP_DrvTbl','ISNULL(drvREF01_RefNumberQual4,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D18','U_EGRD834EXP_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D19','U_EGRD834EXP_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D20','U_EGRD834EXP_DrvTbl','ISNULL(drvDTP00_DateTime3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D21','U_EGRD834EXP_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D22','U_EGRD834EXP_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D23','U_EGRD834EXP_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D24','U_EGRD834EXP_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D25','U_EGRD834EXP_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D26','U_EGRD834EXP_DrvTbl','ISNULL(drvICM01_FrequencyCode,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D27','U_EGRD834EXP_DrvTbl','ISNULL(drvAMT00_SegmentID1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D28','U_EGRD834EXP_DrvTbl','ISNULL(drvAMT00_SegmentID2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D29','U_EGRD834EXP_DrvTbl','ISNULL(drvHLH00_SegmentID,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D40','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D41','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_348,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D42','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_349,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D43','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_303,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D45','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D46','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D50','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D51','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D80','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D81','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D85','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D86','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvREF01_RefNumberQual,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','D87','U_EGRD834EXP_DrvTbl_2300','ISNULL(drvLE01_LoopIDCode,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','T90','U_EGRD834EXP_TrlTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','T91','U_EGRD834EXP_TrlTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGRD834EXP','T92','U_EGRD834EXP_TrlTbl',NULL);
+IF OBJECT_ID('U_dsi_BDM_EGRD834EXP') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EGRD834EXP] (
     [BdmRecType] varchar(3) NOT NULL,
     [BdmCOID] char(5) NULL,
     [BdmEEID] char(12) NOT NULL,
@@ -353,1291 +352,283 @@ CREATE TABLE [dbo].[U_dsi_BDM_EFIDEL403B] (
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_Audit') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_Audit] (
-    [audEEID] varchar(255) NOT NULL,
-    [audKey2] varchar(255) NOT NULL,
-    [audKey3] varchar(255) NOT NULL,
-    [audTableName] varchar(128) NOT NULL,
-    [audFieldName] varchar(128) NOT NULL,
-    [audAction] varchar(6) NOT NULL,
-    [audDateTime] datetime NOT NULL,
-    [audOldValue] varchar(2000) NULL,
-    [audNewValue] varchar(2000) NULL,
-    [audRowNo] bigint NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_AuditFields') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_AuditFields] (
-    [aTableName] varchar(30) NULL,
-    [aFieldName] varchar(30) NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_DedList') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_DedList] (
+IF OBJECT_ID('U_EGRD834EXP_DedList') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedLongDesc] varchar(40) NULL,
     [DedType] char(4) NOT NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_01') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_01] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvLASTNAME] varchar(100) NULL,
-    [drvFIRSTNAMEMIDDLEINITIAL] varchar(101) NULL,
-    [drvMARITALSTATUS] varchar(1) NULL,
-    [drvGENDER] varchar(1) NOT NULL,
+IF OBJECT_ID('U_EGRD834EXP_DrvTbl') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl] (
+    [drvINS01_YesNoCond] varchar(1) NOT NULL,
+    [drvINS02_RelationshipCode] varchar(2) NOT NULL,
+    [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
+    [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
+    [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
+    [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
+    [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
+    [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
+    [drvINS08_EmploymentStatusCode] varchar(2) NOT NULL,
+    [drvINS09_StudentStatusCode] varchar(1) NULL,
+    [drvINS10_ResponseCode] varchar(1) NULL,
+    [drvINS11_DateTimeFormatQual] varchar(2) NULL,
+    [drvINS12_DateTimePeriod] varchar(8) NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(8) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(4) NOT NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(4) NULL,
+    [drvREF01_RefNumberQual4] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual4] char(6) NULL,
+    [drvDTP00_DateTime1] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod1] datetime NULL,
+    [drvDTP00_DateTime2] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod2] datetime NULL,
+    [drvDTP00_DateTime3] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier3] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual3] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod3] datetime NULL,
+    [drvNM103_NameLast1] varchar(6000) NULL,
+    [drvNM104_NameFirst1] varchar(6000) NULL,
+    [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
+    [drvNM106_NamePrefix1] varchar(30) NULL,
+    [drvNM107_NameSuffix1] varchar(1) NOT NULL,
+    [drvNM108_IDCodeQualifier1] varchar(2) NULL,
+    [drvNM109_IDCode1] char(11) NULL,
+    [drvPER02_Name] varchar(1) NOT NULL,
+    [drvPER03_CommNumberQualifier] varchar(2) NULL,
+    [drvPER04_CommunicationNumber] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(2) NULL,
+    [drvPER06_CommunicationNumber] varchar(50) NULL,
+    [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
+    [drvN301_AddressLine1] varchar(6000) NULL,
+    [drvN302_AddressLine2] varchar(6000) NULL,
+    [drvN401_City] varchar(6000) NULL,
+    [drvN402_State] varchar(255) NULL,
+    [drvN403_Zip] varchar(50) NULL,
+    [drvN404_CountryCode] char(3) NULL,
+    [drvDMG02_DateTimePeriod1] varchar(8) NULL,
+    [drvDMG03_GenderCode1] char(1) NULL,
+    [drvDMG04_MaritalStatusCode1] varchar(1) NULL,
+    [drvICM01_FrequencyCode] varchar(1) NULL,
+    [drvICM02_MonetaryAmount] money NULL,
+    [drvICM03_Quantity] money NULL,
+    [drvICM04_LocationID] varchar(30) NULL,
+    [drvAMT00_SegmentID1] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
+    [drvAMT00_SegmentID2] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
+    [drvHLH00_SegmentID] varchar(1) NOT NULL,
+    [drvHLH01_HealthRelatedCode] varchar(1) NULL,
+    [drvHLH02_Height] varchar(1) NOT NULL,
+    [drvHLH03_Weight1] varchar(1) NOT NULL,
+    [drvHLH04_Weight2] varchar(1) NOT NULL,
+    [drvHLH05_Description1] varchar(1) NOT NULL,
+    [drvHLH06_CurrentHealthConditionCode] varchar(1) NOT NULL,
+    [drvHLH07_Description2] varchar(1) NOT NULL,
     [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
+    [drvCOID] char(5) NULL,
+    [drvDepRecID] char(12) NULL,
+    [drvSSN] char(11) NULL,
     [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
+    [drvSubSort] char(21) NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_02D') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_02D] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvHIREDATE] datetime NULL,
-    [drvVestingDAte] datetime NULL,
-    [drvDATEOFBIRTH] datetime NULL,
-    [drvDateSwitch] varchar(1) NOT NULL,
-    [drvTERMINATIONDATE] datetime NULL,
+IF OBJECT_ID('U_EGRD834EXP_DrvTbl_2300') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_DrvTbl_2300] (
+    [drvHD00_HealthCoverage] varchar(2) NOT NULL,
+    [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
+    [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
+    [drvHD03_InsuranceLineCode] varchar(3) NULL,
+    [drvHD04_PlanCoverageDesc] nvarchar(4000) NULL,
+    [drvHD05_CoverageLevelCode] varchar(3) NULL,
+    [drvDTP00_DateTime_348] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod_348] datetime NULL,
+    [drvDTP00_DateTime_349] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier_349] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual_349] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod_349] datetime NULL,
+    [drvDTP00_DateTime_303] varchar(1) NULL,
+    [drvDTP01_DateTimeQualifier_303] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual_303] varchar(2) NULL,
+    [drvDTP03_DateTimePeriod_303] datetime NULL,
+    [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(8) NOT NULL,
+    [drvREF00_RefNumberQual2] varchar(1) NULL,
+    [drvREF01_RefNumberQual2] varchar(1) NULL,
+    [drvREF02_RefNumberQual2] varchar(1) NULL,
+    [drvAMT00_AmountQualifierCode1] varchar(1) NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(1) NULL,
+    [drvAMT02_MonetaryAmount1] varchar(1) NULL,
+    [drvAMT00_AmountQualifierCode2] varchar(1) NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(1) NULL,
+    [drvAMT02_MonetaryAmount2] varchar(1) NULL,
+    [drvLS01_LoopIDCode] varchar(1) NOT NULL,
+    [drvLX01_AssignedNumber] varchar(1) NOT NULL,
+    [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
+    [drvN102_Name] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
+    [drvREF02_RefNumberDesc] varchar(1) NULL,
+    [drvLE01_LoopIDCode] varchar(1) NOT NULL,
     [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
+    [drvCOID] char(5) NULL,
+    [drvDepRecID] char(12) NULL,
+    [drvSSN] char(11) NULL,
     [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(3) NOT NULL
+    [drvSubSort] char(26) NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_02E') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_02E] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvEMPLOYEENUMBER] char(9) NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(3) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_03') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_03] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvADDRESSLINENUMBER] varchar(2) NOT NULL,
-    [drvADDRESS] varchar(255) NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_04') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_04] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvCITY] varchar(255) NULL,
-    [drvSTATE] varchar(255) NULL,
-    [drvZIPCODE] varchar(5) NULL,
-    [drvZIP4CODE] varchar(4) NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_05') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_05] (
-    [drvPLANNUMBER] varchar(1) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvCOUNTRY] char(3) NULL,
-    [drvMAILINGINDICATOR] varchar(1) NOT NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_06') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_06] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvDIVISIONID] varchar(21) NOT NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_08') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_08] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvSalary] varchar(30) NULL,
-    [drvSalaryInd] varchar(1) NOT NULL,
-    [drvSalPayDate] datetime NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_11') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_11] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvSTATUSCODE] varchar(1) NULL,
-    [drvStatusDate] datetime NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_19Q') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_19Q] (
-    [drvPLANNUMBER] varchar(5) NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvSOURCE] varchar(2) NULL,
-    [drvAMOUNT] money NULL,
-    [drvEEID] char(12) NOT NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(3) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_21') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_21] (
-    [drvPLANNUMBER] varchar(5) NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvLOANIDENTIFICATION] varchar(1) NULL,
-    [drvREPAYMENTAMOUNT] money NULL,
-    [drvEEID] char(12) NOT NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_36') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_36] (
-    [drvPLANNUMBER] varchar(1) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvDIVISIONCODE] char(6) NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_60') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_60] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvPARTICIPANTCLASS] char(1) NULL,
-    [drvPARTICIPANTDISTRICT] varchar(1) NOT NULL,
-    [drvPARTICIPANTDEPARTMENT] varchar(1) NOT NULL,
-    [drvPARTICIPANTLOCATIONSTORE] varchar(1) NOT NULL,
-    [drvPARTICIPANTUNIONCODE] varchar(1) NOT NULL,
-    [drvPARTICIPANTPAYMENTFREQ] varchar(1) NOT NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_61') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_61] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvEligDate] varchar(1) NOT NULL,
-    [drvADJUSTEDDATEOFHIRE] datetime NULL,
-    [drvRETIREMENTDATE] datetime NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_drvTbl_EA') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_drvTbl_EA] (
-    [drvPLANNUMBER] varchar(5) NOT NULL,
-    [drvBATCHGROUPID] varchar(1) NOT NULL,
-    [drvSOCIALSECURITYNUMBER] varchar(13) NULL,
-    [drvEmployeeId] varchar(1) NOT NULL,
-    [drvEmailRecSeq] varchar(1) NOT NULL,
-    [drvEmailAddress] varchar(50) NULL,
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(2) NOT NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_EEList') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_EEList] (
+IF OBJECT_ID('U_EGRD834EXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_Employees') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_Employees] (
-    [xEEID] char(12) NULL,
-    [xCOID] char(5) NULL,
-    [EepSSN] char(11) NULL,
-    [EepNameFirst] varchar(100) NULL,
-    [EepNameMiddle] varchar(50) NULL,
-    [EepNameLast] varchar(100) NULL,
-    [EepGender] char(1) NULL,
-    [EepDateOfBirth] datetime NULL,
-    [EepMaritalStatus] char(1) NULL,
-    [EepAddressLine1] varchar(255) NULL,
-    [EepAddressLine2] varchar(255) NULL,
-    [EepAddressLine3] varchar(255) NULL,
-    [EepAddressCity] varchar(255) NULL,
-    [EepAddressState] varchar(255) NULL,
-    [EepAddressZipCode] varchar(50) NULL,
-    [EepAddressCountry] char(3) NULL,
-    [EecEmpNo] char(9) NULL,
-    [EecEmplStatus] char(1) NULL,
-    [EecDateOfOriginalHire] datetime NULL,
-    [EecDateOfLastHire] datetime NULL,
-    [EecDateOfTermination] datetime NULL,
-    [EecDateOfRetirement] datetime NULL,
-    [EecLocation] char(6) NULL,
-    [EecFullTimeOrPartTime] char(1) NULL,
-    [EecPayPeriod] char(1) NULL,
-    [EecUnionLocal] char(12) NULL,
-    [EecOrgLvl1] varchar(10) NULL,
-    [EecOrgLvl2] varchar(10) NULL,
-    [OrgLvl2Desc] varchar(25) NULL,
-    [Record01Change] varchar(1) NULL,
-    [Record02DChange] varchar(1) NULL,
-    [Record02EChange] varchar(1) NULL,
-    [Record03Change] varchar(1) NULL,
-    [Record04Change] varchar(1) NULL,
-    [Record05Change] varchar(1) NULL,
-    [Record06Change] varchar(1) NULL,
-    [Record11Change] varchar(1) NULL,
-    [Record36Change] varchar(1) NULL,
-    [Record60Change] varchar(1) NULL,
-    [Record61Change] varchar(1) NULL,
-    [audNewHire] varchar(1) NULL,
-    [audReHire] varchar(1) NULL,
-    [audTerm] varchar(1) NULL,
-    [audSalaryChange] varchar(1) NULL,
-    [EecDateOfSeniority] datetime NULL,
-    [EecAnnSalary] money NULL,
-    [EecTermReason] char(6) NULL,
-    [EecEmplStatusStartDate] datetime NULL,
-    [emailAddress] varchar(1) NULL,
-    [eepAddressEMail] varchar(50) NULL
-);
-IF OBJECT_ID('U_EFIDEL403B_File') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_File] (
+IF OBJECT_ID('U_EGRD834EXP_File') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(100) NOT NULL,
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(80) NULL
+    [Data] varchar(2000) NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_PDedHist') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_PDedHist] (
-    [PdhEEID] char(12) NOT NULL,
-    [PdhSource] varchar(9) NULL,
-    [PdhEECurAmt] money NULL,
-    [PdhERCurAmt] money NULL,
-    [PlanNo] varchar(5) NULL
+IF OBJECT_ID('U_EGRD834EXP_HdrTbl') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_HdrTbl] (
+    [drvISA05_SenderIDQual] varchar(2) NOT NULL,
+    [drvISA06_SenderID] char(9) NULL,
+    [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
+    [drvISA08_ReceiverID] varchar(9) NOT NULL,
+    [drvISA09_InterchangeDate] varchar(6) NULL,
+    [drvISA10_InterchangeTime] varchar(4) NULL,
+    [drvISA15_UsageIndicator] varchar(1) NOT NULL,
+    [drvGS02_SenderID] char(9) NULL,
+    [drvGS03_ReceiverID] varchar(9) NOT NULL,
+    [drvGS04_Date] varchar(8) NULL,
+    [drvGS05_Time] varchar(4) NULL,
+    [drvBGN03_Date] varchar(8) NULL,
+    [drvBGN04_Time] varchar(4) NULL,
+    [drvBGN05_TimeCode] varchar(2) NOT NULL,
+    [drvBGN06_RefID] varchar(1) NOT NULL,
+    [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
+    [drvBGN08_ActionCode] varchar(2) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual] varchar(8) NOT NULL,
+    [drvQTY01_QuantityQual1] varchar(1) NOT NULL,
+    [drvQTY02_Quantity1] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual2] varchar(1) NOT NULL,
+    [drvQTY02_Quantity2] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
+    [drvQTY02_Quantity3] varchar(1) NOT NULL,
+    [drvDTP00_DateTime0] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier0] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual0] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod0] datetime NOT NULL,
+    [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
+    [drvN102_Name1] varchar(21) NOT NULL,
+    [drvN103_IDCodeQual1] varchar(2) NOT NULL,
+    [drvN104_IDCode1] char(9) NULL,
+    [drvN101_EntityIDCodeSponsor2] varchar(2) NOT NULL,
+    [drvN102_Name2] varchar(8) NOT NULL,
+    [drvN103_IDCodeQual2] varchar(2) NOT NULL,
+    [drvN104_IDCode2] varchar(9) NOT NULL
 );
-IF OBJECT_ID('U_EFIDEL403B_PEarHist') IS NULL
-CREATE TABLE [dbo].[U_EFIDEL403B_PEarHist] (
-    [PehEEID] char(12) NOT NULL,
-    [PrgPayDate] datetime NULL,
-    [PrgPeriodStartDate] datetime NULL,
-    [PrgPeriodEndDate] datetime NULL,
-    [PehCurAmt] numeric NULL,
-    [PehCurHrs] decimal NULL,
-    [PehCurAmtYTD] money NULL,
-    [PehCurHrsYTD] decimal NULL,
-    [PehInclInDefComp] money NULL,
-    [PehInclInDefCompHrs] decimal NULL,
-    [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+IF OBJECT_ID('U_EGRD834EXP_TrlTbl') IS NULL
+CREATE TABLE [dbo].[U_EGRD834EXP_TrlTbl] (
+    [drvSE01_SegmentCount] varchar(4) NOT NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFIDEL403B]
-    @SystemID char(12)
+CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_EGRD834EXP]
 AS
-/**********************************************************************************
-Client Name: Oxfor University Press
+SET NOCOUNT ON;
+/************************************************************
+Client: MGA Insurance
 
-Created By: Marco Lagrosa
-Business Analyst: Lea King
-Create Date: 03/20/2020
-Service Request Number: TekP-2020-02-17-0003
+Created By: James Bender
+Create Date: 7/6/2021
+ChangePoint Request Number: TekP-2021-05-10-0002
 
-Purpose: Fidelity 403B Export
+Purpose: Remove "bad" elements where record ends with Asterisk and Tilde (*~)
 
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_RecordSetDetails WHERE FormatCode = 'EFIDEL403B'; -- Skip RecordSets by ExportCode
-SELECT * FROM dbo.AscExp WHERE expFormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EFIDEL403B' ORDER BY RunID DESC;
-
-
-UPDATE U_dsi_Configuration set cfgvalue = null where  FormatCode = 'EFIDEL403B' and cfgname = 'ExportPath'
-Execute Export
---------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFIDEL403B', 'ONDEMAND';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFIDEL403B', 'TEST';
-
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EFIDEL403B', @AllObjects = 'Y'
-**********************************************************************************/
+************************************************************/
 BEGIN
 
-    --==========================================
-    -- Declare variables
-    --==========================================
-    DECLARE  @FormatCode        VARCHAR(10)
-            ,@ExportCode        VARCHAR(10)
-            ,@StartDate         DATETIME
-            ,@EndDate           DATETIME
-            ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
-
-    -- Declare dates from Parameter file
-    SELECT
-         @StartPerControl = StartPerControl
-        ,@EndPerControl   = EndPerControl
-        ,@StartDate       = CAST(LEFT(StartPerControl,8) AS DATETIME)
-        ,@EndDate         = DATEADD(SS,-1,DATEADD(DD,1,LEFT(EndPerControl,8)))
-        ,@FormatCode      = FormatCode
-        ,@ExportCode      = ExportCode
-    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = 'EFIDEL403B';
-
-    PRINT 'Start Date: ' + CONVERT(VARCHAR(26),@StartDate,100);
-    PRINT 'End Date:  ' + CONVERT(VARCHAR(26),@EndDate,100);
-
-    --==========================================
-    -- Audit Section
-    --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_EFIDEL403B_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_AuditFields;
-    CREATE TABLE dbo.U_EFIDEL403B_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfRetirement');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfTermination');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecEmplStatus');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecEmpNo');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecLocation');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecOrgLvl1');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecOrgLvl2');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecPayPeriod');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecUnionLocal');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressCity');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressCountry');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressLine1');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressLine2');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressState');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressZipCode');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepDateOfBirth');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepGender');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepMaritalStatus');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepNameFirst');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepNameLast');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepNameMiddle');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepSSN');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepEmailAddress');
-
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('OrgLevel','OrgDesc');
-
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_EFIDEL403B_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_Audit;
-    SELECT DISTINCT
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_EFIDEL403B_Audit
-    FROM dbo.U_EFIDEL403B_EEList WITH (NOLOCK)
-    JOIN dbo.vw_AuditData WITH (NOLOCK) 
-        ON audKey1Value = xEEID
-    JOIN dbo.U_EFIDEL403B_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate  AND @EndDate
-    AND audAction <> 'DELETE'
-    AND ISNULL(audNewValue,'') <> '';
-
-    --=====================================================================================
-    -- Retain Most Recent Audit Record by AudKey1, AudKey2, AudKey3 and Audit Field Name
-    --=====================================================================================
-    DELETE FROM dbo.U_EFIDEL403B_Audit WHERE audRowNo > 1;
-
-    --==========================================
-    -- Clean EE List 
-    -- Caution: Careful of cleaning EE List if including paycheck data
-    --==========================================
-
-    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EFIDEL403B_EEList
-    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EFIDEL403B_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-
-    DELETE FROM dbo.U_EFIDEL403B_EEList
-    WHERE xEEID IN (SELECT eeceeid FROM dbo.vw_int_EmpComp where eecPaygroup in ('COBRT','AGENCY','UKSUPV') );
-    
-
-
-
-    -- Changes Only
-    DELETE FROM dbo.U_EFIDEL403B_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFIDEL403B_Audit WHERE audEEID = xEEID);
-    
-    DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = '457C,457CP,457F,457P';
-
-        IF OBJECT_ID('U_EFIDEL403B_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_DedList;
-    SELECT DedCode = DedDedCode
-        ,DedLongDesc
-        ,DedType = DedDedType
-    INTO dbo.U_EFIDEL403B_DedList
-    FROM dbo.dsi_BDM_fn_ListToTable(@DedList)
-    JOIN dbo.DedCode WITH (NOLOCK)
-        ON DedDedCode = Item;
-
-        --==========================================
-    -- BDM Section
-    --==========================================
-    -- now set values for benefit module
-    DELETE FROM dbo.U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode;
-
-    -- Required parms
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'StartDateTime',@StartDate);
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'TermSelectionOption', 'AuditDate');
-
-    -- Non-required parms
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'IncludeOEDrops','Y');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS,DP');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL,DIS,STC');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','');
-
-
-    
-    EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
-    --==========================================
-    -- Build Employee Data and the driver tables
-    --==========================================
-
-    -----------------------------
-    IF OBJECT_ID('U_EFIDEL403B_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        ,PdhSource = CASE WHEN PdhDedCode IN ('457CF','457CP','457F','457P') THEN 'EEPRETAX' --401K
-                          WHEN PdhDedCode IN ('TDAPT', 'TDAC', 'TDACP', 'TDAP', 'TDA','TDAPB') THEN '403B' --ROTH
-                          WHEN PdhDedCode IN ('TDALN','THRLN') THEN 'LOAN 1' --401K LOAN
-                          WHEN PdhDedCode IN ('TDARO','TDABR') THEN 'ROTH'
-                          WHEN PdhDedCode IN ('TDANE','TDAMT' ,'TDPMC') THEN 'NEC2' 
-                          WHEN PdhDedCode IN ('DC') THEN 'MON'
-                          WHEN PdhDedCode in ('THRFS') THEN 'THRIFT06'
-                          WHEN PdhDedCode in ('THRFB') and PdhEECurAmt <> 0.00 THEN 'THRIFT_01'
-                          WHEN PdhDedCode in ('THRFB') and PdhERCurAmt <> 0.00 THEN 'THRIFT_02'
-                     END
-        ,PdhEECurAmt = SUM(PdhEECurAmt)
-        ,PdhERCurAmt = SUM(PdhERCurAmt)
-        ,PlanNo =  CASE WHEN PdhDedCode in ('457CF','457CP','457F','457P') THEN '76664'
-                        WHEN PdhDedCode in ('DC') THEN '76662'
-                        WHEN PdhDedCode in ('TDA', 'TDAP', 'TDAC', 'TDACP', 'TDANE', 'TDAPT' ,'TDARO','TDABR', 'TDAMT', 'TDAPB' , 'TDPMC' ) THEN '76661'
-                        WHEN PdhDedCode in ('TDALN' ) THEN '76661'
-                        WHEN PdhDedCode in ('THRFB', 'THRFS','THRLN' ) THEN '76663'
-                    END
-    INTO dbo.U_EFIDEL403B_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    WHERE PdhPerControl BETWEEN @StartPerControl AND @EndPerControl AND 
-    PdhDedCode IN ('457CF','457CP','457F','457P','DC','TDA','TDAC', 'TDACP','TDAP','TDALN','THRLN','TDANE','TDA', 'TDAP', 'TDAC', 'TDACP', 'TDANE', 'TDAPT' ,'TDARO','TDABR', 'TDAMT', 'TDAPB' , 'TDPMC','THRFS','THRFB')
-    GROUP BY PdhEEID
-        ,CASE WHEN PdhDedCode IN ('457CF','457CP','457F','457P') THEN 'EEPRETAX' --401K
-                          WHEN PdhDedCode IN ('TDAPT', 'TDAC', 'TDACP', 'TDAP', 'TDA','TDAPB') THEN '403B' --ROTH
-                          WHEN PdhDedCode IN ('TDALN','THRLN') THEN 'LOAN 1' --401K LOAN
-                          WHEN PdhDedCode IN ('TDARO','TDABR') THEN 'ROTH'
-                          WHEN PdhDedCode IN ('TDANE','TDAMT' ,'TDPMC') THEN 'NEC2' 
-                          WHEN PdhDedCode IN ('DC') THEN 'MON'
-                         WHEN PdhDedCode in ('THRFS') THEN 'THRIFT06'
-                         WHEN PdhDedCode in ('THRFB') and PdhEECurAmt <> 0.00 THEN 'THRIFT_01'
-                         WHEN PdhDedCode in ('THRFB') and PdhERCurAmt <> 0.00 THEN 'THRIFT_02'
-                     END
-       ,CASE WHEN PdhDedCode in ('457CF','457CP','457F','457P') THEN '76664'
-                        WHEN PdhDedCode in ('DC') THEN '76662'
-                        WHEN PdhDedCode in ('TDA', 'TDAP', 'TDAC', 'TDACP', 'TDANE', 'TDAPT' ,'TDARO','TDABR', 'TDAMT', 'TDAPB' , 'TDPMC' ) THEN '76661'
-                        WHEN PdhDedCode in ('TDALN' ) THEN '76661'
-                       WHEN PdhDedCode in ('THRFB', 'THRFS','THRLN' ) THEN '76663'
-                    END
-    HAVING (SUM(PdhEECurAmt) <> 0.00 or SUM(PdhERCurAmt) <> 0.00);
-
-
-    -------------------------------
-    -- Working Table - Employees
-    -------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_Employees','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_Employees;
-    SELECT xEEID
-        ,xCOID
-        ,EepSSN
-        ,EepNameFirst
-        ,EepNameMiddle
-        ,EepNameLast
-        ,EepGender
-        ,EepDateOfBirth
-        ,EepMaritalStatus
-        ,EepAddressLine1
-        ,EepAddressLine2
-        ,EepAddressLine3
-        ,EepAddressCity
-        ,EepAddressState
-        ,EepAddressZipCode
-        ,EepAddressCountry
-        ,EecEmpNo
-        ,EecEmplStatus
-        ,EecDateOfOriginalHire
-        ,EecDateOfLastHire
-        ,EecDateOfTermination
-        ,EecDateOfRetirement
-        ,EecLocation
-        ,EecFullTimeOrPartTime
-        ,EecPayPeriod
-        ,EecUnionLocal
-        ,EecOrgLvl1
-        ,EecOrgLvl2
-        ,OrgLvl2Desc = O2.OrgDesc
-        ,Record01Change
-        ,Record02DChange
-        ,Record02EChange
-        ,Record03Change
-        ,Record04Change
-        ,Record05Change
-        ,Record06Change
-        ,Record11Change
-        ,Record36Change
-        ,Record60Change
-        ,Record61Change
-        ,audNewHire
-        ,audReHire
-        ,audTerm
-        ,audSalaryChange
-        ,EecDateOfSeniority
-        ,EecAnnSalary
-        ,EecTermReason 
-        ,EecEmplStatusStartDate
-        ,emailAddress
-        ,eepAddressEMail
-    INTO dbo.U_EFIDEL403B_Employees
-    FROM dbo.U_EFIDEL403B_EEList
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID
-        AND EecCOID = xCOID
-    LEFT JOIN dbo.vw_int_OrgLevel O2 WITH (NOLOCK)
-        ON O2.OrgCode = EecOrgLvl2
-        AND O2.OrgLvl = '2'
-    LEFT JOIN (
-        -- Get Record Set Changes based on Audit Fields
-        SELECT audEEID
-            ,Record01Change = MAX(CASE WHEN audFieldName IN ('EepNameFirst','EepNameLast','EepNameMiddle','EepGender','EepMaritalStatus') THEN 'Y' ELSE 'N' END)
-            ,Record02DChange = MAX(CASE WHEN audFieldName IN ('EecDateOfOriginalHire','EepDateOfBirth','EecDateOfTermination') THEN 'Y' ELSE 'N' END)
-            ,Record02EChange = MAX(CASE WHEN audFieldName IN ('EecEmpNo') THEN 'Y' ELSE 'N' END)
-            ,Record03Change = MAX(CASE WHEN audFieldName IN ('EepAddressLine1','EepAddressLine2','EepAddressLine3') THEN 'Y' ELSE 'N' END)
-            ,Record04Change = MAX(CASE WHEN audFieldName IN ('EepAddressCity','EepAddressState','EepAddressZipCode') THEN 'Y' ELSE 'N' END)
-            ,Record05Change = MAX(CASE WHEN audFieldName IN ('EepAddressCountry') THEN 'Y' ELSE 'N' END)
-            ,Record06Change = MAX(CASE WHEN audFieldName IN ('OrgDesc') THEN 'Y' ELSE 'N' END)
-            ,Record11Change = MAX(CASE WHEN audFieldName IN ('EecEmplStatus') THEN 'Y' ELSE 'N' END)
-            ,Record36Change = MAX(CASE WHEN audFieldName IN ('EecOrglvl2') THEN 'Y' ELSE 'N' END)
-            ,Record60Change = MAX(CASE WHEN audFieldName IN ('EecFullTimeOrPartTime','EecOrgLvl1','EecOrgLvl2','EecLocation','EecUnionLocal','EecPayPeriod') THEN 'Y' ELSE 'N' END)
-            ,Record61Change = MAX(CASE WHEN audFieldName IN ('EecDateOfLastHire','EecDateOfRetirement') THEN 'Y' ELSE 'N' END)
-            ,audNewHire = max(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END)
-            ,audReHire = max(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END)
-            ,audTerm = MAX(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END)
-            ,audSalaryChange = max(CASE  WHEN  audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END)
-            ,emailAddress = max(CASE  WHEN  audFieldName = 'EepEmailAddress' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END)
-
-        FROM dbo.U_EFIDEL403B_Audit
-        GROUP BY audEEID
-    ) AuditRecords
-        ON audEEID = xEEID;
-
-    IF OBJECT_ID('U_EFIDEL403B_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        ,PrgPeriodStartDate             = MAX(PrgPeriodStartDate)
-        ,PrgPeriodEndDate             = MAX(PrgPeriodEndDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EFIDEL403B_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_01
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_01','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_01;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvLASTNAME = EepNameLast
-        ,drvFIRSTNAMEMIDDLEINITIAL = RTRIM(EepNameFirst) + ISNULL(LEFT(EepNameMiddle,1),'')
-        ,drvMARITALSTATUS = CASE WHEN ISNULL(eepMaritalStatus,'') in ('','Z') THEN ' ' ELSE eepMaritalStatus END
-        ,drvGENDER = CASE WHEN EepGender = 'M' THEN 'M' 
-                          WHEN EepGender = 'F' THEN 'F'
-                          ELSE ' '
-                     END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '01'
-    INTO dbo.U_EFIDEL403B_drvTbl_01
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record01Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-    --Replicate record for 457C dedcode
-    
-    INSERT INTO  dbo.U_EFIDEL403B_drvTbl_01
-   SELECT DISTINCT
-         drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvLASTNAME 
-        ,drvFIRSTNAMEMIDDLEINITIAL 
-        ,drvMARITALSTATUS 
-        ,drvGENDER 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM  dbo.U_EFIDEL403B_drvTbl_01
-    WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_02D
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_02D','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_02D;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvHIREDATE = EecDateOfOriginalHire
-        ,drvVestingDAte = (select top 1 Person_VestingDate from dbo.fn_MP_CustomFields_EmpPers_Export (NULL,NULL,NULL,NULL) where eeid = xeeid)--EecDateOfSeniority
-        ,drvDATEOFBIRTH = EepDateOfBirth
-        ,drvDateSwitch = CASE WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN '5' ELSE '' END
-        ,drvTERMINATIONDATE = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '02D'
-    INTO dbo.U_EFIDEL403B_drvTbl_02D
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' ;
-
-    --Replicate the record for 457X dedcode
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_02D
-   SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvHIREDATE 
-        ,drvVestingDAte 
-        ,drvDATEOFBIRTH 
-        ,drvDateSwitch
-        ,drvTERMINATIONDATE 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_02D 
-    WHERE  drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_02E
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_02E','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_02E;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvEMPLOYEENUMBER = EecEmpNo
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '02E'
-    INTO dbo.U_EFIDEL403B_drvTbl_02E
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record02EChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-
-      INSERT INTO  dbo.U_EFIDEL403B_drvTbl_02E
-  SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvEMPLOYEENUMBER 
-        ,drvEEID
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort
-    FROM dbo.U_EFIDEL403B_drvTbl_02E
-     where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_03
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_03','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_03;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvADDRESSLINENUMBER = LineNumber
-        ,drvADDRESS = EepAddress
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '03'
-    INTO dbo.U_EFIDEL403B_drvTbl_03
-    FROM (
-        -- Address Line 1
-        SELECT xEEID, xCOID, EepSSN, EepAddressLine1 AS EepAddress, '01' AS LineNumber, Record03Change, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Address Line 2
-        SELECT xEEID, xCOID, EepSSN, EepAddressLine2 AS EepAddress, '02' AS LineNumber, Record03Change, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Address Line 3
-        SELECT xEEID, xCOID, EepSSN, EepAddressLine3 AS EepAddress, '03' AS LineNumber, Record03Change, audNewHire,audReHire  FROM dbo.U_EFIDEL403B_Employees
-    ) Employee
-    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-
-    Delete from U_EFIDEL403B_drvTbl_03 where drvAddress is  null;
-     
-     INSERT INTO dbo.U_EFIDEL403B_drvTbl_03
-        SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvADDRESSLINENUMBER
-        ,drvADDRESS 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_03
-     where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_04
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_04','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_04;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvCITY = EepAddressCity
-        ,drvSTATE = EepAddressState
-        ,drvZIPCODE = LEFT(EepAddressZipCode,5)
-        ,drvZIP4CODE = SUBSTRING(EepAddressZipCode,6,4)
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '04'
-    INTO dbo.U_EFIDEL403B_drvTbl_04
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record04Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_04
-  SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvCITY 
-        ,drvSTATE 
-        ,drvZIPCODE 
-        ,drvZIP4CODE 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_04 where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_05
-    ---------------------------------
-    /*
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_05','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_05;
-    SELECT DISTINCT
-        drvPLANNUMBER = ''
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvCOUNTRY = EepAddressCountry
-        ,drvMAILINGINDICATOR = 'Y'
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '05'
-    INTO dbo.U_EFIDEL403B_drvTbl_05
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE EepAddressCountry NOT IN ('US','USA')
-    AND Record05Change = 'Y';
-    */
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_06
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_06','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_06;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvDIVISIONID = Concat(EecOrgLvl1,'-',EecOrgLvl2)
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '06'
-    INTO dbo.U_EFIDEL403B_drvTbl_06
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record06Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_06
-          SELECT DISTINCT
-                drvPLANNUMBER = '76664'
-                ,drvBATCHGROUPID 
-                ,drvSOCIALSECURITYNUMBER 
-                ,drvDIVISIONID 
-                ,drvEEID 
-                ,drvCoID 
-                ,drvInitialSort
-                ,drvSubSort 
-            FROM dbo.U_EFIDEL403B_drvTbl_06
-            WHERE drveeid in  (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-  ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_08
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_08','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_08;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvSalary =  CONVERT(VARCHAR,dbo.dsi_fnPadZero(EecAnnSalary*100,13,0)) 
-        ,drvSalaryInd = 'R'
-        ,drvSalPayDate = PrgPayDate
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '08'
-    INTO dbo.U_EFIDEL403B_drvTbl_08
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    LEFT JOIN dbo.U_EFIDEL403B_PEarHist WITH (NOLOCK)
-    ON PehEEID = xEEID
-    WHERE   audNewHire = 'Y' or  audReHire = 'Y';
-
-            INSERT INTO dbo.U_EFIDEL403B_drvTbl_08
-        SELECT DISTINCT
-            drvPLANNUMBER = '76664'
-            ,drvSOCIALSECURITYNUMBER 
-            ,drvSalary 
-            ,drvSalaryInd 
-            ,drvSalPayDate 
-            ,drvEEID 
-            ,drvCoID 
-            ,drvInitialSort
-            ,drvSubSort 
-        FROM dbo.U_EFIDEL403B_drvTbl_08
-        WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_11
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_11','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_11;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvSTATUSCODE = CASE WHEN EecEmplStatus = 'T' and EecTermReason = '203' THEN 'D'
-                              WHEN EecEmplStatus = 'A' THEN 'E'
-                              WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN 'H'
-                              WHEN EecEmplStatus = 'L' THEN 'L'
-                              WHEN EecEmplStatus = 'T' and EecTermReason in ('202') THEN 'R'
-                              WHEN EecEmplStatus = 'T' THEN
-                                CASE WHEN EXISTS(Select ejhreason from emphjob where ejheeid = xeeid and EjhJobEffDate between @StartDate and @EndDate and ejhreason = 'TRO' ) THEN 'I'
-                                     WHEN (Select top 1 ejhreason from emphjob where ejheeid = xeeid and EjhJobEffDate between @StartDate and @EndDate order by EjhJobEffDate desc) NOT IN ('TRO','202','203') THEN 'T'
-                                     END
-                         END
-        ,drvStatusDate = CASE WHEN EecEmplStatus = 'T' and EecTermReason = '203' THEN eecdateoftermination
-                              WHEN EecEmplStatus = 'A' THEN EecDateOfLastHire
-                              WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN EecDateOfLastHire
-                              WHEN EecEmplStatus = 'L' THEN  EecEmplStatusStartDate
-                              WHEN EecEmplStatus = 'T' and EecTermReason not in ('202') THEN eecdateoftermination
-                              WHEN EecEmplStatus = 'T' THEN eecdateoftermination
-                         END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '11'
-    INTO dbo.U_EFIDEL403B_drvTbl_11
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record11Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-            INSERT INTO dbo.U_EFIDEL403B_drvTbl_11
-            SELECT DISTINCT
-            drvPLANNUMBER = '76664'
-            ,drvBATCHGROUPID 
-            ,drvSOCIALSECURITYNUMBER 
-            ,drvSTATUSCODE
-            ,drvStatusDate
-            ,drvEEID 
-            ,drvCoID 
-            ,drvInitialSort 
-            ,drvSubSort = '11'
-            FROM dbo.U_EFIDEL403B_drvTbl_11
-            WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_36
-    ---------------------------------
-    /*
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_36','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_36;
-    SELECT DISTINCT
-        drvPLANNUMBER = ''
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvDIVISIONCODE = EecOrglvl2
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '36'
-    INTO dbo.U_EFIDEL403B_drvTbl_36
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record36Change = 'Y';
-    */
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_60
-    ---------------------------------
-    
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_60','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_60;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvPARTICIPANTCLASS = EecFullTimeOrPartTime
-        ,drvPARTICIPANTDISTRICT = ''--EecOrgLvl1
-        ,drvPARTICIPANTDEPARTMENT = ''--EecOrgLvl2
-        ,drvPARTICIPANTLOCATIONSTORE = ''--EecLocation
-        ,drvPARTICIPANTUNIONCODE = ''--EecUnionLocal
-        ,drvPARTICIPANTPAYMENTFREQ = 'B'
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '60'
-    INTO dbo.U_EFIDEL403B_drvTbl_60
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record60Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_60
-        SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvPARTICIPANTCLASS 
-        ,drvPARTICIPANTDISTRICT
-        ,drvPARTICIPANTDEPARTMENT 
-        ,drvPARTICIPANTLOCATIONSTORE 
-        ,drvPARTICIPANTUNIONCODE 
-        ,drvPARTICIPANTPAYMENTFREQ 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-        FROM dbo.U_EFIDEL403B_drvTbl_60
-        WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-    
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_61
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_61','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_61;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvEligDate = ''
-        ,drvADJUSTEDDATEOFHIRE = CASE WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN EecDateOfLastHire  ELSE '' END
-        ,drvRETIREMENTDATE = CASE WHEN EecEmplStatus = 'T' and EecTermReason = '202' THEN  eecdateoftermination ELSE EecDateOfRetirement END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '61'
-    INTO dbo.U_EFIDEL403B_drvTbl_61
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record61Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-        INSERT INTO dbo.U_EFIDEL403B_drvTbl_61
-    SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvEligDate 
-        ,drvADJUSTEDDATEOFHIRE
-        ,drvRETIREMENTDATE
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_61 WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_EA
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_EA','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_EA;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvEmployeeId = ''
-        ,drvEmailRecSeq = LineNumber
-        ,drvEmailAddress = EepAddressEmail
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = 'EA'
-    INTO dbo.U_EFIDEL403B_drvTbl_EA
-    FROM ( -- Email 1
-        SELECT xEEID, xCOID, EepSSN, SUBSTRING(EepAddressEmail, 1, 35) AS EepAddressEmail, '1' AS LineNumber, emailAddress, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Email 2
-        SELECT xEEID, xCOID, EepSSN, SUBSTRING(EepAddressEmail, 36, 70)  EepAddressEmail, '2' AS LineNumber, emailAddress, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Email 3
-        SELECT xEEID, xCOID, EepSSN, SUBSTRING(EepAddressEmail, 71, 88)  AS EepAddressEmail, '3' AS LineNumber, emailAddress, audNewHire,audReHire  FROM dbo.U_EFIDEL403B_Employees)
-        Employee
-    WHERE emailAddress = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-    Delete from U_EFIDEL403B_drvTbl_EA where drvemailaddress is null or drvemailaddress = '';
-
-
-    INSERT INTO dbo.U_EFIDEL403B_drvTbl_EA
-        SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER
-        ,drvEmployeeId 
-        ,drvEmailRecSeq 
-        ,drvEmailAddress 
-        ,drvEEID
-        ,drvCoID 
-        ,drvInitialSort
-        ,drvSubSort
-    FROM  dbo.U_EFIDEL403B_drvTbl_EA WITH (NOLOCK)
-    where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_19Q
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_19Q','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_19Q;
-    SELECT DISTINCT
-        drvPLANNUMBER = PlanNo
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvSOURCE = CASE WHEN PdhSource IN ('EEPRETAX') THEN '01' --401K
-                          WHEN PdhSource IN ('403B') THEN '01' --ROTH
-                          WHEN PdhSource IN ('ROTH') THEN '02'
-                          WHEN PdhSource IN ('MON') THEN '01'
-                          WHEN PdhSource IN ('NEC') and HIRE_REHIRE.xEEID is not null THEN '04'
-                          WHEN PdhSource IN ('NEC2','NEC') and HIRE_REHIRE.xEEID is  null THEN '03'
-                          WHEN PdhSource in ('THRIFT06') THEN '06'
-                          WHEN PdhSource in ('THRIFT_01') THEN '01'
-                     END
-        ,drvAMOUNT = CASE WHEN PdhSource in ('MON') and PdhEECurAmt <> 0.00  and PdhEECurAmt = 0.00 then PdhEECurAmt 
-                          WHEN PdhSource in ('MON') and PdhERCurAmt <> 0.00 and PdhEECurAmt = 0.00 then PdhERCurAmt
-                          WHEN PdhSource in ('NEC2') and PdhEECurAmt <> 0.00  and PdhEECurAmt = 0.00 then PdhEECurAmt 
-                          WHEN PdhSource in ('NEC2') and PdhERCurAmt <> 0.00 and PdhEECurAmt = 0.00 then PdhERCurAmt
-                          WHEN PdhSource in ('NEC') and PdhEECurAmt <> 0.00  and PdhEECurAmt = 0.00 then PdhEECurAmt 
-                          WHEN PdhSource in ('NEC') and PdhERCurAmt <> 0.00 and PdhEECurAmt = 0.00 then PdhERCurAmt
-                          WHEN PdhSource in ('THRIFT_02') and PdhERCurAmt <> 0.00 THEN PdhERCurAmt
-                          WHEN PdhSource in ('THRIFT_01') and PdhEECurAmt <> 0.00 THEN PdhEECurAmt
-                          ELSE PdhEECurAmt
-                      END 
-        ,drvEEID = PdhEEID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '19Q'
-    INTO dbo.U_EFIDEL403B_drvTbl_19Q
-    FROM dbo.U_EFIDEL403B_PDedHist WITH (NOLOCK)
-    LEFT JOIN  (SELECT xEEID,xCOID  FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE   audNewHire = 'Y' or  audReHire = 'Y') HIRE_REHIRE
-    on HIRE_REHIRE.xEEID = PdhEEID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = PdhEEID
-    WHERE PdhSource not in  ('LOAN 1','LOAN 2')
-    ;
-
-    INSERT INTO dbo.U_EFIDEL403B_drvTbl_19Q
-     SELECT DISTINCT
-        drvPLANNUMBER 
-        ,drvBATCHGROUPID
-        ,drvSOCIALSECURITYNUMBER
-        ,drvSOURCE = '02'
-        ,drvAMOUNT = PdhERCurAmt
-        ,drvEEID = PdhEEID
-        ,drvInitialSort 
-        ,drvSubSort = '19Q'
-    FROM  dbo.U_EFIDEL403B_drvTbl_19Q 
-    Join dbo.U_EFIDEL403B_PDedHist on drveeid  = pdheeid
-    WHERE PdhSource = 'THRIFT_01' and PdhERCurAmt > 0
-    AND drvPLanNumber = '76663' and drvSource = '01'
-
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_21
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_21','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_21;
-    SELECT DISTINCT
-        drvPLANNUMBER = PlanNo
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvLOANIDENTIFICATION = CASE WHEN PdhSource in ('LOAN 1','LOAN 2') THEN '' END 
-                                   
-        ,drvREPAYMENTAMOUNT = PdhEECurAmt
-        ,drvEEID = PdhEEID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '21'
-    INTO dbo.U_EFIDEL403B_drvTbl_21
-    FROM dbo.U_EFIDEL403B_PDedHist WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = PdhEEID
-    WHERE PdhSource  in  ('LOAN 1','LOAN 2') ;
-
-    --==========================================
-    -- Set FileName
-    --==========================================
-    IF (dbo.dsi_fnVariable('EFIDEL403B','UseFileName') = 'N')
+    --==================================================
+    -- Remove Blank Elements Where Row Ends With '*~'
+    --==================================================
+    WHILE (SELECT COUNT(*) FROM dbo.U_EGRD834EXP_File WHERE RIGHT(DATA,2) = '*~') > 0
     BEGIN
-        UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = CASE WHEN dbo.dsi_fnVariable('EFIDEL403B','Testing') = 'Y' THEN 'TEST_CSP_EFIDEL403B_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  ELSE 'CSP_EFIDEL403B_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                             END
-        WHERE FormatCode = 'EFIDEL403B';
+        UPDATE dbo.U_EGRD834EXP_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
 
-END;
-/**********************************************************************************
+    --========================================
+    -- Remove Extra Records from PER Segment
+    --========================================
+    UPDATE dbo.U_EGRD834EXP_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
+    UPDATE dbo.U_EGRD834EXP_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
+    UPDATE dbo.U_EGRD834EXP_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
 
---Alter the View
-ALTER VIEW dbo.dsi_vwEFIDEL403B_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EFIDEL403B_File (NOLOCK)
-    ORDER BY CASE WHEN LEFT(RecordSet,1) = 'D' THEN 10 ELSE RIGHT(RecordSet,2) END, InitialSort, SubSort;
+    --====================================
+    -- Update Record Count in SE Segment
+    --====================================
+    DECLARE @RecordCount INT;
+    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_EGRD834EXP_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE'));
+
+    UPDATE dbo.U_EGRD834EXP_File
+    SET Data = REPLACE(Data,'9999',@RecordCount)
+    WHERE LEFT(Data,2) = 'SE';
+
+END
 GO
-
---Check out AscDefF
-SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'EFIDEL403B%'
-ORDER BY AdfSetNumber, AdfFieldNumber;
-
---Update Dates
-UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '201702011'
-       ,ExpStartPerControl     = '201702011'
-       ,ExpLastEndPerControl   = '201702019'
-       ,ExpEndPerControl       = '201702019'
-WHERE ExpFormatCode = 'EFIDEL403B';
-
-**********************************************************************************/
-GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFIDEL403B]
-    @SystemID char(12)
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EGRD834EXP]
+    @systemid CHAR(12)
 AS
+SET NOCOUNT ON;
 /**********************************************************************************
-Client Name: Oxfor University Press
+Client: MGA Insurance
 
-Created By: Marco Lagrosa
+Created By: James Bender
 Business Analyst: Lea King
-Create Date: 03/20/2020
-Service Request Number: TekP-2020-02-17-0003
+Create Date: 7/6/2021
+Service Request Number: TekP-2021-05-10-0002
 
-Purpose: Fidelity 403B Export
+Purpose: Guardian 834 Export
 
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_RecordSetDetails WHERE FormatCode = 'EFIDEL403B'; -- Skip RecordSets by ExportCode
-SELECT * FROM dbo.AscExp WHERE expFormatCode = 'EFIDEL403B';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EFIDEL403B' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGRD834EXP';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EGRD834EXP';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EGRD834EXP';
+SELECT * FROM dbo.AscExp WHERE expFormatCode = 'EGRD834EXP';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EGRD834EXP' ORDER BY RunID DESC;
 
-
-UPDATE U_dsi_Configuration set cfgvalue = null where  FormatCode = 'EFIDEL403B' and cfgname = 'ExportPath'
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFIDEL403B', 'ONDEMAND';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFIDEL403B', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGRD834EXP', 'FULLFILE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGRD834EXP', 'CHANGES';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGRD834EXP', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGRD834EXP', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGRD834EXP', 'SCHEDULED';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EFIDEL403B', @AllObjects = 'Y'
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'EGRD834EXP';
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EGRD834EXP', @AllObjects = 'Y', @IsWeb = 'Y';
 **********************************************************************************/
 BEGIN
 
@@ -1649,122 +640,55 @@ BEGIN
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
+            ,@EndPerControl     VARCHAR(9)
+            ,@RunDate           VARCHAR(8)
+            ,@RunTime           VARCHAR(4)
+            ,@FileMinCovDate    DATETIME;
 
     -- Declare dates from Parameter file
     SELECT
-         @StartPerControl = StartPerControl
+         @StartPerControl  = StartPerControl
         ,@EndPerControl   = EndPerControl
         ,@StartDate       = CAST(LEFT(StartPerControl,8) AS DATETIME)
         ,@EndDate         = DATEADD(SS,-1,DATEADD(DD,1,LEFT(EndPerControl,8)))
         ,@FormatCode      = FormatCode
         ,@ExportCode      = ExportCode
+        ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
+        ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
+        ,@FileMinCovDate  = '1/1/2021'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = 'EFIDEL403B';
-
-    PRINT 'Start Date: ' + CONVERT(VARCHAR(26),@StartDate,100);
-    PRINT 'End Date:  ' + CONVERT(VARCHAR(26),@EndDate,100);
+    WHERE FormatCode = 'EGRD834EXP';
 
     --==========================================
-    -- Audit Section
+    -- Deduction Code List
     --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_EFIDEL403B_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_AuditFields;
-    CREATE TABLE dbo.U_EFIDEL403B_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfRetirement');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecDateOfTermination');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecEmplStatus');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecEmpNo');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecLocation');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecOrgLvl1');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecOrgLvl2');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecPayPeriod');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpComp','EecUnionLocal');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressCity');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressCountry');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressLine1');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressLine2');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressState');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepAddressZipCode');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepDateOfBirth');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepGender');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepMaritalStatus');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepNameFirst');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepNameLast');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepNameMiddle');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepSSN');
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('EmpPers','EepEmailAddress');
-
-    INSERT INTO dbo.U_EFIDEL403B_AuditFields VALUES ('OrgLevel','OrgDesc');
-
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_EFIDEL403B_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_Audit;
-    SELECT DISTINCT
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_EFIDEL403B_Audit
-    FROM dbo.U_EFIDEL403B_EEList WITH (NOLOCK)
-    JOIN dbo.vw_AuditData WITH (NOLOCK) 
-        ON audKey1Value = xEEID
-    JOIN dbo.U_EFIDEL403B_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE'
-    AND ISNULL(audNewValue,'') <> '';
-
-    --=====================================================================================
-    -- Retain Most Recent Audit Record by AudKey1, AudKey2, AudKey3 and Audit Field Name
-    --=====================================================================================
-    DELETE FROM dbo.U_EFIDEL403B_Audit WHERE audRowNo > 1;
-
-    --==========================================
-    -- Clean EE List 
-    -- Caution: Careful of cleaning EE List if including paycheck data
-    --==========================================
-
-    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EFIDEL403B_EEList
-    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EFIDEL403B_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-
-    DELETE FROM dbo.U_EFIDEL403B_EEList
-    WHERE xEEID IN (SELECT eeceeid FROM dbo.EmpComp where eecPaygroup in ('COBRT','AGENCY','UKSUPV') );
-    
-
-
-
-    -- Changes Only
-    DELETE FROM dbo.U_EFIDEL403B_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFIDEL403B_Audit WHERE audEEID = xEEID);
-    
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = '457C,457CP,457F,457P';
+    SET @DedList = 'ADDC,ADDE,ADDS,DENT1,DENT2,DENTO,DNT1O,DNT2O,DVS,GLF35,GLIFE,LIFEC,LIFEE,LIFES,LTDEX,LTERM,PTD1O,PTD2O,PTDN1,PTDN2,PTDNO,PTDNT,PTDVS,PTVSP,STD1,STD2,VSP';
 
-        IF OBJECT_ID('U_EFIDEL403B_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_DedList;
+    IF OBJECT_ID('U_EGRD834EXP_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_EGRD834EXP_DedList;
     SELECT DedCode = DedDedCode
         ,DedLongDesc
         ,DedType = DedDedType
-    INTO dbo.U_EFIDEL403B_DedList
+    INTO dbo.U_EGRD834EXP_DedList
     FROM dbo.dsi_BDM_fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
 
-        --==========================================
+    --==========================================
+    -- Clean EE List
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EGRD834EXP_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EGRD834EXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
+    DELETE FROM dbo.U_EGRD834EXP_EEList
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_EGRD834EXP_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
+
+    --==========================================
     -- BDM Section
     --==========================================
     -- now set values for benefit module
@@ -1781,777 +705,541 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'IncludeOEDrops','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS,DP');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL,DIS,STC');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','DPC,CHL,QCH,STC');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
 
+    --Set if OE
+    IF @ExportCode LIKE '%PASSIVE'
+    BEGIN
+         INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'PASSIVE');
+    END;
 
-    
+    IF @ExportCode LIKE '%ACTIVE'
+    BEGIN
+         INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'ACTIVE');
+    END;
+
     EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
+
+
+    UPDATE BDM
+    SET BDM.BdmBenStopDate = ED.EedBenStopDate
+        ,BDM.BdmBenStatus = ED.EedBenStatus
+    FROM dbo.U_dsi_bdm_EGRD834EXP AS BDM
+    JOIN dbo.EmpDed AS ED
+        ON ED.EedEEID = BDM.BdmEEID
+        AND ED.EedDedCode = Bdm.BdmDedCode
+    WHERE Bdm.BdmBenStopDate IS NULL
+        AND ED.EedBenStatus = 'T'
+        ;
+
+    DELETE dbo.U_dsi_bdm_EGRD834EXP WHERE BdmBenStopDate < @StartDate AND BdmBenStatus = 'T';
+
+    --=========================================
+    -- Update BdmChangeReason For Dependents
+    --=========================================
+    UPDATE D
+        SET D.BdmChangeReason = E.BdmChangeReason
+    FROM dbo.U_dsi_bdm_EGRD834EXP D
+    JOIN dbo.U_dsi_bdm_EGRD834EXP E
+        ON E.BdmEEID = D.BdmEEID
+        AND E.BdmCOID = D.BdmCOID
+        AND E.BdmDedCode = D.BdmDedCode
+    WHERE D.BdmRecType = 'DEP' AND E.BdmRecType = 'EMP';
+
+    --=====================================================
+    -- Update BdmUSGField2 with EmpDedTVID for Employees
+    --=====================================================
+    UPDATE dbo.U_dsi_bdm_EGRD834EXP
+        SET BdmUSGField2 = EedEmpDedTVID
+    FROM dbo.U_dsi_bdm_EGRD834EXP
+    JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
+        ON EedEEID = BdmEEID
+        AND EedCOID = BdmCOID
+        AND EedDedCode = BdmDedCode
+    WHERE BdmRecType = 'EMP' AND EedFormatCode = @FormatCode AND EedValidForExport = 'Y';
+
+    --=======================================================
+    -- Update BdmUSGField2 with DepBPlanTVID for Dependents
+    --=======================================================
+    UPDATE dbo.U_dsi_bdm_EGRD834EXP
+        SET BdmUSGField2 = DbnDepBPlanTVID
+    FROM dbo.U_dsi_bdm_EGRD834EXP
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+        ON DbnEEID = BdmEEID
+        AND DbnCOID = BdmCOID
+        AND DbnDedCode = BdmDedCode
+    WHERE BdmRecType = 'DEP' AND DbnFormatCode = @FormatCode AND DbnValidForExport = 'Y';
+
+    --======================================================
+    -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
+    --======================================================
+    UPDATE dbo.U_dsi_bdm_EGRD834EXP
+        SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
+    FROM dbo.U_dsi_bdm_EGRD834EXP
+    JOIN dbo.EmpDedFull WITH (NOLOCK)
+        ON EedEmpDedTVID = BdmUSGField2;
+
     --==========================================
-    -- Build Employee Data and the driver tables
+    -- Build Driver Tables
     --==========================================
 
-    -----------------------------
-    IF OBJECT_ID('U_EFIDEL403B_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_PDedHist;
+    /**************************************************************************************************************
+        HEADER RECORDS
+            - ISA, GS, ST, BGN, REF, QTY Segments
+            - LOOP 1000A/1000B RECORDS - N1 Segments
+    ***************************************************************************************************************/
+
+    -------------------
+    -- HEADER RECORD 
+    -------------------
+    IF OBJECT_ID('U_EGRD834EXP_HdrTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EGRD834EXP_HdrTbl;
+    SELECT DISTINCT drvISA05_SenderIDQual = '30'
+        ,drvISA06_SenderID = (SELECT TOP 1 CmmFedTaxId from CompMast WITH (NOLOCK))
+        ,drvISA07_ReceiverIDQual = '30'
+        ,drvISA08_ReceiverID = '135123390'
+        ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
+        ,drvISA10_InterchangeTime = @RunTime
+        ,drvISA15_UsageIndicator = CASE dbo.dsi_fnVariable(@FormatCode,'Testing') WHEN 'Y' THEN 'T' ELSE 'P' END
+        ,drvGS02_SenderID = (SELECT TOP 1 CmmFedTaxId from CompMast WITH (NOLOCK))
+        ,drvGS03_ReceiverID = '135123390'
+        ,drvGS04_Date = @RunDate
+        ,drvGS05_Time = @RunTime
+        ,drvBGN03_Date = @RunDate
+        ,drvBGN04_Time = @RunTime
+        ,drvBGN05_TimeCode = 'ES'
+        ,drvBGN06_RefID = ''
+        ,drvBGN07_TransTypeCode = ''
+        ,drvBGN08_ActionCode = 'RX'
+        ,drvREF01_RefNumberQual = '38'
+        ,drvREF02_RefNumberQual = '00452913'
+        ,drvQTY01_QuantityQual1 = ''
+        ,drvQTY02_Quantity1 = ''
+        ,drvQTY01_QuantityQual2 = ''
+        ,drvQTY02_Quantity2 = ''
+        ,drvQTY01_QuantityQual3 = ''
+        ,drvQTY02_Quantity3 = ''
+        ,drvDTP00_DateTime0 = 'DTP'
+        ,drvDTP01_DateTimeQualifier0 = '007'
+        ,drvDTP02_DateTimeFormatQual0 = 'D8'
+        ,drvDTP03_DateTimePeriod0 = GETDATE()        
+        ,drvN101_EntityIDCodeSponsor1 = 'P5'
+        ,drvN102_Name1 = 'MGA INSURANCE COMPANY'
+        ,drvN103_IDCodeQual1 = 'FI'
+        ,drvN104_IDCode1 = (SELECT TOP 1 CmmFedTaxId from CompMast WITH (NOLOCK))
+        ,drvN101_EntityIDCodeSponsor2 = 'IN'
+        ,drvN102_Name2 = 'Guardian'
+        ,drvN103_IDCodeQual2 = 'FI'
+        ,drvN104_IDCode2 = '135123390'
+    INTO dbo.U_EGRD834EXP_HdrTbl
+    FROM dbo.U_EGRD834EXP_EELIST WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_EGRD834EXP WITH (NOLOCK)
+        ON BdmEEID = xEEID
+        AND BdmCOID = xCOID;
+
+    /**************************************************************************************************************
+        DETAIL RECORDS
+            -- LOOP 2000 RECORDS - INS, REF, DTP Segments
+            -- LOOP 2100A RECORDS - NM1, PER, N3, N4, DMG, ICM Segments
+            -- LOOP 2100B RECORDS - NM1, DMG Segments
+    ***************************************************************************************************************/
+
+    -------------------
+    -- DETAIL RECORD 
+    -------------------
+    IF OBJECT_ID('U_EGRD834EXP_DrvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EGRD834EXP_DrvTbl;
     SELECT DISTINCT
-         PdhEEID
-        ,PdhSource = CASE WHEN PdhDedCode IN ('457CF','457CP','457F','457P') THEN 'EEPRETAX' --401K
-                          WHEN PdhDedCode IN ('TDAPT', 'TDAC', 'TDACP', 'TDAP', 'TDA','TDAPB') THEN '403B' --ROTH
-                          WHEN PdhDedCode IN ('TDALN','THRLN') THEN 'LOAN 1' --401K LOAN
-                          WHEN PdhDedCode IN ('TDARO','TDABR') THEN 'ROTH'
-                          WHEN PdhDedCode IN ('TDANE','TDAMT' ,'TDPMC') THEN 'NEC2' 
-                          WHEN PdhDedCode IN ('DC') THEN 'MON'
-                          WHEN PdhDedCode in ('THRFS') THEN 'THRIFT06'
-                          WHEN PdhDedCode in ('THRFB') and PdhEECurAmt <> 0.00 THEN 'THRIFT_01'
-                          WHEN PdhDedCode in ('THRFB') and PdhERCurAmt <> 0.00 THEN 'THRIFT_02'
-                     END
-        ,PdhEECurAmt = SUM(PdhEECurAmt)
-        ,PdhERCurAmt = SUM(PdhERCurAmt)
-        ,PlanNo =  CASE WHEN PdhDedCode in ('457CF','457CP','457F','457P') THEN '76664'
-                        WHEN PdhDedCode in ('DC') THEN '76662'
-                        WHEN PdhDedCode in ('TDA', 'TDAP', 'TDAC', 'TDACP', 'TDANE', 'TDAPT' ,'TDARO','TDABR', 'TDAMT', 'TDAPB' , 'TDPMC' ) THEN '76661'
-                        WHEN PdhDedCode in ('TDALN' ) THEN '76661'
-                        WHEN PdhDedCode in ('THRFB', 'THRFS','THRLN' ) THEN '76663'
-                    END
-    INTO dbo.U_EFIDEL403B_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    WHERE PdhPerControl BETWEEN @StartPerControl AND @EndPerControl AND 
-    PdhDedCode IN ('457CF','457CP','457F','457P','DC','TDA','TDAC', 'TDACP','TDAP','TDALN','THRLN','TDANE','TDA', 'TDAP', 'TDAC', 'TDACP', 'TDANE', 'TDAPT' ,'TDARO','TDABR', 'TDAMT', 'TDAPB' , 'TDPMC','THRFS','THRFB')
-    GROUP BY PdhEEID
-        ,CASE WHEN PdhDedCode IN ('457CF','457CP','457F','457P') THEN 'EEPRETAX' --401K
-                          WHEN PdhDedCode IN ('TDAPT', 'TDAC', 'TDACP', 'TDAP', 'TDA','TDAPB') THEN '403B' --ROTH
-                          WHEN PdhDedCode IN ('TDALN','THRLN') THEN 'LOAN 1' --401K LOAN
-                          WHEN PdhDedCode IN ('TDARO','TDABR') THEN 'ROTH'
-                          WHEN PdhDedCode IN ('TDANE','TDAMT' ,'TDPMC') THEN 'NEC2' 
-                          WHEN PdhDedCode IN ('DC') THEN 'MON'
-                         WHEN PdhDedCode in ('THRFS') THEN 'THRIFT06'
-                         WHEN PdhDedCode in ('THRFB') and PdhEECurAmt <> 0.00 THEN 'THRIFT_01'
-                         WHEN PdhDedCode in ('THRFB') and PdhERCurAmt <> 0.00 THEN 'THRIFT_02'
-                     END
-       ,CASE WHEN PdhDedCode in ('457CF','457CP','457F','457P') THEN '76664'
-                        WHEN PdhDedCode in ('DC') THEN '76662'
-                        WHEN PdhDedCode in ('TDA', 'TDAP', 'TDAC', 'TDACP', 'TDANE', 'TDAPT' ,'TDARO','TDABR', 'TDAMT', 'TDAPB' , 'TDPMC' ) THEN '76661'
-                        WHEN PdhDedCode in ('TDALN' ) THEN '76661'
-                       WHEN PdhDedCode in ('THRFB', 'THRFS','THRLN' ) THEN '76663'
-                    END
-    HAVING (SUM(PdhEECurAmt) <> 0.00 or SUM(PdhERCurAmt) <> 0.00);
-
-
-    -------------------------------
-    -- Working Table - Employees
-    -------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_Employees','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_Employees;
-    SELECT xEEID
-        ,xCOID
-        ,EepSSN
-        ,EepNameFirst
-        ,EepNameMiddle
-        ,EepNameLast
-        ,EepGender
-        ,EepDateOfBirth
-        ,EepMaritalStatus
-        ,EepAddressLine1
-        ,EepAddressLine2
-        ,EepAddressLine3
-        ,EepAddressCity
-        ,EepAddressState
-        ,EepAddressZipCode
-        ,EepAddressCountry
-        ,EecEmpNo
-        ,EecEmplStatus
-        ,EecDateOfOriginalHire
-        ,EecDateOfLastHire
-        ,EecDateOfTermination
-        ,EecDateOfRetirement
-        ,EecLocation
-        ,EecFullTimeOrPartTime
-        ,EecPayPeriod
-        ,EecUnionLocal
-        ,EecOrgLvl1
-        ,EecOrgLvl2
-        ,OrgLvl2Desc = O2.OrgDesc
-        ,Record01Change
-        ,Record02DChange
-        ,Record02EChange
-        ,Record03Change
-        ,Record04Change
-        ,Record05Change
-        ,Record06Change
-        ,Record11Change
-        ,Record36Change
-        ,Record60Change
-        ,Record61Change
-        ,audNewHire
-        ,audReHire
-        ,audTerm
-        ,audSalaryChange
-        ,EecDateOfSeniority
-        ,EecAnnSalary
-        ,EecTermReason 
-        ,EecEmplStatusStartDate
-        ,emailAddress
-        ,eepAddressEMail
-    INTO dbo.U_EFIDEL403B_Employees
-    FROM dbo.U_EFIDEL403B_EEList
+        --=====================
+        --LOOP 2000 RECORDS
+        --=====================
+        drvINS01_YesNoCond = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN 'Y'
+                                 ELSE 'N'
+                             END            
+        ,drvINS02_RelationshipCode = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN '18'
+                                          ELSE
+                                                CASE WHEN ConRelationship IN ('SPS') THEN '01'
+                                                    WHEN ConRelationship IN ('DP') THEN '53'
+                                                     WHEN ConRelationship IN ('DPC','CHL','QCH','STC') THEN '19'
+                                                     ELSE '19'
+                                                END
+                                     END
+        ,drvINS03_MaintTypeCode = '030' --Audit or Compare
+        ,drvINS04_MaintReasonCode = 'XN' --Notification Only
+        ,drvINS05_BenefitStatusCode = 'A'
+        ,drvINS0601_MEDICAREPLANCODE = 'E'
+        ,drvINS0602_EligibilityRsnCode = ''
+        ,drvINS07_COBRAQualEventCode = ''
+        ,drvINS08_EmploymentStatusCode = --CASE WHEN BdmRecType = 'EMP' THEN
+                                                CASE WHEN EecEmplStatus = 'T' THEN 'TE' --Termination
+                                                    ELSE 'AC'
+                                                     --WHEN EecFullTimeOrPartTime = 'F' THEN 'FT' --Full time active employee
+                                                     --WHEN EecFullTimeOrPartTime = 'P' THEN 'PT' --Part time active employee
+                                                END
+                                        -- END
+        ,drvINS09_StudentStatusCode = CASE WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN
+                                                CASE WHEN ConIsStudent = 'Y' THEN 'F' END --Full-time
+                                      END
+        ,drvINS10_ResponseCode = CASE /*WHEN BdmRecType = 'EMP' THEN
+                                        CASE WHEN EepIsDisabled = 'Y' THEN 'Y'
+                                             ELSE 'N'
+                                        END*/
+                                      WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN 
+                                        CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
+                                             ELSE 'N'
+                                        END
+                                END
+        ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
+        ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
+        -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual1 = '1L'
+        ,drvREF02_RefNumberQual1 = '00452913'
+        -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual2 = '3H'
+        ,drvREF02_RefNumberQual2 = '0000'
+        -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual3 = 'ZZ'
+        ,drvREF02_RefNumberQual3 =    CASE WHEN EecDedGroupCode IN ('FLD1','FTFL1','FTTX1') THEN '0001'
+                                        WHEN EecDedGroupCode IN ('FLD2','FTFL2','FTTX2') THEN '0002'
+                                        WHEN EecDedGroupCode IN ('EXEC') THEN '0003'
+                                        WHEN EecDedGroupCode IN ('OFF') THEN '0008'
+                                    END
+        -- If drvREF01_RefNumberQual4 is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual4 = 'DX'
+        ,drvREF02_RefNumberQual4 = EecLocation
+        -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
+        ,drvDTP00_DateTime1 = CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier1 = '286'
+        ,drvDTP02_DateTimeFormatQual1 = 'D8'
+        ,drvDTP03_DateTimePeriod1 = CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN EecDateOfTermination END
+        -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
+        ,drvDTP00_DateTime2 = 'DTP'
+        ,drvDTP01_DateTimeQualifier2 = '336'
+        ,drvDTP02_DateTimeFormatQual2 = 'D8'
+        ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
+        -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
+        ,drvDTP00_DateTime3 = CASE WHEN EecEmplStatus = 'T' THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier3 = '337'
+        ,drvDTP02_DateTimeFormatQual3 = 'D8'
+        ,drvDTP03_DateTimePeriod3 = EecDateOfTermination
+        --=====================
+        -- LOOP 2100A RECORDS
+        --=====================
+        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
+                              CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameLast
+                                   WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConNameLast
+                              END)
+        ,drvNM104_NameFirst1 = LTRIM(dbo.dsi_fnRemoveChars('.,/-',
+                               CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameFirst
+                                    WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConNameFirst
+                               END))
+        ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
+                                       CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN LEFT(EepNameMiddle,1)
+                                            WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN LEFT(ConNameMiddle,1)
+                                       END)
+        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNamePrefix END
+        ,drvNM107_NameSuffix1 = '' /*CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepNameSuffix
+                                     WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConNameSuffix
+                                END*/
+        ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepSSN, '') <> '' THEN '34'
+                                          WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL AND ISNULL(ConSSN, '') <> '' THEN '34'
+                                     END
+        ,drvNM109_IDCode1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepSSN, '') <> '' THEN EepSSN
+                                 WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL AND ISNULL(ConSSN, '') <> '' THEN ConSSN
+                            END
+        ,drvPER02_Name = ''
+        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP'
+                                            WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(eepAddressEMail, '') <> '' THEN 'EM'
+                                        END                                            
+        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber
+                                            WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(eepAddressEMail, '') <> '' THEN eepAddressEMail
+                                        END
+        ,drvPER05_CommNumberQualifier =    CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepPhoneHomeNumber, '') <> '' AND ISNULL(eepAddressEMail, '') <> '' THEN 'EM' END
+                                            
+        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL AND ISNULL(EepPhoneHomeNumber, '') <> '' AND ISNULL(eepAddressEMail, '') <> '' THEN eepAddressEMail END
+        ,drvPER07_CommNumberQualifier = '' --CASE WHEN BdmRecType = 'EMP' THEN 'EM' END
+        ,drvPER08_CommunicationNumber = '' --CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
+        ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
+        ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
+        ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
+        ,drvN402_State = EepAddressState
+        ,drvN403_Zip = EepAddressZipCode
+        ,drvN404_CountryCode = CASE WHEN EepAddressCountry NOT IN ('US','USA') THEN EepAddressCountry END
+        ,drvDMG02_DateTimePeriod1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(VARCHAR(8),EepDateOfBirth,112)
+                                         WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN CONVERT(VARCHAR(8),ConDateOfBirth,112)
+                                    END
+        ,drvDMG03_GenderCode1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN EepGender
+                                     WHEN BdmRecType = 'DEP' OR ConRelationship IS NOT NULL THEN ConGender
+                                END
+        ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN
+                                                CASE WHEN EepMaritalStatus IN ('S','Z') THEN 'I'
+                                                    WHEN EepMaritalStatus IS NULL THEN 'R'
+                                                    ELSE EepMaritalStatus
+                                                END
+                                       END
+        --If drvICM01_FrequencyCode is Populated, then send ICM Segment
+        ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN '7' END --'7'
+        ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(MONEY,EecAnnSalary) END
+        ,drvICM03_Quantity = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(MONEY,EecScheduledWorkHrs/2) END
+        ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' AND ConRelationship IS NULL THEN CONVERT(VARCHAR, dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2021', EecDateOfLastHire), 112) END
+                                            
+                                        /*CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
+                                            ELSE CONVERT(CHAR(4),YEAR(GETDATE())) + '0101'
+                                        END*/
+                               --END
+        -- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
+        ,drvAMT00_SegmentID1 = ''
+        ,drvAMT01_AmountQualifierCode1 = ''
+        ,drvAMT02_MonetaryAmount1 = ''
+        -- If drvAMT00_AmountQualifierCode2 = 'AMT' is Populated, then Send AMT Segment
+        ,drvAMT00_SegmentID2 = ''
+        ,drvAMT01_AmountQualifierCode2 = ''
+        ,drvAMT02_MonetaryAmount2 = ''
+        -- If drvHLH00_SegmentID = 'HLH' is Populated, then Send HLH Segment
+        ,drvHLH00_SegmentID = ''
+        ,drvHLH01_HealthRelatedCode = CASE WHEN BdmRecType = 'EMP' THEN --AND ConRelationship IS NULL THEN
+                                                CASE EepIsSmoker
+                                                     WHEN 'Y' THEN 'T' --Tobacco Use
+                                                     ELSE 'N' --None
+                                                END
+                                           WHEN BdmRecType = 'DEP' THEN
+                                                CASE ConIsSmoker
+                                                     WHEN 'Y' THEN 'T' --Tobacco Use
+                                                     ELSE 'N' --None
+                                                END
+                                      END
+        ,drvHLH02_Height = ''
+        ,drvHLH03_Weight1 = ''
+        ,drvHLH04_Weight2 = ''
+        ,drvHLH05_Description1 = ''
+        ,drvHLH06_CurrentHealthConditionCode = ''
+        ,drvHLH07_Description2 = ''
+        ---------------------------------
+        ,drvEEID = xEEID
+        ,drvCOID = xCOID
+        ,drvDepRecID = ConSystemID
+        ,drvSSN = EepSSN
+        ,drvInitialSort = RTRIM(EepSSN)
+        ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+    INTO dbo.U_EGRD834EXP_DrvTbl
+    FROM dbo.U_EGRD834EXP_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    LEFT JOIN dbo.OrgLevel O2 WITH (NOLOCK)
-        ON O2.OrgCode = EecOrgLvl2
-        AND O2.OrgLvl = '2'
-    LEFT JOIN (
-        -- Get Record Set Changes based on Audit Fields
-        SELECT audEEID
-            ,Record01Change = MAX(CASE WHEN audFieldName IN ('EepNameFirst','EepNameLast','EepNameMiddle','EepGender','EepMaritalStatus') THEN 'Y' ELSE 'N' END)
-            ,Record02DChange = MAX(CASE WHEN audFieldName IN ('EecDateOfOriginalHire','EepDateOfBirth','EecDateOfTermination') THEN 'Y' ELSE 'N' END)
-            ,Record02EChange = MAX(CASE WHEN audFieldName IN ('EecEmpNo') THEN 'Y' ELSE 'N' END)
-            ,Record03Change = MAX(CASE WHEN audFieldName IN ('EepAddressLine1','EepAddressLine2','EepAddressLine3') THEN 'Y' ELSE 'N' END)
-            ,Record04Change = MAX(CASE WHEN audFieldName IN ('EepAddressCity','EepAddressState','EepAddressZipCode') THEN 'Y' ELSE 'N' END)
-            ,Record05Change = MAX(CASE WHEN audFieldName IN ('EepAddressCountry') THEN 'Y' ELSE 'N' END)
-            ,Record06Change = MAX(CASE WHEN audFieldName IN ('OrgDesc') THEN 'Y' ELSE 'N' END)
-            ,Record11Change = MAX(CASE WHEN audFieldName IN ('EecEmplStatus') THEN 'Y' ELSE 'N' END)
-            ,Record36Change = MAX(CASE WHEN audFieldName IN ('EecOrglvl2') THEN 'Y' ELSE 'N' END)
-            ,Record60Change = MAX(CASE WHEN audFieldName IN ('EecFullTimeOrPartTime','EecOrgLvl1','EecOrgLvl2','EecLocation','EecUnionLocal','EecPayPeriod') THEN 'Y' ELSE 'N' END)
-            ,Record61Change = MAX(CASE WHEN audFieldName IN ('EecDateOfLastHire','EecDateOfRetirement') THEN 'Y' ELSE 'N' END)
-            ,audNewHire = max(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END)
-            ,audReHire = max(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END)
-            ,audTerm = MAX(CASE WHEN  audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END)
-            ,audSalaryChange = max(CASE  WHEN  audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END)
-            ,emailAddress = max(CASE  WHEN  audFieldName = 'EepEmailAddress' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END)
-
-        FROM dbo.U_EFIDEL403B_Audit
-        GROUP BY audEEID
-    ) AuditRecords
-        ON audEEID = xEEID;
-
-        IF OBJECT_ID('U_EFIDEL403B_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        ,PrgPeriodStartDate             = MAX(PrgPeriodStartDate)
-        ,PrgPeriodEndDate             = MAX(PrgPeriodEndDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EFIDEL403B_PEarHist
-    FROM dbo.PayReg WITH (NOLOCK)
-    JOIN dbo.PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_01
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_01','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_01;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvLASTNAME = EepNameLast
-        ,drvFIRSTNAMEMIDDLEINITIAL = RTRIM(EepNameFirst) + ISNULL(LEFT(EepNameMiddle,1),'')
-        ,drvMARITALSTATUS = CASE WHEN ISNULL(eepMaritalStatus,'') in ('','Z') THEN ' ' ELSE eepMaritalStatus END
-        ,drvGENDER = CASE WHEN EepGender = 'M' THEN 'M' 
-                          WHEN EepGender = 'F' THEN 'F'
-                          ELSE ' '
-                     END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '01'
-    INTO dbo.U_EFIDEL403B_drvTbl_01
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record01Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-    --Replicate record for 457C dedcode
-    
-    INSERT INTO  dbo.U_EFIDEL403B_drvTbl_01
-   SELECT DISTINCT
-         drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvLASTNAME 
-        ,drvFIRSTNAMEMIDDLEINITIAL 
-        ,drvMARITALSTATUS 
-        ,drvGENDER 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM  dbo.U_EFIDEL403B_drvTbl_01
-    WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_02D
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_02D','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_02D;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvHIREDATE = EecDateOfOriginalHire
-        ,drvVestingDAte = EecDateOfSeniority
-        ,drvDATEOFBIRTH = EepDateOfBirth
-        ,drvDateSwitch = CASE WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN '5' ELSE '' END
-        ,drvTERMINATIONDATE = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '02D'
-    INTO dbo.U_EFIDEL403B_drvTbl_02D
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' ;
-
-    --Replicate the record for 457X dedcode
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_02D
-   SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvHIREDATE 
-        ,drvVestingDAte 
-        ,drvDATEOFBIRTH 
-        ,drvDateSwitch
-        ,drvTERMINATIONDATE 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_02D 
-    WHERE  drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_02E
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_02E','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_02E;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvEMPLOYEENUMBER = EecEmpNo
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '02E'
-    INTO dbo.U_EFIDEL403B_drvTbl_02E
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record02EChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-
-      INSERT INTO  dbo.U_EFIDEL403B_drvTbl_02E
-  SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvEMPLOYEENUMBER 
-        ,drvEEID
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort
-    FROM dbo.U_EFIDEL403B_drvTbl_02E
-     where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_03
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_03','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_03;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvADDRESSLINENUMBER = LineNumber
-        ,drvADDRESS = EepAddress
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '03'
-    INTO dbo.U_EFIDEL403B_drvTbl_03
-    FROM (
-        -- Address Line 1
-        SELECT xEEID, xCOID, EepSSN, EepAddressLine1 AS EepAddress, '01' AS LineNumber, Record03Change, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Address Line 2
-        SELECT xEEID, xCOID, EepSSN, EepAddressLine2 AS EepAddress, '02' AS LineNumber, Record03Change, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Address Line 3
-        SELECT xEEID, xCOID, EepSSN, EepAddressLine3 AS EepAddress, '03' AS LineNumber, Record03Change, audNewHire,audReHire  FROM dbo.U_EFIDEL403B_Employees
-    ) Employee
-    WHERE Record03Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-
-    Delete from U_EFIDEL403B_drvTbl_03 where drvAddress is  null;
-     
-     INSERT INTO dbo.U_EFIDEL403B_drvTbl_03
-        SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvADDRESSLINENUMBER
-        ,drvADDRESS 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_03
-     where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_04
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_04','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_04;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvCITY = EepAddressCity
-        ,drvSTATE = EepAddressState
-        ,drvZIPCODE = LEFT(EepAddressZipCode,5)
-        ,drvZIP4CODE = SUBSTRING(EepAddressZipCode,6,4)
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '04'
-    INTO dbo.U_EFIDEL403B_drvTbl_04
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record04Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_04
-  SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvCITY 
-        ,drvSTATE 
-        ,drvZIPCODE 
-        ,drvZIP4CODE 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_04 where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_05
-    ---------------------------------
-    /*
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_05','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_05;
-    SELECT DISTINCT
-        drvPLANNUMBER = ''
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvCOUNTRY = EepAddressCountry
-        ,drvMAILINGINDICATOR = 'Y'
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '05'
-    INTO dbo.U_EFIDEL403B_drvTbl_05
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE EepAddressCountry NOT IN ('US','USA')
-    AND Record05Change = 'Y';
-    */
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_06
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_06','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_06;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvDIVISIONID = Concat(EecOrgLvl1,'-',EecOrgLvl2)
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '06'
-    INTO dbo.U_EFIDEL403B_drvTbl_06
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record06Change = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_06
-          SELECT DISTINCT
-                drvPLANNUMBER = '76664'
-                ,drvBATCHGROUPID 
-                ,drvSOCIALSECURITYNUMBER 
-                ,drvDIVISIONID 
-                ,drvEEID 
-                ,drvCoID 
-                ,drvInitialSort
-                ,drvSubSort 
-            FROM dbo.U_EFIDEL403B_drvTbl_06
-            WHERE drveeid in  (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-  ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_08
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_08','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_08;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvSalary =  CONVERT(VARCHAR,dbo.dsi_fnPadZero(EecAnnSalary*100,13,0)) 
-        ,drvSalaryInd = 'R'
-        ,drvSalPayDate = PrgPayDate
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '08'
-    INTO dbo.U_EFIDEL403B_drvTbl_08
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    LEFT JOIN dbo.U_EFIDEL403B_PEarHist WITH (NOLOCK)
-    ON PehEEID = xEEID
-    WHERE   audNewHire = 'Y' or  audReHire = 'Y';
-
-            INSERT INTO dbo.U_EFIDEL403B_drvTbl_08
-        SELECT DISTINCT
-            drvPLANNUMBER = '76664'
-            ,drvSOCIALSECURITYNUMBER 
-            ,drvSalary 
-            ,drvSalaryInd 
-            ,drvSalPayDate 
-            ,drvEEID 
-            ,drvCoID 
-            ,drvInitialSort
-            ,drvSubSort 
-        FROM dbo.U_EFIDEL403B_drvTbl_08
-        WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_11
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_11','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_11;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvSTATUSCODE = CASE WHEN EecEmplStatus = 'T' and EecTermReason = '203' THEN 'D'
-                              WHEN EecEmplStatus = 'A' THEN 'E'
-                              WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN 'H'
-                              WHEN EecEmplStatus = 'L' THEN 'L'
-                              WHEN EecEmplStatus = 'T' and EecTermReason not in ('202') THEN 'R'
-                              WHEN EecEmplStatus = 'T' THEN 'R'
-
-                         END
-        ,drvStatusDate = CASE WHEN EecEmplStatus = 'T' and EecTermReason = '203' THEN eecdateoftermination
-                              WHEN EecEmplStatus = 'A' THEN EecDateOfLastHire
-                              WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN EecDateOfLastHire
-                              WHEN EecEmplStatus = 'L' THEN  EecEmplStatusStartDate
-                              WHEN EecEmplStatus = 'T' and EecTermReason not in ('202') THEN eecdateoftermination
-                              WHEN EecEmplStatus = 'T' THEN eecdateoftermination
-                         END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '11'
-    INTO dbo.U_EFIDEL403B_drvTbl_11
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record11Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-            INSERT INTO dbo.U_EFIDEL403B_drvTbl_11
-            SELECT DISTINCT
-            drvPLANNUMBER = '76664'
-            ,drvBATCHGROUPID 
-            ,drvSOCIALSECURITYNUMBER 
-            ,drvSTATUSCODE
-            ,drvStatusDate
-            ,drvEEID 
-            ,drvCoID 
-            ,drvInitialSort 
-            ,drvSubSort = '11'
-            FROM dbo.U_EFIDEL403B_drvTbl_11
-            WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_36
-    ---------------------------------
-    /*
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_36','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_36;
-    SELECT DISTINCT
-        drvPLANNUMBER = ''
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvDIVISIONCODE = EecOrglvl2
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '36'
-    INTO dbo.U_EFIDEL403B_drvTbl_36
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record36Change = 'Y';
-    */
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_60
-    ---------------------------------
-    
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_60','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_60;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvPARTICIPANTCLASS = EecFullTimeOrPartTime
-        ,drvPARTICIPANTDISTRICT = ''--EecOrgLvl1
-        ,drvPARTICIPANTDEPARTMENT = ''--EecOrgLvl2
-        ,drvPARTICIPANTLOCATIONSTORE = ''--EecLocation
-        ,drvPARTICIPANTUNIONCODE = ''--EecUnionLocal
-        ,drvPARTICIPANTPAYMENTFREQ = 'B'
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '60'
-    INTO dbo.U_EFIDEL403B_drvTbl_60
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record60Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-      INSERT INTO dbo.U_EFIDEL403B_drvTbl_60
-        SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvPARTICIPANTCLASS 
-        ,drvPARTICIPANTDISTRICT
-        ,drvPARTICIPANTDEPARTMENT 
-        ,drvPARTICIPANTLOCATIONSTORE 
-        ,drvPARTICIPANTUNIONCODE 
-        ,drvPARTICIPANTPAYMENTFREQ 
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-        FROM dbo.U_EFIDEL403B_drvTbl_60
-        WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-    
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_61
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_61','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_61;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvEligDate = ''
-        ,drvADJUSTEDDATEOFHIRE = CASE WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN EecDateOfLastHire  ELSE '' END
-        ,drvRETIREMENTDATE = CASE WHEN EecEmplStatus = 'T' and EecTermReason = '202' THEN  eecdateoftermination ELSE EecDateOfRetirement END
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '61'
-    INTO dbo.U_EFIDEL403B_drvTbl_61
-    FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE Record61Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
-
-        INSERT INTO dbo.U_EFIDEL403B_drvTbl_61
-    SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER 
-        ,drvEligDate 
-        ,drvADJUSTEDDATEOFHIRE
-        ,drvRETIREMENTDATE
-        ,drvEEID 
-        ,drvCoID 
-        ,drvInitialSort 
-        ,drvSubSort 
-    FROM dbo.U_EFIDEL403B_drvTbl_61 WHERE drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_EA
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_EA','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_EA;
-    SELECT DISTINCT
-        drvPLANNUMBER = '76661'
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvEmployeeId = ''
-        ,drvEmailRecSeq = LineNumber
-        ,drvEmailAddress = EepAddressEmail
-        ,drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = 'EA'
-    INTO dbo.U_EFIDEL403B_drvTbl_EA
-    FROM ( -- Email 1
-        SELECT xEEID, xCOID, EepSSN, SUBSTRING(EepAddressEmail, 1, 35) AS EepAddressEmail, '1' AS LineNumber, emailAddress, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Email 2
-        SELECT xEEID, xCOID, EepSSN, SUBSTRING(EepAddressEmail, 36, 70)  EepAddressEmail, '2' AS LineNumber, emailAddress, audNewHire,audReHire FROM dbo.U_EFIDEL403B_Employees
-
-        UNION ALL
-
-        -- Email 3
-        SELECT xEEID, xCOID, EepSSN, SUBSTRING(EepAddressEmail, 71, 88)  AS EepAddressEmail, '3' AS LineNumber, emailAddress, audNewHire,audReHire  FROM dbo.U_EFIDEL403B_Employees)
-        Employee
-    WHERE emailAddress = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y';
-
-    Delete from U_EFIDEL403B_drvTbl_EA where drvemailaddress is null or drvemailaddress = '';
-
-
-    INSERT INTO dbo.U_EFIDEL403B_drvTbl_EA
-        SELECT DISTINCT
-        drvPLANNUMBER = '76664'
-        ,drvBATCHGROUPID 
-        ,drvSOCIALSECURITYNUMBER
-        ,drvEmployeeId 
-        ,drvEmailRecSeq 
-        ,drvEmailAddress 
-        ,drvEEID
-        ,drvCoID 
-        ,drvInitialSort
-        ,drvSubSort
-    FROM  dbo.U_EFIDEL403B_drvTbl_EA WITH (NOLOCK)
-    where drveeid in (select bdmeeid from U_dsi_BDM_EFIDEL403B)
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_19Q
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_19Q','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_19Q;
-    SELECT DISTINCT
-        drvPLANNUMBER = PlanNo
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvSOURCE = CASE WHEN PdhSource IN ('EEPRETAX') THEN '01' --401K
-                          WHEN PdhSource IN ('403B') THEN '01' --ROTH
-                          WHEN PdhSource IN ('ROTH') THEN '02'
-                          WHEN PdhSource IN ('MON') THEN '01'
-                          WHEN PdhSource IN ('NEC') and HIRE_REHIRE.xEEID is not null THEN '04'
-                          WHEN PdhSource IN ('NEC2','NEC') and HIRE_REHIRE.xEEID is  null THEN '03'
-                          WHEN PdhSource in ('THRIFT06') THEN '06'
-                          WHEN PdhSource in ('THRIFT_01') THEN '01'
-                     END
-        ,drvAMOUNT = CASE WHEN PdhSource in ('MON') and PdhEECurAmt <> 0.00  and PdhEECurAmt = 0.00 then PdhEECurAmt 
-                          WHEN PdhSource in ('MON') and PdhERCurAmt <> 0.00 and PdhEECurAmt = 0.00 then PdhERCurAmt
-                          WHEN PdhSource in ('NEC2') and PdhEECurAmt <> 0.00  and PdhEECurAmt = 0.00 then PdhEECurAmt 
-                          WHEN PdhSource in ('NEC2') and PdhERCurAmt <> 0.00 and PdhEECurAmt = 0.00 then PdhERCurAmt
-                          WHEN PdhSource in ('NEC') and PdhEECurAmt <> 0.00  and PdhEECurAmt = 0.00 then PdhEECurAmt 
-                          WHEN PdhSource in ('NEC') and PdhERCurAmt <> 0.00 and PdhEECurAmt = 0.00 then PdhERCurAmt
-                          WHEN PdhSource in ('THRIFT_02') and PdhERCurAmt <> 0.00 THEN PdhERCurAmt
-                          WHEN PdhSource in ('THRIFT_01') and PdhEECurAmt <> 0.00 THEN PdhEECurAmt
-                          ELSE PdhEECurAmt
-                      END 
-        ,drvEEID = PdhEEID
-        ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '19Q'
-    INTO dbo.U_EFIDEL403B_drvTbl_19Q
-    FROM dbo.U_EFIDEL403B_PDedHist WITH (NOLOCK)
-    LEFT JOIN  (SELECT xEEID,xCOID  FROM dbo.U_EFIDEL403B_Employees WITH (NOLOCK)
-    WHERE   audNewHire = 'Y' or  audReHire = 'Y') HIRE_REHIRE
-    on HIRE_REHIRE.xEEID = PdhEEID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = PdhEEID
-    WHERE PdhSource not in  ('LOAN 1','LOAN 2')
+    JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
+    JOIN dbo.U_dsi_bdm_EGRD834EXP WITH (NOLOCK)
+        ON BdmEEID = xEEID
+        AND BdmCOID = xCOID
+    LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
+        ON TchCode = EecTermReason
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND (ConSystemID = BdmDepRecID OR (ConRelationship IN ('SPS','DP','CHL') AND BdmDedCode IN ('LIFES','ADDS','LIFEC','ADDC') AND ConIsDependent = 'Y'))
     ;
 
-    INSERT INTO dbo.U_EFIDEL403B_drvTbl_19Q
-     SELECT DISTINCT
-        drvPLANNUMBER 
-        ,drvBATCHGROUPID
-        ,drvSOCIALSECURITYNUMBER
-        ,drvSOURCE = '02'
-        ,drvAMOUNT = PdhERCurAmt
-        ,drvEEID = PdhEEID
-        ,drvInitialSort 
-        ,drvSubSort = '19Q'
-    FROM  dbo.U_EFIDEL403B_drvTbl_19Q 
-    Join dbo.U_EFIDEL403B_PDedHist on drveeid  = pdheeid
-    WHERE PdhSource = 'THRIFT_01' and PdhERCurAmt > 0
-    AND drvPLanNumber = '76663' and drvSource = '01'
+    /**************************************************************************************************************
+        DETAIL RECORDS
+            -- LOOP 2300 RECORDS - HD, DTP, AMT Segments
+            -- Loop 2700 RECORDS - LX Segments
+            -- Loop 2750 RECORDS - N1, REF Segments
+    ***************************************************************************************************************/
 
-
-
-    ---------------------------------
-    -- DETAIL RECORD - U_EFIDEL403B_drvTbl_21
-    ---------------------------------
-    IF OBJECT_ID('U_EFIDEL403B_drvTbl_21','U') IS NOT NULL
-        DROP TABLE dbo.U_EFIDEL403B_drvTbl_21;
+    -------------------
+    -- DETAIL RECORD 
+    -------------------
+    IF OBJECT_ID('U_EGRD834EXP_DrvTbl_2300','U') IS NOT NULL
+        DROP TABLE dbo.U_EGRD834EXP_DrvTbl_2300;
     SELECT DISTINCT
-        drvPLANNUMBER = PlanNo
-        ,drvBATCHGROUPID = ''
-        ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-        ,drvLOANIDENTIFICATION = CASE WHEN PdhSource in ('LOAN 1','LOAN 2') THEN '' END 
-                                   
-        ,drvREPAYMENTAMOUNT = PdhEECurAmt
-        ,drvEEID = PdhEEID
+        -- If drvHD00_HealthCoverage Populated, then send HD Segment
+        drvHD00_HealthCoverage = 'HD' 
+        ,drvHD01_MaintTypeCode = '030' --Audit or Compare
+        ,drvHD02_MaintReasonCode = '' --BdmDedCode 
+        ,drvHD03_InsuranceLineCode =    CASE WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO') THEN 'DEN'
+                                            WHEN BdmDedCode IN ('PTVSP','VSP','PTDVS','DVS') THEN 'VIS'
+                                            WHEN BdmDedCode IN ('GLIFE','GLF35') THEN 'AJ'
+                                            WHEN BdmDedCode IN ('GLIFE','GLF35') THEN 'AH'
+                                            WHEN BdmDedCode IN ('LIFEE','LIFES','LIFEC') THEN 'FAC'
+                                            WHEN BdmDedCode IN ('ADDE','ADDS','ADDC') THEN 'HLT'
+                                            WHEN BdmDedCode IN ('LTDEX','LTERM') THEN 'LTD'
+                                            WHEN BdmDedCode IN ('STD1','STD2') THEN 'STD'
+                                        END
+        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode IN ('LIFEE','LIFES','LIFEC','ADDE','ADDS','ADDC') THEN FORMAT(EedBenAmt, '#0.00') -- BdmUSGField1
+                                        WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O') THEN 'VALUE'
+                                        WHEN BdmDedCode IN ('PTDN2','DENT2','DNT2O','PTD2O') THEN 'NAP'
+                                        WHEN BdmDedCode IN ('PTDNT','DENTO','PTDNO') AND EepAddressState = 'FL' THEN 'HMOFL'
+                                        WHEN BdmDedCode IN ('PTDNT','DENTO','PTDNO') AND EepAddressState = 'TX' THEN 'HMOTX'
+                                        WHEN BdmDedCode IN ('PTVSP','VSP') THEN 'VSP'
+                                        WHEN BdmDedCode IN ('PTDVS','DVS') THEN 'DAVIS'
+                                    END
+        ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('GLIFE','GLF35','STD1','STD2','LTDEX','LTERM','LIFEE','ADDE') THEN 'EMP'
+                                            WHEN BdmDedCode IN ('LIFES','ADDS') THEN 'SPO'
+                                            WHEN BdmDedCode IN ('LIFEC','ADDC') THEN 'CHD'
+                                            WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO','PTVSP','VSP','PTDVS','DVS') AND BdmBenOption = 'EE' THEN 'EMP'
+                                            WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO','PTVSP','VSP','PTDVS','DVS') AND BdmBenOption IN ('EES','EEDP') THEN 'ESP'
+                                            WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO','PTVSP','VSP','PTDVS','DVS') AND BdmBenOption IN ('EEC') THEN 'ECH'
+                                            WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO','PTVSP','VSP','PTDVS','DVS') AND BdmBenOption IN ('EEF','EEDPF') THEN 'FAM'
+                                            WHEN BdmDedCode IN ('EES','EEDP') THEN 'ESP'
+                                            WHEN BdmDedCode IN ('EEC') THEN 'ECH'
+                                            WHEN BdmDedCode IN ('EEF','EEDPF') THEN 'FAM'
+                                        END
+        -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
+        ,drvDTP00_DateTime_348 = 'DTP' 
+        ,drvDTP01_DateTimeQualifier_348 = '348' 
+        ,drvDTP02_DateTimeFormatQual_348 = 'D8' 
+        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+        -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
+        ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN  'DTP' END
+        ,drvDTP01_DateTimeQualifier_349 = '349'
+        ,drvDTP02_DateTimeFormatQual_349 = 'D8'
+        ,drvDTP03_DateTimePeriod_349 = BdmBenStopDate
+        -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
+        ,drvDTP00_DateTime_303 = CASE WHEN BdmDedType IN ('MED') THEN '' END
+        ,drvDTP01_DateTimeQualifier_303 = CASE WHEN BdmDedType IN ('MED') THEN '303' END
+        ,drvDTP02_DateTimeFormatQual_303 = CASE WHEN BdmDedType IN ('MED') THEN 'D8' END
+        ,drvDTP03_DateTimePeriod_303 = CASE WHEN BdmDedType IN ('MED') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate) END
+        -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
+        ,drvREF00_RefNumberQual1 = 'REF'
+        ,drvREF01_RefNumberQual1 = '1L'
+        ,drvREF02_RefNumberQual1 = '00452913'
+        -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
+        ,drvREF00_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        ,drvREF01_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        ,drvREF02_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
+        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        ,drvAMT01_AmountQualifierCode1 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        ,drvAMT02_MonetaryAmount1 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        ,drvAMT01_AmountQualifierCode2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        ,drvAMT02_MonetaryAmount2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
+        --=====================
+        -- Loop 2700 RECORDS
+        --=====================
+        -- If drvLS01_LoopIDCode is Populated, then send LS Segment
+        ,drvLS01_LoopIDCode = '' 
+        -- If drvLX01_AssignedNumber is Populated, then send LX Segment
+        ,drvLX01_AssignedNumber = ''
+        --=====================
+        -- Loop 2750 RECORDS
+        --=====================
+        -- If drvN101_EntityIDCodeSponsor is Populated, then send N1 Segment
+        ,drvN101_EntityIDCodeSponsor = ''
+        ,drvN102_Name = ''
+        -- If drvREF01_RefNumberQual is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual = ''
+        ,drvREF02_RefNumberDesc = CASE BdmDedType
+                                       WHEN 'MED' THEN ''
+                                       WHEN 'DEN' THEN ''
+                                       WHEN 'VIS' THEN ''
+                                  END
+        -- If drvLE01_LoopIDCode is Populated, then send LE Segment
+        ,drvLE01_LoopIDCode = ''
+        ---------------------------------
+        ,drvEEID = xEEID
+        ,drvCOID = xCOID
+        ,drvDepRecID =    CASE WHEN BdmDedCode IN ('ADDC', 'LIFEC') THEN ADDCConSystemId 
+                            WHEN BdmDedCode IN ('ADDS', 'LIFES') THEN ADDSConSystemId 
+                            ELSE ConSystemID 
+                        END
+        ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
-        ,drvSubSort = '21'
-    INTO dbo.U_EFIDEL403B_drvTbl_21
-    FROM dbo.U_EFIDEL403B_PDedHist WITH (NOLOCK)
+        ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + 
+        
+                        CASE WHEN BdmDedCode IN ('ADDC', 'LIFEC') THEN ADDCConSystemId
+                            WHEN BdmDedCode IN ('ADDS', 'LIFES') THEN ADDSConSystemId
+                            ELSE CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+                        END
+
+                      + /*CASE BdmDedType
+                             WHEN 'MED' THEN '1'
+                             WHEN 'DEN' THEN '2'
+                             WHEN 'VIS' THEN '3'
+                             ELSE '9'
+                      END*/ BdmDedCode
+    INTO dbo.U_EGRD834EXP_DrvTbl_2300
+    FROM dbo.U_EGRD834EXP_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = PdhEEID
-    WHERE PdhSource  in  ('LOAN 1','LOAN 2') ;
+        ON EepEEID = xEEID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.U_dsi_bdm_EGRD834EXP WITH (NOLOCK)
+        ON BdmEEID = xEEID
+        AND BdmCOID = xCOID
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecID --OR (ConRelationship IN ('SPS','DP') AND ConIsDependent = 'Y' AND BdmDedCode IN ('LIFES
+    LEFT JOIN (
+                SELECT DISTINCT ConSystemId AS ADDCConSystemId, ConEEID AS ADDCEEID
+                FROM dbo.Contacts WITH (NOLOCK)
+                WHERE ConIsDependent = 'Y'                
+                    AND ConRelationship NOT IN ('SPS','DP')) AS AddcDep
+        ON xEEID = ADDCEEID
+        AND BdmDedCode IN ('ADDC', 'LIFEC')
+    LEFT JOIN (
+                SELECT DISTINCT ConSystemId AS ADDSConSystemId, ConEEID AS ADDSEEID
+                FROM dbo.Contacts WITH (NOLOCK)
+                WHERE ConIsDependent = 'Y'                
+                    AND ConRelationship IN ('SPS','DP')) AS AddsDep
+        ON xEEID = ADDSEEID
+        AND BdmDedCode IN ('ADDS', 'LIFES')
+    LEFT JOIN dbo.EmpDed WITH (NOLOCK)
+        ON xEEID = EedEEID
+        AND BdmDedCode = EedDedCode
+    ;
+
+    /**************************************************************************************************
+        TRAILER RECORDS
+            - SE, GE, IEA Segments
+    **************************************************************************************************/
+    ---------------------
+    -- TRAILER RECORD
+    --------------------
+    IF OBJECT_ID('U_EGRD834EXP_TrlTbl') IS NOT NULL
+        DROP TABLE dbo.U_EGRD834EXP_TrlTbl;
+    SELECT DISTINCT drvSE01_SegmentCount = '9999'
+    INTO dbo.U_EGRD834EXP_TrlTbl;
 
     --==========================================
     -- Set FileName
     --==========================================
-    IF (dbo.dsi_fnVariable('EFIDEL403B','UseFileName') = 'N')
+    IF (dbo.dsi_fnVariable('EGRD834EXP','UseFileName') = 'N')
     BEGIN
         UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = CASE WHEN dbo.dsi_fnVariable('EFIDEL403B','Testing') = 'Y' THEN 'TEST_CSP_EFIDEL403B_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  ELSE 'CSP_EFIDEL403B_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                             END
-        WHERE FormatCode = 'EFIDEL403B';
+            SET ExportFile = 'MGAI_EGRD834EXP_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+        WHERE FormatCode = 'EGRD834EXP';
     END;
 
 END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vwEFIDEL403B_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EFIDEL403B_File (NOLOCK)
-    ORDER BY CASE WHEN LEFT(RecordSet,1) = 'D' THEN 10 ELSE RIGHT(RecordSet,2) END, InitialSort, SubSort;
+ALTER VIEW dbo.dsi_vwEGRD834EXP_Export AS
+    SELECT TOP 20000000 DATA FROM dbo.U_EGRD834EXP_File (NOLOCK)
+    ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 GO
 
 --Check out AscDefF
-SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'EFIDEL403B%'
+SELECT * FROM dbo.AscDef
+WHERE AdfHeaderSystemID LIKE 'EGRD834EXP%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '201702011'
-       ,ExpStartPerControl     = '201702011'
-       ,ExpLastEndPerControl   = '201702019'
-       ,ExpEndPerControl       = '201702019'
-WHERE ExpFormatCode = 'EFIDEL403B';
+    SET ExpLastStartPerControl = '201810011'
+       ,ExpStartPerControl     = '201810011'
+       ,ExpLastEndPerControl   = '201810019'
+       ,ExpEndPerControl       = '201810019'
+WHERE ExpFormatCode = 'EGRD834EXP';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEFIDEL403B_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EFIDEL403B_File (NOLOCK)
-    ORDER BY CASE WHEN LEFT(RecordSet,1) = 'D' THEN 10 ELSE RIGHT(RecordSet,2) END, InitialSort, SubSort;
+CREATE VIEW dbo.dsi_vwEGRD834EXP_Export AS
+    SELECT TOP 20000000 DATA FROM dbo.U_EGRD834EXP_File (NOLOCK)
+    ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
