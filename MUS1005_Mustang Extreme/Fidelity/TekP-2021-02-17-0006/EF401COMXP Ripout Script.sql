@@ -215,13 +215,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EF401COMXP_20210721.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EF401COMXP_20210803.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202106179','EMPEXPORT','OEACTIVE',NULL,'EF401COMXP',NULL,NULL,NULL,'202106179','May 25 2021 10:48AM','May 25 2021 10:48AM','202106171',NULL,'','','202106171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202106179','EMPEXPORT','OEPASSIVE',NULL,'EF401COMXP',NULL,NULL,NULL,'202106179','May 25 2021 10:48AM','May 25 2021 10:48AM','202106171',NULL,'','','202106171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Fidelity Combined 401k Export','202106179','EMPEXPORT','ONDEM_XOE',NULL,'EF401COMXP',NULL,NULL,NULL,'202106179','May 25 2021 10:48AM','May 25 2021 10:48AM','202106171',NULL,'','','202106171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Fidelity Combined 401k E-Sched','202106179','EMPEXPORT','SCH_EF401C',NULL,'EF401COMXP',NULL,NULL,NULL,'202106179','May 25 2021 10:48AM','May 25 2021 10:48AM','202106171',NULL,'','','202106171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity Combined 401k E-Test','202107099','EMPEXPORT','TEST_XOE','Jul 15 2021 11:26PM','EF401COMXP',NULL,NULL,NULL,'202107099','Jun  3 2021 12:00AM','Dec 30 1899 12:00AM','202107091','249','eecPayGroup','NONEX','202107091',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Fidelity Combined 401k E-Test','202107231','EMPEXPORT','TEST_XOE','Aug  3 2021 10:46AM','EF401COMXP',NULL,NULL,NULL,'202107231','Jul 23 2021 12:00AM','Jul 18 2021 12:00AM','202107231','181','eecPayGroup','NONEX','202107231',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EF401COMXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EF401COMXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EF401COMXP','InitialSort','C','drvSort');
@@ -727,6 +727,10 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EF401COMXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    DELETE FROM dbo.U_EF401COMXP_EEList WHERE xEEID IN (
+        SELECT DISTINCT EecEEID FROM dbo.vw_int_EmpComp WITH (NOLOCK) WHERE EecEEType IN ('TES')
+    )
+
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -1059,7 +1063,7 @@ BEGIN
         ,drvPlanNumber = '91777'
         ,drvSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(EepSSN, 5), 2) + '-' + RIGHT(RTRIM(EepSSN), 4)
         ,drvStatusCode =    CASE WHEN EecEmplStatus = 'A' AND (SELECT TOP 1 EshEmplStatus FROM dbo.EmpHStat WHERE EshEEID = xEEID order by EshDateTimeChanged DESC) = 'L' THEN 'A'
-                                WHEN EecDateOfOriginalHire  <> EecDateOfLastHire THEN 'E'
+                                WHEN EecDateOfOriginalHire  <> EecDateOfLastHire AND AudTerm <> 'Y' THEN 'E'
                                 WHEN EecEmplStatus = 'L' THEN 'L'
                                 WHEN audNewHire = 'Y' THEN 'N'
                                 WHEN EepIsDisabled = 'T' THEN 'P'
@@ -1080,7 +1084,7 @@ BEGIN
     FROM dbo.U_EF401COMXP_Employees WITH (NOLOCK)
     LEFT JOIN dbo.U_EF401COMXP_D_Audit WITH (NOLOCK)
         ON xEEID = audEEID
-    WHERE Record11Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
+    WHERE Record11Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y' OR audTerm = 'Y';
     ;
 
     DELETE FROM dbo.U_EF401COMXP_drvTbl_11 WHERE ISNULL(drvStatusCode, '') = '';
