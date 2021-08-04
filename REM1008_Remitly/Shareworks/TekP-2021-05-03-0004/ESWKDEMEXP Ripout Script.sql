@@ -45,11 +45,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESWKDEMEXP_20210729.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESWKDEMEXP_20210804.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Shareworks Demo Export','202106289','EMPEXPORT','ONDEM_XOE',NULL,'ESWKDEMEXP',NULL,NULL,NULL,'202106289','Jun 28 2021  5:47AM','Jun 28 2021  5:47AM','202106281',NULL,'','','202106281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Shareworks Demo Export-Sched','202106289','EMPEXPORT','SCH_ESWKDE',NULL,'ESWKDEMEXP',NULL,NULL,NULL,'202106289','Jun 28 2021  5:47AM','Jun 28 2021  5:47AM','202106281',NULL,'','','202106281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Shareworks Demo Export-Test','202107271','EMPEXPORT','TEST_XOE','Jul 27 2021  7:18PM','ESWKDEMEXP',NULL,NULL,NULL,'202107271','Jul 27 2021 12:00AM','Dec 30 1899 12:00AM','202107131','1731','','','202107131',dbo.fn_GetTimedKey(),NULL,'us3cPeREM1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Shareworks Demo Export-Test','202108031','EMPEXPORT','TEST_XOE','Aug  3 2021  6:51PM','ESWKDEMEXP',NULL,NULL,NULL,'202108031','Aug  3 2021 12:00AM','Dec 30 1899 12:00AM','202107271','1701','','','202107271',dbo.fn_GetTimedKey(),NULL,'us3cPeREM1008',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESWKDEMEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESWKDEMEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESWKDEMEXP','InitialSort','C','drvSort');
@@ -75,7 +75,7 @@ CREATE TABLE [dbo].[U_ESWKDEMEXP_drvTbl] (
     [drvDateOfHire] varchar(8000) NULL,
     [DrvDateOfBirth] varchar(8000) NULL,
     [drvCompanyEmail] varchar(50) NULL,
-    [drvAddressLine1] varchar(8000) NULL,
+    [drvAddressLine1] varchar(81) NULL,
     [drvAddressLine2] varchar(8000) NULL,
     [drvAddressCity] varchar(8000) NULL,
     [drvAddressState] varchar(255) NULL,
@@ -195,8 +195,10 @@ BEGIN
         ,drvDateOfHire = REPLACE(CONVERT(CHAR(11), EecDateOfOriginalHire, 106), ' ', '-')
         ,DrvDateOfBirth = REPLACE(CONVERT(CHAR(11), EepDateOfBirth, 106), ' ', '-')
         ,drvCompanyEmail = EepAddressEMail
-        ,drvAddressLine1 = REPLACE(LEFT('"' + REPLACE(REPLACE(REPLACE(EepAddressLine1, '"', ''), '”', ''), '“', ''), 127) + '"', 'ñ', 'n')
-        ,drvAddressLine2 = CASE WHEN EepAddressLine2 IS NOT NULL THEN '"' + REPLACE(REPLACE(RTRIM(EepAddressLine2), '"', ''), 'ñ', 'n') + '"' END
+        ,drvAddressLine1 = LEFT(REPLACE(LEFT('"' + REPLACE(REPLACE(REPLACE(EepAddressLine1, '"', ''), '”', ''), '“', ''), 127), 'ñ', 'n'), 80) + '"'
+        --,drvAddressLine2 = '"' + CASE WHEN LEN(EepAddressLine1) > 80  THEN SUBSTRING(REPLACE(LEFT(REPLACE(REPLACE(REPLACE(EepAddressLine1, '"', ''), '”', ''), '“', ''), 127) + '"', 'ñ', 'n'), 80, (LEN(EepAddressLine1) - 80) + 1) + ' ' ELSE '' END 
+        ,drvAddressLine2 = '"' + CASE WHEN LEN(EepAddressLine1) > 80  THEN SUBSTRING(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressLine1, '"', ''), '”', ''), '“', ''), 'ñ', 'n'), 80, (LEN(EepAddressLine1) - 80) + 1) + ' ' ELSE '' END 
+                 + CASE WHEN EepAddressLine2 IS NOT NULL THEN REPLACE(REPLACE(RTRIM(EepAddressLine2), '"', ''), 'ñ', 'n') ELSE '' END + '"'
         ,drvAddressCity = '"' + REPLACE(EepAddressCity, 'ñ', 'n') + '"'
         ,drvAddressState = EepAddressState
         ,drvAddressCountry = CodDesc --EepAddressCountry
