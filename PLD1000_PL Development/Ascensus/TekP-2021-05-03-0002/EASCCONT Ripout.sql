@@ -106,11 +106,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EASCCONT_20210724.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EASCCONT_20210729.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ascensus 401k Cont','202106269','EMPEXPORT','ONDEM_XOE',NULL,'EASCCONT',NULL,NULL,NULL,'202106269','Jun 26 2021  1:06PM','Jun 26 2021  1:06PM','202106261',NULL,'','','202106261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ascensus 401k Cont-Sched','202106269','EMPEXPORT','SCH_EASCEN',NULL,'EASCCONT',NULL,NULL,NULL,'202106269','Jun 26 2021  1:06PM','Jun 26 2021  1:06PM','202106261',NULL,'','','202106261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Ascensus 401k Cont-Test','202107099','EMPEXPORT','TEST_XOE','Jul 20 2021 12:28PM','EASCCONT',NULL,NULL,NULL,'202107099','Jul  9 2021 12:00AM','Dec 30 1899 12:00AM','202107091','1026','','','202107091',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','1TIHJ,1TILG',NULL,NULL,NULL,'Ascensus 401k Cont-Test','202107099','EMPEXPORT','TEST_XOE','Jul 28 2021  8:55AM','EASCCONT',NULL,NULL,NULL,'202107099','Jul  9 2021 12:00AM','Dec 30 1899 12:00AM','202107091','2062','eecPayGroup','WKNY','202107091',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCCONT','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCCONT','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EASCCONT','Testing','V','Y');
@@ -186,13 +186,21 @@ CREATE TABLE [dbo].[U_EASCCONT_Header] (
 IF OBJECT_ID('U_EASCCONT_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EASCCONT_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
-    [PdhPeriodComp] numeric NULL,
+    [PdhPeriod401FComp] numeric NULL,
+    [PdhPeriod401PComp] numeric NULL,
+    [PdhPeriod401CFComp] numeric NULL,
+    [PdhPeriod401CPComp] numeric NULL,
+    [PdhPeriodROTHComp] numeric NULL,
     [PdhEmpDef401k] numeric NULL,
     [PdhEmpMatch] numeric NULL,
     [PdhRoth] numeric NULL,
     [PdhLoan] numeric NULL,
     [PdhERCurAmt] numeric NULL,
-    [PdhPeriodYTDComp] numeric NULL
+    [PdhPeriod401FYTDComp] numeric NULL,
+    [PdhPeriod401PYTDComp] numeric NULL,
+    [PdhPeriod401CFYTDComp] numeric NULL,
+    [PdhPeriod401CPYTDComp] numeric NULL,
+    [PdhPeriodROTHYTDComp] numeric NULL
 );
 IF OBJECT_ID('U_EASCCONT_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EASCCONT_PEarHist] (
@@ -324,14 +332,23 @@ BEGIN
          PdhEEID
         -- Current Payroll Amounts
         --PehInclInDefComp = 'Y'
-        ,PdhPeriodComp        = SUM(CASE WHEN PdhDedCode IN ('401F','401P','401CF','401CP','ROTH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401FComp        = SUM(CASE WHEN PdhDedCode IN ('401F') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401PComp        = SUM(CASE WHEN PdhDedCode IN ('401P') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401CFComp        = SUM(CASE WHEN PdhDedCode IN ('401CF') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401CPComp        = SUM(CASE WHEN PdhDedCode IN ('401CP') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriodROTHComp        = SUM(CASE WHEN PdhDedCode IN ('ROTH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+
         ,PdhEmpDef401k        = SUM(CASE WHEN PdhDedCode IN ('401F','401P','401CF','401CP') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhEmpMatch        = SUM(CASE WHEN PdhDedCode IN ('401F','401P','401CF','401CP','ROTH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         ,PdhRoth            = SUM(CASE WHEN PdhDedCode IN ('ROTH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhLoan            = SUM(CASE WHEN PdhDedCode IN ('401L','401L2') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt        = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         -- YTD Payroll Amounts
-        ,PdhPeriodYTDComp    = SUM(CASE WHEN PdhDedCode IN ('401F','401P','401CF','401CP','ROTH') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401FYTDComp        = SUM(CASE WHEN PdhDedCode IN ('401F') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401PYTDComp        = SUM(CASE WHEN PdhDedCode IN ('401P') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401CFYTDComp        = SUM(CASE WHEN PdhDedCode IN ('401CF') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriod401CPYTDComp        = SUM(CASE WHEN PdhDedCode IN ('401CP') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
+        ,PdhPeriodROTHYTDComp        = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
     INTO dbo.U_EASCCONT_PDedHist
     FROM dbo.U_EASCCONT_EEList WITH (NOLOCK)
     JOIN dbo.PDedHist WITH (NOLOCK)
@@ -388,8 +405,20 @@ BEGIN
         ,drvNameLast = EepNameLast
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameFirst = EepNameFirst
-        ,drvPayPeriodComp = CASE WHEN PdhPeriodComp > 0 THEN PdhPeriodComp ELSE PehPeriodComp END
-        ,drvYTDComp = CASE WHEN PdhPeriodYTDComp > 0 THEN PdhPeriodYTDComp ELSE PehPeriodYTDComp END
+        ,drvPayPeriodComp = CASE WHEN PdhPeriod401FComp > 0.00 THEN PdhPeriod401FComp
+                                 WHEN PdhPeriod401PComp > 0.00 THEN PdhPeriod401PComp
+                                 WHEN PdhPeriod401CFComp > 0.00 THEN PdhPeriod401CFComp
+                                 WHEN PdhPeriod401CPComp > 0.00 THEN PdhPeriod401CPComp
+                                 WHEN PdhPeriodROTHComp > 0.00 THEN PdhPeriodROTHComp
+                                 ELSE PehPeriodComp 
+                            END
+        ,drvYTDComp = CASE WHEN PdhPeriod401FYTDComp > 0.00 THEN PdhPeriod401FYTDComp
+                                 WHEN PdhPeriod401PYTDComp > 0.00 THEN PdhPeriod401PYTDComp
+                                 WHEN PdhPeriod401CFYTDComp > 0.00 THEN PdhPeriod401CFYTDComp
+                                 WHEN PdhPeriod401CPYTDComp > 0.00 THEN PdhPeriod401CPYTDComp
+                                 WHEN PdhPeriodROTHYTDComp > 0.00 THEN PdhPeriodROTHYTDComp
+                                 ELSE PehPeriodYTDComp 
+                            END
         ,drvHours = PehCurHrs
         ,drvEmpDef401k = PdhEmpDef401k
         ,drvEmpMatch = PdhEmpMatch
