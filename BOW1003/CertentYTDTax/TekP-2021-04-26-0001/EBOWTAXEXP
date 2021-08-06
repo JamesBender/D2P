@@ -1,0 +1,328 @@
+SET NOCOUNT ON;
+IF OBJECT_ID('U_EBOWTAXEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_SavePath];
+SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EBOWTAXEXP_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EBOWTAXEXP' AND CfgName LIKE '%Path';
+IF OBJECT_ID('dsi_vwEBOWTAXEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEBOWTAXEXP_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EBOWTAXEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBOWTAXEXP];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_PEarHist];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_PDedHist];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_Header') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_Header];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_File];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_EEList];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_drvTbl];
+GO
+IF OBJECT_ID('U_EBOWTAXEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_DedList];
+GO
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EBOWTAXEXP';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EBOWTAXEXP';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EBOWTAXEXP';
+DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EBOWTAXEXP';
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EBOWTAXEXP';
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EBOWTAXEXP','Bowman Certent Tax File','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','EBOWTAXEXPZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvEqholderCd_PartID"','1','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','1',NULL,'Equityholder Code / Participant ID ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvTaxYear"','2','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','2',NULL,'Tax Year ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvYTDTotalComp"','3','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','3',NULL,'YTD Total Compensation  ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvYTDTaxableSupComp"','4','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','4',NULL,'YTD Taxable Supplemental Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvYTDSocialSecurity"','5','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','5',NULL,'YTD Social Security ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvYTDSDI"','6','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','6',NULL,'YTD SDI ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCompanyCode"','7','(''UA''=''F'')','EBOWTAXEXPZ0','50','H','01','7',NULL,'Company Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEqholderCd_PartID"','1','(''UA''=''F'')','EBOWTAXEXPZ0','50','D','10','1',NULL,'Equityholder Code / Participant ID ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTaxYear"','2','(''UD112''=''T,'')','EBOWTAXEXPZ0','50','D','10','2',NULL,'Tax Year ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDTotalComp"','3','(''UA''=''F'')','EBOWTAXEXPZ0','50','D','10','3',NULL,'YTD Total Compensation  ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDTaxableSupComp"','4','(''UA''=''F'')','EBOWTAXEXPZ0','50','D','10','4',NULL,'YTD Taxable Supplemental Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDSocialSecurity"','5','(''UA''=''F'')','EBOWTAXEXPZ0','50','D','10','5',NULL,'YTD Social Security ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDSDI"','6','(''UA''=''F'')','EBOWTAXEXPZ0','50','D','10','6',NULL,'YTD SDI ',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCompanyCode"','7','(''UA''=''F'')','EBOWTAXEXPZ0','50','D','10','7',NULL,'Company Code',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('FileName Is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Bowman Certent Tax File','202108069','EMPEXPORT','ONDEMAND',NULL,'EBOWTAXEXP',NULL,NULL,NULL,'202108069','Aug  6 2021 12:34PM','Aug  6 2021 12:34PM','202108061',NULL,'','','202108061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('FileName Is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202108069','EMPEXPORT','SCHEDULED',NULL,'EBOWTAXEXP',NULL,NULL,NULL,'202108069','Aug  6 2021 12:34PM','Aug  6 2021 12:34PM','202108061',NULL,'','','202108061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('FileName Is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202108069','EMPEXPORT','TEST',NULL,'EBOWTAXEXP',NULL,NULL,NULL,'202108069','Aug  6 2021 12:34PM','Aug  6 2021 12:34PM','202108061',NULL,'','','202108061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWTAXEXP','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWTAXEXP','ExportPath','V','\\us.saas\EW4\EW42\Downloads\V10\Exports\BOWMN\EmployeeHistoryExport\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWTAXEXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWTAXEXP','TestPath','V','\\us.saas\EW4\EW42\Downloads\V10\Exports\BOWMN\EmployeeHistoryExport\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWTAXEXP','UDESPath','C','\\us.saas\EW4\EW42\Downloads\V10\Exports\BOWMN\EmployeeHistoryExport\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWTAXEXP','UseFileName','V','N');
+UPDATE dbo.U_dsi_Configuration SET CfgValue = svCfgValue FROM dbo.U_EBOWTAXEXP_SavePath WHERE CfgName = svCfgName AND FormatCode = svFormatCode AND svCfgValue IS NOT NULL;
+IF OBJECT_ID('U_EBOWTAXEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBOWTAXEXP_SavePath];
+GO
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBOWTAXEXP','H01','dbo.U_EBOWTAXEXP_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBOWTAXEXP','D10','dbo.U_EBOWTAXEXP_drvTbl',NULL);
+IF OBJECT_ID('U_EBOWTAXEXP_DedList') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+IF OBJECT_ID('U_EBOWTAXEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEqholderCd_PartID] char(12) NOT NULL,
+    [drvTaxYear] int NULL,
+    [drvYTDTotalComp] money NULL,
+    [drvYTDTaxableSupComp] money NULL,
+    [drvYTDSocialSecurity] money NULL,
+    [drvYTDSDI] varchar(1) NOT NULL,
+    [drvCompanyCode] varchar(5) NOT NULL
+);
+IF OBJECT_ID('U_EBOWTAXEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+IF OBJECT_ID('U_EBOWTAXEXP_File') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(1000) NULL
+);
+IF OBJECT_ID('U_EBOWTAXEXP_Header') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_Header] (
+    [hrvEqholderCd_PartID] varchar(34) NOT NULL,
+    [hrvTaxYear] varchar(8) NOT NULL,
+    [hrvYTDTotalComp] varchar(22) NOT NULL,
+    [hrvYTDTaxableSupComp] varchar(37) NOT NULL,
+    [hrvYTDSocialSecurity] varchar(19) NOT NULL,
+    [hrvYTDSDI] varchar(7) NOT NULL,
+    [hrvCompanyCode] varchar(12) NOT NULL
+);
+IF OBJECT_ID('U_EBOWTAXEXP_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSource1] numeric NULL
+);
+IF OBJECT_ID('U_EBOWTAXEXP_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EBOWTAXEXP_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PehEarnCode] char(5) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBOWTAXEXP]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Bowman
+
+Created By: Luis Lugo
+Business Analyst: Richard Vars
+Create Date: 08/06/2021
+Service Request Number: TekP-2021-04-26-0001
+
+Purpose: Bowman Certent Tax File
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBOWTAXEXP';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBOWTAXEXP';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EBOWTAXEXP';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EBOWTAXEXP';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EBOWTAXEXP' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBOWTAXEXP', 'ONDEMAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBOWTAXEXP', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBOWTAXEXP', 'SCHEDULED';
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EBOWTAXEXP', @AllObjects = 'Y', @IsWeb = 'N'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EBOWTAXEXP';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EBOWTAXEXP_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EBOWTAXEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    -----------------------------
+    -- Working Table - PEarHist
+    -----------------------------
+    IF OBJECT_ID('U_EBOWTAXEXP_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EBOWTAXEXP_PEarHist;
+   SELECT DISTINCT
+         PehEEID
+        ,PehEarnCode
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_EBOWTAXEXP_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID, PehEarnCode
+    HAVING SUM(PehCurAmt) <> 0.00;
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EBOWTAXEXP_drvTbl
+    ---------------------------------
+    ---------------------------------
+    IF OBJECT_ID('U_EBOWTAXEXP_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EBOWTAXEXP_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        -- standard fields above and additional driver fields below
+        ,drvEqholderCd_PartID = EecEEID 
+        ,drvTaxYear = Year(GetDate())
+        ,drvYTDTotalComp = CASE WHEN PehEarnCode IN ('ADBVC','ADLTI','AATAX','AATNW','SFBON','BONUS','BONSG','BON2','BONSP','BONNS','BONOT','BON3','BON4',
+                                                     'BON1','BONVC','CASHA','DT','GTL','INDLV','JURY','LTIBN','MISC','RELOU','RELUM','OT100','OTSAL','OTHPA',
+                                                     'OPAYN','OT','PTO','PDTX','PDTXM','LTINC','PTOAC','PTOBK','PTOPO','REFRL','REG2','REG','RETRO','SALRY',
+                                                     'SEV','STDP','SG','STKOP','TAXPR','VOLWK','WKDHR')
+                                THEN CAST(PehCurAmtYTD AS MONEY)
+                                Else '0.00'
+                                --CONVERT (VARCHAR, CAST(PehCurAmtYTD AS MONEY)) Else 0.00
+                                END
+        ,drvYTDTaxableSupComp = CASE WHEN PehEarnCode IN ('BOANN','BOFDW','BOMYS','BON2','BONUS','BOSPM','BOSPQ','BOSTB','BOTEC','COMM','CUSBO','DELIQ','EQLN',
+                                                          'PEER','QUART','REFER','RELO','SEV','SIGN','SPOT','STAYB')
+                                THEN CAST(PehCurAmtYTD AS MONEY)
+                                Else '0.00'
+                                -- CONVERT (VARCHAR, CAST(PehCurAmtYTD AS MONEY)) Else 0.00
+                                END
+
+        ,drvYTDSocialSecurity = PthCurTaxAmt--CONVERT (VARCHAR, CAST(PdhSource1 AS DECIMAL(10,2)))
+        ,drvYTDSDI = ''
+        ,drvCompanyCode = CASE WHEN cmpcompanycode = 'BCG' THEN 'BCG'
+                               WHEN cmpcompanycode = 'BRCLC' THEN 'BRCLC'
+                               WHEN cmpcompanycode = 'NCPC2' THEN 'NCPC2'
+                               ELSE '' END
+    INTO dbo.U_EBOWTAXEXP_drvTbl
+    FROM dbo.U_EBOWTAXEXP_EEList WITH (NOLOCK)
+    JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoID = xCoID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+    LEFT JOIN dbo.U_EBOWTAXEXP_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+    LEFT JOIN dbo.U_EBOWTAXEXP_PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    LEFT JOIN dbo.PTaxHist WITH (NOLOCK)
+        ON PthEEID = xEEID
+        WHERE PthTaxCode = 'USSOCEE'
+        
+    
+    ;
+    ---------------------------------
+    -- HEADER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EBOWTAXEXP_Header','U') IS NOT NULL
+        DROP TABLE dbo.U_EBOWTAXEXP_Header;
+    SELECT DISTINCT
+         hrvEqholderCd_PartID = 'Equityholder Code / Participant ID'
+        ,hrvTaxYear = 'Tax Year'
+        ,hrvYTDTotalComp = 'YTD Total Compensation'
+        ,hrvYTDTaxableSupComp = 'YTD Taxable Supplemental Compensation'
+        ,hrvYTDSocialSecurity = 'YTD Social Security'
+        ,hrvYTDSDI = 'YTD SDI'
+        ,hrvCompanyCode = 'Company Code' --CmpCompanyCode
+    INTO dbo.U_EBOWTAXEXP_Header
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Bowman_Tax_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.csv'
+                                  WHEN @ExportCode LIKE '%TEST%' THEN 'Test_Bowman_Tax_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.csv'
+                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Bowman_Tax_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.csv'
+                                  ELSE 'Bowman_Tax_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.csv'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEBOWTAXEXP_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EBOWTAXEXP_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID LIKE 'EBOWTAXEXP%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202107301'
+       ,expStartPerControl     = '202107301'
+       ,expLastEndPerControl   = '202108069'
+       ,expEndPerControl       = '202108069'
+WHERE expFormatCode = 'EBOWTAXEXP';
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEBOWTAXEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EBOWTAXEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
