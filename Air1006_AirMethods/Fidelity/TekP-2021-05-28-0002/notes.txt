@@ -1,0 +1,14 @@
+FormatCode	CfgName	CfgType	CfgValue
+EFIDCONT2 	EEList	V	Y
+EFIDCONT2 	ExportPath	V	\\us.saas\N2\Public\AIR1006\Exports\Fidelity\
+EFIDCONT2 	InitialSort	C	DrvEEID
+EFIDCONT2 	Testing	V	N
+EFIDCONT2 	TestPath	V	\\us.saas\N2\Public\AIR1006\Exports\Fidelity\
+EFIDCONT2 	UDESPath	V	\\us.saas\n0\data_exchange\AIR1006\Exports\
+EFIDCONT2 	UseFileName	V	N
+
+
+EndPerControl	ExportCode	ExportFile	FormatCode	SessionID	StartPerControl	SystemID
+202106119	ON_DEMAND 	EFIDCONT2	EFIDCONT2 	NULL	202106111	DTIIXG000020
+
+
