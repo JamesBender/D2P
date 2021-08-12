@@ -2,7 +2,7 @@
 
 Project details
 
-Date/time:     2021-07-22 11:45:50.393
+Date/time:     2021-08-04 13:08:09.703
 Client ID:     GLE1002
 FormatCode:    EHARTFDID2
 Project:       Hartford Export V2
@@ -217,9 +217,6 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSTAPlanSummary"','134','(''UA''=''F'')','EHARTFDID2Z0','7','D','10','134',NULL,'Plan Summary',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSTAEmployeeGroupID"','135','(''UA''=''F'')','EHARTFDID2Z0','5','D','10','135',NULL,'Employee Group ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSTAEmplooyeeClassCode"','136','(''UA''=''F'')','EHARTFDID2Z0','3','D','10','136',NULL,'Employee Class Code',NULL,NULL);
-
-
-
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"~PFL~"','137','(''DA''=''F'')','EHARTFDID2Z0','5','D','10','137',NULL,'Section Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPFLStateEnrolled"','138','(''UA''=''F'')','EHARTFDID2Z0','2','D','10','138',NULL,'State PFL Enrolled',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPFLCoverageEffectiveDate"','139','(''UD112''=''F'')','EHARTFDID2Z0','8','D','10','139',NULL,'Coverage Effective Date',NULL,NULL);
@@ -227,9 +224,6 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPFLPlanSummary"','141','(''UA''=''F'')','EHARTFDID2Z0','7','D','10','141',NULL,'Plan Summary',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPFLEmployeeGroupId"','142','(''UA''=''F'')','EHARTFDID2Z0','5','D','10','142',NULL,'Employee Group ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPFLEmployeeClassCode"','143','(''UA''=''F'')','EHARTFDID2Z0','3','D','10','143',NULL,'Employee Class Code',NULL,NULL);
-
-
-
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"~FLX~"','144','(''DA''=''F'')','EHARTFDID2Z0','5','D','10','144',NULL,'Section Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','145','(''SS''=''F'')','EHARTFDID2Z0','8','D','10','145',NULL,'Coverage Effective Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','146','(''SS''=''F'')','EHARTFDID2Z0','8','D','10','146',NULL,'Coverage Termination Date',NULL,NULL);
@@ -989,18 +983,18 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EHARTFDID2_20210722.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EHARTFDID2_20210804.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102259','EMPEXPORT','OEACTIVE','Dec 17 2020 12:00AM','EHARTFDID2',NULL,NULL,NULL,'202102259','Dec 11 2020 12:00AM','Dec 30 1899 12:00AM','202102251',NULL,'','','202102251',dbo.fn_GetTimedKey(),NULL,'ULTI_GLEN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102259','EMPEXPORT','OEPASSIVE','Dec 17 2020 12:00AM','EHARTFDID2',NULL,NULL,NULL,'202102259','Dec 11 2020 12:00AM','Dec 30 1899 12:00AM','202102251',NULL,'','','202102251',dbo.fn_GetTimedKey(),NULL,'ULTI_GLEN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',5WU8J',NULL,NULL,NULL,'The Hartford Disability Leave','202102259','EMPEXPORT','ONDEM_XOE','Dec 17 2020 12:00AM','EHARTFDID2',NULL,NULL,NULL,'202102259','Dec 11 2020 12:00AM','Dec 30 1899 12:00AM','202102251',NULL,'eecPaygroup','GGH,GGM,GGSE,GGS','202102251',dbo.fn_GetTimedKey(),NULL,'ULTI_GLEN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','5WU8J',NULL,NULL,NULL,'Scheduled Session','202102259','EMPEXPORT','SCHHARTIDM','Dec 17 2020 12:00AM','EHARTFDID2',NULL,NULL,NULL,'202107169','Dec 11 2020 12:00AM','Dec 30 1899 12:00AM','202107091',NULL,'eecPaygroup','GGH,GGM,GGSE,GGS','202102251',dbo.fn_GetTimedKey(),NULL,'ULTI_GLEN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',5WU8J',NULL,NULL,NULL,'Test Purposes Only','202102259','EMPEXPORT','TEST_XOE','Jul 22 2021 12:00AM','EHARTFDID2',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102251',NULL,'','NEHRLY,NESAL,GGSENP,GGH,GGHNP,GGM,GGSNP,GGSE,GGS,GGSOE,GGSON,GGSECA,GMSH,GMSS,HOPEH,HOPES,N51,OBH,OBG,NYE,NYD,OBE,OBA,OBF,OBB,MSH,MBADMN,MBPROD,NRTHFH,NRTHFS,OBS,OBS2,RECRT,PBADMN,PBPROD,PBPRNY,PWPROD,OBD,SIERRA,SPRLT,COAST,COASTC,CORP,CPS','202102251',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102259','EMPEXPORT','OEACTIVE','Jul 22 2021 12:40PM','EHARTFDID2',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102251','802','','NEHRLY,NESAL,GGSENP,GGH,GGHNP,GGM,GGSNP,GGSE,GGS,GGSOE,GGSON,GGSECA,GMSH,GMSS,HOPEH,HOPES,N51,OBH,OBG,NYE,NYD,OBE,OBA,OBF,OBB,MSH,MBADMN,MBPROD,NRTHFH,NRTHFS,OBS,OBS2,RECRT,PBADMN,PBPROD,PBPRNY,PWPROD,OBD,SIERRA,SPRLT,COAST,COASTC,CORP,CPS','202102251',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102259','EMPEXPORT','OEPASSIVE','Jul 22 2021 12:41PM','EHARTFDID2',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102251','1068','','NEHRLY,NESAL,GGSENP,GGH,GGHNP,GGM,GGSNP,GGSE,GGS,GGSOE,GGSON,GGSECA,GMSH,GMSS,HOPEH,HOPES,N51,OBH,OBG,NYE,NYD,OBE,OBA,OBF,OBB,MSH,MBADMN,MBPROD,NRTHFH,NRTHFS,OBS,OBS2,RECRT,PBADMN,PBPROD,PBPRNY,PWPROD,OBD,SIERRA,SPRLT,COAST,COASTC,CORP,CPS','202102251',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',5WU8J',NULL,NULL,NULL,'The Hartford Disability Leave','202102259','EMPEXPORT','ONDEM_XOE','Jul 22 2021 12:43PM','EHARTFDID2',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102251','1111','eecPayGroup','GGH,GGM,GGSE,GGS','202102251',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','5WU8J',NULL,NULL,NULL,'Scheduled Session','202107169','EMPEXPORT','SCHHARTIDM','Jul 22 2021 12:44PM','EHARTFDID2',NULL,NULL,NULL,'202107169','Jul 16 2021 12:00AM','Dec 30 1899 12:00AM','202107091','1109','eecPayGroup','GGH,GGM,GGSE,GGS','202107091',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',5WU8J',NULL,NULL,NULL,'Test Purposes Only','202108049','EMPEXPORT','TEST_XOE','Aug  4 2021 12:33PM','EHARTFDID2',NULL,NULL,NULL,'202108049','Aug  4 2021 12:00AM','Dec 30 1899 12:00AM','202107211','1115','eecPayGroup','GGH,GGM,GGSE,GGS,GGSOE,GGSON','202107211',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
 
 -----------
 -- AscImp inserts
@@ -1016,7 +1010,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','OverrideCount','V','1112');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','OverrideCount','V','1115');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','Testing','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EHARTFDID2' AND CfgName IN ('ExportPath', 'TestPath') AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
@@ -1209,22 +1203,20 @@ CREATE TABLE [dbo].[U_EHARTFDID2_drvTbl] (
     [drvNSTCoverageTerminationDate] datetime NULL,
     [drvSTDCoveragePlanOption] varchar(5) NOT NULL,
     [drvNSTPlanSummary] varchar(3) NOT NULL,
-    [drvNSTEmployeeGroupID] varchar(1) NULL,
+    [drvNSTEmployeeGroupID] varchar(2) NULL,
     [drvNSTEmployeeClass] varchar(1) NOT NULL,
-    [drvSTACoverageEffectiveDate] varchar(1) NOT NULL,
-    [drvSTACoverageTerminationDate] varchar(1) NOT NULL,
-    [drvSTAStatCvgPlanOption] varchar(1) NOT NULL,
-    [drvSTAPlanSummary] varchar(1) NOT NULL,
-    [drvSTAEmployeeGroupID] varchar(1) NOT NULL,
-    [drvSTAEmplooyeeClassCode] varchar(1) NOT NULL,
-
-[drvPFLStateEnrolled] VARCHAR NULL,
-[drvPFLCoverageEffectiveDate] DATETIME NULL,
-[drvPFLCoverageTermDate] DATETIME NULL,
-[drvPFLPlanSummary] VARCHAR NULL,
-[drvPFLEmployeeGroupId] VARCHAR NULL,
-[drvPFLEmployeeClassCode] VARCHAR NULL,
-
+    [drvSTACoverageEffectiveDate] datetime NULL,
+    [drvSTACoverageTerminationDate] datetime NULL,
+    [drvSTAStatCvgPlanOption] varchar(255) NULL,
+    [drvSTAPlanSummary] varchar(3) NULL,
+    [drvSTAEmployeeGroupID] varchar(1) NULL,
+    [drvSTAEmplooyeeClassCode] varchar(1) NULL,
+    [drvPFLStateEnrolled] varchar(255) NULL,
+    [drvPFLCoverageEffectiveDate] datetime NULL,
+    [drvPFLCoverageTermDate] datetime NULL,
+    [drvPFLPlanSummary] varchar(3) NULL,
+    [drvPFLEmployeeGroupId] varchar(1) NULL,
+    [drvPFLEmployeeClassCode] varchar(1) NULL,
     [drvLTDCoverageEffectiveDate] datetime NULL,
     [drvLTDCoverageTerminationDate] datetime NULL,
     [drvLTDCoveragePlanOption] varchar(5) NULL,
@@ -1247,17 +1239,17 @@ CREATE TABLE [dbo].[U_EHARTFDID2_drvTbl] (
     [drvBLFCoverageTerminationDate] datetime NULL,
     [drvBLFMultiple] varchar(3) NOT NULL,
     [drvBLFFaceAmt] varchar(20) NULL,
-    [drvBLFEmployeeGroupID] varchar(1) NOT NULL,
+    [drvBLFEmployeeGroupID] varchar(2) NULL,
     [drvBLFEmployeeClassCode] varchar(1) NOT NULL,
     [drvBADCoverageEffectiveDate] datetime NULL,
     [drvBADCoverageTerminationDate] datetime NULL,
-    [drvBADEmployeeGroupID] varchar(1) NOT NULL,
+    [drvBADEmployeeGroupID] varchar(2) NULL,
     [drvBADEmployeeClassCode] varchar(1) NOT NULL,
     [drvLIFCoverageEffectiveDate] datetime NULL,
     [drvLIFCoverageTerminationDate] datetime NULL,
     [drvLIFFaceAmt] varchar(20) NULL,
     [drvLIFReqAmt] varchar(20) NULL,
-    [drvLIFEmployeeGroupID] varchar(1) NULL,
+    [drvLIFEmployeeGroupID] varchar(2) NULL,
     [drvLIFEmployeeClassCode] varchar(1) NULL,
     [drvADDCoverageEffectiveDate] varchar(1) NOT NULL,
     [drvADDCoverageTerminationDate] varchar(1) NOT NULL,
@@ -1269,13 +1261,13 @@ CREATE TABLE [dbo].[U_EHARTFDID2_drvTbl] (
     [drvSPLCoverageTerminationDate] datetime NULL,
     [drvSPLFaceAmt] varchar(20) NULL,
     [drvSPLReqAmt] varchar(20) NULL,
-    [drvSPLEmployeeGroupID] varchar(1) NULL,
+    [drvSPLEmployeeGroupID] varchar(2) NULL,
     [drvSPLEmployeeClassCode] varchar(1) NULL,
     [drvDPLCoverageEffectiveDate] datetime NULL,
     [drvDPLCoverageTerminationDate] datetime NULL,
     [drvDPLFaceAmt] varchar(5) NULL,
     [drvDPLReqAmt] varchar(5) NULL,
-    [drvDPLEmployeeGroupID] varchar(1) NULL,
+    [drvDPLEmployeeGroupID] varchar(2) NULL,
     [drvDPLEmployeeClassCode] varchar(1) NULL,
     [drvLMS] varchar(1) NULL,
     [drvKeyEE] varchar(1) NULL,
@@ -1948,7 +1940,11 @@ BEGIN
         ,drvClientSpecificField8Value = ''
         --END - Section Code= "~CSF~"
         --START - Section Code= "~NST~" (STD Plans)
-        ,drvNSTCoverageEffectiveDate = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) END
+        -- EVeryone except dependents
+
+        ,drvNSTCoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN NULL 
+                                            WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
+                                        END
         ,drvNSTCoverageTerminationDate = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) END
         ,drvSTDCoveragePlanOption =  CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510','520') THEN '430'
@@ -1961,17 +1957,36 @@ BEGIN
                                   ELSE '1A2' 
                                    END  -- MAX(CASE WHEN DedDedType = 'STD' THEN '' --INSERT CASE STATEMENT HERE
                              --END)
-        ,drvNSTEmployeeGroupID =  CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN '2' END 
+        ,drvNSTEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL THEN  -- JCB
+                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                                            CASE WHEN EecOrgLvl3 ='520' THEN '17'
+                                                WHEN EecOrgLvl3 ='432' THEN '19'
+                                                WHEN EecOrgLvl3 ='610' THEN '20'
+                                                WHEN EecOrgLvl3 ='412' THEN '21'
+                                                WHEN EecOrgLvl3 ='430' THEN '22'
+                                                WHEN EecOrgLvl3 ='465' THEN '23'
+                                                WHEN EecOrgLvl3 ='630' THEN '29'
+                                                WHEN EecOrgLvl3 ='436' THEN '24'
+                                                WHEN EecOrgLvl3 ='425' THEN '25'
+                                                WHEN EecOrgLvl3 ='640' THEN '28'
+                                                WHEN EecOrgLvl3 ='510' THEN '27'
+                                                WHEN EecOrgLvl3 ='410' THEN '26'                                                
+                                            END
+                                        ELSE '2'
+                                        END
+                                    END
+        
+                                --CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN '2' END 
         ,drvNSTEmployeeClass = CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510','520') THEN '3'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 NOT IN ('510','520') THEN '1'
                                   ELSE '2' 
                                    END
 
-        ,drvSTACoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN ''
+        ,drvSTACoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN NULL
                                             WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY','NJ') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
                                         END
-        ,drvSTACoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN ''
+        ,drvSTACoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN NULL
                                                 WHEN E.EecDateOFTermination is NULL THEN NULL                                                 
                                                 WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY','NJ') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
                                             END
@@ -1983,18 +1998,33 @@ BEGIN
                                     WHEN LocAddressState = 'NJ' THEN '2C1'
                                     WHEN LocAddressState = 'NY' THEN '3C1'
                                 END
-        ,drvSTAEmployeeGroupID =    CASE WHEN bdmDepRecID IS NOT NULL THEN ''
+        ,drvSTAEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL THEN ''
                                         WHEN LocAddressState = 'NJ' THEN '3'
                                         WHEN LocAddressState = 'NY' THEN '4'
                                     END
-        ,drvSTAEmplooyeeClassCode = ''
-
-        ,drvPFLStateEnrolled = ''
-        ,drvPFLCoverageEffectiveDate = ''
-        ,drvPFLCoverageTermDate = ''
-        ,drvPFLPlanSummary = ''
-        ,drvPFLEmployeeGroupId = ''
-        ,drvPFLEmployeeClassCode = ''
+        ,drvSTAEmplooyeeClassCode =    CASE WHEN BdmDepRecID IS NOT NULL THEN ''
+                                        WHEN LOcAddressState IN ('NY','NJ') THEN '1'
+                                    END
+        ,drvPFLStateEnrolled =    CASE WHEN bdmDepRecID IS NOT NULL THEN '' -- JCB
+                                    WHEN LocAddressState = 'NY' THEN LocAddressState
+                                END
+        ,drvPFLCoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN NULL
+                                            WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            ELSE NULL
+                                        END
+        ,drvPFLCoverageTermDate =    CASE WHEN bdmDepRecID IS NOT NULL THEN NULL
+                                        WHEN E.EecDateOFTermination is NULL THEN NULL                                                 
+                                        WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
+                                    END
+        ,drvPFLPlanSummary =    CASE WHEN bdmDepRecID IS NOT NULL THEN ''
+                                    WHEN LocAddressState = 'NY' THEN '1J1'
+                                END
+        ,drvPFLEmployeeGroupId =    CASE WHEN bdmDepRecID IS NOT NULL THEN ''
+                                        WHEN LocAddressState = 'NY' THEN '4'
+                                    END
+        ,drvPFLEmployeeClassCode =    CASE WHEN bdmDepRecID IS NULL THEN ''
+                                        WHEN LocAddressState = 'NY' THEN '1'
+                                    END
 
         -- MAX(CASE WHEN DedDedType = 'STD' THEN '' --INSERT CASE STATEMENT HERE
           --                       END)
@@ -2004,7 +2034,9 @@ BEGIN
         ,drvLTDCoverageTerminationDate = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM')  THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) END
         ,drvLTDCoveragePlanOption = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '60.00' END
         ,drvLTDPlanSummary =  CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM')THEN '1B1' END 
-        ,drvLTDEmployeeGroupID = CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '1' END 
+        
+        ,drvLTDEmployeeGroupID = CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '1' END  -- Correct!
+        
         ,drvLTDEmployeeClassCode = CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '1' END 
         --END - Section Code= "~LTD~"
         --START - Section Code= "~RPL~"
@@ -2034,7 +2066,25 @@ BEGIN
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('520') THEN '15000'
                                WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN  cast(cast(CEILING(CONVERT(NUMERIC(12,2), E.EecAnnSalary +  isnull(pehCurAmt_COMM,0.00)) / 1000) * 1000  as int) as varchar(20))  
                                END
-        ,drvBLFEmployeeGroupID = '1' /* CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
+        ,drvBLFEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL THEN
+                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                                            CASE WHEN EecOrgLvl3 = '432' THEN '8'
+                                                WHEN EecOrgLvl3 = '610' THEN '9'
+                                                WHEN EecOrgLvl3 = '412' THEN '10'
+                                                WHEN EecOrgLvl3 = '430' THEN '11'
+                                                WHEN EecOrgLvl3 = '465' THEN '12'
+                                                WHEN EecOrgLvl3 = '630' THEN '18'
+                                                WHEN EecOrgLvl3 = '436' THEN '13'
+                                                WHEN EecOrgLvl3 = '425' THEN '14'
+                                                WHEN EecOrgLvl3 = '640' THEN '17'
+                                                WHEN EecOrgLvl3 = '510' THEN '16'
+                                                WHEN EecOrgLvl3 = '410' THEN '15'
+                                            END
+                                            ELSE '1'
+                                        END
+                                    END
+                                    --'1'
+                                     /* CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510') THEN '1D4'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('520') THEN '1D3'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 NOT IN ('510','520') THEN '1D1'
@@ -2050,7 +2100,26 @@ BEGIN
         --START - Section Code= "~BAD~"
         ,drvBADCoverageEffectiveDate = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) END
         ,drvBADCoverageTerminationDate = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) END
-        ,drvBADEmployeeGroupID = '1' /* CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
+        ,drvBADEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL THEN
+                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                                            CASE WHEN EecOrgLvl3 = '432' THEN '8'
+                                                WHEN EecOrgLvl3 = '610' THEN '9'
+                                                WHEN EecOrgLvl3 = '412' THEN '10'
+                                                WHEN EecOrgLvl3 = '430' THEN '11'
+                                                WHEN EecOrgLvl3 = '465' THEN '12'
+                                                WHEN EecOrgLvl3 = '630' THEN '18'
+                                                WHEN EecOrgLvl3 = '436' THEN '13'
+                                                WHEN EecOrgLvl3 = '425' THEN '14'
+                                                WHEN EecOrgLvl3 = '640' THEN '17'
+                                                WHEN EecOrgLvl3 = '510' THEN '16'
+                                                WHEN EecOrgLvl3 = '410' THEN '15'
+                                            END
+                                            ELSE '1'
+                                        END
+                                    END
+        
+                                    --'1' 
+                                    /* CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510') THEN '1H4'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('520') THEN '1H3'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 NOT IN ('510','520') THEN '1H1'
@@ -2068,7 +2137,24 @@ BEGIN
         ,drvLIFCoverageTerminationDate = CASE WHEN eed_LIF.eedeeid IS NOT NULL AND Eed_LIF.eedBenStopDate IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStopDate) END
         ,drvLIFFaceAmt =  CASE WHEN eed_LIF.eedeeid IS NOT NULL THEN CASE WHEN cast(Eed_LIF.eedBenAmt as int) = 0 THEN cast('0' as varchar(20)) ELSE cast(cast(nullif(Eed_LIF.eedBenAmt,0.00) as int) as varchar(20)) END END
         ,drvLIFReqAmt =  CASE WHEN eed_LIF.eedeeid IS NOT NULL THEN cast(cast(Eed_LIF.eedUSGField1 as int) as varchar(20)) END
-        ,drvLIFEmployeeGroupID =  CASE WHEN eed_LIF.eedeeid IS NOT NULL  THEN '1' END 
+        ,drvLIFEmployeeGroupID =    CASE WHEN eed_LIF.eedeeid IS NOT NULL THEN
+                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                                            CASE WHEN EecOrgLvl3 = '432' THEN '8'
+                                                WHEN EecOrgLvl3 = '610' THEN '9'
+                                                WHEN EecOrgLvl3 = '412' THEN '10'
+                                                WHEN EecOrgLvl3 = '430' THEN '11'
+                                                WHEN EecOrgLvl3 = '465' THEN '12'
+                                                WHEN EecOrgLvl3 = '630' THEN '18'
+                                                WHEN EecOrgLvl3 = '436' THEN '13'
+                                                WHEN EecOrgLvl3 = '425' THEN '14'
+                                                WHEN EecOrgLvl3 = '640' THEN '17'
+                                                WHEN EecOrgLvl3 = '510' THEN '16'
+                                                WHEN EecOrgLvl3 = '410' THEN '15'
+                                            END
+                                            ELSE '1'
+                                        END
+                                    END
+                                    --CASE WHEN eed_LIF.eedeeid IS NOT NULL  THEN '1' END 
         ,drvLIFEmployeeClassCode = CASE WHEN eed_LIF.eedeeid IS NOT NULL  THEN '1' END 
         --END - Section Code= "~LIF~"
         --START - Section Code= "~ADD~"
@@ -2084,7 +2170,24 @@ BEGIN
         ,drvSPLCoverageTerminationDate = CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL AND bdmBenStopDate IS NOT NULL  THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStopDate) END
         ,drvSPLFaceAmt =  CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL THEN CASE WHEN cast(eed_SPL.eedBenAmt as int) = 0 THEN cast('0' as varchar(20)) ELSE cast(cast(nullif(eed_SPL.eedBenAmt,0.00) as int) as varchar(20)) END END
         ,drvSPLReqAmt =  CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL THEN cast(cast(eed_SPL.eedUSGField1 as int) as varchar(20)) END
-        ,drvSPLEmployeeGroupID =  CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL THEN '1' END 
+        ,drvSPLEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPLSP' THEN
+                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                                            CASE WHEN EecOrgLvl3 = '432' THEN '8'
+                                                WHEN EecOrgLvl3 = '610' THEN '9'
+                                                WHEN EecOrgLvl3 = '412' THEN '10'
+                                                WHEN EecOrgLvl3 = '430' THEN '11'
+                                                WHEN EecOrgLvl3 = '465' THEN '12'
+                                                WHEN EecOrgLvl3 = '630' THEN '18'
+                                                WHEN EecOrgLvl3 = '436' THEN '13'
+                                                WHEN EecOrgLvl3 = '425' THEN '14'
+                                                WHEN EecOrgLvl3 = '640' THEN '17'
+                                                WHEN EecOrgLvl3 = '510' THEN '16'
+                                                WHEN EecOrgLvl3 = '410' THEN '15'
+                                            END
+                                            ELSE '1'
+                                        END
+                                    END
+                                    --CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL THEN '1' END 
         ,drvSPLEmployeeClassCode = CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL  THEN '1' END 
         --END - Section Code= "~SPL~"
         --START - Section Code= "~DPL~"
@@ -2092,7 +2195,24 @@ BEGIN
         ,drvDPLCoverageTerminationDate = CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL AND bdmBenStopDate IS NOT NULL  THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStopDate) END
         ,drvDPLFaceAmt =  CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL THEN '10000' END --dbo.dsi_fnPadZero(cast(10000 as int) ,11,0) END
         ,drvDPLReqAmt =  CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL THEN '10000' END -- dbo.dsi_fnPadZero(cast(10000 as int) ,11,0) END
-        ,drvDPLEmployeeGroupID =  CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL THEN '1' END 
+        ,drvDPLEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPTCH' THEN
+                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                                            CASE WHEN EecOrgLvl3 = '432' THEN '8'
+                                                WHEN EecOrgLvl3 = '610' THEN '9'
+                                                WHEN EecOrgLvl3 = '412' THEN '10'
+                                                WHEN EecOrgLvl3 = '430' THEN '11'
+                                                WHEN EecOrgLvl3 = '465' THEN '12'
+                                                WHEN EecOrgLvl3 = '630' THEN '18'
+                                                WHEN EecOrgLvl3 = '436' THEN '13'
+                                                WHEN EecOrgLvl3 = '425' THEN '14'
+                                                WHEN EecOrgLvl3 = '640' THEN '17'
+                                                WHEN EecOrgLvl3 = '510' THEN '16'
+                                                WHEN EecOrgLvl3 = '410' THEN '15'
+                                            END
+                                            ELSE '1'
+                                        END
+                                    END
+                                --CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL THEN '1' END 
         ,drvDPLEmployeeClassCode = CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL  THEN '1' END 
         --END - Section Code= "~DPL~"
         ,drvLMS = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL

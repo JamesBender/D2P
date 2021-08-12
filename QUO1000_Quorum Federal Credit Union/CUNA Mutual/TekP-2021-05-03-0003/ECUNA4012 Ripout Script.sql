@@ -79,13 +79,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUNA4012_20210802.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUNA4012_20210809.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202108029','EMPEXPORT','OEACTIVE','Aug  2 2021 12:44PM','ECUNA4012',NULL,NULL,NULL,'202108029','Aug  2 2021 10:22AM','Aug  2 2021 10:22AM','202107011','27','','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202108029','EMPEXPORT','OEPASSIVE','Aug  2 2021 12:44PM','ECUNA4012',NULL,NULL,NULL,'202108029','Aug  2 2021 10:22AM','Aug  2 2021 10:22AM','202107011','166','','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'CUNA - 401k V2','202108029','EMPEXPORT','ONDEM_XOE','Aug  2 2021 12:45PM','ECUNA4012',NULL,NULL,NULL,'202108029','Aug  2 2021 10:22AM','Aug  2 2021 10:22AM','202107011','166','','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'CUNA - 401k V2-Sched','202108029','EMPEXPORT','SCH_ECUNA4','Aug  2 2021 12:45PM','ECUNA4012',NULL,NULL,NULL,'202108029','Aug  2 2021 10:22AM','Aug  2 2021 10:22AM','202107011','166','','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'CUNA - 401k V2-Test','202108029','EMPEXPORT','TEST_XOE','Aug  2 2021 12:45PM','ECUNA4012',NULL,NULL,NULL,'202108029','Aug  2 2021 10:22AM','Aug  2 2021 10:22AM','202107011','166','','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'CUNA - 401k V2-Test','202108069','EMPEXPORT','TEST_XOE','Aug  9 2021  9:10AM','ECUNA4012',NULL,NULL,NULL,'202108069','Aug  6 2021 12:00AM','Dec 30 1899 12:00AM','202108061','136','','','202108061',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUNA4012','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUNA4012','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUNA4012','InitialSort','C','drvSort');
@@ -355,7 +355,7 @@ BEGIN
         ,PdhEEDeferral        = SUM(CASE WHEN PdhDedCode IN ('401CF','401P','401CP') THEN PdhEECurAmt ELSE 0.00 END)      
         ,PdhEERoth            = SUM(CASE WHEN PdhDedCode IN ('401KR','401RC') THEN PdhEECurAmt ELSE 0.00 END)     
         ,PdhERMatch            = SUM(CASE WHEN PdhDedCode IN ('401M') THEN PdhERCurAmt ELSE 0.00 END)     
-        ,PdhLoanPmt1        = SUM(CASE WHEN PdhDedCode IN ('401L','401L2') THEN PdhERCurAmt ELSE 0.00 END)     
+        ,PdhLoanPmt1        = SUM(CASE WHEN PdhDedCode IN ('401L','401L2') THEN PdhEECurAmt ELSE 0.00 END)     
     INTO dbo.U_ECUNA4012_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_ECUNA4012_DedList WITH (NOLOCK)
@@ -428,16 +428,16 @@ BEGIN
         ,drvDateOfBirth = EepDateOfBirth
         ,drvHireDate = EecDateOfOriginalHire
         ,drvEntryDate = EdBenStartDate
-        ,drvStatusChangeDate =    CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination
-                                    WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate
-                                    WHEN EecEmplStatus = 'A' THEN EshStatusStopDate 
+        ,drvStatusChangeDate =    CASE WHEN EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate THEN EecDateOfTermination
+                                    WHEN EecEmplStatus = 'L' AND EecEmplStatusStartDate BETWEEN @StartDate AND @EndDate THEN EecEmplStatusStartDate
+                                    WHEN EecEmplStatus = 'A' AND EshStatusStopDate BETWEEN @StartDate AND @EndDate THEN EshStatusStopDate 
                                 END
-        ,drvStatusChangeReason =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('203','202') THEN '1'
-                                        WHEN EecEmplStatus = 'T' AND EecTermReason IN ('203') THEN '5'
-                                        WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202') THEN '7'
-                                        WHEN EecEmplStatus = 'L' AND EecLeaveReason = '300' THEN '2'
-                                        WHEN EecEmplStatus = 'L' AND EecLeaveReason NOT IN ('300') THEN '4'
-                                        WHEN EecEmplStatus = 'A' AND EshStatusStartDate IS NOT NULL THEN '8'
+        ,drvStatusChangeReason =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('203','202') AND EecDateOfTermination BETWEEN @StartDate AND @EndDate THEN '1'
+                                        WHEN EecEmplStatus = 'T' AND EecTermReason IN ('203') AND EecDateOfTermination BETWEEN @StartDate AND @EndDate THEN '5'
+                                        WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202') AND EecDateOfTermination BETWEEN @StartDate AND @EndDate THEN '7'
+                                        WHEN EecEmplStatus = 'L' AND EecLeaveReason = '300' AND EecEmplStatusStartDate BETWEEN @StartDate AND @EndDate THEN '2'
+                                        WHEN EecEmplStatus = 'L' AND EecLeaveReason NOT IN ('300') AND EecEmplStatusStartDate BETWEEN @StartDate AND @EndDate THEN '4'
+                                        WHEN EecEmplStatus = 'A' AND EshStatusStartDate IS NOT NULL AND EshStatusStopDate BETWEEN @StartDate AND @EndDate THEN '8'
                                     END
         ,drvRehireDate = CASE WHEN EecDateOfLastHire <> EecDateOfOriginalHire THEN EecDateOfLastHire END
         ,drvAddressLine1 = REPLACE(EepAddressLine1, ',', '')
@@ -453,7 +453,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_ECUNA4012 WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_ECUNA4012 WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_ECUNA4012_PDedHist WITH (NOLOCK)
@@ -477,7 +477,7 @@ BEGIN
         ON EshEEID = xEEID
         AND EshCOID = xCOID
     WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN DATEADD(DAY, -14 ,@EndDate) AND @EndDate))
-        AND (PdhEEDeferral <> 0.00 OR PdhEERoth <> 0.00 OR PdhERMatch <> 0.00 OR PdhLoanPmt1 <> 0.00)
+        AND ((PdhEEDeferral <> 0.00 OR PdhEERoth <> 0.00 OR PdhERMatch <> 0.00 OR PdhLoanPmt1 <> 0.00) OR BdmDedCode IS NOT NULL)
     ;
 
     --==========================================
