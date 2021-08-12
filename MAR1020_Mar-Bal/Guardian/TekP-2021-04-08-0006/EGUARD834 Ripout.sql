@@ -233,7 +233,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202105249','EMPEXPORT','OEACTIVE',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202105249','EMPEXPORT','OEPASSIVE',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\EGUARD834.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian 834 Export','202105249','EMPEXPORT','SCHEDULED',NULL,'EGUARD834',NULL,NULL,NULL,'202105249',NULL,'Dec 30 1899 12:00AM','202105241',NULL,'','','202105241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_EGUARD834_20210618a.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202106231','EMPEXPORT','TEST','Jun 23 2021 11:55AM','EGUARD834',NULL,NULL,NULL,'202106231','Jun 23 2021 12:00AM','Dec 30 1899 12:00AM','202106181','11445','','','202106181',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\EW1\EW14\Downloads\V10\Exports\MARBA\EmployeeHistoryExport\MARBA_EGUARD834_20210729.txt',NULL,'','','',NULL,NULL,NULL,'Test File','202108051','EMPEXPORT','TEST','Aug  6 2021 11:08AM','EGUARD834',NULL,NULL,NULL,'202108051','Aug  5 2021 12:00AM','Dec 30 1899 12:00AM','202107291','12230','','','202107291',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGUARD834','ExportPath','V',NULL);
@@ -1089,7 +1089,7 @@ BEGIN
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LIFES') THEN 'FAC'
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADSBW', 'ADSW') THEN 'HLT'
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW') THEN 'FAC'
-                                           WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN 'FAC'
+                                           WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN 'HLT'
                                      END
         ,drvHD04_PlanCoverageDesc = CASE WHEN BdmRecType = 'EMP' AND LTRIM(RTRIM(BdmDedCode)) = 'LIFEE'  THEN CONVERT(VARCHAR(20),EedBenAmt)
                                          WHEN LTRIM(RTRIM(BdmDedCode)) IN ('ADEBW', 'ADEW')  THEN CONVERT(VARCHAR(20),EedBenAmt)  
@@ -1179,7 +1179,7 @@ BEGIN
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LIFES') THEN '6'
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADSBW', 'ADSW') THEN '7'
                                            WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW') THEN '6'
-                                           WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN '6'
+                                           WHEN BdmRecType = 'DEP' AND LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN '8'
                                         ELSE '9'
                                      END
         ,drvSubSort2 = CASE WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LBW10', 'LW10', 'LBW30', 'LBW50', 'LTDBW', 'LIFEE', 'ADEBW', 'ADEW') THEN '1' 
@@ -1188,7 +1188,8 @@ BEGIN
                             WHEN BdmBenOption IN ('EEC','EECT', 'EECBU', 'EECW') THEN '3'
                             WHEN BdmBenOption IN ('EEF', 'EEFBU', 'EEFT', 'EECW', 'EEFW') THEN '4'
                             WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LIFES', 'ADSBW', 'ADSW') THEN '5'
-                            WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW', 'ADCBW', 'ADCW') THEN '6'
+                            WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW') THEN '6'
+                            WHEN LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN '8'
                         ELSE '9'
                          END
     INTO dbo.U_EGUARD834_DrvTbl_2300
@@ -1287,7 +1288,8 @@ BEGIN
                             WHEN BdmBenOption IN ('EEC','EECT', 'EECBU', 'EECW') THEN '3'
                             WHEN BdmBenOption IN ('EEF', 'EEFBU', 'EEFT', 'EECW', 'EEFW') THEN '4'
                             WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LIFES', 'ADSBW', 'ADSW') THEN '5'
-                            WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW', 'ADCBW', 'ADCW') THEN '6'
+                            WHEN LTRIM(RTRIM(BdmDedCode)) IN ('LFCBW', 'LFCW') THEN '6'
+                            WHEN LTRIM(RTRIM(BdmDedCode)) IN ('ADCBW', 'ADCW') THEN '8'
                         ELSE '9'
                          END
     FROM dbo.U_EGUARD834_EELIST WITH (NOLOCK)

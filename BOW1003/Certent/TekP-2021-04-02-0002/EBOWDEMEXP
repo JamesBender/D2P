@@ -1,0 +1,398 @@
+SET NOCOUNT ON;
+IF OBJECT_ID('U_EBOWDEMEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBOWDEMEXP_SavePath];
+SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EBOWDEMEXP_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EBOWDEMEXP' AND CfgName LIKE '%Path';
+IF OBJECT_ID('dsi_vwEBOWDEMEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEBOWDEMEXP_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EBOWDEMEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBOWDEMEXP];
+GO
+IF OBJECT_ID('U_EBOWDEMEXP_Header') IS NOT NULL DROP TABLE [dbo].[U_EBOWDEMEXP_Header];
+GO
+IF OBJECT_ID('U_EBOWDEMEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EBOWDEMEXP_File];
+GO
+IF OBJECT_ID('U_EBOWDEMEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBOWDEMEXP_EEList];
+GO
+IF OBJECT_ID('U_EBOWDEMEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EBOWDEMEXP_drvTbl];
+GO
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EBOWDEMEXP';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EBOWDEMEXP';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EBOWDEMEXP';
+DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EBOWDEMEXP';
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EBOWDEMEXP';
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','CDE','EBOWDEMEXP','Bowman Certent Demographic','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','N','S','N','EBOWDEMEXPZ0','N','Jan  1 1900 12:00AM','C','N');
+/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EBOWDEMEXP' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvEquholdCode_PartID"','1','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','1',NULL,'EquityholderCode/ParticipantID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvSSN_Tax_ID"','2','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','2',NULL,'SSN/Tax ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvFirstName "','3','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','3',NULL,'FirstName',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvLastName "','4','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','4',NULL,'LastName',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvUserCode1"','5','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','5',NULL,'UserCode1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvHomeAddressLine1 "','6','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','6',NULL,'HomeAddressLine1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvHomeAddressLine2 "','7','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','7',NULL,'HomeAddressLine2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvHomeDistRegion "','8','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','8',NULL,'HomeDistrictorRegion',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvHomeCity "','9','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','9',NULL,'HomeCity',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrStateorProv"','10','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','10',NULL,'CurrentStateorProvince',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrPostalCode"','11','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','11',NULL,'CurrentPostalCode',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrCountry"','12','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','12',NULL,'CurrentCountry',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvUserCode2"','13','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','13',NULL,'UserCode2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurr_WorkEmailAdd"','14','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','14',NULL,'Current/WorkEmailAddress',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvUserCode3"','15','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','15',NULL,'UserCode3',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvDateRelatshipStart"','16','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','16',NULL,'DateRelationshipStarted',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvTerminationDate"','17','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','17',NULL,'TerminationDate',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvTerminationType"','18','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','18',NULL,'TerminationType',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrJobTitle"','19','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','19',NULL,'CurrentJobTitle',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrDept"','20','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','20',NULL,'CurrentDepartment',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrSection"','21','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','21',NULL,'CurrentSection',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvCurrBranch"','22','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','22',NULL,'CurrentBranch',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvSubsCode"','23','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','23',NULL,'SubsidiaryCode',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvExpGroup  "','24','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','24',NULL,'ExperienceGroup',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvUserCode4"','25','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','25',NULL,'UserCode4',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvDateofBirth"','26','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','26',NULL,'DateofBirth',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvAsofDate"','27','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','27',NULL,'AsofDate',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvAnnualSalary"','28','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','28',NULL,'AnnualSalary',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvRetEligDate"','29','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','29',NULL,'RetirementEligibilityDate',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"hrvRelattoCompany"','30','(''UA''=''F'')','EBOWDEMEXPZ0','50','H','01','30',NULL,'RelationshiptoCompany',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEqholderCd_PartID"','1','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','1',NULL,'EquityholderCode/ParticipantID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN_TaxID"','2','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','2',NULL,'SSN/Tax ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFirstName "','3','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','3',NULL,'FirstName',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLastName "','4','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','4',NULL,'LastName',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvUserCode1"','5','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','5',NULL,'UserCode1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHomeAddressLine1 "','6','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','6',NULL,'HomeAddressLine1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHomeAddressLine2 "','7','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','7',NULL,'HomeAddressLine2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHomeDistrictorRegion "','8','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','8',NULL,'HomeDistrictorRegion',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHomeCity "','9','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','9',NULL,'HomeCity',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrentStateorProvince"','10','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','10',NULL,'CurrentStateorProvince',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrentPostalCode"','11','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','11',NULL,'CurrentPostalCode',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrentCountry"','12','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','12',NULL,'CurrentCountry',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvUserCode2"','13','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','13',NULL,'UserCode2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurr_WorkEmailAddr"','14','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','14',NULL,'Current/WorkEmailAddress',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvUserCode3"','15','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','15',NULL,'UserCode3',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateRelatStarted"','16','(''UD112''=''T,'')','EBOWDEMEXPZ0','50','D','10','16',NULL,'DateRelationshipStarted',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTermDate"','17','(''UD112''=''T,'')','EBOWDEMEXPZ0','50','D','10','17',NULL,'TerminationDate',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTermType"','18','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','18',NULL,'TerminationType',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrJobTitle"','19','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','19',NULL,'CurrentJobTitle',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrDept"','20','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','20',NULL,'CurrentDepartment',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrSection"','21','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','21',NULL,'CurrentSection',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCurrBranch"','22','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','22',NULL,'CurrentBranch',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSubsCode"','23','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','23',NULL,'SubsidiaryCode',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvExpGroup  "','24','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','24',NULL,'ExperienceGroup',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvUserCode4"','25','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','25',NULL,'UserCode4',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateofBirth"','26','(''UD112''=''T,'')','EBOWDEMEXPZ0','50','D','10','26',NULL,'DateofBirth',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAsofDate"','27','(''UD112''=''T,'')','EBOWDEMEXPZ0','50','D','10','27',NULL,'AsofDate',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAnnualSalary"','28','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','28',NULL,'AnnualSalary',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRetEligibilityDate"','29','(''UD112''=''T,'')','EBOWDEMEXPZ0','50','D','10','29',NULL,'RetirementEligibilityDate',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvReltoCompany"','30','(''UA''=''F'')','EBOWDEMEXPZ0','50','D','10','30',NULL,'RelationshiptoCompany',NULL,NULL);
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBOWDEMEXP_20210806.txt';
+/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Bowman Certent Demographic','202108069','EMPEXPORT','ONDEM_XOE',NULL,'EBOWDEMEXP',NULL,NULL,NULL,'202108069','Aug  6 2021 10:41AM','Aug  6 2021 10:41AM','202108061',NULL,'','','202108061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Bowman Certent Demograph-Sched','202108069','EMPEXPORT','SCH_EBOWDE',NULL,'EBOWDEMEXP',NULL,NULL,NULL,'202108069','Aug  6 2021 10:41AM','Aug  6 2021 10:41AM','202108061',NULL,'','','202108061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Bowman Certent Demograph-Test','202108069','EMPEXPORT','TEST_XOE',NULL,'EBOWDEMEXP',NULL,NULL,NULL,'202108069','Aug  6 2021 10:41AM','Aug  6 2021 10:41AM','202108061',NULL,'','','202108061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','UseFileName','V','N');
+/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EBOWDEMEXP' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
+/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EBOWDEMEXP' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
+IF OBJECT_ID('U_EBOWDEMEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBOWDEMEXP_SavePath];
+GO
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBOWDEMEXP','H01','dbo.U_EBOWDEMEXP_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBOWDEMEXP','D10','dbo.U_EBOWDEMEXP_drvTbl',NULL);
+IF OBJECT_ID('U_EBOWDEMEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EBOWDEMEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEqholderCd_PartID] char(9) NULL,
+    [drvSSN_TaxID] char(11) NULL,
+    [drvFirstName] varchar(100) NULL,
+    [drvLastName] varchar(100) NULL,
+    [drvUserCode1] varchar(100) NULL,
+    [drvHomeAddressLine1] varchar(255) NULL,
+    [drvHomeAddressLine2] varchar(255) NULL,
+    [drvHomeDistrictorRegion] varchar(1) NOT NULL,
+    [drvHomeCity] varchar(255) NULL,
+    [drvCurrentStateorProvince] varchar(255) NULL,
+    [drvCurrentPostalCode] varchar(50) NULL,
+    [drvCurrentCountry] char(3) NULL,
+    [drvUserCode2] varchar(255) NULL,
+    [drvCurr_WorkEmailAddr] varchar(50) NULL,
+    [drvUserCode3] varchar(50) NULL,
+    [drvDateRelatStarted] datetime NULL,
+    [drvTermDate] datetime NULL,
+    [drvTermType] varchar(25) NULL,
+    [drvCurrJobTitle] varchar(150) NULL,
+    [drvCurrDept] varchar(1) NOT NULL,
+    [drvCurrSection] varchar(25) NULL,
+    [drvCurrBranch] varchar(25) NULL,
+    [drvSubsCode] varchar(25) NULL,
+    [drvExpGroup] varchar(25) NULL,
+    [drvUserCode4] varchar(1) NOT NULL,
+    [drvDateofBirth] datetime NULL,
+    [drvAsofDate] datetime NOT NULL,
+    [drvAnnualSalary] varchar(1) NOT NULL,
+    [drvRetEligibilityDate] varchar(1) NOT NULL,
+    [drvReltoCompany] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_EBOWDEMEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EBOWDEMEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+IF OBJECT_ID('U_EBOWDEMEXP_File') IS NULL
+CREATE TABLE [dbo].[U_EBOWDEMEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(2000) NULL
+);
+IF OBJECT_ID('U_EBOWDEMEXP_Header') IS NULL
+CREATE TABLE [dbo].[U_EBOWDEMEXP_Header] (
+    [hrvEquholdCode_PartID] varchar(30) NOT NULL,
+    [hrvSSN_Tax_ID] varchar(10) NOT NULL,
+    [hrvFirstName] varchar(9) NOT NULL,
+    [hrvLastName] varchar(8) NOT NULL,
+    [hrvUserCode1] varchar(9) NOT NULL,
+    [hrvHomeAddressLine1] varchar(16) NOT NULL,
+    [hrvHomeAddressLine2] varchar(16) NOT NULL,
+    [hrvHomeDistRegion] varchar(20) NOT NULL,
+    [hrvHomeCity] varchar(8) NOT NULL,
+    [hrvCurrStateorProv] varchar(22) NOT NULL,
+    [hrvCurrPostalCode] varchar(17) NOT NULL,
+    [hrvCurrCountry] varchar(14) NOT NULL,
+    [hrvUserCode2] varchar(9) NOT NULL,
+    [hrvCurr_WorkEmailAdd] varchar(24) NOT NULL,
+    [hrvUserCode3] varchar(9) NOT NULL,
+    [hrvDateRelatshipStart] varchar(23) NOT NULL,
+    [hrvTerminationDate] varchar(15) NOT NULL,
+    [hrvTerminationType] varchar(15) NOT NULL,
+    [hrvCurrJobTitle] varchar(15) NOT NULL,
+    [hrvCurrDept] varchar(17) NOT NULL,
+    [hrvCurrSection] varchar(14) NOT NULL,
+    [hrvCurrBranch] varchar(13) NOT NULL,
+    [hrvSubsCode] varchar(14) NOT NULL,
+    [hrvExpGroup] varchar(15) NOT NULL,
+    [hrvUserCode4] varchar(9) NOT NULL,
+    [hrvDateofBirth] varchar(11) NOT NULL,
+    [hrvAsofDate] varchar(8) NOT NULL,
+    [hrvAnnualSalary] varchar(12) NOT NULL,
+    [hrvRetEligDate] varchar(25) NOT NULL,
+    [hrvRelattoCompany] varchar(21) NOT NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBOWDEMEXP]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Bowman
+
+Created By: Luis Lugo
+Business Analyst: Richard Vars
+Create Date: 08/06/2021
+Service Request Number: TekP-2021-04-02-0002
+
+Purpose: Bowman Certent Demographic
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBOWDEMEXP';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBOWDEMEXP';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EBOWDEMEXP';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EBOWDEMEXP';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EBOWDEMEXP' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBOWDEMEXP', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBOWDEMEXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBOWDEMEXP', 'SCH_EBOWDE';
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EBOWDEMEXP', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EBOWDEMEXP';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EBOWDEMEXP_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EBOWDEMEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EBOWDEMEXP_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EBOWDEMEXP_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EBOWDEMEXP_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        -- standard fields above and additional driver fields below
+        ,drvEqholderCd_PartID = EecEmpNo
+        ,drvSSN_TaxID = EepSsn
+        ,drvFirstName = EepNameFirst
+        ,drvLastName = EepNameLast
+        ,drvUserCode1 = EepNamePreferred
+        ,drvHomeAddressLine1 = EepAddressLine1
+        ,drvHomeAddressLine2 = EepAddressLine2
+        ,drvHomeDistrictorRegion = '' --leave blank
+        ,drvHomeCity = EepAddressCity
+        ,drvCurrentStateorProvince = EepAddressState
+        ,drvCurrentPostalCode = EepAddressZipCode
+        ,drvCurrentCountry = EepAddressCountry
+        ,drvUserCode2 = EepAddressState
+        ,drvCurr_WorkEmailAddr = EepAddressEMail
+        ,drvUserCode3 = eepAddressEMailAlternate
+        ,drvDateRelatStarted = EecDateOfOriginalHire
+        ,drvTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvTermType = TchDesc
+        ,drvCurrJobTitle = EecJobTitle
+        ,drvCurrDept = ''
+        ,drvCurrSection = org2.OrgDesc
+        ,drvCurrBranch = OrgLevel.OrgDesc
+        ,drvSubsCode = org3.OrgDesc
+        ,drvExpGroup = org4.OrgDesc
+        ,drvUserCode4 = '' --leave Blank
+        ,drvDateofBirth = EepDateOfBirth
+        ,drvAsofDate = getdate()
+        ,drvAnnualSalary = '' --leave blank
+        ,drvRetEligibilityDate = '' --leave blank
+        ,drvReltoCompany = CASE WHEN  eeceetype IN ('CON','SUM','INT','TES','TMP','REG','STU') THEN 'N' 
+                           else 'E' END
+    INTO dbo.U_EBOWDEMEXP_drvTbl
+    FROM dbo.U_EBOWDEMEXP_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+     JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
+    JOIN dbo.TrmReasn WITH (NOLOCK)
+        ON TchCode = EecTermReason
+    JOIN dbo.OrgLevel WITH (NOLOCK)
+        ON OrgCode = EecOrgLvl1
+    JOIN dbo.OrgLevel org2 WITH (NOLOCK)
+        ON org2.OrgCode = EecOrgLvl2 
+    JOIN dbo.OrgLevel org3 WITH (NOLOCK)
+        ON org3.OrgCode = EecOrgLvl3
+    JOIN dbo.OrgLevel org4 WITH (NOLOCK)
+        ON org4.OrgCode = EecOrgLvl4  
+    ;
+    ---------------------------------
+    -- HEADER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EBOWDEMEXP_Header','U') IS NOT NULL
+        DROP TABLE dbo.U_EBOWDEMEXP_Header;
+    SELECT DISTINCT
+         hrvEquholdCode_PartID = 'EquityholderCode/ParticipantID'
+        ,hrvSSN_Tax_ID = 'SSN/Tax ID'
+        ,hrvFirstName = 'FirstName'
+        ,hrvLastName = 'LastName'
+        ,hrvUserCode1 = 'UserCode1'
+        ,hrvHomeAddressLine1 = 'HomeAddressLine1'
+        ,hrvHomeAddressLine2 = 'HomeAddressLine2'
+        ,hrvHomeDistRegion = 'HomeDistrictorRegion'
+        ,hrvHomeCity = 'HomeCity'
+        ,hrvCurrStateorProv = 'CurrentStateorProvince'
+        ,hrvCurrPostalCode = 'CurrentPostalCode'
+        ,hrvCurrCountry = 'CurrentCountry'
+        ,hrvUserCode2 = 'UserCode2'
+        ,hrvCurr_WorkEmailAdd = 'Current/WorkEmailAddress'
+        ,hrvUserCode3 = 'UserCode3'
+        ,hrvDateRelatshipStart = 'DateRelationshipStarted'
+        ,hrvTerminationDate = 'TerminationDate' -- CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,hrvTerminationType = 'TerminationType'
+        ,hrvCurrJobTitle = 'CurrentJobTitle'
+        ,hrvCurrDept = 'CurrentDepartment'
+        ,hrvCurrSection = 'CurrentSection'
+        ,hrvCurrBranch = 'CurrentBranch'
+        ,hrvSubsCode = 'SubsidiaryCode'
+        ,hrvExpGroup = 'ExperienceGroup'
+        ,hrvUserCode4 = 'UserCode4'
+        ,hrvDateofBirth = 'DateofBirth'
+        ,hrvAsofDate = 'AsofDate'
+        ,hrvAnnualSalary = 'AnnualSalary'
+        ,hrvRetEligDate = 'RetirementEligibilityDate'
+        ,hrvRelattoCompany = 'RelationshiptoCompany'
+    INTO dbo.U_EBOWDEMEXP_Header
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE 'Bowman_Demographic_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.csv'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEBOWDEMEXP_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EBOWDEMEXP_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID LIKE 'EBOWDEMEXP%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202107301'
+       ,expStartPerControl     = '202107301'
+       ,expLastEndPerControl   = '202108069'
+       ,expEndPerControl       = '202108069'
+WHERE expFormatCode = 'EBOWDEMEXP';
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEBOWDEMEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EBOWDEMEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
