@@ -687,8 +687,8 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','277','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','277',NULL,'STVCAD Termination Date?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','278','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','278',NULL,'Qualifying Event Code?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','279','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','279',NULL,'Qualifying Event Eff Date?',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','280','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','280',NULL,'Mbr Smoker?',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','281','(''DA''=''T,'')','ELINFINEXPZ0','50','D','10','281',NULL,'Spouse Smoker??',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMbrSmoker"','280','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','280',NULL,'Mbr Smoker?',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSpouseSmoker"','281','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','281',NULL,'Spouse Smoker??',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSpouseDOB"','282','(''UD101''=''T,'')','ELINFINEXPZ0','50','D','10','282',NULL,'Spouse DOB?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepFirstName"','283','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','283',NULL,'Dep First Name?',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepLastName"','284','(''UA''=''T,'')','ELINFINEXPZ0','50','D','10','284',NULL,'Dep Last Name?',NULL,NULL);
@@ -797,13 +797,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210727.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210810.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202107069','EMPEXPORT','OEACTIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','8','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202107069','EMPEXPORT','OEPASSIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1552','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export','202107069','EMPEXPORT','ONDEM_XOE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Sched','202107069','EMPEXPORT','SCH_ELINFI','Jul  8 2021  5:15AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202107261','EMPEXPORT','TEST_XOE','Jul 26 2021  9:10AM','ELINFINEXP',NULL,NULL,NULL,'202107261','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121','1558','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202108031','EMPEXPORT','TEST_XOE','Aug  3 2021  8:04PM','ELINFINEXP',NULL,NULL,NULL,'202108031','Aug  3 2021 12:00AM','Dec 30 1899 12:00AM','202107271','1568','','','202107271',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','SubSort','C','drvSort');
@@ -868,7 +868,7 @@ CREATE TABLE [dbo].[U_ELINFINEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(6) NULL,
     [drvChangeDate] datetime NULL,
     [drvTerminationDate] datetime NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -886,7 +886,7 @@ CREATE TABLE [dbo].[U_ELINFINEXP_drvTbl] (
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
+    [drvAddressZipCode] varchar(5) NULL,
     [drvHomePhone] varchar(12) NULL,
     [drvDateOfBenefitElig] datetime NULL,
     [drvSubsDateOfBenElig] datetime NULL,
@@ -934,6 +934,8 @@ CREATE TABLE [dbo].[U_ELINFINEXP_drvTbl] (
     [drvVSADTerminationDate] datetime NULL,
     [drvVCLICvgs] varchar(10) NULL,
     [drvVCLITerminationDate] datetime NULL,
+    [drvMbrSmoker] varchar(1) NULL,
+    [drvSpouseSmoker] varchar(1) NULL,
     [drvSpouseDOB] datetime NULL,
     [drvDepFirstName] varchar(1) NOT NULL,
     [drvDepLastName] varchar(1) NOT NULL,
@@ -1299,7 +1301,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = EjhReason
         -- standard fields above and additional driver fields below
         ,drvChangeDate = dbo.dsi_fnGetMinMaxDates('MAX', Max_StartDate, '1/1/2020')  
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
@@ -1326,10 +1328,10 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
-        ,drvHomePhone = LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4)
+        ,drvAddressZipCode = LEFT(EepAddressZipCode, 5)
+        ,drvHomePhone = CASE WHEN ISNULL(EepPhoneHomeNumber, '') <> '' THEN LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4) END
         ,drvDateOfBenefitElig = EecDateOfOriginalHire
-        ,drvSubsDateOfBenElig = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
+        ,drvSubsDateOfBenElig = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire AND EjhReason NOT IN ('TRI','500') THEN EecDateOfLastHire END
         ,drvLifePolicyNumber = CASE WHEN GLIFE_DedCode IS NOT NULL THEN '000010258457-00000' END 
         ,drvLifeBillLocACNum = CASE WHEN GLIFE_DedCode IS NOT NULL THEN '1648211' END 
         ,drvLifeSortGroup =    CASE WHEN GLIFE_DedCode IS NOT NULL THEN
@@ -1490,7 +1492,9 @@ BEGIN
         ,drvVSADTerminationDate = CASE WHEN LIFES_DedCode IS NOT NULL THEN LIFES_BdmBenStopDate END 
         ,drvVCLICvgs = CASE WHEN LIFEC_DedCode IS NOT NULL THEN 'VCLI-' + @LIFEC_EedBenAmt END 
         ,drvVCLITerminationDate = CASE WHEN LIFEC_DedCode IS NOT NULL THEN LIFEC_BdmBenStopDate END 
-        ,drvSpouseDOB = ConDateOfBirth
+        ,drvMbrSmoker = CASE WHEN EepIsSmoker = 'Y' THEN 'Y' END
+        ,drvSpouseSmoker = CASE WHEN LIFES_DedCode IS NOT NULL AND ConRelationship IN ('SPS','DP') AND ConIsSmoker = 'Y' THEN 'Y' END
+        ,drvSpouseDOB = CASE WHEN LIFES_DedCode IS NOT NULL AND ConRelationship IN ('SPS','DP') THEN ConDateOfBirth END
         ,drvDepFirstName = ''
         ,drvDepLastName = ''
         ,drvDepMI = ''
@@ -1653,6 +1657,14 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = SpouseList.BdmDepRecID
+    LEFT JOIN (
+                SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate
+                FROM (
+                        SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                        FROM dbo.EmpHJob WITH (NOLOCK)) AS InnerEjh
+                WHERE RN = 1) AS Ejh
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate and @EndDate)
     ;
 

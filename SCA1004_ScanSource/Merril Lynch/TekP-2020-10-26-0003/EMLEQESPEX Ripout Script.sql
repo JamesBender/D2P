@@ -474,13 +474,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMLEQESPEX_20210804.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMLEQESPEX_20210810.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202104089','EMPEXPORT','OEACTIVE','Jul 23 2021 12:00AM','EMLEQESPEX',NULL,NULL,NULL,'202104089','Apr  8 2021 12:00AM','Dec 30 1899 12:00AM','202104081','832','','','202104081',dbo.fn_GetTimedKey(),NULL,'us3rVaSCA1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202104089','EMPEXPORT','OEPASSIVE','Apr 15 2021  5:12PM','EMLEQESPEX',NULL,NULL,NULL,'202104089','Apr  8 2021  1:04PM','Apr  8 2021  1:04PM','202104081','832','','','202104081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Equity and ESSP Export','202104089','EMPEXPORT','ONDEM_XOE','Apr 15 2021  5:13PM','EMLEQESPEX',NULL,NULL,NULL,'202104089','Apr  8 2021  1:04PM','Apr  8 2021  1:04PM','202104081','832','','','202104081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Equity and ESSP -Sched','202104089','EMPEXPORT','SCH_EMLEQE','Apr 15 2021  5:13PM','EMLEQESPEX',NULL,NULL,NULL,'202104089','Apr  8 2021  1:04PM','Apr  8 2021  1:04PM','202104081','832','','','202104081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Equity and ESSP -Test','202107309','EMPEXPORT','TEST_XOE','Aug  3 2021 12:00AM','EMLEQESPEX',NULL,NULL,NULL,'202107309','Jul 30 2021 12:00AM','Dec 30 1899 12:00AM','202107161','2662','','','202107161',dbo.fn_GetTimedKey(),NULL,'us3rVaSCA1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Merrill Equity and ESSP -Test','202107309','EMPEXPORT','TEST_XOE','Aug  6 2021  1:32PM','EMLEQESPEX',NULL,NULL,NULL,'202107309','Jul 30 2021 12:00AM','Dec 30 1899 12:00AM','202107161','2639','','','202107161',dbo.fn_GetTimedKey(),NULL,'us3rVaSCA1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLEQESPEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLEQESPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMLEQESPEX','InitialSort','C','drvSort');
@@ -550,7 +550,7 @@ CREATE TABLE [dbo].[U_EMLEQESPEX_drvTbl_IBAC06] (
     [drvCoID] varchar(1) NOT NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvTaxCode] varchar(255) NULL,
+    [drvTaxCode] varchar(1) NOT NULL,
     [drvCodeDescription] varchar(1) NOT NULL,
     [drvTaxField1Percent] varchar(15) NOT NULL,
     [drvTaxField2Percent] varchar(15) NOT NULL
@@ -577,7 +577,7 @@ CREATE TABLE [dbo].[U_EMLEQESPEX_drvTbl_IBEN01] (
     [drvSort] varchar(14) NULL,
     [drvProductType] varchar(4) NULL,
     [drvPlanNumber] varchar(7) NULL,
-    [drvPartNumer] char(11) NULL
+    [drvPartNumer] char(25) NULL
 );
 IF OBJECT_ID('U_EMLEQESPEX_drvTbl_IBSH01') IS NULL
 CREATE TABLE [dbo].[U_EMLEQESPEX_drvTbl_IBSH01] (
@@ -876,19 +876,19 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EMLEQESPEX_drvTbl_IBEN01','U') IS NOT NULL
         DROP TABLE dbo.U_EMLEQESPEX_drvTbl_IBEN01;
-    SELECT DISTINCT
+    SELECT DISTINCT    
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort =  xEEID + ' 1'
+        ,drvSort = xEEID + ' 1'
         -- standard fields above and additional driver fields below
-        ,drvProductType =    CASE WHEN EepUDField01 = 'STOCK' AND EepUDField02 = 'BLACKOUT' THEN 'AC' --filter EE to remove anyone who doesn't have STOCK as EepUDField01
-                                WHEN BdmDedCode = 'STOCK' AND FLOOR(DATEDIFF(DAY, EepDateOfBirth,GETDATE()) / 365.25) > 18 AND EecFullTimeOrPartTime = 'F' THEN 'ESPP'                                
+        ,drvProductType =    CASE WHEN EepUDField01 = 'STOCK' /*AND EepUDField02 = 'BLACKOUT'*/ THEN 'AC' --filter EE to remove anyone who doesn't have STOCK as EepUDField01
+                                WHEN BdmDedCode IN ('STOCK', 'CESPP') AND FLOOR(DATEDIFF(DAY, EepDateOfBirth,GETDATE()) / 365.25) > 18 AND EecFullTimeOrPartTime = 'F' THEN 'ESPP'                                
                             END
-        ,drvPlanNumber = CASE WHEN EepUDField01 = 'STOCK' AND EepUDField02 = 'BLACKOUT' THEN 'XOP1590'
-                                WHEN BdmDedCode = 'STOCK' AND FLOOR(DATEDIFF(DAY, EepDateOfBirth,GETDATE()) / 365.25) > 18 AND EecFullTimeOrPartTime = 'F' THEN 'SCSC'
+        ,drvPlanNumber = CASE WHEN EepUDField01 = 'STOCK' /*AND EepUDField02 = 'BLACKOUT'*/ THEN 'XOP1590'
+                                WHEN BdmDedCode IN ('STOCK','CESPP') AND FLOOR(DATEDIFF(DAY, EepDateOfBirth,GETDATE()) / 365.25) > 18 AND EecFullTimeOrPartTime = 'F' THEN 'SCSC'
                             END
-        ,drvPartNumer = EepSSN
+        ,drvPartNumer = CASE WHEN EepSSN IS NOT NULL THEN EepSSN ELSE EepUDField01 END
     INTO dbo.U_EMLEQESPEX_drvTbl_IBEN01
     FROM dbo.U_EMLEQESPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -903,6 +903,7 @@ BEGIN
     ;
 
     DELETE dbo.U_EMLEQESPEX_drvTbl_IBEN01 WHERE drvProductType IS NULL;
+    DELETE dbo.U_EMLEQESPEX_drvTbl_IBEN01 WHERE drvPlanNumber IS NULL;
 
     ---------------------------------
     -- DETAIL RECORD - U_EMLEQESPEX_drvTbl_IBSH01
@@ -943,7 +944,7 @@ BEGIN
         ,drvTerminationIDFlag = CASE WHEN EecEmplStatus IN ('A','L') THEN 'N' ELSE 'Y' END
         ,drvOptionEdID = EepSSN
         ,drvACTaxCode = LEFT(EetTaxCode, 2)
-        ,drvYtdFicaOas = FORMAT(OasAmount*1000000, '000000000000000')
+        ,drvYtdFicaOas = FORMAT(OasAmount*1000000, '000000000000000') -- JCB
         ,drvEELevelRestrCode = CASE WHEN EecTermReason = '203' THEN '100' ELSE '163' END
         ,drvYtdMedicare = FORMAT(YtdMedicareAmt*1000000, '000000000000000')
         ,drvSupplementalComp = FORMAT(PehCurBonusAmtYTD*1000, '000000000000000')
@@ -971,7 +972,7 @@ BEGIN
         AND LocAddressState = LEFT(EetTaxCode, 2)
     JOIN (
             SELECT PthEEID, PthCOID
-                ,SUM(CASE WHEN PthTaxCode IN ('USSOCEE','USMEDEE') THEN PthCurTaxAmt ELSE 0.00 END) AS OasAmount
+                ,SUM(CASE WHEN PthTaxCode IN ('USSOCEE') THEN PthCurTaxAmt ELSE 0.00 END) AS OasAmount
                 ,SUM(CASE WHEN PthTaxCode IN ('USMEDEE') THEN PthCurTaxAmt ELSE 0.00 END) AS YtdMedicareAmt
             FROM PTaxHist
             WHERE LEFT(PthPerControl, 4) = DATEPART(YEAR, GETDATE())
@@ -992,16 +993,17 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '' --xEEID + ' 3'
         -- standard fields above and additional driver fields below
-        ,drvTaxCode = LocAddressState -- EecSITResidentStateCode
+        ,drvTaxCode = '' --LocAddressState -- EecSITResidentStateCode
         ,drvCodeDescription = '' --EetIsWorkInTaxCode -- LEFT(EetTaxCode, 2)
         ,drvTaxField1Percent = '000000000000000'
         ,drvTaxField2Percent = '000000000000000'
     INTO dbo.U_EMLEQESPEX_drvTbl_IBAC06
     FROM dbo.U_EMLEQESPEX_EEList WITH (NOLOCK)
+    WHERE xEEID IS NULL
     /*JOIN dbo.U_dsi_BDM_EMLEQESPEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID*/
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+/*    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpTax WITH (NOLOCK)
@@ -1010,7 +1012,7 @@ BEGIN
         AND EetTaxCode LIKE '%SUI%'
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    WHERE LocAddressState IS NOT NULL
+    WHERE LocAddressState IS NOT NULL*/
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EMLEQESPEX_drvTbl_IBCS01
