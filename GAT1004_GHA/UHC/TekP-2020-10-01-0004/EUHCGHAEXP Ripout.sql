@@ -19,6 +19,8 @@ IF OBJECT_ID('U_EUHCGHAEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EUHCGHAEXP_E
 GO
 IF OBJECT_ID('U_EUHCGHAEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EUHCGHAEXP_drvTbl];
 GO
+IF OBJECT_ID('U_EUHCGHAEXP_Dependents') IS NOT NULL DROP TABLE [dbo].[U_EUHCGHAEXP_Dependents];
+GO
 IF OBJECT_ID('U_EUHCGHAEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EUHCGHAEXP_DedList];
 GO
 IF OBJECT_ID('U_dsi_BDM_EUHCGHAEXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EUHCGHAEXP];
@@ -96,13 +98,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCGHAEXP_20210804.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCGHAEXP_20210819.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102049','EMPEXPORT','OEACTIVE',NULL,'EUHCGHAEXP',NULL,NULL,NULL,'202102049','Feb  4 2021  2:47PM','Feb  4 2021  2:47PM','202102041',NULL,'','','202102041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102049','EMPEXPORT','OEPASSIVE',NULL,'EUHCGHAEXP',NULL,NULL,NULL,'202102049','Feb  4 2021  2:47PM','Feb  4 2021  2:47PM','202102041',NULL,'','','202102041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Accident and Hospital Expo','202102049','EMPEXPORT','ONDEMAND',NULL,'EUHCGHAEXP',NULL,NULL,NULL,'202102049','Feb  4 2021  2:47PM','Feb  4 2021  2:47PM','202102041',NULL,'','','202102041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202102049','EMPEXPORT','SCH_UHGX',NULL,'EUHCGHAEXP',NULL,NULL,NULL,'202102049','Feb  4 2021  2:47PM','Feb  4 2021  2:47PM','202102041',NULL,'','','202102041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202107261','EMPEXPORT','TEST','Aug  2 2021  1:48PM','EUHCGHAEXP',NULL,NULL,NULL,'202107261','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121','1689','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202107261','EMPEXPORT','TEST','Aug  5 2021  2:29PM','EUHCGHAEXP',NULL,NULL,NULL,'202107261','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121','1695','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCGHAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCGHAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCGHAEXP','InitialSort','C','drvInitialSort');
@@ -163,6 +165,20 @@ IF OBJECT_ID('U_EUHCGHAEXP_DedList') IS NULL
 CREATE TABLE [dbo].[U_EUHCGHAEXP_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
+);
+IF OBJECT_ID('U_EUHCGHAEXP_Dependents') IS NULL
+CREATE TABLE [dbo].[U_EUHCGHAEXP_Dependents] (
+    [DpnEEID] char(12) NOT NULL,
+    [DpnConSystemID] char(12) NOT NULL,
+    [DpnConNameFirst] varchar(100) NULL,
+    [DpnConNameMiddle] varchar(50) NULL,
+    [DpnConNameLast] varchar(100) NULL,
+    [DpnConRelationship] char(3) NULL,
+    [DpnConIsDisabled] char(1) NULL,
+    [DpnConGender] char(1) NULL,
+    [DpnConDateOfBirth] datetime NULL,
+    [DpnConIsSmoker] varchar(1) NULL,
+    [DpnDepNo] bigint NULL
 );
 IF OBJECT_ID('U_EUHCGHAEXP_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EUHCGHAEXP_drvTbl] (
@@ -332,6 +348,7 @@ BEGIN
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
             ,@FileMinCovDate    DATETIME
+            ,@FileOrgMinCovDate DATETIME
             ;
 
     -- Set FormatCode
@@ -345,6 +362,7 @@ BEGIN
         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@ExportCode      = ExportCode
         ,@FileMinCovDate  = '1/1/2021'
+        ,@FileOrgMinCovDate  = '9/1/2021'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
@@ -357,6 +375,53 @@ BEGIN
     DELETE FROM dbo.U_EUHCGHAEXP_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EUHCGHAEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    --==========================================
+    -- Dependent Member Indicators
+    --==========================================    
+    IF OBJECT_ID('U_EUHCGHAEXP_Dependents','U') IS NOT NULL
+        DROP TABLE dbo.U_EUHCGHAEXP_Dependents;
+    SELECT DpnEEID = ConEEID
+          ,DpnConSystemID = ConSystemID
+          ,DpnConNameFirst = ConNameFirst
+          ,DpnConNameMiddle = ConNameMiddle
+          ,DpnConNameLast = ConNameLast
+          ,DpnConRelationship = ConRelationship
+          ,DpnConIsDisabled = ConIsDisabled
+          ,DpnConGender = ConGender 
+          ,DpnConDateOfBirth = ConDateOfBirth 
+          ,DpnConIsSmoker = ConIsSmoker
+          ,DpnDepNo = ROW_NUMBER() OVER (PARTITION BY RTRIM(ConEEID) ORDER BY ConMarriageDate ASC)
+      INTO dbo.U_EUHCGHAEXP_Dependents
+      FROM dbo.Contacts WITH (NOLOCK)
+      JOIN dbo.U_EUHCGHAEXP_EEList WITH (NOLOCK)
+        ON ConEEID = xEEID
+     WHERE ConRelationship IN ('SPS','DP')
+     AND ConIsDependent = 'Y'
+     ;
+     --UPDATE SPOUSE NUMBER FOR MULTIPLE SPOUSES
+     UPDATE U_EUHCGHAEXP_Dependents
+     SET DpnDepNo = DpnDepNo + 88
+     WHERE DpnDepNo > 1;
+
+    INSERT INTO dbo.U_EUHCGHAEXP_Dependents
+    SELECT DpnEEID = ConEEID
+          ,DpnConSystemID = ConSystemID
+          ,DpnConNameFirst = ConNameFirst
+          ,DpnConNameMiddle = ConNameMiddle
+          ,DpnConNameLast = ConNameLast
+          ,DpnConRelationship = ConRelationship
+          ,DpnConIsDisabled = ConIsDisabled
+          ,DpnConGender = ConGender 
+          ,DpnConDateOfBirth = ConDateOfBirth 
+          ,DpnConIsSmoker = ConIsSmoker
+          ,DpnDepNo = ROW_NUMBER() OVER (PARTITION BY RTRIM(ConEEID) ORDER BY conDateOfBirth ASC) + 1
+      FROM dbo.Contacts WITH (NOLOCK)
+      JOIN dbo.U_EUHCGHAEXP_EEList WITH (NOLOCK)
+        ON ConEEID = xEEID
+     WHERE ConRelationship IN ('CH','CHL','DPC','STC')
+     AND ConIsDependent = 'Y'
+     ;
 
     --==========================================
     -- Create Deduction List
@@ -372,6 +437,10 @@ BEGIN
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
+
+    --==========================================
+    -- Calculate Member Indicators
+    --==========================================
 
 
     --==========================================
@@ -494,12 +563,8 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvSubscriberID = eepSSN
         ,drvMemberIndicator = CASE WHEN bdmrectype = 'EMP' THEN '00'
-                                WHEN bdmrectype = 'DEP' THEN 
-                                        CASE WHEN conrelationship in ('SPS','DP')  THEN '01'
-                                             ELSE dbo.dsi_fnPadZero(Dep_Number ,2,0)
-                                        END
-                                                
-                           END 
+                                   WHEN bdmrectype = 'DEP' THEN dbo.dsi_fnPadZero(DpnDepNo,2,0)
+                               END 
         ,drvMemberLastName = CASE WHEN bdmrectype = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvMemberFirstName = CASE WHEN bdmrectype = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
         ,drvMemberRelationship = CASE WHEN bdmrectype = 'EMP' THEN 'EE'
@@ -580,7 +645,7 @@ BEGIN
                             WHEN BdmBenOption in ('EEC') THEN 'G'
                             WHEN BdmBenOption in ('EEF', 'EEDPF') THEN 'A' 
                        END
-        ,drvMemberOriginalEffDate = bdmbenstartdate
+        ,drvMemberOriginalEffDate =  dbo.dsi_fnGetMinMaxDates('MAX',bdmbenstartdate, @FileOrgMinCovDate) 
         ,drvTermDate = eecDateOfTermination
         ,drvALTID = ''
         ,drvStudentStatus = ''
@@ -613,15 +678,15 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EUHCGHAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN ( select ConEEID, ConNameLast, ConNameFirst, ConSSN, ConDateOfBirth, ConRelationship,ConIsBeneficiary,ConSystemId,COnGender,ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER BY ConSystemId,ConDateOfBirth, 
-                            CASE WHEN ConRelationship in ('SPS','DP') THEN 1 ELSE 2 END) AS 'Dep_Number'
-                from Contacts WITH (NOLOCK)
-                where ConIsBeneficiary = 'Y' and ConDateOfBirth is not null
-                ) as ConWithNumber
+    LEFT 
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     JOIN dbo.company  WITH (NOLOCK)
         On cmpcoid = xCoID
+    LEFT
+    JOIN dbo.U_EUHCGHAEXP_Dependents WITH (NOLOCK)
+       on DpnConSystemID = ConSystemID
     ;
 
     Delete from dbo.U_EUHCGHAEXP_drvTbl where drvMemberIndicator is null
