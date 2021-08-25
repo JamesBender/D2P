@@ -53,7 +53,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS03_ReceiverID"','4','(''UA''=''T*'')','EMGAINS834Z0','15','H','02','4',NULL,'Receiver ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS04_Date"','5','(''UD112''=''T*'')','EMGAINS834Z0','8','H','02','5',NULL,'Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGS05_Time"','6','(''UA''=''T*'')','EMGAINS834Z0','8','H','02','6',NULL,'Time',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','7','(''DA''=''T*'')','EMGAINS834Z0','9','H','02','7',NULL,'Group Control Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','7','(''DA''=''T*'')','EMGAINS834Z0','9','H','02','7',NULL,'Group Control Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"X"','8','(''DA''=''T*'')','EMGAINS834Z0','2','H','02','8',NULL,'Responsible Agency Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"005010X220A1"','9','(''DA''=''T*'')','EMGAINS834Z0','12','H','02','9',NULL,'Version/Release  Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ST"','1','(''DA''=''T*'')','EMGAINS834Z0','2','H','03','1',NULL,'ST Segment ID (Header)',NULL,NULL);
@@ -108,7 +108,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EMGAINS834Z0','3','D','12','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0F"','2','(''DA''=''T*'')','EMGAINS834Z0','3','D','12','2',NULL,'Reference Number Identificatio',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','3','(''UA''=''T*'')','EMGAINS834Z0','50','D','12','3',NULL,'Reference Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EMGAINS834Z0','3','D','13','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','1','(''DA''=''T*'')','EMGAINS834Z0','3','D','13','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF01_RefNumberQual1"','2','(''UA''=''T*'')','EMGAINS834Z0','3','D','13','2',NULL,'Reference Number Identificatio',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvREF02_RefNumberQual1"','3','(''UA''=''T*'')','EMGAINS834Z0','50','D','13','3',NULL,'Reference Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"REF"','1','(''DA''=''T*'')','EMGAINS834Z0','3','D','14','1',NULL,'REF Segment ID (Loop 2000)',NULL,NULL);
@@ -220,7 +220,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','3','(''DA''=''T*'')','EMGAINS834Z0','9','T','90','3',NULL,'Transaction Set Control Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"GE"','1','(''DA''=''T*'')','EMGAINS834Z0','2','T','91','1',NULL,'GE Segment ID (Trailer)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','2','(''DA''=''T*'')','EMGAINS834Z0','6','T','91','2',NULL,'Number of Transaction Sets Inc',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"0001"','3','(''DA''=''T*'')','EMGAINS834Z0','9','T','91','3',NULL,'Group Control Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','3','(''DA''=''T*'')','EMGAINS834Z0','9','T','91','3',NULL,'Group Control Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IEA"','1','(''DA''=''T*'')','EMGAINS834Z0','3','T','92','1',NULL,'IEA Segment ID (Trailer)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','2','(''DA''=''T*'')','EMGAINS834Z0','5','T','92','2',NULL,'Number of Functional Groups In',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000001"','3','(''DA''=''T*'')','EMGAINS834Z0','9','T','92','3',NULL,'Interchange Control Number',NULL,NULL);
@@ -231,10 +231,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMGAINS834_20210812.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMGAINS834_20210823.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202107209','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EMGAINS834',NULL,NULL,NULL,'202107209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107201',NULL,'','','202107201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108099','EMPEXPORT','FULLFILE','Aug  9 2021  3:25PM','EMGAINS834',NULL,NULL,NULL,'202108099','Aug  9 2021 12:00AM','Dec 30 1899 12:00AM','202107261','10949','','','202107261',dbo.fn_GetTimedKey(),NULL,'us3lKiMGA1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108129','EMPEXPORT','FULLFILE','Aug 12 2021  7:10PM','EMGAINS834',NULL,NULL,NULL,'202108129','Aug 12 2021 12:00AM','Dec 30 1899 12:00AM','202107291','8653','','','202107291',dbo.fn_GetTimedKey(),NULL,'us3lKiMGA1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202107209','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EMGAINS834',NULL,NULL,NULL,'202107209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107201',NULL,'','','202107201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202107209','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EMGAINS834',NULL,NULL,NULL,'202107209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107201',NULL,'','','202107201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MGA Insurance 834 Export','202107209','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EMGAINS834',NULL,NULL,NULL,'202107209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107201',NULL,'','','202107201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -355,18 +355,18 @@ CREATE TABLE [dbo].[U_EMGAINS834_DrvTbl] (
     [drvINS10_ResponseCode] varchar(1) NULL,
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
     [drvINS12_DateTimePeriod] varchar(8) NULL,
-    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual1] char(11) NULL,
+    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(7) NOT NULL,
     [drvDTP00_DateTime1] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(8) NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
     [drvDTP03_DateTimePeriod1] varchar(8) NULL,
-    [drvDTP00_DateTime2] varchar(1) NOT NULL,
-    [drvDTP01_DateTimeQualifier2] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual2] varchar(1) NOT NULL,
-    [drvDTP03_DateTimePeriod2] varchar(1) NOT NULL,
+    [drvDTP00_DateTime2] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod2] datetime NULL,
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
@@ -420,7 +420,7 @@ CREATE TABLE [dbo].[U_EMGAINS834_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NOT NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
-    [drvHD03_InsuranceLineCode] varchar(3) NULL,
+    [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
     [drvHD04_PlanCoverageDesc] varchar(10) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NULL,
@@ -459,7 +459,7 @@ CREATE TABLE [dbo].[U_EMGAINS834_DrvTbl_2300] (
     [drvDepRecID] char(12) NULL,
     [drvSSN] char(11) NULL,
     [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(22) NULL
+    [drvSubSort] varchar(26) NULL
 );
 IF OBJECT_ID('U_EMGAINS834_EEList') IS NULL
 CREATE TABLE [dbo].[U_EMGAINS834_EEList] (
@@ -838,8 +838,8 @@ BEGIN
         ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
         ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual1 = 'OF'
-        ,drvREF02_RefNumberQual1 = EepSSN
+        ,drvREF01_RefNumberQual1 = ''--'OF'
+        ,drvREF02_RefNumberQual1 =''-- EepSSN
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = '1L'
         ,drvREF02_RefNumberQual2 = '0919881'
@@ -856,10 +856,10 @@ BEGIN
                                                ELSE CONVERT(VARCHAR(8),eecdateoflasthire,112) END
                                         END
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = ''
-        ,drvDTP01_DateTimeQualifier2 = ''
-        ,drvDTP02_DateTimeFormatQual2 = ''
-        ,drvDTP03_DateTimePeriod2 = ''
+        ,drvDTP00_DateTime2 = 'DTP'
+        ,drvDTP01_DateTimeQualifier2 = '336'
+        ,drvDTP02_DateTimeFormatQual2 = 'D8'
+        ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
@@ -994,10 +994,10 @@ BEGIN
                                            --WHEN BdmDedCode IN ('DEN') THEN ''
                                            --WHEN BdmDedCode IN ('VIS') THEN ''
                                      --END
-        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedCode IN ('PPPRM','PPPRO','PPPPO','PPEPO') THEN 'HLT'
-                                           WHEN BdmDedCode IN ('PPPRM','PPPRO','PPPPO','PPEPO') THEN 'PDG'
+        ,drvHD03_InsuranceLineCode = 'HLT' --CASE WHEN BdmDedCode IN ('PPPRM','PPPRO','PPPPO','PPEPO') THEN 'HLT'
+                                           --WHEN BdmDedCode IN ('PPPRM','PPPRO','PPPPO','PPEPO') THEN 'PDG'
                                            --WHEN BdmDedCode IN ('VIS') THEN 'VIS'
-                                     END
+                                     --END
         ,drvHD04_PlanCoverageDesc = CASE WHEN BdmDedCode = 'PPPRM' THEN '00010001TT'
                                          WHEN BdmDedCode = 'PPPRO' THEN '00020002TT'
                                          WHEN BdmDedCode = 'PPPPO' THEN '00030003TT'
@@ -1010,16 +1010,11 @@ BEGIN
                                            --WHEN BdmDedCode IN ('DEN') THEN ''
                                            --WHEN BdmDedCode IN ('VIS') THEN ''
                                      --END
-        ,drvHD05_CoverageLevelCode = CASE WHEN BdmBenOption = 'EE' THEN 'EMP'
-                                          WHEN BdmBenOption = 'OFEE' THEN 'EMP'
-                                          WHEN BdmBenOption = 'EES' THEN 'ESP'
-                                          WHEN BdmBenOption = 'EEDP' THEN 'ESP' 
-                                          WHEN BdmBenOption = 'OFEES' THEN 'ESP' 
-                                          WHEN BdmBenOption = 'EEC' THEN 'ECH' 
-                                          WHEN BdmBenOption = 'OFEEC' THEN 'ECH' 
-                                          WHEN BdmBenOption = 'EEF' THEN 'FAM' 
-                                          WHEN BdmBenOption = 'EEDPF' THEN 'FAM'
-                                          WHEN BdmBenOption = 'OFEEF' THEN 'FAM' END
+        ,drvHD05_CoverageLevelCode = CASE WHEN BdmBenOption IN ('EE','OFEE') THEN 'EMP'
+                                          WHEN BdmBenOption IN ('EES','EEDP','OFEES') THEN 'ESP'                                          
+                                          WHEN BdmBenOption IN ('EEC','OFEEC') THEN 'ECH'                                           
+                                          WHEN BdmBenOption IN ('EEF','EEDPF','OFEEF') THEN 'FAM' 
+                                      END
         
         
                                            --CASE WHEN BdmDedCode IN ('PPPRM','PPPRO','PPPPO','PPEPO') THEN
@@ -1094,7 +1089,7 @@ BEGIN
                              WHEN 'DEN' THEN '2'
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
-                      END -- + ISNULL(BdmDedCode, '!!')
+                      END + ' HLT'-- + ISNULL(BdmDedCode, '!!')
     INTO dbo.U_EMGAINS834_DrvTbl_2300
     FROM dbo.U_EMGAINS834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1111,6 +1106,117 @@ BEGIN
     JOIN dbo.EmpDed WITH (NOLOCK)
         ON EedEEID = xEEID
     ;
+
+
+
+
+
+
+    INSERT INTO dbo.U_EMGAINS834_DrvTbl_2300
+    SELECT DISTINCT  drvHD00_HealthCoverage 
+        ,drvHD01_MaintTypeCode 
+        ,drvHD02_MaintReasonCode
+        ,drvHD03_InsuranceLineCode = 'PDG' 
+        ,drvHD04_PlanCoverageDesc = CASE WHEN Bdmdedcode = 'PPPRM' THEN '00010001'
+                                         WHEN Bdmdedcode = 'PPPRO' THEN '00020002'
+                                         WHEN Bdmdedcode = 'PPPPO' THEN '00030003'
+                                         WHEN Bdmdedcode = 'PPEPO' and eepaddressstate <> 'MO' THEN '00040004'
+                                         WHEN Bdmdedcode = 'PPEPO' and eepaddressstate = 'MO' THEN '00090009'
+                                   END
+
+        ,drvHD05_CoverageLevelCode
+        ,drvDTP00_DateTime_348
+        ,drvDTP01_DateTimeQualifier_348
+        ,drvDTP02_DateTimeFormatQual_348
+        ,drvDTP03_DateTimePeriod_348
+        -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
+        ,drvDTP00_DateTime_349
+        ,drvDTP01_DateTimeQualifier_349
+        ,drvDTP02_DateTimeFormatQual_349
+        ,drvDTP03_DateTimePeriod_349
+        -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
+        ,drvDTP00_DateTime_303 
+        ,drvDTP01_DateTimeQualifier_303 
+        ,drvDTP02_DateTimeFormatQual_303
+        ,drvDTP03_DateTimePeriod_303
+        -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
+        ,drvREF00_RefNumberQual1
+        ,drvREF01_RefNumberQual1
+        ,drvREF02_RefNumberQual1 
+        -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
+        ,drvREF00_RefNumberQual2
+        ,drvREF01_RefNumberQual2 
+        ,drvREF02_RefNumberQual2 
+        -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
+        ,drvAMT00_AmountQualifierCode1
+        ,drvAMT01_AmountQualifierCode1 
+        ,drvAMT02_MonetaryAmount1
+        -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
+        ,drvAMT00_AmountQualifierCode2
+        ,drvAMT01_AmountQualifierCode2
+        ,drvAMT02_MonetaryAmount2
+        --=====================
+        -- Loop 2700 RECORDS
+        --=====================
+        -- If drvLS01_LoopIDCode is Populated, then send LS Segment
+        ,drvLS01_LoopIDCode
+        -- If drvLX01_AssignedNumber is Populated, then send LX Segment
+        ,drvLX01_AssignedNumber 
+        --=====================
+        -- Loop 2750 RECORDS
+        --=====================
+        -- If drvN101_EntityIDCodeSponsor is Populated, then send N1 Segment
+        ,drvN101_EntityIDCodeSponsor 
+        ,drvN102_Name 
+        -- If drvREF01_RefNumberQual is Populated, then send REF Segment
+        ,drvREF01_RefNumberQual 
+        ,drvREF02_RefNumberDesc
+        -- If drvLE01_LoopIDCode is Populated, then send LE Segment
+        ,drvLE01_LoopIDCode = ''
+        ---------------------------------
+        ,drvEEID 
+        ,drvCOID 
+        ,drvDepRecID
+        ,drvSSN
+        ,drvInitialSort 
+        ,drvSubSort = LEFT(drvSubSort, LEN(drvSubSort)-3) + 'PDG' /* = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+                      + CASE BdmDedCode
+                             WHEN 'MED' THEN '1'
+                             WHEN 'DEN' THEN '2'
+                             WHEN 'VIS' THEN '3'
+                             ELSE '9'
+                      END -- + ISNULL(BdmDedCode, '!!')
+                      */
+
+        FROM dbo.U_EMGAINS834_DrvTbl_2300
+    JOIN dbo.U_dsi_bdm_EMGAINS834 WITH (NOLOCK)
+        ON BdmEEID = DrvEEID
+        AND BdmCOID = DrvCOID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = DrvEEID
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**************************************************************************************************
         TRAILER RECORDS
             - SE, GE, IEA Segments
