@@ -797,13 +797,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210810.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210825.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202107069','EMPEXPORT','OEACTIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','8','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202107069','EMPEXPORT','OEPASSIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1552','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export','202107069','EMPEXPORT','ONDEM_XOE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Sched','202107069','EMPEXPORT','SCH_ELINFI','Jul  8 2021  5:15AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202108031','EMPEXPORT','TEST_XOE','Aug  3 2021  8:04PM','ELINFINEXP',NULL,NULL,NULL,'202108031','Aug  3 2021 12:00AM','Dec 30 1899 12:00AM','202107271','1568','','','202107271',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202108111','EMPEXPORT','TEST_XOE','Aug 11 2021  5:31PM','ELINFINEXP',NULL,NULL,NULL,'202108111','Aug 11 2021 12:00AM','Dec 30 1899 12:00AM','202108021','1576','','','202108021',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','SubSort','C','drvSort');
@@ -868,7 +868,7 @@ CREATE TABLE [dbo].[U_ELINFINEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] char(6) NULL,
+    [drvSort] char(5) NULL,
     [drvChangeDate] datetime NULL,
     [drvTerminationDate] datetime NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -1301,7 +1301,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EjhReason
+        ,drvSort = LIFES_DedCode 
         -- standard fields above and additional driver fields below
         ,drvChangeDate = dbo.dsi_fnGetMinMaxDates('MAX', Max_StartDate, '1/1/2020')  
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
@@ -1493,8 +1493,17 @@ BEGIN
         ,drvVCLICvgs = CASE WHEN LIFEC_DedCode IS NOT NULL THEN 'VCLI-' + @LIFEC_EedBenAmt END 
         ,drvVCLITerminationDate = CASE WHEN LIFEC_DedCode IS NOT NULL THEN LIFEC_BdmBenStopDate END 
         ,drvMbrSmoker = CASE WHEN EepIsSmoker = 'Y' THEN 'Y' END
-        ,drvSpouseSmoker = CASE WHEN LIFES_DedCode IS NOT NULL AND ConRelationship IN ('SPS','DP') AND ConIsSmoker = 'Y' THEN 'Y' END
-        ,drvSpouseDOB = CASE WHEN LIFES_DedCode IS NOT NULL AND ConRelationship IN ('SPS','DP') THEN ConDateOfBirth END
+        ,drvSpouseSmoker =    CASE WHEN LIFES_DedCode IS NOT NULL AND (ConRelationship IN ('SPS','DP') OR LfsConRelationship IN ('SPS','DP')) THEN 
+                                CASE WHEN ConIsSmoker IS NOT NULL THEN 
+                                    CASE WHEN ConIsSmoker = 'Y' THEN 'Y' END
+                                ELSE
+                                    CASE WHEN LfsConIsSmoker = 'Y' THEN 'Y' END
+                                END
+                            END
+        --CASE WHEN LIFES_DedCode IS NOT NULL AND ConRelationship IN ('SPS','DP') AND ConIsSmoker = 'Y' THEN 'Y' END
+        ,drvSpouseDOB =    CASE WHEN LIFES_DedCode IS NOT NULL AND (ConRelationship IN ('SPS','DP') OR LfsConRelationship IN ('SPS','DP')) THEN 
+                            CASE WHEN ConDateOfBirth IS NOT NULL THEN ConDateOfBirth ELSE LfsConDateOfBirth END
+                        END
         ,drvDepFirstName = ''
         ,drvDepLastName = ''
         ,drvDepMI = ''
@@ -1625,7 +1634,6 @@ BEGIN
                 ,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmBenStopDate END) AS LIFEC_BdmBenStopDate
             FROM dbo.U_dsi_BDM_ELINFINEXP WITH (NOLOCK)
             GROUP BY BdmEEID, BdmCOID) AS BDM
-        --dbo.U_dsi_BDM_ELINFINEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
@@ -1642,12 +1650,6 @@ BEGIN
                 WHERE EedDedCode= 'LIFES') AS LIFES_BenAmt
         ON xEEID = LIFES_EedEEID
         AND xCOID = LIFES_EedCOID
-    /*LEFT JOIN (
-                SELECT EedEEID AS LIFEC_EedEEID, EedCOID AS LIFEC_EedCOID, EedBenAmt AS LIFEC_EedBenAmt
-                FROM dbo.EmpDed WITH (NOLOCK) 
-                WHERE EedDedCode= 'LIFEC') AS LIFEC_BenAmt
-        ON xEEID = LIFEC_EedEEID
-        AND xCOID = LIFEC_EedCOID*/    
     LEFT JOIN (
                 SELECT DISTINCT BdmEEID, BdmCOID, BdmDepRecId, BdmRelationship
                 FROM dbo.U_dsi_BDM_ELINFINEXP WITH (NOLOCK)
@@ -1658,13 +1660,23 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = SpouseList.BdmDepRecID
     LEFT JOIN (
-                SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate
-                FROM (
-                        SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
-                        FROM dbo.EmpHJob WITH (NOLOCK)) AS InnerEjh
-                WHERE RN = 1) AS Ejh
+                SELECT EjhEEID 
+                    ,MAX(EjhReason) AS EjhReason
+                    ,MAX(EjhJobEffDate) AS EjhJobEffDate 
+                FROM dbo.EmpHJob WITH (NOLOCK)
+                WHERE EjhReason IN ('TRI','500') 
+                GROUP BY EjhEEID) AS Ejh
         ON EjhEEID = xEEID
-        AND EjhCOID = xCOID
+    LEFT JOIN (
+                SELECT EedEEID AS LfsEEID, EedCOID AS LfsCOID, ConRelationship AS LfsConRelationship, ConDateOfBirth AS LfsConDateOfBirth, ConIsSmoker AS LfsConIsSmoker
+                FROM dbo.EmpDed WITH (NOLOCK)
+                JOIN dbo.Contacts WITH (NOLOCK)
+                    ON ConEEID = EedEEID
+                    AND ConSystemId = EedDepRecId
+                WHERE EedDedCode = 'LIFES') AS LIFES_SPS_BEN
+        ON LfsEEID = xEEID
+        AND LfsCOID = xCOID
+        
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate and @EndDate)
     ;
 

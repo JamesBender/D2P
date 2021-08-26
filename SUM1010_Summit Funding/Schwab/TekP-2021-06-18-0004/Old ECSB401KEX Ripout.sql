@@ -1,137 +1,137 @@
 SET NOCOUNT ON;
-IF OBJECT_ID('U_ECSB401KEX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_ECSB401KEX_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'ECSB401KEX' AND CfgName LIKE '%Path';
-IF OBJECT_ID('dsi_vwECSB401KEX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECSB401KEX_Export];
+IF OBJECT_ID('U_ECSB401KXX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_SavePath];
+SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_ECSB401KXX_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'ECSB401KXX' AND CfgName LIKE '%Path';
+IF OBJECT_ID('dsi_vwECSB401KXX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECSB401KXX_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_ECSB401KEX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECSB401KEX];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECSB401KXX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECSB401KXX];
 GO
-IF OBJECT_ID('U_ECSB401KEX_Trailer') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_Trailer];
+IF OBJECT_ID('U_ECSB401KXX_Trailer') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_Trailer];
 GO
-IF OBJECT_ID('U_ECSB401KEX_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_PEarHist];
+IF OBJECT_ID('U_ECSB401KXX_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_PEarHist];
 GO
-IF OBJECT_ID('U_ECSB401KEX_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_PDedHist];
+IF OBJECT_ID('U_ECSB401KXX_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_PDedHist];
 GO
-IF OBJECT_ID('U_ECSB401KEX_File') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_File];
+IF OBJECT_ID('U_ECSB401KXX_File') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_File];
 GO
-IF OBJECT_ID('U_ECSB401KEX_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_EEList];
+IF OBJECT_ID('U_ECSB401KXX_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_EEList];
 GO
-IF OBJECT_ID('U_ECSB401KEX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_drvTbl];
+IF OBJECT_ID('U_ECSB401KXX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_drvTbl];
 GO
-IF OBJECT_ID('U_ECSB401KEX_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_DedList];
+IF OBJECT_ID('U_ECSB401KXX_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_DedList];
 GO
-IF OBJECT_ID('U_ECSB401KEX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_AuditFields];
+IF OBJECT_ID('U_ECSB401KXX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_AuditFields];
 GO
-IF OBJECT_ID('U_ECSB401KEX_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_Audit];
+IF OBJECT_ID('U_ECSB401KXX_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_Audit];
 GO
-IF OBJECT_ID('U_dsi_BDM_ECSB401KEX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECSB401KEX];
+IF OBJECT_ID('U_dsi_BDM_ECSB401KXX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECSB401KXX];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ECSB401KEX';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ECSB401KEX';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ECSB401KEX';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ECSB401KEX';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ECSB401KEX';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ECSB401KEX','Charles Schwab 401k Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','ECSB401KEXZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
-/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ECSB401KEX' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"100"','1','(''DA''=''F'')','ECSB401KEXZ0','3','D','10','1',NULL,'Record ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"SMF"','2','(''DA''=''F'')','ECSB401KEXZ0','3','D','10','4',NULL,'Plan ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','3','(''UA''=''F'')','ECSB401KEXZ0','11','D','10','7',NULL,'Social Security Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvName"','4','(''UA''=''F'')','ECSB401KEXZ0','32','D','10','18',NULL,'Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc1"','5','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','50',NULL,'Contribution Source 1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc2"','6','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','62',NULL,'Contribution Source 2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc3"','7','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','74',NULL,'Contribution Source 3',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc4"','8','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','86',NULL,'Contribution Source 4',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc5"','9','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','98',NULL,'Contribution Source 5',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc6"','10','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','110',NULL,'Contribution Source 6',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc7"','11','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','122',NULL,'Contribution Source 7',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc8"','12','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','134',NULL,'Contribution Source 8',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','13','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','146',NULL,'Contribution Source 9',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','14','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','158',NULL,'Contribution Source 10',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment1"','15','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','170',NULL,'Loan Payment #1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment2"','16','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','182',NULL,'Loan Payment #2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment3"','17','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','194',NULL,'Loan Payment #3',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment4"','18','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','206',NULL,'Loan Payment #4',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment5"','19','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','218',NULL,'Loan Payment #5',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerDefAllComp"','20','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','230',NULL,'Pay Period Deferral/Allocation Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerTestingComp"','21','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','242',NULL,'Pay Period Plan Testing Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerTotalComp"','22','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','254',NULL,'Pay Period Total Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','23','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','266',NULL,'Pay Period Additional Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerHoursPaid"','24','(''UA''=''F'')','ECSB401KEXZ0','4','D','10','278',NULL,'Pay Period Hours Paid',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc1"','25','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','282',NULL,'Plan YTD Contribution Source 1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc2"','26','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','294',NULL,'Plan YTD Contribution Source 2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc3"','27','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','306',NULL,'Plan YTD Contribution Source 3',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc4"','28','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','318',NULL,'Plan YTD Contribution Source 4',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc5"','29','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','330',NULL,'Plan YTD Contribution Source 5',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc6"','30','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','342',NULL,'Plan YTD Contribution Source 6',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc7"','31','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','354',NULL,'Plan YTD Contribution Source 7',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc8"','32','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','366',NULL,'Plan YTD Contribution Source 8',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','33','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','378',NULL,'Plan YTD Contribution Source 9',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','34','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','390',NULL,'Plan YTD Contribution Source 10',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDDefAllocComp"','35','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','402',NULL,'Plan YTD Deferral/Allocation Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDPlanTestComp"','36','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','414',NULL,'YTD Plan Testing Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDPlanTotalComp"','37','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','426',NULL,'Plan YTD Total Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','38','(''DA''=''F'')','ECSB401KEXZ0','12','D','10','438',NULL,'YTD Additional Compensation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalary"','39','(''UA''=''F'')','ECSB401KEXZ0','12','D','10','450',NULL,'Salary',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDHoursPaid"','40','(''UA''=''F'')','ECSB401KEXZ0','4','D','10','462',NULL,'Plan YTD Hours Paid',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayFrequency"','41','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','466',NULL,'Pay Frequency',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','42','(''UA''=''F'')','ECSB401KEXZ0','40','D','10','467',NULL,'Primary Address Line #1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','43','(''UA''=''F'')','ECSB401KEXZ0','40','D','10','507',NULL,'Primary Address Line #2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','44','(''UA''=''F'')','ECSB401KEXZ0','80','D','10','547',NULL,'Primary City',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','45','(''UA''=''F'')','ECSB401KEXZ0','2','D','10','627',NULL,'Primary State',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','46','(''UA''=''F'')','ECSB401KEXZ0','10','D','10','629',NULL,'Primary Zip Code',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCountry"','47','(''UA''=''F'')','ECSB401KEXZ0','30','D','10','639',NULL,'Primary Country',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','48','(''DA''=''F'')','ECSB401KEXZ0','1','D','10','669',NULL,'Foreign Address Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','49','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','670',NULL,'Birth Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHireDate"','50','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','678',NULL,'Hire Date (original)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanEntryDate1"','51','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','686',NULL,'Plan Entry Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','52','(''DA''=''F'')','ECSB401KEXZ0','8','D','10','694',NULL,'Plan Entry Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','53','(''DA''=''F'')','ECSB401KEXZ0','8','D','10','702',NULL,'Plan Entry Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','54','(''DA''=''F'')','ECSB401KEXZ0','8','D','10','710',NULL,'Plan Entry Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTerminationDate"','55','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','718',NULL,'Termination Date (if applicable)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRehireDate"','56','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','726',NULL,'Rehire Date (date of most recent rehire)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAlternateVestingDate"','57','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','734',NULL,'Alternate Vesting Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','58','(''DA''=''F'')','ECSB401KEXZ0','1','D','10','742',NULL,'Restricted Status (officer status field)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','59','(''DA''=''F'')','ECSB401KEXZ0','5','D','10','743',NULL,'Loan Restriction',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','60','(''DA''=''F'')','ECSB401KEXZ0','1','D','10','748',NULL,'Collective Bargaining Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayrollStatus"','61','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','749',NULL,'Payroll Status',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','62','(''DA''=''F'')','ECSB401KEXZ0','1','D','10','750',NULL,'Highly Compensated Status (HCE)',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','63','(''DA''=''F'')','ECSB401KEXZ0','1','D','10','751',NULL,'Ineligible Status',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayLocation"','64','(''UA''=''F'')','ECSB401KEXZ0','15','D','10','752',NULL,'Pay Location',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvReportingDivision"','65','(''UA''=''F'')','ECSB401KEXZ0','5','D','10','767',NULL,'Reporting Division',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAlternateKey1"','66','(''UA''=''F'')','ECSB401KEXZ0','15','D','10','772',NULL,'Alternate Key #1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAlternateKey2"','67','(''UA''=''F'')','ECSB401KEXZ0','15','D','10','787',NULL,'Alternate Key #2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','68','(''DA''=''F'')','ECSB401KEXZ0','5','D','10','802',NULL,'Transfer Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWorkHomePhone"','69','(''UA''=''F'')','ECSB401KEXZ0','15','D','10','807',NULL,'Work/Home Telephone Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressEmail"','70','(''UA''=''F'')','ECSB401KEXZ0','50','D','10','822',NULL,'E-mail Address',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLanguageCode"','71','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','872',NULL,'Language Preference Code',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','72','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','873',NULL,'Gender Code',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMaritalStatus"','73','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','874',NULL,'Marital Status – Taxable',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFederalExemptions"','74','(''UA''=''F'')','ECSB401KEXZ0','2','D','10','875',NULL,'Federal Exemptions',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobCodeIndicator"','75','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','877',NULL,'Job Code Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAStartDate"','76','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','878',NULL,'Leave of Absence – Start Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAEndDate"','77','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','886',NULL,'Leave of Absence – End Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAIndicator"','78','(''UA''=''F'')','ECSB401KEXZ0','1','D','10','894',NULL,'Leave of Absence Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfRetirement"','79','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','895',NULL,'Retirement Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfDeath"','80','(''UDMDY''=''F'')','ECSB401KEXZ0','8','D','10','903',NULL,'Death Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','81','(''DA''=''F'')','ECSB401KEXZ0','40','D','10','911',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"101"','1','(''DA''=''F'')','ECSB401KEXZ0','3','T','90','1',NULL,'Record ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"SMF"','2','(''DA''=''F'')','ECSB401KEXZ0','3','T','90','4',NULL,'Plan ID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPeriodEndDate"','3','(''UDMDY''=''F'')','ECSB401KEXZ0','11','T','90','7',NULL,'Pay Period Ending Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''F'')','ECSB401KEXZ0','32','T','90','18',NULL,'FILLER',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc1Total"','5','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','50',NULL,'Contribution Source 1 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc2Total"','6','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','62',NULL,'Contribution Source 2 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc3Total"','7','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','74',NULL,'Contribution Source 3 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc4Total"','8','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','86',NULL,'Contribution Source 4 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc5Total"','10','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','98',NULL,'Contribution Source 6 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc6Total"','11','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','110',NULL,'Contribution Source 7 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc7Total"','12','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','122',NULL,'Contribution Source 8 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc8Total"','13','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','134',NULL,'Contribution Source 9 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','14','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','146',NULL,'Contribution Source 10 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','15','(''DA''=''F'')','ECSB401KEXZ0','12','T','90','158',NULL,'Contribution Source 10 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal1"','16','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','170',NULL,'Loan Payment #1 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal2"','17','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','182',NULL,'Loan Payment #2 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal3"','18','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','194',NULL,'Loan Payment #3 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal4"','19','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','206',NULL,'Loan Payment #4 Total',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal5"','20','(''UA''=''F'')','ECSB401KEXZ0','12','T','90','218',NULL,'Loan Payment #5 Total',NULL,NULL);
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ECSB401KXX';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ECSB401KXX';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ECSB401KXX';
+DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ECSB401KXX';
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ECSB401KXX';
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ECSB401KXX','OLD - Charles Schwab 401k Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','ECSB401KXXZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
+/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ECSB401KXX' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"100"','1','(''DA''=''F'')','ECSB401KXXZ0','3','D','10','1',NULL,'Record ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"SMF"','2','(''DA''=''F'')','ECSB401KXXZ0','3','D','10','4',NULL,'Plan ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','3','(''UA''=''F'')','ECSB401KXXZ0','11','D','10','7',NULL,'Social Security Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvName"','4','(''UA''=''F'')','ECSB401KXXZ0','32','D','10','18',NULL,'Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc1"','5','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','50',NULL,'Contribution Source 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc2"','6','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','62',NULL,'Contribution Source 2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc3"','7','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','74',NULL,'Contribution Source 3',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc4"','8','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','86',NULL,'Contribution Source 4',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc5"','9','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','98',NULL,'Contribution Source 5',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc6"','10','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','110',NULL,'Contribution Source 6',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc7"','11','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','122',NULL,'Contribution Source 7',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc8"','12','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','134',NULL,'Contribution Source 8',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','13','(''DA''=''F'')','ECSB401KXXZ0','12','D','10','146',NULL,'Contribution Source 9',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','14','(''DA''=''F'')','ECSB401KXXZ0','12','D','10','158',NULL,'Contribution Source 10',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment1"','15','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','170',NULL,'Loan Payment #1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment2"','16','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','182',NULL,'Loan Payment #2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment3"','17','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','194',NULL,'Loan Payment #3',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment4"','18','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','206',NULL,'Loan Payment #4',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayment5"','19','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','218',NULL,'Loan Payment #5',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerDefAllComp"','20','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','230',NULL,'Pay Period Deferral/Allocation Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerTestingComp"','21','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','242',NULL,'Pay Period Plan Testing Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerTotalComp"','22','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','254',NULL,'Pay Period Total Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','23','(''DA''=''F'')','ECSB401KXXZ0','12','D','10','266',NULL,'Pay Period Additional Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPerHoursPaid"','24','(''UA''=''F'')','ECSB401KXXZ0','4','D','10','278',NULL,'Pay Period Hours Paid',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc1"','25','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','282',NULL,'Plan YTD Contribution Source 1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc2"','26','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','294',NULL,'Plan YTD Contribution Source 2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc3"','27','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','306',NULL,'Plan YTD Contribution Source 3',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc4"','28','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','318',NULL,'Plan YTD Contribution Source 4',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc5"','29','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','330',NULL,'Plan YTD Contribution Source 5',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc6"','30','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','342',NULL,'Plan YTD Contribution Source 6',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc7"','31','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','354',NULL,'Plan YTD Contribution Source 7',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDConSrc8"','32','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','366',NULL,'Plan YTD Contribution Source 8',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','33','(''DA''=''F'')','ECSB401KXXZ0','12','D','10','378',NULL,'Plan YTD Contribution Source 9',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','34','(''DA''=''F'')','ECSB401KXXZ0','12','D','10','390',NULL,'Plan YTD Contribution Source 10',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDDefAllocComp"','35','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','402',NULL,'Plan YTD Deferral/Allocation Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDPlanTestComp"','36','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','414',NULL,'YTD Plan Testing Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvYTDPlanTotalComp"','37','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','426',NULL,'Plan YTD Total Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','38','(''DA''=''F'')','ECSB401KXXZ0','12','D','10','438',NULL,'YTD Additional Compensation',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalary"','39','(''UA''=''F'')','ECSB401KXXZ0','12','D','10','450',NULL,'Salary',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanYTDHoursPaid"','40','(''UA''=''F'')','ECSB401KXXZ0','4','D','10','462',NULL,'Plan YTD Hours Paid',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayFrequency"','41','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','466',NULL,'Pay Frequency',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','42','(''UA''=''F'')','ECSB401KXXZ0','40','D','10','467',NULL,'Primary Address Line #1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','43','(''UA''=''F'')','ECSB401KXXZ0','40','D','10','507',NULL,'Primary Address Line #2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','44','(''UA''=''F'')','ECSB401KXXZ0','80','D','10','547',NULL,'Primary City',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','45','(''UA''=''F'')','ECSB401KXXZ0','2','D','10','627',NULL,'Primary State',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','46','(''UA''=''F'')','ECSB401KXXZ0','10','D','10','629',NULL,'Primary Zip Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCountry"','47','(''UA''=''F'')','ECSB401KXXZ0','30','D','10','639',NULL,'Primary Country',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','48','(''DA''=''F'')','ECSB401KXXZ0','1','D','10','669',NULL,'Foreign Address Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','49','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','670',NULL,'Birth Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHireDate"','50','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','678',NULL,'Hire Date (original)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanEntryDate1"','51','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','686',NULL,'Plan Entry Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','52','(''DA''=''F'')','ECSB401KXXZ0','8','D','10','694',NULL,'Plan Entry Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','53','(''DA''=''F'')','ECSB401KXXZ0','8','D','10','702',NULL,'Plan Entry Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','54','(''DA''=''F'')','ECSB401KXXZ0','8','D','10','710',NULL,'Plan Entry Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTerminationDate"','55','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','718',NULL,'Termination Date (if applicable)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRehireDate"','56','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','726',NULL,'Rehire Date (date of most recent rehire)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAlternateVestingDate"','57','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','734',NULL,'Alternate Vesting Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','58','(''DA''=''F'')','ECSB401KXXZ0','1','D','10','742',NULL,'Restricted Status (officer status field)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','59','(''DA''=''F'')','ECSB401KXXZ0','5','D','10','743',NULL,'Loan Restriction',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','60','(''DA''=''F'')','ECSB401KXXZ0','1','D','10','748',NULL,'Collective Bargaining Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayrollStatus"','61','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','749',NULL,'Payroll Status',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','62','(''DA''=''F'')','ECSB401KXXZ0','1','D','10','750',NULL,'Highly Compensated Status (HCE)',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','63','(''DA''=''F'')','ECSB401KXXZ0','1','D','10','751',NULL,'Ineligible Status',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayLocation"','64','(''UA''=''F'')','ECSB401KXXZ0','15','D','10','752',NULL,'Pay Location',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvReportingDivision"','65','(''UA''=''F'')','ECSB401KXXZ0','5','D','10','767',NULL,'Reporting Division',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAlternateKey1"','66','(''UA''=''F'')','ECSB401KXXZ0','15','D','10','772',NULL,'Alternate Key #1',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAlternateKey2"','67','(''UA''=''F'')','ECSB401KXXZ0','15','D','10','787',NULL,'Alternate Key #2',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','68','(''DA''=''F'')','ECSB401KXXZ0','5','D','10','802',NULL,'Transfer Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWorkHomePhone"','69','(''UA''=''F'')','ECSB401KXXZ0','15','D','10','807',NULL,'Work/Home Telephone Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressEmail"','70','(''UA''=''F'')','ECSB401KXXZ0','50','D','10','822',NULL,'E-mail Address',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLanguageCode"','71','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','872',NULL,'Language Preference Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','72','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','873',NULL,'Gender Code',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMaritalStatus"','73','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','874',NULL,'Marital Status – Taxable',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFederalExemptions"','74','(''UA''=''F'')','ECSB401KXXZ0','2','D','10','875',NULL,'Federal Exemptions',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobCodeIndicator"','75','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','877',NULL,'Job Code Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAStartDate"','76','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','878',NULL,'Leave of Absence – Start Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAEndDate"','77','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','886',NULL,'Leave of Absence – End Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLOAIndicator"','78','(''UA''=''F'')','ECSB401KXXZ0','1','D','10','894',NULL,'Leave of Absence Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfRetirement"','79','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','895',NULL,'Retirement Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfDeath"','80','(''UDMDY''=''F'')','ECSB401KXXZ0','8','D','10','903',NULL,'Death Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','81','(''DA''=''F'')','ECSB401KXXZ0','40','D','10','911',NULL,'Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"101"','1','(''DA''=''F'')','ECSB401KXXZ0','3','T','90','1',NULL,'Record ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"SMF"','2','(''DA''=''F'')','ECSB401KXXZ0','3','T','90','4',NULL,'Plan ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayPeriodEndDate"','3','(''UDMDY''=''F'')','ECSB401KXXZ0','11','T','90','7',NULL,'Pay Period Ending Date',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''DA''=''F'')','ECSB401KXXZ0','32','T','90','18',NULL,'FILLER',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc1Total"','5','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','50',NULL,'Contribution Source 1 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc2Total"','6','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','62',NULL,'Contribution Source 2 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc3Total"','7','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','74',NULL,'Contribution Source 3 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc4Total"','8','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','86',NULL,'Contribution Source 4 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc5Total"','10','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','98',NULL,'Contribution Source 6 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc6Total"','11','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','110',NULL,'Contribution Source 7 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc7Total"','12','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','122',NULL,'Contribution Source 8 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvContribSrc8Total"','13','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','134',NULL,'Contribution Source 9 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','14','(''DA''=''F'')','ECSB401KXXZ0','12','T','90','146',NULL,'Contribution Source 10 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000000000"','15','(''DA''=''F'')','ECSB401KXXZ0','12','T','90','158',NULL,'Contribution Source 10 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal1"','16','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','170',NULL,'Loan Payment #1 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal2"','17','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','182',NULL,'Loan Payment #2 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal3"','18','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','194',NULL,'Loan Payment #3 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal4"','19','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','206',NULL,'Loan Payment #4 Total',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPaymentTotal5"','20','(''UA''=''F'')','ECSB401KXXZ0','12','T','90','218',NULL,'Loan Payment #5 Total',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -139,27 +139,27 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECSB401KEX_20210723.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECSB401KXX_20210817.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010319','EMPEXPORT','OEACTIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010319','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202105101','EMPEXPORT','ONDEMAND',NULL,'ECSB401KEX',NULL,NULL,NULL,'202105101','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202105101',NULL,'eecPaygroup','SM1','202105101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202010319','EMPEXPORT','SCH_CHAEX',NULL,'ECSB401KEX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202103251','EMPEXPORT','TEST','Apr  8 2021 10:47AM','ECSB401KEX',NULL,NULL,NULL,'202103251','Mar 25 2021 12:00AM','Mar 15 2021 12:00AM','202103251','1354','eecPayGroup','SM1','202103251',dbo.fn_GetTimedKey(),NULL,'us3cPeSUM1010',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','InitialSort','C','drvSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KEX','UseFileName','V','Y');
-/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ECSB401KEX' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
-/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ECSB401KEX' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
-IF OBJECT_ID('U_ECSB401KEX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_SavePath];
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010319','EMPEXPORT','OEACTIVE',NULL,'ECSB401KXX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202010319','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KXX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202105101','EMPEXPORT','ONDEMAND',NULL,'ECSB401KXX',NULL,NULL,NULL,'202105101','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202105101',NULL,'eecPaygroup','SM1','202105101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202010319','EMPEXPORT','SCH_CHAEX',NULL,'ECSB401KXX',NULL,NULL,NULL,'202010319','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202103251','EMPEXPORT','TEST','Apr  8 2021 10:47AM','ECSB401KXX',NULL,NULL,NULL,'202103251','Mar 25 2021 12:00AM','Mar 15 2021 12:00AM','202103251','1354','eecPayGroup','SM1','202103251',dbo.fn_GetTimedKey(),NULL,'us3cPeSUM1010',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KXX','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KXX','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KXX','InitialSort','C','drvSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KXX','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECSB401KXX','UseFileName','V','Y');
+/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ECSB401KXX' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
+/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ECSB401KXX' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
+IF OBJECT_ID('U_ECSB401KXX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KXX_SavePath];
 GO
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECSB401KEX','H01','None',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECSB401KEX','D10','dbo.U_ECSB401KEX_drvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECSB401KEX','T90','dbo.U_ECSB401KEX_Trailer',NULL);
-IF OBJECT_ID('U_dsi_BDM_ECSB401KEX') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_ECSB401KEX] (
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECSB401KXX','H01','None',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECSB401KXX','D10','dbo.U_ECSB401KXX_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECSB401KXX','T90','dbo.U_ECSB401KXX_Trailer',NULL);
+IF OBJECT_ID('U_dsi_BDM_ECSB401KXX') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_ECSB401KXX] (
     [BdmRecType] varchar(3) NOT NULL,
     [BdmCOID] char(5) NULL,
     [BdmEEID] char(12) NOT NULL,
@@ -201,8 +201,8 @@ CREATE TABLE [dbo].[U_dsi_BDM_ECSB401KEX] (
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_Audit') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_Audit] (
+IF OBJECT_ID('U_ECSB401KXX_Audit') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_Audit] (
     [audTableName] varchar(128) NOT NULL,
     [audFieldName] varchar(128) NOT NULL,
     [audKey1Value] varchar(255) NOT NULL,
@@ -213,18 +213,18 @@ CREATE TABLE [dbo].[U_ECSB401KEX_Audit] (
     [audNewValue] varchar(2000) NULL,
     [audRowNo] bigint NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_AuditFields') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_AuditFields] (
+IF OBJECT_ID('U_ECSB401KXX_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_AuditFields] (
     [aTableName] varchar(128) NULL,
     [aFieldName] varchar(128) NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_DedList') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_DedList] (
+IF OBJECT_ID('U_ECSB401KXX_DedList') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_drvTbl') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_drvTbl] (
+IF OBJECT_ID('U_ECSB401KXX_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -298,13 +298,13 @@ CREATE TABLE [dbo].[U_ECSB401KEX_drvTbl] (
     [drvDateOfRetirement] varchar(1) NOT NULL,
     [drvDateOfDeath] varchar(1) NOT NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_EEList') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_EEList] (
+IF OBJECT_ID('U_ECSB401KXX_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_File') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_File] (
+IF OBJECT_ID('U_ECSB401KXX_File') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(100) NOT NULL,
     [SubSort] varchar(100) NOT NULL,
@@ -312,8 +312,8 @@ CREATE TABLE [dbo].[U_ECSB401KEX_File] (
     [SubSort3] varchar(100) NULL,
     [Data] char(1000) NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_PDedHist') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_PDedHist] (
+IF OBJECT_ID('U_ECSB401KXX_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
@@ -333,8 +333,8 @@ CREATE TABLE [dbo].[U_ECSB401KEX_PDedHist] (
     [PdhDedCalcBasisAmt] numeric NULL,
     [PdhDedCalcBasisAmtYTD] numeric NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_PEarHist') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_PEarHist] (
+IF OBJECT_ID('U_ECSB401KXX_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_PEarHist] (
     [PehEEID] char(12) NOT NULL,
     [PrgPayDate] datetime NULL,
     [PehCurAmt] numeric NULL,
@@ -352,8 +352,8 @@ CREATE TABLE [dbo].[U_ECSB401KEX_PEarHist] (
     [PehInclInDefCompYTD] money NULL,
     [PehInclInDefCompHrsYTD] decimal NULL
 );
-IF OBJECT_ID('U_ECSB401KEX_Trailer') IS NULL
-CREATE TABLE [dbo].[U_ECSB401KEX_Trailer] (
+IF OBJECT_ID('U_ECSB401KXX_Trailer') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KXX_Trailer] (
     [drvPayPeriodEndDate] datetime NULL,
     [drvContribSrc1Total] nvarchar(12) NULL,
     [drvContribSrc2Total] nvarchar(12) NULL,
@@ -370,7 +370,7 @@ CREATE TABLE [dbo].[U_ECSB401KEX_Trailer] (
     [drvLoanPaymentTotal5] nvarchar(12) NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECSB401KEX]
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECSB401KXX]
     @SystemID char(12)
 AS
 SET NOCOUNT ON;
@@ -389,22 +389,22 @@ Revision History
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/2020     SR-2020-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECSB401KEX';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECSB401KEX';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECSB401KEX';
-SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECSB401KEX';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECSB401KEX' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECSB401KXX';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECSB401KXX';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECSB401KXX';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECSB401KXX';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECSB401KXX' ORDER BY RunID DESC;
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KEX', 'ONDEMAND';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KEX', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KEX', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KEX', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KXX', 'ONDEMAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KXX', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KXX', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECSB401KXX', 'TEST';
 
-EXEC dbo.dsi_BDM_sp_ErrorCheck 'ECSB401KEX';
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'ECSB401KXX';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ECSB401KEX', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ECSB401KXX', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -419,7 +419,7 @@ BEGIN
             ,@EndPerControl     VARCHAR(9);
 
     -- Set FormatCode
-    SELECT @FormatCode = 'ECSB401KEX';
+    SELECT @FormatCode = 'ECSB401KXX';
 
     -- Declare dates from Parameter file
     SELECT
@@ -437,14 +437,14 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_ECSB401KEX_EEList
+    DELETE FROM dbo.U_ECSB401KXX_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_ECSB401KEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ECSB401KXX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-    DELETE FROM dbo.U_ECSB401KEX_EEList
+    DELETE FROM dbo.U_ECSB401KXX_EEList
     WHERE  xEEID IN (SELECT eepeeid FROM dbo.EmpPers where eepssn in ('999999999','000000002' ));
 
-     DELETE FROM dbo.U_ECSB401KEX_EEList
+     DELETE FROM dbo.U_ECSB401KXX_EEList
     WHERE  xEEID IN (SELECT distinct eeceeid FROM dbo.Empcomp where   eeceetype in ('COB','TES'));
     --==========================================
     -- Create Deduction List
@@ -452,12 +452,12 @@ BEGIN
     DECLARE @DedList VARCHAR(MAX)
     SET @DedList = '401F,401P,4ROTH,4ROTP,401CF,401CP,401CR,401KM,401L,40L10,401L2,401L3,401L4,401L5,401L6,401L7,401L8,401L9';
 
-    IF OBJECT_ID('U_ECSB401KEX_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_DedList;
+    IF OBJECT_ID('U_ECSB401KXX_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_DedList;
     SELECT DISTINCT
          DedCode = DedDedCode
         ,DedType = DedDedType
-    INTO dbo.U_ECSB401KEX_DedList
+    INTO dbo.U_ECSB401KXX_DedList
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
@@ -498,8 +498,8 @@ BEGIN
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
-    IF OBJECT_ID('U_ECSB401KEX_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_PDedHist;
+    IF OBJECT_ID('U_ECSB401KXX_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_PDedHist;
     SELECT DISTINCT
          PdhEEID
         -- Current Payroll Amounts
@@ -523,9 +523,9 @@ BEGIN
         ,PdhDedCalcBasisAmt =  SUM(CASE WHEN PdhDedCode IN ('401F', '401P', '401CF', '401CP', '4ROTH', '4ROTP', '401CR', '401KM') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhDedCalcBasisAmtYTD =  SUM(CASE WHEN PdhDedCode IN ('401F', '401P', '401CF', '401CP', '4ROTH', '4ROTP', '401CR', '401KM') THEN PdhEECurAmt ELSE 0.00 END)
 
-    INTO dbo.U_ECSB401KEX_PDedHist
+    INTO dbo.U_ECSB401KXX_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_ECSB401KEX_DedList WITH (NOLOCK)
+    JOIN dbo.U_ECSB401KXX_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
@@ -539,8 +539,8 @@ BEGIN
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
-    IF OBJECT_ID('U_ECSB401KEX_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_PEarHist;
+    IF OBJECT_ID('U_ECSB401KXX_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_PEarHist;
     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
@@ -562,7 +562,7 @@ BEGIN
         -- YTD Include Deferred Comp Amount/Hours
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_ECSB401KEX_PEarHist
+    INTO dbo.U_ECSB401KXX_PEarHist
     FROM dbo.PayReg WITH (NOLOCK)
     JOIN dbo.PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
@@ -576,16 +576,16 @@ BEGIN
 
     --======
 
-    IF OBJECT_ID('U_ECSB401KEX_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_AuditFields;
-    CREATE TABLE dbo.U_ECSB401KEX_AuditFields (aTableName varchar(128),aFieldName varchar(128));
+    IF OBJECT_ID('U_ECSB401KXX_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_AuditFields;
+    CREATE TABLE dbo.U_ECSB401KXX_AuditFields (aTableName varchar(128),aFieldName varchar(128));
     
     -- Insert tables/fields to be audited
-    INSERT INTO dbo.U_ECSB401KEX_AuditFields VALUES ('EmpComp','eecEmplStatus');    
+    INSERT INTO dbo.U_ECSB401KXX_AuditFields VALUES ('EmpComp','eecEmplStatus');    
     
     -- Create audit table
-    IF OBJECT_ID('U_ECSB401KEX_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_Audit;
+    IF OBJECT_ID('U_ECSB401KXX_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_Audit;
     SELECT
          audTableName = adrTableName
         ,audFieldName = adfFieldName
@@ -596,28 +596,28 @@ BEGIN
         ,audOldValue  = adfOldData
         ,audNewValue  = adfNewData
         ,audRowNo     = ROW_NUMBER() OVER(PARTITION BY adrKey1, adrKey2, adrKey3, adfFieldName ORDER BY adrRecID DESC)
-    INTO dbo.U_ECSB401KEX_Audit
+    INTO dbo.U_ECSB401KXX_Audit
     FROM (SELECT *
           FROM dbo.AuditRecords WITH (NOLOCK)
-          WHERE adrTableName IN (SELECT aTableName FROM dbo.U_ECSB401KEX_AuditFields WITH (NOLOCK))) ADR
+          WHERE adrTableName IN (SELECT aTableName FROM dbo.U_ECSB401KXX_AuditFields WITH (NOLOCK))) ADR
     JOIN (SELECT *
           FROM dbo.AuditFields WITH (NOLOCK)
-          WHERE adfFieldName IN (SELECT aFieldName FROM dbo.U_ECSB401KEX_AuditFields WITH (NOLOCK))) ADF
+          WHERE adfFieldName IN (SELECT aFieldName FROM dbo.U_ECSB401KXX_AuditFields WITH (NOLOCK))) ADF
         ON adrSystemID = adfSystemID
        AND adrKey = adfKey
     WHERE adrType IN (1,2,5,6) -- Insert/Update; remove this to include Deletes and Viewed
       AND adrProcessedDateTime BETWEEN @EndDate - 365 AND @EndDate;
     
     -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_ECSB401KEX_Audit ON dbo.U_ECSB401KEX_Audit (audKey1Value, audKey2Value);
+    CREATE CLUSTERED INDEX CDX_U_ECSB401KXX_Audit ON dbo.U_ECSB401KXX_Audit (audKey1Value, audKey2Value);
     --==========================================
     -- Build Driver Tables
     --==========================================
     ---------------------------------
-    -- DETAIL RECORD - U_ECSB401KEX_drvTbl
+    -- DETAIL RECORD - U_ECSB401KXX_drvTbl
     ---------------------------------
-    IF OBJECT_ID('U_ECSB401KEX_drvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_drvTbl;
+    IF OBJECT_ID('U_ECSB401KXX_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_drvTbl;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -708,23 +708,23 @@ BEGIN
         ,drvLOAIndicator = CASE WHEN EecEmplStatus = 'L' THEN 'L' END
         ,drvDateOfRetirement = ''
         ,drvDateOfDeath = ''
-    INTO dbo.U_ECSB401KEX_drvTbl
-    FROM dbo.U_ECSB401KEX_EEList WITH (NOLOCK)
+    INTO dbo.U_ECSB401KXX_drvTbl
+    FROM dbo.U_ECSB401KXX_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
           --and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
-           --                             and EXISTS(select 1 from dbo.U_ECSB401KEX_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+           --                             and EXISTS(select 1 from dbo.U_ECSB401KXX_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    LEFT JOIN dbo.U_dsi_BDM_ECSB401KEX WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_ECSB401KXX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN dbo.U_ECSB401KEX_PDedHist WITH (NOLOCK)
+    LEFT JOIN dbo.U_ECSB401KXX_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID    
-    LEFT JOIN dbo.U_ECSB401KEX_PEarHist WITH (NOLOCK)
+    LEFT JOIN dbo.U_ECSB401KXX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
@@ -750,9 +750,9 @@ BEGIN
     Join dbo.company WITH (NOLOCK) 
         on cmpcoid = xcoid    ;
 
-    Update dbo.U_ECSB401KEX_drvTbl set drvLoanPayment1Raw = 0 , drvLoanPayment1 = '000000000000' where drvLoanPayment1Raw  < 0
+    Update dbo.U_ECSB401KXX_drvTbl set drvLoanPayment1Raw = 0 , drvLoanPayment1 = '000000000000' where drvLoanPayment1Raw  < 0
 
-    Delete from dbo.U_ECSB401KEX_drvTbl where drvYTDDefAllocComp = '000000000000' and drvTerminationDate is not null and Year(drvTerminationDate) < Year(@EndDate)
+    Delete from dbo.U_ECSB401KXX_drvTbl where drvYTDDefAllocComp = '000000000000' and drvTerminationDate is not null and Year(drvTerminationDate) < Year(@EndDate)
 
     ---------------------------------
     -- TRAILER RECORD
@@ -773,24 +773,24 @@ BEGIN
         ,@Payment4 AS INTEGER
         ,@Payment5 AS INTEGER;
 
-    SET @Contrib1 = (SELECT SUM(CAST(drvContribSrc1Raw AS money)) FROM dbo.U_ECSB401KEX_drvTbl);
-    SET @Contrib2 = (SELECT SUM(CAST(drvContribSrc2Raw AS money)) FROM dbo.U_ECSB401KEX_drvTbl);
-    SET @Contrib3 = (SELECT SUM(CAST(drvContribSrc3Raw AS money)) FROM dbo.U_ECSB401KEX_drvTbl);
-    SET @Contrib4 = (SELECT SUM(CAST(drvContribSrc4Raw AS money)) FROM dbo.U_ECSB401KEX_drvTbl);
+    SET @Contrib1 = (SELECT SUM(CAST(drvContribSrc1Raw AS money)) FROM dbo.U_ECSB401KXX_drvTbl);
+    SET @Contrib2 = (SELECT SUM(CAST(drvContribSrc2Raw AS money)) FROM dbo.U_ECSB401KXX_drvTbl);
+    SET @Contrib3 = (SELECT SUM(CAST(drvContribSrc3Raw AS money)) FROM dbo.U_ECSB401KXX_drvTbl);
+    SET @Contrib4 = (SELECT SUM(CAST(drvContribSrc4Raw AS money)) FROM dbo.U_ECSB401KXX_drvTbl);
 
-    SET @Contrib5 = (SELECT SUM(CAST(drvContribSrc5Raw AS money)) FROM dbo.U_ECSB401KEX_drvTbl);
+    SET @Contrib5 = (SELECT SUM(CAST(drvContribSrc5Raw AS money)) FROM dbo.U_ECSB401KXX_drvTbl);
     SET @Contrib6 = 0
     SET @Contrib7 = 0
     SET @Contrib8 = 0
 
-    SET @Payment1 = (SELECT SUM(CAST(drvLoanPayment1Raw AS money)) FROM dbo.U_ECSB401KEX_drvTbl);
+    SET @Payment1 = (SELECT SUM(CAST(drvLoanPayment1Raw AS money)) FROM dbo.U_ECSB401KXX_drvTbl);
     SET @Payment2 = 0
     SET @Payment3 = 0
     SET @Payment4 = 0
     SET @Payment5 = 0
 
-    IF OBJECT_ID('U_ECSB401KEX_Trailer','U') IS NOT NULL
-        DROP TABLE dbo.U_ECSB401KEX_Trailer;
+    IF OBJECT_ID('U_ECSB401KXX_Trailer','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KXX_Trailer;
     SELECT DISTINCT
          drvPayPeriodEndDate = @EndDate /*(SELECT MAX(PgpPayDate) as PayDate
                    FROM dbo.PgPayPer WITH (NOLOCK)
@@ -823,7 +823,7 @@ BEGIN
         --RIGHT(SPACE(12) + CASE WHEN @Payment4 > 0 THEN FORMAT(@Payment4, '#') ELSE '0' END, 12)
         ,drvLoanPaymentTotal5 = RIGHT(REPLICATE('0', 12) + ISNULL(FORMAT(@Payment5, '#0'), ''), 12)
         --RIGHT(SPACE(12) + CASE WHEN @Payment5 > 0 THEN FORMAT(@Payment5, '#') ELSE '0' END, 12)
-    INTO dbo.U_ECSB401KEX_Trailer
+    INTO dbo.U_ECSB401KXX_Trailer
     ;
 
     --==========================================
@@ -843,13 +843,13 @@ END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vwECSB401KEX_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_ECSB401KEX_File (NOLOCK)
+ALTER VIEW dbo.dsi_vwECSB401KXX_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ECSB401KXX_File (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'ECSB401KEX%'
+WHERE AdfHeaderSystemID LIKE 'ECSB401KXX%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
@@ -858,10 +858,10 @@ UPDATE dbo.AscExp
        ,expStartPerControl     = '202009301'
        ,expLastEndPerControl   = '202010319'
        ,expEndPerControl       = '202010319'
-WHERE expFormatCode = 'ECSB401KEX';
+WHERE expFormatCode = 'ECSB401KXX';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwECSB401KEX_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_ECSB401KEX_File WITH (NOLOCK)
+CREATE VIEW dbo.dsi_vwECSB401KXX_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_ECSB401KXX_File WITH (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort
