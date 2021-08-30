@@ -1,14 +1,30 @@
 SET NOCOUNT ON;
 IF OBJECT_ID('U_EMOOSVAEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_SavePath];
 SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EMOOSVAEXP_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EMOOSVAEXP' AND CfgName LIKE '%Path';
+IF OBJECT_ID('dsi_vwEMOOSVAEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEMOOSVAEXP_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EMOOSVAEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EMOOSVAEXP];
+GO
+IF OBJECT_ID('U_EMOOSVAEXP_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_PEarHist];
+GO
+IF OBJECT_ID('U_EMOOSVAEXP_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_PDedHist];
+GO
+IF OBJECT_ID('U_EMOOSVAEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_File];
+GO
+IF OBJECT_ID('U_EMOOSVAEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_EEList];
+GO
+IF OBJECT_ID('U_EMOOSVAEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_drvTbl];
+GO
+IF OBJECT_ID('U_EMOOSVAEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_DedList];
+GO
+IF OBJECT_ID('U_dsi_BDM_EMOOSVAEXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EMOOSVAEXP];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EMOOSVAEXP';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EMOOSVAEXP';
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EMOOSVAEXP';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EMOOSVAEXP';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EMOOSVAEXP';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','SDF','EMOOSVAEXP','MoO STD VolL ADD Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','N','S','N','EMOOSVAEXPZ0','N','Jan  1 1900 12:00AM','C','N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EMOOSVAEXP','MoO STD VolL ADD Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','S','N','EMOOSVAEXPZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EMOOSVAEXP' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTransDate"','1','(''UD112''=''F'')','EMOOSVAEXPZ0','8','D','10','1',NULL,'Trans Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"G000BW7J"','2','(''DA''=''F'')','EMOOSVAEXPZ0','8','D','10','9',NULL,'Group ID',NULL,NULL);
@@ -96,18 +112,178 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202108279','EMPEXPORT','OEPASSIVE',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MoO STD VolL ADD Export','202108279','EMPEXPORT','ONDEM_XOE',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MoO STD VolL ADD Export-Sched','202108279','EMPEXPORT','SCH_EMOOSV',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MoO STD VolL ADD Export-Test','202108279','EMPEXPORT','TEST_XOE',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'MoO STD VolL ADD Export-Test','202108279','EMPEXPORT','TEST_XOE',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EMOOSVAEXP' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EMOOSVAEXP' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_EMOOSVAEXP_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EMOOSVAEXP_SavePath];
 GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOOSVAEXP','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOOSVAEXP','D10','dbo.U_EMOOSVAEXP_drvTbl',NULL);
+IF OBJECT_ID('U_dsi_BDM_EMOOSVAEXP') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EMOOSVAEXP] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+IF OBJECT_ID('U_EMOOSVAEXP_DedList') IS NULL
+CREATE TABLE [dbo].[U_EMOOSVAEXP_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+IF OBJECT_ID('U_EMOOSVAEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EMOOSVAEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvSort] varchar(1) NOT NULL,
+    [drvTransDate] varchar(1) NOT NULL,
+    [drvRelationshipCode] varchar(1) NOT NULL,
+    [drvEmployeeID] char(9) NULL,
+    [drvNameLast] varchar(100) NULL,
+    [drvNameFirst] varchar(100) NULL,
+    [drvGenderCode] varchar(1) NOT NULL,
+    [drvDateOfBirth] datetime NULL,
+    [drvDateOfHire] varchar(1) NOT NULL,
+    [drvEmployeeEffectiveDate] varchar(1) NOT NULL,
+    [drvBillGroupEffectiveDate] varchar(1) NOT NULL,
+    [drvBasicSalaryEffectiveDate] varchar(1) NOT NULL,
+    [drvBasicSalaryAmount] varchar(1) NOT NULL,
+    [drvClassEffectiveDate] varchar(1) NOT NULL,
+    [drvTermEEProductCategory] varchar(1) NOT NULL,
+    [drvTermEEEffectiveDate] datetime NULL,
+    [drvTermEEEligibilityEvent] varchar(1) NOT NULL,
+    [drvTermEEPlanID] varchar(1) NOT NULL,
+    [drvTermEEFamCoverageInd] varchar(1) NOT NULL,
+    [drvTermEEApprovedAmtEffDate] datetime NULL,
+    [drvTermEEApprovedAmt] varchar(1) NOT NULL,
+    [drvTermSPSProductCategory] varchar(1) NOT NULL,
+    [drvTermSPSEffectiveDate] datetime NULL,
+    [drvTermSPSEligibilityEvent] varchar(1) NOT NULL,
+    [drvTermSPSPlanID] varchar(1) NOT NULL,
+    [drvTermSPSFamCoverageInd] varchar(1) NOT NULL,
+    [drvTermSPSApprovedAmtEffDate] datetime NULL,
+    [drvTermSPSApprovedAmt] varchar(1) NOT NULL,
+    [drvTermDepProductCategory] varchar(1) NOT NULL,
+    [drvTermDepEffectiveDate] datetime NULL,
+    [drvTermDepEligibilityEvent] varchar(1) NOT NULL,
+    [drvTermDepPlanID] varchar(1) NOT NULL,
+    [drvTermDepFamCoverageInd] varchar(1) NOT NULL,
+    [drvTermDepApprovedAmtEffDate] datetime NULL,
+    [drvTermDepApprovedAmt] varchar(1) NOT NULL,
+    [drvAddEEProductCategory] varchar(1) NOT NULL,
+    [drvAddEEEffectiveDate] varchar(1) NOT NULL,
+    [drvAddEEEligibilityEvent] varchar(1) NOT NULL,
+    [drvAddEEPlanID] varchar(1) NOT NULL,
+    [drvAddEEFamCoverageInd] varchar(1) NOT NULL,
+    [drvAddEEApprovedAmtEffDate] varchar(1) NOT NULL,
+    [drvAddEEApprovedAmt] varchar(1) NOT NULL,
+    [drvAddSPSProductCategory] varchar(1) NOT NULL,
+    [drvAddSPSEffectiveDate] varchar(1) NOT NULL,
+    [drvAddSPSEligibilityEvent] varchar(1) NOT NULL,
+    [drvAddSPSPlanID] varchar(1) NOT NULL,
+    [drvAddSPSFamCoverageInd] varchar(1) NOT NULL,
+    [drvAddSPSApprovedAmtEffDate] varchar(1) NOT NULL,
+    [drvAddSPSApprovedAmt] varchar(1) NOT NULL,
+    [drvAddDepProductCategory] varchar(1) NOT NULL,
+    [drvAddDepEffectiveDate] varchar(1) NOT NULL,
+    [drvAddDepEligibilityEvent] varchar(1) NOT NULL,
+    [drvAddDepPlanID] varchar(1) NOT NULL,
+    [drvAddDepFamCoverageInd] varchar(1) NOT NULL,
+    [drvAddDepApprovedAmtEffDate] varchar(1) NOT NULL,
+    [drvAddDepApprovedAmt] varchar(1) NOT NULL,
+    [drvVolSTDProductCategory] varchar(1) NOT NULL,
+    [drvVolSTDEffectiveDate] varchar(1) NOT NULL,
+    [drvVolSTDEligibilityEvent] varchar(1) NOT NULL,
+    [drvVolSTDPlanID] varchar(1) NOT NULL,
+    [drvVolSTDFamCoverageInd] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_EMOOSVAEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EMOOSVAEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+IF OBJECT_ID('U_EMOOSVAEXP_File') IS NULL
+CREATE TABLE [dbo].[U_EMOOSVAEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] char(2000) NULL
+);
+IF OBJECT_ID('U_EMOOSVAEXP_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EMOOSVAEXP_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSource1] numeric NULL,
+    [PdhSource2] numeric NULL,
+    [PdhSource3] numeric NULL,
+    [PdhSource4] numeric NULL,
+    [PdhSource5] numeric NULL,
+    [PdhSource6] numeric NULL,
+    [PdhSource7] numeric NULL,
+    [PdhSource8] numeric NULL,
+    [PdhSource9] numeric NULL,
+    [PdhSource10] numeric NULL
+);
+IF OBJECT_ID('U_EMOOSVAEXP_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EMOOSVAEXP_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EMOOSVAEXP]
     @SystemID char(12)
@@ -417,3 +593,7 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EMOOSVAEXP';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEMOOSVAEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EMOOSVAEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
