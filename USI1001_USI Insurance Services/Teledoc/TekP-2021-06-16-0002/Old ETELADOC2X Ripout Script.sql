@@ -24,7 +24,7 @@ DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = 
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ETELADOC2X';
 INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ETELADOC2X','Teladoc Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','6000','S','N','ETELADOC2XZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ETELADOC2X' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGroupId"','1','(''UA''=''T,'')','ETELADOC2XZ0','15','D','11','1',NULL,'Group ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"8028"','1','(''DA''=''T,'')','ETELADOC2XZ0','15','D','11','1',NULL,'Group ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"D11_MID_EecEmpNo"','2','(''UA''=''T,'')','ETELADOC2XZ0','40','D','11','2',NULL,'Member ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"D11_PID_EecEmpNo"','3','(''UA''=''T,'')','ETELADOC2XZ0','40','D','11','3',NULL,'Primary ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"D11_RelationshipToPrimary"','4','(''UA''=''T,'')','ETELADOC2XZ0','1','D','11','4',NULL,'Relationship To Primary',NULL,NULL);
@@ -78,23 +78,22 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
 /*08*/ DECLARE @FILENAME varchar(1000) = 'ETELADOC2X_20210830.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','201701019','EMPEXPORT','OEACTIVE','Aug 20 2021  9:00AM','ETELADOC2X',NULL,NULL,NULL,'201701019','Jan  1 2017 12:00AM','Dec 30 1899 12:00AM','201701011','11','','','201701011',dbo.fn_GetTimedKey(),NULL,'us3jBeUSI1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','201701019','EMPEXPORT','OEACTIVE','Jul 13 2021 12:00AM','ETELADOC2X',NULL,NULL,NULL,'201701019','Jan  1 2017 12:00AM','Dec 30 1899 12:00AM','201701011','0','','','201701011',dbo.fn_GetTimedKey(),NULL,'LDONNELL',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','201701011','EMPEXPORT','OEPASSIVE','Jul 13 2021 12:00AM','ETELADOC2X',NULL,NULL,NULL,'201701011','Jan  1 2017 12:00AM','Dec 30 1899 12:00AM','201701011','4260','','','201701011',dbo.fn_GetTimedKey(),NULL,'LDONNELL',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','202107241','EMPEXPORT','ONDEMAND','Jul 29 2021 12:30PM','ETELADOC2X',NULL,NULL,NULL,'202107241','Jul 24 2021 12:00AM','Dec 30 1899 12:00AM','202107181','8041','','','202107181',dbo.fn_GetTimedKey(),NULL,'us3jBeUSI1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','201701011','EMPEXPORT','ONDEMAND','Jul 13 2021 12:00AM','ETELADOC2X',NULL,NULL,NULL,'201701011','Jan  1 2017 12:00AM','Dec 30 1899 12:00AM','201701011','4260','','','201701011',dbo.fn_GetTimedKey(),NULL,'LDONNELL',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,'9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','201602199','EMPEXPORT','SCHEDULED','Jul 13 2021 12:00AM','ETELADOC2X',NULL,NULL,NULL,'201602199','Feb 19 2016 12:00AM','Dec 30 1899 12:00AM','201602191',NULL,'','','201602191',dbo.fn_GetTimedKey(),NULL,'LDONNELL',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','9ZQMP,9ZRSX,28A5I,N7KJN,9ZRWQ,0YT6J,9ZS04,9ZS3H,0YT50,9ZS6V,9ZSA1',NULL,NULL,NULL,'Teladoc Export','202108239','EMPEXPORT','TEST','Aug 23 2021  7:11PM','ETELADOC2X',NULL,NULL,NULL,'202108239','Aug 23 2021 12:00AM','Dec 30 1899 12:00AM','202108091','8055','','','202108091',dbo.fn_GetTimedKey(),NULL,'us3lKiUSI1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','ExportPath','V','\\us.saas\E0\data_exchange\USI1001\Exports\');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','InitialSort','C','D11_MID_EecEmpNo');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','IsUTF','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','MultFile','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','NoEmpty','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','OEPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','OnDemandPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','OEPath','V','\\us.saas\e4\Public\USI1001\Exports\Teladoc\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','OnDemandPath','V','\\us.saas\E0\data_exchange\USI1001\Exports\');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','SubSort','C','D11_RelationshipToPrimary');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','Testing','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','Upper','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','UseFileName','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETELADOC2X','UseFileName','V','N');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ETELADOC2X' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ETELADOC2X' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_ETELADOC2X_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ETELADOC2X_SavePath];
@@ -162,7 +161,6 @@ CREATE TABLE [dbo].[U_ETELADOC2X_AuditFields] (
 );
 IF OBJECT_ID('U_ETELADOC2X_D11_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_ETELADOC2X_D11_drvTbl] (
-    [drvGroupId] varchar(6) NOT NULL,
     [D11_MID_EecEmpNo] char(9) NULL,
     [D11_PID_EecEmpNo] char(9) NULL,
     [D11_RelationshipToPrimary] varchar(1) NOT NULL,
@@ -225,9 +223,6 @@ dsi_sp_testswitchbox_v2 'ETELADOC2X', 'ONDEMAND'
 dsi_sp_testswitchbox_v2 'ETELADOC2X', 'SCHEDULED'
 dsi_sp_testswitchbox_v2 'ETELADOC2X', 'OEPASSIVE'
 dsi_sp_testswitchbox_v2 'ETELADOC2X', 'OEACTIVE'
-dsi_sp_testswitchbox_v2 'ETELADOC2X', 'TEST'
-
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ETELADOC2X', @AllObjects = 'Y', @IsWeb = 'Y'
 
 ************************************************************/ 
 CREATE                 procedure [dbo].[dsi_sp_BuildDriverTables_ETELADOC2X]
@@ -241,7 +236,7 @@ Declare @Formatcode varchar(12),
  @StartPerControl varchar(9), 
  @EndPerControl varchar(9)
 
- -- Declare dates from Parameter file
+-- Declare dates from Parameter file
 SELECT @StartDate = case when exportcode <> 'SCHEDULED' then cast(substring(StartPerControl,1,8) as datetime) else getdate()-7 end
  , @EndDate = case when exportcode <> 'SCHEDULED' then cast(substring(EndPerControl,1,8) as datetime) else getdate() end
  , @StartPerControl = case when exportcode <> 'SCHEDULED' then StartPerControl else convert(varchar,getdate()-7,112)+'1' end
@@ -293,12 +288,8 @@ BEGIN
      INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'ACTIVE')
 END
 
---SELECT GETDATE() AS '1'
-
 PRINT @FormatCode
 EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode
-
---SELECT GETDATE() AS '2'
 
 -- Get data from audit fields table.  Add fields here if auditing
 if object_id('U_ETELADOC2X_AuditFields') is not null
@@ -318,22 +309,11 @@ SELECT audKey1Value audEEID, audKey2Value audKey2, audKey3Value audKey3,
  and audDateTime between @StartDate and @EndDate
  and audTableName = aTableName and audFieldName = aFieldName
 
- --SELECT GETDATE() AS '3'
-
 -----------Build Drive Tables 
 if object_id('U_ETELADOC2X_D11_drvTbl') is not null
  drop table dbo.U_ETELADOC2X_D11_drvTbl
 select distinct 
-  drvGroupId =  CASE WHEN EdDedCode IS NOT NULL THEN '339368' ELSE '8028' END
-                    --ELSE 
---                            CASE WHEN EedDedCode IN ('CAD') THEN '8028' ELSE '339368'  END
---                END
-                /*CASE WHEN EedDedCode IN ('EAA10','EAA15','EAA20','EAA2P','EAA50','EAB10','EAB15','EAB20','EAB2P','EAB50','ETB10','ETB15','ETB20','ETB2P','ETB50','HAA10','HAA15','HAA20',
-                                        'HAA2P','HAA50','HAB10','HAB15','HAB20','HAB2P','HAB50','HTB10','HTB15','HTB20','HTB2P','HTB50','KAA10','KAA15','KAA20','KAA2P','KAA50','KAB10',
-                                        'KAB15','KAB20','KAB2P','KAB50','KTB10','KTB15','KTB20','KTB2P','KTB50') THEN '339368'
-                    WHEN EedDedCode IN ('CAD') THEN '154147'
-                END*/
-  ,D11_MID_EecEmpNo        = EecEmpNo 
+  D11_MID_EecEmpNo        =EecEmpNo 
  ,D11_PID_EecEmpNo        =EecEmpNo 
  ,D11_RelationshipToPrimary='0'
  ,D11_NamePrefix        =EepNamePrefix
@@ -376,23 +356,8 @@ JOIN   EmpPers with (nolock)
 join  dbo.U_dsi_bdm_EmpDeductions 
  on xeeid = eedeeid 
  and xcoid = eedcoid
- LEFT JOIN (
-            SELECT EedEEID AS EdEEID, EedCOID AS EdCOID
-                ,MAX(CASE WHEN EedDedCode IN ('EAA10','EAA15','EAA20','EAA2P','EAA50','EAB10','EAB15','EAB20','EAB2P','EAB50','ETB10','ETB15','ETB20','ETB2P','ETB50','HAA10','HAA15','HAA20',
-                    'HAA2P','HAA50','HAB10','HAB15','HAB20','HAB2P','HAB50','HTB10','HTB15','HTB20','HTB2P','HTB50','KAA10','KAA15','KAA20','KAA2P','KAA50','KAB10',
-                    'KAB15','KAB20','KAB2P','KAB50','KTB10','KTB15','KTB20','KTB2P','KTB50') THEN EedDedCode END) AS EdDedCode
-            FROM dbo.EmpDed WITH (NOLOCK)
-            WHERE EedDedCode IN ('EAA10','EAA15','EAA20','EAA2P','EAA50','EAB10','EAB15','EAB20','EAB2P','EAB50','ETB10','ETB15','ETB20','ETB2P','ETB50','HAA10','HAA15','HAA20',
-                                'HAA2P','HAA50','HAB10','HAB15','HAB20','HAB2P','HAB50','HTB10','HTB15','HTB20','HTB2P','HTB50','KAA10','KAA15','KAA20','KAA2P','KAA50','KAB10',
-                                'KAB15','KAB20','KAB2P','KAB50','KTB10','KTB15','KTB20','KTB2P','KTB50')
-                AND EedBenStatus = 'A'
-            GROUP By EedEEID, EedCOID) AS EmpDed
-    ON EdEEID = xEEID
-    AND EdCOID= xCOID
 where eedformatcode = @formatcode 
  and eedvalidforexport = 'Y'
-
- --SELECT GETDATE() AS '4'
 
 -- Set FileName
 if (dbo.dsi_fnVariable('ETELADOC2X','UseFileName') = 'N')
