@@ -80,11 +80,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOLTR401K_20210901.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOLTR401K_20210903.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pension 401a Cont Export','202108179','EMPEXPORT','ONDEM_XOE',NULL,'EVOLTR401K',NULL,NULL,NULL,'202108179','Aug 17 2021  6:06PM','Aug 17 2021  6:06PM','202108171',NULL,'','','202108171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pension 401a Cont Export-Sched','202108179','EMPEXPORT','SCH_EVOLTR',NULL,'EVOLTR401K',NULL,NULL,NULL,'202108179','Aug 17 2021  6:06PM','Aug 17 2021  6:06PM','202108171',NULL,'','','202108171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pension 401a Cont Export-Test','202108199','EMPEXPORT','TEST_XOE','Aug 30 2021 12:31PM','EVOLTR401K',NULL,NULL,NULL,'202108199','Aug 19 2021 12:00AM','Dec 30 1899 12:00AM','202108191','1315','','','202108191',dbo.fn_GetTimedKey(),NULL,'us3lKiTRI1018',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Pension 401a Cont Export-Test','202108199','EMPEXPORT','TEST_XOE','Sep  2 2021  3:03PM','EVOLTR401K',NULL,NULL,NULL,'202108199','Aug 19 2021 12:00AM','Dec 30 1899 12:00AM','202108191','878','','','202108191',dbo.fn_GetTimedKey(),NULL,'us3lKiTRI1018',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLTR401K','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLTR401K','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLTR401K','InitialSort','C','drvInitialSort');
@@ -169,7 +169,7 @@ CREATE TABLE [dbo].[U_EVOLTR401K_ContRecTbl2] (
     [drvInsProvider] varchar(1) NOT NULL,
     [drvSourceCode] varchar(2) NOT NULL,
     [drvPartSSN] char(11) NULL,
-    [drvContAmt] varchar(30) NULL,
+    [drvContAmt] varchar(10) NULL,
     [drvTaxYear] varchar(1) NOT NULL,
     [drvFundId] varchar(1) NOT NULL,
     [drvFiller1] varchar(1) NOT NULL,
@@ -201,7 +201,7 @@ IF OBJECT_ID('U_EVOLTR401K_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EVOLTR401K_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhCOID] char(5) NOT NULL,
-	PdhDedCode char(5) NOT NULL,
+    [PdhDedCode] char(5) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
@@ -249,15 +249,15 @@ CREATE TABLE [dbo].[U_EVOLTR401K_PlanRecTbl1] (
 );
 IF OBJECT_ID('U_EVOLTR401K_PlanRecTbl2') IS NULL
 CREATE TABLE [dbo].[U_EVOLTR401K_PlanRecTbl2] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
+    [drvEEID] varchar(1) NOT NULL,
+    [drvCoID] varchar(1) NOT NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvICMA] varchar(6) NOT NULL,
     [drvRecType] varchar(2) NOT NULL,
     [drvRecSeq] varchar(4) NOT NULL,
     [drvFiller1] varchar(1) NOT NULL,
     [drvIRSNum] char(9) NULL,
-    [drvTotRemit] varchar(30) NULL,
+    [drvTotRemit] varchar(10) NULL,
     [drvFiller2] varchar(1) NOT NULL,
     [drvFormatCode] varchar(2) NOT NULL,
     [drvFiller3] varchar(1) NOT NULL,
@@ -265,7 +265,7 @@ CREATE TABLE [dbo].[U_EVOLTR401K_PlanRecTbl2] (
     [drvTaxYear] varchar(1) NOT NULL,
     [drvFiller4] varchar(1) NOT NULL,
     [drvFormatId] varchar(1) NOT NULL,
-    [drvInitialSort] varchar(11) NULL,
+    [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL
 );
 GO
@@ -286,7 +286,12 @@ Purpose: Pension 401a Cont Export
 Revision History
 ----------------
 09/01/2021 by AP:
-		- Cleaned up code for contribution amount, and participant record to be 2 lines (same as the 457 file).
+        - Cleaned up code for contribution amount, and participant record to be 2 lines (same as the 457 file).
+
+09/03/2021 by AP:
+		- Provided clean up for remittance field and loan amount formatting fix the trailing '00'.
+		- Provided LTRIM(RTRIM()) to name to make sure the populate.
+		- Removed employees that have a 0.00 amount for PdhEECurAmt.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EVOLTR401K';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EVOLTR401K';
@@ -384,7 +389,7 @@ BEGIN
     SELECT DISTINCT
          PdhEEID
         ,PdhCOID
-		,PdhDedCode
+        ,PdhDedCode
         -- Current Payroll Amounts
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
@@ -487,8 +492,9 @@ BEGIN
         ,drvRecSeq = '0002'
         ,drvFiller1 = ''
         ,drvIRSNum = (SELECT CmmFedTaxId FROM dbo.CompMast WITH(NOLOCK))
-        ,drvTotRemit = RIGHT('0000000000' + REPLACE(CAST(SUM(PdhEECurAmt) AS VARCHAR), '.', ''), 10)
-		--CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR)
+        ,drvTotRemit =  RIGHT('0000000000' + REPLACE(CAST(CAST(SUM(PdhEECurAmt) AS DECIMAL(10,2)) AS VARCHAR), '.', ''), 10)
+		--RIGHT('0000000000' + REPLACE(CAST(SUM(PdhEECurAmt) AS VARCHAR), '.', ''), 10)
+        --CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR)
         ,drvFiller2 = ''
         ,drvFormatCode = '03'
         ,drvFiller3 = ''
@@ -522,7 +528,7 @@ BEGIN
         ,drvRecSeq = '0001'
         ,drvFiller1 = ''
         ,drvPartSSN = eepSSN
-        ,drvPartName = EepNameLast + ', ' + EepNameFirst
+        ,drvPartName = RTRIM(LTRIM(EepNameLast)) + ', ' + RTRIM(LTRIM(EepNameFirst))
         ,drvFiller2 = ''
         ,drvFormatId = '3'
         ,drvInitialSort = RTRIM(LTRIM(EepSSN))
@@ -535,6 +541,7 @@ BEGIN
     ON xEEID = PdhEEID AND xCOID = PdhCOID
     JOIN dbo.U_EVOLTR401K_PEarHist WITH(NOLOCK)
     ON xEEID = PehEEID AND xCOID = PehCOID
+	WHERE PdhEECurAmt <> '0.00'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EVOLTR401K_ContRecTbl2
@@ -552,8 +559,9 @@ BEGIN
         ,drvInsProvider = ''
         ,drvSourceCode = 'EE'
         ,drvPartSSN = eepSSN
-        ,drvContAmt = RIGHT('0000000000' + REPLACE(CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR), '.', ''), 10)
-		--CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR)
+        ,drvContAmt =  RIGHT('0000000000' + REPLACE(CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR), '.', ''), 10)
+		--RIGHT('0000000000' + REPLACE(CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR), '.', ''), 10)
+        --CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR)
         ,drvTaxYear = ''
         ,drvFundId = ''
         ,drvFiller1 = ''
@@ -568,6 +576,7 @@ BEGIN
     JOIN (SELECT PdhEEID, PdhCOID, SUM(PdhEECurAmt) PdhEECurAmt
                 FROM dbo.U_EVOLTR401K_PDedHist WITH(NOLOCK)
                 WHERE PdhDedCode IN ('BCPA', 'BCPN')
+				AND PdhEECurAmt <> '0.00'
                 GROUP BY PdhEEID, PdhCOID) Pdh ON Pdh.PdhEEID = xEEID AND Pdh.PdhCOID = xCOID
     JOIN dbo.U_EVOLTR401K_PEarHist WITH(NOLOCK)
     ON xEEID = PehEEID AND xCOID = PehCOID
