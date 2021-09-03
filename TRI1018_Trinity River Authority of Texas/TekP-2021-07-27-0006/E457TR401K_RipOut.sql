@@ -102,11 +102,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'E457TR401K_20210901.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'E457TR401K_20210903.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mission Square 457 Payroll Exp','202108189','EMPEXPORT','ONDEM_XOE',NULL,'E457TR401K',NULL,NULL,NULL,'202108189','Aug 18 2021  3:53PM','Aug 18 2021  3:53PM','202108181',NULL,'','','202108181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mission Square 457 Payro-Sched','202108189','EMPEXPORT','SCH_E457TR',NULL,'E457TR401K',NULL,NULL,NULL,'202108189','Aug 18 2021  3:53PM','Aug 18 2021  3:53PM','202108181',NULL,'','','202108181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Mission Square 457 Payro-Test','202108199','EMPEXPORT','TEST_XOE','Aug 30 2021 12:19PM','E457TR401K',NULL,NULL,NULL,'202108199','Aug 19 2021 12:00AM','Dec 30 1899 12:00AM','202108191','523','','','202108191',dbo.fn_GetTimedKey(),NULL,'us3lKiTRI1018',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Mission Square 457 Payro-Test','202108199','EMPEXPORT','TEST_XOE','Sep  2 2021  2:41PM','E457TR401K',NULL,NULL,NULL,'202108199','Aug 19 2021 12:00AM','Dec 30 1899 12:00AM','202108191','1008','','','202108191',dbo.fn_GetTimedKey(),NULL,'us3lKiTRI1018',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('E457TR401K','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('E457TR401K','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('E457TR401K','InitialSort','C','drvInitialSort');
@@ -193,7 +193,7 @@ CREATE TABLE [dbo].[U_E457TR401K_ContRecTbl2] (
     [drvInsProvider] varchar(1) NOT NULL,
     [drvSourceCode] varchar(2) NOT NULL,
     [drvPartSSN] char(11) NULL,
-    [drvContAmt] varchar(30) NULL,
+    [drvContAmt] varchar(10) NULL,
     [drvTaxYear] varchar(1) NOT NULL,
     [drvFundId] varchar(1) NOT NULL,
     [drvFiller1] varchar(1) NOT NULL,
@@ -350,8 +350,15 @@ Revision History
         - Fixed deduction codes for loan repayment amount and dataset.
 
 09/01/2021 by AP:
-		- Updated logic to update loan repayment amount.
-		- Contribution lines fixed to show 1 record per employee.
+        - Updated logic to update loan repayment amount.
+        - Contribution lines fixed to show 1 record per employee.
+
+09/03/2021 by AP:
+		- Cleaned up logic to exclude those that don't have loans from the loan table (removed LEFT JOIN to PDedHist).
+		- Total Remittance was updated to use PdhEECurAmt instead of PdhSource1 which was filtered on only certain ded codes.
+		- Cleaned up the output for Total Remittance to be without the added 2 digits after the decimal. Clean up was also applied
+		  to the total loan amount field as well.
+		- Provided LTRIM and RTRIM to names to make sure they populate as expected.
         
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'E457TR401K';
@@ -552,7 +559,8 @@ BEGIN
         ,drvRecSeq = '0002'
         ,drvFiller1 = ''
         ,drvIRSNum = (SELECT CmmFedTaxId FROM dbo.CompMast WITH(NOLOCK))
-        ,drvTotRemit = RIGHT('0000000000' + REPLACE(CAST(SUM(PdhSource1) AS VARCHAR), '.', ''), 10)
+        ,drvTotRemit = RIGHT('0000000000' + REPLACE(CAST(CAST(SUM(PdhEECurAmt) AS DECIMAL(10,2)) AS VARCHAR), '.', ''), 10)
+		--RIGHT('0000000000' + REPLACE(CAST(SUM(PdhSource1) AS VARCHAR), '.', ''), 10)
         ,drvFiller2 = ''
         ,drvFormatCode = '03'
         ,drvFiller3 = ''
@@ -628,7 +636,7 @@ BEGIN
     FROM dbo.U_E457TR401K_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH(NOLOCK)
     ON EepEEID = xEEID
-	JOIN (SELECT PdhEEID, PdhCOID, SUM(PdhSource1) PdhSource1
+    JOIN (SELECT PdhEEID, PdhCOID, SUM(PdhSource1) PdhSource1
                 FROM dbo.U_E457TR401K_PDedHist WITH(NOLOCK)
                 WHERE PdhDedCode IN ('BEDA', 'BEDAC', 'BEDP', 'BEDPC', 'BEDPR', 'BDC1', 'BDC2', 'BDC3', 'BDC4', 'BDC5', 'BDC6', 'BDC7', 'BDC8', 'BDC9', 'BDC10', 'BDC11', 'BDC12', 'BDC13', 'BDC14', 'BDC15', 'BDC16',
                         'BDC17', 'BDC18', 'BDC19', 'BDC20', 'BDC21', 'BDC22', 'BDC23', 'BDC24', 'BDC25', 'BDC26', 'BDC27', 'BDC28', 'BDC29', 'BDC30')
@@ -653,7 +661,7 @@ BEGIN
         ,drvRecSeq = '0001'
         ,drvFiller1 = ''
         ,drvPartSSN = EepSSN
-        ,drvPartName = EepNameLast + ', ' + EepNameFirst
+        ,drvPartName = LTRIM(RTRIM(EepNameLast)) + ', ' + LTRIM(RTRIM(EepNameFirst))
         ,drvFiller2 = ''
         ,drvFormatId = '3'
         ,drvInitialSort = RTRIM(LTRIM(EepSSN))
@@ -683,7 +691,8 @@ BEGIN
         ,drvFiller1 = ''
         ,drvLoanNum = '' -- Client to determine field to use (as per spec)
         ,drvPartSSN = EepSSN
-        ,drvLoanRepAmt = RIGHT('0000000000' + REPLACE(CAST(PdhEECurAmt AS VARCHAR), '.', ''), 10) 
+        ,drvLoanRepAmt = RIGHT('0000000000' + REPLACE(CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR), '.', ''), 10)
+		--RIGHT('0000000000' + REPLACE(CAST(PdhEECurAmt AS VARCHAR), '.', ''), 10) 
         ,drvFiller2 = ''
         ,drvLoanPayIndic = 'POFF'
         ,drvFormatId = '3'
@@ -695,7 +704,7 @@ BEGIN
     ON EepEEID = xEEID
     JOIN dbo.U_E457TR401K_PEarHist WITH(NOLOCK)
     ON PehEEID = xEEID AND PehCOID = xCOID
-    LEFT JOIN (SELECT PdhEEID, PdhCOID, SUM(PdhEECurAmt) PdhEECurAmt
+    JOIN (SELECT PdhEEID, PdhCOID, SUM(PdhEECurAmt) PdhEECurAmt
                 FROM dbo.U_E457TR401K_PDedHist WITH(NOLOCK)
                 WHERE PdhDedCode IN ('BDC1', 'BDC2', 'BDC3', 'BDC4',
                                     'BDC5', 'BDC6', 'BDC7', 'BDC8', 'BDC9', 'BDC10', 'BDC11',
