@@ -200,6 +200,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"DEP"','1','(''DA''=''T~'')','EPRUDAHCEXZ0','50','D','40','1',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"60222"','2','(''DA''=''T~'')','EPRUDAHCEXZ0','50','D','40','2',NULL,'Client Control Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAssociateId"','3','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','3',NULL,'AssociateID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentId"','4','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','4',NULL,'AssociateID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentRelationship"','5','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','5',NULL,'Dependent Relationship Type Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentSSN"','6','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','6',NULL,'Dependent Social Security Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentGenderCode"','7','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','7',NULL,'Dependent Gender Code',NULL,NULL);
@@ -268,13 +269,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRUDAHCEX_20210817.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRUDAHCEX_20210907.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202108119','EMPEXPORT','OEACTIVE','Aug 12 2021  4:15AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','2','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202108119','EMPEXPORT','OEPASSIVE','Aug 12 2021  4:15AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','582','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Export','202108119','EMPEXPORT','ONDEM_XOE','Aug 12 2021  4:16AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','582','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Exp-Sched','202108119','EMPEXPORT','SCH_EPRUDA','Aug 12 2021  4:19AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','582','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Exp-Test','202108169','EMPEXPORT','TEST_XOE','Aug 16 2021 11:02AM','EPRUDAHCEX',NULL,NULL,NULL,'202108169','Aug 16 2021 12:00AM','Dec 30 1899 12:00AM','202108021','580','','','202108021',dbo.fn_GetTimedKey(),NULL,'us3lKiBEC1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Exp-Test','202108319','EMPEXPORT','TEST_XOE','Aug 31 2021  9:38AM','EPRUDAHCEX',NULL,NULL,NULL,'202108319','Aug 31 2021 12:00AM','Dec 30 1899 12:00AM','202108171','553','','','202108171',dbo.fn_GetTimedKey(),NULL,'us3lKiBEC1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRUDAHCEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRUDAHCEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRUDAHCEX','InitialSort','C','drvSort');
@@ -384,7 +385,8 @@ CREATE TABLE [dbo].[U_EPRUDAHCEX_drvTbl_Dependent] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(44) NULL,
-    [drvAssociateId] nvarchar(4000) NULL,
+    [drvAssociateId] varchar(9) NULL,
+    [drvDependentId] nvarchar(4000) NULL,
     [drvDependentRelationship] varchar(16) NULL,
     [drvDependentSSN] char(11) NULL,
     [drvDependentGenderCode] varchar(7) NOT NULL,
@@ -720,9 +722,16 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EPRUDAHCEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN dbo.EmpMPhon 
+    --LEFT JOIN dbo.EmpMPhon 
+    LEFT JOIN (
+                SELECT EfoEEID, EfoPhoneNumber
+                FROM (
+                        SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY EfoPhoneNumber) AS RN --, ORDER BY Ef
+                        FROM  dbo.EmpMPhon WITH (NOLOCK)
+                        WHERE EfoPhoneType = 'CEL') AS Efo
+                WHERE RN = 1 ) AS EfoPhone
         ON EfoEEID = xEEID
-        AND EfoPhoneType = 'CEL'
+        --AND EfoPhoneType = 'CEL'
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN DATEADD(DAY, -30, @EndDate) AND @EndDate)
     ;
     ---------------------------------
@@ -828,7 +837,8 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = EepSSN + ' 4' + ' ' + CAST(ConDepNo AS VARCHAR)
         -- standard fields above and additional driver fields below
-        ,drvAssociateId = RTRIM(EecEmpNo) + FORMAT(ConDepNo, '00')
+        ,drvAssociateId = RTRIM(EecEmpNo) 
+        ,drvDependentId = RTRIM(EecEmpNo) + FORMAT(ConDepNo, '00')
         ,drvDependentRelationship =    CASE WHEN ConRelationship IN ('DP') THEN 'DOMESTIC PARTNER'
                                         WHEN ConRelationship IN ('SPS') THEN 'SPOUSE'
                                         WHEN ConRelationship IN ('ACH','CHL','STC') THEN 'CHILD'

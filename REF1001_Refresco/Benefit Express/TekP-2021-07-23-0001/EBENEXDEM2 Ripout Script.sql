@@ -207,11 +207,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBENEXDEM2_20210819.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBENEXDEM2_20210902.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census-Wed 6am','202108119','EMPEXPORT','ONDEM_XOE','Aug 12 2021  5:54AM','EBENEXDEM2',NULL,NULL,NULL,'202108119','Aug 11 2021 12:00AM','Dec 30 1899 12:00AM','202108041','4203','','','202108041',dbo.fn_GetTimedKey(),NULL,'JBENDER10',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census-Mon 6am','202103059','EMPEXPORT','SCH_EBENEX','Aug 12 2021  5:55AM','EBENEXDEM2',NULL,NULL,NULL,'202108099','Mar  5 2021  7:49AM','Mar  5 2021  7:49AM','202108021','4175','','','202103051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census E-Test','202108189','EMPEXPORT','TEST_XOE','Aug 18 2021 10:29AM','EBENEXDEM2',NULL,NULL,NULL,'202108189','Aug 18 2021 12:00AM','Dec 30 1899 12:00AM','202108041','4200','','','202108041',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census E-Test','202108199','EMPEXPORT','TEST_XOE','Aug 19 2021  3:32PM','EBENEXDEM2',NULL,NULL,NULL,'202108199','Aug 19 2021 12:00AM','Dec 30 1899 12:00AM','202108051','4210','','','202108051',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBENEXDEM2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBENEXDEM2','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBENEXDEM2','InitialSort','C','drvSort');
@@ -668,12 +668,14 @@ BEGIN
         ,drvDirectBillFlag = '' -- leave blank
         ,drvCompanyCode2 = CmpCompanyCode
         ,drvDepartmentCode2 =  dbo.fn_AddDoubleQuotes(OrgDesc)
-        ,drvOrgLevel5 = (SELECT top 1 EepAddressEmail from dbo.empcomp WITH (NOLOCK)
-                                JOIN dbo.Emppers WITH (NOLOCK) on eeceeid = eepeeid
-                                JOIN dbo.Codes WITH (NOLOCK)
-                                    ON EecLocation = CodCode
-                                    AND codtable = 'CO_HRMANAGERBYLOCATI'
-                                    AND CodDesc = EecEmpNo WHERE eecLocation = EMPC.EecLocation) --SUPP.EepAddressEMail --dbo.dsi_fnlib_GetSupervisorField(EMPC.EecCoid, EMPC.EecEEID, 'AddressEMail')   --eepaddressemail from EecSupervisorID
+        ,drvOrgLevel5 = NciEmailAddress 
+                            --(SELECT top 1 EepAddressEmail from dbo.empcomp WITH (NOLOCK)
+       --                         JOIN dbo.Emppers WITH (NOLOCK) on eeceeid = eepeeid
+       --                         JOIN dbo.Codes WITH (NOLOCK)
+       --                             ON EecLocation = CodCode
+       --                             AND codtable = 'CO_HRMANAGERBYLOCATI'
+       --                             AND CodDesc = EecEmpNo WHERE eecLocation = EMPC.EecLocation) 
+                                    --SUPP.EepAddressEMail --dbo.dsi_fnlib_GetSupervisorField(EMPC.EecCoid, EMPC.EecEEID, 'AddressEMail')   --eepaddressemail from EecSupervisorID
         ,drvWorkBasis = EMPC.EecFullTimeOrPartTime
         ,drvHourlySalaried = EMPC.EecSalaryOrHourly
         ,drvExemptFlag = '' -- Leave blank
@@ -756,7 +758,7 @@ BEGIN
     LEFT JOIN dbo.U_EBENACAEXP_PEarHist_52_P WITH (NOLOCK)
         ON pehEEID = xEEID
     LEFT JOIN (
-                SELECT EepNameLast AS NciNameLast, EepNameFirst AS NciNameFirst, EecEmpNo AS NciEmpNo, CodCode AS NciLocationCode 
+                SELECT EepNameLast AS NciNameLast, EepNameFirst AS NciNameFirst, EecEmpNo AS NciEmpNo, EepAddressEmail AS NciEmailAddress, CodCode AS NciLocationCode 
                 FROM dbo.EmpComp WITH (NOLOCK)    
                     JOIN dbo.EmpPers WITH (NOLOCK)
                         ON EecEEID = EepEEID        

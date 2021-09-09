@@ -106,7 +106,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMOOSVAEXP_20210827.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMOOSVAEXP_20210901.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202108279','EMPEXPORT','OEACTIVE',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202108279','EMPEXPORT','OEPASSIVE',NULL,'EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271',NULL,'','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -178,66 +178,66 @@ CREATE TABLE [dbo].[U_EMOOSVAEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvTransDate] varchar(1) NOT NULL,
-    [drvRelationshipCode] varchar(1) NOT NULL,
-    [drvEmployeeID] char(9) NULL,
+    [drvTransDate] datetime NOT NULL,
+    [drvRelationshipCode] varchar(1) NULL,
+    [drvEmployeeID] char(11) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
-    [drvGenderCode] varchar(1) NOT NULL,
+    [drvGenderCode] varchar(1) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvDateOfHire] varchar(1) NOT NULL,
-    [drvEmployeeEffectiveDate] varchar(1) NOT NULL,
-    [drvBillGroupEffectiveDate] varchar(1) NOT NULL,
-    [drvBasicSalaryEffectiveDate] varchar(1) NOT NULL,
-    [drvBasicSalaryAmount] varchar(1) NOT NULL,
-    [drvClassEffectiveDate] varchar(1) NOT NULL,
-    [drvTermEEProductCategory] varchar(1) NOT NULL,
+    [drvDateOfHire] datetime NULL,
+    [drvEmployeeEffectiveDate] datetime NULL,
+    [drvBillGroupEffectiveDate] datetime NULL,
+    [drvBasicSalaryEffectiveDate] datetime NULL,
+    [drvBasicSalaryAmount] nvarchar(4000) NULL,
+    [drvClassEffectiveDate] datetime NULL,
+    [drvTermEEProductCategory] varchar(1) NULL,
     [drvTermEEEffectiveDate] datetime NULL,
-    [drvTermEEEligibilityEvent] varchar(1) NOT NULL,
-    [drvTermEEPlanID] varchar(1) NOT NULL,
-    [drvTermEEFamCoverageInd] varchar(1) NOT NULL,
+    [drvTermEEEligibilityEvent] varchar(2) NULL,
+    [drvTermEEPlanID] varchar(10) NULL,
+    [drvTermEEFamCoverageInd] varchar(1) NULL,
     [drvTermEEApprovedAmtEffDate] datetime NULL,
-    [drvTermEEApprovedAmt] varchar(1) NOT NULL,
-    [drvTermSPSProductCategory] varchar(1) NOT NULL,
+    [drvTermEEApprovedAmt] nvarchar(4000) NULL,
+    [drvTermSPSProductCategory] varchar(1) NULL,
     [drvTermSPSEffectiveDate] datetime NULL,
-    [drvTermSPSEligibilityEvent] varchar(1) NOT NULL,
-    [drvTermSPSPlanID] varchar(1) NOT NULL,
-    [drvTermSPSFamCoverageInd] varchar(1) NOT NULL,
+    [drvTermSPSEligibilityEvent] varchar(2) NULL,
+    [drvTermSPSPlanID] varchar(10) NULL,
+    [drvTermSPSFamCoverageInd] varchar(1) NULL,
     [drvTermSPSApprovedAmtEffDate] datetime NULL,
-    [drvTermSPSApprovedAmt] varchar(1) NOT NULL,
-    [drvTermDepProductCategory] varchar(1) NOT NULL,
+    [drvTermSPSApprovedAmt] nvarchar(4000) NULL,
+    [drvTermDepProductCategory] varchar(1) NULL,
     [drvTermDepEffectiveDate] datetime NULL,
-    [drvTermDepEligibilityEvent] varchar(1) NOT NULL,
-    [drvTermDepPlanID] varchar(1) NOT NULL,
-    [drvTermDepFamCoverageInd] varchar(1) NOT NULL,
+    [drvTermDepEligibilityEvent] varchar(2) NULL,
+    [drvTermDepPlanID] varchar(10) NULL,
+    [drvTermDepFamCoverageInd] varchar(1) NULL,
     [drvTermDepApprovedAmtEffDate] datetime NULL,
-    [drvTermDepApprovedAmt] varchar(1) NOT NULL,
-    [drvAddEEProductCategory] varchar(1) NOT NULL,
-    [drvAddEEEffectiveDate] varchar(1) NOT NULL,
-    [drvAddEEEligibilityEvent] varchar(1) NOT NULL,
-    [drvAddEEPlanID] varchar(1) NOT NULL,
-    [drvAddEEFamCoverageInd] varchar(1) NOT NULL,
-    [drvAddEEApprovedAmtEffDate] varchar(1) NOT NULL,
-    [drvAddEEApprovedAmt] varchar(1) NOT NULL,
-    [drvAddSPSProductCategory] varchar(1) NOT NULL,
-    [drvAddSPSEffectiveDate] varchar(1) NOT NULL,
-    [drvAddSPSEligibilityEvent] varchar(1) NOT NULL,
-    [drvAddSPSPlanID] varchar(1) NOT NULL,
-    [drvAddSPSFamCoverageInd] varchar(1) NOT NULL,
-    [drvAddSPSApprovedAmtEffDate] varchar(1) NOT NULL,
-    [drvAddSPSApprovedAmt] varchar(1) NOT NULL,
-    [drvAddDepProductCategory] varchar(1) NOT NULL,
-    [drvAddDepEffectiveDate] varchar(1) NOT NULL,
-    [drvAddDepEligibilityEvent] varchar(1) NOT NULL,
-    [drvAddDepPlanID] varchar(1) NOT NULL,
-    [drvAddDepFamCoverageInd] varchar(1) NOT NULL,
-    [drvAddDepApprovedAmtEffDate] varchar(1) NOT NULL,
-    [drvAddDepApprovedAmt] varchar(1) NOT NULL,
-    [drvVolSTDProductCategory] varchar(1) NOT NULL,
-    [drvVolSTDEffectiveDate] varchar(1) NOT NULL,
-    [drvVolSTDEligibilityEvent] varchar(1) NOT NULL,
-    [drvVolSTDPlanID] varchar(1) NOT NULL,
-    [drvVolSTDFamCoverageInd] varchar(1) NOT NULL
+    [drvTermDepApprovedAmt] nvarchar(4000) NULL,
+    [drvAddEEProductCategory] varchar(1) NULL,
+    [drvAddEEEffectiveDate] datetime NULL,
+    [drvAddEEEligibilityEvent] varchar(2) NULL,
+    [drvAddEEPlanID] varchar(10) NULL,
+    [drvAddEEFamCoverageInd] varchar(1) NULL,
+    [drvAddEEApprovedAmtEffDate] datetime NULL,
+    [drvAddEEApprovedAmt] nvarchar(4000) NULL,
+    [drvAddSPSProductCategory] varchar(1) NULL,
+    [drvAddSPSEffectiveDate] datetime NULL,
+    [drvAddSPSEligibilityEvent] varchar(2) NULL,
+    [drvAddSPSPlanID] varchar(10) NULL,
+    [drvAddSPSFamCoverageInd] varchar(1) NULL,
+    [drvAddSPSApprovedAmtEffDate] datetime NULL,
+    [drvAddSPSApprovedAmt] nvarchar(4000) NULL,
+    [drvAddDepProductCategory] varchar(1) NULL,
+    [drvAddDepEffectiveDate] datetime NULL,
+    [drvAddDepEligibilityEvent] varchar(2) NULL,
+    [drvAddDepPlanID] varchar(10) NULL,
+    [drvAddDepFamCoverageInd] varchar(1) NULL,
+    [drvAddDepApprovedAmtEffDate] datetime NULL,
+    [drvAddDepApprovedAmt] nvarchar(4000) NULL,
+    [drvVolSTDProductCategory] varchar(1) NULL,
+    [drvVolSTDEffectiveDate] datetime NULL,
+    [drvVolSTDEligibilityEvent] varchar(2) NULL,
+    [drvVolSTDPlanID] varchar(10) NULL,
+    [drvVolSTDFamCoverageInd] varchar(1) NULL
 );
 IF OBJECT_ID('U_EMOOSVAEXP_EEList') IS NULL
 CREATE TABLE [dbo].[U_EMOOSVAEXP_EEList] (
@@ -361,7 +361,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'DED1,DED2';
+    SET @DedList = 'VLIFE,VLFES,VLFEF,VLFEC,STD';
 
     IF OBJECT_ID('U_EMOOSVAEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EMOOSVAEXP_DedList;
@@ -380,7 +380,7 @@ BEGIN
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
@@ -486,66 +486,159 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvTransDate = ''
-        ,drvRelationshipCode = ''
-        ,drvEmployeeID = EecEmpNo
-        ,drvNameLast = EepNameLast
-        ,drvNameFirst = EepNameFirst
-        ,drvGenderCode = ''
-        ,drvDateOfBirth = EepDateOfBirth
-        ,drvDateOfHire = ''
-        ,drvEmployeeEffectiveDate = ''
-        ,drvBillGroupEffectiveDate = ''
-        ,drvBasicSalaryEffectiveDate = ''
-        ,drvBasicSalaryAmount = ''
-        ,drvClassEffectiveDate = ''
-        ,drvTermEEProductCategory = ''
-        ,drvTermEEEffectiveDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvTermEEEligibilityEvent = ''
-        ,drvTermEEPlanID = ''
-        ,drvTermEEFamCoverageInd = ''
-        ,drvTermEEApprovedAmtEffDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvTermEEApprovedAmt = ''
-        ,drvTermSPSProductCategory = ''
-        ,drvTermSPSEffectiveDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvTermSPSEligibilityEvent = ''
-        ,drvTermSPSPlanID = ''
-        ,drvTermSPSFamCoverageInd = ''
-        ,drvTermSPSApprovedAmtEffDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvTermSPSApprovedAmt = ''
-        ,drvTermDepProductCategory = ''
-        ,drvTermDepEffectiveDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvTermDepEligibilityEvent = ''
-        ,drvTermDepPlanID = ''
-        ,drvTermDepFamCoverageInd = ''
-        ,drvTermDepApprovedAmtEffDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvTermDepApprovedAmt = ''
-        ,drvAddEEProductCategory = ''
-        ,drvAddEEEffectiveDate = ''
-        ,drvAddEEEligibilityEvent = ''
-        ,drvAddEEPlanID = ''
-        ,drvAddEEFamCoverageInd = ''
-        ,drvAddEEApprovedAmtEffDate = ''
-        ,drvAddEEApprovedAmt = ''
-        ,drvAddSPSProductCategory = ''
-        ,drvAddSPSEffectiveDate = ''
-        ,drvAddSPSEligibilityEvent = ''
-        ,drvAddSPSPlanID = ''
-        ,drvAddSPSFamCoverageInd = ''
-        ,drvAddSPSApprovedAmtEffDate = ''
-        ,drvAddSPSApprovedAmt = ''
-        ,drvAddDepProductCategory = ''
-        ,drvAddDepEffectiveDate = ''
-        ,drvAddDepEligibilityEvent = ''
-        ,drvAddDepPlanID = ''
-        ,drvAddDepFamCoverageInd = ''
-        ,drvAddDepApprovedAmtEffDate = ''
-        ,drvAddDepApprovedAmt = ''
-        ,drvVolSTDProductCategory = ''
-        ,drvVolSTDEffectiveDate = ''
-        ,drvVolSTDEligibilityEvent = ''
-        ,drvVolSTDPlanID = ''
-        ,drvVolSTDFamCoverageInd = ''
+        ,drvTransDate = GETDATE()
+        ,drvRelationshipCode =    CASE WHEN ConRelationship IN ('SPS','SPX','DMP','DP') AND ConGender = 'F' THEN 'W'
+                                    WHEN ConRelationship IN ('SPS','SPX','DMP','DP') AND ConGender = 'M' THEN 'H'
+                                    WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'F' THEN 'D'
+                                    WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'M' THEN 'S'
+                                END
+        ,drvEmployeeID = EepSSN
+        ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
+        ,drvNameFirst = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
+        ,drvGenderCode = CASE WHEN BdmRecType = 'EMP' THEN
+                            CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
+                        ELSE 
+                            CASE WHEN ConGender IN ('M','F') THEN EepGender ELSE 'U' END
+                        END
+        ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
+        ,drvDateOfHire = EecDateOfOriginalHire
+        ,drvEmployeeEffectiveDate = CASE WHEN EecDateOfLastHire > '4/1/2021' THEN EecDateOfLastHire ELSE '4/1/2021' END
+        ,drvBillGroupEffectiveDate = CASE WHEN EecDateOfLastHire > '4/1/2021' THEN EecDateOfLastHire ELSE '4/1/2021' END
+        ,drvBasicSalaryEffectiveDate = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '4/1/2021', eecDateOfLastHire)
+        ,drvBasicSalaryAmount = FORMAT(EecAnnSalary*100, REPLICATE('0',16))
+        ,drvClassEffectiveDate = CASE WHEN EecDateOfLastHire > '4/1/2021' THEN EecDateOfLastHire ELSE '4/1/2021' END
+
+
+        ,drvTermEEProductCategory = CASE WHEN VLIFE_DedCode IS NOT NULL THEN '3' END
+        ,drvTermEEEffectiveDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLIFE_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvTermEEEligibilityEvent =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLIFE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        END
+        ,drvTermEEPlanID = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'ETL0CEEVAL' END
+        ,drvTermEEFamCoverageInd = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'C' END
+        ,drvTermEEApprovedAmtEffDate = CASE WHEN VLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
+        ,drvTermEEApprovedAmt = CASE WHEN VLIFE_DedCode IS NOT NULL THEN FORMAT(VLIFE_BenAmt, REPLICATE('0',16)) END
+
+
+
+        ,drvTermSPSProductCategory = CASE WHEN VLFES_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN '4' END
+        ,drvTermSPSEffectiveDate =    CASE WHEN VLFES_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLFES_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStartDate, '4/1/2021') END
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN
+                                        CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvTermSPSEligibilityEvent =    CASE WHEN VLFES_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFES_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        END
+        ,drvTermSPSPlanID = CASE WHEN VLFES_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'ETL0CSPVAL' END
+        ,drvTermSPSFamCoverageInd = CASE WHEN VLFES_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'C' END
+        ,drvTermSPSApprovedAmtEffDate =    CASE WHEN VLFES_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFES_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStartDate, '4/1/2021') END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                        END
+        ,drvTermSPSApprovedAmt =    CASE WHEN VLFES_DedCode IS NOT NULL THEN FORMAT(VLFES_BenAmt, REPLICATE('0',16))
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN    FORMAT(VLFEF_BenAmt, REPLICATE('0',16))
+                                    END
+
+
+        ,drvTermDepProductCategory = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN '5' END
+        ,drvTermDepEffectiveDate =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLFEC_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStartDate, '4/1/2021') END
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN
+                                        CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvTermDepEligibilityEvent =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFEC_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        END
+        ,drvTermDepPlanID = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'ETL0CDPVAL' END
+        ,drvTermDepFamCoverageInd = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'C' END
+        ,drvTermDepApprovedAmtEffDate =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFEC_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStartDate, '4/1/2021') END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                        END
+        ,drvTermDepApprovedAmt =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN FORMAT(VLFEC_BenAmt, REPLICATE('0',16))
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN    FORMAT(VLFEF_BenAmt, REPLICATE('0',16))
+                                    END
+
+
+        ,drvAddEEProductCategory = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'c' END
+        ,drvAddEEEffectiveDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLIFE_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvAddEEEligibilityEvent =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLIFE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                    END
+        ,drvAddEEPlanID = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'BTA0CEEVAL' END
+        ,drvAddEEFamCoverageInd = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'C' END
+        ,drvAddEEApprovedAmtEffDate = CASE WHEN VLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
+        ,drvAddEEApprovedAmt = CASE WHEN VLIFE_DedCode IS NOT NULL THEN FORMAT(VLIFE_BenAmt, REPLICATE('0',16)) END
+
+
+
+        ,drvAddSPSProductCategory = CASE WHEN VLFES_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'e' END
+        ,drvAddSPSEffectiveDate =    CASE WHEN VLFES_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLFES_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStartDate, '4/1/2021') END
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN
+                                        CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvAddSPSEligibilityEvent =    CASE WHEN VLFES_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFES_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        END
+        ,drvAddSPSPlanID = CASE WHEN VLFES_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'BTA0CSPVAL' END
+        ,drvAddSPSFamCoverageInd = CASE WHEN VLFES_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'C' END
+        ,drvAddSPSApprovedAmtEffDate =    CASE WHEN VLFES_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFES_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFES_BenStartDate, '4/1/2021') END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                        END
+        ,drvAddSPSApprovedAmt =    CASE WHEN VLFES_DedCode IS NOT NULL THEN FORMAT(VLFES_BenAmt, REPLICATE('0',16))
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN    FORMAT(VLFEF_BenAmt, REPLICATE('0',16))
+                                END
+
+
+        ,drvAddDepProductCategory = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'd' END
+        ,drvAddDepEffectiveDate =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLFEC_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStartDate, '4/1/2021') END
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN
+                                        CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvAddDepEligibilityEvent =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFEC_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        END
+        ,drvAddDepPlanID = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'BTA0CDPVAL' END
+        ,drvAddDepFamCoverageInd = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'C' END
+        ,drvAddDepApprovedAmtEffDate =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN 
+                                            CASE WHEN VLFEC_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEC_BenStartDate, '4/1/2021') END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
+                                        END
+        ,drvAddDepApprovedAmt =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN FORMAT(VLFEC_BenAmt, REPLICATE('0',16))
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN    FORMAT(VLFEF_BenAmt, REPLICATE('0',16))
+                                END
+
+
+        ,drvVolSTDProductCategory = CASE WHEN STD_DedCode IS NOT NULL THEN 'Q' END
+        ,drvVolSTDEffectiveDate = CASE WHEN STD_DedCode IS NOT NULL THEN 
+                                        CASE WHEN STD_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', STD_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', STD_BenStartDate, '4/1/2021') END
+                                    END
+        ,drvVolSTDEligibilityEvent =    CASE WHEN STD_DedCode IS NOT NULL THEN 
+                                            CASE WHEN STD_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        END
+        ,drvVolSTDPlanID = CASE WHEN STD_DedCode IS NOT NULL THEN 'YTS000CSAL' END
+        ,drvVolSTDFamCoverageInd = CASE WHEN STD_DedCode IS NOT NULL THEN 'C' END
+
     INTO dbo.U_EMOOSVAEXP_drvTbl
     FROM dbo.U_EMOOSVAEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -553,9 +646,48 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EMOOSVAEXP WITH (NOLOCK)
+    --JOIN dbo.U_dsi_BDM_EMOOSVAEXP WITH (NOLOCK)
+    JOIN (
+            SELECT BdmEEID, BdmCOID, BdmRecType, BdmDepRecId
+                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmDedCode END) AS VLIFE_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmBenStatus END) AS VLIFE_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmBenStartDate END) AS VLIFE_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmBenStopDate END) AS VLIFE_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN EedBenAmt END) AS VLIFE_BenAmt
+
+                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmDedCode END) AS VLFES_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmBenStatus END) AS VLFES_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmBenStartDate END) AS VLFES_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmBenStopDate END) AS VLFES_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN EedBenAmt END) AS VLFES_BenAmt
+
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmDedCode END) AS VLFEF_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmBenStatus END) AS VLFEF_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmBenStartDate END) AS VLFEF_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmBenStopDate END) AS VLFEF_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN EedBenAmt END) AS VLFEF_BenAmt
+
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmDedCode END) AS VLFEC_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmBenStatus END) AS VLFEC_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmBenStartDate END) AS VLFEC_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmBenStopDate END) AS VLFEC_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN EedBenAmt END) AS VLFEC_BenAmt
+
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmDedCode END) AS STD_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStatus END) AS STD_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStartDate END) AS STD_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStopDate END) AS STD_BenStopDate
+
+            FROM dbo.U_dsi_BDM_EMOOSVAEXP WITH (NOLOCK)
+            JOIN dbo.EmpDed WITH (NOLOCK)
+                ON BdmEEID = EedEEID
+                AND BdmDedCode = EedDedCode
+            GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecID ) AS Bdm
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecID
     ;
 
     --==========================================
