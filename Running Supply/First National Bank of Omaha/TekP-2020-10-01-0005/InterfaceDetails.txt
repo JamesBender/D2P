@@ -1,5 +1,0 @@
-Interface details (EFNBOGIEXP)
-Env – EW33 
-Server – EW3WUP3DB02
-Database – ULTIPRO_WPRUNN
-Export Name – FNB of Omaha General Interface Export

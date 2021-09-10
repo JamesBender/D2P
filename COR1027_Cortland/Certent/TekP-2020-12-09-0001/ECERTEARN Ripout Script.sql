@@ -55,11 +55,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECERTEARN_20210824.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECERTEARN_20210908.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Earnings Export','202103029','EMPEXPORT','ONDEM_XOE',NULL,'ECERTEARN',NULL,NULL,NULL,'202103029','Mar  2 2021 12:00PM','Mar  2 2021 12:00PM','202103021',NULL,'','','202103021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Earnings Export-Sched','202103029','EMPEXPORT','SCH_ECERTE',NULL,'ECERTEARN',NULL,NULL,NULL,'202103029','Mar  2 2021 12:00PM','Mar  2 2021 12:00PM','202103021',NULL,'','','202103021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Certent Earnings Export-Test','202108131','EMPEXPORT','TEST_XOE','Aug 16 2021  3:49PM','ECERTEARN',NULL,NULL,NULL,'202108131','Aug 13 2021 12:00AM','Aug 15 2021 12:00AM','202108131','278','','','202108131',dbo.fn_GetTimedKey(),NULL,'us3rVaCOR1027',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Certent Earnings Export-Test','202108131','EMPEXPORT','TEST_XOE','Sep  8 2021 10:24AM','ECERTEARN',NULL,NULL,NULL,'202108131','Aug 13 2021 12:00AM','Aug 15 2021 12:00AM','202108131','278','','','202108131',dbo.fn_GetTimedKey(),NULL,'us3rVaCOR1027',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECERTEARN','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECERTEARN','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECERTEARN','InitialSort','C','drvSort');
@@ -95,7 +95,7 @@ CREATE TABLE [dbo].[U_ECERTEARN_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvEquityholderCodePartID] char(9) NULL,
+    [drvEquityholderCodePartID] varchar(11) NULL,
     [drvTaxYear] int NULL,
     [drvYTDTotalCompensation] varchar(10) NULL,
     [drvYTDTaxableSupplemental] varchar(10) NULL,
@@ -129,7 +129,7 @@ CREATE TABLE [dbo].[U_ECERTEARN_PEarHist] (
     [PehCurAmt] numeric NULL,
     [PehCurHrs] decimal NULL,
     [PthCurTaxAmt] numeric NULL,
-    [PthCurTaxAmtYTD] money NULL,
+    [PthCurTaxAmtYTD] numeric NULL,
     [PehCurAmtYTDSupp] numeric NULL,
     [PehCurAmtYTD] money NULL,
     [PehCurHrsYTD] decimal NULL,
@@ -262,7 +262,7 @@ BEGIN
         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
         ,PthCurTaxAmt            = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PthCurTaxAmt ELSE 0.00 END)
         -- YTD Payroll Amount/Hours
-        ,PthCurTaxAmtYTD        = sum(PthCurTaxAmt) 
+        ,PthCurTaxAmtYTD        = sum(CASE WHEN PthTaxCode = 'USSOCEE' THEN PthCurTaxAmt ELSE 0.00 END) 
         ,PehCurAmtYTDSupp          = sum(CASE WHEN pehEarncode IN ('BOFDW','BOMYS','BON2','BONUS','BOSPM','BOSPQ','BOSTB',
                                         'BOTEC','COMM','CUSBO','DELIQ','EQLN','PEER','QUART','REFER','RELO','SEV','SIGN','SPOT','STAYB') THEN PehCurAmt ELSE 0.00 END) 
         ,PehCurAmtYTD           = SUM(PehCurAmt)
@@ -309,11 +309,12 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvEquityholderCodePartID  = EecEmpno
+        ,drvEquityholderCodePartID  = '"' + RTRIM(EecEmpno) + '"'
         ,drvTaxYear  = YEAR(GETDATE())
         ,drvYTDTotalCompensation   = CONVERT(VARCHAR(10), CONVERT(MONEY, PehCurAmtYTD))
         ,drvYTDTaxableSupplemental  = CONVERT(VARCHAR(10), CONVERT(MONEY, PehCurAmtYTDSupp))
-        ,drvYTDSocialSecurity  = CONVERT(VARCHAR(10), CONVERT(MONEY, PthCurTaxAmtYTD)) 
+        --,drvYTDSocialSecurity  = CONVERT(VARCHAR(10), CONVERT(MONEY, PthCurTaxAmtYTD)) 
+        ,drvYTDSocialSecurity  = CONVERT(VARCHAR(10), CONVERT(MONEY, YtdSocialSecurity)) 
         ,drvYTDMedicare  = '' -- leave blank
         ,drvYTDSDI  = ''  --  YTD sum PehStateSDI -- ask Richard to clarify
         ,drvYTDSUI  = ''  -- leave blank
@@ -331,6 +332,17 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.U_ECERTEARN_PEarHist WITH (NOLOCK)
         ON pehEEID = xEEID
+    JOIN (
+            SELECT PthEEID, PthCOID
+                ,SUM(PthCurTaxAmt) AS YtdSocialSecurity
+            FROM dbo.PTaxHist A WITH (NOLOCK)
+            WHERE LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
+                AND PthPerControl <= @EndPerControl
+                AND PthPayDate > '1/1/2021'
+                AND PthTaxCode = 'USSOCEE'
+            GROUP BY PthEEID, PthCOID) AS PTH
+        ON PthEEID = xEEID
+        AND PthCOID = xCOID
     ;
 
     --==========================================
