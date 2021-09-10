@@ -50,8 +50,8 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfLastHire"','11','(''UD101''=''T,'')','ELIMEDEM00Z0','50','D','10','11',NULL,'HireDate',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrgLvl1Desc"','12','(''UA''=''T,'')','ELIMEDEM00Z0','50','D','10','12',NULL,'Division',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCompanyName"','13','(''UA''=''T,'')','ELIMEDEM00Z0','50','D','10','13',NULL,'Group',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrglvl3Desc"','14','(''UA''=''T,'')','ELIMEDEM00Z0','50','D','10','14',NULL,'Region',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrglvl2Desc"','15','(''UA''=''T'')','ELIMEDEM00Z0','50','D','10','15',NULL,'Department',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrglvl2Desc"','14','(''UA''=''T,'')','ELIMEDEM00Z0','50','D','10','14',NULL,'Region',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrglvl3Desc"','15','(''UA''=''T'')','ELIMEDEM00Z0','50','D','10','15',NULL,'Department',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -59,11 +59,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELIMEDEM_20210901.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELIMEDEM_20210910.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Limeade One Demo Export','202108289','EMPEXPORT','ONDEM_XOE',NULL,'ELIMEDEM',NULL,NULL,NULL,'202108289','Aug 28 2021  3:25PM','Aug 28 2021  3:25PM','202108281',NULL,'','','202108281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Limeade One Demo Export-Sched','202108289','EMPEXPORT','SCH_ELIMED',NULL,'ELIMEDEM',NULL,NULL,NULL,'202108289','Aug 28 2021  3:25PM','Aug 28 2021  3:25PM','202108281',NULL,'','','202108281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Limeade One Demo Export-Test','202108309','EMPEXPORT','TEST_XOE','Aug 30 2021  9:15AM','ELIMEDEM',NULL,NULL,NULL,'202108309','Aug 30 2021 12:00AM','Dec 30 1899 12:00AM','202108161','1334','','','202108161',dbo.fn_GetTimedKey(),NULL,'us3rVaCRY1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Limeade One Demo Export-Test','202108309','EMPEXPORT','TEST_XOE','Sep  7 2021  9:34AM','ELIMEDEM',NULL,NULL,NULL,'202108309','Aug 30 2021 12:00AM','Dec 30 1899 12:00AM','202108161','663','','','202108161',dbo.fn_GetTimedKey(),NULL,'us3rVaCRY1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELIMEDEM','BCPParms','V','-S -T -w');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELIMEDEM','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELIMEDEM','ExportPath','V',NULL);
@@ -236,6 +236,7 @@ BEGIN
         AND DbnDedCode = audKey2Value
         AND DbnSystemID = audKey3Value
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
+      AND audNewValue < @EndDate
     AND ISNULL(audNewValue, '') <> ''
     ;
 
@@ -253,10 +254,10 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = ''
         -- standard fields above and additional driver fields below
-        ,drvEmpNo = EecEmpNo
+        ,drvEmpNo = EecEmpNo 
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
-        ,drvAddressEmail = EepAddressEMail
+        ,drvAddressEmail = CASE WHEN EECEEID = 'AHZ53100W0K0' THEN COALESCE(EepAddressEMailAlternate,EepAddressEMail) ELSE EepAddressEMail END
         ,drvDateOfBirth = EepDateOfBirth
         ,drvDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvAddressCountry = EepAddressCountry
@@ -271,13 +272,18 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-        AND EecEEType <> 'TES'
-        AND (EecEmplStatus <> 'T' 
-             OR EXISTS (SELECT 1 FROM dbo.U_ELIMEDEM_Audit WHERE xEEID = AudEEID AND AudFieldName = 'EecDateOfTermination'))    
+        AND EecEEType NOT IN ('CON','TES')
+        AND EecEEID <> 'D74MQP000040'
+        AND EecEmplStatus <> 'T' 
+             --OR EecDateOfTermination BETWEEN @StartDate AND @EndDate
+            -- OR EXISTS (SELECT 1 FROM dbo.U_ELIMEDEM_Audit WHERE xEEID = AudEEID AND AudFieldName = 'EecDateOfTermination'))    
     JOIN dbo.Company WITH (NOLOCK)
         ON CmpCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
+       AND LocAddressCountry = 'USA'
     JOIN dbo.OrgLevel AS Org1 WITH (NOLOCK) 
         ON Org1.OrgCode = EecOrgLvl1
         AND Org1.OrgLvl = 1
