@@ -145,11 +145,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISPCRCOB_20210903.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISPCRCOB_20210914.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'NPM/Cobra Export','202105259','EMPEXPORT','ONDEMAND','Nov  8 2017 12:00AM','EDISPCRCOB',NULL,NULL,NULL,'202105259','Oct 30 2017 12:00AM','Dec 30 1899 12:00AM','202105111',NULL,'','','202105111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Export','202105259','EMPEXPORT','SCH_PCRCOB',NULL,'EDISPCRCOB',NULL,NULL,NULL,'202105259','Jan 13 2016  8:53AM','Jan 13 2016  8:53AM','202105111',NULL,'','','202105111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test NPM/Cobra Export','202106309','EMPEXPORT','TEST','Jun 23 2021  9:05PM','EDISPCRCOB',NULL,NULL,NULL,'202106309','Jun 30 2021 12:00AM','Dec 30 1899 12:00AM','202101011','190','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3aPiNOR1052',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test NPM/Cobra Export','202109071','EMPEXPORT','TEST','Sep  7 2021 11:28PM','EDISPCRCOB',NULL,NULL,NULL,'202109071','Sep  7 2021 12:00AM','Dec 30 1899 12:00AM','202108011','144','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','InitialSort','C','drvInitialSort');
@@ -388,6 +388,9 @@ Purpose: PCRK Holding Company COBRA Export
 
 Revision History
 ----------------
+09/14/2021 by AP:
+		- QB Record: Changed client division name.
+		- QBPLANMEMBERSPECIFICREATEINITIAL Record: Updated rate logic.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISPCRCOB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDISPCRCOB';
@@ -810,7 +813,7 @@ BEGIN
         ,drvCoID           = BdmCoID
         ,drvDepRecID       = ISNULL(BdmDepRecID,'')
         ,drvClientName     = CONVERT(varchar(100),'PCRK Employee Leasing Company LLC 40641')
-        ,drvClientDivName  = CONVERT(varchar(50),'PCRK Holding Company Specialists')
+        ,drvClientDivName  = CONVERT(varchar(50),'PCRK Employee Leasing Company LLC')
         ,drvNameFirst      = CASE WHEN BdmChangeReason IN ('201', 'LEVNT3', '204', '210', 'LEVNT4') THEN ConNameFirst ELSE EepNameFirst END
         ,drvNameMiddle     = CASE WHEN BdmChangeReason IN ('201', 'LEVNT3', '204', '210', 'LEVNT4') THEN LEFT(ConNameMiddle, 1) ELSE LEFT(EepNameMiddle, 1) END
         ,drvNameLast       = CASE WHEN BdmChangeReason IN ('201', 'LEVNT3', '204', '210', 'LEVNT4') THEN ConNameLast ELSE EepNameLast END
@@ -1140,7 +1143,7 @@ BEGIN
         ON EecEEID = BdmEEID
        AND EecCoID = BdmCoID
     WHERE BdmRunID = 'QB'
-	AND EepAddressState IN ('CA', 'CT', 'OR', 'TX', 'NY', 'IL', 'RI', 'GA', 'VA', 'MN');
+    AND EepAddressState IN ('CA', 'CT', 'OR', 'TX', 'NY', 'IL', 'RI', 'GA', 'VA', 'MN');
 
       ------------------
     -- QBSTATEINSERTS DETAIL RECORD -- MN-LIFEINSERT
@@ -1172,11 +1175,12 @@ BEGIN
         ,drvCoID        = drvCoID
         ,drvDepRecID    = drvDepRecID
         ,drvPlanName    = drvPlanName
-        ,drvRate        = CASE WHEN EecPayPeriod = 'M' THEN BdmEEAmt
-                               WHEN EecPayPeriod = 'S' THEN BdmEEAmt * 2
-                               WHEN EecPayPeriod = 'B' THEN BdmEEAmt * 26/12
-                               WHEN EecPayPeriod = 'W' THEN BdmEEAmt * 52/12
-                          END
+        ,drvRate        = BdmEEAmt
+		--CASE WHEN EecPayPeriod = 'M' THEN BdmEEAmt
+  --                             WHEN EecPayPeriod = 'S' THEN BdmEEAmt * 2
+  --                             WHEN EecPayPeriod = 'B' THEN BdmEEAmt * 26/12
+  --                             WHEN EecPayPeriod = 'W' THEN BdmEEAmt * 52/12
+  --                        END
         ,drvInitialSort = '21'
         ,drvSubSort     = drvSubSort
         ,drvSubSort2    = '3'
