@@ -239,10 +239,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUMRPAN834_20210920.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUMRPAN834_20210921.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202109209','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only','202109209','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202109209','EMPEXPORT','FULLFILE','Sep 20 2021  6:18PM','EUMRPAN834',NULL,NULL,NULL,'202109209','Sep 20 2021 12:00AM','Dec 30 1899 12:00AM','202109061','4318','','','202109061',dbo.fn_GetTimedKey(),NULL,'us3jRePAN1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202109209','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202109209','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR 834 Export','202109209','EMPEXPORT','SCH_PAN834','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -253,7 +253,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUMRPAN834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUMRPAN834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUMRPAN834','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUMRPAN834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUMRPAN834','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EUMRPAN834' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EUMRPAN834' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_EUMRPAN834_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EUMRPAN834_SavePath];
@@ -391,9 +391,9 @@ CREATE TABLE [dbo].[U_EUMRPAN834_DrvTbl] (
     [drvREF02_RefNumberQual1] varchar(8) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(3) NULL,
-    [drvDTP00_DateTime1] varchar(3) NOT NULL,
-    [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
-    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
+    [drvDTP00_DateTime1] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(2) NULL,
     [drvDTP03_DateTimePeriod1] varchar(8) NULL,
     [drvDTP00_DateTime2] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
@@ -615,8 +615,8 @@ Purpose: UMR 834 Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
+09/21/2021 by AP:
+		- Updated REF02 for loop 2000.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUMRPAN834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUMRPAN834';
@@ -964,7 +964,7 @@ BEGIN
         ,drvREF02_RefNumberQual1 = '76414831'
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = 'DX'
-        ,drvREF02_RefNumberQual2 = CASE WHEN BdmCOID = 'OP886' THEN '001'
+        ,drvREF02_RefNumberQual2 = CASE WHEN BdmCOID IN ('OP886', 'OP7OL') THEN '001'
                                         WHEN BdmCOID = 'FISDX' THEN '002' END
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
         ,drvDTP00_DateTime1 = CASE WHEN audCompChange = 'Y' THEN 'DTP' END
