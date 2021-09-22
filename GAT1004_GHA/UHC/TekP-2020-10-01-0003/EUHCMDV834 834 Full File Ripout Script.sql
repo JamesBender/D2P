@@ -235,13 +235,14 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCMDV834_20210817.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCMDV834_20210903.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202107269','EMPEXPORT','CHANGES','Jul 26 2021  1:09PM','EUHCMDV834',NULL,NULL,NULL,'202107269','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121','10955','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108099','EMPEXPORT','FULLFILE','Aug 16 2021 10:05AM','EUHCMDV834',NULL,NULL,NULL,'202108099','Aug  9 2021 12:00AM','Dec 30 1899 12:00AM','202107121','15071','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108099','EMPEXPORT','FULLFILE','Aug 30 2021 10:38AM','EUHCMDV834',NULL,NULL,NULL,'202108099','Aug  9 2021 12:00AM','Dec 30 1899 12:00AM','202107121','11513','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202107269','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202107269','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Med Dent Vis 834 Export','202107269','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'UHC Med Den Vis 834 Test','202107269','EMPEXPORT','TEST','Sep  3 2021 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'us3kMcGAT1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCMDV834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCMDV834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCMDV834','ExportPath','V',NULL);
@@ -364,10 +365,10 @@ CREATE TABLE [dbo].[U_EUHCMDV834_DrvTbl] (
     [drvREF02_RefNumberQual1] varchar(7) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
-    [drvDTP00_DateTime1] varchar(3) NULL,
-    [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
-    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
-    [drvDTP03_DateTimePeriod1] datetime NULL,
+    [drvDTP00_DateTime1] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
     [drvDTP00_DateTime2] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
@@ -859,10 +860,10 @@ BEGIN
         ,drvREF01_RefNumberQual2 = ''
         ,drvREF02_RefNumberQual2 = ''
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = CASE WHEN EecEmplStatus = 'T' THEN 'DTP' END
-        ,drvDTP01_DateTimeQualifier1 = '286'
-        ,drvDTP02_DateTimeFormatQual1 = 'D8'
-        ,drvDTP03_DateTimePeriod1 = EecDateOfTermination
+        ,drvDTP00_DateTime1 = ''--CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier1 = ''--'286'
+        ,drvDTP02_DateTimeFormatQual1 = ''--'D8'
+        ,drvDTP03_DateTimePeriod1 = ''--EecDateOfTermination
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
         ,drvDTP00_DateTime2 = 'DTP'
         ,drvDTP01_DateTimeQualifier2 = '336'
