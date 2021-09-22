@@ -1,0 +1,14 @@
+# Working with Updates
+
+In most cases these are updates to files that are already being used in production, so we should be careful to ensure we are NOT doing anything that would disrupt this normal operation. We also should ensure that when our updated file is accepted for prodcution, we are presevering the previous version (just in case) and moving the new file into the product "slot" while cleaning up any development artifactst that are not needed for ongoing production.
+
+### Steps for dealing with updates
+1. Get a Ripout of the existing production sproc that you are updating and check it into GitHub. This is a backup in case something bad happens.
+2. Make a copy of the existing production sproc. As part of this the export code and export name should be changed so that they don't overwrite/interere with the existing production file. i.e. if an export code is something like EEMPDATAEX you can change it to EEMPDATAE2. Make sure that ALL instances of the export code in the file are changed. This is usually done in the ripout script as on of the first actions after the "Delete block" at the start of the file, and begins with "INSERT INTO [dbo].[AscDefH]..." Usually you can add something like "V2" to the end of the export name, but there is a size limit of this field, so you may need to truncate the last word in the existing title. **This step is to always be done unless the TC explicitly puts in the specifications that it is not requried.**
+3. Make the necessary changes to the copy of the file.
+4. Once the client and vendor have approved the new changes for production, rename the copy of the original file in GitHub to something that indicates it is the previous version i.e. Old EEMPDATAEX Ripout.sql
+5. In the updated script, change the export code from the "test" version back to the production version. In our example above, we would repalce EEMPDATAE2 with EEMPDATAEX.
+6. In the update script, restore the previous export name. If you just added a "V2" to the end, just remove it. If you had to truncate a work to meet the length restriction, replace the truncated word.
+7. Run the script to replace the existing produciton sproc with the udpated one. Test it to ensure it was created correctly, runs, and outputs the expected file data.
+8. Remove the "V2" updated version of the export. This is most easily accomplished by running the "delete block" at the top of the Ripout Script (everyting before the "INSERT INTO [dbo].[AscDefH]..." comamand)
+9. Log into Back Office and make sure that the updated production version runs, and that the "V2" version no longer appears in the list of availble exports.
