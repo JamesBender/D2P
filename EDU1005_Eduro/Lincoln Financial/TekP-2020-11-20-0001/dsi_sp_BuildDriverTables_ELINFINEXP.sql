@@ -797,13 +797,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210902.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINFINEXP_20210920.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202107069','EMPEXPORT','OEACTIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','8','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202107069','EMPEXPORT','OEPASSIVE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1552','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export','202107069','EMPEXPORT','ONDEM_XOE','Jul  8 2021  5:14AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Sched','202107069','EMPEXPORT','SCH_ELINFI','Jul  8 2021  5:15AM','ELINFINEXP',NULL,NULL,NULL,'202107069','Jul  6 2021 12:17PM','Jul  6 2021 12:17PM','202107061','1558','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202108251','EMPEXPORT','TEST_XOE','Aug 25 2021  3:55PM','ELINFINEXP',NULL,NULL,NULL,'202108251','Aug 25 2021 12:00AM','Aug 15 2021 12:00AM','202108181','1573','','','202108181',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Financial Export-Test','202109071','EMPEXPORT','TEST_XOE','Sep  7 2021  8:39PM','ELINFINEXP',NULL,NULL,NULL,'202109071','Sep  7 2021 12:00AM','Dec 30 1899 12:00AM','202109011','1575','','','202109011',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINFINEXP','SubSort','C','drvSort');
@@ -1360,6 +1360,7 @@ BEGIN
                                     WHEN EepHomeCoID = 'O5E2U' THEN 'ANGLETON NURSING AND REHAB CENTER LLC'
                                     WHEN EepHomeCoID = 'O5DLK' THEN 'HACOA HACIENDA OAKS NURSING AND REHAB'
                                     WHEN EepHomeCoID = 'EY15H' THEN 'SWMVH'
+                                    WHEN EepHomeCoID = 'U4V9F' THEN 'LOCK'
                                 END
                             END
         ,drvLifeEffDate = CASE WHEN GLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', GLIFE_BdmBenStartDate, '1/1/2020') END 
@@ -1399,6 +1400,7 @@ BEGIN
                                     WHEN EepHomeCoID = 'O5E2U' THEN 'ANGLETON NURSING AND REHAB CENTER LLC'
                                     WHEN EepHomeCoID = 'O5DLK' THEN 'HACOA HACIENDA OAKS NURSING AND REHAB'
                                     WHEN EepHomeCoID = 'EY15H' THEN 'SWMVH'
+                                    WHEN EepHomeCoID = 'U4V9F' THEN 'LOCK'
                                 END
                             END
         ,drvWiEffDate = CASE WHEN STD_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', STD_BdmBenStartDate, '1/1/2020') END 
@@ -1438,6 +1440,7 @@ BEGIN
                                     WHEN EepHomeCoID = 'O5E2U' THEN 'ANGLETON NURSING AND REHAB CENTER LLC'
                                     WHEN EepHomeCoID = 'O5DLK' THEN 'HACOA HACIENDA OAKS NURSING AND REHAB'
                                     WHEN EepHomeCoID = 'EY15H' THEN 'SWMVH'
+                                    WHEN EepHomeCoID = 'U4V9F' THEN 'LOCK'
                                 END
                             END
         ,drvLtdEffDate = CASE WHEN LTD_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', LTD_BdmBenStartDate, '1/1/2020') END 
@@ -1475,6 +1478,7 @@ BEGIN
                                     WHEN EepHomeCoID = 'O5E2U' THEN 'ANGLETON NURSING AND REHAB CENTER LLC'
                                     WHEN EepHomeCoID = 'O5DLK' THEN 'HACOA HACIENDA OAKS NURSING AND REHAB'
                                     WHEN EepHomeCoID = 'EY15H' THEN 'SWMVH'
+                                    WHEN EepHomeCoID = 'U4V9F' THEN 'LOCK'
                                 END
                             END
         ,drvVLIFEffDate = CASE WHEN LIFEE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', LIFEE_BdmBenStartDate, '1/1/2020') END 
