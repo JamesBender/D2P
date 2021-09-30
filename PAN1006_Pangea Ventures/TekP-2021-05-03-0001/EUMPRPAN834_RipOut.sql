@@ -239,10 +239,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUMRPAN834_20210921.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUMRPAN834_20210930.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202109209','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202109209','EMPEXPORT','FULLFILE','Sep 20 2021  6:18PM','EUMRPAN834',NULL,NULL,NULL,'202109209','Sep 20 2021 12:00AM','Dec 30 1899 12:00AM','202109061','4318','','','202109061',dbo.fn_GetTimedKey(),NULL,'us3jRePAN1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202109229','EMPEXPORT','FULLFILE','Sep 22 2021  8:49AM','EUMRPAN834',NULL,NULL,NULL,'202109229','Sep 22 2021 12:00AM','Dec 30 1899 12:00AM','202109081','4304','','','202109081',dbo.fn_GetTimedKey(),NULL,'us3jRePAN1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202109209','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202109209','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UMR 834 Export','202109209','EMPEXPORT','SCH_PAN834','Oct  1 2018 12:00AM','EUMRPAN834',NULL,NULL,NULL,'202109209','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109201',NULL,'','','202109201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -409,8 +409,8 @@ CREATE TABLE [dbo].[U_EUMRPAN834_DrvTbl] (
     [drvPER02_Name] varchar(1) NOT NULL,
     [drvPER03_CommNumberQualifier] varchar(2) NULL,
     [drvPER04_CommunicationNumber] varchar(50) NULL,
-    [drvPER05_CommNumberQualifier] varchar(2) NULL,
-    [drvPER06_CommunicationNumber] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER06_CommunicationNumber] varchar(1) NOT NULL,
     [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
     [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
     [drvN301_AddressLine1] varchar(6000) NULL,
@@ -616,7 +616,11 @@ Purpose: UMR 834 Export
 Revision History
 ----------------
 09/21/2021 by AP:
-		- Updated REF02 for loop 2000.
+        - Updated REF02 for loop 2000.
+
+09/30/2021 by AP:
+		- Updated PER03-06.
+		- Updated DMG04 logic.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUMRPAN834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUMRPAN834';
@@ -1002,24 +1006,24 @@ BEGIN
                                  WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' AND ConSSN NOT IN ('000000000', '999999999', '888888888', '123456789') AND LEFT(ConSSN, 3) NOT IN ('999','998') THEN ConSSN
                                      END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' and ISNULL(EfoPhoneNumber, '') = '' and ISNULL(EecPhoneBusinessNumber, '') = '' THEN 'HP'
+        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN 'HP'
                                              WHEN BdmRecType = 'EMP' and ISNULL(EfoPhoneNumber, '') <> '' AND ISNULL(eepAddressEmail, '')  = '' AND ISNULL(EepPhoneHomeNumber, '') = '' AND ISNULL(EecPhoneBusinessNumber, '') = '' THEN 'CP'
-                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' AND ISNULL(EfoPhoneNumber , '') = '' AND ISNULL(EecPhoneBusinessNumber, '') = '' THEN 'EM'
+                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN 'EM'
                                              WHEN BdmRecType = 'EMP' and ISNULL(EecPhoneBusinessNumber, '') <> '' AND ISNULL(EepPhoneHomeNumber, '') = '' AND ISNULL(EepAddressEmail, '') = '' AND ISNULL(EfoPhoneNumber, '') = '' THEN 'WP' 
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' and ISNULL(EfoPhoneNumber, '') <> '' and ISNULL(EecPhoneBusinessNumber, '') <> '' THEN 'HP'
+											 WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN 'HP'
                                              END
 
-        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' and ISNULL(EfoPhoneNumber, '') = '' and ISNULL(EecPhoneBusinessNumber, '') = '' THEN ISNULL(EepPhoneHomeNumber,'') 
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EfoPhoneNumber, '') <> '' AND ISNULL(eepAddressEmail, '')  = '' AND ISNULL(EepPhoneHomeNumber, '') = '' and ISNULL(EecPhoneBusinessNumber, '') = '' THEN ISNULL(EfoPhoneNumber, '')
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' AND ISNULL(EfoPhoneNumber, '') = '' AND ISNULL(EecPhoneBusinessNumber, '') = '' THEN ISNULL(eepAddressEMail,'')
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EecPhoneBusinessNumber, '') <> '' AND ISNULL(EepPhoneHomeNumber, '') = '' AND ISNULL(EepAddressEmail, '') = '' AND ISNULL(EfoPhoneNumber, '') = '' THEN ISNULL(EecPhoneBusinessNumber, '')
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' AND ISNULL(EfoPhoneNumber, '') <> '' AND ISNULL(EecPhoneBusinessNumber, '') <> '' THEN  ISNULL(EepPhoneHomeNumber,'') 
-
+        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN ISNULL(EepPhoneHomeNumber,'') 
+                                             WHEN BdmRecType = 'EMP' and ISNULL(EfoPhoneNumber, '') <> '' AND ISNULL(eepAddressEmail, '')  = '' AND ISNULL(EepPhoneHomeNumber, '') = '' AND ISNULL(EecPhoneBusinessNumber, '') = '' THEN ISNULL(EfoPhoneNumber, '')
+                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(eepAddressEMail,'')
+                                             WHEN BdmRecType = 'EMP' and ISNULL(EecPhoneBusinessNumber, '') <> '' AND ISNULL(EepPhoneHomeNumber, '') = '' AND ISNULL(EepAddressEmail, '') = '' AND ISNULL(EfoPhoneNumber, '') = '' THEN ISNULL(EecPhoneBusinessNumber, '')
+											 WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(EepPhoneHomeNumber,'') 
                                              END
+		,drvPER05_CommNumberQualifier = ''
+        --CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'EM' END
 
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'EM' END
-
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN ISNULL(eepAddressEMail,'') END
+        ,drvPER06_CommunicationNumber = ''
+        --CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN ISNULL(eepAddressEMail,'') END
 
         ,drvPER07_CommNumberQualifier = ''
         ,drvPER08_CommunicationNumber = ''
@@ -1036,7 +1040,11 @@ BEGIN
                                      WHEN BdmRecType = 'DEP' AND ConGender IN ('M','F') THEN ConGender
                                      ELSE 'M'
                                 END
-        ,drvDMG04_MaritalStatusCode1 = CASE WHEN EepMaritalStatus = 'S' THEN 'I' ELSE EepMaritalStatus END
+        ,drvDMG04_MaritalStatusCode1 = CASE WHEN EepMaritalStatus = 'Z' THEN ''
+											WHEN EepMaritalStatus = 'S' THEN 'I'
+											ELSE EepMaritalStatus 
+										END
+		--CASE WHEN EepMaritalStatus = 'S' THEN 'I' ELSE EepMaritalStatus END
         --  CASE WHEN BdmRecType = 'EMP' THEN
         --                                         CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
         --                                END
