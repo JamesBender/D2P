@@ -173,13 +173,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECANSUNEXP_20210809.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECANSUNEXP_20210929.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202108059','EMPEXPORT','OEACTIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202108059','EMPEXPORT','OEPASSIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Export','202108059','EMPEXPORT','ONDEM_XOE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Sched','202108059','EMPEXPORT','SCH_ECANSU',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Test','202108059','EMPEXPORT','TEST_XOE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Test','202109279','EMPEXPORT','TEST_XOE','Sep 27 2021 12:00AM','ECANSUNEXP',NULL,NULL,NULL,'202109279','Sep 27 2021 12:00AM','Dec 30 1899 12:00AM','202109131','10123','','','202109131',dbo.fn_GetTimedKey(),NULL,'us3lKiAUD1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECANSUNEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECANSUNEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECANSUNEXP','InitialSort','C','drvSort');
@@ -288,11 +288,11 @@ CREATE TABLE [dbo].[U_ECANSUNEXP_drvTbl_Member] (
     [drvLocationNum] varchar(3) NULL,
     [drvClassNum] varchar(3) NULL,
     [drvPlanNm] varchar(3) NULL,
-    [drvCertificateNum] varchar(3) NOT NULL,
+    [drvCertificateNum] char(10) NULL,
     [drvPayrollNum] varchar(1) NOT NULL,
     [drvEmploymentDt] varchar(10) NULL,
     [drvWorkResidenceCd] varchar(255) NULL,
-    [drvBeneficiary] varchar(3) NOT NULL,
+    [drvBeneficiary] varchar(1) NOT NULL,
     [drvStatusCd] varchar(1) NOT NULL,
     [drvTermDt] varchar(10) NULL,
     [drvTermReasonCd] varchar(1) NULL,
@@ -362,8 +362,8 @@ CREATE TABLE [dbo].[U_ECANSUNEXP_File] (
 );
 IF OBJECT_ID('U_ECANSUNEXP_Loader') IS NULL
 CREATE TABLE [dbo].[U_ECANSUNEXP_Loader] (
-    [drvPolicyNum] varchar(1) NOT NULL,
-    [drvClientName] varchar(1) NOT NULL,
+    [drvPolicyNum] varchar(6) NOT NULL,
+    [drvClientName] varchar(36) NOT NULL,
     [drvReportLanguageCd] varchar(1) NOT NULL
 );
 GO
@@ -449,7 +449,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'CEXSL,CDPL,COPLF,CADD,CXADD,CXADP,CSTD,CLTD,CDENT';
+    SET @DedList = 'CEXSL,CDPL,COPLF,CADD,CXADD,CXADP,CSTD,CLTD,CDENT,CMED';
 
     IF OBJECT_ID('U_ECANSUNEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ECANSUNEXP_DedList;
@@ -538,11 +538,11 @@ BEGIN
                             WHEN CmpCompanyCode = 'FMAV' AND EecDedGroupCode = 'CSAL' AND EepAddressState <> 'QC' THEN 'B3'
                             WHEN CmpCompanyCode = 'FMAV' AND EecDedGroupCode = 'CSAL' AND EepAddressState = 'QC' THEN 'BQ3'
                         END
-        ,drvCertificateNum = 'TBD' -- select * from dbo.fn_MP_CustomFields_EmpComp_Export (NULL,NULL,NULL,NULL)
+        ,drvCertificateNum = EecUdField01 -- 'TBD' -- select * from dbo.fn_MP_CustomFields_EmpComp_Export (NULL,NULL,NULL,NULL)
         ,drvPayrollNum = ''
         ,drvEmploymentDt = CONVERT(VARCHAR(10),EecDateOfLastHire, 126)
         ,drvWorkResidenceCd = LocAddressState
-        ,drvBeneficiary = 'TBD'
+        ,drvBeneficiary = ''
         ,drvStatusCd = CASE WHEN EecEmplStatus = 'T' THEN '3' ELSE '1' END
         ,drvTermDt = CONVERT(VARCHAR(10),EecDateOfTermination, 126)
         ,drvTermReasonCd =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN '6' 
@@ -553,6 +553,7 @@ BEGIN
                                 CASE WHEN EjhReason = 'TRI' THEN EjhJobEffDate
                                     WHEN EecDateOfLastHire BETWEEN @StartDate AND @EndDate THEN EecDateOfLastHire
                                     WHEN EecEmplStatus = 'T' THEN EecDateOfTermination
+                                    ELSE dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
                                 END, 126)
         ,drvTransferFlg = 'Implicit'
         ,drvReinstatementFlg = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN 'TRUE' ELSE 'FALSE' END
@@ -588,7 +589,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID
+        ,drvSort =  xEEID
         -- standard fields above and additional driver fields below
         ,drvFirstNm = EepNameFirst
         ,drvLastNm = EepNameLast
@@ -596,7 +597,8 @@ BEGIN
         ,drvResidenceCd = EepAddressState
         ,drvGenderCd = EepGender
         ,drvSmokerFlg = CASE WHEN EepIsSmoker = 'Y' THEN 'True' ELSE 'False' END
-        ,drvDepTypeCd =    CASE WHEN BdmDedCode = 'CDENT' AND BdmBenOption IN ('FAMILY','FAMON','FAMQC') THEN '3' ELSE '2' END
+        ,drvDepTypeCd =    CASE WHEN DepTypeEEID IS NOT NULL THEN '3' ELSE '2' END
+                        --CASE WHEN BdmDedCode IN ('CDENT','CMED') AND BdmBenOption IN ('FAMILY','FAMON','FAMQC') THEN '3' ELSE '2' END
         ,drvLanguageCd =    CASE WHEN EecLanguageCode = 'FR' THEN '2' ELSE '1' END                                
     INTO dbo.U_ECANSUNEXP_drvTbl_Person
     FROM dbo.U_ECANSUNEXP_EEList WITH (NOLOCK)
@@ -608,6 +610,12 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+    LEFT JOIN (
+                SELECT DISTINCT BdmEEID AS DepTypeEEID, BdmCOID AS DepTypeCOID
+                FROM dbo.U_dsi_BDM_ECANSUNEXP WITH (NOLOCK)
+                WHERE BdmDedCode IN ('CDENT','CMED') AND BdmBenOption IN ('FAMILY','FAMON','FAMQC')) AS DepType
+        ON DepTypeEEID = xEEID
+        AND DepTypeCOID = xCOID
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Salary
@@ -715,11 +723,12 @@ BEGIN
                                 WHEN BdmDedCode = 'CDENT' THEN '502'
                                 WHEN BdmDedCode = 'CSTD' THEN '401'
                                 WHEN BdmDedCode = 'CLTD' THEN '411'
+                                WHEN BdmDedCode = 'CMED' THEN '512'
                             END
         ,drvFlexCodeNm = 'A'
         ,drvDepTypeCd =    CASE WHEN BdmDedCode = 'CDPL' THEN '3'
-                            WHEN BdmDedCode = 'CDENT' AND BdmBenOption IN ('FAMILY','FAMON','FAMQC') THEN '3'
-                            WHEN BdmDedCode = 'CDENT' AND BdmBenOption IN ('EEON','EEONLY','EEQC') THEN '2'
+                            WHEN BdmDedCode IN ('CDENT','CMED') AND BdmBenOption IN ('FAMILY','FAMON','FAMQC') THEN '3'
+                            WHEN BdmDedCode IN ('CDENT','CMED') AND BdmBenOption IN ('EEON','EEONLY','EEQC') THEN '2'
                             ELSE '1'
                         END
         ,drvEffectiveDt = CONVERT(VARCHAR(10), BdmBenStartDate, 126)
@@ -743,9 +752,9 @@ BEGIN
     IF OBJECT_ID('U_ECANSUNEXP_Loader','U') IS NOT NULL
         DROP TABLE dbo.U_ECANSUNEXP_Loader;
     SELECT DISTINCT
-         drvPolicyNum = ''
-        ,drvClientName = ''
-        ,drvReportLanguageCd = ''
+         drvPolicyNum = '103932'
+        ,drvClientName = 'Audio Visual Services (Canada) Corp.'
+        ,drvReportLanguageCd = '1'
     INTO dbo.U_ECANSUNEXP_Loader
     FROM dbo.U_ECANSUNEXP_EEList WITH (NOLOCK)
     ;

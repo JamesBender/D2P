@@ -210,8 +210,8 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''DA''=''T~'')','EPRUDAHCEXZ0','50','D','40','11',NULL,'Dependent Marital Status Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''DA''=''T~'')','EPRUDAHCEXZ0','50','D','40','12',NULL,'Dependent Prefix Title Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentSuffix"','13','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','13',NULL,'Dependent Suffix',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentNameFirst"','14','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','14',NULL,'Dependent Last Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentNameLast"','15','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','15',NULL,'Dependent First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentNameLast"','14','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','14',NULL,'Dependent First Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentNameFirst"','15','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','15',NULL,'Dependent Last Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentNameMiddle"','16','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','16',NULL,'Dependent Middle Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"HOME"','17','(''DA''=''T~'')','EPRUDAHCEXZ0','50','D','40','17',NULL,'Dependent Address Type Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDependentAddressLine1"','18','(''UA''=''T~'')','EPRUDAHCEXZ0','50','D','40','18',NULL,'DependentAddress Line 1 Text',NULL,NULL);
@@ -269,13 +269,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRUDAHCEX_20210915.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EPRUDAHCEX_20210930.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202108119','EMPEXPORT','OEACTIVE','Aug 12 2021  4:15AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','2','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202108119','EMPEXPORT','OEPASSIVE','Aug 12 2021  4:15AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','582','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Export','202108119','EMPEXPORT','ONDEM_XOE','Aug 12 2021  4:16AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','582','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Exp-Sched','202108119','EMPEXPORT','SCH_EPRUDA','Aug 12 2021  4:19AM','EPRUDAHCEX',NULL,NULL,NULL,'202108119','Aug 11 2021  5:31AM','Aug 11 2021  5:31AM','202108111','582','','','202108111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Exp-Test','202109089','EMPEXPORT','TEST_XOE','Sep 15 2021  3:19PM','EPRUDAHCEX',NULL,NULL,NULL,'202109089','Sep  8 2021 12:00AM','Dec 30 1899 12:00AM','202108251','549','','','202108251',dbo.fn_GetTimedKey(),NULL,'us3lKiBEC1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Prudential AccHospCI Exp-Test','202109219','EMPEXPORT','TEST_XOE','Sep 21 2021  5:20PM','EPRUDAHCEX',NULL,NULL,NULL,'202109219','Sep 21 2021 12:00AM','Dec 30 1899 12:00AM','202109071','546','','','202109071',dbo.fn_GetTimedKey(),NULL,'us3lKiBEC1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRUDAHCEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRUDAHCEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPRUDAHCEX','InitialSort','C','drvSort');
@@ -394,8 +394,8 @@ CREATE TABLE [dbo].[U_EPRUDAHCEX_drvTbl_Dependent] (
     [drvDependentDateOfDeath] datetime NULL,
     [drvDependentSmokerStatus] varchar(10) NOT NULL,
     [drvDependentSuffix] varchar(30) NULL,
-    [drvDependentNameFirst] varchar(100) NULL,
     [drvDependentNameLast] varchar(100) NULL,
+    [drvDependentNameFirst] varchar(100) NULL,
     [drvDependentNameMiddle] varchar(50) NULL,
     [drvDependentAddressLine1] varchar(255) NULL,
     [drvDependentAddressLine2] varchar(255) NULL,
@@ -710,7 +710,9 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
+        ,drvAddressZipCode =    CASE WHEN len(eepAddressZipCode) > 5 THEN substring(eepAddressZipCode,1,5) + '-' + substring(eepAddressZipCode,6,4)   
+                                    ELSE eepAddressZipCode   
+                                END
         ,drvAssociatePhone1 = EfoPhoneNumber
     INTO dbo.U_EPRUDAHCEX_drvTbl_Associate
     FROM dbo.U_EPRUDAHCEX_EEList WITH (NOLOCK)
@@ -855,8 +857,8 @@ BEGIN
                                         ELSE 'UNKNOWN'
                                     END
         ,drvDependentSuffix = CASE WHEN ConNameSuffix <> 'Z' THEN ConNameSuffix END
-        ,drvDependentNameFirst = ConNameFirst
         ,drvDependentNameLast = ConNameLast
+        ,drvDependentNameFirst = ConNameFirst
         ,drvDependentNameMiddle = ConNameMiddle
         ,drvDependentAddressLine1 = ConAddressLine1
         ,drvDependentAddressLine2 = ConAddressLine2
