@@ -207,13 +207,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EHJOYDEMEX_20210923.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EHJOYDEMEX_20210927.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202109219','EMPEXPORT','OEACTIVE',NULL,'EHJOYDEMEX',NULL,NULL,NULL,'202109219','Sep 21 2021  4:31AM','Sep 21 2021  4:31AM','202109211',NULL,'','','202109211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202109219','EMPEXPORT','OEPASSIVE',NULL,'EHJOYDEMEX',NULL,NULL,NULL,'202109219','Sep 21 2021  4:31AM','Sep 21 2021  4:31AM','202109211',NULL,'','','202109211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthJoy Demographic Export','202109219','EMPEXPORT','ONDEM_XOE',NULL,'EHJOYDEMEX',NULL,NULL,NULL,'202109219','Sep 21 2021  4:31AM','Sep 21 2021  4:31AM','202109211',NULL,'','','202109211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthJoy Demographic Ex-Sched','202109219','EMPEXPORT','SCH_EHJOYD',NULL,'EHJOYDEMEX',NULL,NULL,NULL,'202109219','Sep 21 2021  4:31AM','Sep 21 2021  4:31AM','202109211',NULL,'','','202109211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'HealthJoy Demographic Ex-Test','202109219','EMPEXPORT','TEST_XOE',NULL,'EHJOYDEMEX',NULL,NULL,NULL,'202109219','Sep 21 2021  4:31AM','Sep 21 2021  4:31AM','202109211',NULL,'','','202109211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','NE59R',NULL,NULL,NULL,'HealthJoy Demographic Ex-Test','202109231','EMPEXPORT','TEST_XOE','Sep 24 2021  7:14PM','EHJOYDEMEX',NULL,NULL,NULL,'202109231','Sep 23 2021 12:00AM','Dec 30 1899 12:00AM','202109091','1165','','','202109091',dbo.fn_GetTimedKey(),NULL,'us3cPeACH1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHJOYDEMEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHJOYDEMEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHJOYDEMEX','InitialSort','C','drvSort');
@@ -285,17 +285,17 @@ CREATE TABLE [dbo].[U_EHJOYDEMEX_drvTbl] (
     [drvEmployeeTerminationDate] datetime NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
-    [drvSSN] char(11) NULL,
-    [drvRelationship] varchar(6) NULL,
+    [drvSSN] varchar(11) NULL,
+    [drvRelationship] varchar(8) NULL,
     [drvEmail] varchar(50) NULL,
     [drvMobileNumber] varchar(50) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvGender] char(1) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCity] varchar(255) NULL,
+    [drvAddressLine1] varchar(257) NULL,
+    [drvAddressLine2] varchar(257) NOT NULL,
+    [drvAddressCity] varchar(257) NOT NULL,
     [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
+    [drvAddressZipCode] varchar(5) NULL,
     [drvBenefitClass] varchar(3) NULL,
     [drvMedicalInsurancePlanName] varchar(18) NULL,
     [drvMedicalPlanEffectiveDate] datetime NULL,
@@ -319,11 +319,11 @@ CREATE TABLE [dbo].[U_EHJOYDEMEX_drvTbl] (
     [drvStdEffectiveDate] datetime NULL,
     [drvStdTerminationDate] datetime NULL,
     [drvHealthcareFsaPlanName] varchar(11) NULL,
-    [drvHealthcareFsaGoalAmount] money NULL,
+    [drvHealthcareFsaGoalAmount] nvarchar(4000) NULL,
     [drvHealthcareFsaEffectiveDate] datetime NULL,
     [drvHealthcareFsaTermDate] datetime NULL,
     [drvDependentCareFsaPlanName] varchar(18) NULL,
-    [drvDependentCareFsaGoalAmount] money NULL,
+    [drvDependentCareFsaGoalAmount] nvarchar(4000) NULL,
     [drvDependentCareFsaEffectDate] datetime NULL,
     [drvDependentCareFsaTermDate] datetime NULL,
     [drvAccidentPlanName] varchar(13) NULL,
@@ -501,23 +501,27 @@ BEGIN
         ,drvStartDate = EecDateOfLastHire
         ,drvEmploymentStatus = CASE WHEN EecEmplStatus = 'T' THEN 'T' ELSE 'A' END
         ,drvEmployeeTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvNameFirst = CASE WHEN BdmRecType = 'DEP' THEN ConNameFirst ELSE EepNameFirst END 
+        ,drvNameFirst = LTRIM(CASE WHEN BdmRecType = 'DEP' THEN ConNameFirst ELSE EepNameFirst END)
         ,drvNameLast = CASE WHEN BdmRecType = 'DEP' THEN ConNameLast ELSE EepNameLast END 
-        ,drvSSN = CASE WHEN BdmRecType = 'DEP' THEN ConSSN ELSE EepSSN END 
+        ,drvSSN =    CASE WHEN BdmRecType = 'DEP' THEN 
+                        CASE WHEN ConSSN NOT IN ('000000000','111111111','888888888','999999999') AND LEFT(ConSSN,3) NOT IN ('111','000','999','888') THEN LEFT(ConSSN, 3) + '-' + RIGHT(LEFT(REPLACE(ConSSN, ' ', ''), 5), 2) + '-' + RIGHT(REPLACE(ConSSN, ' ', ''),4) END
+                        ELSE LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(REPLACE(eepSSN, ' ', ''), 5), 2) + '-' + RIGHT(REPLACE(eepSSN, ' ', ''),4) 
+                    END 
         ,drvRelationship =    CASE WHEN BdmRecType = 'DEP' THEN
                                 CASE WHEN ConRelationship = 'SPS' THEN 'Spouse'
                                     WHEN ConRelationship IN ('CHL','COD','DCH','STC') THEN 'Child'
                                 END
+                            ELSE 'Employee'
                             END
         ,drvEmail = EepAddressEMail
         ,drvMobileNumber = EfoPhoneNumber
         ,drvDateOfBirth = CASE WHEN BdmRecType = 'DEP' THEN ConDateOfBirth ELSE EepDateOfBirth END 
         ,drvGender = CASE WHEN BdmRecType = 'DEP' THEN ConGender ELSE EepGender END 
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
+        ,drvAddressLine1 = '"' + EepAddressLine1 + '"'
+        ,drvAddressLine2 = '"' + ISNULL(RTRIM(EepAddressLine2), '') + '"'
+        ,drvAddressCity = '"' + ISNULL(EepAddressCity, '') + '"'
         ,drvAddressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
+        ,drvAddressZipCode = LEFT(EepAddressZipCode, 5)
         ,drvBenefitClass =    CASE WHEN EecEEType = 'PRN' THEN 'PRN' 
                                 WHEN EecEEType = 'PTR' THEN 'PT'
                                 WHEN EecEEType = 'REG' THEN 'FT'
@@ -528,8 +532,8 @@ BEGIN
         ,drvMedicalPlanEffectiveDate =    CASE WHEN MDPOS_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', MDPOS_StartDate, '11/1/2021')
                                             WHEN MDBP_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', MDBP_StartDate, '11/1/2021')
                                         END
-        ,drvMedicalPlanTerminationDate =    CASE WHEN MDPOS_DedCode IS NOT NULL THEN MDPOS_StartDate
-                                                WHEN MDBP_DedCode IS NOT NULL THEN MDBP_StartDate
+        ,drvMedicalPlanTerminationDate =    CASE WHEN MDPOS_DedCode IS NOT NULL THEN MDPOS_StopDate
+                                                WHEN MDBP_DedCode IS NOT NULL THEN MDBP_StopDate
                                             END
         ,drvDentalInsurancePlanName = CASE WHEN DEN_DedCode IS NOT NULL THEN 'Dental PPO' END
         ,drvDentalPlanEffectiveDate = CASE WHEN DEN_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', DEN_StartDate, '11/1/2021') END
@@ -556,11 +560,11 @@ BEGIN
         ,drvStdEffectiveDate = CASE WHEN STDC_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', STDC_StartDate, '11/1/2021') END
         ,drvStdTerminationDate = CASE WHEN STDC_DedCode IS NOT NULL THEN STDC_StopDate END
         ,drvHealthcareFsaPlanName = CASE WHEN FSA_DedCode IS NOT NULL THEN 'FSA Medical' END
-        ,drvHealthcareFsaGoalAmount = CASE WHEN FSA_DedCode IS NOT NULL THEN FSA_EEAmt END    
+        ,drvHealthcareFsaGoalAmount = CASE WHEN FSA_DedCode IS NOT NULL THEN FORMAT(FSA_EEAmt, '#0.00') END    
         ,drvHealthcareFsaEffectiveDate = CASE WHEN FSA_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', FSA_StartDate, '11/1/2021') END
         ,drvHealthcareFsaTermDate = CASE WHEN FSA_DedCode IS NOT NULL THEN FSA_StopDate END
         ,drvDependentCareFsaPlanName = CASE WHEN FSADC_DedCode IS NOT NULL THEN 'FSA Dependent Care' END
-        ,drvDependentCareFsaGoalAmount = CASE WHEN FSADC_DedCode IS NOT NULL THEN FSADC_EEAmt END    
+        ,drvDependentCareFsaGoalAmount = CASE WHEN FSADC_DedCode IS NOT NULL THEN FORMAT(FSADC_EEAmt, '#0.00') END    
         ,drvDependentCareFsaEffectDate = CASE WHEN FSADC_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', FSADC_StartDate, '11/1/2021') END
         ,drvDependentCareFsaTermDate = CASE WHEN FSADC_DedCode IS NOT NULL THEN FSADC_StopDate END
         ,drvAccidentPlanName = CASE WHEN ACCID_DedCode IS NOT NULL THEN 'Accident Plan' END
@@ -663,6 +667,7 @@ BEGIN
                     ,MAX(CASE WHEN BdmDedCode = 'LSID' THEN BdmBenStartDate END) AS LSID_StartDate
                     ,MAX(CASE WHEN BdmDedCode = 'LTDBU' THEN BdmBenStartDate END) AS LTDBU_StartDate
                     ,MAX(CASE WHEN BdmDedCode = 'STDBU' THEN BdmBenStartDate END) AS STDBU_StartDate
+
                     ,MAX(CASE WHEN BdmDedCode = 'MDPOS' THEN BdmBenStopDate END) AS MDPOS_StopDate
                     ,MAX(CASE WHEN BdmDedCode = 'MDBP' THEN BdmBenStopDate END) AS MDBP_StopDate
                     ,MAX(CASE WHEN BdmDedCode = 'DEN' THEN BdmBenStopDate END) AS DEN_StopDate
@@ -689,8 +694,8 @@ BEGIN
                     ,MAX(CASE WHEN BdmDedCode = 'LTDBU' THEN BdmBenStopDate END) AS LTDBU_StopDate
                     ,MAX(CASE WHEN BdmDedCode = 'STDBU' THEN BdmBenStopDate END) AS STDBU_StopDate     
 
-                    ,MAX(CASE WHEN BdmDedCode = 'FSA' THEN BdmEEAmt END) AS FSA_EEAmt
-                    ,MAX(CASE WHEN BdmDedCode = 'FSADC' THEN BdmEEAmt END) AS FSADC_EEAmt
+                    ,MAX(CASE WHEN BdmDedCode = 'FSA' THEN BdmEEGoalAmt END) AS FSA_EEAmt
+                    ,MAX(CASE WHEN BdmDedCode = 'FSADC' THEN BdmEEGoalAmt END) AS FSADC_EEAmt
                 FROM dbo.U_dsi_BDM_EHJOYDEMEX WITH (NOLOCK)
                 GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId) AS Bdm
         ON BdmEEID = xEEID 
