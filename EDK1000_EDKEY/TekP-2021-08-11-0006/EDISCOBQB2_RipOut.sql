@@ -112,11 +112,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210922.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISCOBQB2_20210929.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'COBRA QB - On Demand','202101269','EMPEXPORT','ONDMDQBOE','Apr  7 2020  9:50AM','EDISCOBQB2',NULL,NULL,NULL,'202101269','Feb 28 2020 12:00AM','Dec 30 1899 12:00AM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI_WPBOWMN',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',KOZWN',NULL,NULL,NULL,'COBRA QB - Scheduled','202101269','EMPEXPORT','SCHEDQB','Feb  5 2019  9:00AM','EDISCOBQB2',NULL,NULL,NULL,'202109229','Jan 13 2016  8:53AM','Jan 13 2016  8:53AM','202109151',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'COBRA QB - Test','202102289','EMPEXPORT','TESTQBOE','Mar 18 2019  4:20PM','EDISCOBQB2',NULL,NULL,NULL,'202102289','Feb 27 2019 12:00AM','Dec 30 1899 12:00AM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'WPOTTS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'COBRA QB - Test','202109279','EMPEXPORT','TESTQBOE','Sep 29 2021  2:24PM','EDISCOBQB2',NULL,NULL,NULL,'202109279','Sep 27 2021 12:00AM','Dec 30 1899 12:00AM','202101011','354','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaEDK1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISCOBQB2','SubSort2','C','drvSubSort2');
@@ -300,7 +300,10 @@ Purpose: Discovery Benefits Cobra Export QB
 Revision History
 ----------------
 09/22/2021 by AP:
-		- Added new plan name and modified the output for FSA.
+        - Added new plan name and modified the output for FSA.
+
+09/29/2021 by AP:
+        - Removed M224 and M220 plans.
 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISCOBQB2';
@@ -368,7 +371,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','CobraTerminationReason'); 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConDateOfCobraEventPCF','COBRAEventDate'); 
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','2'); 
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','1'); 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3'); 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraPQBType','1'); -- If no EE or spouse, ALL children are PQB (not just oldest)
     --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidTermReasonsEmp','203'); -- Invalidate employee when Cobra Reason is "Death"
@@ -576,7 +579,7 @@ BEGIN
         ,drvDedCode       = BdmDedCode
         ,drvPlanName      = CASE
                                 WHEN BdmDedCode IN ('M124','M120') AND YEAR(BdmDateOfCOBRAEvent) <= 2020 THEN 'BCBS AZ Medical 19/20 Plan 1'
-                                WHEN BdmDedCode IN ('M224','M220') AND YEAR(BdmDateOfCOBRAEvent) <= 2020 THEN 'BCBS AZ Medical 19/20 Plan 2'
+                             --   WHEN BdmDedCode IN ('M224','M220') AND YEAR(BdmDateOfCOBRAEvent) <= 2020 THEN 'BCBS AZ Medical 19/20 Plan 2'
                                 WHEN BdmDedCode IN ('M324','M320') AND YEAR(BdmDateOfCOBRAEvent) <= 2020 THEN 'BCBS AZ Medical 19/20 Plan 3'
                                 WHEN BdmDedCode IN ('DH24','DH20') AND YEAR(BdmDateOfCOBRAEvent) <= 2020 THEN 'Cigna Dental 19/20 DHMO'
                                 WHEN BdmDedCode IN ('DP24','DP20') AND YEAR(BdmDateOfCOBRAEvent) <= 2020 THEN 'Cigna Dental 19/20 PPO'
