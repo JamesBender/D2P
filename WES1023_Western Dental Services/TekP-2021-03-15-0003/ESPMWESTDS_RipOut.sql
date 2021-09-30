@@ -107,11 +107,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ESPMWESTDS_20210913.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ESPMWESTDS_20210927.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SPM Benefits Export','202106119','EMPEXPORT','ONDEM_XOE',NULL,'ESPMWESTDS',NULL,NULL,NULL,'202106119','Jun 11 2021 10:50AM','Jun 11 2021 10:50AM','202106111',NULL,'','','202106111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',NXBCX,HTU3Y,DWIB3,MV70M,N09MP,N09UI,N0ABM,N0A78,DWIE3,N09QY,NXBEV,N0A01,DWI4R,N0A9B,DWI8Q,MV7G2,N0A50,N0BXX,N09HN,N09X1',NULL,NULL,NULL,'SPM Benefits Export-Sched','202108179','EMPEXPORT','SCH_ESPMWE',NULL,'ESPMWESTDS',NULL,NULL,NULL,'202109109','Jun 11 2021 10:50AM','Jun 11 2021 10:50AM','202109031',NULL,'','','202108171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'SPM Benefits Export-Test','202108131','EMPEXPORT','TEST_XOE','Aug 13 2021  3:57PM','ESPMWESTDS',NULL,NULL,NULL,'202108131','Aug 13 2021 12:00AM','Aug  8 2021 12:00AM','202108071','75','','','202108071',dbo.fn_GetTimedKey(),NULL,'CPETITTI16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',NXBCX,HTU3Y,DWIB3,MV70M,N09MP,N09UI,N0ABM,N0A78,DWIE3,N09QY,NXBEV,N0A01,DWI4R,N0A9B,DWI8Q,MV7G2,N0A50,N0BXX,N09HN,N09X1',NULL,NULL,NULL,'SPM Benefits Export-Sched','202108179','EMPEXPORT','SCH_ESPMWE',NULL,'ESPMWESTDS',NULL,NULL,NULL,'202109249','Jun 11 2021 10:50AM','Jun 11 2021 10:50AM','202109171',NULL,'','','202108171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'SPM Benefits Export-Test','202109151','EMPEXPORT','TEST_XOE','Sep 15 2021  4:15PM','ESPMWESTDS',NULL,NULL,NULL,'202109151','Sep 15 2021 12:00AM','Dec 30 1899 12:00AM','202109011','216','','','202109011',dbo.fn_GetTimedKey(),NULL,'CPETITTI16',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESPMWESTDS','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESPMWESTDS','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESPMWESTDS','InitialSort','C','drvInitialSort');
@@ -385,7 +385,10 @@ Revision History
         - Added logic to SPMPLAN drvCovLevel.
 
 09/13/2021 by AP:
-		- Adjusted SPMPLANMEMBERSPECIFICRATE Rate calculation.
+        - Adjusted SPMPLANMEMBERSPECIFICRATE Rate calculation.
+
+09/27/2021 by AP:
+		- Added EecEmpNo.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ESPMWESTDS';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ESPMWESTDS';
@@ -650,7 +653,7 @@ BEGIN
         ,drvSSN = SUBSTRING(EepSSN, 1, 3)+'-'+
                     SUBSTRING(EepSSN, 4, 2)+'-'+
                     SUBSTRING(EepSSN, 6, 4) 
-        ,drvIndID = ''
+        ,drvIndID = EecEmpNo
         ,drvEmail = ''
         ,drvPhone = ''
         ,drvPhone2 = ''
