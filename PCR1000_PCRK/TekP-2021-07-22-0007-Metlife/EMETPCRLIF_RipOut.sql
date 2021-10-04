@@ -257,7 +257,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','221','(''DA''=''F'')','EMETPCRLIFZ0','1','D','10','221',NULL,'Members Covered Code - 16',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','222','(''DA''=''F'')','EMETPCRLIFZ0','10','D','10','222',NULL,'Filler',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','223','(''DA''=''F'')','EMETPCRLIFZ0','8','D','10','223',NULL,'Annual Benefit Amount - 16',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','224','(''DA''=''F'')','EMETPCRLIFZ0','12','D','10','224',NULL,'Filler',NULL,NULL); -- adjusted
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','224','(''DA''=''F'')','EMETPCRLIFZ0','12','D','10','224',NULL,'Filler',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageCode17"','225','(''UA''=''F'')','EMETPCRLIFZ0','2','D','10','225',NULL,'Coverage Code - 17',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageStartDate17"','226','(''UDMDY''=''F'')','EMETPCRLIFZ0','8','D','10','226',NULL,'Coverage Start Date - 17',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageStopDate17"','227','(''UDMDY''=''F'')','EMETPCRLIFZ0','8','D','10','227',NULL,'Coverage Stop Date - 17',NULL,NULL);
@@ -307,7 +307,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEnrollmentStatus20"','271','(''UA''=''F'')','EMETPCRLIFZ0','1','D','10','271',NULL,'Enrollment Status - 20',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBenefitAmount20"','272','(''UA''=''F'')','EMETPCRLIFZ0','8','D','10','272',NULL,'Benefit Amount - 20',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVoluntaryCancellationInd20"','273','(''UA''=''F'')','EMETPCRLIFZ0','2','D','10','273',NULL,'Voluntary Cancellation Ind - 20',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','274','(''DA''=''F'')','EMETPCRLIFZ0','8','D','10','274',NULL,'Filler',NULL,NULL); -- adjusted
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','274','(''DA''=''F'')','EMETPCRLIFZ0','8','D','10','274',NULL,'Filler',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','275','(''DA''=''F'')','EMETPCRLIFZ0','2','D','10','275',NULL,'Coverage Code - 21',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','276','(''DA''=''F'')','EMETPCRLIFZ0','8','D','10','276',NULL,'Coverage Start Date - 21',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','277','(''DA''=''F'')','EMETPCRLIFZ0','8','D','10','277',NULL,'Coverage Stop Date - 21',NULL,NULL);
@@ -432,13 +432,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETPCRLIF_20210915.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMETPCRLIF_20211004.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102099','EMPEXPORT','OEACTIVE',NULL,'EMETPCRLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102099','EMPEXPORT','OEPASSIVE',NULL,'EMETPCRLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Metlife Life Export','202102099','EMPEXPORT','ONDEMAND',NULL,'EMETPCRLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202102099','EMPEXPORT','SCH_METPLA',NULL,'EMETPCRLIF',NULL,NULL,NULL,'202102099','Feb  9 2021  4:09PM','Feb  9 2021  4:09PM','202102091',NULL,'','','202102091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202109131','EMPEXPORT','TEST','Sep 13 2021 12:05PM','EMETPCRLIF',NULL,NULL,NULL,'202109131','Sep 13 2021 12:00AM','Dec 30 1899 12:00AM','202109091','666','','','202109091',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202109231','EMPEXPORT','TEST','Sep 23 2021 10:53AM','EMETPCRLIF',NULL,NULL,NULL,'202109231','Sep 23 2021 12:00AM','Dec 30 1899 12:00AM','202109231','697','','','202109231',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETPCRLIF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETPCRLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMETPCRLIF','InitialSort','C','drvInitialSort');
@@ -515,6 +515,8 @@ IF OBJECT_ID('U_EMETPCRLIF_branch') IS NULL
 CREATE TABLE [dbo].[U_EMETPCRLIF_branch] (
     [br_eeid] char(12) NOT NULL,
     [br_coid] char(5) NULL,
+	br_dedcode varchar(10) NULL,
+	br_contactid varchar(50) NULL,
     [br_denh] varchar(1) NOT NULL,
     [br_vish] varchar(1) NOT NULL,
     [br_denl] varchar(1) NOT NULL,
@@ -602,8 +604,8 @@ CREATE TABLE [dbo].[U_EMETPCRLIF_drvTbl] (
     [drvRelationshipCode] varchar(2) NULL,
     [drvEmployeesDateofHire] varchar(8000) NOT NULL,
     [drvPersonnelIdentification] char(9) NULL,
-    [drvEmployeeSmokerCode] varchar(1) NOT NULL,
-    [drvSpouseSmokerCode] varchar(1) NOT NULL,
+    [drvEmployeeSmokerCode] varchar(1) NULL,
+    [drvSpouseSmokerCode] varchar(1) NULL,
     [drvPhoneNumber] varchar(50) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvForeignAddressIndicator] varchar(1) NOT NULL,
@@ -633,7 +635,7 @@ CREATE TABLE [dbo].[U_EMETPCRLIF_drvTbl] (
     [drvMembersCoveredCode17] varchar(1) NULL,
     [drvEmployeeStatusCode] varchar(1) NOT NULL,
     [drvStatusCodeEffectiveDate] datetime NULL,
-    [drvDepartmentCode] varchar(10) NULL,
+    [drvDepartmentCode] varchar(8000) NULL,
     [drvGroupID] varchar(10) NULL,
     [drvLocationID] varchar(5) NULL,
     [drvScheduleID] varchar(10) NULL,
@@ -678,7 +680,8 @@ CREATE TABLE [dbo].[U_EMETPCRLIF_drvTbl] (
     [drvMembersCoveredCode24] varchar(1) NULL,
     [drvEnrollmentStatus24] varchar(1) NULL,
     [drvVoluntaryCancellationInd24] varchar(2) NULL,
-    [drvTakeoverIndicator24] varchar(1) NULL
+    [drvTakeoverIndicator24] varchar(1) NULL,
+	drvB1DedCode varchar(10) NULL
 );
 IF OBJECT_ID('U_EMETPCRLIF_EEList') IS NULL
 CREATE TABLE [dbo].[U_EMETPCRLIF_EEList] (
@@ -721,11 +724,19 @@ Purpose: Metlife Life Export
 Revision History
 ----------------
 09/15/2021 by AP:
-		- Fixed a lot of positioning errors.
-		- Fixed logic for branch fields (multiple deductions codes).
-		- Updated voluntary cancellation ind field logic.
-		- Adjusted records that should only appear in emp record.
-		- Misc. clean up.
+        - Fixed a lot of positioning errors.
+        - Fixed logic for branch fields (multiple deductions codes).
+        - Updated voluntary cancellation ind field logic.
+        - Adjusted records that should only appear in emp record.
+        - Misc. clean up.
+
+10/04/2021 by AP:
+		- Updated branch 1 logic.
+		- Update branch 17 logic.
+		- Updated branch table logic.
+		- Fixed issues with incorrect amount for field 19.
+		- Added new deduction codes for critical illness.
+		- Updated mapping for new critical illness deduction codes.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EMETPCRLIF';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EMETPCRLIF';
@@ -785,7 +796,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'DENH,DENL,VISH,VISL,ACC,ACCH,HOSP,HOSPH,CI,CIEC,CIEF,CIES';
+    SET @DedList = 'DENH,DENL,VISH,VISL,ACC,ACCH,HOSP,HOSPH,CI,CIEC,CIEF,CIES,CI3,CIEC3,CIEF3,CIES3';
 
     IF OBJECT_ID('U_EMETPCRLIF_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EMETPCRLIF_DedList;
@@ -1036,12 +1047,12 @@ BEGIN
             ,MAX(CASE WHEN BdmDedCode IN ('VISH', 'VISL')  THEN BdmBenStatus END) AS Vision_BdmBenStatus
              
             --Critical Illness
-            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES') THEN BdmDedCode END) AS CritIllness_Code
-            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES')  THEN BdmBenOption END) AS CritIllness_BdmBenOption
-            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) END) AS CritIllness_BdmBenStartDate
-            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES') THEN BdmBenStopDate END) AS CritIllness_BdmBenStopDate
-            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES') THEN BdmBenStatus END) AS CritIllness_BdmBenStatus
-            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES') THEN BdmUSGField1 END) AS CritIllness_BdmBenAmount
+            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES', 'CI3', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmDedCode END) AS CritIllness_Code
+            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES', 'CI3', 'CIEC3', 'CIEF3', 'CIES3')  THEN BdmBenOption END) AS CritIllness_BdmBenOption
+            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES', 'CI3', 'CIEC3', 'CIEF3', 'CIES3') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) END) AS CritIllness_BdmBenStartDate
+            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES', 'CI3', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmBenStopDate END) AS CritIllness_BdmBenStopDate
+            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES', 'CI3', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmBenStatus END) AS CritIllness_BdmBenStatus
+            ,MAX(CASE WHEN BdmDedCode IN ('CI', 'CIEC', 'CIEF', 'CIES', 'CI3', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmUSGField1 END) AS CritIllness_BdmBenAmount
 
             ,MAX(CASE WHEN BdmDedCode IN ('CI') THEN BdmDedCode END) AS CI_DedCode
             ,MAX(CASE WHEN BdmDedCode IN ('CIEC') THEN BdmDedCode END) AS CIEC_DedCode
@@ -1049,12 +1060,12 @@ BEGIN
             ,MAX(CASE WHEN BdmDedCode IN ('CIES') THEN BdmDedCode END) AS CIES_DedCode
 
                 --Critical Illness Dependent
-            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES') THEN BdmDedCode END) AS CritIllnessDep_Code
-            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES')  THEN BdmBenOption END) AS CritIllnessDep_BdmBenOption
-            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) END) AS CritIllnessDep_BdmBenStartDate
-            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES') THEN BdmBenStopDate END) AS CritIllnessDep_BdmBenStopDate
-            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES') THEN BdmBenStatus END) AS CritIllnessDep_BdmBenStatus
-            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES') THEN BdmUSGField1  END) AS CritIllnessDep_BdmBenAmount
+            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmDedCode END) AS CritIllnessDep_Code
+            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES', 'CIEC3', 'CIEF3', 'CIES3')  THEN BdmBenOption END) AS CritIllnessDep_BdmBenOption
+            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES', 'CIEC3', 'CIEF3', 'CIES3') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) END) AS CritIllnessDep_BdmBenStartDate
+            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmBenStopDate END) AS CritIllnessDep_BdmBenStopDate
+            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmBenStatus END) AS CritIllnessDep_BdmBenStatus
+            ,MAX(CASE WHEN BdmDedCode IN ('CIEC', 'CIEF', 'CIES', 'CIEC3', 'CIEF3', 'CIES3') THEN BdmUSGField1  END) AS CritIllnessDep_BdmBenAmount
 
                --Group Accident
             ,MAX(CASE WHEN BdmDedCode IN ('ACCH', 'ACC') THEN BdmDedCode END) AS GroupAccident_Code
@@ -1093,7 +1104,7 @@ BEGIN
         IF OBJECT_ID('U_EMETPCRLIF_branch','U') IS NOT NULL 
         DROP TABLE dbo.U_EMETPCRLIF_branch;
 
-        select distinct a.bdmeeid as br_eeid, a.bdmcoid as br_coid, case when b.bdmeeid is not null then '1' else '0' end as br_denh,
+        select distinct a.bdmeeid as br_eeid, a.bdmcoid as br_coid, a.bdmdedcode as br_dedcode, NULL AS br_contactid, case when b.bdmeeid is not null then '1' else '0' end as br_denh,
         case when c.bdmeeid is not null then '1' else '0' end as br_vish, case when d.bdmeeid is not null then '1' else '0' end as br_denl,
         case when e.bdmeeid is not null then '1' else '0' end as br_visl
         INTO dbo.U_EMETPCRLIF_branch
@@ -1106,6 +1117,26 @@ BEGIN
         on d.bdmeeid = a.bdmeeid and d.bdmdedcode = 'denl'
         left join dbo.U_dsi_BDM_EMETPCRLIF e
         on e.bdmeeid = a.bdmeeid and e.bdmdedcode = 'visl'
+		where a.bdmrectype = 'EMP'
+		AND a.bdmdedcode in ('DENH', 'VISH', 'DENL', 'VISL')
+		UNION ALL
+		 select distinct a.bdmeeid as br_eeid, a.bdmcoid as br_coid, a.bdmdedcode as br_dedcode, con.consystemid as br_contactid, case when b.bdmeeid is not null then '1' else '0' end as br_denh,
+        case when c.bdmeeid is not null then '1' else '0' end as br_vish, case when d.bdmeeid is not null then '1' else '0' end as br_denl,
+        case when e.bdmeeid is not null then '1' else '0' end as br_visl
+       -- INTO dbo.U_EMETPCRLIF_branch
+     from dbo.U_dsi_BDM_EMETPCRLIF a
+		join dbo.contacts con
+		on a.bdmeeid = con.coneeid 
+		and a.bdmdeprecid = con.consystemid
+        left join dbo.U_dsi_BDM_EMETPCRLIF b
+        on b.bdmeeid = a.bdmeeid and con.consystemid = b.bdmdeprecid and b.bdmdedcode = 'denh'-- and b.bdmrectype = 'dep'
+        left join dbo.U_dsi_BDM_EMETPCRLIF c
+        on c.bdmeeid = a.bdmeeid and con.consystemid = c.bdmdeprecid and c.bdmdedcode = 'vish'-- and c.bdmrectype = 'dep'
+        left join dbo.U_dsi_BDM_EMETPCRLIF d
+        on d.bdmeeid = a.bdmeeid and con.consystemid = d.bdmdeprecid and d.bdmdedcode = 'denl' --and d.bdmrectype = 'dep'
+        left join dbo.U_dsi_BDM_EMETPCRLIF e
+        on e.bdmeeid = a.bdmeeid and con.consystemid = e.bdmdeprecid and e.bdmdedcode = 'visl' --and e.bdmrectype = 'dep'
+		where a.bdmdedcode IN ('DENH', 'VISH', 'DENL', 'VISL')
 
     --==========================================
     -- Build Driver Tables
@@ -1162,12 +1193,19 @@ BEGIN
         ,drvGroupNumber1 = CASE WHEN Dental_Code is not null THEN '5977012' END
         ,drvSubcode1 = CASE WHEN Dental_Code is not null THEN '0001' END
         ,drvBranch1 = CASE WHEN br_denh = '1' AND br_vish = '1' THEN 'H001'
-                             WHEN br_denh = '1' AND br_vish = '0' THEN 'H001'
+                             WHEN br_denh = '1' AND br_vish = '0' AND br_visl = '0' THEN 'H001'
                                 WHEN br_denl = '1' AND br_vish = '1' AND EepAddressState <> 'TX' THEN 'L002'
-                                WHEN br_denl = '1' AND br_vish = '0' AND EepAddressState <> 'TX' THEN 'L002'
+                                WHEN br_denl = '1' AND br_vish = '0' AND br_visl = '0' AND EepAddressState <> 'TX' THEN 'L002'
                                 WHEN br_denh = '1' AND br_visl = '1' THEN 'H003'
                                 WHEN br_denl = '1' AND br_visl = '1' AND EepAddressState <> 'TX' THEN 'L004'
                             END
+		--CASE WHEN br_denh = '1' AND br_vish = '1' THEN 'H001'
+  --                           WHEN br_denh = '1' AND br_vish = '0' THEN 'H001'
+  --                              WHEN br_denl = '1' AND br_vish = '1' AND EepAddressState <> 'TX' THEN 'L002'
+  --                              WHEN br_denl = '1' AND br_vish = '0' AND EepAddressState <> 'TX' THEN 'L002'
+  --                              WHEN br_denh = '1' AND br_visl = '1' THEN 'H003'
+  --                              WHEN br_denl = '1' AND br_visl = '1' AND EepAddressState <> 'TX' THEN 'L004'
+  --                          END
         --CASE WHEN VishDenh_Code in ('VISH','DENH') THEN 'H001' 
   --                         WHEN VishDenl_Code in ('VISH','DENL') and EepAddressState <> 'TX' THEN 'L002'
   --                         WHEN VislDenh_Code in ('VISL','DENH') THEN 'H003'
@@ -1366,10 +1404,18 @@ BEGIN
         ,drvCoverageStopDate17 = CASE WHEN Vision_Code IS NOT NULL THEN Vision_BdmBenStopDate END
         ,drvGroupNumber17 = CASE WHEN Vision_Code IS NOT NULL  THEN '5977012' END
         ,drvSubcode17 = CASE WHEN Vision_Code IS NOT NULL THEN '0001' END
-        ,drvBranch17 = CASE WHEN VishDenh_Code IS NOT NULL THEN 'H001' 
-                                WHEN VishDenl_Code IS NOT NULL AND EepAddressState <> 'TX' THEN 'L002'
-                                WHEN VislDenh_Code IS NOT NULL THEN 'H003'
-                                WHEN VislDenl_Code IS NOT NULL AND EepAddressState <> 'TX' THEN 'l004' END
+        ,drvBranch17 =  CASE WHEN br_denh = '1' AND br_vish = '1' THEN 'H001'
+                             WHEN br_denh = '0' AND br_vish = '1' AND br_visl = '0' THEN 'H001'
+                                WHEN br_denl = '1' AND br_vish = '1' AND EepAddressState <> 'TX' THEN 'L002'
+                               -- WHEN br_denl = '1' AND br_vish = '0' AND br_visl = '0' AND EepAddressState <> 'TX' THEN 'L002'
+                                WHEN br_denh = '1' AND br_visl = '1' THEN 'H003'
+                                WHEN br_denl = '1' AND br_visl = '1' AND EepAddressState <> 'TX' THEN 'L004'
+								WHEN br_denh = '0' AND br_vish = '0' AND br_visl = '1' AND EepAddressState <> 'TX' THEN 'L004' 
+                            END
+		--CASE WHEN VishDenh_Code IS NOT NULL THEN 'H001' 
+  --                              WHEN VishDenl_Code IS NOT NULL AND EepAddressState <> 'TX' THEN 'L002'
+  --                              WHEN VislDenh_Code IS NOT NULL THEN 'H003'
+  --                              WHEN VislDenl_Code IS NOT NULL AND EepAddressState <> 'TX' THEN 'l004' END
         ,drvEnrollmentStatus17 = CASE WHEN Vision_Code IS NOT NULL THEN 'A' END
         ,drvMembersCoveredCode17 = CASE WHEN Vision_Code IS NOT NULL THEN 
                                         CASE WHEN Vision_BdmBenOption = 'EE' THEN '1'
@@ -1403,7 +1449,7 @@ BEGIN
                                     END
         ,drvStatusCodeEffectiveDate = CASE WHEN eecemplstatus = 'T' THEN eecdateoftermination ELSE eecdateoflasthire END 
         ,drvDepartmentCode = REPLACE(REPLACE(EecOrgLvl3, 'PC0', ''), 'PC', '')
-		--SUBSTRING(EecOrgLvl3, PATINDEX('%[^0]%', EecOrgLvl3+'.'), LEN(EecOrgLvl3))
+        --SUBSTRING(EecOrgLvl3, PATINDEX('%[^0]%', EecOrgLvl3+'.'), LEN(EecOrgLvl3))
         --CASE WHEN GroupAccident_Code is not null  or  HospIndemity_Code is not null or CritIllness_Code is not null then 
                             --CASE WHEN eecOrglvl4 in ('ECHI') THEN '0025'
                             --      WHEN eecOrglvl4 in ('GCITY') THEN '0024'
@@ -1426,7 +1472,7 @@ BEGIN
         ,drvBranch19 = CASE WHEN CritIllness_Code IS NOT NULL  and BdmRecType = 'EMP'THEN '0001' END
         ,drvMembersCoveredCode19 = CASE WHEN CritIllness_Code IS NOT NULL  and BdmRecType = 'EMP' THEN '1' END
         ,drvEnrollmentStatus19 = CASE WHEN CritIllness_Code IS NOT NULL  and BdmRecType = 'EMP' THEN 'P' END
-        ,drvBenefitAmount19 = CASE WHEN CritIllnessDep_Code IS NOT NULL and BdmRecType = 'EMP' THEN dbo.dsi_fnpadzero((ISNULL((Select max(CritIllnessDep_BdmBenAmount)  from U_EMETPCRLIF_Consolidated C  where C.bdmeeid = B.bdmeeid),0)),8,0)  END
+        ,drvBenefitAmount19 = CASE WHEN CritIllness_Code IS NOT NULL and BdmRecType = 'EMP' THEN dbo.dsi_fnpadzero((ISNULL((Select max(CritIllness_BdmBenAmount)  from U_EMETPCRLIF_Consolidated C  where C.bdmeeid = B.bdmeeid),0)),8,0)  END
         --CASE WHEN BdmRecType = 'EMP' THEN 
   --                                  CASE WHEN CRE10_DedCode IS NOT NULL THEN '00010000'
   --                                      WHEN CRE20_DedCode IS NOT NULL THEN '00020000'
@@ -1515,6 +1561,7 @@ BEGIN
         ,drvEnrollmentStatus24 = CASE WHEN HospIndemity_Code IS NOT NULL THEN 'P' END
         ,drvVoluntaryCancellationInd24 = CASE WHEN EecEmplStatus = 'A' AND HospIndemity_Code IS NOT NULL and HospIndemity_BdmBenStatus <> 'A' THEN 'CE' END
         ,drvTakeoverIndicator24 = CASE WHEN HospIndemity_Code IS NOT NULL THEN '' END
+		,drvB1DedCode = ''
     INTO dbo.U_EMETPCRLIF_drvTbl
     FROM dbo.U_EMETPCRLIF_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1532,8 +1579,9 @@ BEGIN
         AND ConSystemID = BdmDepRecId
     JOIN dbo.U_EMETPCRLIF_coverage WITH(NOLOCK)
         ON bdmeeid_count = bdmeeid and bdmcoid_count = bdmcoid
-    JOIN dbo.U_EMETPCRLIF_branch WITH(NOLOCK)
-        ON br_eeid = bdmeeid and br_coid = bdmcoid
+    LEFT JOIN (SELECT DISTINCT br_eeid, br_contactid, br_vish, br_visl, br_denh, br_denl
+				FROM dbo.U_EMETPCRLIF_branch a WITH(NOLOCK)) br on br.br_eeid = b.bdmeeid and ISNULL(br.br_contactid, '') = ISNULL(consystemid, '') 
+  
     ;
 
     --==========================================
