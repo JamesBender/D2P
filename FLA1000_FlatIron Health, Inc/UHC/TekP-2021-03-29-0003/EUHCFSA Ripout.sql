@@ -101,10 +101,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayFreq"','55','(''UA''=''F'')','EUHCFSA000Z0','1','D','10','55',NULL,'Payroll Frequency (Assumed Contributions only)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPayFreqEffDate"','56','(''UD112''=''F'')','EUHCFSA000Z0','8','D','10','56',NULL,'Payroll Frequency Effective Date (Assumed Contribu',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPrefundSign"','57','(''UA''=''F'')','EUHCFSA000Z0','1','D','10','57',NULL,'Prefund Sign',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPrefundAmt"','58','(''UNP0''=''F'')','EUHCFSA000Z0','7','D','10','58',NULL,'Prefund Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPrefundAmt"','58','(''UA''=''F'')','EUHCFSA000Z0','7','D','10','58',NULL,'Prefund Amount',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFSATermDate"','59','(''UD112''=''F'')','EUHCFSA000Z0','8','D','10','59',NULL,'Dependent Care FSA Termination Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFSABenStartDate"','60','(''UD112''=''F'')','EUHCFSA000Z0','8','D','10','60',NULL,'Dependent Care FSA Election Effective Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFSAElectionAmt"','61','(''UNP0''=''F'')','EUHCFSA000Z0','7','D','10','61',NULL,'Dependent Care FSA Election Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFSAElectionAmt"','61','(''UA''=''F'')','EUHCFSA000Z0','7','D','10','61',NULL,'Dependent Care FSA Election Amount',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"99999999999999999999"','1','(''DA''=''F'')','EUHCFSA000Z0','20','T','90','1',NULL,'Filler',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecordCount"','2','(''UN00''=''F'')','EUHCFSA000Z0','6','T','90','2',NULL,'RecordCount',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLimitedContSign"','3','(''UA''=''F'')','EUHCFSA000Z0','1','T','90','3',NULL,'Total Healthcare and Limited Purpose FSA Contribut',NULL,NULL);
@@ -121,11 +121,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCFSA_20210825.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCFSA_20211004.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UHC FSA Export','202106199','EMPEXPORT','ONDEM_XOE','Aug 25 2021  7:49PM','EUHCFSA',NULL,NULL,NULL,'202106199','Jun 19 2021  1:18PM','Jun 19 2021  1:18PM','202106191','373','','','202103191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC FSA-Sched Export','202106199','EMPEXPORT','SCH_EUHCFS',NULL,'EUHCFSA',NULL,NULL,NULL,'202106199','Jun 19 2021  1:18PM','Jun 19 2021  1:18PM','202106191',NULL,'','','202103191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UHC FSA-Test Export','202106199','EMPEXPORT','TEST_XOE','Aug 25 2021  8:17PM','EUHCFSA',NULL,NULL,NULL,'202106199','Jun 19 2021  1:18PM','Jun 19 2021  1:18PM','202106191','372','','','202103191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UHC FSA-Test Export','202108319','EMPEXPORT','TEST_XOE','Sep 14 2021 11:20AM','EUHCFSA',NULL,NULL,NULL,'202108319','Aug 31 2021 12:00AM','Dec 30 1899 12:00AM','202108311','331','','','202108311',dbo.fn_GetTimedKey(),NULL,'us3rVaFLA1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCFSA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCFSA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCFSA','Testing','V','Y');
@@ -204,21 +204,21 @@ CREATE TABLE [dbo].[U_EUHCFSA_drvTbl] (
     [drvEnrollmentDate] varchar(1) NOT NULL,
     [drvContributionType1] varchar(3) NULL,
     [drvContributionSource1] varchar(1) NULL,
-    [drvContributionSign1] varchar(1) NULL,
+    [drvContributionSign1] varchar(1) NOT NULL,
     [drvContributionAmount1] numeric NULL,
     [drvContributionType2] varchar(3) NULL,
     [drvContributionSource2] varchar(1) NULL,
-    [drvContributionSign2] varchar(1) NULL,
+    [drvContributionSign2] varchar(1) NOT NULL,
     [drvContributionAmount2] numeric NULL,
-    [drvHlthTermDate] datetime NULL,
-    [drvHlthElectionDate] datetime NULL,
-    [drvPayFreq] varchar(9) NULL,
-    [drvPayFreqEffDate] datetime NULL,
+    [drvHlthTermDate] int NULL,
+    [drvHlthElectionDate] int NULL,
+    [drvPayFreq] varchar(1) NOT NULL,
+    [drvPayFreqEffDate] int NULL,
     [drvPrefundSign] varchar(1) NOT NULL,
     [drvPrefundAmt] varchar(1) NOT NULL,
-    [drvFSATermDate] datetime NULL,
-    [drvFSABenStartDate] datetime NULL,
-    [drvFSAElectionAmt] numeric NULL
+    [drvFSATermDate] int NULL,
+    [drvFSABenStartDate] int NULL,
+    [drvFSAElectionAmt] varchar(1) NOT NULL
 );
 IF OBJECT_ID('U_EUHCFSA_EEList') IS NULL
 CREATE TABLE [dbo].[U_EUHCFSA_EEList] (
@@ -450,30 +450,30 @@ BEGIN
         ,drvEnrollmentDate = ''--CASE WHEN EecDateOfLastHire < CAST(@FileMinCovDate AS DATE) THEN CAST(@FileMinCovDate AS DATE) ELSE EecDateOfLastHire END
         ,drvContributionType1 = CASE WHEN  BdmHasFSAMD = 'Y' THEN  'MED' END
         ,drvContributionSource1 = CASE WHEN BdmRecType = 'EMP' THEN 'E' END
-        ,drvContributionSign1 = CASE WHEN SIGN(PdhFSAMDContAmt) = -1 THEN '-'
-                                     WHEN SIGN(PdhFSAMDContAmt) = 1 THEN '+'
+        ,drvContributionSign1 = CASE WHEN SIGN(PdhFSAMDContAmt) < 0 THEN '-'
+                                     ELSE '+'
                                 END
         ,drvContributionAmount1 = PdhFSAMDContAmt
         ,drvContributionType2 = CASE WHEN BdmHasFSADC = 'Y' THEN  'DEP' END
         ,drvContributionSource2 = CASE WHEN BdmRecType = 'EMP' THEN 'E' END
-        ,drvContributionSign2 = CASE WHEN SIGN(PdhFSAMDContAmt) = -1 THEN '-'
-                                     WHEN SIGN(PdhFSAMDContAmt) = 1 THEN '+'
+        ,drvContributionSign2 = CASE WHEN SIGN(PdhFSADCContAmt) < 0 THEN '-'
+                                     ELSE '+'
                                 END
         ,drvContributionAmount2 = PdhFSADCContAmt
-        ,drvHlthTermDate =  BdmFSAMDStopDate
-        ,drvHlthElectionDate = dbo.dsi_fnGetMinMaxDates('MAX',BdmFSAMDStartDate,  @FileMinCovDate) 
-        ,drvPayFreq = CASE EecPayGroup 
+        ,drvHlthTermDate =  NULL--BdmFSAMDStopDate
+        ,drvHlthElectionDate = NULL--dbo.dsi_fnGetMinMaxDates('MAX',BdmFSAMDStartDate,  @FileMinCovDate) 
+        ,drvPayFreq = ''/*CASE EecPayGroup 
                             WHEN 'REG' THEN 'Bi-Weekly'
                             WHEN '1099' THEN 'Monthly'
                             WHEN 'PT' THEN 'Weekly'
                             WHEN 'ABS' THEN 'Weekly'
-                      END
-        ,drvPayFreqEffDate = CASE WHEN ISNULL(BdmFSADCStartDate,'19000101') > ISNULL(BdmFSAMDStartDate,'19000101') THEN BdmFSAMDStartDate ELSE BdmFSADCStartDate END
+                      END*/
+        ,drvPayFreqEffDate = NULL--CASE WHEN ISNULL(BdmFSADCStartDate,'19000101') > ISNULL(BdmFSAMDStartDate,'19000101') THEN BdmFSAMDStartDate ELSE BdmFSADCStartDate END
         ,drvPrefundSign = ''--CASE WHEN SIGN(0) = '1' THEN '+' END
         ,drvPrefundAmt = ''--Wait for email from richard.
-        ,drvFSATermDate = BdmFSADCStopDate
-        ,drvFSABenStartDate = BdmFSADCStartDate
-        ,drvFSAElectionAmt = PdhFSADCContAmt
+        ,drvFSATermDate =NULL-- BdmFSADCStopDate
+        ,drvFSABenStartDate = NULL--BdmFSADCStartDate
+        ,drvFSAElectionAmt = ''--PdhFSADCContAmt
     INTO dbo.U_EUHCFSA_drvTbl
     FROM dbo.U_EUHCFSA_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -505,6 +505,7 @@ BEGIN
     LEFT
     JOIN dbo.Contacts WITH (NOLOCK)
         ON ConSystemID = BdmDepRecID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- HEADER RECORD

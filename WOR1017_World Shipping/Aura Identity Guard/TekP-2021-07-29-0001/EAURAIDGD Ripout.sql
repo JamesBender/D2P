@@ -69,11 +69,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EAURAIDGD_20210909.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EAURAIDGD_20211004.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aura Identity Guard','202108289','EMPEXPORT','ONDEM_XOE',NULL,'EAURAIDGD',NULL,NULL,NULL,'202108289','Aug 28 2021  3:55PM','Aug 28 2021  3:55PM','202108281',NULL,'','','202108281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aura Identity Guard-Sched','202108289','EMPEXPORT','SCH_EAURAI',NULL,'EAURAIDGD',NULL,NULL,NULL,'202108289','Aug 28 2021  3:55PM','Aug 28 2021  3:55PM','202108281',NULL,'','','202108281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Aura Identity Guard-Test','202109071','EMPEXPORT','TEST_XOE','Sep  7 2021  5:58PM','EAURAIDGD',NULL,NULL,NULL,'202109071','Sep  7 2021 12:00AM','Dec 30 1899 12:00AM','202108011','623','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3cPeWOR1017A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',Y36EB,KGYAO,KGYE6,KGYCJ,KGYDG,KGY9Q',NULL,NULL,NULL,'Aura Identity Guard-Sched','202109249','EMPEXPORT','SCH_EAURAI',NULL,'EAURAIDGD',NULL,NULL,NULL,'202109279','Aug 28 2021  3:55PM','Aug 28 2021  3:55PM','202109201',NULL,'','','202109241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Aura Identity Guard-Test','202109221','EMPEXPORT','TEST_XOE','Sep 22 2021  9:36PM','EAURAIDGD',NULL,NULL,NULL,'202109221','Sep 22 2021 12:00AM','Dec 30 1899 12:00AM','202109161','607','','','202109161',dbo.fn_GetTimedKey(),NULL,'us3cPeWOR1017A',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAURAIDGD','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAURAIDGD','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAURAIDGD','InitialSort','C','drvInitialSort');
@@ -108,9 +108,9 @@ CREATE TABLE [dbo].[U_EAURAIDGD_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(1) NOT NULL,
-    [drvNameFirst] varchar(100) NULL,
+    [drvNameFirst] varchar(8000) NULL,
     [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
+    [drvNameLast] varchar(8000) NULL,
     [drvNameSuffix] varchar(30) NULL,
     [drvAddressLine1] varchar(8000) NULL,
     [drvAddressLine2] varchar(8000) NULL,
@@ -258,9 +258,9 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = ''
         -- standard fields above and additional driver fields below
-        ,drvNameFirst = EepNameFirst
-        ,drvNameMiddle = LEFT(EepNameMiddle,1)
-        ,drvNameLast = EepNameLast
+        ,drvNameFirst = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameFirst, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
+        ,drvNameMiddle = LEFT(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameMiddle, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'),1)
+        ,drvNameLast = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameLast, 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
         ,drvNameSuffix = NULLIF(EepNameSuffix,'Z')
         ,drvAddressLine1 = REPLACE(EepAddressLine1,',',' ')
         ,drvAddressLine2 = REPLACE(EepAddressLine2,',',' ')
