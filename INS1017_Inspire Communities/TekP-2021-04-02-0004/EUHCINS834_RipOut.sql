@@ -213,8 +213,8 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderMName"','6','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','6',NULL,'Provider Middle Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderPrefixName"','7','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','7',NULL,'Provider Prefix Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderSuffixName"','8','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','8',NULL,'Provider Suffix Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderFName2"','9','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','9',NULL,'Provider First Name 2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderMName2"','10','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','10',NULL,'Provider Middle Name 2',NULL,NULL);
+--INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderFName2"','9','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','9',NULL,'Provider First Name 2',NULL,NULL);
+--INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_ProviderMName2"','10','(''UA''=''T*'')','EUHCINS834Z0','1','D','70','10',NULL,'Provider Middle Name 2',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_IdentCodeQualifier"','11','(''UA''=''T*'')','EUHCINS834Z0','2','D','70','11',NULL,'Provider Identification Qualifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_IdentCode"','12','(''UA''=''T*'')','EUHCINS834Z0','13','D','70','12',NULL,'Identification Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNM1_EntityRelCode"','13','(''UA''=''T*'')','EUHCINS834Z0','2','D','70','13',NULL,'Entity Relationship Code',NULL,NULL);
@@ -246,10 +246,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCINS834_20211005.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCINS834_20211006.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202107029','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EUHCINS834',NULL,NULL,NULL,'202107029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107021',NULL,'','','202107021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202109039','EMPEXPORT','FULLFILE','Sep  2 2021  7:12PM','EUHCINS834',NULL,NULL,NULL,'202109039','Sep  3 2021 12:00AM','Dec 30 1899 12:00AM','202109031','4726','','','202109031',dbo.fn_GetTimedKey(),NULL,'us3lKiINS1017',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202110069','EMPEXPORT','FULLFILE','Oct  6 2021 12:00AM','EUHCINS834',NULL,NULL,NULL,'202110069','Oct  6 2021 12:00AM','Dec 30 1899 12:00AM','202109221','4726','','','202109221',dbo.fn_GetTimedKey(),NULL,'us3lKiINS1017',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202107029','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EUHCINS834',NULL,NULL,NULL,'202107029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107021',NULL,'','','202107021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202107029','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EUHCINS834',NULL,NULL,NULL,'202107029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107021',NULL,'','','202107021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Medical 834','202107029','EMPEXPORT','SCH_UHC834','Oct  1 2018 12:00AM','EUHCINS834',NULL,NULL,NULL,'202107029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107021',NULL,'','','202107021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -463,18 +463,16 @@ CREATE TABLE [dbo].[U_EUHCINS834_DrvTbl_2300] (
     [drvAMT00_AmountQualifierCode2] varchar(1) NULL,
     [drvAMT01_AmountQualifierCode2] varchar(1) NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NULL,
-	drvNM1_EntityTypeCode varchar(2) NULL,
-	drvNM1_EntityTypeQualifier varchar(1) NULL,
-	drvNM1_ProviderLName varchar(1) NULL,
-	drvNM1_ProviderFName varchar(1) NULL,
-	drvNM1_ProviderMName varchar(1) NULL,
-	drvNM1_ProviderPrefixName varchar(1) NULL,
-	drvNM1_ProviderSuffixName varchar(1) NULL,
-	drvNM1_ProviderFName2 varchar(1) NULL,
-	drvNM1_ProviderMNam2 varchar(1) NULL,
-	drvNM1_IdentCodeQualifier varchar(2) NULL,
-	drvNM1_IdentCode varchar(13) NULL,
-	drvNM1_EntityRelCode varchar(2) NULL,
+    [drvNM1_EntityTypeCode] varchar(2) NULL,
+    [drvNM1_EntityTypeQualifier] varchar(1) NULL,
+    [drvNM1_ProviderLName] varchar(1) NOT NULL,
+    [drvNM1_ProviderFName] varchar(1) NOT NULL,
+    [drvNM1_ProviderMName] varchar(1) NOT NULL,
+    [drvNM1_ProviderPrefixName] varchar(1) NOT NULL,
+    [drvNM1_ProviderSuffixName] varchar(1) NOT NULL,
+    [drvNM1_IdentCodeQualifier] varchar(2) NULL,
+    [drvNM1_IdentCode] varchar(13) NULL,
+    [drvNM1_EntityRelCode] varchar(2) NULL,
     [drvLS01_LoopIDCode] varchar(1) NOT NULL,
     [drvLX01_AssignedNumber] varchar(1) NOT NULL,
     [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
@@ -624,8 +622,11 @@ Revision History
         - Provided clean up for OrgGLSegments.
 
 10/05/2021 by AP:
-		- Removed "HAWTHORN" orgglsegment.
-		- Added 2310 segment.
+        - Removed "HAWTHORN" orgglsegment.
+        - Added 2310 segment.
+
+10/06/2021 by AP:
+		- Removed middle name 2 and first name 2 from output of 2310.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUHCINS834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUHCINS834';
@@ -1436,8 +1437,8 @@ BEGIN
         ,drvNM1_ProviderMName = ''
         ,drvNM1_ProviderPrefixName = ''
         ,drvNM1_ProviderSuffixName = ''
-        ,drvNM1_ProviderFName2 = ''
-        ,drvNM1_ProviderMName2 = ''
+      --  ,drvNM1_ProviderFName2 = ''
+      --,drvNM1_ProviderMName2 = ''
         ,drvNM1_IdentCodeQualifier = CASE WHEN EepAddressState = 'CA' THEN 'SV' END
         ,drvNM1_IdentCode = CASE WHEN EepAddressState = 'CA' THEN '0000392497401' END
         ,drvNM1_EntityRelCode = CASE WHEN EepAddressState = 'CA' THEN '25' END
@@ -1536,7 +1537,7 @@ BEGIN
         ,drvAMT00_AmountQualifierCode2 = ''
         ,drvAMT01_AmountQualifierCode2 = ''
         ,drvAMT02_MonetaryAmount2 = ''
-		 ---- LOOP 2310 RECORDS ----
+         ---- LOOP 2310 RECORDS ----
         ,drvNM1_EntityTypeCode
         ,drvNM1_EntityTypeQualifier
         ,drvNM1_ProviderLName = ''
@@ -1544,8 +1545,8 @@ BEGIN
         ,drvNM1_ProviderMName = ''
         ,drvNM1_ProviderPrefixName = ''
         ,drvNM1_ProviderSuffixName = ''
-        ,drvNM1_ProviderFName2 = ''
-        ,drvNM1_ProviderMName2 = ''
+        --,drvNM1_ProviderFName2 = ''
+        --,drvNM1_ProviderMName2 = ''
         ,drvNM1_IdentCodeQualifier
         ,drvNM1_IdentCode
         ,drvNM1_EntityRelCode
