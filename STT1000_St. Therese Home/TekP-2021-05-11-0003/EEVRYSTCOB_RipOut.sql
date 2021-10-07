@@ -273,11 +273,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EEVRYSTCOB_20210921.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EEVRYSTCOB_20211007.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Everything Benefits COBRA','202107159','EMPEXPORT','ONDEM_XOE',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202107159','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202107151',NULL,'','','202107151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Everything Benefits COBR-Sched','202107159','EMPEXPORT','SCH_EEVRYS',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202107159','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202107151',NULL,'','','202107151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Everything Benefits COBR-Test','202109091','EMPEXPORT','TEST_XOE','Sep  9 2021 10:33PM','EEVRYSTCOB',NULL,NULL,NULL,'202109091','Sep  9 2021 12:00AM','Dec 30 1899 12:00AM','202109061','2589','','','202109061',dbo.fn_GetTimedKey(),NULL,'us3cPeSTT1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',B2DMG,B2DPY,IAGFG,X52NU,072Q9,BB4X9,CLGY3,XAQYC',NULL,NULL,NULL,'Everything Benefits COBR-Sched','202110059','EMPEXPORT','SCH_EEVRYS',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202110069','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202110051',NULL,'','','202110051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Everything Benefits COBR-Test','202110061','EMPEXPORT','TEST_XOE','Oct  6 2021  3:40PM','EEVRYSTCOB',NULL,NULL,NULL,'202110061','Oct  6 2021 12:00AM','Dec 30 1899 12:00AM','202110061','2565','','','202110061',dbo.fn_GetTimedKey(),NULL,'us3cPeSTT1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','InitialSort','C','drvInitialSort');
@@ -576,7 +576,10 @@ Revision History
         - Set 0.00's to NULL for Base Coverage Amt.
 
 09/21/2021 by AP:
-		- Updated Benefit Effective From field to include dynamic MAX EedBenStartDate from @FileMinCovDate.
+        - Updated Benefit Effective From field to include dynamic MAX EedBenStartDate from @FileMinCovDate.
+
+10/07/2021 by AP:
+		- Created new orglevel table to remove duplicate 'RES' orgcode values.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEVRYSTCOB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EEVRYSTCOB';
@@ -605,9 +608,9 @@ BEGIN
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
-		    ,@FileMinCovDate    DATETIME;
+            ,@FileMinCovDate    DATETIME;
  
-	SET @FileMinCovDate  = CONCAT(YEAR(GETDATE()), '0101')
+    SET @FileMinCovDate  = CONCAT(YEAR(GETDATE()), '0101')
 
     -- Set FormatCode
     SELECT @FormatCode = 'EEVRYSTCOB';
@@ -726,6 +729,15 @@ BEGIN
     --WHERE audDateTime BETWEEN @StartDate AND @EndDate
     --AND audAction <> 'DELETE'
     --AND ISNULL(audNewValue,'') <> '';
+
+	---- REMOVE DUPLICATE ORGCODE FOR 'RES' ----
+	IF OBJECT_ID('U_EEVRYSTCOB_OrgLevel','U') IS NOT NULL
+        DROP TABLE dbo.U_EEVRYSTCOB_OrgLevel;
+	SELECT *
+	INTO dbo.U_EEVRYSTCOB_OrgLevel
+	FROM dbo.OrgLevel WITH(NOLOCK)
+	WHERE OrgDesc <> '(R) Exercise Specialist'
+	--------------------------------------------
  
     --==========================================
     -- Build Driver Tables
@@ -886,7 +898,7 @@ BEGIN
         ,drvBenPolNum4 = ''
         ,drvBenPolNum5 = ''
         ,drvBenEffFrom = LEFT(CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate), 126), 10)
-		--LEFT(CONVERT(VARCHAR, EedBenStartDate, 126), 10)
+        --LEFT(CONVERT(VARCHAR, EedBenStartDate, 126), 10)
         ,drvBenEffLastDt = LEFT(ISNULL(CONVERT(VARCHAR, EedBenStopDate, 126), ''), 10)
         ,drvBenOrigEffFrom = ''
         ,drvBenCovLevel = CASE WHEN EedDedCode IN ('BLD', 'BLEE', 'FCHI', 'FMED', 'LIFEE') THEN 'EMP'
@@ -931,7 +943,7 @@ BEGIN
         AND EedCOID = xCOID
         AND EedFormatCode = @FormatCode
         AND EedValidForExport = 'Y'
-    JOIN dbo.OrgLevel WITH(NOLOCK)
+    JOIN dbo.U_EEVRYSTCOB_OrgLevel WITH(NOLOCK)
         ON OrgCode = EecOrgLvl1
     --JOIN dbo.U_EEVRYSTCOB_Audit 
     --    ON audEEID = xEEID
@@ -1074,7 +1086,7 @@ BEGIN
         ,drvBenPolNum4 = ''
         ,drvBenPolNum5 = ''
         ,drvBenEffFrom = LEFT(CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate), 126), 10)
-		--LEFT(CONVERT(VARCHAR, EedBenStartDate, 126), 10)
+        --LEFT(CONVERT(VARCHAR, EedBenStartDate, 126), 10)
         ,drvBenEffLastDt = LEFT(ISNULL(CONVERT(VARCHAR, EedBenStopDate, 126), ''), 10)
         ,drvBenOrigEffFrom = ''
         ,drvBenCovLevel = CASE WHEN EedDedCode IN ('BLD', 'BLEE', 'FCHI', 'FMED', 'LIFEE') THEN 'EMP'
@@ -1115,7 +1127,7 @@ BEGIN
         AND EedCOID = xCOID
         AND EedFormatCode = @FormatCode
         AND EedValidForExport = 'Y'
-    JOIN dbo.OrgLevel WITH(NOLOCK)
+    JOIN dbo.U_EEVRYSTCOB_OrgLevel WITH(NOLOCK)
         ON OrgCode = EecOrgLvl1
     --JOIN dbo.U_EEVRYSTCOB_Audit 
     --    ON audEEID = xEEID
@@ -1293,7 +1305,7 @@ BEGIN
         ,drvBenPolNum4 = ''
         ,drvBenPolNum5 = ''
         ,drvBenEffFrom = LEFT(CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX',DbnBenStartDate, @FileMinCovDate), 126), 10)
-	   -- LEFT(CONVERT(VARCHAR, DbnBenStartDate, 126), 10)
+       -- LEFT(CONVERT(VARCHAR, DbnBenStartDate, 126), 10)
         ,drvBenEffLastDt = LEFT(ISNULL(CONVERT(VARCHAR, DbnBenStopDate, 126), ''), 10)
         ,drvBenOrigEffFrom = ''
         ,drvBenCovLevel = CASE WHEN DbnDedCode IN ('BLD', 'BLEE', 'FCHI', 'FMED', 'LIFEE') THEN 'EMP'
@@ -1335,7 +1347,7 @@ BEGIN
     JOIN dbo.Contacts WITH(NOLOCK)
         ON ConEEID = DbnEEID
         AND ConSystemID = DbnDepRecId
-    JOIN dbo.OrgLevel WITH(NOLOCK)
+    JOIN dbo.U_EEVRYSTCOB_OrgLevel WITH(NOLOCK)
         ON OrgCode = EecOrgLvl1
     --JOIN dbo.U_EEVRYSTCOB_Audit 
     --    ON audEEID = xEEID
@@ -1506,7 +1518,7 @@ BEGIN
         ,drvBenPolNum4 = ''
         ,drvBenPolNum5 = ''
         ,drvBenEffFrom = LEFT(CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX',DbnBenStartDate, @FileMinCovDate), 126), 10)
-		--LEFT(CONVERT(VARCHAR, DbnBenStartDate, 126), 10)
+        --LEFT(CONVERT(VARCHAR, DbnBenStartDate, 126), 10)
         ,drvBenEffLastDt = LEFT(ISNULL(CONVERT(VARCHAR, DbnBenStopDate, 126), ''), 10)
         ,drvBenOrigEffFrom = ''
         ,drvBenCovLevel = CASE WHEN DbnDedCode IN ('BLD', 'BLEE', 'FCHI', 'FMED', 'LIFEE') THEN 'EMP'
@@ -1548,7 +1560,7 @@ BEGIN
     JOIN dbo.Contacts WITH(NOLOCK)
         ON ConEEID = DbnEEID
         AND ConSystemID = DbnDepRecId
-    JOIN dbo.OrgLevel WITH(NOLOCK)
+    JOIN dbo.U_EEVRYSTCOB_OrgLevel WITH(NOLOCK)
         ON OrgCode = EecOrgLvl1
     --JOIN dbo.U_EEVRYSTCOB_Audit 
     --    ON audEEID = xEEID
