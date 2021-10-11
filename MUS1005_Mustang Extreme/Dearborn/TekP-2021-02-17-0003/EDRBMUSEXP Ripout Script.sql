@@ -87,13 +87,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20210721.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDRBMUSEXP_20211008.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202105219','EMPEXPORT','OEACTIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202105219','EMPEXPORT','OEPASSIVE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export','202105219','EMPEXPORT','ONDEM_XOE',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dearborn File Export-Sched','202105219','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202105219','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202104021',NULL,'','','202104021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202107171','EMPEXPORT','TEST_XOE','Jul 16 2021  7:00PM','EDRBMUSEXP',NULL,NULL,NULL,'202107171','Jul 17 2021 12:00AM','Dec 30 1899 12:00AM','202107161','1159','','','202107161',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',JMJ6I',NULL,NULL,NULL,'Dearborn File Export-Sched','202107229','EMPEXPORT','SCH_EDRBMU',NULL,'EDRBMUSEXP',NULL,NULL,NULL,'202110049','Apr  9 2021 12:30PM','Apr  9 2021 12:30PM','202109271',NULL,'','','202107221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Dearborn File Export-Test','202109131','EMPEXPORT','TEST_XOE','Sep 13 2021 10:32PM','EDRBMUSEXP',NULL,NULL,NULL,'202109131','Sep 13 2021 12:00AM','Dec 30 1899 12:00AM','202109131','1114','','','202109131',dbo.fn_GetTimedKey(),NULL,'us3cPeMUS1005',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDRBMUSEXP','InitialSort','C','drvInitialSort');
@@ -460,6 +460,16 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EDRBMUSEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    --DELETE TEST/BAD EMPLOYEES
+    DELETE EE
+    FROM dbo.U_EDRBMUSEXP_EEList EE
+    JOIN dbo.EmpComp WITH (NOLOCK)
+      ON EecEEID = xEEID
+     AND EecCOID = xCOID
+        JOIN dbo.EmpPers WITH (NOLOCK)
+      ON EepEEID = xEEID
+    WHERE EecEEType = 'TES';
+
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -558,10 +568,17 @@ BEGIN
     UPDATE dbo.U_dsi_bdm_EDRBMUSEXP
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
     FROM dbo.U_dsi_bdm_EDRBMUSEXP
-    JOIN dbo.EmpDedFull WITH (NOLOCK)
+    JOIN (SELECT EedEEID
+                ,EedCOID
+                ,EedDedCode
+                ,EedBenAmt
+                ,EedDateTimeChanged
+                ,EedRowNo = ROW_NUMBER() OVER (PARTITION BY EedEEID, EedCOID, EedDedCode  ORDER BY EedDateTimeChanged DESC)
+          FROM  dbo.EmpDedFull WITH (NOLOCK)) EED
         ON EedEEID = BdmEEID
        AND EedCOID = BdmCOID
-       AND EedDedCode = BdmDedCode;
+       AND EedDedCode = BdmDedCode
+       AND EedRowNo = 1;
 
     --==========================================
     -- Build Working Tables
@@ -1172,9 +1189,23 @@ BEGIN
                                 WHEN bdmrectype = 'DEP' and bdmrelationship = 'SPS' and bdmdedcode in ('LIFES','CRILS') THEN '3'
                             END
         ,drvUnderwritingStatsInd =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('LIFEE', 'LIFEC', 'CRILE', 'CRILC') THEN
-                                        CASE WHEN EedEOIDesiredAmt <= BdmEEAmt OR EedEOIDesiredAmt IS NULL THEN '0' ELSE '2' END
+                                        --CASE WHEN EedEOIDesiredAmt <= BdmEEAmt OR EedEOIDesiredAmt IS NULL THEN '0' ELSE '2' END
+                                        CASE WHEN BdmDedCode = 'LIFEE' THEN
+                                            CASE WHEN EedBenAmt <= 180000 THEN '0' ELSE '2' END
+                                        WHEN BdmDedCode = 'LIFEC' THEN
+                                            CASE WHEN EedBenAmt <= 10000 THEN '0' ELSE '2' END
+                                        WHEN BdmDedCode = 'CRILE' THEN
+                                            CASE WHEN EedBenAmt <= 2000 THEN '0' ELSE '2' END
+                                        WHEN BdmDedCode = 'CRILC' THEN
+                                            CASE WHEN EedBenAmt <= 1000 THEN '0' ELSE '2' END
+                                        END
                                     WHEN BdmRelationship IN ('SPS','DP') AND BdmDedCode IN ('CRILS', 'LIFES') THEN
-                                        CASE WHEN EedEOIDesiredAmt <= BdmEEAmt OR EedEOIDesiredAmt IS NULL THEN '0' ELSE '2' END
+                                        --CASE WHEN EedEOIDesiredAmt <= BdmEEAmt OR EedEOIDesiredAmt IS NULL THEN '0' ELSE '2' END
+                                        CASE WHEN BdmDedCode = 'LIFES' THEN
+                                            CASE WHEN EedBenAmt <= 1000 THEN '0' ELSE '2' END
+                                        WHEN BdmDedCode = 'CRILS' THEN
+                                            CASE WHEN EedBenAmt <= 1000 THEN '0' ELSE '2' END
+                                        END
                                     ELSE '0'
                                     END
         
