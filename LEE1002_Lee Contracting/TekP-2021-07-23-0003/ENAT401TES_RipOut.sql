@@ -539,7 +539,7 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
             drvZipCode  = substring(EepAddressZipCode,6,4),
             drvDOH  = convert(char(8),eecdateoforiginalhire,112),
             drvDOT  = ISNULL(CONVERT(VARCHAR, (CASE WHEN EecEmplStatus IN ('R', 'T') THEN EecDateOfTermination 
-							WHEN EecEmplStatus NOT IN ('R', 'T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN ejh.EjhDateTimeCreated END), 112), ''),
+							WHEN EecEmplStatus NOT IN ('R', 'T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN ejh.EjhJobEffDate END), 112), ''),
 			--CASE
    --                         WHEN EecEmplStatus = 'T' THEN convert(char(8),eecdateoftermination,112)
    --                 END,
@@ -591,7 +591,7 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
         from dbo.U_dsi_ENAT401TES_DedHist
         where hdedcode in ('ROTH')
         group by heeid, hcoid) RF on RF.eeid = xEEID and RF.coid = xCOID
-	left join (select EjhEEID, EjhCOID, MAX(EjhDateTimeCreated) AS EjhDateTimeCreated
+	left join (select EjhEEID, EjhCOID, MAX(EjhJobEffDate) AS EjhJobEffDate
 				from dbo.EmpHJob WITH(NOLOCK)
 				where ejhemplstatus = 't'
 				GROUP BY EjhEEID, EjhCOID) ejh on ejh.ejheeid = xeeid and ejh.ejhcoid = xcoid
