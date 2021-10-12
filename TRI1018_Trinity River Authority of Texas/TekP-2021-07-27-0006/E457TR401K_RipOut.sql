@@ -15,6 +15,8 @@ IF OBJECT_ID('U_E457TR401K_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_E457TR401K
 GO
 IF OBJECT_ID('U_E457TR401K_LoanRecTbl4') IS NOT NULL DROP TABLE [dbo].[U_E457TR401K_LoanRecTbl4];
 GO
+IF OBJECT_ID('U_E457TR401K_LoanRecTbl3_Stage') IS NOT NULL DROP TABLE [dbo].[U_E457TR401K_LoanRecTbl3_Stage];
+GO
 IF OBJECT_ID('U_E457TR401K_LoanRecTbl3') IS NOT NULL DROP TABLE [dbo].[U_E457TR401K_LoanRecTbl3];
 GO
 IF OBJECT_ID('U_E457TR401K_LoanRecTbl2') IS NOT NULL DROP TABLE [dbo].[U_E457TR401K_LoanRecTbl2];
@@ -102,21 +104,21 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvICMA"','1','(''UA''=''F'')','E457TR401KZ0','6','D','70','1',NULL,'ICMA-RC Plan Num',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecType"','2','(''UA''=''F'')','E457TR401KZ0','2','D','70','2',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecSeq"','3','(''UA''=''F'')','E457TR401KZ0','4','D','70','3',NULL,'Record Sequence',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller1"','4','(''UA''=''F'')','E457TR401KZ0','1','D','70','4',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanNum"','5','(''UA''=''F'')','E457TR401KZ0','3','D','70','5',NULL,'Loan Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartSSN"','6','(''UA''=''F'')','E457TR401KZ0','9','D','70','6',NULL,'Participant SSN',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanRepAmt"','7','(''UA''=''F'')','E457TR401KZ0','10','D','70','7',NULL,'Loan Repayment Amount',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller2"','8','(''UA''=''F'')','E457TR401KZ0','40','D','70','8',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayIndic"','9','(''UA''=''F'')','E457TR401KZ0','4','D','70','9',NULL,'Loan Payoff Indicator',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFormatId"','10','(''UA''=''F'')','E457TR401KZ0','1','D','70','10',NULL,'Format ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller1"','4','(''UA''=''F'')','E457TR401KZ0','4','D','70','4',NULL,'Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartSSN"','5','(''UA''=''F'')','E457TR401KZ0','9','D','70','5',NULL,'Participant SSN',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartName"','6','(''UA''=''F'')','E457TR401KZ0','30','D','70','6',NULL,'Participant Name',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller2"','7','(''UA''=''F'')','E457TR401KZ0','24','D','70','7',NULL,'Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFormatId"','8','(''UA''=''F'')','E457TR401KZ0','1','D','70','8',NULL,'Format ID',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvICMA"','1','(''UA''=''F'')','E457TR401KZ0','6','D','80','1',NULL,'ICMA-RC Plan Num',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecType"','2','(''UA''=''F'')','E457TR401KZ0','2','D','80','2',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRecSeq"','3','(''UA''=''F'')','E457TR401KZ0','4','D','80','3',NULL,'Record Sequence',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller1"','4','(''UA''=''F'')','E457TR401KZ0','4','D','80','4',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartSSN"','5','(''UA''=''F'')','E457TR401KZ0','9','D','80','5',NULL,'Participant SSN',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartName"','6','(''UA''=''F'')','E457TR401KZ0','30','D','80','6',NULL,'Participant Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller2"','7','(''UA''=''F'')','E457TR401KZ0','24','D','80','7',NULL,'Filler',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFormatId"','8','(''UA''=''F'')','E457TR401KZ0','1','D','80','8',NULL,'Format ID',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller1"','4','(''UA''=''F'')','E457TR401KZ0','1','D','80','4',NULL,'Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanNum"','5','(''UA''=''F'')','E457TR401KZ0','3','D','80','5',NULL,'Loan Number',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPartSSN"','6','(''UA''=''F'')','E457TR401KZ0','9','D','80','6',NULL,'Participant SSN',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanRepAmt"','7','(''UA''=''F'')','E457TR401KZ0','10','D','80','7',NULL,'Loan Repayment Amount',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFiller2"','8','(''UA''=''F'')','E457TR401KZ0','40','D','80','8',NULL,'Filler',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLoanPayIndic"','9','(''UA''=''F'')','E457TR401KZ0','4','D','80','9',NULL,'Loan Payoff Indicator',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFormatId"','10','(''UA''=''F'')','E457TR401KZ0','1','D','80','10',NULL,'Format ID',NULL,NULL);
 /*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 /*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
 /*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
@@ -124,7 +126,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'E457TR401K_20211011.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'E457TR401K_20211012.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mission Square 457 Payroll Exp','202108189','EMPEXPORT','ONDEM_XOE',NULL,'E457TR401K',NULL,NULL,NULL,'202108189','Aug 18 2021  3:53PM','Aug 18 2021  3:53PM','202108181',NULL,'','','202108181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mission Square 457 Payro-Sched','202108189','EMPEXPORT','SCH_E457TR',NULL,'E457TR401K',NULL,NULL,NULL,'202108189','Aug 18 2021  3:53PM','Aug 18 2021  3:53PM','202108181',NULL,'','','202108181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -145,8 +147,8 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('E457TR401K','D40','dbo.U_E457TR401K_ContRecTbl2',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('E457TR401K','D50','dbo.U_E457TR401K_LoanRecTbl1',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('E457TR401K','D60','dbo.U_E457TR401K_LoanRecTbl2',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('E457TR401K','D80','dbo.U_E457TR401K_LoanRecTbl3',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('E457TR401K','D70','dbo.U_E457TR401K_LoanRecTbl4',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('E457TR401K','D80','dbo.U_E457TR401K_LoanRecTbl3',NULL);
 IF OBJECT_ID('U_dsi_BDM_E457TR401K') IS NULL
 CREATE TABLE [dbo].[U_dsi_BDM_E457TR401K] (
     [BdmRecType] varchar(3) NOT NULL,
@@ -215,7 +217,7 @@ CREATE TABLE [dbo].[U_E457TR401K_ContRecTbl2] (
     [drvRecType] varchar(2) NOT NULL,
     [drvRecSeq] varchar(4) NOT NULL,
     [drvInsProvider] varchar(1) NOT NULL,
-    [drvSourceCode] varchar(2) NOT NULL,
+    [drvSourceCode] varchar(1) NOT NULL,
     [drvPartSSN] char(11) NULL,
     [drvContAmt] varchar(10) NULL,
     [drvTaxYear] varchar(1) NOT NULL,
@@ -282,6 +284,25 @@ CREATE TABLE [dbo].[U_E457TR401K_LoanRecTbl2] (
 );
 IF OBJECT_ID('U_E457TR401K_LoanRecTbl3') IS NULL
 CREATE TABLE [dbo].[U_E457TR401K_LoanRecTbl3] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvICMA] varchar(6) NOT NULL,
+    [drvRecType] varchar(2) NOT NULL,
+    [drvRecSeq] varchar(4) NOT NULL,
+    [drvFiller1] varchar(1) NOT NULL,
+    [drvLoanNum] varchar(3) NULL,
+    [drvPartSSN] char(11) NULL,
+    [drvLoanRepAmt] varchar(10) NULL,
+    [drvFiller2] varchar(1) NOT NULL,
+    [drvLoanPayIndic] varchar(1) NOT NULL,
+    [drvFormatId] varchar(1) NOT NULL,
+    [drvRN] bigint NULL,
+    [drvInitialSort] varchar(11) NULL,
+    [drvSubSort] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_E457TR401K_LoanRecTbl3_Stage') IS NULL
+CREATE TABLE [dbo].[U_E457TR401K_LoanRecTbl3_Stage] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -425,7 +446,10 @@ Revision History
         - NOTE: D80 needs to be before D70 on grouping output.
 
 10/11/2021 by AP:
-		- Set source code for contribution type to BLANK.       
+        - Set source code for contribution type to BLANK.    
+		
+10/12/2021 by AP:
+		- Adjusted code to fix glitch with name -> loan -> name (1,2,1,2) format.   
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'E457TR401K';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'E457TR401K';
@@ -826,14 +850,14 @@ BEGIN
     WHERE drvRN = '1'
    
     ---------------------------------
-    -- DETAIL RECORD - U_E457TR401K_LoanRecTbl3
+    -- DETAIL RECORD - U_E457TR401K_LoanRecTbl3_Stage
     ---------------------------------
-    IF OBJECT_ID('U_E457TR401K_LoanRecTbl3','U') IS NOT NULL
-        DROP TABLE dbo.U_E457TR401K_LoanRecTbl3;
+    IF OBJECT_ID('U_E457TR401K_LoanRecTbl3_Stage','U') IS NOT NULL
+        DROP TABLE dbo.U_E457TR401K_LoanRecTbl3_Stage;
 
    SELECT * ,drvInitialSort = RTRIM(LTRIM(drvPartSSN))
         ,drvSubSort = '8'
-    INTO dbo.U_E457TR401K_LoanRecTbl3
+    INTO dbo.U_E457TR401K_LoanRecTbl3_Stage
     FROM 
     (
     SELECT DISTINCT
@@ -923,8 +947,36 @@ BEGIN
         ,drvInitialSort = RTRIM(LTRIM(EepSSN))
         ,drvSubSort = '7'
     INTO dbo.U_E457TR401K_LoanRecTbl4
-    FROM dbo.U_E457TR401K_LoanRecTbl3 a JOIN dbo.EmpPers b WITH(NOLOCK)
+    FROM dbo.U_E457TR401K_LoanRecTbl3_Stage a JOIN dbo.EmpPers b WITH(NOLOCK)
     ON a.drveeid = b.eepeeid
+
+     ---------------------------------
+    -- DETAIL RECORD - U_E457TR401K_LoanRecTbl3
+    ---------------------------------
+    IF OBJECT_ID('U_E457TR401K_LoanRecTbl3','U') IS NOT NULL
+        DROP TABLE dbo.U_E457TR401K_LoanRecTbl3;
+
+    SELECT DISTINCT
+         drvEEID
+        ,drvCoID
+        ,drvDepRecID 
+        -- standard fields above and additional driver fields below
+        ,drvICMA 
+        ,drvRecType
+        ,drvRecSeq
+        ,drvFiller1
+        ,drvLoanNum
+        ,drvPartSSN 
+        ,drvLoanRepAmt 
+        --RIGHT('0000000000' + REPLACE(CAST(PdhEECurAmt AS VARCHAR), '.', ''), 10) 
+        ,drvFiller2
+        ,drvLoanPayIndic
+        ,drvFormatId
+        ,drvRN
+        ,drvInitialSort
+        ,drvSubSort
+    INTO dbo.U_E457TR401K_LoanRecTbl3
+    FROM dbo.U_E457TR401K_LoanRecTbl3_Stage WITH(NOLOCK) 
     --==========================================
     -- Set FileName
     --==========================================
