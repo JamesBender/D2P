@@ -375,59 +375,65 @@ SELECT
   --==========================================
     -- Audit Section
     --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_ENAT401TES_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_ENAT401TES_AuditFields;
-    CREATE TABLE dbo.U_ENAT401TES_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecAnnSalary');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecDateOfTermination');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecEmplStatus');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecHourlyPayRate');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecSalaryOrHourly');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecScheduledWorkHrs');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecTermReason');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpDed','EedBenStartDate');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpDed','EedBenStopDate');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepDateOfBirth');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepGender');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameFirst');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameLast');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameMiddle');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameSuffix');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepOldSSN');
-    INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepSSN');
+ --   -- Get data from audit fields table. Add fields here if auditing
+ --   IF OBJECT_ID('U_ENAT401TES_AuditFields','U') IS NOT NULL
+ --       DROP TABLE dbo.U_ENAT401TES_AuditFields;
+ --   CREATE TABLE dbo.U_ENAT401TES_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecAnnSalary');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecEmplStatus');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecHourlyPayRate');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecSalaryOrHourly');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecScheduledWorkHrs');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpComp','EecTermReason');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpDed','EedBenStartDate');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpDed','EedBenStopDate');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepGender');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameFirst');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameLast');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameMiddle');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameSuffix');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepOldSSN');
+ --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepSSN');
+	--INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpHJob','EjhDateTimeCreated');
 
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_ENAT401TES_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_ENAT401TES_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-        ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
-        ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
-        ,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END
-    INTO dbo.U_ENAT401TES_Audit
-    FROM dbo.U_ENAT401TES_EEList WITH (NOLOCK)
-    JOIN dbo.vw_AuditData WITH (NOLOCK) 
-        ON audKey1Value = xEEID
-    JOIN dbo.U_ENAT401TES_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE'
-    AND ISNULL(audNewValue,'') <> '';
+
+ --   -- Create audit table based on fields defined above
+ --   IF OBJECT_ID('U_ENAT401TES_Audit','U') IS NOT NULL
+ --       DROP TABLE dbo.U_ENAT401TES_Audit;
+
+	--SELECT *, audLastTermDate = CASE WHEN audTerm = 'Y' AND audTableName = 'EmpHJob' AND audFieldName = 'EjhDateTimeCreated' AND ISNULL(audNewValue , '') <> '' THEN 'Y' ELSE 'N' END
+	--INTO dbo.U_ENAT401TES_Audit
+	--FROM
+	--(
+ --   SELECT 
+ --       audEEID  = audKey1Value
+ --       ,audKey2 = audKey2Value
+ --       ,audKey3 = audKey3Value
+ --       ,audTableName
+ --       ,audFieldName
+ --       ,audAction
+ --       ,audDateTime
+ --       ,audOldValue
+ --       ,audNewValue
+ --       ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+ --       ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+ --       ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+ --       ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
+ --       ,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END
+ --   FROM dbo.U_ENAT401TES_EEList WITH (NOLOCK)
+ --   JOIN dbo.vw_AuditData WITH (NOLOCK) 
+ --       ON audKey1Value = xEEID
+ --   JOIN dbo.U_ENAT401TES_AuditFields WITH (NOLOCK) 
+ --       ON audTableName = aTableName
+ --       AND audFieldName = aFieldName
+ --   WHERE audDateTime BETWEEN @StartDate AND @EndDate
+ --   AND audAction <> 'DELETE'
+ --   AND ISNULL(audNewValue,'') <> '') a;
 
 --/****Create Table: U_ds_ENAT401TES_EarnsCUR***/
 
@@ -533,7 +539,7 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
             drvZipCode  = substring(EepAddressZipCode,6,4),
             drvDOH  = convert(char(8),eecdateoforiginalhire,112),
             drvDOT  = ISNULL(CONVERT(VARCHAR, (CASE WHEN EecEmplStatus IN ('R', 'T') THEN EecDateOfTermination 
-							WHEN EecEmplStatus NOT IN ('R', 'T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN aud.audDateTime END), 112), ''),
+							WHEN EecEmplStatus NOT IN ('R', 'T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN ejh.EjhDateTimeCreated END), 112), ''),
 			--CASE
    --                         WHEN EecEmplStatus = 'T' THEN convert(char(8),eecdateoftermination,112)
    --                 END,
@@ -585,10 +591,14 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
         from dbo.U_dsi_ENAT401TES_DedHist
         where hdedcode in ('ROTH')
         group by heeid, hcoid) RF on RF.eeid = xEEID and RF.coid = xCOID
-	LEFT JOIN (SELECT audEEID, audKey2 AS audCOID, MAX(audDateTime) AS audDateTime
-				FROM dbo.U_ENAT401TES_Audit
-				WHERE audTerm = 'Y'
-				GROUP BY audEEID, audKey2) aud ON aud.audEEID = xEEID AND aud.audCOID = xCOID
+	left join (select EjhEEID, EjhCOID, MAX(EjhDateTimeCreated) AS EjhDateTimeCreated
+				from dbo.EmpHJob WITH(NOLOCK)
+				where ejhemplstatus = 't'
+				GROUP BY EjhEEID, EjhCOID) ejh on ejh.ejheeid = xeeid and ejh.ejhcoid = xcoid
+	--LEFT JOIN (SELECT audEEID, audKey2 AS audCOID, MAX(audDateTime) AS audDateTime
+	--			FROM dbo.U_ENAT401TES_Audit
+	--			WHERE audTerm = 'Y'
+	--			GROUP BY audEEID, audKey2) aud ON aud.audEEID = xEEID AND aud.audCOID = xCOID
 
 ----Roth catch up
 --    left join(select heeid eeid, hcoid coid, sum(heeamt) eeamt, sum(heramt) eramt, sum(heecalcrateorpct) pct
