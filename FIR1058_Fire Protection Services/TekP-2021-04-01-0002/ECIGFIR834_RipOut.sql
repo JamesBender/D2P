@@ -231,10 +231,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFIR834_20210928.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFIR834_20211007.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202107279','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108049','EMPEXPORT','FULLFILE','Aug 11 2021 12:43PM','ECIGFIR834',NULL,NULL,NULL,'202108049','Aug  4 2021 12:00AM','Dec 30 1899 12:00AM','202107211','6016','','','202107211',dbo.fn_GetTimedKey(),NULL,'us3rVaFIR1058',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108049','EMPEXPORT','FULLFILE','Oct  5 2021 11:01AM','ECIGFIR834',NULL,NULL,NULL,'202108049','Aug  4 2021 12:00AM','Dec 30 1899 12:00AM','202107211','6399','','','202107211',dbo.fn_GetTimedKey(),NULL,'us3rVaFIR1058',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202107279','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202107279','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CIGNA Den Vis 834','202107279','EMPEXPORT','SCH_CIG834','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -585,7 +585,10 @@ Revision History
         - Added new location mapping for drvREF02_RefNumberQual1 in 2300.
 
 09/28/2021 by AP:
-		- DMG04 fix.
+        - DMG04 fix.
+
+10/07/2021 by AP:
+		- Date time period minimum adjusted to 01/01/2021.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECIGFIR834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECIGFIR834';
@@ -630,7 +633,7 @@ BEGIN
         ,@ExportCode      = ExportCode
         ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
-        ,@FileMinCovDate  = ''
+        ,@FileMinCovDate  = CAST('01/01/2021' as datetime)
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'ECIGFIR834';
 
@@ -912,9 +915,9 @@ BEGIN
                                      ELSE 'M'
                                 END
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN 
-											CASE WHEN EepMaritalStatus NOT IN ('S', 'M') THEN '' ELSE EepMaritalStatus 
-										END
-									END
+                                            CASE WHEN EepMaritalStatus NOT IN ('S', 'M') THEN '' ELSE EepMaritalStatus 
+                                        END
+                                    END
         /*CASE WHEN BdmRecType = 'EMP' THEN
                                                 CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
                                        END*/

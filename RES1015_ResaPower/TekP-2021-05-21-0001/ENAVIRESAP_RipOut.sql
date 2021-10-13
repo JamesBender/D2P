@@ -151,7 +151,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAVIRESAP_20210928.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAVIRESAP_20211007.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Navigator Census Export','202108189','EMPEXPORT','CHANGES','Aug 18 2021 12:00AM','ENAVIRESAP',NULL,NULL,NULL,'202108189','Aug 18 2021 12:00AM','Dec 30 1899 12:00AM','202108041',NULL,'','','202108041',dbo.fn_GetTimedKey(),NULL,'us3rVaRES1015',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navigator Census Export','202108049','EMPEXPORT','ONDEM_XOE',NULL,'ENAVIRESAP',NULL,NULL,NULL,'202108049','Aug  4 2021  2:14PM','Aug  4 2021  2:14PM','202108041',NULL,'','','202108041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -298,7 +298,8 @@ CREATE TABLE [dbo].[U_ENAVIRESAP_drvTbl] (
     [drvAffHireDt] datetime NULL,
     [drvTermDt] varchar(30) NOT NULL,
     [drvTermReason] char(6) NULL,
-    [drvRehireDt] datetime NULL
+    [drvRehireDt] datetime NULL,
+	drvO2Code varchar(50) NULL
 );
 IF OBJECT_ID('U_ENAVIRESAP_EEList') IS NULL
 CREATE TABLE [dbo].[U_ENAVIRESAP_EEList] (
@@ -367,8 +368,11 @@ Revision History
         - Annual benefit salary changed to YTD. 
 
 09/28/2021 by AP:
-		- Fixed fulltime vs parttime mapping.
-		- Adjusted termination type.
+        - Fixed fulltime vs parttime mapping.
+        - Adjusted termination type.
+
+10/07/2021 by AP:
+		- Removed union employees from output.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ENAVIRESAP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ENAVIRESAP';
@@ -638,7 +642,7 @@ BEGIN
         ,drvTimeClockId = EecEmpNo
         ,drvJobTitle = REPLACE(JbcDesc, ',', '')
         ,drvIsFullTime = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Y' ELSE 'N' END
-		--CASE WHEN EecFullTimeOrPartTime = 'FT' THEN 'Y' ELSE 'N' END
+        --CASE WHEN EecFullTimeOrPartTime = 'FT' THEN 'Y' ELSE 'N' END
         ,drvIsExempt = ''
         ,drvIsCollectBargained = O2.OrgDesc 
         ,drvLeasedEmp = ''
@@ -655,8 +659,9 @@ BEGIN
         ,drvAffHireDt = EecDateOfSeniority
         ,drvTermDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END), 101), '')
         ,drvTermReason = CASE WHEN EecEmplStatus = 'T' THEN EecTermType END
-		--CASE WHEN EecEmplStatus = 'T' THEN EecTermReason END
+        --CASE WHEN EecEmplStatus = 'T' THEN EecTermReason END
         ,drvRehireDt = EecDateOfLastHire
+		,drvO2Code = O2.OrgCode
     INTO dbo.U_ENAVIRESAP_drvTbl
     FROM dbo.U_ENAVIRESAP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -700,6 +705,10 @@ BEGIN
         AND O3.OrgLvl = '3'
     WHERE EepAddressCountry <> 'CAN'
     ;
+
+	---- REMOVE UNION EMPLOYEES ----
+	DELETE dbo.U_ENAVIRESAP_drvTbl
+	WHERE drvO2Code <> 'NO'
 
     --==========================================
     -- Set FileName
