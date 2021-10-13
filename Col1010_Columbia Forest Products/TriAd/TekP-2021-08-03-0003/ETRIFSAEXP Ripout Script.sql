@@ -143,13 +143,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ETRIFSAEXP_20211007.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ETRIFSAEXP_20211013.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202109279','EMPEXPORT','OEACTIVE','Sep 27 2021 11:56AM','ETRIFSAEXP',NULL,NULL,NULL,'202109279','Sep 27 2021  5:30AM','Sep 27 2021  5:30AM','202109271','1','','','202109271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202109279','EMPEXPORT','OEPASSIVE','Sep 27 2021  1:00PM','ETRIFSAEXP',NULL,NULL,NULL,'202109279','Sep 27 2021  5:30AM','Sep 27 2021  5:30AM','202109271','131','','','202109271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'TriAd FSA Export','202109279','EMPEXPORT','ONDEM_XOE','Sep 27 2021  1:10PM','ETRIFSAEXP',NULL,NULL,NULL,'202109279','Sep 27 2021  5:30AM','Sep 27 2021  5:30AM','202109271','131','','','202109271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'TriAd FSA Export-Sched','202109279','EMPEXPORT','SCH_ETRIFS','Sep 27 2021  1:11PM','ETRIFSAEXP',NULL,NULL,NULL,'202109279','Sep 27 2021  5:30AM','Sep 27 2021  5:30AM','202109271','131','','','202109271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'TriAd FSA Export-Test','202109301','EMPEXPORT','TEST_XOE','Oct  7 2021  6:00AM','ETRIFSAEXP',NULL,NULL,NULL,'202109301','Sep 30 2021 12:00AM','Dec 30 1899 12:00AM','202109161','136','','','202109161',dbo.fn_GetTimedKey(),NULL,'us3cPeCOL1010',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','60DZM,603MK,60DVD,60DPK,P34RH',NULL,NULL,NULL,'TriAd FSA Export-Test','202110071','EMPEXPORT','TEST_XOE','Oct 13 2021  9:14AM','ETRIFSAEXP',NULL,NULL,NULL,'202110071','Oct  7 2021 12:00AM','Oct  2 2021 12:00AM','202110011','130','','','202110011',dbo.fn_GetTimedKey(),NULL,'us3cPeCOL1010',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIFSAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIFSAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIFSAEXP','InitialSort','C','drvSort');
@@ -215,7 +215,7 @@ CREATE TABLE [dbo].[U_ETRIFSAEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(50) NULL,
-    [drvEmployerId] varchar(1) NOT NULL,
+    [drvEmployerId] varchar(11) NOT NULL,
     [drvEecEmpNo] varchar(11) NULL,
     [drvSSN] varchar(13) NULL,
     [drvNamePrefix] varchar(32) NOT NULL,
@@ -498,15 +498,15 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = EfoPhoneNumber
         -- standard fields above and additional driver fields below
-        ,drvEmployerId = ''
+        ,drvEmployerId = '"930672034"'
         ,drvEecEmpNo = '"' + RTRIM(ISNULL(EecEmpNo, '')) + '"'
         ,drvSSN = '"' + RTRIM(ISNULL(eepSSN, '')) + '"'
         ,drvNamePrefix = '"' + ISNULL(EepNamePrefix,'') + '"'
         ,drvNameLast = '"' + ISNULL(EepNameLast,'') + '"'
         ,drvNameFirst = '"' + ISNULL(EepNameFirst,'') + '"'
         ,drvNameMiddle = '"' + ISNULL(LEFT(EepNameMiddle,1),'') + '"'
-        ,drvEmployeeWorkPhone = '"' + ISNULL(LEFT(EecPhoneBusinessNumber, 3) + '-' + RIGHT(LEFT(EecPhoneBusinessNumber, 6), 3) + '-' + RIGHT(RTRIM(EecPhoneBusinessNumber), 4),'') + '"'
-        ,drvEmployeeMobilePhone = '"' + ISNULL(LEFT(EfoPhoneNumber, 3) + '-' + RIGHT(LEFT(EfoPhoneNumber, 6), 3) + '-' + RIGHT(RTRIM(EfoPhoneNumber), 4),'') + '"' -- '"' + RTRIM(ISNULL(EfoPhoneNumber,'')) + '"'
+        ,drvEmployeeWorkPhone = '"' + CASE WHEN LEN(RTRIM(EecPhoneBusinessNumber)) > 0 THEN ISNULL(LEFT(EecPhoneBusinessNumber, 3) + '-' + RIGHT(LEFT(EecPhoneBusinessNumber, 6), 3) + '-' + RIGHT(RTRIM(EecPhoneBusinessNumber), 4),'') ELSE '' END + '"'
+        ,drvEmployeeMobilePhone = '"' + ISNULL(LEFT(EfoPhoneNumber, 3) + '-' + RIGHT(LEFT(EfoPhoneNumber, 6), 3) + '-' + RIGHT(RTRIM(EfoPhoneNumber), 4),'') + '"' 
         ,drvAddressLine1 = '"' + ISNULL(EepAddressLine1,'') + '"'
         ,drvAddressLine2 = '"' + RTRIM(ISNULL(EepAddressLine2,'')) + '"'
         ,drvAddressCity = '"' + ISNULL(EepAddressCity,'') + '"'

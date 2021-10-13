@@ -235,14 +235,14 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCMDV834_20210903.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EUHCMDV834_20211011.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202107269','EMPEXPORT','CHANGES','Jul 26 2021  1:09PM','EUHCMDV834',NULL,NULL,NULL,'202107269','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121','10955','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108099','EMPEXPORT','FULLFILE','Aug 30 2021 10:38AM','EUHCMDV834',NULL,NULL,NULL,'202108099','Aug  9 2021 12:00AM','Dec 30 1899 12:00AM','202107121','11513','','','202107121',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202107269','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202107269','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Med Dent Vis 834 Export','202107269','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'UHC Med Den Vis 834 Test','202107269','EMPEXPORT','TEST','Sep  3 2021 12:00AM','EUHCMDV834',NULL,NULL,NULL,'202107269','Jul 26 2021 12:00AM','Dec 30 1899 12:00AM','202107121',NULL,'','','202107121',dbo.fn_GetTimedKey(),NULL,'us3kMcGAT1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'UHC Med Den Vis 834 Test','202109089','EMPEXPORT','TEST','Sep  8 2021  4:14PM','EUHCMDV834',NULL,NULL,NULL,'202109089','Sep  8 2021 12:00AM','Dec 30 1899 12:00AM','202108251','10954','','','202108251',dbo.fn_GetTimedKey(),NULL,'us3rVaGAT1004',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCMDV834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCMDV834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUHCMDV834','ExportPath','V',NULL);
@@ -1023,7 +1023,22 @@ BEGIN
                                             WHEN BdmDedCode IN ('DHMO','DPPOH','DPPHP','DPPLP','DPPOL') THEN 'DEN'
                                             WHEN BdmDedCode IN ('VIS','VISP') THEN 'VIS'
                                         END
-        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z182' THEN '01040104TT'
+        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'POS' THEN '01240124tt'
+                                        WHEN BdmDedCode = 'POSP' THEN '01240124tt'
+                                        WHEN BdmDedCode = 'DHMO' THEN '01250125tt'
+                                        WHEN BdmDedCode = 'VIS' THEN '01260126tt'
+                                        WHEN BdmDedCode = 'VISP' THEN '01260126tt'
+                                        WHEN BdmDedCode = 'DPPOH' THEN '01270127tt'
+                                        WHEN BdmDedCode = 'DPPHP' THEN '01270127tt'
+                                        WHEN BdmDedCode = 'DPPOL' THEN '01280128tt'
+                                        WHEN BdmDedCode = 'HMO' THEN '01290129tt'
+                                        WHEN BdmDedCode = 'HSAM' THEN '01300130tt'
+                                        WHEN BdmDedCode = 'HSAOC' AND EecLocation = 'WSHDC' THEN '01310131tt'
+                                        WHEN BdmDedCode = 'HSAOC' AND EecLocation = 'MD' THEN '01320132tt'
+                                        WHEN BdmDedCode = 'HSAOC' AND EecLocation = 'CMFAIR' THEN '01330133tt'
+                                        WHEN BdmDedCode = 'HSAOC' AND EecLocation = 'WVIRG' THEN '01340134tt'
+                                    END
+                                    /*CASE WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z182' THEN '01040104TT'
                                         WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z183' THEN '00110011TT'
                                         WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode = 'Z398' THEN '00190019TT'
                                         WHEN BdmDedCode = 'DHMO' AND CmpCompanyCode IN ('Z720','Z721') THEN '00270027TT'
@@ -1063,7 +1078,7 @@ BEGIN
                                         WHEN BdmDedCode = 'VIS' AND CmpCompanyCode = 'Z183' THEN '00120012TT'
                                         WHEN BdmDedCode = 'VIS' AND CmpCompanyCode = 'Z398' THEN '00200020TT'
                                         WHEN BdmDedCode = 'VIS' AND CmpCompanyCode IN ('Z720','Z721') THEN '00280028TT'
-                                    END
+                                    END*/
         /*CASE WHEN BdmDedType IN ('MED') THEN ''
                                            WHEN BdmDedType IN ('DEN') THEN ''
                                            WHEN BdmDedType IN ('VIS') THEN ''
