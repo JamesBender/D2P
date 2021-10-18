@@ -658,7 +658,7 @@ BEGIN
         ,@ExportCode      = ExportCode
         ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
-        ,@FileMinCovDate  = ''
+        ,@FileMinCovDate  = CAST('01/01/2021' as DATETIME)
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'ELUC834EXP';
 
@@ -816,6 +816,9 @@ BEGIN
     JOIN dbo.EmpDedFull WITH (NOLOCK)
         ON EedEmpDedTVID = BdmUSGField2;
 
+	--- DELETE BdmRelationship IS NULL IN BDM TABLE ---
+	DELETE dbo.U_dsi_bdm_ELUC834EXP
+	WHERE BdmRelationship IS NULL
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -874,15 +877,15 @@ BEGIN
         ,drvINS12_DateTimePeriod = ''--CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual1 = '1L'
-        ,drvREF02_RefNumberQual1 = CASE WHEN EecDedGroupCode IN ('MS','MV','NYEX','LY') THEN '100553'
+        ,drvREF02_RefNumberQual1 = CASE WHEN EecDedGroupCode IN ('MS','MV','NYEX','LY', 'NONU') THEN '100553'
                                         WHEN EecDedGroupCode IN ('MADE','MADSC') THEN '100320'
                                         WHEN EecDedGroupCode IN ('MADHR','MADCH') THEN '100321'
                                     END
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = 'DX'
         ,drvREF02_RefNumberQual2 = CASE WHEN EecDedGroupCode IN ('MS', 'MV') THEN 'A01'
-                                        WHEN EecDedGroupCode IN ('NYEX') AND PPoHasPPO = 'Y' THEN 'A02'
-                                        WHEN EecDedGroupCode IN ('NYEX') AND PPoHasPPO IS NULL THEN 'A03'
+                                        WHEN EecDedGroupCode IN ('NYEX', 'NONU') AND PPoHasPPO = 'Y' THEN 'A02'
+                                        WHEN EecDedGroupCode IN ('NYEX', 'NONU') AND PPoHasPPO IS NULL THEN 'A03'
                                         WHEN EecDedGroupCode = 'LY' THEN 'A06'
                                         WHEN EecDedGroupCode IN ('MADE','MADSC') AND EecOrgLvl4 = '101' then '01'
                                         WHEN EecDedGroupCode IN ('MADE','MADSC') AND EecOrgLvl4 = '000' then '02'
@@ -929,11 +932,11 @@ BEGIN
                                  WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN ConSSN
                             END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' THEN 'HP' END
+        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber <> '' THEN 'HP' END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' THEN 'WP' END
+        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EecPhoneBusinessNumber <> '' THEN 'WP' END
         ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
-        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' THEN 'EM' END
+        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepAddressEmail <> '' THEN 'EM' END
         ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
         ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
@@ -1053,7 +1056,8 @@ BEGIN
                                           WHEN BdmDedCode IN ('MSTD1') THEN 'ST2'
                                           WHEN BdmDedCode IN ('VISIO') THEN 'VIS'
                                           WHEN BdmDedCode IN ('DENTL','MDENT') THEN 'DEN'
-                                          WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'EXC'
+                                       --   WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'EXC'
+										  WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'FXM'
                                           WHEN BdmDedCode IN ('MDEPC') THEN 'FXD'
                                      END 
         ,drvHD04_PlanCoverageDesc = CASE WHEN EecDedGroupCode in ('MS', 'MV') AND BdmDedCode = 'DENTL' THEN '100553DEN1UNION'
@@ -1134,13 +1138,13 @@ BEGIN
         ,drvREF01_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         ,drvREF02_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'AMT' END
-        ,drvAMT01_AmountQualifierCode1 =  CASE WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'P3' END
-        ,drvAMT02_MonetaryAmount1 =  CASE WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN BdmUSGField1 END
+        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'AMT' END
+        ,drvAMT01_AmountQualifierCode1 = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'P3' END
+        ,drvAMT02_MonetaryAmount1 =  CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('MFSA','FSADE','FSA') THEN BdmUSGField1 END
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode2 = CASE WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'AMT' END
-        ,drvAMT01_AmountQualifierCode2 = CASE WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'B9' END
-        ,drvAMT02_MonetaryAmount2 = CASE WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN BdmEEAmt END
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'AMT' END
+        ,drvAMT01_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'B9' END
+        ,drvAMT02_MonetaryAmount2 = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('MFSA','FSADE','FSA') THEN BdmEEAmt END
         --=====================
         -- Loop 2700 RECORDS
         --=====================
