@@ -126,7 +126,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'E457TR401K_20211012.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'E457TR401K_20211021.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mission Square 457 Payroll Exp','202108189','EMPEXPORT','ONDEM_XOE',NULL,'E457TR401K',NULL,NULL,NULL,'202108189','Aug 18 2021  3:53PM','Aug 18 2021  3:53PM','202108181',NULL,'','','202108181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mission Square 457 Payro-Sched','202108189','EMPEXPORT','SCH_E457TR',NULL,'E457TR401K',NULL,NULL,NULL,'202108189','Aug 18 2021  3:53PM','Aug 18 2021  3:53PM','202108181',NULL,'','','202108181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -447,9 +447,13 @@ Revision History
 
 10/11/2021 by AP:
         - Set source code for contribution type to BLANK.    
-		
+        
 10/12/2021 by AP:
-		- Adjusted code to fix glitch with name -> loan -> name (1,2,1,2) format.   
+        - Adjusted code to fix glitch with name -> loan -> name (1,2,1,2) format.   
+
+10/21/2021 by AP:
+		- Fixed name problem in plan contrib record.
+		- Added new ded codes and added new ded code mapping to contrib amounts.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'E457TR401K';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'E457TR401K';
@@ -507,7 +511,7 @@ BEGIN
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
     SET @DedList = 'BEDA, BEDAC, BEDP, BEDPC, BEDPR, BDC1, BDC2, BDC3, BDC4, BDC5, BDC6, BDC7, BDC8, BDC9, BDC10, BDC11, BDC12, BDC13, BDC14, BDC15, BDC16,
-                        BDC17, BDC18, BDC19, BDC20, BDC21, BDC22, BDC23, BDC24, BDC25, BDC26, BDC27, BDC28, BDC29, BDC30';
+                        BDC17, BDC18, BDC19, BDC20, BDC21, BDC22, BDC23, BDC24, BDC25, BDC26, BDC27, BDC28, BDC29, BDC30, BERA, BERAC, BERAP, BERPC, BERPR';
 
     IF OBJECT_ID('U_E457TR401K_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_E457TR401K_DedList;
@@ -684,7 +688,7 @@ BEGIN
         ,drvRecSeq = '0001'
         ,drvFiller1 = ''
         ,drvPartSSN = EepSSN
-        ,drvPartName = EepNameLast + ', ' + EepNameFirst
+        ,drvPartName = LTRIM(RTRIM(EepNameLast)) + ', ' + LTRIM(RTRIM(EepNameFirst))
         ,drvFiller2 = ''
         ,drvFormatId = '3'
         ,drvInitialSort = RTRIM(LTRIM(EepSSN))
@@ -693,8 +697,12 @@ BEGIN
     FROM dbo.U_E457TR401K_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH(NOLOCK)
     ON EepEEID = xEEID
-    JOIN dbo.U_E457TR401K_PDedHist WITH(NOLOCK)
-    ON PdhEEID = xEEID AND PdhCOID = xCOID
+     JOIN (SELECT PdhEEID, PdhCOID
+                FROM dbo.U_E457TR401K_PDedHist WITH(NOLOCK)
+                WHERE PdhDedCode IN ('BERA', 'BERAC', 'BERAP', 'BERPC', 'BERPR', 'BEDA', 'BEDAC', 'BEDP', 'BEDPC', 'BEDPR')
+				--('BEDA', 'BEDAC', 'BEDP', 'BEDPC', 'BEDPR', 'BDC1', 'BDC2', 'BDC3', 'BDC4', 'BDC5', 'BDC6', 'BDC7', 'BDC8', 'BDC9', 'BDC10', 'BDC11', 'BDC12', 'BDC13', 'BDC14', 'BDC15', 'BDC16',
+                        --'BDC17', 'BDC18', 'BDC19', 'BDC20', 'BDC21', 'BDC22', 'BDC23', 'BDC24', 'BDC25', 'BDC26', 'BDC27', 'BDC28', 'BDC29', 'BDC30')
+                ) Pdh ON Pdh.PdhEEID = xEEID AND Pdh.PdhCOID = xCOID
     JOIN dbo.U_E457TR401K_PEarHist WITH(NOLOCK)
     ON PehEEID = xEEID AND PehCOID = xCOID
     ;
@@ -728,8 +736,9 @@ BEGIN
     ON EepEEID = xEEID
     JOIN (SELECT PdhEEID, PdhCOID, SUM(PdhSource1) PdhSource1
                 FROM dbo.U_E457TR401K_PDedHist WITH(NOLOCK)
-                WHERE PdhDedCode IN ('BEDA', 'BEDAC', 'BEDP', 'BEDPC', 'BEDPR', 'BDC1', 'BDC2', 'BDC3', 'BDC4', 'BDC5', 'BDC6', 'BDC7', 'BDC8', 'BDC9', 'BDC10', 'BDC11', 'BDC12', 'BDC13', 'BDC14', 'BDC15', 'BDC16',
-                        'BDC17', 'BDC18', 'BDC19', 'BDC20', 'BDC21', 'BDC22', 'BDC23', 'BDC24', 'BDC25', 'BDC26', 'BDC27', 'BDC28', 'BDC29', 'BDC30')
+                WHERE PdhDedCode IN ('BERA', 'BERAC', 'BERAP', 'BERPC', 'BERPR', 'BEDA', 'BEDAC', 'BEDP', 'BEDPC', 'BEDPR')
+				--('BEDA', 'BEDAC', 'BEDP', 'BEDPC', 'BEDPR', 'BDC1', 'BDC2', 'BDC3', 'BDC4', 'BDC5', 'BDC6', 'BDC7', 'BDC8', 'BDC9', 'BDC10', 'BDC11', 'BDC12', 'BDC13', 'BDC14', 'BDC15', 'BDC16',
+                        --'BDC17', 'BDC18', 'BDC19', 'BDC20', 'BDC21', 'BDC22', 'BDC23', 'BDC24', 'BDC25', 'BDC26', 'BDC27', 'BDC28', 'BDC29', 'BDC30')
                 GROUP BY PdhEEID, PdhCOID) Pdh ON Pdh.PdhEEID = xEEID AND Pdh.PdhCOID = xCOID
     --JOIN dbo.U_E457TR401K_PDedHist WITH(NOLOCK)
     --ON PdhEEID = xEEID AND PdhCOID = xCOID
