@@ -57,7 +57,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELMSCSVUT2_20211012.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELMSCSVUT2_20211022.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','XAH9W',NULL,NULL,NULL,'Torch LMS Export','201903139','EMPEXPORT','ONDEMAND',NULL,'ELMSCSVUT2',NULL,NULL,NULL,'201905029','Feb 12 2019  9:27AM','Feb 12 2019  9:27AM','201905011',NULL,'','','201903061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','XAH9W',NULL,NULL,NULL,'Scheduled Session','201903139','EMPEXPORT','SCHEDULED',NULL,'ELMSCSVUT2',NULL,NULL,NULL,'202108319','Feb 12 2019  9:27AM','Feb 12 2019  9:27AM','202108301',NULL,'','','201903061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -90,9 +90,9 @@ CREATE TABLE [dbo].[U_ELMSCSVUT2_drvTbl] (
     [drvOriginalHireDate] datetime NULL,
     [drvLastHireDate] datetime NULL,
     [drvStatus] varchar(1) NOT NULL,
-    [drvDivision] varchar(1) NOT NULL,
+    [drvDivision] char(10) NULL,
     [drvJobTitle] char(8) NULL,
-    [drvDepartment] varchar(1) NOT NULL,
+    [drvDepartment] char(10) NULL,
     [drvTerminationDate] datetime NULL
 );
 IF OBJECT_ID('U_ELMSCSVUT2_EEList') IS NULL
@@ -185,7 +185,7 @@ BEGIN
     ON EecEEID = xEEID
     AND EecCOID = xCOID
     WHERE EecEmplStatus = 'T'
-    AND EecDateOfTermination <= DATEADD(dd,-30,@EndDate)
+    AND EecDateOfTermination <= DATEADD(dd,-90,@EndDate)
 
 
     --==========================================
@@ -212,9 +212,9 @@ BEGIN
         ,drvOriginalHireDate = EEC.EecDateOfOriginalHire
         ,drvLastHireDate = EEC.EecDateOfLastHire
         ,drvStatus = CASE WHEN EEC.EecEmplStatus = 'A' THEN '1' ELSE '0' END
-        ,drvDivision = '' --O1.OrgDesc
+        ,drvDivision = O1.OrgCode
         ,drvJobTitle = EEC.EecJobCode
-        ,drvDepartment = '' --O2.OrgDesc
+        ,drvDepartment = O2.OrgCode
         ,drvTerminationDate = EEC.EecDateOfTermination
     /*
         -- standard fields above and additional driver fields below
@@ -282,6 +282,7 @@ BEGIN
         ON EEC.EecOrgLvl1 = O1.OrgCode
     LEFT JOIN dbo.OrgLevel O2 WITH (NOLOCK)
         ON EEC.EecOrgLvl2 = O2.OrgCode
+    
     ;
 
     --==========================================

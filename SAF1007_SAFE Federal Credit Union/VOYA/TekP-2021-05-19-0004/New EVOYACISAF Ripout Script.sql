@@ -3,6 +3,8 @@ IF OBJECT_ID('U_EVOYACISAF_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EVOYACISAF
 SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EVOYACISAF_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EVOYACISAF' AND CfgName LIKE '%Path';
 IF OBJECT_ID('dsi_vwEVOYACISAF_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEVOYACISAF_Export];
 GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EVOYACISAF_G10_BKP_2020_PROD') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVOYACISAF_G10_BKP_2020_PROD];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EVOYACISAF') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVOYACISAF];
 GO
 IF OBJECT_ID('U_EVOYACISAF_File') IS NOT NULL DROP TABLE [dbo].[U_EVOYACISAF_File];
@@ -109,13 +111,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOYACISAF_20210922.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EVOYACISAF_20211021.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'XXXa Active OE file','202107281','EMPEXPORT','ACTIVEOE','Jul 28 2021 12:00AM','EVOYACISAF',NULL,NULL,NULL,'202107281','Jul 28 2021 12:00AM','Dec 30 1899 12:00AM','202107281',NULL,'','','202107281',dbo.fn_GetTimedKey(),NULL,'us3rVaSAF1007',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'XXXa Accident/CI','202108249','EMPEXPORT','EVOYACISAF','Aug 24 2021  1:20PM','EVOYACISAF',NULL,NULL,NULL,'202108249','Aug 24 2021 12:00AM','Dec 30 1899 12:00AM','202003051','313','','','202003051',dbo.fn_GetTimedKey(),NULL,'us3rVaSAF1007',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'XXXa Passive OE file','202003199','EMPEXPORT','PASSIVEOE',NULL,'EVOYACISAF',NULL,NULL,NULL,'202003199',NULL,NULL,'202003051',NULL,NULL,NULL,'202003051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'XXXT Voya Accident/CI','202112319','EMPEXPORT','TEST','Sep 20 2021 10:50AM','EVOYACISAF',NULL,NULL,NULL,'202112319','Aug 31 2021 12:00AM','Dec 30 1899 12:00AM','202101011','334','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaSAF1007',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','XILGW',NULL,NULL,NULL,'XXXA PROD WKLY TUE 5.3 am EST','202005319','EMPEXPORT','VOYACISAF',NULL,'EVOYACISAF',NULL,NULL,NULL,'202107269',NULL,NULL,'202107121',NULL,'','','202005171',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'XXXT Voya Accident/CI','202110059','EMPEXPORT','TEST','Oct  6 2021 12:57PM','EVOYACISAF',NULL,NULL,NULL,'202110059','Oct  5 2021 12:00AM','Dec 30 1899 12:00AM','202109211','314','','','202109211',dbo.fn_GetTimedKey(),NULL,'us3rVaSAF1007',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','XILGW',NULL,NULL,NULL,'XXXA PROD WKLY TUE 5.3 am EST','202005319','EMPEXPORT','VOYACISAF',NULL,'EVOYACISAF',NULL,NULL,NULL,'202110189',NULL,NULL,'202110041',NULL,'','','202005171',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYACISAF','CountFilter','C',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYACISAF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYACISAF','ExportDescription','C','Voya - Accident & Critical Illness');
@@ -284,6 +286,8 @@ MM/DD/YYYY        INITIALS    NAME HERE            SF 09999999                  
                                                 TekP-2021-05-19-0004
 
 _dsi_usp_ExportRipout 'EVOYACISAF','Y' 
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EVOYACISAF', @AllObjects = 'Y', @IsWeb = 'Y'
 
 select * from dbo.U_dsi_Configuration where FormatCode = 'EVOYACISAF' ORDER BY LEN(CfgName) DESC
 select * from dbo.U_dsi_SQLClauses where FormatCode = 'EVOYACISAF'
@@ -574,6 +578,7 @@ if object_id('U_dsi_EVOYACISAF_drvTbl') is not null
             AND EedValidForExport = 'Y' 
             and eeddedcode in ('PACCI','CIIEE') --only send DEP record for SP and CH 'CI' --,'CIISP','CIICH') 
             AND EedCOID = xCOID AND EedEEID = xEEID 
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
 
    --left join (select eedeeid eeid, eedcoid coid, SUM(eedbenamt) benamt
    --             from U_dsi_bdm_EmpDeductions
@@ -719,6 +724,7 @@ from dbo.U_EVOYACISAF_DepList
         and BcaDepRecID is NULL    
     left join U_dsi_EVOYACISAF_drvTbl on drvEEID = DbnEEID and drvdedcode = DbnDedCode
     where DbnFormatCode = @FormatCode and DbnValidForExport = 'Y'
+        AND EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
 
 -- Set FileName 
 /* 
@@ -754,6 +760,432 @@ UPDATE dbo.AscExp
        ,expEndPerControl       = '202107199'
 WHERE expFormatCode = 'EVOYACISAF' and expExportCode = 'TEST';
 */
+END
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVOYACISAF]
+ @systemid varchar(12) = ''
+AS
+Begin
+
+/**********************************************************************
+Client Name: SAFE Federal Credit Union
+Vendor: Voya Accident & Critical illness File (CSV)
+Created By: Tony DiMaio
+Business Analyst: Bettye Haynes
+Create Date: 01/17/2020
+Service Request Number: SF 00258977
+
+Changes:
+MM/DD/YYYY    NAME HERE     SF 09999999              Comments Here
+
+_dsi_usp_ExportRipout 'EVOYACISAF','Y' 
+
+select * from dbo.U_dsi_Configuration where FormatCode = 'EVOYACISAF' ORDER BY LEN(CfgName) DESC
+select * from dbo.U_dsi_SQLClauses where FormatCode = 'EVOYACISAF'
+select * from dbo.U_dsi_Parameters where FormatCode = 'EVOYACISAF'
+
+select * from AscDefH where AdhFormatCode = 'EVOYACISAF'
+select * from AscExp where expFormatCode = 'EVOYACISAF'
+select * from ascdeff where AdfHeaderSystemID = 'EVOYACISAFZ0' order by adfrectype, AdfSetNumber, AdfFieldNumber 
+
+DSI_SP_TESTSWITCHBOX_V2 'EVOYACISAF', 'EVOYACISAF'
+DSI_SP_TESTSWITCHBOX_V2 'EVOYACISAF', 'TEST'
+
+To turn off/on TESTEDT header record: 
+Update U_Dsi_Configuration set CfgValue = 'N' WHERE FormatCode = 'EVOYACISAF' AND CfgName = 'TESTING'
+
+**************************/
+
+
+-- Collect the @Start and @End Percontrol/PayDates upfront
+
+    /***************************
+    COLLECT DATE PARAMETERS
+    ****************************/
+    DECLARE 
+        @StartDate DATETIME,
+        @EndDate DATETIME,
+        @StartPerControl Char(9),
+        @EndPerControl Char(9),
+        @FormatCode Char(10),
+        @ExportCode Char(10),
+        @ExportFile char(200),
+        @PlanDate DATETIME;
+
+    --    Declare @Systemid char(12) 
+    --    set @Systemid = '6DWPQL0000K0'
+
+    SELECT 
+        @StartDate = CONVERT(DATETIME, LEFT(StartPerControl, 8) ),
+        @EndDate = CONVERT(DATETIME, LEFT(EndPerControl , 8)  ),
+        @StartPerControl = startpercontrol,
+        @EndPerControl  = endpercontrol,
+        @FormatCode = rtrim(formatcode),
+        @ExportCode = Exportcode,
+        @Exportfile = ExportFile,
+        @PlanDate = '20180101'
+
+    FROM dbo.U_Dsi_Parameters 
+    WHERE SystemID = @SystemID;
+
+-- dedcodes
+
+declare @DedList varchar(200); 
+select @DedList = 'x';    --no longer used
+
+-- change variables below as needed
+declare @daysstopped int;   
+declare @useaudit char(1);
+declare @includeoe char(1);
+
+declare @showalldeds char(1);
+declare @allcomp char(1);
+declare @onerecperemp char(1);
+declare @showstoppedoe  char(1);
+declare @oetype char(1);
+set @daysstopped = 14;    -- set number of days if looking for only showing deds stopped within certain days
+set @useaudit = 'Y';    -- Y or N  indicates if this export uses audit to determine data to pull
+set @includeoe = 'N';   -- Y or N  indicates if this export will include open enrollment
+set @showalldeds = 'N'; -- Y or N  indicates if this export shows stopped and active ded of same type
+set @allcomp = 'Y';     -- Y or N  indicates if this export pull deds for all companies for an employee
+set @onerecperemp = 'Y';  -- Y or N indicate if the export should show only one record per employee
+set @showstoppedoe = 'N'; -- Y or N  indicates if stopped open enrollment deductions should be shown
+set @oetype = 'F';        -- P or F indicates if this export is for a passive or full(active) oe
+
+-- clean up EELIST if needed
+
+-- clean up list if not using all companies
+if @allcomp = 'N'
+begin
+            delete dbo.u_EVOYACISAF_EELIST
+            from dbo.u_EVOYACISAF_EELIST
+            join empcomp t with (nolock) on xeeid = eeceeid and xcoid = eeccoid
+            where t.eecemplstatus = 'T'
+            and exists(select 1 from empcomp a where a.eeceeid = t.eeceeid
+                and a.eecemplstatus <> 'T');
+
+end;
+
+--BDM
+-- replace OE with the OE session if applicable
+
+DELETE FROM U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode;
+
+INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes','PACCI,CIIEE,CIISP,CIICH')    
+IF @ExportCode not in ('ACTIVEOE','PASSIVEOE') BEGIN
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'StartDateTime',@EndDate - @daysstopped);    --@EndDate - @daysstopped)
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'EndDateTime',@EndDate);
+END;
+IF @ExportCode in ('ACTIVEOE','PASSIVEOE') BEGIN
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'StartDateTime',@StartDate);
+    INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'EndDateTime',@EndDate);
+END;
+
+INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOption','AuditDate');        -- 'stopdate');    --'ActiveOnly')    --'stopdate')
+
+INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'GetChangeReason','Y');
+
+
+IF @ExportCode = 'PASSIVEOE' BEGIN
+   INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'Passive');
+END;
+IF @ExportCode = 'ACTIVEOE' BEGIN
+   INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'Active');
+END;
+
+EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
+
+EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
+
+-- Step20 Clean up eelist if needed to only include employees with deductions
+            delete dbo.u_EVOYACISAF_eelist
+            from dbo.u_EVOYACISAF_eelist a
+            where not exists(select 1 from U_dsi_bdm_EmpDeductions
+                            where a.xeeid = eedeeid
+                            and a.xcoid = eedcoid
+                            and eedformatcode = @formatcode
+                            and eedvalidforexport = 'Y');
+
+-- Clean up eelist if only one record per employee
+if @onerecperemp = 'Y'
+begin
+            delete dbo.u_EVOYACISAF_EELIST
+            from dbo.u_EVOYACISAF_EELIST
+            join empcomp t with (nolock) on xeeid = eeceeid and xcoid = eeccoid
+            where t.eecemplstatus = 'T'
+            and exists(select 1 from empcomp a where a.eeceeid = t.eeceeid
+                and a.eecemplstatus <> 'T');
+
+            delete dbo.u_EVOYACISAF_eelist
+            from dbo.u_EVOYACISAF_eelist a
+            join emppers with (nolock) on xeeid = eepeeid
+            where eephomecoid <> xcoid
+            and exists(select 1 from dbo.u_EVOYACISAF_eelist b where a.xeeid = b.xeeid
+            having count(*) > 1);
+end;
+
+update U_dsi_bdm_EmpDeductions
+set EedBenAmt = bcabenamt
+from U_dsi_bdm_EmpDeductions
+join U_dsi_bdm_BenCalculationAmounts on EedEEID = bcaeeid and EedCoID = bcacoid
+and EedDedCode = bcadedcode and EedFormatCode = bcaformatcode
+and BcaDepRecID is null
+where EedFormatCode = @FormatCode and EedValidForExport = 'Y';
+
+-- Populate Source for Employees
+
+if object_id('U_dsi_EVOYACISAF_drvTbl') is not null
+  drop table dbo.U_dsi_EVOYACISAF_drvTbl;
+
+-- EE Detail
+
+  select distinct
+     drvEEID = xEEID
+    ,drvCoID = xCoID
+    ,drvdepid = cast(null as varchar)
+    ,drvrectype = 'E'
+    ,drvdedcode = EedDedCode
+-- standard fields above and additional driver fields below
+    ,drvGBPID = '00681059'
+    ,drvACCT = '0001'
+    ,drvEEIDempNo = EecEmpNo
+    ,drvREL = 'EE'
+    ,drvSSN = EepSSN
+    ,drvLASTNM = EepNameLast
+    ,drvFIRSTNM = EepNameFirst
+    ,drvMIDDLE = EepNameMiddle
+    ,drvNMSUFFIX = NULLIF(EepNameSuffix,'Z')
+    ,drvADD1 = replace(EepAddressLine1,',','')
+    ,drvADD2 = replace(EepAddressLine2,',','')
+    ,drvCITY = replace(EepAddressCity,',','')
+    ,drvST = EepAddressState
+    ,drvZIP = EepAddressZipCode
+    ,drvDOB = replace(convert(varchar(10),EepDateOfBirth,101),'/','')
+    ,drvGENDER = EepGender
+    ,drvPHONE = eepPhoneHomeNumber
+    ,drvEEST = case when EecEmplStatus = 'T' then 'T' else 'A' end 
+    ,drvEEDOH = replace(convert(varchar(10),EecDateOfLastHire,101),'/','')
+    ,drvETD = case when EecEmplStatus = 'T' then replace(convert(varchar(10),EecDateOfTermination,101),'/','') end 
+    ,drvEERHD = case when EecDateOfOriginalHire <> EecDateOfLastHire  then replace(convert(varchar(10),EecDateOfLastHire,101),'/','') end
+    ,drvTKVR = 'N'
+    ,drvEEJT = '' --Leave Blank 
+    ,drvWRKL = isnull(eecOrgLvl2,eecOrgLvl3) --UD Spec: send org3 when org2 is null
+    ,drvCHGSSN = ''    
+    ,drvPLTP = Case When eeddedcode='PACCI' then 'AC' else 'CI' end
+    ,drvBFCLS =  ''--Leave Blank
+    --,drvVOYAED = Case when EedBenStartDate < @PlanDate then @PlanDate else replace(convert(varchar(10),EedBenStartDate,101),'/','') end 
+    ,drvVOYAED = replace(convert(varchar(10),Case when EedBenStartDate < @PlanDate then @PlanDate else EedBenStartDate end,101),'/','') 
+    ,drvERPD = ''
+    ,drvEEPD =     --Field 30 = coverage amount (hard coded per structure document):
+                 cast(case 
+                            when EedDedCode = 'CIICH' and eedBenOption = '1K' then '1000.00'
+                            when EedDedCode = 'CIICH' and eedBenOption = '2K5' then '2500.00'
+                            when EedDedCode = 'CIICH' and eedBenOption = '5K' then '5000.00'
+                            when EedDedCode = 'CIICH' and eedBenOption = '10K' then '10000.00'
+                            when EedDedCode = 'PACCI' then NULL --leave blank (not 0.00) for Accident records
+                      else case when eedBenAmt > 0 then eedBenAmt else DedEEBenAmt end
+                      end as varchar)
+    ,drvBTD = case when eedbenStatus ='T' and isnull(eedbenstopdate,'') <> '' then replace(convert(varchar(10),EOMONTH(EedBenStopDate),101),'/','')  end
+    ,drvOCED = ''
+    ,drvTIER =  case when EedDedCode IN ('PACCI') and eedBenOption in ('EE') then 'EMP'
+                     when EedDedCode IN ('PACCI') and eedBenOption in ('EEC') then 'ECH'
+                     when EedDedCode IN ('PACCI') and eedBenOption in ('EES') then 'ESP'
+                     when EedDedCode IN ('PACCI') and eedBenOption in ('EEF') then 'FAM'
+                     when EedDedCode IN ('CIISP') then 'ESP'
+                     when EedDedCode IN ('CIICH') then 'ECH'       
+                     when EedDedCode IN ('CIIEE') then 'EMP'       
+                 else '' end
+    ,drvSINFO = case eecpayperiod
+                     when 'W' then '52'
+                     when 'S' then '24'
+                     when 'B' then '26'
+                     when 'M' then '12'
+                end
+    ,drvTOB = case  when eedDedCode = 'CIIEE' and eepIsSmoker = 'Y' then 'Y'
+                    when eedDedCode = 'CIIEE' and eepIsSmoker = 'N' then 'N'
+              else 'N/A' end 
+    ,drvDisInd = '' 
+    ,drvCountry = 'United States'
+
+  into dbo.U_dsi_EVOYACISAF_drvTbl
+  from dbo.u_EVOYACISAF_eelist with (nolock)
+    join empPers with (nolock) on xEEID = eepEEID
+    join empcomp with (nolock) on xEEID = eecEEid and xCOID = eecCOID
+    join JobCode with (nolock) on JbcJobCode = EecJobCode
+    JOIN dbo.U_dsi_bdm_EmpDeductions ON EedFormatCode = @FormatCode
+            AND EedValidForExport = 'Y' and eeddedcode in ('PACCI','CIIEE') --only send DEP record for SP and CH 'CI' --,'CIISP','CIICH') 
+            AND EedCOID = xCOID AND EedEEID = xEEID 
+
+   --left join (select eedeeid eeid, eedcoid coid, SUM(eedbenamt) benamt
+   --             from U_dsi_bdm_EmpDeductions
+   --             where EedFormatCode = @FormatCode
+   --                 AND EedValidForExport = 'Y' 
+   --                 and EedDedCode in ('PACCI')
+            --     group by EedEEID, EedCoID) acamt on acamt.eeid = xEEID and acamt.coid = xCOID
+   -- left join (select eedeeid eeid, eedcoid coid, SUM(eedbenamt) benamt
+   --             from U_dsi_bdm_EmpDeductions
+   --             where EedFormatCode = @FormatCode
+   --                 AND EedValidForExport = 'Y' 
+   --                 and EedDedCode in ('CIIEE')
+   --             group by EedEEID, EedCoID) eeamt on eeamt.eeid = xEEID and eeamt.coid = xCOID
+   -- left join (select eedeeid eeid, eedcoid coid, SUM(eedbenamt) benamt
+   --             from U_dsi_bdm_EmpDeductions
+   --             where EedFormatCode = @FormatCode
+   --                 AND EedValidForExport = 'Y' 
+   --                 and EedDedCode in ('CIISP')
+   --             group by EedEEID, EedCoID) spamt on spamt.eeid = xEEID and spamt.coid = xCOID
+   -- left join (select eedeeid eeid, eedcoid coid, SUM(eedbenamt) benamt
+   --             from U_dsi_bdm_EmpDeductions
+   --             where EedFormatCode = @FormatCode
+   --                 AND EedValidForExport = 'Y' 
+   --                 and EedDedCode in ('CIISP')
+   --             group by EedEEID, EedCoID) chamt on chamt.eeid = xEEID and chamt.coid = xCOID
+
+
+
+-- Dependents
+
+--deps with extra active benefits that the emp doens't have
+update dbo.U_dsi_bdm_DepDeductions  
+set dbnvalidforexport = 'N'
+from dbo.U_dsi_bdm_DepDeductions D
+join contacts on consystemid = dbndeprecid
+join emppers on eepeeid = dbneeid
+join dbo.u_EVOYACISAF_EELIST on xeeid = dbneeid
+where dbnformatcode = @FormatCode
+AND dbnvalidforexport = 'y'
+and not exists (select 1 from dbo.U_dsi_bdm_EmpDeductions 
+                where eedformatcode = @FormatCode
+                and eedvalidforexport = 'y'
+                and eedeeid = dbneeid
+                and eeddedcode = dbndedcode);
+
+-- Build Dependent List
+if object_id('dbo.U_EVOYACISAF_DepList') is not null
+  drop table dbo.U_EVOYACISAF_DepList;
+
+select distinct dbneeid deeid, dbndeprecid ddepid
+into dbo.U_EVOYACISAF_DepList 
+from U_dsi_bdm_DepDeductions with (nolock)
+where DbnFormatCode = @FormatCode
+and dbnvalidforexport = 'Y';
+
+
+-- Build Dependent List
+
+insert into dbo.U_dsi_EVOYACISAF_drvTbl 
+  select distinct 
+    drvEEID = deeid 
+    ,drvcoid = ''
+    ,drvdepid = cast(null as varchar)
+    ,drvrectype = 'D'
+    ,drvdedcode = dbndedcode
+-- standard fields above and additional driver fields below
+    ,drvGBPID = '00681059'
+    ,drvACCT = '0001'
+    ,drvEEIDempNo = EecEmpNo
+    ,drvREL = case    when ConRelationShip in ('SPS','DP') then 'SP'
+                    when ConRelationShip in ('CHL','DPC','STC','DCH') then 'CH'
+              else '' end
+    ,drvSSN = Case when LEFT(ConSSN,5) not in ('00000','99999') then ConSSN else '' end
+    ,drvLASTNM = dbo.dsi_fnRemoveChars(',',ConNameLast)
+    ,drvFIRSTNM = dbo.dsi_fnRemoveChars(',',ConNameFirst)
+    ,drvMIDDLE = dbo.dsi_fnRemoveChars(',',ConNameMiddle)
+    ,drvNMSUFFIX = case when ConNameSuffix = 'Z' then '' else dbo.dsi_fnRemoveChars(',',ConNameSuffix) end
+    ,drvADD1 = dbo.dsi_fnRemoveChars(',',isnull(ConAddressLine1,EepAddressLine1))
+    ,drvADD2 = dbo.dsi_fnRemoveChars(',',isnull(ConAddressLine2,EepAddressLine2))
+    ,drvCITY = dbo.dsi_fnRemoveChars(',',isnull(ConAddressCity,EepAddressCity))
+    ,drvST = dbo.dsi_fnRemoveChars(',',isnull(ConAddressState,EepAddressState))
+    ,drvZIP = isnull(ConAddressZipCode,EepAddressZipCode)
+    ,drvDOB = replace(convert(varchar(10),ConDateOfBirth,101),'/','')
+    ,drvGENDER = ConGender
+    ,drvPHONE = ConPhoneHomeNumber
+    ,drvEEST = ''
+    ,drvEEDOH = ''
+    ,drvETD = ''
+    ,drvEERHD = ''
+    ,drvTKVR = 'N'
+    ,drvEEJT = ''
+    ,drvWRKL = ''
+    ,drvCHGSSN = ''    
+    ,drvPLTP = Case When dbndedcode='PACCI' then 'AC' else 'CI' end
+    ,drvBFCLS =  ''--Leave Blank
+    ,drvVOYAED = replace(convert(varchar(10),Case when DbnBenStartDate < @PlanDate then @PlanDate else DbnBenStartDate end,101),'/','') 
+    ,drvERPD = ''
+    ,drvEEPD =     --Field 30 = coverage amount (hard coded per structure document):
+                 cast(case 
+                            when DbnDedCode = 'CIICH' and DbnBenOption = '1K' then '1000.00'
+                            when DbnDedCode = 'CIICH' and DbnBenOption = '2K5' then '2500.00'
+                            when DbnDedCode = 'CIICH' and DbnBenOption = '5K' then '5000.00'
+                            when DbnDedCode = 'CIICH' and DbnBenOption = '10K' then '10000.00'
+                            when DbnDedCode = 'CIISP' then case when spci.benamt > 0 then spci.benamt else DedEEBenAmt end
+                            when DbnDedCode = 'PACCI' then NULL --leave blank (not 0.00) for Accident records
+                 end as varchar)
+
+    ,drvBTD =   replace(convert(varchar(10),DbnBenStopDate,101),'/','') 
+    ,drvOCED = ''
+    ,drvTIER =  case when DbnDedCode IN ('CRTCH','CRTSP') then '' --Leave blank for CRTEE, CRTCH & CRTSP
+                          when DbnBenOption in ('EE') then 'EMP' 
+                          when DbnBenOption in ('EEC') then 'ECH' 
+                          when DbnBenOption in ('EES') then 'ESP'
+                          when DbnBenOption in ('EEF') then 'FAM'
+                     else '' end
+    ,drvSINFO = ''
+    --,drvTOB = CONVERT(VARCHAR,case when ConIsSmoker = 'Y' then 'Y' else 'N' end)
+    ,drvTOB = case  when DbnDedCode = 'CIISP' and conIsSmoker = 'Y' then 'Y' --UD Spec: only for spouse CIISP
+                    when DbnDedCode = 'CIISP' and conIsSmoker = 'N' then 'N'
+              else 'N/A' end 
+
+    ,drvDisInd = case when conisdisabled = 'Y' then --'Disabled' (only if dep is 26 or older):
+                      case when (datediff(yy,eepdateofbirth,getdate()) - case when 100 * month(getdate()) < 100 * month(eepdateofbirth) then 1 else 0 end) >=26 then 'Disabled'
+                      else '' end
+                 else '' end
+    ,drvCountry = 'United States'
+
+from dbo.U_EVOYACISAF_DepList
+    join emppers on deeid = eepeeid
+    join empcomp on deeid = eeceeid
+    join contacts on coneeid = deeid and consystemid = ddepid and conrelationship in ('SPS','DP','CHL','DPC','STC','DCH') --TD 4/21/20 only send spouse and child relationship dependents 
+    join dbo.U_dsi_bdm_DepDeductions on DbnFormatCode = @FormatCode
+        and DbnValidForExport = 'Y' and dbndedcode in ('PACCI','CIISP','CIICH') 
+        and DbnEEID = deeid and DbnDepRecID = ddepid
+    left join (select eedeeid eeid, eedcoid coid, eedbenamt benamt
+                from U_dsi_bdm_EmpDeductions
+                where EedFormatCode = @FormatCode
+                    AND EedValidForExport = 'Y' 
+                    and EedDedCode in ('CIISP') ) spci on spci.eeid = deeid
+
+    left  join U_dsi_bdm_BenCalculationAmounts on DbnEEID = bcaeeid and DbnCoID = bcacoid
+        and DbnDedCode = bcadedcode and DbnFormatCode = bcaformatcode
+        and BcaDepRecID is NULL    
+    left join U_dsi_EVOYACISAF_drvTbl on drvEEID = DbnEEID and drvdedcode = DbnDedCode
+    where DbnFormatCode = @FormatCode and DbnValidForExport = 'Y'
+
+-- Set FileName  
+--if (dbo.dsi_fnVariable('EVOYACISAF','UseFileName') = 'N')
+--  update dbo.U_dsi_Parameters
+--    set ExportFile =  'ISCO_VOYA_AccidentCI' + convert(char(8),getdate(),112) + '.csv'
+--    where FormatCode = 'EVOYACISAF';
+
+-- Remember to alter view for correct sorting
+/*
+ ALTER  View dbo.dsi_vwEVOYACISAF_Export as
+        select top 2000000 rtrim(Data) as Data
+        from dbo.U_EVOYACISAF_File with (nolock)
+         order by case when substring(Recordset,1,1) = 'H' then 1 
+                       when substring(Recordset,1,1) = 'D' then 2 else 3 end,
+            initialsort, subsort, substring(Recordset,2,2)
+
+select expformatcode, expexportcode, expstartpercontrol, expendpercontrol, *
+from ascexp where expformatcode = 'EVOYACISAF'
+*/
+
+--Used for testing
+--dbo.dsi_sp_testswitchbox_v2 'EVOYACISAF','EVOYACISAF'
+--dbo.dsi_sp_testswitchbox_v2 'EVOYACISAF','ACTIVEOE'
+--dbo.dsi_sp_testswitchbox_v2 'EVOYACISAF','PASSIVEOE'
+--dbo.dsi_sp_testswitchbox_v2 'EVOYACISAF','TEST'
+
 END
 GO
 CREATE  View dbo.dsi_vwEVOYACISAF_Export as

@@ -2,7 +2,7 @@
 
 Project details
 
-Date/time:     2021-10-04 09:25:21.290
+Date/time:     2021-10-13 11:23:40.077
 Client ID:     GLE1002
 FormatCode:    EHARTFDID2
 Project:       Hartford Export V2
@@ -983,7 +983,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EHARTFDID2_20211004.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EHARTFDID2_20211013.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -994,7 +994,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102259','EMPEXPORT','OEPASSIVE','Jul 22 2021 12:41PM','EHARTFDID2',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102251','1068','','NEHRLY,NESAL,GGSENP,GGH,GGHNP,GGM,GGSNP,GGSE,GGS,GGSOE,GGSON,GGSECA,GMSH,GMSS,HOPEH,HOPES,N51,OBH,OBG,NYE,NYD,OBE,OBA,OBF,OBB,MSH,MBADMN,MBPROD,NRTHFH,NRTHFS,OBS,OBS2,RECRT,PBADMN,PBPROD,PBPRNY,PWPROD,OBD,SIERRA,SPRLT,COAST,COASTC,CORP,CPS','202102251',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',5WU8J',NULL,NULL,NULL,'The Hartford Disability Leave','202102259','EMPEXPORT','ONDEM_XOE','Jul 22 2021 12:43PM','EHARTFDID2',NULL,NULL,NULL,'202102259','Feb 25 2021 12:00AM','Dec 30 1899 12:00AM','202102251','1111','eecPayGroup','GGH,GGM,GGSE,GGS','202102251',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','5WU8J',NULL,NULL,NULL,'Scheduled Session','202107169','EMPEXPORT','SCHHARTIDM','Jul 22 2021 12:44PM','EHARTFDID2',NULL,NULL,NULL,'202107169','Jul 16 2021 12:00AM','Dec 30 1899 12:00AM','202107091','1109','eecPaygroup','GGH,GGM,GGSE,GGS,GGSOE,GGSON','202107091',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',5WU8J',NULL,NULL,NULL,'Test Purposes Only','202109309','EMPEXPORT','TEST_XOE','Oct  4 2021  9:21AM','EHARTFDID2',NULL,NULL,NULL,'202109309','Sep 30 2021 12:00AM','Dec 30 1899 12:00AM','202109161','1469','','','202109161',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',5WU8J',NULL,NULL,NULL,'Test Purposes Only','202110079','EMPEXPORT','TEST_XOE','Oct 13 2021  9:44AM','EHARTFDID2',NULL,NULL,NULL,'202110079','Oct  7 2021 12:00AM','Dec 30 1899 12:00AM','202109231','1468','','','202109231',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
 
 -----------
 -- AscImp inserts
@@ -1010,7 +1010,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','OverrideCount','V','1469');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','OverrideCount','V','1468');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','Testing','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHARTFDID2','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EHARTFDID2' AND CfgName IN ('ExportPath', 'TestPath') AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
@@ -1174,7 +1174,7 @@ CREATE TABLE [dbo].[U_EHARTFDID2_drvTbl] (
     [drvEmploymentType] char(1) NULL,
     [drvExemptNonExempt] varchar(1) NOT NULL,
     [drvScheduledHoursPerWeek] varchar(24) NULL,
-    [drvBenefitSalaryAmount] varchar(20) NULL,
+    [drvBenefitSalaryAmount] nvarchar(4000) NULL,
     [drvSalaryEffectiveDate] datetime NULL,
     [drvPayrollBasis] varchar(1) NULL,
     [drvPayGradeLevel] char(3) NULL,
@@ -1204,7 +1204,7 @@ CREATE TABLE [dbo].[U_EHARTFDID2_drvTbl] (
     [drvSTDCoveragePlanOption] varchar(5) NOT NULL,
     [drvNSTPlanSummary] varchar(3) NOT NULL,
     [drvNSTEmployeeGroupID] varchar(2) NULL,
-    [drvNSTEmployeeClass] varchar(1) NOT NULL,
+    [drvNSTEmployeeClass] varchar(1) NULL,
     [drvSTACoverageEffectiveDate] datetime NULL,
     [drvSTACoverageTerminationDate] datetime NULL,
     [drvSTAStatCvgPlanOption] varchar(255) NULL,
@@ -1908,7 +1908,8 @@ BEGIN
                                          WHEN E.eecPayPeriod = 'B' THEN dbo.dsi_fnPadZero(E.EecScheduledWorkHrs * 0.5 * 100,4,0)
                                          WHEN E.eecPayPeriod = 'S' THEN dbo.dsi_fnPadZero(E.EecScheduledWorkHrs * 0.75 * 100,4,0)
                                          WHEN E.eecPayPeriod = 'M' THEN dbo.dsi_fnPadZero((E.EecScheduledWorkHrs *12.00)/52.00 * 100,4,0) END
-        ,drvBenefitSalaryAmount = CAST(CAST(CEILING(CONVERT(NUMERIC(12,2), E.EecAnnSalary +  ISNULL(pehCurAmt_COMM,0.00)) / 1000) * 1000  AS INT) AS VARCHAR(20))
+        ,drvBenefitSalaryAmount = FORMAT(CEILING(CONVERT(NUMERIC(12,2), E.EecAnnSalary +  ISNULL(pehCurAmt_COMM,0.00)) / 1000) * 1000, '000000000')
+                                    --CAST(CAST(CEILING(CONVERT(NUMERIC(12,2), E.EecAnnSalary +  ISNULL(pehCurAmt_COMM,0.00)) / 1000) * 1000  AS INT) AS VARCHAR(20))
                                     --CASE  WHEN bdmDepRecID IS NOT NULL THEN ''  ELSE dbo.dsi_fnPadZero(E.EecAnnSalary * 100,9,0) END
         ,drvSalaryEffectiveDate = CASE WHEN bdmDepRecID IS NOT NULL THEN NULL ELSE dbo.dsi_fnlib_GetAnnSalary_EffDate(xEEID,xCOID,E.EecDateOfLastHire) END
         ,drvPayrollBasis = CASE  WHEN bdmDepRecID IS NOT NULL THEN '' ELSE E.EecSalaryOrHourly  END
@@ -1944,17 +1945,21 @@ BEGIN
         --START - Section Code= "~NST~" (STD Plans)
         -- EVeryone except dependents
 
-        ,drvNSTCoverageEffectiveDate =    CASE --WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
-                                            WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
+        ,drvNSTCoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            WHEN bdmDepRecID IS NOT NULL AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) 
+                                            OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) --'8/1/2021'
                                             WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
                                         END
-        -- JCB
-                -- if emlpy stats =t and date of term < effective date
-        ,drvNSTCoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
-                                                WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
-                                                WHEN E.EecDateOFTermination is NULL THEN NULL 
-                                                WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
-                                            END
+                        -- if emlpy stats =t and date of term < effective date
+        ,drvNSTCoverageTerminationDate =  CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            /*WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) --'8/1/2021'
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND E.EecPayGroup = 'GGSOE' THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN E.EecEmplStatus = 'T' THEN E.EecDateOFTermination*/
+                                            WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',E.EecDateOFTermination, dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) )
+                                            ELSE NULL                                         
+                                        END    
+                                            
         ,drvSTDCoveragePlanOption =  CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510','520') THEN '430'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 NOT IN ('510','520') THEN '66.67'
@@ -1964,10 +1969,11 @@ BEGIN
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510','520') THEN '1A3'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 NOT IN ('510','520') THEN '1A1'
                                   ELSE '1A2' 
-                                   END  -- MAX(CASE WHEN DedDedType = 'STD' THEN '' --INSERT CASE STATEMENT HERE
-                             --END)
-        ,drvNSTEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN  -- JCB
-                                        CASE WHEN E.EecPayGroup = 'GGH' THEN
+                             END  
+        ,drvNSTEmployeeGroupID =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                        --WHEN bdmDepRecID IS NOT NULL AND E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '31'    
+                                        --WHEN bdmDepRecID IS NOT NULL AND E.EecPayGroup = 'GGSOE' THEN '31'
+                                         WHEN /*bdmDepRecID IS NOT NULL AND*/ E.EecPayGroup = 'GGH' THEN
                                             CASE WHEN E.EecOrgLvl3 ='520' THEN '17'
                                                 WHEN E.EecOrgLvl3 ='432' THEN '19'
                                                 WHEN E.EecOrgLvl3 ='610' THEN '20'
@@ -1981,87 +1987,96 @@ BEGIN
                                                 WHEN E.EecOrgLvl3 ='510' THEN '27'
                                                 WHEN E.EecOrgLvl3 ='410' THEN '26'                                                
                                             END
-                                        WHEN E.EecPayGroup = 'GGSOE' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '31'
-                                        WHEN E.EecPayGroup = 'GGSOE' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
-                                        WHEN E.EecPayGroup = 'GGSON' THEN '31'
+                                        WHEN /*bdmDepRecID IS NOT NULL AND*/ E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '31'    
+                                        WHEN /*bdmDepRecID IS NOT NULL AND*/ E.EecPayGroup = 'GGSOE' THEN '31'
                                         ELSE '2'
-                                        END
                                     END
         
-                                --CASE WHEN bdmDepRecID IS NOT NULL THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN '2' END 
-        ,drvNSTEmployeeClass = CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' 
+                                 
+        ,drvNSTEmployeeClass = CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510','520') THEN '3'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 NOT IN ('510','520') THEN '1'
                                   ELSE '2' 
-                                   END
+                               END
         -- check
-        ,drvSTACoverageEffectiveDate =     CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
-                                            WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
-                                            --WHEN bdmDepRecID IS NULL AND LocAddressState = 'NY' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '3C1'
+        ,drvSTACoverageEffectiveDate =     CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY','NJ') AND E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY','NJ') AND E.EecPayGroup = 'GGSOE' THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY','NJ') AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND E.EecEEType NOT IN ('TMP', 'INT') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
                                         END 
+
+                                        --WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY','NJ') AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) 
+                                            --OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+
                                         /* CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL
                                             WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY','NJ') AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN 
                                                 dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
                                         END*/
-        ,drvSTACoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
-                                                WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
+        ,drvSTACoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
+                                                WHEN E.EecEmplStatus = 'T' AND LocAddressState IN ('NY','NJ') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
                                             END
+
                                             /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL
                                                 WHEN E.EecDateOFTermination is NULL THEN NULL                                                 
                                                 WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY','NJ') AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
                                             END*/
-        ,drvSTAStatCvgPlanOption = CASE WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN LocAddressState END
-                                    /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
-                                        WHEN LocAddressState IN ('NY','NJ') AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN LocAddressState
+        ,drvSTAStatCvgPlanOption = CASE WHEN /*bdmDepRecID IS NULL OR*/ (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
+                                        WHEN LocAddressState IN ('NY','NJ') AND E.EecPayGroup <> 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN LocAddressState
                                         ELSE ''
-                                    END*/
+                                    END
+                                    
         -- jcb
-        ,drvSTAPlanSummary =    CASE WHEN bdmDepRecID IS NULL AND LocAddressState = 'NJ' AND   (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '2C1'
-                                    WHEN bdmDepRecID IS NULL AND LocAddressState = 'NY' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '3C1'
+        ,drvSTAPlanSummary =    CASE WHEN /*bdmDepRecID IS NULL OR*/ (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''                            
+                                    WHEN LocAddressState = 'NJ' AND E.EecPayGroup <> 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '2C1'
+                                    WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '3C1'
                                 END
-                                /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''                            
-                                    WHEN LocAddressState = 'NJ' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '2C1'
-                                    WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '3C1'
+                                
+                                /*CASE WHEN bdmDepRecID IS NOT NULL AND LocAddressState = 'NJ' AND E.EecEEType NOT IN ('TMP', 'INT') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '2C1'
+                                    WHEN bdmDepRecID IS NOT NULL AND LocAddressState = 'NY' AND E.EecEEType NOT IN ('TMP', 'INT') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '3C1'
                                 END*/
-        ,drvSTAEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL AND LocAddressState = 'NJ' AND   (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '3'
-                                        WHEN bdmDepRecID IS NULL AND LocAddressState = 'NY' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '4'
+                                
+        ,drvSTAEmployeeGroupID =    CASE WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState = 'NJ' AND   (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '3'
+                                        WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState = 'NY' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '4'
                                     END
                                     /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
                                         WHEN LocAddressState = 'NJ' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '3'
                                         WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '4'
                                     END*/
-        ,drvSTAEmplooyeeClassCode =    CASE WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '1' END
+        ,drvSTAEmplooyeeClassCode =    CASE WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '1' END
                                     /*CASE WHEN BdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
                                         WHEN LOcAddressState IN ('NY','NJ') AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '1'
                                     END*/
-        ,drvPFLStateEnrolled = CASE WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN LocAddressState END
-                                /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' -- JCB
-                                    WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN LocAddressState
-                                END*/
-        -- check
-        ,drvPFLCoverageEffectiveDate =    CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
-                                            WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) 
-                                        END
-                                        /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL
-                                            WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY') AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
-                                            ELSE NULL
+        ,drvPFLStateEnrolled = CASE WHEN /*bdmDepRecID IS NOT NULL AND*/ E.EecUnionLocal IN ('786','673','026','179','364','916') THEN '' -- JCB
+                                    WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState = 'NY' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN LocAddressState
+                                END
+                                --CASE WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN LocAddressState END
+        
+        ,drvPFLCoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY') AND E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY') AND E.EecPayGroup = 'GGSOE' THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY') AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY') AND E.EecEEType NOT IN ('TMP', 'INT') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                        END 
+                                        
+                                        /*CASE WHEN (E.EecPayGroup = 'GGSON' AND LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NOT NULL AND LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) 
                                         END*/
+                                        
         ,drvPFLCoverageTermDate =    CASE WHEN E.EecDateOFTermination is NULL THEN NULL
-                                        WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination)  
+                                        WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination)  
                                     END
                                     /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL
                                         WHEN E.EecDateOFTermination is NULL THEN NULL                                                 
                                         WHEN E.EecEEType NOT IN ('TMP', 'INT') AND LocAddressState IN ('NY') AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
                                     END*/
-        ,drvPFLPlanSummary = CASE WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '1J1' END
-                                /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
-                                    WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '1J1'
-                                END*/
-        ,drvPFLEmployeeGroupId = CASE WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '4' END
+        ,drvPFLPlanSummary = CASE WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '1J1' END
+
+        ,drvPFLEmployeeGroupId = CASE WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '4' END
                                     /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
                                         WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '4'
                                     END*/
-        ,drvPFLEmployeeClassCode = CASE WHEN bdmDepRecID IS NULL AND LocAddressState IN ('NY','NJ') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '1' END
+        ,drvPFLEmployeeClassCode = CASE WHEN /*bdmDepRecID IS NOT NULL AND*/ LocAddressState IN ('NY') AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '1' END
                                     /*CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN ''
                                         WHEN LocAddressState = 'NY' AND E.EecPayGroup <> 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '1'
                                     END*/
@@ -2071,22 +2086,43 @@ BEGIN
         --END - Section Code= "~NST~" (STD Plans)
         --START - Section Code= "~LTD~"
         -- check
-        ,drvLTDCoverageEffectiveDate =    CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
-                                            WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) 
+        ,drvLTDCoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            WHEN bdmDepRecID IS NOT NULL AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) 
+                                            OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) --'8/1/2021'
+                                            WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
                                         END
-        ,drvLTDCoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
-                                                WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM')  THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
-                                            END
-        ,drvLTDCoveragePlanOption = CASE WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '60.00' END
-        ,drvLTDPlanSummary =  CASE WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM')THEN '1B1' END 
+                                        /*CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) 
+                                        END*/
+        ,drvLTDCoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            /*WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) --'8/1/2021'
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND E.EecPayGroup = 'GGSOE' THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN E.EecEmplStatus = 'T' THEN E.EecDateOFTermination*/
+                                            WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',E.EecDateOFTermination, dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) )
+                                            ELSE NULL                                         
+                                        END    
         
-        ,drvLTDEmployeeGroupID =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' 
-                                        WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '1' 
-                                        WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
-                                        WHEN E.EecPayGroup = 'GGSOE' THEN '30'
+                                            --CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire))
+                                            --    WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM')  THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
+                                            --END
+        
+        ,drvLTDCoveragePlanOption = CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                        WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN '60.00'   --AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '60.00' 
+                                    END
+        ,drvLTDPlanSummary =  CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                    WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN '1B1'   --AND E.eecPayGroup in ('GGS','GGSE','GGSM')THEN '1B1' 
+                              END 
+        
+        ,drvLTDEmployeeGroupID =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                        WHEN bdmDepRecID IS NOT NULL OR E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))  THEN '30'
+                                        WHEN bdmDepRecID IS NOT NULL OR E.EecPayGroup = 'GGSOE' THEN '30'
+                                        ELSE '1'
                                     END  -- Correct!
-        
-        ,drvLTDEmployeeClassCode = CASE WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' WHEN E.EecEEType NOT IN ('TMP', 'INT') AND E.eecPayGroup in ('GGS','GGSE','GGSM') THEN '1' END 
+                                    
+        ,drvLTDEmployeeClassCode = CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                    WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN '1' 
+                                    END 
         --END - Section Code= "~LTD~"
         --START - Section Code= "~RPL~"
         ,drvReportingLevel1 = 'Glen Gery Corporation'
@@ -2103,13 +2139,20 @@ BEGIN
         ,drvReportingLevel12 = ''
         --END - Section Code= "~RPL~"
         --START - Section Code= "~BLF~"
-        ,drvBLFCoverageEffectiveDate =    CASE-- WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
-                                            WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
+        ,drvBLFCoverageEffectiveDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) 
+                                            OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) --'8/1/2021'
                                             WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
                                         END
-        ,drvBLFCoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
-                                                WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
-                                            END
+        ,drvBLFCoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            /*WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) --'8/1/2021'
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND E.EecPayGroup = 'GGSOE' THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN E.EecEmplStatus = 'T' THEN E.EecDateOFTermination*/
+                                            WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',E.EecDateOFTermination, dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)))
+                                            ELSE NULL                                         
+                                        END    
+        
         , drvBLFMultiple = CASE WHEN bdmDepRecID IS NOT NULL  OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510') THEN ''
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('520') THEN ''
@@ -2136,13 +2179,12 @@ BEGIN
                                                     WHEN EecOrgLvl3 = '510' THEN '16'
                                                     WHEN EecOrgLvl3 = '410' THEN '15'
                                                 END
-                                                --ELSE '1'
-                                            WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
+                                            WHEN E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '30'
                                             WHEN E.EecPayGroup = 'GGSOE' THEN '30'
                                             ELSE '1'
                                         END
                                     END
-                                    --'1'
+                                
                                      /* CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510') THEN '1D4'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('520') THEN '1D3'
@@ -2158,12 +2200,20 @@ BEGIN
         --END - Section Code= "~BLF~"
         --START - Section Code= "~BAD~"
         --check
-        ,drvBADCoverageEffectiveDate = CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR RTRIM(E.EecUnionLocal) NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
+        ,drvBADCoverageEffectiveDate = CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) 
+                                            OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire)) --'8/1/2021'
                                             WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) 
                                         END
-        ,drvBADCoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) )
-                                                WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL WHEN E.EecDateOFTermination is NULL THEN NULL WHEN E.EecEEType NOT IN ('TMP', 'INT') THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,E.EecDateOFTermination) 
-                                            END
+        ,drvBADCoverageTerminationDate =    CASE WHEN bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN NULL 
+                                            /*WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) --'8/1/2021'
+                                            WHEN bdmDepRecID IS NOT NULL AND E.EecEmplStatus = 'T' AND E.EecPayGroup = 'GGSOE' THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',E.EecDateOFTermination) 
+                                            WHEN E.EecEmplStatus = 'T' THEN E.EecDateOFTermination*/
+                                            WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',E.EecDateOFTermination, dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,[dbo].[fn_EndOfMonth_EHARTFDID2](E.EecDateOfORiginalHire) ) )
+                                            ELSE NULL                                         
+                                        END    
+        
         ,drvBADEmployeeGroupID =    CASE WHEN bdmDepRecID IS NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
                                         CASE WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
                                             WHEN E.EecPayGroup = 'GGH' THEN
@@ -2180,13 +2230,13 @@ BEGIN
                                                     WHEN EecOrgLvl3 = '510' THEN '16'
                                                     WHEN EecOrgLvl3 = '410' THEN '15'
                                                 END
-                                                --ELSE '1'
-                                            WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
+                                            
+                                            WHEN E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '30'
                                             WHEN E.EecPayGroup = 'GGSOE' THEN '30'
                                             ELSE '1'
                                         END
                                     END
-                                    --'1'
+                            
                                      /* CASE WHEN bdmDepRecID IS NOT NULL THEN '' 
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('510') THEN '1D4'
                                   WHEN E.EecPayGroup = 'GGH' AND eecOrgLvl3 IN ('520') THEN '1D3'
@@ -2201,18 +2251,28 @@ BEGIN
                                    END
         --END - Section Code= "~BAD~"
         --START - Section Code= "~LIF~"
-        --check
-        ,drvLIFCoverageEffectiveDate = CASE WHEN eed_LIF.eedeeid IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStartDate) END
-        ,drvLIFCoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStartDate)
-                                                WHEN eed_LIF.eedeeid IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) AND Eed_LIF.eedBenStopDate IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStopDate) 
-                                            END
-        ,drvLIFFaceAmt = CASE WHEN eed_LIF.eedeeid IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN 
+        --checka
+        ,drvLIFCoverageEffectiveDate = CASE WHEN bdmDedCode = 'OPLEE' AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',bdmBenStartDate)
+                                            WHEN bdmDedCode = 'OPLEE' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
+                                        END
+                                        
+
+                                    /*CASE WHEN eed_LIF.eedDedCode IS NOT NULL AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR RTRIM(E.EecUnionLocal) NOT IN  ('786','673','026','179','364','916'))) OR
+                                             (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',Eed_LIF.eedBenStartDate)
+                                             WHEN eed_LIF.eedDedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStartDate)
+                                        END*/
+                                        
+        ,drvLIFCoverageTerminationDate =  CASE WHEN bdmDedCode = 'OPLEE' AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN Eed_LIF.eedBenStopDate END    
+                                        --CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStartDate)
+                                --                WHEN eed_LIF.eedDedCode IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) AND Eed_LIF.eedBenStopDate IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStopDate) 
+                                --            END
+        ,drvLIFFaceAmt = CASE WHEN bdmDedCode = 'OPLEE' AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN 
                             CASE WHEN cast(Eed_LIF.eedBenAmt as int) = 0 THEN cast('0' as varchar(20)) 
                             ELSE cast(cast(nullif(Eed_LIF.eedBenAmt,0.00) as int) as varchar(20)) END 
                         END
-        ,drvLIFReqAmt =  CASE WHEN eed_LIF.eedeeid IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN cast(cast(Eed_LIF.eedUSGField1 as int) as varchar(20)) END
+        ,drvLIFReqAmt =  CASE WHEN bdmDedCode = 'OPLEE' AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN cast(cast(Eed_LIF.eedUSGField1 as int) as varchar(20)) END
             
-        ,drvLIFEmployeeGroupID =    CASE WHEN eed_LIF.eedeeid IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
+        ,drvLIFEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPLEE' THEN -- AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
                                         CASE WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
                                             WHEN E.EecPayGroup = 'GGH' THEN
                                                 CASE WHEN EecOrgLvl3 = '432' THEN '8'
@@ -2228,22 +2288,21 @@ BEGIN
                                                     WHEN EecOrgLvl3 = '510' THEN '16'
                                                     WHEN EecOrgLvl3 = '410' THEN '15'
                                                 END
-                                                --ELSE '1'
-                                            WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
+                                        
+                                            WHEN E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '30'
                                             WHEN E.EecPayGroup = 'GGSOE' THEN '30'
                                             ELSE '1'
                                         END
                                     END
-                                    --CASE WHEN eed_LIF.eedeeid IS NOT NULL  THEN '1' END 
+                                    
         
-        
-        ,drvLIFEmployeeClassCode =    CASE WHEN eed_LIF.eedeeid IS NOT NULL AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
+        ,drvLIFEmployeeClassCode =    CASE WHEN bdmDedCode = 'OPLEE' AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
                                          CASE WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
                                          WHEN E.EecPayGroup NOT IN ('GGSON') AND E.EecSalaryOrHourly = 'S' THEN '2'
                                          WHEN E.EecPayGroup NOT IN ('GGSON') AND E.EecSalaryOrHourly <> 'S' THEN '1'
                                          END 
                                     END
-                                        --CASE WHEN eed_LIF.eedeeid IS NOT NULL  THEN '1' END 
+                                    
         --END - Section Code= "~LIF~"
         --START - Section Code= "~ADD~"
         ,drvADDCoverageEffectiveDate = '' --CASE WHEN eed_LIF.eedeeid IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,Eed_LIF.eedBenStartDate) END
@@ -2255,13 +2314,18 @@ BEGIN
         --END - Section Code= "~ADD~"
         --START - Section Code= "~SPL~"
         --check
-        ,drvSPLCoverageEffectiveDate = CASE WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate) END
-        ,drvSPLCoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
+        ,drvSPLCoverageEffectiveDate =  CASE WHEN bdmDedCode = 'OPLSP' AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',bdmBenStartDate)
+                                            WHEN bdmDedCode = 'OPLSP' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
+                                        END
+                                        
+                            /*CASE WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate) END*/
+        ,drvSPLCoverageTerminationDate =  CASE WHEN bdmDedCode = 'OPLSP' AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN bdmBenStopDate END
+                                     /*CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
                                                 WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL AND bdmBenStopDate IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStopDate) 
-                                            END
+                                        END*/
         ,drvSPLFaceAmt =  CASE WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN CASE WHEN cast(eed_SPL.eedBenAmt as int) = 0 THEN cast('0' as varchar(20)) ELSE cast(cast(nullif(eed_SPL.eedBenAmt,0.00) as int) as varchar(20)) END END
         ,drvSPLReqAmt =  CASE WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN cast(cast(eed_SPL.eedUSGField1 as int) as varchar(20)) END
-        ,drvSPLEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN    
+        ,drvSPLEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPLSP' AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
                                         CASE WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
                                             WHEN E.EecPayGroup = 'GGH' THEN
                                                 CASE WHEN EecOrgLvl3 = '432' THEN '8'
@@ -2277,33 +2341,41 @@ BEGIN
                                                     WHEN EecOrgLvl3 = '510' THEN '16'
                                                     WHEN EecOrgLvl3 = '410' THEN '15'
                                                 END
-                                            --ELSE '1'
-                                            WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
+                                            
+                                            WHEN E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916')) THEN '30'
                                             WHEN E.EecPayGroup = 'GGSOE' THEN '30'
                                             ELSE '1'
                                         END
                                     END
-                                    --CASE WHEN bdmDedCode = 'OPLSP' AND bdmDepRecID IS NOT NULL THEN '1' END 
+                                    
         ,drvSPLEmployeeClassCode =    CASE WHEN bdmDedCode = 'OPLSP' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN    
                                         CASE WHEN E.EecSalaryOrHourly = 'S' THEN '2' 
                                         ELSE '1' 
                                         END
                                     END
-                                    --AND bdmDepRecID IS NOT NULL  THEN '1' END 
+                                    
         --END - Section Code= "~SPL~"
         --START - Section Code= "~DPL~"
         -- check
-        ,drvDPLCoverageEffectiveDate =    CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN '8/1/2021'
-                                            WHEN bdmDedCode = 'OPTCH' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate) 
+        ,drvDPLCoverageEffectiveDate =    CASE WHEN bdmDedCode = 'OPTCH' AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',bdmBenStartDate)
+                                            WHEN bdmDedCode = 'OPTCH' AND (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
                                         END
-        ,drvDPLCoverageTerminationDate =    CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
+        
+                                    /*CASE WHEN (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN  ('786','673','026','179','364','916'))) OR (E.EecPayGroup = 'GGH' AND E.EecOrgLvl3 IN ('630','640')) OR (E.EecPayGroup = 'GGSOE') THEN dbo.dsi_fnGetMinMaxDates('MAX','8/1/2021',bdmBenStartDate) --'8/1/2021'
+                                            WHEN bdmDedCode = 'OPTCH' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate) 
+                                      END*/
+        ,drvDPLCoverageTerminationDate = CASE WHEN bdmDedCode = 'OPTCH' AND NOT (E.EecPayGroup = 'GGSON' AND (E.EecUnionLocal IS NULL OR E.EecUnionLocal NOT IN ('786','673','026','179','364','916'))) THEN bdmBenStopDate END
+                                        /*CASE WHEN E.EecEmplStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStartDate)
                                                 WHEN bdmDedCode = 'OPTCH' AND (bdmDepRecID IS NOT NULL AND bdmBenStopDate IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate,bdmBenStopDate) 
-                                            END
+                                            END*/
         ,drvDPLFaceAmt =  CASE WHEN bdmDedCode = 'OPTCH' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN '10000' END --dbo.dsi_fnPadZero(cast(10000 as int) ,11,0) END
         ,drvDPLReqAmt =  CASE WHEN bdmDedCode = 'OPTCH' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN '10000' END -- dbo.dsi_fnPadZero(cast(10000 as int) ,11,0) END
-        ,drvDPLEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPTCH' AND NOT (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916')) THEN
-                                        CASE WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
-                                            WHEN E.EecPayGroup = 'GGH' THEN
+        ,drvDPLEmployeeGroupID =    CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL THEN
+                                         CASE WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916') THEN ''
+                                         WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
+                                         WHEN E.EecPayGroup = 'GGSOE' THEN '30'
+                                         WHEN EecPayGroup NOT IN ('GGSOE','GGSON','GGH') THEN '1'
+                                         WHEN E.EecPayGroup = 'GGH' THEN
                                                 CASE WHEN EecOrgLvl3 = '432' THEN '8'
                                                     WHEN EecOrgLvl3 = '520' THEN '6'
                                                     WHEN EecOrgLvl3 = '610' THEN '9'
@@ -2316,14 +2388,10 @@ BEGIN
                                                     WHEN EecOrgLvl3 = '640' THEN '28'
                                                     WHEN EecOrgLvl3 = '510' THEN '16'
                                                     WHEN EecOrgLvl3 = '410' THEN '15'
-                                                END
-                                            --ELSE '1'
-                                            WHEN E.EecPayGroup = 'GGSON' AND E.EecUnionLocal NOT IN ('786','673','026','179','364','916') THEN '30'
-                                            WHEN E.EecPayGroup = 'GGSOE' THEN '30'
-                                            ELSE '1'
-                                        END
+                                                END 
+                                         END
                                     END
-                                --CASE WHEN bdmDedCode = 'OPTCH' AND bdmDepRecID IS NOT NULL THEN '1' END 
+                                
         ,drvDPLEmployeeClassCode =    CASE WHEN bdmDedCode = 'OPTCH' AND (bdmDepRecID IS NOT NULL OR (E.EecPayGroup = 'GGSON' AND E.EecUnionLocal IN ('786','673','026','179','364','916'))) THEN 
                                         CASE WHEN E.EecSalaryOrHourly = 'S' THEN '2' ELSE '1' END
                                     END 
@@ -2361,6 +2429,7 @@ BEGIN
         AND eed_LIF.EedCoID = xCoID
         AND eed_LIF.EedFormatCode = @FormatCode 
         AND eed_LIF.EedValidForExport = 'Y'
+        AND eed_LIF.EedBenStatus <> 'W'
         AND eed_LIF.eedDedCode = 'OPLEE'
         --AND eed_LIF.eedDedCode = bdmDedCode
     LEFT JOIN dbo.U_dsi_BDM_EmpDeductions eed_SPL WITH (NOLOCK)
@@ -2368,6 +2437,7 @@ BEGIN
         AND eed_SPL.EedCoID = xCoID
         AND eed_SPL.EedFormatCode = @FormatCode 
         AND eed_SPL.EedValidForExport = 'Y'
+        AND eed_SPL.EedBenStatus <> 'W'
         AND eed_SPL.eedDedCode = 'OPLSP'
         AND eed_SPL.eedDedCode = bdmDedCode
     LEFT JOIN dbo.U_dsi_BDM_EmpDeductions eed_CH WITH (NOLOCK)
@@ -2375,11 +2445,13 @@ BEGIN
         AND eed_CH.EedCoID = xCoID
         AND eed_CH.EedFormatCode = @FormatCode 
         AND eed_CH.EedValidForExport = 'Y'
+        AND eed_CH.EedBenStatus <> 'W'
         AND eed_CH.eedDedCode = 'OPTCH'
         AND eed_CH.eedDedCode = bdmDedCode
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON conEEID = xeeid
         and ConSystemID = bdmDepRecID
+        and bdmDepRecID IS NOT NULL
     LEFT JOIN dbo.U_EHARTFDID2_ISOCountryCodeMapping EA WITH (NOLOCK)
         ON EA.cCountryCode = EepAddressCountry
     LEFT JOIN dbo.U_EHARTFDID2_ISOCountryCodeMapping LA WITH (NOLOCK)
