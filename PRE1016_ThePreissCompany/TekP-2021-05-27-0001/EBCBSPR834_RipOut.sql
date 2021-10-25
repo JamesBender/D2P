@@ -5,9 +5,25 @@ IF OBJECT_ID('dsi_vwEBCBSPR834_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEBCBS
 GO
 IF OBJECT_ID('dsi_sp_AfterCollect_EBCBSPR834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_EBCBSPR834];
 GO
+IF OBJECT_ID('U_EBCBSPR834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_TrlTbl];
+GO
+IF OBJECT_ID('U_EBCBSPR834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_HdrTbl];
+GO
 IF OBJECT_ID('U_EBCBSPR834_File') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_File];
 GO
 IF OBJECT_ID('U_EBCBSPR834_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_EEList];
+GO
+IF OBJECT_ID('U_EBCBSPR834_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_DrvTbl_2300];
+GO
+IF OBJECT_ID('U_EBCBSPR834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_DrvTbl];
+GO
+IF OBJECT_ID('U_EBCBSPR834_DedList') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_DedList];
+GO
+IF OBJECT_ID('U_EBCBSPR834_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_AuditFields];
+GO
+IF OBJECT_ID('U_EBCBSPR834_Audit') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_Audit];
+GO
+IF OBJECT_ID('U_dsi_BDM_EBCBSPR834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EBCBSPR834];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EBCBSPR834';
 DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EBCBSPR834';
@@ -233,10 +249,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBCBSPR834_20210924.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EBCBSPR834_20211025.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202109249','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EBCBSPR834',NULL,NULL,NULL,'202109249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109241',NULL,'','','202109241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only','202109249','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','EBCBSPR834',NULL,NULL,NULL,'202109249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109241',NULL,'','','202109241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202110199','EMPEXPORT','FULLFILE','Oct 19 2021  7:21PM','EBCBSPR834',NULL,NULL,NULL,'202110199','Oct 19 2021 12:00AM','Dec 30 1899 12:00AM','202110051','5061','','','202110051',dbo.fn_GetTimedKey(),NULL,'us3jRePRE1016',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202109249','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EBCBSPR834',NULL,NULL,NULL,'202109249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109241',NULL,'','','202109241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202109249','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EBCBSPR834',NULL,NULL,NULL,'202109249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109241',NULL,'','','202109241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'BCBS 834 Export','202109249','EMPEXPORT','SCH_BCB834','Oct  1 2018 12:00AM','EBCBSPR834',NULL,NULL,NULL,'202109249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202109241',NULL,'','','202109241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -247,7 +263,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBCBSPR834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBCBSPR834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBCBSPR834','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBCBSPR834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBCBSPR834','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EBCBSPR834' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EBCBSPR834' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_EBCBSPR834_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBCBSPR834_SavePath];
@@ -381,21 +397,27 @@ CREATE TABLE [dbo].[U_EBCBSPR834_DrvTbl] (
     [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
     [drvINS08_EmploymentStatusCode] varchar(2) NULL,
     [drvINS09_StudentStatusCode] varchar(1) NULL,
-    [drvINS10_ResponseCode] varchar(1) NOT NULL,
+    [drvINS10_ResponseCode] varchar(1) NULL,
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
     [drvINS12_DateTimePeriod] varchar(8) NULL,
     [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual1] varchar(8) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual2] varchar(3) NULL,
-    [drvDTP00_DateTime1] varchar(3) NULL,
-    [drvDTP01_DateTimeQualifier1] varchar(3) NULL,
-    [drvDTP02_DateTimeFormatQual1] varchar(2) NULL,
+    [drvREF02_RefNumberQual2] varchar(4) NOT NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(4) NOT NULL,
+    [drvDTP00_DateTime1] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] varchar(8) NULL,
     [drvDTP00_DateTime2] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
-    [drvDTP03_DateTimePeriod2] varchar(8) NULL,
+    [drvDTP03_DateTimePeriod2] datetime NULL,
+    [drvDTP00_DateTime3] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier3] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual3] varchar(2) NULL,
+    [drvDTP03_DateTimePeriod3] datetime NULL,
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
@@ -404,7 +426,7 @@ CREATE TABLE [dbo].[U_EBCBSPR834_DrvTbl] (
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
     [drvPER02_Name] varchar(1) NOT NULL,
-    [drvPER03_CommNumberQualifier] varchar(2) NULL,
+    [drvPER03_CommNumberQualifier] varchar(50) NULL,
     [drvPER04_CommunicationNumber] varchar(50) NULL,
     [drvPER05_CommNumberQualifier] varchar(2) NULL,
     [drvPER06_CommunicationNumber] varchar(50) NULL,
@@ -450,7 +472,7 @@ CREATE TABLE [dbo].[U_EBCBSPR834_DrvTbl_2300] (
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
-    [drvHD04_PlanCoverageDesc] varchar(1) NULL,
+    [drvHD04_PlanCoverageDesc] varchar(8) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NULL,
@@ -464,9 +486,9 @@ CREATE TABLE [dbo].[U_EBCBSPR834_DrvTbl_2300] (
     [drvDTP01_DateTimeQualifier_303] varchar(3) NULL,
     [drvDTP02_DateTimeFormatQual_303] varchar(2) NULL,
     [drvDTP03_DateTimePeriod_303] datetime NULL,
-    [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
-    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(15) NULL,
+    [drvREF00_RefNumberQual1] varchar(1) NULL,
+    [drvREF01_RefNumberQual1] varchar(1) NULL,
+    [drvREF02_RefNumberQual1] varchar(1) NULL,
     [drvREF00_RefNumberQual2] varchar(1) NULL,
     [drvREF01_RefNumberQual2] varchar(1) NULL,
     [drvREF02_RefNumberQual2] varchar(1) NULL,
@@ -536,13 +558,17 @@ CREATE TABLE [dbo].[U_EBCBSPR834_HdrTbl] (
     [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
     [drvQTY02_Quantity3] varchar(1) NOT NULL,
     [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
-    [drvN102_Name1] varchar(21) NOT NULL,
+    [drvN102_Name1] varchar(25) NOT NULL,
     [drvN103_IDCodeQual1] varchar(2) NOT NULL,
     [drvN104_IDCode1] char(9) NULL,
     [drvN101_EntityIDCodeSponsor2] varchar(2) NOT NULL,
-    [drvN102_Name2] varchar(3) NOT NULL,
+    [drvN102_Name2] varchar(6) NOT NULL,
     [drvN103_IDCodeQual2] varchar(2) NOT NULL,
-    [drvN104_IDCode2] varchar(9) NOT NULL
+    [drvN104_IDCode2] varchar(9) NOT NULL,
+    [drvN101_EntityIDCodeSponsor3] varchar(2) NOT NULL,
+    [drvN102_Name3] varchar(22) NOT NULL,
+    [drvN103_IDCodeQual3] varchar(2) NOT NULL,
+    [drvN104_IDCode3] varchar(9) NOT NULL
 );
 IF OBJECT_ID('U_EBCBSPR834_TrlTbl') IS NULL
 CREATE TABLE [dbo].[U_EBCBSPR834_TrlTbl] (
@@ -564,6 +590,8 @@ Purpose: BCBS 834 Export
 
 Revision History
 ----------------
+10/25/2021 by AP:
+        - Removed XN from 2000 loop.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBCBSPR834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBCBSPR834';
@@ -812,7 +840,7 @@ BEGIN
                                                 END
                                      END
         ,drvINS03_MaintTypeCode = '030' --Audit or Compare
-        ,drvINS04_MaintReasonCode = 'XN' --Notification Only
+        ,drvINS04_MaintReasonCode = '' --Notification Only
         ,drvINS05_BenefitStatusCode = 'A'
         ,drvINS0601_MEDICAREPLANCODE = ''
         ,drvINS0602_EligibilityRsnCode = ''
