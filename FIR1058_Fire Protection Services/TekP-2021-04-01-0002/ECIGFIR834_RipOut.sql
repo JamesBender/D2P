@@ -231,10 +231,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFIR834_20211007.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECIGFIR834_20211020.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202107279','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108049','EMPEXPORT','FULLFILE','Oct  5 2021 11:01AM','ECIGFIR834',NULL,NULL,NULL,'202108049','Aug  4 2021 12:00AM','Dec 30 1899 12:00AM','202107211','6399','','','202107211',dbo.fn_GetTimedKey(),NULL,'us3rVaFIR1058',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202108049','EMPEXPORT','FULLFILE','Oct 14 2021 12:24PM','ECIGFIR834',NULL,NULL,NULL,'202108049','Aug  4 2021 12:00AM','Dec 30 1899 12:00AM','202107211','6487','','','202107211',dbo.fn_GetTimedKey(),NULL,'us3rVaFIR1058',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202107279','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202107279','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CIGNA Den Vis 834','202107279','EMPEXPORT','SCH_CIG834','Oct  1 2018 12:00AM','ECIGFIR834',NULL,NULL,NULL,'202107279','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107271',NULL,'','','202107271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -588,7 +588,10 @@ Revision History
         - DMG04 fix.
 
 10/07/2021 by AP:
-		- Date time period minimum adjusted to 01/01/2021.
+        - Date time period minimum adjusted to 01/01/2021.
+
+10/20/2021 by AP:
+		- Updated REF01 value for 2300 loop.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECIGFIR834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECIGFIR834';
@@ -1043,57 +1046,57 @@ BEGIN
         ,drvREF00_RefNumberQual1 = 'REF'
         ,drvREF01_RefNumberQual1 = '1L'
         ,drvREF02_RefNumberQual1 = CASE WHEN BdmDedCode = 'DEN' THEN
-                                        CASE WHEN EecLocation = '70' THEN '3344100A001DPPO'
-                                                WHEN EecLocation = '12' THEN '3344100A002DPPO'
-                                                WHEN EecLocation = '71' THEN '3344100A003DPPO'
-                                                WHEN EecLocation = '72' THEN '3344100A004DPPO'
-                                                WHEN EecLocation IN ('90', '91') THEN '3344100A005DPPO'
-                                                WHEN EecLocation = '92' THEN '3344100A006DPPO'
-                                                WHEN EecLocation IN ('30', '99') THEN '3344100A007DPPO'
-                                                WHEN EecLocation = '30' THEN '3344100A007DPPO'
-                                                WHEN EecLocation = '32' THEN '3344100A008DPPO'
-                                                WHEN EecLocation = '73' THEN '3344100A009DPPO'
-                                                WHEN EecLocation = '74' THEN '3344100A010DPPO'
-                                                WHEN EecLocation = '23' THEN '3344100A011DPPO'
-                                                WHEN EecLocation = '18' THEN '3344100A012DPPO'
-                                                WHEN EecLocation = '75' THEN '3344100A013DPPO'
-                                                WHEN EecLocation = '60' THEN '3344100A014DPPO'
-                                                WHEN EecLocation = '50' THEN '3344100A015DPPO'
-                                                WHEN EecLocation = '10' THEN '3344100A016DPPO'
-                                                WHEN EecLocation = '52' THEN '3344100A017DPPO'
-                                                WHEN EecLocation = '22' THEN '3344100A018DPPO'
-                                                WHEN EecLocation = '24' THEN '3344100A019DPPO'
-                                                WHEN EecLocation = '51' THEN '3344100A020DPPO'
-                                                WHEN EecLocation = '11' THEN '3344100A021DPPO'
+                                        CASE WHEN EecLocation = '70' THEN '3344100A001 DPPO'
+                                                WHEN EecLocation = '12' THEN '3344100A002 DPPO'
+                                                WHEN EecLocation = '71' THEN '3344100A003 DPPO'
+                                                WHEN EecLocation = '72' THEN '3344100A004 DPPO'
+                                                WHEN EecLocation IN ('90', '91') THEN '3344100A005 DPPO'
+                                                WHEN EecLocation = '92' THEN '3344100A006 DPPO'
+                                                WHEN EecLocation IN ('30', '99') THEN '3344100A007 DPPO'
+                                                WHEN EecLocation = '30' THEN '3344100A007 DPPO'
+                                                WHEN EecLocation = '32' THEN '3344100A008 DPPO'
+                                                WHEN EecLocation = '73' THEN '3344100A009 DPPO'
+                                                WHEN EecLocation = '74' THEN '3344100A010 DPPO'
+                                                WHEN EecLocation = '23' THEN '3344100A011 DPPO'
+                                                WHEN EecLocation = '18' THEN '3344100A012 DPPO'
+                                                WHEN EecLocation = '75' THEN '3344100A013 DPPO'
+                                                WHEN EecLocation = '60' THEN '3344100A014 DPPO'
+                                                WHEN EecLocation = '50' THEN '3344100A015 DPPO'
+                                                WHEN EecLocation = '10' THEN '3344100A016 DPPO'
+                                                WHEN EecLocation = '52' THEN '3344100A017 DPPO'
+                                                WHEN EecLocation = '22' THEN '3344100A018 DPPO'
+                                                WHEN EecLocation = '24' THEN '3344100A019 DPPO'
+                                                WHEN EecLocation = '51' THEN '3344100A020 DPPO'
+                                                WHEN EecLocation = '11' THEN '3344100A021 DPPO'
                                                 WHEN BdmChangeReason IN ('208', '210', '200', '201', '202', '203', '204',
                                                             '205', '206', '207', '209', 'LEVNT1', 'LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5')
-                                                        THEN '3344100COBRADPPO'
+                                                        THEN '3344100COBRA DPPO'
                                             END
                                         WHEN BdmDedCode = 'VIS' THEN
-                                            CASE WHEN EecLocation = '70' THEN '3344100A001VIS'
-                                                WHEN EecLocation = '12' THEN '3344100A002VIS'
-                                                WHEN EecLocation = '71' THEN '3344100A003VIS'
-                                                WHEN EecLocation = '72' THEN '3344100A004VIS'
-                                                WHEN EecLocation IN ('90', '91') THEN '3344100A005VIS'
-                                                WHEN EecLocation = '92' THEN '3344100A006VIS'
-                                                WHEN EecLocation IN ('30', '99') THEN '3344100A007VIS'
-                                                WHEN EecLocation = '32' THEN '3344100A008VIS'
-                                                WHEN EecLocation = '73' THEN '3344100A009VIS'
-                                                WHEN EecLocation = '74' THEN '3344100A010VIS'
-                                                WHEN EecLocation = '23' THEN '3344100A011VIS'
-                                                WHEN EecLocation = '18' THEN '3344100A012VIS'
-                                                WHEN EecLocation = '75' THEN '3344100A013VIS'
-                                                WHEN EecLocation = '60' THEN '3344100A014VIS'
-                                                WHEN EecLocation = '50' THEN '3344100A015VIS'
-                                                WHEN EecLocation = '10' THEN '3344100A016VIS'
-                                                WHEN EecLocation = '52' THEN '3344100A017VIS'
-                                                WHEN EecLocation = '22' THEN '3344100A018VIS'
-                                                WHEN EecLocation = '24' THEN '3344100A019VIS'
-                                                WHEN EecLocation = '51' THEN '3344100A020VIS'
-                                                WHEN EecLocation = '11' THEN '3344100A021VIS'
+                                            CASE WHEN EecLocation = '70' THEN '3344100A001 VIS'
+                                                WHEN EecLocation = '12' THEN '3344100A002 VIS'
+                                                WHEN EecLocation = '71' THEN '3344100A003 VIS'
+                                                WHEN EecLocation = '72' THEN '3344100A004 VIS'
+                                                WHEN EecLocation IN ('90', '91') THEN '3344100A005 VIS'
+                                                WHEN EecLocation = '92' THEN '3344100A006 VIS'
+                                                WHEN EecLocation IN ('30', '99') THEN '3344100A007 VIS'
+                                                WHEN EecLocation = '32' THEN '3344100A008 VIS'
+                                                WHEN EecLocation = '73' THEN '3344100A009 VIS'
+                                                WHEN EecLocation = '74' THEN '3344100A010 VIS'
+                                                WHEN EecLocation = '23' THEN '3344100A011 VIS'
+                                                WHEN EecLocation = '18' THEN '3344100A012 VIS'
+                                                WHEN EecLocation = '75' THEN '3344100A013 VIS'
+                                                WHEN EecLocation = '60' THEN '3344100A014 VIS'
+                                                WHEN EecLocation = '50' THEN '3344100A015 VIS'
+                                                WHEN EecLocation = '10' THEN '3344100A016 VIS'
+                                                WHEN EecLocation = '52' THEN '3344100A017 VIS'
+                                                WHEN EecLocation = '22' THEN '3344100A018 VIS'
+                                                WHEN EecLocation = '24' THEN '3344100A019 VIS'
+                                                WHEN EecLocation = '51' THEN '3344100A020 VIS'
+                                                WHEN EecLocation = '11' THEN '3344100A021 VIS'
                                                 WHEN BdmChangeReason IN ('208', '210', '200', '201', '202', '203', '204',
                                                             '205', '206', '207', '209', 'LEVNT1', 'LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5')
-                                                        THEN '3344100COBRAVIS'
+                                                        THEN '3344100COBRA VIS'
                                                 END
                                         END
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment

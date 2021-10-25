@@ -98,7 +98,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ETRN401PHR_20210927.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ETRN401PHR_20211022.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','0K2KR',NULL,NULL,NULL,'Transamerica 401k Payroll','201808159','EMPEXPORT','ETRN401PHR','Aug 16 2018  7:27PM','ETRN401PHR',NULL,NULL,NULL,'201808159','Aug 15 2018 12:00AM','Dec 30 1899 12:00AM','201808151','5','','','201808151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPRHI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','Z15X9',NULL,NULL,NULL,'TEST','201808029','EMPEXPORT','TEST','Aug 14 2018  3:43PM','ETRN401PHR',NULL,NULL,NULL,'201808029','Aug  2 2018 12:00AM','Dec 30 1899 12:00AM','201808021','444','','','201808021',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPRHI',NULL);
@@ -172,7 +172,7 @@ CREATE TABLE [dbo].[U_dsi_ETRN401PHR_drvTbl] (
     [drvERALTMatch] varchar(1) NOT NULL,
     [drvERALTProfitSharing] varchar(1) NOT NULL,
     [drvERALTMoneyPurchase] varchar(1) NOT NULL,
-	drvEmailAddress varchar(100) NULL
+    [drvEmailAddress] varchar(50) NULL
 );
 IF OBJECT_ID('U_dsi_ETRN401PHR_hdrTbl') IS NULL
 CREATE TABLE [dbo].[U_dsi_ETRN401PHR_hdrTbl] (
@@ -206,7 +206,7 @@ CREATE TABLE [dbo].[U_ETRN401PHR_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(520) NULL
+    [Data] char(579) NULL
 );
 IF OBJECT_ID('U_ETRN401PHR_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_ETRN401PHR_PDedHist] (
@@ -253,8 +253,8 @@ Service Request Number: PRH1000-2017-00167780 (rebuild)
 
 Purpose: TransAmerica Payroll
 
-Changes:
-MM/DD/YYYY    NAME HERE     SF 09999999              Comments Here
+10/22/2021 by AP:
+		- Added EepAddressEmailAlternate to position 520.
 
 _dsi_usp_ExportRipout @FormatCode = 'ETRN401PHR', @AllObjects = 'Y', @IsWeb = 'Y'
 
@@ -509,7 +509,8 @@ BEGIN
         ,drvERALTMatch = ''
         ,drvERALTProfitSharing = ''
         ,drvERALTMoneyPurchase = ''
-		,drvEmailAddress = EepAddressEmail
+        ,drvEmailAddress = EepAddressEmailAlternate
+		--EepAddressEmail
 
     INTO dbo.U_dsi_ETRN401PHR_drvTbl
     FROM dbo.U_ETRN401PHR_EEList WITH (NOLOCK)

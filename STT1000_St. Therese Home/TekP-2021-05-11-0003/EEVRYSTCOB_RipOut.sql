@@ -9,6 +9,8 @@ IF OBJECT_ID('U_EEVRYSTCOB_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EEVRYSTCOB
 GO
 IF OBJECT_ID('U_EEVRYSTCOB_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EEVRYSTCOB_PDedHist];
 GO
+IF OBJECT_ID('U_EEVRYSTCOB_OrgLevel') IS NOT NULL DROP TABLE [dbo].[U_EEVRYSTCOB_OrgLevel];
+GO
 IF OBJECT_ID('U_EEVRYSTCOB_File') IS NOT NULL DROP TABLE [dbo].[U_EEVRYSTCOB_File];
 GO
 IF OBJECT_ID('U_EEVRYSTCOB_EEList') IS NOT NULL DROP TABLE [dbo].[U_EEVRYSTCOB_EEList];
@@ -273,10 +275,10 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EEVRYSTCOB_20211007.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EEVRYSTCOB_20211021.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Everything Benefits COBRA','202107159','EMPEXPORT','ONDEM_XOE',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202107159','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202107151',NULL,'','','202107151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',B2DMG,B2DPY,IAGFG,X52NU,072Q9,BB4X9,CLGY3,XAQYC',NULL,NULL,NULL,'Everything Benefits COBR-Sched','202110059','EMPEXPORT','SCH_EEVRYS',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202110069','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202110051',NULL,'','','202110051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',B2DMG,B2DPY,IAGFG,X52NU,072Q9,BB4X9,CLGY3,XAQYC',NULL,NULL,NULL,'Everything Benefits COBR-Sched','202110059','EMPEXPORT','SCH_EEVRYS',NULL,'EEVRYSTCOB',NULL,NULL,NULL,'202110209','Jul 15 2021  4:23PM','Jul 15 2021  4:23PM','202110191',NULL,'','','202110051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Everything Benefits COBR-Test','202110061','EMPEXPORT','TEST_XOE','Oct  6 2021  3:40PM','EEVRYSTCOB',NULL,NULL,NULL,'202110061','Oct  6 2021 12:00AM','Dec 30 1899 12:00AM','202110061','2565','','','202110061',dbo.fn_GetTimedKey(),NULL,'us3cPeSTT1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEVRYSTCOB','ExportPath','V',NULL);
@@ -500,6 +502,34 @@ CREATE TABLE [dbo].[U_EEVRYSTCOB_File] (
     [SubSort3] varchar(100) NULL,
     [Data] varchar(max) NULL
 );
+IF OBJECT_ID('U_EEVRYSTCOB_OrgLevel') IS NULL
+CREATE TABLE [dbo].[U_EEVRYSTCOB_OrgLevel] (
+    [AuditKey] int IDENTITY(1,1) NOT NULL,
+    [OrgBudgetGroup] char(3) NULL,
+    [OrgCoBankID] char(4) NULL,
+    [OrgCode] char(10) NOT NULL,
+    [OrgCurYrBudgetFTE] money NULL,
+    [OrgCurYrBudgetSal] money NULL,
+    [OrgDesc] varchar(25) NULL,
+    [OrgGLSegment] char(15) NULL,
+    [OrgImportCode] char(10) NULL,
+    [OrgLastYrBudgetFTE] money NULL,
+    [OrgLastYrBudgetSal] money NULL,
+    [OrgLvl] smallint NOT NULL,
+    [OrgManagerID] char(12) NULL,
+    [OrgModifyStamp] char(12) NULL,
+    [OrgReportCategory] char(10) NULL,
+    [OrgUDField1] char(1) NULL,
+    [OrgUDField2] char(10) NULL,
+    [OrgUDField3] datetime NULL,
+    [OrgUDField4] money NULL,
+    [OrgUDField5] varchar(25) NULL,
+    [OrgUnitID] numeric NULL,
+    [OrgStatus] char(1) NOT NULL,
+    [IntegrationRecordId] uniqueidentifier NOT NULL,
+    [IntegrationRowVersion] timestamp NOT NULL,
+    [DateTimeChanged] datetime NOT NULL
+);
 IF OBJECT_ID('U_EEVRYSTCOB_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EEVRYSTCOB_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
@@ -579,7 +609,10 @@ Revision History
         - Updated Benefit Effective From field to include dynamic MAX EedBenStartDate from @FileMinCovDate.
 
 10/07/2021 by AP:
-		- Created new orglevel table to remove duplicate 'RES' orgcode values.
+        - Created new orglevel table to remove duplicate 'RES' orgcode values.
+
+10/21/2021 by AP:
+		- Base coverage updated to nearest 1000.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEVRYSTCOB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EEVRYSTCOB';
@@ -730,14 +763,14 @@ BEGIN
     --AND audAction <> 'DELETE'
     --AND ISNULL(audNewValue,'') <> '';
 
-	---- REMOVE DUPLICATE ORGCODE FOR 'RES' ----
-	IF OBJECT_ID('U_EEVRYSTCOB_OrgLevel','U') IS NOT NULL
+    ---- REMOVE DUPLICATE ORGCODE FOR 'RES' ----
+    IF OBJECT_ID('U_EEVRYSTCOB_OrgLevel','U') IS NOT NULL
         DROP TABLE dbo.U_EEVRYSTCOB_OrgLevel;
-	SELECT *
-	INTO dbo.U_EEVRYSTCOB_OrgLevel
-	FROM dbo.OrgLevel WITH(NOLOCK)
-	WHERE OrgDesc <> '(R) Exercise Specialist'
-	--------------------------------------------
+    SELECT *
+    INTO dbo.U_EEVRYSTCOB_OrgLevel
+    FROM dbo.OrgLevel WITH(NOLOCK)
+    WHERE OrgDesc <> '(R) Exercise Specialist'
+    --------------------------------------------
  
     --==========================================
     -- Build Driver Tables
@@ -912,9 +945,10 @@ BEGIN
                                 WHEN EedBenOption IN ('EEC', 'EECH') THEN 'ECH' END
         ,drvBenIsWaived = ''
         ,drvBenBaseCovAmt =     CAST(CAST(CASE WHEN EedDedCode IN ('LIFEE', 'LIFES', 'LIFEC') THEN EedBenAmt
-                                    WHEN EedDedCode = 'BLD' AND EecAnnSalary < 100000 THEN ROUND(EecAnnSalary, 0)
-                                    WHEN EedDedCode = 'BLD' AND EecAnnSalary >= 100000 THEN '100000'
-                                    WHEN EedDedCode = 'BLEE' AND EecAnnSalary < 50000 THEN ROUND(EecAnnSalary, 0)
+									WHEN EedDedCode = 'BLD' THEN '100000'
+                                    --WHEN EedDedCode = 'BLD' AND EecAnnSalary < 100000 THEN ROUND(EecAnnSalary, 0)
+                                    --WHEN EedDedCode = 'BLD' AND EecAnnSalary >= 100000 THEN '100000'
+                                    WHEN EedDedCode = 'BLEE' AND EecAnnSalary < 50000 THEN floor((eecannsalary + 999) / 1000) * 1000 --ROUND(EecAnnSalary, 0)
                                     WHEN EedDedCode = 'BLEE' AND EecAnnSalary >= 50000 THEN '50000'
                                     WHEN EedDedCode IN ('FCHI', 'FMED') THEN ROUND(EedEEGoalAmt, 0) ELSE '' END AS DECIMAL(10,2)) AS VARCHAR)
         ,drvBenAppCovAmt = ''

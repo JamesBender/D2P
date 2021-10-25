@@ -187,13 +187,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EHJYELTEST_20210903.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EHJYELTEST_20211019.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202010139','EMPEXPORT','OEACTIVE',NULL,'EHJYELTEST',NULL,NULL,NULL,'202010139','Oct 13 2020 12:44PM','Oct 13 2020 12:44PM','202010131',NULL,'','','202010131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',D5BZ5,CXX93',NULL,NULL,NULL,'Passive Open Enrollment Export','202107019','EMPEXPORT','OEPASSIVE',NULL,'EHJYELTEST',NULL,NULL,NULL,'202107019','Oct 13 2020 12:44PM','Oct 13 2020 12:44PM','202107011',NULL,'','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthJoy Eligibility Export','202010139','EMPEXPORT','ONDEM_XOE',NULL,'EHJYELTEST',NULL,NULL,NULL,'202010139','Oct 13 2020 12:44PM','Oct 13 2020 12:44PM','202010131',NULL,'','','202010131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',D5BZ5,CXX93',NULL,NULL,NULL,'HealthJoy Eligibility Ex-Sched','202010139','EMPEXPORT','SCH_EHJYEL',NULL,'EHJYELTEST',NULL,NULL,NULL,'202108069','Oct 13 2020 12:44PM','Oct 13 2020 12:44PM','202107301',NULL,'','','202010131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'HealthJoy Eligibility Ex-Test','202108301','EMPEXPORT','TEST_XOE','Aug 30 2021  3:58PM','EHJYELTEST',NULL,NULL,NULL,'202108301','Aug 30 2021 12:00AM','Dec 30 1899 12:00AM','202108161','999','','','202108161',dbo.fn_GetTimedKey(),NULL,'us3jReUPB1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'HealthJoy Eligibility Ex-Test','202110071','EMPEXPORT','TEST_XOE','Oct  7 2021  8:49AM','EHJYELTEST',NULL,NULL,NULL,'202110071','Oct  7 2021 12:00AM','Dec 30 1899 12:00AM','202109231','999','','','202109231',dbo.fn_GetTimedKey(),NULL,'us3jReUPB1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHJYELTEST','ArchiveFile','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHJYELTEST','ArchivePath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHJYELTEST','EEList','V','Y');
@@ -335,8 +335,11 @@ Revision History
         - Modified JOINS to use the DedDedTypes required along with other updates required.
 
 09/03/2021 by AP:
-		- Updated mapping config to use DedTypes rather than DedCodes.
-		- Removed the UpdDedType config. GTL types are not showing as "GTL" in DedDedType, they are showing as "UP" OR "UPA".
+        - Updated mapping config to use DedTypes rather than DedCodes.
+        - Removed the UpdDedType config. GTL types are not showing as "GTL" in DedDedType, they are showing as "UP" OR "UPA".
+
+10/19/2021 by AP:
+		- Added missing OPS and OPC.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EHJYELTEST';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EHJYELTEST';
@@ -414,14 +417,14 @@ BEGIN
 
     -- Required parameters
    -- INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','DPL,DPL2,DPH,DPH2,MPB,MPB2,MPC,MPC2,STD,LTD,VA,VP,VP2,L,J,JC,JS,FSA,UP,UPA,VAD');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedTypes','MED,DEN,VIS,OPT,STD,LTD,LTC,DRG,FSA,GTL,UP,UPA,ADD,OT1');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedTypes','MED,DEN,VIS,OPT,STD,LTD,LTC,DRG,FSA,GTL,UP,UPA,ADD,OT1,OPC,OPS');
     --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'UpdDedType','GTL');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
     -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ExclFutureDatedStartDates','Y');
+   INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ExclFutureDatedStartDates','Y');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ExclFutureDatedStopDates','Y');
 
     -- Required OE parameters
@@ -503,7 +506,7 @@ BEGIN
         ,drvDenTermDate = DEN.EedBenStopDate
         ,drvVisPlanName = VIS.DedLongDesc
         ,drvVisGroupID = ''
-        ,drvVisEffDate = CASE WHEN DEN.EedEEID IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, VIS.EedBenStartDate) END
+        ,drvVisEffDate = CASE WHEN VIS.EedEEID IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, VIS.EedBenStartDate) END
         ,drvVisTermDate = VIS.EedBenStopDate
         ,drvBLPlanName = BL.DedLongDesc
         ,drvBLAmount = ''    --CONVERT(VARCHAR, BL.EedBenAmt)
@@ -617,7 +620,8 @@ BEGIN
         AND CRIT.EedFormatCode = @FormatCode 
         AND CRIT.EedValidForExport = 'Y'
       --  AND CRIT.EedDedCode IN ('L')
-        AND CRIT.DedDedType IN ('LTC', 'DRG')
+   --     AND CRIT.DedDedType IN ('LTC', 'DRG')
+		AND CRIT.DedDedType = 'LTC'
     LEFT JOIN dbo.U_dsi_BDM_EmpDeductions FSA WITH (NOLOCK)
         ON FSA.EedEEID = xEEID 
         AND FSA.EedCoID = xCoID
@@ -734,10 +738,10 @@ BEGIN
         ,drvHSAGoalAmt = ''
         ,drvHSAEffDate = NULL
         ,drvHSATermDate = NULL
-        ,drvAccPlanName = ''
+	    ,drvAccPlanName = ACC.DedLongDesc
         ,drvAccAmount = ''
-        ,drvAccEffDate = NULL
-        ,drvAccTermDate = NULL
+        ,drvAccEffDate = ACC.DbnBenStartDate
+        ,drvAccTermDate = ACC.DbnBenStopDate
         ,drvCritPlanName = CRIT.DedLongDesc
         ,drvCritAmount = ''    --CONVERT(VARCHAR, CRITAMT.EedBenAmt)
         ,drvCritEffDate = CASE WHEN CRIT.DbnDepRecID IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, CRIT.DbnBenStartDate) END
@@ -815,8 +819,15 @@ BEGIN
         AND CRIT.DbnFormatCode = @FormatCode 
         AND CRIT.DbnValidForExport = 'Y'
         --AND CRIT.DbnDedCode IN ('L')
-        AND CRIT.DedDedType IN ('LTC', 'DRG')
+     --   AND CRIT.DedDedType IN ('LTC', 'DRG')
+		AND CRIT.DedDedType = 'DRG'
         AND CRIT.DbnDepRecID = ConSystemID
+	  LEFT JOIN dbo.U_dsi_BDM_DepDeductions ACC WITH (NOLOCK)
+        ON ACC.DbnEEID = xEEID
+        AND ACC.DbnCoID = xCOID
+        AND ACC.DbnFormatCode = @FormatCode
+        AND ACC.DbnValidForExport = 'Y'
+        AND ACC.DedDedType = 'OT1' -- Accident Plan
     LEFT JOIN dbo.U_dsi_BDM_EmpDeductions CRITAMT WITH (NOLOCK)
         ON CRITAMT.EedEEID = xEEID 
         AND CRITAMT.EedCoID = xCoID

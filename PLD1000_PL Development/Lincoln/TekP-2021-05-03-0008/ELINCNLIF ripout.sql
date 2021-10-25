@@ -530,7 +530,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','118','(''SS''=''Q,'')','ELINCNLIF0Z0','50','D','10','118',NULL,'EE Occ/HIV Y/N',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLifePolicyNum"','119','(''UA''=''Q,'')','ELINCNLIF0Z0','50','D','10','119',NULL,'Life Policy Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLifBillLocNum"','120','(''UA''=''Q,'')','ELINCNLIF0Z0','50','D','10','120',NULL,'Life Bill Location A/C Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','121','(''SS''=''Q,'')','ELINCNLIF0Z0','50','D','10','121',NULL,'Life Sort Group',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLifeSortGrp"','121','(''UA''=''Q,'')','ELINCNLIF0Z0','50','D','10','121',NULL,'Life Sort Group',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLifeEffDate"','122','(''UD101''=''T,'')','ELINCNLIF0Z0','50','D','10','122',NULL,'Life Eff Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLifePlanCode"','123','(''UA''=''Q,'')','ELINCNLIF0Z0','50','D','10','123',NULL,'Life Plan Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLifeClassCode"','124','(''UA''=''Q,'')','ELINCNLIF0Z0','50','D','10','124',NULL,'Life Class Code',NULL,NULL);
@@ -564,7 +564,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','152','(''SS''=''Q,'')','ELINCNLIF0Z0','68','D','10','152',NULL,'OCLI Termination Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWIPolicyNum"','153','(''UA''=''Q,'')','ELINCNLIF0Z0','69','D','10','153',NULL,'WI Policy Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWIBillLocNum"','154','(''UA''=''Q,'')','ELINCNLIF0Z0','70','D','10','154',NULL,'WI Bill Location A/C Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','155','(''SS''=''Q,'')','ELINCNLIF0Z0','71','D','10','155',NULL,'WI Sort Group',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWISortGroup"','155','(''UA''=''Q,'')','ELINCNLIF0Z0','71','D','10','155',NULL,'WI Sort Group',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWIEffDate"','156','(''UD101''=''T,'')','ELINCNLIF0Z0','72','D','10','156',NULL,'WI Eff Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWIPlanCode"','157','(''UA''=''Q,'')','ELINCNLIF0Z0','73','D','10','157',NULL,'WI Plan Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvWIClassCode"','158','(''UA''=''Q,'')','ELINCNLIF0Z0','74','D','10','158',NULL,'WI Class Code',NULL,NULL);
@@ -574,7 +574,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','162','(''SS''=''Q,'')','ELINCNLIF0Z0','78','D','10','162',NULL,'OWI Termination Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLTDPolicyNum"','163','(''UA''=''Q,'')','ELINCNLIF0Z0','79','D','10','163',NULL,'LTD Policy Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLTDBillLocNum"','164','(''UA''=''Q,'')','ELINCNLIF0Z0','80','D','10','164',NULL,'LTD Bill Location A/C Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','165','(''SS''=''Q,'')','ELINCNLIF0Z0','81','D','10','165',NULL,'LTD Sort Group',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLTDSortGroup"','165','(''UA''=''Q,'')','ELINCNLIF0Z0','81','D','10','165',NULL,'LTD Sort Group',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLTDEffDate"','166','(''UD101''=''T,'')','ELINCNLIF0Z0','82','D','10','166',NULL,'LTD Eff Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLTDPlanCode"','167','(''UA''=''Q,'')','ELINCNLIF0Z0','83','D','10','167',NULL,'LTD Plan Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLTDClassCode"','168','(''UA''=''Q,'')','ELINCNLIF0Z0','84','D','10','168',NULL,'LTD Class Code',NULL,NULL);
@@ -640,7 +640,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','228','(''SS''=''Q,'')','ELINCNLIF0Z0','144','D','10','228',NULL,'VDHMO Termination Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVLIFPolicyNum"','229','(''UA''=''Q,'')','ELINCNLIF0Z0','145','D','10','229',NULL,'VLIF Policy Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVLIFBillLocNum"','230','(''UA''=''Q,'')','ELINCNLIF0Z0','146','D','10','230',NULL,'VLIF Bill Location A/C Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','231','(''SS''=''Q,'')','ELINCNLIF0Z0','147','D','10','231',NULL,'VLIF Sort Group',NULL,NULL);
+INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVLIFSortGroup"','231','(''UA''=''Q,'')','ELINCNLIF0Z0','147','D','10','231',NULL,'VLIF Sort Group',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVLIFEffDate"','232','(''UD101''=''T,'')','ELINCNLIF0Z0','148','D','10','232',NULL,'VLIF Eff Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVLIFPlanCode"','233','(''UA''=''Q,'')','ELINCNLIF0Z0','149','D','10','233',NULL,'VLIF Plan Code',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvVLIFClassCode"','234','(''UA''=''Q,'')','ELINCNLIF0Z0','150','D','10','234',NULL,'VLIF Class Code',NULL,NULL);
@@ -799,11 +799,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINCNLIF_20210724.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELINCNLIF_20211019.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life','202106299','EMPEXPORT','ONDEM_XOE',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life-Sched','202106299','EMPEXPORT','SCH_ELINCN',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202107229','EMPEXPORT','TEST_XOE','Jul 22 2021  8:42AM','ELINCNLIF',NULL,NULL,NULL,'202107229','Jul 22 2021 12:00AM','Dec 30 1899 12:00AM','202107081','1312','','','202107081',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202110059','EMPEXPORT','TEST_XOE','Oct  5 2021  5:31PM','ELINCNLIF',NULL,NULL,NULL,'202110059','Oct  5 2021 12:00AM','Dec 30 1899 12:00AM','202109201','1381','','','202109201',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','InitialSort','C','drvInitialSort');
@@ -926,6 +926,7 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvRsnLossOfBen] varchar(11) NULL,
     [drvLifePolicyNum] varchar(18) NULL,
     [drvLifBillLocNum] varchar(7) NULL,
+    [drvLifeSortGrp] varchar(1) NOT NULL,
     [drvLifeEffDate] datetime NULL,
     [drvLifePlanCode] varchar(1) NULL,
     [drvLifeClassCode] varchar(1) NULL,
@@ -935,6 +936,7 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvADTermDate] datetime NULL,
     [drvWIPolicyNum] varchar(18) NULL,
     [drvWIBillLocNum] varchar(7) NULL,
+	drvWISortGroup varchar(50) NULL,
     [drvWIEffDate] datetime NULL,
     [drvWIPlanCode] varchar(1) NULL,
     [drvWIClassCode] varchar(1) NULL,
@@ -942,6 +944,7 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvWITermDate] datetime NULL,
     [drvLTDPolicyNum] varchar(18) NULL,
     [drvLTDBillLocNum] varchar(7) NULL,
+	drvLTDSortGroup varchar(50) NULL,
     [drvLTDEffDate] datetime NULL,
     [drvLTDPlanCode] varchar(1) NULL,
     [drvLTDClassCode] varchar(1) NULL,
@@ -949,6 +952,7 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvLTDTermDate] datetime NULL,
     [drvVLIFPolicyNum] varchar(18) NULL,
     [drvVLIFBillLocNum] varchar(7) NULL,
+	drvVLIFSortGroup varchar(50) NULL,
     [drvVLIFEffDate] datetime NULL,
     [drvVLIFPlanCode] varchar(1) NULL,
     [drvVLIFClassCode] varchar(1) NULL,
@@ -1077,8 +1081,8 @@ Purpose: Lincoln Basic Life
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+10/19/2021 by AP:
+		- Added sort group logic as per Lea update.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ELINCNLIF';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ELINCNLIF';
@@ -1268,16 +1272,24 @@ BEGIN
         ,drvInitialSort = ''
         -- standard fields above and additional driver fields below
         ,drvEmpNo = EecEmpNo
-        ,drvChangeDate =  dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
+        ,drvChangeDate =  CASE WHEN eecDateOfLastHire >= @FileMinCovDate THEN eecDateOfLastHire
+                                ELSE dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
+                         END
+                    --dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
         ,drvDepChangeDate = dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasDepBen = 'Y'), @FileMinCovDate)
-        ,drvEedBenStopDate =  dbo.dsi_fnGetMinMaxDates('MAX',EedBenStopDate , @FileMinCovDate)
+        ,drvEedBenStopDate = CASE WHEN eecemplstatus = 'T' THEN eecdateoftermination
+                                    ELSE dbo.dsi_fnGetMinMaxDates('MAX',EedBenStopDate , @FileMinCovDate) END
         ,drvNameFirst =  EepNameFirst 
         ,drvNameLast = EepNameLast 
         ,drvNameMiddle = LEFT(EepNameMiddle,1) 
         ,drvSSN =  SUBSTRING(eepSSN, 1, 3) + '-' + SUBSTRING(eepSSN, 4, 2) + '-' + SUBSTRING(eepSSN, 6,4)  
         ,drvGender = EepGender
         ,drvDateOfBirth = EepDateOfBirth
-        ,drvAppSignDate = dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y'), @FileMinCovDate)
+        ,drvAppSignDate = CASE WHEN eecDateOfLastHire >= @FileMinCovDate THEN eecDateOfLastHire
+                                ELSE dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
+                         END
+                    --dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
+                        
         ,drvJobDesc = JbcDesc
         ,drvScheduledWorkHrs = CASE WHEN PgrPayFrequency = 'B' THEN EecScheduledWorkHrs/2 ELSE EecScheduledWorkHrs END
         ,drvAnnSalary = EecAnnSalary
@@ -1304,13 +1316,14 @@ BEGIN
                                       WHEN '25' THEN '1688514'
                                   END
                              END
+        ,drvLifeSortGrp = CASE WHEN EedHasLife = 'Y' THEN UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc) END
         ,drvLifeEffDate = EedLifeEffDate
         ,drvLifePlanCode = CASE WHEN  EedHasLife = 'Y' THEN '1' END
         ,drvLifeClassCode = CASE WHEN  EedHasLife = 'Y' THEN '1' END
         ,drvLICvgs = CASE WHEN  EedHasLife = 'Y' THEN 'LI-' + EedLICvgs END 
         ,drvLITermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvADCvgs = CASE WHEN  EedHasLife = 'Y' THEN 'AD-1' END
-        ,drvADTermDate = CASE WHEN  EedHasLife = 'Y' THEN EedADTermDate END
+        ,drvADTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvWIPolicyNum = CASE WHEN EedHasWI = 'Y' THEN '000010238521-00000' END
         ,drvWIBillLocNum = CASE WHEN EedHasWI = 'Y' THEN
                                  CASE EecOrgLvl1 
@@ -1324,6 +1337,7 @@ BEGIN
                                       WHEN '25' THEN '1688514'
                                   END
                              END
+		,drvWISortGroup = UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc)
         ,drvWIEffDate = CASE WHEN EedHasWI = 'Y' THEN EedWIEffDate END
         ,drvWIPlanCode = CASE WHEN EedHasWI = 'Y' THEN '1' END
         ,drvWIClassCode = CASE WHEN EedHasWI = 'Y' THEN '1' END
@@ -1342,6 +1356,7 @@ BEGIN
                                       WHEN '25' THEN '1688514'
                                   END
                              END
+		,drvLTDSortGroup = UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc)
         ,drvLTDEffDate = CASE WHEN EedHasLTD = 'Y' THEN EedLTDEffDate END
         ,drvLTDPlanCode = CASE WHEN EedHasLTD = 'Y' THEN '1' END
         ,drvLTDClassCode = CASE WHEN EedHasLTD = 'Y' THEN '1' END
@@ -1360,6 +1375,7 @@ BEGIN
                                       WHEN '25' THEN '1688514'
                                   END
                              END
+		,drvVLIFSortGroup = UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc)
         ,drvVLIFEffDate = EedVLIFEffDate
         ,drvVLIFPlanCode = CASE WHEN EedHasLIFEE = 'Y' THEN '1' END
         ,drvVLIFClassCode = CASE WHEN EedHasLIFEE = 'Y' THEN '1' END
@@ -1574,6 +1590,8 @@ BEGIN
      JOIN dbo.U_ELINCNLIF_Dependents Dep10 WITH (NOLOCK)
         ON Dep10.ConEEID = xEEID
        AND Dep10.ConDepNo = 10
+	LEFT JOIN dbo.OrgLevel O2 WITH(NOLOCK)
+		ON O2.OrgCode = EecOrgLvl2
     ;
  
     --==========================================
