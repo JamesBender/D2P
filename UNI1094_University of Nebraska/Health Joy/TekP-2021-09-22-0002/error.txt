@@ -1,0 +1,50 @@
+GLIFE
+
+LIFEC','LLIFEE','LIFES
+
+LTD
+
+FSA','FSAL
+
+FSADC
+
+HSAF','HSACF','HSACI','HSAI
+
+403CF','403GF','403P3','403P5','403PS','403RP
+
+ADD
+
+ADDCH','ADDE',ADDSP
+
+
+,MAX(CASE WHEN EedDedCode IN ('	GLIFE') THEN EedDedCode END) AS 	GLIFE_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	LIFEC','LLIFEE','LIFES') THEN EedDedCode END) AS 	LIFEX_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	LTD') THEN EedDedCode END) AS 	LTD_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	FSA','FSAL') THEN EedDedCode END) AS 	FSAX_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	FSADC') THEN EedDedCode END) AS 	FSADC_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	HSAF','HSACF','HSACI','HSAI') THEN EedDedCode END) AS 	HSAX_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	403CF','403GF','403P3','403P5','403PS','403RP') THEN EedDedCode END) AS 	X403_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	ADD') THEN EedDedCode END) AS 	ADD_DedCode
+,MAX(CASE WHEN EedDedCode IN ('	ADDCH','ADDE',ADDSP') THEN EedDedCode END) AS 	ADDX_DedCode
+
+
+
+,MAX(CASE WHEN EedDedCode IN ('	GLIFE') THEN EedBenStartDate END) AS 	GLIFE_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	LIFEC','LLIFEE','LIFES') THEN EedBenStartDate END) AS 	LIFEX_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	LTD') THEN EedBenStartDate END) AS 	LTD_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	FSA','FSAL') THEN EedBenStartDate END) AS 	FSAX_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	FSADC') THEN EedBenStartDate END) AS 	FSADC_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	HSAF','HSACF','HSACI','HSAI') THEN EedBenStartDate END) AS 	HSAX_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	403CF','403GF','403P3','403P5','403PS','403RP') THEN EedBenStartDate END) AS 	X403_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	ADD') THEN EedBenStartDate END) AS 	ADD_BenStartDate
+,MAX(CASE WHEN EedDedCode IN ('	ADDCH','ADDE',ADDSP') THEN EedBenStartDate END) AS 	ADDX_BenStartDate
+
+,MAX(CASE WHEN EedDedCode IN ('	GLIFE') THEN EedBenStopDate END) AS 	GLIFE_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	LIFEC','LLIFEE','LIFES') THEN EedBenStopDate END) AS 	LIFEX_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	LTD') THEN EedBenStopDate END) AS 	LTD_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	FSA','FSAL') THEN EedBenStopDate END) AS 	FSAX_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	FSADC') THEN EedBenStopDate END) AS 	FSADC_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	HSAF','HSACF','HSACI','HSAI') THEN EedBenStopDate END) AS 	HSAX_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	403CF','403GF','403P3','403P5','403PS','403RP') THEN EedBenStopDate END) AS 	X403_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	ADD') THEN EedBenStopDate END) AS 	ADD_BenStopDate
+,MAX(CASE WHEN EedDedCode IN ('	ADDCH','ADDE',ADDSP') THEN EedBenStopDate END) AS 	ADDX_BenStopDate
