@@ -239,14 +239,14 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ELUC834EXP_20211018.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ELUC834EXP_20211025.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202103039','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Full File Only','202103039','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202103039','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202103039','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lucent 834 Export','202103039','EMPEXPORT','SCH_LUC834','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lucent 834 Export Test','202110089','EMPEXPORT','TEST','Oct  8 2021  8:20AM','ELUC834EXP',NULL,NULL,NULL,'202110089','Oct  8 2021 12:00AM','Dec 30 1899 12:00AM','202109241','21282','','','202109241',dbo.fn_GetTimedKey(),NULL,'us3jReTWI1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Lucent 834 Export Test','202110199','EMPEXPORT','TEST','Oct 19 2021  9:12PM','ELUC834EXP',NULL,NULL,NULL,'202110199','Oct 19 2021 12:00AM','Dec 30 1899 12:00AM','202110051','21187','','','202110051',dbo.fn_GetTimedKey(),NULL,'us3jReTWI1003',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','ExportPath','V',NULL);
@@ -610,9 +610,14 @@ Purpose: Lucent 834 Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
-
+10/25/2021 by AP:
+		- Updated PER record.
+		- Updated mapping to remove "1005553" to "100553".
+		- Updated country code logic.
+		- Removed DOM from mapping. Added LGU and ACD.
+		- Updated relationship mapping for INS02 for LGU and ACD additions and DOM removal.
+		- Provided update for INS10 record (INS09 was already BLANK).
+		
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ELUC834EXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ELUC834EXP';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ELUC834EXP';
@@ -755,8 +760,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL,CLP,STC');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DOM');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','LGU,ACD,CHL,CLP,STC');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -816,9 +821,9 @@ BEGIN
     JOIN dbo.EmpDedFull WITH (NOLOCK)
         ON EedEmpDedTVID = BdmUSGField2;
 
-	--- DELETE BdmRelationship IS NULL IN BDM TABLE ---
-	DELETE dbo.U_dsi_bdm_ELUC834EXP
-	WHERE BdmRelationship IS NULL
+    --- DELETE BdmRelationship IS NULL IN BDM TABLE ---
+    DELETE dbo.U_dsi_bdm_ELUC834EXP
+    WHERE BdmRelationship IS NULL
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -845,8 +850,8 @@ BEGIN
                              END
         ,drvINS02_RelationshipCode = CASE WHEN BdmRecType = 'EMP' THEN '18'
                                           ELSE
-                                                CASE WHEN ConRelationship IN ('SPS','DOM') THEN '01'
-                                                     WHEN ConRelationship IN ('CHL', 'CLP','STC') THEN '19'
+                                                CASE WHEN ConRelationship IN ('SPS') THEN '01'
+                                                     WHEN ConRelationship IN ('LGU', 'ACD', 'CHL', 'CLP','STC') THEN '19'
                                                 END
                                      END
         ,drvINS03_MaintTypeCode = '030' --Audit or Compare
@@ -864,7 +869,8 @@ BEGIN
         ,drvINS09_StudentStatusCode = ''/*CASE WHEN BdmRecType = 'DEP' THEN
                                                 CASE WHEN ConIsStudent = 'Y' THEN 'F' END --Full-time
                                       END*/
-        ,drvINS10_ResponseCode = ''/*CASE WHEN BdmRecType = 'EMP' THEN
+        ,drvINS10_ResponseCode = CASE WHEN ConRelationship IN ('LGU', 'ACD', 'CHL', 'CLP', 'STC') AND ConIsDisabled = 'Y' THEN 'Y' ELSE 'N' END
+		/*CASE WHEN BdmRecType = 'EMP' THEN
                                         CASE WHEN EepIsDisabled = 'Y' THEN 'Y'
                                              ELSE 'N'
                                         END
@@ -932,20 +938,58 @@ BEGIN
                                  WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN ConSSN
                             END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber <> '' THEN 'HP' END
-        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EecPhoneBusinessNumber <> '' THEN 'WP' END
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
-        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepAddressEmail <> '' THEN 'EM' END
-        ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
-        ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
-        ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
-        ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
-        ,drvN402_State = EepAddressState
-        ,drvN403_Zip = EepAddressZipCode
-        ,drvN404_CountryCode = CASE WHEN EepAddressCountry  = 'USA' THEN 'US'
+	    ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN 'HP'
+                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN 'EM'
+                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN 'HP'
+                                             END
+
+        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN ISNULL(EepPhoneHomeNumber,'') 
+                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(eepAddressEMail,'')
+                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN  ISNULL(EepPhoneHomeNumber,'') 
+
+                                             END
+
+        ,drvPER05_CommNumberQualifier = ''--CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'EM' END
+
+        ,drvPER06_CommunicationNumber = ''--CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN ISNULL(eepAddressEMail,'') END
+
+        ,drvPER07_CommNumberQualifier = ''
+
+        ,drvPER08_CommunicationNumber = ''
+        --,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepPhoneHomeNumber <> '' THEN 'HP' END
+        --,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EepPhoneHomeNumber,'') END
+        --,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EecPhoneBusinessNumber <> '' THEN 'WP' END
+        --,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(EecPhoneBusinessNumber,'') END
+        --,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND EepAddressEmail <> '' THEN 'EM' END
+        --,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' THEN ISNULL(eepAddressEMail,'') END
+        ,drvN301_AddressLine1 = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
+										WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressLine1)
+										ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1) END
+        ,drvN302_AddressLine2 =  CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
+										WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressLine2)
+										ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
+										END
+        ,drvN401_City = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
+										WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressCity)
+										ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
+										END
+        ,drvN402_State = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressState)
+										WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressState)
+										ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressState)
+										END
+        ,drvN403_Zip = CASE WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnRemoveChars('.,/-',EepAddressZipCode)
+										WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressZipCode)
+										ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressZipCode)
+										END
+        ,drvN404_CountryCode = CASE WHEN BdmRecType = 'EMP' THEN
+									CASE WHEN EepAddressCountry  = 'USA' THEN 'US'
                                     WHEN EepAddressCountry ='CAN' THEN 'CA'
                                END
+								    WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN
+									CASE WHEN ConAddressCountry = 'USA' THEN 'US'
+											WHEN ConAddressCountry = 'CAN' THEN 'CA'
+									END
+							END
         ,drvDMG02_DateTimePeriod1 = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(VARCHAR(8),EepDateOfBirth,112)
                                          WHEN BdmRecType = 'DEP' THEN CONVERT(VARCHAR(8),ConDateOfBirth,112)
                                     END
@@ -1057,26 +1101,26 @@ BEGIN
                                           WHEN BdmDedCode IN ('VISIO') THEN 'VIS'
                                           WHEN BdmDedCode IN ('DENTL','MDENT') THEN 'DEN'
                                        --   WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'EXC'
-										  WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'FXM'
+                                          WHEN BdmDedCode IN ('MFSA','FSADE','FSA') THEN 'FXM'
                                           WHEN BdmDedCode IN ('MDEPC') THEN 'FXD'
                                      END 
         ,drvHD04_PlanCoverageDesc = CASE WHEN EecDedGroupCode in ('MS', 'MV') AND BdmDedCode = 'DENTL' THEN '100553DEN1UNION'
                                          WHEN EecDedGroupCode in ('MS', 'MV') AND BdmDedCode = 'FSADE' THEN '100553DEP'
                                          WHEN EecDedGroupCode in ('MS', 'MV') AND ltrim(rtrim(BdmDedCode)) = 'FSA' THEN '100553FSA'
-                                         WHEN EecDedGroupCode in ('MS', 'MV') AND BdmDedCode = 'PPOU' THEN '1005553MEDANG1'
+                                         WHEN EecDedGroupCode in ('MS', 'MV') AND BdmDedCode = 'PPOU' THEN '100553MEDANG1'
                                          WHEN EecDedGroupCode in ('MS', 'MV') AND BdmDedCode = 'VISIO' THEN '100553VIS2'
-                                         WHEN EecDedGroupCode in ('NYEX','NONU') and BdmDedCode = 'PPO' THEN '1005553MEDANG2' --Mack : TODO
+                                         WHEN EecDedGroupCode in ('NYEX','NONU') and BdmDedCode = 'PPO' THEN '100553MEDANG2' --Mack : TODO
                                          
                                          WHEN EecDedGroupCode in ('NYEX','NONU') and  BdmDedCode = 'DENTL' THEN '100553DEN1NON-UNION'
 
                                          WHEN EecDedGroupCode in ('NYEX','NONU') and BdmDedCode = 'FSADE' THEN '100553DEP'
                                          WHEN EecDedGroupCode in ('NYEX','NONU') and  BdmDedCode = 'FSA' THEN '100553FSA'
-                                         WHEN EecDedGroupCode in ('NYEX','NONU') AND BdmDedCode = 'EPO' THEN '1005553MEDANG3'
+                                         WHEN EecDedGroupCode in ('NYEX','NONU') AND BdmDedCode = 'EPO' THEN '100553MEDANG3'
                                          WHEN EecDedGroupCode in ('NYEX','NONU') AND BdmDedCode = 'VISIO' THEN '100553VIS1'
                                          WHEN EecDedGroupCode = 'LY' AND BdmDedCode = 'DENTL' THEN '100553DEN2LYONSDALE'
                                          WHEN EecDedGroupCode = 'LY' AND BdmDedCode = 'FSADE' THEN '100553DEP'
                                          WHEN EecDedGroupCode = 'LY' AND BdmDedCode = 'FSA' THEN '100553FSA'
-                                         WHEN EecDedGroupCode = 'LY' AND BdmDedCode = 'PPOU' THEN '1005553MEDANG1'
+                                         WHEN EecDedGroupCode = 'LY' AND BdmDedCode = 'PPOU' THEN '100553MEDANG1'
                                          WHEN EecDedGroupCode = 'LY' AND BdmDedCode = 'VISIO' THEN '100553VIS2'                                         
                                          WHEN EecDedGroupCode in ('MADHR', 'MADCH') and ISNULL(EecUnionLocal,'') <> '232' AND BdmDedCode = 'MMEDH' THEN '100321MEDANGHBP'
                                          WHEN EecDedGroupCode in ('MADHR', 'MADCH') and ISNULL(EecUnionLocal,'') <> '232' AND BdmDedCode = 'MSTD1' THEN '100321UNION'
@@ -1225,10 +1269,10 @@ BEGIN
         ,drvHD01_MaintTypeCode 
         ,drvHD02_MaintReasonCode 
         ,'PDG'-- drvHD03_InsuranceLineCode
-        ,drvHD04_PlanCoverageDesc   = CASE WHEN drvHD04_PlanCoverageDesc IN ('1005553MEDANG1') THEN '100553RXD1'
-                             WHEN drvHD04_PlanCoverageDesc IN ('1005553MEDANG2') THEN '100553RXD2'
-                             WHEN drvHD04_PlanCoverageDesc IN ('1005553MEDANG3') THEN '100553RXD3'
-                             WHEN drvHD04_PlanCoverageDesc in ('1005553MEDANG1') THEN '100553RXD1'
+        ,drvHD04_PlanCoverageDesc   = CASE WHEN drvHD04_PlanCoverageDesc IN ('100553MEDANG1') THEN '100553RXD1'
+                             WHEN drvHD04_PlanCoverageDesc IN ('100553MEDANG2') THEN '100553RXD2'
+                             WHEN drvHD04_PlanCoverageDesc IN ('100553MEDANG3') THEN '100553RXD3'
+                             WHEN drvHD04_PlanCoverageDesc in ('100553MEDANG1') THEN '100553RXD1'
                              WHEN drvHD04_PlanCoverageDesc in ('100320MEDA1NGSBP') THEN '100320RXD'
                              WHEN drvHD04_PlanCoverageDesc in ('100320MEDA3NGBP') THEN '100320RXD3'     
                              WHEN drvHD04_PlanCoverageDesc in ('100321MEDANGHBP') THEN '100321RXD'     
@@ -1297,10 +1341,10 @@ BEGIN
         ,drvSSN 
         ,drvInitialSort 
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(drvSSN)) + CONVERT(CHAR(12),ISNULL(drvDepRecID,''))
-                      + CASE WHEN drvHD04_PlanCoverageDesc IN ('1005553MEDANG1') THEN '16'
-                             WHEN drvHD04_PlanCoverageDesc IN ('1005553MEDANG2') THEN '17'
-                             WHEN drvHD04_PlanCoverageDesc IN ('1005553MEDANG3') THEN '18'
-                             WHEN drvHD04_PlanCoverageDesc in ('1005553MEDANG1') THEN '19'
+                      + CASE WHEN drvHD04_PlanCoverageDesc IN ('100553MEDANG1') THEN '16'
+                             WHEN drvHD04_PlanCoverageDesc IN ('100553MEDANG2') THEN '17'
+                             WHEN drvHD04_PlanCoverageDesc IN ('100553MEDANG3') THEN '18'
+                             WHEN drvHD04_PlanCoverageDesc in ('100553MEDANG1') THEN '19'
                              WHEN drvHD04_PlanCoverageDesc in ('100320MEDA1NGSBP') THEN '20'
                              WHEN drvHD04_PlanCoverageDesc in ('100320MEDA3NGBP') THEN '21'     
                              WHEN drvHD04_PlanCoverageDesc in ('100321MEDANGHBP') THEN '22'     
@@ -1309,12 +1353,12 @@ BEGIN
     FROM dbo.U_ELUC834EXP_DrvTbl_2300
     WHERE drvHD03_InsuranceLineCode IN ('HLT')
 
-	--- CLEAN UP 2300 WITH DEPS WITH NO VALUES FROM 2000 ---
-	DELETE dbo.U_ELUC834EXP_DrvTbl_2300
-	WHERE drvdeprecid IS NOT NULL
-	AND NOT EXISTS (SELECT 1
-						FROM dbo.U_ELUC834EXP_DrvTbl 
-						WHERE U_ELUC834EXP_DrvTbl.drvdeprecid = dbo.U_ELUC834EXP_DrvTbl_2300.drvdeprecid)
+    --- CLEAN UP 2300 WITH DEPS WITH NO VALUES FROM 2000 ---
+    DELETE dbo.U_ELUC834EXP_DrvTbl_2300
+    WHERE drvdeprecid IS NOT NULL
+    AND NOT EXISTS (SELECT 1
+                        FROM dbo.U_ELUC834EXP_DrvTbl 
+                        WHERE U_ELUC834EXP_DrvTbl.drvdeprecid = dbo.U_ELUC834EXP_DrvTbl_2300.drvdeprecid)
     
        /**************************************************************************************************************
         HEADER RECORDS
