@@ -299,14 +299,14 @@ BEGIN
         ,PdhContributionAmount3 = SUM(CASE WHEN PdhDedCode IN ('401L','401L2') THEN PdhEECurAmt ELSE 0.00 END)  --pos 335      
         --Roth
         ,PdhContributionAmount4 = SUM(CASE WHEN PdhDedCode IN ('ROTHF', 'ROTHP') THEN PdhEECurAmt ELSE 0.00 END) --pos 345
-        ,PdhContributionAmount5 = SUM(CASE WHEN PdhDedCode IN ('') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhContributionAmount5 = SUM(CASE WHEN PdhDedCode IN ('401AF','401AP') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhContributionAmount6 = SUM(CASE WHEN PdhDedCode IN ('') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         ,PdhContributionAmount7 = SUM(CASE WHEN PdhDedCode IN ('') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         ,PdhContributionAmount8 = SUM(CASE WHEN PdhDedCode IN ('') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
     INTO dbo.U_EMPWRVEN_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     WHERE PdhPerControl BETWEEN @StartPerControl AND @EndPerControl
-    AND pdhDedCode IN ('401F', '401P','401ER','ROTHF','ROTHP','401L', '401L2')
+    AND pdhDedCode IN ('401F', '401P','401ER','ROTHF','ROTHP','401L', '401L2', '401AF','401AP')
     GROUP BY PdhEEID, LEFT(PdhPerControl,8)
     --HAVING (SUM(PdhEECurAmt) <> 0.00
     --    OR SUM(PdhERCurAmt) <> 0.00

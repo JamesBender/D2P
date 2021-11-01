@@ -5,6 +5,8 @@ IF OBJECT_ID('dsi_vwECANSUNEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECANS
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ECANSUNEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECANSUNEXP];
 GO
+IF OBJECT_ID('U_ECANSUNEXP_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_PEarHist];
+GO
 IF OBJECT_ID('U_ECANSUNEXP_Loader') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_Loader];
 GO
 IF OBJECT_ID('U_ECANSUNEXP_File') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_File];
@@ -100,17 +102,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryBasisCd"','4','(''UA''=''Q'')','ECANSUNEXPZ0','50','D','30','4',NULL,'Salary - SalaryBasisCd (Value)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" SalaryAmt="','5','(''DA''=''T'')','ECANSUNEXPZ0','50','D','30','5',NULL,'Salary - SalaryAmt',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSalaryAmt"','6','(''UA''=''Q'')','ECANSUNEXPZ0','50','D','30','6',NULL,'Salary - SalaryAmt (Value)',NULL,NULL);
-
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" HoursPerWeekAmt="','7','(''DA''=''T'')','ECANSUNEXPZ0','50','D','30','7',NULL,'Hours Per Week Amount - HoursPerWeekAmt',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHoursPerWeekAmt"','8','(''UA''=''Q'')','ECANSUNEXPZ0','50','D','30','8',NULL,'Hours Per Week Amount - HoursPerWeekAmt (Value)',NULL,NULL);
-
-
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" EffectiveDt="','9','(''DA''=''T'')','ECANSUNEXPZ0','50','D','30','9',NULL,'Salary - EffectiveDt',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEffectiveDt"','10','(''UA''=''Q'')','ECANSUNEXPZ0','50','D','30','10',NULL,'Salary - EffectiveDt (Value)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" />"','11','(''DA''=''T'')','ECANSUNEXPZ0','50','D','30','11',NULL,'Salary',NULL,NULL);
-
-
-
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"<Address AddressTypeCd="','1','(''DA''=''T'')','ECANSUNEXPZ0','50','D','40','1',NULL,'Address - AddressTypeCd',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressTypeCd"','2','(''UA''=''Q'')','ECANSUNEXPZ0','50','D','40','2',NULL,'Address - AddressTypeCd (Value)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('" AddressNm="','3','(''DA''=''T'')','ECANSUNEXPZ0','50','D','40','3',NULL,'Address - AddressNm',NULL,NULL);
@@ -177,13 +173,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECANSUNEXP_20211022.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECANSUNEXP_20211026.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202108059','EMPEXPORT','OEACTIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202108059','EMPEXPORT','OEPASSIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Export','202108059','EMPEXPORT','ONDEM_XOE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Sched','202108059','EMPEXPORT','SCH_ECANSU',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Test','202110159','EMPEXPORT','TEST_XOE','Oct 15 2021  7:08PM','ECANSUNEXP',NULL,NULL,NULL,'202110159','Oct 15 2021 12:00AM','Dec 30 1899 12:00AM','202110011','9482','','','202110011',dbo.fn_GetTimedKey(),NULL,'us3lKiAUD1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Test','202110259','EMPEXPORT','TEST_XOE','Oct 25 2021  8:12AM','ECANSUNEXP',NULL,NULL,NULL,'202110259','Oct 25 2021 12:00AM','Dec 30 1899 12:00AM','202110011','9380','','','202110011',dbo.fn_GetTimedKey(),NULL,'us3lKiAUD1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECANSUNEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECANSUNEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECANSUNEXP','InitialSort','C','drvSort');
@@ -349,7 +345,7 @@ CREATE TABLE [dbo].[U_ECANSUNEXP_drvTbl_Salary] (
     [drvSalaryDescCd] varchar(1) NOT NULL,
     [drvSalaryBasisCd] varchar(1) NOT NULL,
     [drvSalaryAmt] nvarchar(4000) NULL,
-    [drvHoursPerWeekAmt] NVARCHAR(4000) NULL,
+    [drvHoursPerWeekAmt] nvarchar(4000) NULL,
     [drvEffectiveDt] varchar(10) NULL
 );
 IF OBJECT_ID('U_ECANSUNEXP_EEList') IS NULL
@@ -371,6 +367,19 @@ CREATE TABLE [dbo].[U_ECANSUNEXP_Loader] (
     [drvPolicyNum] varchar(6) NOT NULL,
     [drvClientName] varchar(36) NOT NULL,
     [drvReportLanguageCd] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_ECANSUNEXP_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_ECANSUNEXP_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECANSUNEXP]
@@ -497,9 +506,42 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+
+    -----------------------------
+    -- Working Table - PEarHist
+    -----------------------------
+    IF OBJECT_ID('U_ECANSUNEXP_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECANSUNEXP_PEarHist;
+    SELECT DISTINCT
+         PehEEID
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_ECANSUNEXP_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID
+    HAVING SUM(PehCurAmt) <> 0.00;
+
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
+
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Member
     ---------------------------------
@@ -570,11 +612,17 @@ BEGIN
                             END
         ,drvUpdateFlag = CASE WHEN EecDateOfLastHire BETWEEN @StartDate AND @EndDate THEN 'False' ELSE 'True' END
         ,drvApplyDate =    CONVERT(VARCHAR(10),
-                                CASE WHEN EjhReason = 'TRI' THEN EjhJobEffDate
-                                    WHEN EecDateOfLastHire BETWEEN @StartDate AND @EndDate THEN EecDateOfLastHire
-                                    WHEN EecEmplStatus = 'T' THEN EecDateOfTermination
-                                    ELSE dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
-                                END, 126)
+                                
+                                CASE WHEN EjhReason = 'TRI' THEN 
+                                        CASE WHEN EjhJobEffDate > DATEADD(YEAR, -1, GETDATE()) THEN EjhJobEffDate ELSE DATEADD(YEAR, 1, GETDATE()) END
+                                    WHEN EecDateOfLastHire BETWEEN @StartDate AND @EndDate THEN 
+                                        CASE WHEN EecDateOfLastHire > DATEADD(YEAR, -1, GETDATE()) THEN EecDateOfLastHire ELSE DATEADD(YEAR, 1, GETDATE()) END
+                                    WHEN EecEmplStatus = 'T' THEN 
+                                        CASE WHEN EecDateOfTermination > DATEADD(YEAR, -1, GETDATE()) THEN EecDateOfTermination ELSE DATEADD(YEAR, 1, GETDATE()) END
+                                    ELSE 
+                                        CASE WHEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) > DATEADD(YEAR, -1, GETDATE()) THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) ELSE DATEADD(YEAR, 1, GETDATE()) END
+                                END
+                                , 126)
         ,drvTransferFlg = 'Implicit'
         ,drvReinstatementFlg = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN 'True' ELSE 'False' END
     INTO dbo.U_ECANSUNEXP_drvTbl_Member
@@ -664,7 +712,9 @@ BEGIN
         ,drvSalaryDescCd = '1'
         ,drvSalaryBasisCd = CASE WHEN EecSalaryOrHourly = 'S' THEN '1' ELSE '5' END
         ,drvSalaryAmt = FORMAT(CASE WHEN EecSalaryOrHourly = 'S' THEN EecAnnSalary ELSE EecHourlyPayRate END, '#0.00')
-        ,drvHoursPerWeekAmt = ''
+        ,drvHoursPerWeekAmt =    FORMAT(CASE WHEN EecSalaryOrHourly = 'H' AND PgrPayFrequency IN ('B','S') THEN PehCurHrs/2
+                                    WHEN EecSalaryOrHourly = 'H' AND PgrPayFrequency IN ('W') THEN PehCurHrs
+                                END, '#0.00')
         ,drvEffectiveDt = CONVERT(VARCHAR(10), dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, @EndDate, EecDateOfLastHire), 126)
     INTO dbo.U_ECANSUNEXP_drvTbl_Salary
     FROM dbo.U_ECANSUNEXP_EEList WITH (NOLOCK)
@@ -674,6 +724,10 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+    JOIN dbo.PayGroup WITH (NOLOCK)
+        ON PgrPayGroup = EecPayGroup
+    JOIN dbo.U_ECANSUNEXP_PEarHist
+        ON PehEEID = xEEID
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Address
@@ -688,7 +742,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvAddressTypeCd = '1'
         ,drvAddressNm = EepNameFirst + ' ' + EepNameLast
-        ,drvStreetAddressNm = EepAddressLine1 + CASE WHEN EepAddressLine2 IS NULL THEN EepAddressLine2 ELSE '' END
+        ,drvStreetAddressNm = EepAddressLine1 + ISNULL(EepAddressLine2, '')
         ,drvSuiteNm = ''
         ,drvCityNm = EepAddressCity
         ,drvStateOrProvCd = CASE EepAddressState

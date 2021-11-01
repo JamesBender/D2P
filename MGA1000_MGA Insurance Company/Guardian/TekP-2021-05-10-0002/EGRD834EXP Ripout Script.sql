@@ -245,13 +245,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EGRD834EXP_20210922.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EGRD834EXP_20211028.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202107069','EMPEXPORT','CHANGES','Aug  9 2021  9:54AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','28356','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202109219','EMPEXPORT','FULLFILE','Sep 20 2021  9:10AM','EGRD834EXP',NULL,NULL,NULL,'202109219','Sep 21 2021 12:00AM','Dec 30 1899 12:00AM','202109211','28041','','','202109211',dbo.fn_GetTimedKey(),NULL,'us3lKiMGA1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202110259','EMPEXPORT','FULLFILE','Oct 25 2021  9:48AM','EGRD834EXP',NULL,NULL,NULL,'202110259','Oct 25 2021 12:00AM','Dec 30 1899 12:00AM','202110111','29003','','','202110111',dbo.fn_GetTimedKey(),NULL,'us3lKiMGA1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202107069','EMPEXPORT','OEACTIVE','Jul  9 2021  9:09AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','3','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202107069','EMPEXPORT','OEPASSIVE','Jul  9 2021  9:10AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34065','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Guardian 834 Export','202107069','EMPEXPORT','SCHEDULED','Jul  9 2021  9:11AM','EGRD834EXP',NULL,NULL,NULL,'202107069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202107061','34120','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',',MYGJQ,MYNO6',NULL,NULL,NULL,'Guardian DenVisLifLTDSTD_Fri8a','202107069','EMPEXPORT','SCHEDULED','Jul  9 2021  9:11AM','EGRD834EXP',NULL,NULL,NULL,'202110229','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202110151','34120','','','202107061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGRD834EXP','ExportPath','V',NULL);
@@ -663,7 +663,7 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = 'ADDC,ADDE,ADDS,DENT1,DENT2,DENTO,DNT1O,DNT2O,DVS,GLF35,GLIFE,LIFEC,LIFEE,LIFES,LTDEX,LTERM,PTD1O,PTD2O,PTDN1,PTDN2,PTDNO,PTDNT,PTDVS,PTVSP,STD1,STD2,VSP,BSCLF,EXADD,EXBSL';
+    SET @DedList = 'ADD,ADDC,ADDE,ADDS,DENT1,DENT2,DENTO,DNT1O,DNT2O,DVS,GLF35,GLIFE,LIFEC,LIFEE,LIFES,LTDEX,LTERM,PTD1O,PTD2O,PTDN1,PTDN2,PTDNO,PTDNT,PTDVS,PTVSP,STD1,STD2,VSP,BSCLF,EXADD,EXBSL';
 
     IF OBJECT_ID('U_EGRD834EXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EGRD834EXP_DedList;
@@ -1036,7 +1036,7 @@ BEGIN
         AND EecCOID = xCOID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    JOIN dbo.U_dsi_bdm_EGRD834EXP WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_EGRD834EXP BDM WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
@@ -1044,14 +1044,38 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSSN <> '000000000'
+        AND ((ConSystemID = BdmDepRecID)  OR (BdmRecType = 'EMP' AND
+                                            (
+                                                (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('LIFES','ADDS'))
+                                                OR
+                                                (ConRelationship IN ('CHL') AND BdmDedCode IN ('LIFEC','ADDC'))
+                                            )
+                                            AND ConIsDependent = 'Y'
+                                            AND xEEID IN (SELECT DISTINCT BdmEEID
+                                                            FROM dbo.U_dsi_bdm_EGRD834EXP WITH (NOLOCK)
+                                                            WHERE BdmRecType = 'EMP'
+                                                            AND BdmDedCode IN ('LIFES','ADDS','LIFEC','ADDC')
+                                                            AND BdmEEID NOT IN (
+                                                                                SELECT DISTINCT BdmEEID
+                                                                                FROM dbo.U_dsi_bdm_EGRD834EXP WITH (NOLOCK)
+                                                                                WHERE BdmRecType = 'DEP'
+                                                                                AND (    (BdmRelationship IN ('SPS','DP') AND BdmDedCode IN ('LIFES','ADDS'))
+                                                                                        OR
+                                                                                        (BdmRelationship IN ('CHL') AND BdmDedCode IN ('LIFEC','ADDC'))
+                                                                                    )
+                                                                                )
+                                                            )
+                                            
+                                        ))
      --   AND (ConSystemID = BdmDepRecID OR (ConRelationship IN ('SPS','DP','CHL') AND BdmDedCode IN ('LIFES','ADDS','LIFEC','ADDC') AND ConIsDependent = 'Y'))
-     AND (ConSystemID = BdmDepRecID OR (
+     /*AND (ConSystemID = BdmDepRecID OR (
                                             (
                                                 (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('LIFES','ADDS'))
                                                 OR
                                                 (ConRelationship IN ('CHL') AND BdmDedCode IN ('LIFEC','ADDC'))
                                         )
-                                        AND ConIsDependent = 'Y'))
+                                        AND ConIsDependent = 'Y'))*/
+
     ;
 
     /**************************************************************************************************************
@@ -1073,8 +1097,8 @@ BEGIN
         ,drvHD02_MaintReasonCode = '' --BdmDedCode 
         ,drvHD03_InsuranceLineCode =    CASE WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO') THEN 'DEN'
                                             WHEN BdmDedCode IN ('PTVSP','VSP','PTDVS','DVS') THEN 'VIS'
-                                            WHEN BdmDedCode IN ('GLIFE','GLF35','BSCLF','EXBSL') THEN 'AJ'
-                                            WHEN BdmDedCode IN ('GLIFE','GLF35','EXADD') THEN 'AH'
+                                            WHEN BdmDedCode IN ('BSCLF','EXBSL') THEN 'AH'
+                                            WHEN BdmDedCode IN ('ADD','EXADD') THEN 'AJ'
                                             WHEN BdmDedCode IN ('LIFEE','LIFES','LIFEC') THEN 'FAC'
                                             WHEN BdmDedCode IN ('ADDE','ADDS','ADDC') THEN 'HLT'
                                             WHEN BdmDedCode IN ('LTDEX','LTERM') THEN 'LTD'
@@ -1088,7 +1112,7 @@ BEGIN
                                         WHEN BdmDedCode IN ('PTVSP','VSP') THEN 'VSP'
                                         WHEN BdmDedCode IN ('PTDVS','DVS') THEN 'DAVIS'
                                     END
-        ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('GLIFE','GLF35','STD1','STD2','LTDEX','LTERM','LIFEE','ADDE','BSCLF','EXADD','EXBSL') THEN 'EMP'
+        ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('STD1','STD2','LTDEX','LTERM','LIFEE','ADDE','BSCLF','EXADD','EXBSL','ADD') THEN 'EMP'
                                             WHEN BdmDedCode IN ('LIFES','ADDS') THEN 'SPO'
                                             WHEN BdmDedCode IN ('LIFEC','ADDC') THEN 'CHD'
                                             WHEN BdmDedCode IN ('PTDN1','DENT1','DNT1O','PTD1O','PTDN2','DENT2','DNT2O','PTD2O','PTDNT','DENTO','PTDNO','PTVSP','VSP','PTDVS','DVS') AND BdmBenOption IN ('EE','OFEE') THEN 'EMP'
@@ -1209,7 +1233,7 @@ BEGIN
     LEFT JOIN dbo.EmpDed WITH (NOLOCK)
         ON xEEID = EedEEID
         AND BdmDedCode = EedDedCode
-    WHERE NOT (BdmDedCode IN ('LIFEE','ADDE') AND EedBenAmt = 0.00)
+    WHERE NOT (BdmDedCode IN ('LIFEE','ADDE','LIFES', 'LIFEC','ADDS','ADDC') AND EedBenAmt = 0.00) 
     ;
 
 
