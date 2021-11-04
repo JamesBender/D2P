@@ -9,6 +9,10 @@ IF OBJECT_ID('U_ENAT401TES_File') IS NOT NULL DROP TABLE [dbo].[U_ENAT401TES_Fil
 GO
 IF OBJECT_ID('U_ENAT401TES_EEList') IS NOT NULL DROP TABLE [dbo].[U_ENAT401TES_EEList];
 GO
+IF OBJECT_ID('U_ENAT401TES_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ENAT401TES_AuditFields];
+GO
+IF OBJECT_ID('U_ENAT401TES_Audit') IS NOT NULL DROP TABLE [dbo].[U_ENAT401TES_Audit];
+GO
 IF OBJECT_ID('U_dsi_ENAT401TES_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_dsi_ENAT401TES_drvTbl];
 GO
 IF OBJECT_ID('U_dsi_ENAT401TES_DedHist') IS NOT NULL DROP TABLE [dbo].[U_dsi_ENAT401TES_DedHist];
@@ -65,12 +69,12 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAT401TES_20211012.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAT401TES_20211104.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'ACTIVE OE','201507159','EMPEXPORT','ACTIVEOE','Jul 17 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201507159','Jul 15 2015 12:00AM','Dec 30 1899 12:00AM','201507151',NULL,'','','201507151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','KZ21X',NULL,NULL,NULL,'NATIONWIDE CENSUS','201705249','EMPEXPORT','ENAT401TES','May 24 2017 12:00AM','ENAT401TES',NULL,NULL,NULL,'202110129','May 24 2017 12:00AM','Dec 30 1899 12:00AM','202110051','442','','','201705101',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PASSIVE OE','201505201','EMPEXPORT','PASSIVEOE','May 20 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201505201','May 20 2015 12:00AM','Dec 30 1899 12:00AM','201505201',NULL,'','','201505201',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'NATIONWIDE - CENSUS TEST','202109281','EMPEXPORT','TEST','Sep 30 2021 11:31PM','ENAT401TES',NULL,NULL,NULL,'202109281','Sep 28 2021 12:00AM','Dec 30 1899 12:00AM','202109221','575','','','202109221',dbo.fn_GetTimedKey(),NULL,'us3cPeLEE1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'NATIONWIDE - CENSUS TEST','202110229','EMPEXPORT','TEST','Oct 27 2021  8:22PM','ENAT401TES',NULL,NULL,NULL,'202110229','Oct 22 2021 12:00AM','Dec 30 1899 12:00AM','202110221','594','','','202110221',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'unlock ENAT401TES','201412049','EMPEXPORT','ZAP',NULL,'ENAT401TES',NULL,NULL,NULL,'201412049',NULL,NULL,'201409051',NULL,NULL,NULL,'201409051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','CountFilter','C',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','EEList','V','Y');
@@ -93,6 +97,7 @@ CREATE TABLE [dbo].[U_dsi_ENAT401TES_DedHist] (
     [heeid] char(12) NULL,
     [hcoid] char(5) NULL,
     [hdedcode] char(5) NOT NULL,
+	pdheecalcrateorpct varchar(50) NULL,
     [heecalcrateorpct] decimal NULL,
     [heeamt] money NULL,
     [heramt] money NULL,
@@ -120,7 +125,7 @@ CREATE TABLE [dbo].[U_dsi_ENAT401TES_drvTbl] (
     [drvZip] varchar(5) NULL,
     [drvZipCode] varchar(4) NULL,
     [drvDOH] char(8) NULL,
-    [drvDOT] char(8) NULL,
+    [drvDOT] varchar(30) NOT NULL,
     [drvDateofPlanEntry] varchar(1) NOT NULL,
     [drvDOB] char(8) NULL,
     [drvGender] char(1) NULL,
@@ -142,6 +147,29 @@ CREATE TABLE [dbo].[U_dsi_ENAT401TES_drvTbl] (
     [drvRelatedOwnerSSN] varchar(1) NOT NULL,
     [drvEmpType] char(1) NULL,
     [drvDoD] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_ENAT401TES_Audit') IS NULL
+CREATE TABLE [dbo].[U_ENAT401TES_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] varchar(2000) NULL,
+    [audNewValue] varchar(2000) NULL,
+    [audRowNo] bigint NULL,
+    [audNewHire] varchar(1) NOT NULL,
+    [audReHire] varchar(1) NOT NULL,
+    [audTerm] varchar(1) NOT NULL,
+    [audSalaryChange] varchar(1) NOT NULL,
+    [audLastTermDate] varchar(1) NOT NULL
+);
+IF OBJECT_ID('U_ENAT401TES_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ENAT401TES_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
 );
 IF OBJECT_ID('U_ENAT401TES_EEList') IS NULL
 CREATE TABLE [dbo].[U_ENAT401TES_EEList] (
@@ -175,8 +203,11 @@ Changes:
 07/26/2021      A.Stevens        SF 22322133                 commented out logic for drvPreTaxDollarElection, drvRothDollarElection
 
 10/12/2021 by AP:
-		- Test version ENAT401TES
-		- Updated logic for Service Termination Date
+        - Test version ENAT401TES
+        - Updated logic for Service Termination Date
+
+11/04/2021 by AP:
+		- Updated pre-tax and roth deferral amounts.
 
 _dsi_usp_ExportRipout 'ENAT401TES','Y' 
 
@@ -358,6 +389,7 @@ SELECT
     xEEID heeid,
     xCOID hcoid,
     pdhdedcode hdedcode,
+	pdheecalcrateorpct,
     SUM(ISNULL(pdhEECalcRateOrPct,0.00)) as heecalcrateorpct,
     SUM(ISNULL(PDHEECURAMT,0.00)) AS heeamt,
     SUM(ISNULL(PDHERCURAMT,0.00)) AS heramt, PdhPayDate
@@ -366,7 +398,8 @@ SELECT
         from dbo.u_ENAT401TES_EELIST 
     JOIN PDEDHIST (nolock) ON xeeid = PdhEEID and xCOID = PdhCOID
         AND (PDHEECURAMT <> 0 or PDHERCURAMT <> 0)
-        AND PDHDEDCODE IN ('401CP','401K','ROTH')    
+		  AND PDHDEDCODE IN ('401CP','401K','401KR')  
+	 --   AND PDHDEDCODE IN ('401CP','401K','ROTH')    
 --        AND PDHPERCONTROL BETWEEN '20040901' and '20040924'
         AND substring(PDHPERCONTROL,1,8) BETWEEN substring(@StartPerControl,1,8) and substring(@EndPerControl,1,8)
     GROUP BY xEEID,xCOID,PdhDedCode,pdhEECalcRateOrPct, PdhPayDate
@@ -399,17 +432,17 @@ SELECT
  --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepNameSuffix');
  --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepOldSSN');
  --   INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpPers','EepSSN');
-	--INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpHJob','EjhDateTimeCreated');
+    --INSERT INTO dbo.U_ENAT401TES_AuditFields VALUES ('EmpHJob','EjhDateTimeCreated');
 
 
  --   -- Create audit table based on fields defined above
  --   IF OBJECT_ID('U_ENAT401TES_Audit','U') IS NOT NULL
  --       DROP TABLE dbo.U_ENAT401TES_Audit;
 
-	--SELECT *, audLastTermDate = CASE WHEN audTerm = 'Y' AND audTableName = 'EmpHJob' AND audFieldName = 'EjhDateTimeCreated' AND ISNULL(audNewValue , '') <> '' THEN 'Y' ELSE 'N' END
-	--INTO dbo.U_ENAT401TES_Audit
-	--FROM
-	--(
+    --SELECT *, audLastTermDate = CASE WHEN audTerm = 'Y' AND audTableName = 'EmpHJob' AND audFieldName = 'EjhDateTimeCreated' AND ISNULL(audNewValue , '') <> '' THEN 'Y' ELSE 'N' END
+    --INTO dbo.U_ENAT401TES_Audit
+    --FROM
+    --(
  --   SELECT 
  --       audEEID  = audKey1Value
  --       ,audKey2 = audKey2Value
@@ -539,8 +572,8 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
             drvZipCode  = substring(EepAddressZipCode,6,4),
             drvDOH  = convert(char(8),eecdateoforiginalhire,112),
             drvDOT  = ISNULL(CONVERT(VARCHAR, (CASE WHEN EecEmplStatus IN ('R', 'T') THEN EecDateOfTermination 
-							WHEN EecEmplStatus NOT IN ('R', 'T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN ejh.EjhJobEffDate END), 112), ''),
-			--CASE
+                            WHEN EecEmplStatus NOT IN ('R', 'T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN ejh.EjhJobEffDate END), 112), ''),
+            --CASE
    --                         WHEN EecEmplStatus = 'T' THEN convert(char(8),eecdateoftermination,112)
    --                 END,
             drvDateofPlanEntry  = '',
@@ -554,8 +587,10 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
             drvRehireDate  = case when eecdateoforiginalhire <  eecdateoflasthire then convert(char(8),EecDateOfLastHire,112) else '' end,
             drvAutoEnrollmentStatus  = '',
             drvAutoEnrollmentDate  = '',--convert(char(8),eepdateofbirth,112),
-            drvPreTaxDeferral  = convert(varchar,K.pct),--percentage
-            drvRothDeferralPercentageElection  = convert(varchar,RF.pct), --percentage
+            drvPreTaxDeferral  = CAST(CAST(CASE WHEN k.PdhEECalcRateOrPct > '.9999' THEN '99.99' ELSE k.PdhEECalcrateOrPct * 100 END AS DECIMAL(4,2)) AS VARCHAR),
+			--convert(varchar,K.pct),--percentage
+            drvRothDeferralPercentageElection  = CAST(CAST(CASE WHEN rf.PdhEECalcRateOrPct > '.9999' THEN '99.99' ELSE rf.PdhEECalcrateOrPct * 100 END AS DECIMAL(4,2)) AS VARCHAR) ,
+			--convert(varchar,RF.pct), --percentage
             drvPreTaxDollarElection  = '',--convert(varchar,K.eeamt),-- dollar A.S. 07/26/21
             drvRothDollarElection  = '',--convert(varchar,RF.eeamt),--dollar A.S. 07/26/21
             drvPhoneNumber  = EepPhoneHomeNumber,
@@ -579,32 +614,33 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
 --('401CF','401CP','401F','401P','401M','401RF','401RP','40CFR','40CPR' ,'401L','401L2')    
 
 --401K Contribution    
-    left join(select heeid eeid, hcoid coid, sum(heeamt) eeamt, sum(heramt) eramt, sum(heecalcrateorpct) pct
+    left join(select heeid eeid, hcoid coid, pdheecalcrateorpct, sum(heeamt) eeamt, sum(heramt) eramt, sum(heecalcrateorpct) pct
         from dbo.U_dsi_ENAT401TES_DedHist
         where hdedcode in ('401K','401CP')
-        group by heeid, hcoid) K on K.eeid = xEEID and K.coid = xCOID
+        group by heeid, hcoid, pdheecalcrateorpct) K on K.eeid = xEEID and K.coid = xCOID
 
 
 
 --Roth
-    left join(select heeid eeid, hcoid coid, sum(heeamt) eeamt, sum(heramt) eramt, sum(heecalcrateorpct) pct
+    left join(select heeid eeid, hcoid coid, PdhEECalcRateOrPct, sum(heeamt) eeamt, sum(heramt) eramt, sum(heecalcrateorpct) pct
         from dbo.U_dsi_ENAT401TES_DedHist
-        where hdedcode in ('ROTH')
-        group by heeid, hcoid) RF on RF.eeid = xEEID and RF.coid = xCOID
-	left join (select EjhEEID, EjhCOID, MAX(EjhJobEffDate) AS EjhJobEffDate
-				from dbo.EmpHJob WITH(NOLOCK)
-				where ejhemplstatus = 't'
-				GROUP BY EjhEEID, EjhCOID) ejh on ejh.ejheeid = xeeid and ejh.ejhcoid = xcoid
-	--LEFT JOIN (SELECT audEEID, audKey2 AS audCOID, MAX(audDateTime) AS audDateTime
-	--			FROM dbo.U_ENAT401TES_Audit
-	--			WHERE audTerm = 'Y'
-	--			GROUP BY audEEID, audKey2) aud ON aud.audEEID = xEEID AND aud.audCOID = xCOID
+        where hdedcode in ('401KR')
+        group by heeid, hcoid, PdhEECalcRateOrPct) RF on RF.eeid = xEEID and RF.coid = xCOID
+    left join (select EjhEEID, EjhCOID, MAX(EjhJobEffDate) AS EjhJobEffDate
+                from dbo.EmpHJob WITH(NOLOCK)
+                where ejhemplstatus = 't'
+                GROUP BY EjhEEID, EjhCOID) ejh on ejh.ejheeid = xeeid and ejh.ejhcoid = xcoid
+    --LEFT JOIN (SELECT audEEID, audKey2 AS audCOID, MAX(audDateTime) AS audDateTime
+    --            FROM dbo.U_ENAT401TES_Audit
+    --            WHERE audTerm = 'Y'
+    --            GROUP BY audEEID, audKey2) aud ON aud.audEEID = xEEID AND aud.audCOID = xCOID
 
 ----Roth catch up
 --    left join(select heeid eeid, hcoid coid, sum(heeamt) eeamt, sum(heramt) eramt, sum(heecalcrateorpct) pct
 --        from dbo.U_dsi_ENAT401TES_DedHist
 --        where hdedcode in ('XXXXX')
 --        group by heeid, hcoid) RP on RP.eeid = xEEID and RP.coid = xCOID
+
 
  ---Set FileName  
 if (dbo.dsi_fnVariable('ENAT401TES','UseFileName') = 'N')
