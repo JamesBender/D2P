@@ -13,6 +13,8 @@ IF OBJECT_ID('U_ECOMPPAPER_File') IS NOT NULL DROP TABLE [dbo].[U_ECOMPPAPER_Fil
 GO
 IF OBJECT_ID('U_ECOMPPAPER_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECOMPPAPER_EEList];
 GO
+IF OBJECT_ID('U_ECOMPPAPER_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECOMPPAPER_drvTbl];
+GO
 IF OBJECT_ID('U_ECOMPPAPER_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECOMPPAPER_DedList];
 GO
 IF OBJECT_ID('U_dsi_BDM_ECOMPPAPER') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECOMPPAPER];
@@ -22,7 +24,7 @@ DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE Format
 DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ECOMPPAPER';
 DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ECOMPPAPER';
 DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ECOMPPAPER';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCreateTClockBatches,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhRespectZeroPayRate,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhThirdPartyPay) VALUES ('N','C','Y','0','',NULL,'','N','','N','','013010','EMPEXPORT','CDE','ECOMPPAPER','Compsych Eligibility Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','4000','N','S','N','ECOMPPAPERZ0','N','Jan  1 1900 12:00AM','C','N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECOMPPAPER','Compsych Eligibility Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','4000','S','N','ECOMPPAPERZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
 /*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ECOMPPAPER' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Account Number"','1','(''DA''=''T|'')','ECOMPPAPERZ0','50','H','01','1',NULL,'Account Number',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Account Name"','2','(''DA''=''T|'')','ECOMPPAPERZ0','50','H','01','2',NULL,'Account Name',NULL,NULL);
@@ -157,15 +159,15 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECOMPPAPER_20211014.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'ECOMPPAPER_20211104.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Export','202110129','EMPEXPORT','ONDEM_XOE',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Exp-Sched','202110129','EMPEXPORT','SCH_ECOMPP',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202110129','EMPEXPORT','TEST_XOE',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202110129','EMPEXPORT','TEST_XOE','Oct 20 2021  3:51PM','ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121','2603','','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','UseFileName','V','Y');
 /*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ECOMPPAPER' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
 /*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ECOMPPAPER' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
 IF OBJECT_ID('U_ECOMPPAPER_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECOMPPAPER_SavePath];
@@ -219,6 +221,75 @@ IF OBJECT_ID('U_ECOMPPAPER_DedList') IS NULL
 CREATE TABLE [dbo].[U_ECOMPPAPER_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
+);
+IF OBJECT_ID('U_ECOMPPAPER_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ECOMPPAPER_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvAccNum] varchar(6) NOT NULL,
+    [drvAccName] varchar(15) NOT NULL,
+    [drvEmpId] char(9) NULL,
+    [drvEmpSSN] varchar(11) NULL,
+    [drvFName] varchar(100) NULL,
+    [drvMI] varchar(1) NULL,
+    [drvLName] varchar(100) NULL,
+    [drvHomeAdd1] varchar(255) NULL,
+    [drvHomeAdd2] varchar(255) NULL,
+    [drvHomeCity] varchar(255) NULL,
+    [drvHomeState] varchar(255) NULL,
+    [drvHomeZip] varchar(50) NULL,
+    [drvHomeCountry] char(3) NULL,
+    [drvHomePh] varchar(50) NULL,
+    [drvGender] char(1) NULL,
+    [drvDOB] datetime NULL,
+    [drvPrimaryLang] varchar(1) NOT NULL,
+    [drvWorkAddId] varchar(1) NOT NULL,
+    [drvWorkAddLine1] varchar(1) NOT NULL,
+    [drvWorkAddLine2] varchar(1) NOT NULL,
+    [drvWorkCity] varchar(1) NOT NULL,
+    [drvWorkState] varchar(255) NULL,
+    [drvWorkZip] varchar(1) NOT NULL,
+    [drvWorkCountry] varchar(1) NOT NULL,
+    [drvWorkPh] varchar(1) NOT NULL,
+    [drvPhExt] varchar(1) NOT NULL,
+    [drvBusUnit] varchar(25) NULL,
+    [drvOrg] varchar(25) NULL,
+    [drvEmpGrp1] varchar(25) NULL,
+    [drvEmpGrp2] varchar(201) NULL,
+    [drvEmpGrp3] varchar(40) NULL,
+    [drvEmpGrp4] varchar(255) NULL,
+    [drvEmpGrp5] char(1) NULL,
+    [drvEmpGrp6] varchar(45) NULL,
+    [drvEmpGrp7] char(5) NULL,
+    [drvEmpGrp8] varchar(1) NOT NULL,
+    [drvFTPTStat] char(1) NULL,
+    [drvHireDt] datetime NULL,
+    [drvAdjEmplDt] datetime NULL,
+    [drvAnnDt] varchar(1) NOT NULL,
+    [drvTermDt] varchar(30) NOT NULL,
+    [drvHrsWorkedPast12Months] varchar(30) NULL,
+    [drvKeyEmp] varchar(1) NOT NULL,
+    [drvJobTitle] varchar(25) NOT NULL,
+    [drvWorkEmail] varchar(50) NULL,
+    [drvSchHrsPerWeek] varchar(2) NOT NULL,
+    [drvSchNumDaysPerWeek] varchar(1) NOT NULL,
+    [drvAddLetterRecEmail] varchar(1) NOT NULL,
+    [drvSpouseEmployed] varchar(1) NOT NULL,
+    [drvSpouseEmpId] varchar(1) NOT NULL,
+    [drvPrimaryContactId] varchar(1) NOT NULL,
+    [drvSTDEarnings] varchar(1) NOT NULL,
+    [drvSTDEligibilityDt] datetime NULL,
+    [drvLTDEligibilityDt] datetime NULL,
+    [drvEmployerCont2Ids] varchar(1) NOT NULL,
+    [drvEmployerCont3Ids] varchar(1) NOT NULL,
+    [drvEmployerCont4Ids] varchar(1) NOT NULL,
+    [drvEmployerCont5Ids] varchar(1) NOT NULL,
+    [drvEmployerCont6Ids] varchar(1) NOT NULL,
+    [drvEmployerCont7Ids] varchar(1) NOT NULL,
+    [drvEmployerCont8Ids] varchar(1) NOT NULL,
+    [drvEmployerCont9Ids] varchar(1) NOT NULL,
+    [drvEmployerCont10Ids] varchar(1) NOT NULL
 );
 IF OBJECT_ID('U_ECOMPPAPER_EEList') IS NULL
 CREATE TABLE [dbo].[U_ECOMPPAPER_EEList] (
@@ -283,8 +354,13 @@ Purpose: Compsych Eligibility Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+11/04/2021 by AP:
+
+	- Updated logic for group 6.
+	- Updated logic for group 7.
+	- Added supervisor id to primary contact.
+	- Added 30 days term drop.
+	- Updated LTD and STD elig dates.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECOMPPAPER';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECOMPPAPER';
@@ -446,6 +522,19 @@ BEGIN
     GROUP BY PehEEID, PehCOID--, PehEarnCode
     HAVING SUM(PehCurAmt) <> 0.00;
 
+
+	---- CLEAN UP CODES TABLE RESULTS ----
+
+	IF OBJECT_ID('U_dsi_CodesTable','U') IS NOT NULL
+    DROP TABLE dbo.U_dsi_CodesTable;
+
+	SELECT EjhEEID AS CodEEID, EjhCOID AS CodCOID, CodDesc, MAX(EjhJobEffDate) AS CodJobEffDate
+	INTO dbo.U_dsi_CodesTable
+	FROM dbo.EmpHJob WITH(NOLOCK) JOIN dbo.Codes WITH(NOLOCK)
+	ON EjhProject = CodCode
+	WHERE CodTable = 'PROJECT'
+	GROUP BY EjhEEID, EjhCOID, CodDesc
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -494,8 +583,8 @@ BEGIN
         ,drvEmpGrp3 = CmpCompanyName
         ,drvEmpGrp4 = LocAddressState
         ,drvEmpGrp5 = EjhFLSACategory
-        ,drvEmpGrp6 = CASE WHEN CodCode = 'OTRALBMILG' THEN CodDesc END
-        ,drvEmpGrp7 = Ec.EecEarnGroupCode
+        ,drvEmpGrp6 = CodDesc
+        ,drvEmpGrp7 = CegEarnGroupDesc
         ,drvEmpGrp8 = ''
         ,drvFTPTStat = Ec.EecFullTimeOrPartTime
         ,drvHireDt = Ec.EecDateOfOriginalHire
@@ -511,7 +600,7 @@ BEGIN
         ,drvAddLetterRecEmail = ''
         ,drvSpouseEmployed = ''
         ,drvSpouseEmpId = ''
-        ,drvPrimaryContactId = ''
+        ,drvPrimaryContactId = Ec.EecSupervisorID
         ,drvSTDEarnings = ''
         ,drvSTDEligibilityDt = std.EedEEEligDate
         ,drvLTDEligibilityDt = ltd.EedEEEligDate
@@ -540,18 +629,28 @@ BEGIN
     JOIN dbo.U_ECOMPPAPER_PEarHist
         ON xEEID = PehEEID
         AND xCOID = PehCOID
-    LEFT JOIN (SELECT EedEEID, EedCOID, MAX(EedEEEligDate) AS EedEEEligDate 
-                FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-                WHERE EedFormatCode = 'ECOMPPAPER'
-                AND EedValidForExport = 'Y'
-                AND EedDedCode IN ('STD', 'STDD')
-                GROUP BY EedEEID, EedCOID) std ON std.EedEEID = xEEID AND std.EedCOID = xCOID
-    LEFT JOIN (SELECT EedEEID, EedCOID, MAX(EedEEEligDate) AS EedEEEligDate 
-                FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-                WHERE EedFormatCode = 'ECOMPPAPER'
-                AND EedValidForExport = 'Y'
-                AND EedDedCode IN ('LTD', 'LTDD')
-                GROUP BY EedEEID, EedCOID) ltd ON ltd.EedEEID = xEEID AND ltd.EedCOID = xCOID
+	LEFT JOIN dbo.EarnGrp WITH(NOLOCK)
+		ON Ec.EecEarnGroupCode = CegEarnGroupCode
+	  LEFT JOIN (SELECT EedEEID, EedCOID, MAX(EedEEEligDate) AS EedEEEligDate
+					FROM dbo.EmpDedFull WITH(NOLOCK)
+					WHERE EedDedCode IN ('STD', 'STDD')
+					GROUP BY EedEEID, EedCOID) std ON std.EedEEID = xEEID AND std.EedCoID = xCOID
+    --LEFT JOIN (SELECT EedEEID, EedCOID, MAX(EedEEEligDate) AS EedEEEligDate 
+    --            FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+    --            WHERE EedFormatCode = 'ECOMPPAPER'
+    --            AND EedValidForExport = 'Y'
+    --            AND EedDedCode IN ('STD', 'STDD')
+    --            GROUP BY EedEEID, EedCOID) std ON std.EedEEID = xEEID AND std.EedCOID = xCOID
+    LEFT JOIN (SELECT EedEEID, EedCOID, MAX(EedEEEligDate) AS EedEEEligDate
+					FROM dbo.EmpDedFull WITH(NOLOCK)
+					WHERE EedDedCode IN ('LTD', 'LTDD')
+					GROUP BY EedEEID, EedCOID) ltd ON ltd.EedEEID = xEEID AND ltd.EedCoID = xCOID
+	--(SELECT EedEEID, EedCOID, MAX(EedEEEligDate) AS EedEEEligDate 
+ --               FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+ --               WHERE EedFormatCode = 'ECOMPPAPER'
+ --               AND EedValidForExport = 'Y'
+ --               AND EedDedCode IN ('LTD', 'LTDD')
+ --               GROUP BY EedEEID, EedCOID) ltd ON ltd.EedEEID = xEEID AND ltd.EedCOID = xCOID
     OUTER APPLY (SELECT TOP 1 * FROM dbo.EmpHJob WITH(NOLOCK) WHERE EjhEEID = xEEID AND EjhCOID = xCOID ORDER BY EjhJobEffDate DESC) E
     LEFT JOIN dbo.OrgLevel O1 WITH(NOLOCK)
         ON O1.OrgCode = Ec.EecOrgLvl1
@@ -561,16 +660,18 @@ BEGIN
         ON O3.OrgCode = Ec.EecOrgLvl3
     LEFT JOIN dbo.EmpComp EC2 WITH (NOLOCK) -- supervisor  
     ON EC2.EecEEID = Ec.EecSupervisorID  
-    AND Ec2.EecCOID = Ec.EecCOID  
+  --  AND Ec2.EecCOID = Ec.EecCOID  
         --AND SUP.EecEmplStatus <> 'T' 
     LEFT JOIN dbo.EmpPers pers2 WITH(NOLOCK)
     ON Ec2.EecEEID = pers2.EepEEID
-    LEFT JOIN dbo.Codes WITH(NOLOCK)
-    ON CodTable = Ec.EecEmplStatus
+    LEFT JOIN dbo.U_dsi_CodesTable WITH(NOLOCK)
+	ON EjhEEID = CodEEID
+	AND EjhCOID = CodCOID
   --  AND CodTable = 'MOTALB'
     --JOIN dbo.U_dsi_BDM_ECOMPPAPER WITH (NOLOCK)
     --    ON BdmEEID = xEEID 
     --    AND BdmCoID = xCoID
+	WHERE Ec.EecDateOfTermination IS NULL OR CAST(Ec.EecDateOfTermination AS DATE) >= DATEADD(day, -30, CAST(GETDATE() AS DATE))
     ;
 
     --==========================================
