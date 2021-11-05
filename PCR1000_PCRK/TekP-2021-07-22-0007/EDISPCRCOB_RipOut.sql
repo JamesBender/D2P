@@ -27,6 +27,8 @@ IF OBJECT_ID('U_EDISPCRCOB_drvTbl_NPM') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRC
 GO
 IF OBJECT_ID('U_EDISPCRCOB_DepCount') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_DepCount];
 GO
+IF OBJECT_ID('U_EDISPCRCOB_DeathEvent') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_DeathEvent];
+GO
 IF OBJECT_ID('U_dsi_BDM_EDISPCRCOB') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EDISPCRCOB];
 GO
 DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EDISPCRCOB';
@@ -145,11 +147,11 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISPCRCOB_20211028.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISPCRCOB_20211105.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'NPM/Cobra Export','202105259','EMPEXPORT','ONDEMAND','Nov  8 2017 12:00AM','EDISPCRCOB',NULL,NULL,NULL,'202105259','Oct 30 2017 12:00AM','Dec 30 1899 12:00AM','202105111',NULL,'','','202105111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Export','202105259','EMPEXPORT','SCH_PCRCOB',NULL,'EDISPCRCOB',NULL,NULL,NULL,'202105259','Jan 13 2016  8:53AM','Jan 13 2016  8:53AM','202105111',NULL,'','','202105111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test NPM/Cobra Export','202111021','EMPEXPORT','TEST','Oct 15 2021  8:27PM','EDISPCRCOB',NULL,NULL,NULL,'202111021','Nov  2 2021 12:00AM','Dec 30 1899 12:00AM','202107011','305','','','202107011',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',MU7K1,MVM3U,MVM71,MVLY4,MUDKQ,MU7S2,MV8P2,MUBL8,MUBQI,MV8UA,MUDH8,MUDCZ,MUBX3,O8339,O836P,O8394,O83C0,O83EF,O83IH,O83JY,O83LY,O83NG,O83PU,O83RB,O83T1,NYGWS',NULL,NULL,NULL,'Scheduled Export','202110289','EMPEXPORT','SCH_PCRCOB',NULL,'EDISPCRCOB',NULL,NULL,NULL,'202111019','Jan 13 2016  8:53AM','Jan 13 2016  8:53AM','202110251',NULL,'','','202110281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test NPM/Cobra Export','202111021','EMPEXPORT','TEST','Nov  2 2021 10:27AM','EDISPCRCOB',NULL,NULL,NULL,'202111021','Nov  2 2021 12:00AM','Dec 30 1899 12:00AM','202110291','12','','','202110291',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','InitialSort','C','drvInitialSort');
@@ -213,6 +215,11 @@ CREATE TABLE [dbo].[U_dsi_BDM_EDISPCRCOB] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+IF OBJECT_ID('U_EDISPCRCOB_DeathEvent') IS NULL
+CREATE TABLE [dbo].[U_EDISPCRCOB_DeathEvent] (
+    [EeDeathId] char(12) NOT NULL,
+    [IsSpouse] varchar(1) NULL
 );
 IF OBJECT_ID('U_EDISPCRCOB_DepCount') IS NULL
 CREATE TABLE [dbo].[U_EDISPCRCOB_DepCount] (
@@ -400,11 +407,15 @@ Revision History
         - Added DELETE statement to remove employees >= 26.
 
 10/29/2021 by AP:
-		- Fixed death scenario where both spouse and employee where showing as QB.
-		- Fixed dependent at max age showing records for QBDEP and QBDEPPLAN.
-		- Set UPDATE statement to clean up coverage level.
-		- Cleaned up DELETE statement for INELIGIBLEDEPENDENTS >= 26.
-		- Added DELETE statement to clean up BDM table for TEST employess.
+        - Fixed death scenario where both spouse and employee where showing as QB.
+        - Fixed dependent at max age showing records for QBDEP and QBDEPPLAN.
+        - Set UPDATE statement to clean up coverage level.
+        - Cleaned up DELETE statement for INELIGIBLEDEPENDENTS >= 26.
+        - Added DELETE statement to clean up BDM table for TEST employess.
+
+11/05/2021 by AP:
+		- Updated cobra reason for death to 210 in BDM output.
+		- Removed 203 from QBPLAN.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISPCRCOB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDISPCRCOB';
@@ -707,14 +718,14 @@ BEGIN
 
     --DELETE FROM dbo.U_dsi_BDM_EDISPCRCOB WHERE BdmDedCode not in (SELECT DedCode FROM dbo.U_EDISPCRCOB_DedList)
 
-	---- SEE IF EMPLOYEE OF DEATH EVENT HAS A SPOUSE TO USE FURTHER DOWN IN THE CODE AS A FLAG ----
+    ---- SEE IF EMPLOYEE OF DEATH EVENT HAS A SPOUSE TO USE FURTHER DOWN IN THE CODE AS A FLAG ----
 
-	IF OBJECT_ID('U_EDISPCRCOB_DeathEvent') IS NOT NULL
+    IF OBJECT_ID('U_EDISPCRCOB_DeathEvent') IS NOT NULL
     DROP TABLE dbo.U_EDISPCRCOB_DeathEvent;
 
-	SELECT DISTINCT EecEEID AS EeDeathId, MAX(CASE WHEN DbnRelationship IN ('SPS', 'SPX', 'DMP', 'DP')  THEN '1' ELSE '0' END) AS IsSpouse
-	INTO dbo.U_EDISPCRCOB_DeathEvent
-	FROM dbo.EmpComp WITH(NOLOCK)
+    SELECT DISTINCT EecEEID AS EeDeathId, MAX(CASE WHEN DbnRelationship IN ('SPS', 'SPX', 'DMP', 'DP')  THEN '1' ELSE '0' END) AS IsSpouse
+    INTO dbo.U_EDISPCRCOB_DeathEvent
+    FROM dbo.EmpComp WITH(NOLOCK)
     JOIN dbo.u_dsi_bdm_DepDeductions WITH(NOLOCK)
     ON EecEEID = dbnEEID
     AND EecCOID = dbnCOID
@@ -722,7 +733,7 @@ BEGIN
     AND DbnFormatCode = 'EDISPCRCOB'
     --AND eeceeid = 'DNEAWV01IRX0'
     AND EecTermReason = '203'
-	GROUP BY EecEEID
+    GROUP BY EecEEID
 
     -- 203 death insert dependent
     INSERT INTO [dbo].[U_dsi_BDM_EDISPCRCOB]
@@ -762,8 +773,8 @@ BEGIN
     ,DbnBenStopDate 
     ,DbnBenStatusDate
     ,DbnBenStatusDate
-    ,'203'
-    ,'203'
+    ,'210'
+    ,'210'
     ,NULL
     ,NULL
     ,'Y'
@@ -773,16 +784,16 @@ BEGIN
     AND EecCOID = dbnCOID
     JOIN dbo.EmpPers WITH(NOLOCK)
     ON EepEEID = dbnEEID
-	JOIN dbo.U_EDISPCRCOB_DeathEvent WITH(NOLOCK)
-	ON EecEEID = EeDeathId
-	AND IsSpouse = '1' -- SPOUSE FLAG
+    JOIN dbo.U_EDISPCRCOB_DeathEvent WITH(NOLOCK)
+    ON EecEEID = EeDeathId
+    AND IsSpouse = '1' -- SPOUSE FLAG
     WHERE DbnValidForExport = 'N'
     AND DbnFormatCode = 'EDISPCRCOB'
     --AND eeceeid = 'DTCQW5000040'
     AND EecTermReason = '203'
-	AND DbnRelationship IN ('SPS', 'SPX', 'DMP', 'DP')
+    AND DbnRelationship IN ('SPS', 'SPX', 'DMP', 'DP')
 
-	 -- 203 death insert dependent
+     -- 203 death insert dependent
     INSERT INTO [dbo].[U_dsi_BDM_EDISPCRCOB]
     ([BdmRecType]
     ,[BdmCOID]
@@ -820,8 +831,8 @@ BEGIN
     ,DbnBenStopDate 
     ,DbnBenStatusDate
     ,DbnBenStatusDate
-    ,'203'
-    ,'203'
+    ,'210'
+    ,'210'
     ,NULL
     ,NULL
     ,'N'
@@ -831,23 +842,23 @@ BEGIN
     AND EecCOID = dbnCOID
     JOIN dbo.EmpPers WITH(NOLOCK)
     ON EepEEID = dbnEEID
-	JOIN dbo.U_EDISPCRCOB_DeathEvent WITH(NOLOCK)
-	ON EecEEID = EeDeathId
-	AND IsSpouse = '1' -- SPOUSE FLAG USED TO INSERT A 2ND RECORD FOR CHILD AS PQB = 'N'
+    JOIN dbo.U_EDISPCRCOB_DeathEvent WITH(NOLOCK)
+    ON EecEEID = EeDeathId
+    AND IsSpouse = '1' -- SPOUSE FLAG USED TO INSERT A 2ND RECORD FOR CHILD AS PQB = 'N'
     WHERE DbnValidForExport = 'N'
     AND DbnFormatCode = 'EDISPCRCOB'
     --AND eeceeid = 'DTCQW5000040'
     AND EecTermReason = '203'
-	AND DbnRelationship IN ('CHL', 'DPC', 'STC')
+    AND DbnRelationship IN ('CHL', 'DPC', 'STC')
 
-	---- DELETE TEST EMPLOYEES FROM BDM ----
-	DELETE dbo.[U_dsi_BDM_EDISPCRCOB]
-	WHERE EXISTS  (SELECT DISTINCT EepEEID
-						FROM dbo.EmpPers
-						WHERE dbo.[U_dsi_BDM_EDISPCRCOB].bdmeeid = eepeeid
-						and LEFT(EepSSN, 3) = '999')
+    ---- DELETE TEST EMPLOYEES FROM BDM ----
+    DELETE dbo.[U_dsi_BDM_EDISPCRCOB]
+    WHERE EXISTS  (SELECT DISTINCT EepEEID
+                        FROM dbo.EmpPers
+                        WHERE dbo.[U_dsi_BDM_EDISPCRCOB].bdmeeid = eepeeid
+                        and LEFT(EepSSN, 3) = '999')
 
-	 INSERT INTO [dbo].[U_dsi_BDM_EDISPCRCOB]
+     INSERT INTO [dbo].[U_dsi_BDM_EDISPCRCOB]
     ([BdmRecType]
     ,[BdmCOID]
     ,[BdmEEID]
@@ -884,8 +895,8 @@ BEGIN
     ,DbnBenStopDate 
     ,DbnBenStatusDate
     ,DbnBenStatusDate
-    ,'203'
-    ,'203'
+    ,'210'
+    ,'210'
     ,NULL
     ,NULL
     ,'Y'
@@ -895,14 +906,14 @@ BEGIN
     AND EecCOID = dbnCOID
     JOIN dbo.EmpPers WITH(NOLOCK)
     ON EepEEID = dbnEEID
-	JOIN dbo.U_EDISPCRCOB_DeathEvent WITH(NOLOCK)
-	ON EecEEID = EeDeathId
-	AND IsSpouse = '0' -- IF NO SPOUSE EXISTS THEN CHILD IS PQB
+    JOIN dbo.U_EDISPCRCOB_DeathEvent WITH(NOLOCK)
+    ON EecEEID = EeDeathId
+    AND IsSpouse = '0' -- IF NO SPOUSE EXISTS THEN CHILD IS PQB
     WHERE DbnValidForExport = 'N'
     AND DbnFormatCode = 'EDISPCRCOB'
     --AND eeceeid = 'DTCQW5000040'
     AND EecTermReason = '203'
-	AND DbnRelationship IN ('CHL', 'DPC', 'STC')
+    AND DbnRelationship IN ('CHL', 'DPC', 'STC')
     ORDER BY DbnRelationship DESC
 
       -- Dependents Count
@@ -1110,23 +1121,23 @@ BEGIN
                                 WHEN 'MEDU1' THEN 'UHC Medical Choice Plus PPO $7150'
                                 WHEN 'FSA' THEN 'WEX FSA' END
         /*CONVERT(varchar(50),'@PlanName')*/
-        ,drvCoverageLevel = CASE WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count = 1
+        ,drvCoverageLevel = CASE WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count = 1
                                         THEN 'EE+CHILD'
-                                WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count > 1
+                                WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count > 1
                                         THEN 'EE+CHILDREN'
-                                WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count = 0
+                                WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count = 0
                                         THEN 'EE'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EE' THEN 'EE'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND child_count = 1 THEN 'EE+CHILD'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND child_count > 1 THEN 'EE+CHILDREN'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EEDP' THEN 'EE+DOMESTICPARTNER'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption IN ('EEF', 'EEDPF') THEN 'EE+FAMILY'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210', '203') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EES' THEN 'EE+SPOUSE'
                                 WHEN BdmDedCode = 'FSA' THEN 'EE' 
                             END
@@ -1358,46 +1369,46 @@ BEGIN
       AND BdmIsPQB = 'Y'
       AND BdmDedType = 'FSA';
 
-	---- SET COVERAGE LEVEL = 'EE' FOR EMPLOYEES THAT HAVE INELIGIBLE DEPENDENT AS THE EVENT TYPE ----
-	UPDATE dbo.U_EDISPCRCOB_drvTbl_QBPLAN
-	SET drvCoverageLevel = 'EE'
-	FROM dbo.U_EDISPCRCOB_drvTbl_QBEVENT a WITH(NOLOCK)
-	WHERE a.drvEEID = dbo.U_EDISPCRCOB_drvTbl_QBPLAN.drvEEID
-	AND a.drvCOID = dbo.U_EDISPCRCOB_drvTbl_QBPLAN.drvCOID
-	AND a.drvEventType = 'INELIGIBLEDEPENDENT'
-	AND dbo.U_EDISPCRCOB_drvTbl_QBPLAN.drvCoverageLevel IS NULL
+    ---- SET COVERAGE LEVEL = 'EE' FOR EMPLOYEES THAT HAVE INELIGIBLE DEPENDENT AS THE EVENT TYPE ----
+    UPDATE dbo.U_EDISPCRCOB_drvTbl_QBPLAN
+    SET drvCoverageLevel = 'EE'
+    FROM dbo.U_EDISPCRCOB_drvTbl_QBEVENT a WITH(NOLOCK)
+    WHERE a.drvEEID = dbo.U_EDISPCRCOB_drvTbl_QBPLAN.drvEEID
+    AND a.drvCOID = dbo.U_EDISPCRCOB_drvTbl_QBPLAN.drvCOID
+    AND a.drvEventType = 'INELIGIBLEDEPENDENT'
+    AND dbo.U_EDISPCRCOB_drvTbl_QBPLAN.drvCoverageLevel IS NULL
 
     ---- REMOVE DEPENDENTS THAT ARE >= 26 FOR DEPENDENT TABLE ----
-	DELETE dbo.U_EDISPCRCOB_drvTbl_QBDEP
-	WHERE drvDepRecID = (SELECT DISTINCT BdmDepRecId
-							FROM dbo.U_EDISPCRCOB_drvTbl_QBEVENT a WITH(NOLOCK) JOIN dbo.u_dsi_bdm_EDISPCRCOB
-							ON a.drvEEID = bdmEEID
-							AND a.drvCOID = bdmCOID
-							JOIN dbo.Contacts b WITH(NOLOCK)
-							ON drvEEID = ConEEID
-							AND drvDepRecId = ConSystemId
-							WHERE a.drvEEID = drvEEID
-							AND a.drvCOID = drvCOID
-							AND DATEDIFF(year, ConDateOfBirth, drvEnrollmentDate ) >= 26 
-							AND  bdmrelationship in ('chl', 'dpc', 'stc')
-							AND a.drvEventType = 'INELIGIBLEDEPENDENT'
-							)
+    DELETE dbo.U_EDISPCRCOB_drvTbl_QBDEP
+    WHERE drvDepRecID = (SELECT DISTINCT BdmDepRecId
+                            FROM dbo.U_EDISPCRCOB_drvTbl_QBEVENT a WITH(NOLOCK) JOIN dbo.u_dsi_bdm_EDISPCRCOB
+                            ON a.drvEEID = bdmEEID
+                            AND a.drvCOID = bdmCOID
+                            JOIN dbo.Contacts b WITH(NOLOCK)
+                            ON drvEEID = ConEEID
+                            AND drvDepRecId = ConSystemId
+                            WHERE a.drvEEID = drvEEID
+                            AND a.drvCOID = drvCOID
+                            AND DATEDIFF(year, ConDateOfBirth, drvEnrollmentDate ) >= 26 
+                            AND  bdmrelationship in ('chl', 'dpc', 'stc')
+                            AND a.drvEventType = 'INELIGIBLEDEPENDENT'
+                            )
 
-	---- REMOVE DEPENDENTS THAT ARE >= 26 FOR DEPENDENT PLAN TABLE ----
-	DELETE dbo.U_EDISPCRCOB_drvTbl_QBDEPPLAN
-	WHERE drvDepRecID = (SELECT DISTINCT BdmDepRecId
-							FROM dbo.U_EDISPCRCOB_drvTbl_QBEVENT a WITH(NOLOCK) JOIN dbo.u_dsi_bdm_EDISPCRCOB
-							ON a.drvEEID = bdmEEID
-							AND a.drvCOID = bdmCOID
-							JOIN dbo.Contacts b WITH(NOLOCK)
-							ON drvEEID = ConEEID
-							AND drvDepRecId = ConSystemId
-							WHERE a.drvEEID = drvEEID
-							AND a.drvCOID = drvCOID
-							AND DATEDIFF(year, ConDateOfBirth, drvEnrollmentDate ) >= 26 
-							AND  bdmrelationship in ('chl', 'dpc', 'stc')
-							AND a.drvEventType = 'INELIGIBLEDEPENDENT'
-							)
+    ---- REMOVE DEPENDENTS THAT ARE >= 26 FOR DEPENDENT PLAN TABLE ----
+    DELETE dbo.U_EDISPCRCOB_drvTbl_QBDEPPLAN
+    WHERE drvDepRecID = (SELECT DISTINCT BdmDepRecId
+                            FROM dbo.U_EDISPCRCOB_drvTbl_QBEVENT a WITH(NOLOCK) JOIN dbo.u_dsi_bdm_EDISPCRCOB
+                            ON a.drvEEID = bdmEEID
+                            AND a.drvCOID = bdmCOID
+                            JOIN dbo.Contacts b WITH(NOLOCK)
+                            ON drvEEID = ConEEID
+                            AND drvDepRecId = ConSystemId
+                            WHERE a.drvEEID = drvEEID
+                            AND a.drvCOID = drvCOID
+                            AND DATEDIFF(year, ConDateOfBirth, drvEnrollmentDate ) >= 26 
+                            AND  bdmrelationship in ('chl', 'dpc', 'stc')
+                            AND a.drvEventType = 'INELIGIBLEDEPENDENT'
+                            )
 
     --DELETE u_dsi_bdm_EDISPCRCOB
     --WHERE BdmDepRecID = (SELECT DISTINCT CASE WHEN DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) >= 26 and bdmrelationship in ('chl', 'dpc', 'stc') then ConSystemID END
