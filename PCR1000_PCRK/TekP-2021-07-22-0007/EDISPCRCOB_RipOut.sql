@@ -1,385 +1,11 @@
-SET NOCOUNT ON;
-IF OBJECT_ID('U_EDISPCRCOB_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EDISPCRCOB_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EDISPCRCOB' AND CfgName LIKE '%Path';
-IF OBJECT_ID('dsi_vwEDISPCRCOB_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEDISPCRCOB_Export];
+USE [ULTIPRO_WPPCRK]
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_EDISPCRCOB') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EDISPCRCOB];
+/****** Object:  StoredProcedure [dbo].[dsi_sp_BuildDriverTables_EDISPCRCOB]    Script Date: 11/8/2021 1:29:30 PM ******/
+SET ANSI_NULLS ON
 GO
-IF OBJECT_ID('U_EDISPCRCOB_File') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_File];
+SET QUOTED_IDENTIFIER ON
 GO
-IF OBJECT_ID('U_EDISPCRCOB_EEList') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_EEList];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBSTATEINSERT') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBSTATEINSERT];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBPLAN') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBPLAN];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBMSRI') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBMSRI];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBEVENT') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBEVENT];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBDEPPLAN') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBDEPPLAN];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBDEP') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBDEP];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QB') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_QB];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_NPM') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_drvTbl_NPM];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_DepCount') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_DepCount];
-GO
-IF OBJECT_ID('U_EDISPCRCOB_DeathEvent') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_DeathEvent];
-GO
-IF OBJECT_ID('U_dsi_BDM_EDISPCRCOB') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EDISPCRCOB];
-GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EDISPCRCOB';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EDISPCRCOB';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EDISPCRCOB';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EDISPCRCOB';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EDISPCRCOB';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EDISPCRCOB','PCRK Holding Company COBRA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','S','N','EDISPCRCOBZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
-/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EDISPCRCOB' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[VERSION]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','H','01','1',NULL,'Version Line Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1.1"','2','(''DA''=''Q'')','EDISPCRCOBZ0','50','H','01','2',NULL,'Version Number',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QB]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvClientName"','2','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','2',NULL,'ClientName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvClientDivName"','3','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','3',NULL,'ClientDivisionName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','4',NULL,'Salutation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameFirst"','5','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','5',NULL,'FirstName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameMiddle"','6','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','6',NULL,'MiddleInitial',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameLast"','7','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','7',NULL,'LastName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','8','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','8',NULL,'SSN',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmpNo"','9','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','9',NULL,'IndividualID',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','10',NULL,'Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','11','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','11',NULL,'Phone',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','12',NULL,'Phone2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','13','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','13',NULL,'Address1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','14','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','14',NULL,'Address2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','15','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','15',NULL,'City',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','16','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','16',NULL,'StateOrProvince',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','17','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','17',NULL,'PostalCode',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','18',NULL,'Country',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRUE"','19','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','19',NULL,'PremiumAddressSameAsPrimary',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','20','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','20',NULL,'PremiumAddress1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','21','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','21',NULL,'PremiumAddress2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','22','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','22',NULL,'PremiumCity',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','23','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','23',NULL,'PremiumStateOrProvince',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','24','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','24',NULL,'PremiumPostalCode',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','25','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','25',NULL,'PremiumCountry',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','26','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','10','26',NULL,'Sex',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','27','(''UD101''=''Q,'')','EDISPCRCOBZ0','50','D','10','27',NULL,'DOB',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"UNKNOWN"','28','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','28',NULL,'TobaccoUse',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"UNKNOWN"','29','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','29',NULL,'EmployeeType',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"UNKNOWN"','30','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','30',NULL,'EmployeePayrollType',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','31','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','31',NULL,'YearsOfService',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"COUPONBOOK"','32','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','32',NULL,'PremiumCouponType',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"FALSE"','33','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','33',NULL,'UsesHCTC',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRUE"','34','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','34',NULL,'Active',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"FALSE"','35','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','10','35',NULL,'AllowMemberSSO',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','36','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','36',NULL,'BenefitGroup',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','37','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','10','37',NULL,'AccountStructure',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','38','(''SS''=''Q'')','EDISPCRCOBZ0','50','D','10','38',NULL,'ClientSpecificData',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBEVENT]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','20','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEventType"','2','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','20','2',NULL,'EventType',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEventDate"','3','(''UD101''=''Q,'')','EDISPCRCOBZ0','50','D','20','3',NULL,'EventDate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEnrollmentDate"','4','(''UD101''=''Q,'')','EDISPCRCOBZ0','50','D','20','4',NULL,'EnrollmentDate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','5','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','20','5',NULL,'EmployeeSSN',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvName"','6','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','20','6',NULL,'EmployeeName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','7','(''SS''=''Q'')','EDISPCRCOBZ0','50','D','20','7',NULL,'SecondEventOriginalFDOC',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBPLANINITIAL]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','30','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','30','2',NULL,'PlanName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCoverageLevel"','3','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','30','3',NULL,'CoverageLevel',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''SS''=''Q'')','EDISPCRCOBZ0','50','D','30','4',NULL,'NumberOfUnits',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBDEPENDENT]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','40','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','2','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','2',NULL,'SSN',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationship"','3','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','3',NULL,'Relationship',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','4','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','40','4',NULL,'Salutation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameFirst"','5','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','5',NULL,'FirstName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameMiddle"','6','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','6',NULL,'MiddleInitial',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameLast"','7','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','7',NULL,'LastName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','40','8',NULL,'Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','40','9',NULL,'Phone',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','10','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','40','10',NULL,'Phone2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvIsAddressSame"','11','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','11',NULL,'AddressSameAsQB',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','12','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','12',NULL,'Address1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','13','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','13',NULL,'Address2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','14','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','14',NULL,'City',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','15','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','15',NULL,'StateOrProvince',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','16','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','16',NULL,'PostalCode',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','17','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','40','17',NULL,'Country',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','40','18',NULL,'EnrollmentDate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','19','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','40','19',NULL,'Sex',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','20','(''UD101''=''Q,'')','EDISPCRCOBZ0','50','D','40','20',NULL,'DOB',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvISQMCO"','21','(''UA''=''Q'')','EDISPCRCOBZ0','50','D','40','21',NULL,'IsQMCSO',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBDEPENDENTPLANINITIAL]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','50','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q'')','EDISPCRCOBZ0','50','D','50','2',NULL,'PlanName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBSTATEINSERTS]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','60','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvStateSpecDocName"','2','(''UA''=''Q'')','EDISPCRCOBZ0','50','D','60','2',NULL,'StateSpecificDocumentName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[QBPLANMEMBERSPECIFICRATEINITIAL]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','70','1',NULL,'Record Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPlanName"','2','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','70','2',NULL,'PlanName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRate"','3','(''UA''=''Q'')','EDISPCRCOBZ0','50','D','70','3',NULL,'Rate',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"[NPM]"','1','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','80','1',NULL,'Version Line Identifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','2','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','2',NULL,'SSN',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmpNo"','3','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','3',NULL,'IndividualIdentifier',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvClientName"','4','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','4',NULL,'ClientName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvClientDivName"','5','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','5',NULL,'ClientDivisionName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameFirst"','6','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','80',NULL,'FirstName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameMiddle"','7','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','7',NULL,'MiddleInitial',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNameLast"','8','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','8',NULL,'LastName',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','80','9',NULL,'Salutation',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressEMail"','10','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','10',NULL,'Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneHomeNumber"','11','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','11',NULL,'Phone',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','12','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','80','12',NULL,'Phone2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','13','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','13',NULL,'Address1',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','14','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','14',NULL,'Address2',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressCity"','15','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','15',NULL,'City',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressState"','16','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','16',NULL,'StateOrProvince',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressZipCode"','17','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','17',NULL,'PostalCode',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','18','(''SS''=''Q,'')','EDISPCRCOBZ0','50','D','80','18',NULL,'Country',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','19','(''UA''=''Q,'')','EDISPCRCOBZ0','50','D','80','19',NULL,'Sex',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRUE"','20','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','80','20',NULL,'UsesFamilyInAddress',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"FALSE"','21','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','80','21',NULL,'HasWaivedAllCoverage',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRUE"','22','(''DA''=''Q,'')','EDISPCRCOBZ0','50','D','80','22',NULL,'SendGRNotice',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvHireDate"','23','(''UD101''=''Q'')','EDISPCRCOBZ0','50','D','80','23',NULL,'Hire Date',NULL,NULL);
-/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
-/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
-/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
-/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
-/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
-/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
-/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EDISPCRCOB_20211105.txt';
-/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'NPM/Cobra Export','202105259','EMPEXPORT','ONDEMAND','Nov  8 2017 12:00AM','EDISPCRCOB',NULL,NULL,NULL,'202105259','Oct 30 2017 12:00AM','Dec 30 1899 12:00AM','202105111',NULL,'','','202105111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',MU7K1,MVM3U,MVM71,MVLY4,MUDKQ,MU7S2,MV8P2,MUBL8,MUBQI,MV8UA,MUDH8,MUDCZ,MUBX3,O8339,O836P,O8394,O83C0,O83EF,O83IH,O83JY,O83LY,O83NG,O83PU,O83RB,O83T1,NYGWS',NULL,NULL,NULL,'Scheduled Export','202110289','EMPEXPORT','SCH_PCRCOB',NULL,'EDISPCRCOB',NULL,NULL,NULL,'202111019','Jan 13 2016  8:53AM','Jan 13 2016  8:53AM','202110251',NULL,'','','202110281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Test NPM/Cobra Export','202111021','EMPEXPORT','TEST','Nov  2 2021 10:27AM','EDISPCRCOB',NULL,NULL,NULL,'202111021','Nov  2 2021 12:00AM','Dec 30 1899 12:00AM','202110291','12','','','202110291',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','SubSort','C','drvSubSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','SubSort2','C','drvSubSort2');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','SubSort3','C','drvSubSort3');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDISPCRCOB','UseFileName','V','Y');
-/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EDISPCRCOB' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
-/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EDISPCRCOB' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
-IF OBJECT_ID('U_EDISPCRCOB_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EDISPCRCOB_SavePath];
-GO
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','H01','None',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D10','dbo.U_EDISPCRCOB_drvTbl_QB WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D20','dbo.U_EDISPCRCOB_drvTbl_QBEVENT WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D30','dbo.U_EDISPCRCOB_drvTbl_QBPLAN WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D40','dbo.U_EDISPCRCOB_drvTbl_QBDEP WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D50','dbo.U_EDISPCRCOB_drvTbl_QBDEPPLAN WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D60','dbo.U_EDISPCRCOB_drvTbl_QBSTATEINSERT WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D70','dbo.U_EDISPCRCOB_drvTbl_QBMSRI WITH (NOLOCK)',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EDISPCRCOB','D80','dbo.U_EDISPCRCOB_drvTbl_NPM WITH (NOLOCK)',NULL);
-IF OBJECT_ID('U_dsi_BDM_EDISPCRCOB') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_EDISPCRCOB] (
-    [BdmRecType] varchar(3) NOT NULL,
-    [BdmCOID] char(5) NULL,
-    [BdmEEID] char(12) NOT NULL,
-    [BdmDepRecID] char(12) NULL,
-    [BdmSystemID] char(12) NULL,
-    [BdmRunID] varchar(32) NULL,
-    [BdmDedRowStatus] varchar(256) NULL,
-    [BdmRelationship] char(3) NULL,
-    [BdmDateOfBirth] datetime NULL,
-    [BdmDedCode] char(5) NULL,
-    [BdmDedType] varchar(32) NULL,
-    [BdmBenOption] char(6) NULL,
-    [BdmBenStatus] char(1) NULL,
-    [BdmBenStartDate] datetime NULL,
-    [BdmBenStopDate] datetime NULL,
-    [BdmBenStatusDate] datetime NULL,
-    [BdmBenOptionDate] datetime NULL,
-    [BdmChangeReason] char(6) NULL,
-    [BdmStartDate] datetime NULL,
-    [BdmStopDate] datetime NULL,
-    [BdmIsCobraCovered] char(1) NULL,
-    [BdmCobraReason] char(6) NULL,
-    [BdmDateOfCOBRAEvent] datetime NULL,
-    [BdmIsPQB] char(1) NULL,
-    [BdmIsChildOldest] char(1) NULL,
-    [BdmUSGField1] varchar(256) NULL,
-    [BdmUSGField2] varchar(256) NULL,
-    [BdmUSGDate1] datetime NULL,
-    [BdmUSGDate2] datetime NULL,
-    [BdmTVStartDate] datetime NULL,
-    [BdmSessionID] varchar(32) NULL,
-    [BdmEEAmt] money NULL,
-    [BdmEECalcRateOrPct] decimal NULL,
-    [BdmEEGoalAmt] money NULL,
-    [BdmEEMemberOrCaseNo] char(40) NULL,
-    [BdmERAmt] money NULL,
-    [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL,
-    [BdmNumDomPartners] int NULL,
-    [BdmNumDPChildren] int NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_DeathEvent') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_DeathEvent] (
-    [EeDeathId] char(12) NOT NULL,
-    [IsSpouse] varchar(1) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_DepCount') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_DepCount] (
-    [DCEEID] char(12) NOT NULL,
-    [DCCOID] char(5) NULL,
-    [spouse_count] int NULL,
-    [child_count] int NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_NPM') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_NPM] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvSSN] char(11) NULL,
-    [drvEmpNo] varchar(1) NOT NULL,
-    [drvClientName] varchar(100) NULL,
-    [drvClientDivName] varchar(50) NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvAddressEMail] varchar(1) NOT NULL,
-    [drvPhoneHomeNumber] varchar(1) NOT NULL,
-    [drvAddressLine1] varchar(8000) NULL,
-    [drvAddressLine2] varchar(8000) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvGender] varchar(1) NOT NULL,
-    [drvHireDate] datetime NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(1) NOT NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QB') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QB] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvClientName] varchar(100) NULL,
-    [drvClientDivName] varchar(50) NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvSSN] varchar(11) NULL,
-    [drvEmpNo] varchar(1) NOT NULL,
-    [drvAddressLine1] varchar(8000) NULL,
-    [drvAddressLine2] varchar(8000) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvGender] varchar(1) NOT NULL,
-    [drvDateOfBirth] datetime NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBDEP') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBDEP] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NULL,
-    [drvSSN] varchar(11) NULL,
-    [drvRelationship] varchar(15) NOT NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvIsAddressSame] varchar(5) NOT NULL,
-    [drvAddressLine1] varchar(1) NOT NULL,
-    [drvAddressLine2] varchar(1) NOT NULL,
-    [drvAddressCity] varchar(1) NOT NULL,
-    [drvAddressState] varchar(1) NOT NULL,
-    [drvAddressZipCode] varchar(1) NOT NULL,
-    [drvGender] varchar(1) NOT NULL,
-    [drvDateOfBirth] datetime NULL,
-    [drvISQMCO] varchar(5) NOT NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(33) NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBDEPPLAN') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBDEPPLAN] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NULL,
-    [drvDedCode] char(5) NULL,
-    [drvPlanName] varchar(33) NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(38) NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBEVENT') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBEVENT] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvEventType] varchar(29) NOT NULL,
-    [drvEventDate] datetime NULL,
-    [drvEnrollmentDate] datetime NULL,
-    [drvSSN] varchar(11) NULL,
-    [drvName] varchar(201) NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBMSRI') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBMSRI] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvPlanName] varchar(33) NULL,
-    [drvRate] money NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBPLAN') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBPLAN] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvDedCode] char(5) NULL,
-    [drvPlanName] varchar(33) NULL,
-    [drvCoverageLevel] varchar(18) NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(6) NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_drvTbl_QBSTATEINSERT') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_drvTbl_QBSTATEINSERT] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvStateSpecDocName] varchar(13) NULL,
-    [drvInitialSort] varchar(2) NOT NULL,
-    [drvSubSort] char(19) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_EEList') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_EEList] (
-    [xCOID] char(5) NULL,
-    [xEEID] char(12) NULL
-);
-IF OBJECT_ID('U_EDISPCRCOB_File') IS NULL
-CREATE TABLE [dbo].[U_EDISPCRCOB_File] (
-    [RecordSet] char(3) NOT NULL,
-    [InitialSort] varchar(100) NOT NULL,
-    [SubSort] varchar(100) NOT NULL,
-    [SubSort2] varchar(100) NULL,
-    [SubSort3] varchar(100) NULL,
-    [Data] varchar(2000) NULL
-);
-GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EDISPCRCOB]
+ALTER PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EDISPCRCOB]
     @SystemID char(12)
 AS
 SET NOCOUNT ON;
@@ -417,6 +43,9 @@ Revision History
 		- Updated cobra reason for death to 210 in BDM output.
 		- Removed 203 from QBPLAN.
 
+11/08/2021 by AP:
+		- Updated Coverage Level CASE STATEMENT order.
+
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISPCRCOB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDISPCRCOB';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EDISPCRCOB';
@@ -431,7 +60,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDISPCRCOB', 'TEST';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EDISPCRCOB';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EDISPCRCOB', @AllObjects = 'Y', @IsWeb = 'Y';
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EDISPCRCOB', @AllObjects = 'Y', @IsWeb = 'Y';
 **********************************************************************************/
 BEGIN
     --==========================================
@@ -1127,8 +756,8 @@ BEGIN
                                         THEN 'EE+CHILDREN'
                                 WHEN BdmCobraReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmRelationship IN ('DMP', 'DP', 'SPS', 'SPX') AND child_count = 0
                                         THEN 'EE'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
-                                                    'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EE' THEN 'EE'
+								WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                                    'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption IN ('EEF', 'EEDPF') THEN 'EE+FAMILY'
                                 WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND child_count = 1 THEN 'EE+CHILD'
                                 WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
@@ -1136,9 +765,9 @@ BEGIN
                                 WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EEDP' THEN 'EE+DOMESTICPARTNER'
                                 WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
-                                                    'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption IN ('EEF', 'EEDPF') THEN 'EE+FAMILY'
-                                WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
                                                     'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EES' THEN 'EE+SPOUSE'
+								WHEN BdmCobraReason NOT IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') AND BdmDedCode IN ('DENH', 'DENL', 'VISH', 'VISL', 'MEDU4',
+                                                    'MEDU3', 'MEDU2', 'MEDU1') AND BdmBenOption = 'EE' THEN 'EE'
                                 WHEN BdmDedCode = 'FSA' THEN 'EE' 
                             END
 
@@ -1453,8 +1082,3 @@ WHERE expFormatCode = 'EDISPCRCOB'
   AND expExportCode LIKE 'TEST%';
 */
 SET NOCOUNT OFF;
-GO
-CREATE VIEW dbo.dsi_vwEDISPCRCOB_Export AS
-    SELECT TOP 2000000 Data
-    FROM dbo.U_EDISPCRCOB_File WITH (NOLOCK)
-    ORDER BY InitialSort, SubSort, SubSort2, SubSort3, RecordSet;
