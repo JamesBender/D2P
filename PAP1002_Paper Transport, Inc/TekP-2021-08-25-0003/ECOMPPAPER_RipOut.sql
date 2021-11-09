@@ -5,7 +5,7 @@ ECOMPPAPER: Compsych Eligibility Export
 FormatCode:     ECOMPPAPER
 Project:        Compsych Eligibility Export
 Client ID:      PAP1002
-Date/time:      2021-11-09 13:09:35.237
+Date/time:      2021-11-09 17:29:21.550
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         NW1WUP4DB02
 Database:       ULTIPRO_WPPTRAN
 Web Filename:   PAP1002_Z36PB_EEHISTORY_ECOMPPAPER_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -281,7 +282,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Export','202110129','EMPEXPORT','ONDEM_XOE',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Exp-Sched','202110129','EMPEXPORT','SCH_ECOMPP',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202110129','EMPEXPORT','TEST_XOE','Nov  8 2021 10:32AM','ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121','1532','','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202111099','EMPEXPORT','TEST_XOE','Nov  9 2021  5:28PM','ECOMPPAPER',NULL,NULL,NULL,'202111099','Nov  9 2021 12:00AM','Dec 30 1899 12:00AM','202110121','1224','','','202110121',dbo.fn_GetTimedKey(),NULL,'us3rVaPAP1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -295,6 +296,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECOMPPAPER','UseFileName','V','Y');
 
 -----------
@@ -436,7 +438,7 @@ CREATE TABLE [dbo].[U_ECOMPPAPER_drvTbl] (
     [drvAddLetterRecEmail] varchar(1) NOT NULL,
     [drvSpouseEmployed] varchar(1) NOT NULL,
     [drvSpouseEmpId] varchar(1) NOT NULL,
-    [drvPrimaryContactId] char(12) NULL,
+    [drvPrimaryContactId] char(9) NULL,
     [drvSTDEarnings] varchar(1) NOT NULL,
     [drvSTDEligibilityDt] datetime NULL,
     [drvLTDEligibilityDt] datetime NULL,
@@ -542,9 +544,9 @@ Revision History
     - Updated LTD and STD elig dates.
 
 11/09/2021 by AP:
-	- Cleaned up duplicate issue due to the Codes table.
-	- Adjusted Hours Worked in the Previous 12 Months logic to not exceed 8760.
-	- Updated primary contact to be EC2.EecEmpNo rather than Ec.EecSuperVisorID.
+    - Cleaned up duplicate issue due to the Codes table.
+    - Adjusted Hours Worked in the Previous 12 Months logic to not exceed 8760.
+    - Updated primary contact to be EC2.EecEmpNo rather than Ec.EecSuperVisorID.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECOMPPAPER';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECOMPPAPER';
@@ -589,8 +591,6 @@ BEGIN
     WHERE FormatCode = @FormatCode;
 
     SELECT @12MonthRolling = REPLACE(CONVERT(CHAR(10), DATEADD(YEAR, -1, @EndDate), 101), '/', '') + substring(@EndPerControl, 9, 1)
-
-	select @12monthrolling
 
     --==========================================
     -- Clean EE List 
@@ -721,13 +721,13 @@ BEGIN
     WHERE CodTable = 'PROJECT'
   --  GROUP BY EjhEEID, EjhCOID, CodDesc
 
-	 IF OBJECT_ID('U_dsi_CodesTable_Final','U') IS NOT NULL
+    IF OBJECT_ID('U_dsi_CodesTable_Final','U') IS NOT NULL
     DROP TABLE dbo.U_dsi_CodesTable_Final;
 
-	SELECT DISTINCT CodEEID, CodCOID, CodDesc, CodJobEffDate
-	INTO dbo.U_dsi_CodesTable_Final
-	FROM dbo.U_dsi_CodesTable WITH(NOLOCK)
-	WHERE RN = '1'
+    SELECT DISTINCT CodEEID, CodCOID, CodDesc, CodJobEffDate
+    INTO dbo.U_dsi_CodesTable_Final
+    FROM dbo.U_dsi_CodesTable WITH(NOLOCK)
+    WHERE RN = '1'
 
     --==========================================
     -- Build Driver Tables
@@ -795,7 +795,7 @@ BEGIN
         ,drvSpouseEmployed = ''
         ,drvSpouseEmpId = ''
         ,drvPrimaryContactId = EC2.EecEmpNo
-		--Ec.EecSupervisorID
+        --Ec.EecSupervisorID
         ,drvSTDEarnings = ''
         ,drvSTDEligibilityDt = std.EedEEEligDate
         ,drvLTDEligibilityDt = ltd.EedEEEligDate
