@@ -1,0 +1,5 @@
+"999998853","Chan","Reina",,135.00,2700.00,04/06/2019,,0.00,0.00,01/01/2020,,"180 Caldecott Lane Unit 210","Oakland",CA,94618,"San Francisco",,,,"reinachan33@gmail.com",S
+"999996264","Esteban","Leslie",M,,0.00,,,0.50,10.00,01/01/2020,,"145 Canterbury Ave","Daly City",CA,94015,"San Francisco",,,,"leslie_esteban@yahoo.com",S
+"999998442","La","Vincent",,,0.00,,,0.00,1350.00,01/01/2020,10/22/2021,"100 MILLBRAE AVE APT 2","MILLBRAE",CA,94030,"San Francisco",,,,"vla@bal.com",S
+"999993748","Sela","Michael",,,0.00,,,0.00,175.00,02/01/2020,,"55 9th St Apt 1303","San Francisco",CA,94103,"San Francisco",,,,"msela@bal.com",S
+"999995703","Rayburn","Richard",K,0.00,0.00,01/01/2019,,0.00,0.00,12/21/2018,,"18 Vasco Drive","Mill Valley",CA,94941,"San Francisco",,,,"krayburn@bal.com",S
