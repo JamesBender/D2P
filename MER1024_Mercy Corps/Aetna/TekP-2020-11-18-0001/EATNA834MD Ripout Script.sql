@@ -1,6 +1,110 @@
+/**********************************************************************************
+
+EATNA834MD: Aetna Med 834 Export
+
+FormatCode:     EATNA834MD
+Project:        Aetna Med 834 Export
+Client ID:      MER1024
+Date/time:      2021-11-04 04:59:38.653
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    N33
+Server:         N3SUP3DB04
+Database:       ULTIPRO_MERCY
+Web Filename:   MER1024_ZR6DH_EEHISTORY_EATNA834MD_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+
+**********************************************************************************/
+
 SET NOCOUNT ON;
-IF OBJECT_ID('U_EATNA834MD_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EATNA834MD_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EATNA834MD_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EATNA834MD' AND CfgName LIKE '%Path';
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_EATNA834MD_SavePath') IS NOT NULL DROP TABLE dbo.U_EATNA834MD_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EATNA834MD'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'EATNA834MD'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'EATNA834MD'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EATNA834MD')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EATNA834MD'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EATNA834MD'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EATNA834MD'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EATNA834MD'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EATNA834MD'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EATNA834MD'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EATNA834MD'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EATNA834MD'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EATNA834MD'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
 IF OBJECT_ID('dsi_vwEATNA834MD_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEATNA834MD_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EATNA834MD') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EATNA834MD];
@@ -25,13 +129,17 @@ IF OBJECT_ID('U_EATNA834MD_DedList') IS NOT NULL DROP TABLE [dbo].[U_EATNA834MD_
 GO
 IF OBJECT_ID('U_dsi_BDM_EATNA834MD') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EATNA834MD];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EATNA834MD';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EATNA834MD';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EATNA834MD';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EATNA834MD';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EATNA834MD';
+
+-----------
+-- AscDefH inserts
+-----------
+
 INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EATNA834MD','Aetna Med 834 Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','S','N','EATNA834MDZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
-/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EATNA834MD' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
+
+-----------
+-- AscDefF inserts
+-----------
+
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"ISA"','1','(''DA''=''F*'')','EATNA834MDZ0','3','H','01','1',NULL,'ISA  Segment ID (Header)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"00"','2','(''DA''=''F*'')','EATNA834MDZ0','2','H','01','2',NULL,'Authorization Info Qualifier',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','3','(''SS''=''F*'')','EATNA834MDZ0','10','H','01','3',NULL,'Authorization Info',NULL,NULL);
@@ -230,21 +338,41 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"IEA"','1','(''DA''=''T*'')','EATNA834MDZ0','3','T','92','1',NULL,'IEA Segment ID (Trailer)',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"1"','2','(''DA''=''T*'')','EATNA834MDZ0','5','T','92','2',NULL,'Number of Functional Groups In',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"000000001"','3','(''DA''=''T*'')','EATNA834MDZ0','9','T','92','3',NULL,'Interchange Control Number',NULL,NULL);
-/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
-/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
-/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
 /*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EATNA834MD_20211026.txt';
-/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202010139','EMPEXPORT','CHANGES','Oct 13 2020  4:12PM','EATNA834MD',NULL,NULL,NULL,'202010139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202009291','7374','','','202009291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202110151','EMPEXPORT','FULLFILE','Oct 15 2021 11:58AM','EATNA834MD',NULL,NULL,NULL,'202110151','Oct 15 2021 12:00AM','Dec 30 1899 12:00AM','202110151','12453','','','202110151',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Active Open Enrollment','202101011','EMPEXPORT','OEACTIVE','Jan  5 2021  5:27PM','EATNA834MD',NULL,NULL,NULL,'202101011','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202012271','17350','','','202012271',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202012271','EMPEXPORT','OEPASSIVE','Dec 23 2020  3:28PM','EATNA834MD',NULL,NULL,NULL,'202012271','Dec 27 2020 12:00AM','Dec 30 1899 12:00AM','202012271','17716','','','202012271',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Aetna Med 834 Export','202012309','EMPEXPORT','SCHEDULED','Oct 13 2020  4:13PM','EATNA834MD',NULL,NULL,NULL,'202101159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101081','7374','','','202012301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202110151','EMPEXPORT','TESTFILE','Oct 15 2021 12:00AM','EATNA834MD',NULL,NULL,NULL,'202110151','Oct 15 2021 12:00AM','Dec 30 1899 12:00AM','202110011','13403','','','202110011',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
+/*08*/ DECLARE @FileName varchar(1000) = 'EATNA834MD_20211104.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202010139','EMPEXPORT','CHANGES','Oct 13 2020  4:12PM','EATNA834MD',NULL,NULL,NULL,'202010139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202009291','7374','','','202009291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202110261','EMPEXPORT','FULLFILE','Nov  3 2021  5:08PM','EATNA834MD',NULL,NULL,NULL,'202110261','Oct 26 2021 12:00AM','Dec 30 1899 12:00AM','202109011','13323','','','202109011',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Open Enrollment','202101011','EMPEXPORT','OEACTIVE','Jan  5 2021  5:27PM','EATNA834MD',NULL,NULL,NULL,'202101011','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202012271','17350','','','202012271',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202012271','EMPEXPORT','OEPASSIVE','Dec 23 2020  3:28PM','EATNA834MD',NULL,NULL,NULL,'202012271','Dec 27 2020 12:00AM','Dec 30 1899 12:00AM','202012271','17716','','','202012271',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Aetna Med 834 Export','202012309','EMPEXPORT','SCHEDULED','Oct 13 2020  4:13PM','EATNA834MD',NULL,NULL,NULL,'202101159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202101081','7374','','','202012301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202110151','EMPEXPORT','TESTFILE','Oct 15 2021 12:00AM','EATNA834MD',NULL,NULL,NULL,'202110151','Oct 15 2021 12:00AM','Dec 30 1899 12:00AM','202110011','13403','','','202110011',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','ExportPath','V',NULL);
@@ -253,10 +381,16 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','UseFileName','V','Y');
-/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EATNA834MD' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
-/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EATNA834MD' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
-IF OBJECT_ID('U_EATNA834MD_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EATNA834MD_SavePath];
-GO
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EATNA834MD','H01','U_EATNA834MD_HdrTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EATNA834MD','H02','U_EATNA834MD_HdrTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EATNA834MD','H03','U_EATNA834MD_HdrTbl',NULL);
@@ -299,6 +433,21 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EATNA834MD','T90','U_EATNA834MD_TrlTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EATNA834MD','T91','U_EATNA834MD_TrlTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EATNA834MD','T92','U_EATNA834MD_TrlTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_dsi_BDM_EATNA834MD
+-----------
+
 IF OBJECT_ID('U_dsi_BDM_EATNA834MD') IS NULL
 CREATE TABLE [dbo].[U_dsi_BDM_EATNA834MD] (
     [BdmRecType] varchar(3) NOT NULL,
@@ -342,12 +491,22 @@ CREATE TABLE [dbo].[U_dsi_BDM_EATNA834MD] (
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_DedList
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_DedList') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedLongDesc] varchar(40) NULL,
     [DedType] char(4) NOT NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_DrvTbl
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_DrvTbl') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_DrvTbl] (
     [drvINS01_YesNoCond] varchar(1) NOT NULL,
@@ -423,13 +582,18 @@ CREATE TABLE [dbo].[U_EATNA834MD_DrvTbl] (
     [drvInitialSort] varchar(11) NULL,
     [drvSubSort] char(21) NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_DrvTbl_2300
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_DrvTbl_2300') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NULL,
-    [drvHD04_PlanCoverageDesc] varchar(274) NOT NULL,
+    [drvHD04_PlanCoverageDesc] varchar(31) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NULL,
@@ -469,11 +633,21 @@ CREATE TABLE [dbo].[U_EATNA834MD_DrvTbl_2300] (
     [drvInitialSort] varchar(11) NULL,
     [drvSubSort] varchar(24) NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_EEList
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_EEList') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_File
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_File') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_File] (
     [RecordSet] char(3) NOT NULL,
@@ -483,6 +657,11 @@ CREATE TABLE [dbo].[U_EATNA834MD_File] (
     [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_File_Temp
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_File_Temp') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_File_Temp] (
     [RecordSet] char(3) NOT NULL,
@@ -492,6 +671,11 @@ CREATE TABLE [dbo].[U_EATNA834MD_File_Temp] (
     [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_HdrTbl
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_HdrTbl') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_HdrTbl] (
     [drvISA05_SenderIDQual] varchar(2) NOT NULL,
@@ -531,6 +715,11 @@ CREATE TABLE [dbo].[U_EATNA834MD_HdrTbl] (
     [drvN103_IDCodeQual2] varchar(2) NOT NULL,
     [drvN104_IDCode2] varchar(9) NOT NULL
 );
+
+-----------
+-- Create table U_EATNA834MD_TrlTbl
+-----------
+
 IF OBJECT_ID('U_EATNA834MD_TrlTbl') IS NULL
 CREATE TABLE [dbo].[U_EATNA834MD_TrlTbl] (
     [drvSE01_SegmentCount] varchar(4) NOT NULL
@@ -1079,26 +1268,26 @@ BEGIN
         ,drvHD04_PlanCoverageDesc =    CASE 
 
                                             WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EE') THEN '001+0170546+011+00001+78800+131'
-                                            WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EEFAM','EES') THEN '001+0170546+011+00001+78900+131'
+                                            WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EECHLD','EECHLD','EEFAM','EES') THEN '001+0170546+011+00001+78900+131'
                                             WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1') THEN '001+0170546+010+00001+78100+131'
                                             WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '001+0170546+010+00002+78400+131'
                                             
 
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'IN' THEN '001+0170546+011+00001+26600+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EECHLD','EEFAM','EES') AND EepAddressState = 'IN' THEN '001+0170546+011+00001+26600+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'IN' THEN '001+0170546+011+00001+26500+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'IN' THEN '001+0170546+010+00001+12800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'IN' THEN '001+0170546+010+00002+12900+131'
 
 
                                             -- AR values Cheryl got from the client
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'AR' THEN '001+0170546+011+00001+78700+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EECHLD','EEFAM','EES') AND EepAddressState = 'AR' THEN '001+0170546+011+00001+78700+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'AR' THEN '001+0170546+011+00001+78600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'AR' THEN '001+0170546+010+00001+78000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'AR' THEN '001+0170546+010+00002+78300+131'
 
                                             --Filling in holes with value Lea got from system
                                             WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EE') THEN '001+0170546+011+00001+78600+131'
-                                            WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EEFAM','EES') THEN '001+0170546+011+00001+78700+131'
+                                            WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EECHLD','EEFAM','EES') THEN '001+0170546+011+00001+78700+131'
                                             WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1') THEN '001+0170546+010+00001+78000+131'
                                             WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO')    AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '001+0170546+010+00002+78300+131'
                                             
@@ -1108,19 +1297,19 @@ BEGIN
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'AZ' THEN '001+0170546+010+00001+02400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'AZ' THEN '001+0170546+010+00002+12400+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'AZ' THEN '001+0170546+011+00001+24700+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'AZ' THEN '001+0170546+011+00001+24800+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'AZ' THEN '001+0170546+011+00001+24800+131'
 
 
                                             -- CA values Cheryl got from the client
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'CA' THEN '001+0170546+010+00001+00200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CA' THEN '001+0170546+010+00002+10200+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'CA' THEN '001+0170546+011+00001+20300+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'CA' THEN '001+0170546+011+00001+20400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'CA' THEN '001+0170546+011+00001+20400+131'
 
                                             --Filling in holes with value Lea got from system
                                             
                                             WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EE') THEN '001+0170546+011+00001+20300+131'
-                                            WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USHDP') AND BdmBenOption IN ('EECH','EEFAM','EES') THEN '001+0170546+011+00001+20400+131'
+                                            WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USHDP') AND BdmBenOption IN ('EECH','EECHLD','EEFAM','EES') THEN '001+0170546+011+00001+20400+131'
                                             WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1') THEN '001+0170546+010+00001+00200+131'
                                             WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '001+0170546+010+00002+10200+131'
                                             
@@ -1129,124 +1318,124 @@ BEGIN
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'CO' THEN '001+0170546+010+00001+00300+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CO' THEN '001+0170546+010+00002+10300+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'CO' THEN '001+0170546+011+00001+20500+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'CO' THEN '001+0170546+011+00001+20600+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'CO' THEN '001+0170546+011+00001+20600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'DC' THEN '001+0170546+010+00001+00400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'DC' THEN '001+0170546+010+00002+10400+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'DC' THEN '001+0170546+011+00001+20700+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'DC' THEN '001+0170546+011+00001+20800+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'DC' THEN '001+0170546+011+00001+20800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'DE' THEN '001+0170546+010+00001+02700+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'DE' THEN '001+0170546+010+00002+12700+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'DE' THEN '001+0170546+011+00001+25300+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'DE' THEN '001+0170546+011+00001+25400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'DE' THEN '001+0170546+011+00001+25400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'FL' THEN '001+0170546+010+00001+00500+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'FL' THEN '001+0170546+010+00002+10500+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'FL' THEN '001+0170546+011+00001+20900+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'FL' THEN '001+0170546+011+00001+21000+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'FL' THEN '001+0170546+011+00001+21000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'GA' THEN '001+0170546+010+00001+00600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'GA' THEN '001+0170546+010+00002+10600+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'GA' THEN '001+0170546+011+00001+21100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'GA' THEN '001+0170546+011+00001+21200+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'GA' THEN '001+0170546+011+00001+21200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'ID' THEN '001+0170546+010+00001+00700+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'ID' THEN '001+0170546+010+00002+10700+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'ID' THEN '001+0170546+011+00001+21300+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'ID' THEN '001+0170546+011+00001+21400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'ID' THEN '001+0170546+011+00001+21400+131'
 
                                             
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'LA' THEN '001+0170546+010+00001+00800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'LA' THEN '001+0170546+010+00002+10800+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'LA' THEN '001+0170546+011+00001+21500+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'LA' THEN '001+0170546+011+00001+21600+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'LA' THEN '001+0170546+011+00001+21600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'MA' THEN '001+0170546+010+00001+01100+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MA' THEN '001+0170546+010+00002+11100+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'MA' THEN '001+0170546+011+00001+22100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'MA' THEN '001+0170546+011+00001+22200+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'MA' THEN '001+0170546+011+00001+22200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'MD' THEN '001+0170546+010+00001+01000+131'
                                             --WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MD' THEN '001+0170546+010+00002+11000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MD' THEN '001+0170546+010+00002+11000+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'MD' THEN '001+0170546+011+00001+21900+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'MD' THEN '001+0170546+011+00001+22000+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'MD' THEN '001+0170546+011+00001+22000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'ME' THEN '001+0170546+010+00001+00900+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'ME' THEN '001+0170546+010+00002+10900+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'ME' THEN '001+0170546+011+00001+21700+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'ME' THEN '001+0170546+011+00001+21800+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'ME' THEN '001+0170546+011+00001+21800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'MN' THEN '001+0170546+010+00001+02500+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MN' THEN '001+0170546+010+00002+12500+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'MN' THEN '001+0170546+011+00001+24900+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'MN' THEN '001+0170546+011+00001+25000+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'MO' THEN '001+0170546+010+00001+26100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'MO' THEN '001+0170546+010+00002+26200+131'
-                                            WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'MO' THEN '001+0170546+011+00001+26300+131'
-                                            WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MO' THEN '001+0170546+011+00001+26400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'MN' THEN '001+0170546+011+00001+25000+131'
+                                            --WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'MO' THEN '001+0170546+010+00001+26100+131'
+                                            --WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'MO' THEN '001+0170546+010+00002+26200+131'
+                                            --WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'MO' THEN '001+0170546+011+00001+26300+131'
+                                            --WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MO' THEN '001+0170546+011+00001+26400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'NC' THEN '001+0170546+010+00001+01500+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NC' THEN '001+0170546+010+00002+11500+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NC' THEN '001+0170546+011+00001+22900+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'NC' THEN '001+0170546+011+00001+23000+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NC' THEN '001+0170546+011+00001+23000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'NE' THEN '001+0170546+010+00001+01200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NE' THEN '001+0170546+010+00002+11200+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NE' THEN '001+0170546+011+00001+22300+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'NE' THEN '001+0170546+011+00001+22400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NE' THEN '001+0170546+011+00001+22400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'NJ' THEN '001+0170546+010+00001+01300+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NJ' THEN '001+0170546+010+00002+11300+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NJ' THEN '001+0170546+011+00001+22500+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'NJ' THEN '001+0170546+011+00001+22600+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NJ' THEN '001+0170546+011+00001+22600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'NM' THEN '001+0170546+010+00001+02600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NM' THEN '001+0170546+010+00002+12600+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NM' THEN '001+0170546+011+00001+25100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'NM' THEN '001+0170546+011+00001+25200+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'NV' THEN '001+0170546+010+00001+25500+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NM' THEN '001+0170546+011+00001+25200+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NV' THEN '001+0170546+010+00001+25500+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NV' THEN '001+0170546+010+00002+25600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'NV' THEN '001+0170546+011+00001+25700+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NV' THEN '001+0170546+011+00001+25800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'NY' THEN '001+0170546+010+00001+01400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NY' THEN '001+0170546+010+00002+11400+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NY' THEN '001+0170546+011+00001+22700+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'NY' THEN '001+0170546+011+00001+22800+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NY' THEN '001+0170546+011+00001+22800+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'OR' THEN '001+0170546+010+00001+00100+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'OR' THEN '001+0170546+010+00002+10100+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'OR' THEN '001+0170546+011+00001+20100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'OR' THEN '001+0170546+011+00001+20200+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'OR' THEN '001+0170546+011+00001+20200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'PA' THEN '001+0170546+010+00001+01600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'PA' THEN '001+0170546+010+00002+11600+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'PA' THEN '001+0170546+011+00001+23100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'PA' THEN '001+0170546+011+00001+23200+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'PA' THEN '001+0170546+011+00001+23200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'RI' THEN '001+0170546+010+00001+01700+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'RI' THEN '001+0170546+010+00002+11700+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'RI' THEN '001+0170546+011+00001+23300+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'RI' THEN '001+0170546+011+00001+23400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'RI' THEN '001+0170546+011+00001+23400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'TN' THEN '001+0170546+010+00001+01800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'TN' THEN '001+0170546+010+00002+11800+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'TN' THEN '001+0170546+011+00001+23500+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'TN' THEN '001+0170546+011+00001+23600+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'TN' THEN '001+0170546+011+00001+23600+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'TX' THEN '001+0170546+010+00001+01900+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'TX' THEN '001+0170546+010+00002+11900+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'TX' THEN '001+0170546+011+00001+23700+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'TX' THEN '001+0170546+011+00001+23800+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'TX' THEN '001+0170546+011+00001+23800+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'UT' THEN '001+0170546+010+00001+02000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'UT' THEN '001+0170546+010+00002+12000+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'UT' THEN '001+0170546+011+00001+23900+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'UT' THEN '001+0170546+011+00001+24000+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'UT' THEN '001+0170546+011+00001+24000+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'VA' THEN '001+0170546+010+00001+02200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'VA' THEN '001+0170546+010+00002+12200+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'VA' THEN '001+0170546+011+00001+24100+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'VA' THEN '001+0170546+011+00001+24200+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'VA' THEN '001+0170546+011+00001+24200+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'VT' THEN '001+0170546+010+00001+02100+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'VT' THEN '001+0170546+010+00002+12100+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'VT' THEN '001+0170546+011+00001+24300+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'VT' THEN '001+0170546+011+00001+24400+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'VT' THEN '001+0170546+011+00001+24400+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'WA' THEN '001+0170546+010+00001+02300+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'WA' THEN '001+0170546+010+00002+12300+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'WA' THEN '001+0170546+011+00001+24500+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EEFAM','EES') AND EepAddressState = 'WA' THEN '001+0170546+011+00001+24600+131'
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'WA' THEN '001+0170546+011+00001+24600+131'
 
                                             WHEN BdmDedCode = 'USPPO' AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'CT' THEN '001+0170546+010+00001+26900+131'
                                             WHEN BdmDedCode = 'USPPO' AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CT' THEN '001+0170546+010+00002+27000+131'
                                             WHEN BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EE') AND EepAddressState = 'CT' THEN '001+0170546+011+00001+27100+131'
-                                            WHEN BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EEFAM','EES') AND EepAddressState = 'CT' THEN '001+0170546+011+00001+27200+131'
-                                            ELSE ISNULL(BdmDedCode, 'no') + ' :: ' + ISNULL(BdmBenOption, 'no') + ' :: ' + ISNULL(EepAddressState, 'no')
+                                            WHEN BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'CT' THEN '001+0170546+011+00001+27200+131'
+                                            --ELSE ISNULL(BdmDedCode, 'no') + ' :: ' + ISNULL(BdmBenOption, 'no') + ' :: ' + ISNULL(EepAddressState, 'no')
 
                                     END
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmDedCode IN ('USHDP','USPPO') THEN
@@ -1345,41 +1534,41 @@ BEGIN
         ,drvHD04_PlanCoverageDesc =    CASE
                                         WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','ECH','EEFAM') THEN '002+0170546+012+00001+33100+032'
                                         WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '002+0170546+012+00002+43100+032'
-                                        WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') THEN '002+0170546+012+00001+30200+032'
+                                        WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') THEN '002+0170546+012+00001+30200+032'
                                         WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '002+0170546+012+00002+40200+032'
-                                        WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') THEN '002+0170546+012+00001+33200+032'
+                                        WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') THEN '002+0170546+012+00001+33200+032'
                                         WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '002+0170546+012+00002+43200+032'
                                             
 
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'OR' THEN '002+0170546+012+00001+30100+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'CA' THEN '002+0170546+012+00001+30200+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'CO' THEN '002+0170546+012+00001+30300+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'DC' THEN '002+0170546+012+00001+30400+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'FL' THEN '002+0170546+012+00001+30500+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'GA' THEN '002+0170546+012+00001+30600+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'ID' THEN '002+0170546+012+00001+30700+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'LA' THEN '002+0170546+012+00001+30800+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'ME' THEN '002+0170546+012+00001+30900+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MD' THEN '002+0170546+012+00001+31000+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MA' THEN '002+0170546+012+00001+31100+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NE' THEN '002+0170546+012+00001+31200+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NJ' THEN '002+0170546+012+00001+31300+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NY' THEN '002+0170546+012+00001+31400+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NC' THEN '002+0170546+012+00001+31500+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'PA' THEN '002+0170546+012+00001+31600+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'RI' THEN '002+0170546+012+00001+31700+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'TN' THEN '002+0170546+012+00001+31800+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'TX' THEN '002+0170546+012+00001+31900+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'UT' THEN '002+0170546+012+00001+32000+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'VT' THEN '002+0170546+012+00001+32100+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'VA' THEN '002+0170546+012+00001+32200+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'WA' THEN '002+0170546+012+00001+32300+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'AZ' THEN '002+0170546+012+00001+32400+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'DE' THEN '002+0170546+012+00001+32500+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MN' THEN '002+0170546+012+00001+32600+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NM' THEN '002+0170546+012+00001+32700+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NV' THEN '002+0170546+012+00001+32800+032'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MN' THEN '002+0170546+012+00001+33000+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'OR' THEN '002+0170546+012+00001+30100+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'CA' THEN '002+0170546+012+00001+30200+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'CO' THEN '002+0170546+012+00001+30300+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'DC' THEN '002+0170546+012+00001+30400+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'FL' THEN '002+0170546+012+00001+30500+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'GA' THEN '002+0170546+012+00001+30600+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'ID' THEN '002+0170546+012+00001+30700+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'LA' THEN '002+0170546+012+00001+30800+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'ME' THEN '002+0170546+012+00001+30900+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MD' THEN '002+0170546+012+00001+31000+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MA' THEN '002+0170546+012+00001+31100+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NE' THEN '002+0170546+012+00001+31200+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NJ' THEN '002+0170546+012+00001+31300+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NY' THEN '002+0170546+012+00001+31400+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NC' THEN '002+0170546+012+00001+31500+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'PA' THEN '002+0170546+012+00001+31600+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'RI' THEN '002+0170546+012+00001+31700+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'TN' THEN '002+0170546+012+00001+31800+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'TX' THEN '002+0170546+012+00001+31900+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'UT' THEN '002+0170546+012+00001+32000+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'VT' THEN '002+0170546+012+00001+32100+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'VA' THEN '002+0170546+012+00001+32200+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'WA' THEN '002+0170546+012+00001+32300+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'AZ' THEN '002+0170546+012+00001+32400+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'DE' THEN '002+0170546+012+00001+32500+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MN' THEN '002+0170546+012+00001+32600+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NM' THEN '002+0170546+012+00001+32700+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NV' THEN '002+0170546+012+00001+32800+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MN' THEN '002+0170546+012+00001+33000+032'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'OR' THEN '002+0170546+012+00002+40100+032'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CA' THEN '002+0170546+012+00002+40200+032'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CO' THEN '002+0170546+012+00002+40300+032'
@@ -1413,9 +1602,9 @@ BEGIN
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'MN' THEN '002+0170546+012+00002+43000+032'
 
 
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'CT' THEN '002+0170546+012+00001+63700+032'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'CT' THEN '002+0170546+012+00001+63700+032'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CT' THEN '002+0170546+012+00002+63800+032'
-                                        ELSE ISNULL(BdmDedCode, 'no') + ' :: ' + ISNULL(BdmBenOption, 'no') + ' :: ' + ISNULL(EepAddressState, 'no')
+                                        --ELSE ISNULL(BdmDedCode, 'no') + ' :: ' + ISNULL(BdmBenOption, 'no') + ' :: ' + ISNULL(EepAddressState, 'no')
                                         --ELSE BdmDedCode + ' ' + BdmBenOption + ' ' + EepAddressState
                                     END
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmBenOption IN ('EE1','EE2','EE3','EE4','EE5') THEN 'EMP' ELSE 'FAM' END
@@ -1498,42 +1687,42 @@ BEGIN
         ,drvHD02_MaintReasonCode 
         ,drvHD03_InsuranceLineCode = 'VIS'
         ,drvHD04_PlanCoverageDesc =    CASE
-                                        WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') THEN '003+0170546+013+00001+53100+088'
+                                        WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') THEN '003+0170546+013+00001+53100+088'
                                         WHEN EepAddressState = 'AR' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '003+0170546+013+00002+63100+088'
-                                        WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') THEN '003+0170546+013+00001+50200+088'
+                                        WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') THEN '003+0170546+013+00001+50200+088'
                                         WHEN EepAddressState = 'CA' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '003+0170546+013+00002+60200+088'
-                                        WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') THEN '003+0170546+013+00001+53200+088'
+                                        WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') THEN '003+0170546+013+00001+53200+088'
                                         WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') THEN '003+0170546+013+00002+63200+088'
 
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'OR' THEN '003+0170546+013+00001+50100+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'CA' THEN '003+0170546+013+00001+50200+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'CO' THEN '003+0170546+013+00001+50300+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'DC' THEN '003+0170546+013+00001+50400+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'FL' THEN '003+0170546+013+00001+50500+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'GA' THEN '003+0170546+013+00001+50600+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'ID' THEN '003+0170546+013+00001+50700+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'LA' THEN '003+0170546+013+00001+50800+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'ME' THEN '003+0170546+013+00001+50900+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MD' THEN '003+0170546+013+00001+51000+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MA' THEN '003+0170546+013+00001+51100+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NE' THEN '003+0170546+013+00001+51200+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NJ' THEN '003+0170546+013+00001+51300+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NY' THEN '003+0170546+013+00001+51400+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NC' THEN '003+0170546+013+00001+51500+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'PA' THEN '003+0170546+013+00001+51600+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'RI' THEN '003+0170546+013+00001+51700+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'TN' THEN '003+0170546+013+00001+51800+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'TX' THEN '003+0170546+013+00001+51900+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'UT' THEN '003+0170546+013+00001+52000+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'VT' THEN '003+0170546+013+00001+52100+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'VA' THEN '003+0170546+013+00001+52200+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'WA' THEN '003+0170546+013+00001+52300+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'AZ' THEN '003+0170546+013+00001+52400+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'DE' THEN '003+0170546+013+00001+52500+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MN' THEN '003+0170546+013+00001+52600+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NM' THEN '003+0170546+013+00001+52700+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'NV' THEN '003+0170546+013+00001+52800+088'
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'MN' THEN '003+0170546+013+00001+53000+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'OR' THEN '003+0170546+013+00001+50100+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'CA' THEN '003+0170546+013+00001+50200+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'CO' THEN '003+0170546+013+00001+50300+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'DC' THEN '003+0170546+013+00001+50400+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'FL' THEN '003+0170546+013+00001+50500+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'GA' THEN '003+0170546+013+00001+50600+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'ID' THEN '003+0170546+013+00001+50700+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'LA' THEN '003+0170546+013+00001+50800+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'ME' THEN '003+0170546+013+00001+50900+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MD' THEN '003+0170546+013+00001+51000+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MA' THEN '003+0170546+013+00001+51100+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NE' THEN '003+0170546+013+00001+51200+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NJ' THEN '003+0170546+013+00001+51300+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NY' THEN '003+0170546+013+00001+51400+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NC' THEN '003+0170546+013+00001+51500+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'PA' THEN '003+0170546+013+00001+51600+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'RI' THEN '003+0170546+013+00001+51700+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'TN' THEN '003+0170546+013+00001+51800+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'TX' THEN '003+0170546+013+00001+51900+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'UT' THEN '003+0170546+013+00001+52000+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'VT' THEN '003+0170546+013+00001+52100+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'VA' THEN '003+0170546+013+00001+52200+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'WA' THEN '003+0170546+013+00001+52300+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'AZ' THEN '003+0170546+013+00001+52400+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'DE' THEN '003+0170546+013+00001+52500+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MN' THEN '003+0170546+013+00001+52600+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NM' THEN '003+0170546+013+00001+52700+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'NV' THEN '003+0170546+013+00001+52800+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'MN' THEN '003+0170546+013+00001+53000+088'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM','4','EEFAM5') AND EepAddressState = 'OR' THEN '003+0170546+013+00002+60100+088'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM','4','EEFAM5') AND EepAddressState = 'CA' THEN '003+0170546+013+00002+60200+088'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM','4','EEFAM5') AND EepAddressState = 'CO' THEN '003+0170546+013+00002+60300+088'
@@ -1566,10 +1755,10 @@ BEGIN
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM','4','EEFAM5') AND EepAddressState = 'NV' THEN '003+0170546+013+00002+62800+088'
                                         WHEN BdmDedCode IN ('USPPO') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM','4','EEFAM5') AND EepAddressState = 'MN' THEN '003+0170546+013+00002+63000+088'
 
-                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EEFAM') AND EepAddressState = 'CT' THEN '003+0170546+013+00001+63900+088'
+                                        WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE1','EECH1','EES1','EEFAM1','EE','EES','EECH','EECHLD','EEFAM') AND EepAddressState = 'CT' THEN '003+0170546+013+00001+63900+088'
                                         WHEN BdmDedCode IN ('USPPO','USHDP','USHDP') AND BdmBenOption IN ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'CT' THEN '003+0170546+013+00002+64000+088'
 
-                                        ELSE ISNULL(BdmDedCode, 'no') + ' :: ' + ISNULL(BdmBenOption, 'no') + ' :: ' + ISNULL(EepAddressState, 'no')
+                                        --ELSE ISNULL(BdmDedCode, 'no') + ' :: ' + ISNULL(BdmBenOption, 'no') + ' :: ' + ISNULL(EepAddressState, 'no')
                                     END
         ,drvHD05_CoverageLevelCode = CASE WHEN BdmBenOption IN ('EE1','EE2','EE3','EE4','EE5') THEN 'EMP' ELSE 'FAM' END
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -1699,3 +1888,58 @@ GO
 CREATE VIEW dbo.dsi_vwEATNA834MD_Export AS
     SELECT TOP 20000000 DATA FROM dbo.U_EATNA834MD_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'EATNA834MD' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'EATNA834MD'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'EATNA834MD'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EATNA834MD', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EATNA834MD', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EATNA834MD', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout

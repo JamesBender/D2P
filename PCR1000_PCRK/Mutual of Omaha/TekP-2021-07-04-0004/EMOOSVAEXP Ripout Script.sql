@@ -106,13 +106,13 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EMOOSVAEXP_20211004.txt';
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EMOOSVAEXP_20211101.txt';
 /*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202108279','EMPEXPORT','OEACTIVE','Sep  1 2021  5:22AM','EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271','0','','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202108279','EMPEXPORT','OEPASSIVE','Sep  1 2021  5:22AM','EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271','225','','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export','202108279','EMPEXPORT','ONDEM_XOE','Sep  1 2021  5:23AM','EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271','220','','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export-Sched','202108279','EMPEXPORT','SCH_EMOOSV','Sep  1 2021  5:24AM','EMOOSVAEXP',NULL,NULL,NULL,'202108279','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202108271','220','','','202108271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export-Test','202109301','EMPEXPORT','TEST_XOE','Sep 30 2021 10:00AM','EMOOSVAEXP',NULL,NULL,NULL,'202109301','Sep 30 2021 12:00AM','Dec 30 1899 12:00AM','202109161','232','','','202109161',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export-Test','202110161','EMPEXPORT','TEST_XOE','Oct 16 2021  7:38PM','EMOOSVAEXP',NULL,NULL,NULL,'202110161','Oct 16 2021 12:00AM','Dec 30 1899 12:00AM','202110161','315','','','202110161',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMOOSVAEXP','InitialSort','C','drvSort');
@@ -211,7 +211,7 @@ CREATE TABLE [dbo].[U_EMOOSVAEXP_drvTbl] (
     [drvTermDepPlanID] varchar(10) NULL,
     [drvTermDepFamCoverageInd] varchar(1) NULL,
     [drvTermDepApprovedAmtEffDate] datetime NULL,
-    [drvTermDepApprovedAmt] nvarchar(4000) NULL,
+    [drvTermDepApprovedAmt] varchar(10) NULL,
     [drvAddEEProductCategory] varchar(1) NULL,
     [drvAddEEEffectiveDate] datetime NULL,
     [drvAddEEEligibilityEvent] varchar(2) NULL,
@@ -232,7 +232,7 @@ CREATE TABLE [dbo].[U_EMOOSVAEXP_drvTbl] (
     [drvAddDepPlanID] varchar(10) NULL,
     [drvAddDepFamCoverageInd] varchar(1) NULL,
     [drvAddDepApprovedAmtEffDate] datetime NULL,
-    [drvAddDepApprovedAmt] nvarchar(4000) NULL,
+    [drvAddDepApprovedAmt] varchar(10) NULL,
     [drvVolSTDProductCategory] varchar(1) NULL,
     [drvVolSTDEffectiveDate] datetime NULL,
     [drvVolSTDEligibilityEvent] varchar(2) NULL,
@@ -353,9 +353,13 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EMOOSVAEXP_EEList
+    /*DELETE FROM dbo.U_EMOOSVAEXP_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EMOOSVAEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EMOOSVAEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);*/
+
+    DELETE FROM dbo.U_EMOOSVAEXP_EEList WHERE xEEID IN (
+        SELECT EepEEID FROM dbo.EmpPers WHERE LEFT(EepSSN, 3) = '999'
+    );
 
     --==========================================
     -- Create Deduction List
@@ -511,17 +515,29 @@ BEGIN
         ,drvClassEffectiveDate = CASE WHEN EecDateOfLastHire > '4/1/2021' THEN EecDateOfLastHire ELSE '4/1/2021' END
 
 
-        ,drvTermEEProductCategory = CASE WHEN VLIFE_DedCode IS NOT NULL THEN '3' END
-        ,drvTermEEEffectiveDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
-                                        CASE WHEN VLIFE_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
+        ,drvTermEEProductCategory = CASE WHEN VLIFE_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN '3' END
+        ,drvTermEEEffectiveDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN
+                                        CASE WHEN VLIFE_DedCode IS NOT NULL AND VLIFE_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStopDate, '4/1/2021') 
+                                            ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') 
+                                        END
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLFEF_DedCode IS NOT NULL AND VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') 
+                                            ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') 
+                                        END                                        
                                     END
         ,drvTermEEEligibilityEvent =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
                                             CASE WHEN VLIFE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                        WHEN VLFEF_DedCode IS NOT NULL THEN
+                                            CASE WHEN VLFEF_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
                                         END
-        ,drvTermEEPlanID = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'ETL0CEEVAL' END
-        ,drvTermEEFamCoverageInd = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'C' END
-        ,drvTermEEApprovedAmtEffDate = CASE WHEN VLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
-        ,drvTermEEApprovedAmt = CASE WHEN VLIFE_DedCode IS NOT NULL THEN FORMAT(VLIFE_BenAmt, REPLICATE('0',10)) END
+        ,drvTermEEPlanID = CASE WHEN VLIFE_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'ETL0CEEVAL' END
+        ,drvTermEEFamCoverageInd = CASE WHEN VLIFE_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'C' END
+        ,drvTermEEApprovedAmtEffDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') 
+                                            WHEN VLFEF_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') 
+                                        END
+        ,drvTermEEApprovedAmt =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN FORMAT(VLIFE_BenAmt, REPLICATE('0',10)) 
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN FORMAT(VLFEF_BenAmt, REPLICATE('0',10)) 
+                                END
 
 
 
@@ -566,22 +582,31 @@ BEGIN
                                         WHEN VLFEF_DedCode IS NOT NULL THEN
                                             CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
                                         END
-        ,drvTermDepApprovedAmt =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN FORMAT(VLFEC_BenAmt, REPLICATE('0',10))
+        ,drvTermDepApprovedAmt = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN '0000010000' END
+                                    /*CASE WHEN VLFEC_DedCode IS NOT NULL THEN FORMAT(VLFEC_BenAmt, REPLICATE('0',10))
                                         WHEN VLFEF_DedCode IS NOT NULL THEN    FORMAT(VLFEF_BenAmt, REPLICATE('0',10))
-                                    END
+                                    END*/
 
 
-        ,drvAddEEProductCategory = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'c' END
-        ,drvAddEEEffectiveDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
+        ,drvAddEEProductCategory = CASE WHEN VLIFE_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'c' END
+        ,drvAddEEEffectiveDate =    CASE WHEN VLIFE_DedCode IS NOT NULL  THEN 
                                         CASE WHEN VLIFE_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
+                                    WHEN VLFEF_DedCode IS NOT NULL  THEN 
+                                        CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
                                     END
         ,drvAddEEEligibilityEvent =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN 
                                         CASE WHEN VLIFE_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN 
+                                        CASE WHEN VLFEF_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
                                     END
-        ,drvAddEEPlanID = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'BTA0CEEVAL' END
-        ,drvAddEEFamCoverageInd = CASE WHEN VLIFE_DedCode IS NOT NULL THEN 'C' END
-        ,drvAddEEApprovedAmtEffDate = CASE WHEN VLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') END
-        ,drvAddEEApprovedAmt = CASE WHEN VLIFE_DedCode IS NOT NULL THEN FORMAT(VLIFE_BenAmt, REPLICATE('0',10)) END
+        ,drvAddEEPlanID = CASE WHEN VLIFE_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'BTA0CEEVAL' END
+        ,drvAddEEFamCoverageInd = CASE WHEN VLIFE_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN 'C' END
+        ,drvAddEEApprovedAmtEffDate =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLIFE_BenStartDate, '4/1/2021') 
+                                            WHEN VLFEF_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') 
+                                        END
+        ,drvAddEEApprovedAmt =    CASE WHEN VLIFE_DedCode IS NOT NULL THEN FORMAT(VLIFE_BenAmt, REPLICATE('0',10)) 
+                                    WHEN VLFEF_DedCode IS NOT NULL THEN FORMAT(VLFEF_BenAmt, REPLICATE('0',10)) 
+                                END
 
 
 
@@ -626,9 +651,10 @@ BEGIN
                                         WHEN VLFEF_DedCode IS NOT NULL THEN
                                             CASE WHEN VLFEF_BenStatus = 'T' THEN dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStopDate, '4/1/2021') ELSE dbo.dsi_fnGetMinMaxDates('MAX', VLFEF_BenStartDate, '4/1/2021') END
                                         END
-        ,drvAddDepApprovedAmt =    CASE WHEN VLFEC_DedCode IS NOT NULL THEN FORMAT(VLFEC_BenAmt, REPLICATE('0',10))
+        ,drvAddDepApprovedAmt = CASE WHEN VLFEC_DedCode IS NOT NULL OR VLFEF_DedCode IS NOT NULL THEN '0000010000' END
+                                /*CASE WHEN VLFEC_DedCode IS NOT NULL THEN FORMAT(VLFEC_BenAmt, REPLICATE('0',10))
                                     WHEN VLFEF_DedCode IS NOT NULL THEN    FORMAT(VLFEF_BenAmt, REPLICATE('0',10))
-                                END
+                                END*/
 
 
         ,drvVolSTDProductCategory = CASE WHEN STD_DedCode IS NOT NULL THEN 'Q' END

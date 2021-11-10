@@ -1,0 +1,11 @@
+Record ID*,Number of Records*,Import Key Code*,Import Template Name*,Result Template Name*,Export Template Name*,Batch ID*
+
+Record ID*,TPA ID*,Employer ID*,Employee SSN*,Last Name*,First Name*,Middle Initial,Phone,Address Line 1*,Address Line 2,City*,State*,ZIP*,Country*,Email*,Employee Number,Employee Status*,Gender*,Marital Status*,Birth Date*,Employee SSN*
+
+
+Record ID*,TPA ID*,Employer ID*,Plan ID*,Employee SSN*,Account Type Code*,Employer Plan Year Start Date*,Employer Plan Year End Date*,Account Status*,Annual Election Amount*,Employee Per Pay Period Amount*,Employer Per Pay Period  Amount*,Effective Date*,Termination Date,Auto Add Dependents*,Auto Deposit Calendar ID
+
+
+Record ID*,TPA ID*,Employer ID*,Employee SSN*,Hire Date,Original Hire Date,Termination Date,Occupation Code,Location Code,Department Code,Division,Branch Code,Section Code,Base Salary,Previous Year Total Compensation,Additional Compensation ,Highly Compensated Override,Highly Compensated Relative Soc Sec #,Non-Resident Alien,Union Member,Key Employee?,Spouse/Dependent of Owner,Highly Compensated-Cafeteria Plan Definition,Highly Compensated-Dependent Care Definition,% of Company Stock Held,Option to Enter Election Amounts*,Health,Health FSA,Group Term Life,Dependent Care FSA,Vision,Dental,STD,LTD,Other Health,Adoption,401K
+
+
