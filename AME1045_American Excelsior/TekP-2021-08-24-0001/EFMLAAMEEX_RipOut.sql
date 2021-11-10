@@ -5,7 +5,7 @@ EFMLAAMEEX: Sunlife FMLA Export
 FormatCode:     EFMLAAMEEX
 Project:        Sunlife FMLA Export
 Client ID:      AME1045
-Date/time:      2021-11-10 12:26:28.357
+Date/time:      2021-11-10 17:39:21.463
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         EW2WUP3DB01
 Database:       ULTIPRO_WPAEXC
 Web Filename:   AME1045_66301_EEHISTORY_EFMLAAMEEX_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -349,7 +350,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife FMLA Export','202110189','EMPEXPORT','ONDEM_XOE',NULL,'EFMLAAMEEX',NULL,NULL,NULL,'202110189','Oct 18 2021 12:09PM','Oct 18 2021 12:09PM','202110181',NULL,'','','202110181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife FMLA Export-Sched','202110189','EMPEXPORT','SCH_EFMLAA',NULL,'EFMLAAMEEX',NULL,NULL,NULL,'202110189','Oct 18 2021 12:09PM','Oct 18 2021 12:09PM','202110181',NULL,'','','202110181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Sunlife FMLA Export-Test','202111029','EMPEXPORT','TEST_XOE','Nov  2 2021  9:30AM','EFMLAAMEEX',NULL,NULL,NULL,'202111029','Nov  2 2021 12:00AM','Dec 30 1899 12:00AM','202110191','450','','','202110191',dbo.fn_GetTimedKey(),NULL,'us3lKiAME1045',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Sunlife FMLA Export-Test','202111109','EMPEXPORT','TEST_XOE','Nov 10 2021  5:31PM','EFMLAAMEEX',NULL,NULL,NULL,'202111109','Nov 10 2021 12:00AM','Dec 30 1899 12:00AM','202110271','455','','','202110271',dbo.fn_GetTimedKey(),NULL,'us3lKiAME1045',NULL);
 
 -----------
 -- AscImp inserts
@@ -363,6 +364,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFMLAAMEEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFMLAAMEEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFMLAAMEEX','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFMLAAMEEX','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFMLAAMEEX','UseFileName','V','Y');
 
 -----------
@@ -441,17 +443,17 @@ CREATE TABLE [dbo].[U_EFMLAAMEEX_drvTbl] (
     [drvSTDWklyEarnings] varchar(1) NOT NULL,
     [drvLTDMonthEarnings] varchar(1) NOT NULL,
     [drvTermDt] varchar(30) NOT NULL,
-    [drvSTDEligDt] varchar(1) NOT NULL,
+    [drvSTDEligDt] datetime NULL,
     [drvSTDElect] varchar(1) NOT NULL,
     [drvSTDBenAmt] varchar(1) NOT NULL,
-    [drvSTDClass] varchar(1) NOT NULL,
-    [drvSTDTermDt] varchar(1) NOT NULL,
+    [drvSTDClass] varchar(1) NULL,
+    [drvSTDTermDt] datetime NULL,
     [drvStatDisType] varchar(1) NOT NULL,
-    [drvLTDEligDt] varchar(1) NOT NULL,
+    [drvLTDEligDt] datetime NULL,
     [drvLTDElect] varchar(1) NOT NULL,
     [drvLTDBenAmt] varchar(1) NOT NULL,
-    [drvLTDClass] varchar(1) NOT NULL,
-    [drvLTDTermDt] varchar(1) NOT NULL,
+    [drvLTDClass] varchar(1) NULL,
+    [drvLTDTermDt] datetime NULL,
     [drvPolNum] varchar(1) NOT NULL,
     [drvKeyEmpIndic] varchar(1) NOT NULL,
     [drvWrkAtHomeIndic] varchar(1) NOT NULL,
@@ -603,7 +605,7 @@ Revision History
         - Added older than 30 days to drop term logic.
 
 11/10/2021 by AP:
-		- Updated STD Eligibility Date, STD Class, STD Termination Date, LTD Eligibility Date, LTD Class, LTD Termination Date
+        - Updated STD Eligibility Date, STD Class, STD Termination Date, LTD Eligibility Date, LTD Class, LTD Termination Date
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFMLAAMEEX';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFMLAAMEEX';
@@ -902,21 +904,22 @@ BEGIN
         ,drvSTDWklyEarnings = ''
         ,drvLTDMonthEarnings = ''
         ,drvTermDt = ISNULL(CONVERT(VARCHAR, CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END, 101), '')
-        ,drvSTDEligDt = Eed.EedBenStartDate
-		--ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE' THEN EedBenStartDate END), 101), '')
+        ,drvSTDEligDt = CONVERT(VARCHAR, Eed.EedBenStartDate, 101)
+        --ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE' THEN EedBenStartDate END), 101), '')
         ,drvSTDElect = ''
         ,drvSTDBenAmt = ''
         ,drvSTDClass = CASE WHEN Eed.EedEEID IS NOT NULL THEN '1' END
-        ,drvSTDTermDt = Eed.EedBenStopDate
-		--ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE' THEN EedBenStopDate END), 101), '')
+        ,drvSTDTermDt = CONVERT(VARCHAR, Eed.EedBenStopDate, 101)
+        --ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE' THEN EedBenStopDate END), 101), '')
         ,drvStatDisType = ''
-        ,drvLTDEligDt = Eed.EedBenStartDate
-		--ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE' THEN EedBenStartDate END), 101), '')
+        ,drvLTDEligDt = CONVERT(VARCHAR, Eed.EedBenStartDate, 101)
+        --ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE' THEN EedBenStartDate END), 101), '')
         ,drvLTDElect = ''
         ,drvLTDBenAmt = ''
-        ,drvLTDClass = CASE WHEN Eed.EedEEID IS NOT NULL AND EecOrgLvl3 IN ('U', 'P') THEN '1' END
-        ,drvLTDTermDt = Eed.EedBenStartDate
-		--ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE'  THEN EedBenStopDate END), 101), '')
+        ,drvLTDClass = CASE WHEN Eed.EedEEID IS NOT NULL AND EecOrgLvl3 IN ('U', 'P') THEN '2' 
+								WHEN Eed.EedEEID IS NOT NULL AND EecOrgLvl3 NOT IN ('U', 'P') THEN '1' END
+        ,drvLTDTermDt = CONVERT(VARCHAR, Eed.EedBenStopDate, 101)
+        --ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode = 'GLIFE'  THEN EedBenStopDate END), 101), '')
         ,drvPolNum = ''
         ,drvKeyEmpIndic = ''
         ,drvWrkAtHomeIndic = ''
@@ -982,15 +985,15 @@ BEGIN
     LEFT JOIN dbo.U_EFMLAAMEEX_PEarHist_12M Peh12 WITH(NOLOCK)
         ON Peh12.PehEEID = xEEID
         AND Peh12.PehCOID = xCOID
-	LEFT JOIN (SELECT DISTINCT EedEEID, EedCOID, MAX(EedBenStartDate) AS EedBenStartDate, MAX(EedBenStopDate) AS EedBenStopDate
-				FROM dbo.EmpDedFull WITH(NOLOCK)
-				WHERE EedDedCode = 'GLIFE'
-				GROUP BY EedEEID, EedCOID) Eed ON Eed.EedEEID = xEEID AND EedCOID = xCOID
-	--LEFT JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-	--	ON EedEEID = xEEID
-	--	AND EedCOID = xCOID
-	--	AND EedFormatCode = @FormatCode
- --    	AND EedValidForExport = 'Y'
+    LEFT JOIN (SELECT DISTINCT EedEEID, EedCOID, MAX(EedBenStartDate) AS EedBenStartDate, MAX(EedBenStopDate) AS EedBenStopDate
+                FROM dbo.EmpDedFull WITH(NOLOCK)
+                WHERE EedDedCode = 'GLIFE'
+                GROUP BY EedEEID, EedCOID) Eed ON Eed.EedEEID = xEEID AND EedCOID = xCOID
+    --LEFT JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+    --    ON EedEEID = xEEID
+    --    AND EedCOID = xCOID
+    --    AND EedFormatCode = @FormatCode
+ --        AND EedValidForExport = 'Y'
     --JOIN dbo.U_dsi_BDM_EFMLAAMEEX WITH (NOLOCK)
     --    ON BdmEEID = xEEID 
     --    AND BdmCoID = xCoID
