@@ -5,7 +5,7 @@ ELUC834EXP: Lucent 834 Export
 FormatCode:     ELUC834EXP
 Project:        Lucent 834 Export
 Client ID:      TWI1003
-Date/time:      2021-11-10 15:30:03.520
+Date/time:      2021-11-10 20:37:53.833
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -14,6 +14,7 @@ Server:         EW4WUP2DB02
 Database:       ULTIPRO_WPTRPCL
 Web Filename:   TWI1003_2UGP0_EEHISTORY_ELUC834EXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -364,7 +365,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202103039','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202103039','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lucent 834 Export','202103039','EMPEXPORT','SCH_LUC834','Oct  1 2018 12:00AM','ELUC834EXP',NULL,NULL,NULL,'202103039','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202103031',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lucent 834 Export Test','202110259','EMPEXPORT','TEST','Oct 25 2021  7:44PM','ELUC834EXP',NULL,NULL,NULL,'202110259','Oct 25 2021 12:00AM','Dec 30 1899 12:00AM','202110111','21186','','','202110111',dbo.fn_GetTimedKey(),NULL,'us3jReTWI1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lucent 834 Export Test','202111109','EMPEXPORT','TEST','Nov 10 2021  7:36PM','ELUC834EXP',NULL,NULL,NULL,'202111109','Nov 10 2021 12:00AM','Dec 30 1899 12:00AM','202110271','21848','','','202110271',dbo.fn_GetTimedKey(),NULL,'us3jReTWI1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -382,6 +383,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELUC834EXP','UseFileName','V','Y');
 
 -----------
@@ -507,8 +509,8 @@ CREATE TABLE [dbo].[U_ELUC834EXP_Audit] (
     [audFieldName] varchar(128) NOT NULL,
     [audAction] varchar(6) NOT NULL,
     [audDateTime] datetime NOT NULL,
-    [audOldValue] varchar(2000) NULL,
-    [audNewValue] varchar(2000) NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
     [audRowNo] bigint NULL
 );
 
@@ -813,7 +815,8 @@ Revision History
         - Provided update for INS10 record (INS09 was already BLANK).
 
 11/10/2021 by AP:
-		- Adjusted ded code from MWKD to MWKID.
+        - Adjusted ded code from MWKD to MWKID.
+		- Fixed problem with MWKID when it comes to sorting in 2300 record.
         
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ELUC834EXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ELUC834EXP';
@@ -1431,6 +1434,7 @@ BEGIN
                             WHEN 'MSTD1' THEN '13'
                             WHEN 'DENTL' THEN '14'
                             WHEN 'VISIO' THEN '15'
+							WHEN 'MWKID' THEN '16'
                       END
     INTO dbo.U_ELUC834EXP_DrvTbl_2300
     FROM dbo.U_ELUC834EXP_EELIST WITH (NOLOCK)
