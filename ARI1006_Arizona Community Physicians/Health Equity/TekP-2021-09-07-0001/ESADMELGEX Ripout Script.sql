@@ -5,7 +5,7 @@ ESADMELGEX: Health Equity FSA/HAS Cen/Elig Export
 FormatCode:     ESADMELGEX
 Project:        Health Equity FSA/HAS Cen/Elig Export
 Client ID:      ARI1006
-Date/time:      2021-11-04 04:18:09.140
+Date/time:      2021-11-09 12:27:23.890
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -190,7 +190,6 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','ESADMElGEXZ0','50','D','10','56',NULL,'For Internal Use Only 10 (Health Care)',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','ESADMElGEXZ0','50','D','10','57',NULL,'For Future Use Only 6',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','ESADMElGEXZ0','50','D','10','58',NULL,'Country Code',NULL,NULL,'""','(''DA''=''T'')');
-
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESADMElGEXZ0','50','D','20','1',NULL,'Record Type',NULL,NULL,'"ENR"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESADMElGEXZ0','50','D','20','2',NULL,'Group ID',NULL,NULL,'"60341"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESADMElGEXZ0','50','D','20','3',NULL,'Participant or Employee ID',NULL,NULL,'"drvParticipantId"','(''UA''=''T|'')');
@@ -232,7 +231,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESADMELGEX_20211104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESADMELGEX_20211109.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -243,7 +242,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202110229','EMPEXPORT','OEPASSIVE',NULL,'ESADMElGEX',NULL,NULL,NULL,'202110229','Oct 22 2021 11:03AM','Oct 22 2021 11:03AM','202110221',NULL,'','','202110221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Equity FSA/HAS C/E E','202110229','EMPEXPORT','ONDEM_XOE',NULL,'ESADMElGEX',NULL,NULL,NULL,'202110229','Oct 22 2021 11:03AM','Oct 22 2021 11:03AM','202110221',NULL,'','','202110221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Equity FSA/HAS C/-Sched','202110229','EMPEXPORT','SCH_ESADME',NULL,'ESADMElGEX',NULL,NULL,NULL,'202110229','Oct 22 2021 11:03AM','Oct 22 2021 11:03AM','202110221',NULL,'','','202110221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity FSA/HAS C/-Test','202110271','EMPEXPORT','TEST_XOE','Oct 27 2021  3:16PM','ESADMElGEX',NULL,NULL,NULL,'202110271','Oct 27 2021 12:00AM','Dec 30 1899 12:00AM','202110191','939','','','202110191',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity FSA/HAS C/-Test','202111051','EMPEXPORT','TEST_XOE','Nov  9 2021  9:11AM','ESADMElGEX',NULL,NULL,NULL,'202111051','Nov  5 2021 12:00AM','Dec 30 1899 12:00AM','202110291','929','','','202110291',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -451,6 +450,9 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESADMElGEX', 'SCH_ESADME';
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'ESADMElGEX';
 
 EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ESADMElGEX', @AllObjects = 'Y', @IsWeb = 'Y'
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ESADMElGEX', @AllObjects = 'Y', @IsWeb = 'Y'
+
 **********************************************************************************/
 BEGIN
 
@@ -598,7 +600,12 @@ BEGIN
                                 END
         ,drvCoverageEffectiveDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, '1/1/2022')
         ,drvCoverageEndDate =    CASE WHEN BdmDedCode IN ('FSA','FSALP','FSADC') THEN BdmBenStopDate
-                                    WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') AND BdmBenStatus = 'T' THEN '12/31/' + FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END, '0000')
+                                    WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') THEN
+                                        CASE WHEN BdmBenStatus <> 'A' THEN BdmBenStopDate 
+                                        ELSE
+                                            CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN '12/31/2022' ELSE '12/31/' + FORMAT(DATEPART(YEAR, GETDATE()), '0000') END
+                                        END
+                                    --'12/31/' + FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()), '0000') < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END
                                 END
         ,drvHsaCompatibleFSAOption = CASE WHEN BdmDedCode = 'FSALP' THEN 'Y' END
         ,drvHsaCompatibleEffectiveDate = CASE WHEN BdmDedCode = 'FSALP' THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2022') END

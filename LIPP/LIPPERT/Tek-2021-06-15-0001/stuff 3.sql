@@ -29,18 +29,21 @@ WHERE audEEID = 'DGI8XS015020'
 
 --EXEC fn_findeffdate_emphjob 'DGI8XS015020', 'EjhFullTimeOrPartTime'
 
-select EecFullTimeOrPartTime,  * from EmpComp where EecEEID = 'DGI8XS015020'
+--select EecFullTimeOrPartTime,  * from EmpComp where EecEEID = 'DGI8XS015020'
 
-		select EjhJobEffDate, EjhReason, EjhSystemID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, * from EmpHJob A
+		select EjhJobEffDate, EjhReason, EjhSystemID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, EjhSalaryOrHourly, * from EmpHJob A
 		--where EjhEEID = 'DIED8K000020' -- 'DB5AKC000020'
 		--where EjhEEID = 'DPJTIK000020'
 		--where EjhEEID = 'DGI8MS01K020'
-		WHERE EjhEEID = 'DGI8XS015020'
+		--WHERE EjhEEID = 'DGI8XS015020'
+		where EjhEEID = 'DGI8MS01K020'
 		order by A. EjhJobEffDate desc
 
 --SELECT EecEmplStatusStartDate, EecCOID, * From EmpComp where EecEEID = 'DPJTIK000020'
 
-select top 10 audAction, audFieldName, audDAteTime, audSystemId, '' as filler, * from dbo.vw_AuditData A WITH (NOLOCK) where audKey1Value = 'DGI8XS015020' AND audFieldName IN ('EecEmplStatus','EecSalaryOrHourly','EecFullTimeOrPartTime','EecEEType') AND audTableName = 'EmpComp'
+--select top 100 audAction, audFieldName, audDAteTime, audSystemId, '' as filler, * from dbo.vw_AuditData A WITH (NOLOCK) where audKey1Value = 'DGI8XS015020' and audTableName in ('EmpComp','EmpHJob') --AND audFieldName IN ('EecEmplStatus','EecSalaryOrHourly','EecFullTimeOrPartTime','EecEEType','EjhFullTimeOrPartTime') AND audTableName = 'EmpComp'
 
- order by A.audDateTime desc
+ --order by A.audDateTime desc
+
+ --select * from dbo.U_EAV3_Audit where audEEID = 'DGI8XS015020'
 

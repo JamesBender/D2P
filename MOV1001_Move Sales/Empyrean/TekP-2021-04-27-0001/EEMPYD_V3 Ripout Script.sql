@@ -1,111 +1,6 @@
-/**********************************************************************************
-
-EEMPYD_V3: Empyrean Demographic Export V3 Testing
-
-FormatCode:     EEMPYD_V3
-Project:        Empyrean Demographic Export V3 Testing
-Client ID:      MOV1001
-Date/time:      2021-11-04 06:44:44.027
-Ripout version: 7.4
-Export Type:    Web
-Status:         Production
-Environment:    N33
-Server:         N3SUP3DB01
-Database:       ULTIPRO_MVS
-Web Filename:   MOV1001_M3D41_EEHISTORY_EEMPYD_V3_ExportCode_YYYYMMDD_HHMMSS.txt
-ArchivePath:   
-ExportPath:    
-
-**********************************************************************************/
-
 SET NOCOUNT ON;
-
------------
--- Drop the SavePath table if it exists
------------
-
-IF OBJECT_ID('U_EEMPYD_V3_SavePath') IS NOT NULL DROP TABLE dbo.U_EEMPYD_V3_SavePath
-
-
------------
--- Create U_dsi_RipoutParms if it doesn't exist
------------
-
-IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
-
-   CREATE TABLE dbo.U_dsi_RipoutParms (
-   rpoFormatCode  VARCHAR(10)   NOT NULL,
-   rpoParmType    VARCHAR(64)   NOT NULL,
-   rpoParmValue01 VARCHAR(1024) NULL,
-   rpoParmValue02 VARCHAR(1024) NULL,
-   rpoParmValue03 VARCHAR(1024) NULL,
-   rpoParmValue04 VARCHAR(1024) NULL,
-   rpoParmValue05 VARCHAR(1024) NULL
-)
-END
-
-
------------
--- Clear U_dsi_RipoutParms
------------
-
-DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EEMPYD_V3'
-
-
------------
--- Add paths to U_dsi_RipoutParms
------------
-
-INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
-SELECT
-
-FormatCode,
-'Path',
-CfgName,
-CfgValue
-
-FROM dbo.U_Dsi_Configuration
-WHERE FormatCode = 'EEMPYD_V3'
-AND CfgName LIKE '%path%'
-
-
------------
--- Add AscExp expSystemIDs to U_dsi_RipoutParms
------------
-
-INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
-SELECT
-
-ExpFormatCode,
-'expSystemID',
-ExpExportCode,
-ExpSystemID
-
-FROM dbo.AscExp
-WHERE ExpFormatCode = 'EEMPYD_V3'
-
-
------------
--- Delete configuration data
------------
-
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EEMPYD_V3')
-DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EEMPYD_V3'
-DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EEMPYD_V3'
-DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EEMPYD_V3'
-DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EEMPYD_V3'
-DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EEMPYD_V3'
-DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EEMPYD_V3'
-
-IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EEMPYD_V3'
-IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EEMPYD_V3'
-IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EEMPYD_V3'
-
-
------------
--- Drop export-specific objects
------------
-
+IF OBJECT_ID('U_EEMPYD_V3_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EEMPYD_V3_SavePath];
+SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EEMPYD_V3_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EEMPYD_V3' AND CfgName LIKE '%Path';
 IF OBJECT_ID('dsi_vwEEMPYD_V3_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEEMPYD_V3_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EEMPYD_V3') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EEMPYD_V3];
@@ -128,17 +23,13 @@ IF OBJECT_ID('U_EEMPYD_V3_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EEMPYD_V
 GO
 IF OBJECT_ID('U_EEMPYD_V3_Audit') IS NOT NULL DROP TABLE [dbo].[U_EEMPYD_V3_Audit];
 GO
-
------------
--- AscDefH inserts
------------
-
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EEMPYD_V3';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EEMPYD_V3';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EEMPYD_V3';
+DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EEMPYD_V3';
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EEMPYD_V3';
 INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EEMPYD_V3','Empyrean Demographic Export V3 Testing','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','4000','S','N','EEMPYD_V30Z0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
-
------------
--- AscDefF inserts
------------
-
+/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EEMPYD_V3' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"HDR"','1','(''DA''=''T|'')','EEMPYD_V30Z0','50','H','01','1',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Realtor"','2','(''DA''=''T|'')','EEMPYD_V30Z0','50','H','01','2',NULL,'Client Name',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFileCreationDate"','3','(''UD112''=''T'')','EEMPYD_V30Z0','50','H','01','3',NULL,'File creation Date',NULL,NULL);
@@ -210,72 +101,31 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"spaces"','66','(''SS''=''T'')','EEMPYD_V30Z0','50','D','11','66',NULL,'Severance End Date',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"TRL"','1','(''DA''=''T|'')','EEMPYD_V30Z0','50','T','91','1',NULL,'Record Type',NULL,NULL);
 INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTotalNumberOfRecords"','2','(''UNT0''=''T'')','EEMPYD_V30Z0','50','T','91','2',NULL,'Total Number of Records',NULL,NULL);
-
------------
--- Build web filename
------------
-
-/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
-/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
-/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
 /*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYD_V3_20211104.txt';
-/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-
------------
--- AscExp inserts
------------
-
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic','202110281','EMPEXPORT','ONDMD_XOE','Oct 28 2021  8:19PM','EEMPYD_V3',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N3\Public\MOV1001\Exports\'+ LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202110281','EMPEXPORT','TEST_XOE','Oct 28 2021  8:19PM','EEMPYD_V3',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
-
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYD_V3',NULL,NULL,NULL,'202108169','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202108011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-
------------
--- AscImp inserts
------------
-
-
------------
--- U_dsi_Configuration inserts
------------
-
+/*08*/ DECLARE @FILENAME varchar(1000) = 'EEMPYD_V3_20211108.txt';
+/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic','202110281','EMPEXPORT','ONDMD_XOE','Oct 28 2021  8:19PM','EEMPYD_V3',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYD_V3',NULL,NULL,NULL,'202108169','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202108011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202110281','EMPEXPORT','TEST_XOE','Oct 28 2021  8:19PM','EEMPYD_V3',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPYD_V3','ArchivePath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPYD_V3','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPYD_V3','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPYD_V3','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPYD_V3','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEMPYD_V3','UseFileName','V','Y');
-
------------
--- U_dsi_RecordSetDetails inserts
------------
-
-
------------
--- U_dsi_SQLClauses inserts
------------
-
+/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EEMPYD_V3' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
+/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EEMPYD_V3' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
+IF OBJECT_ID('U_EEMPYD_V3_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EEMPYD_V3_SavePath];
+GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EEMPYD_V3','H01','dbo.U_EEMPYD_V3_DrvTbl_H01',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EEMPYD_V3','D11','dbo.U_EEMPYD_V3_DrvTbl_D11',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EEMPYD_V3','T91','dbo.U_EEMPYD_V3_DrvTbl_T91',NULL);
-
------------
--- U_dsi_Translations inserts
------------
-
-
------------
--- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- Create table U_EEMPYD_V3_Audit
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_Audit') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_Audit] (
     [audEEID] varchar(255) NOT NULL,
@@ -294,21 +144,11 @@ CREATE TABLE [dbo].[U_EEMPYD_V3_Audit] (
     [audNewValue] varchar(2000) NULL,
     [audRowNo] bigint NULL
 );
-
------------
--- Create table U_EEMPYD_V3_AuditFields
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_AuditFields') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_AuditFields] (
     [aTableName] varchar(30) NULL,
     [aFieldName] varchar(30) NULL
 );
-
------------
--- Create table U_EEMPYD_V3_DrvTbl_D11
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_DrvTbl_D11') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_DrvTbl_D11] (
     [drvEEID] char(12) NULL,
@@ -366,39 +206,19 @@ CREATE TABLE [dbo].[U_EEMPYD_V3_DrvTbl_D11] (
     [drvDateOfSeniority2] datetime NULL,
     [drvDateOfTermination] datetime NULL
 );
-
------------
--- Create table U_EEMPYD_V3_DrvTbl_H01
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_DrvTbl_H01') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_DrvTbl_H01] (
     [drvFileCreationDate] datetime NOT NULL
 );
-
------------
--- Create table U_EEMPYD_V3_DrvTbl_T91
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_DrvTbl_T91') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_DrvTbl_T91] (
     [drvTotalNumberOfRecords] int NULL
 );
-
------------
--- Create table U_EEMPYD_V3_EEList
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_EEList') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
-
------------
--- Create table U_EEMPYD_V3_File
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_File') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_File] (
     [RecordSet] char(3) NOT NULL,
@@ -408,21 +228,11 @@ CREATE TABLE [dbo].[U_EEMPYD_V3_File] (
     [SubSort3] varchar(100) NULL,
     [Data] varchar(4000) NULL
 );
-
------------
--- Create table U_EEMPYD_V3_Mapping_Actions
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_Mapping_Actions') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_Mapping_Actions] (
     [ActCode] varchar(15) NULL,
     [ActDesc] varchar(50) NULL
 );
-
------------
--- U_EEMPYD_V3_Mapping_Actions inserts
------------
-
 INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('100','New hire');
 INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('101','Rehire');
 INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('200','Merit increase');
@@ -479,11 +289,6 @@ INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('EQI',
 INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('HOME','Home Company');
 INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('PCEU','Position Control Update');
 INSERT INTO [dbo].[U_EEMPYD_V3_Mapping_Actions] (ActCode,ActDesc) VALUES ('TRB','Transferred back');
-
------------
--- Create table U_EEMPYD_V3_PEarHist
------------
-
 IF OBJECT_ID('U_EEMPYD_V3_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EEMPYD_V3_PEarHist] (
     [PehEEID] char(12) NOT NULL,
@@ -529,6 +334,7 @@ EXEC msdb..usg_set_job_owner @job_name = '', @set_owner_to_self = 1;
 Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMPYD_V3', 'ONDMD_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMPYD_V3', 'TEST_XOE';
 
 EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EEMPYD_V3', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
@@ -886,39 +692,43 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
         ,drvBonus = CASE WHEN PehCurAmtBonus = 0.00 THEN '' ELSE CONVERT(VARCHAR, CAST(PehCurAmtBonus AS DECIMAL(11, 2))) END
         ,drvBonusEffectiveDate = CASE WHEN PehCurAmtBonus > 0.00 THEN PrgPayDate END
 
-
-       ,drvActionCode = --JobActive.ActCode
+        -- field 59
+       ,drvActionCode = CASE WHEN ActActionCode IS NOT NULL THEN ActActionCode ELSE OEjhReason END
+       --JobActive.ActCode
        
-       CASE WHEN aud.audActionCode NOT IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB') 
+       /*CASE WHEN aud.audActionCode NOT IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB') 
        THEN aud.audActionCode
        ELSE JobActive.ActCode
-       END
+       END*/
                             /*CASE WHEN ejhEmplStatus = 'T' THEN '800'
                         WHEN ejhEmplStatus = 'A' THEN JobActive.EjhReason
                         WHEN ejhEmplStatus = 'L' THEN JobLeave.EjhReasonleave
                         END*/                     
-                          
-        ,drvActionCodeEffectiveDate = CASE WHEN EecEmplStatus = 'T'
+         -- field 60                 
+        ,drvActionCodeEffectiveDate = CASE WHEN ActActionCode IS NOT NULL THEN ActActionEffDate ELSE OEjhJobEffDate END
+                                        /*CASE WHEN EecEmplStatus = 'T'
                                       THEN eecdateoftermination
                                       ELSE EjhJobEffDate 
-                                      END
+                                      END*/
                                       --auddate.audActionEffDate 
                                       --CASE WHEN aud.audRowNo = '1' AND aud.audFieldName = 'EjhJobEffDate' THEN aud.audActionEffDate END
-                                                                    
-        ,drvActionReasonCode = CASE WHEN aud.audActionCode NOT IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB') 
+         --field 61                                                         
+        ,drvActionReasonCode = CASE WHEN ActActionCode IS NOT NULL THEN ActActionDesc ELSE B.ActDesc END -- Description
+                                /*CASE WHEN aud.audActionCode NOT IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB') 
                                THEN aud.audactiondesc
                                ELSE JobActive.ActDesc
-                               END
+                               END*/
         --aud.audActionDesc
         /* CASE WHEN ejhEmplStatus = 'T' THEN 'Termination'
                                WHEN ejhEmplStatus = 'A' THEN audActive.ActDesc
                                WHEN ejhEmplStatus = 'L' THEN audLeave.ActDesc
                                END */
-                                                               
-        ,drvActionReasonCodeEffectiveDate = CASE WHEN EecEmplStatus = 'T'
+        -- field 62                                                     
+        ,drvActionReasonCodeEffectiveDate = CASE WHEN ActActionCode IS NOT NULL THEN ActActionEffDate ELSE OEjhJobEffDate END 
+                                    /*CASE WHEN EecEmplStatus = 'T'
                                       THEN eecdateoftermination
                                       ELSE ejhJobEffDate --auddate.audActionEffDate -- CASE WHEN aud.audRowNo = '1' AND aud.audFieldName = 'EjhJobEffDate' THEN aud.audActionEffDate END
-                                      END
+                                      END*/
 
         ,drvDateOfSeniority2 = EecDateOfSeniority
         ,drvDateOfTermination = 
@@ -966,13 +776,12 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
 
     
 
-    LEFT JOIN (SELECT audEEID, audKey2, audFieldName = MAX(audFieldName) ,AudActionEffDate = MAX(audActionEffDate), audActionCode =MAX (audActionCode), audactiondesc = MAX (audactiondesc), audNewValue = MAX(audNewValue)--actdesc =MAX(actdesc)
-                   FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK)
-                  JOIN dbo.U_EEMPYD_V3_Mapping_Actions WITH (NOLOCK)
-                   ON actCode=audActionCode
-                    WHERE NULLIF(audActionCode, '') IS NOT NULL
-                    --AND audFieldName = 'EjhEmplStatus'
-                    --AND audNewValue = 'A'
+    LEFT JOIN (
+                SELECT audEEID, audKey2, audFieldName = MAX(audFieldName) ,AudActionEffDate = MAX(audActionEffDate), audActionCode =MAX (audActionCode), audactiondesc = MAX (audactiondesc), audNewValue = MAX(audNewValue)--actdesc =MAX(actdesc)
+                FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK)
+                JOIN dbo.U_EEMPYD_V3_Mapping_Actions WITH (NOLOCK)
+                    ON actCode=audActionCode
+                WHERE NULLIF(audActionCode, '') IS NOT NULL
                     AND audActionCode  IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB')
                     
                             --('ADDR', 'LOC','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900',
@@ -1047,6 +856,27 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
     LEFT JOIN dbo.U_EEMPYD_V3_PEarHist
         ON xEEID = PehEEID
 
+    LEFT JOIN (
+                SELECT EjhEEID AS OEjhEEID, EjhCOID AS OEjhCOID, EjhReason AS OEjhReason, EjhJobEffDate AS OEjhJobEffDate
+                FROM (
+                        SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate, ROW_NUMBER() OVER (PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                        FROM EmpHJob
+                        WHERE EjhReason IN ('100','101','400','401','800','TRI','TRO')) AS EjhList
+                WHERE RN = 1) AS OuterEjhList
+        ON OEjhEEID = xEEID
+        AND OEjhCOID = xCOID
+    LEFT JOIN dbo.U_EEMPYD_V3_Mapping_Actions B WITH (NOLOCK)
+        ON OEjhReason = B.ActCode
+    LEFT JOIN (            
+                SELECT ActEEID, ActCOID, ActActionCode, ActActionEffDate, ActActionDesc
+                FROM (
+                        SELECT AudEEID AS ActEEID, AudKey2 AS ActCOID, AudActionCode AS ActActionCode, audActionDesc AS ActActionDesc, AudActionEffDate AS ActActionEffDate, ROW_NUMBER() OVER (PARTITION BY AudEEID, AudKey2 ORDER BY AudActionEffDate DESC) AS RN
+                        FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK)
+                        WHERE AudActionCode IN ('PDM11','PBIRTH','119','121','123','124','LTD','MAS','MFM','PADOPT','PFOSTR','PSURRO','UPBRTH','UPADPT','UPFOST','UPSURR','PERSNL','WKCOMP','PDM05','PDM610','RFL')) AS InAct
+                WHERE RN = 1) AS Actions
+        ON ActEEID = xEEID
+        AND ActCOID = xCOID
+
     --JOIN dbo.EmpHJob WITH (NOLOCK)
     --     ON EjhEEID = xEEID 
     --     AND EjhCOID = xCOID
@@ -1109,58 +939,3 @@ GO
 CREATE VIEW dbo.dsi_vwEEMPYD_V3_Export AS 
     SELECT TOP 200000000 Data FROM dbo.U_EEMPYD_V3_File WITH (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort
-
-GO
-
-
------------
--- This is a web export; insert a record into the CustomTemplates table to make it visible
------------
-
-INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
-SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
-  FROM dbo.AscDefH WITH (NOLOCK)
- WHERE AdhFormatCode = 'EEMPYD_V3' AND AdhEngine = 'EMPEXPORT'
-   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
-
-
------------
--- Restore target paths from U_dsi_RipoutParms
------------
-
-UPDATE dbo.U_dsi_Configuration
-   SET CfgValue = rpoParmValue02
-  FROM dbo.U_dsi_Configuration
-  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
- WHERE rpoFormatCode = 'EEMPYD_V3'
-   AND rpoParmType = 'Path'
-
-
------------
--- Restore expSystemIDs from U_dsi_RipoutParms
------------
-
-UPDATE dbo.AscExp
-   SET expSystemID = rpoParmValue02
-  FROM dbo.AscExp
-  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
- WHERE rpoFormatCode = 'EEMPYD_V3'
-   AND rpoParmType = 'expSystemID'
-
-
------------
--- This is a web export; set paths to NULL
------------
-
-EXEC dbo.dsi_sp_UpdateConfig 'EEMPYD_V3', 'ExportPath', 'V', NULL
-EXEC dbo.dsi_sp_UpdateConfig 'EEMPYD_V3', 'TestPath', 'V', NULL
-
-
------------
--- This is a web export; set UseFileName = Y
------------
-
-EXEC dbo.dsi_sp_UpdateConfig 'EEMPYD_V3', 'UseFileName', 'V', 'Y'
-
-
--- End ripout

@@ -5,7 +5,7 @@ EAV3: AOD Changes Export V3
 FormatCode:     EAV3
 Project:        AOD Changes Export V3
 Client ID:      LIP1000
-Date/time:      2021-11-03 13:34:22.057
+Date/time:      2021-11-11 13:10:49.740
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -232,7 +232,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAV3_20211103.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAV3_20211111.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -415,6 +415,7 @@ CREATE TABLE [dbo].[U_EAV3_StatusDate_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] varchar(2000) NULL,
     [audNewValue] varchar(2000) NULL,
+    [audSystemId] char(12) NOT NULL,
     [audRowNo] bigint NULL
 );
 
@@ -555,6 +556,8 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAV3', 'CHGS_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAV3', 'SCHEDULED';
 
 EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EAV3', @AllObjects = 'Y', @IsWeb = 'Y'
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EAV3', @AllObjects = 'Y', @IsWeb = 'Y';
 **********************************************************************************/
 BEGIN
 
@@ -627,7 +630,7 @@ BEGIN
     insert into dbo.U_EAV3_AuditFields values ('empcomp','EecFullTimeOrPartTime');
     insert into dbo.U_EAV3_AuditFields values ('empcomp','EecEEType');
     insert into dbo.U_EAV3_AuditFields values ('empcomp','EecTimeclockID');
-    insert into dbo.U_EAV3_AuditFields values ('emphjob','EjhJobEffDate');  
+    insert into dbo.U_EAV3_AuditFields values ('emphjob','EjhFullTimeOrPartTime');  
      
     
 
@@ -650,8 +653,9 @@ BEGIN
     JOIN dbo.U_EAV3_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE';
+    WHERE --audDateTime BETWEEN @StartDate AND @EndDate
+    --AND 
+    audAction <> 'DELETE';
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EAV3_Audit ON dbo.U_EAV3_Audit (audEEID,audKey2);
@@ -663,9 +667,10 @@ BEGIN
         DROP TABLE dbo.U_EAV3_AuditFields;
     CREATE TABLE dbo.U_EAV3_AuditFields (aTableName varchar(30),aFieldName varchar(30));
     INSERT INTO dbo.U_EAV3_AuditFields VALUES ('empcomp','EecEmplStatus');    
-    INSERT INTO dbo.U_EAV3_AuditFields VALUES ('empcomp','EecSalaryOrHourly');    
+    /*INSERT INTO dbo.U_EAV3_AuditFields VALUES ('empcomp','EecSalaryOrHourly');    
     INSERT INTO dbo.U_EAV3_AuditFields VALUES ('empcomp','EecFullTimeOrPartTime');    
     INSERT INTO dbo.U_EAV3_AuditFields VALUES ('empcomp','EecEEType');
+    INSERT INTO dbo.U_EAV3_AuditFields VALUES ('emphJob','EjhFullTimeOrPartTime');*/
 
 
     IF OBJECT_ID('U_EAV3_StatusDate_Audit','U') IS NOT NULL
@@ -680,6 +685,7 @@ BEGIN
         ,audDateTime
         ,audOldValue
         ,audNewValue
+        ,audSystemId
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value /*, audKey3Value, audFieldName*/ ORDER BY audDateTime DESC)
     INTO dbo.U_EAV3_StatusDate_Audit                    --select * from U_EAV3_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
@@ -799,8 +805,8 @@ BEGIN
                                                                                                               WHEN EecEEType = 'STU' then '7'
                                                                                                               WHEN EecEEType = 'SUM' then '7' END)END)END)END)END)END)END)END
                                      
-                                    
-         ,drvhrstatusDate = StatusDate.StDate 
+        -- JCB                                    
+         ,drvhrstatusDate = CASE WHEN ISNULL(HsdDate, '1/1/1900') > ISNULL(LargestDate, '1/1/1900') THEN HsdDate ELSE LargestDate END -- StatusDate.StDate 
          
                             --CASE WHEN EecEmplStatus in ('L','R') then EecEmplStatusStartDate
        --                     ELSE ( CASE WHEN EecEmplStatus = 'A' AND EshEmpStat.EshEmplStatus = 'L' THEN EshEmpStat.EshStatusStopDate ELSE EjhJobEffDate END)
@@ -850,13 +856,13 @@ BEGIN
     --           ON StDate.EEID = xEEID
 
 
-     LEFT JOIN (Select * from 
+/*     LEFT JOIN (Select * from 
                (SELECT StEEID,StCOID,StAudFieldName,StDate,ROW_NUMBER() OVER (PARTITION BY StAudFieldName ORDER BY StDate desc) row_num
                FROM dbo.U_EAV3_hrstatusdate) StatDate
                WHERE StatDate.row_num = 1) AS StatusDate
                ON StatusDate.StEEID = xEEID
                AND StatusDate.StCOID = xCOID
-              
+*/              
 
 
 --      SELECT EfoEEID, EfoPhoneNumber
@@ -894,8 +900,76 @@ BEGIN
         --       audNewValue,
         --       audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
         --INTO dbo.U_EANTHEM834_AuditFROM dbo.vw_AuditData WITH (NOLOCK)
+    LEFT JOIN (
+                SELECT audEEID AS hsdEEID, audKey2 AS HsdCOID, EecEmplStatusStartDate AS HsdDate
+                FROM dbo.U_EAV3_StatusDate_Audit WITH (NOLOCK)
+                JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+                        ON EecEEID = audEEID 
+                        AND EecCoID = audKey2
+                LEFT JOIN dbo.EmpHJob WITH (NOLOCK)
+                    ON audSystemId = EjhSystemId
+                ) AS Hsd
+        ON HsdEEID = xEEID
+        AND HsdCoID = xCOID
+    LEFT JOIN (
+                    SELECT EjhEEID AS YEjhEEID, EjhCOID AS YEjhCOID
+                    ,MAX(SalaryOrHourly) AS SalaryOrHourly 
+                    ,MAX(SalaryOrHourlyDate) AS SalaryOrHourlyDate
+                    ,MAX(FullTimeOrPartTime) AS FullTimeOrPartTime
+                    ,MAX(FullTimeOrPartTimeDate) AS FullTimeOrPartTimeDate
+                    ,MAX(EEType) AS EEType
+                    ,MAX(EETypeDate) AS EETypeDate
+                    ,CASE WHEN ISNULL(MAX(SalaryOrHourlyDate), '1/1/1900') > ISNULL(MAX(FullTimeOrPartTimeDate), '1/1/1900') AND ISNULL(MAX(SalaryOrHourlyDate), '1/1/1900') > ISNULL(MAX(EETypeDate), '1/1/1900') THEN MAX(SalaryOrHourlyDate)
+                        WHEN ISNULL(MAX(FullTimeOrPartTimeDate), '1/1/1900') > ISNULL(MAX(EETypeDate), '1/1/1900') THEN MAX(FullTimeOrPartTimeDate)
+                        ELSE MAX(EETypeDate)
+                    END AS LargestDate
+                FROM (
+                        SELECT A.EjhEEID, A.EjhCOID, 'EjhSalaryOrHourly' AS SalaryOrHourly, MAX(A.EjhJobEffDate) AS SalaryOrHourlyDate, NULL AS FullTimeOrPartTime, NULL AS FullTimeOrPartTimeDate, NULL AS EEType, NULL AS EETypeDate
+                        FROM EmpHJob A WITH (NOLOCK)
+                        WHERE A.EjhSalaryOrHourly <>
+                            (
+                                SELECT TOP 1 B.EjhSalaryOrHourly
+                                FROM EmpHJob B
+                                WHERE A.EjhEEID = B.EjhEEID
+                                    AND A.EjhCOID = B.EjhCOID
+                                    AND A.EjhJobEffDate > B.EjhJobEffDate
+                                ORDER BY B.EjhJobEffDate DESC
+                            )
+                            GROUP BY A.EjhEEID,  A.EjhCoID
 
+                        UNION
 
+                        SELECT A.EjhEEID, A.EjhCOID, NULL AS SalaryOrHourly, NULL AS SalaryOrHourlyDate, 'EjhFullTimeOrPartTime' AS FullTimeOrPartTime, MAX(A.EjhJobEffDate) AS FullTimeOrPartTimeDate, NULL AS EEType, NULL AS EETypeDate
+                        FROM EmpHJob A WITH (NOLOCK)
+                        WHERE A.EjhFullTimeOrPartTime <>
+                            (
+                                SELECT TOP 1 B.EjhFullTimeOrPartTime
+                                FROM EmpHJob B
+                                WHERE A.EjhEEID = B.EjhEEID
+                                    AND A.EjhCOID = B.EjhCOID
+                                    AND A.EjhJobEffDate > B.EjhJobEffDate
+                                ORDER BY B.EjhJobEffDate DESC
+                            )
+                            GROUP BY A.EjhEEID, A.EjhCOID
+
+                        UNION
+
+                        SELECT A.EjhEEID, A.EjhCOID, NULL AS SalaryOrHourly, NULL AS SalaryOrHourlyDate, NULL AS FullTimeOrPartTime, NULL AS FullTimeOrPartTimeDate, 'EjhEEType' AS EEType, MAX(A.EjhJobEffDate) AS EETypeDate
+                        FROM EmpHJob A WITH (NOLOCK)
+                        WHERE A.EjhEEType <>
+                            (
+                                SELECT TOP 1 B.EjhEEType
+                                FROM EmpHJob B
+                                WHERE A.EjhEEID = B.EjhEEID
+                                    AND A.EjhCOID = B.EjhCOID
+                                    AND A.EjhJobEffDate > B.EjhJobEffDate
+                                ORDER BY B.EjhJobEffDate DESC
+                            )
+                        GROUP BY A.EjhEEID, A.EjhCOID
+                ) AS X 
+                GROUP BY EjhEEID, EjhCOID) AS Y
+            ON YEjhEEID = xEEID
+                AND YEjhCOID = xCOID
 
 
 
