@@ -5,7 +5,7 @@ EUHCLFLTES: UHC Life LTD STD GenNotic TEST
 FormatCode:     EUHCLFLTES
 Project:        UHC Life LTD STD GenNotic TEST
 Client ID:      OHI1002
-Date/time:      2021-11-16 21:29:45.963
+Date/time:      2021-11-17 12:25:44.753
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -207,7 +207,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUHCLFLTES_20211116.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUHCLFLTES_20211117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -218,7 +218,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','201509259','EMPEXPORT','OEPASSIVE',NULL,'EUHCLFLTES',NULL,NULL,NULL,'201509259','Sep 25 2015  5:39PM','Sep 25 2015  5:39PM','201509251',NULL,'','','201509251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'ODQ5S',NULL,NULL,NULL,'UHC Life LTD STD GenNotic Exp','201701101','EMPEXPORT','ONDEMAND','Jan 10 2017 10:34AM','EUHCLFLTES',NULL,NULL,NULL,'201701101','Jan 10 2017 12:00AM','Dec 30 1899 12:00AM','201701011','2691','','','201701011',dbo.fn_GetTimedKey(),NULL,'MGROM01',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'ODQ5S',NULL,NULL,NULL,'Scheduled Session','201509259','EMPEXPORT','SCHEDULED','Nov 12 2021  7:00AM','EUHCLFLTES',NULL,NULL,NULL,'202111119','Sep 25 2015 12:00AM','Dec 30 1899 12:00AM','202111051','2327','','','201509251',dbo.fn_GetTimedKey(),NULL,'MGROM01',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ODQ5S',NULL,NULL,NULL,'Test Purposes Only','202111169','EMPEXPORT','TEST','Nov 16 2021  8:37PM','EUHCLFLTES',NULL,NULL,NULL,'202111169','Nov 16 2021 12:00AM','Dec 30 1899 12:00AM','202111021','4302','','','202111021',dbo.fn_GetTimedKey(),NULL,'us3jReOHI1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ODQ5S',NULL,NULL,NULL,'Test Purposes Only','202111169','EMPEXPORT','TEST','Nov 17 2021  8:05AM','EUHCLFLTES',NULL,NULL,NULL,'202111169','Nov 16 2021 12:00AM','Dec 30 1899 12:00AM','202111021','4302','','','202111021',dbo.fn_GetTimedKey(),NULL,'us3jReOHI1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -413,7 +413,10 @@ Patrick Bresnahan    05/20/2019        SF14209694                    Adjusted ER
 
 11/16/2021 by AP:    
     - Updated ben start date to use min coverage date for drv start date.
-	- Restructured data to include inserts for new values requested.
+    - Restructured data to include inserts for new values requested.
+
+11/17/2021 by AP:
+	- Updated MAX start date just for drvStartDate and drvBeginDate.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUHCLFLTES';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUHCLFLTES';
@@ -582,7 +585,7 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                                 WHEN EedDedCode = 'LIFEB' then 'LE000187'
                                 WHEN EedDedCode = 'ADD' then 'LE000188'
@@ -605,8 +608,8 @@ BEGIN
                                         WHEN EedBenAmt = 10000 then 'LE000009'
                                     END
                             END
-        ,drvStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        ,drvStartDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvEedDedCode  = CASE WHEN EedDedCode = 'ERSTD' then 'C'
                                 WHEN EedDedCode = 'LIFEB' then 'C'
                                 WHEN EedDedCode = 'ADD' then 'C'
@@ -619,7 +622,7 @@ BEGIN
                                 --WHEN EedDedCode = 'HOSPH' AND EedBenOption = 'EEONLY' THEN 'C'
                         END
         ,drvBenStrtDate = EedBenStartDate
-		--CASE
+        --CASE
   --                              WHEN EedDedCode in ('LIFEB','ADD','VLIF','LIFSP','LIFCH') THEN EedBenStartDate 
   --                                  WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE NULL END
         ,drvBenStopDate = CASE WHEN EedDedCode in ('ERSTD','LIFEB','ADD','VLIF','LIFSP','LIFCH') THEN EedBenStopDate ELSE NULL END
@@ -635,8 +638,10 @@ BEGIN
         WHEN EedDedCode IN ('LIFCH','VLIF','LIFSP','LIFEB','ADD') and eedbenamt = 0 THEN CONVERT(VARCHAR(20),CAST(DedEEBenAmt AS INT))
         END
         --Basic Life and Basic AD&D
-        ,drvBeginDate = CASE
-                                WHEN EedDedCode in ('LIFEB','ADD','VLIF','LIFSP','LIFCH', 'ERSTD') THEN EedBenStartDate END
+        ,drvBeginDate = CASE WHEN EedDedCode = 'ERSTD' THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+							ELSE EedBenStartDate END
+		--CASE
+                            --    WHEN EedDedCode in ('LIFEB','ADD','VLIF','LIFSP','LIFCH', 'ERSTD') THEN EedBenStartDate END
                                   --  WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE NULL END
         ,drvEEID = xEEID
         ,drvCoID = xCoID
@@ -660,14 +665,14 @@ BEGIN
         ON EjhEEID = xEEID
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
-	WHERE EedDedCode IN ('ERSTD','LIFEB','ADD','VLIF','LIFSP','LIFCH')
---	WHERE EedBenOption = 'EEONLY'
+    WHERE EedDedCode IN ('ERSTD','LIFEB','ADD','VLIF','LIFSP','LIFCH')
+--    WHERE EedBenOption = 'EEONLY'
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	SELECT DISTINCT
+    SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = EepNameLast
@@ -685,20 +690,22 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = --CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                          CASE       WHEN EedDedCode = 'ACCIL' AND EedBenOption = 'EEONLY' THEN 'LE001772'
                                 WHEN EedDedCode = 'ACCIH' AND EedBenOption = 'EEONLY' THEN 'LE001776'
                                 WHEN EedDedCode = 'HOSPL' AND EedBenOption = 'EEONLY' THEN 'LE001924'
                                 WHEN EedDedCode = 'HOSPH' AND EedBenOption = 'EEONLY' THEN 'LE001928'
-								END
+                                END
                             
         ,drvStartDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvEedDedCode  = 'C'
-        ,drvBenStrtDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvBenStrtDate = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvBenStopDate = EedBenStopDate 
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvDateStart = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvDateStart = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvSalaryType = CASE WHEN EedDedCode = 'ERSTD' Then 'A' END
         ,drvAnnSalary = CASE WHEN EedDedCode = 'ERSTD' AND EecAnnSalary <> 0 Then RIGHT('0000000000' + CONVERT(VARCHAR(20),EecAnnSalary), 10) ELSE '' END
         ,drvJobEffDate = CASE WHEN EedDedCode = 'ERSTD' AND EjhIsRateChange = 'Y' THEN Max(EjhJobEffDate) 
@@ -730,14 +737,14 @@ BEGIN
         ON EjhEEID = xEEID
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
-	WHERE EedBenOption = 'EEONLY'
-	AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
+    WHERE EedBenOption = 'EEONLY'
+    AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	SELECT DISTINCT
+    SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = EepNameLast
@@ -755,20 +762,22 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = --CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                          CASE       WHEN EedDedCode = 'ACCIL' AND EedBenOption = 'EESPOU' THEN 'LE001773'
                                 WHEN EedDedCode = 'ACCIH' AND EedBenOption = 'EESPOU' THEN 'LE001777'
                                 WHEN EedDedCode = 'HOSPL' AND EedBenOption = 'EESPOU' THEN 'LE001925'
                                 WHEN EedDedCode = 'HOSPH' AND EedBenOption = 'EESPOU' THEN 'LE001929'
-								END
+                                END
                             
         ,drvStartDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvEedDedCode  = 'B'
-        ,drvBenStrtDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvBenStrtDate = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvBenStopDate = EedBenStopDate 
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvDateStart = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvDateStart = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvSalaryType = CASE WHEN EedDedCode = 'ERSTD' Then 'A' END
         ,drvAnnSalary = CASE WHEN EedDedCode = 'ERSTD' AND EecAnnSalary <> 0 Then RIGHT('0000000000' + CONVERT(VARCHAR(20),EecAnnSalary), 10) ELSE '' END
         ,drvJobEffDate = CASE WHEN EedDedCode = 'ERSTD' AND EjhIsRateChange = 'Y' THEN Max(EjhJobEffDate) 
@@ -800,14 +809,14 @@ BEGIN
         ON EjhEEID = xEEID
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
-	WHERE EedBenOption = 'EESPOU'
-	AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
+    WHERE EedBenOption = 'EESPOU'
+    AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
-	
-	UNION
+    
+    UNION
 
-	SELECT DISTINCT
+    SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = EepNameLast
@@ -825,20 +834,22 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = --CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                          CASE       WHEN EedDedCode = 'ACCIL' AND EedBenOption = 'EECHIL' THEN 'LE001774'
                                 WHEN EedDedCode = 'ACCIH' AND EedBenOption = 'EECHIL' THEN 'LE001778'
                                 WHEN EedDedCode = 'HOSPL' AND EedBenOption = 'EECHIL' THEN 'LE001926'
                                 WHEN EedDedCode = 'HOSPH' AND EedBenOption = 'EECHIL' THEN 'LE001930'
-								END
+                                END
                             
         ,drvStartDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvEedDedCode  = 'D'
-        ,drvBenStrtDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvBenStrtDate = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvBenStopDate = EedBenStopDate 
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvDateStart = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvDateStart = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvSalaryType = CASE WHEN EedDedCode = 'ERSTD' Then 'A' END
         ,drvAnnSalary = CASE WHEN EedDedCode = 'ERSTD' AND EecAnnSalary <> 0 Then RIGHT('0000000000' + CONVERT(VARCHAR(20),EecAnnSalary), 10) ELSE '' END
         ,drvJobEffDate = CASE WHEN EedDedCode = 'ERSTD' AND EjhIsRateChange = 'Y' THEN Max(EjhJobEffDate) 
@@ -870,14 +881,14 @@ BEGIN
         ON EjhEEID = xEEID
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
-	WHERE EedBenOption = 'EECHIL'
-	AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
+    WHERE EedBenOption = 'EECHIL'
+    AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	SELECT DISTINCT
+    SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = EepNameLast
@@ -895,20 +906,22 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = --CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                          CASE       WHEN EedDedCode = 'ACCIL' AND EedBenOption = 'EEFAM' THEN 'LE001775'
                                 WHEN EedDedCode = 'ACCIH' AND EedBenOption = 'EEFAM' THEN 'LE001779'
                                 WHEN EedDedCode = 'HOSPL' AND EedBenOption = 'EEFAM' THEN 'LE001927'
                                 WHEN EedDedCode = 'HOSPH' AND EedBenOption = 'EEFAM' THEN 'LE001931'
-								END
+                                END
                             
         ,drvStartDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvEedDedCode  = 'A'
-        ,drvBenStrtDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvBenStrtDate = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvBenStopDate = EedBenStopDate 
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvDateStart = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
+        ,drvDateStart = EedBenStartDate
+		--dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
         ,drvSalaryType = CASE WHEN EedDedCode = 'ERSTD' Then 'A' END
         ,drvAnnSalary = CASE WHEN EedDedCode = 'ERSTD' AND EecAnnSalary <> 0 Then RIGHT('0000000000' + CONVERT(VARCHAR(20),EecAnnSalary), 10) ELSE '' END
         ,drvJobEffDate = CASE WHEN EedDedCode = 'ERSTD' AND EjhIsRateChange = 'Y' THEN Max(EjhJobEffDate) 
@@ -940,8 +953,8 @@ BEGIN
         ON EjhEEID = xEEID
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
-	WHERE EedBenOption = 'EEFAM'
-	AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
+    WHERE EedBenOption = 'EEFAM'
+    AND EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH')
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
@@ -966,7 +979,7 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = CASE WHEN EedDedCode = 'VLIF' then 'LE000004'    END
         ,drvStartDate = CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvEedDedCode  = CASE WHEN EedDedCode = 'ERSTD' then 'C'
@@ -1018,7 +1031,7 @@ BEGIN
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
     WHERE EedDedCode = 'VLIF'
---	AND EedBenOption = 'EEONLY'
+--    AND EedBenOption = 'EEONLY'
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode,EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
@@ -1042,7 +1055,7 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = CASE WHEN EedBenAmt = 1000 then 'LE000126'
                                     WHEN  EedBenAmt = 2000 then 'LE000199'
                                     WHEN  EedBenAmt = 3000 then 'LE000200'
@@ -1104,7 +1117,7 @@ BEGIN
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
     WHERE EedDedCode = 'LIFCH'
---	AND EedBenOption = 'EEONLY'
+--    AND EedBenOption = 'EEONLY'
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode,EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
                     
@@ -1131,7 +1144,7 @@ BEGIN
         ,drvGender = ConGender
         ,drvDateofBirth = ConDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                                 WHEN EedDedCode = 'LIFEB' then 'LE000187'
                                 WHEN EedDedCode = 'ADD' then 'LE000188'
@@ -1223,7 +1236,7 @@ BEGIN
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID)
     WHERE (EedDedCode = 'LIFSP' AND ConRelationship = 'SPS' OR EedDedCode = 'LIFCH' AND ConRelationship in ('CHL','STC'))
---	AND EedBenOption IN ('EESPOU', 'EECHIL')
+--    AND EedBenOption IN ('EESPOU', 'EECHIL')
     GROUP BY eepSSN,ConNameLast,ConNameFirst,ConNameMiddle,ConAddressLine1,ConAddressLine2,ConAddressCity,ConAddressState,ConAddressZipCode,ConPhoneHomeNumber,ConRelationship,
     ConSystemID,ConGender,ConDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode,EedBenOption,EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
@@ -1249,7 +1262,7 @@ BEGIN
         ,drvGender = ConGender
         ,drvDateofBirth = ConDateOfBirth
         ,drvBenStartDate = EedBenStartDate
-		--CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
+        --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = CASE WHEN EedDedCode = 'ERSTD' then 'LE000206'
                                 WHEN EedDedCode = 'LIFEB' then 'LE000187'
                                 WHEN EedDedCode = 'ADD' then 'LE000188'
@@ -1341,7 +1354,7 @@ BEGIN
         AND EjhCoID = xCOID
         AND EjhDateTimeCreated = (SELECT MAX(EjhDateTimeCreated) FROM dbo.EmpHJob WITH (NOLOCK) WHERE EjhEEID = xEEID AND EjhCoID = xCOID AND EjhIsRateChange = 'Y')
     WHERE (EedDedCode = 'LIFSP' AND ConRelationship = 'SPS' OR EedDedCode = 'LIFCH' AND ConRelationship in ('CHL','STC'))
---	AND EedBenOption IN ('EESPOU', 'EECHIL')
+--    AND EedBenOption IN ('EESPOU', 'EECHIL')
     GROUP BY eepSSN,ConNameLast,ConNameFirst,ConNameMiddle,ConAddressLine1,ConAddressLine2,ConAddressCity,ConAddressState,ConAddressZipCode,ConPhoneHomeNumber,ConRelationship,
     ConSystemID,ConGender,ConDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode,EedBenOption,EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
     ;
