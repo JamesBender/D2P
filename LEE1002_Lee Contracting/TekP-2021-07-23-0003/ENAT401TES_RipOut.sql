@@ -1,6 +1,111 @@
+/**********************************************************************************
+
+ENAT401TES: NationWide 401k Census TEST
+
+FormatCode:     ENAT401TES
+Project:        NationWide 401k Census TEST
+Client ID:      LEE1002
+Date/time:      2021-11-21 20:20:21.737
+Ripout version: 7.4
+Export Type:    Web
+Status:         Production
+Environment:    NWP
+Server:         NW1WUP1DB01
+Database:       ULTIPRO_WPLEEC
+Web Filename:   LEE1002_MV3A4_EEHISTORY_ENAT401TES_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
+
+**********************************************************************************/
+
 SET NOCOUNT ON;
-IF OBJECT_ID('U_ENAT401TES_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ENAT401TES_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_ENAT401TES_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'ENAT401TES' AND CfgName LIKE '%Path';
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_ENAT401TES_SavePath') IS NOT NULL DROP TABLE dbo.U_ENAT401TES_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ENAT401TES'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'ENAT401TES'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'ENAT401TES'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ENAT401TES')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ENAT401TES'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ENAT401TES'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ENAT401TES'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ENAT401TES'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ENAT401TES'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ENAT401TES'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ENAT401TES'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ENAT401TES'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ENAT401TES'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
 IF OBJECT_ID('dsi_vwENAT401TES_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwENAT401TES_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ENAT401TES') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ENAT401TES];
@@ -17,65 +122,89 @@ IF OBJECT_ID('U_dsi_ENAT401TES_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_dsi_ENAT
 GO
 IF OBJECT_ID('U_dsi_ENAT401TES_DedHist') IS NOT NULL DROP TABLE [dbo].[U_dsi_ENAT401TES_DedHist];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ENAT401TES';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ENAT401TES';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ENAT401TES';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ENAT401TES';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ENAT401TES';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0',NULL,NULL,'N',NULL,'N',NULL,'013010','EMPEXPORT','CDE','ENAT401TES','NationWide 401k Census TEST','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','1000','S','N','ENAT401TESZ0','N','Dec  4 2014 10:56AM','C','N',NULL,'N');
-/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ENAT401TES' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTransType"','1','(''UA''=''T,'')','ENAT401TESZ0','6','D','01','1',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLineofBusiness"','2','(''UA''=''T,'')','ENAT401TESZ0','1','D','01','7',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvNationwideCaseNumber"','3','(''UA''=''T,'')','ENAT401TESZ0','9','D','01','8',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEffDate"','4','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','17',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvSSN"','5','(''UA''=''T,'')','ENAT401TESZ0','9','D','01','25',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLname"','6','(''UA''=''T,'')','ENAT401TESZ0','20','D','01','34',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFname"','7','(''UA''=''T,'')','ENAT401TESZ0','15','D','01','54',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine1"','8','(''UA''=''T,'')','ENAT401TESZ0','32','D','01','69',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine2"','9','(''UA''=''T,'')','ENAT401TESZ0','32','D','01','101',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine3"','10','(''UA''=''T,'')','ENAT401TESZ0','32','D','01','133',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressLine4"','11','(''UA''=''T,'')','ENAT401TESZ0','32','D','01','165',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCity"','12','(''UA''=''T,'')','ENAT401TESZ0','32','D','01','197',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvState"','13','(''UA''=''T,'')','ENAT401TESZ0','2','D','01','229',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvZip"','14','(''UA''=''T,'')','ENAT401TESZ0','5','D','01','231',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvZipCode"','15','(''UA''=''T,'')','ENAT401TESZ0','4','D','01','236',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDOH"','16','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','240',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDOT"','17','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','248',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateofPlanEntry"','18','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','256',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDOB"','19','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','264',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','20','(''UA''=''T,'')','ENAT401TESZ0','1','D','01','272',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvMaritalStatus"','21','(''UA''=''T,'')','ENAT401TESZ0','1','D','01','273',NULL,'',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmail"','22','(''UA''=''T,'')','ENAT401TESZ0','100','D','01','274',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeID"','23','(''UA''=''T,'')','ENAT401TESZ0','12','D','01','374',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDiviisonCode"','24','(''UA''=''T,'')','ENAT401TESZ0','20','D','01','386',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGrossAnnualSalary"','25','(''UA''=''T,'')','ENAT401TESZ0','12','D','01','406',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRehireDate"','26','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','418',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAutoEnrollmentStatus"','27','(''UA''=''T,'')','ENAT401TESZ0','1','D','01','426',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAutoEnrollmentDate"','28','(''UA''=''T,'')','ENAT401TESZ0','8','D','01','427',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPreTaxDeferral"','29','(''UA''=''T,'')','ENAT401TESZ0','6','D','01','435',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRothDeferralPercentageElection"','30','(''UA''=''T,'')','ENAT401TESZ0','6','D','01','441',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPreTaxDollarElection"','31','(''UA''=''T,'')','ENAT401TESZ0','10','D','01','447',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRothDollarElection"','32','(''UA''=''T,'')','ENAT401TESZ0','10','D','01','457',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPhoneNumber"','33','(''UA''=''T,'')','ENAT401TESZ0','10','D','01','467',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFaxNumber"','34','(''UA''=''T,'')','ENAT401TESZ0','10','D','01','477',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelationshipToOwner"','35','(''UA''=''T,'')','ENAT401TESZ0','2','D','01','487',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRelatedOwnerSSN"','36','(''UA''=''T,'')','ENAT401TESZ0','9','D','01','489',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmpType"','37','(''UA''=''T,'')','ENAT401TESZ0','1','D','01','498',NULL,NULL,NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDoD"','38','(''UA''=''T'')','ENAT401TESZ0','8','D','01','499',NULL,NULL,NULL,NULL);
-/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
-/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
-/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0',NULL,NULL,'N',NULL,'N',NULL,'013010','EMPEXPORT','CDE','ENAT401TES','NationWide 401k Census TEST','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','ENAT401TESZ0','N','Dec  4 2014 10:56AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ENAT401TESZ0','6','D','01','1',NULL,'',NULL,NULL,'"drvTransType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ENAT401TESZ0','1','D','01','7',NULL,'',NULL,NULL,'"drvLineofBusiness"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ENAT401TESZ0','9','D','01','8',NULL,'',NULL,NULL,'"drvNationwideCaseNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ENAT401TESZ0','8','D','01','17',NULL,NULL,NULL,NULL,'"drvEffDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ENAT401TESZ0','9','D','01','25',NULL,'',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ENAT401TESZ0','20','D','01','34',NULL,'',NULL,NULL,'"drvLname"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ENAT401TESZ0','15','D','01','54',NULL,'',NULL,NULL,'"drvFname"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ENAT401TESZ0','32','D','01','69',NULL,'',NULL,NULL,'"drvAddressLine1"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ENAT401TESZ0','32','D','01','101',NULL,'',NULL,NULL,'"drvAddressLine2"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ENAT401TESZ0','32','D','01','133',NULL,'',NULL,NULL,'"drvAddressLine3"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ENAT401TESZ0','32','D','01','165',NULL,'',NULL,NULL,'"drvAddressLine4"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ENAT401TESZ0','32','D','01','197',NULL,'',NULL,NULL,'"drvCity"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ENAT401TESZ0','2','D','01','229',NULL,'',NULL,NULL,'"drvState"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ENAT401TESZ0','5','D','01','231',NULL,'',NULL,NULL,'"drvZip"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ENAT401TESZ0','4','D','01','236',NULL,'',NULL,NULL,'"drvZipCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ENAT401TESZ0','8','D','01','240',NULL,'',NULL,NULL,'"drvDOH"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ENAT401TESZ0','8','D','01','248',NULL,'',NULL,NULL,'"drvDOT"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ENAT401TESZ0','8','D','01','256',NULL,'',NULL,NULL,'"drvDateofPlanEntry"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ENAT401TESZ0','8','D','01','264',NULL,'',NULL,NULL,'"drvDOB"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ENAT401TESZ0','1','D','01','272',NULL,'',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ENAT401TESZ0','1','D','01','273',NULL,'',NULL,NULL,'"drvMaritalStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ENAT401TESZ0','100','D','01','274',NULL,NULL,NULL,NULL,'"drvEmail"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ENAT401TESZ0','12','D','01','374',NULL,NULL,NULL,NULL,'"drvEmployeeID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ENAT401TESZ0','20','D','01','386',NULL,NULL,NULL,NULL,'"drvDiviisonCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ENAT401TESZ0','12','D','01','406',NULL,NULL,NULL,NULL,'"drvGrossAnnualSalary"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ENAT401TESZ0','8','D','01','418',NULL,NULL,NULL,NULL,'"drvRehireDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ENAT401TESZ0','1','D','01','426',NULL,NULL,NULL,NULL,'"drvAutoEnrollmentStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ENAT401TESZ0','8','D','01','427',NULL,NULL,NULL,NULL,'"drvAutoEnrollmentDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ENAT401TESZ0','6','D','01','435',NULL,NULL,NULL,NULL,'"drvPreTaxDeferral"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ENAT401TESZ0','6','D','01','441',NULL,NULL,NULL,NULL,'"drvRothDeferralPercentageElection"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ENAT401TESZ0','10','D','01','447',NULL,NULL,NULL,NULL,'"drvPreTaxDollarElection"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ENAT401TESZ0','10','D','01','457',NULL,NULL,NULL,NULL,'"drvRothDollarElection"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ENAT401TESZ0','10','D','01','467',NULL,NULL,NULL,NULL,'"drvPhoneNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ENAT401TESZ0','10','D','01','477',NULL,NULL,NULL,NULL,'"drvFaxNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ENAT401TESZ0','2','D','01','487',NULL,NULL,NULL,NULL,'"drvRelationshipToOwner"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ENAT401TESZ0','9','D','01','489',NULL,NULL,NULL,NULL,'"drvRelatedOwnerSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ENAT401TESZ0','1','D','01','498',NULL,NULL,NULL,NULL,'"drvEmpType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ENAT401TESZ0','8','D','01','499',NULL,NULL,NULL,NULL,'"drvDoD"','(''UA''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
 /*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ENAT401TES_20211104.txt';
-/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'ACTIVE OE','201507159','EMPEXPORT','ACTIVEOE','Jul 17 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201507159','Jul 15 2015 12:00AM','Dec 30 1899 12:00AM','201507151',NULL,'','','201507151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N','KZ21X',NULL,NULL,NULL,'NATIONWIDE CENSUS','201705249','EMPEXPORT','ENAT401TES','May 24 2017 12:00AM','ENAT401TES',NULL,NULL,NULL,'202110129','May 24 2017 12:00AM','Dec 30 1899 12:00AM','202110051','442','','','201705101',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PASSIVE OE','201505201','EMPEXPORT','PASSIVEOE','May 20 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201505201','May 20 2015 12:00AM','Dec 30 1899 12:00AM','201505201',NULL,'','','201505201',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'NATIONWIDE - CENSUS TEST','202110229','EMPEXPORT','TEST','Oct 27 2021  8:22PM','ENAT401TES',NULL,NULL,NULL,'202110229','Oct 22 2021 12:00AM','Dec 30 1899 12:00AM','202110221','594','','','202110221',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'unlock ENAT401TES','201412049','EMPEXPORT','ZAP',NULL,'ENAT401TES',NULL,NULL,NULL,'201412049',NULL,NULL,'201409051',NULL,NULL,NULL,'201409051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+/*08*/ DECLARE @FileName varchar(1000) = 'ENAT401TES_20211121.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'ACTIVE OE','201507159','EMPEXPORT','ACTIVEOE','Jul 17 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201507159','Jul 15 2015 12:00AM','Dec 30 1899 12:00AM','201507151',NULL,'','','201507151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','KZ21X',NULL,NULL,NULL,'NATIONWIDE CENSUS','201705249','EMPEXPORT','ENAT401TES','May 24 2017 12:00AM','ENAT401TES',NULL,NULL,NULL,'202110129','May 24 2017 12:00AM','Dec 30 1899 12:00AM','202110051','442','','','201705101',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PASSIVE OE','201505201','EMPEXPORT','PASSIVEOE','May 20 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201505201','May 20 2015 12:00AM','Dec 30 1899 12:00AM','201505201',NULL,'','','201505201',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'NATIONWIDE - CENSUS TEST','202110229','EMPEXPORT','TEST','Nov 10 2021 10:45PM','ENAT401TES',NULL,NULL,NULL,'202110229','Oct 22 2021 12:00AM','Dec 30 1899 12:00AM','202110221','601','','','202110221',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'unlock ENAT401TES','201412049','EMPEXPORT','ZAP',NULL,'ENAT401TES',NULL,NULL,NULL,'201412049',NULL,NULL,'201409051',NULL,NULL,NULL,'201409051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','CountFilter','C',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','ExportDescription','C','NATIONWIDE - CENSUS');
@@ -85,24 +214,51 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','SubSort','C',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','SystemID','V','AECRQZ0030K0');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','UseAudit','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ENAT401TES','UseFileName','V','Y');
-/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ENAT401TES' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
-/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ENAT401TES' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
-IF OBJECT_ID('U_ENAT401TES_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ENAT401TES_SavePath];
-GO
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ENAT401TES','D01','dbo.U_dsi_ENAT401TES_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_dsi_ENAT401TES_DedHist
+-----------
+
 IF OBJECT_ID('U_dsi_ENAT401TES_DedHist') IS NULL
 CREATE TABLE [dbo].[U_dsi_ENAT401TES_DedHist] (
     [heeid] char(12) NULL,
     [hcoid] char(5) NULL,
     [hdedcode] char(5) NOT NULL,
-	pdheecalcrateorpct varchar(50) NULL,
+    [pdheecalcrateorpct] decimal NULL,
     [heecalcrateorpct] decimal NULL,
     [heeamt] money NULL,
     [heramt] money NULL,
     [PdhPayDate] datetime NULL
 );
+
+-----------
+-- Create table U_dsi_ENAT401TES_drvTbl
+-----------
+
 IF OBJECT_ID('U_dsi_ENAT401TES_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_dsi_ENAT401TES_drvTbl] (
     [drvEEID] char(12) NULL,
@@ -148,6 +304,11 @@ CREATE TABLE [dbo].[U_dsi_ENAT401TES_drvTbl] (
     [drvEmpType] char(1) NULL,
     [drvDoD] varchar(1) NOT NULL
 );
+
+-----------
+-- Create table U_ENAT401TES_Audit
+-----------
+
 IF OBJECT_ID('U_ENAT401TES_Audit') IS NULL
 CREATE TABLE [dbo].[U_ENAT401TES_Audit] (
     [audEEID] varchar(255) NOT NULL,
@@ -166,16 +327,31 @@ CREATE TABLE [dbo].[U_ENAT401TES_Audit] (
     [audSalaryChange] varchar(1) NOT NULL,
     [audLastTermDate] varchar(1) NOT NULL
 );
+
+-----------
+-- Create table U_ENAT401TES_AuditFields
+-----------
+
 IF OBJECT_ID('U_ENAT401TES_AuditFields') IS NULL
 CREATE TABLE [dbo].[U_ENAT401TES_AuditFields] (
     [aTableName] varchar(30) NULL,
     [aFieldName] varchar(30) NULL
 );
+
+-----------
+-- Create table U_ENAT401TES_EEList
+-----------
+
 IF OBJECT_ID('U_ENAT401TES_EEList') IS NULL
 CREATE TABLE [dbo].[U_ENAT401TES_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
+
+-----------
+-- Create table U_ENAT401TES_File
+-----------
+
 IF OBJECT_ID('U_ENAT401TES_File') IS NULL
 CREATE TABLE [dbo].[U_ENAT401TES_File] (
     [RecordSet] char(3) NOT NULL,
@@ -207,7 +383,7 @@ Changes:
         - Updated logic for Service Termination Date
 
 11/04/2021 by AP:
-		- Updated pre-tax and roth deferral amounts.
+        - Updated pre-tax and roth deferral amounts.
 
 _dsi_usp_ExportRipout 'ENAT401TES','Y' 
 
@@ -218,6 +394,8 @@ select * from dbo.U_dsi_Parameters where FormatCode = 'ENAT401TES'
 select * from AscDefH where AdhFormatCode = 'ENAT401TES'
 select * from AscExp where expFormatCode = 'ENAT401TES'
 select * from ascdeff where AdfHeaderSystemID = 'ENAT401TESZ0' order by adfrectype, AdfSetNumber, AdfFieldNumber 
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ENAT401TES' ORDER BY RunID DESC;
+
 
 DSI_SP_TESTSWITCHBOX_V2 'ENAT401TES', 'ENAT401TES'
 DSI_SP_TESTSWITCHBOX_V2 'ENAT401TES', 'TEST'
@@ -227,7 +405,7 @@ DSI_SP_TESTSWITCHBOX_V2 'ENAT401TES', 'PASSIVEOE'
 To turn off/on TESTEDT header record: 
 Update U_Dsi_Configuration set CfgValue = 'N' WHERE FormatCode = 'ENAT401TES' AND CfgName = 'TESTING'
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ENAT401TES', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ENAT401TES', @AllObjects = 'Y', @IsWeb = 'Y'
 
 **************************/
 
@@ -389,7 +567,7 @@ SELECT
     xEEID heeid,
     xCOID hcoid,
     pdhdedcode hdedcode,
-	pdheecalcrateorpct,
+    pdheecalcrateorpct,
     SUM(ISNULL(pdhEECalcRateOrPct,0.00)) as heecalcrateorpct,
     SUM(ISNULL(PDHEECURAMT,0.00)) AS heeamt,
     SUM(ISNULL(PDHERCURAMT,0.00)) AS heramt, PdhPayDate
@@ -398,8 +576,8 @@ SELECT
         from dbo.u_ENAT401TES_EELIST 
     JOIN PDEDHIST (nolock) ON xeeid = PdhEEID and xCOID = PdhCOID
         AND (PDHEECURAMT <> 0 or PDHERCURAMT <> 0)
-		  AND PDHDEDCODE IN ('401CP','401K','401KR')  
-	 --   AND PDHDEDCODE IN ('401CP','401K','ROTH')    
+          AND PDHDEDCODE IN ('401CP','401K','401KR')  
+     --   AND PDHDEDCODE IN ('401CP','401K','ROTH')    
 --        AND PDHPERCONTROL BETWEEN '20040901' and '20040924'
         AND substring(PDHPERCONTROL,1,8) BETWEEN substring(@StartPerControl,1,8) and substring(@EndPerControl,1,8)
     GROUP BY xEEID,xCOID,PdhDedCode,pdhEECalcRateOrPct, PdhPayDate
@@ -587,10 +765,10 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
             drvRehireDate  = case when eecdateoforiginalhire <  eecdateoflasthire then convert(char(8),EecDateOfLastHire,112) else '' end,
             drvAutoEnrollmentStatus  = '',
             drvAutoEnrollmentDate  = '',--convert(char(8),eepdateofbirth,112),
-            drvPreTaxDeferral  = CAST(CAST(CASE WHEN k.PdhEECalcRateOrPct > '.9999' THEN '99.99' ELSE k.PdhEECalcrateOrPct * 100 END AS DECIMAL(4,2)) AS VARCHAR),
-			--convert(varchar,K.pct),--percentage
-            drvRothDeferralPercentageElection  = CAST(CAST(CASE WHEN rf.PdhEECalcRateOrPct > '.9999' THEN '99.99' ELSE rf.PdhEECalcrateOrPct * 100 END AS DECIMAL(4,2)) AS VARCHAR) ,
-			--convert(varchar,RF.pct), --percentage
+            drvPreTaxDeferral  = CAST(CAST(CASE WHEN ptax.EedEECalcRateOrPct > '.9999' THEN '99.99' ELSE ptax.EedEECalcRateOrPct * 100 END AS DECIMAL(4,2)) AS VARCHAR),
+            --convert(varchar,K.pct),--percentage
+            drvRothDeferralPercentageElection  = CAST(CAST(CASE WHEN rdef.EedEECalcRateOrPct > '.9999' THEN '99.99' ELSE rdef.EedEECalcRateOrPct * 100 END AS DECIMAL(4,2)) AS VARCHAR) ,
+            --convert(varchar,RF.pct), --percentage
             drvPreTaxDollarElection  = '',--convert(varchar,K.eeamt),-- dollar A.S. 07/26/21
             drvRothDollarElection  = '',--convert(varchar,RF.eeamt),--dollar A.S. 07/26/21
             drvPhoneNumber  = EepPhoneHomeNumber,
@@ -630,6 +808,22 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
                 from dbo.EmpHJob WITH(NOLOCK)
                 where ejhemplstatus = 't'
                 GROUP BY EjhEEID, EjhCOID) ejh on ejh.ejheeid = xeeid and ejh.ejhcoid = xcoid
+
+	LEFT JOIN (SELECT EedEEID, EedCOID, SUM(EedEECalcRateOrPct) AS EedEECalcRateOrPct
+				FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+				WHERE EedDedCode IN ('401CP', '401K')
+				AND EedFormatCode = @FormatCode
+				AND EedValidForExport = 'Y'
+				GROUP BY EedEEID, EedCOID) ptax ON ptax.EedEEID = xEEID AND ptax.EedCOID = xCOID
+
+	LEFT JOIN (SELECT EedEEID, EedCOID, SUM(EedEECalcRateOrPct) AS EedEECalcRateOrPct
+				FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+				WHERE EedDedCode IN ('401KR')
+				AND EedFormatCode = @FormatCode
+				AND EedValidForExport = 'Y'
+				GROUP BY EedEEID, EedCOID) rdef ON rdef.EedEEID = xEEID AND rdef.EedCOID = xCOID
+
+
     --LEFT JOIN (SELECT audEEID, audKey2 AS audCOID, MAX(audDateTime) AS audDateTime
     --            FROM dbo.U_ENAT401TES_Audit
     --            WHERE audTerm = 'Y'
@@ -671,3 +865,58 @@ GO
 Create View dbo.dsi_vwENAT401TES_Export as
                             select top 200000000 Data from dbo.U_ENAT401TES_File with (nolock)
                             order by substring(RecordSet,2,2), InitialSort
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'ENAT401TES' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'ENAT401TES'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'ENAT401TES'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ENAT401TES', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ENAT401TES', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ENAT401TES', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
