@@ -1,0 +1,13 @@
+[VERSION],1
+[NPM],074786619,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Patricia",,"Fazzino",,,,,"60 Padanaram Road, Unit 26","","Danbury",CT,06811,,F,TRUE,FALSE,TRUE,09/20/2021
+[NPM],080500221,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Irene",,"Decarvalho",,,,,"93 Myrtle Blvd","","Larchmont",NY,10538,,F,TRUE,FALSE,TRUE,11/20/2006
+[NPM],354988945,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Jake",,"Lee",,,,,"202 Richbell Rd","Unit C2","Mamaroneck",NY,10543,,M,TRUE,FALSE,TRUE,04/20/2015
+[NPM],116843355,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Daniel",J,"Kaul",,,,,"53 Lakeview Avenue","","Scarsdale",NY,10583,,M,TRUE,FALSE,TRUE,07/16/2018
+[NPM],068821293,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Gargi",,"Pathak",,,,,"9052 54th Ave","","Elmhurst",NY,11373,,F,TRUE,FALSE,TRUE,11/06/2018
+[NPM],132565348,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Ericka",J,"McKay",,,,,"618 Guy Lombardo Ave","","Freeport",NY,11520,,F,TRUE,FALSE,TRUE,08/01/2020
+[NPM],210600738,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Guadalupe",,"Palovitz",,,,,"110 Cedar Avenue","","Berlin",MD,21811,,F,TRUE,FALSE,TRUE,03/15/2021
+[NPM],097669712,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Michael",,"Russo",,,,,"2805 Morgan Drive","","Carmel",NY,10512,,M,TRUE,FALSE,TRUE,07/12/2021
+[NPM],411677826,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Sharon",S,"Ridley",,,,,"209 Sam Davis Dr","","Springfield",TN,37172,,F,TRUE,FALSE,TRUE,08/16/2021
+[NPM],238718883,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Kayla",,"Brown",,,,,"1781 Sword Dancer Dr","","Virginia Beach",VA,23454,,F,TRUE,FALSE,TRUE,08/16/2021
+[NPM],185589053,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Marjorie",,"Smith",,,,,"579 Wild Flower Drive","","Belvidere",IL,61008,,F,TRUE,FALSE,TRUE,08/23/2021
+[NPM],050583352,,"Quorum Federal Credit Union","Quorum Federal Credit Union","Thomas",,"Moran",,,,,"131 Convent Place","","YONKERS",NY,10703,,M,TRUE,FALSE,TRUE,08/23/2021
