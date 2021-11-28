@@ -588,7 +588,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EJH401KREF', 'SCHEDULED';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EJH401KREF', 'TEST';
 
 
-EXEC dbo._dsi_usp_ExportRipOut_v7 @FormatCode = 'EJH401KREF', @AllObjects = 'Y' , @IsWeb = 'N'
+ EXEC dbo._dsi_usp_ExportRipOut_v7 @FormatCode = 'EJH401KREF', @AllObjects = 'Y' , @IsWeb = 'N'
 **********************************************************************************/
 BEGIN
 

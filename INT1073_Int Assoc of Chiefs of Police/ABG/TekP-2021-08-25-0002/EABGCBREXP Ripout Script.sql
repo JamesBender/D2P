@@ -5,7 +5,7 @@ EABGCBREXP: ABG Cobra Export
 FormatCode:     EABGCBREXP
 Project:        ABG Cobra Export
 Client ID:      INT1073
-Date/time:      2021-11-03 06:50:36.343
+Date/time:      2021-11-17 11:45:56.247
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -232,18 +232,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EABGCBREXP_20211103.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EABGCBREXP_20211117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202111029','EMPEXPORT','OEACTIVE',NULL,'EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011',NULL,'','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202111029','EMPEXPORT','OEPASSIVE',NULL,'EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011',NULL,'','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ABG Cobra Export','202111029','EMPEXPORT','ONDEM_XOE',NULL,'EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011',NULL,'','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'ABG Cobra Export-Sched','202111029','EMPEXPORT','SCH_EABGCB',NULL,'EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011',NULL,'','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'ABG Cobra Export-Test','202111029','EMPEXPORT','TEST_XOE',NULL,'EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011',NULL,'','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202111029','EMPEXPORT','OEACTIVE','Nov  3 2021  6:56AM','EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011','62','','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111029','EMPEXPORT','OEPASSIVE','Nov  3 2021  6:56AM','EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011','62','','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'ABG Cobra Export','202111029','EMPEXPORT','ONDEM_XOE','Nov  3 2021  6:57AM','EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011','65','','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'ABG Cobra Export-Sched','202111029','EMPEXPORT','SCH_EABGCB','Nov  3 2021  6:57AM','EABGCBREXP',NULL,NULL,NULL,'202111029','Nov  2 2021  9:12AM','Nov  2 2021  9:12AM','202109011','65','','','202109011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'ABG Cobra Export-Test','202111059','EMPEXPORT','TEST_XOE','Nov  5 2021  8:48PM','EABGCBREXP',NULL,NULL,NULL,'202111059','Nov  5 2021 12:00AM','Dec 30 1899 12:00AM','202108011','72','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3cPeINT1073',NULL);
 
 -----------
 -- AscImp inserts
@@ -430,7 +430,7 @@ CREATE TABLE [dbo].[U_EABGCBREXP_drvTbl_QBPLANINITIAL] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(14) NULL,
     [drvPlanName] varchar(40) NULL,
-    [drvCoverageLevel] varchar(11) NOT NULL
+    [drvCoverageLevel] varchar(11) NULL
 );
 
 -----------
@@ -547,7 +547,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'FSA,MPOS,MPPO,MHMO DEN,VIS,EAP';
+    SET @DedList = 'FSA,MPOS,MPPO,MHMO,DEN,VIS,EAP';
 
     IF OBJECT_ID('U_EABGCBREXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EABGCBREXP_DedList;
@@ -652,7 +652,7 @@ BEGIN
         ,DbnBenOption
         ,EdhBenStartDate
         ,EdhBenStopDate
-        ,EdhBenStatusDate
+        ,DbnBenStatusDate
         ,EdhBenStatusDate
         ,'204'
         ,'204'
@@ -702,7 +702,7 @@ BEGIN
         ,DbnBenOption
         ,EdhBenStartDate
         ,EdhBenStopDate
-        ,EdhBenStatusDate
+        ,DbnBenStatusDate
         ,EdhBenStatusDate
         ,'201'
         ,'201'
@@ -775,6 +775,7 @@ BEGIN
                             WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') AND ISNULL(EecTermType, '') = '' THEN 'TERMINATION'
                             WHEN EecEmplStatus = 'T' AND EecTermReason IN ('203') THEN 'DEATH'
                             WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202') THEN 'RETIREMENT'
+                            WHEN EecEmplStatus = 'T' AND EecTermType = 'I' THEN 'INVOLUNTARYTERMINATION'
                             WHEN BdmCobraReason = '208' THEN 'RETIREMENT'
                             WHEN BdmCobraReason = '205' THEN 'MEDICARE'
                             WHEN BdmCobraReason IN ('204','LEVNT4') THEN 'DIVORCELEGALSEPERATION'
@@ -783,10 +784,12 @@ BEGIN
                         END
         ,drvEventDate =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') THEN EecDateOfTermination
                             WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202','203') AND ISNULL(EepDateOfCOBRAEvent, '') = '' THEN EecDateOfTermination
-                            WHEN BdmCobraReason IN ('LEVNT3','LEVNT4','204','210','201') THEN BdmBenStatusDate
+                            WHEN BdmCobraReason IN ('LEVNT3','LEVNT4','204','210','201') THEN EdhEffDate 
                             ELSE EepDateOFCobraEvent
                         END
-        ,drvEnrollmentDate = EnrolDate
+        ,drvEnrollmentDate =    CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4','204','210','201') THEN BdmBenStatusDate
+                                    ELSE EnrolDate
+                                END
         ,drvEmployeeSSN = eepSSN
         ,drvEmployeeName = ISNULL(EepNameFirst, '') + ' ' + ISNULL(EepNameLast, '')
     INTO dbo.U_EABGCBREXP_drvTbl_QBEVENT
@@ -805,6 +808,15 @@ BEGIN
             GROUP BY BdmEEID, BdmCOID) AS Enrol
     ON EnrolEEID = xEEID
     AND EnrolCOID = xCOID
+    LEFT JOIN (
+                SELECT EdhEEID, EdhCOID, EdhDedCode, MAX(EdhEffDate) AS EdhEffDate 
+                FROM EmpHDed WITH (NOLOCK)
+                WHERE EdhDedcode IN ('FSA','MPOS','MPPO','MHMO','DEN','VIS','EAP')
+                AND EdhChangeReason IN ('LEVNT3','LEVNT4','204','210','201')
+                GROUP BY EdhEEID, EdhCOID, EdhDedCode) AS Edh
+        ON EdhEEID = xEEID
+        AND EdhCOID = xCOID
+        AND BdmDedCode = EdhDedCode
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EABGCBREXP_drvTbl_QBPLANINITIAL
@@ -825,12 +837,18 @@ BEGIN
                             WHEN BdmDedcode = 'VIS' THEN 'Guardian VSP Vision Plan'
                             WHEN BdmDedcode = 'EAP' THEN 'KEPRO Employee Assistance Plan'
                         END
-        ,drvCoverageLevel =    CASE WHEN BdmCobraReason IN ('204','LEVNT4','201','LEVNT3','210') AND BdmDedCode IN ('FSA','MPOS','MPPO','MHMO','DEN','VIS','EAP') THEN
-                                CASE WHEN BdmRelationship IN ('DP','SPS') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EABGCBREXP B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC')) = 1 THEN 'EE+CHILD'
+        ,drvCoverageLevel =    CASE WHEN BdmCobraReason NOT IN ('204','LEVNT4','201','LEVNT3','210') AND BdmDedCode IN ('FSA','MPOS','MPPO','MHMO','DEN','VIS','EAP') THEN
+                                CASE WHEN BdmBenOption IN ('EE') THEN 'EE'
+                                    WHEN BdmBenOption IN ('EES','EEDP') THEN 'EE+SPOUSE'
+                                    WHEN BdmBenOption IN ('EEC') THEN 'EE+CHILDREN'
+                                    WHEN BdmBenOption IN ('EOC') THEN 'EE+CHILD'
+                                    WHEN BdmBenOption IN ('EEF','EEDPF') THEN 'EE+FAMILY'
+                                END
+                                /*CASE WHEN BdmRelationship IN ('DP','SPS') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EABGCBREXP B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC')) = 1 THEN 'EE+CHILD'
                                     WHEN BdmRelationship IN ('DP','SPS') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EABGCBREXP B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC')) > 1 THEN 'EE+CHILDREN'
                                     WHEN BdmRelationship = 'EMP' AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EABGCBREXP B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CHL','DPC','STC')) > 1 THEN 'EE+CHILDREN'
                                     ELSE 'EE'
-                                END
+                                END*/
                                 ELSE 'EE'
                             END
     INTO dbo.U_EABGCBREXP_drvTbl_QBPLANINITIAL

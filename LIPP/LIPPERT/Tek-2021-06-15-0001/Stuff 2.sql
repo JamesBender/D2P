@@ -8,12 +8,15 @@
 --sp_getEEID 'Lopez' -- DB5C1C00O020
 --sp_getEEID 'Samaniego' -- DGI8XS015020
 
+/*
 
-SELECT audEEID AS hsdEEID, audKey2 AS HsdCOID, audFieldName AS hsdFieldName, CASE WHEN audFieldName = 'EecEmplStatus' THEN EecEmplStatusStartDate END
+SELECT audEEID AS hsdEEID, audKey2 AS HsdCOID, audFieldName AS hsdFieldName, CASE WHEN audFieldName = 'EecEmplStatus' THEN EecEmplStatusStartDate END, audSystemId
 FROM dbo.U_EAV3_StatusDate_Audit
 JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = audEEID 
         AND EecCoID = audKey2
+LEFT JOIN dbo.EmpHJob WITH (NOLOCK)
+	ON audSystemId = EjhSystemId
 --WHERE audEEID = 'DIED8K000020'
 --WHERE audEEID = 'DJU48K000020'
 --WHERE audEEID = 'DUZT9V000020'
@@ -22,9 +25,13 @@ JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
 --WHERE audEEID = 'DB5C1C00O020'
 WHERE audEEID = 'DGI8XS015020'
 
+*/
 
+--EXEC fn_findeffdate_emphjob 'DGI8XS015020', 'EjhFullTimeOrPartTime'
 
-		select EjhJobEffDate, EjhReason, * from EmpHJob A
+select EecFullTimeOrPartTime,  * from EmpComp where EecEEID = 'DGI8XS015020'
+
+		select EjhJobEffDate, EjhReason, EjhSystemID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, * from EmpHJob A
 		--where EjhEEID = 'DIED8K000020' -- 'DB5AKC000020'
 		--where EjhEEID = 'DPJTIK000020'
 		--where EjhEEID = 'DGI8MS01K020'
@@ -33,5 +40,7 @@ WHERE audEEID = 'DGI8XS015020'
 
 --SELECT EecEmplStatusStartDate, EecCOID, * From EmpComp where EecEEID = 'DPJTIK000020'
 
-select top 10 audAction, * from dbo.vw_AuditData A WITH (NOLOCK) where audKey1Value = 'DGI8XS015020' AND audFieldName IN ('EecEmplStatus','EecSalaryOrHourly','EecFullTimeOrPartTime','EecEEType') AND audTableName = 'EmpComp' order by A.audDateTime desc
+select top 10 audAction, audFieldName, audDAteTime, audSystemId, '' as filler, * from dbo.vw_AuditData A WITH (NOLOCK) where audKey1Value = 'DGI8XS015020' AND audFieldName IN ('EecEmplStatus','EecSalaryOrHourly','EecFullTimeOrPartTime','EecEEType') AND audTableName = 'EmpComp'
+
+ order by A.audDateTime desc
 

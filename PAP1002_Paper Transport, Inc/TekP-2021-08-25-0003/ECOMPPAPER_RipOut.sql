@@ -5,7 +5,7 @@ ECOMPPAPER: Compsych Eligibility Export
 FormatCode:     ECOMPPAPER
 Project:        Compsych Eligibility Export
 Client ID:      PAP1002
-Date/time:      2021-11-09 17:29:21.550
+Date/time:      2021-11-09 19:21:26.400
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -282,7 +282,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Export','202110129','EMPEXPORT','ONDEM_XOE',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Exp-Sched','202110129','EMPEXPORT','SCH_ECOMPP',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202111099','EMPEXPORT','TEST_XOE','Nov  9 2021  5:28PM','ECOMPPAPER',NULL,NULL,NULL,'202111099','Nov  9 2021 12:00AM','Dec 30 1899 12:00AM','202110121','1224','','','202110121',dbo.fn_GetTimedKey(),NULL,'us3rVaPAP1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202111099','EMPEXPORT','TEST_XOE','Nov  9 2021  5:39PM','ECOMPPAPER',NULL,NULL,NULL,'202111099','Nov  9 2021 12:00AM','Dec 30 1899 12:00AM','202110121','1224','','','202110121',dbo.fn_GetTimedKey(),NULL,'us3rVaPAP1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -547,6 +547,8 @@ Revision History
     - Cleaned up duplicate issue due to the Codes table.
     - Adjusted Hours Worked in the Previous 12 Months logic to not exceed 8760.
     - Updated primary contact to be EC2.EecEmpNo rather than Ec.EecSuperVisorID.
+    - Fixed issue with "dupes" showing up in result set due to termination company linking to employee supervisor causing 2 entries 
+      1 for each supervisor.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECOMPPAPER';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECOMPPAPER';
@@ -855,6 +857,7 @@ BEGIN
         ON O3.OrgCode = Ec.EecOrgLvl3
     LEFT JOIN dbo.EmpComp EC2 WITH (NOLOCK) -- supervisor  
     ON EC2.EecEEID = Ec.EecSupervisorID  
+     AND EC2.EecCOID = xCOID
   --  AND Ec2.EecCOID = Ec.EecCOID  
         --AND SUP.EecEmplStatus <> 'T' 
     LEFT JOIN dbo.EmpPers pers2 WITH(NOLOCK)
