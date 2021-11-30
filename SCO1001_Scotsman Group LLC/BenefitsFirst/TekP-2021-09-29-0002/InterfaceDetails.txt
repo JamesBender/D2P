@@ -1,0 +1,5 @@
+Interface details (EBFPAYDED)
+Env – N13
+Server – N1SUP3DB54
+Database – ULTIPRO_SGLLC
+Export Name – Benefits First Payroll Deductions

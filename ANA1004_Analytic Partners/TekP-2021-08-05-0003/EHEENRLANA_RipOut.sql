@@ -5,7 +5,7 @@ EHEENRLANA: Health Equity Enrollment Exp
 FormatCode:     EHEENRLANA
 Project:        Health Equity Enrollment Exp
 Client ID:      ANA1004
-Date/time:      2021-11-18 17:51:24.170
+Date/time:      2021-11-23 21:05:28.490
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -238,7 +238,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHEENRLANA_20211118.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHEENRLANA_20211123.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -249,7 +249,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111099','EMPEXPORT','OEPASSIVE','Nov 11 2021  4:41PM','EHEENRLANA',NULL,NULL,NULL,'202111099','Nov  9 2021 12:00AM','Dec 30 1899 12:00AM','202109011','188','','','202109011',dbo.fn_GetTimedKey(),NULL,'us3cPeANA1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Equity Enrollment Exp','202111099','EMPEXPORT','ONDEM_XOE',NULL,'EHEENRLANA',NULL,NULL,NULL,'202111099','Nov  9 2021  9:46PM','Nov  9 2021  9:46PM','202111091',NULL,'','','202111091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Equity Enrollment-Sched','202111099','EMPEXPORT','SCH_EHEENR',NULL,'EHEENRLANA',NULL,NULL,NULL,'202111099','Nov  9 2021  9:46PM','Nov  9 2021  9:46PM','202111091',NULL,'','','202111091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity Enrollment-Test','202111119','EMPEXPORT','TEST_XOE','Nov 11 2021  7:59PM','EHEENRLANA',NULL,NULL,NULL,'202111119','Nov 11 2021 12:00AM','Dec 30 1899 12:00AM','202111011','181','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3cPeANA1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity Enrollment-Test','202111119','EMPEXPORT','TEST_XOE','Nov 18 2021  9:56PM','EHEENRLANA',NULL,NULL,NULL,'202111119','Nov 11 2021 12:00AM','Dec 30 1899 12:00AM','202111011','183','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3cPeANA1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -398,8 +398,8 @@ CREATE TABLE [dbo].[U_EHEENRLANA_drvEnrTbl] (
     [drvFName] varchar(100) NULL,
     [drvPlanCode] varchar(35) NULL,
     [drvElectAmt] varchar(30) NULL,
-    [drvCovEffDt] datetime NULL,
-    [drvCovEndDt] varchar(30) NOT NULL,
+    [drvCovEffDt] varchar(30) NOT NULL,
+    [drvCovEndDt] datetime NULL,
     [drvCompCovOption] varchar(1) NOT NULL,
     [drvCompCovOptEfDt] varchar(30) NOT NULL,
     [drvHDHPCovLvl] varchar(1) NULL,
@@ -512,8 +512,11 @@ Revision History
     - Added Open Enrollment and Passive Sessions to file.
 
 11/18/2021 by AP:
-	- ENR fields fixed or updated: Coverage Effective Date, Coverage End Date, HSA Compatible Coverage Option, 
-	  HSA Compatible Coverage Option Eff Date.
+    - ENR fields fixed or updated: Coverage Effective Date, Coverage End Date, HSA Compatible Coverage Option, 
+      HSA Compatible Coverage Option Eff Date.
+
+11/23/2021 by AP:
+	- Updated enrollment end date.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EHEENRLANA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EHEENRLANA';
@@ -544,8 +547,8 @@ BEGIN
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
-			,@FileMinCovDate	DATETIME
-			,@CovEndDate		DATETIME;
+            ,@FileMinCovDate    DATETIME
+            ,@CovEndDate        DATETIME;
 
     -- Set FormatCode
     SELECT @FormatCode = 'EHEENRLANA';
@@ -557,10 +560,10 @@ BEGIN
         ,@StartDate       = LEFT(StartPerControl,8)
         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@ExportCode      = ExportCode
-		,@FileMinCovDate  = case when cast(getdate() as date) < cast(cast(year(getdate()) as varchar) + '-07-01' as varchar)
-									then CONCAT(YEAR(GETDATE()) -1, '0701') ELSE CONCAT(YEAR(GETDATE()), '0701') END
-		,@CovEndDate	  = case when cast(getdate() as date) > cast(cast(year(getdate()) as varchar) + '-07-01' as varchar)
-									then CONCAT(YEAR(GETDATE()) +1, '0630') ELSE CONCAT(YEAR(GETDATE()), '0630') END
+        ,@FileMinCovDate  = case when cast(getdate() as date) < cast(cast(year(getdate()) as varchar) + '-07-01' as varchar)
+                                    then CONCAT(YEAR(GETDATE()) -1, '0701') ELSE CONCAT(YEAR(GETDATE()), '0701') END
+        ,@CovEndDate      = case when cast(getdate() as date) > cast(cast(year(getdate()) as varchar) + '-07-01' as varchar)
+                                    then CONCAT(YEAR(GETDATE()) +1, '0630') ELSE CONCAT(YEAR(GETDATE()), '0630') END
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
@@ -809,21 +812,19 @@ BEGIN
                                 WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') THEN '0.00'
                             END AS DECIMAL(10,2)) AS VARCHAR)
         ,drvCovEffDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode IN ('FSA', 'FSALT', 'LFSA', 'FSADC', 'CFHSA', 'CIHSA', 'FHSA', 'HSACF', 
-													'HSACI', 'HSAF', 'HSAI', 'IHSA') THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate)
-										END), 101), '')
-		--CASE WHEN EedDedCode IN ('FSA', 'FSALT', 'LFSA') THEN EedBenStartDate
+                                                    'HSACI', 'HSAF', 'HSAI', 'IHSA') THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate)
+                                        END), 101), '')
+        --CASE WHEN EedDedCode IN ('FSA', 'FSALT', 'LFSA') THEN EedBenStartDate
   --                              WHEN EedDedCode IN ('FSADC') THEN EedBenStartDate
   --                              WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') 
   --                                  AND CAST(GETDATE() AS DATE) >= CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '07-01' THEN CAST(YEAR(GETDATE()) + 1 AS VARCHAR) + '-07-01' 
   --                              WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') 
   --                                  AND CAST(GETDATE() AS DATE) < CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '07-01' THEN CAST(YEAR(GETDATE()) AS VARCHAR) + '-07-01' 
   --                          END
-        ,drvCovEndDt = CASE WHEN EedDedCode IN ('FSA', 'FSALT', 'LFSA') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStopDate, @CovEndDate)
-								WHEN EedDedCode = 'FSADC' THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStopDate, @CovEndDate)
-								WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') AND EedBenStatus <> 'A'
-										THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStopDate, @CovEndDate) ELSE @CovEndDate 
-												END
-		--ISNULL(CONVERT(VARCHAR, EedBenStopDate, 101), '')
+        ,drvCovEndDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') AND EedBenStatus <> 'A'
+                                        THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStopDate, @CovEndDate) 
+                                                END), 101), '')
+        --ISNULL(CONVERT(VARCHAR, EedBenStopDate, 101), '')
         ,drvCompCovOption = CASE WHEN EedDedCode IN ('FSALT', 'LFSA') THEN 'Y'
                                     ELSE '' END
         ,drvCompCovOptEfDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode IN ('FSALT', 'LFSA') THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStartDate, @FileMinCovDate)
