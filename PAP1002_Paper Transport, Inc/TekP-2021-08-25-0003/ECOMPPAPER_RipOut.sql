@@ -5,7 +5,7 @@ ECOMPPAPER: Compsych Eligibility Export
 FormatCode:     ECOMPPAPER
 Project:        Compsych Eligibility Export
 Client ID:      PAP1002
-Date/time:      2021-11-09 19:21:26.400
+Date/time:      2021-11-30 19:02:30.023
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -273,7 +273,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECOMPPAPER_20211109.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECOMPPAPER_20211130.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -281,8 +281,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Export','202110129','EMPEXPORT','ONDEM_XOE',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Compsych Eligibility Exp-Sched','202110129','EMPEXPORT','SCH_ECOMPP',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202110129','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202110121',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202111099','EMPEXPORT','TEST_XOE','Nov  9 2021  5:39PM','ECOMPPAPER',NULL,NULL,NULL,'202111099','Nov  9 2021 12:00AM','Dec 30 1899 12:00AM','202110121','1224','','','202110121',dbo.fn_GetTimedKey(),NULL,'us3rVaPAP1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',TFRMS,TFRPH',NULL,NULL,NULL,'Compsych Eligibility Exp-Sched','202110129','EMPEXPORT','SCH_ECOMPP',NULL,'ECOMPPAPER',NULL,NULL,NULL,'202111259','Oct 12 2021 11:15PM','Oct 12 2021 11:15PM','202111181',NULL,'','','202110121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Compsych Eligibility Exp-Test','202111099','EMPEXPORT','TEST_XOE','Nov 30 2021 10:27AM','ECOMPPAPER',NULL,NULL,NULL,'202111099','Nov  9 2021 12:00AM','Dec 30 1899 12:00AM','202110121','1146','','','202110121',dbo.fn_GetTimedKey(),NULL,'us3rVaPAP1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -550,6 +550,10 @@ Revision History
     - Fixed issue with "dupes" showing up in result set due to termination company linking to employee supervisor causing 2 entries 
       1 for each supervisor.
 
+11/30/2021 by AP:
+	- Adjusted hours worked once again. This time to not exceed 2080 hours as that's the max amount of hours per year an employee can work
+	  by business calendar days.
+
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECOMPPAPER';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECOMPPAPER';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECOMPPAPER';
@@ -577,7 +581,7 @@ BEGIN
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
-            ,@12MonthRolling    varchar(10)
+            ,@12MonthRolling    datetime
 
     -- Set FormatCode
     SELECT @FormatCode = 'ECOMPPAPER';
@@ -592,7 +596,7 @@ BEGIN
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
-    SELECT @12MonthRolling = REPLACE(CONVERT(CHAR(10), DATEADD(YEAR, -1, @EndDate), 101), '/', '') + substring(@EndPerControl, 9, 1)
+    SELECT @12MonthRolling = DATEADD(YEAR, -1, @EndDate) --+ substring(@EndPerControl, 9, 1)
 
     --==========================================
     -- Clean EE List 
@@ -690,7 +694,7 @@ BEGIN
         ,PrgPayDate             = MAX(PrgPayDate)
         -- Current Payroll Amount/Hours
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @12MonthRolling THEN PehCurHrs ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPayDate >= @12MonthRolling THEN PehCurHrs ELSE 0.00 END)
         --,@12MonthRolling as tmr
         -- YTD Payroll Amount/Hours
         ,PehCurAmtYTD           = SUM(PehCurAmt)
@@ -787,7 +791,7 @@ BEGIN
         ,drvAdjEmplDt = Ec.EecDateOfLastHire
         ,drvAnnDt = ''
         ,drvTermDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN Ec.EecEmplStatus = 'T' THEN Ec.EecDateOfTermination END), 101), '')
-        ,drvHrsWorkedPast12Months = CASE WHEN PehCurHrs > '8760' THEN '8760.00' ELSE CAST(CAST(PehCurHrs AS DECIMAL(10,2)) AS VARCHAR) END
+        ,drvHrsWorkedPast12Months = CASE WHEN PehCurHrs > '2080' THEN '2080.00' ELSE CAST(CAST(PehCurHrs AS DECIMAL(10,2)) AS VARCHAR) END
         ,drvKeyEmp = ''
         ,drvJobTitle = JbcDesc
         ,drvWorkEmail = pers.EepAddressEMail
