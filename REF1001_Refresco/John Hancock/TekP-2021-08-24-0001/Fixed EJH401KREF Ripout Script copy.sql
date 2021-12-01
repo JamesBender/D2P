@@ -1,19 +1,17 @@
 /**********************************************************************************
 
-EJH401KREF: John Hancock 401K Export
+EJH401KREF: John Hancock 401K Export V2
 
 FormatCode:     EJH401KREF
-Project:        John Hancock 401K Export
+Project:        John Hancock 401K Export V2
 Client ID:      REF1001
-Date/time:      2021-11-12 08:32:54.850
+Date/time:      2021-11-11 08:47:27.820
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
 Environment:    E43
 Server:         E4SUP3DB01
 Database:       ULTIPRO_RBUS
-ExportPath:    \\us.saas\E4\Public\REF1001\Exports\JohnHancock\
-OnDemandPath:  \\us.saas\E0\data_exchange\REF1001\Exports\
 
 **********************************************************************************/
 
@@ -111,8 +109,6 @@ IF OBJECT_ID('dsi_sp_BuildDriverTables_EJH401KREF') IS NOT NULL DROP PROCEDURE [
 GO
 IF OBJECT_ID('U_EJH401KREF_TrailerTbl') IS NOT NULL DROP TABLE [dbo].[U_EJH401KREF_TrailerTbl];
 GO
-IF OBJECT_ID('U_EJH401KREF_TrailerTbl') IS NOT NULL DROP TABLE [dbo].[U_EJH401KREF_TrailerTbl];
-GO
 IF OBJECT_ID('U_EJH401KREF_PTaxHist') IS NOT NULL DROP TABLE [dbo].[U_EJH401KREF_PTaxHist];
 GO
 IF OBJECT_ID('U_EJH401KREF_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EJH401KREF_PEarHist];
@@ -143,7 +139,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EJH401KREFZ0','6','D','10','1',NULL,'Plan Alias',NULL,NULL,'"drvPlanNum"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EJH401KREFZ0','30','D','10','2',NULL,'Division',NULL,NULL,'"drvDivision"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EJH401KREFZ0','9','D','10','3',NULL,'Social Security #',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EJH401KREFZ0','30','D','10','4',NULL,'Name',NULL,NULL,'"drvName"','(''UA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EJH401KREFZ0','30','D','10','4',NULL,'Name',NULL,NULL,'"drvName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EJH401KREFZ0','30','D','10','5',NULL,'Address #1',NULL,NULL,'"drvAddressLine1"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EJH401KREFZ0','30','D','10','6',NULL,'Address #2',NULL,NULL,'"drvAddressLine2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EJH401KREFZ0','30','D','10','7',NULL,'City',NULL,NULL,'"drvAddressCity"','(''UA''=''T,'')');
@@ -193,7 +189,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock 401K Export','202110079','EMPEXPORT','ONDEMAND','Feb 28 2019 12:51PM','EJH401KREF',NULL,NULL,NULL,'202110079','Feb 28 2019 12:00AM','Mar  2 2019 12:00AM','202108121','3125','','','202108121',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is  Auto Generated',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Scheduled Export','202110079','EMPEXPORT','SCHEDULED','Oct  6 2021  1:07PM','EJH401KREF',NULL,NULL,NULL,'202110079','Oct  8 2018 12:00AM','Dec 30 1899 12:00AM','202108121',NULL,'','','202108121',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\JohnHancock\CO45SL_10292021_Test.csv',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'For Testing JH 401K','202111111','EMPEXPORT','TEST','Oct 29 2021  2:25PM','EJH401KREF',NULL,NULL,NULL,'202111111','Oct 29 2021 12:00AM','Dec 30 1899 12:00AM','202111042','5372','','','202111042',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\JohnHancock\CO45SL_10292021_Test.csv',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'For Testing JH 401K','202110299','EMPEXPORT','TEST','Oct 29 2021  2:25PM','EJH401KREF',NULL,NULL,NULL,'202110299','Oct 29 2021 12:00AM','Dec 30 1899 12:00AM','202110211','5372','','','202110211',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -205,11 +201,9 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','ExportPath','V','\\us.saas\E4\Public\REF1001\Exports\JohnHancock\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','OnDemandPath','V','\\us.saas\E0\data_exchange\REF1001\Exports\');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','Testing','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','UDESPath','C','\\us.saas\E0\data_exchange\REF1001\Exports\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJH401KREF','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -389,188 +383,48 @@ CREATE TABLE [dbo].[U_EJH401KREF_PTaxHist] (
 IF OBJECT_ID('U_EJH401KREF_TrailerTbl') IS NULL
 CREATE TABLE [dbo].[U_EJH401KREF_TrailerTbl] (
     [drvPlanNumT] varchar(1) NOT NULL,
-    [drvPlanNumT] varchar(1) NOT NULL,
-    [drvDivisionT] varchar(1) NOT NULL,
     [drvDivisionT] varchar(1) NOT NULL,
     [drvSSNT] varchar(1) NOT NULL,
-    [drvSSNT] varchar(1) NOT NULL,
-    [drvNameT] varchar(1) NOT NULL,
     [drvNameT] varchar(1) NOT NULL,
     [drvAddressLine1T] varchar(1) NOT NULL,
-    [drvAddressLine1T] varchar(1) NOT NULL,
-    [drvAddressLine2T] varchar(1) NOT NULL,
     [drvAddressLine2T] varchar(1) NOT NULL,
     [drvAddressCityT] varchar(1) NOT NULL,
-    [drvAddressCityT] varchar(1) NOT NULL,
-    [drvAddressStateT] varchar(1) NOT NULL,
     [drvAddressStateT] varchar(1) NOT NULL,
     [drvAddressProvinceT] varchar(1) NOT NULL,
-    [drvAddressProvinceT] varchar(1) NOT NULL,
-    [drvAddressCountryT] varchar(1) NOT NULL,
     [drvAddressCountryT] varchar(1) NOT NULL,
     [drvAddressZipT] varchar(1) NOT NULL,
-    [drvAddressZipT] varchar(1) NOT NULL,
-    [drvDateOfBirthT] varchar(1) NOT NULL,
     [drvDateOfBirthT] varchar(1) NOT NULL,
     [drvDateOfOriginalHireT] varchar(1) NOT NULL,
-    [drvDateOfOriginalHireT] varchar(1) NOT NULL,
-    [drvDateOfTerminationT] varchar(1) NOT NULL,
     [drvDateOfTerminationT] varchar(1) NOT NULL,
     [drvDateOfLastHireT] varchar(1) NOT NULL,
-    [drvDateOfLastHireT] varchar(1) NOT NULL,
-    [drvExcludCodeT] varchar(1) NOT NULL,
     [drvExcludCodeT] varchar(1) NOT NULL,
     [drvHourlySalaryT] varchar(1) NOT NULL,
-    [drvHourlySalaryT] varchar(1) NOT NULL,
-    [drvStatusT] varchar(1) NOT NULL,
     [drvStatusT] varchar(1) NOT NULL,
     [drvGenderT] varchar(1) NOT NULL,
-    [drvGenderT] varchar(1) NOT NULL,
-    [drvPayrollFreqT] varchar(1) NOT NULL,
     [drvPayrollFreqT] varchar(1) NOT NULL,
     [drvLanguageT] varchar(1) NOT NULL,
-    [drvLanguageT] varchar(1) NOT NULL,
-    [drvWorkEmailT] varchar(1) NOT NULL,
     [drvWorkEmailT] varchar(1) NOT NULL,
     [drvWorkPhoneT] varchar(1) NOT NULL,
-    [drvWorkPhoneT] varchar(1) NOT NULL,
-    [drvTotPlanYTDGrossCompT] money NULL,
     [drvTotPlanYTDGrossCompT] money NULL,
     [drvPTDGrossCompT] numeric NULL,
-    [drvPTDGrossCompT] numeric NULL,
-    [drvTotPlanYTDPlanCompT] money NULL,
     [drvTotPlanYTDPlanCompT] money NULL,
     [drvTotPTDPlanCompT] numeric NULL,
-    [drvTotPTDPlanCompT] numeric NULL,
-    [drvTotMngedAcctAnnualCompT] varchar(1) NOT NULL,
     [drvTotMngedAcctAnnualCompT] varchar(1) NOT NULL,
     [drvTotPTD401KContribT] numeric NULL,
-    [drvTotPTD401KContribT] numeric NULL,
-    [drvTotPTDMatchContribT] numeric NULL,
     [drvTotPTDMatchContribT] numeric NULL,
     [drvTotPTDProfShrContribT] numeric NULL,
-    [drvTotPTDProfShrContribT] numeric NULL,
-    [drvTotPTDCatchUpContribT] numeric NULL,
     [drvTotPTDCatchUpContribT] numeric NULL,
     [drvTotPTDRothContribT] numeric NULL,
-    [drvTotPTDRothContribT] numeric NULL,
-    [drvTotPTDRothCUContribT] numeric NULL,
     [drvTotPTDRothCUContribT] numeric NULL,
     [drvTotPTDLoanRepaySumT] numeric NULL,
-    [drvTotPTDLoanRepaySumT] numeric NULL,
-    [drvYTDHoursT] varchar(1) NOT NULL,
     [drvYTDHoursT] varchar(1) NOT NULL,
     [drvDefPretaxT] varchar(1) NOT NULL,
-    [drvDefPretaxT] varchar(1) NOT NULL,
-    [drvDefPretaxAddlT] varchar(1) NOT NULL,
     [drvDefPretaxAddlT] varchar(1) NOT NULL,
     [drvDefRothT] varchar(1) NOT NULL,
-    [drvDefRothT] varchar(1) NOT NULL,
-    [drvDefRothCUT] varchar(1) NOT NULL,
     [drvDefRothCUT] varchar(1) NOT NULL,
     [drvEmployerBaseMatchT] varchar(1) NOT NULL,
-    [drvEmployerBaseMatchT] varchar(1) NOT NULL,
-    [drvTotPlanYTDProfitShrCompT] numeric NULL,
     [drvTotPlanYTDProfitShrCompT] numeric NULL,
     [drvUnionCodeT] varchar(1) NOT NULL,
-    [drvUnionCodeT] varchar(1) NOT NULL,
-    [drvTotYTDMatchCompT] money NULL,
-    [drvTotYTDMatchCompT] money NULL
-);
-
------------
--- Create table U_EJH401KREF_TrailerTbl
------------
-
-IF OBJECT_ID('U_EJH401KREF_TrailerTbl') IS NULL
-CREATE TABLE [dbo].[U_EJH401KREF_TrailerTbl] (
-    [drvPlanNumT] varchar(1) NOT NULL,
-    [drvPlanNumT] varchar(1) NOT NULL,
-    [drvDivisionT] varchar(1) NOT NULL,
-    [drvDivisionT] varchar(1) NOT NULL,
-    [drvSSNT] varchar(1) NOT NULL,
-    [drvSSNT] varchar(1) NOT NULL,
-    [drvNameT] varchar(1) NOT NULL,
-    [drvNameT] varchar(1) NOT NULL,
-    [drvAddressLine1T] varchar(1) NOT NULL,
-    [drvAddressLine1T] varchar(1) NOT NULL,
-    [drvAddressLine2T] varchar(1) NOT NULL,
-    [drvAddressLine2T] varchar(1) NOT NULL,
-    [drvAddressCityT] varchar(1) NOT NULL,
-    [drvAddressCityT] varchar(1) NOT NULL,
-    [drvAddressStateT] varchar(1) NOT NULL,
-    [drvAddressStateT] varchar(1) NOT NULL,
-    [drvAddressProvinceT] varchar(1) NOT NULL,
-    [drvAddressProvinceT] varchar(1) NOT NULL,
-    [drvAddressCountryT] varchar(1) NOT NULL,
-    [drvAddressCountryT] varchar(1) NOT NULL,
-    [drvAddressZipT] varchar(1) NOT NULL,
-    [drvAddressZipT] varchar(1) NOT NULL,
-    [drvDateOfBirthT] varchar(1) NOT NULL,
-    [drvDateOfBirthT] varchar(1) NOT NULL,
-    [drvDateOfOriginalHireT] varchar(1) NOT NULL,
-    [drvDateOfOriginalHireT] varchar(1) NOT NULL,
-    [drvDateOfTerminationT] varchar(1) NOT NULL,
-    [drvDateOfTerminationT] varchar(1) NOT NULL,
-    [drvDateOfLastHireT] varchar(1) NOT NULL,
-    [drvDateOfLastHireT] varchar(1) NOT NULL,
-    [drvExcludCodeT] varchar(1) NOT NULL,
-    [drvExcludCodeT] varchar(1) NOT NULL,
-    [drvHourlySalaryT] varchar(1) NOT NULL,
-    [drvHourlySalaryT] varchar(1) NOT NULL,
-    [drvStatusT] varchar(1) NOT NULL,
-    [drvStatusT] varchar(1) NOT NULL,
-    [drvGenderT] varchar(1) NOT NULL,
-    [drvGenderT] varchar(1) NOT NULL,
-    [drvPayrollFreqT] varchar(1) NOT NULL,
-    [drvPayrollFreqT] varchar(1) NOT NULL,
-    [drvLanguageT] varchar(1) NOT NULL,
-    [drvLanguageT] varchar(1) NOT NULL,
-    [drvWorkEmailT] varchar(1) NOT NULL,
-    [drvWorkEmailT] varchar(1) NOT NULL,
-    [drvWorkPhoneT] varchar(1) NOT NULL,
-    [drvWorkPhoneT] varchar(1) NOT NULL,
-    [drvTotPlanYTDGrossCompT] money NULL,
-    [drvTotPlanYTDGrossCompT] money NULL,
-    [drvPTDGrossCompT] numeric NULL,
-    [drvPTDGrossCompT] numeric NULL,
-    [drvTotPlanYTDPlanCompT] money NULL,
-    [drvTotPlanYTDPlanCompT] money NULL,
-    [drvTotPTDPlanCompT] numeric NULL,
-    [drvTotPTDPlanCompT] numeric NULL,
-    [drvTotMngedAcctAnnualCompT] varchar(1) NOT NULL,
-    [drvTotMngedAcctAnnualCompT] varchar(1) NOT NULL,
-    [drvTotPTD401KContribT] numeric NULL,
-    [drvTotPTD401KContribT] numeric NULL,
-    [drvTotPTDMatchContribT] numeric NULL,
-    [drvTotPTDMatchContribT] numeric NULL,
-    [drvTotPTDProfShrContribT] numeric NULL,
-    [drvTotPTDProfShrContribT] numeric NULL,
-    [drvTotPTDCatchUpContribT] numeric NULL,
-    [drvTotPTDCatchUpContribT] numeric NULL,
-    [drvTotPTDRothContribT] numeric NULL,
-    [drvTotPTDRothContribT] numeric NULL,
-    [drvTotPTDRothCUContribT] numeric NULL,
-    [drvTotPTDRothCUContribT] numeric NULL,
-    [drvTotPTDLoanRepaySumT] numeric NULL,
-    [drvTotPTDLoanRepaySumT] numeric NULL,
-    [drvYTDHoursT] varchar(1) NOT NULL,
-    [drvYTDHoursT] varchar(1) NOT NULL,
-    [drvDefPretaxT] varchar(1) NOT NULL,
-    [drvDefPretaxT] varchar(1) NOT NULL,
-    [drvDefPretaxAddlT] varchar(1) NOT NULL,
-    [drvDefPretaxAddlT] varchar(1) NOT NULL,
-    [drvDefRothT] varchar(1) NOT NULL,
-    [drvDefRothT] varchar(1) NOT NULL,
-    [drvDefRothCUT] varchar(1) NOT NULL,
-    [drvDefRothCUT] varchar(1) NOT NULL,
-    [drvEmployerBaseMatchT] varchar(1) NOT NULL,
-    [drvEmployerBaseMatchT] varchar(1) NOT NULL,
-    [drvTotPlanYTDProfitShrCompT] numeric NULL,
-    [drvTotPlanYTDProfitShrCompT] numeric NULL,
-    [drvUnionCodeT] varchar(1) NOT NULL,
-    [drvUnionCodeT] varchar(1) NOT NULL,
-    [drvTotYTDMatchCompT] money NULL,
     [drvTotYTDMatchCompT] money NULL
 );
 GO
@@ -656,7 +510,7 @@ BEGIN
     --All employees, regardless of plan eligibility and employment status, should be included in the file.  Do not exclude terminated employees until the Plan Year has expired.
     DELETE FROM dbo.U_EJH401KREF_EEList
     WHERE xEEID IN
-    (SELECT EecEEID FROM EmpComp A WHERE EecEmplStatus = 'T' AND EecDateOfTermination < DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0) AND NOT EXISTS (SELECT 1 EecEEID FROM EmpComp B WHERE EecEmplStatus <> 'T' AND A.EecEEID = B.EecEEID));
+    (SELECT EecEEID FROM EmpComp WHERE EecEmplStatus = 'T' AND EecDateOfTermination < DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0));
 
     --==========================================
     -- Create Deduction List
@@ -876,7 +730,7 @@ GROUP BY PehEEID
         ,drvDivision = CASE WHEN EecUnionLocal NOT IN ('830','Y','N') THEN SUBSTRING(EecUnionLocal,1,3) ELSE 'REF' END
   --      ,drvPayrollCompCode = 'CAOF'
         ,drvSSN = eepSSN
-        ,drvName = RTRIM(EepNameLast) + ',' + RTRIM(EepNameFirst) -- RTRIM(EepNameLast)  +',' + RTRIM(EepNameFirst)   -- Updated buy Rishabh Verma SR-2021-00324083
+        ,drvName = RTRIM(EepNameLast)  +' ' + RTRIM(EepNameFirst)-- '"' + RTRIM(EepNameLast) + ', ' + RTRIM(EepNameFirst) + '"'
         ,drvAddressLine1 = REPLACE(EepAddressLine1,',','')
         ,drvAddressLine2 = REPLACE(EepAddressLine2,',','')
         ,drvAddressCity = REPLACE(EepAddressCity,',','')
@@ -925,14 +779,11 @@ GROUP BY PehEEID
         ,drvDefRothCU = ''
         ,drvEmployerBaseMatch = ''
         ,drvTotPlanYTDProfitShrComp = ISNULL(YTDCurInclInDefCompAmt ,0)
-        ,drvUnionCode = Case WHEN ISNULL(EecUnionLocal, 'N') <> 'N'  THEN 'U'         --Updated buy Rishabh Verma SR-2021-00324083
-                              WHEN EecUnionLocal <> 'N' THEN 'U'
-                              ELSE '' END
-        /*CASE
+        ,drvUnionCode = CASE
                              WHEN ISNULL(EecUnionNational,'N') <> 'N' THEN 'U' 
                              WHEN ISNULL(EecUnionLocal, 'N') <> 'N'  THEN 'U'
                              WHEN EecUnionLocal <> 'N' THEN 'U'
-                             WHEN EecUnionNational <> 'N' THEN 'U'  ELSE '' END */
+                             WHEN EecUnionNational <> 'N' THEN 'U'  ELSE '' END 
         ,drvTotYTDMatchComp = ISNULL(PehInclInDefComp,0) 
         ,drvYTDPensionableHrs = CASE WHEN LEFT(EecUnionLocal,3) IN ('TRU','PAW') THEN FORMAT(PehCurHrsYTD, '#0.00') END
         ,drvParollPeriodEndDate = CASE WHEN LEFT(EecUnionLocal,3) IN ('TRU','PAW') THEN PrgPeriodEndDate END
@@ -1055,13 +906,11 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EJH401KREF';
 
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202111042'
-       ,expStartPerControl     = '202111042'
-       ,expLastEndPerControl   = '202111111'
-       ,expEndPerControl       = '202111111'
-WHERE expFormatCode = 'EJH401KREF'
-AND expExportCode = 'TEST'
-;
+    SET expLastStartPerControl = '202108121'
+       ,expStartPerControl     = '202108121'
+       ,expLastEndPerControl   = '202110079'
+       ,expEndPerControl       = '202110079'
+WHERE expFormatCode = 'EJH401KREF';
 
 **********************************************************************************/
 GO
@@ -1096,4 +945,4 @@ UPDATE dbo.AscExp
    AND rpoParmType = 'expSystemID'
 
 
--- End ripout 
+-- End ripout
