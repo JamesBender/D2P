@@ -825,11 +825,16 @@ BEGIN
   --                                  AND CAST(GETDATE() AS DATE) < CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '07-01' THEN CAST(YEAR(GETDATE()) AS VARCHAR) + '-07-01' 
   --                          END
         ,drvCovEndDt = CASE WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') AND EedBenStatus <> 'A'
-                                        THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStopDate, @CovEndDate) 
+                                       -- THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStopDate, @CovEndDate) 
+									  THEN EedBenStopDate
+							WHEN EedDedCode IN ('FSA', 'FSALT', 'LFSA', 'FSADC') AND EedBenStatus <> 'A' THEN EedBenStopDate 
 							ELSE
-								CASE WHEN CAST(GETDATE() AS DATE) > CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '07-01'  -- IF THE DATE IS GREATER THAN 07/01/CURRENT YEAR
+								CASE WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') AND EedBenStatus = 'A' AND 
+										CAST(GETDATE() AS DATE) >= CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '07-01'  -- IF THE DATE IS GREATER THAN 07/01/CURRENT YEAR
 											THEN CAST(YEAR(GETDATE()) + 1 AS VARCHAR) + '-' + '06-30' -- THEN SHOW NEXT YEAR/06/30 AS END DATE
-												ELSE CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '06-30' -- IF NOT THEN SHOW CURRENT YEAR/06/30
+										WHEN EedDedCode IN ('CFHSA', 'CIHSA', 'FHSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'IHSA') AND EedBenStatus = 'A' AND 
+											CAST(GETDATE() AS DATE) < CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '07-01' 
+												THEN CAST(YEAR(GETDATE()) AS VARCHAR) + '-' + '06-30' -- IF NOT THEN SHOW CURRENT YEAR/06/30
 											END
 									END
         --ISNULL(CONVERT(VARCHAR, EedBenStopDate, 101), '')
