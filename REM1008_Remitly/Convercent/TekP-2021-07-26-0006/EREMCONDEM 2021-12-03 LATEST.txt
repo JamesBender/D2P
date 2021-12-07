@@ -1,0 +1,643 @@
+/**********************************************************************************
+
+EREMCONDEM: Convercent Demo Export
+
+FormatCode:     EREMCONDEM
+Project:        Convercent Demo Export
+Client ID:      REM1008
+Date/time:      2021-12-03 17:44:50.597
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    NWP
+Server:         NW1WUP3DB04
+Database:       ULTIPRO_WPREMY
+Web Filename:   REM1008_SZRG6_EEHISTORY_EREMCONDEM_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
+UTF8Path:      \\us.saas\NW1\NW13\Downloads\V10\Exports\REMY\
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_EREMCONDEM_SavePath') IS NOT NULL DROP TABLE dbo.U_EREMCONDEM_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EREMCONDEM'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'EREMCONDEM'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'EREMCONDEM'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EREMCONDEM')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EREMCONDEM'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EREMCONDEM'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EREMCONDEM'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EREMCONDEM'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EREMCONDEM'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EREMCONDEM'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EREMCONDEM'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EREMCONDEM'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EREMCONDEM'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwEREMCONDEM_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEREMCONDEM_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EREMCONDEM') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EREMCONDEM];
+GO
+IF OBJECT_ID('U_EREMCONDEM_File') IS NOT NULL DROP TABLE [dbo].[U_EREMCONDEM_File];
+GO
+IF OBJECT_ID('U_EREMCONDEM_EEList') IS NOT NULL DROP TABLE [dbo].[U_EREMCONDEM_EEList];
+GO
+IF OBJECT_ID('U_EREMCONDEM_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EREMCONDEM_drvTbl];
+GO
+IF OBJECT_ID('U_EREMCONDEM_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EREMCONDEM_AuditFields];
+GO
+IF OBJECT_ID('U_EREMCONDEM_Audit') IS NOT NULL DROP TABLE [dbo].[U_EREMCONDEM_Audit];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EREMCONDEM','Convercent Demo Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','EREMCONDEM00','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EREMCONDEM00','50','H','01','1',NULL,'EmploymentIdentifier',NULL,NULL,'"EmploymentIdentifier "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EREMCONDEM00','50','H','01','2',NULL,'AlternateTrackingIdentifier',NULL,NULL,'"AlternateTrackingIdentifier "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EREMCONDEM00','50','H','01','3',NULL,'UserName',NULL,NULL,'"UserName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EREMCONDEM00','50','H','01','4',NULL,'AuthenticationMethod',NULL,NULL,'"AuthenticationMethod "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EREMCONDEM00','50','H','01','5',NULL,'IsActive',NULL,NULL,'"IsActive "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EREMCONDEM00','50','H','01','6',NULL,'EmploymentType',NULL,NULL,'"EmploymentType "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EREMCONDEM00','50','H','01','7',NULL,'EmploymentClass',NULL,NULL,'"EmploymentClass "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EREMCONDEM00','50','H','01','8',NULL,'NamePrefix',NULL,NULL,'"NamePrefix "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EREMCONDEM00','50','H','01','9',NULL,'NameSuffix',NULL,NULL,'"NameSuffix "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EREMCONDEM00','50','H','01','10',NULL,'FirstName',NULL,NULL,'"FirstName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EREMCONDEM00','50','H','01','11',NULL,'MiddleName',NULL,NULL,'"MiddleName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EREMCONDEM00','50','H','01','12',NULL,'LastName',NULL,NULL,'"LastName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EREMCONDEM00','50','H','01','13',NULL,'FullName',NULL,NULL,'"FullName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EREMCONDEM00','70','H','01','14',NULL,'BusinessTitle',NULL,NULL,'"BusinessTitle "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EREMCONDEM00','50','H','01','15',NULL,'JobCode',NULL,NULL,'"JobCode "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EREMCONDEM00','70','H','01','16',NULL,'JobTitle',NULL,NULL,'"JobTitle "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EREMCONDEM00','50','H','01','17',NULL,'HireDate',NULL,NULL,'"HireDate "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EREMCONDEM00','50','H','01','18',NULL,'RehireDate',NULL,NULL,'"RehireDate "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EREMCONDEM00','50','H','01','19',NULL,'TerminationDate',NULL,NULL,'"TerminationDate "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EREMCONDEM00','50','H','01','20',NULL,'ContactEmail',NULL,NULL,'"ContactEmail "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EREMCONDEM00','50','H','01','21',NULL,'CostCenter',NULL,NULL,'"CostCenter "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EREMCONDEM00','50','H','01','22',NULL,'DepartmentIdentifier',NULL,NULL,'"DepartmentIdentifier "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EREMCONDEM00','50','H','01','23',NULL,'DepartmentName',NULL,NULL,'"DepartmentName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EREMCONDEM00','50','H','01','24',NULL,'LocationIdentifier',NULL,NULL,'"LocationIdentifier "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EREMCONDEM00','50','H','01','25',NULL,'LocationName',NULL,NULL,'"LocationName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EREMCONDEM00','50','H','01','26',NULL,'LegalEntityIdentifier',NULL,NULL,'"LegalEntityIdentifier "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EREMCONDEM00','50','H','01','27',NULL,'LegalEntityName',NULL,NULL,'"LegalEntityName "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EREMCONDEM00','50','H','01','28',NULL,'ManagesPeople',NULL,NULL,'"ManagesPeople "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EREMCONDEM00','50','H','01','29',NULL,'SeniorityDate',NULL,NULL,'"SeniorityDate "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EREMCONDEM00','50','H','01','30',NULL,'SupervisorIdentifier',NULL,NULL,'"SupervisorIdentifier "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EREMCONDEM00','50','H','01','31',NULL,'CompensationFrequency',NULL,NULL,'"CompensationFrequency "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EREMCONDEM00','50','H','01','32',NULL,'CompensationGroup',NULL,NULL,'"CompensationGroup "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EREMCONDEM00','50','H','01','33',NULL,'CompensationRate',NULL,NULL,'"CompensationRate "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EREMCONDEM00','50','H','01','34',NULL,'CompensationGrade',NULL,NULL,'"CompensationGrade "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EREMCONDEM00','50','H','01','35',NULL,'StandardWeeklyHours',NULL,NULL,'"StandardWeeklyHours "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EREMCONDEM00','50','H','01','36',NULL,'IsExempt',NULL,NULL,'"IsExempt "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EREMCONDEM00','50','H','01','37',NULL,'EthnicGroup',NULL,NULL,'"EthnicGroup "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EREMCONDEM00','50','H','01','38',NULL,'Citizenship',NULL,NULL,'"Citizenship "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EREMCONDEM00','50','H','01','39',NULL,'Birthdate',NULL,NULL,'"Birthdate "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EREMCONDEM00','50','H','01','40',NULL,'Gender',NULL,NULL,'"Gender "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EREMCONDEM00','50','H','01','41',NULL,'MaritalStatus',NULL,NULL,'"MaritalStatus "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EREMCONDEM00','50','H','01','42',NULL,'MilitaryStatus',NULL,NULL,'"MilitaryStatus "','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EREMCONDEM00','50','D','10','1',NULL,'EmploymentIdentifier',NULL,NULL,'"drvEmploymentIdentifier"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EREMCONDEM00','50','D','10','2',NULL,'AlternateTrackingIdentifier',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EREMCONDEM00','50','D','10','3',NULL,'UserName',NULL,NULL,'"drvUserName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EREMCONDEM00','50','D','10','4',NULL,'AuthenticationMethod',NULL,NULL,'"remitlysso"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EREMCONDEM00','50','D','10','5',NULL,'IsActive',NULL,NULL,'"drvIsActive"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EREMCONDEM00','50','D','10','6',NULL,'EmploymentType',NULL,NULL,'"drvEmploymentType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EREMCONDEM00','50','D','10','7',NULL,'EmploymentClass',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EREMCONDEM00','50','D','10','8',NULL,'NamePrefix',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EREMCONDEM00','50','D','10','9',NULL,'NameSuffix',NULL,NULL,'"drvNameSuffix"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EREMCONDEM00','50','D','10','10',NULL,'FirstName',NULL,NULL,'"drvFirstName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EREMCONDEM00','50','D','10','11',NULL,'MiddleName',NULL,NULL,'"drvMiddleName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EREMCONDEM00','50','D','10','12',NULL,'LastName',NULL,NULL,'"drvLastName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EREMCONDEM00','50','D','10','13',NULL,'FullName',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EREMCONDEM00','70','D','10','14',NULL,'BusinessTitle',NULL,NULL,'"drvBusinessTitle"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EREMCONDEM00','50','D','10','15',NULL,'JobCode',NULL,NULL,'"drvJobCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EREMCONDEM00','70','D','10','16',NULL,'JobTitle',NULL,NULL,'"drvJobTitle"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EREMCONDEM00','50','D','10','17',NULL,'HireDate',NULL,NULL,'"drvHireDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EREMCONDEM00','50','D','10','18',NULL,'RehireDate',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EREMCONDEM00','50','D','10','19',NULL,'TerminationDate',NULL,NULL,'"drvTerminationDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EREMCONDEM00','50','D','10','20',NULL,'ContactEmail',NULL,NULL,'"drvContactEmail"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EREMCONDEM00','50','D','10','21',NULL,'CostCenter',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EREMCONDEM00','50','D','10','22',NULL,'DepartmentIdentifier',NULL,NULL,'"drvDepartmentIdentifier"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EREMCONDEM00','50','D','10','23',NULL,'DepartmentName',NULL,NULL,'"drvDepartmentName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EREMCONDEM00','50','D','10','24',NULL,'LocationIdentifier',NULL,NULL,'"drvLocationIdentifier"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EREMCONDEM00','50','D','10','25',NULL,'LocationName',NULL,NULL,'"drvLocationName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EREMCONDEM00','50','D','10','26',NULL,'LegalEntityIdentifier',NULL,NULL,'"drvLegalEntityIdentifier"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EREMCONDEM00','50','D','10','27',NULL,'LegalEntityName',NULL,NULL,'"drvLegalEntityName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EREMCONDEM00','50','D','10','28',NULL,'ManagesPeople',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EREMCONDEM00','50','D','10','29',NULL,'SeniorityDate',NULL,NULL,'"drvSeniorityDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EREMCONDEM00','50','D','10','30',NULL,'SupervisorIdentifier',NULL,NULL,'"drvSupervisorIdentifier"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EREMCONDEM00','50','D','10','31',NULL,'CompensationFrequency',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EREMCONDEM00','50','D','10','32',NULL,'CompensationGroup',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EREMCONDEM00','50','D','10','33',NULL,'CompensationRate',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EREMCONDEM00','50','D','10','34',NULL,'CompensationGrade',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EREMCONDEM00','50','D','10','35',NULL,'StandardWeeklyHours',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EREMCONDEM00','50','D','10','36',NULL,'IsExempt',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EREMCONDEM00','50','D','10','37',NULL,'EthnicGroup',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EREMCONDEM00','50','D','10','38',NULL,'Citizenship',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EREMCONDEM00','50','D','10','39',NULL,'Birthdate',NULL,NULL,'"drvBirthdate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EREMCONDEM00','50','D','10','40',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EREMCONDEM00','50','D','10','41',NULL,'MaritalStatus',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EREMCONDEM00','50','D','10','42',NULL,'MilitaryStatus',NULL,NULL,'""','(''SS''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'EREMCONDEM_20211203.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','VKSUT,BRS79,BRS1T,BRS0G,BRS2T,JMRX2,0NZZA,BRS6F,VKSRD,BRRHI,BRS8H,BRRJ7,BRS4J,BRRXL,BRS5F,D06AO,BRRZD,BTAS9,BPP00',NULL,NULL,NULL,'Convercent Demo Changes Export','202112019','EMPEXPORT','CONVDEMCHG',NULL,'EREMCONDEM',NULL,NULL,NULL,'202112029',NULL,NULL,'202111251',NULL,'','','202112011',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Convercent Demo FullFile','202112039','EMPEXPORT','FULLFILE','Dec  3 2021  5:29PM','EREMCONDEM',NULL,NULL,NULL,'202112039','Dec  3 2021 12:00AM','Dec 30 1899 12:00AM','202111081','1929','','','202111081',dbo.fn_GetTimedKey(),NULL,'us3cPeREM1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Convercent Demo OnDemand','202112039','EMPEXPORT','ONDEM_XOE',NULL,'EREMCONDEM',NULL,NULL,NULL,'202112039','Dec  3 2021 10:28AM','Dec  3 2021 10:28AM','202112031',NULL,'','','202112031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Convercent Demo Export-Sched','202112039','EMPEXPORT','SCH_EREMCO',NULL,'EREMCONDEM',NULL,NULL,NULL,'202112039','Dec  3 2021 10:28AM','Dec  3 2021 10:28AM','202112031',NULL,'','','202112031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Convercent Demo Export-Test','202112039','EMPEXPORT','TEST_XOE','Dec  3 2021  2:38PM','EREMCONDEM',NULL,NULL,NULL,'202112039','Dec  3 2021 12:00AM','Dec 30 1899 12:00AM','202112031','1929','','','202112031',dbo.fn_GetTimedKey(),NULL,'us3cPeREM1008',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','InitialSort','C','drvEmpNoSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','IsUTF8','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','UseFileName','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREMCONDEM','UTF8Path','V','\\us.saas\NW1\NW13\Downloads\V10\Exports\REMY\');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EREMCONDEM','H01','None',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EREMCONDEM','D10','dbo.U_EREMCONDEM_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_EREMCONDEM_Audit
+-----------
+
+IF OBJECT_ID('U_EREMCONDEM_Audit') IS NULL
+CREATE TABLE [dbo].[U_EREMCONDEM_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EREMCONDEM_AuditFields
+-----------
+
+IF OBJECT_ID('U_EREMCONDEM_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EREMCONDEM_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EREMCONDEM_drvTbl
+-----------
+
+IF OBJECT_ID('U_EREMCONDEM_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EREMCONDEM_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] char(9) NULL,
+    [drvEmploymentIdentifier] varchar(9) NULL,
+    [drvUserName] varchar(50) NULL,
+    [drvIsActive] varchar(5) NOT NULL,
+    [drvEmploymentType] varchar(9) NULL,
+    [drvNameSuffix] varchar(30) NULL,
+    [drvFirstName] varchar(100) NULL,
+    [drvMiddleName] varchar(1) NULL,
+    [drvLastName] varchar(100) NULL,
+    [drvBusinessTitle] varchar(8000) NULL,
+    [drvJobCode] char(8) NULL,
+    [drvJobTitle] nvarchar(258) NULL,
+    [drvHireDate] datetime NULL,
+    [drvTerminationDate] datetime NULL,
+    [drvContactEmail] varchar(50) NULL,
+    [drvDepartmentIdentifier] varchar(10) NULL,
+    [drvDepartmentName] nvarchar(258) NULL,
+    [drvLocationIdentifier] char(6) NULL,
+    [drvLocationName] nvarchar(258) NULL,
+    [drvLegalEntityIdentifier] varchar(10) NULL,
+    [drvLegalEntityName] nvarchar(258) NULL,
+    [drvSeniorityDate] datetime NULL,
+    [drvSupervisorIdentifier] varchar(256) NULL,
+    [drvBirthdate] datetime NULL,
+    [drvGender] varchar(11) NOT NULL
+);
+
+-----------
+-- Create table U_EREMCONDEM_EEList
+-----------
+
+IF OBJECT_ID('U_EREMCONDEM_EEList') IS NULL
+CREATE TABLE [dbo].[U_EREMCONDEM_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EREMCONDEM_File
+-----------
+
+IF OBJECT_ID('U_EREMCONDEM_File') IS NULL
+CREATE TABLE [dbo].[U_EREMCONDEM_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] nvarchar(3000) NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EREMCONDEM]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Remitly, Inc
+
+Created By: Marie Thomerson
+Business Analyst: Cheryl Petitti
+Create Date: 11/24/2021
+Service Request Number: TekP-2021-07-26-0006
+
+Purpose: Convercent Demo Export
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EREMCONDEM';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EREMCONDEM';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EREMCONDEM';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EREMCONDEM';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EREMCONDEM' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EREMCONDEM', 'CONVDEMCHG';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EREMCONDEM', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EREMCONDEM', 'SCH_EREMCO';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EREMCONDEM', 'FULLFILE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EREMCONDEM', 'ONDEM_XOE';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EREMCONDEM', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EREMCONDEM';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EREMCONDEM_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EREMCONDEM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EREMCONDEM_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EREMCONDEM_AuditFields;
+    CREATE TABLE dbo.U_EREMCONDEM_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    INSERT INTO dbo.U_EREMCONDEM_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    INSERT INTO dbo.U_EREMCONDEM_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    INSERT INTO dbo.U_EREMCONDEM_AuditFields VALUES ('EmpComp','EecTermReason');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EREMCONDEM_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EREMCONDEM_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EREMCONDEM_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EREMCONDEM_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN dateadd(D, -30, @EndDate) AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EREMCONDEM_Audit ON dbo.U_EREMCONDEM_Audit (audEEID,audKey2);
+
+    --================
+    -- Changes Only
+    --================
+    IF @Exportcode IN ('CONVDEMCHG')
+    BEGIN
+        -- Remove Employees with No Changes in Audit
+    DELETE FROM dbo.U_EREMCONDEM_EEList
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EREMCONDEM_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    END;
+
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EREMCONDEM_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EREMCONDEM_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EREMCONDEM_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvEmpNoSort = EecEmpNo
+        -- standard fields above and additional driver fields below
+        ,drvEmploymentIdentifier = substring(eecEmpNo, patindex('%[^0]%',eecEmpNo), len(eecempno)) 
+        ,drvUserName = EepAddressEMail
+        ,drvIsActive = CASE WHEN EecEmplStatus = 'T' THEN 'false' else 'true' END
+        ,drvEmploymentType = CASE WHEN EecEEType = 'REG' and EecFullTimeOrPartTime = 'F' THEN 'Fulltime'
+                                  WHEN EecEEType = 'REG' and EecFullTimeOrPartTime = 'P' THEN 'Parttime'
+                                  WHEN EecEEType = 'INT' THEN 'Intern'
+                                  WHEN EecEEType = 'TMP' THEN 'Temporary'
+                                  WHEN EecEEType IN ('CON', 'CST') THEN 'Contract'
+                                  WHEN EecEEType = 'Z' THEN 'None'
+                            END
+        ,drvNameSuffix = NULLIF(EepNameSuffix,'Z')
+        ,drvFirstName = CASE WHEN ISNULL(EepNamePreferred,'') <> '' THEN EepNamePreferred ELSE EepNameFirst END
+        ,drvMiddleName = LEFT(EepNameMiddle,1)
+        ,drvLastName = EepNameLast
+        ,drvBusinessTitle =[dbo].[dsi_fnlib_AddDoubleQuotes](RTRIM(jbcLongDesc))
+        ,drvJobCode = EecJobCode
+        ,drvJobTitle = QuoteName(JbcDesc,'"')
+        ,drvHireDate = EecDateOfLastHire
+        ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvContactEmail = EepAddressEMail
+        ,drvDepartmentIdentifier = EecOrgLvl1
+        ,drvDepartmentName = Quotename((Select Top 1 OrgDesc from dbo.OrgLevel WITH (NOLOCK) where OrgCode =  EecOrgLvl1 and OrgLvl = 1),'"')
+        ,drvLocationIdentifier = EecLocation
+        ,drvLocationName = QuoteName((Select Top 1 LocDesc from dbo.Location WITH (NOLOCK)  where LocCode = EecLocation),'"')
+        ,drvLegalEntityIdentifier = EecOrgLvl2
+        ,drvLegalEntityName = QuoteName((Select Top 1 OrgDesc from dbo.OrgLevel WITH (NOLOCK) where OrgCode =  EecOrgLvl2 and OrgLvl = 2),'"')
+        ,drvSeniorityDate = EecDateOfSeniority
+        ,drvSupervisorIdentifier = substring(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'EmpNo'), patindex('%[^0]%',dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'EmpNo')), len(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'EmpNo')))
+        ,drvBirthdate = EepDateOfBirth
+        ,drvGender = CASE WHEN EepGender in ('M') THEN 'Male'
+                          WHEN EepGender in ('F') THEN 'Female'
+                          ELSE 'Unspecified'
+                     END
+    INTO dbo.U_EREMCONDEM_drvTbl
+    FROM dbo.U_EREMCONDEM_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+        AND eecEEType <> 'TES'
+        and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                 and EXISTS(select 1 from dbo.U_EREMCONDEM_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Convercent_Test.csv'
+                                  ELSE 'Convercent.csv'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEREMCONDEM_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EREMCONDEM_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID LIKE 'EREMCONDEM%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202111171'
+       ,expStartPerControl     = '202111171'
+       ,expLastEndPerControl   = '202111249'
+       ,expEndPerControl       = '202111249'
+WHERE expFormatCode = 'EREMCONDEM';
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEREMCONDEM_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EREMCONDEM_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'EREMCONDEM' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'EREMCONDEM'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'EREMCONDEM'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EREMCONDEM', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EREMCONDEM', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EREMCONDEM', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
