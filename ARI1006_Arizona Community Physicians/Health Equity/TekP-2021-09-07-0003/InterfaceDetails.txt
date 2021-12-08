@@ -1,0 +1,5 @@
+Interface details (EARIHSA)
+Env – EW42 
+Server – EW4WUP2DB03 
+Database – ULTIPRO_WPARIC 
+Export Name – HealthEquity HSA
