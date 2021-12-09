@@ -5,12 +5,12 @@ ESSQEXMLXP: SSQ Benefits XML Export
 FormatCode:     ESSQEXMLXP
 Project:        SSQ Benefits XML Export
 Client ID:      ALA5000
-Date/time:      2021-11-24 08:14:39.827
+Date/time:      2021-12-09 11:08:55.650
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    TZ12
-Server:         TZ1SUP2DB02
+Environment:    T12
+Server:         T1SUP2DB02
 Database:       ULTIPRO_ALAG
 Web Filename:   ALA5000_OBWQ9_EEHISTORY_ESSQEXMLXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
@@ -325,18 +325,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20211124.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20211209.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202111199','EMPEXPORT','OEACTIVE','Nov 19 2021 10:24AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','6','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111199','EMPEXPORT','OEPASSIVE','Nov 19 2021 10:25AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14500','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export','202111199','EMPEXPORT','ONDEM_XOE','Nov 19 2021 10:25AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14500','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Sched','202111199','EMPEXPORT','SCH_ESSQEX','Nov 19 2021 10:30AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14500','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202111199','EMPEXPORT','TEST_XOE','Nov 19 2021 10:30AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14500','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202111199','EMPEXPORT','OEACTIVE','Nov 24 2021  8:23AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','6','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111199','EMPEXPORT','OEPASSIVE','Nov 24 2021  8:23AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14785','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export','202111199','EMPEXPORT','ONDEM_XOE','Nov 24 2021  8:24AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Sched','202111199','EMPEXPORT','SCH_ESSQEX','Nov 24 2021  8:26AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202112011','EMPEXPORT','TEST_XOE','Dec  1 2021  6:10PM','ESSQEXMLXP',NULL,NULL,NULL,'202112011','Dec  1 2021 12:00AM','Dec 30 1899 12:00AM','202111241','14923','','','202111241',dbo.fn_GetTimedKey(),NULL,'us3cPeALA5000',NULL);
 
 -----------
 -- AscImp inserts
@@ -508,7 +508,7 @@ CREATE TABLE [dbo].[U_ESSQEXMLXP_drvTbl_CoveragesGroupClose] (
     [drvOption] varchar(1) NOT NULL,
     [drvStatusCode] varchar(2) NOT NULL,
     [drvVolumeTypeCode] varchar(2) NULL,
-    [drvVolume] varchar(5) NULL
+    [drvVolume] varchar(5) NOT NULL
 );
 
 -----------
@@ -1210,7 +1210,7 @@ BEGIN
         ,drvOption = ''
         ,drvStatusCode = '01'
         ,drvVolumeTypeCode = CASE WHEN BdmDedCode IN ('25127','25117','25116','25118','25119','25112','25122','25123','25124','2512Q','25126','25419','25412','25416','25417','25418','25422','25423','25424','25427','2542Q','25426') THEN '02' END
-        ,drvVolume = CASE WHEN BdmDedCode IN ('25127','25117','25116','25118','25119','25112','25122','25123','25124','2512Q','25126','25419','25412','25416','25417','25418','25422','25423','25424','25427','2542Q','25426') THEN '10000' END
+        ,drvVolume = CASE WHEN BdmDedCode IN ('25127','25117','25116','25118','25119','25112','25122','25123','25124','2512Q','25126','25419','25412','25416','25417','25418','25422','25423','25424','25427','2542Q','25426') THEN '10000' ELSE '0' END
     INTO dbo.U_ESSQEXMLXP_drvTbl_CoveragesGroupClose
     FROM dbo.U_ESSQEXMLXP_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_ESSQEXMLXP WITH (NOLOCK)
