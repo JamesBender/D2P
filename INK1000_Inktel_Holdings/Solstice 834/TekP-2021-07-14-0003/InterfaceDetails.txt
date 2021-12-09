@@ -1,0 +1,5 @@
+Interface details (EINK834)
+Env – EW13 
+Server – EW1WUP3DB01
+Database – ULTIPRO_WPINKHC 
+Export Name – Solstice 834
