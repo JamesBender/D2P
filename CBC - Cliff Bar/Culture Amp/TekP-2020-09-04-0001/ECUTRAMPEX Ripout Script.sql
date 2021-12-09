@@ -1,9 +1,111 @@
+/**********************************************************************************
+
+ECUTRAMPEX: Culture Amp Demographic Export
+
+FormatCode:     ECUTRAMPEX
+Project:        Culture Amp Demographic Export
+Client ID:      CLI1003
+Date/time:      2021-12-09 15:29:33.530
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    EWP
+Server:         EW2WUP2DB03
+Database:       ULTIPRO_WPCLIF
+Web Filename:   CLI1003_EAE8A_EEHISTORY_ECUTRAMPEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+
+**********************************************************************************/
+
 SET NOCOUNT ON;
-IF OBJECT_ID('U_ECUTRAMPEX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECUTRAMPEX_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_ECUTRAMPEX_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'ECUTRAMPEX' AND CfgName LIKE '%Path';
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_ECUTRAMPEX_SavePath') IS NOT NULL DROP TABLE dbo.U_ECUTRAMPEX_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ECUTRAMPEX'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'ECUTRAMPEX'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'ECUTRAMPEX'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECUTRAMPEX')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ECUTRAMPEX'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ECUTRAMPEX'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ECUTRAMPEX'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ECUTRAMPEX'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ECUTRAMPEX'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ECUTRAMPEX'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ECUTRAMPEX'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ECUTRAMPEX'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ECUTRAMPEX'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
 IF OBJECT_ID('dsi_vwECUTRAMPEX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECUTRAMPEX_Export];
-GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_ECUTRAMPEX_G10_BKP_2020_PROD') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECUTRAMPEX_G10_BKP_2020_PROD];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ECUTRAMPEX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECUTRAMPEX];
 GO
@@ -19,105 +121,137 @@ IF OBJECT_ID('U_ECUTRAMPEX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECUTRAM
 GO
 IF OBJECT_ID('U_ECUTRAMPEX_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECUTRAMPEX_Audit];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ECUTRAMPEX';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ECUTRAMPEX';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ECUTRAMPEX';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ECUTRAMPEX';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ECUTRAMPEX';
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhPreProcessSQL,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECUTRAMPEX','Culture Amp Demographic Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','dbo.dsi_sp_Switchbox_v2','2000','S','N','ECUTRAMPEXZ0','N','Jan  1 1900 12:00AM','C','N',NULL,'N');
-/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'ECUTRAMPEX' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Name"','1','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','1',NULL,'Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Preferred Name"','2','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','2',NULL,'Preferred Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Employee Id"','3','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','3',NULL,'Employee Id',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Email"','4','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','4',NULL,'Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Date of Birth"','5','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','5',NULL,'Date of Birth',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Start Date"','6','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','6',NULL,'Start Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"End Date"','7','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','7',NULL,'End Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Language"','8','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','8',NULL,'Language',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Performance Rating"','9','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','9',NULL,'Performance Rating',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Manager"','10','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','10',NULL,'Manager',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Manager Email"','11','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','11',NULL,'Manager Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Gender"','12','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','12',NULL,'Gender',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Location"','13','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','13',NULL,'Location',NULL,NULL);
 
+-----------
+-- AscDefH inserts
+-----------
 
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Business Unit"','14','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','13',NULL,'Business Unit',NULL,NULL);
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECUTRAMPEX','Culture Amp Demographic Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','ECUTRAMPEXZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
+-----------
+-- AscDefF inserts
+-----------
 
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECUTRAMPEXZ0','50','H','01','1',NULL,'Name',NULL,NULL,'"Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECUTRAMPEXZ0','50','H','01','2',NULL,'Preferred Name',NULL,NULL,'"Preferred Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECUTRAMPEXZ0','50','H','01','3',NULL,'Employee Id',NULL,NULL,'"Employee Id"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECUTRAMPEXZ0','50','H','01','4',NULL,'Email',NULL,NULL,'"Email"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECUTRAMPEXZ0','50','H','01','5',NULL,'Date of Birth',NULL,NULL,'"Date of Birth"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECUTRAMPEXZ0','50','H','01','6',NULL,'Start Date',NULL,NULL,'"Start Date"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECUTRAMPEXZ0','50','H','01','7',NULL,'End Date',NULL,NULL,'"End Date"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECUTRAMPEXZ0','50','H','01','8',NULL,'Language',NULL,NULL,'"Language"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECUTRAMPEXZ0','50','H','01','9',NULL,'Performance Rating',NULL,NULL,'"Performance Rating"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECUTRAMPEXZ0','50','H','01','10',NULL,'Manager',NULL,NULL,'"Manager"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECUTRAMPEXZ0','50','H','01','11',NULL,'Manager Email',NULL,NULL,'"Manager Email"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECUTRAMPEXZ0','50','H','01','12',NULL,'Gender',NULL,NULL,'"Gender"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECUTRAMPEXZ0','50','H','01','13',NULL,'Location',NULL,NULL,'"Location"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECUTRAMPEXZ0','50','H','01','13',NULL,'Business Unit',NULL,NULL,'"Business Unit"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECUTRAMPEXZ0','50','H','01','15',NULL,'Department',NULL,NULL,'"Department"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECUTRAMPEXZ0','50','H','01','16',NULL,'Employment Type',NULL,NULL,'"Employment Type"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECUTRAMPEXZ0','50','H','01','17',NULL,'Job Title',NULL,NULL,'"Job Title"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECUTRAMPEXZ0','50','H','01','18',NULL,'Org Level 1 Manager',NULL,NULL,'"ALT"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ECUTRAMPEXZ0','50','H','01','19',NULL,'Org Level 3 Description',NULL,NULL,'"Job Level"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ECUTRAMPEXZ0','50','H','01','20',NULL,'Age',NULL,NULL,'"Age"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ECUTRAMPEXZ0','50','H','01','21',NULL,'Time in Role',NULL,NULL,'"Time in Role"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ECUTRAMPEXZ0','50','H','01','22',NULL,'Race/Ethnicity',NULL,NULL,'"Race/Ethnicity"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ECUTRAMPEXZ0','50','H','01','23',NULL,'Org Level 2 Description',NULL,NULL,'"State/Province"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ECUTRAMPEXZ0','50','H','01','24',NULL,'FLSA Type',NULL,NULL,'"FLSA Type"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECUTRAMPEXZ0','50','H','01','25',NULL,'Company',NULL,NULL,'"Company"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECUTRAMPEXZ0','50','H','01','26',NULL,'Employment Status',NULL,NULL,'"Employment Status"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECUTRAMPEXZ0','50','H','01','27',NULL,'Country',NULL,NULL,'"Country"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECUTRAMPEXZ0','50','H','01','28',NULL,'Manager EEID',NULL,NULL,'"Employee Number (Supervisor)"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECUTRAMPEXZ0','50','D','10','1',NULL,'Name',NULL,NULL,'"drvName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECUTRAMPEXZ0','50','D','10','2',NULL,'Preferred Name',NULL,NULL,'"drvPrefferedName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECUTRAMPEXZ0','50','D','10','3',NULL,'Employee Id',NULL,NULL,'"drvEmployeeID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECUTRAMPEXZ0','50','D','10','4',NULL,'Email',NULL,NULL,'"drvAddressEmail"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECUTRAMPEXZ0','50','D','10','5',NULL,'Date of Birth',NULL,NULL,'"drvDateOfBirth"','(''UD23''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECUTRAMPEXZ0','50','D','10','6',NULL,'Start Date',NULL,NULL,'"drvStartDate"','(''UD23''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECUTRAMPEXZ0','50','D','10','7',NULL,'End Date',NULL,NULL,'"drvEndDate"','(''UD23''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECUTRAMPEXZ0','50','D','10','8',NULL,'Language',NULL,NULL,'""','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECUTRAMPEXZ0','50','D','10','9',NULL,'Performance Rating',NULL,NULL,'""','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECUTRAMPEXZ0','50','D','10','10',NULL,'Manager',NULL,NULL,'"drvManager"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECUTRAMPEXZ0','50','D','10','11',NULL,'Manager Email',NULL,NULL,'"drvManagerEmail"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECUTRAMPEXZ0','50','D','10','12',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECUTRAMPEXZ0','50','D','10','13',NULL,'Location',NULL,NULL,'"drvLocation"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECUTRAMPEXZ0','50','D','10','14',NULL,'Business Unit',NULL,NULL,'"drvBusinessUnit"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECUTRAMPEXZ0','50','D','10','15',NULL,'Department',NULL,NULL,'"drvDepartment"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECUTRAMPEXZ0','50','D','10','16',NULL,'Employment Type',NULL,NULL,'"drvEmploymentType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECUTRAMPEXZ0','50','D','10','17',NULL,'Job Title',NULL,NULL,'"drvJobTitle"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECUTRAMPEXZ0','50','D','10','18',NULL,'Org Level 1 Manager',NULL,NULL,'"drvOrgLvl1Manager"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ECUTRAMPEXZ0','50','D','10','19',NULL,'Org Level 3 Description',NULL,NULL,'"drvOrgLvl3Description"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ECUTRAMPEXZ0','50','D','10','20',NULL,'Age',NULL,NULL,'"drvAge"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ECUTRAMPEXZ0','50','D','10','21',NULL,'Time in Role',NULL,NULL,'"drvTimeInRole"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ECUTRAMPEXZ0','50','D','10','22',NULL,'Race/Ethnicity',NULL,NULL,'"drvRateEthnicity"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ECUTRAMPEXZ0','50','D','10','23',NULL,'Org Level 2 Description',NULL,NULL,'"drvOrvLvl2Description"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ECUTRAMPEXZ0','50','D','10','24',NULL,'FLSA Type',NULL,NULL,'"drvFSLAType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECUTRAMPEXZ0','50','D','10','25',NULL,'Company',NULL,NULL,'"drvCompany"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECUTRAMPEXZ0','50','D','10','26',NULL,'Employment Status',NULL,NULL,'"drvEmploymentStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECUTRAMPEXZ0','50','D','10','27',NULL,'Country',NULL,NULL,'"drvCountry"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECUTRAMPEXZ0','50','D','10','28',NULL,'Manager EEID',NULL,NULL,'"drvManagerEEID"','(''UA''=''T'')');
 
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Department"','15','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','15',NULL,'Department',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Employment Type"','16','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','16',NULL,'Employment Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Job Title"','17','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','17',NULL,'Job Title',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Org Level 1 Manager"','18','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','18',NULL,'Org Level 1 Manager',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Org Level 3 Description"','19','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','19',NULL,'Org Level 3 Description',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Age"','20','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','20',NULL,'Age',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Time in Role"','21','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','21',NULL,'Time in Role',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Race/Ethnicity"','22','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','22',NULL,'Race/Ethnicity',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Org Level 2 Description"','23','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','23',NULL,'Org Level 2 Description',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"FLSA Type"','24','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','24',NULL,'FLSA Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Company"','25','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','25',NULL,'Company',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Employment Status"','26','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','26',NULL,'Employment Status',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Country"','27','(''DA''=''T,'')','ECUTRAMPEXZ0','50','H','01','27',NULL,'Country',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"Manager EEID"','28','(''DA''=''T'')','ECUTRAMPEXZ0','50','H','01','28',NULL,'Manager EEID',NULL,NULL);
+-----------
+-- Build web filename
+-----------
 
-
-
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvName"','1','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','1',NULL,'Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvPrefferedName"','2','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','2',NULL,'Preferred Name',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmployeeID"','3','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','3',NULL,'Employee Id',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAddressEmail"','4','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','4',NULL,'Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDateOfBirth"','5','(''UD23''=''T,'')','ECUTRAMPEXZ0','50','D','10','5',NULL,'Date of Birth',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvStartDate"','6','(''UD23''=''T,'')','ECUTRAMPEXZ0','50','D','10','6',NULL,'Start Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEndDate"','7','(''UD23''=''T,'')','ECUTRAMPEXZ0','50','D','10','7',NULL,'End Date',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','8','(''DA''=''T,'')','ECUTRAMPEXZ0','50','D','10','8',NULL,'Language',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('""','9','(''DA''=''T,'')','ECUTRAMPEXZ0','50','D','10','9',NULL,'Performance Rating',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvManager"','10','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','10',NULL,'Manager',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvManagerEmail"','11','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','11',NULL,'Manager Email',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvGender"','12','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','12',NULL,'Gender',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvLocation"','13','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','13',NULL,'Location',NULL,NULL);
-
-
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvBusinessUnit"','14','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','14',NULL,'Business Unit',NULL,NULL);
-
-
-
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvDepartment"','15','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','15',NULL,'Department',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmploymentType"','16','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','16',NULL,'Employment Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvJobTitle"','17','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','17',NULL,'Job Title',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrgLvl1Manager"','18','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','18',NULL,'Org Level 1 Manager',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrgLvl3Description"','19','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','19',NULL,'Org Level 3 Description',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvAge"','20','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','20',NULL,'Age',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvTimeInRole"','21','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','21',NULL,'Time in Role',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvRateEthnicity"','22','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','22',NULL,'Race/Ethnicity',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvOrvLvl2Description"','23','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','23',NULL,'Org Level 2 Description',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvFSLAType"','24','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','24',NULL,'FLSA Type',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCompany"','25','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','25',NULL,'Company',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvEmploymentStatus"','26','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','26',NULL,'Employment Status',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvCountry"','27','(''UA''=''T,'')','ECUTRAMPEXZ0','50','D','10','27',NULL,'Country',NULL,NULL);
-INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType) VALUES ('"drvManagerEEID"','28','(''UA''=''T'')','ECUTRAMPEXZ0','50','D','10','28',NULL,'Manager EEID',NULL,NULL);
-/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
-/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
-/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
 /*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'ECUTRAMPEX_20210407.txt';
-/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demographic Export','202010129','EMPEXPORT','ONDEM_XOE',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202010129','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202009201',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'Null','N',',IAGFG,HG0SP,XI0GS,Y5USD,VLYMR,368IV,B57L5',NULL,NULL,NULL,'Culture Amp Demographic -Sched','202010129','EMPEXPORT','SCH_ECUTRA',NULL,'ECUTRAMPEX',NULL,NULL,NULL,'202104079','Oct 12 2020  1:04PM','Oct 12 2020  1:04PM','202104061',NULL,'','','202009201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202104011','EMPEXPORT','TEST_XOE','Apr  1 2021  7:24PM','ECUTRAMPEX',NULL,NULL,NULL,'202104011','Apr  1 2021 12:00AM','Dec 30 1899 12:00AM','202103011','451','','','202103011',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
+/*08*/ DECLARE @FileName varchar(1000) = 'ECUTRAMPEX_20211209.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG,Y5USD,XI0GS,HG0SP,VLYMR,368IV,B57L5',NULL,NULL,NULL,'Culture Amp Demographic Export','202109079','EMPEXPORT','ONDEM_XOE','Sep 21 2021  2:39PM','ECUTRAMPEX',NULL,NULL,NULL,'202110129','Sep  7 2021 12:00AM','Dec 30 1899 12:00AM','202110111','29','','','202109071',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','IAGFG,Y5USD,XI0GS,HG0SP,VLYMR,368IV,B57L5',NULL,NULL,NULL,'Culture Amp Demographic -Sched','202104229','EMPEXPORT','SCH_ECUTRA','Apr 22 2021 12:46PM','ECUTRAMPEX',NULL,NULL,NULL,'202112099','Apr 22 2021 12:00AM','Dec 30 1899 12:00AM','202112081','124','','','202104011',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Culture Amp Demographic -Test','202109161','EMPEXPORT','TEST_XOE','Sep 21 2021  2:58PM','ECUTRAMPEX',NULL,NULL,NULL,'202109161','Sep 16 2021 12:00AM','Dec 30 1899 12:00AM','202109161','17','','','202109161',dbo.fn_GetTimedKey(),NULL,'us3rVaCLI1003',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECUTRAMPEX','UseFileName','V','Y');
-/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'ECUTRAMPEX' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
-/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'ECUTRAMPEX' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
-IF OBJECT_ID('U_ECUTRAMPEX_SavePath') IS NOT NULL DROP TABLE [dbo].[U_ECUTRAMPEX_SavePath];
-GO
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECUTRAMPEX','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECUTRAMPEX','D10','dbo.U_ECUTRAMPEX_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_ECUTRAMPEX_Audit
+-----------
+
 IF OBJECT_ID('U_ECUTRAMPEX_Audit') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_Audit] (
     [audEEID] char(12) NULL,
@@ -130,8 +264,8 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_Audit] (
     [audFieldName] varchar(128) NOT NULL,
     [audAction] varchar(6) NOT NULL,
     [audDateTime] datetime NOT NULL,
-    [audOldValue] varchar(2000) NULL,
-    [audNewValue] varchar(2000) NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
     [audEffectiveDate] smalldatetime NULL,
     [audRowNo] bigint NULL,
     [audDedChange] varchar(1) NOT NULL,
@@ -144,11 +278,21 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_Audit] (
     [audReEnroll] varchar(1) NOT NULL,
     [audTermPlan] varchar(1) NOT NULL
 );
+
+-----------
+-- Create table U_ECUTRAMPEX_AuditFields
+-----------
+
 IF OBJECT_ID('U_ECUTRAMPEX_AuditFields') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_AuditFields] (
     [aTableName] varchar(30) NULL,
     [aFieldName] varchar(30) NULL
 );
+
+-----------
+-- Create table U_ECUTRAMPEX_drvTbl
+-----------
+
 IF OBJECT_ID('U_ECUTRAMPEX_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvEEID] char(12) NULL,
@@ -164,29 +308,39 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_drvTbl] (
     [drvEndDate] datetime NULL,
     [drvManager] varchar(201) NULL,
     [drvManagerEmail] varchar(50) NULL,
-    [drvGender] char(1) NULL,
-    [drvBusinessUnit] VARCHAR(255) NULL,
-    [drvLocation] varchar(255) NULL,
+    [drvGender] varchar(10) NOT NULL,
+    [drvLocation] varchar(25) NULL,
+    [drvBusinessUnit] varchar(25) NULL,
     [drvDepartment] varchar(45) NULL,
-    [drvEmploymentType] char(1) NULL,
-    [drvJobTitle] varchar(27) NOT NULL,
+    [drvEmploymentType] varchar(9) NOT NULL,
+    [drvJobTitle] varchar(152) NULL,
     [drvOrgLvl1Manager] varchar(201) NOT NULL,
     [drvOrgLvl3Description] varchar(25) NULL,
     [drvAge] int NULL,
     [drvTimeInRole] int NULL,
     [drvRateEthnicity] varchar(45) NULL,
-    [drvOrvLvl2Description] varchar(25) NULL,
-    [drvFSLAType] char(1) NULL,
+    [drvOrvLvl2Description] varchar(255) NULL,
+    [drvFSLAType] varchar(10) NOT NULL,
     [drvCompany] varchar(40) NULL,
-    [drvEmploymentStatus] char(1) NULL,
-    [drvCountry] char(3) NULL,
+    [drvEmploymentStatus] varchar(16) NOT NULL,
+    [drvCountry] varchar(45) NULL,
     [drvManagerEEID] char(9) NULL
 );
+
+-----------
+-- Create table U_ECUTRAMPEX_EEList
+-----------
+
 IF OBJECT_ID('U_ECUTRAMPEX_EEList') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
+
+-----------
+-- Create table U_ECUTRAMPEX_File
+-----------
+
 IF OBJECT_ID('U_ECUTRAMPEX_File') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_File] (
     [RecordSet] char(3) NOT NULL,
@@ -196,6 +350,11 @@ CREATE TABLE [dbo].[U_ECUTRAMPEX_File] (
     [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
 );
+
+-----------
+-- Create table U_ECUTRAMPEX_PEarHist
+-----------
+
 IF OBJECT_ID('U_ECUTRAMPEX_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_ECUTRAMPEX_PEarHist] (
     [PehEEID] char(12) NOT NULL,
@@ -226,8 +385,8 @@ Purpose: Culture Amp Demographic Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2020     SR-2020-000XXXXX   XXXXX
+12/09/2021 by AP:
+	- Cleaned up name field to replace é with e.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECUTRAMPEX';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECUTRAMPEX';
@@ -241,7 +400,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECUTRAMPEX', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECUTRAMPEX', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECUTRAMPEX', 'SCH_ECUTRA';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ECUTRAMPEX', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECUTRAMPEX', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -322,6 +481,9 @@ BEGIN
     INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressState');
     INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressZipCode');
     INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('Contacts','ConAddressCountry');
+
+    -- PlatformConfigFields
+    --INSERT INTO dbo.U_ECUTRAMPEX_AuditFields VALUES ('SEmployment','_BCultureAmpDepartment'); -- took this out and added the table/field to the where clause because this was taking FOREVER to run.
     
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_ECUTRAMPEX_Audit','U') IS NOT NULL
@@ -377,6 +539,7 @@ BEGIN
     FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_AuditData WITH (NOLOCK)
         ON xEEID = audKey1Value
+    --INNER JOIN dbo.vw_dsi_CfgAuditData WITH (NOLOCK) ON xEEID = CfgAudKey1Value
     JOIN dbo.U_ECUTRAMPEX_AuditFields WITH (NOLOCK)
         ON aTableName = audTableName
         AND aFieldName = audFieldName
@@ -387,6 +550,30 @@ BEGIN
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
     AND ISNULL(audNewValue, '') <> ''
    ;
+
+
+   INSERT INTO dbo.U_ECUTRAMPEX_Audit
+   SELECT xEEID
+    ,xCOID
+    ,NULL
+    ,xEEID 
+    ,xCOID
+    ,''
+    ,CfgAudClass
+    ,CfgAudFieldName
+    ,CfgAudAction
+    ,CfgAudDateTime
+    ,CfgAudOldValue
+    ,CfgAudNewValue
+    ,CfgAudEffDate
+    ,ROW_NUMBER() OVER (PARTITION BY xEEID, xCOID, CfgAudFieldName ORDER BY cfgAudDateTime DESC), 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N', 'N'
+    FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
+    JOIN dbo.vw_dsi_CfgAuditData XX WITH (NOLOCK) ON xEEID = CfgAudKey1Value
+    WHERE CfgAudDateTime BETWEEN @StartDate AND @EndDate
+    AND ISNULL(CfgAudNewValue, '') <> ''
+    --AND xEEID = 'A5M38E0010K0'
+    AND CfgAudClass = 'SEmployment'
+    AND CfgAudFieldName = '_BCultureAmpDepartment'
 
     --================
     -- Changes Only
@@ -463,7 +650,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = EC.EecEmpNo -- E.EepDateOfBirth
         -- standard fields above and additional driver fields below
-        ,drvName = E.EepNameFirst + ' ' + E.EepNameLast
+        ,drvName = REPLACE(E.EepNameFirst + ' ' + E.EepNameLast, 'é', 'e')
         ,drvPrefferedName = CASE WHEN E.EepNamePreferred IS NOT NULL THEN E.EepNamePreferred ELSE E.EepNameFirst END
         ,drvEmployeeID = EC.EecEmpNo
         ,drvAddressEmail = E.EepAddressEMail
@@ -472,19 +659,23 @@ BEGIN
         ,drvEndDate = EC.EecDateOfTermination
         ,drvManager = SUP.EepNameFirst + ' ' + SUP.EepNameLast
         ,drvManagerEmail = SUP.EepAddressEMail
-        ,drvGender = E.EepGender
-        ,drvLocation = LocAddressState
-        ,drvBusinessUnit = ''
+        ,drvGender = CASE E.EepGender
+                        WHEN 'M' THEN 'Male'
+                        WHEN 'F' THEN 'Female'
+                        ELSE 'Non-Binary'
+                    END
+        ,drvLocation = OrgDesc2 
+        ,drvBusinessUnit = OrgDesc1
         ,drvDepartment = CodDesc -- CustomFields.Employment_CultureAmpDepartment -- OrgDesc1
-        ,drvEmploymentType = EC.EecFulltimeOrPartTime
-        ,drvJobTitle = '"' + JbcDesc + '"'
+        ,drvEmploymentType = CASE WHEN EC.EecFulltimeOrPartTime = 'F' THEN 'Full Time' ELSE 'Part Time' END
+        ,drvJobTitle = '"' + EecJobTitle + '"'
         ,drvOrgLvl1Manager = OrgMangerName
         ,drvOrgLvl3Description = OrgDesc3
         ,drvAge = DATEDIFF(hour,E.EepDateOfBirth,GETDATE())/8766
         ,drvTimeInRole = EjhMonthsInJobCode
         ,drvRateEthnicity = EDesc -- E.EepEthnicID
-        ,drvOrvLvl2Description = OrgDesc2
-        ,drvFSLAType = EjhFLSACategory
+        ,drvOrvLvl2Description = LocAddressState
+        ,drvFSLAType = CASE WHEN EjhFLSACategory = 'E' THEN 'Exempt' ELSE 'Non-Exempt' END
         ,drvCompany =    CASE WHEN CmpCompanyCode = 'CBC' THEN 'Clif Bar & Company'
                             WHEN CmpCompanyCode = 'CBCCD' THEN 'Clif Bar & Company Canada'
                             WHEN CmpCompanyCode = 'CIN' THEN 'Clif Bar Baking Company of Indianapolis'
@@ -493,8 +684,12 @@ BEGIN
                             WHEN CmpCompanyCode = 'CBEUK' THEN 'Clif Bar Europe B.V. UK'
                             WHEN CmpCompanyCode = 'CBEDE' THEN 'Clif Bar Europe Germany'
                         END
-        ,drvEmploymentStatus = EC.EecEmplStatus
-        ,drvCountry = E.EepAddressCountry
+        ,drvEmploymentStatus =    CASE EC.EecEmplStatus
+                                    WHEN 'A' THEN 'Active'
+                                    WHEN 'L' THEN 'Leave of Absence'
+                                    ELSE 'Terminated'
+                                END
+        ,drvCountry = CNCdesc-- E.EepAddressCountry
         ,drvManagerEEID = (SELECT TOP 1 SUP.EecEmpNo FROM dbo.EmpComp SUP WITH (NOLOCK) WHERE SUP.EecEEID = EC.EecSupervisorId)
     INTO dbo.U_ECUTRAMPEX_drvTbl
     FROM dbo.U_ECUTRAMPEX_EEList WITH (NOLOCK)
@@ -511,8 +706,8 @@ BEGIN
         ON LocCode = EC.EecLocation
     JOIN dbo.Company WITH (NOLOCK)
         ON CmpCoID = xCoID
-    JOIN dbo.U_ECUTRAMPEX_PEarHist WITH (NOLOCK)
-        ON PehEEID = xEEID
+    --JOIN dbo.U_ECUTRAMPEX_PEarHist WITH (NOLOCK)
+       -- ON PehEEID = xEEID
     JOIN (
             SELECT EjhEEID, EjhCOID, EjhJobCode, DATEDIFF(MONTH, MIN(EjhJobEffDate), GETDATE()) AS EjhMonthsInJobCode, MAX(EjhFLSACategory) AS EjhFLSACategory
             FROM dbo.vw_int_EmpHJob WITH (NOLOCK)
@@ -549,11 +744,18 @@ BEGIN
     JOIN (select * from [dbo].[fn_MP_CustomFields_EmpComp_Export] (null, null, null, null)) AS CustomFields
         ON EC.EecEEID = CustomFields.EecEEID
         AND EC.EecCOID = CustomFields.EecCOID
-    JOIN dbo.Codes WITH (NOLOCK)
+    LEFT JOIN dbo.Codes WITH (NOLOCK)
         ON CustomFields.Employment_CultureAmpDepartment = CodCode
         AND CodTable = 'CO_CULTUREAMPDEP'
-    WHERE PehCurAmtYTD > 0
-        AND CmpCompanyCode IN ('CBC','CBCCD','CIN','CTF','CBENL','CBEUK','CBEDE')
+    JOIN (
+            SELECT CodCode AS CNCode, CodDesc AS CNCdesc
+            FROM dbo.Codes WITH (NOLOCK)
+            WHERE CodTable = 'COUNTRY'
+            ) AS Countries
+        ON E.EepAddressCountry = CnCode
+    WHERE --PehCurAmtYTD > 0
+        --AND 
+        CmpCompanyCode IN ('CBC','CBCCD','CIN','CTF','CBENL','CBEUK','CBEDE')
     ;
 
     --==========================================
@@ -593,9 +795,62 @@ WHERE expFormatCode = 'ECUTRAMPEX';
 **********************************************************************************/
 
 -- ??
-
 GO
-
 CREATE VIEW dbo.dsi_vwECUTRAMPEX_Export AS 
     SELECT TOP 200000000 Data FROM dbo.U_ECUTRAMPEX_File WITH (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'ECUTRAMPEX' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'ECUTRAMPEX'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'ECUTRAMPEX'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECUTRAMPEX', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ECUTRAMPEX', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECUTRAMPEX', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
