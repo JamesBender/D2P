@@ -5,7 +5,7 @@ ESCHWABTES: Schwab 401K export TEST
 FormatCode:     ESCHWABTES
 Project:        Schwab 401K export TEST
 Client ID:      SUM1003
-Date/time:      2021-11-08 20:53:51.837
+Date/time:      2021-12-09 13:35:26.343
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -126,6 +126,8 @@ GO
 IF OBJECT_ID('U_dsi_ESCHWABTES_drvtrl') IS NOT NULL DROP TABLE [dbo].[U_dsi_ESCHWABTES_drvtrl];
 GO
 IF OBJECT_ID('U_dsi_ESCHWABTES_drvtbl_temp') IS NOT NULL DROP TABLE [dbo].[U_dsi_ESCHWABTES_drvtbl_temp];
+GO
+IF OBJECT_ID('U_dsi_ESCHWABTES_drvtbl') IS NOT NULL DROP TABLE [dbo].[U_dsi_ESCHWABTES_drvtbl];
 GO
 IF OBJECT_ID('U_dsi_ESCHWABTES_curearnamts') IS NOT NULL DROP TABLE [dbo].[U_dsi_ESCHWABTES_curearnamts];
 GO
@@ -251,8 +253,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('20211015 Schwab Semimonthly',NULL,NULL,NULL,'UFMUO',NULL,NULL,NULL,'Schwab 401K export','202110159','EMPEXPORT','ESCHWABTES','Oct 15 2021  9:00AM','ESCHWABTES',NULL,NULL,NULL,'202110159','Oct 15 2021 12:00AM','Dec 30 1899 12:00AM','202110151','167','eecPayGroup','SFT,SPAR,SPRN,SPT','202110151',dbo.fn_GetTimedKey(),NULL,'CALLEY',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('TEST_20141121 Schwab Biweekly.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Testing Purposes Only','202110291','EMPEXPORT','TEST','Oct 28 2021 10:06AM','ESCHWABTES',NULL,NULL,NULL,'202110291','Oct 29 2021 12:00AM','Oct 31 2021 12:00AM','202110291','5002','','','202110291',dbo.fn_GetTimedKey(),NULL,'us3rVaSUM1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('20211124 Schwab Biweekly',NULL,NULL,NULL,'RCDFF,UFMUO',NULL,NULL,NULL,'Schwab 401K export','202111249','EMPEXPORT','ESCHWABTES','Dec  6 2021 10:02AM','ESCHWABTES',NULL,NULL,NULL,'202111249','Nov 24 2021 12:00AM','Dec 30 1899 12:00AM','202111241','2484','',NULL,'202111241',dbo.fn_GetTimedKey(),NULL,'CALLEY',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('TEST_20211207a_Schwab_Biweekly.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Testing Purposes Only','202111241','EMPEXPORT','TEST','Dec  9 2021  1:03PM','ESCHWABTES',NULL,NULL,NULL,'202111241','Nov 24 2021 12:00AM','Nov 20 2021 12:00AM','202111241','2486','','','202111241',dbo.fn_GetTimedKey(),NULL,'us3rVaSUM1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -320,6 +322,69 @@ CREATE TABLE [dbo].[U_dsi_ESCHWABTES_curearnamts] (
 );
 
 -----------
+-- Create table U_dsi_ESCHWABTES_drvtbl
+-----------
+
+IF OBJECT_ID('U_dsi_ESCHWABTES_drvtbl') IS NULL
+CREATE TABLE [dbo].[U_dsi_ESCHWABTES_drvtbl] (
+    [drveeid] char(12) NOT NULL,
+    [drvssn] char(11) NULL,
+    [drvlastname] varchar(100) NULL,
+    [drvfirstname] varchar(100) NULL,
+    [drvmiddlename] varchar(1) NULL,
+    [drv401KREGamt] money NULL,
+    [drv401KREG] varchar(11) NULL,
+    [drvMATCHamt] money NULL,
+    [drvMATCH] varchar(11) NULL,
+    [drvPROFITSHAREamt] money NULL,
+    [drvPROFITSHARE] varchar(11) NULL,
+    [drv401KROTHamt] money NULL,
+    [drv401KROTH] varchar(11) NULL,
+    [drvSAFEHARBORamt] money NULL,
+    [drvSAFEHARBOR] varchar(11) NULL,
+    [drvloanamt] money NULL,
+    [drvloan] varchar(11) NULL,
+    [drvPerTotCompamt] money NULL,
+    [drvPerTotComp] varchar(11) NULL,
+    [drvPerHrsWorkamt] int NULL,
+    [drvPerHrsWork] varchar(11) NULL,
+    [drvYTD401Kamt] money NULL,
+    [drvYTD401K] varchar(11) NULL,
+    [drvYTDMATCHamt] money NULL,
+    [drvYTDMATCH] varchar(11) NULL,
+    [drvYTDPSamt] money NULL,
+    [drvYTDPS] varchar(11) NULL,
+    [drvYTDROTHamt] money NULL,
+    [drvYTDROTH] varchar(11) NULL,
+    [drvYTDSHamt] money NULL,
+    [drvYTDSH] varchar(11) NULL,
+    [drvYTDTotCompamt] money NULL,
+    [drvYTDTotComp] varchar(11) NULL,
+    [drvYTDHrsWorkamt] int NULL,
+    [drvYTDHrsWork] varchar(30) NULL,
+    [drvfreq] char(1) NULL,
+    [drvaddress1] varchar(255) NULL,
+    [drvaddress2] varchar(255) NULL,
+    [drvcity] varchar(255) NULL,
+    [drvstate] varchar(255) NULL,
+    [drvzipcode] varchar(50) NULL,
+    [drvcountry] char(3) NULL,
+    [drvdob] varchar(8000) NULL,
+    [drvhiredate] varchar(8000) NULL,
+    [drvplandate] char(8) NULL,
+    [drvtermdate] varchar(1) NOT NULL,
+    [drvrehiredt] varchar(8000) NULL,
+    [drvstatus] varchar(1) NOT NULL,
+    [drvrptdivision] char(10) NULL,
+    [drvaltkey1] char(1) NULL,
+    [drvaltkey2] char(10) NULL,
+    [drvworkphone] varchar(12) NULL,
+    [drvBenefitStatusReason] varchar(1) NOT NULL,
+    [drvEmailAddress] varchar(50) NULL,
+    [drvTransferIndicator] varchar(1) NOT NULL
+);
+
+-----------
 -- Create table U_dsi_ESCHWABTES_drvtbl_temp
 -----------
 
@@ -382,67 +447,6 @@ CREATE TABLE [dbo].[U_dsi_ESCHWABTES_drvtbl_temp] (
     [drvEmailAddress] varchar(50) NULL,
     [drvTransferIndicator] varchar(1) NOT NULL
 );
-
-IF OBJECT_ID('U_dsi_ESCHWABTES_drvtbl') IS NULL
-CREATE TABLE [dbo].[U_dsi_ESCHWABTES_drvtbl] (
-    [drveeid] char(12) NOT NULL,
-  --  [drvcoid] char(5) NOT NULL,
-    [drvssn] char(11) NULL,
-    [drvlastname] varchar(100) NULL,
-    [drvfirstname] varchar(100) NULL,
-    [drvmiddlename] varchar(1) NULL,
-    [drv401KREGamt] money NULL,
-    [drv401KREG] varchar(11) NOT NULL,
-    [drvMATCHamt] money NULL,
-    [drvMATCH] varchar(11) NOT NULL,
-    [drvPROFITSHAREamt] money NULL,
-    [drvPROFITSHARE] varchar(11) NOT NULL,
-    [drv401KROTHamt] money NULL,
-    [drv401KROTH] varchar(11) NOT NULL,
-    [drvSAFEHARBORamt] money NULL,
-    [drvSAFEHARBOR] varchar(11) NOT NULL,
-    [drvloanamt] money NULL,
-    [drvloan] varchar(11) NOT NULL,
-    [drvPerTotCompamt] money NULL,
-    [drvPerTotComp] varchar(11) NOT NULL,
-    [drvPerHrsWorkamt] int NULL,
-    [drvPerHrsWork] varchar(4) NOT NULL,
-    [drvYTD401Kamt] money NULL,
-    [drvYTD401K] varchar(11) NOT NULL,
-    [drvYTDMATCHamt] money NULL,
-    [drvYTDMATCH] varchar(11) NOT NULL,
-    [drvYTDPSamt] money NULL,
-    [drvYTDPS] varchar(11) NOT NULL,
-    [drvYTDROTHamt] money NULL,
-    [drvYTDROTH] varchar(11) NOT NULL,
-    [drvYTDSHamt] money NULL,
-    [drvYTDSH] varchar(11) NOT NULL,
-    [drvYTDTotCompamt] money NULL,
-    [drvYTDTotComp] varchar(11) NOT NULL,
-    [drvYTDHrsWorkamt] int NULL,
-    [drvYTDHrsWork] varchar(4) NOT NULL,
-    [drvfreq] char(1) NULL,
-    [drvaddress1] varchar(255) NULL,
-    [drvaddress2] varchar(255) NULL,
-    [drvcity] varchar(255) NULL,
-    [drvstate] varchar(255) NULL,
-    [drvzipcode] varchar(50) NULL,
-    [drvcountry] char(3) NULL,
-    [drvdob] varchar(8000) NULL,
-    [drvhiredate] varchar(8000) NULL,
-    [drvplandate] char(8) NULL,
-    [drvtermdate] varchar(8000) NULL,
-    [drvrehiredt] varchar(8000) NULL,
-    [drvstatus] varchar(1) NULL,
-    [drvrptdivision] char(10) NULL,
-    [drvaltkey1] char(1) NULL,
-    [drvaltkey2] char(10) NULL,
-    [drvworkphone] varchar(12) NULL,
-    [drvBenefitStatusReason] char(1) NULL,
-    [drvEmailAddress] varchar(50) NULL,
-    [drvTransferIndicator] varchar(1) NOT NULL
-);
-
 
 -----------
 -- Create table U_dsi_ESCHWABTES_drvtrl
@@ -678,8 +682,11 @@ Dave Smith            2/22/2018        SR-2018-00183882    Added benefit status 
         - Cleaned up new file field counts to accommodate for new fields.
 
 11/08/2021 by AP:
-		- Updated format to group amounts to employees for both term and active amounts.
-		- Created temp table for existing driver table.
+        - Updated format to group amounts to employees for both term and active amounts.
+        - Created temp table for existing driver table.
+
+12/09/2021 by AP:
+		- Updated logic for PerHrsWork.
 
 SELECT * FROM U_Dsi_Configuration WHERE FormatCode = 'ESCHWABTES'
 SELECT * FROM U_Dsi_SqlClauses WHERE FormatCode = 'ESCHWABTES'
@@ -1069,8 +1076,8 @@ BEGIN
 
     
     SELECT 
-		drveeid,
-		drvssn,
+        drveeid,
+        drvssn,
         drvlastname,
         drvfirstname,
         drvmiddlename,
@@ -1089,7 +1096,7 @@ BEGIN
         sum(drvPerTotCompamt) as drvPerTotCompamt,
         RIGHT('00000000000' + cast(sum(cast(drvPerTotComp as int)) as varchar), 11) as drvPerTotComp,
         sum(drvPerHrsWorkamt) as drvPerHrsWorkamt,
-        RIGHT('00000000000' + cast(sum(cast(drvPerHrsWork as int)) as varchar), 11) as drvPerHrsWork,
+        RIGHT('0000' + cast(sum(cast(drvPerHrsWork as int)) as varchar), 4) as drvPerHrsWork,
         --sum(drvPerHrsWorkamt) as drvPerHrsWorkamt,
         --RIGHT('00000000000' + cast(sum(cast(drvPerHrsWork as int)) as varchar), 11) as drvPerHrsWork,
         sum(drvYTD401Kamt) as drvYTD401Kamt,
@@ -1130,7 +1137,7 @@ BEGIN
         FROM U_dsi_ESCHWABTES_drvtbl_temp
      --   WHERE drveeid = '7X0C780000K0'
         GROUP BY drveeid,
-		drvssn,
+        drvssn,
         drvlastname,
         drvfirstname,
         drvmiddlename

@@ -5,7 +5,7 @@ EEBCCOBEXP: EBC Cobra QB Export
 FormatCode:     EEBCCOBEXP
 Project:        EBC Cobra QB Export
 Client ID:      QUO1000
-Date/time:      2021-12-01 06:19:14.063
+Date/time:      2021-12-09 09:18:03.703
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -234,7 +234,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEBCCOBEXP_20211201.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEBCCOBEXP_20211209.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -245,7 +245,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202110189','EMPEXPORT','OEPASSIVE','Oct 20 2021  5:18AM','EEBCCOBEXP',NULL,NULL,NULL,'202110189','Oct 18 2021 11:50AM','Oct 18 2021 11:50AM','202110011','24','','','202110011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export','202110189','EMPEXPORT','ONDEM_XOE','Oct 20 2021  5:18AM','EEBCCOBEXP',NULL,NULL,NULL,'202110189','Oct 18 2021 11:50AM','Oct 18 2021 11:50AM','202110011','33','','','202110011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export-Sched','202110189','EMPEXPORT','SCH_EEBCCO','Oct 20 2021  5:19AM','EEBCCOBEXP',NULL,NULL,NULL,'202110189','Oct 18 2021 11:50AM','Oct 18 2021 11:50AM','202110011','33','','','202110011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export-Test','202110269','EMPEXPORT','TEST_XOE','Oct 26 2021 11:23AM','EEBCCOBEXP',NULL,NULL,NULL,'202110269','Oct 26 2021 12:00AM','Dec 30 1899 12:00AM','202108011','87','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export-Test','202112061','EMPEXPORT','TEST_XOE','Dec  6 2021  2:46PM','EEBCCOBEXP',NULL,NULL,NULL,'202112061','Dec  6 2021 12:00AM','Dec 30 1899 12:00AM','202110151','49','','','202110151',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -380,7 +380,7 @@ CREATE TABLE [dbo].[U_EEBCCOBEXP_drvTbl_QBDEPENDENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] varchar(29) NULL,
     [drvSSN] char(11) NULL,
     [drvRelationship] varchar(15) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -400,7 +400,7 @@ CREATE TABLE [dbo].[U_EEBCCOBEXP_drvTbl_QBDEPENDENTPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] varchar(29) NULL,
     [drvPlanName] varchar(20) NULL
 );
 
@@ -962,7 +962,8 @@ BEGIN
                             WHEN BdmDedCode IN ('MED2','MED3','MEDK1') THEN 'Empire Health PPO'
                             WHEN BdmDedCode IN ('VIS') THEN 'Empire Vision'
                             WHEN BdmDedCode IN ('FSA') THEN 'TASC FSA'
-                            WHEN BdmDedCode IN ('HRA') THEN 'TASC HRA'
+                            WHEN BdmDedCode IN ('HRA') THEN 
+                                CASE WHEN GETDATE() < '1/1/2022' THEN 'TASC HRA' ELSE 'EBC HRA' END
                         END
         ,drvCoverageLevel =    CASE WHEN BdmDedCode IN ('FSA') THEN 'EE'
                             ELSE
@@ -1051,7 +1052,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' 4'
+        ,drvSort = xEEID + ' 4 ' + ConSystemID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvSSN = ConSSN
         ,drvRelationship =    CASE WHEN ConRelationship IN ('CHL','DPC','STC') THEN 'CHILD'
@@ -1107,7 +1108,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort =    xEEID + ' 5'
+        ,drvSort =    xEEID + ' 4 ' + ConSystemID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvPlanName =    CASE WHEN BdmDedCode IN ('DENBK','DENL') THEN 'Empire Dental Bronze'
                             WHEN BdmDedCode IN ('DENG','DENKG') THEN 'Empire Dental Gold'
@@ -1116,7 +1117,8 @@ BEGIN
                             WHEN BdmDedCode IN ('MED2','MED3','MEDK1') THEN 'Empire Health PPO'
                             WHEN BdmDedCode IN ('VIS') THEN 'Empire Vision'
                             WHEN BdmDedCode IN ('FSA') THEN 'TASC FSA'
-                            WHEN BdmDedCode IN ('HRA')THEN 'TASC HRA'
+                            WHEN BdmDedCode IN ('HRA') THEN 
+                                CASE WHEN GETDATE() < '1/1/2022' THEN 'TASC HRA' ELSE 'EBC HRA' END
                         END
     INTO dbo.U_EEBCCOBEXP_drvTbl_QBDEPENDENTPLANINITIAL
     FROM dbo.U_EEBCCOBEXP_EEList WITH (NOLOCK)
