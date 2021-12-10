@@ -5,7 +5,7 @@ ETAXSCPEN: TaxSaver Commuter and Parking Enrollment
 FormatCode:     ETAXSCPEN
 Project:        TaxSaver Commuter and Parking Enrollment
 Client ID:      BER1011
-Date/time:      2021-11-09 19:12:51.780
+Date/time:      2021-12-09 13:55:14.100
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -139,12 +139,12 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ETAXSCPEN0Z0','50','D','10','4',NULL,'Employee Middle Initial',NULL,NULL,'"drvMiddleInitial"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ETAXSCPEN0Z0','50','D','10','5',NULL,'Current deduction for Parking',NULL,NULL,'"drvDedParking"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ETAXSCPEN0Z0','50','D','10','6',NULL,'Current Year to Date for Parking',NULL,NULL,'"drvYTDParking"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ETAXSCPEN0Z0','50','D','10','7',NULL,'Park Benefit Eligibility Date (mm/dd/yy)',NULL,NULL,'"drvParkStartDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ETAXSCPEN0Z0','50','D','10','8',NULL,'Park Benefit Termination Date (mm/dd/yy)',NULL,NULL,'"drvParkEndDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ETAXSCPEN0Z0','50','D','10','7',NULL,'Park Benefit Eligibility Date (mm/dd/yy)',NULL,NULL,'"drvParkStartDate"','(''UD1''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ETAXSCPEN0Z0','50','D','10','8',NULL,'Park Benefit Termination Date (mm/dd/yy)',NULL,NULL,'"drvParkEndDate"','(''UD1''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ETAXSCPEN0Z0','50','D','10','9',NULL,'Current deduction for Transit',NULL,NULL,'"drvDedTransit"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ETAXSCPEN0Z0','50','D','10','10',NULL,'Current Year to Date for Transit',NULL,NULL,'"drvYTDTransit"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ETAXSCPEN0Z0','50','D','10','11',NULL,'Transit Benefit Eligibility Date (mm/dd/yy)',NULL,NULL,'"drvTransitStartDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ETAXSCPEN0Z0','50','D','10','12',NULL,'Transit Benefit Termination Date (mm/dd/yy)',NULL,NULL,'"drvTransitEndDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ETAXSCPEN0Z0','50','D','10','11',NULL,'Transit Benefit Eligibility Date (mm/dd/yy)',NULL,NULL,'"drvTransitStartDate"','(''UD1''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ETAXSCPEN0Z0','50','D','10','12',NULL,'Transit Benefit Termination Date (mm/dd/yy)',NULL,NULL,'"drvTransitEndDate"','(''UD1''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ETAXSCPEN0Z0','128','D','10','13',NULL,'Employee Street Address (1 and 2)',NULL,NULL,'"drvAddrStreet"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ETAXSCPEN0Z0','50','D','10','14',NULL,'City',NULL,NULL,'"drvCity"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ETAXSCPEN0Z0','50','D','10','15',NULL,'State abbreviation',NULL,NULL,'"drvAddrState"','(''UA''=''T,'')');
@@ -167,18 +167,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETAXSCPEN_20211109.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETAXSCPEN_20211209.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202111049','EMPEXPORT','OEACTIVE',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111049','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111041',NULL,'','','202111041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202111049','EMPEXPORT','OEPASSIVE',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111049','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111041',NULL,'','','202111041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSaver Com & Park Enrollment','202111049','EMPEXPORT','ONDEM_XOE',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111049','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111041',NULL,'','','202111041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSaver Com & Park Enro-Sched','202111049','EMPEXPORT','SCH_ETAXSC',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111049','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111041',NULL,'','','202111041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'TaxSaver Com & Park Enro-Test','202111049','EMPEXPORT','TEST_XOE','Nov  6 2021  2:34PM','ETAXSCPEN',NULL,NULL,NULL,'202111049','Nov  4 2021 12:00AM','Dec 30 1899 12:00AM','202110301','63','','','202110301',dbo.fn_GetTimedKey(),NULL,'us3dCoBER1011',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Active Open Enrollment Export','202201089','EMPEXPORT','OEACTIVE','Dec  1 2021  1:36PM','ETAXSCPEN',NULL,NULL,NULL,'202201089','Jan  8 2022 12:00AM','Dec 30 1899 12:00AM','202201011','36','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiBER1011',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Passive Open Enrollment Export','202201089','EMPEXPORT','OEPASSIVE','Dec  1 2021  1:22PM','ETAXSCPEN',NULL,NULL,NULL,'202201089','Jan  8 2022 12:00AM','Dec 30 1899 12:00AM','202111161','77','','','202111161',dbo.fn_GetTimedKey(),NULL,'us3lKiBER1011',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSaver Com & Park Enrollment','202111309','EMPEXPORT','ONDEM_XOE',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111309','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111161',NULL,'','','202111161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSaver Com & Park Enro-Sched','202111309','EMPEXPORT','SCH_ETAXSC',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111309','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111161',NULL,'','','202111161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'TaxSaver Com & Park Enro-Test','202111309','EMPEXPORT','TEST_XOE',NULL,'ETAXSCPEN',NULL,NULL,NULL,'202111309','Nov  4 2021 12:15PM','Nov  4 2021 12:15PM','202111161',NULL,'','','202111161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -520,11 +520,11 @@ BEGIN
         ,drvFirstName         = CONCAT('"',EepNameFirst,'"')
         ,drvMiddleInitial     = LEFT(EepNameMiddle,1)
         ,drvDedParking        = FORMAT(BDMPARK.BdmEEAmt, '#0.00')
-        ,drvYTDParking        = FORMAT((SELECT SUM(EedEEYTDAmt) FROM EmpDed WHERE EedEEID=xEEID AND EedDedCode = 'PARK'), '#0.00')
+        ,drvYTDParking        = FORMAT(ISNULL(PdhEEYTDPARK,0), '#0.00') 
         ,drvParkStartDate     = BDMPARK.BdmBenStartDate
         ,drvParkEndDate       = BDMPARK.BdmBenStopDate
         ,drvDedTransit        = FORMAT(BDMCOMCK.BdmEEAmt, '#0.00')
-        ,drvYTDTransit        = FORMAT((SELECT SUM(EedEEYTDAmt) FROM EmpDed WHERE EedEEID=xEEID AND EedDedCode = 'COMCK'), '#0.00')
+        ,drvYTDTransit        = FORMAT(ISNULL(PdhEEYTDCOMCK,0), '#0.00') 
         ,drvTransitStartDate  = BDMCOMCK.BdmBenStartDate
         ,drvTransitEndDate    = BDMCOMCK.BdmBenStopDate
         ,drvAddrStreet        = CONCAT('"',EepAddressLine1, RTRIM(' '+EepAddressLine2),'"')
@@ -582,17 +582,17 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202110281'
-       ,expStartPerControl     = '202110281'
-       ,expLastEndPerControl   = '202111049'
-       ,expEndPerControl       = '202111049'
+    SET expLastStartPerControl = '202111161'
+       ,expStartPerControl     = '202111161'
+       ,expLastEndPerControl   = '202111309'
+       ,expEndPerControl       = '202111309'
 WHERE expFormatCode = 'ETAXSCPEN';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwETAXSCPEN_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_ETAXSCPEN_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwETAXSCPEN_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ETAXSCPEN_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
 
 GO
 

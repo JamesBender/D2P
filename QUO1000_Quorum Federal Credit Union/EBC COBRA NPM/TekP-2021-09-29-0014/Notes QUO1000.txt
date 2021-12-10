@@ -1,0 +1,9 @@
+FormatCode:     EEBCCOBNPM
+Project:        EBC COBRA NPM
+Client:		Quorum Federal Credit Union
+Client ID:      QUO1000
+Server:         EW2WUP1DB01
+Environment:	EW21
+Database:	ULTIPRO_WPQFCU
+ExportPath:	\\us.saas\EW2\WP6\Downloads\V10\Exports\QFCU\EmployeeHistoryExport\
+SR		TekP-2021-09-29-0014
