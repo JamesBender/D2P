@@ -5,7 +5,7 @@ EPRUDTST: Prudential 401K TEST Export with CSV
 FormatCode:     EPRUDTST
 Project:        Prudential 401K TEST Export with CSV
 Client ID:      ROL1002
-Date/time:      2021-12-08 20:08:30.073
+Date/time:      2021-12-10 22:57:41.557
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Testing
@@ -298,8 +298,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','E23VQ30000C0','1','D','10','38',NULL,'Source 1',NULL,NULL,'"A"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','E23VQ30000C0','9','D','10','39',NULL,'Contribution Amount',NULL,NULL,'"drvPretax"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','E23VQ30000C0','2','D','10','48',NULL,'Investment',NULL,NULL,'"**"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','E23VQ30000C0','1','D','10','50',NULL,'Source 2',NULL,NULL,'"6"','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','E23VQ30000C0','9','D','10','51',NULL,'Contribution Amount',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','E23VQ30000C0','1','D','10','50',NULL,'Source 2',NULL,NULL,'"6"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','E23VQ30000C0','9','D','10','51',NULL,'Contribution Amount',NULL,NULL,'"drvPretaxMatch_2"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','E23VQ30000C0','2','D','10','60',NULL,'Investment',NULL,NULL,'"**"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','E23VQ30000C0','1','D','10','62',NULL,'Source 3',NULL,NULL,'"J"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','E23VQ30000C0','9','D','10','63',NULL,'Contribution Amount',NULL,NULL,'"drvRoth"','(''UA''=''F'')');
@@ -389,8 +389,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','E23VQ30000C0','1','D','15','38',NULL,'Source 1',NULL,NULL,'"A"','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','E23VQ30000C0','9','D','15','39',NULL,'Contribution Amount',NULL,NULL,'"drvPretaxNOP"','(''UNT2''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','E23VQ30000C0','2','D','15','48',NULL,'Investment',NULL,NULL,'"**"','(''DA''=''Q,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','E23VQ30000C0','1','D','15','50',NULL,'Source 2',NULL,NULL,'"6"','(''SS''=''Q,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','E23VQ30000C0','9','D','15','51',NULL,'Contribution Amount',NULL,NULL,'""','(''SS''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','E23VQ30000C0','1','D','15','50',NULL,'Source 2',NULL,NULL,'"6"','(''DA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','E23VQ30000C0','9','D','15','51',NULL,'Contribution Amount',NULL,NULL,'"drvPretaxMatch_2NOP"','(''UNT2''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','E23VQ30000C0','2','D','15','60',NULL,'Investment',NULL,NULL,'"**"','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','E23VQ30000C0','1','D','15','62',NULL,'Source 3',NULL,NULL,'"J"','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','E23VQ30000C0','9','D','15','63',NULL,'Contribution Amount',NULL,NULL,'"drvRothNOP"','(''UNT2''=''Q,'')');
@@ -1008,7 +1008,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Prudential 401K Export','202112059','EMPEXPORT','ONDEMAND','Dec  6 2021  9:13AM','EPRUDTST',NULL,NULL,NULL,'202112059','Dec  5 2021 12:00AM','Dec 30 1899 12:00AM','202111291','47674',NULL,NULL,'202111291',dbo.fn_GetTimedKey(),NULL,'CFORT',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112059','EMPEXPORT','TEST','Nov 16 2020 12:00AM','EPRUDTST',NULL,NULL,NULL,'202112059','Nov 15 2020 12:00AM','Dec 30 1899 12:00AM','202111291','40220',NULL,NULL,'202111291',dbo.fn_GetTimedKey(),NULL,'ULTI_ROLIN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,'1ZD15,3S6LD,1ZF3V,GHJ2I,1ZF8F,1ZFAD,1ZFC8,YUJZX,F1IYF,48TKI,968CW,1ZFDM,1ZFF0,Z9MT2,1ZFIB,1ZFJD,1ZFN3,1ZFOF,1ZFPN,2STMJ,5D666,1ZFGN,ATSCL,SOH37',NULL,NULL,NULL,'Test Purposes Only','202112059','EMPEXPORT','TEST','Dec 10 2021 12:00AM','EPRUDTST',NULL,NULL,NULL,'202112059','Dec  5 2021 12:00AM','Dec 30 1899 12:00AM','202111291','47800','',NULL,'202111291',dbo.fn_GetTimedKey(),NULL,'us3cPeROL1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -1126,6 +1126,8 @@ CREATE TABLE [dbo].[U_EPRUDTST_drvTbl_D10] (
     [CurW2Taxable] money NOT NULL,
     [YTDGross] decimal NOT NULL,
     [DefLimitComp] decimal NOT NULL,
+    [drvPretaxMatch_2] varchar(9) NULL,
+    [drvPretaxMatch_2NOP] decimal NOT NULL,
     [drvPlanNumber] varchar(6) NOT NULL,
     [drvSSN2] char(11) NULL,
     [drvPretax] varchar(9) NULL,
@@ -2186,6 +2188,8 @@ CREATE TABLE dbo.U_EPRUDTST_Sign (sValue VARCHAR(2), sDigit VARCHAR(1))
         ,CurW2Taxable = ISNULL(PthCurFITWages,0)
         ,YTDGross = ISNULL(PehCurAmtYTD,0)
         ,DefLimitComp = ISNULL(PehInclInDefCompYTD - YTDPdhSource4,0)
+        ,drvPretaxMatch_2   = RIGHT(LEFT(REPLACE(CAST(dbo.dsi_fnPadZero(ISNULL(PdhSource6,0)*100,9,0) AS VARCHAR(9)),'-','0'),8) + PdhMS.sDigit,9) --SR-2019-00234349 05/30/2019
+        ,drvPretaxMatch_2NOP   = ISNULL(PdhSource6,0)
         --,PreTaxMatch = PdhSource6
         -- standard fields above and additional driver fields below
         ,drvPlanNumber = '006974'
@@ -2331,6 +2335,10 @@ CREATE TABLE dbo.U_EPRUDTST_Sign (sValue VARCHAR(2), sDigit VARCHAR(1))
     LEFT JOIN dbo.U_EPRUDTST_Sign PdhRS WITH (NOLOCK)    --SR-2019-00234349 05/30/2019
         ON PdhRS.sValue = (CASE WHEN LEFT(CAST(ISNULL(PdhSource2,0) AS VARCHAR(10)),1) = '-' THEN '-'+RIGHT(CONVERT(VARCHAR(10),ISNULL(PdhSource2,0)),1)
                                 WHEN LEFT(CAST(ISNULL(PdhSource2,0) AS VARCHAR(10)),1) <> '-' THEN RIGHT(CONVERT(VARCHAR(10),ISNULL(PdhSource2,0)),1)
+                           END)
+    LEFT JOIN dbo.U_EPRUDTST_Sign PdhMS WITH (NOLOCK)    --SR-2019-00234349 05/30/2019
+        ON PdhMS.sValue = (CASE WHEN LEFT(CAST(ISNULL(PdhSource6,0) AS VARCHAR(10)),1) = '-' THEN '-'+RIGHT(CONVERT(VARCHAR(10),ISNULL(PdhSource6,0)),1)
+                                WHEN LEFT(CAST(ISNULL(PdhSource6,0) AS VARCHAR(10)),1) <> '-' THEN RIGHT(CONVERT(VARCHAR(10),ISNULL(PdhSource6,0)),1)
                            END)
     LEFT JOIN dbo.U_EPRUDTST_Sign HrsS WITH (NOLOCK)    --SR-2019-00234349 05/30/2019
         ON HrsS.sValue = (CASE WHEN LEFT(CAST(FLOOR(ISNULL(PehCurHrs,0)) AS VARCHAR(6)),1) = '-' THEN '-'+RIGHT(CONVERT(VARCHAR(6),FLOOR(ISNULL(PehCurHrs,0))),1)
@@ -3065,19 +3073,7 @@ ALTER VIEW dbo.dsi_vwEPRUDTST_Export AS
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'EPRUDTST%' AND AdfSetNumber = '10'
-ORDER BY AdfSetNumber, AdfFieldNumber;
-
-
-BEGIN TRANSACTION
-UPDATE dbo.AscDefF
-SET AdfForCond = REPLACE(CAST(AdfForCond AS VARCHAR(MAX)),'UN00','UA')
-WHERE AdfHeaderSystemID LIKE 'EPRUDTST%'
-AND AdfSetNumber ='92'
-AND AdfFieldNumber IN('8','10')    -- BETWEEN '24' AND '34'
-ROLLBACK
-COMMIT
-
+WHERE AdfHeaderSystemID = (SELECT AdhSystemID FROM AscDefH where AdhFormatCode='EPRUDTST') 
 
 --Update Dates
 UPDATE dbo.AscExp
