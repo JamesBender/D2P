@@ -5,7 +5,7 @@ EEBCCOBEXP: EBC Cobra QB Export
 FormatCode:     EEBCCOBEXP
 Project:        EBC Cobra QB Export
 Client ID:      QUO1000
-Date/time:      2021-12-09 09:18:03.703
+Date/time:      2021-12-13 06:53:34.593
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -234,7 +234,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEBCCOBEXP_20211209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEBCCOBEXP_20211213.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -905,7 +905,7 @@ BEGIN
                             WHEN EdhChangeReason IN ('204','LEVNT4') THEN 'DIVORCELEGALSEPARATION'
                             WHEN EdhChangeReason IN ('201','LEVNT3') THEN 'INELIGIBLEDEPENDENT'
                             WHEN EdhChangeReason IN ('203','202') THEN 'REDUCTIONINHOURS-STATUSCHANGE'
-                            ELSE 'TERMINATINON'
+                            ELSE 'TERMINATION'
                         END
         ,drvEventDate =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') THEN EecDateOfTermination
                             WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202','203') AND ISNULL(EepDateOfCobraEvent, '') = '' THEN EecDateOfTermination
@@ -981,11 +981,20 @@ BEGIN
                                             WHEN BdmBenOption IN ('EEF','EEDPF','EEFS','EEFA') THEN 'EE+FAMILY'                                                                                
                                         END
                                     WHEN BdmDedCode IN ('HRA') THEN
-                                        CASE WHEN BdmBenOption IN ('EE','EEA','EEAS','EEOS') THEN 'EE'
-                                            WHEN BdmBenOption IN ('EES','EEDP','EESA','EESS') THEN 'EE+SPOUSE'
-                                            WHEN BdmBenOption IN ('EEC','EECA','EECS') AND Deps = 1 THEN 'EE+CHILD'
-                                            WHEN BdmBenOption IN ('EEC','EECA','EECS') AND Deps > 1 THEN 'EE+CHILDREN'
-                                            WHEN BdmBenOption IN ('EEF','EEDPF','EEFS','EEFA') THEN 'EE+FAMILY'
+                                        CASE WHEN GETDATE() <= '12/31/2022' THEN
+                                            CASE WHEN BdmBenOption IN ('EE','EEA','EEAS','EEOS') THEN 'EE'
+                                                WHEN BdmBenOption IN ('EES','EEDP','EESA','EESS') THEN 'EE+SPOUSE'
+                                                WHEN BdmBenOption IN ('EEC','EECA','EECS') AND Deps = 1 THEN 'EE+CHILD'
+                                                WHEN BdmBenOption IN ('EEC','EECA','EECS') AND Deps > 1 THEN 'EE+CHILDREN'
+                                                WHEN BdmBenOption IN ('EEF','EEDPF','EEFS','EEFA') THEN 'EE+FAMILY'
+                                            END
+                                        ELSE
+                                            CASE WHEN BdmBenOption IN ('EE','EEA','EEAS','EEOS') THEN 'EE'
+                                                WHEN BdmBenOption IN ('EES','EEDP','EESA','EESS') THEN 'EE+1'
+                                                WHEN BdmBenOption IN ('EEC','EECA','EECS') AND Deps = 1 THEN 'EE+1'
+                                                WHEN BdmBenOption IN ('EEC','EECA','EECS') AND Deps > 1 THEN 'EE+FAMILY'
+                                                WHEN BdmBenOption IN ('EEF','EEDPF','EEFS','EEFA') THEN 'EE+FAMILY'
+                                            END
                                         END
                                     END
                                 END
