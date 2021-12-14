@@ -5,7 +5,7 @@ EDISCCOBRA: Discovery Cobra Export
 FormatCode:     EDISCCOBRA
 Project:        Discovery Cobra Export
 Client ID:      FLO1005
-Date/time:      2021-12-09 12:30:11.393
+Date/time:      2021-12-14 06:38:55.263
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -258,7 +258,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EDISCCOBRA_20211209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EDISCCOBRA_20211214.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -757,7 +757,7 @@ BEGIN
         ,[BdmDedCode]
         ,[BdmBenStartDate]
         ,[BdmBenStopDate]
-        ,[BdmBenStatusDate]
+        ,[BdmBenStatusDate]        
         ,[BdmChangeReason]
         ,[BdmCobraReason]
         ,[BdmStartDate]
@@ -817,6 +817,7 @@ BEGIN
            ,[BdmRelationship]
            ,[BdmDateOfBirth]
            ,[BdmDedCode]
+           ,[BdmBenStatus]
            ,[BdmBenStartDate]
            ,[BdmBenStopDate]
            ,[BdmBenStatusDate]
@@ -827,7 +828,7 @@ BEGIN
 
     )
  Select rectype = 'DEP', EdhCoid, EdhEEID, DbnDepRecID, DbnDepRecID, 'QB', 'Data Inserted for 204 Chg reason', 
-            DbnRelationship, DbnDateOfBirth, EdhDedCode, edhBenStartDate,edhBenStopDate, edhBenStatusDate,'204'
+            DbnRelationship, DbnDateOfBirth, EdhDedCode, DbnBenStatus, edhBenStartDate,edhBenStopDate, edhBenStatusDate,'204'
             ,edhStartDate, edhStopDate, CASE WHEN dbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
             from dbo.emphded with (nolock)
             JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = @formatcode
@@ -844,6 +845,7 @@ INSERT INTO [dbo].[U_dsi_BDM_EDISCCOBRA]
            ,[BdmRelationship]
            ,[BdmDateOfBirth]
            ,[BdmDedCode]
+           ,[BdmBenStatus]
            ,[BdmBenStartDate]
            ,[BdmBenStopDate]
            ,[BdmBenStatusDate]
@@ -854,7 +856,7 @@ INSERT INTO [dbo].[U_dsi_BDM_EDISCCOBRA]
 
     )
  Select rectype = 'DEP', EdhCoid, EdhEEID, DbnDepRecID, DbnDepRecID, 'QB', 'Data Inserted for 201 Chg reason', 
-            DbnRelationship, DbnDateOfBirth, EdhDedCode, edhBenStartDate,edhBenStopDate, edhBenStatusDate,'201'
+            DbnRelationship, DbnDateOfBirth, EdhDedCode, DbnBenStatus,  edhBenStartDate,edhBenStopDate, edhBenStatusDate,'201'
             ,edhStartDate, edhStopDate, 'Y'
             from dbo.emphded with (nolock)
             JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = @formatcode
@@ -1077,6 +1079,10 @@ INSERT INTO [dbo].[U_dsi_BDM_EDISCCOBRA]
         AND BdmRunId = 'QB'
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    WHERE EedBenStatus <> 'W'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCCOBRA_drvTbl_QBDEPENDENT
@@ -1162,6 +1168,10 @@ INSERT INTO [dbo].[U_dsi_BDM_EDISCCOBRA]
         AND BdmCoID = xCoID
         AND BdmRecType = 'DEP'
         AND BdmRunId = 'QB'
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    WHERE EedBenStatus <> 'W'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EDISCCOBRA_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
