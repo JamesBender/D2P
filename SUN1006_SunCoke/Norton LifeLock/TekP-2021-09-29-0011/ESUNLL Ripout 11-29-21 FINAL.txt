@@ -5,7 +5,7 @@ ESUNLL: LifeLock
 FormatCode:     ESUNLL
 Project:        LifeLock
 Client ID:      SUN1006
-Date/time:      2021-11-29 17:29:05.810
+Date/time:      2021-12-14 18:35:01.613
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -177,7 +177,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESUNLL0000Z0','50','D','10','14',NULL,'HomePhone',NULL,NULL,'"drvHomePhone"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESUNLL0000Z0','50','D','10','15',NULL,'WorkPhone',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESUNLL0000Z0','50','D','10','16',NULL,'Coverage',NULL,NULL,'"drvCoverage"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESUNLL0000Z0','50','D','10','17',NULL,'GroupCode',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESUNLL0000Z0','50','D','10','17',NULL,'GroupCode',NULL,NULL,'"drvGroupCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESUNLL0000Z0','50','D','10','18',NULL,'Location',NULL,NULL,'"drvLocation"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESUNLL0000Z0','50','D','10','19',NULL,'TerminationDate',NULL,NULL,'"drvTerminationDate"','(''UDMDY''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESUNLL0000Z0','50','D','10','20',NULL,'EffectiveDate',NULL,NULL,'"drvEffectiveDate"','(''UDMDY''=''T,'')');
@@ -199,15 +199,15 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESUNLL_20211129.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESUNLL_20211214.csv';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202111299','EMPEXPORT','OEACTIVE',NULL,'ESUNLL',NULL,NULL,NULL,'202111299','Nov 29 2021  1:00PM','Nov 29 2021  1:00PM','202111291',NULL,'','','202111291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202111299','EMPEXPORT','OEPASSIVE',NULL,'ESUNLL',NULL,NULL,NULL,'202111299','Nov 29 2021  1:00PM','Nov 29 2021  1:00PM','202111291',NULL,'','','202111291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201089','EMPEXPORT','OEACTIVE','Dec  1 2021  8:16AM','ESUNLL',NULL,NULL,NULL,'202201089','Jan  8 2022 12:00AM','Dec 30 1899 12:00AM','202201011','71','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201089','EMPEXPORT','OEPASSIVE','Dec  1 2021  8:04AM','ESUNLL',NULL,NULL,NULL,'202201089','Jan  8 2022 12:00AM','Dec 30 1899 12:00AM','202111011','71','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Norton LifeLock','202111299','EMPEXPORT','ONDEM_XOE',NULL,'ESUNLL',NULL,NULL,NULL,'202111299','Nov 29 2021  1:00PM','Nov 29 2021  1:00PM','202111291',NULL,'','','202111291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Norton LifeLock-Sched','202111299','EMPEXPORT','SCH_ESUNLL',NULL,'ESUNLL',NULL,NULL,NULL,'202111299','Nov 29 2021  1:00PM','Nov 29 2021  1:00PM','202111291',NULL,'','','202111291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Norton LifeLock-Test','202111299','EMPEXPORT','TEST_XOE',NULL,'ESUNLL',NULL,NULL,NULL,'202111299','Nov 29 2021  1:00PM','Nov 29 2021  1:00PM','202111291',NULL,'','','202111291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -223,7 +223,8 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','SubSort','C','drvEmpNoSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLL','UseFileName','V','Y');
@@ -311,8 +312,8 @@ CREATE TABLE [dbo].[U_ESUNLL_Audit] (
     [audFieldName] varchar(128) NOT NULL,
     [audAction] varchar(6) NOT NULL,
     [audDateTime] datetime NOT NULL,
-    [audOldValue] varchar(2000) NULL,
-    [audNewValue] varchar(2000) NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
     [audRowNo] bigint NULL
 );
 
@@ -349,23 +350,26 @@ CREATE TABLE [dbo].[U_ESUNLL_drvTbl] (
     [drvFirstName] varchar(100) NULL,
     [drvMiddleInitial] varchar(1) NULL,
     [drvLastName] varchar(100) NULL,
-    [drvSubscriberID] varchar(1) NOT NULL,
-    [drvRelation] varchar(1) NOT NULL,
-    [drvMemberSSN] char(11) NULL,
+    [drvSubscriberID] varchar(8000) NULL,
+    [drvRelation] varchar(1) NULL,
+    [drvMemberSSN] varchar(8000) NULL,
     [drvAddress1] varchar(255) NULL,
     [drvAddress2] varchar(255) NULL,
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
-    [drvZip] varchar(1) NOT NULL,
+    [drvZip] varchar(5) NULL,
     [drvHomePhone] varchar(50) NULL,
-    [drvCoverage] varchar(1) NOT NULL,
+    [drvCoverage] varchar(2) NOT NULL,
+    [drvGroupCode] varchar(12) NOT NULL,
     [drvLocation] char(6) NULL,
     [drvTerminationDate] datetime NULL,
-    [drvEffectiveDate] varchar(1) NOT NULL,
+    [drvEffectiveDate] datetime NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvPlan] varchar(1) NOT NULL,
+    [drvPlan] varchar(4) NULL,
     [drvGender] char(1) NULL,
-    [drvEmail] varchar(50) NULL
+    [drvEmail] varchar(50) NULL,
+	drvInitialSort varchar(50) NULL,
+	drvSubSort varchar(1) NULL
 );
 
 -----------
@@ -408,8 +412,10 @@ Purpose: LifeLock
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+12/14/2021 by AP:
+	- Fixed leading 0's for SSN and EecEmpNo fields.
+	- Added GroupCode field value.
+	- Added in dependents for employees.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ESUNLL';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ESUNLL';
@@ -513,7 +519,7 @@ BEGIN
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
     --SET @DedList = 'IDDLL';
-        SET @DedList = '1MED2';
+        SET @DedList = 'IDDLL';
 
     IF OBJECT_ID('U_ESUNLL_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ESUNLL_DedList;
@@ -533,12 +539,12 @@ BEGIN
 
     -- Required parameters
     --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','IDDLL');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','1MED2');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','IDDLL');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'FutureDatedStartDateDays',30);
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'FutureDatedStopDateDays',30); 
+    --INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'FutureDatedStartDateDays',90);
+    --INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'FutureDatedStopDateDays',30); 
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -574,26 +580,30 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvEmpNoSort = ''
         -- standard fields above and additional driver fields below
-        ,drvFirstName =  CASE WHEN bdmRecType = 'EMP' THEN EepNameFirst
-                             WHEN bdmREctype = 'DEP' THEN ConNameFirst
-                            END 
-        ,drvMiddleInitial = CASE WHEN bdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
-                                 WHEN bdmREctype = 'DEP' THEN LEFT(ConNameMiddle,1)
-                            END 
-        ,drvLastName = CASE WHEN bdmRecType = 'EMP' THEN EepNameLast
-                        WHEN bdmREctype = 'DEP' THEN ConNameLast
-                        END
-        ,drvSubscriberID = [dbo].[dsi_fnlib_AddDoubleQuotes](Eecempno)
-        ,drvRelation = CASE WHEN bdmRecType = 'EMP'  THEN 'E'
-                                 WHEN bdmREctype = 'DEP' and bdmRelationship = 'SPS' THEN 'S'
-                                 WHEN bdmREctype = 'DEP' and bdmRelationship = 'DP' THEN 'S'
-                                 WHEN bdmREctype = 'DEP' and bdmRelationship = 'CHL' THEN 'C'
-                                 WHEN bdmREctype = 'DEP' and bdmRelationship = 'DPC' THEN 'C'
-                                 WHEN bdmREctype = 'DEP' and bdmRelationship = 'STC' THEN 'C'
-                            END 
-        ,drvMemberSSN = CASE WHEN bdmRecType = 'EMP' THEN [dbo].[dsi_fnlib_AddDoubleQuotes](EepSSN)
-                             WHEN bdmREctype = 'DEP' THEN [dbo].[dsi_fnlib_AddDoubleQuotes](ConSSN)
-                        END
+        ,drvFirstName =  EepNameFirst
+		--CASE WHEN bdmRecType = 'EMP' THEN EepNameFirst
+  --                           WHEN bdmREctype = 'DEP' THEN ConNameFirst
+  --                          END 
+        ,drvMiddleInitial = LEFT(EepNameMiddle, 1)
+		--CASE WHEN bdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
+  --                               WHEN bdmREctype = 'DEP' THEN LEFT(ConNameMiddle,1)
+  --                          END 
+        ,drvLastName = EepNameLast
+		--CASE WHEN bdmRecType = 'EMP' THEN EepNameLast
+  --                      WHEN bdmREctype = 'DEP' THEN ConNameLast
+  --                      END
+        ,drvSubscriberID = '="' + EecEmpNo + '"'
+        ,drvRelation = 'E'
+			--CASE WHEN bdmRecType = 'EMP'  THEN 'E'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'SPS' THEN 'S'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'DP' THEN 'S'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'CHL' THEN 'C'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'DPC' THEN 'C'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'STC' THEN 'C'
+   --                         END 
+        ,drvMemberSSN = '="' + EepSSN + '"'
+        --[dbo].[dsi_fnlib_AddDoubleQuotes](EepSSN)
+                             --[dbo].[dsi_fnlib_AddDoubleQuotes](ConSSN)
         ,drvAddress1 = EepAddressLine1
         ,drvAddress2 = EepAddressLine2
         ,drvCity = EepAddressCity
@@ -602,23 +612,29 @@ BEGIN
         ,drvHomePhone = CASE WHEN EepPhoneHomeNumber is not null then EepPhoneHomeNumber
                         ELSE CASE WHEN efoPhoneType = 'CEL' THEN efoPhoneNumber 
                         ELSE  EecPhoneBusinessNumber END END
-        ,drvCoverage = CASE WHEN BdmDedcode = '1MED2' and BdmBenoption = 'EE' THEN 'EO' else 'ED' END
-        --,drvCoverage = CASE WHEN BdmDedcode = 'IDDLL' and BdmBenoption = 'EE' THEN 'EO' else 'ED' END
+        ,drvCoverage = CASE WHEN EedDedCode = 'IDDLL' AND EedBenOption = 'EE' THEN 'EO' else 'ED' END
+        ,drvGroupCode = 'E0011411'
         ,drvLocation = EecPayGroup
-        ,drvTerminationDate = CASE WHEN BdmBenStatus = 'T' THEN BdmBenStopdate END
-        ,drvEffectiveDate = Bdmbenstartdate
-        ,drvDateOfBirth = CASE WHEN bdmRecType = 'EMP' THEN EepDateOfBirth
-                             WHEN bdmREctype = 'DEP' THEN ConDateOfBirth
-                            END 
-        ,drvPlan = CASE WHEN BdmDedcode = '1MED2' THEN 'PREM' END
-        --,drvPlan = CASE WHEN BdmDedcode = 'IDDLL' THEN 'PREM' END
-        ,drvGender = CASE WHEN bdmRecType = 'EMP' THEN EepGender
-                             WHEN bdmREctype = 'DEP' THEN ConGender
-                            END 
-        ,drvEmail = CASE WHEN bdmRecType = 'EMP' AND eepaddressemailalternate is null THEN EepAddressEMail
-                             WHEN bdmREctype = 'DEP' THEN ''
-                             ELSE eepaddressemailalternate
-                            END 
+        ,drvTerminationDate = CASE WHEN EedBenStatus = 'T' THEN EedBenStopDate END
+		--CASE WHEN BdmBenStatus = 'T' THEN BdmBenStopdate END
+        ,drvEffectiveDate = EedBenStartDate
+		--Bdmbenstartdate
+        ,drvDateOfBirth = EepDateOfBirth
+		--CASE WHEN bdmRecType = 'EMP' THEN EepDateOfBirth
+  --                           WHEN bdmREctype = 'DEP' THEN ConDateOfBirth
+  --                          END 
+       ,drvPlan = CASE WHEN EedDedCode = 'IDDLL' THEN 'PREM' END
+        ,drvGender = EepGender
+		--CASE WHEN bdmRecType = 'EMP' THEN EepGender
+  --                           WHEN bdmREctype = 'DEP' THEN ConGender
+  --                          END 
+        ,drvEmail = CASE WHEN EepAddressEmailAlternate IS NULL THEN EepAddressEmail ELSE EepAddressEmailAlternate END
+		--CASE WHEN bdmRecType = 'EMP' AND eepaddressemailalternate is null THEN EepAddressEMail
+  --                           WHEN bdmREctype = 'DEP' THEN ''
+  --                           ELSE eepaddressemailalternate
+  --                          END 
+		,drvInitialSort = '1' + EepSSN
+		,drvSubSort = '1'
     INTO dbo.U_ESUNLL_drvTbl
     FROM dbo.U_ESUNLL_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -628,13 +644,117 @@ BEGIN
                  and EXISTS(select 1 from dbo.U_ESUNLL_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-	AND eecEEType <> 'TES'
-    JOIN dbo.U_dsi_BDM_ESUNLL WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    left JOIN dbo.Contacts with (nolock) 
-        ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID
+	JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+		ON EedEEID = xEEID
+		AND EedCOID = xCOID
+		AND EedValidForExport = 'Y'
+		AND EedFormatCode = @FormatCode
+    --JOIN dbo.U_dsi_BDM_ESUNLL WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+    --left JOIN dbo.Contacts with (nolock) 
+    --    ON ConEEID = xEEID
+    --    AND ConSystemID = BdmDepRecID
+    LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
+        ON efoEEID = xEEID
+    ;
+
+	INSERT INTO dbo.U_ESUNLL_drvTbl
+	SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvEmpNoSort = ''
+        -- standard fields above and additional driver fields below
+        ,drvFirstName =  ConNameFirst
+		--CASE WHEN bdmRecType = 'EMP' THEN EepNameFirst
+  --                           WHEN bdmREctype = 'DEP' THEN ConNameFirst
+  --                          END 
+        ,drvMiddleInitial = LEFT(ConNameMiddle, 1)
+		--CASE WHEN bdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
+  --                               WHEN bdmREctype = 'DEP' THEN LEFT(ConNameMiddle,1)
+  --                          END 
+        ,drvLastName = ConNameLast
+		--CASE WHEN bdmRecType = 'EMP' THEN EepNameLast
+  --                      WHEN bdmREctype = 'DEP' THEN ConNameLast
+  --                      END
+        ,drvSubscriberID = '="' + EecEmpNo + '"'
+        ,drvRelation = CASE WHEN ConRelationship IN ('SPS', 'DP') THEN 'S'
+								WHEN ConRelationship IN ('CHL', 'DPC', 'STC') THEN 'C'
+								END
+			--CASE WHEN bdmRecType = 'EMP'  THEN 'E'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'SPS' THEN 'S'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'DP' THEN 'S'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'CHL' THEN 'C'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'DPC' THEN 'C'
+   --                              WHEN bdmREctype = 'DEP' and bdmRelationship = 'STC' THEN 'C'
+   --                         END 
+        ,drvMemberSSN = '="' + ConSSN + '"'
+        --[dbo].[dsi_fnlib_AddDoubleQuotes](EepSSN)
+                             --[dbo].[dsi_fnlib_AddDoubleQuotes](ConSSN)
+        ,drvAddress1 = EepAddressLine1
+        ,drvAddress2 = EepAddressLine2
+        ,drvCity = EepAddressCity
+        ,drvState = EepAddressState
+        ,drvZip = LEFT(EepAddressZipCode,5)
+        ,drvHomePhone = CASE WHEN EepPhoneHomeNumber is not null then EepPhoneHomeNumber
+                        ELSE CASE WHEN efoPhoneType = 'CEL' THEN efoPhoneNumber 
+                        ELSE  EecPhoneBusinessNumber END END
+        ,drvCoverage = 'ED'--CASE WHEN DbnDedCode = 'IDDLL' THEN 'ED' END
+		--AND EedBenOption = 'EE' THEN 'EO' else 'ED' END
+        ,drvGroupCode = 'E0011411'
+        ,drvLocation = EecPayGroup
+        ,drvTerminationDate = ''--CASE WHEN DbnBenStatus = 'T' THEN DbnBenStopDate END
+		--CASE WHEN BdmBenStatus = 'T' THEN BdmBenStopdate END
+        ,drvEffectiveDate = ''--DbnBenStartDate
+		--Bdmbenstartdate
+        ,drvDateOfBirth = ConDateOfBirth
+		--CASE WHEN bdmRecType = 'EMP' THEN EepDateOfBirth
+  --                           WHEN bdmREctype = 'DEP' THEN ConDateOfBirth
+  --                          END 
+       ,drvPlan = ''
+	   --CASE WHEN DbnDedCode = 'IDDLL' THEN 'PREM' END
+        ,drvGender = ConGender
+		--CASE WHEN bdmRecType = 'EMP' THEN EepGender
+  --                           WHEN bdmREctype = 'DEP' THEN ConGender
+  --                          END 
+        ,drvEmail = ''
+		--CASE WHEN bdmRecType = 'EMP' AND eepaddressemailalternate is null THEN EepAddressEMail
+  --                           WHEN bdmREctype = 'DEP' THEN ''
+  --                           ELSE eepaddressemailalternate
+  --                          END 
+		,drvInitialSort = '1' + EepSSN
+		,drvSubSort = '2'
+   -- INTO dbo.U_ESUNLL_drvTbl
+    FROM dbo.U_ESUNLL_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+                   and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                 and EXISTS(select 1 from dbo.U_ESUNLL_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+	--JOIN dbo.U_dsi_bdm_DepDeductions WITH(NOLOCK)
+	--	ON DbnEEID = xEEID
+	--	AND DbnCOID = xCOID
+	--	AND DbnValidForExport = 'Y'
+	--	AND DbnFormatCode = @FormatCode
+	JOIN dbo.u_dsi_bdm_EmpDeductions WITH(NOLOCK)
+		ON EedEEID = xEEID
+		AND EedCOID = xCOID
+		AND EedFormatCode = @FormatCode 
+		AND EedValidForExport = 'Y'
+	JOIN dbo.Contacts WITH(NOLOCK)
+		ON ConEEID = EedEEID
+	--	AND ConSystemID = EedDepRecId
+		AND ConIsDependent = 'Y'
+		AND ConRelationship IN ('SPS', 'DP', 'CHL', 'DPC', 'STC')
+    --JOIN dbo.U_dsi_BDM_ESUNLL WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+    --left JOIN dbo.Contacts with (nolock) 
+    --    ON ConEEID = xEEID
+    --    AND ConSystemID = BdmDepRecID
     LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
         ON efoEEID = xEEID
     ;
