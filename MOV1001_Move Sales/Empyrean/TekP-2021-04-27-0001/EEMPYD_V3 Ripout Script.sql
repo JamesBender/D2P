@@ -5,7 +5,7 @@ EEMPYD_V3: Empyrean Demographic Export V3 Testing
 FormatCode:     EEMPYD_V3
 Project:        Empyrean Demographic Export V3 Testing
 Client ID:      MOV1001
-Date/time:      2021-12-09 05:33:26.917
+Date/time:      2021-12-15 05:40:37.767
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -229,7 +229,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYD_V3_20211209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYD_V3_20211215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -238,7 +238,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic','202110281','EMPEXPORT','ONDMD_XOE','Oct 28 2021  8:19PM','EEMPYD_V3',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYD_V3',NULL,NULL,NULL,'202108169','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202108011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202111031','EMPEXPORT','TEST_XOE','Nov 22 2021 10:14PM','EEMPYD_V3',NULL,NULL,NULL,'202111031','Nov  3 2021 12:00AM','Dec 30 1899 12:00AM','202110281','1866','','','202110281',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202112141','EMPEXPORT','TEST_XOE','Dec 14 2021  5:33PM','EEMPYD_V3',NULL,NULL,NULL,'202112141','Dec 14 2021 12:00AM','Dec 30 1899 12:00AM','202112141','1794','','','202112141',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -934,7 +934,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
         ,drvLocation = EecLocation
         ,drvCompanyCode = CmpCompanyCode
         -- 18
-        ,drvCompanyCodeEffectiveDate = CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvCompanyCodeEffectiveDate = CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -971,7 +974,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                     END
         ,drvOrgLvl2 = EecOrgLvl2
         -- 34
-        ,drvDepartmentEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvDepartmentEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -979,14 +985,20 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                             --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhOrgLvl2'), aud.AudActionEffDate)
         ,drvFullTimeOrPartTime = EecFullTimeOrPartTime
         -- 36
-        ,drvFullTimeOrPartTimeEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvFullTimeOrPartTimeEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                                 WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                                 WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                                 ELSE OEjhJobEffDate 
                                                 END
                                                 --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhFullTimeOrPartTime'), aud.AudActionEffDate)
         -- 38
-        ,drvRegTempIndicatorEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvRegTempIndicatorEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                             WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                             WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                             ELSE OEjhJobEffDate 
@@ -994,7 +1006,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                             --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhEEType'), aud.audActionEffDate)
         ,drvState = LocAddressState
         -- 40
-        ,drvWorkStateEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvWorkStateEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -1010,7 +1025,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
         ,drvPayGroup = CASE  WHEN EecPayGroup IN ('OPSRLY', 'OPHRLY', 'OPEXEC') THEN 'Opcity' 
                              ELSE 'MVSU' END
         -- 44
-        ,drvADPPayGroupEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvADPPayGroupEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -1018,7 +1036,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                         --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhPayGroup'), aud.AudActionEffDate)
         ,drvPayFrequency = EecPayPeriod
         -- 46
-        ,drvPayFrequencyEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvPayFrequencyEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -1026,7 +1047,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                         --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhPayPeriod'), aud.AudActionEffDate)
         ,drvHourlyOrSalary = EecSalaryOrHourly
         -- 48
-        ,drvSalariedHourlyEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvSalariedHourlyEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                             WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                             WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                             ELSE OEjhJobEffDate 
@@ -1034,7 +1058,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                             --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhSalaryOrHourly'), aud.AudActionEffDate)
         ,drvAnnSalary = REPLACE(CONVERT(VARCHAR, CAST(EecAnnSalary AS DECIMAL(11, 2))), '.', '')
         -- 50
-        ,drvAnnualSalaryEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvAnnualSalaryEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -1042,7 +1069,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                                         --COALESCE((SELECT MAX(AudActionEffDate) FROM dbo.U_EEMPYD_V3_Audit WITH (NOLOCK) WHERE xEEID = AudEEID AND xCoID = AudKey2 AND AudFieldName = 'EjhAnnSalary'), aud.AudActionEffDate)
         ,drvHourlyPayRate = CONVERT(VARCHAR, CAST(EecHourlyPayRate AS DECIMAL(11, 2)))
         -- 52
-        ,drvHourlyRateEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvHourlyRateEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END  -- fix me
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
@@ -1067,7 +1097,10 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                         WHEN ejhEmplStatus = 'L' THEN JobLeave.EjhReasonleave
                         END*/                     
          -- field 60                 
-        ,drvActionCodeEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN EshStatusStopDate
+        ,drvActionCodeEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
+                                            CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
+                                            WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
+                                            END
                                         WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
