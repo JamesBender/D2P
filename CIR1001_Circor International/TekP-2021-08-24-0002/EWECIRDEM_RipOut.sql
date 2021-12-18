@@ -5,7 +5,7 @@ EWECIRDEM: Web Benefits Demo Export
 FormatCode:     EWECIRDEM
 Project:        Web Benefits Demo Export
 Client ID:      CIR1001
-Date/time:      2021-12-08 15:16:27.917
+Date/time:      2021-12-13 17:28:31.263
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -114,6 +114,8 @@ IF OBJECT_ID('U_EWECIRDEM_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EWECIRDEM_P
 GO
 IF OBJECT_ID('U_EWECIRDEM_File') IS NOT NULL DROP TABLE [dbo].[U_EWECIRDEM_File];
 GO
+IF OBJECT_ID('U_EWECIRDEM_EmpUnion') IS NOT NULL DROP TABLE [dbo].[U_EWECIRDEM_EmpUnion];
+GO
 IF OBJECT_ID('U_EWECIRDEM_EEList') IS NOT NULL DROP TABLE [dbo].[U_EWECIRDEM_EEList];
 GO
 IF OBJECT_ID('U_EWECIRDEM_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EWECIRDEM_drvTbl];
@@ -169,7 +171,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EWECIRDEM0Z0','50','H','01','38',NULL,'Union',NULL,NULL,'"Union"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EWECIRDEM0Z0','50','H','01','39',NULL,'Ethnicity',NULL,NULL,'"Ethnicity"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EWECIRDEM0Z0','50','H','01','40',NULL,'Paygroup',NULL,NULL,'"Paygroup"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EWECIRDEM0Z0','50','H','01','41',NULL,'Salary or Hourly',NULL,NULL,'"Salary or Hourly"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EWECIRDEM0Z0','50','H','01','41',NULL,'Salary or Hourly',NULL,NULL,'"Hourly/Salary"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EWECIRDEM0Z0','50','D','10','1',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWECIRDEM0Z0','50','D','10','2',NULL,'Employee ID',NULL,NULL,'"drvEmpId"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EWECIRDEM0Z0','50','D','10','3',NULL,'Case ID',NULL,NULL,'"drvCaseId"','(''UA''=''T,'')');
@@ -223,7 +225,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWECIRDEM_20211208.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWECIRDEM_20211213.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -232,7 +234,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Web Benefits Demo Export','202110089','EMPEXPORT','ONDEM_XOE',NULL,'EWECIRDEM',NULL,NULL,NULL,'202110089','Oct  8 2021  5:28PM','Oct  8 2021  5:28PM','202110081',NULL,'','','202110081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Web Benefits Demo Export-Sched','202110089','EMPEXPORT','SCH_EWECIR',NULL,'EWECIRDEM',NULL,NULL,NULL,'202110089','Oct  8 2021  5:28PM','Oct  8 2021  5:28PM','202110081',NULL,'','','202110081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Web Benefits Demo Export-Test','202111129','EMPEXPORT','TEST_XOE','Nov 24 2021  3:37PM','EWECIRDEM',NULL,NULL,NULL,'202111129','Nov 12 2021 12:00AM','Dec 30 1899 12:00AM','202110291','1271','','','202110291',dbo.fn_GetTimedKey(),NULL,'us3lKiCIR1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Web Benefits Demo Export-Sch 2','202110089','EMPEXPORT','SCH_EWECI2',NULL,'EWECIRDEM',NULL,NULL,NULL,'202110089','Oct  8 2021  5:28PM','Oct  8 2021  5:28PM','202110081',NULL,'','','202110081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Web Benefits Demo Export-Test','202112109','EMPEXPORT','TEST_XOE','Dec 10 2021  2:10PM','EWECIRDEM',NULL,NULL,NULL,'202112109','Dec 10 2021 12:00AM','Dec 30 1899 12:00AM','202111261','1281','','','202111261',dbo.fn_GetTimedKey(),NULL,'us3lKiCIR1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -308,16 +311,16 @@ CREATE TABLE [dbo].[U_EWECIRDEM_drvTbl] (
     [drvAltEmail] varchar(50) NULL,
     [drvJobTitle] varchar(25) NOT NULL,
     [drvDept] varchar(38) NULL,
-    [drvManager] varchar(203) NULL,
+    [drvManager] varchar(201) NULL,
     [drvHRRep] varchar(25) NULL,
     [drvCompName] varchar(8000) NULL,
-    [drvSalaryGrade] varchar(24) NULL,
+    [drvSalaryGrade] varchar(21) NULL,
     [drvWorkSite] varchar(25) NULL,
     [drvBenSenDate] varchar(30) NOT NULL,
     [drvManagerId] char(9) NULL,
     [drvOrigHireDate] varchar(30) NOT NULL,
     [drvSuffix] varchar(30) NULL,
-    [drvUnion] char(12) NULL,
+    [drvUnion] char(15) NULL,
     [drvEthnicity] varchar(45) NULL,
     [drvPayGroupCode] varchar(8000) NULL,
     [drvSalaryOrHourly] char(1) NULL
@@ -331,6 +334,18 @@ IF OBJECT_ID('U_EWECIRDEM_EEList') IS NULL
 CREATE TABLE [dbo].[U_EWECIRDEM_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EWECIRDEM_EmpUnion
+-----------
+
+IF OBJECT_ID('U_EWECIRDEM_EmpUnion') IS NULL
+CREATE TABLE [dbo].[U_EWECIRDEM_EmpUnion] (
+    [TABLE] varchar(6) NOT NULL,
+    [unioncode] char(12) NOT NULL,
+    [unishortdesc] char(15) NULL,
+    [unilongdesc] varchar(80) NULL
 );
 
 -----------
@@ -419,12 +434,15 @@ Revision History
     - Job level logic might need to revisited as some employees are showing with BLANK EjhSalaryGrade.
 
 12/08/2021 by AP:
-	- Set email field to eepaddressemailalternate.
-	- Set per_emailalt to eepaddressemail.
-	- Changed Work Site to Worksite for header.
-	- Updated Union field logic.
-	- Changed Pay Group to Paygroup for header.
-	- Removed middle initial for manager.
+    - Set email field to eepaddressemailalternate.
+    - Set per_emailalt to eepaddressemail.
+    - Changed Work Site to Worksite for header.
+    - Updated Union field logic.
+    - Changed Pay Group to Paygroup for header.
+    - Removed middle initial for manager.
+
+12/13/2021 by AP:
+	- Added new scheduled session SCH_EWCI2.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EWECIRDEM';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EWECIRDEM';
@@ -437,6 +455,7 @@ Execute Export
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWECIRDEM', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWECIRDEM', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWECIRDEM', 'SCH_EWECIR';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWECIRDEM', 'SCH_EWECI2';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EWECIRDEM';
 
@@ -584,14 +603,14 @@ BEGIN
     GROUP BY PehEEID, PehCOID
     HAVING SUM(PehCurAmt) <> 0.00;
 
-	---- Employee Union Table Creation ----
-	 IF OBJECT_ID('U_EWECIRDEM_EmpUnion','U') IS NOT NULL
+    ---- Employee Union Table Creation ----
+     IF OBJECT_ID('U_EWECIRDEM_EmpUnion','U') IS NOT NULL
      DROP TABLE dbo.U_EWECIRDEM_EmpUnion;
 
-	select 'UNIONS' as 'TABLE',
-	unicode AS unioncode, unishortdesc, unilongdesc 
-	into dbo.U_EWECIRDEM_EmpUnion
-	from LabUnion
+    select 'UNIONS' as 'TABLE',
+    unicode AS unioncode, unishortdesc, unilongdesc 
+    into dbo.U_EWECIRDEM_EmpUnion
+    from LabUnion
 
     --==========================================
     -- Build Driver Tables
@@ -651,7 +670,7 @@ BEGIN
         ,drvDOH = Ec.EecDateOfLastHire
         ,drvACAEmpClass = CASE WHEN Ec.EecEEType = 'R' THEN 'Retiree'
                                 WHEN Ec.EecDedGroupCode IN ('NONE', 'NOELI') THEN 'Ineligible'
-                                WHEN Ec.EecEEType IN ('CTP', 'INC') AND pers.EepAddressCountry = 'US' THEN 'Ineligible'
+                                WHEN Ec.EecEEType IN ('CTP', 'INC') AND pers.EepAddressCountry = 'USA' THEN 'Ineligible'
                                 WHEN Ec.EecFullTimeOrPartTime = 'P' THEN 'Ineligible'
                                 ELSE 'Full-Time' END
         ,drvTermDate = ISNULL(CONVERT(VARCHAR, (CASE WHEN Ec.EecEmplStatus = 'T' THEN Ec.EecDateOfTermination END), 101), '')
@@ -677,7 +696,7 @@ BEGIN
         ,drvOrigHireDate = ISNULL(CONVERT(VARCHAR, Ec.EecDateOfOriginalHire, 101), '')
         ,drvSuffix = CASE WHEN pers.EepNameSuffix = 'Z' THEN '' ELSE pers.EepNameSuffix END
         ,drvUnion = CASE WHEN Ec.EecUnionLocal IS NOT NULL OR Ec.EecUnionNational IS NOT NULL THEN unishortdesc END
-		--CASE WHEN Ec.EecUnionLocal <> '' THEN Ec.EecUnionLocal
+        --CASE WHEN Ec.EecUnionLocal <> '' THEN Ec.EecUnionLocal
   --                          WHEN Ec.EecUnionNational <> '' THEN Ec.EecUnionNational END
         ,drvEthnicity = CodDesc
         ,drvPayGroupCode = LTRIM(RTRIM(PgrPayGroup)) + ' - ' + REPLACE(LTRIM(RTRIM(PgrDesc)), ',', '') 
@@ -723,8 +742,8 @@ BEGIN
     AND CodTable = 'ETHNICCODE'
     LEFT JOIN dbo.PayGroup WITH(NOLOCK)
     ON PgrPayGroup = Ec.EecPayGroup
-	LEFT JOIN dbo.U_EWECIRDEM_EmpUnion WITH(NOLOCK)
-	ON ISNULL(Ec.eecunionlocal, Ec.eecunionnational) = unioncode
+    LEFT JOIN dbo.U_EWECIRDEM_EmpUnion WITH(NOLOCK)
+    ON ISNULL(Ec.eecunionlocal, Ec.eecunionnational) = unioncode
     WHERE (Ec.EecDateOfTermination IS NULL OR CAST(Ec.EecDateOfTermination AS DATE) >= DATEADD(day, -90, CAST(GETDATE() AS DATE)))
     AND Ec.EecEEType IN ('REG', 'INC', 'CTP')
     ;

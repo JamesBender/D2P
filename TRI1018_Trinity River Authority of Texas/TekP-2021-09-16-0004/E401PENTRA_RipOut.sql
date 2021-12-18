@@ -5,7 +5,7 @@ E401PENTRA: 401a Pension Elig Export
 FormatCode:     E401PENTRA
 Project:        401a Pension Elig Export
 Client ID:      TRI1018
-Date/time:      2021-11-18 15:38:18.983
+Date/time:      2021-12-15 23:16:32.600
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -288,7 +288,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'E401PENTRA_20211118.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'E401PENTRA_20211215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -297,7 +297,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'401a Pension Elig Export','202110269','EMPEXPORT','ONDEM_XOE',NULL,'E401PENTRA',NULL,NULL,NULL,'202110269','Oct 26 2021  5:03PM','Oct 26 2021  5:03PM','202110261',NULL,'','','202110261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'401a Pension Elig Export-Sched','202110269','EMPEXPORT','SCH_E401PE',NULL,'E401PENTRA',NULL,NULL,NULL,'202110269','Oct 26 2021  5:03PM','Oct 26 2021  5:03PM','202110261',NULL,'','','202110261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'401a Pension Elig Export-Test','202110269','EMPEXPORT','TEST_XOE','Oct 27 2021 12:52AM','E401PENTRA',NULL,NULL,NULL,'202110269','Oct 26 2021 12:00AM','Dec 30 1899 12:00AM','202108011','34','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3aPiTRI1018',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'401a Pension Elig Export-Test','202112149','EMPEXPORT','TEST_XOE','Dec 14 2021 11:38AM','E401PENTRA',NULL,NULL,NULL,'202112149','Dec 14 2021 12:00AM','Dec 30 1899 12:00AM','202108011','511','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3lKiTRI1018',NULL);
 
 -----------
 -- AscImp inserts
@@ -444,7 +444,7 @@ IF OBJECT_ID('U_E401PENTRA_drvGTTrl') IS NULL
 CREATE TABLE [dbo].[U_E401PENTRA_drvGTTrl] (
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvSSN] varchar(9) NOT NULL,
-    [drvSeqNum] int NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL
@@ -461,7 +461,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvMaintData] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvPartSSN] char(11) NULL,
-    [drvSeqNum] varchar(32) NOT NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvPartName] varchar(204) NULL,
     [drvAdd1] varchar(255) NULL,
@@ -474,10 +474,10 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvMaintData] (
     [drvDOH] datetime NULL,
     [drvPlanEntryDt] datetime NULL,
     [drvMaritalStat] varchar(1) NOT NULL,
-    [drvHomePh] varchar(50) NULL,
+    [drvHomePh] varchar(12) NULL,
     [drvWorkPh] varchar(1) NOT NULL,
     [drvJobTitle] varchar(1) NOT NULL,
-    [drvSalary] money NULL,
+    [drvSalary] varchar(11) NULL,
     [drvPreTaxDefAmt] varchar(1) NOT NULL,
     [drvPreTaxDefPrcnt] varchar(1) NOT NULL,
     [drvPostTaxDefAmt] varchar(1) NOT NULL,
@@ -497,7 +497,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvMaintTrl] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvSSN] varchar(9) NOT NULL,
-    [drvSeqNum] int NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL
@@ -514,7 +514,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvNewEnroll] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvPartSSN] char(11) NULL,
-    [drvSeqNum] varchar(32) NOT NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvPartName] varchar(204) NULL,
     [drvForeignAddressCode] varchar(1) NOT NULL,
@@ -549,7 +549,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvNewEnrollTrl] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvSSN] varchar(9) NOT NULL,
-    [drvSeqNum] int NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL
@@ -566,7 +566,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvRehire] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvPartSSN] char(11) NULL,
-    [drvSeqNum] varchar(32) NOT NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvPartName] varchar(204) NULL,
     [drvForeignAddressCode] varchar(1) NOT NULL,
@@ -580,7 +580,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvRehire] (
     [drvDOH] datetime NULL,
     [drvEligPlanEntry] datetime NULL,
     [drvMaritalStat] varchar(1) NOT NULL,
-    [drvHomePh] varchar(50) NULL,
+    [drvHomePh] varchar(12) NULL,
     [drvStatCode] varchar(2) NOT NULL,
     [drvWorkPh] varchar(1) NOT NULL,
     [drvJobTitle] varchar(1) NOT NULL,
@@ -600,7 +600,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvRehireTrl] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvSSN] varchar(9) NOT NULL,
-    [drvSeqNum] int NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL
@@ -617,7 +617,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvTerm] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvPartSSN] char(11) NULL,
-    [drvSeqNum] varchar(32) NOT NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvAdd1] varchar(255) NULL,
     [drvAdd2] varchar(255) NULL,
@@ -643,7 +643,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_drvTermTrl] (
     [drvDepRecID] varchar(12) NULL,
     [drvRCPlanNum] varchar(6) NOT NULL,
     [drvSSN] varchar(9) NOT NULL,
-    [drvSeqNum] int NULL,
+    [drvSeqNum] varchar(9) NULL,
     [drvTransCode] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL
@@ -670,7 +670,7 @@ CREATE TABLE [dbo].[U_E401PENTRA_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(1000) NULL
+    [Data] char(500) NULL
 );
 
 -----------
@@ -717,8 +717,8 @@ Revision History
         - Fix for maintenance section applied.
 
 11/18/2021 by AP:
-		- Updated sequence across all tables and fixed RIGHT padding.
-		- Adjusted ending position from 1000 to 500 (output value is 501 as requested).
+        - Updated sequence across all tables and fixed RIGHT padding.
+        - Adjusted ending position from 1000 to 500 (output value is 501 as requested).
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'E401PENTRA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'E401PENTRA';
@@ -908,6 +908,13 @@ BEGIN
     AND audAction <> 'DELETE'
     AND ISNULL(audNewValue,'') <> '';
 
+	---- REMOVE TEST EMPLOYEES ----
+	DELETE dbo.U_E401PENTRA_EEList
+	WHERE EXISTS (SELECT *
+					FROM dbo.emppers
+					WHERE dbo.U_E401PENTRA_EEList.xeeid = eepeeid
+					AND EepSSN IN ('999991234', '999991235', '999991222'))
+	-------------------------------
 
     --==========================================
     -- Build Driver Tables
@@ -925,7 +932,7 @@ BEGIN
         ,drvRCPlanNum = '100226'
         ,drvPartSSN = eepSSN
         ,drvSeqNum = RIGHT('000000000' + CAST(ROW_NUMBER() OVER(PARTITION BY '1' ORDER BY xEEID) AS VARCHAR), 9)
-		--CONCAT('00000000', ROW_NUMBER() OVER(PARTITION BY '1' ORDER BY xEEID))
+        --CONCAT('00000000', ROW_NUMBER() OVER(PARTITION BY '1' ORDER BY xEEID))
         ,drvTransCode = 'E'
         ,drvPartName = LTRIM(RTRIM(EepNameLast)) + ', ' + LTRIM(RTRIM(EepNameFirst)) + ' ' + ISNULL(LEFT(EepNameMiddle, 1), '')
         ,drvForeignAddressCode = ''
@@ -1022,10 +1029,12 @@ BEGIN
         ,drvDOH = EecDateOfLastHire
         ,drvPlanEntryDt = EedBenStartDate
         ,drvMaritalStat = CASE WHEN EepMaritalStatus = 'M' THEN '2' ELSE '1' END
-        ,drvHomePh = EepPhoneHomeNumber
+        ,drvHomePh = SUBSTRING(EepPhoneHomeNumber, 1, 3) + '-' + 
+                  SUBSTRING(EepPhoneHomeNumber, 4, 3) + '-' + 
+                  SUBSTRING(EepPhoneHomeNumber, 7, 4)
         ,drvWorkPh = ''
         ,drvJobTitle = ''
-        ,drvSalary = EecAnnSalary
+        ,drvSalary = RIGHT('00000000000' + REPLACE(EecAnnSalary, '.', ''), 11)  --EecAnnSalary
         ,drvPreTaxDefAmt = ''
         ,drvPreTaxDefPrcnt = ''
         ,drvPostTaxDefAmt = ''
@@ -1187,7 +1196,9 @@ BEGIN
         ,drvDOH = EecDateOfLastHire
         ,drvEligPlanEntry = EedBenStartDate
         ,drvMaritalStat = CASE WHEN EepMaritalStatus = 'M' THEN '2' ELSE '1' END
-        ,drvHomePh = EepPhoneHomeNumber
+        ,drvHomePh = SUBSTRING(EepPhoneHomeNumber, 1, 3) + '-' + 
+                  SUBSTRING(EepPhoneHomeNumber, 4, 3) + '-' + 
+                  SUBSTRING(EepPhoneHomeNumber, 7, 4)
         ,drvStatCode = '00'
         ,drvWorkPh = ''
         ,drvJobTitle = ''

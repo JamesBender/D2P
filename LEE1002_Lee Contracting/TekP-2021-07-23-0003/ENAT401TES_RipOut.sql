@@ -5,7 +5,7 @@ ENAT401TES: NationWide 401k Census TEST
 FormatCode:     ENAT401TES
 Project:        NationWide 401k Census TEST
 Client ID:      LEE1002
-Date/time:      2021-11-21 20:20:21.737
+Date/time:      2021-12-16 10:31:53.840
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -183,7 +183,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENAT401TES_20211121.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENAT401TES_20211216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -193,7 +193,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'ACTIVE OE','201507159','EMPEXPORT','ACTIVEOE','Jul 17 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201507159','Jul 15 2015 12:00AM','Dec 30 1899 12:00AM','201507151',NULL,'','','201507151',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','KZ21X',NULL,NULL,NULL,'NATIONWIDE CENSUS','201705249','EMPEXPORT','ENAT401TES','May 24 2017 12:00AM','ENAT401TES',NULL,NULL,NULL,'202110129','May 24 2017 12:00AM','Dec 30 1899 12:00AM','202110051','442','','','201705101',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PASSIVE OE','201505201','EMPEXPORT','PASSIVEOE','May 20 2015 12:00AM','ENAT401TES',NULL,NULL,NULL,'201505201','May 20 2015 12:00AM','Dec 30 1899 12:00AM','201505201',NULL,'','','201505201',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPIINC',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'NATIONWIDE - CENSUS TEST','202110229','EMPEXPORT','TEST','Nov 10 2021 10:45PM','ENAT401TES',NULL,NULL,NULL,'202110229','Oct 22 2021 12:00AM','Dec 30 1899 12:00AM','202110221','601','','','202110221',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'NATIONWIDE - CENSUS TEST','202112179','EMPEXPORT','TEST','Dec 15 2021  3:42PM','ENAT401TES',NULL,NULL,NULL,'202112179','Dec 17 2021 12:00AM','Dec 30 1899 12:00AM','202112031','614','','','202112031',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'unlock ENAT401TES','201412049','EMPEXPORT','ZAP',NULL,'ENAT401TES',NULL,NULL,NULL,'201412049',NULL,NULL,'201409051',NULL,NULL,NULL,'201409051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
@@ -385,6 +385,9 @@ Changes:
 11/04/2021 by AP:
         - Updated pre-tax and roth deferral amounts.
 
+12/16/2021 by AP:
+		- 401KR deduction code adjusted. Removed ROTH deduction code from dedcode list.
+
 _dsi_usp_ExportRipout 'ENAT401TES','Y' 
 
 select * from dbo.U_dsi_Configuration where FormatCode = 'ENAT401TES' ORDER BY LEN(CfgName) DESC
@@ -482,7 +485,7 @@ end
 
 DELETE FROM U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode
 
-INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes','401CP,401K,ROTH') 
+INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes','401CP,401K,401KR') 
 
 IF @ExportCode not in ( 'ACTIVEOE' ,'PASSIVEOE') BEGIN
     INSERT INTO U_dsi_bdm_Configuration VALUES (@FormatCode, 'StartDateTime',@StartDate)    --@EndDate - @daysstopped)    
@@ -809,19 +812,19 @@ if object_id('U_dsi_ENAT401TES_drvTbl') is not null
                 where ejhemplstatus = 't'
                 GROUP BY EjhEEID, EjhCOID) ejh on ejh.ejheeid = xeeid and ejh.ejhcoid = xcoid
 
-	LEFT JOIN (SELECT EedEEID, EedCOID, SUM(EedEECalcRateOrPct) AS EedEECalcRateOrPct
-				FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-				WHERE EedDedCode IN ('401CP', '401K')
-				AND EedFormatCode = @FormatCode
-				AND EedValidForExport = 'Y'
-				GROUP BY EedEEID, EedCOID) ptax ON ptax.EedEEID = xEEID AND ptax.EedCOID = xCOID
+    LEFT JOIN (SELECT EedEEID, EedCOID, SUM(EedEECalcRateOrPct) AS EedEECalcRateOrPct
+                FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+                WHERE EedDedCode IN ('401CP', '401K')
+                AND EedFormatCode = @FormatCode
+                AND EedValidForExport = 'Y'
+                GROUP BY EedEEID, EedCOID) ptax ON ptax.EedEEID = xEEID AND ptax.EedCOID = xCOID
 
-	LEFT JOIN (SELECT EedEEID, EedCOID, SUM(EedEECalcRateOrPct) AS EedEECalcRateOrPct
-				FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-				WHERE EedDedCode IN ('401KR')
-				AND EedFormatCode = @FormatCode
-				AND EedValidForExport = 'Y'
-				GROUP BY EedEEID, EedCOID) rdef ON rdef.EedEEID = xEEID AND rdef.EedCOID = xCOID
+    LEFT JOIN (SELECT EedEEID, EedCOID, SUM(EedEECalcRateOrPct) AS EedEECalcRateOrPct
+                FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+                WHERE EedDedCode IN ('401KR')
+                AND EedFormatCode = @FormatCode
+                AND EedValidForExport = 'Y'
+                GROUP BY EedEEID, EedCOID) rdef ON rdef.EedEEID = xEEID AND rdef.EedCOID = xCOID
 
 
     --LEFT JOIN (SELECT audEEID, audKey2 AS audCOID, MAX(audDateTime) AS audDateTime

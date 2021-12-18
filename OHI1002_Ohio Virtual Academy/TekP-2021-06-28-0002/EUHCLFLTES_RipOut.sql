@@ -5,7 +5,7 @@ EUHCLFLTES: UHC Life LTD STD GenNotic TEST
 FormatCode:     EUHCLFLTES
 Project:        UHC Life LTD STD GenNotic TEST
 Client ID:      OHI1002
-Date/time:      2021-11-29 18:20:08.740
+Date/time:      2021-12-16 10:19:36.110
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -207,7 +207,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUHCLFLTES_20211129.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUHCLFLTES_20211216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -218,7 +218,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','201509259','EMPEXPORT','OEPASSIVE',NULL,'EUHCLFLTES',NULL,NULL,NULL,'201509259','Sep 25 2015  5:39PM','Sep 25 2015  5:39PM','201509251',NULL,'','','201509251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'ODQ5S',NULL,NULL,NULL,'UHC Life LTD STD GenNotic Exp','201701101','EMPEXPORT','ONDEMAND','Jan 10 2017 10:34AM','EUHCLFLTES',NULL,NULL,NULL,'201701101','Jan 10 2017 12:00AM','Dec 30 1899 12:00AM','201701011','2691','','','201701011',dbo.fn_GetTimedKey(),NULL,'MGROM01',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'ODQ5S',NULL,NULL,NULL,'Scheduled Session','201509259','EMPEXPORT','SCHEDULED','Nov 12 2021  7:00AM','EUHCLFLTES',NULL,NULL,NULL,'202111119','Sep 25 2015 12:00AM','Dec 30 1899 12:00AM','202111051','2327','','','201509251',dbo.fn_GetTimedKey(),NULL,'MGROM01',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ODQ5S',NULL,NULL,NULL,'Test Purposes Only','202111239','EMPEXPORT','TEST','Nov 23 2021 10:53AM','EUHCLFLTES',NULL,NULL,NULL,'202111239','Nov 23 2021 12:00AM','Dec 30 1899 12:00AM','202111231','4298','','','202111231',dbo.fn_GetTimedKey(),NULL,'us3jReOHI1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ODQ5S',NULL,NULL,NULL,'Test Purposes Only','202111309','EMPEXPORT','TEST','Nov 30 2021 11:55AM','EUHCLFLTES',NULL,NULL,NULL,'202111309','Nov 30 2021 12:00AM','Dec 30 1899 12:00AM','202111161','4440','','','202111161',dbo.fn_GetTimedKey(),NULL,'us3jReOHI1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -310,7 +310,7 @@ CREATE TABLE [dbo].[U_EUHCLFLTES_drvTbl] (
     [drvRelationShip] varchar(2) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
-    [drvRelation] varchar(2) NOT NULL,
+    [drvRelation] varchar(2) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
@@ -419,8 +419,11 @@ Patrick Bresnahan    05/20/2019        SF14209694                    Adjusted ER
     - Updated MAX start date just for drvStartDate and drvBeginDate.
 
 11/29/2021 by AP:
-	- Updated code BACK to MAX start date to all EedBenStartDate fields for new ded codes including ERSTD.
-	- Inserted dependent records for all new ded codes where available.
+    - Updated code BACK to MAX start date to all EedBenStartDate fields for new ded codes including ERSTD.
+    - Inserted dependent records for all new ded codes where available.
+
+12/16/2021 by AP:
+	- Added minimum effective date back to 08/01/2021.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUHCLFLTES';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUHCLFLTES';
@@ -476,7 +479,7 @@ BEGIN
         ,@EndDate         = DATEADD(SS,-1,DATEADD(DD,1,LEFT(EndPerControl,8)))
         ,@FormatCode      = FormatCode
         ,@ExportCode      = ExportCode
-        ,@FileMinCovDate  = CAST('09/01/2021' AS DATETIME)
+        ,@FileMinCovDate  = CAST('08/01/2021' AS DATETIME)
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'EUHCLFLTES';
 
@@ -589,7 +592,7 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateofBirth = EepDateOfBirth
         ,drvBenStartDate = CASE WHEN EedDedCode = 'ERSTD' THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
-								ELSE EedBenStartDate END
+                                ELSE EedBenStartDate END
         --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvDedCode = CASE WHEN EedDedCode = 'ERSTD' then 'LE001133'
                                 WHEN EedDedCode = 'LIFEB' then 'LE000187'
@@ -614,7 +617,7 @@ BEGIN
                                     END
                             END
         ,drvStartDate = CASE WHEN EedDedCode = 'ERSTD' THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
-								ELSE EedBenStartDate END
+                                ELSE EedBenStartDate END
         --CASE WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE EedBenStartDate END
         ,drvEedDedCode  = CASE WHEN EedDedCode = 'ERSTD' then 'C'
                                 WHEN EedDedCode = 'LIFEB' then 'C'
@@ -628,14 +631,14 @@ BEGIN
                                 --WHEN EedDedCode = 'HOSPH' AND EedBenOption = 'EEONLY' THEN 'C'
                         END
         ,drvBenStrtDate = CASE WHEN EedDedCode = 'ERSTD' THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
-								ELSE EedBenStartDate END
+                                ELSE EedBenStartDate END
         --CASE
   --                              WHEN EedDedCode in ('LIFEB','ADD','VLIF','LIFSP','LIFCH') THEN EedBenStartDate 
   --                                  WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE NULL END
         ,drvBenStopDate = CASE WHEN EedDedCode in ('ERSTD','LIFEB','ADD','VLIF','LIFSP','LIFCH') THEN EedBenStopDate ELSE NULL END
         ,drvDateOfLastHire = EecDateOfLastHire
         ,drvDateStart = CASE WHEN EedDedCode = 'ERSTD' THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate)
-								ELSE EedBenStartDate END
+                                ELSE EedBenStartDate END
                                    -- WHEN EedDedCode IN ('ACCIL', 'ACCIH', 'HOSPL', 'HOSPH', 'ERSTD') THEN dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) ELSE NULL END
         ,drvSalaryType = CASE WHEN EedDedCode = 'ERSTD' Then 'A' END
         ,drvAnnSalary = CASE WHEN EedDedCode = 'ERSTD' AND EecAnnSalary <> 0 Then RIGHT('0000000000' + CONVERT(VARCHAR(20),EecAnnSalary), 10) ELSE '' END
@@ -751,7 +754,7 @@ BEGIN
 
     UNION
 
-	-- EMPLOYEE + SPOUSE RECORD (EMPLOYEE)
+    -- EMPLOYEE + SPOUSE RECORD (EMPLOYEE)
 
     SELECT DISTINCT
         drvSSN = eepSSN
@@ -809,7 +812,7 @@ BEGIN
                                         and EXISTS(select 1 from dbo.U_EUHCLFLTES_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-	JOIN dbo.Contacts WITH (NOLOCK)
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID 
     JOIN dbo.U_dsi_bdm_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID 
@@ -825,11 +828,11 @@ BEGIN
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	-- EMPLOYEE + SPOUSE RECORD (SPOUSE)
+    -- EMPLOYEE + SPOUSE RECORD (SPOUSE)
 
-	 SELECT DISTINCT
+     SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = ConNameLast
@@ -885,9 +888,9 @@ BEGIN
                                         and EXISTS(select 1 from dbo.U_EUHCLFLTES_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-	JOIN dbo.Contacts WITH (NOLOCK)
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID 
-		AND ConRelationship = 'SPS'
+        AND ConRelationship = 'SPS'
     JOIN dbo.U_dsi_bdm_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID 
         AND EedCoID = xCoID
@@ -902,9 +905,9 @@ BEGIN
     GROUP BY eepSSN,ConNameLast,ConNameFirst,ConNameMiddle,ConAddressLine1,ConAddressLine2,ConAddressCity,ConAddressState,ConAddressZipCode,ConPhoneHomeNumber,
     ConGender,ConSystemID,ConDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	-- EPLOYEE + CHILD RECORD (EMPLOYEE)
+    -- EPLOYEE + CHILD RECORD (EMPLOYEE)
 
     SELECT DISTINCT
         drvSSN = eepSSN
@@ -976,11 +979,11 @@ BEGIN
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	-- EMPLOYEE + CHILD RECORD (CHILD)
+    -- EMPLOYEE + CHILD RECORD (CHILD)
 
-	 SELECT DISTINCT
+     SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = ConNameLast
@@ -1036,9 +1039,9 @@ BEGIN
                                         and EXISTS(select 1 from dbo.U_EUHCLFLTES_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-	JOIN dbo.Contacts WITH (NOLOCK)
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID 
-		AND ConRelationship IN ('CHL', 'STC')
+        AND ConRelationship IN ('CHL', 'STC')
     JOIN dbo.U_dsi_bdm_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID 
         AND EedCoID = xCoID
@@ -1055,7 +1058,7 @@ BEGIN
 
     UNION
 
-	-- EMPLOYEE + FAM RECORD (EMPLOYEE)
+    -- EMPLOYEE + FAM RECORD (EMPLOYEE)
 
     SELECT DISTINCT
         drvSSN = eepSSN
@@ -1127,18 +1130,18 @@ BEGIN
     GROUP BY eepSSN,EepNameLast,EepNameFirst,EepNameMiddle,EepAddressLine1,EepAddressLine2,EepAddressCity,EepAddressState,EepAddressZipCode,EepPhoneHomeNumber,EecPhoneBusinessNumber,
     EepGender,EepDateOfBirth,EedBenStartDate,EedBenStopDate,EedDedCode, EedBenOption, EedBenAmt,DedEEBenAmt,EecDateOfLastHire,EecAnnSalary,EjhIsRateChange,xEEID,xCOID
 
-	UNION
+    UNION
 
-	-- EMPLOYEE + FAM RECORD (FAMILY)
+    -- EMPLOYEE + FAM RECORD (FAMILY)
 
-	  SELECT DISTINCT
+      SELECT DISTINCT
         drvSSN = eepSSN
         ,drvRelationShip = '00'
         ,drvNameLast = ConNameLast
         ,drvNameFirst = ConNameFirst
         ,drvRelation = CASE WHEN ConRelationship = 'SPS' THEN 'SP'
-							WHEN ConRelationship IN ('CHL', 'STC') THEN 'CH'
-							END
+                            WHEN ConRelationship IN ('CHL', 'STC') THEN 'CH'
+                            END
         ,drvNameMiddle = LEFT(ConNameMiddle,1)
         ,drvAddressLine1 = ConAddressLine1
         ,drvAddressLine2 = ConAddressLine2
@@ -1189,9 +1192,9 @@ BEGIN
                                         and EXISTS(select 1 from dbo.U_EUHCLFLTES_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-	JOIN dbo.Contacts WITH (NOLOCK)
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID 
-		AND ConRelationship IN ('CHL', 'STC', 'SPS')
+        AND ConRelationship IN ('CHL', 'STC', 'SPS')
     JOIN dbo.U_dsi_bdm_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID 
         AND EedCoID = xCoID
