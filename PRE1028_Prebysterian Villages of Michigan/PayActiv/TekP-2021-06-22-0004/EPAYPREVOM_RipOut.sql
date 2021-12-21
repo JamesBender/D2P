@@ -160,7 +160,7 @@ INSERT INTO [dbo].[AscDefF] (AdfExpression,AdfFieldNumber,AdfForCond,AdfHeaderSy
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPAYPREVOM_20211216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPAYPREVOM_20211216.csv';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -431,6 +431,42 @@ BEGIN
     -- AND PehPerControl <= @EndPerControl
     -- GROUP BY PehEEID
     -- HAVING SUM(PehCurAmt) <> 0.00;
+
+	--Code for "terminations sent one time only". One time means sent one time during the per control range.
+
+--Audit Table
+    IF OBJECT_ID('U_EPAYPREVOM_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EPAYPREVOM_AuditFields;
+    CREATE TABLE dbo.U_EPAYPREVOM_AuditFields (aTableName varchar(128),aFieldName varchar(128));
+    -- Insert tables/fields to be audited
+    INSERT INTO dbo.U_EPAYPREVOM_AuditFields VALUES ('Empcomp','EecEmplStatus');    
+    -- Create audit table
+    IF OBJECT_ID('U_EPAYPREVOM_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EPAYPREVOM_Audit;
+    SELECT
+         audTableName = adrTableName
+        ,audFieldName = adfFieldName
+        ,audKey1Value = ISNULL(adrKey1,'')
+        ,audKey2Value = ISNULL(adrKey2,'')
+        ,audKey3Value = ISNULL(adrKey3,'')
+        ,audDateTime  = adrProcessedDateTime
+        ,audOldValue  = adfOldData
+        ,audNewValue  = adfNewData
+        ,audRowNo     = ROW_NUMBER() OVER(PARTITION BY adrKey1, adrKey2, adrKey3, adfFieldName ORDER BY adrRecID DESC)
+    INTO dbo.U_EPAYPREVOM_Audit
+    FROM (SELECT *
+          FROM dbo.AuditRecords WITH (NOLOCK)
+          WHERE adrTableName IN (SELECT aTableName FROM dbo.U_EPAYPREVOM_AuditFields WITH (NOLOCK))) ADR
+    JOIN (SELECT *
+          FROM dbo.AuditFields WITH (NOLOCK)
+          WHERE adfFieldName IN (SELECT aFieldName FROM dbo.U_EPAYPREVOM_AuditFields WITH (NOLOCK))) ADF
+        ON adrSystemID = adfSystemID
+       AND adrKey = adfKey
+    WHERE adrType IN (1,2,5,6) -- Insert/Update; remove this to include Deletes and Viewed
+      AND adrProcessedDateTime BETWEEN @StartDate AND @EndDate;
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EPAYPREVOM_Audit ON dbo.U_EPAYPREVOM_Audit (audKey1Value, audKey2Value);
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -462,6 +498,8 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+		AND (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                                        AND EXISTS(select 1 from dbo.U_EPAYPREVOM_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.Location WITH(NOLOCK)
         ON LocCode = EecLocation
     JOIN dbo.EmpPers WITH (NOLOCK)
