@@ -5,7 +5,7 @@ EARICOB: Wageworks Cobra
 FormatCode:     EARICOB
 Project:        Wageworks Cobra
 Client ID:      ARI1006
-Date/time:      2021-12-07 10:14:19.483
+Date/time:      2021-12-20 13:21:10.737
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -110,6 +110,8 @@ IF OBJECT_ID('dsi_vwEARICOB_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEARICOB_
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EARICOB') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EARICOB];
 GO
+IF OBJECT_ID('U_EARICOB_PlanRate3') IS NOT NULL DROP TABLE [dbo].[U_EARICOB_PlanRate3];
+GO
 IF OBJECT_ID('U_EARICOB_File') IS NOT NULL DROP TABLE [dbo].[U_EARICOB_File];
 GO
 IF OBJECT_ID('U_EARICOB_EEList') IS NOT NULL DROP TABLE [dbo].[U_EARICOB_EEList];
@@ -205,8 +207,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EARICOB000Z0','50','H','01','72',NULL,'PLAN_RATE4',NULL,NULL,'"PLAN_RATE4"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','EARICOB000Z0','50','H','01','73',NULL,'FILLER',NULL,NULL,'"FILLER"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EARICOB000Z0','50','H','01','74',NULL,'CARRIER_EMPLOYEE_ID4',NULL,NULL,'"CARRIER_EMPLOYEE_ID4"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EARICOB000Z0','50','H','01','75',NULL,'PLAN_FILLER4',NULL,NULL,'"PLAN_FILLER4"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','EARICOB000Z0','50','H','01','76',NULL,'PLAN_NAME5',NULL,NULL,'"PLAN_NAME5"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EARICOB000Z0','50','H','01','75',NULL,'PLAN_FILLER4',NULL,NULL,'"PLAN_FILLER4"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EARICOB000Z0','50','D','10','1',NULL,'EMPLOYER_EIN',NULL,NULL,'"86-0767800"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EARICOB000Z0','50','D','10','2',NULL,'ACTION_CODE',NULL,NULL,'"drvActionCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EARICOB000Z0','50','D','10','3',NULL,'LAST_NAME',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
@@ -238,7 +239,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EARICOB000Z0','50','D','10','29',NULL,'COVERAGE_BEGIN_DATE',NULL,NULL,'"drvCoverageBeginDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EARICOB000Z0','50','D','10','30',NULL,'FILLER_2',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EARICOB000Z0','50','D','10','31',NULL,'QUALIFYING EVENT_DATE',NULL,NULL,'"drvQuallifingEventDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EARICOB000Z0','50','D','10','32',NULL,'LAST_PRECOBRA_COVERED',NULL,NULL,'"drvLastPreCobraCovered"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EARICOB000Z0','50','D','10','32',NULL,'LAST_PRECOBRA_COVERED',NULL,NULL,'"drvLastPreCobraCovered"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EARICOB000Z0','50','D','10','33',NULL,'QUALIFYING_EVENT_TYPE',NULL,NULL,'"drvQuallifingEventType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EARICOB000Z0','50','D','10','34',NULL,'ELIGIBILITY_END_DATE',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EARICOB000Z0','50','D','10','35',NULL,'SEVERANCE_THROUGH',NULL,NULL,'""','(''SS''=''T,'')');
@@ -270,19 +271,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','EARICOB000Z0','50','D','10','61',NULL,'PLAN_COV_CODE3',NULL,NULL,'"drvPlanCovCode3"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','EARICOB000Z0','50','D','10','62',NULL,'PLAN_COV_START3',NULL,NULL,'"drvPlanCovStart3"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','EARICOB000Z0','50','D','10','63',NULL,'PLAN_COV_END3',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','EARICOB000Z0','50','D','10','64',NULL,'PLAN_RATE3',NULL,NULL,'"drvPlanRate3"','(''UNT2''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','EARICOB000Z0','50','D','10','64',NULL,'PLAN_RATE3',NULL,NULL,'"drvPlanRate3"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','EARICOB000Z0','50','D','10','65',NULL,'FILLER',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','EARICOB000Z0','50','D','10','66',NULL,'CARRIER_EMPLOYEE_ID3',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','EARICOB000Z0','50','D','10','67',NULL,'PLAN_FILLER3',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','EARICOB000Z0','50','D','10','68',NULL,'PLAN_NAME4',NULL,NULL,'"drvPlanName4"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','EARICOB000Z0','50','D','10','69',NULL,'PLAN_COV_CODE4',NULL,NULL,'"drvPlanCovCode4"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','EARICOB000Z0','50','D','10','70',NULL,'PLAN_COV_START4',NULL,NULL,'"drvPlanCoveStart4"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','EARICOB000Z0','50','D','10','70',NULL,'PLAN_COV_START4',NULL,NULL,'"drvPlanCoveStart4"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','EARICOB000Z0','50','D','10','71',NULL,'PLAN_COV_END4',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EARICOB000Z0','50','D','10','72',NULL,'PLAN_RATE4',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','EARICOB000Z0','50','D','10','73',NULL,'FILLER',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EARICOB000Z0','50','D','10','74',NULL,'CARRIER_EMPLOYEE_ID4',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EARICOB000Z0','50','D','10','75',NULL,'PLAN_FILLER4',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','EARICOB000Z0','50','D','10','76',NULL,'PLAN_NAME5',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EARICOB000Z0','50','D','10','75',NULL,'PLAN_FILLER4',NULL,NULL,'""','(''SS''=''T'')');
 
 -----------
 -- Build web filename
@@ -295,7 +295,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARICOB_20211207.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARICOB_20211220.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -306,7 +306,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112069','EMPEXPORT','OEPASSIVE',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wageworks Cobra','202112069','EMPEXPORT','ONDEM_XOE',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wageworks Cobra-Sched','202112069','EMPEXPORT','SCH_EARICO',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Wageworks Cobra-Test','202112069','EMPEXPORT','TEST_XOE',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Wageworks Cobra-Test','202112141','EMPEXPORT','TEST_XOE','Dec 14 2021  3:39PM','EARICOB',NULL,NULL,NULL,'202112141','Dec 14 2021 12:00AM','Dec 30 1899 12:00AM','202111011','39','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -413,10 +413,10 @@ CREATE TABLE [dbo].[U_EARICOB_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvEmpNoSort] varchar(1) NOT NULL,
-    [drvActionCode] varchar(2) NOT NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvNameFirst] varchar(100) NULL,
+    [drvEmpNoSort] char(9) NULL,
+    [drvActionCode] varchar(2) NULL,
+    [drvNameLast] varchar(20) NULL,
+    [drvNameFirst] varchar(20) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvEmpSSN] varchar(11) NULL,
     [drvDepSSN] varchar(11) NULL,
@@ -430,10 +430,10 @@ CREATE TABLE [dbo].[U_EARICOB_drvTbl] (
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
-    [drvCobraEligible] varchar(1) NULL,
+    [drvCobraEligible] varchar(1) NOT NULL,
     [drvPhoneNumber] varchar(12) NULL,
     [drvEmailAddress] varchar(1) NOT NULL,
-    [drvInitialNotificationCobra] varchar(1) NULL,
+    [drvInitialNotificationCobra] varchar(1) NOT NULL,
     [drvWaitingStartDate] datetime NULL,
     [drvCoverageBeginDate] datetime NULL,
     [drvQuallifingEventDate] datetime NULL,
@@ -444,13 +444,14 @@ CREATE TABLE [dbo].[U_EARICOB_drvTbl] (
     [drvPlanCovStart1] datetime NULL,
     [drvPlanName2] varchar(18) NULL,
     [drvPlanCovCode2] varchar(2) NULL,
-    [drvPlanCovStart2] varchar(1) NOT NULL,
+    [drvPlanCovStart2] datetime NULL,
     [drvPlanName3] varchar(19) NULL,
     [drvPlanCovCode3] varchar(2) NULL,
     [drvPlanCovStart3] datetime NULL,
-    [drvPlanName4] varchar(1) NOT NULL,
-    [drvPlanCovCode4] varchar(1) NOT NULL,
-    [drvPlanCoveStart4] varchar(1) NOT NULL
+    [drvPlanRate3] nvarchar(4000) NULL,
+    [drvPlanName4] varchar(26) NULL,
+    [drvPlanCovCode4] varchar(2) NULL,
+    [drvPlanCoveStart4] datetime NULL
 );
 
 -----------
@@ -475,6 +476,17 @@ CREATE TABLE [dbo].[U_EARICOB_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] varchar(4000) NULL
+);
+
+-----------
+-- Create table U_EARICOB_PlanRate3
+-----------
+
+IF OBJECT_ID('U_EARICOB_PlanRate3') IS NULL
+CREATE TABLE [dbo].[U_EARICOB_PlanRate3] (
+    [PrEEID] char(12) NOT NULL,
+    [PrCoID] char(5) NULL,
+    [PlanRate3] money NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EARICOB]
@@ -596,6 +608,9 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+
+
+
     --==========================================
     -- BDM Section - QB
     --==========================================
@@ -626,7 +641,7 @@ BEGIN
 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons – used when clients have Platform Configurable fields.  Add any other field names the client is using.
 
-	    -- Run BDM for QB
+        -- Run BDM for QB
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     -- Required OE parameters
@@ -647,19 +662,19 @@ BEGIN
     --==========================================
     -- Build Working Tables
     --==========================================
-	-----------------------------
+    -----------------------------
     -- Working Table - PlanRate3
     -----------------------------
     IF OBJECT_ID('U_EARICOB_PlanRate3','U') IS NOT NULL
         DROP TABLE dbo.U_EARICOB_PlanRate3;
     SELECT DISTINCT
-			PrEEID = BdmEEID
-			,PrCoID = BdmCOID
-			,PlanRate3 = SUM(BdmEEAmt)*52
-	 INTO dbo.U_EARICOB_PlanRate3
-	 FROM dbo.U_dsi_BDM_EARICOB 
-	 WHERE BdmDedCode in ('CFSAL','CFSAM','FSA','FSALP')
-	 Group by BdmEEID, BdmCOID
+            PrEEID = BdmEEID
+            ,PrCoID = BdmCOID
+            ,PlanRate3 = SUM(BdmEEAmt)*52
+     INTO dbo.U_EARICOB_PlanRate3
+     FROM dbo.U_dsi_BDM_EARICOB 
+     WHERE BdmDedCode in ('CFSAL','CFSAM','FSA','FSALP')
+     Group by BdmEEID, BdmCOID
     --==========================================
     -- Build Driver Tables --- CDENH, DENH, DENHD, DENHS, CDENL, DENL, DENLD, DENLS, CEDS, DEDS, DEDSD, DEDSS, CVIS, VIS, VISP, CFSAL, CFSAM, FSA, FSALP, CMHD, MHDEE, MPHY2, CMPPO, MPHY, MPPOE
     --==========================================
@@ -669,25 +684,32 @@ BEGIN
     IF OBJECT_ID('U_EARICOB_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EARICOB_drvTbl;
     SELECT DISTINCT
-         drvEEID = xEEID
+         drvEEID = xEEID  
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvEmpNoSort = EecEmpNo
         -- standard fields above and additional driver fields below
-        ,drvActionCode = CASE 
+        ,drvActionCode =    CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmRunID = 'NPM' THEN '01'
+                                WHEN BdmRecType = 'DEP' AND BdmBenStatus = 'A' AND BdmRunID = 'NPM'  THEN '02'
+                                WHEN BdmRecType = 'EMP' AND EecEmplStatus IN ('T', 'L') AND BdmRunID = 'QB' THEN '03'
+                                WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' AND BdmBenStatus = 'T' AND BdmRunId = 'QB' THEN '03'
+                                WHEN BdmRecType = 'DEP' AND BdmBenStatus IN ('T', 'L') AND BdmRunId = 'QB' THEN '06'
+                            END 
+                        /*CASE 
                                 WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A'  THEN '01'
                                 WHEN BdmRecType = 'DEP' AND ConRelationship in ('CHL','COD','SPS','STC') and BdmBenStatus = 'A' THEN '02'
                                 WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' THEN '03'
                                 WHEN BdmRecType = 'DEP'AND ConRelationship in ('CHL','COD','SPS','STC') and BdmBenStatus = 'T' THEN '06'
-                            END
+                            END*/
+
         -- standard fields above and additional driver fields below
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameLast,20) ELSE LEFT(ConNameLast,20) END
         ,drvNameFirst = CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameFirst,20) ELSE LEFT(ConNameFirst,20) END
         ,drvNameMiddle = CASE 
-							WHEN BdmRecType = 'EMP' AND EepNameMiddle is not null THEN LEFT(EepNameMiddle,1) 
-							WHEN BdmRecType = 'DEP' AND ConNameMiddle is not null THEN LEFT(ConNameMiddle,1) 
-							ELSE ''
-							END
+                            WHEN BdmRecType = 'EMP' AND EepNameMiddle is not null THEN LEFT(EepNameMiddle,1) 
+                            WHEN BdmRecType = 'DEP' AND ConNameMiddle is not null THEN LEFT(ConNameMiddle,1) 
+                            ELSE ''
+                            END
         ,drvEmpSSN = LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(eepSSN, 5), 2) + '-' + RIGHT(LEFT(eepSSN, 9), 4)
         ,drvDepSSN = CASE WHEN BdmRecType = 'DEP' AND ConSSN IS NOT NULL THEN LEFT(ConSSN, 3) + '-' + RIGHT(LEFT(ConSSN, 5), 2) + '-' + RIGHT(LEFT(ConSSN, 9), 4) ELSE '' END
         ,drvEmpNo = EecEmpNo
@@ -730,22 +752,22 @@ BEGIN
                                     WHEN BdmRecType = 'DEP' THEN ConAddressZipCode
                                 END
         ,drvCobraEligible = CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' THEN 'Y' ELSE '' END
-        ,drvPhoneNumber = CASE WHEN BdmRecType = 'EMP' AND  EepPhoneHomeNumber is not null THEN LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4)
-                                WHEN BdmRecType = 'DEP' AND ConPhoneHomeNumber IS NOT NULL THEN LEFT(ConPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(ConPhoneHomeNumber, 6), 3) + '-' + RIGHT(ConPhoneHomeNumber, 4)
-								ELSE ''
+        ,drvPhoneNumber = CASE WHEN BdmRecType = 'EMP' AND  EepPhoneHomeNumber <> '' THEN LEFT(EepPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(EepPhoneHomeNumber, 6), 3) + '-' + RIGHT(EepPhoneHomeNumber, 4)
+                                WHEN BdmRecType = 'DEP' AND ConPhoneHomeNumber <> '' THEN LEFT(ConPhoneHomeNumber, 3) + '-' + RIGHT(LEFT(ConPhoneHomeNumber, 6), 3) + '-' + RIGHT(ConPhoneHomeNumber, 4)
+                                ELSE ''
                             END
         ,drvEmailAddress = ''
         ,drvInitialNotificationCobra = CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' THEN 'C' ELSE '' END
         ,drvWaitingStartDate = EecDateOfLastHire
-        ,drvCoverageBeginDate = BdmBenStartDate
+        ,drvCoverageBeginDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, '1/1/2022')
         ,drvQuallifingEventDate = CASE WHEN ConRelationship IN ('SPS') AND BdmBenStatus = 'T' AND BdmCobraReason in ('204','LEVNT4')THEN BdmBenStatusDate
                                         WHEN ConRelationship IN ('CHL','COD','STC') AND BdmBenStatus ='T' AND BdmCobraReason in ('201','LEVNT3') THEN EecDateofTermination
                                         WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' THEN EecDateOfTermination
-										Else BdmBenStatusDate
+                                        Else BdmBenStatusDate
                                     END
         ,drvLastPreCobraCovered = CASE WHEN ConRelationship IN ('SPS') AND BdmBenStatus = 'T' AND BdmCobraReason in ('204','LEVNT4')THEN BdmBenStopDate
                                         WHEN ConRelationship IN ('CHL','COD','STC','SPS') AND EecEmplStatus ='T' AND BdmCobraReason in ('203','IDE') THEN BdmBenStopDate
-										WHEN ConRelationship IN ('CHL','COD','STC') AND BdmBenStatus = 'T' AND BdmCobraReason in ('201','LEVNT3')THEN BdmBenStopDate
+                                        WHEN ConRelationship IN ('CHL','COD','STC') AND BdmBenStatus = 'T' AND BdmCobraReason in ('201','LEVNT3')THEN BdmBenStopDate
                                         WHEN EecEmplStatus = 'T' AND BdmBenStatus = 'T' THEN BdmBenStopDate
                                     END
 
@@ -755,54 +777,60 @@ BEGIN
                                         WHEN EecEmplStatus = 'T' and EecTermReason NOT IN ('202','203','IDE','VRE','COVID','IEP') THEN '03'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason in ('COVID','IEP') THEN '05'
                                         WHEN EecEmplStatus = 'T' AND BdmChangeReason = '208' AND EecTermReason in ('202','VRE') AND BdmCobraReason = '208' THEN '01'
-                                        WHEN EecEmplStatus = 'A' and BdmCobraReason IN ('203','202') THEN '04'										
+                                        WHEN EecEmplStatus = 'A' and BdmCobraReason IN ('203','202') THEN '04'                                        
                                     END
-        ,drvPlanName1 = CASE    WHEN BdmDedCode in ('CDENH', 'DENH', 'DENHD', 'DENHS') THEN 'Delta Dental High Plan'                             
-                                WHEN BdmDedCode in ('CDENL', 'DENL', 'DENLD', 'DENLS') THEN 'Delta Dental Low Plan'                             
-                                WHEN BdmDedCode in ('CEDS', 'DEDS', 'DEDSD', 'DEDSS') THEN 'EDS Dental Plan' 
-								ELSE ''
+
+        ,drvPlanName1 = CASE    WHEN DedCode_DHIGH IS NOT NULL THEN 'Delta Dental High Plan'                             
+                                WHEN DedCode_DLOW IS NOT NULL THEN 'Delta Dental Low Plan'                             
+                                WHEN DedCode_DEDS IS NOT NULL THEN 'EDS Dental Plan' 
                             END
-        ,drvPlanCovCode1 = CASE BdmBenOption
+        ,drvPlanCovCode1 = CASE WHEN DedCode_D1 IS NOT NULL THEN CASE BenOption_D1
                                 WHEN 'EE' THEN '01'
                                 WHEN 'EEF' THEN '04'
                                 WHEN 'EE1' THEN '39'
-								ELSE ''
-                            END
+                            END END
         ,drvPlanCovStart1 = CASE 
-								WHEN BdmDedCode in ('CDENH', 'DENH', 'DENHD', 'DENHS', 'CDENL', 'DENL', 'DENLD', 'DENLS', 'CEDS', 'DEDS', 'DEDSD', 'DEDSS') AND BdmBenStatus in ( 'A' , 'T') THEN BdmBenStartDate
-								ELSE '01/01/2022'
-								END
-        ,drvPlanName2 = CASE WHEN bdmDedCode in ('CVIS','VIS','VISP') THEN 'EyeMed Vision Plan' ELSE '' END
-        ,drvPlanCovCode2 = CASE BdmBenOption
+                                WHEN DedCode_D1 IS NOT NULL AND BenStartDate_D1> '2022-01-01' THEN BenStartDate_D1
+                                WHEN DedCode_D1 IS NOT NULL AND BenStartDate_D1 <= '2022-01-01' THEN '01/01/2022'
+                                END
+        ,drvPlanName2 = CASE WHEN DedCode_VIS1 IS NOT NULL THEN 'EyeMed Vision Plan' END
+        ,drvPlanCovCode2 = CASE WHEN DedCode_VIS1  IS NOT NULL THEN CASE BenOption_VIS1
                                 WHEN 'EE' THEN '01'
                                 WHEN 'EEF' THEN '04'
                                 WHEN 'EE1' THEN '39'
-								ELSE ''
-                            END
+                            END END
         ,drvPlanCovStart2 = CASE 
-								WHEN BdmDedCode in ('CVIS', 'VIS', 'VISP') AND BdmBenStatus in ( 'A' , 'T') THEN BdmBenStartDate
-								ELSE '01/01/2022'
-								END
-        ,drvPlanName3 = CASE WHEN bdmDedCode in ('CFSAL','CFSAM','FSA','FSALP') THEN 'HealthCare FSA 2022' ELSE '' END
-        ,drvPlanCovCode3 = CASE WHEN BdmBenOption is not null then '98' ELSE '' END
-        ,drvPlanCovStart3 = CASE WHEN BdmDedCode in ('CFSAL','CFSAM','FSA','FSALP') and BdmBenStatus in ('A','T') THEN BdmBenStartDate ELSE '01/01/2022' END
-		,drvPlanRate3 = PlanRate3/12
+                                WHEN DedCode_VIS1 IS NOT NULL AND BenStartDate_VIS1 > '2022-01-01' THEN BenStartDate_VIS1
+                                WHEN DedCode_VIS1 IS NOT NULL AND BenStartDate_VIS1 <= '2022-01-01' THEN  '01/01/2022'
+                                END
+        ,drvPlanName3 = CASE WHEN DedCode_FSA1 IS NOT NULL THEN 'HealthCare FSA 2022' END
+        ,drvPlanCovCode3 = CASE WHEN DedCode_FSA1 IS NOT NULL /*and BenOption_FSA1 IS NOT NULL*/ then '98'  END
+        ,drvPlanCovStart3 = CASE 
+                                WHEN BenStartDate_FSA1 > '2022-01-01' THEN BenStartDate_FSA1
+                                WHEN BenStartDate_FSA1 <= '2022-01-01' THEN '01/01/2022' 
+                                END
+        ,drvPlanRate3 = FORMAT(CASE WHEN PlanRate3 <> '' OR PlanRate3 <> 0 THEN  PlanRate3/12 END, '#0.00')
         ,drvPlanName4 = CASE 
-							WHEN bdmDedCode in ('CMHD', 'MHDEE', 'MPHY2') THEN 'UMR HDHP 2800 Medical Plan' 
-							WHEN bdmDedCode in ('CMPPO', 'MPHY', 'MPPOE') THEN 'UMR PPO 4500 Medical Plan' 
-							ELSE ''
-						END
-        ,drvPlanCovCode4 = CASE BdmBenOption
+                            WHEN DedCode_MED1 IS NOT NULL THEN 'UMR HDHP 2800 Medical Plan'
+                            WHEN DedCode_MED2 IS NOT NULL THEN 'UMR PPO 4500 Medical Plan'
+
+                            --WHEN bdmDedCode in ('CMHD', 'MHDEE', 'MPHY2') THEN 'UMR HDHP 2800 Medical Plan' 
+                            --WHEN bdmDedCode in ('CMPPO', 'MPHY', 'MPPOE') THEN 'UMR PPO 4500 Medical Plan' 
+                            --ELSE ''
+                        END
+        ,drvPlanCovCode4 = CASE WHEN DedCode_MED IS NOT NULL THEN 
+                            CASE BenOption_MED
                                 WHEN 'EE' THEN '01'
                                 WHEN 'EEF' THEN '04'
                                 WHEN 'EES' THEN '06'
-								WHEN 'EEC' THEN '59'
-								ELSE ''
+                                WHEN 'EEC' THEN '59'
+                                --ELSE ''
+                            END 
                             END
         ,drvPlanCoveStart4 = CASE 
-								WHEN BdmDedCode in ('CMHD', 'MHDEE', 'MPHY2', 'CMPPO', 'MPHY', 'MPPOE') AND BdmBenStatus in ( 'A' , 'T') THEN BdmBenStartDate
-								ELSE '01/01/2022'
-								END
+                                WHEN BenStartDate_MED > '2022-01-01' THEN BenStartDate_MED
+                                WHEN BenStartDate_MED <= '2022-01-01' THEN  '01/01/2022'
+                                END
     INTO dbo.U_EARICOB_drvTbl
     FROM dbo.U_EARICOB_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -810,63 +838,81 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
+    --JOIN dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+    JOIN (
+            SELECT BdmRecType, BdmEEID, BdmCOID, BdmDepRecId, BdmRunId, BdmBenStatus
+                ,MAX(BdmBenStartDate) AS BdmBenStartDate
+                ,MAX(BdmBenStopDate) AS BdmBenStopDate
+                ,MAX(BdmBenStatusDate) AS BdmBenStatusDate
+                ,MAX(BdmCobraReason) AS BdmCobraReason
+                ,MAX(BdmChangeReason) AS BdmChangeReason
+                ,MAX(BdmIsPQB) AS BdmIsPQB
+             --   ,MAX(CASE WHEN BdmDedCode = 'CDENH'THEN BdmDedCode END) AS DedCode_CDENH
+             --   ,MAX(CASE WHEN BdmDedCode = 'DENH' THEN BdmDedCode END) AS DedCode_DENH
+             --   ,MAX(CASE WHEN BdmDedCode = 'DENHD' THEN BdmDedCode END) AS DedCode_DENHD
+             --   ,MAX(CASE WHEN BdmDedCode = 'DENHS' THEN BdmDedCode END) AS DedCode_DENHS
+                --,MAX(CASE WHEN BdmDedCode = 'CDENL'THEN BdmDedCode END) AS DedCode_CDENL
+             --   ,MAX(CASE WHEN BdmDedCode = 'DENL' THEN BdmDedCode END) AS DedCode_DENL
+             --   ,MAX(CASE WHEN BdmDedCode = 'DENLD' THEN BdmDedCode END) AS DedCode_DENLD
+             --   ,MAX(CASE WHEN BdmDedCode = 'DENLS' THEN BdmDedCode END) AS DedCode_DENLS
+                --,MAX(CASE WHEN BdmDedCode = 'CEDS'THEN BdmDedCode END) AS DedCode_CEDS
+             --   ,MAX(CASE WHEN BdmDedCode = 'DEDS' THEN BdmDedCode END) AS DedCode_DEDS
+             --   ,MAX(CASE WHEN BdmDedCode = 'DEDSD' THEN BdmDedCode END) AS DedCode_DEDSD
+             --   ,MAX(CASE WHEN BdmDedCode = 'DEDSS' THEN BdmDedCode END) AS DedCode_DEDSS
+                ,MAX(CASE WHEN BdmDedCode in ('CDENH', 'DENH', 'DENHD', 'DENHS') THEN BdmDedCode END) AS DedCode_DHIGH    
+                ,MAX(CASE WHEN BdmDedCode in ('CDENL', 'DENL', 'DENLD', 'DENLS') THEN BdmDedCode END) AS DedCode_DLOW  
+                ,MAX(CASE WHEN BdmDedCode in ('CEDS', 'DEDS', 'DEDSD', 'DEDSS')  THEN BdmDedCode END) AS DedCode_DEDS  
+                --,MAX(CASE WHEN BdmDedCode IN ('CDENH', 'DENH', 'DENHD', 'DENHS') THEN BdmBenStartDate END) AS BenStartDate_DHIGH
+    --            ,MAX(CASE WHEN BdmDedCode IN  ('CDENL', 'DENL', 'DENLD', 'DENLS')THEN BdmBenStartDate END) AS BenStartDate_DLOW
+       --         ,MAX(CASE WHEN BdmDedCode IN  ('CEDS', 'DEDS', 'DEDSD', 'DEDSS') THEN BdmBenStartDate END) AS BenStartDate_DEDS
+                ,MAX(CASE WHEN BdmDedCode in ('CDENH', 'DENH', 'DENHD', 'DENHS', 'CDENL', 'DENL', 'DENLD', 'DENLS', 'CEDS', 'DEDS', 'DEDSD', 'DEDSS') THEN BdmBenOption END) AS BenOption_D1
+                ,MAX(CASE WHEN BdmDedCode in ('CDENH', 'DENH', 'DENHD', 'DENHS', 'CDENL', 'DENL', 'DENLD', 'DENLS', 'CEDS', 'DEDS', 'DEDSD', 'DEDSS') THEN BdmDedCode END) AS DedCode_D1
+                ,MAX(CASE WHEN BdmDedCode IN ('CDENH', 'DENH', 'DENHD', 'DENHS', 'CDENL', 'DENL', 'DENLD', 'DENLS', 'CEDS', 'DEDS', 'DEDSD', 'DEDSS') THEN BdmBenStartDate END) AS BenStartDate_D1
+
+             --   ,MAX(CASE WHEN BdmDedCode = 'CVIS' THEN BdmDedCode END) AS DedCode_CVIS
+                --,MAX(CASE WHEN BdmDedCode = 'VIS' THEN BdmDedCode END) AS DedCode_VIS
+                --,MAX(CASE WHEN BdmDedCode = 'VISP' THEN BdmDedCode END) AS DedCode_VISP
+                ,MAX(CASE WHEN BdmDedCode in ('CVIS','VIS','VISP')  THEN BdmDedCode END) AS DedCode_VIS1
+                ,MAX(CASE WHEN BdmDedCode in ('CVIS','VIS','VISP')  THEN BdmBenOption END) AS BenOption_VIS1
+                ,MAX(CASE WHEN BdmDedCode IN ('CVIS','VIS','VISP')  THEN BdmBenStartDate END) AS BenStartDate_VIS1
+
+                --,MAX(CASE WHEN BdmDedCode = 'CFSAL' THEN BdmDedCode END) AS DedCode_CFSAL
+                --,MAX(CASE WHEN BdmDedCode = 'CFSAM' THEN BdmDedCode END) AS DedCode_CFSAM
+                --,MAX(CASE WHEN BdmDedCode = 'FSA' THEN BdmDedCode END) AS DedCode_FSA
+                --,MAX(CASE WHEN BdmDedCode = 'FSALP'THEN BdmDedCode END) AS DedCode_FSALP
+                ,MAX(CASE WHEN BdmDedCode in ('CFSAL', 'CFSAM', 'FSA', 'FSALP')THEN BdmDedCode END) AS DedCode_FSA1
+                ,MAX(CASE WHEN BdmDedCode in ('CFSAL', 'CFSAM', 'FSA', 'FSALP')THEN BdmBenOption END) AS BenOption_FSA1
+                ,MAX(CASE WHEN BdmDedCode IN ('CFSAL','CFSAM','FSA','FSALP')  THEN BdmBenStartDate END) AS BenStartDate_FSA1
+                
+                --,MAX(CASE WHEN BdmDedCode = 'CMHD'THEN BdmDedCode END) AS DedCode_CMHD
+                --,MAX(CASE WHEN BdmDedCode = 'MHDEE' THEN BdmDedCode END) AS DedCode_MHDEE
+                --,MAX(CASE WHEN BdmDedCode =  'MPHY2' THEN BdmDedCode END) AS DedCode_MPHY2
+                ,MAX(CASE WHEN BdmDedCode in('CMHD', 'MHDEE', 'MPHY2') THEN BdmDedCode END) AS DedCode_MED1
+                --,MAX(CASE WHEN BdmDedCode in('CMHD', 'MHDEE', 'MPHY2') THEN BdmBenOption END) AS BenOption_MED1
+                --,MAX(CASE WHEN BdmDedCode = 'CMPPO'THEN BdmDedCode END) AS DedCode_CMPPO
+                --,MAX(CASE WHEN BdmDedCode =  'MPHY' THEN BdmDedCode END) AS DedCode_MPHY
+                --,MAX(CASE WHEN BdmDedCode = 'MPPOE' THEN BdmDedCode END) AS DedCode_MPPOE
+                ,MAX(CASE WHEN BdmDedCode in('CMPPO', 'MPHY', 'MPPOE') THEN BdmDedCode END) AS DedCode_MED2
+                --,MAX(CASE WHEN BdmDedCode in('CMPPO', 'MPHY', 'MPPOE') THEN BdmBenOption END) AS BenOption_MED2
+                ,MAX(CASE WHEN BdmDedCode IN ('CMHD', 'MHDEE', 'MPHY2', 'CMPPO', 'MPHY', 'MPPOE')  THEN BdmDedCode END) AS DedCode_MED
+                ,MAX(CASE WHEN BdmDedCode IN ('CMHD', 'MHDEE', 'MPHY2', 'CMPPO', 'MPHY', 'MPPOE')  THEN BdmBenStartDate END) AS BenStartDate_MED
+                ,MAX(CASE WHEN BdmDedCode in ('CMHD', 'MHDEE', 'MPHY2', 'CMPPO', 'MPHY', 'MPPOE') THEN BdmBenOption END) AS BenOption_MED
+            FROM dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
+            GROUP BY BdmRecType, BdmEEID, BdmCOID, BdmDepRecId, BdmRunId, BdmBenStatus
+        ) AS BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-	LEFT JOIN dbo.U_EARICOB_PlanRate3 WITH (NOLOCK)
-	    ON PrEEID = xEEID 
+    LEFT JOIN dbo.U_EARICOB_PlanRate3 WITH (NOLOCK)
+        ON PrEEID = xEEID 
         AND PrCoID = xCoID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
         WHERE (BdmRunID = 'QB') OR (BdmRunID = 'NPM' AND EecDateOfLastHire BETWEEN @StartDate AND @EndDate)
-
     ;
 
-
-    --JOIN (
-    --        SELECT BdmRecType, BdmEEID, BdmCOID, BdmDepRecId, BdmRunId, BdmBenStatus
-    --            ,MAX(BdmBenStartDate) AS BdmBenStartDate
-    --            ,MAX(BdmBenStopDate) AS BdmBenStopDate
-    --            ,MAX(BdmCobraReason) AS BdmCobraReason
-    --            ,MAX(BdmIsPQB) AS BdmIsPQB
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDCI' THEN BdmDedCode END) AS DedCode_MEDCI
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDCO' THEN BdmDedCode END) AS DedCode_MEDCO
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDM2' THEN BdmDedCode END) AS DedCode_MEDM2
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDM1' THEN BdmDedCode END) AS DedCode_MEDM1
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDH3' THEN BdmDedCode END) AS DedCode_MEDH3
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDB2' THEN BdmDedCode END) AS DedCode_MEDB2
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDB1' THEN BdmDedCode END) AS DedCode_MEDB1
-    --            ,MAX(CASE WHEN BdmDedCode = 'MEDM3' THEN BdmDedCode END) AS DedCode_MEDM3
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK2C' THEN BdmDedCode END) AS DedCode_MDK2C
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK2R' THEN BdmDedCode END) AS DedCode_MDK2R
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK2D' THEN BdmDedCode END) AS DedCode_MDK2D
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK1D' THEN BdmDedCode END) AS DedCode_MDK1D
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK1C' THEN BdmDedCode END) AS DedCode_MDK1C
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK3R' THEN BdmDedCode END) AS DedCode_MDK3R
-    --            ,MAX(CASE WHEN BdmDedCode = 'MDK3D' THEN BdmDedCode END) AS DedCode_MDK3D
-    --            ,MAX(CASE WHEN BdmDedCode = 'DHMOT' THEN BdmDedCode END) AS DedCode_DHMOT
-    --            ,MAX(CASE WHEN BdmDedCode = 'DHMOC' THEN BdmDedCode END) AS DedCode_DHMOC
-    --            ,MAX(CASE WHEN BdmDedCode = 'DHPPD' THEN BdmDedCode END) AS DedCode_DHPPD
-    --            ,MAX(CASE WHEN BdmDedCode = 'DHPPC' THEN BdmDedCode END) AS DedCode_DHPPC
-    --            ,MAX(CASE WHEN BdmDedCode = 'DHPPR' THEN BdmDedCode END) AS DedCode_DHPPR
-    --            ,MAX(CASE WHEN BdmDedCode = 'DHPPT' THEN BdmDedCode END) AS DedCode_DHPPT
-    --            ,MAX(CASE WHEN BdmDedCode = 'DLPPT' THEN BdmDedCode END) AS DedCode_DLPPT
-    --            ,MAX(CASE WHEN BdmDedCode = 'DLPPC' THEN BdmDedCode END) AS DedCode_DLPPC
-    --            ,MAX(CASE WHEN BdmDedCode = 'DLPPR' THEN BdmDedCode END) AS DedCode_DLPPR
-    --            ,MAX(CASE WHEN BdmDedCode = 'DLPPD' THEN BdmDedCode END) AS DedCode_DLPPD          
-    --            ,MAX(CASE WHEN BdmDedCode = 'VSP' THEN BdmDedCode END) AS DedCode_VSP
-    --            ,MAX(CASE WHEN BdmDedType = 'MED' THEN BdmBenOption END) AS BenOption_MED
-    --            ,MAX(CASE WHEN BdmDedType = 'DEN' THEN BdmBenOption END) AS BenOption_DEN
-    --            ,MAX(CASE WHEN BdmDedType = 'VIS' THEN BdmBenOption END) AS BenOption_VIS
-    --            ,MAX(CASE WHEN BdmDedCode IN ('MEDCI','MEDCO','MEDM1','MEDM2','MEDH3','MEDM3','MEDB1','MEDB2','MDK2C','MDK1C','MDK2R','MDK3R','MDK2D','MDK3D') THEN BdmBenStartDate END) AS BenStartDate_MED
-    --            ,MAX(CASE WHEN BdmDedCode IN ('DHPPT','DHPPD','DHPPC','DHPPR','DHPPT','DLPPT','DLPPC','DLPPR','DLPPD','DHMOT','DHMOC') THEN BdmBenStartDate END) AS BenStartDate_DEN
-    --            ,MAX(CASE WHEN BdmDedCode IN ('VSP') THEN BdmBenStartDate END) AS BenStartDate_VIS
-    --        FROM dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
-    --        GROUP BY BdmRecType, BdmEEID, BdmCOID, BdmDepRecId, BdmRunId, BdmBenStatus
-    --    ) AS BDM
-    --    ON BdmEEID = xEEID 
-    --    AND BdmCoID = xCoID
     --LEFT JOIN dbo.Contacts WITH (NOLOCK)
     --    ON ConEEID = xEEID
     --    AND ConSystemID = BdmDepRecID

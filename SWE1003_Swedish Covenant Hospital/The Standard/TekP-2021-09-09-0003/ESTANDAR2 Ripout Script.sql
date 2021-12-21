@@ -5,15 +5,15 @@ ESTANDAR2: The Standard Export V2
 FormatCode:     ESTANDAR2
 Project:        The Standard Export V2
 Client ID:      SWE1003
-Date/time:      2021-12-15 06:40:06.853
+Date/time:      2021-12-20 11:18:41.677
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
-Environment:    N23
-Server:         N2SUP3VP14
+Environment:    EZ17
+Server:         EZ1SUP7DB04
 Database:       ULTIPRO_SCHMC
-ExportPath:    \\us.saas\n0\data_exchange\SWE1003\Exports\
-TestPath:      \\us.saas\n2\Public\SWE1003\Exports\Standard\
+ExportPath:    \\us.saas\ez\Public\SWE1003\Exports_Test
+TestPath:      \\us.saas\ez\Public\SWE1003\Exports_TestStandard\
 
 **********************************************************************************/
 
@@ -547,7 +547,6 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('126','ESTANDAR20Z0','50','D','10','126',NULL,'Class Name',NULL,NULL,'"drvClassName1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('127','ESTANDAR20Z0','8','D','10','127',NULL,'Effective Date',NULL,NULL,'"drvEffectiveDate1"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('128','ESTANDAR20Z0','8','D','10','128',NULL,'Termination Date',NULL,NULL,'"drvTerminationDate1"','(''UD112''=''T|'')');
-
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('129','ESTANDAR20Z0','6','D','10','129',NULL,'Policy',NULL,NULL,'"drvPolicy2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('130','ESTANDAR20Z0','1','D','10','130',NULL,'Plan',NULL,NULL,'"drvPlan2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('131','ESTANDAR20Z0','4','D','10','131',NULL,'Product',NULL,NULL,'"drvProduct2"','(''UA''=''T|'')');
@@ -558,8 +557,6 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('136','ESTANDAR20Z0','50','D','10','136',NULL,'Class Name',NULL,NULL,'"drvClassName2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('137','ESTANDAR20Z0','8','D','10','137',NULL,'Effective Date',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('138','ESTANDAR20Z0','8','D','10','138',NULL,'Termination Date',NULL,NULL,'""','(''SS''=''T|'')');
-
-
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('139','ESTANDAR20Z0','6','D','10','139',NULL,'OTHER Policy',NULL,NULL,'"drvPolicy3"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('140','ESTANDAR20Z0','1','D','10','140',NULL,'OTHER Plan',NULL,NULL,'"drvPlan3"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('141','ESTANDAR20Z0','4','D','10','141',NULL,'OTHER Product',NULL,NULL,'"drvProduct3"','(''UA''=''T|'')');
@@ -728,11 +725,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','ExportPath','V','\\us.saas\n0\data_exchange\SWE1003\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','ExportPath','V','\\us.saas\ez\Public\SWE1003\Exports_Test');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','TestPath','V','\\us.saas\n2\Public\SWE1003\Exports\Standard\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','UDESPath','C','\\us.saas\n0\data_exchange\SWE1003\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','TestPath','V','\\us.saas\ez\Public\SWE1003\Exports_TestStandard\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','UDESPath','C','\\us.saas\ez\Public\SWE1003\Exports_Test');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDAR2','UseFileName','V','N');
 
 -----------
@@ -1069,7 +1066,7 @@ BEGIN
 
     -- Required parameters
     -- INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','LFE1X,LFE2X,LFX4X,LFP4X,LFP3X,ADPHY,SLEE1,SLEE2,SLEX1,SLEX2,SLSPS,SLCHL,SLADE,SLADF,SLTD4,SLTD6,GRLTD,STDHR,STDSL,STDPH');  
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','SLFE1X,LAE1X,LFE2X,LAE2X,LFX4X,LAX4X,LFP4X,LFP3X,LPH3X,LPH1X,ADPHY,ADPHA,SLEE1,SLAE1,SLEE2,SLAE2,SLAE3,SLAE4,SLEX1,SLAX1,SLEX2,SLAX2,SLAX3,SLAX4,SLSPS,SLSPA,SLCHL,SLCHA,SLADE,SLADF,SLTD4,SLTD6,VLTD6,GRLTD,GLTD6,GLTD5,LTDBU,STDHR,STDSL,STDPH,STDC,STD60');  
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','SLFE1X,LAE1X,LFE2X,LAE2X,LFX4X,LAX4X,LFP4X,LFP3X,LPH3X,LPH1X,ADPHY,ADPHA,SLEE1,SLAE1,SLEE2,SLAE2,SLAE3,SLAE4,SLEX1,SLAX1,SLEX2,SLAX2,SLAX3,SLAX4,SLSPS,SLSPA,SLCHL,SLCHA,SLADE,SLADF,SLTD4,SLTD6,VLTD6,GRLTD,GLTD6,GLTD5,LTDBU,STDHR,STDSL,STDPH,STDC,STD60,LAX1X,LFE1X');  
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
@@ -1418,23 +1415,23 @@ BEGIN
         AND H.EedValidForExport = 'Y'
         AND H.EedDedCode IN ('SLADE','SLADF')
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS I WITH (NOLOCK)
-        ON H.EedEEID = xEEID 
-        AND H.EedCoID = xCoID
-        AND H.EedFormatCode = @FormatCode 
-        AND H.EedValidForExport = 'Y'
-        AND H.EedDedCode IN ('LTDBU')
+        ON i.EedEEID = xEEID 
+        AND I.EedCoID = xCoID
+        AND I.EedFormatCode = @FormatCode 
+        AND I.EedValidForExport = 'Y'
+        AND I.EedDedCode IN ('LTDBU')
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS J WITH (NOLOCK)
-        ON H.EedEEID = xEEID 
-        AND H.EedCoID = xCoID
-        AND H.EedFormatCode = @FormatCode 
-        AND H.EedValidForExport = 'Y'
-        AND H.EedDedCode IN ('GRLTD')
+        ON J.EedEEID = xEEID 
+        AND J.EedCoID = xCoID
+        AND J.EedFormatCode = @FormatCode 
+        AND J.EedValidForExport = 'Y'
+        AND J.EedDedCode IN ('GRLTD')
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS K WITH (NOLOCK)
-        ON H.EedEEID = xEEID 
-        AND H.EedCoID = xCoID
-        AND H.EedFormatCode = @FormatCode 
-        AND H.EedValidForExport = 'Y'
-        AND H.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4')
+        ON K.EedEEID = xEEID 
+        AND K.EedCoID = xCoID
+        AND K.EedFormatCode = @FormatCode 
+        AND K.EedValidForExport = 'Y'
+        AND K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4')
     LEFT JOIN dbo.Company WITH (NOLOCK)
         ON CmpCOID = xCOID
     LEFT JOIN dbo.JobCode WITH (NOLOCK)
