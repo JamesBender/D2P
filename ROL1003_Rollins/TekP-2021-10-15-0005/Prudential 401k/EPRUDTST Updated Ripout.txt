@@ -5,7 +5,7 @@ EPRUDTST: Prudential 401K TEST Export with CSV
 FormatCode:     EPRUDTST
 Project:        Prudential 401K TEST Export with CSV
 Client ID:      ROL1002
-Date/time:      2021-12-10 22:57:41.557
+Date/time:      2021-12-15 20:55:01.497
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Testing
@@ -1008,7 +1008,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Prudential 401K Export','202112059','EMPEXPORT','ONDEMAND','Dec  6 2021  9:13AM','EPRUDTST',NULL,NULL,NULL,'202112059','Dec  5 2021 12:00AM','Dec 30 1899 12:00AM','202111291','47674',NULL,NULL,'202111291',dbo.fn_GetTimedKey(),NULL,'CFORT',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,'1ZD15,3S6LD,1ZF3V,GHJ2I,1ZF8F,1ZFAD,1ZFC8,YUJZX,F1IYF,48TKI,968CW,1ZFDM,1ZFF0,Z9MT2,1ZFIB,1ZFJD,1ZFN3,1ZFOF,1ZFPN,2STMJ,5D666,1ZFGN,ATSCL,SOH37',NULL,NULL,NULL,'Test Purposes Only','202112059','EMPEXPORT','TEST','Dec 10 2021 12:00AM','EPRUDTST',NULL,NULL,NULL,'202112059','Dec  5 2021 12:00AM','Dec 30 1899 12:00AM','202111291','47800','',NULL,'202111291',dbo.fn_GetTimedKey(),NULL,'us3cPeROL1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,'1ZD15,3S6LD,1ZF3V,GHJ2I,1ZF8F,1ZFAD,1ZFC8,YUJZX,F1IYF,48TKI,968CW,1ZFDM,1ZFF0,Z9MT2,1ZFIB,1ZFJD,1ZFN3,1ZFOF,1ZFPN,2STMJ,5D666,1ZFGN,ATSCL,SOH37',NULL,NULL,NULL,'Test Purposes Only','202112129','EMPEXPORT','TEST','Dec 13 2021  3:22PM','EPRUDTST',NULL,NULL,NULL,'202112129','Dec 12 2021 12:00AM','Dec 30 1899 12:00AM','202112061','49814','',NULL,'202112061',dbo.fn_GetTimedKey(),NULL,'CFORT',NULL);
 
 -----------
 -- AscImp inserts
@@ -1125,6 +1125,7 @@ CREATE TABLE [dbo].[U_EPRUDTST_drvTbl_D10] (
     [CurEligGross] decimal NOT NULL,
     [CurW2Taxable] money NOT NULL,
     [YTDGross] decimal NOT NULL,
+    [PreTaxMatch] decimal NOT NULL,
     [DefLimitComp] decimal NOT NULL,
     [drvPretaxMatch_2] varchar(9) NULL,
     [drvPretaxMatch_2NOP] decimal NOT NULL,
@@ -2187,6 +2188,7 @@ CREATE TABLE dbo.U_EPRUDTST_Sign (sValue VARCHAR(2), sDigit VARCHAR(1))
         ,CurEligGross = ISNULL(PehCurAmt - PdhSource4,0)
         ,CurW2Taxable = ISNULL(PthCurFITWages,0)
         ,YTDGross = ISNULL(PehCurAmtYTD,0)
+        ,PreTaxMatch = ISNULL(PdhSource6,0)
         ,DefLimitComp = ISNULL(PehInclInDefCompYTD - YTDPdhSource4,0)
         ,drvPretaxMatch_2   = RIGHT(LEFT(REPLACE(CAST(dbo.dsi_fnPadZero(ISNULL(PdhSource6,0)*100,9,0) AS VARCHAR(9)),'-','0'),8) + PdhMS.sDigit,9) --SR-2019-00234349 05/30/2019
         ,drvPretaxMatch_2NOP   = ISNULL(PdhSource6,0)
@@ -2957,7 +2959,7 @@ CREATE TABLE dbo.U_EPRUDTST_Sign (sValue VARCHAR(2), sDigit VARCHAR(1))
 
     -- Total Contribution / Loan Amounts
 
-    SELECT @TtlCont_Rollins = SUM(CONVERT(DECIMAL(24,2), Pretax) + CONVERT(DECIMAL(24,2), Roth))
+    SELECT @TtlCont_Rollins = SUM(CONVERT(DECIMAL(24,2), Pretax) + CONVERT(DECIMAL(24,2), PreTaxMatch) + CONVERT(DECIMAL(24,2), Roth))
     FROM dbo.U_EPRUDTST_drvTbl_D10 (NOLOCK)
     ;
 
