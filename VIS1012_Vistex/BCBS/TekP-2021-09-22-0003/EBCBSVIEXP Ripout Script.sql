@@ -5,7 +5,7 @@ EBCBSVIEXP: BCBS Vision Export
 FormatCode:     EBCBSVIEXP
 Project:        BCBS Vision Export
 Client ID:      VIS1012
-Date/time:      2021-12-14 12:29:29.947
+Date/time:      2021-12-20 14:21:08.710
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -286,14 +286,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSVIEXP_20211214.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSVIEXP_20211220.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201011','EMPEXPORT','OEACTIVE','Dec 14 2021  9:36AM','EBCBSVIEXP',NULL,NULL,NULL,'202201011','Jan  1 2022 12:00AM','Dec 30 1899 12:00AM','202201011','1171','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeVIS1012',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201011','EMPEXPORT','OEACTIVE','Dec 15 2021  3:00PM','EBCBSVIEXP',NULL,NULL,NULL,'202201011','Jan  1 2022 12:00AM','Dec 30 1899 12:00AM','202201011','1169','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeVIS1012',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202112319','EMPEXPORT','OEPASSIVE','Dec 13 2021  6:16AM','EBCBSVIEXP',NULL,NULL,NULL,'202112319','Dec 10 2021  6:04AM','Dec 10 2021  6:04AM','202101011','0','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Vision Export','202112319','EMPEXPORT','ONDEM_XOE','Dec 13 2021  6:17AM','EBCBSVIEXP',NULL,NULL,NULL,'202112319','Dec 10 2021  6:04AM','Dec 10 2021  6:04AM','202101011','0','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Vision Export-Sched','202112319','EMPEXPORT','SCH_EBCBSV','Dec 13 2021  6:18AM','EBCBSVIEXP',NULL,NULL,NULL,'202112319','Dec 10 2021  6:04AM','Dec 10 2021  6:04AM','202101011','0','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -467,7 +467,7 @@ CREATE TABLE [dbo].[U_EBCBSVIEXP_drvTbl_02] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(14) NULL,
     [drvEmployeeSSN] char(11) NULL,
-    [drvConSSN] char(11) NULL,
+    [drvConSSN] varchar(11) NULL,
     [drvDependentEffDate] datetime NULL,
     [drvConNameLast] varchar(100) NULL,
     [drvConNameFirst] varchar(100) NULL,
@@ -761,7 +761,7 @@ BEGIN
         ,drvSort = xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvEmployeeSSN = eepSSN
-        ,drvConSSN = ConSSN
+        ,drvConSSN = CASE WHEN LEFT(ConSSN, 5) <> '00000' THEN ConSSN ELSE '000000000' END
         ,drvDependentEffDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, '1/1/2022')
         ,drvConNameLast = ConNameLast
         ,drvConNameFirst = ConNameFirst
