@@ -5,7 +5,7 @@ EAOD: AOD Changes Export
 FormatCode:     EAOD
 Project:        AOD Changes Export
 Client ID:      LIP1000
-Date/time:      2021-12-16 06:06:05.867
+Date/time:      2021-12-21 22:22:12.700
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         N1SUP2DB51
 Database:       ULTIPRO_LIPP
 Web Filename:   LIP1000_VT9GM_EEHISTORY_EAOD_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -123,6 +124,8 @@ IF OBJECT_ID('U_EAOD_V2_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EAOD_V2_Au
 GO
 IF OBJECT_ID('U_EAOD_V2_Audit') IS NOT NULL DROP TABLE [dbo].[U_EAOD_V2_Audit];
 GO
+IF OBJECT_ID('U_EAOD_hrstatusdate') IS NOT NULL DROP TABLE [dbo].[U_EAOD_hrstatusdate];
+GO
 IF OBJECT_ID('U_EAOD_File') IS NOT NULL DROP TABLE [dbo].[U_EAOD_File];
 GO
 IF OBJECT_ID('U_EAOD_EEList') IS NOT NULL DROP TABLE [dbo].[U_EAOD_EEList];
@@ -220,21 +223,21 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAOD_20211216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAOD_20211221.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Changes Only','202107249','EMPEXPORT','CHGS_XOE','Jul 24 2021 12:03AM','EAOD',NULL,NULL,NULL,'202107249','Jul 24 2021 12:00AM','Dec 30 1899 12:00AM','202107231','125','','','202107231',dbo.fn_GetTimedKey(),NULL,'us3jReLIP1000',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',8Z3ZJ,DAJY5,9QTBK,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Full File','202008139','EMPEXPORT','FULL_XOE',NULL,'EAOD',NULL,NULL,NULL,'202008139','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',8Z3ZJ,DAJY5,9QTBK,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Test Full File','202008139','EMPEXPORT','TEST_XOE',NULL,'EAOD',NULL,NULL,NULL,'202008139','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202008011',NULL,'','','202008011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 8AM','202008139','EMPEXPORT','SCHEDU8AM',NULL,'EAOD',NULL,NULL,NULL,'202112159','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112141',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 11AM','202008139','EMPEXPORT','SCHEDUL11A',NULL,'EAOD',NULL,NULL,NULL,'202112159','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112141',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 2PM','202008139','EMPEXPORT','SCHEDUL2PM',NULL,'EAOD',NULL,NULL,NULL,'202112159','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112141',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 5PM','202008139','EMPEXPORT','SCHEDUL5PM',NULL,'EAOD',NULL,NULL,NULL,'202112159','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112141',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 9PM','202008139','EMPEXPORT','SCHEDULED',NULL,'EAOD',NULL,NULL,NULL,'202112159','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112141',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Changes Only','202112179','EMPEXPORT','CHGS_XOE','Dec 17 2021  5:08AM','EAOD',NULL,NULL,NULL,'202112179','Dec 17 2021 12:00AM','Dec 30 1899 12:00AM','202112161','312','','','202112161',dbo.fn_GetTimedKey(),NULL,'us3jReLIP1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',8Z3ZJ,DAJY5,9QTBK,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Full File','202112169','EMPEXPORT','FULL_XOE','Dec 16 2021  9:33AM','EAOD',NULL,NULL,NULL,'202112169','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202112161','15047','','','202112161',dbo.fn_GetTimedKey(),NULL,'us3jReLIP1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 8AM','202008139','EMPEXPORT','SCHEDU8AM',NULL,'EAOD',NULL,NULL,NULL,'202112219','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112201',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 11AM','202008139','EMPEXPORT','SCHEDUL11A',NULL,'EAOD',NULL,NULL,NULL,'202112219','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112201',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 2PM','202008139','EMPEXPORT','SCHEDUL2PM',NULL,'EAOD',NULL,NULL,NULL,'202112219','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112201',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 5PM','202008139','EMPEXPORT','SCHEDUL5PM',NULL,'EAOD',NULL,NULL,NULL,'202112219','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112201',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8Z3ZJ,DAJY5,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Scheduled Session 9PM','202008139','EMPEXPORT','SCHEDULED',NULL,'EAOD',NULL,NULL,NULL,'202112219','Aug 13 2020  6:13PM','Aug 13 2020  6:13PM','202112201',NULL,'','','202008131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',8Z3ZJ,DAJY5,9QTBK,7WA7Y,7W9PY,7WA4Z,7WA1D',NULL,NULL,NULL,'Test Full File','202112169','EMPEXPORT','TEST_XOE','Dec 16 2021  9:15AM','EAOD',NULL,NULL,NULL,'202112169','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202112161','29','','','202112161',dbo.fn_GetTimedKey(),NULL,'us3jReLIP1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -249,6 +252,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAOD','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAOD','InitialSort','C','drvEmpNo');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAOD','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAOD','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAOD','UseFileName','V','Y');
 
 -----------
@@ -370,6 +374,18 @@ CREATE TABLE [dbo].[U_EAOD_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] varchar(1000) NULL
+);
+
+-----------
+-- Create table U_EAOD_hrstatusdate
+-----------
+
+IF OBJECT_ID('U_EAOD_hrstatusdate') IS NULL
+CREATE TABLE [dbo].[U_EAOD_hrstatusdate] (
+    [StEEID] char(12) NOT NULL,
+    [StCOID] char(5) NOT NULL,
+    [StAudFieldName] varchar(128) NOT NULL,
+    [StDate] datetime NULL
 );
 
 -----------
