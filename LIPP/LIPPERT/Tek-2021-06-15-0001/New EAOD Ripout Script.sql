@@ -636,8 +636,8 @@ BEGIN
     JOIN dbo.U_EAOD_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE --audDateTime BETWEEN @StartDate AND @EndDate
-    --AND 
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND 
     audAction <> 'DELETE';
 
     -- Create Index

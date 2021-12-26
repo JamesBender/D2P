@@ -5,7 +5,7 @@ EARICOB: Wageworks Cobra
 FormatCode:     EARICOB
 Project:        Wageworks Cobra
 Client ID:      ARI1006
-Date/time:      2021-12-20 13:21:10.737
+Date/time:      2021-12-22 10:04:08.093
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -295,7 +295,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARICOB_20211220.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARICOB_20211222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -306,7 +306,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112069','EMPEXPORT','OEPASSIVE',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wageworks Cobra','202112069','EMPEXPORT','ONDEM_XOE',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wageworks Cobra-Sched','202112069','EMPEXPORT','SCH_EARICO',NULL,'EARICOB',NULL,NULL,NULL,'202112069','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202112061',NULL,'','','202112061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Wageworks Cobra-Test','202112141','EMPEXPORT','TEST_XOE','Dec 14 2021  3:39PM','EARICOB',NULL,NULL,NULL,'202112141','Dec 14 2021 12:00AM','Dec 30 1899 12:00AM','202111011','39','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Wageworks Cobra-Test','202112141','EMPEXPORT','TEST_XOE','Dec 20 2021  2:56PM','EARICOB',NULL,NULL,NULL,'202112141','Dec 14 2021 12:00AM','Dec 30 1899 12:00AM','202111011','42','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -760,11 +760,18 @@ BEGIN
         ,drvInitialNotificationCobra = CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'A' THEN 'C' ELSE '' END
         ,drvWaitingStartDate = EecDateOfLastHire
         ,drvCoverageBeginDate = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, '1/1/2022')
-        ,drvQuallifingEventDate = CASE WHEN ConRelationship IN ('SPS') AND BdmBenStatus = 'T' AND BdmCobraReason in ('204','LEVNT4')THEN BdmBenStatusDate
+        ,drvQuallifingEventDate =    CASE WHEN BdmRecType = 'DEP' AND BdmRunId = 'QB' AND ConRelationship IN ('SPS') AND BdmBenStatus = 'T' AND BdmCobraReason in ('204','LEVNT4') THEN ConCobraStatusDate
+                                    WHEN BdmRecType = 'DEP' AND BdmRunId = 'QB' AND ConRelationship IN ('CHL','COD','SPS','STC') AND BdmBenStatus = 'T' AND BdmCobraReason in ('203','IDE') THEN EecDateOfTermination
+                                    WHEN BdmRecType = 'DEP' AND BdmRunId = 'QB' AND ConRelationship IN ('CHL','COD','STC') AND BdmBenStatus = 'T' AND BdmCobraReason in ('201','LEVNT3') THEN ConCobraStatusDate
+                                    WHEN BdmRecType = 'DEP' AND BdmRunId = 'QB' AND EecEmplStatus = 'T' THEN EecDateOfTermination
+                                        --WHEN BdmRecType = 'DEP' AND ConRelationship IN ('CHL','DAU','DP','SON','SPS','STC') AND BdmBenStatus <> 'T' THEN ConCobraStatusDate
+                                        --WHEN BdmRecType = 'EMP' AND BdmBenStatus = 'T' THEN EecDateOfTermination
+                                    END
+                                    /*CASE WHEN ConRelationship IN ('SPS') AND BdmBenStatus = 'T' AND BdmCobraReason in ('204','LEVNT4')THEN BdmBenStatusDate
                                         WHEN ConRelationship IN ('CHL','COD','STC') AND BdmBenStatus ='T' AND BdmCobraReason in ('201','LEVNT3') THEN EecDateofTermination
                                         WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' THEN EecDateOfTermination
                                         Else BdmBenStatusDate
-                                    END
+                                    END*/
         ,drvLastPreCobraCovered = CASE WHEN ConRelationship IN ('SPS') AND BdmBenStatus = 'T' AND BdmCobraReason in ('204','LEVNT4')THEN BdmBenStopDate
                                         WHEN ConRelationship IN ('CHL','COD','STC','SPS') AND EecEmplStatus ='T' AND BdmCobraReason in ('203','IDE') THEN BdmBenStopDate
                                         WHEN ConRelationship IN ('CHL','COD','STC') AND BdmBenStatus = 'T' AND BdmCobraReason in ('201','LEVNT3')THEN BdmBenStopDate
@@ -776,7 +783,9 @@ BEGIN
                                         WHEN ConRelationship IN ('CHL','COD','STC') and BdmBenStatus = 'T' and BdmCobraReason IN ('201','LEVNT3') THEN '12'
                                         WHEN EecEmplStatus = 'T' and EecTermReason NOT IN ('202','203','IDE','VRE','COVID','IEP') THEN '03'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason in ('COVID','IEP') THEN '05'
-                                        WHEN EecEmplStatus = 'T' AND BdmChangeReason = '208' AND EecTermReason in ('202','VRE') AND BdmCobraReason = '208' THEN '01'
+
+                                        WHEN (BdmChangeReason = '208') OR ( EecEmplStatus = 'T'AND EecTermReason in ('202','VRE') )         THEN '01'
+                                        
                                         WHEN EecEmplStatus = 'A' and BdmCobraReason IN ('203','202') THEN '04'                                        
                                     END
 

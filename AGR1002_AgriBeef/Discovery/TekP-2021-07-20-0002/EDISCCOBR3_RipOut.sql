@@ -1,11 +1,11 @@
 /**********************************************************************************
 
-EDISCCOBR3: Discovery Benefits Cobra Export 2
+EDISCCOBR3: Discovery Benefits Cobra Exp TEST
 
 FormatCode:     EDISCCOBR3
-Project:        Discovery Benefits Cobra Export 2
+Project:        Discovery Benefits Cobra Exp TEST
 Client ID:      AGR1002
-Date/time:      2021-12-15 19:45:57.930
+Date/time:      2021-12-22 23:25:41.760
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -249,7 +249,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\20210902_Agribeef_NPM_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'New Plan Member Export','202108209','EMPEXPORT','NPMFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202108209','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202108131','20','','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\20210902_Agribeef_QB_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Export','202108209','EMPEXPORT','QBFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202108209','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202108131','52','','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20210902_Agribeef_NPM_12805.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test New Plan Member Export','202111041','EMPEXPORT','TESTNPM','Nov 23 2021 12:41PM','EDISCCOBR3',NULL,NULL,NULL,'202111041','Nov  4 2021 12:00AM','Dec 30 1899 12:00AM','202110011','1','','','202110011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20211027_Agribeef_QB_12805.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test Cobra Export','202111049','EMPEXPORT','TESTQB','Nov 23 2021 12:44PM','EDISCCOBR3',NULL,NULL,NULL,'202111049','Nov  4 2021 12:00AM','Dec 30 1899 12:00AM','202101011','16','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20211222_Agribeef_QB_12805.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test Cobra Export','202112229','EMPEXPORT','TESTQB','Dec 22 2021  1:13PM','EDISCCOBR3',NULL,NULL,NULL,'202112229','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202101011','16','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -459,7 +459,7 @@ CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBDEPPLAN] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] char(12) NULL,
     [drvDedCode] char(5) NULL,
-    [drvPlanName] varchar(41) NULL,
+    [drvPlanName] varchar(38) NULL,
     [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(13) NOT NULL,
     [drvSubSort3] varchar(208) NULL
@@ -493,7 +493,7 @@ CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBMSRI] (
     [drvEEID] char(12) NOT NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] char(12) NOT NULL,
-    [drvPlanName] varchar(41) NULL,
+    [drvPlanName] varchar(38) NULL,
     [drvRate] money NULL,
     [drvSubSort] char(11) NULL,
     [drvSubSort2] varchar(1) NOT NULL,
@@ -510,7 +510,7 @@ CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBPLAN] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] char(12) NOT NULL,
     [drvDedCode] char(5) NULL,
-    [drvPlanName] varchar(41) NULL,
+    [drvPlanName] varchar(38) NULL,
     [drvCoverageLevel] varchar(11) NULL,
     [eecpaygroup] char(6) NULL,
     [drvSubSort] char(11) NULL,
@@ -562,6 +562,9 @@ Update By            Date           Request Num        Desc
 Sean Hawkins            12/16/2016    SR-2016-00139714    Updated for new 1/1/2017 plan names
 Sean Hawkins            01/25/2017                        More updates after post-changes feedback
 Kaitlyn Duesler            05/04/2021    SR-2021-00310467    Update to Plan Names
+
+12/22/2021 by AP:
+	- Changed client name and client division name for both NPM and QB records.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISCCOBR3';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDISCCOBR3';
@@ -675,22 +678,24 @@ BEGIN
             ,drvCoID            = BdmCoID
             ,drvSSN             = eepSSN
             ,drvEmpNo           = EecEmpNo
-            ,drvClientName      = CONVERT(varchar(100),'Agribeef 12805')
-            ,drvClientDivName   = CONVERT(varchar(50),
-                                  CASE EecPayGroup
-                                        WHEN 'NSTAR' THEN 'Agron Bioenergy'
-                                        WHEN 'ABFDI' THEN 'AB Foods'
-                                        WHEN 'ABFDW' THEN 'AB Foods'
-                                        WHEN 'ABMGT' THEN 'Agri Beef Co.'
-                                        WHEN 'BVFDR' THEN 'Boise Valley Feeders'
-                                        WHEN 'MLDIV' THEN 'Moses Lake Feedyards'
-                                        WHEN 'PNSYS' THEN 'Performix'
-                                        WHEN 'SRCTL' THEN 'Snake River Cattle'
-                                        WHEN 'BEEFN' THEN 'Wash Beef Non-Union'
-                                        WHEN 'BEEFU' THEN 'Wash Beef Union'
-                                        WHEN 'DBLRR' THEN 'Double R Ranch'
-                                        WHEN 'DHFDR' THEN 'DH Feeders'
-                                  END)
+            ,drvClientName      = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC 40823' ELSE 'Agribeef 12805' END
+			--CONVERT(varchar(100),'Agribeef 12805')
+            ,drvClientDivName   = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC' ELSE 'Agri Beef Co.' END
+			--CONVERT(varchar(50),
+   --                               CASE EecPayGroup
+   --                                     WHEN 'NSTAR' THEN 'Agron Bioenergy'
+   --                                     WHEN 'ABFDI' THEN 'AB Foods'
+   --                                     WHEN 'ABFDW' THEN 'AB Foods'
+   --                                     WHEN 'ABMGT' THEN 'Agri Beef Co.'
+   --                                     WHEN 'BVFDR' THEN 'Boise Valley Feeders'
+   --                                     WHEN 'MLDIV' THEN 'Moses Lake Feedyards'
+   --                                     WHEN 'PNSYS' THEN 'Performix'
+   --                                     WHEN 'SRCTL' THEN 'Snake River Cattle'
+   --                                     WHEN 'BEEFN' THEN 'Wash Beef Non-Union'
+   --                                     WHEN 'BEEFU' THEN 'Wash Beef Union'
+   --                                     WHEN 'DBLRR' THEN 'Double R Ranch'
+   --                                     WHEN 'DHFDR' THEN 'DH Feeders'
+   --                               END)
             ,drvNameFirst       = EepNameFirst
             ,drvNameMiddle      = LEFT(EepNameMiddle,1)
             ,drvNameLast        = EepNameLast
@@ -724,22 +729,24 @@ BEGIN
              drvEEID           = BdmEEID
             ,drvCoID           = BdmCoID
             ,drvDepRecID       = ISNULL(BdmDepRecID,'')
-            ,drvClientName     = CONVERT(varchar(100),'Agribeef 12805')
-            ,drvClientDivName  = CONVERT(varchar(50),
-                                 CASE EecPayGroup
-                                        WHEN 'NSTAR' THEN 'Agron Bioenergy'
-                                        WHEN 'ABFDI' THEN 'AB Foods'
-                                        WHEN 'ABFDW' THEN 'AB Foods'
-                                        WHEN 'ABMGT' THEN 'Agri Beef Co.'
-                                        WHEN 'BVFDR' THEN 'Boise Valley Feeders'
-                                        WHEN 'MLDIV' THEN 'Moses Lake Feedyards'
-                                        WHEN 'PNSYS' THEN 'Performix'
-                                        WHEN 'SRCTL' THEN 'Snake River Cattle'
-                                        WHEN 'BEEFN' THEN 'Wash Beef Non-Union'
-                                        WHEN 'BEEFU' THEN 'Wash Beef Union'
-                                        WHEN 'DBLRR' THEN 'Double R Ranch'
-                                        WHEN 'DHFDR' THEN 'DH Feeders'
-                                 END)
+            ,drvClientName     = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC 40823' ELSE 'Agribeef 12805' END
+			--CONVERT(varchar(100),'Agribeef 12805')
+            ,drvClientDivName  = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC' ELSE 'Agri Beef Co.' END
+			--CONVERT(varchar(50),
+   --                              CASE EecPayGroup
+   --                                     WHEN 'NSTAR' THEN 'Agron Bioenergy'
+   --                                     WHEN 'ABFDI' THEN 'AB Foods'
+   --                                     WHEN 'ABFDW' THEN 'AB Foods'
+   --                                     WHEN 'ABMGT' THEN 'Agri Beef Co.'
+   --                                     WHEN 'BVFDR' THEN 'Boise Valley Feeders'
+   --                                     WHEN 'MLDIV' THEN 'Moses Lake Feedyards'
+   --                                     WHEN 'PNSYS' THEN 'Performix'
+   --                                     WHEN 'SRCTL' THEN 'Snake River Cattle'
+   --                                     WHEN 'BEEFN' THEN 'Wash Beef Non-Union'
+   --                                     WHEN 'BEEFU' THEN 'Wash Beef Union'
+   --                                     WHEN 'DBLRR' THEN 'Double R Ranch'
+   --                                     WHEN 'DHFDR' THEN 'DH Feeders'
+   --                              END)
             ,drvNameFirst      = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
                                       ELSE ConNameFirst
                                  END
@@ -924,20 +931,20 @@ BEGIN
                 --WHEN BdmDedCode IN ('MEDPT') AND EecPayGroup IN ('TWBF') THEN 'Regence Med True West Beef PPO'
                 --WHEN BdmDedCode IN ('VSION') AND EecPayGroup IN ('TWBF') THEN 'VSP Vision True West Beef'
 
-				-- Additions
-				WHEN EecPayGroup = 'SSIF' AND BdmDedCode IN ('DENPT', 'DENAF') THEN 'UHC Dental'
-				WHEN EecPayGroup = 'SSIF' AND BdmDedCode IN ('MEDHD', 'MEDPT') THEN 'UHC Medical'
-				WHEN EecPayGroup = 'SSIF' AND BdmDedCode IN ('VSION') THEN 'VSP Vision'
-				WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode IN ('DENPT', 'DENAF') THEN 'Delta Dental ID El Oro Cattle'
-				WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'FSAMD' THEN 'Discovery Benefits Medical FSA (Event)'
-				WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'MEDHD' THEN 'Regence Med El Oro Cattle HSA'
-				WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'MEDPT' THEN 'Regence Med El Oro Cattle PPO'
-				WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'VSION' THEN 'VSP Vision Moses Lake Feeders'
-				WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('DENPT', 'DENAF') THEN 'Delta Dental ID True West Beef'
-				WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('FSAMD') THEN 'Discovery Benefits Medical FSA (Event)'
-				WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('MEDHD') THEN 'Regence Med True West Beef HSA'
-				WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('MEDPT') THEN 'Regence Med True West Beef PPO'
-				WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('VSIOB') THEN 'VSP Vision True West Beef'
+                -- Additions
+                WHEN EecPayGroup = 'SSIF' AND BdmDedCode IN ('DENPT', 'DENAF') THEN 'UHC Dental'
+                WHEN EecPayGroup = 'SSIF' AND BdmDedCode IN ('MEDHD', 'MEDPT') THEN 'UHC Medical'
+                WHEN EecPayGroup = 'SSIF' AND BdmDedCode IN ('VSION') THEN 'VSP Vision'
+                WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode IN ('DENPT', 'DENAF') THEN 'Delta Dental ID El Oro Cattle'
+                WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'FSAMD' THEN 'Discovery Benefits Medical FSA (Event)'
+                WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'MEDHD' THEN 'Regence Med El Oro Cattle HSA'
+                WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'MEDPT' THEN 'Regence Med El Oro Cattle PPO'
+                WHEN EecPayGroup IN ('MLDIV', 'DHFDR') AND BdmDedCode = 'VSION' THEN 'VSP Vision Moses Lake Feeders'
+                WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('DENPT', 'DENAF') THEN 'Delta Dental ID True West Beef'
+                WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('FSAMD') THEN 'Discovery Benefits Medical FSA (Event)'
+                WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('MEDHD') THEN 'Regence Med True West Beef HSA'
+                WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('MEDPT') THEN 'Regence Med True West Beef PPO'
+                WHEN EecPayGroup IN ('TWBF') AND BdmDedCode IN ('VSIOB') THEN 'VSP Vision True West Beef'
 
 
                 END

@@ -5,7 +5,7 @@ ELINCNLIF: Lincoln Basic Life
 FormatCode:     ELINCNLIF
 Project:        Lincoln Basic Life
 Client ID:      PLD1000
-Date/time:      2021-11-02 16:17:43.247
+Date/time:      2021-12-22 09:59:25.353
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         EW3WUP4DB01
 Database:       ULTIPRO_WPPLDEV
 Web Filename:   PLD1000_EE329_EEHISTORY_ELINCNLIF_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -912,7 +913,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELINCNLIF_20211102.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELINCNLIF_20211222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -921,7 +922,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life','202106299','EMPEXPORT','ONDEM_XOE',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life-Sched','202106299','EMPEXPORT','SCH_ELINCN',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202110219','EMPEXPORT','TEST_XOE','Oct 21 2021  5:00PM','ELINCNLIF',NULL,NULL,NULL,'202110219','Oct 21 2021 12:00AM','Dec 30 1899 12:00AM','202110071','1409','','','202110071',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202112179','EMPEXPORT','TEST_XOE','Dec 17 2021  3:12PM','ELINCNLIF',NULL,NULL,NULL,'202112179','Dec 17 2021 12:00AM','Dec 30 1899 12:00AM','202112031','1418','','','202112031',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -936,6 +937,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELINCNLIF','UseFileName','V','Y');
 
 -----------
@@ -1020,8 +1022,8 @@ CREATE TABLE [dbo].[U_ELINCNLIF_Audit] (
     [audFieldName] varchar(128) NOT NULL,
     [audAction] varchar(6) NOT NULL,
     [audDateTime] datetime NOT NULL,
-    [audOldValue] varchar(2000) NULL,
-    [audNewValue] varchar(2000) NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
     [audRowNo] bigint NULL
 );
 
@@ -1093,7 +1095,7 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAdressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
+    [drvAddressZipCode] varchar(5) NULL,
     [drvPhoneHomeNumber] varchar(50) NULL,
     [drvDateOfOriginalHire] datetime NULL,
     [drvDateOfLastHire] datetime NULL,
@@ -1130,15 +1132,15 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvVLIFEffDate] datetime NULL,
     [drvVLIFPlanCode] varchar(1) NULL,
     [drvVLIFClassCode] varchar(1) NULL,
-    [drvVLICvgs] varchar(24) NULL,
+    [drvVLICvgs] varchar(8000) NULL,
     [drvVLITermDate] datetime NULL,
     [drvVADCvgs] varchar(1) NOT NULL,
     [drvVADTermDate] varchar(1) NOT NULL,
-    [drvVSLICvgs] varchar(25) NULL,
+    [drvVSLICvgs] varchar(8000) NULL,
     [drvVLSITermDate] datetime NULL,
     [drvVSADCvgs] varchar(1) NOT NULL,
     [drvVSADTermDate] varchar(1) NOT NULL,
-    [drvVCLICvgs] varchar(25) NULL,
+    [drvVCLICvgs] varchar(8000) NULL,
     [drvVCLITermDate] datetime NULL,
     [drvIsSmoker] varchar(1) NULL,
     [drvSpouseSmoker] varchar(1) NULL,
@@ -1269,7 +1271,11 @@ Revision History
         - Added sort group logic as per Lea update.
 
 11/02/2021 by AP:
-		- Adjusted VLI Cvgs, VSLI Cvgs, VCLI Cvgs fields to remove '.00'.
+        - Adjusted VLI Cvgs, VSLI Cvgs, VCLI Cvgs fields to remove '.00'.
+
+12/22/2021 by AP:
+		- Changed sort group field to remove leading 0's.
+		- Updated change date code to = ben start date in cases where the change date is less than the benefit start date.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ELINCNLIF';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ELINCNLIF';
@@ -1486,7 +1492,7 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAdressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
+        ,drvAddressZipCode = SUBSTRING(EepAddressZipCode, 1, 5)
         ,drvPhoneHomeNumber = EepPhoneHomeNumber
         ,drvDateOfOriginalHire = EecDateOfOriginalHire
         ,drvDateOfLastHire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
@@ -1502,9 +1508,10 @@ BEGIN
                                       WHEN '22' THEN '1688512'
                                       WHEN '24' THEN '1688513'
                                       WHEN '25' THEN '1688514'
+                                      WHEN '27' THEN '1725591'
                                   END
                              END
-        ,drvLifeSortGrp = CASE WHEN EedHasLife = 'Y' THEN UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc) END
+        ,drvLifeSortGrp = CASE WHEN EedHasLife = 'Y' THEN UPPER(LTRIM(RTRIM(SUBSTRING(EecOrgLvl2, PATINDEX('%[^0]%', EecOrgLvl2+'.'), LEN(EecOrgLvl2)))) + ' ' + '-' + ' ' + O2.OrgDesc) END
         ,drvLifeEffDate = EedLifeEffDate
         ,drvLifePlanCode = CASE WHEN  EedHasLife = 'Y' THEN '1' END
         ,drvLifeClassCode = CASE WHEN  EedHasLife = 'Y' THEN '1' END
@@ -1523,9 +1530,10 @@ BEGIN
                                       WHEN '22' THEN '1688512'
                                       WHEN '24' THEN '1688513'
                                       WHEN '25' THEN '1688514'
+                                      WHEN '27' THEN '1725591'
                                   END
                              END
-        ,drvWISortGroup = CASE WHEN EedHasWI = 'Y' THEN UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc) END
+        ,drvWISortGroup = CASE WHEN EedHasWI = 'Y' THEN UPPER(LTRIM(RTRIM(SUBSTRING(EecOrgLvl2, PATINDEX('%[^0]%', EecOrgLvl2+'.'), LEN(EecOrgLvl2)))) + ' ' + '-' + ' ' + O2.OrgDesc) END
         ,drvWIEffDate = CASE WHEN EedHasWI = 'Y' THEN EedWIEffDate END
         ,drvWIPlanCode = CASE WHEN EedHasWI = 'Y' THEN '1' END
         ,drvWIClassCode = CASE WHEN EedHasWI = 'Y' THEN '1' END
@@ -1542,9 +1550,10 @@ BEGIN
                                       WHEN '22' THEN '1688512'
                                       WHEN '24' THEN '1688513'
                                       WHEN '25' THEN '1688514'
+                                      WHEN '27' THEN '1725591'
                                   END
                              END
-        ,drvLTDSortGroup = CASE WHEN EedHasLTD = 'Y' THEN UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc) END
+        ,drvLTDSortGroup = CASE WHEN EedHasLTD = 'Y' THEN UPPER(LTRIM(RTRIM(SUBSTRING(EecOrgLvl2, PATINDEX('%[^0]%', EecOrgLvl2+'.'), LEN(EecOrgLvl2)))) + ' ' + '-' + ' ' + O2.OrgDesc) END
         ,drvLTDEffDate = CASE WHEN EedHasLTD = 'Y' THEN EedLTDEffDate END
         ,drvLTDPlanCode = CASE WHEN EedHasLTD = 'Y' THEN '1' END
         ,drvLTDClassCode = CASE WHEN EedHasLTD = 'Y' THEN '1' END
@@ -1561,9 +1570,10 @@ BEGIN
                                       WHEN '22' THEN '1688512'
                                       WHEN '24' THEN '1688513'
                                       WHEN '25' THEN '1688514'
+                                      WHEN '27' THEN '1725591'
                                   END
                              END
-        ,drvVLIFSortGroup = CASE WHEN EedHasLIFEE = 'Y' THEN UPPER(LTRIM(RTRIM(EecOrgLvl2)) + ' ' + '-' + ' ' + O2.OrgDesc) END
+        ,drvVLIFSortGroup = CASE WHEN EedHasLIFEE = 'Y' THEN UPPER(LTRIM(RTRIM(SUBSTRING(EecOrgLvl2, PATINDEX('%[^0]%', EecOrgLvl2+'.'), LEN(EecOrgLvl2)))) + ' ' + '-' + ' ' + O2.OrgDesc) END
         ,drvVLIFEffDate = EedVLIFEffDate
         ,drvVLIFPlanCode = CASE WHEN EedHasLIFEE = 'Y' THEN '1' END
         ,drvVLIFClassCode = CASE WHEN EedHasLIFEE = 'Y' THEN '1' END
@@ -1781,6 +1791,15 @@ BEGIN
     LEFT JOIN dbo.OrgLevel O2 WITH(NOLOCK)
         ON O2.OrgCode = EecOrgLvl2
     ;
+
+	---- Logic update for any change dates that are less than the benefit start date
+
+	UPDATE dbo.U_ELINCNLIF_drvTbl
+	SET drvChangeDate = drvLifeEffDate,
+	drvDepChangeDate = drvLifeEffDate
+	WHERE drvChangeDate < drvLifeEffDate
+
+	--------------------------------------------------------------------------------
  
     --==========================================
     -- Set FileName
