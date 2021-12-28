@@ -5,7 +5,7 @@ ESTANDAR2: The Standard Export V2
 FormatCode:     ESTANDAR2
 Project:        The Standard Export V2
 Client ID:      SWE1003
-Date/time:      2021-12-22 18:22:12.197
+Date/time:      2021-12-27 12:40:41.437
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -713,7 +713,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112319','EMPEXPORT','OEPASSIVE','Dec 29 2020 12:35PM','ESTANDAR2',NULL,NULL,NULL,'202112319','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202112011','2532','','','202112011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'The Standard Export','202112319','EMPEXPORT','ONDEMAND','Feb 15 2021 10:33AM','ESTANDAR2',NULL,NULL,NULL,'202112319','Feb 14 2021 12:00AM','Dec 30 1899 12:00AM','202112011','2626','','','202112011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202112319','EMPEXPORT','SCHEDULED','Oct 24 2021 10:30PM','ESTANDAR2',NULL,NULL,NULL,'202112319','Jan 10 2021 12:00AM','Dec 30 1899 12:00AM','202112011','2562','','','202112011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N2\Public\SWE1003\Exports\Standard\SCHMC_ESTANDAR2_20211222.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112319','EMPEXPORT','TEST','Dec 22 2021  3:24PM','ESTANDAR2',NULL,NULL,NULL,'202112319','Dec  2 2021 12:00AM','Nov 27 2021 12:00AM','202112011','2516','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3rVaSWE1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N2\Public\SWE1003\Exports\Standard\SCHMC_ESTANDAR2_20211222.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112319','EMPEXPORT','TEST','Dec 23 2021 11:47AM','ESTANDAR2',NULL,NULL,NULL,'202112319','Dec  2 2021 12:00AM','Nov 27 2021 12:00AM','202112011','2516','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3rVaSWE1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -1304,7 +1304,7 @@ BEGIN
         ,drvAADandDPolicy               = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN '758190' END
         ,drvAADandDPlan                 = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN ' J' END
         ,drvAADandDProduct              = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN 'AA' END
-        ,drvAADandDEffDate = CASE WHEN E.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN E.EedBenStartDate END
+        ,drvAADandDEffDate = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN K.EedBenStartDate END
 -----
         -- 190
         ,drvSpouseLifePolicy             = CASE WHEN ISNULL(F.EedEEID,'') <> '' THEN '758190' END
@@ -1430,7 +1430,7 @@ BEGIN
         AND K.EedCoID = xCoID
         AND K.EedFormatCode = @FormatCode 
         AND K.EedValidForExport = 'Y'
-        AND K.EedDedCode IN ('SLAE1','SLAE2','SLAE3') --,'SLAE4')
+        AND K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4')
     LEFT JOIN dbo.Company WITH (NOLOCK)
         ON CmpCOID = xCOID
     LEFT JOIN dbo.JobCode WITH (NOLOCK)

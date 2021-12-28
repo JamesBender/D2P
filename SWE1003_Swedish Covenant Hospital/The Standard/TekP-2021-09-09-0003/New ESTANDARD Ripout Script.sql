@@ -1,19 +1,19 @@
 /**********************************************************************************
 
-ESTANDARD: The Standard Export
+ESTANDARD: The Standard Export V2
 
 FormatCode:     ESTANDARD
-Project:        The Standard Export
+Project:        The Standard Export V2
 Client ID:      SWE1003
-Date/time:      2021-12-27 12:45:15.363
+Date/time:      2021-12-27 12:40:41.437
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
-Environment:    N23
-Server:         N2SUP3VP14
+Environment:    EZ17
+Server:         EZ1SUP7DB04
 Database:       ULTIPRO_SCHMC
-ExportPath:    \\us.saas\n0\data_exchange\SWE1003\Exports\
-TestPath:      \\us.saas\n2\Public\SWE1003\Exports\Standard\
+ExportPath:    \\us.saas\ez\Public\SWE1003\Exports_Test
+TestPath:      \\us.saas\ez\Public\SWE1003\Exports_TestStandard\
 
 **********************************************************************************/
 
@@ -128,7 +128,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ESTANDARD','The Standard Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','6000','S','N','ESTANDARD0Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ESTANDARD','The Standard Export V2','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','6000','S','N','ESTANDARD0Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -523,7 +523,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('102','ESTANDARD0Z0','20','D','10','102',NULL,'Benefit Percent',NULL,NULL,'"drvBenefitPercent"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('103','ESTANDARD0Z0','13','D','10','103',NULL,'Selected Amount',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('104','ESTANDARD0Z0','10','D','10','104',NULL,'Am Class',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('105','ESTANDARD0Z0','50','D','10','105',NULL,'Class Name',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('105','ESTANDARD0Z0','50','D','10','105',NULL,'Class Name',NULL,NULL,'"drvClassName"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('106','ESTANDARD0Z0','8','D','10','106',NULL,'Effective Date',NULL,NULL,'"drvEffectiveDate"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('107','ESTANDARD0Z0','8','D','10','107',NULL,'Termination Date',NULL,NULL,'"drvTerminationDate"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('108','ESTANDARD0Z0','6','D','10','108',NULL,'Policy',NULL,NULL,'""','(''SS''=''T|'')');
@@ -544,30 +544,30 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('123','ESTANDARD0Z0','50','D','10','123',NULL,'Benefit Waiting Period',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('124','ESTANDARD0Z0','20','D','10','124',NULL,'Benefit Percent',NULL,NULL,'"drvBenefitPercent1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('125','ESTANDARD0Z0','13','D','10','125',NULL,'Selected Amount',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('126','ESTANDARD0Z0','50','D','10','126',NULL,'Class Name',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('126','ESTANDARD0Z0','50','D','10','126',NULL,'Class Name',NULL,NULL,'"drvClassName1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('127','ESTANDARD0Z0','8','D','10','127',NULL,'Effective Date',NULL,NULL,'"drvEffectiveDate1"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('128','ESTANDARD0Z0','8','D','10','128',NULL,'Termination Date',NULL,NULL,'"drvTerminationDate1"','(''UD112''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('129','ESTANDARD0Z0','6','D','10','129',NULL,'Policy',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('130','ESTANDARD0Z0','1','D','10','130',NULL,'Plan',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('131','ESTANDARD0Z0','4','D','10','131',NULL,'Product',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('129','ESTANDARD0Z0','6','D','10','129',NULL,'Policy',NULL,NULL,'"drvPolicy2"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('130','ESTANDARD0Z0','1','D','10','130',NULL,'Plan',NULL,NULL,'"drvPlan2"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('131','ESTANDARD0Z0','4','D','10','131',NULL,'Product',NULL,NULL,'"drvProduct2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('132','ESTANDARD0Z0','50','D','10','132',NULL,'Employer Plan Code',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('133','ESTANDARD0Z0','50','D','10','133',NULL,'Benefit Waiting Period',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('134','ESTANDARD0Z0','20','D','10','134',NULL,'Benefit Percent',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('135','ESTANDARD0Z0','13','D','10','135',NULL,'Selected Amount',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('136','ESTANDARD0Z0','50','D','10','136',NULL,'Class Name',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('136','ESTANDARD0Z0','50','D','10','136',NULL,'Class Name',NULL,NULL,'"drvClassName2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('137','ESTANDARD0Z0','8','D','10','137',NULL,'Effective Date',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('138','ESTANDARD0Z0','8','D','10','138',NULL,'Termination Date',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('139','ESTANDARD0Z0','6','D','10','139',NULL,'OTHER Policy',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('140','ESTANDARD0Z0','1','D','10','140',NULL,'OTHER Plan',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('141','ESTANDARD0Z0','4','D','10','141',NULL,'OTHER Product',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('139','ESTANDARD0Z0','6','D','10','139',NULL,'OTHER Policy',NULL,NULL,'"drvPolicy3"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('140','ESTANDARD0Z0','1','D','10','140',NULL,'OTHER Plan',NULL,NULL,'"drvPlan3"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('141','ESTANDARD0Z0','4','D','10','141',NULL,'OTHER Product',NULL,NULL,'"drvProduct3"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('142','ESTANDARD0Z0','50','D','10','142',NULL,'OTHER Employer Plan Code',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('143','ESTANDARD0Z0','50','D','10','143',NULL,'OTHER Benefit Waiting Period',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('144','ESTANDARD0Z0','20','D','10','144',NULL,'OTHER Benefit Percent',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('145','ESTANDARD0Z0','13','D','10','145',NULL,'OTHER Selected Amount',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('146','ESTANDARD0Z0','10','D','10','146',NULL,'OTHER AM Class',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('147','ESTANDARD0Z0','50','D','10','147',NULL,'OTHER Class Name',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('148','ESTANDARD0Z0','8','D','10','148',NULL,'OTHER Effective Date',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('149','ESTANDARD0Z0','8','D','10','149',NULL,'OTHER Termination Date',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('147','ESTANDARD0Z0','50','D','10','147',NULL,'OTHER Class Name',NULL,NULL,'"drvClassName3"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('148','ESTANDARD0Z0','8','D','10','148',NULL,'OTHER Effective Date',NULL,NULL,'"drvEffectiveDate3"','(''UD112''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('149','ESTANDARD0Z0','8','D','10','149',NULL,'OTHER Termination Date',NULL,NULL,'"drvTerminationDate3"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('150','ESTANDARD0Z0','6','D','10','150',NULL,'NJ TDB Policy',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('151','ESTANDARD0Z0','1','D','10','151',NULL,'NJ TDB Plan',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('152','ESTANDARD0Z0','50','D','10','152',NULL,'NJ TDB Employer Plan Code',NULL,NULL,'""','(''SS''=''T|'')');
@@ -600,13 +600,13 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('179','ESTANDARD0Z0','50','D','10','179',NULL,'Additional Life User Specific',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('180','ESTANDARD0Z0','8','D','10','180',NULL,'Additional Life Effective Date',NULL,NULL,'"drvAdditionalLifeEffDate"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('181','ESTANDARD0Z0','8','D','10','181',NULL,'Additional Life Termination Date',NULL,NULL,'"drvAdditionalLifeTermDate"','(''UD112''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('182','ESTANDARD0Z0','6','D','10','182',NULL,'Additional AD&D Policy',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('183','ESTANDARD0Z0','2','D','10','183',NULL,'Additional AD&D Plan',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('184','ESTANDARD0Z0','4','D','10','184',NULL,'Additional AD&D Product',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('182','ESTANDARD0Z0','6','D','10','182',NULL,'Additional AD&D Policy',NULL,NULL,'"drvAADandDPolicy"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('183','ESTANDARD0Z0','2','D','10','183',NULL,'Additional AD&D Plan',NULL,NULL,'"drvAADandDPlan"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('184','ESTANDARD0Z0','4','D','10','184',NULL,'Additional AD&D Product',NULL,NULL,'"drvAADandDProduct"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('185','ESTANDARD0Z0','10','D','10','185',NULL,'Additional AD&D Amount',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('186','ESTANDARD0Z0','50','D','10','186',NULL,'Additional AD&D Class Name',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('187','ESTANDARD0Z0','50','D','10','187',NULL,'Additional AD&D User Specific',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('188','ESTANDARD0Z0','8','D','10','188',NULL,'Additional AD&D Effective Date',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('188','ESTANDARD0Z0','8','D','10','188',NULL,'Additional AD&D Effective Date',NULL,NULL,'"drvAADandDEffDate"','(''UD112''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('189','ESTANDARD0Z0','8','D','10','189',NULL,'Additional AD&D Termination Date',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('190','ESTANDARD0Z0','6','D','10','190',NULL,'Spouse Life Policy',NULL,NULL,'"drvSpouseLifePolicy"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('191','ESTANDARD0Z0','2','D','10','191',NULL,'Spouse Life Plan',NULL,NULL,'"drvSpouseLifePlan"','(''UA''=''T|'')');
@@ -709,11 +709,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202011289','EMPEXPORT','OEACTIVE',NULL,'ESTANDARD',NULL,NULL,NULL,'202011289','Nov 28 2020  6:51AM','Nov 28 2020  6:51AM','202011281',NULL,'','','202011281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202101019','EMPEXPORT','OEPASSIVE','Dec 29 2020 12:35PM','ESTANDARD',NULL,NULL,NULL,'202101019','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202101011','2532','','','202101011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'The Standard Export','202102149','EMPEXPORT','ONDEMAND','Feb 15 2021 10:33AM','ESTANDARD',NULL,NULL,NULL,'202102149','Feb 14 2021 12:00AM','Dec 30 1899 12:00AM','202101011','2626','','','202101011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202112269','EMPEXPORT','SCHEDULED','Dec 26 2021 10:30PM','ESTANDARD',NULL,NULL,NULL,'202112269','Jan 10 2021 12:00AM','Dec 30 1899 12:00AM','202112191','2562','','','202112191',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112269','EMPEXPORT','TEST','Dec 26 2021  7:48PM','ESTANDARD',NULL,NULL,NULL,'202112269','Dec 26 2021 12:00AM','Dec 30 1899 12:00AM','202112191','2554','','','202112191',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202112319','EMPEXPORT','OEACTIVE',NULL,'ESTANDARD',NULL,NULL,NULL,'202112319','Nov 28 2020  6:51AM','Nov 28 2020  6:51AM','202112011',NULL,'','','202112011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112319','EMPEXPORT','OEPASSIVE','Dec 29 2020 12:35PM','ESTANDARD',NULL,NULL,NULL,'202112319','Jan  1 2021 12:00AM','Dec 30 1899 12:00AM','202112011','2532','','','202112011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'The Standard Export','202112319','EMPEXPORT','ONDEMAND','Feb 15 2021 10:33AM','ESTANDARD',NULL,NULL,NULL,'202112319','Feb 14 2021 12:00AM','Dec 30 1899 12:00AM','202112011','2626','','','202112011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202112319','EMPEXPORT','SCHEDULED','Oct 24 2021 10:30PM','ESTANDARD',NULL,NULL,NULL,'202112319','Jan 10 2021 12:00AM','Dec 30 1899 12:00AM','202112011','2562','','','202112011',dbo.fn_GetTimedKey(),NULL,'RBONOAN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N2\Public\SWE1003\Exports\Standard\SCHMC_ESTANDARD_20211222.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112319','EMPEXPORT','TEST','Dec 23 2021 11:47AM','ESTANDARD',NULL,NULL,NULL,'202112319','Dec  2 2021 12:00AM','Nov 27 2021 12:00AM','202112011','2516','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3rVaSWE1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -725,11 +725,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','ExportPath','V','\\us.saas\n0\data_exchange\SWE1003\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','ExportPath','V','\\us.saas\ez\Public\SWE1003\Exports_Test');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','TestPath','V','\\us.saas\n2\Public\SWE1003\Exports\Standard\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','UDESPath','C','\\us.saas\n0\data_exchange\SWE1003\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','TestPath','V','\\us.saas\ez\Public\SWE1003\Exports_TestStandard\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','UDESPath','C','\\us.saas\ez\Public\SWE1003\Exports_Test');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESTANDARD','UseFileName','V','N');
 
 -----------
@@ -845,15 +845,27 @@ CREATE TABLE [dbo].[U_ESTANDARD_D10] (
     [drvPolicy] varchar(6) NULL,
     [drvPlan] varchar(1) NULL,
     [drvProduct] varchar(2) NULL,
-    [drvBenefitPercent] varchar(3) NOT NULL,
+    [drvBenefitPercent] varchar(3) NULL,
+    [drvClassName] varchar(7) NULL,
     [drvEffectiveDate] datetime NULL,
     [drvTerminationDate] datetime NULL,
     [drvPolicy1] varchar(6) NULL,
     [drvPlan1] varchar(1) NULL,
     [drvProduct1] varchar(2) NULL,
     [drvBenefitPercent1] varchar(2) NOT NULL,
+    [drvClassName1] varchar(7) NULL,
     [drvEffectiveDate1] datetime NULL,
     [drvTerminationDate1] datetime NULL,
+    [drvPolicy2] varchar(6) NULL,
+    [drvPlan2] varchar(1) NULL,
+    [drvProduct2] varchar(3) NULL,
+    [drvClassName2] varchar(7) NULL,
+    [drvPolicy3] varchar(6) NULL,
+    [drvPlan3] varchar(1) NULL,
+    [drvProduct3] varchar(2) NULL,
+    [drvClassName3] varchar(7) NULL,
+    [drvEffectiveDate3] datetime NULL,
+    [drvTerminationDate3] datetime NULL,
     [drvBasicLifePolicy] varchar(6) NULL,
     [drvBasicLifePlan] varchar(1) NULL,
     [drvBasicLifeProduct] varchar(2) NULL,
@@ -872,6 +884,10 @@ CREATE TABLE [dbo].[U_ESTANDARD_D10] (
     [drvAdditionalLifeAmount] varchar(30) NULL,
     [drvAdditionalLifeEffDate] datetime NULL,
     [drvAdditionalLifeTermDate] datetime NULL,
+    [drvAADandDPolicy] varchar(6) NULL,
+    [drvAADandDPlan] varchar(2) NULL,
+    [drvAADandDProduct] varchar(2) NULL,
+    [drvAADandDEffDate] datetime NULL,
     [drvSpouseLifePolicy] varchar(6) NULL,
     [drvSpouseLifePlan] varchar(1) NULL,
     [drvSpouseLifeProduct] varchar(3) NULL,
@@ -975,7 +991,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESTANDARD', 'SCHEDULED';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'ESTANDARD';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ESTANDARD', @AllObjects = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ESTANDARD', @AllObjects = 'Y', @IsWeb = 'N'
 **********************************************************************************/
 BEGIN
 
@@ -1052,7 +1068,8 @@ BEGIN
     DELETE FROM dbo.U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','LFE1X,LFE2X,LFX4X,LFP4X,LFP3X,ADPHY,SLEE1,SLEE2,SLEX1,SLEX2,SLSPS,SLCHL,SLADE,SLADF,SLTD4,SLTD6,GRLTD,STDHR,STDSL,STDPH');  
+    -- INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','LFE1X,LFE2X,LFX4X,LFP4X,LFP3X,ADPHY,SLEE1,SLEE2,SLEX1,SLEX2,SLSPS,SLCHL,SLADE,SLADF,SLTD4,SLTD6,GRLTD,STDHR,STDSL,STDPH');  
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','SLFE1X,LAE1X,LFE2X,LAE2X,LFX4X,LAX4X,LFP4X,LFP3X,LPH3X,LPH1X,ADPHY,ADPHA,SLEE1,SLAE1,SLEE2,SLAE2,SLAE3,SLAE4,SLEX1,SLAX1,SLEX2,SLAX2,SLAX3,SLAX4,SLSPS,SLSPA,SLCHL,SLCHA,SLADE,SLADF,SLTD4,SLTD6,VLTD6,GRLTD,GLTD6,GLTD5,LTDBU,STDHR,STDSL,STDPH,STDC,STD60,LAX1X,LFE1X');  
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
@@ -1113,7 +1130,7 @@ BEGIN
                                                 ELSE ISNULL((SELECT TOP 1 EfoPhoneNumber FROM dbo.EmpMPhon WITH (NOLOCK)
                                                                  WHERE EfoPhoneType='CEL' AND EfoEEID = EecEEID),'')  END 
         ,drvCurrentHireDate             = NULLIF(EecDateOfLastHire,SPACE(0))
-        ,drvOriginalHireDate            = EecDateOfOriginalHire
+        ,drvOriginalHireDate            = EecDateOfSeniority
         ,drvAdjustedHireDate            = EecDateofSeniority
         ,drvEmploymentTerminationDate   = CASE WHEN EecEmplStatus = 'T' THEN NULLIF(EecDateOfTermination,SPACE(0)) 
                                                 ELSE NULLIF('',SPACE(0)) END
@@ -1171,28 +1188,66 @@ BEGIN
         ,drvHRContactEmailAddress        = 'HRServices@northshore.org'
         ,drvHRContactWorkPhone           = '8475705111'
 -----
+        -- 97
         ,drvPolicy                       = CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN '758191' END
-        ,drvPlan                         = CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN 'A' END
+        ,drvPlan                         = CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN 'C' END
+                                        -- CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN 'A' END
         ,drvProduct                      = CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN 'ST' END
-        ,drvBenefitPercent               = CASE WHEN ISNULL(A.EedEEID,'') <> '' AND A.EedDedCode = 'STDHR' THEN '60'
+        ,drvBenefitPercent               =    CASE WHEN A.EedDedCode IN ('STDHR','STD60') THEN '60'
+                                            WHEN A.EedDedCode IN ('STDC','STDPH','STDSL') THEN '100'
+                                            END
+                                        /* CASE WHEN ISNULL(A.EedEEID,'') <> '' AND A.EedDedCode = 'STDHR' THEN '60'
                                                WHEN A.EedDedCode IN ('STDSL','STDPH') THEN '100' 
-                                               ELSE '' END  
+                                               ELSE '' 
+                                        END*/ 
+        -- 105
+        ,drvClassName                    =    CASE WHEN A.EedDedCode = 'STD60' THEN 'Class 4'
+                                            WHEN A.EedDedcode = 'STDHR' THEN 'Class 3'
+                                            WHEN A.EedDedcode = 'STDSL' THEN 'Class 2'
+                                            WHEN A.EedDedcode IN ('STDC', 'STDPH') THEN 'Class 1'
+                                            END
         ,drvEffectiveDate                = CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN NULLIF(A.EedBenStartDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
         ,drvTerminationDate              = CASE WHEN ISNULL(A.EedEEID,'') <> '' THEN NULLIF(A.EedBenStopDate,SPACE(0))  ELSE NULLIF('',SPACE(0)) END 
 -----
+        -- 119
         ,drvPolicy1                      = CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN '758190' END
-        ,drvPlan1                        = CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN 'B' END
+        ,drvPlan1                        = CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN 'K' END
+                                        -- CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN 'B' END
         ,drvProduct1                     = CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN 'LT' END
         ,drvBenefitPercent1              = CASE WHEN ISNULL(B.EedEEID,'') <> '' AND B.EedDedCode = 'SLTD4' THEN '40'
                                                WHEN B.EedDedCode IN ('SLTD6','GRLTD') THEN '60'  
                                                ELSE '' END 
+        -- 126
+        ,drvClassName1                  =   CASE WHEN B.EedDedCode = 'VLTD6' THEN 'Class 3'
+                                            WHEN B.EedDedCode = 'GLTD6' THEN 'Class 1'
+                                            WHEN B.EedDedCode = 'GLTD5' THEN 'Class 2'
+                                            END
+
         ,drvEffectiveDate1               = CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN NULLIF(B.EedBenStartDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
         ,drvTerminationDate1             = CASE WHEN ISNULL(B.EedEEID,'') <> '' THEN NULLIF(B.EedBenStopDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
 
 -----
-
+        -- 129
+        ,drvPolicy2                     = CASE WHEN I.EedDedCode = 'LTDBU' THEN '758190' END
+        ,drvPlan2                       = CASE WHEN I.EedDedCode = 'LTDBU' THEN 'K' END
+        ,drvProduct2                    = CASE WHEN I.EedDedCode = 'LTDBU' THEN 'BLT' END
+        ,drvClassName2                  = CASE WHEN I.EedDedCode = 'LTDBU' THEN 'Class 2' END
+-----
+        -- 139
+        ,drvPolicy3                     = CASE WHEN J.EedDedCode = 'GRLTD' THEN '758190' END
+        ,drvPlan3                       = CASE WHEN J.EedDedCode = 'GRLTD' THEN 'F' END
+        ,drvProduct3                    = CASE WHEN J.EedDedCode = 'GRLTD' THEN 'LT' END
+        ,drvClassName3                  = CASE WHEN J.EedDedCode = 'GRLTD' THEN 'Class 1' END
+        ,drvEffectiveDate3 = J.EedBenStartDate
+        ,drvTerminationDate3 = J.EedBenStopDate
+-----
+        -- 158
         ,drvBasicLifePolicy              = CASE WHEN ISNULL(C.EedEEID,'') <> '' THEN '758190' END
-        ,drvBasicLifePlan                = CASE WHEN ISNULL(C.EedEEID,'') <> '' THEN 'A' END
+        ,drvBasicLifePlan                =    CASE WHEN C.EedDedCode in ('LFE1X','LFE2X','LFX4X','LFP3X') THEN 'E' 
+                                            WHEN C.EedDedCode in ('LAE1X', 'LAE2X', 'LAX1X', 'LPH1X') THEN 'J'
+                                            END
+
+                                        --CASE WHEN ISNULL(C.EedEEID,'') <> '' THEN 'A' END
         ,drvBasicLifeProduct             = CASE WHEN ISNULL(C.EedEEID,'') <> '' THEN 'BL' END
         ,drvBasicLifeAmount              = CASE WHEN ISNULL(C.EedEEID,'') <> '' 
                                                 THEN ISNULL((SELECT TOP 1 CONVERT(VARCHAR,BcaBenAmtCalc) FROM dbo.u_dsi_bdm_BenCalculationAmounts 
@@ -1205,9 +1260,13 @@ BEGIN
         ,drvBasicLifeTerminationDate     = CASE WHEN ISNULL(C.EedEEID,'') <> '' THEN NULLIF(C.EedBenStopDate,SPACE(0))  ELSE NULLIF('',SPACE(0)) END 
 
 -----
-
+        -- 166
         ,drvBasicADDPolicy               = CASE WHEN ISNULL(D.EedEEID,'') <> '' THEN '758190' END
-        ,drvBasicADDPlan                 = CASE WHEN ISNULL(D.EedEEID,'') <> '' THEN 'A' END
+        ,drvBasicADDPlan                 =    CASE WHEN D.EedDedCode IN ('LFE1X','LFE2X','LFX4X','ADPHY') THEN 'E' 
+                                            WHEN D.EedDedCode IN ('LAE1X','LAE2X','LAX1X','ADPHA') then 'J'
+                                            END
+
+                                            --CASE WHEN ISNULL(D.EedEEID,'') <> '' THEN 'A' END
         ,drvBasicADDProduct              = CASE WHEN ISNULL(D.EedEEID,'') <> '' THEN 'BA' END
         ,drvBasicADDAmount               = CASE WHEN ISNULL(D.EedEEID,'') <> '' 
                                                 THEN CASE WHEN ISNULL((SELECT TOP 1 BcaBenAmtCalc FROM dbo.u_dsi_bdm_BenCalculationAmounts 
@@ -1225,9 +1284,13 @@ BEGIN
         ,drvBasicADDTerminationDate      = CASE WHEN ISNULL(D.EedEEID,'') <> '' THEN NULLIF(D.EedBenStopDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
 
 -----
-
+        -- 173
         ,drvAdditionalLifePolicy         = CASE WHEN ISNULL(E.EedEEID,'') <> '' THEN '758190' END
-        ,drvAdditionalLifePlan           = CASE WHEN ISNULL(E.EedEEID,'') <> '' THEN 'A' END
+        ,drvAdditionalLifePlan           =    CASE WHEN E.EedDedCode IN ('SLEE1','SLEE2','SLEX1','SLEX2') THEN 'E' 
+                                            WHEN E.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN 'J'
+                                            END
+
+                                            --CASE WHEN ISNULL(E.EedEEID,'') <> '' THEN 'A' END
         ,drvAdditionalLifeProduct        = CASE WHEN ISNULL(E.EedEEID,'') <> '' THEN 'AL' END
         ,drvAdditionalLifeAmount         = CASE WHEN ISNULL(E.EedEEID,'') <> '' 
                                                 THEN ISNULL((SELECT TOP 1 CONVERT(VARCHAR,BcaBenAmtCalc) FROM dbo.u_dsi_bdm_BenCalculationAmounts 
@@ -1237,11 +1300,19 @@ BEGIN
                                            END 
         ,drvAdditionalLifeEffDate        = CASE WHEN ISNULL(E.EedEEID,'') <> '' THEN NULLIF(E.EedBenStartDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
         ,drvAdditionalLifeTermDate       = CASE WHEN ISNULL(E.EedEEID,'') <> '' THEN NULLIF(E.EedBenStopDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
-
+        -- 182
+        ,drvAADandDPolicy               = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN '758190' END
+        ,drvAADandDPlan                 = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN ' J' END
+        ,drvAADandDProduct              = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN 'AA' END
+        ,drvAADandDEffDate = CASE WHEN K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4') THEN K.EedBenStartDate END
 -----
-
+        -- 190
         ,drvSpouseLifePolicy             = CASE WHEN ISNULL(F.EedEEID,'') <> '' THEN '758190' END
-        ,drvSpouseLifePlan               = CASE WHEN ISNULL(F.EedEEID,'') <> '' THEN 'A' END
+        ,drvSpouseLifePlan               =    CASE WHEN F.EedDedCode = 'SLSPS' THEN 'E'
+                                            WHEN F.EedDedCode = 'SLSPA' THEN 'J'
+                                            END
+
+                                        -- CASE WHEN ISNULL(F.EedEEID,'') <> '' THEN 'A' END
         ,drvSpouseLifeProduct            = CASE WHEN ISNULL(F.EedEEID,'') <> '' THEN 'XSL' END
         ,drvSpouseLifeAmount             = CASE WHEN ISNULL(F.EedEEID,'') <> '' 
                                                 THEN ISNULL((SELECT TOP 1 CONVERT(VARCHAR,BcaBenAmtCalc) FROM dbo.u_dsi_bdm_BenCalculationAmounts 
@@ -1253,9 +1324,13 @@ BEGIN
         ,drvSpouseLifeTermDate           = CASE WHEN ISNULL(F.EedEEID,'') <> '' THEN NULLIF(F.EedBenStopDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END 
 
 -----
-
+        -- 207
         ,drvChildLifePolicy              = CASE WHEN ISNULL(G.EedEEID,'') <> '' THEN '758190' END
-        ,drvChildLifePlan                = CASE WHEN ISNULL(G.EedEEID,'') <> '' THEN 'A' END
+        ,drvChildLifePlan                =    CASE WHEN G.EedDedCode = 'SLCHL' THEN 'E'
+                                            WHEN G.EedDedCode = 'SLCHA' THEN 'J'
+                                            END
+
+                                        -- CASE WHEN ISNULL(G.EedEEID,'') <> '' THEN 'A' END
         ,drvChildLifeProduct             = CASE WHEN ISNULL(G.EedEEID,'') <> '' THEN 'XCL' END
         ,drvChildLifeAmount              = CASE G.EedbenOption 
                                                 WHEN 'C02' THEN '2000.00'
@@ -1268,15 +1343,12 @@ BEGIN
         ,drvChildLifeTermDate            = CASE WHEN ISNULL(G.EedEEID,'') <> '' THEN NULLIF(G.EedBenStopDate,SPACE(0)) ELSE NULLIF('',SPACE(0)) END
 
 -----
-
+        -- 221
         ,drvStandAloneADDPolicy          = CASE WHEN ISNULL(H.EedEEID,'') <> '' THEN '758190' END
         ,drvStandAloneADDPlan            = CASE WHEN ISNULL(H.EedEEID,'') <> '' THEN 'C' END
-        ,drvStandAloneADDProduct         = CASE WHEN ISNULL(H.EedEEID,'') <> '' THEN
-                                                CASE WHEN H.EedDedCode = 'SLADE' THEN 'SA' 
-                                                     WHEN H.EedDedCode = 'SLADF' THEN 'SAF' 
-                                                     ELSE ''
-                                                END
-                                            END  
+        ,drvStandAloneADDProduct         =   CASE WHEN H.EedDedCode = 'SLADE' THEN 'SA'
+                                            WHEN H.EedDedCode = 'SLADF' THEN 'SAF'
+                                            END
         ,drvStandAloneADDAmount          =  CASE WHEN ISNULL(H.EedEEID,'') <> '' 
                                                 THEN ISNULL((SELECT TOP 1 CONVERT(VARCHAR,BcaBenAmtCalc) FROM dbo.u_dsi_bdm_BenCalculationAmounts 
                                                                 WHERE bcaeeid = xEEID
@@ -1298,49 +1370,67 @@ BEGIN
         AND A.EedCoID = xCoID
         AND A.EedFormatCode = @FormatCode 
         AND A.EedValidForExport = 'Y'
-        AND A.EedDedCode IN ('STDHR','STDSL','STDPH') 
+        AND A.EedDedCode IN ('STDHR','STDSL','STDPH','STD60','STDC') 
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS B WITH (NOLOCK)
         ON B.EedEEID = xEEID 
         AND B.EedCoID = xCoID
         AND B.EedFormatCode = @FormatCode 
         AND B.EedValidForExport = 'Y'
-        AND B.EedDedCode IN ('SLTD4','SLTD6','GRLTD') 
+        AND B.EedDedCode IN ('SLTD4','SLTD6','VLTD6','GLTD6','GLTD5') -- 'GRLTD', 
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS C WITH (NOLOCK)
         ON C.EedEEID = xEEID 
         AND C.EedCoID = xCoID
         AND C.EedFormatCode = @FormatCode 
         AND C.EedValidForExport = 'Y'
-        AND C.EedDedCode IN ('LFE1X','LFE2X','LFX4X','LFP4X','LFP3X') 
+        AND C.EedDedCode IN ('LFE1X','LFE2X','LFX4X','LFP4X','LFP3X','LAE1X','LAE2X','LAX1X','LPH1X') 
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS D WITH (NOLOCK)
         ON D.EedEEID = xEEID 
         AND D.EedCoID = xCoID
         AND D.EedFormatCode = @FormatCode 
         AND D.EedValidForExport = 'Y'
-        AND D.EedDedCode IN ('LFE1X','LFE2X','LFX4X','LFP4X','ADPHY') 
+        AND D.EedDedCode IN ('LFE1X','LFE2X','LFX4X','LFP4X','ADPHY','LAE1X','LAE2X','LAX1X','ADPHA') 
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS E WITH (NOLOCK)
         ON E.EedEEID = xEEID 
         AND E.EedCoID = xCoID
         AND E.EedFormatCode = @FormatCode 
         AND E.EedValidForExport = 'Y'
-        AND E.EedDedCode IN ('SLEE1','SLEE2','SLEX1','SLEX2')  
+        AND E.EedDedCode IN ('SLEE1','SLEE2','SLEX1','SLEX2','SLAE1','SLAE2','SLAE3','SLAE','SLAE4')  
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS F WITH (NOLOCK)
         ON F.EedEEID = xEEID 
         AND F.EedCoID = xCoID
         AND F.EedFormatCode = @FormatCode 
         AND F.EedValidForExport = 'Y'
-        AND F.EedDedCode = 'SLSPS'
+        AND F.EedDedCode IN ('SLSPS','SLSPA')
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS G WITH (NOLOCK)
         ON G.EedEEID = xEEID 
         AND G.EedCoID = xCoID
         AND G.EedFormatCode = @FormatCode 
         AND G.EedValidForExport = 'Y'
-        AND G.EedDedCode = 'SLCHL'
+        AND G.EedDedCode IN ('SLCHL','SLCHA')
     LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS H WITH (NOLOCK)
         ON H.EedEEID = xEEID 
         AND H.EedCoID = xCoID
         AND H.EedFormatCode = @FormatCode 
         AND H.EedValidForExport = 'Y'
         AND H.EedDedCode IN ('SLADE','SLADF')
+    LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS I WITH (NOLOCK)
+        ON i.EedEEID = xEEID 
+        AND I.EedCoID = xCoID
+        AND I.EedFormatCode = @FormatCode 
+        AND I.EedValidForExport = 'Y'
+        AND I.EedDedCode IN ('LTDBU')
+    LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS J WITH (NOLOCK)
+        ON J.EedEEID = xEEID 
+        AND J.EedCoID = xCoID
+        AND J.EedFormatCode = @FormatCode 
+        AND J.EedValidForExport = 'Y'
+        AND J.EedDedCode IN ('GRLTD')
+    LEFT JOIN dbo.U_dsi_bdm_EmpDeductions AS K WITH (NOLOCK)
+        ON K.EedEEID = xEEID 
+        AND K.EedCoID = xCoID
+        AND K.EedFormatCode = @FormatCode 
+        AND K.EedValidForExport = 'Y'
+        AND K.EedDedCode IN ('SLAE1','SLAE2','SLAE3','SLAE4')
     LEFT JOIN dbo.Company WITH (NOLOCK)
         ON CmpCOID = xCOID
     LEFT JOIN dbo.JobCode WITH (NOLOCK)
