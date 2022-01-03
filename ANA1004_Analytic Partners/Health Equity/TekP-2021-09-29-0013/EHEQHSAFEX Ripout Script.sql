@@ -5,7 +5,7 @@ EHEQHSAFEX: Health Equity Payroll Export
 FormatCode:     EHEQHSAFEX
 Project:        Health Equity Payroll Export
 Client ID:      ANA1004
-Date/time:      2021-12-21 10:15:24.237
+Date/time:      2021-12-30 13:45:14.550
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -168,7 +168,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHEQHSAFEX_20211221.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHEQHSAFEX_20211230.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -179,7 +179,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202112149','EMPEXPORT','OEPASSIVE','Dec 21 2021  9:54AM','EHEQHSAFEX',NULL,NULL,NULL,'202112149','Dec 14 2021 11:49AM','Dec 14 2021 11:49AM','202111011','95','','','202111011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity Payroll Export','202112149','EMPEXPORT','ONDEM_XOE','Dec 21 2021  9:55AM','EHEQHSAFEX',NULL,NULL,NULL,'202112149','Dec 14 2021 11:49AM','Dec 14 2021 11:49AM','202111011','95','','','202111011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity Payroll Ex-Sched','202112149','EMPEXPORT','SCH_EHEQHS','Dec 21 2021  9:55AM','EHEQHSAFEX',NULL,NULL,NULL,'202112149','Dec 14 2021 11:49AM','Dec 14 2021 11:49AM','202111011','95','','','202111011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Health Equity Payroll Ex-Test','202112149','EMPEXPORT','TEST_XOE','Dec 21 2021  9:55AM','EHEQHSAFEX',NULL,NULL,NULL,'202112149','Dec 14 2021 11:49AM','Dec 14 2021 11:49AM','202111011','95','','','202111011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','9KINY,9KIPP,9KIRJ,9KIMZ,9KIIC,9KIOQ,9KILD,9KIQJ,9IGR6,9KIK7,9PGC6',NULL,NULL,NULL,'Health Equity Payroll Ex-Test','202112159','EMPEXPORT','TEST_XOE','Dec 30 2021  1:28PM','EHEQHSAFEX',NULL,NULL,NULL,'202112159','Dec 15 2021 12:00AM','Dec 30 1899 12:00AM','202112151','62','','AUMNTH,BRMNTH,CHMNTH,DEMNTH,FRMNTH,HKMNTH,IRMNTH,NONPAY,OBSEMI,SEMIMO,SIMNTH,UKMNTH','202112151',dbo.fn_GetTimedKey(),NULL,'us3jBeANA1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -491,9 +491,9 @@ BEGIN
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('FSA,FSALT,LFSA') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('FSA','FSALT','LFSA') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('FSADC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('CFHSA,CIHSA,FHSA,HSACF,HSACI,HSAF,HSAI,IHSA') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('CFHSA','CIHSA','FHSA','HSACF','HSACI','HSAF','HSAI','IHSA') THEN PdhEECurAmt ELSE 0.00 END)        
         /*,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
@@ -580,7 +580,7 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-    LEFT JOIN dbo.U_EHEQHSAFEX_PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EHEQHSAFEX_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
     JOIN dbo.U_EHEQHSAFEX_PEarHist
         ON PehEEID = xEEID

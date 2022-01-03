@@ -5,7 +5,7 @@ ELINHAWEXP: Lincoln Health and Welfare Export
 FormatCode:     ELINHAWEXP
 Project:        Lincoln Health and Welfare Export
 Client ID:      ALL1033
-Date/time:      2021-12-03 13:07:52.773
+Date/time:      2021-12-29 17:00:04.420
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -346,7 +346,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELINHAWEXP_20211203.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELINHAWEXP_20211229.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -357,7 +357,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202111239','EMPEXPORT','OEPASSIVE',NULL,'ELINHAWEXP',NULL,NULL,NULL,'202111239','Nov 23 2021  5:56AM','Nov 23 2021  5:56AM','202111231',NULL,'','','202111231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Health and Welfare Exp','202111239','EMPEXPORT','ONDEM_XOE',NULL,'ELINHAWEXP',NULL,NULL,NULL,'202111239','Nov 23 2021  5:56AM','Nov 23 2021  5:56AM','202111231',NULL,'','','202111231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Health and Welfa-Sched','202111239','EMPEXPORT','SCH_ELINHA',NULL,'ELINHAWEXP',NULL,NULL,NULL,'202111239','Nov 23 2021  5:56AM','Nov 23 2021  5:56AM','202111231',NULL,'','','202111231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Health and Welfa-Test','202111299','EMPEXPORT','TEST_XOE','Nov 30 2021  4:46PM','ELINHAWEXP',NULL,NULL,NULL,'202111299','Nov 29 2021 12:00AM','Dec 30 1899 12:00AM','202111151','656','','','202111151',dbo.fn_GetTimedKey(),NULL,'us3jReALL1033',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Health and Welfa-Test','202112049','EMPEXPORT','TEST_XOE','Dec  4 2021  9:25AM','ELINHAWEXP',NULL,NULL,NULL,'202112049','Dec  4 2021 12:00AM','Dec 30 1899 12:00AM','202111201','662','','','202111201',dbo.fn_GetTimedKey(),NULL,'us3jReALL1033',NULL);
 
 -----------
 -- AscImp inserts
@@ -542,7 +542,7 @@ CREATE TABLE [dbo].[U_ELINHAWEXP_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(3000) NULL
+    [Data] char(2999) NULL
 );
 
 -----------
@@ -599,7 +599,7 @@ Purpose: Lincoln Health and Welfare Export
 Revision History
 ----------------
 12/03/2021 by AP:
-	- Changed file length from 3000 to 2999 in order to output 3000 on the file. Seems to add a +1 at the end of the length.
+    - Changed file length from 3000 to 2999 in order to output 3000 on the file. Seems to add a +1 at the end of the length.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ELINHAWEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ELINHAWEXP';
@@ -766,7 +766,7 @@ BEGIN
         ,drvDateOfBirth = EepDateOfBirth
         ,drvSalaryAmount =    CASE WHEN EecSalaryOrHourly = 'S' THEN FORMAT(EecAnnSalary, '#0.0') ELSE '0.0' END
         ,drvHourlyWage =    CASE WHEN EecSalaryOrHourly = 'H' THEN FORMAT(EecHourlyPayRate, '#0.0') ELSE '0.0' END
-        ,drvSalaryEffectiveDate = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
+        ,drvSalaryEffectiveDate = dbo.dsi_fnGetMinMaxDates('MAX',dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire), EecDateOfLastHire)
         ,drvSalaryType =    CASE WHEN EecSalaryOrHourly = 'S' THEN 'SL'
                             WHEN EecSalaryOrHourly = 'H' THEN 'HR'
                             END
@@ -808,7 +808,7 @@ BEGIN
                                         WHEN EjhFLSACategory = 'Z' AND EecSalaryOrHourly = 'S' THEN 'Y'
                                         ELSE 'N'
                                         END
-        ,drvCoWorkderSpouseSSN = CASE WHEN (SELECT COUNT(*) FROM dbo.EmpPers WITH (NOLOCK) WHERE EepSSN = ConSSN) > 0 THEN ConSSN END
+        ,drvCoWorkderSpouseSSN = CASE WHEN (SELECT COUNT(*) FROM dbo.EmpPers WITH (NOLOCK) WHERE EepSSN = ConSSN AND ConRelationship IN ('DP','SPS')) > 0 THEN ConSSN END
         ,drvDateCreated = GETDATE()
     INTO dbo.U_ELINHAWEXP_drvTbl
     FROM dbo.U_ELINHAWEXP_EEList WITH (NOLOCK)

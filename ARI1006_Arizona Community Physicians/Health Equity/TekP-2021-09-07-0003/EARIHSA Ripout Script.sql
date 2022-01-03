@@ -5,7 +5,7 @@ EARIHSA: Health Equity FSA HSA Contribution
 FormatCode:     EARIHSA
 Project:        Health Equity FSA HSA Contribution
 Client ID:      ARI1006
-Date/time:      2021-12-27 15:58:27.467
+Date/time:      2021-12-30 12:15:21.163
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -114,6 +114,8 @@ IF OBJECT_ID('U_EARIHSA_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EARIHSA_PEarH
 GO
 IF OBJECT_ID('U_EARIHSA_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EARIHSA_PDedHist];
 GO
+IF OBJECT_ID('U_EARIHSA_HSA_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EARIHSA_HSA_PDedHist];
+GO
 IF OBJECT_ID('U_EARIHSA_File') IS NOT NULL DROP TABLE [dbo].[U_EARIHSA_File];
 GO
 IF OBJECT_ID('U_EARIHSA_EEList') IS NOT NULL DROP TABLE [dbo].[U_EARIHSA_EEList];
@@ -172,7 +174,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARIHSA_20211227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARIHSA_20211230.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -183,7 +185,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Con-PassOE','202112029','EMPEXPORT','OEPASSIVE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont OnDem','202112029','EMPEXPORT','ONDEM_XOE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont-Sched','202112029','EMPEXPORT','SCH_EARIHS','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HealthEquity FSA HSA Cont-Test','202111269','EMPEXPORT','TEST_XOE','Dec 20 2021  2:17PM','EARIHSA',NULL,NULL,NULL,'202111269','Nov 26 2021 12:00AM','Dec 30 1899 12:00AM','202111261','239','eecPayGroup','EMPL','202111261',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HealthEquity FSA HSA Cont-Test','202111269','EMPEXPORT','TEST_XOE','Dec 27 2021  6:58PM','EARIHSA',NULL,NULL,NULL,'202111269','Nov 26 2021 12:00AM','Dec 30 1899 12:00AM','202111261','485','eecPayGroup','EMPL','202111261',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -352,6 +354,16 @@ CREATE TABLE [dbo].[U_EARIHSA_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
+);
+
+-----------
+-- Create table U_EARIHSA_HSA_PDedHist
+-----------
+
+IF OBJECT_ID('U_EARIHSA_HSA_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EARIHSA_HSA_PDedHist] (
+    [PdhHSA_EEID] char(12) NOT NULL,
+    [PdhSourceHSAER] numeric NULL
 );
 
 -----------
@@ -618,6 +630,41 @@ BEGIN
     );
 
 
+    IF OBJECT_ID('U_EARIHSA_HSA_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EARIHSA_HSA_PDedHist;
+    SELECT DISTINCT
+         PdhHSA_EEID = PdhEEID
+        --,PdhDedCode
+        -- Current Payroll Amounts
+--        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+--        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+--        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+--        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        -- Categorize Payroll Amounts
+        ,PdhSourceHSAER     = SUM(CASE WHEN PdhDedCode IN ('HSAER') THEN PdhEECurAmt ELSE 0.00 END)
+        --,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('HSACF','HSACI','HSAF','HSAI','FSADC','FSA','FSALP') THEN PdhEECurAmt ELSE 0.00 END)
+        --,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        --,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        --,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        --,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        --,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    INTO dbo.U_EARIHSA_HSA_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EARIHSA_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID --, PdhDedCode
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );
+
+
+
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -642,20 +689,14 @@ BEGIN
                             WHEN BdmDedCode in ('FSA', 'FSALP') THEN 'HCFSA' +FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END, '0000') 
                             WHEN BdmDedCode in ('FSADC') THEN 'DCFSA' +FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END, '0000') 
                         END
+        -- Using a little brute force in these next two fields. We'll need to come up with a cleaner way of doing this in the future
         ,drvPTPayDed =    CASE WHEN BdmDedCode IN ('FSA','FSALP') THEN PdhSourceFSA_FASLP
                         WHEN BdmDedCode IN ('FSADC') THEN PdhSourceFSADC
                         WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI') THEN PdhSourceHSA_X
+                        WHEN BdmDedCode IN ('HSAER') THEN 
+                            CASE WHEN (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EARIHSA PS_BDM WITH (NOLOCK) WHERE PS_BDM.BdmEEID = xEEID AND PS_BDM.BdmCOID = xCOID AND PS_BDM.BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI')) > 0 THEN PdhSourceHSA_X ELSE 0.00 END
                         END
-                        /*CASE WHEN pdh1.PdhDedCode in ('FSA','FSALP') THEN pdh1.PdhSource1
-                            WHEN pdh3.PdhDedCode IN ('FSADC') THEN pdh3.PdhSource3        
-                            WHEN pdh4.PdhDedCode IN ('HSACF','HSACI','HSAF','HSAI') THEN pdh4.PdhSource4
-                            ELSE '0.00'
-                        END*/    
-        ,drvPTProgSponCont =    CASE WHEN BdmDedCode IN ('HSAER') THEN PdhSourceHSAER ELSE 0.00 END
-                                /*CASE WHEN pdh2.PdhDedCode = 'HSAER' and pdh2.PdhSource2 > 0 THEN pdh2.PdhSource2
-                                    ELSE '0.00'*/
-                                --WHEN pdh2.PdhDedCode <> 'HSAER' THEN '0.00'
-                            --END
+        ,drvPTProgSponCont = CASE WHEN (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EARIHSA PS_BDM WITH (NOLOCK) WHERE PS_BDM.BdmEEID = xEEID AND PS_BDM.BdmCOID = xCOID AND PS_BDM.BdmDedCode = 'HSAER') > 0 THEN PdhSourceHSAER ELSE 0.00 END
         ,drvFundDate = CASE WHEN BdmDedCode in ('FSA', 'FSADC', 'FSALP', 'HSACF', 'HSACI', 'HSAF', 'HSAI','HSAER') THEN DATEADD(D,-2,PrgPayDate) END
     INTO dbo.U_EARIHSA_drvTbl
     FROM dbo.U_EARIHSA_EEList WITH (NOLOCK)
@@ -670,24 +711,6 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EARIHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    --JOIN dbo.U_EARIHSA_PDedHist pdh WITH (NOLOCK)
-    --    ON pdh.PdhEEID = xEEID
-    /*LEFT JOIN (SELECT PdhEEID, PdhDedCode, SUM(PdhSource1) PdhSource1
-                FROM dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
-                WHERE PdhDedCode IN ('FSA', 'FSALP')
-                GROUP BY PdhEEID, PdhDedCode) pdh1 ON pdh1.PdhEEID = pdh.PdhEEID
-    LEFT JOIN (SELECT PdhEEID, PdhDedCode, SUM(PdhSource3) PdhSource3
-                FROM dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
-                WHERE PdhDedCode IN ('FSADC')
-                GROUP BY PdhEEID, PdhDedCode) pdh3 ON pdh3.PdhEEID = pdh.PdhEEID
-    LEFT JOIN (SELECT PdhEEID, PdhDedCode, SUM(PdhSource4) PdhSource4
-                FROM dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
-                WHERE PdhDedCode IN ('HSACF','HSACI','HSAF','HSAI')
-                GROUP BY PdhEEID, PdhDedCode) pdh4 ON pdh4.PdhEEID = pdh.PdhEEID
-    LEFT JOIN (SELECT PdhEEID, PdhDedCode, SUM(CASE WHEN PdhSource2 > 0 THEN PdhSource2 END) AS PdhSource2
-                FROM dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
-                WHERE PdhDedCode IN ('HSAER')
-                GROUP BY PdhEEID, PdhDedCode) pdh2 ON pdh2.PdhEEID = pdh.PdhEEID*/
     LEFT JOIN dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
         ON PdhEEID = xEEID
     LEFT JOIN dbo.U_EARIHSA_PEarHist
