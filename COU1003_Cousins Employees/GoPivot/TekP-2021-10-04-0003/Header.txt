@@ -1,0 +1,10 @@
+Employee Number
+Employee First Name
+Employee Last Name
+Date of Hire
+Social Security
+Date Of Birth
+Sex
+State/Province
+Email Address
+Employee Type
