@@ -5,7 +5,7 @@ EQUOEBCHRA: EBC HRA Enrollment
 FormatCode:     EQUOEBCHRA
 Project:        EBC HRA Enrollment
 Client ID:      QUO1000
-Date/time:      2021-12-16 10:01:54.173
+Date/time:      2021-12-30 14:10:18.963
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -221,7 +221,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQUOEBCHRA_20211216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQUOEBCHRA_20211230.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -232,7 +232,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112169','EMPEXPORT','OEPASSIVE',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'EBC HRA Enrollment','202112169','EMPEXPORT','ONDEM_XOE',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'EBC HRA Enrollment-Sched','202112169','EMPEXPORT','SCH_EQUOEB',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'EBC HRA Enrollment-Test','202112169','EMPEXPORT','TEST_XOE',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC HRA Enrollment-Test','202112169','EMPEXPORT','TEST_XOE','Dec 28 2021  6:26PM','EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202112011','291','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -370,7 +370,7 @@ CREATE TABLE [dbo].[U_EQUOEBCHRA_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvEmpNoSort] char(11) NULL,
     [drvInsuredID] char(11) NULL,
-    [drvMemberID] varchar(13) NULL,
+    [drvMemberID] nvarchar(4000) NULL,
     [drvRelation] varchar(2) NULL,
     [drvLastName] varchar(100) NULL,
     [drvFirstName] varchar(100) NULL,
@@ -428,7 +428,7 @@ CREATE TABLE [dbo].[U_EQUOEBCHRA_File] (
 IF OBJECT_ID('U_EQUOEBCHRA_ftrTbl') IS NULL
 CREATE TABLE [dbo].[U_EQUOEBCHRA_ftrTbl] (
     [drvRecCount] int NULL,
-    [drvPartCount] int NOT NULL
+    [drvPartCount] int NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EQUOEBCHRA]
@@ -609,7 +609,7 @@ BEGIN
         ,drvInsuredID = EepSsn
         ,drvMemberID = CASE WHEN BdmRecType = 'EMP' THEN rtrim(EepSsn) + '01'
                             WHEN BdmRecType = 'DEP' AND BdmRelationship in ('DP','PAR','SPS') THEN rtrim(EepSsn) + '02'
-                            WHEN BdmRecType = 'DEP' AND BdmRelationship in ('CHL','DPC','STC') THEN rtrim(EepSsn) + '03'
+                            WHEN BdmRecType = 'DEP' AND BdmRelationship in ('CHL','DPC','STC') THEN rtrim(EepSsn) + RN -- '03'
                             END
 --The last 2 digits will change for dependent records if there are multiple child dependents
 --The file will need to create a sequence starting with the oldest child (use condateofbirth).
@@ -677,19 +677,41 @@ BEGIN
           and EXISTS (Select 1 from dbo.U_EQUOEBCHRA_Audit where audEEID = Bdmcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
         ON efoEEID = BdmEEID
-    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+    --LEFT JOIN dbo.Contacts WITH (NOLOCK)
+    LEFT JOIN (
+                
+                SELECT DISTINCT ConEEID, ConSystemID, ConRelationship, ConNameFirst, ConNameLast, ConNameMiddle, ConDateOfBirth, ConGender, ConAddressLine1, ConAddressLine2, ConAddressCity, ConAddressState, ConAddressZipCode, ConSSN, RN 
+                FROM ( 
+                        SELECT DISTINCT ConEEID, ConSystemID, ConRelationship, ConNameFirst, ConNameLast, ConNameMiddle, ConDateOfBirth, ConGender, ConAddressLine1, ConAddressLine2, ConAddressCity, ConAddressState, ConAddressZipCode, ConSSN, '02' AS RN 
+                        FROM dbo.Contacts WITH (NOLOCK) 
+                        JOIN dbo.U_dsi_BDM_EQUOEBCHRA BDMS WITH (NOLOCK)
+                                ON ConSystemID = BDMS.BdmDepRecID
+                        WHERE ConRelationship IN ('SPS','DP','PAR')
+        
+                        UNION
+        
+                        SELECT DISTINCT ConEEID, ConSystemID, ConRelationship, ConNameFirst, ConNameLast, ConNameMiddle, ConDateOfBirth, ConGender, ConAddressLine1, ConAddressLine2, ConAddressCity, ConAddressState, ConAddressZipCode, ConSSN, FORMAT(ROW_NUMBER() OVER (PARTITION BY ConEEID ORDER By ConDateOfBirth DESC)+2, '00') AS RN 
+                        FROM ( 
+                                SELECT DISTINCT ConEEID, ConSystemID, ConRelationship, ConNameFirst, ConNameLast, ConNameMiddle, ConDateOfBirth, ConGender, ConAddressLine1, ConAddressLine2, ConAddressCity, ConAddressState, ConAddressZipCode, ConSSN 
+                                FROM dbo.Contacts WITH (NOLOCK) 
+                                JOIN dbo.U_dsi_BDM_EQUOEBCHRA BDMC WITH (NOLOCK)
+                                ON ConSystemID = BDMC.BdmDepRecID
+                                WHERE ConRelationship IN ('CHL','STC','DPC')) AS CHLD
+                    ) AS Con 
+                --ORDER BY Con.ConEEID, Con.RN
+                ) AS AllCon
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     ;
 
-	---------------------------------
+    ---------------------------------
     -- FOOTER RECORD - U_EQUOEBCHRA_ftrTbl
     ---------------------------------
     IF OBJECT_ID('U_EQUOEBCHRA_ftrTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EQUOEBCHRA_ftrTbl;
     SELECT DISTINCT
         drvRecCount = (Select count(*) from dbo.U_EQUOEBCHRA_drvTbl) 
-		,drvPartCount = (Select count(*) from dbo.U_EQUOEBCHRA_drvTbl WHERE drvRelation = 18)
+        ,drvPartCount = (Select count(*) from dbo.U_EQUOEBCHRA_drvTbl WHERE drvRelation = 18)
     INTO dbo.U_EQUOEBCHRA_ftrTbl
     FROM dbo.U_EQUOEBCHRA_drvTbl WITH (NOLOCK);
 

@@ -5,16 +5,17 @@ ECCMSIEX: CCMSI Integration File
 FormatCode:     ECCMSIEX
 Project:        CCMSI Integration File
 Client ID:      ROL1002
-Date/time:      2021-12-08 21:04:20.107
+Date/time:      2021-12-29 11:56:32.380
 Ripout version: 7.4
-Export Type:    Back Office
+Export Type:    Web
 Status:         Testing
 Environment:    E42
 Server:         E4SUP2DB07
 Database:       ULTIPRO_ROLIN
-ExportPath:    \\XXXXX\E0\data_exchange\ROL1002\Exports\
+Web Filename:   ROL1002_C9MXB_EEHISTORY_ECCMSIEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
 OnDemandPath:  \\XXXX\E0\data_exchange\ROL1002\Exports\
-TestPath:      \\us.saas\E4\Public\ROL1002\Exports\CCMSI\
+TestPath:      
 
 **********************************************************************************/
 
@@ -305,12 +306,26 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','E243MD0000C0','6','T','90','137',NULL,'Payroll V2',NULL,NULL,'"drvPayrollV2"','(''UA''=''F'')');
 
 -----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'ECCMSIEX_20211229.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCMSI Integration File','202112059','EMPEXPORT','ONDEMAND','Oct 15 2018  3:32PM','ECCMSIEX',NULL,NULL,NULL,'202112059','Oct 15 2018 12:00AM','Dec 30 1899 12:00AM','202112051','35604',NULL,NULL,'202112051',dbo.fn_GetTimedKey(),NULL,'ULTI_ROLIN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202112059','EMPEXPORT','SCHEDULED','Dec  6 2021 10:07PM','ECCMSIEX',NULL,NULL,NULL,'202112059','Jun 20 2021 12:00AM','Dec 30 1899 12:00AM','202112051',NULL,NULL,NULL,'202112051',dbo.fn_GetTimedKey(),NULL,'ESWEET',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112059','EMPEXPORT','TEST','Sep 27 2019 11:32AM','ECCMSIEX',NULL,NULL,NULL,'202112059','Sep 22 2019 12:00AM','Dec 30 1899 12:00AM','202112051','56222',NULL,NULL,'202112051',dbo.fn_GetTimedKey(),NULL,'ESWEET',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CCMSI Integration File','202112059','EMPEXPORT','ONDEMAND','Oct 15 2018  3:32PM','ECCMSIEX',NULL,NULL,NULL,'202112059','Oct 15 2018 12:00AM','Dec 30 1899 12:00AM','202112051','35604',NULL,NULL,'202112051',dbo.fn_GetTimedKey(),NULL,'ULTI_ROLIN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202112059','EMPEXPORT','SCHEDULED','Dec  6 2021 10:07PM','ECCMSIEX',NULL,NULL,NULL,'202112059','Jun 20 2021 12:00AM','Dec 30 1899 12:00AM','202112051',NULL,NULL,NULL,'202112051',dbo.fn_GetTimedKey(),NULL,'ESWEET',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202112141','EMPEXPORT','TEST','Dec 14 2021  2:01PM','ECCMSIEX',NULL,NULL,NULL,'202112141','Dec 14 2021 12:00AM','Dec 30 1899 12:00AM','202112141','58364','',NULL,'202112141',dbo.fn_GetTimedKey(),NULL,'us3cPeROL1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -322,14 +337,14 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','ExportPath','V','\\XXXXX\E0\data_exchange\ROL1002\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','OnDemandPath','V','\\XXXX\E0\data_exchange\ROL1002\Exports\');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','SubSort','C','EepNameLast');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','SubSort2','C','EepNameFirst');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','TestPath','V','\\us.saas\E4\Public\ROL1002\Exports\CCMSI\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','UDESPath','C','\\XXXXX\E0\data_exchange\ROL1002\Exports\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCMSIEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -847,7 +862,7 @@ Revision History
 ----------------
 Update By           Date            Request Num           Desc
 Greg Travetti       04/22/2019      SR-2019-235218        Updated Location ID to use the Orglvl3 as is for import code = 1 and 1st 4 digits for import code = 6
-Darren Collard      12/08/2021      TekP-2021-10-15-0005  Cloned ESEDGWICK to send to CCMSI
+Darren Collard      12/08/2021      TekP-2021-10-15-0005  Cloned ESEDGWICK to send to CCMSI and converted to web
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECCMSIEX';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECCMSIEX';
@@ -871,7 +886,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECCMSIEX', 'ONDEMAND';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECCMSIEX', 'TEST';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECCMSIEX', 'SCHEDULED';
 
-EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECCMSIEX', @AllObjects = 'Y', @IsWeb = 'N'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECCMSIEX', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -1376,6 +1391,17 @@ GO
 
 
 -----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'ECCMSIEX' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
 -- Restore target paths from U_dsi_RipoutParms
 -----------
 
@@ -1397,6 +1423,21 @@ UPDATE dbo.AscExp
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
  WHERE rpoFormatCode = 'ECCMSIEX'
    AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECCMSIEX', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ECCMSIEX', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECCMSIEX', 'UseFileName', 'V', 'Y'
 
 
 -- End ripout

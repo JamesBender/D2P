@@ -5,7 +5,7 @@ EBCBSVIEXP: BCBS Vision Export
 FormatCode:     EBCBSVIEXP
 Project:        BCBS Vision Export
 Client ID:      VIS1012
-Date/time:      2021-12-22 13:03:00.970
+Date/time:      2022-01-03 05:34:07.627
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -286,7 +286,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSVIEXP_20211222.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSVIEXP_20220103.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -297,7 +297,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201019','EMPEXPORT','OEPASSIVE','Dec 20 2021  9:15PM','EBCBSVIEXP',NULL,NULL,NULL,'202201019','Jan  1 2022 12:00AM','Dec 30 1899 12:00AM','202110291','1167','','','202110291',dbo.fn_GetTimedKey(),NULL,'us3cPeVIS1012',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Vision Export','202112319','EMPEXPORT','ONDEM_XOE','Dec 13 2021  6:17AM','EBCBSVIEXP',NULL,NULL,NULL,'202112319','Dec 10 2021  6:04AM','Dec 10 2021  6:04AM','202101011','0','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Vision Export-Sched','202112319','EMPEXPORT','SCH_EBCBSV','Dec 13 2021  6:18AM','EBCBSVIEXP',NULL,NULL,NULL,'202112319','Dec 10 2021  6:04AM','Dec 10 2021  6:04AM','202101011','0','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Vision Export-Test','202112319','EMPEXPORT','TEST_XOE','Dec 13 2021  6:18AM','EBCBSVIEXP',NULL,NULL,NULL,'202112319','Dec 10 2021  6:04AM','Dec 10 2021  6:04AM','202101011','0','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Vision Export-Test','202112279','EMPEXPORT','TEST_XOE','Dec 27 2021  5:00PM','EBCBSVIEXP',NULL,NULL,NULL,'202112279','Dec 27 2021 12:00AM','Dec 30 1899 12:00AM','202111011','1179','','','202111011',dbo.fn_GetTimedKey(),NULL,'us3cPeVIS1012',NULL);
 
 -----------
 -- AscImp inserts
@@ -775,8 +775,8 @@ BEGIN
                         END
         ,drvConDateOfBirth = ConDateOfBirth
         ,drvConSmokerIndicator = CASE WHEN ConIsSmoker IN ('Y','N') THEN ConIsSmoker END
-        ,drvTerminationDate = CASE WHEN BdmBenStatus = 'T' THEN CONVERT(VARCHAR(8), BdmBenStopDate, 112) ELSE '00000000' END
-        ,drvTerminationReasonCode = CASE WHEN BdmBenStatus = 'T' THEN '12' ELSE '00' END
+        ,drvTerminationDate = CASE WHEN BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), BdmBenStopDate, 112) ELSE '00000000' END
+        ,drvTerminationReasonCode = CASE WHEN BdmBenStatus IN ('T','C') THEN '12' ELSE '00' END
     INTO dbo.U_EBCBSVIEXP_drvTbl_02
     FROM dbo.U_EBCBSVIEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
