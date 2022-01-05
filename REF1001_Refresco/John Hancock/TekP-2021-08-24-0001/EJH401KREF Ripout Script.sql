@@ -5,7 +5,7 @@ EJH401KREF: John Hancock 401K Export
 FormatCode:     EJH401KREF
 Project:        John Hancock 401K Export
 Client ID:      REF1001
-Date/time:      2021-12-30 14:01:22.247
+Date/time:      2022-01-04 19:46:46.107
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -189,7 +189,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock 401K Export','202110079','EMPEXPORT','ONDEMAND','Feb 28 2019 12:51PM','EJH401KREF',NULL,NULL,NULL,'202110079','Feb 28 2019 12:00AM','Mar  2 2019 12:00AM','202108121','3125','','','202108121',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is  Auto Generated',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Scheduled Export','202112301','EMPEXPORT','SCHEDULED','Dec 30 2021  6:15AM','EJH401KREF',NULL,NULL,NULL,'202112301','Oct  8 2018 12:00AM','Dec 30 1899 12:00AM','202112232','6123','','','202112232',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\JohnHancock\CO45SL_12302021_Test.csv',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'For Testing JH 401K','202112301','EMPEXPORT','TEST','Dec 30 2021  8:39AM','EJH401KREF',NULL,NULL,NULL,'202112301','Dec 30 2021 12:00AM','Jan  1 2022 12:00AM','202112232','6135','','','202112232',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\JohnHancock\CO45SL_12302021_Test.csv',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'For Testing JH 401K','202112301','EMPEXPORT','TEST','Jan  4 2022  8:48AM','EJH401KREF',NULL,NULL,NULL,'202112301','Dec 30 2021 12:00AM','Jan  1 2022 12:00AM','202112232','4050','','','202112232',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -397,7 +397,7 @@ Update By           Date           Request Num        Desc
 Bryan Heid          04/07/2020     SR-2020-00264686   Adjust calculations for YTD plan comp, period plan comp, YTD Eligible comp and match comp calculations
 Rishabh Verma       08/25/2021     SR-2021-00324083   Updated DrvUnionCode Fields and drvName Field
 TekPartners         11/10/2021     no SR              Updated Excludable Code field and added Year to date pensionable hours and Payroll period end date fields
-Darren Collard      12/30/2021     no SR              Exclude where YTD is 0 hours or $0.00 compensation
+Darren Collard      12/30/2021     no SR              Exclude where YTD is 0 hours or $0.00 compensation, delete termed EEs based on start period, not run date.
 
 
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EJH401KREF';
@@ -467,7 +467,7 @@ BEGIN
     INNER JOIN dbo.EmpComp B
         ON A.xEEID = B.EecEEID
         AND A.xCOID = B.EecCoID
-        AND EecEmplStatus  = 'T' AND EecDateOfTermination < DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0)
+        AND EecEmplStatus  = 'T' AND EecDateOfTermination < DATEADD(yy, DATEDIFF(yy, 0, @StartDate), 0)
 
     
     /*DELETE FROM dbo.U_EJH401KREF_EEList
