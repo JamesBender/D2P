@@ -5,7 +5,7 @@ EMICWEXFSA: WEX FSA HSA DEP
 FormatCode:     EMICWEXFSA
 Project:        WEX FSA HSA DEP
 Client ID:      MIC1008
-Date/time:      2021-12-27 16:00:43.000
+Date/time:      2022-01-04 06:45:07.810
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -259,7 +259,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMICWEXFSA_20211227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMICWEXFSA_20220104.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -270,7 +270,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112229','EMPEXPORT','OEPASSIVE',NULL,'EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131',NULL,'','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA HSA DEP','202112229','EMPEXPORT','ONDEM_XOE',NULL,'EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131',NULL,'','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA HSA DEP-Sched','202112229','EMPEXPORT','SCH_EMICWE',NULL,'EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131',NULL,'','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA HSA DEP-Test','202112229','EMPEXPORT','TEST_XOE','Dec 27 2021  3:39PM','EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131','518','','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA HSA DEP-Test','202112319','EMPEXPORT','TEST_XOE','Jan  4 2022  6:31AM','EMICWEXFSA',NULL,NULL,NULL,'202112319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202112311','223','eecPayGroup','SALARY','202112311',dbo.fn_GetTimedKey(),NULL,'us3jBeMIC1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -398,7 +398,7 @@ CREATE TABLE [dbo].[U_EMICWEXFSA_CT_drvTbl] (
     [drvEEID] char(12) NOT NULL,
     [drvCoID] char(5) NOT NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvEmpNoSort] char(11) NULL,
+    [drvEmpNoSort] varchar(13) NULL,
     [drvParticipantId] char(11) NULL,
     [drvPlanName] varchar(22) NULL,
     [drvContributionDate] datetime NULL,
@@ -435,10 +435,10 @@ CREATE TABLE [dbo].[U_EMICWEXFSA_EN_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvEmpNoSort] char(11) NULL,
+    [drvEmpNoSort] varchar(13) NULL,
     [drvParticipantID] char(11) NULL,
     [drvPlanName] varchar(22) NULL,
-    [drvEnrollEffDate] varchar(10) NULL,
+    [drvEnrollEffDate] varchar(8) NULL,
     [drvParticipantAmount] numeric NULL,
     [drvEnrollTermDate] datetime NULL,
     [drvElectionIndicator] varchar(6) NULL,
@@ -515,7 +515,7 @@ CREATE TABLE [dbo].[U_EMICWEXFSA_PT_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvEmpNoSort] char(11) NULL,
+    [drvEmpNoSort] varchar(13) NULL,
     [drvParticipantID] char(11) NULL,
     [drvEmployeeNum] char(9) NULL,
     [drvLastName] varchar(100) NULL,
@@ -771,7 +771,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvEmpNoSort = EepSSN
+        ,drvEmpNoSort = EepSSN + ' 1'
         -- standard fields above and additional driver fields below
         ,drvParticipantID = EepSSN
         ,drvEmployeeNum = EecEmpNo
@@ -819,7 +819,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvEmpNoSort = EepSSN
+        ,drvEmpNoSort = EepSSN + ' 2'
         -- standard fields above and additional driver fields below
         ,drvParticipantID = EepSSN
         ,drvPlanName = CASE WHEN BdmDedCode = 'FSA' THEN 'Medical FSA'
@@ -863,7 +863,7 @@ BEGIN
          drvEEID = pdhEEID
         ,drvCoID = PdhCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvEmpNoSort = EepSSN
+        ,drvEmpNoSort = EepSSN + ' 2'
         -- standard fields above and additional driver fields below
         ,drvParticipantId = EepSSN
         ,drvPlanName = CASE WHEN PdhDedCode = 'FSA' THEN 'Medical FSA'
@@ -884,9 +884,16 @@ BEGIN
                                       WHEN PdhDedCode = 'HSAI' AND PdhSource8 > 0 THEN PdhSource8
                                       END
     INTO dbo.U_EMICWEXFSA_CT_drvTbl
-    FROM dbo.U_EMICWEXFSA_PDedHist WITH (NOLOCK)
+    FROM dbo.U_EMICWEXFSA_EEList WITH (NOLOCK)
+    JOIN dbo.U_EMICWEXFSA_PDedHist WITH (NOLOCK)
+        ON pdhEEID = xEEID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = pdhEEID
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+             And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+          and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     ;
 
     ---------------------------------
@@ -921,7 +928,7 @@ END;
 --Alter the View
 ALTER VIEW dbo.dsi_vwEMICWEXFSA_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EMICWEXFSA_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+    ORDER BY CASE WHEN InitialSort = '1' THEN '1' WHEN InitialSort = '9999' THEN '3' ELSE '2' END,  InitialSort, SubSort;
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
@@ -938,9 +945,9 @@ WHERE expFormatCode = 'EMICWEXFSA';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEMICWEXFSA_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EMICWEXFSA_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwEMICWEXFSA_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EMICWEXFSA_File (NOLOCK)
+    ORDER BY CASE WHEN InitialSort = '1' THEN '1' WHEN InitialSort = '9999' THEN '3' ELSE '2' END,  InitialSort, SubSort;
 
 GO
 

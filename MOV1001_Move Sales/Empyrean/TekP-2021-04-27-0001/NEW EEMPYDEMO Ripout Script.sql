@@ -5,7 +5,7 @@ EEMPYDEMO: Empyrean Demographic Export
 FormatCode:     EEMPYDEMO
 Project:        Empyrean Demographic Export
 Client ID:      MOV1001
-Date/time:      2021-12-28 12:39:07.620
+Date/time:      2022-01-04 05:16:48.840
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -229,7 +229,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYDEMO_20211228.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYDEMO_20220104.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -237,8 +237,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic','202110281','EMPEXPORT','ONDMD_XOE','Oct 28 2021  8:19PM','EEMPYDEMO',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYDEMO',NULL,NULL,NULL,'202112229','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202112151',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202112221','EMPEXPORT','TEST_XOE','Dec 28 2021 11:47AM','EEMPYDEMO',NULL,NULL,NULL,'202112221','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202112161','1782','','','202112161',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYDEMO',NULL,NULL,NULL,'202112299','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202112221',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202112221','EMPEXPORT','TEST_XOE','Dec 28 2021 12:50PM','EEMPYDEMO',NULL,NULL,NULL,'202112221','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202112161','1782','','','202112161',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -1083,61 +1083,33 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
 
         -- field 59
        ,drvActionCode =    CASE WHEN TermActionCode IS NOT NULL THEN  TermActionCode
-                        --WHEN OEjhReason IS NOT NULL THEN OEjhReason
-                        --ELSE ActActionCode  
-
-
+                        WHEN ActActionCode IS NOT NULL AND OEjhReason  IS NOT NULL THEN
+                                CASE WHEN ActActionEffDate > OEjhJobEffDate THEN ActActionCode ELSE OEjhReason END
                         WHEN ActActionCode IS NOT NULL THEN ActActionCode 
                         ELSE OEjhReason 
                         END
-       --JobActive.ActCode
-       
-       /*CASE WHEN aud.audActionCode NOT IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB') 
-       THEN aud.audActionCode
-       ELSE JobActive.ActCode
-       END*/
-                            /*CASE WHEN ejhEmplStatus = 'T' THEN '800'
-                        WHEN ejhEmplStatus = 'A' THEN JobActive.EjhReason
-                        WHEN ejhEmplStatus = 'L' THEN JobLeave.EjhReasonleave
-                        END*/                     
          -- field 60                 
-         -- EshStatusStopDate, TermActionEffDate, ActActionEffDate, OEjhJobEffDate
         ,drvActionCodeEffectiveDate =    CASE WHEN TermActionCode = 'PERSNL' OR ActActionCode = 'PERSNL' OR OejhReason = 'PERSNL' THEN   
                                             CASE WHEN EshStatusStopDate IS NOT NULL THEN EshStatusStopDate
                                             WHEN OejhReason IS NOT NULL THEN OEjhJobEffDate
                                             END
-                                        WHEN TermActionCode IS NOT NULL THEN TermActionEffDate  -- EshStatusStopDate
-
-                                        --WHEN OEjhJobEffDate IS NOT NULL THEN OEjhJobEffDate
-                                        --ELSE ActActionEffDate 
-
-
+                                        WHEN TermActionCode IS NOT NULL THEN TermActionEffDate 
+                                        WHEN ActActionCode IS NOT NULL AND OEjhReason  IS NOT NULL THEN
+                                            CASE WHEN ActActionEffDate > OEjhJobEffDate THEN ActActionEffDate ELSE OEjhJobEffDate END
                                         WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                         ELSE OEjhJobEffDate 
                                         END
-                                        /*CASE WHEN EecEmplStatus = 'T'
-                                      THEN eecdateoftermination
-                                      ELSE EjhJobEffDate 
-                                      END*/
-                                      --auddate.audActionEffDate 
-                                      --CASE WHEN aud.audRowNo = '1' AND aud.audFieldName = 'EjhJobEffDate' THEN aud.audActionEffDate END
          --field 61                                                         
         ,drvActionReasonCode =    CASE WHEN TermActionCode IS NOT NULL THEN TermActionDesc
+                                WHEN ActActionCode IS NOT NULL AND OEjhReason  IS NOT NULL THEN
+                                            CASE WHEN ActActionEffDate > OEjhJobEffDate THEN ActActionDesc ELSE B.ActDesc END
                                 WHEN ActActionCode IS NOT NULL THEN ActActionDesc 
-                                --WHEN OEjhReason IS NOT NULL THEN B.ActDesc 
                                 ELSE B.ActDesc 
-                                END -- Description
-                                /*CASE WHEN aud.audActionCode NOT IN ('ADDR', 'LOC','900','202','203','205','300','301','302','303','500','501','502','503','504','506','600','601','700','900','COFF','CONV','DCOR','EQI','HOME','PCEU','TRB') 
-                               THEN aud.audactiondesc
-                               ELSE JobActive.ActDesc
-                               END*/
-        --aud.audActionDesc
-        /* CASE WHEN ejhEmplStatus = 'T' THEN 'Termination'
-                               WHEN ejhEmplStatus = 'A' THEN audActive.ActDesc
-                               WHEN ejhEmplStatus = 'L' THEN audLeave.ActDesc
-                               END */
+                                END 
         -- field 62                                                     
         ,drvActionReasonCodeEffectiveDate =    CASE WHEN TermActionCode IS NOT NULL THEN TermActionEffDate 
+                                            WHEN ActActionCode IS NOT NULL AND OEjhReason  IS NOT NULL THEN
+                                                CASE WHEN ActActionEffDate > OEjhJobEffDate THEN ActActionEffDate ELSE OEjhJobEffDate END
                                             WHEN ActActionCode IS NOT NULL THEN ActActionEffDate 
                                             ELSE OEjhJobEffDate 
                                             END
