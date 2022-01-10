@@ -5,7 +5,7 @@ ELINCNLIF: Lincoln Basic Life
 FormatCode:     ELINCNLIF
 Project:        Lincoln Basic Life
 Client ID:      PLD1000
-Date/time:      2021-12-22 09:59:25.353
+Date/time:      2022-01-07 16:17:04.763
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -520,8 +520,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('381','ELINCNLIF0Z0','207','H','01','381',NULL,'Dep Cvg Indicator',NULL,NULL,'"Dep Cvg Indicator"','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('382','ELINCNLIF0Z0','208','H','01','382',NULL,'Dep DHMO PCP',NULL,NULL,'"Dep DHMO PCP"','(''DA''=''Q'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ELINCNLIF0Z0','20','D','10','1',NULL,'Employee ID',NULL,NULL,'"drvEmpNo"','(''UA''=''Q,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ELINCNLIF0Z0','10','D','10','2',NULL,'Change Date',NULL,NULL,'"drvChangeDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ELINCNLIF0Z0','10','D','10','3',NULL,'Dep Change Date',NULL,NULL,'"drvDepChangeDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ELINCNLIF0Z0','10','D','10','2',NULL,'Change Date',NULL,NULL,'"drvChangeDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ELINCNLIF0Z0','10','D','10','3',NULL,'Dep Change Date',NULL,NULL,'"drvDepChangeDate"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ELINCNLIF0Z0','10','D','10','4',NULL,'Termination Date',NULL,NULL,'"drvEedBenStopDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ELINCNLIF0Z0','50','D','10','5',NULL,'Mbr First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ELINCNLIF0Z0','50','D','10','6',NULL,'Mbr Last Name',NULL,NULL,'"drvNameLast"','(''UA''=''Q,'')');
@@ -913,7 +913,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELINCNLIF_20211222.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELINCNLIF_20220107.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -922,7 +922,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life','202106299','EMPEXPORT','ONDEM_XOE',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Basic Life-Sched','202106299','EMPEXPORT','SCH_ELINCN',NULL,'ELINCNLIF',NULL,NULL,NULL,'202106299','Jun 29 2021  8:59PM','Jun 29 2021  8:59PM','202106011',NULL,'','','202106011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202112179','EMPEXPORT','TEST_XOE','Dec 17 2021  3:12PM','ELINCNLIF',NULL,NULL,NULL,'202112179','Dec 17 2021 12:00AM','Dec 30 1899 12:00AM','202112031','1418','','','202112031',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Basic Life-Test','202201079','EMPEXPORT','TEST_XOE','Jan  7 2022 12:55PM','ELINCNLIF',NULL,NULL,NULL,'202201079','Jan  7 2022 12:00AM','Dec 30 1899 12:00AM','202112241','1423','','','202112241',dbo.fn_GetTimedKey(),NULL,'us3lKiPLD1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -1145,86 +1145,86 @@ CREATE TABLE [dbo].[U_ELINCNLIF_drvTbl] (
     [drvIsSmoker] varchar(1) NULL,
     [drvSpouseSmoker] varchar(1) NULL,
     [drvSpouseDOB] datetime NULL,
-    [drvDepNameFirst1] varchar(100) NULL,
-    [drvDepNameLast1] varchar(100) NULL,
-    [drvDepNameMiddle1] varchar(1) NULL,
-    [drvDepGender1] char(1) NULL,
-    [drvDepDateOfBirth1] datetime NULL,
-    [drvRelationship1] varchar(1) NULL,
-    [drvDepStudentCode1] varchar(1) NULL,
-    [drvDepDisabled1] char(1) NULL,
-    [drvDepNameFirst2] varchar(100) NULL,
-    [drvDepNameLast2] varchar(100) NULL,
-    [drvDepNameMiddle2] varchar(2) NULL,
-    [drvDepGender2] char(1) NULL,
-    [drvDepDateOfBirth2] datetime NULL,
-    [drvRelationship2] varchar(1) NULL,
-    [drvDepStudentCode2] varchar(1) NULL,
-    [drvDepDisabled2] char(1) NULL,
-    [drvDepNameFirst3] varchar(100) NULL,
-    [drvDepNameLast3] varchar(100) NULL,
-    [drvDepNameMiddle3] varchar(3) NULL,
-    [drvDepGender3] char(1) NULL,
-    [drvDepDateOfBirth3] datetime NULL,
-    [drvRelationship3] varchar(1) NULL,
-    [drvDepStudentCode3] varchar(1) NULL,
-    [drvDepDisabled3] char(1) NULL,
-    [drvDepNameFirst4] varchar(100) NULL,
-    [drvDepNameLast4] varchar(100) NULL,
-    [drvDepNameMiddle4] varchar(4) NULL,
-    [drvDepGender4] char(1) NULL,
-    [drvDepDateOfBirth4] datetime NULL,
-    [drvRelationship4] varchar(1) NULL,
-    [drvDepStudentCode4] varchar(1) NULL,
-    [drvDepDisabled4] char(1) NULL,
-    [drvDepNameFirst5] varchar(100) NULL,
-    [drvDepNameLast5] varchar(100) NULL,
-    [drvDepNameMiddle5] varchar(5) NULL,
-    [drvDepGender5] char(1) NULL,
-    [drvDepDateOfBirth5] datetime NULL,
-    [drvRelationship5] varchar(1) NULL,
-    [drvDepStudentCode5] varchar(1) NULL,
-    [drvDepDisabled5] char(1) NULL,
-    [drvDepNameFirst6] varchar(100) NULL,
-    [drvDepNameLast6] varchar(100) NULL,
-    [drvDepNameMiddle6] varchar(6) NULL,
-    [drvDepGender6] char(1) NULL,
-    [drvDepDateOfBirth6] datetime NULL,
-    [drvRelationship6] varchar(1) NULL,
-    [drvDepStudentCode6] varchar(1) NULL,
-    [drvDepDisabled6] char(1) NULL,
-    [drvDepNameFirst7] varchar(100) NULL,
-    [drvDepNameLast7] varchar(100) NULL,
-    [drvDepNameMiddle7] varchar(7) NULL,
-    [drvDepGender7] char(1) NULL,
-    [drvDepDateOfBirth7] datetime NULL,
-    [drvRelationship7] varchar(1) NULL,
-    [drvDepStudentCode7] varchar(1) NULL,
-    [drvDepDisabled7] char(1) NULL,
-    [drvDepNameFirst8] varchar(100) NULL,
-    [drvDepNameLast8] varchar(100) NULL,
-    [drvDepNameMiddle8] varchar(8) NULL,
-    [drvDepGender8] char(1) NULL,
-    [drvDepDateOfBirth8] datetime NULL,
-    [drvRelationship8] varchar(1) NULL,
-    [drvDepStudentCode8] varchar(1) NULL,
-    [drvDepDisabled8] char(1) NULL,
-    [drvDepNameFirst9] varchar(100) NULL,
-    [drvDepNameLast9] varchar(100) NULL,
-    [drvDepNameMiddle9] varchar(9) NULL,
-    [drvDepGender9] char(1) NULL,
-    [drvDepDateOfBirth9] datetime NULL,
-    [drvRelationship9] varchar(1) NULL,
-    [drvDepStudentCode9] varchar(1) NULL,
-    [drvDepDisabled9] char(1) NULL,
-    [drvDepNameFirst10] varchar(100) NULL,
-    [drvDepNameLast10] varchar(100) NULL,
-    [drvDepNameMiddle10] varchar(10) NULL,
-    [drvDepGender10] char(1) NULL,
-    [drvDepDateOfBirth10] datetime NULL,
-    [drvRelationship10] varchar(1) NULL,
-    [drvDepStudentCode10] varchar(1) NULL,
-    [drvDepDisabled10] char(1) NULL
+    [drvDepNameFirst1] varchar(1) NOT NULL,
+    [drvDepNameLast1] varchar(1) NOT NULL,
+    [drvDepNameMiddle1] varchar(1) NOT NULL,
+    [drvDepGender1] varchar(1) NOT NULL,
+    [drvDepDateOfBirth1] varchar(1) NOT NULL,
+    [drvRelationship1] varchar(1) NOT NULL,
+    [drvDepStudentCode1] varchar(1) NOT NULL,
+    [drvDepDisabled1] varchar(1) NOT NULL,
+    [drvDepNameFirst2] varchar(1) NOT NULL,
+    [drvDepNameLast2] varchar(1) NOT NULL,
+    [drvDepNameMiddle2] varchar(1) NOT NULL,
+    [drvDepGender2] varchar(1) NOT NULL,
+    [drvDepDateOfBirth2] varchar(1) NOT NULL,
+    [drvRelationship2] varchar(1) NOT NULL,
+    [drvDepStudentCode2] varchar(1) NOT NULL,
+    [drvDepDisabled2] varchar(1) NOT NULL,
+    [drvDepNameFirst3] varchar(1) NOT NULL,
+    [drvDepNameLast3] varchar(1) NOT NULL,
+    [drvDepNameMiddle3] varchar(1) NOT NULL,
+    [drvDepGender3] varchar(1) NOT NULL,
+    [drvDepDateOfBirth3] varchar(1) NOT NULL,
+    [drvRelationship3] varchar(1) NOT NULL,
+    [drvDepStudentCode3] varchar(1) NOT NULL,
+    [drvDepDisabled3] varchar(1) NOT NULL,
+    [drvDepNameFirst4] varchar(1) NOT NULL,
+    [drvDepNameLast4] varchar(1) NOT NULL,
+    [drvDepNameMiddle4] varchar(1) NOT NULL,
+    [drvDepGender4] varchar(1) NOT NULL,
+    [drvDepDateOfBirth4] varchar(1) NOT NULL,
+    [drvRelationship4] varchar(1) NOT NULL,
+    [drvDepStudentCode4] varchar(1) NOT NULL,
+    [drvDepDisabled4] varchar(1) NOT NULL,
+    [drvDepNameFirst5] varchar(1) NOT NULL,
+    [drvDepNameLast5] varchar(1) NOT NULL,
+    [drvDepNameMiddle5] varchar(1) NOT NULL,
+    [drvDepGender5] varchar(1) NOT NULL,
+    [drvDepDateOfBirth5] varchar(1) NOT NULL,
+    [drvRelationship5] varchar(1) NOT NULL,
+    [drvDepStudentCode5] varchar(1) NOT NULL,
+    [drvDepDisabled5] varchar(1) NOT NULL,
+    [drvDepNameFirst6] varchar(1) NOT NULL,
+    [drvDepNameLast6] varchar(1) NOT NULL,
+    [drvDepNameMiddle6] varchar(1) NOT NULL,
+    [drvDepGender6] varchar(1) NOT NULL,
+    [drvDepDateOfBirth6] varchar(1) NOT NULL,
+    [drvRelationship6] varchar(1) NOT NULL,
+    [drvDepStudentCode6] varchar(1) NOT NULL,
+    [drvDepDisabled6] varchar(1) NOT NULL,
+    [drvDepNameFirst7] varchar(1) NOT NULL,
+    [drvDepNameLast7] varchar(1) NOT NULL,
+    [drvDepNameMiddle7] varchar(1) NOT NULL,
+    [drvDepGender7] varchar(1) NOT NULL,
+    [drvDepDateOfBirth7] varchar(1) NOT NULL,
+    [drvRelationship7] varchar(1) NOT NULL,
+    [drvDepStudentCode7] varchar(1) NOT NULL,
+    [drvDepDisabled7] varchar(1) NOT NULL,
+    [drvDepNameFirst8] varchar(1) NOT NULL,
+    [drvDepNameLast8] varchar(1) NOT NULL,
+    [drvDepNameMiddle8] varchar(1) NOT NULL,
+    [drvDepGender8] varchar(1) NOT NULL,
+    [drvDepDateOfBirth8] varchar(1) NOT NULL,
+    [drvRelationship8] varchar(1) NOT NULL,
+    [drvDepStudentCode8] varchar(1) NOT NULL,
+    [drvDepDisabled8] varchar(1) NOT NULL,
+    [drvDepNameFirst9] varchar(1) NOT NULL,
+    [drvDepNameLast9] varchar(1) NOT NULL,
+    [drvDepNameMiddle9] varchar(1) NOT NULL,
+    [drvDepGender9] varchar(1) NOT NULL,
+    [drvDepDateOfBirth9] varchar(1) NOT NULL,
+    [drvRelationship9] varchar(1) NOT NULL,
+    [drvDepStudentCode9] varchar(1) NOT NULL,
+    [drvDepDisabled9] varchar(1) NOT NULL,
+    [drvDepNameFirst10] varchar(1) NOT NULL,
+    [drvDepNameLast10] varchar(1) NOT NULL,
+    [drvDepNameMiddle10] varchar(1) NOT NULL,
+    [drvDepGender10] varchar(1) NOT NULL,
+    [drvDepDateOfBirth10] varchar(1) NOT NULL,
+    [drvRelationship10] varchar(1) NOT NULL,
+    [drvDepStudentCode10] varchar(1) NOT NULL,
+    [drvDepDisabled10] varchar(1) NOT NULL
 );
 
 -----------
@@ -1274,8 +1274,11 @@ Revision History
         - Adjusted VLI Cvgs, VSLI Cvgs, VCLI Cvgs fields to remove '.00'.
 
 12/22/2021 by AP:
-		- Changed sort group field to remove leading 0's.
-		- Updated change date code to = ben start date in cases where the change date is less than the benefit start date.
+        - Changed sort group field to remove leading 0's.
+        - Updated change date code to = ben start date in cases where the change date is less than the benefit start date.
+
+01/07/2022 by AP:
+	- Updated change date fields to BLANK.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ELINCNLIF';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ELINCNLIF';
@@ -1465,11 +1468,13 @@ BEGIN
         ,drvInitialSort = ''
         -- standard fields above and additional driver fields below
         ,drvEmpNo = EecEmpNo
-        ,drvChangeDate =  CASE WHEN eecDateOfLastHire >= @FileMinCovDate THEN eecDateOfLastHire
-                                ELSE dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
-                         END
+        ,drvChangeDate = ''
+		--CASE WHEN eecDateOfLastHire >= @FileMinCovDate THEN eecDateOfLastHire
+  --                              ELSE dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
+  --                       END
                     --dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasEmpBen = 'Y'), @FileMinCovDate)
-        ,drvDepChangeDate = dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasDepBen = 'Y'), @FileMinCovDate)
+        ,drvDepChangeDate = ''
+		--dbo.dsi_fnGetMinMaxDates('MAX',(SELECT MAX(EedBenStartDate) FROM dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) WHERE  EedFormatCode = @FormatCode AND EedValidForExport = 'Y' AND EedEEID = xEEID AND EedCoID = xCoID AND EedHasDepBen = 'Y'), @FileMinCovDate)
         ,drvEedBenStopDate = CASE WHEN eecemplstatus = 'T' THEN eecdateoftermination
                                 WHEN EedBenStopDate IS NOT NUll THEN dbo.dsi_fnGetMinMaxDates('MAX',EedBenStopDate , @FileMinCovDate) 
                             END
@@ -1591,115 +1596,115 @@ BEGIN
         ,drvSpouseSmoker = CASE WHEN EedDepHasLFSPO = 'Y' AND Dep1.ConRelationship IN ('SPS','DP') THEN Dep1.ConIsSmoker END
         ,drvSpouseDOB = CASE WHEN EedDepHasLFSPO = 'Y' AND Dep1.ConRelationship IN ('SPS','DP') THEN Dep1.ConDateOfBirth END
         --DEP1
-        ,drvDepNameFirst1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConNameFirst END
-        ,drvDepNameLast1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConNameLast END
-        ,drvDepNameMiddle1 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep1.ConNameMiddle,1) END
-        ,drvDepGender1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConGender END
-        ,drvDepDateOfBirth1 = CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConDateOFBirth END
-        ,drvRelationship1 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep1.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep1.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode1 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep1.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled1 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep1.ConSystemID,'') <> '' THEN ISNULL(Dep1.ConIsDisabled,'N') END
+        ,drvDepNameFirst1 = '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConNameFirst END
+        ,drvDepNameLast1 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConNameLast END
+        ,drvDepNameMiddle1 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep1.ConNameMiddle,1) END
+        ,drvDepGender1 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConGender END
+        ,drvDepDateOfBirth1 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep1.ConDateOFBirth END
+        ,drvRelationship1 = '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep1.ConSystemID,'') <> '' THEN
+                                    -- CASE WHEN Dep1.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                           --  END
+        ,drvDepStudentCode1 = '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep1.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled1 = '' --  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep1.ConSystemID,'') <> '' THEN ISNULL(Dep1.ConIsDisabled,'N') END
         --DEP2
-        ,drvDepNameFirst2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConNameFirst END
-        ,drvDepNameLast2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConNameLast END
-        ,drvDepNameMiddle2 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep2.ConNameMiddle,2) END
-        ,drvDepGender2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConGender END
-        ,drvDepDateOfBirth2 = CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConDateOFBirth END
-        ,drvRelationship2 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep2.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep2.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode2 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep2.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled2 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep2.ConSystemID,'') <> '' THEN ISNULL(Dep2.ConIsDisabled,'N') END
+        ,drvDepNameFirst2 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConNameFirst END
+        ,drvDepNameLast2 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConNameLast END
+        ,drvDepNameMiddle2 = '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep2.ConNameMiddle,2) END
+        ,drvDepGender2 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConGender END
+        ,drvDepDateOfBirth2 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep2.ConDateOFBirth END
+        ,drvRelationship2 = '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep2.ConSystemID,'') <> '' THEN
+                                     --CASE WHEN Dep2.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                            -- END
+        ,drvDepStudentCode2 = '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep2.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled2 = '' --  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep2.ConSystemID,'') <> '' THEN ISNULL(Dep2.ConIsDisabled,'N') END
         --DEP3
-        ,drvDepNameFirst3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConNameFirst END
-        ,drvDepNameLast3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConNameLast END
-        ,drvDepNameMiddle3 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep3.ConNameMiddle,3) END
-        ,drvDepGender3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConGender END
-        ,drvDepDateOfBirth3 = CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConDateOFBirth END
-        ,drvRelationship3 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep3.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep3.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode3 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep3.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled3 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep3.ConSystemID,'') <> '' THEN ISNULL(Dep3.ConIsDisabled,'N') END
+        ,drvDepNameFirst3 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConNameFirst END
+        ,drvDepNameLast3 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConNameLast END
+        ,drvDepNameMiddle3 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep3.ConNameMiddle,3) END
+        ,drvDepGender3 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConGender END
+        ,drvDepDateOfBirth3 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep3.ConDateOFBirth END
+        ,drvRelationship3 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep3.ConSystemID,'') <> '' THEN
+                                  --   CASE WHEN Dep3.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                          --   END
+        ,drvDepStudentCode3 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep3.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled3 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep3.ConSystemID,'') <> '' THEN ISNULL(Dep3.ConIsDisabled,'N') END
         --DEP4
-        ,drvDepNameFirst4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConNameFirst END
-        ,drvDepNameLast4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConNameLast END
-        ,drvDepNameMiddle4 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep4.ConNameMiddle,4) END
-        ,drvDepGender4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConGender END
-        ,drvDepDateOfBirth4 = CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConDateOFBirth END
-        ,drvRelationship4 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep4.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep4.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode4 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep4.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled4 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep4.ConSystemID,'') <> '' THEN ISNULL(Dep4.ConIsDisabled,'N') END
+        ,drvDepNameFirst4 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConNameFirst END
+        ,drvDepNameLast4 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConNameLast END
+        ,drvDepNameMiddle4 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep4.ConNameMiddle,4) END
+        ,drvDepGender4 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConGender END
+        ,drvDepDateOfBirth4 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep4.ConDateOFBirth END
+        ,drvRelationship4 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep4.ConSystemID,'') <> '' THEN
+                                   --  CASE WHEN Dep4.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                        --     END
+        ,drvDepStudentCode4 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep4.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled4 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep4.ConSystemID,'') <> '' THEN ISNULL(Dep4.ConIsDisabled,'N') END
         --DEP5
-        ,drvDepNameFirst5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConNameFirst END
-        ,drvDepNameLast5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConNameLast END
-        ,drvDepNameMiddle5 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep5.ConNameMiddle,5) END
-        ,drvDepGender5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConGender END
-        ,drvDepDateOfBirth5 = CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConDateOFBirth END
-        ,drvRelationship5 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep5.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep5.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode5 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep5.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled5 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep5.ConSystemID,'') <> '' THEN ISNULL(Dep5.ConIsDisabled,'N') END
+        ,drvDepNameFirst5 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConNameFirst END
+        ,drvDepNameLast5 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConNameLast END
+        ,drvDepNameMiddle5 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep5.ConNameMiddle,5) END
+        ,drvDepGender5 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConGender END
+        ,drvDepDateOfBirth5 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep5.ConDateOFBirth END
+        ,drvRelationship5 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep5.ConSystemID,'') <> '' THEN
+                                 --    CASE WHEN Dep5.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                        --     END
+        ,drvDepStudentCode5 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep5.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled5 =   '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep5.ConSystemID,'') <> '' THEN ISNULL(Dep5.ConIsDisabled,'N') END
         --DEP6
-        ,drvDepNameFirst6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConNameFirst END
-        ,drvDepNameLast6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConNameLast END
-        ,drvDepNameMiddle6 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep6.ConNameMiddle,6) END
-        ,drvDepGender6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConGender END
-        ,drvDepDateOfBirth6 = CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConDateOFBirth END
-        ,drvRelationship6 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep6.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep6.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode6 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep6.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled6 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep6.ConSystemID,'') <> '' THEN ISNULL(Dep6.ConIsDisabled,'N') END
+        ,drvDepNameFirst6 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConNameFirst END
+        ,drvDepNameLast6 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConNameLast END
+        ,drvDepNameMiddle6 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep6.ConNameMiddle,6) END
+        ,drvDepGender6 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConGender END
+        ,drvDepDateOfBirth6 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep6.ConDateOFBirth END
+        ,drvRelationship6 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep6.ConSystemID,'') <> '' THEN
+                                  --   CASE WHEN Dep6.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                         --    END
+        ,drvDepStudentCode6 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep6.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled6 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep6.ConSystemID,'') <> '' THEN ISNULL(Dep6.ConIsDisabled,'N') END
         --DEP7
-        ,drvDepNameFirst7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConNameFirst END
-        ,drvDepNameLast7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConNameLast END
-        ,drvDepNameMiddle7 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep7.ConNameMiddle,7) END
-        ,drvDepGender7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConGender END
-        ,drvDepDateOfBirth7 = CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConDateOFBirth END
-        ,drvRelationship7 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep7.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep7.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode7 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep7.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled7 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep7.ConSystemID,'') <> '' THEN ISNULL(Dep7.ConIsDisabled,'N') END
+        ,drvDepNameFirst7 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConNameFirst END
+        ,drvDepNameLast7 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConNameLast END
+        ,drvDepNameMiddle7 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep7.ConNameMiddle,7) END
+        ,drvDepGender7 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConGender END
+        ,drvDepDateOfBirth7 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep7.ConDateOFBirth END
+        ,drvRelationship7 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep7.ConSystemID,'') <> '' THEN
+                                 --    CASE WHEN Dep7.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                        --     END
+        ,drvDepStudentCode7 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep7.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled7 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep7.ConSystemID,'') <> '' THEN ISNULL(Dep7.ConIsDisabled,'N') END
         --DEP8
-        ,drvDepNameFirst8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConNameFirst END
-        ,drvDepNameLast8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConNameLast END
-        ,drvDepNameMiddle8 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep8.ConNameMiddle,8) END
-        ,drvDepGender8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConGender END
-        ,drvDepDateOfBirth8 = CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConDateOFBirth END
-        ,drvRelationship8 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep8.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep8.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode8 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep8.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled8 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep8.ConSystemID,'') <> '' THEN ISNULL(Dep8.ConIsDisabled,'N') END
+        ,drvDepNameFirst8 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConNameFirst END
+        ,drvDepNameLast8 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConNameLast END
+        ,drvDepNameMiddle8 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep8.ConNameMiddle,8) END
+        ,drvDepGender8 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConGender END
+        ,drvDepDateOfBirth8 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep8.ConDateOFBirth END
+        ,drvRelationship8 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep8.ConSystemID,'') <> '' THEN
+                                 --    CASE WHEN Dep8.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                        --     END
+        ,drvDepStudentCode8 = '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep8.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled8 =   '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep8.ConSystemID,'') <> '' THEN ISNULL(Dep8.ConIsDisabled,'N') END
         --DEP9
-        ,drvDepNameFirst9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConNameFirst END
-        ,drvDepNameLast9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConNameLast END
-        ,drvDepNameMiddle9 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep9.ConNameMiddle,9) END
-        ,drvDepGender9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConGender END
-        ,drvDepDateOfBirth9 = CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConDateOFBirth END
-        ,drvRelationship9 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep9.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep9.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode9 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep9.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled9 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep9.ConSystemID,'') <> '' THEN ISNULL(Dep9.ConIsDisabled,'N') END
+        ,drvDepNameFirst9 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConNameFirst END
+        ,drvDepNameLast9 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConNameLast END
+        ,drvDepNameMiddle9 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep9.ConNameMiddle,9) END
+        ,drvDepGender9 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConGender END
+        ,drvDepDateOfBirth9 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep9.ConDateOFBirth END
+        ,drvRelationship9 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep9.ConSystemID,'') <> '' THEN
+                                  --   CASE WHEN Dep9.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                         --    END
+        ,drvDepStudentCode9 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep9.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled9 =   '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep9.ConSystemID,'') <> '' THEN ISNULL(Dep9.ConIsDisabled,'N') END
         --DEP10
-        ,drvDepNameFirst10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConNameFirst END
-        ,drvDepNameLast10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConNameLast END
-        ,drvDepNameMiddle10 = CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep10.ConNameMiddle,10) END
-        ,drvDepGender10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConGender END
-        ,drvDepDateOfBirth10 = CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConDateOFBirth END
-        ,drvRelationship10 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep10.ConSystemID,'') <> '' THEN
-                                     CASE WHEN Dep10.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
-                             END
-        ,drvDepStudentCode10 = CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep10.ConSystemID,'') <> '' THEN 'N' END
-        ,drvDepDisabled10 =  CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep10.ConSystemID,'') <> '' THEN ISNULL(Dep10.ConIsDisabled,'N') END
+        ,drvDepNameFirst10 = '' -- CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConNameFirst END
+        ,drvDepNameLast10 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConNameLast END
+        ,drvDepNameMiddle10 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN LEFT(Dep10.ConNameMiddle,10) END
+        ,drvDepGender10 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConGender END
+        ,drvDepDateOfBirth10 =  '' --CASE WHEN EedHasDepBen = 'Y' THEN Dep10.ConDateOFBirth END
+        ,drvRelationship10 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep10.ConSystemID,'') <> '' THEN
+                                   --  CASE WHEN Dep10.ConRelationship IN ('SPS','DP') THEN 'S' ELSE 'C' END
+                          --   END
+        ,drvDepStudentCode10 =  '' --CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep10.ConSystemID,'') <> '' THEN 'N' END
+        ,drvDepDisabled10 =  '' -- CASE WHEN EedHasDepBen = 'Y' AND ISNULL(Dep10.ConSystemID,'') <> '' THEN ISNULL(Dep10.ConIsDisabled,'N') END
     INTO dbo.U_ELINCNLIF_drvTbl
     FROM dbo.U_ELINCNLIF_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -1792,14 +1797,14 @@ BEGIN
         ON O2.OrgCode = EecOrgLvl2
     ;
 
-	---- Logic update for any change dates that are less than the benefit start date
+    ---- Logic update for any change dates that are less than the benefit start date
 
-	UPDATE dbo.U_ELINCNLIF_drvTbl
-	SET drvChangeDate = drvLifeEffDate,
-	drvDepChangeDate = drvLifeEffDate
-	WHERE drvChangeDate < drvLifeEffDate
+    --UPDATE dbo.U_ELINCNLIF_drvTbl
+    --SET drvChangeDate = drvLifeEffDate,
+    --drvDepChangeDate = drvLifeEffDate
+    --WHERE drvChangeDate < drvLifeEffDate
 
-	--------------------------------------------------------------------------------
+    --------------------------------------------------------------------------------
  
     --==========================================
     -- Set FileName
