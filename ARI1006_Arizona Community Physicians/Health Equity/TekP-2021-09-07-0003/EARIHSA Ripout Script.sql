@@ -5,7 +5,7 @@ EARIHSA: Health Equity FSA HSA Contribution
 FormatCode:     EARIHSA
 Project:        Health Equity FSA HSA Contribution
 Client ID:      ARI1006
-Date/time:      2021-12-30 12:15:21.163
+Date/time:      2022-01-11 06:32:48.100
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -174,18 +174,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARIHSA_20211230.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARIHSA_20220111.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Con-Act OE','202112029','EMPEXPORT','OEACTIVE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Con-PassOE','202112029','EMPEXPORT','OEPASSIVE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont OnDem','202112029','EMPEXPORT','ONDEM_XOE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont-Sched','202112029','EMPEXPORT','SCH_EARIHS','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202112021',NULL,'',NULL,'202112021',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HealthEquity FSA HSA Cont-Test','202111269','EMPEXPORT','TEST_XOE','Dec 27 2021  6:58PM','EARIHSA',NULL,NULL,NULL,'202111269','Nov 26 2021 12:00AM','Dec 30 1899 12:00AM','202111261','485','eecPayGroup','EMPL','202111261',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Con-Act OE','202201079','EMPEXPORT','OEACTIVE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Con-PassOE','202201079','EMPEXPORT','OEPASSIVE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont OnDem','202201079','EMPEXPORT','ONDEM_XOE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont-Sched','202201079','EMPEXPORT','SCH_EARIHS','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HealthEquity FSA HSA Cont-Test','202201079','EMPEXPORT','TEST_XOE','Jan 10 2022  4:13PM','EARIHSA',NULL,NULL,NULL,'202201079','Jan  7 2022 12:00AM','Jan  4 2022 12:00AM','202201071','257','eecPayGroup','EMPL','202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -661,8 +661,50 @@ BEGIN
         OR SUM(PdhERCurAmt) <> 0.00
     );
 
+    
+    INSERT INTO dbo.U_dsi_BDM_EARIHSA (BdmRecType, BdmEEID, BdmDedCode, BdmCOID)
+    SELECT DISTINCT  'EMP', PdhEEID, 'FSA', xCOID
+    FROM dbo.U_EARIHSA_PDedHist Pdh WITH (NOLOCK)
+    JOIN dbo.U_EARIHSA_EEList WITH (NOLOCK)
+        ON xEEID = PdhEEID
+    WHERE Pdh.PdhSourceFSA_FASLP > 0.00
+    AND NOT EXISTS (SELECT * FROM dbo.U_dsi_BDM_EARIHSA Bdm WITH (NOLOCK) WHERE PdhEEID = Bdm.BdmEEID AND Bdm.BdmDedCode IN ('FSA', 'FSALP'))
+    ;
 
+    INSERT INTO dbo.U_dsi_BDM_EARIHSA (BdmRecType, BdmEEID, BdmDedCode, BdmCOID)
+    SELECT DISTINCT  'EMP', PdhEEID, 'FSADC', xCOID
+    FROM dbo.U_EARIHSA_PDedHist Pdh WITH (NOLOCK)
+    JOIN dbo.U_EARIHSA_EEList WITH (NOLOCK)
+        ON xEEID = PdhEEID
+    WHERE Pdh.PdhSourceFSADC > 0.00
+    AND NOT EXISTS (SELECT * FROM dbo.U_dsi_BDM_EARIHSA Bdm WITH (NOLOCK) WHERE PdhEEID = Bdm.BdmEEID AND Bdm.BdmDedCode IN ('FSADC'))
+    ;
 
+    INSERT INTO dbo.U_dsi_BDM_EARIHSA (BdmRecType, BdmEEID, BdmDedCode, BdmCOID)
+    SELECT DISTINCT  'EMP', PdhEEID, 'HSACF', xCOID
+    FROM dbo.U_EARIHSA_PDedHist Pdh WITH (NOLOCK)
+    JOIN dbo.U_EARIHSA_EEList WITH (NOLOCK)
+        ON xEEID = PdhEEID
+    WHERE Pdh.PdhSourceHSA_X > 0.00
+    AND NOT EXISTS (SELECT * FROM dbo.U_dsi_BDM_EARIHSA Bdm WITH (NOLOCK) WHERE PdhEEID = Bdm.BdmEEID AND Bdm.BdmDedCode IN ('HSACF', 'HSACI', 'HSAF', 'HSAI'))
+    ;
+
+    INSERT INTO dbo.U_dsi_BDM_EARIHSA (BdmRecType, BdmEEID, BdmDedCode, BdmCOID)
+    SELECT DISTINCT  'EMP', PdhEEID, 'HSAER', xCOID
+    FROM dbo.U_EARIHSA_PDedHist Pdh WITH (NOLOCK)
+    JOIN dbo.U_EARIHSA_EEList WITH (NOLOCK)
+        ON xEEID = PdhEEID
+    WHERE Pdh.PdhSourceHSAER > 0.00
+    AND NOT EXISTS (SELECT * FROM dbo.U_dsi_BDM_EARIHSA Bdm WITH (NOLOCK) WHERE PdhEEID = Bdm.BdmEEID AND Bdm.BdmDedCode IN ('HSAER'))
+    ;
+
+    DELETE dbo.U_dsi_BDM_EARIHSA
+    FROM dbo.U_dsi_BDM_EARIHSA A
+    JOIN dbo.U_EARIHSA_PDedHist B
+        ON B.PdhEEID = A.BdmEEID
+    WHERE ISNULL(B.PdhSourceFSA_FASLP, 0.00) = 0.00 
+        AND A.BdmDedCode IN ('FSA', 'FSALP')
+    ;
 
 
     --==========================================
@@ -685,9 +727,9 @@ BEGIN
         ,drvLastName = EepNameLast
         ,drvFirstName = EepNameFirst
         ,drvPlanCode =    CASE 
-                            WHEN BdmDedCode in ('HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAER') THEN 'HSA' 
-                            WHEN BdmDedCode in ('FSA', 'FSALP') THEN 'HCFSA' +FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END, '0000') 
+                            WHEN BdmDedCode in ('HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAER') THEN 'HSA'                             
                             WHEN BdmDedCode in ('FSADC') THEN 'DCFSA' +FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END, '0000') 
+                            WHEN BdmDedCode in ('FSA', 'FSALP') OR ISNULL(PdhSourceFSA_FASLP, 0.00) > 0.00 THEN 'HCFSA' +FORMAT(CASE WHEN DATEPART(YEAR, GETDATE()) < 2022 THEN 2022 ELSE DATEPART(YEAR, GETDATE()) END, '0000') 
                         END
         -- Using a little brute force in these next two fields. We'll need to come up with a cleaner way of doing this in the future
         ,drvPTPayDed =    CASE WHEN BdmDedCode IN ('FSA','FSALP') THEN PdhSourceFSA_FASLP
@@ -696,7 +738,9 @@ BEGIN
                         WHEN BdmDedCode IN ('HSAER') THEN 
                             CASE WHEN (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EARIHSA PS_BDM WITH (NOLOCK) WHERE PS_BDM.BdmEEID = xEEID AND PS_BDM.BdmCOID = xCOID AND PS_BDM.BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI')) > 0 THEN PdhSourceHSA_X ELSE 0.00 END
                         END
-        ,drvPTProgSponCont = CASE WHEN (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EARIHSA PS_BDM WITH (NOLOCK) WHERE PS_BDM.BdmEEID = xEEID AND PS_BDM.BdmCOID = xCOID AND PS_BDM.BdmDedCode = 'HSAER') > 0 THEN PdhSourceHSAER ELSE 0.00 END
+        ,drvPTProgSponCont = --CASE WHEN BdmDedCode = 'HSAER' THEN PdhSourceHSAER 
+                                CASE WHEN BdmDedCode in ('HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAER') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EARIHSA PS_BDM WITH (NOLOCK) WHERE PS_BDM.BdmEEID = xEEID AND PS_BDM.BdmCOID = xCOID AND PS_BDM.BdmDedCode = 'HSAER') > 0 THEN PdhSourceHSAER ELSE 0.00 END
+                                --ELSE 0.00 END
         ,drvFundDate = CASE WHEN BdmDedCode in ('FSA', 'FSADC', 'FSALP', 'HSACF', 'HSACI', 'HSAF', 'HSAI','HSAER') THEN DATEADD(D,-2,PrgPayDate) END
     INTO dbo.U_EARIHSA_drvTbl
     FROM dbo.U_EARIHSA_EEList WITH (NOLOCK)
@@ -711,7 +755,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EARIHSA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
+    JOIN dbo.U_EARIHSA_PDedHist WITH(NOLOCK)
         ON PdhEEID = xEEID
     LEFT JOIN dbo.U_EARIHSA_PEarHist
         on PehEEID =  xeeid
@@ -756,10 +800,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202110011'
-       ,expStartPerControl     = '202110011'
-       ,expLastEndPerControl   = '202112029'
-       ,expEndPerControl       = '202112029'
+    SET expLastStartPerControl = '202201071'
+       ,expStartPerControl     = '202201071'
+       ,expLastEndPerControl   = '202201079'
+       ,expEndPerControl       = '202201079'
 WHERE expFormatCode = 'EARIHSA';
 
 **********************************************************************************/

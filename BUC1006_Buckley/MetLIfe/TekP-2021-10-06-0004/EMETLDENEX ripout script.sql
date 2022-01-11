@@ -5,7 +5,7 @@ EMETLDENEX: MetLife Dental Export
 FormatCode:     EMETLDENEX
 Project:        MetLife Dental Export
 Client ID:      BUC1006
-Date/time:      2022-01-04 12:26:55.040
+Date/time:      2022-01-10 09:26:38.043
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -558,7 +558,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMETLDENEX_20220104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMETLDENEX_20220110.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -569,7 +569,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201089','EMPEXPORT','OEPASSIVE','Dec 30 2021  6:44PM','EMETLDENEX',NULL,NULL,NULL,'202201089','Jan  8 2022 12:00AM','Dec 30 1899 12:00AM','202112211','408','','','202112211',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife Dental Export','202112219','EMPEXPORT','ONDEM_XOE','Dec 21 2021 11:59AM','EMETLDENEX',NULL,NULL,NULL,'202112219','Dec 21 2021 11:04AM','Dec 21 2021 11:04AM','202112211','387','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife Dental Export-Sched','202112219','EMPEXPORT','SCH_EMETLD','Dec 21 2021 12:00PM','EMETLDENEX',NULL,NULL,NULL,'202112219','Dec 21 2021 11:04AM','Dec 21 2021 11:04AM','202112211','387','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife Dental Export-Test','202112229','EMPEXPORT','TEST_XOE','Dec 22 2021 10:04AM','EMETLDENEX',NULL,NULL,NULL,'202112229','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202112081','389','','','202112081',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife Dental Export-Test','202201049','EMPEXPORT','TEST_XOE','Jan  4 2022  3:56PM','EMETLDENEX',NULL,NULL,NULL,'202201049','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202201011','407','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiBUC1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -972,7 +972,7 @@ BEGIN
         ,drvTransactionCode = CASE WHEN BdmRecType = 'EMP' THEN 'E' ELSE 'D' END
         ,drvCustomerNumber = '5391999'
         ,drvEmployeeNumber = '00' + RTRIM(EepSSN) -- LEFT(eepSSN, 3) + '-' + RIGHT(LEFT(REPLACE(eepSSN, ' ', ''), 5), 2) + '-' + RIGHT(REPLACE(eepSSN, ' ', ''),4) 
-        ,drvSSN = EepSSN
+        ,drvSSN = CASE WHEN BdmRecType = 'DEP' THEN Conssn ELSE EepSSN END
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvNameFirst = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
         ,drvNameMIddle = LEFT(EepNameMiddle,1)
@@ -990,7 +990,7 @@ BEGIN
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
         ,drvCoverageCode1 = 'D'
-        ,drvCoverageStartDate1 = BdmBenStartDate
+        ,drvCoverageStartDate1 = dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, '1/1/2022')
         ,drvCoverageStopDate1 = BdmBenStopDate
         ,drvGroupNumber1 = '5391999'
         ,drvSubCode1 = '0001'
