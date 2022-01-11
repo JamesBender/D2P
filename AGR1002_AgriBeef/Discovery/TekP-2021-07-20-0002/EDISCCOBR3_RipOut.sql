@@ -5,7 +5,7 @@ EDISCCOBR3: Discovery Benefits Cobra Exp TEST
 FormatCode:     EDISCCOBR3
 Project:        Discovery Benefits Cobra Exp TEST
 Client ID:      AGR1002
-Date/time:      2021-12-22 23:25:41.760
+Date/time:      2022-01-07 14:51:26.630
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -248,8 +248,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\20210902_Agribeef_NPM_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'New Plan Member Export','202108209','EMPEXPORT','NPMFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202108209','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202108131','20','','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\20210902_Agribeef_QB_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Export','202108209','EMPEXPORT','QBFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202108209','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202108131','52','','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20210902_Agribeef_NPM_12805.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test New Plan Member Export','202111041','EMPEXPORT','TESTNPM','Nov 23 2021 12:41PM','EDISCCOBR3',NULL,NULL,NULL,'202111041','Nov  4 2021 12:00AM','Dec 30 1899 12:00AM','202110011','1','','','202110011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20211222_Agribeef_QB_12805.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test Cobra Export','202112229','EMPEXPORT','TESTQB','Dec 22 2021  1:13PM','EDISCCOBR3',NULL,NULL,NULL,'202112229','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202101011','16','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20210902_Agribeef_NPM_12805a.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test New Plan Member Export','202112289','EMPEXPORT','TESTNPM','Dec 28 2021  8:46PM','EDISCCOBR3',NULL,NULL,NULL,'202112289','Dec 28 2021 12:00AM','Dec 30 1899 12:00AM','202108011','1','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20211222_Agribeef_QB_12805a.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test Cobra Export','202112229','EMPEXPORT','TESTQB','Dec 28 2021  4:41PM','EDISCCOBR3',NULL,NULL,NULL,'202112229','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202101011','16','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -375,8 +375,8 @@ CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_NPM] (
     [drvCoID] char(5) NULL,
     [drvSSN] char(11) NULL,
     [drvEmpNo] char(9) NULL,
-    [drvClientName] varchar(100) NULL,
-    [drvClientDivName] varchar(50) NULL,
+    [drvClientName] varchar(19) NOT NULL,
+    [drvClientDivName] varchar(13) NOT NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -402,8 +402,8 @@ CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QB] (
     [drvEEID] char(12) NOT NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] char(12) NOT NULL,
-    [drvClientName] varchar(100) NULL,
-    [drvClientDivName] varchar(50) NULL,
+    [drvClientName] varchar(19) NOT NULL,
+    [drvClientDivName] varchar(13) NOT NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -564,7 +564,10 @@ Sean Hawkins            01/25/2017                        More updates after pos
 Kaitlyn Duesler            05/04/2021    SR-2021-00310467    Update to Plan Names
 
 12/22/2021 by AP:
-	- Changed client name and client division name for both NPM and QB records.
+    - Changed client name and client division name for both NPM and QB records.
+
+01/07/2021 by AP:
+	- Updated Cient Division Name.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISCCOBR3';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDISCCOBR3';
@@ -679,9 +682,9 @@ BEGIN
             ,drvSSN             = eepSSN
             ,drvEmpNo           = EecEmpNo
             ,drvClientName      = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC 40823' ELSE 'Agribeef 12805' END
-			--CONVERT(varchar(100),'Agribeef 12805')
-            ,drvClientDivName   = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC' ELSE 'Agri Beef Co.' END
-			--CONVERT(varchar(50),
+            --CONVERT(varchar(100),'Agribeef 12805')
+            ,drvClientDivName   = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC' ELSE 'Agribeef' END
+            --CONVERT(varchar(50),
    --                               CASE EecPayGroup
    --                                     WHEN 'NSTAR' THEN 'Agron Bioenergy'
    --                                     WHEN 'ABFDI' THEN 'AB Foods'
@@ -730,9 +733,9 @@ BEGIN
             ,drvCoID           = BdmCoID
             ,drvDepRecID       = ISNULL(BdmDepRecID,'')
             ,drvClientName     = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC 40823' ELSE 'Agribeef 12805' END
-			--CONVERT(varchar(100),'Agribeef 12805')
+            --CONVERT(varchar(100),'Agribeef 12805')
             ,drvClientDivName  = CASE WHEN EecPayGroup = 'SSIF' THEN 'SSI Foods LLC' ELSE 'Agri Beef Co.' END
-			--CONVERT(varchar(50),
+            --CONVERT(varchar(50),
    --                              CASE EecPayGroup
    --                                     WHEN 'NSTAR' THEN 'Agron Bioenergy'
    --                                     WHEN 'ABFDI' THEN 'AB Foods'
