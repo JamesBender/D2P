@@ -5,7 +5,7 @@ ELINHAWEXP: Lincoln Health and Welfare Export
 FormatCode:     ELINHAWEXP
 Project:        Lincoln Health and Welfare Export
 Client ID:      ALL1033
-Date/time:      2022-01-04 11:45:27.447
+Date/time:      2022-01-11 05:58:47.060
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -346,7 +346,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELINHAWEXP_20220104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELINHAWEXP_20220111.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -357,7 +357,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202111239','EMPEXPORT','OEPASSIVE',NULL,'ELINHAWEXP',NULL,NULL,NULL,'202111239','Nov 23 2021  5:56AM','Nov 23 2021  5:56AM','202111231',NULL,'','','202111231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Health and Welfare Exp','202111239','EMPEXPORT','ONDEM_XOE',NULL,'ELINHAWEXP',NULL,NULL,NULL,'202111239','Nov 23 2021  5:56AM','Nov 23 2021  5:56AM','202111231',NULL,'','','202111231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Health and Welfa-Sched','202111239','EMPEXPORT','SCH_ELINHA',NULL,'ELINHAWEXP',NULL,NULL,NULL,'202111239','Nov 23 2021  5:56AM','Nov 23 2021  5:56AM','202111231',NULL,'','','202111231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Health and Welfa-Test','202201039','EMPEXPORT','TEST_XOE','Jan  3 2022 12:27PM','ELINHAWEXP',NULL,NULL,NULL,'202201039','Jan  3 2022 12:00AM','Dec 30 1899 12:00AM','202112201','667','','','202112201',dbo.fn_GetTimedKey(),NULL,'us3jReALL1033',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Health and Welfa-Test','202201059','EMPEXPORT','TEST_XOE','Jan  5 2022  3:56PM','ELINHAWEXP',NULL,NULL,NULL,'202201059','Jan  5 2022 12:00AM','Dec 30 1899 12:00AM','202112221','666','','','202112221',dbo.fn_GetTimedKey(),NULL,'us3jReALL1033',NULL);
 
 -----------
 -- AscImp inserts
@@ -498,14 +498,14 @@ CREATE TABLE [dbo].[U_ELINHAWEXP_drvTbl] (
     [drvProduct1BenefitType] varchar(5) NULL,
     [drvProduct1CoverageStatus] varchar(1) NULL,
     [drvProduct1CoverageEffDate] datetime NULL,
-    [drvProduct1EEPremiumCont] varchar(3) NOT NULL,
-    [drvProduct1BenefitLevel] varchar(3) NOT NULL,
+    [drvProduct1EEPremiumCont] varchar(3) NULL,
+    [drvProduct1BenefitLevel] varchar(3) NULL,
     [drvProduct2Code] varchar(3) NULL,
     [drvProduct2BenefitType] varchar(5) NULL,
     [drvProduct2CoverageStatus] varchar(1) NULL,
     [drvProduct2CoverageEffDate] datetime NULL,
-    [drvProduct2EEPremiumCont] varchar(3) NOT NULL,
-    [drvProduct2BenefitLevel] varchar(3) NOT NULL,
+    [drvProduct2EEPremiumCont] varchar(3) NULL,
+    [drvProduct2BenefitLevel] varchar(3) NULL,
     [drvProduct3CoverageEffDate] datetime NULL,
     [drvEligibilityAmountDuration] nvarchar(4000) NULL,
     [drvServiceAmount] int NULL,
@@ -784,16 +784,32 @@ BEGIN
         ,drvDateOfTermination = CASE WHEN EecEmplStatus IN ('R','T') THEN EecDateOfTermination END
         ,drvProduct1Code = CASE WHEN STD_DedCode IS NOT NULL THEN 'STD' END
         ,drvProduct1BenefitType = CASE WHEN STD_DedCode IS NOT NULL AND (EecFullTimeOrPartTime = 'F' OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20)) THEN 'STD01' END
-        ,drvProduct1CoverageStatus = CASE WHEN STD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN 'A' END
-        ,drvProduct1CoverageEffDate = CASE WHEN STD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN DATEADD(DAY, 365, EecDateOfLastHire) END
-        ,drvProduct1EEPremiumCont = CASE WHEN STD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN '000' ELSE '0' END
-        ,drvProduct1BenefitLevel = CASE WHEN STD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN '999' ELSE '0' END
+        ,drvProduct1CoverageStatus =    CASE WHEN STD_DedCode IS NOT NULL THEN
+                                            CASE WHEN (EecFullTimeOrPartTime = 'F') OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN 'A' END
+                                        END
+        ,drvProduct1CoverageEffDate =    CASE WHEN STD_DedCode IS NOT NULL THEN 
+                                            CASE WHEN (EecFullTimeOrPartTime = 'F') OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN DATEADD(DAY, 365, EecDateOfLastHire) END
+                                        END
+        ,drvProduct1EEPremiumCont =    CASE WHEN STD_DedCode IS NOT NULL THEN 
+                                        CASE WHEN (EecFullTimeOrPartTime = 'F') OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN '000' ELSE '0' END
+                                    END
+        ,drvProduct1BenefitLevel =    CASE WHEN STD_DedCode IS NOT NULL THEN 
+                                        CASE WHEN (EecFullTimeOrPartTime = 'F') OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN '999' ELSE '0' END
+                                    END
         ,drvProduct2Code = CASE WHEN LTD_DedCode IS NOT NULL THEN 'LTD' END
         ,drvProduct2BenefitType = CASE WHEN LTD_DedCode IS NOT NULL AND (EecFullTimeOrPartTime = 'F' OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20)) THEN 'LTD01' END
-        ,drvProduct2CoverageStatus = CASE WHEN LTD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN 'A' END
-        ,drvProduct2CoverageEffDate = CASE WHEN LTD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN EecDateOfLastHire END
-        ,drvProduct2EEPremiumCont = CASE WHEN LTD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN '000' ELSE '0' END
-        ,drvProduct2BenefitLevel = CASE WHEN LTD_DedCode IS NOT NULL AND EecFullTimeOrPartTime = 'F' THEN '060' ELSE '0' END
+        ,drvProduct2CoverageStatus =    CASE WHEN LTD_DedCode IS NOT NULL THEN
+                                            CASE WHEN EecFullTimeOrPartTime = 'F' OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN 'A' END
+                                        END
+        ,drvProduct2CoverageEffDate =    CASE WHEN LTD_DedCode IS NOT NULL THEN
+                                            CASE WHEN EecFullTimeOrPartTime = 'F' OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN EecDateOfLastHire END
+                                        END
+        ,drvProduct2EEPremiumCont =    CASE WHEN LTD_DedCode IS NOT NULL THEN
+                                        CASE WHEN EecFullTimeOrPartTime = 'F' OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN '000' ELSE '0' END
+                                    END
+        ,drvProduct2BenefitLevel =    CASE WHEN LTD_DedCode IS NOT NULL THEN 
+                                        CASE WHEN EecFullTimeOrPartTime = 'F' OR (EecFullTimeOrPartTime = 'P' AND EecScheduledWorkHrs >= 20) THEN '060' ELSE '0' END
+                                    END
         ,drvProduct3CoverageEffDate = EecDateOfLastHire
         ,drvEligibilityAmountDuration = FORMAT(PehCurHrsYTD, '#0.0')
         ,drvServiceAmount = DATEDIFF(MONTH, EecDateOfLastHire, GETDATE())

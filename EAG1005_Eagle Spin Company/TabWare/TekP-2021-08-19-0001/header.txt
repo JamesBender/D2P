@@ -1,0 +1,17 @@
+Orglvl 1
+Company Code
+Employee Number
+Employee Name (Last Suffix, First MI)
+Employment Status Code
+Employee Number
+Last Hire Date
+Supervisor Employee Number
+Supervisor Name (Last Suffix, First MI)
+Org Level 2 Code
+Location Code
+Shift Code
+Job Code
+Salary/Hourly Code
+Employee Email
+Work Phone (Formatted)
+Work Extension 
