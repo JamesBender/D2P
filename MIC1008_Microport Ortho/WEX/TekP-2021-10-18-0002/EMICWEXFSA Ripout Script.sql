@@ -5,7 +5,7 @@ EMICWEXFSA: WEX FSA HSA DEP
 FormatCode:     EMICWEXFSA
 Project:        WEX FSA HSA DEP
 Client ID:      MIC1008
-Date/time:      2022-01-04 06:45:07.810
+Date/time:      2022-01-11 04:59:16.073
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -259,7 +259,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMICWEXFSA_20220104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMICWEXFSA_20220111.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -270,7 +270,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112229','EMPEXPORT','OEPASSIVE',NULL,'EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131',NULL,'','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA HSA DEP','202112229','EMPEXPORT','ONDEM_XOE',NULL,'EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131',NULL,'','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA HSA DEP-Sched','202112229','EMPEXPORT','SCH_EMICWE',NULL,'EMICWEXFSA',NULL,NULL,NULL,'202112229','Dec 22 2021 12:57PM','Dec 22 2021 12:57PM','202101131',NULL,'','','202101131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA HSA DEP-Test','202112319','EMPEXPORT','TEST_XOE','Jan  4 2022  6:31AM','EMICWEXFSA',NULL,NULL,NULL,'202112319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202112311','223','eecPayGroup','SALARY','202112311',dbo.fn_GetTimedKey(),NULL,'us3jBeMIC1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA HSA DEP-Test','202112319','EMPEXPORT','TEST_XOE','Jan 10 2022 11:43AM','EMICWEXFSA',NULL,NULL,NULL,'202112319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202112311','221','eecPayGroup','SALARY','202112311',dbo.fn_GetTimedKey(),NULL,'us3cPeMIC1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -800,8 +800,8 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-             And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
-          and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+--             And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+--          and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EMICWEXFSA WITH (NOLOCK)
@@ -809,6 +809,24 @@ BEGIN
         AND BdmCoID = xCoID
     LEFT JOIN dbo.EmpMPhon WITH (NOLOCK)
         ON efoEEID = xEEID
+    LEFT JOIN dbo.U_EMICWEXFSA_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND AudFieldName  = 'eecemplstatus' 
+        AND AudNewValue = 'T'
+    LEFT JOIN dbo.U_EMICWEXFSA_PDedHist WITH (NOLOCK)
+        ON pdhEEID = xEEID
+    WHERE (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO' AND AudDateTime IS NOT NULL))
+            OR (ISNULL(PdhSource1, 0.00) > 0.00
+                OR ISNULL(PdhSource2, 0.00) > 0.00
+                OR ISNULL(PdhSource3, 0.00) > 0.00
+                OR ISNULL(PdhSource4, 0.00) > 0.00
+                OR ISNULL(PdhSource5, 0.00) > 0.00
+                OR ISNULL(PdhSource6, 0.00) > 0.00
+                OR ISNULL(PdhSource7, 0.00) > 0.00
+                OR ISNULL(PdhSource8, 0.00) > 0.00
+                )
+          --and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EMICWEXFSA_EN_drvTbl
@@ -844,8 +862,8 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-             And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
-          and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+             --And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+          --and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EMICWEXFSA WITH (NOLOCK)
@@ -853,6 +871,22 @@ BEGIN
         AND BdmCoID = xCoID
         AND BdmDedCode in ('FSA', 'FSADC', 'HSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI')
         AND BdmRecType = 'EMP'
+    LEFT JOIN dbo.U_EMICWEXFSA_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND AudFieldName  = 'eecemplstatus' 
+        AND AudNewValue = 'T'
+    LEFT JOIN dbo.U_EMICWEXFSA_PDedHist WITH (NOLOCK)
+        ON pdhEEID = xEEID
+    WHERE (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO' AND AudDateTime IS NOT NULL))
+        OR (ISNULL(PdhSource1, 0.00) > 0.00
+                OR ISNULL(PdhSource2, 0.00) > 0.00
+                OR ISNULL(PdhSource3, 0.00) > 0.00
+                OR ISNULL(PdhSource4, 0.00) > 0.00
+                OR ISNULL(PdhSource5, 0.00) > 0.00
+                OR ISNULL(PdhSource6, 0.00) > 0.00
+                OR ISNULL(PdhSource7, 0.00) > 0.00
+                OR ISNULL(PdhSource8, 0.00) > 0.00
+                )
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EMICWEXFSA_CT_drvTbl
@@ -892,8 +926,22 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-             And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
-          and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+            -- And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+          --and EXISTS (Select 1 from dbo.U_EMICWEXFSA_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    LEFT JOIN dbo.U_EMICWEXFSA_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND AudFieldName  = 'eecemplstatus' 
+        AND AudNewValue = 'T'    
+    WHERE (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO' AND AudDateTime IS NOT NULL))
+        OR (ISNULL(PdhSource1, 0.00) > 0.00
+                OR ISNULL(PdhSource2, 0.00) > 0.00
+                OR ISNULL(PdhSource3, 0.00) > 0.00
+                OR ISNULL(PdhSource4, 0.00) > 0.00
+                OR ISNULL(PdhSource5, 0.00) > 0.00
+                OR ISNULL(PdhSource6, 0.00) > 0.00
+                OR ISNULL(PdhSource7, 0.00) > 0.00
+                OR ISNULL(PdhSource8, 0.00) > 0.00
+                )
     ;
 
     ---------------------------------
