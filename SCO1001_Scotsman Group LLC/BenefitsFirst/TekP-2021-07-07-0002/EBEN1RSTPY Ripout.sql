@@ -1,6 +1,110 @@
+/**********************************************************************************
+
+EBEN1RSTPY: BenefitsFirst Elig Export
+
+FormatCode:     EBEN1RSTPY
+Project:        BenefitsFirst Elig Export
+Client ID:      SCO1001
+Date/time:      2022-01-12 11:08:19.037
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    N13
+Server:         N1SUP3DB54
+Database:       ULTIPRO_SGLLC
+Web Filename:   SCO1001_95320_EEHISTORY_EBEN1RSTPY_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+
+**********************************************************************************/
+
 SET NOCOUNT ON;
-IF OBJECT_ID('U_EBEN1RSTPY_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_SavePath];
-SELECT FormatCode svFormatCode, CfgName svCfgName, CfgValue svCfgValue INTO dbo.U_EBEN1RSTPY_SavePath FROM dbo.U_dsi_Configuration WITH (NOLOCK) WHERE FormatCode = 'EBEN1RSTPY' AND CfgName LIKE '%Path';
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_EBEN1RSTPY_SavePath') IS NOT NULL DROP TABLE dbo.U_EBEN1RSTPY_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EBEN1RSTPY'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'EBEN1RSTPY'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'EBEN1RSTPY'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EBEN1RSTPY')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EBEN1RSTPY'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EBEN1RSTPY'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EBEN1RSTPY'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EBEN1RSTPY'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EBEN1RSTPY'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EBEN1RSTPY'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EBEN1RSTPY'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EBEN1RSTPY'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EBEN1RSTPY'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
 IF OBJECT_ID('dsi_vwEBEN1RSTPY_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEBEN1RSTPY_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EBEN1RSTPY') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBEN1RSTPY];
@@ -11,17 +115,27 @@ IF OBJECT_ID('U_EBEN1RSTPY_EEList') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_E
 GO
 IF OBJECT_ID('U_EBEN1RSTPY_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_drvTbl];
 GO
+IF OBJECT_ID('U_EBEN1RSTPY_Ded_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_Ded_AuditFields];
+GO
 IF OBJECT_ID('U_EBEN1RSTPY_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_AuditFields];
 GO
 IF OBJECT_ID('U_EBEN1RSTPY_Audit') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_Audit];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'EBEN1RSTPY';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'EBEN1RSTPY';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'EBEN1RSTPY';
-DELETE [dbo].[AscDefF] FROM [dbo].[AscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'EBEN1RSTPY';
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'EBEN1RSTPY';
+IF OBJECT_ID('U_Ded_EBEN1RSTPY_Ded_Audit') IS NOT NULL DROP TABLE [dbo].[U_Ded_EBEN1RSTPY_Ded_Audit];
+GO
+IF OBJECT_ID('U_Ded_EBEN1RSTPY_Audit') IS NOT NULL DROP TABLE [dbo].[U_Ded_EBEN1RSTPY_Audit];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
 INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EBEN1RSTPY','BenefitsFirst Elig Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','EBEN1RSTPYZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
-/*01*/ INSERT INTO dbo.CustomTemplates (Engine,EngineCode) SELECT Engine = AdhEngine, EngineCode = AdhFormatCode FROM dbo.AscDefH WITH (NOLOCK) WHERE AdhFormatCode = 'EBEN1RSTPY' AND AdhEngine = 'EMPEXPORT' AND NOT EXISTS(SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine); /* Insert field into CustomTemplates table */
+
+-----------
+-- AscDefF inserts
+-----------
+
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EBEN1RSTPYZ0','50','H','01','1',NULL,'ClientID',NULL,NULL,'"ClientID"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EBEN1RSTPYZ0','50','H','01','2',NULL,'EmpSSN',NULL,NULL,'"EmpSSN"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EBEN1RSTPYZ0','50','H','01','3',NULL,'Status',NULL,NULL,'"Status"','(''DA''=''T,'')');
@@ -104,29 +218,106 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EBEN1RSTPYZ0','50','D','10','39',NULL,'Wellness',NULL,NULL,'"drvWellness"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EBEN1RSTPYZ0','50','D','10','40',NULL,'Exempt Status',NULL,NULL,'"drvExcemptStat"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EBEN1RSTPYZ0','50','D','10','41',NULL,'Benefit Eligibility Date',NULL,NULL,'"drvBenefitEligibilityDate"','(''UD101''=''T'')');
-/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
-/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END);
-/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME,2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME,3) ELSE @SERVER END;
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
 /*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FILENAME varchar(1000) = 'EBEN1RSTPY_20211018.txt';
-/*09*/ DECLARE @FILEPATH varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,'Benefitfirst Payroll Export','202108139','EMPEXPORT','ONDEM_XOE',NULL,'EBEN1RSTPY',NULL,NULL,NULL,'202108139','Aug 13 2021  9:01AM','Aug 13 2021  9:01AM','202108131',NULL,'','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,NULL,NULL,NULL,NULL,NULL,'Benefitfirst Payroll Exp-Sched','202108139','EMPEXPORT','SCH_EBEN1R',NULL,'EBEN1RSTPY',NULL,NULL,NULL,'202108139','Aug 13 2021  9:01AM','Aug 13 2021  9:01AM','202108131',NULL,'','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FILEPATH) + LTRIM(RTRIM(@FILENAME)),NULL,'','',NULL,NULL,NULL,'Benefitfirst Payroll Exp-Test','202109139','EMPEXPORT','TEST_XOE','Oct 18 2021  9:25AM','EBEN1RSTPY',NULL,NULL,NULL,'202109139','Sep 13 2021 12:00AM','Dec 30 1899 12:00AM','202108301','520','','','202108301',dbo.fn_GetTimedKey(),NULL,'us3lKiSCO1001','',NULL);
+/*08*/ DECLARE @FileName varchar(1000) = 'EBEN1RSTPY_20220112.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Benefitfirst Payroll Export','202108139','EMPEXPORT','ONDEM_XOE',NULL,'EBEN1RSTPY',NULL,NULL,NULL,'202108139','Aug 13 2021  9:01AM','Aug 13 2021  9:01AM','202108131',NULL,'','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Benefitfirst Payroll Exp-Sched','202108139','EMPEXPORT','SCH_EBEN1R',NULL,'EBEN1RSTPY',NULL,NULL,NULL,'202108139','Aug 13 2021  9:01AM','Aug 13 2021  9:01AM','202108131',NULL,'','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Benefitfirst Payroll Exp-Test','202112279','EMPEXPORT','TEST_XOE','Dec 27 2021  5:55PM','EBEN1RSTPY',NULL,NULL,NULL,'202112279','Dec 27 2021 12:00AM','Dec 30 1899 12:00AM','202112131','533','','','202112131',dbo.fn_GetTimedKey(),NULL,'us3lKiSCO1001','',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBEN1RSTPY','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBEN1RSTPY','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBEN1RSTPY','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBEN1RSTPY','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBEN1RSTPY','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBEN1RSTPY','UseFileName','V','Y');
-/*01*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = NULL WHERE FormatCode = 'EBEN1RSTPY' AND CfgName LIKE '%Path' AND CfgType = 'V'; /* Set paths to NULL for Web Exports */
-/*02*/ UPDATE dbo.U_dsi_Configuration SET CfgValue = 'Y'  WHERE FormatCode = 'EBEN1RSTPY' AND CfgName = 'UseFileName'; /* Set UseFileName to 'Y' for Web Exports */
-IF OBJECT_ID('U_EBEN1RSTPY_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EBEN1RSTPY_SavePath];
-GO
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBEN1RSTPY','D10','dbo.U_EBEN1RSTPY_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_Ded_EBEN1RSTPY_Audit
+-----------
+
+IF OBJECT_ID('U_Ded_EBEN1RSTPY_Audit') IS NULL
+CREATE TABLE [dbo].[U_Ded_EBEN1RSTPY_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audProcessedDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_Ded_EBEN1RSTPY_Ded_Audit
+-----------
+
+IF OBJECT_ID('U_Ded_EBEN1RSTPY_Ded_Audit') IS NULL
+CREATE TABLE [dbo].[U_Ded_EBEN1RSTPY_Ded_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audProcessedDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EBEN1RSTPY_Audit
+-----------
+
 IF OBJECT_ID('U_EBEN1RSTPY_Audit') IS NULL
 CREATE TABLE [dbo].[U_EBEN1RSTPY_Audit] (
     [audEEID] varchar(255) NOT NULL,
@@ -136,15 +327,35 @@ CREATE TABLE [dbo].[U_EBEN1RSTPY_Audit] (
     [audFieldName] varchar(128) NOT NULL,
     [audAction] varchar(6) NOT NULL,
     [audProcessedDateTime] datetime NOT NULL,
-    [audOldValue] varchar(2000) NULL,
-    [audNewValue] varchar(2000) NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
     [audRowNo] bigint NULL
 );
+
+-----------
+-- Create table U_EBEN1RSTPY_AuditFields
+-----------
+
 IF OBJECT_ID('U_EBEN1RSTPY_AuditFields') IS NULL
 CREATE TABLE [dbo].[U_EBEN1RSTPY_AuditFields] (
     [aTableName] varchar(30) NULL,
     [aFieldName] varchar(30) NULL
 );
+
+-----------
+-- Create table U_EBEN1RSTPY_Ded_AuditFields
+-----------
+
+IF OBJECT_ID('U_EBEN1RSTPY_Ded_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EBEN1RSTPY_Ded_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EBEN1RSTPY_drvTbl
+-----------
+
 IF OBJECT_ID('U_EBEN1RSTPY_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EBEN1RSTPY_drvTbl] (
     [drvEEID] char(12) NULL,
@@ -185,11 +396,21 @@ CREATE TABLE [dbo].[U_EBEN1RSTPY_drvTbl] (
     [drvExcemptStat] varchar(10) NOT NULL,
     [drvBenefitEligibilityDate] datetime NULL
 );
+
+-----------
+-- Create table U_EBEN1RSTPY_EEList
+-----------
+
 IF OBJECT_ID('U_EBEN1RSTPY_EEList') IS NULL
 CREATE TABLE [dbo].[U_EBEN1RSTPY_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
+
+-----------
+-- Create table U_EBEN1RSTPY_File
+-----------
+
 IF OBJECT_ID('U_EBEN1RSTPY_File') IS NULL
 CREATE TABLE [dbo].[U_EBEN1RSTPY_File] (
     [RecordSet] char(3) NOT NULL,
@@ -231,7 +452,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBEN1RSTPY', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBEN1RSTPY', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBEN1RSTPY', 'SCH_EBEN1R';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EBEN1RSTPY', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EBEN1RSTPY', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -281,6 +502,7 @@ BEGIN
     INSERT INTO dbo.U_EBEN1RSTPY_AuditFields VALUES ('EmpComp','EecEmplStatus');
     INSERT INTO dbo.U_EBEN1RSTPY_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
     INSERT INTO dbo.U_EBEN1RSTPY_AuditFields VALUES ('EmpComp','EecSalaryOrHourly');
+    INSERT INTO dbo.U_EBEN1RSTPY_AuditFields VALUES ('JobCode','JbcFLSAType');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EBEN1RSTPY_Audit','U') IS NOT NULL
@@ -302,6 +524,38 @@ BEGIN
         ON audTableName = aTableName
         AND audFieldName = aFieldName
     WHERE audProcessedDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE';
+
+
+
+     IF OBJECT_ID('U_EBEN1RSTPY_Ded_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EBEN1RSTPY_Ded_AuditFields;
+    CREATE TABLE dbo.U_EBEN1RSTPY_Ded_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    -- Employee Information
+    INSERT INTO dbo.U_EBEN1RSTPY_Ded_AuditFields VALUES ('EmpDed','EedBenStatus');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_Ded_EBEN1RSTPY_Ded_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_Ded_EBEN1RSTPY_Ded_Audit;
+    SELECT 
+         audEEID = audKey1Value
+        ,audCOID = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audProcessedDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_Ded_EBEN1RSTPY_Ded_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EBEN1RSTPY_Ded_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audProcessedDateTime BETWEEN @StartDate AND @EndDate
+    AND audKey3Value IN ('BC1W','BC2W','BC3W','BC4W')
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -371,7 +625,11 @@ BEGIN
         ,drvEmpNo = EecEmpNo
         ,drvLocDesc = LocDesc
         ,drvFullTimeOrPartTime = EecFullTimeOrPartTime
-        ,drvFullTimeOrPartTimeEffDate = (SELECT TOP 1 audProcessedDateTime FROM dbo.U_EBEN1RSTPY_Audit WHERE audEEID = xEEID AND audCOID = xCOID AND audFieldName IN ('EecFullTimeOrPartTime','EecSalaryOrHourly') AND audRowNo = 1) 
+        -- ChangeEffectiveDate 
+        ,drvFullTimeOrPartTimeEffDate = CASE WHEN JBC.audProcessedDateTime IS NOT NULL THEN EJH2.EjhJobEffDate
+                                        WHEN DedCode.audProcessedDateTime IS NOT NULL THEN DedCode.audProcessedDateTime
+                                        END
+        --(SELECT TOP 1 audProcessedDateTime FROM dbo.U_EBEN1RSTPY_Audit WHERE audEEID = xEEID AND audCOID = xCOID AND audFieldName IN ('EecFullTimeOrPartTime','EecSalaryOrHourly') AND audRowNo = 1) 
         ,drvSalaryOrHourly = EecSalaryOrHourly
         ,drvAnnSalary = EecAnnSalary
         ,drvSchedHrs = PgrSchedHrs
@@ -415,6 +673,20 @@ BEGIN
             AND EjhReason = '209') AS EJH
         ON xEEID = EjhEEID
         AND xCOID = EjhCOID
+    LEFT JOIN dbo.U_EBEN1RSTPY_Audit JBC WITH (NOLOCK)
+        ON JBC.audEEID = EecJobCode
+    LEFT JOIN dbo.U_Ded_EBEN1RSTPY_Ded_Audit DedCode WITH (NOLOCK)
+        ON DedCode.audEEID = xEEID
+        AND DedCode.audCOID = xCOID
+        AND DedCode.audRowNo = 1
+    LEFT JOIN (
+            SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
+            FROM (
+                    SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                    FROM dbo.EmpHJob WITH (NOLOCK)) AS X
+            WHERE RN = 1) AS EJH2
+        ON EJH2.EjhEEID = xEEID
+        AND EJH2.EjhCOID = xCOID
     ;
 
     --==========================================
@@ -456,3 +728,58 @@ GO
 CREATE VIEW dbo.dsi_vwEBEN1RSTPY_Export AS 
     SELECT TOP 200000000 Data FROM dbo.U_EBEN1RSTPY_File WITH (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort 
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'EBEN1RSTPY' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'EBEN1RSTPY'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'EBEN1RSTPY'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EBEN1RSTPY', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EBEN1RSTPY', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EBEN1RSTPY', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout

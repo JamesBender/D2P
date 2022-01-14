@@ -5,7 +5,7 @@ EXPRESCEXP: Express Scripts Export
 FormatCode:     EXPRESCEXP
 Project:        Express Scripts Export
 Client ID:      FOL1004
-Date/time:      2021-12-22 17:43:01.753
+Date/time:      2022-01-13 06:58:51.863
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -140,8 +140,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EXPRESCEXPZ0','8','H','01','6',NULL,'Customer Name',NULL,NULL,'"Foley"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EXPRESCEXPZ0','8','H','01','14',NULL,'Job Name',NULL,NULL,'"ENROLLMT"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EXPRESCEXPZ0','5','H','01','22',NULL,'Record Length',NULL,NULL,'"01500"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EXPRESCEXPZ0','5','H','01','27',NULL,'Block size',NULL,NULL,'"01501"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EXPRESCEXPZ0','8','H','01','32',NULL,'Current Date',NULL,NULL,'"drvCurrentDate"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EXPRESCEXPZ0','5','H','01','27',NULL,'Block size',NULL,NULL,'"01500"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EXPRESCEXPZ0','8','H','01','32',NULL,'Current Date',NULL,NULL,'"drvCurrentDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EXPRESCEXPZ0','8','H','01','40',NULL,'Current Time',NULL,NULL,'"drvCurrentTime"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EXPRESCEXPZ0','16','H','01','48',NULL,'Contact Person',NULL,NULL,'"Geeta Paraboo"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EXPRESCEXPZ0','10','H','01','64',NULL,'Phone Number',NULL,NULL,'"7328853036"','(''DA''=''F'')');
@@ -149,7 +149,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EXPRESCEXPZ0','2','H','01','75',NULL,'Filler (Unused)',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EXPRESCEXPZ0','2','H','01','77',NULL,'Version Number',NULL,NULL,'"02"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EXPRESCEXPZ0','2','H','01','79',NULL,'Release Number',NULL,NULL,'"03"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EXPRESCEXPZ0','1','H','01','81',NULL,'Update Type',NULL,NULL,'"M"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EXPRESCEXPZ0','1','H','01','81',NULL,'Update Type',NULL,NULL,'"P"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EXPRESCEXPZ0','8','H','01','82',NULL,'Generated Term Date',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EXPRESCEXPZ0','5','H','01','90',NULL,'Transmission Number',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EXPRESCEXPZ0','1406','H','01','95',NULL,'Filler',NULL,NULL,'""','(''DA''=''F'')');
@@ -287,7 +287,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EXPRESCEXPZ0','8','T','90','14',NULL,'Job Name',NULL,NULL,'"ENROLLMT"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EXPRESCEXPZ0','5','T','90','22',NULL,'Record Length',NULL,NULL,'"01500"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EXPRESCEXPZ0','5','T','90','27',NULL,'Block size',NULL,NULL,'"01500"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EXPRESCEXPZ0','8','T','90','32',NULL,'Current Date',NULL,NULL,'"drvCurrentDate"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EXPRESCEXPZ0','8','T','90','32',NULL,'Current Date',NULL,NULL,'"drvCurrentDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EXPRESCEXPZ0','8','T','90','40',NULL,'Current Time',NULL,NULL,'"drvCurrentTime"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EXPRESCEXPZ0','16','T','90','48',NULL,'Contact Person',NULL,NULL,'"Geeta Paraboo"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EXPRESCEXPZ0','10','T','90','64',NULL,'Phone Number',NULL,NULL,'"7328853036"','(''DA''=''F'')');
@@ -305,7 +305,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EXPRESCEXP_20211222.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EXPRESCEXP_20220113.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -316,7 +316,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Passive Open Enrollment Export','202112219','EMPEXPORT','OEPASSIVE','Dec 22 2021  5:41PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','567','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export','202112219','EMPEXPORT','ONDEM_XOE','Dec 22 2021  5:42PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','573','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export-Sched','202112219','EMPEXPORT','SCH_EXPRES','Dec 22 2021  5:42PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','573','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export-Test','202112219','EMPEXPORT','TEST_XOE','Dec 22 2021  5:42PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','573','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export-Test','202201049','EMPEXPORT','TEST_XOE','Jan  4 2022 11:01AM','EXPRESCEXP',NULL,NULL,NULL,'202201049','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202112211','1044','','','202112211',dbo.fn_GetTimedKey(),NULL,'us3rVaFOL1004','',NULL);
 
 -----------
 -- AscImp inserts
@@ -482,7 +482,7 @@ CREATE TABLE [dbo].[U_EXPRESCEXP_File] (
 
 IF OBJECT_ID('U_EXPRESCEXP_Header') IS NULL
 CREATE TABLE [dbo].[U_EXPRESCEXP_Header] (
-    [drvCurrentDate] varchar(8) NULL,
+    [drvCurrentDate] datetime NOT NULL,
     [drvCurrentTime] varchar(6) NULL
 );
 
@@ -492,9 +492,9 @@ CREATE TABLE [dbo].[U_EXPRESCEXP_Header] (
 
 IF OBJECT_ID('U_EXPRESCEXP_Trailer') IS NULL
 CREATE TABLE [dbo].[U_EXPRESCEXP_Trailer] (
-    [drvCurrentDate] varchar(8) NULL,
+    [drvCurrentDate] datetime NOT NULL,
     [drvCurrentTime] varchar(6) NULL,
-    [drvTotalRecords] int NULL
+    [drvTotalRecords] nvarchar(4000) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EXPRESCEXP]
@@ -639,7 +639,7 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
                                         WHEN BdmDedCode = 'MEDUN' AND EecEmplStatus IN ('T') THEN '9884LOC542COB'
                                         END
         ,drvSubscriberNumber = EepSSN
-        ,drvPersonNumber = CASE WHEN BdmBenOption = 'EE' THEN '001' ELSE '002' END
+        ,drvPersonNumber = CASE WHEN BdmRecType = 'EMP' THEN '001' ELSE '002' END
         ,drvEligibilityEffectiveDate = BdmBenStartDate
         ,drvEligibilityTermDate = BdmBenStopDate
         ,drvRelationship =    CASE WHEN ConRelationship IN ('SPS') THEN '2'
@@ -711,7 +711,7 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
     IF OBJECT_ID('U_EXPRESCEXP_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EXPRESCEXP_Header;
     SELECT DISTINCT
-         drvCurrentDate = @CurrentDate
+         drvCurrentDate = GETDATE()
         ,drvCurrentTime = @CurrentTime
     INTO dbo.U_EXPRESCEXP_Header
     ;
@@ -721,9 +721,9 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
     IF OBJECT_ID('U_EXPRESCEXP_Trailer','U') IS NOT NULL
         DROP TABLE dbo.U_EXPRESCEXP_Trailer;
     SELECT DISTINCT
-         drvCurrentDate = @CurrentDate
+         drvCurrentDate = GETDATE()
         ,drvCurrentTime = @CurrentTime
-        ,drvTotalRecords = (SELECT COUNT(*) FROM dbo.U_EXPRESCEXP_drvTbl)
+        ,drvTotalRecords = FORMAT((SELECT COUNT(*) FROM dbo.U_EXPRESCEXP_drvTbl), '000000000')
     INTO dbo.U_EXPRESCEXP_Trailer
     ;
 
