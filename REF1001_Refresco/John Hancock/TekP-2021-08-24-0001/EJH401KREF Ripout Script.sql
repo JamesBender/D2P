@@ -5,7 +5,7 @@ EJH401KREF: John Hancock 401K Export
 FormatCode:     EJH401KREF
 Project:        John Hancock 401K Export
 Client ID:      REF1001
-Date/time:      2022-01-14 19:19:29.803
+Date/time:      2022-01-15 09:31:44.880
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -471,7 +471,7 @@ BEGIN
         ON A.xEEID = B.EecEEID
         AND A.xCOID = B.EecCoID
         AND EecEmplStatus  = 'T' AND EecDateOfTermination < DATEADD(yy, DATEDIFF(yy, 0, @StartDate), 0)
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.pdedhist WITH (NOLOCK) WHERE PdhPayDate >= @StartDate and pdhEEID = A.xEEID)   --do not delete if they have a deduction after the start pay period control
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.pdedhist WITH (NOLOCK) WHERE pdhEEID = A.xEEID AND PdhPayDate >= DATEADD(yy, DATEDIFF(yy,0,@StartDate), 0))   --do not delete if they have a deduction in or after the start pay period control year
 
     
     /*DELETE FROM dbo.U_EJH401KREF_EEList
