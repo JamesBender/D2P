@@ -5,7 +5,7 @@ EQUODEMEXP: One Digital Employee Export
 FormatCode:     EQUODEMEXP
 Project:        One Digital Employee Export
 Client ID:      QUO1000
-Date/time:      2022-01-14 17:45:04.697
+Date/time:      2022-01-15 14:48:29.420
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -219,7 +219,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQUODEMEXP_20220114.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQUODEMEXP_20220115.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -228,7 +228,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'One Digital Employee Export','202112199','EMPEXPORT','ONDEM_XOE','Dec 21 2021 12:00AM','EQUODEMEXP',NULL,NULL,NULL,'202112199','Dec 19 2021 12:00AM','Dec 30 1899 12:00AM','202112191',NULL,'','','202112191',dbo.fn_GetTimedKey(),NULL,'us3mLaQUO1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'One Digital Employee Exp-Sched','202112199','EMPEXPORT','SCH_EQUODE',NULL,'EQUODEMEXP',NULL,NULL,NULL,'202112199','Dec 19 2021  1:41AM','Dec 19 2021  1:41AM','202112191',NULL,'','','202112191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'One Digital Employee Exp-Test','202112311','EMPEXPORT','TEST_XOE','Jan  5 2022  9:44PM','EQUODEMEXP',NULL,NULL,NULL,'202112311','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202112171','162','','','202112171',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG,SSMNA',NULL,NULL,NULL,'One Digital Employee Exp-Test','202201141','EMPEXPORT','TEST_XOE','Jan 14 2022  6:54PM','EQUODEMEXP',NULL,NULL,NULL,'202201141','Jan 14 2022 12:00AM','Dec 30 1899 12:00AM','202201011','160','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -386,7 +386,7 @@ CREATE TABLE [dbo].[U_EQUODEMEXP_drvTbl] (
     [drvHireDate] datetime NULL,
     [drvRehireDate] datetime NULL,
     [drvAdjustedServiceDate] datetime NULL,
-    [drvScheduledMinutesperWeek] varchar(30) NULL,
+    [drvScheduledMinutesperWeek] nvarchar(4000) NULL,
     [drvAcutalHoursWorkedin12Mo] varchar(30) NULL,
     [drvScheduledMinutesSunday] varchar(1) NOT NULL,
     [drvScheduledWorkTimeMonday] varchar(1) NOT NULL,
@@ -719,11 +719,11 @@ BEGIN
         ,drvHireDate = EecDateOfOriginalHire
         ,drvRehireDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
         ,drvAdjustedServiceDate = EecDateOfOriginalHire
-        ,drvScheduledMinutesperWeek = CAST ( CONVERT(DECIMAL(10,2),(Case  WHEN EecPayPeriod = 'W' THEN EecScheduledWorkHrs * 60
-                                            WHEN EecPayPeriod = 'B' then (EecScheduledWorkHrs / 2) * 60
-                                            WHEN EecPayPeriod = 'S' then ((EecScheduledWorkHrs * 24) / 52) * 60
-                                            WHEN EecPayPeriod = 'M' then ((EecScheduledWorkHrs * 12) / 52) * 60
-                                      END)) as varchar)
+        ,drvScheduledMinutesperWeek = FORMAT( ROUND(CASE WHEN EecPayPeriod = 'W' THEN EecScheduledWorkHrs * 60
+                                                        WHEN EecPayPeriod = 'B' then (EecScheduledWorkHrs / 2) * 60
+                                                        WHEN EecPayPeriod = 'S' then ((EecScheduledWorkHrs * 24) / 52) * 60
+                                                        WHEN EecPayPeriod = 'M' then ((EecScheduledWorkHrs * 12) / 52) * 60
+                                                   END, 0),'#')
 
         ,drvAcutalHoursWorkedin12Mo = CAST(CONVERT(DECIMAL(10,2),PehCurHrs) as varchar)
         ,drvScheduledMinutesSunday = ''

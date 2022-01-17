@@ -5,7 +5,7 @@ EMETVLTDVE: MetLife L/VL L/STD Den Vis Export
 FormatCode:     EMETVLTDVE
 Project:        MetLife L/VL L/STD Den Vis Export
 Client ID:      CLI1006
-Date/time:      2022-01-13 06:13:06.070
+Date/time:      2022-01-14 10:28:51.423
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -549,7 +549,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMETVLTDVE_20220113.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMETVLTDVE_20220114.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -560,7 +560,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201079','EMPEXPORT','OEPASSIVE','Jan 11 2022 11:20AM','EMETVLTDVE',NULL,NULL,NULL,'202201079','Jan  7 2022 10:51AM','Jan  7 2022 10:51AM','202201071','422','','','202201071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V Export','202201079','EMPEXPORT','ONDEM_XOE','Jan 11 2022 11:21AM','EMETVLTDVE',NULL,NULL,NULL,'202201079','Jan  7 2022 10:51AM','Jan  7 2022 10:51AM','202201071','416','','','202201071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V E-Sched','202201079','EMPEXPORT','SCH_EMETVL','Jan 11 2022 11:22AM','EMETVLTDVE',NULL,NULL,NULL,'202201079','Jan  7 2022 10:51AM','Jan  7 2022 10:51AM','202201071','416','','','202201071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V E-Test','202201129','EMPEXPORT','TEST_XOE','Jan 12 2022 11:34AM','EMETVLTDVE',NULL,NULL,NULL,'202201129','Jan 12 2022 12:00AM','Dec 30 1899 12:00AM','202201021','423','','','202201021',dbo.fn_GetTimedKey(),NULL,'us3lKiCLI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V E-Test','202201159','EMPEXPORT','TEST_XOE','Jan 14 2022  9:32AM','EMETVLTDVE',NULL,NULL,NULL,'202201159','Jan 15 2022 12:00AM','Dec 30 1899 12:00AM','202201021','423','','','202201021',dbo.fn_GetTimedKey(),NULL,'us3lKiCLI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -667,7 +667,7 @@ CREATE TABLE [dbo].[U_EMETVLTDVE_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] money NULL,
+    [drvSort] varchar(15) NULL,
     [drvTransactionCode] varchar(1) NOT NULL,
     [drvCustomerNumber] varchar(7) NULL,
     [drvEmployeeNumber] varchar(13) NULL,
@@ -969,10 +969,10 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EecAnnSalary /* xEEID + ' ' +    CASE WHEN ConRelationship IN ('DP','SPS') THEN '01'
+        ,drvSort =  xEEID + ' ' +    CASE WHEN ConRelationship IN ('DP','SPS') THEN '01'
                                     WHEN ConRelationship IN ('CHL','STC','DPC','DCH') THEN '02'
                                     ELSE '00'
-                                    END*/
+                                    END
         -- standard fields above and additional driver fields below
         ,drvTransactionCode = CASE WHEN BdmRecType = 'EMP' THEN 'E' ELSE 'D' END
         ,drvCustomerNumber =    CASE WHEN ADD2X_DedCode IS NOT NULL OR 
@@ -1066,7 +1066,7 @@ BEGIN
         ,drvSalaryMode3 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'A' END
         ,drvSalaryAmount3 = FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN EecAnnSalary END, '0000000')
 
-        ,drvCoverageCode4 = CASE WHEN LTD_DedCode IS NOT NULL THEN 'AD' END
+        ,drvCoverageCode4 = CASE WHEN LTD_DedCode IS NOT NULL THEN 'LT' END
         ,drvCoverageStartDate4 = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_BenStartDate END
         ,drvCoverageStopDate4 = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_BenStopDate END
         ,drvGroupNumber4 = CASE WHEN LTD_DedCode IS NOT NULL THEN '5391831' END
@@ -1084,7 +1084,7 @@ BEGIN
         ,drvSubCode5 = CASE WHEN STD2_DedCode IS NOT NULL THEN '0001' END
         ,drvStatusCode5 = CASE WHEN STD2_DedCode IS NOT NULL THEN 'A' END
         ,drvMembersCoveredCode5 = CASE WHEN STD2_DedCode IS NOT NULL THEN '1' END
-        ,drvWeeklyBenefitAmount5 = FORMAT(CASE WHEN STD2_DedCode IS NOT NULL THEN STD2_Amount END, '00000000')
+        ,drvWeeklyBenefitAmount5 = FORMAT(CASE WHEN STD2_DedCode IS NOT NULL THEN EecWeeklyPayRate * .6 END, '00000000')  
         ,drvSalaryMode5 = CASE WHEN STD2_DedCode IS NOT NULL THEN 'A' END
         ,drvSalaryAmount5 = FORMAT(CASE WHEN STD2_DedCode IS NOT NULL THEN EecAnnSalary END, '0000000')
 
