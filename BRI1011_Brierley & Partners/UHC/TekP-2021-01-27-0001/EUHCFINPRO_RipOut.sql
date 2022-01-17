@@ -5,7 +5,7 @@ EUHCFINPRO: United Health Care Financial Protection
 FormatCode:     EUHCFINPRO
 Project:        United Health Care Financial Protection
 Client ID:      BRI1011
-Date/time:      2021-12-16 14:38:38.137
+Date/time:      2022-01-13 18:17:29.297
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -209,7 +209,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUHCFINPRO_20211216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUHCFINPRO_20220113.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -220,7 +220,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202105039','EMPEXPORT','OEPASSIVE',NULL,'EUHCFINPRO',NULL,NULL,NULL,'202105039','May  3 2021  1:27PM','May  3 2021  1:27PM','202105031',NULL,'','','202105031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Financial Protection','202105039','EMPEXPORT','ONDEM_XOE',NULL,'EUHCFINPRO',NULL,NULL,NULL,'202105039','May  3 2021  1:27PM','May  3 2021  1:27PM','202105031',NULL,'','','202105031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC Financial Protection-Sched','202105039','EMPEXPORT','SCH_EUHCFI',NULL,'EUHCFINPRO',NULL,NULL,NULL,'202105039','May  3 2021  1:27PM','May  3 2021  1:27PM','202105031',NULL,'','','202105031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UHC Financial Protection-Test','202109291','EMPEXPORT','TEST_XOE','Dec  8 2021  1:01PM','EUHCFINPRO',NULL,NULL,NULL,'202109291','Sep 29 2021 12:00AM','Dec 30 1899 12:00AM','202109151','1047','','','202109151',dbo.fn_GetTimedKey(),NULL,'us3rVaBRI1011',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UHC Financial Protection-Test','202109291','EMPEXPORT','TEST_XOE','Dec 20 2021 11:27AM','EUHCFINPRO',NULL,NULL,NULL,'202109291','Sep 29 2021 12:00AM','Dec 30 1899 12:00AM','202109151','654','','','202109151',dbo.fn_GetTimedKey(),NULL,'us3rVaBRI1011',NULL);
 
 -----------
 -- AscImp inserts
@@ -420,10 +420,14 @@ Revision History
         - Salary amount logic updated.
 
 12/16/2021 by AP:
-		- Added STDER, LTD and LTDEX to the Salary Type field.
-		- Salary Type, Salary Amount and Salary Effective Date updated for dependents.
-		- Updated where values are >= logic for Plan Coverage Amount.
-		- Updated Plan Coverage Amount logic for LIFEE, LIFES, CIE20 and CIS10.
+        - Added STDER, LTD and LTDEX to the Salary Type field.
+        - Salary Type, Salary Amount and Salary Effective Date updated for dependents.
+        - Updated where values are >= logic for Plan Coverage Amount.
+        - Updated Plan Coverage Amount logic for LIFEE, LIFES, CIE20 and CIS10.
+
+01/13/2022 by AP:
+	- Fixed added 0's to coverage amount.
+	- Updated dependent section to show dependents with EE records associated to them.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUHCFINPRO';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUHCFINPRO';
@@ -707,16 +711,16 @@ BEGIN
         ,drvSalaryEffDate = CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate,@FileMinCovDate), 112)
         --CASE WHEN EedDedCode IN ('STDER','LTDEX','LTD') THEN  dbo.dsi_fnGetMinMaxDates('MAX', (SELECT TOP 1 audDateTime FROM dbo.U_EUHCFINPRO_Audit WITH (NOLOCK) WHERE audEEID = xEEID AND audCOID = xCoID AND audFieldName = 'EecAnnSalary') , @FileMinCovDate) END 
         ,drvCoverageAmount = LEFT(REPLACE(CASE WHEN EecDedGroupCode = 'EXEC' THEN
-                                            CASE WHEN EedDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 > '5000.00000' THEN '500000'
-                                                    WHEN EedDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 <= '5000.00000' THEN (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2
-													WHEN EedDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN EedBenAmt
-													--DedEEBenAmt
+                                            CASE WHEN EedDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 > '5000.00000' THEN '5000'
+                                                    WHEN EedDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 <= '5000.00000' THEN REPLACE((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2, '.00', '')
+                                                    WHEN EedDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN REPLACE(EedBenAmt, '.00', '')
+                                                    --DedEEBenAmt
                                         END
                                             WHEN EecDedGroupCode = 'FT' THEN
-                                                CASE WHEN EedDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 > '4000.00000' THEN '400000'
-                                                    WHEN EedDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 <= '4000.00000' THEN (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5
-													WHEN EedDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN EedBenAmt
-													--DedEEBenAmt
+                                                CASE WHEN EedDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 > '4000.00000' THEN '4000'
+                                                    WHEN EedDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 <= '4000.00000' THEN REPLACE((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5, '.00', '')
+                                                    WHEN EedDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN REPLACE(EedBenAmt, '.00', '')
+                                                    --DedEEBenAmt
                                         END
                                     END, '.00', ''), 6)
         --LEFT(REPLACE(CASE WHEN EecDedGroupCode = 'EXEC' AND EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 2 > EedBenAmt THEN CAST(ROUND((EecAnnSalary + ISNULL(EecUDField20, '0')) * 2, -3) AS VARCHAR)
@@ -779,68 +783,69 @@ BEGIN
         ,drvGender = CASE WHEN ConGender IN ('M','F') THEN ConGender END
         ,drvDateOfBirth = ConDateOfBirth
         ,drvBenStartDate = dbo.dsi_fnGetMinMaxDates('MAX', DbnBenStartDate,@FileMinCovDate)
-        ,drvPlanCode = CASE
-                            WHEN RTRIM(LTRIM(DbnDedCode)) = 'GTLEX' THEN 'LE000886'
-                            WHEN RTRIM(LTRIM(DbnDedCode)) = 'ADDCX' THEN 'LE000887'
-                            WHEN RTRIM(LTRIM(DbnDedCode)) = 'LIFEE' THEN 'LE000019'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'LIFES'THEN 'LE000123'
-                            WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000006'
-                            WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000007'
-                            WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 7500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000008'
-                            WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 10000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000009'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'CIE20' THEN 'LE000137'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'CIS10' THEN 'LE000138'
-                            WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000079'
-                            WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000251'
-                            WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL)  AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002232'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002233'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002234'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002235'
-                            WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002236'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002237'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002238'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002239'
-                            WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001924'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001925'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001926'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001927'
-                            WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001928'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001929'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001930'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001931'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'STDER' THEN 'LE000379'
-                            WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'LTDEX' THEN 'LE000770'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'GTLEE' THEN 'LE001502'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'ADDCE' THEN 'LE001503'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEE' THEN 'LE000019'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'LIFES'THEN 'LE000123'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000006'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000007'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 7500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000008'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 10000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000009'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'CIE20' THEN 'LE000137'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'CIS10' THEN 'LE000138'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000079'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000251'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002232'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002233'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002234'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002235'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002236'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002237'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002238'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002239'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001924'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001925'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001926'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001927'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001928'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001929'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001930'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001931'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'STDER' THEN 'LE000379'
-                            WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'LTD' THEN 'LE000016'
-                        END
+        ,drvPlanCode
+		--CASE
+  --                          WHEN RTRIM(LTRIM(DbnDedCode)) = 'GTLEX' THEN 'LE000886'
+  --                          WHEN RTRIM(LTRIM(DbnDedCode)) = 'ADDCX' THEN 'LE000887'
+  --                          WHEN RTRIM(LTRIM(DbnDedCode)) = 'LIFEE' THEN 'LE000019'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'LIFES'THEN 'LE000123'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000006'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000007'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 7500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000008'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 10000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000009'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'CIE20' THEN 'LE000137'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'CIS10' THEN 'LE000138'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000079'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000251'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL)  AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002232'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002233'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002234'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002235'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002236'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002237'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002238'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002239'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001924'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001925'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001926'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001927'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001928'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001929'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001930'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001931'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'STDER' THEN 'LE000379'
+  --                          WHEN drvDedGroupCode = 'EXEC' AND RTRIM(LTRIM(DbnDedCode)) = 'LTDEX' THEN 'LE000770'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'GTLEE' THEN 'LE001502'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'ADDCE' THEN 'LE001503'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEE' THEN 'LE000019'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'LIFES'THEN 'LE000123'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000006'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000007'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 7500 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000008'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 10000 AND RTRIM(LTRIM(DbnDedCode)) = 'LIFEC' THEN 'LE000009'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'CIE20' THEN 'LE000137'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'CIS10' THEN 'LE000138'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 2500 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000079'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND DedEEBenAmt = 5000 AND RTRIM(LTRIM(DbnDedCode)) = 'CIS5' THEN 'LE000251'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002232'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002233'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002234'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACCL' THEN 'LE002235'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002236'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002237'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002238'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'ACC' THEN 'LE002239'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001924'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001925'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001926'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPL' THEN 'LE001927'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND (RTRIM(LTRIM(DbnBenOption)) IN ('EE','Z') OR RTRIM(LTRIM(DbnBenOption)) IS NULL) AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001928'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EES' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001929'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEC' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001930'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnBenOption)) = 'EEF' AND RTRIM(LTRIM(DbnDedCode)) = 'HSPH' THEN 'LE001931'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'STDER' THEN 'LE000379'
+  --                          WHEN drvDedGroupCode IN ('FT','PT') AND RTRIM(LTRIM(DbnDedCode)) = 'LTD' THEN 'LE000016'
+  --                      END
         ,drvTierCode = CASE
                             WHEN RTRIM(LTRIM(DbnDedCode)) IN ('ACCL','ACC','HSPL','HSPH') AND DbnBenOption = 'EEF' THEN 'A'
                             WHEN RTRIM(LTRIM(DbnDedCode)) IN ('ACCL','ACC','HSPL','HSPH') AND DbnBenOption = 'EES' THEN 'B'
@@ -863,25 +868,28 @@ BEGIN
         ,drvDateOfOriginalHire
         ,drvSubscriberClassID 
         ,drvSubClassEffDate = dbo.dsi_fnGetMinMaxDates('MAX', DbnBenStartDate, @FileMinCovDate)
-        ,drvSalaryType = CASE WHEN DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE', 'LIFEE', 'LIFES', 'CIE20', 'CIS10', 'STDER', 'LTD', 'LTDEX') AND EecDedGroupCode IN ('EXEC', 'FT') THEN 'A' ELSE '' END
-        ,drvAnnSalary = ISNULL(CASE WHEN DbnDedCode IN ('STDER', 'LTDEX', 'LTD') THEN CAST(CAST(ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '') AS DECIMAL(10,2)) AS VARCHAR)
-                            WHEN EecDedGroupCode = 'EXEC' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') THEN CAST(CAST(ROUND((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2, 0) AS DECIMAL(10,2)) AS VARCHAR)
-                            WHEN EecDedGroupCode = 'FT' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') THEN CAST(CAST(ROUND((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5, 0) AS DECIMAL(10,2)) AS VARCHAR)
-                            WHEN DbnDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN CAST(CAST(DedEEBenAmt AS DECIMAL(10,2)) AS VARCHAR) END, '')
+        ,drvSalaryType 
+		--= CASE WHEN DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE', 'LIFEE', 'LIFES', 'CIE20', 'CIS10', 'STDER', 'LTD', 'LTDEX') AND EecDedGroupCode IN ('EXEC', 'FT') THEN 'A' ELSE '' END
+        ,drvAnnSalary
+		--ISNULL(CASE WHEN DbnDedCode IN ('STDER', 'LTDEX', 'LTD') THEN CAST(CAST(ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '') AS DECIMAL(10,2)) AS VARCHAR)
+  --                          WHEN EecDedGroupCode = 'EXEC' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') THEN CAST(CAST(ROUND((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2, 0) AS DECIMAL(10,2)) AS VARCHAR)
+  --                          WHEN EecDedGroupCode = 'FT' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') THEN CAST(CAST(ROUND((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5, 0) AS DECIMAL(10,2)) AS VARCHAR)
+  --                          WHEN DbnDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN CAST(CAST(DedEEBenAmt AS DECIMAL(10,2)) AS VARCHAR) END, '')
         ,drvSalaryEffDate
-        ,drvCoverageAmount =  LEFT(REPLACE(CASE WHEN EecDedGroupCode = 'EXEC' THEN
-                                            CASE WHEN DbnDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 > '5000.00000' THEN '500000'
-                                                    WHEN DbnDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 <= '5000.00000' THEN (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2
-													WHEN DbnDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN DedEEBenAmt
-													--DedEEBenAmt
-                                        END
-                                            WHEN EecDedGroupCode = 'FT' THEN
-                                                CASE WHEN DbnDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 > '4000.00000' THEN '400000'
-                                                    WHEN DbnDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 <= '4000.00000' THEN (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5
-													WHEN DbnDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN DedEEBenAmt
-													--DedEEBenAmt
-                                        END
-                                    END, '.00', ''), 6)
+        ,drvCoverageAmount
+		--LEFT(REPLACE(CASE WHEN EecDedGroupCode = 'EXEC' THEN
+  --                                          CASE WHEN DbnDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 > '5000.00000' THEN '5000'
+  --                                                  WHEN DbnDedCode IN ('GTLEX', 'ADDCX') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2 <= '5000.00000' THEN REPLACE((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2, '.00', '')
+  --                                                  WHEN DbnDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN REPLACE(DedEEBenAmt, '.00', '')
+  --                                                  --DedEEBenAmt
+  --                                      END
+  --                                          WHEN EecDedGroupCode = 'FT' THEN
+  --                                              CASE WHEN DbnDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 > '4000.00000' THEN '4000'
+  --                                                  WHEN DbnDedCode IN ('GTLEE', 'ADDCE') AND (ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5 <= '4000.00000' THEN REPLACE((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5, '.00', '')
+  --                                                  WHEN DbnDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN REPLACE(DedEEBenAmt, '.00', '')
+  --                                                  --DedEEBenAmt
+  --                                      END
+  --                                  END, '.00', ''), 6)
         --LEFT(REPLACE(CASE WHEN EecDedGroupCode = 'EXEC' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 2 > DedEEBenAmt THEN CAST(ROUND((EecAnnSalary + ISNULL(EecUDField20, '0')) * 2, -3) AS VARCHAR)
   --                                  WHEN EecDedGroupCode = 'EXEC' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 2 < DedEEBenAmt THEN CAST(ROUND(DedEEBenAmt, -3) AS VARCHAR)
   --                                  WHEN EecDedGroupCode = 'FT' AND DbnDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 1.5 > DedEEBenAmt THEN CAST(ROUND((EecAnnSalary + ISNULL(EecUDField20, '0')) * 1.5, -3) AS VARCHAR)
@@ -902,9 +910,9 @@ BEGIN
         AND DbnFormatCode = 'EUHCFINPRO'--@FormatCode 
         AND DbnValidForExport = 'Y'
         AND DbnBenStatus = 'A'
-    JOIN dbo.EmpComp WITH(NOLOCK) 
-        ON EecEEID = DbnEEID
-        AND EecCOID = DbnCOID
+    --JOIN dbo.EmpComp WITH(NOLOCK) 
+    --    ON EecEEID = DbnEEID
+    --    AND EecCOID = DbnCOID
     WHERE DrvAnnSalary IS NOT NULL;
 
     UPDATE dbo.U_EUHCFINPRO_drvTbl

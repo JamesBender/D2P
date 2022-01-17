@@ -5,7 +5,7 @@ EBOAHSATST: Bank of America HSA TEST
 FormatCode:     EBOAHSATST
 Project:        Bank of America HSA TEST
 Client ID:      PRI1029
-Date/time:      2021-12-19 10:36:41.423
+Date/time:      2022-01-13 19:25:23.423
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -231,7 +231,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBOAHSATST_20211219.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBOAHSATST_20220113.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -241,7 +241,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202002269','EMPEXPORT','OEACTIVE',NULL,'EBOAHSATST',NULL,NULL,NULL,'202002269','Feb 26 2020 11:03AM','Feb 26 2020 11:03AM','202002261',NULL,NULL,NULL,'202002261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Bank of America HSA','202012041','EMPEXPORT','ONDEMAND','Dec  4 2020 12:00AM','EBOAHSATST',NULL,NULL,NULL,'202012041','Dec  4 2020 12:00AM','Nov 28 2020 12:00AM','202012041','220',NULL,NULL,'202012041',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPWC',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202002269','EMPEXPORT','SCHEDULED',NULL,'EBOAHSATST',NULL,NULL,NULL,'202002269','Feb 26 2020 11:03AM','Feb 26 2020 11:03AM','202002261',NULL,NULL,NULL,'202002261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test Purposes Only','202112171','EMPEXPORT','TEST','Jan 19 2021 11:10AM','EBOAHSATST',NULL,NULL,NULL,'202112171','Jan 15 2021 12:00AM','Dec 30 1899 12:00AM','202112171','1858','eecPayGroup','HOURLY','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPWC',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202201149','EMPEXPORT','TEST','Jan 12 2022  2:08PM','EBOAHSATST',NULL,NULL,NULL,'202201149','Jan 14 2022 12:00AM','Dec 30 1899 12:00AM','202201141','2859','eecPayGroup','P1,HOURLY,SALARY','202201141',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
 
 -----------
 -- AscImp inserts
@@ -440,7 +440,7 @@ CREATE TABLE [dbo].[U_EBOAHSATST_Header] (
 IF OBJECT_ID('U_EBOAHSATST_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EBOAHSATST_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
-    [PdhType] varchar(2) NOT NULL,
+    [PdhType] varchar(3) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
@@ -477,8 +477,10 @@ Purpose: Bank of America HSA
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2020     SR-2020-000XXXXX   XXXXX
+Update By           Date           Request Num              Desc
+Darren Collard        01/13/2022     TekP-2021-10-07-0005   Add deduction code DFSA
+Darren Collard        01/13/2022     NONE                      Updated BSB to BOA on header and footer
+
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBOAHSATST';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBOAHSATST';
@@ -579,7 +581,7 @@ BEGIN
         DROP TABLE dbo.U_EBOAHSATST_PDedHist;
     SELECT DISTINCT
          PdhEEID
-         ,PdhType = CASE WHEN PdhDedCode IN ('ER') THEN 'ER' ELSE 'EE' END
+         ,PdhType = CASE WHEN PdhDedCode = 'ER' THEN 'ER' WHEN PdhDedCode LIKE '%FSA%' THEN 'EEF' ELSE 'EE' END --EEF=EE FSA
         -- Current Payroll Amounts
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
@@ -604,7 +606,7 @@ BEGIN
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID,CASE WHEN PdhDedCode IN ('ER') THEN 'ER' ELSE 'EE' END
+    GROUP BY PdhEEID, CASE WHEN PdhDedCode = 'ER' THEN 'ER' WHEN PdhDedCode LIKE '%FSA%' THEN 'EEF' ELSE 'EE' END --EEF=EE FSA
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
     );
@@ -734,7 +736,8 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EBOAHSATST_drvTbl_Contribution','U') IS NOT NULL
         DROP TABLE dbo.U_EBOAHSATST_drvTbl_Contribution;
-    SELECT DISTINCT
+
+    SELECT 
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -742,14 +745,14 @@ BEGIN
         ,drvRecordType = 'CT'
         ,drvParticFileImportId = EecEmpNo
         ,drvPlanName = CASE 
-                       WHEN EedDedCode IN ('DFSA') THEN 'Dependent Care FSA'
+                       WHEN PdhType = 'EEF' THEN 'Dependent Care FSA'
                        ELSE 'Health Savings Account' 
                        --WHEN EedDedCode IN ('HSA','HSAI','HSAF','HSI') THEN 'Health Savings Account' 
                        END
-        ,drvContribDate = DATEADD(day,-2,PrgPayDate)
+        ,drvContribDate = (SELECT MAX(DATEADD(day,-2, PrgPayDate)) FROM dbo.vw_int_PayReg WITH (NOLOCK) WHERE PrgEEID = xEEID AND PrgCOID = xCOID AND PrgPayDate BETWEEN '2022/01/14' AND '2022/01/14')
         ,drvContribDesc = CASE 
-                          WHEN EedDedCode = 'DFSA' OR PdhType = 'EE' THEN 'Payroll Deduction'
-                          WHEN                        PdhType = 'ER' THEN 'Employer Contribution'
+                          WHEN PdhType IN ('EE','EEF') THEN 'Payroll Deduction'
+                          WHEN PdhType IN ('ER')       THEN 'Employer Contribution'
                           END
         ,drvContribAmt = PdhEECurAmt
         ,drvAmountType = 'Actual'
@@ -762,15 +765,6 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.U_EBOAHSATST_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
-    LEFT JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
-        ON EedEEID = xEEID 
-        AND EedCoID = xCoID
-        AND EedFormatCode = @FormatCode 
-        AND EedValidForExport = 'Y'
-    LEFT JOIN dbo.vw_int_PayReg WITH (NOLOCK)
-        ON PrgEEID = xEEID
-        AND PrgCOID = xCOID
-        AND PrgPayDate BETWEEN @StartDate AND @EndDate
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -779,7 +773,7 @@ BEGIN
         DROP TABLE dbo.U_EBOAHSATST_Header;
     SELECT DISTINCT
          drvRecordType = 'FH'
-        ,drvAdministratorCode = 'BSB'
+        ,drvAdministratorCode = 'BOA'
         ,drvEmployerCode = 'PRIOR1'
         ,drvSynchronizeFlag = ''
         ,drvCreationDate = FORMAT(GETDATE(),'MMddyyyy')
@@ -795,7 +789,7 @@ BEGIN
     SELECT DISTINCT
          drvRecordType = 'FF'
         ,drvRecordCount = ((SELECT COUNT(*) FROM dbo.U_EBOAHSATST_drvTbl_Participant)+(SELECT COUNT(*) FROM dbo.U_EBOAHSATST_drvTbl_Enrollment)+(SELECT COUNT(*) FROM dbo.U_EBOAHSATST_drvTbl_Contribution))
-        ,drvAdminCode = 'BSB'
+        ,drvAdminCode = 'BOA'
         ,drvEmployerCode = 'PRIOR1'
         ,drvCreationDate = FORMAT(GETDATE(),'MMddyyyy')
         ,drvCreationTime = FORMAT(GETDATE(),'hhmmss')

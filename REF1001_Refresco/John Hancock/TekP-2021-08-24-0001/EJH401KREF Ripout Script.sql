@@ -5,7 +5,7 @@ EJH401KREF: John Hancock 401K Export
 FormatCode:     EJH401KREF
 Project:        John Hancock 401K Export
 Client ID:      REF1001
-Date/time:      2022-01-04 19:46:46.107
+Date/time:      2022-01-15 09:31:44.880
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -188,8 +188,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock 401K Export','202110079','EMPEXPORT','ONDEMAND','Feb 28 2019 12:51PM','EJH401KREF',NULL,NULL,NULL,'202110079','Feb 28 2019 12:00AM','Mar  2 2019 12:00AM','202108121','3125','','','202108121',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is  Auto Generated',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Scheduled Export','202112301','EMPEXPORT','SCHEDULED','Dec 30 2021  6:15AM','EJH401KREF',NULL,NULL,NULL,'202112301','Oct  8 2018 12:00AM','Dec 30 1899 12:00AM','202112232','6123','','','202112232',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\JohnHancock\CO45SL_12302021_Test.csv',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'For Testing JH 401K','202112301','EMPEXPORT','TEST','Jan  4 2022  8:48AM','EJH401KREF',NULL,NULL,NULL,'202112301','Dec 30 2021 12:00AM','Jan  1 2022 12:00AM','202112232','4050','','','202112232',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is  Auto Generated',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Scheduled Export','202201131','EMPEXPORT','SCHEDULED','Jan 13 2022  6:15AM','EJH401KREF',NULL,NULL,NULL,'202201131','Oct  8 2018 12:00AM','Dec 30 1899 12:00AM','202201062','6123','','','202201062',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'For Testing JH 401K','202201131','EMPEXPORT','TEST','Jan 12 2022  2:52PM','EJH401KREF',NULL,NULL,NULL,'202201131','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202201062','5688','','','202201062',dbo.fn_GetTimedKey(),NULL,'HKNIGHT',NULL);
 
 -----------
 -- AscImp inserts
@@ -410,7 +410,10 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EJH401KREF', 'ONDEMAND';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EJH401KREF', 'SCHEDULED';
+
+EXEC dbo.dsi_sp_UpdateConfig 'EJH401KREF', 'ExportPath','V',  '\\us.saas\E4\Public\REF1001\Exports\JohnHancock\';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EJH401KREF', 'TEST';
+EXEC dbo.dsi_sp_UpdateConfig 'EJH401KREF', 'ExportPath','V',  '\\us.saas\E0\data_exchange\REF1001\Exports\UDES\';
 
 EXEC dbo.dsi_bdm_sp_errorcheck 'EJH401KREF';
 
@@ -468,6 +471,7 @@ BEGIN
         ON A.xEEID = B.EecEEID
         AND A.xCOID = B.EecCoID
         AND EecEmplStatus  = 'T' AND EecDateOfTermination < DATEADD(yy, DATEDIFF(yy, 0, @StartDate), 0)
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.pdedhist WITH (NOLOCK) WHERE pdhEEID = A.xEEID AND PdhPayDate >= DATEADD(yy, DATEDIFF(yy,0,@StartDate), 0))   --do not delete if they have a deduction in or after the start pay period control year
 
     
     /*DELETE FROM dbo.U_EJH401KREF_EEList
@@ -875,11 +879,11 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EJH401KREF';
 
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202108121'
-       ,expStartPerControl     = '202108121'
-       ,expLastEndPerControl   = '202110079'
-       ,expEndPerControl       = '202110079'
-WHERE expFormatCode = 'EJH401KREF';
+    SET expLastStartPerControl = '202201062'
+       ,expStartPerControl     = '202201062'
+       ,expLastEndPerControl   = '202201131'
+       ,expEndPerControl       = '202201131'
+WHERE expFormatCode = 'EJH401KREF' And expExportCode = 'TEST';
 
 **********************************************************************************/
 GO
