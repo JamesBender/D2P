@@ -5,7 +5,7 @@ ETBXDEMOEX: TBX Demographic Export
 FormatCode:     ETBXDEMOEX
 Project:        TBX Demographic Export
 Client ID:      GUL1001
-Date/time:      2022-01-05 12:02:52.650
+Date/time:      2022-01-14 09:55:51.190
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -251,7 +251,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220105.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220114.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -334,14 +334,14 @@ CREATE TABLE [dbo].[U_ETBXDEMOEX_drvTbl] (
     [drvJObClass] varchar(45) NULL,
     [drvPayGroup] varchar(25) NULL,
     [drvDepartment] varchar(25) NULL,
-    [drvTitle] varchar(1) NOT NULL,
+    [drvTitle] varchar(25) NOT NULL,
     [drvHireDate] datetime NULL,
-    [drvEligibilityDate] varchar(1) NOT NULL,
-    [drvStatus] varchar(1) NOT NULL,
+    [drvEligibilityDate] datetime NULL,
+    [drvStatus] char(1) NULL,
     [EecDateOfTermination] datetime NULL,
-    [drvEventDate] varchar(1) NOT NULL,
-    [drvEventCode] varchar(1) NOT NULL,
-    [drvEventDescription] varchar(1) NOT NULL
+    [drvEventDate] datetime NULL,
+    [drvEventCode] varchar(3) NOT NULL,
+    [drvEventDescription] varchar(52) NOT NULL
 );
 
 -----------
@@ -491,9 +491,21 @@ BEGIN
         ,drvEligibilityDate = EecDateOfLastHire
         ,drvStatus = CASE WHEN EecEmplStatus IN ('A','L','T') THEN EecEmplStatus END
         ,EecDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvEventDate = ''
-        ,drvEventCode = ''
-        ,drvEventDescription = ''
+        ,drvEventDate = EjhJobEffDate
+        ,drvEventCode =    CASE WHEN EecTermReason = '203' THEN '28'
+                        WHEN EecTermReason = '206' THEN '303'
+                        WHEN EecTermReason = 'T2' THEN '35'
+                        WHEN EecTermReason = 'T1' THEN '55'
+                        WHEN EecTermReason IN ('T5','202') THEN '101'
+                        ELSE '9'
+                        END
+        ,drvEventDescription =    CASE WHEN EecTermReason = '203' THEN 'Deceased Individual'
+                                WHEN EecTermReason = '206' THEN 'Terminatated Employment (Gross Misconduct)'
+                                WHEN EecTermReason = 'T2' THEN 'Terminated Employment (Layoff / workforce reduction)'
+                                WHEN EecTermReason = 'T1' THEN 'Terminated Employment (Resignation)'
+                                WHEN EecTermReason IN ('T5','202') THEN 'Terminated Employment (Retired)'
+                                ELSE 'Terminated employment (Reason unspecified)'
+                                END
     INTO dbo.U_ETBXDEMOEX_drvTbl
     FROM dbo.U_ETBXDEMOEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -521,6 +533,16 @@ BEGIN
     JOIN dbo.OrgLevel  WITH (NOLOCK) 
         ON OrgCode = EecOrgLvl2
         AND OrgLvl = 2
+    LEFT JOIN (
+            SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
+            FROM (                    
+                    SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                    FROM dbo.EmpHJob WITH (NOLOCK)                    
+                    ) AS X
+            WHERE RN = 1) AS EJH
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
+        --AND EjhJobCode = EecJobCode 
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
 
