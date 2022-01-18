@@ -5,7 +5,7 @@ EARIHSA: Health Equity FSA HSA Contribution
 FormatCode:     EARIHSA
 Project:        Health Equity FSA HSA Contribution
 Client ID:      ARI1006
-Date/time:      2022-01-11 06:32:48.100
+Date/time:      2022-01-17 19:16:06.610
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -174,7 +174,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARIHSA_20220111.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARIHSA_20220117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -185,7 +185,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Con-PassOE','202201079','EMPEXPORT','OEPASSIVE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont OnDem','202201079','EMPEXPORT','ONDEM_XOE','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity FSAHSA Cont-Sched','202201079','EMPEXPORT','SCH_EARIHS','Dec  6 2021 12:00AM','EARIHSA',NULL,NULL,NULL,'202201079','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,'',NULL,'202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HealthEquity FSA HSA Cont-Test','202201079','EMPEXPORT','TEST_XOE','Jan 10 2022  4:13PM','EARIHSA',NULL,NULL,NULL,'202201079','Jan  7 2022 12:00AM','Jan  4 2022 12:00AM','202201071','257','eecPayGroup','EMPL','202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HealthEquity FSA HSA Cont-Test','202201079','EMPEXPORT','TEST_XOE','Jan 11 2022 10:20AM','EARIHSA',NULL,NULL,NULL,'202201079','Jan  7 2022 12:00AM','Dec 30 1899 12:00AM','202201071','259','eecPayGroup','EMPL','202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -416,6 +416,10 @@ Revision History
 12/16/2021 by AP:
     - Cleaned up code outputting 2 HSA lines.
 
+01/17/2022 by AP:
+	- Removed date parameter for audit to bring in employees that are termed after pay dates, which were being excluded.
+	- Set term timeframe within 30 days.
+
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EARIHSA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EARIHSA';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EARIHSA';
@@ -469,43 +473,6 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EARIHSA_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
-    -- Audit Section
-    --==========================================
-     --Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_EARIHSA_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EARIHSA_AuditFields;
-    CREATE TABLE dbo.U_EARIHSA_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-
-    INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecDateofTermination');
-    INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecEmplStatus');
-    INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecTermReason');
-
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_EARIHSA_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EARIHSA_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_EARIHSA_Audit
-    FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_EARIHSA_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN dateadd(D, -15, @EndDate) AND @EndDate
-    AND audAction <> 'DELETE';
-
-    -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EARIHSA_Audit ON dbo.U_EARIHSA_Audit (audEEID,audKey2);
-
     --================
     -- Changes Only
     --================
@@ -557,6 +524,44 @@ BEGIN
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+	 --==========================================
+    -- Audit Section
+    --==========================================
+     --Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EARIHSA_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EARIHSA_AuditFields;
+    CREATE TABLE dbo.U_EARIHSA_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecTermReason');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EARIHSA_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EARIHSA_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EARIHSA_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EARIHSA_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE --audDateTime BETWEEN @StartDate AND @EndDate
+	--audDateTime BETWEEN dateadd(D, -15, @EndDate) AND @EndDate  -- DATE EXCLUDED DUE TO MISSING VALUES THAT ARE TERMED WITHIN
+     audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EARIHSA_Audit ON dbo.U_EARIHSA_Audit (audEEID,audKey2);
 
     --==========================================
     -- Build Working Tables
@@ -759,6 +764,7 @@ BEGIN
         ON PdhEEID = xEEID
     LEFT JOIN dbo.U_EARIHSA_PEarHist
         on PehEEID =  xeeid
+	WHERE EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -30, CAST(GETDATE() AS DATE))
     ;
 --    1 ENR Record for FSA benefits, 1 ENR Record for Dep Care FSA and 1 ENR Record for HSA benefits
 --if eeddedcode HSACF, HSACI, HSAF, HSAI send HSA
