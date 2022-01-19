@@ -5,7 +5,7 @@ ESSQEXMLXP: SSQ Benefits XML Export
 FormatCode:     ESSQEXMLXP
 Project:        SSQ Benefits XML Export
 Client ID:      ALA5000
-Date/time:      2021-12-09 11:08:55.650
+Date/time:      2022-01-17 08:48:11.260
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -221,12 +221,12 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESSQEXMLXPZ0','50','D','25','11',NULL,'Address Line 2 Open',NULL,NULL,'"drvAddressLine2"','(''UA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESSQEXMLXPZ0','50','D','25','12',NULL,'Address Line 3 Open',NULL,NULL,'"</addressLine2><addressLine3>"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESSQEXMLXPZ0','50','D','25','13',NULL,'Address Line 3',NULL,NULL,'""','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESSQEXMLXPZ0','50','D','25','14',NULL,'Address City Open',NULL,NULL,'"</addressLine3><addressCity>"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESSQEXMLXPZ0','50','D','25','14',NULL,'Address City Open',NULL,NULL,'"</addressLine3><city>"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESSQEXMLXPZ0','50','D','25','15',NULL,'Address City',NULL,NULL,'"drvAddressCity"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESSQEXMLXPZ0','50','D','25','16',NULL,'Address City Close',NULL,NULL,'"</addressCity>"','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESSQEXMLXPZ0','50','D','25','17',NULL,'Province State Code Open',NULL,NULL,'"<provinceStatecode>"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESSQEXMLXPZ0','50','D','25','16',NULL,'Address City Close',NULL,NULL,'"</city>"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESSQEXMLXPZ0','50','D','25','17',NULL,'Province State Code Open',NULL,NULL,'"<provinceStateCode>"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESSQEXMLXPZ0','50','D','25','18',NULL,'Province State Code',NULL,NULL,'"drvProvinceStateCode"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESSQEXMLXPZ0','50','D','25','19',NULL,'Province State Code Close',NULL,NULL,'"</provinceStatecode>"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESSQEXMLXPZ0','50','D','25','19',NULL,'Province State Code Close',NULL,NULL,'"</provinceStateCode>"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESSQEXMLXPZ0','50','D','25','20',NULL,'Postal Code Open',NULL,NULL,'"<postalCode>"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESSQEXMLXPZ0','50','D','25','21',NULL,'Postal Code',NULL,NULL,'"drvPostalCode"','(''UA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESSQEXMLXPZ0','50','D','25','22',NULL,'Country Code Open',NULL,NULL,'"</postalCode><country>"','(''DA''=''T'')');
@@ -325,7 +325,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20211209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20220117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -336,7 +336,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111199','EMPEXPORT','OEPASSIVE','Nov 24 2021  8:23AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14785','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export','202111199','EMPEXPORT','ONDEM_XOE','Nov 24 2021  8:24AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Sched','202111199','EMPEXPORT','SCH_ESSQEX','Nov 24 2021  8:26AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202112011','EMPEXPORT','TEST_XOE','Dec  1 2021  6:10PM','ESSQEXMLXP',NULL,NULL,NULL,'202112011','Dec  1 2021 12:00AM','Dec 30 1899 12:00AM','202111241','14923','','','202111241',dbo.fn_GetTimedKey(),NULL,'us3cPeALA5000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202201141','EMPEXPORT','TEST_XOE','Jan 17 2022  8:38AM','ESSQEXMLXP',NULL,NULL,NULL,'202201141','Jan 14 2022 12:00AM','Jan 15 2022 12:00AM','202201011','15132','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3jBeALA5000',NULL);
 
 -----------
 -- AscImp inserts
@@ -536,7 +536,7 @@ CREATE TABLE [dbo].[U_ESSQEXMLXP_drvTbl_Dependent] (
     [drvSort] varchar(16) NULL,
     [drvRelationCode] varchar(1) NULL,
     [drvConNameLast] varchar(100) NULL,
-    [drvConNameFirst] varchar(100) NULL,
+    [drvConNameFirst] varchar(8000) NULL,
     [drvGender] varchar(1) NULL,
     [drvConDateOfBirth] datetime NULL,
     [drvSmokerStatus] varchar(1) NOT NULL,
@@ -1133,7 +1133,7 @@ BEGIN
                             WHEN ConRelationship IN ('COM','SPS') THEN '1'
                             END
         ,drvConNameLast = ConNameLast
-        ,drvConNameFirst = ConNameFirst
+        ,drvConNameFirst = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbo.dsi_fnRemoveChars('.,/-',ConNameFirst), 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
         ,drvGender =    CASE WHEN ConGender = 'M' THEN '1'
                         WHEN ConGender = 'F' THEN '2'
                         END
@@ -1150,6 +1150,8 @@ BEGIN
     JOIN dbo.Contacts WITH (NOLOCK)
         ON xEEID = ConEEID
         AND BdmDepRecId = ConSystemId
+        AND ConRelationship IN ('CHL','STC','COM','SPS')
+        AND ConIsDependent = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ESSQEXMLXP_drvTbl_DependentsGroupClose

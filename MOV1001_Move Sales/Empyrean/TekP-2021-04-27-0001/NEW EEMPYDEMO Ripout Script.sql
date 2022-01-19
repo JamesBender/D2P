@@ -5,7 +5,7 @@ EEMPYDEMO: Empyrean Demographic Export
 FormatCode:     EEMPYDEMO
 Project:        Empyrean Demographic Export
 Client ID:      MOV1001
-Date/time:      2022-01-05 04:23:00.403
+Date/time:      2022-01-17 06:49:33.903
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -229,7 +229,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYDEMO_20220105.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEMPYDEMO_20220117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -237,8 +237,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic','202110281','EMPEXPORT','ONDMD_XOE','Oct 28 2021  8:19PM','EEMPYDEMO',NULL,NULL,NULL,'202110281','Oct 28 2021 12:00AM','Dec 30 1899 12:00AM','202110211','1805','','','202110211',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYDEMO',NULL,NULL,NULL,'202112299','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202112221',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202201041','EMPEXPORT','TEST_XOE','Jan  4 2022 11:18PM','EEMPYDEMO',NULL,NULL,NULL,'202201041','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202112231','1751','','','202112231',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Sched','202108169','EMPEXPORT','SCHEDULED',NULL,'EEMPYDEMO',NULL,NULL,NULL,'202201129','Nov  1 2019  2:50PM','Nov  1 2019  2:50PM','202201051',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OG4IV,NR767',NULL,NULL,NULL,'Empyrean Demographic Test','202201149','EMPEXPORT','TEST_XOE','Jan  4 2022 11:18PM','EEMPYDEMO',NULL,NULL,NULL,'202201149','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202201071','1751','','','202201071',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -542,6 +542,7 @@ INSERT INTO [dbo].[U_EEMPYDEMO_Mapping_Actions] (ActCode,ActDesc) VALUES ('EQI',
 INSERT INTO [dbo].[U_EEMPYDEMO_Mapping_Actions] (ActCode,ActDesc) VALUES ('HOME','Home Company');
 INSERT INTO [dbo].[U_EEMPYDEMO_Mapping_Actions] (ActCode,ActDesc) VALUES ('PCEU','Position Control Update');
 INSERT INTO [dbo].[U_EEMPYDEMO_Mapping_Actions] (ActCode,ActDesc) VALUES ('TRB','Transferred back');
+INSERT INTO [dbo].[U_EEMPYDEMO_Mapping_Actions] (ActCode,ActDesc) VALUES ('CONV','Conversion');
 
 -----------
 -- Create table U_EEMPYDEMO_PEarHist
@@ -1123,7 +1124,7 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
         ,drvActionReasonCode =    CASE WHEN TermActionCode IS NOT NULL THEN TermActionDesc
                                 WHEN ActActionCode IS NOT NULL AND OEjhReason  IS NOT NULL THEN
                                             CASE WHEN ActActionEffDate > OEjhJobEffDate THEN ActActionDesc ELSE B.ActDesc END
-                                WHEN ActActionCode IS NOT NULL THEN ActActionDesc 
+                                WHEN ActActionCode IS NOT NULL THEN ActActionDesc
                                 ELSE B.ActDesc 
                                 END 
         -- field 62                                                     
@@ -1269,7 +1270,7 @@ FROM '\\us.saas\N3\Public\MOV1001\Exports\Empyrean\Appendix\Actions Mappings.cs
                 FROM (
                         SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate, ROW_NUMBER() OVER (PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
                         FROM EmpHJob
-                        WHERE EjhReason IN ('100','101','400','401','800','TRI','TRO','200','201')) AS EjhList
+                        WHERE EjhReason IN ('100','101','400','401','800','TRI','TRO','200','201','CONV')) AS EjhList
                 WHERE RN = 1) AS OuterEjhList
         ON OEjhEEID = xEEID
         AND OEjhCOID = xCOID
@@ -1354,11 +1355,13 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202108011'
-       ,expStartPerControl     = '202108011'
-       ,expLastEndPerControl   = '202108169'
-       ,expEndPerControl       = '202108169'
-WHERE expFormatCode = 'EEMPYDEMO';
+    SET expLastStartPerControl = '202201071'
+       ,expStartPerControl     = '202201071'
+       ,expLastEndPerControl   = '202201149'
+       ,expEndPerControl       = '202201149'
+WHERE expFormatCode = 'EEMPYDEMO'
+AND ExpExportCode = 'TEST_XOE'
+;
 **********************************************************************************/
 GO
 CREATE VIEW dbo.dsi_vwEEMPYDEMO_Export AS 
