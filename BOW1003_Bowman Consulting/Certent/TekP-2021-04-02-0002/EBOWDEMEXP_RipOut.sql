@@ -5,7 +5,7 @@ EBOWDEMEXP: Bowman Certent Demographic
 FormatCode:     EBOWDEMEXP
 Project:        Bowman Certent Demographic
 Client ID:      BOW1003
-Date/time:      2021-11-08 18:34:17.357
+Date/time:      2022-01-18 21:01:38.713
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         EW4WUP2DB01
 Database:       ULTIPRO_WPBOWMN
 Web Filename:   BOW1003_941BF_EEHISTORY_EBOWDEMEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -218,7 +219,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBOWDEMEXP_20211108.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBOWDEMEXP_20220118.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -227,7 +228,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Bowman Certent Demographic','202108319','EMPEXPORT','ONDEM_XOE','Aug 23 2021  1:12PM','EBOWDEMEXP',NULL,NULL,NULL,'202108319','Aug 13 2021 12:00AM','Dec 30 1899 12:00AM','202108011','134','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3rVaBOW1003',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Bowman Certent Demograph-Sched','202108319','EMPEXPORT','SCH_EBOWDE',NULL,'EBOWDEMEXP',NULL,NULL,NULL,'202108319','Aug  6 2021 10:41AM','Aug  6 2021 10:41AM','202108011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Bowman Certent Demograph-Test','202110191','EMPEXPORT','TEST_XOE','Oct 20 2021 10:16AM','EBOWDEMEXP',NULL,NULL,NULL,'202110191','Oct 19 2021 12:00AM','Dec 30 1899 12:00AM','202110051','956','','','202110051',dbo.fn_GetTimedKey(),NULL,'us3rVaBOW1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Bowman Certent Demograph-Test','202110191','EMPEXPORT','TEST_XOE','Nov 11 2021 12:44PM','EBOWDEMEXP',NULL,NULL,NULL,'202110191','Oct 19 2021 12:00AM','Dec 30 1899 12:00AM','202110051','985','','','202110051',dbo.fn_GetTimedKey(),NULL,'us3rVaBOW1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -241,6 +242,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBOWDEMEXP','UseFileName','V','Y');
 
 -----------
@@ -330,7 +332,7 @@ CREATE TABLE [dbo].[U_EBOWDEMEXP_drvTbl] (
     [drvDateRelatStarted] datetime NULL,
     [drvTermDate] datetime NULL,
     [drvTermType] varchar(25) NULL,
-	drvSect16Emp varchar(10) NULL,
+    [drvSect16Emp] varchar(7) NOT NULL,
     [drvCurrJobTitle] varchar(150) NULL,
     [drvCurrDept] varchar(5) NULL,
     [drvCurrSection] varchar(25) NULL,
@@ -422,7 +424,7 @@ CREATE TABLE [dbo].[U_EBOWDEMEXP_Header] (
     [hrvDateRelatshipStart] varchar(23) NOT NULL,
     [hrvTerminationDate] varchar(15) NOT NULL,
     [hrvTerminationType] varchar(15) NOT NULL,
-	hrvSect16Emp	varchar(12) NOT NULL,
+    [hrvSect16Emp] varchar(17) NOT NULL,
     [hrvCurrJobTitle] varchar(15) NOT NULL,
     [hrvCurrDept] varchar(17) NOT NULL,
     [hrvCurrSection] varchar(14) NOT NULL,
@@ -503,9 +505,12 @@ Purpose: Bowman Certent Demographic
 Revision History
 ----------------
 11/08/2021 by AP:
-		- Added Section16Employee field and header and value.
-		- Removed employees from dataset that are CON, SUM, INT, TES, TMP, REG and STU.
-		- Added 'E' to Relationship to Company as the exclusive value due to the change above.
+    - Added Section16Employee field and header and value.
+    - Removed employees from dataset that are CON, SUM, INT, TES, TMP, REG and STU.
+    - Added 'E' to Relationship to Company as the exclusive value due to the change above.
+
+01/18/2021 by AP:
+	- Added logic to automatically drop terms 07-01-2021.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBOWDEMEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBOWDEMEXP';
@@ -610,7 +615,7 @@ BEGIN
         ,drvDateRelatStarted = EecDateOfOriginalHire
         ,drvTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvTermType =  TchDesc
-		,drvSect16Emp = CASE WHEN EepUDField07 = 'Yes' THEN 'Insider' ELSE 'No' END
+        ,drvSect16Emp = CASE WHEN EepUDField07 = 'Yes' THEN 'Insider' ELSE 'No' END
         ,drvCurrJobTitle = EecJobTitle
         ,drvCurrDept = CASE WHEN Cmpcompanycode = 'BCG' THEN 'BCG'
                             WHEN Cmpcompanycode = 'BRCLC' THEN 'BRCLC'
@@ -1037,8 +1042,8 @@ BEGIN
         ,drvAnnualSalary = '' --leave blank
         ,drvRetEligibilityDate = '' --leave blank
         ,drvReltoCompany = 'E'
-		
-		--CASE WHEN  eeceetype IN ('EVN','EVP','EXN','HNE','LSS','P','PN','PRE','SE','SNE','VP','VPN') THEN 'E' 
+        
+        --CASE WHEN  eeceetype IN ('EVN','EVP','EXN','HNE','LSS','P','PN','PRE','SE','SNE','VP','VPN') THEN 'E' 
   --                         else 'E' END
     INTO dbo.U_EBOWDEMEXP_drvTbl
     FROM dbo.U_EBOWDEMEXP_EEList WITH (NOLOCK)
@@ -1073,7 +1078,7 @@ BEGIN
          GROUP BY EEID,OrgLvl4,OrgLvl4Seg) gl
          ON gl.OrgLvl4 = EecOrgLvl4
 
-	WHERE EecEEType NOT IN ('CON', 'SUM', 'INT', 'TES', 'TMP', 'REG', 'STU')
+    WHERE EecEEType NOT IN ('CON', 'SUM', 'INT', 'TES', 'TMP', 'REG', 'STU')
 
 
  --   --JOIN dbo.OrgLevel org2 WITH (NOLOCK)
@@ -1093,6 +1098,11 @@ BEGIN
  --   --JOIN dbo.OrgLevel org4 WITH (NOLOCK)
  --   --    ON org4.OrgCode = EecOrgLvl4  
     ;
+
+	---- PER REQUEST, DROPPING ANY EMPLOYEES WITH TERM DATE BEFORE 07-01-2021 ----
+	DELETE dbo.U_EBOWDEMEXP_drvTbl
+	WHERE CAST(drvTermDate AS DATE) < '07-01-2021'
+
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
@@ -1117,7 +1127,7 @@ BEGIN
         ,hrvDateRelatshipStart = 'DateRelationshipStarted'
         ,hrvTerminationDate = 'TerminationDate' -- CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,hrvTerminationType = 'TerminationType'
-		,hrvSect16Emp = 'Section16Employee'
+        ,hrvSect16Emp = 'Section16Employee'
         ,hrvCurrJobTitle = 'CurrentJobTitle'
         ,hrvCurrDept = 'CurrentDepartment'
         ,hrvCurrSection = 'CurrentSection'
