@@ -207,31 +207,48 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
-        ,drvName = ''
-        ,drvPrefName = ''
-        ,drvEmpId = ''
+        ,drvName = LTRIM(RTRIM(EepNameFirst)) + ' ' + LTRIM(RTRIM(EepNameLast))
+        ,drvPrefName = EepNamePreferred
+        ,drvEmpId = Ec.EecEmpNo
         ,drvEmail = EepAddressEMail
         ,drvDOB = EepDateOfBirth
-        ,drvStartDt = ''
-        ,drvEndDt = ''
-        ,drvLanguage = ''
-        ,drvManagerEmail = EepAddressEMail
-        ,drvManager = ''
+        ,drvStartDt = EecDateOfOriginalHire
+        ,drvEndDt = ISNULL(CONVERT(VARCHAR, Ec.EecDateOfTermination, 126), '')
+        ,drvLanguage = Ec.EecLanguageCode
+        ,drvManagerEmail = pers2.EepAddressEMail
+        ,drvManager = Ec2.EecEmpNo
         ,drvPerfRating = ''
-        ,drvGender = EepGender
-        ,drvLoc = ''
-        ,drvDept = ''
-        ,drvEmpType = ''
-        ,drvJobTitle = ''
+        ,drvGender = CASE WHEN EepGender = 'M' THEN 'Male'
+                            WHEN EepGender = 'F' THEN 'Female'
+                            WHEN EepGender NOT IN ('M', 'F') THEN 'Non-binary'
+                        END
+        ,drvLoc = LocDesc
+        ,drvDept = O2.OrgDesc
+        ,drvEmpType = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Full-time'
+                        WHEN EecFullTimeOrPartTime = 'P' THEN 'Part-time'
+                        END
+        ,drvJobTitle = JbcDesc
     INTO dbo.U_ECULTIEXDE_drvTbl
     FROM dbo.U_ECULTIEXDE_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.EmpComp Ec WITH(NOLOCK)
+        ON Ec.EecEEID = xEEID
+        AND Ec.EecCOID = xCOID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
     JOIN dbo.U_dsi_BDM_ECULTIEXDE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.EmpComp EC2 WITH (NOLOCK) -- supervisor  
+    ON EC2.EecEEID = Ec.EecSupervisorID  
+	 AND EC2.EecCOID = xCOID -- to ensure it's the record that's most active
+  --  AND Ec2.EecCOID = Ec.EecCOID  
+        --AND SUP.EecEmplStatus <> 'T' 
+    LEFT JOIN dbo.EmpPers pers2 WITH(NOLOCK)
+    ON Ec2.EecEEID = pers2.EepEEID
+    LEFT JOIN dbo.OrgLevel O2 WITH(NOLOCK)
+        ON O2.OrgCode = Ec.EecOrgLvl2
     ;
 
     --==========================================
