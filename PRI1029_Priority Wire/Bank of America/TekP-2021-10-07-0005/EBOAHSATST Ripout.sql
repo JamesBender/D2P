@@ -5,7 +5,7 @@ EBOAHSATST: Bank of America HSA TEST
 FormatCode:     EBOAHSATST
 Project:        Bank of America HSA TEST
 Client ID:      PRI1029
-Date/time:      2022-01-13 19:25:23.423
+Date/time:      2022-01-19 15:51:25.743
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -231,7 +231,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBOAHSATST_20220113.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBOAHSATST_20220119.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -241,7 +241,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202002269','EMPEXPORT','OEACTIVE',NULL,'EBOAHSATST',NULL,NULL,NULL,'202002269','Feb 26 2020 11:03AM','Feb 26 2020 11:03AM','202002261',NULL,NULL,NULL,'202002261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Bank of America HSA','202012041','EMPEXPORT','ONDEMAND','Dec  4 2020 12:00AM','EBOAHSATST',NULL,NULL,NULL,'202012041','Dec  4 2020 12:00AM','Nov 28 2020 12:00AM','202012041','220',NULL,NULL,'202012041',dbo.fn_GetTimedKey(),NULL,'ULTI_WPPWC',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202002269','EMPEXPORT','SCHEDULED',NULL,'EBOAHSATST',NULL,NULL,NULL,'202002269','Feb 26 2020 11:03AM','Feb 26 2020 11:03AM','202002261',NULL,NULL,NULL,'202002261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202201149','EMPEXPORT','TEST','Jan 12 2022  2:08PM','EBOAHSATST',NULL,NULL,NULL,'202201149','Jan 14 2022 12:00AM','Dec 30 1899 12:00AM','202201141','2859','eecPayGroup','P1,HOURLY,SALARY','202201141',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202201199','EMPEXPORT','TEST','Jan 19 2022  1:40PM','EBOAHSATST',NULL,NULL,NULL,'202201199','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201191','1577','eecPayGroup','P1,HOURLY','202201191',dbo.fn_GetTimedKey(),NULL,'us3cPePRI1029',NULL);
 
 -----------
 -- AscImp inserts
@@ -383,7 +383,7 @@ CREATE TABLE [dbo].[U_EBOAHSATST_drvTbl_Participant] (
     [drvDivision] varchar(1) NOT NULL,
     [drvHoursPerWeek] numeric NULL,
     [drvEmployeeClass] varchar(3) NOT NULL,
-    [drvPayrollFrequency] varchar(1) NOT NULL,
+    [drvPayrollFrequency] varchar(3) NOT NULL,
     [drvPayrollFreqEffDate] varchar(1) NOT NULL,
     [drvParticipantStatus] varchar(10) NOT NULL,
     [drvStatusEffDate] datetime NULL,
@@ -480,6 +480,7 @@ Revision History
 Update By           Date           Request Num              Desc
 Darren Collard        01/13/2022     TekP-2021-10-07-0005   Add deduction code DFSA
 Darren Collard        01/13/2022     NONE                      Updated BSB to BOA on header and footer
+Darren Collard        01/19/2022     NONE                      Updated Payroll Frequency P1/PWC
 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBOAHSATST';
@@ -659,7 +660,7 @@ BEGIN
                             WHEN 'M' THEN ((CAST(EecScheduledWorkHrs as numeric)*12)/2)
                            END
         ,drvEmployeeClass = 'ALL'
-        ,drvPayrollFrequency = 'W'
+        ,drvPayrollFrequency = CASE WHEN EecPayGroup = 'P1' THEN 'P1' WHEN EecPayGroup = 'HOURLY' THEN 'PWC' ELSE 'W' END
         ,drvPayrollFreqEffDate = ''
         ,drvParticipantStatus = CASE WHEN EecEmplStatus IN ('L','A') THEN 'Active' ELSE 'Terminated' END
         ,drvStatusEffDate = CASE WHEN EecEmplStatus = 'T' OR EedBenStatus IN ('T','C') THEN EedBenStopDate ELSE EecDateOfLastHire END
