@@ -3,9 +3,9 @@
 ECIFMSLTEX: Cigna NYL/FMLA/STD/LTD Export
 
 FormatCode:     ECIFMSLTEX
-Project:        Cigna NYL/FMAL/STD/LTD Export
+Project:        Cigna NYL/FMLA/STD/LTD Export
 Client ID:      ACH1001
-Date/time:      2022-01-21 10:02:44.787
+Date/time:      2022-01-24 06:23:10.070
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -123,6 +123,10 @@ GO
 IF OBJECT_ID('U_ECIFMSLTEX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECIFMSLTEX_drvTbl];
 GO
 IF OBJECT_ID('U_ECIFMSLTEX_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECIFMSLTEX_DedList];
+GO
+IF OBJECT_ID('U_ECIFMSLTEX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECIFMSLTEX_AuditFields];
+GO
+IF OBJECT_ID('U_ECIFMSLTEX_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECIFMSLTEX_Audit];
 GO
 IF OBJECT_ID('U_dsi_BDM_ECIFMSLTEX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECIFMSLTEX];
 GO
@@ -344,7 +348,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIFMSLTEX_20220121.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIFMSLTEX_20220124.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -355,7 +359,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201219','EMPEXPORT','OEPASSIVE','Jan 21 2022  9:58AM','ECIFMSLTEX',NULL,NULL,NULL,'202201219','Jan 21 2022  6:10AM','Jan 21 2022  6:10AM','202201141','278','','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cigna NYL/FMAL/STD/LTD Export','202201219','EMPEXPORT','ONDEM_XOE','Jan 21 2022  9:59AM','ECIFMSLTEX',NULL,NULL,NULL,'202201219','Jan 21 2022  6:10AM','Jan 21 2022  6:10AM','202201141','278','','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cigna NYL/FMAL/STD/LTD E-Sched','202201219','EMPEXPORT','SCH_ECIFMS','Jan 21 2022  9:59AM','ECIFMSLTEX',NULL,NULL,NULL,'202201219','Jan 21 2022  6:10AM','Jan 21 2022  6:10AM','202201141','278','','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cigna NYL/FMAL/STD/LTD E-Test','202201219','EMPEXPORT','TEST_XOE','Jan 21 2022  9:59AM','ECIFMSLTEX',NULL,NULL,NULL,'202201219','Jan 21 2022  6:10AM','Jan 21 2022  6:10AM','202201141','278','','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cigna NYL/FMAL/STD/LTD E-Test','202201219','EMPEXPORT','TEST_XOE','Jan 21 2022  4:12PM','ECIFMSLTEX',NULL,NULL,NULL,'202201219','Jan 21 2022 12:00AM','Dec 30 1899 12:00AM','202201071','278','','','202201071',dbo.fn_GetTimedKey(),NULL,'us3cPeACH1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -445,6 +449,34 @@ CREATE TABLE [dbo].[U_dsi_BDM_ECIFMSLTEX] (
 );
 
 -----------
+-- Create table U_ECIFMSLTEX_Audit
+-----------
+
+IF OBJECT_ID('U_ECIFMSLTEX_Audit') IS NULL
+CREATE TABLE [dbo].[U_ECIFMSLTEX_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_ECIFMSLTEX_AuditFields
+-----------
+
+IF OBJECT_ID('U_ECIFMSLTEX_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ECIFMSLTEX_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
 -- Create table U_ECIFMSLTEX_DedList
 -----------
 
@@ -463,14 +495,14 @@ CREATE TABLE [dbo].[U_ECIFMSLTEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(5) NULL,
     [drvSSN] char(11) NULL,
     [drvEmployeeIdNo] char(9) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(50) NULL,
     [drvNameSuffix] varchar(30) NULL,
-    [drvDateOfBirth] varchar(1) NOT NULL,
+    [drvDateOfBirth] datetime NULL,
     [drvGender] char(1) NULL,
     [drvMaritalStatusCode] varchar(1) NULL,
     [drvAddressLine1] varchar(255) NULL,
@@ -690,6 +722,49 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_ECIFMSLTEX_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ECIFMSLTEX_AuditFields;
+    CREATE TABLE dbo.U_ECIFMSLTEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_ECIFMSLTEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_ECIFMSLTEX_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ECIFMSLTEX_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audCOID = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        /*,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
+        ,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audNewValue,'') <> '' THEN 'Y' ELSE 'N' END
+        ,audFullTimePartTimeChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecFullTimeOrPartTime' AND ISNULL(audNewValue, '') = 'P' AND ISNULL(audOldValue, '') = 'F' THEN 'Y' ELSE 'N' END*/
+    INTO dbo.U_ECIFMSLTEX_Audit
+    FROM dbo.U_ECIFMSLTEX_EEList WITH (NOLOCK)
+    JOIN dbo.vw_AuditData WITH (NOLOCK) 
+        ON audKey1Value = xEEID
+    JOIN dbo.U_ECIFMSLTEX_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE'
+    --AND ISNULL(audNewValue,'') <> ''
+    AND audNewValue = 'T' 
+    ;
+
+
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
@@ -739,7 +814,7 @@ BEGIN
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = EepNameMiddle
         ,drvNameSuffix = EepNameSuffix
-        ,drvDateOfBirth = ''
+        ,drvDateOfBirth = EepDateOfBirth
         ,drvGender = CASE WHEN EepGender IN ('M','F') THEN EepGender END
         ,drvMaritalStatusCode =    CASE WHEN EepMaritalStatus IN ('D','M','W') THEN eepMaritalStatus
                                 WHEN eepMaritalStatus = 'S' THEN 'I'
@@ -753,7 +828,7 @@ BEGIN
         ,drvPhoneNumber = EepPhoneHomeNumber
         ,drvEmploymentStatusCode =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'RT'
                                     WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DI'
-                                    WHEN EecEmplStatus = 'T'  AND EecTermReason IN ('202','203') THEN 'TE'
+                                    WHEN EecEmplStatus = 'T'  AND EecTermReason NOT IN ('202','203') THEN 'TE'
                                     ELSE 'AC'
                                     END
         ,drvEmployeeStatusEffDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
@@ -771,7 +846,7 @@ BEGIN
         ,drvStdPolicySymbol = CASE WHEN STDBU_DedCode IS NOT NULL OR STDC_DedCode IS NOT NULL THEN 'FLK' END
         ,drvStdPolicyNumber = CASE WHEN STDBU_DedCode IS NOT NULL OR STDC_DedCode IS NOT NULL THEN '0961102' END
         ,drvStdOriginalBenEffDate =    CASE WHEN STDBU_DedCode IS NOT NULL THEN (SELECT MIN(EedBenStartDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedDedCode = 'STDBU' AND EedEEID = xEEID AND EedCOID = xCOID)
-                                    WHEN STDC_DedCode IS NOT NULL THEN (SELECT MIN(EedBenStartDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedDedCode = 'STDBU' AND EedEEID = xEEID AND EedCOID = xCOID)
+                                    WHEN STDC_DedCode IS NOT NULL THEN (SELECT MIN(EedBenStartDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedDedCode = 'STDC' AND EedEEID = xEEID AND EedCOID = xCOID)
                                     END
         ,drvStdIssuedBenefitsPct = CASE WHEN STDBU_DedCode IS NOT NULL OR STDC_DedCode IS NOT NULL THEN '06000' END
         ,drvStdEEContributionPct =    CASE WHEN STDBU_DedCode IS NOT NULL THEN '10000'
@@ -788,7 +863,7 @@ BEGIN
         ,drvLtdPolicySymbol = CASE WHEN LTDBU_DedCode IS NOT NULL OR LTDC_DedCode IS NOT NULL THEN 'FLK' END
         ,drvLtdPolicyNumber = CASE WHEN LTDBU_DedCode IS NOT NULL OR LTDC_DedCode IS NOT NULL THEN '0961103' END
         ,drvLtdOriginalBenEffDate =    CASE WHEN LTDBU_DedCode IS NOT NULL THEN (SELECT MIN(EedBenStartDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedDedCode = 'LTDBU' AND EedEEID = xEEID AND EedCOID = xCOID)
-                                    WHEN LTDC_DedCode IS NOT NULL THEN (SELECT MIN(EedBenStartDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedDedCode = 'LTDBU' AND EedEEID = xEEID AND EedCOID = xCOID)
+                                    WHEN LTDC_DedCode IS NOT NULL THEN (SELECT MIN(EedBenStartDate) FROM dbo.EmpDed WITH (NOLOCK) WHERE EedDedCode = 'LTDC' AND EedEEID = xEEID AND EedCOID = xCOID)
                                     END
         ,drvLtdIssuedBenefitsPct = CASE WHEN LTDBU_DedCode IS NOT NULL OR LTDC_DedCode IS NOT NULL THEN '06000' END
         ,drvLtdEEContributionPct = CASE WHEN LTDBU_DedCode IS NOT NULL THEN '10000'
@@ -828,11 +903,14 @@ BEGIN
         ON EjhEEID = xEEID
         AND EjhCOID = xCOID
         AND EjhJobCode = EecJobCode 
-    JOIN dbo.U_ECIFMSLTEX_PEarHist WITH (NOLOCK)
+    LEFT JOIN dbo.U_ECIFMSLTEX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    WHERE EecEmplStatus = 'T' OR (EecEmplStatus <> 'T' AND EecDateOfTermination BETWEEN DATEADD(DAY, -60, @EndDate) AND @EndDate)
+    LEFT JOIN dbo.U_ECIFMSLTEX_Audit WITH (NOLOCK)
+        ON xEEID = audEEID
+        AND xCOID = audCOID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -60, @EndDate) AND @EndDate)
     ;
     ---------------------------------
     -- HEADER RECORD
