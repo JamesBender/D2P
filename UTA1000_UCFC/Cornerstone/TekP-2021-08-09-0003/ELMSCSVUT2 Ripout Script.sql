@@ -5,7 +5,7 @@ ELMSCSVUT2: Torch LMS Export V2
 FormatCode:     ELMSCSVUT2
 Project:        Torch LMS Export V2
 Client ID:      UTA1000
-Date/time:      2021-11-15 05:52:00.840
+Date/time:      2022-01-25 11:02:17.733
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -175,7 +175,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELMSCSVUT2_20211115.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELMSCSVUT2_20220125.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -184,7 +184,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','XAH9W',NULL,NULL,NULL,'Torch LMS Export','201903139','EMPEXPORT','ONDEMAND',NULL,'ELMSCSVUT2',NULL,NULL,NULL,'201905029','Feb 12 2019  9:27AM','Feb 12 2019  9:27AM','201905011',NULL,'','','201903061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XAH9W',NULL,NULL,NULL,'Scheduled Session','201903139','EMPEXPORT','SCHEDULED',NULL,'ELMSCSVUT2',NULL,NULL,NULL,'202108319','Feb 12 2019  9:27AM','Feb 12 2019  9:27AM','202108301',NULL,'','','201903061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202110279','EMPEXPORT','TEST','Nov  4 2021  1:04PM','ELMSCSVUT2',NULL,NULL,NULL,'202110279','Oct 27 2021 12:00AM','Dec 30 1899 12:00AM','202110271','628','','','202110271',dbo.fn_GetTimedKey(),NULL,'us3rVaUTA1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202112029','EMPEXPORT','TEST','Dec  8 2021 12:40PM','ELMSCSVUT2',NULL,NULL,NULL,'202112029','Dec  2 2021 12:00AM','Dec 30 1899 12:00AM','202111191','602','','','202111191',dbo.fn_GetTimedKey(),NULL,'us3lKiUTA1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'XAH9W',NULL,NULL,NULL,'Torch LMS OE Export','202001019','EMPEXPORT','TorOE',NULL,'ELMSCSVUT2',NULL,NULL,NULL,'202001019',NULL,NULL,'202001011',NULL,NULL,'','202001011',dbo.fn_GetTimedKey(),NULL,NULL,NULL);
 
 -----------
@@ -236,7 +236,7 @@ CREATE TABLE [dbo].[U_ELMSCSVUT2_drvTbl] (
     [drvUserId] varchar(50) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
-    [drvUsername] char(9) NULL,
+    [drvUsername] varchar(50) NULL,
     [drvManager] varchar(50) NULL,
     [drvAllowReconciliation] varchar(4) NOT NULL,
     [drvEmail] varchar(50) NULL,
@@ -369,15 +369,15 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
 
-        ,drvUserId = EEP.EepAddressEmail
+        ,drvUserId = susUserName --EEP.EepAddressEmail
         ,drvNameFirst = EEP.EepNamePreferredOrFirst -- EEP.EepNameFirst
         ,drvNameLast = EEP.EepNameLast
-        ,drvUsername = EEC.EecEmpNo
+        ,drvUsername = EEP.EepAddressEmail  --EEC.EecEmpNo
         ,drvManager = SUPP.eepAddressEMail
         ,drvAllowReconciliation = 'TRUE'
         ,drvEmail = EEP.EepAddressEmail
         ,drvRequiredTrainingApprov = '1'
-        ,drvExempt = CASE WHEN EjhFLSACategory = 'E' THEN '1' ELSE '0' END
+        ,drvExempt = '1'  --CASE WHEN EjhFLSACategory = 'E' THEN '1' ELSE '0' END
         ,drvOriginalHireDate = EEC.EecDateOfOriginalHire
         ,drvLastHireDate = EEC.EecDateOfLastHire
         ,drvStatus = CASE WHEN EEC.EecEmplStatus = 'A' THEN '1' ELSE '0' END
@@ -453,6 +453,8 @@ BEGIN
         ON EEC.EecOrgLvl1 = O1.OrgCode
     LEFT JOIN dbo.OrgLevel O2 WITH (NOLOCK)
         ON EEC.EecOrgLvl2 = O2.OrgCode
+    LEFT JOIN dbo.vw_rbsusers WITH (NOLOCK)
+        ON susUserId = EEP.EepUserId
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEADD(DAY, 90, EecDateOfTermination) >= @EndDate)
     
     ;
