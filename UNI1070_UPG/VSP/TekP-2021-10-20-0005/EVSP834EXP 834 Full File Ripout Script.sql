@@ -5,7 +5,7 @@ EVSP834EXP: VSP 834 Export
 FormatCode:     EVSP834EXP
 Project:        VSP 834 Export
 Client ID:      UNI1070
-Date/time:      2022-01-18 09:28:30.803
+Date/time:      2022-01-25 12:33:26.090
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -344,19 +344,19 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EVSP834EXP_20220118.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EVSP834EXP_20220125.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202201179','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171',NULL,'','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only','202201179','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171',NULL,'','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202201179','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171',NULL,'','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202201179','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171',NULL,'','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'VSP 834 Export','202201179','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171',NULL,'','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202201179','EMPEXPORT','TEST_XOE','Jan 17 2022 12:37PM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','11446','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202201179','EMPEXPORT','CHANGES','Jan 18 2022  9:30AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','12783','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202201179','EMPEXPORT','FULLFILE','Jan 18 2022  9:30AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','12783','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202201179','EMPEXPORT','OEACTIVE','Jan 18 2022  9:31AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','31','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202201179','EMPEXPORT','OEPASSIVE','Jan 18 2022  9:32AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','12783','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'VSP 834 Export','202201179','EMPEXPORT','SCHEDULED','Jan 18 2022  9:32AM','EVSP834EXP',NULL,NULL,NULL,'202201179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','12783','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202201249','EMPEXPORT','TEST_XOE','Jan 24 2022  7:34PM','EVSP834EXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:00AM','Dec 30 1899 12:00AM','202201101','13015','','','202201101',dbo.fn_GetTimedKey(),NULL,'us3lKiUNI1070',NULL);
 
 -----------
 -- AscImp inserts
@@ -516,7 +516,7 @@ CREATE TABLE [dbo].[U_EVSP834EXP_DrvTbl] (
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
     [drvINS12_DateTimePeriod] varchar(8) NULL,
     [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(4) NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
     [drvDTP00_DateTime1] varchar(1) NOT NULL,
@@ -548,7 +548,7 @@ CREATE TABLE [dbo].[U_EVSP834EXP_DrvTbl] (
     [drvN403_Zip] varchar(50) NULL,
     [drvN404_CountryCode] char(3) NULL,
     [drvDMG02_DateTimePeriod1] varchar(8) NULL,
-    [drvDMG03_GenderCode1] char(1) NULL,
+    [drvDMG03_GenderCode1] varchar(1) NULL,
     [drvDMG04_MaritalStatusCode1] varchar(1) NULL,
     [drvICM01_FrequencyCode] varchar(1) NULL,
     [drvICM02_MonetaryAmount] money NULL,
@@ -585,12 +585,12 @@ CREATE TABLE [dbo].[U_EVSP834EXP_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NULL,
-    [drvHD03_InsuranceLineCode] varchar(3) NULL,
+    [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
     [drvHD04_PlanCoverageDesc] varchar(1) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
-    [drvDTP00_DateTime_348] varchar(3) NULL,
-    [drvDTP01_DateTimeQualifier_348] varchar(3) NULL,
-    [drvDTP02_DateTimeFormatQual_348] varchar(2) NULL,
+    [drvDTP00_DateTime_348] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_348] datetime NULL,
     [drvDTP00_DateTime_349] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier_349] varchar(3) NULL,
@@ -840,6 +840,8 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EVSP834EXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    DELETE dbo.U_EVSP834EXP_EEList WHERE xEEID = 'D5SC1M001020'
+
     IF @ExportCode LIKE 'OE%'
     BEGIN
         -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
@@ -1038,7 +1040,7 @@ BEGIN
                                     WHEN CmpCompanyCode = 'LEXST' THEN '0026'
                                     WHEN CmpCompanyCode = 'CSC' THEN '0014'
                                     WHEN CmpCompanyCode = 'MKPRC' THEN '0028'
-                                    WHEN CmpCompanyCode = 'MKUSA' AND EecLocation <> 'LEXWST' THEN '0030'
+                                    WHEN CmpCompanyCode in ('MKUSA','08') AND EecLocation <> 'LEXWST' THEN '0030'
                                     WHEN CmpCompanyCode = '05' THEN '0032'
                                     WHEN CmpCompanyCode = '01' AND EecPayGroup <> 'UP' THEN '0018'
                                     WHEN CmpCompanyCode = 'NLMW' THEN '0034'
@@ -1204,9 +1206,9 @@ BEGIN
                                            WHEN BdmDedType IN ('VIS') THEN ''
                                      END
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmBenOption IN ('EE') THEN 'EMP'
-                                        WHEN BdmBenOption IN ('SPS') THEN 'ESP'
-                                        WHEN BdmBenOption IN ('CHILD') THEN 'ECH'
-                                        WHEN BdmBenOption IN ('FAM') THEN 'FAM'
+                                        WHEN BdmBenOption IN ('EES','EEDP') THEN 'ESP'
+                                        WHEN BdmBenOption IN ('EEC','EEC1','EEC2','EEC3') THEN 'ECH'
+                                        WHEN BdmBenOption IN ('EEF','EEDPF') THEN 'FAM'
                                         END                                    
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
