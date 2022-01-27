@@ -5,7 +5,7 @@ EOPTFSAGRA: Optum FSA
 FormatCode:     EOPTFSAGRA
 Project:        Optum FSA
 Client ID:      GRA1009
-Date/time:      2022-01-04 09:33:05.573
+Date/time:      2022-01-26 17:58:55.103
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -143,13 +143,13 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 -- AscDefF inserts
 -----------
 
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EOPTFSAGRAZ0','19','H','01','1',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EOPTFSAGRAZ0','19','H','01','1',NULL,'Filler',NULL,NULL,'"0000000000000000000"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EOPTFSAGRAZ0','1','H','01','20',NULL,'Header Master Layout',NULL,NULL,'"hdrHeadMastLay"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EOPTFSAGRAZ0','3','H','01','21',NULL,'System Name',NULL,NULL,'"hdrSysName"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EOPTFSAGRAZ0','4','H','01','24',NULL,'System Number',NULL,NULL,'"hdrSysNum"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EOPTFSAGRAZ0','8','H','01','28',NULL,'Client Code',NULL,NULL,'"hdrClientCode"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EOPTFSAGRAZ0','3','H','01','36',NULL,'Version Number',NULL,NULL,'"hdrVersNum"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EOPTFSAGRAZ0','8','H','01','39',NULL,'Date',NULL,NULL,'"hdrDate"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EOPTFSAGRAZ0','8','H','01','39',NULL,'Date',NULL,NULL,'"hdrDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EOPTFSAGRAZ0','9','H','01','47',NULL,'Customer Specific ID',NULL,NULL,'"hdrCustSpecId"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EOPTFSAGRAZ0','30','H','01','56',NULL,'Customer Name',NULL,NULL,'"hdrCustName"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EOPTFSAGRAZ0','3','H','01','86',NULL,'Cycle',NULL,NULL,'"hdrCycle"','(''UA''=''F'')');
@@ -204,7 +204,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EOPTFSAGRAZ0','8','D','10','294',NULL,'Healthcare or Limited Purp FSA Term Date',NULL,NULL,'"drvHealthLPFSATermDt"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','EOPTFSAGRAZ0','1','D','10','302',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','EOPTFSAGRAZ0','7','D','10','303',NULL,'Healthcare or Limited Purp FSA Elect Amt',NULL,NULL,'"drvHealthLPFSAElectAmt"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','EOPTFSAGRAZ0','8','D','10','310',NULL,'Healthcare or Limited Purp FSA Elect Eff Date',NULL,NULL,'"drvHealthLPFSAElectEffDt"','(''UD112''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','EOPTFSAGRAZ0','8','D','10','310',NULL,'Healthcare or Limited Purp FSA Elect Eff Date',NULL,NULL,'"drvHealthLPFSAElectEffDt"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','EOPTFSAGRAZ0','2','D','10','318',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','EOPTFSAGRAZ0','1','D','10','320',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','EOPTFSAGRAZ0','9','D','10','321',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220126.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -246,7 +246,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export','202112219','EMPEXPORT','ONDEM_XOE',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202112219','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202112211',NULL,'','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export-Sched','202112219','EMPEXPORT','SCH_EOPTFS',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202112219','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202112211',NULL,'','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Optum FSA Export-Test','202112219','EMPEXPORT','TEST_XOE',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202112219','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202112211',NULL,'','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum FSA Export-Test','202201061','EMPEXPORT','TEST_XOE','Jan 12 2022 12:31PM','EOPTFSAGRA',NULL,NULL,NULL,'202201061','Jan  6 2022 12:00AM','Jan  1 2022 12:00AM','202201061','58','','','202201061',dbo.fn_GetTimedKey(),NULL,'us3rVaGRA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -543,8 +543,10 @@ Purpose: Optum FSA
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+01/26/2022 by AP:
+	- Header values updated.
+	- Updated multiple drv table values.
+	- Trailer updated.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EOPTFSAGRA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EOPTFSAGRA';
@@ -603,7 +605,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'FLXDG' -- 'FLXBG';
+    SET @DedList = 'FLXDG,DEP' -- 'FLXBG';
 
     IF OBJECT_ID('U_EOPTFSAGRA_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EOPTFSAGRA_DedList;
@@ -640,39 +642,39 @@ BEGIN
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
-    --IF OBJECT_ID('U_EOPTFSAGRA_PDedHist','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EOPTFSAGRA_PDedHist;
-    --SELECT DISTINCT
-    --     PdhEEID
-    --    ,PdhCOID
-    --    -- Current Payroll Amounts
-    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-    --    -- YTD Payroll Amounts
-    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-    --    -- Categorize Payroll Amounts
-    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --INTO dbo.U_EOPTFSAGRA_PDedHist
-    --FROM dbo.PDedHist WITH (NOLOCK)
-    --JOIN dbo.U_EOPTFSAGRA_DedList WITH (NOLOCK)
-    --    ON DedCode = PdhDedCode
-    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PdhPerControl <= @EndPerControl
-    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    --GROUP BY PdhEEID, PdhCOID
-    --HAVING (SUM(PdhEECurAmt) <> 0.00
-    --    OR SUM(PdhERCurAmt) <> 0.00
-    --);
+    IF OBJECT_ID('U_EOPTFSAGRA_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EOPTFSAGRA_PDedHist;
+    SELECT DISTINCT
+         PdhEEID
+        ,PdhCOID
+        -- Current Payroll Amounts
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        -- Categorize Payroll Amounts
+        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('DEP') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('FLXDG') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    INTO dbo.U_EOPTFSAGRA_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EOPTFSAGRA_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID, PdhCOID
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );
 
     -----------------------------
     -- Working Table - PEarHist
@@ -770,15 +772,15 @@ BEGIN
         ,drvPlanEffDt = BdmBenStartDate
         ,drvRepCode1 = ''
         ,drvRepCode2 = ''
-        ,drvEnrollDt = EecDateOfOriginalHire
+        ,drvEnrollDt = dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfOriginalHire, @FileMinCovDate)
         ,drvContribType1 = 'MED' 
         ,drvContribSC1 = 'E'
         ,drvContribSign1 = '+'
         ,drvContribAmt1 = '0000000'
         ,drvContribType2 = 'DEP'
         ,drvContribSC2 = 'E'
-        ,drvContribSign2 = '+'
-        ,drvContribAmt2 = '0000000'
+        ,drvContribSign2 = '+' 
+        ,drvContribAmt2 = RIGHT('0000000' + REPLACE(CAST(PdhSource1 AS VARCHAR), '.', ''), 7)
         ,drvContribType3 = 'MED'
         ,drvContribSC3 = 'P'
         ,drvContribSign3 = '+'
@@ -788,14 +790,14 @@ BEGIN
         ,drvContribSign4 = '+'
         ,drvContribAmt4 = '0000000'
         ,drvAutoSubIndic = ''
-        ,drvHealthLPFSATermDt = ISNULL(CONVERT(VARCHAR, BdmBenStopDate, 112), '')
-        ,drvHealthLPFSAElectAmt = '0000000'
-        ,drvHealthLPFSAElectEffDt = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-        ,drvPrefundSign = '+'
-        ,drvPrefundAmt = '0000000'
+        ,drvHealthLPFSATermDt = '' --ISNULL(CONVERT(VARCHAR, BdmBenStopDate, 112), '')
+        ,drvHealthLPFSAElectAmt = ''
+        ,drvHealthLPFSAElectEffDt = ''--dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
+        ,drvPrefundSign = ''
+        ,drvPrefundAmt = ''
         ,drvDepCareFSATermDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN BdmRecType = 'DEP' THEN BdmBenStopDate END), 112), '')
         ,drvDepCareFSAElectEffDt = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-        ,drvDepCareFSAElectAmt = '0000000'
+        ,drvDepCareFSAElectAmt = RIGHT('0000000' + REPLACE(CAST(PdhSource2 AS VARCHAR), '.', ''), 7)
     INTO dbo.U_EOPTFSAGRA_drvTbl
     FROM dbo.U_EOPTFSAGRA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -808,6 +810,9 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EOPTFSAGRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+	JOIN dbo.U_EOPTFSAGRA_PDedHist WITH(NOLOCK)
+		ON PdhEEID = xEEID
+		AND PdhCOID = xCOID
     JOIN dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK)
         ON PehEEID = xEEID
         AND PehCOID = xCOID
@@ -824,12 +829,12 @@ BEGIN
          hdrHeadMastLay = '6'
         ,hdrSysName = 'FSA'
         ,hdrSysNum = '5426'
-        ,hdrClientCode = '925268111'
+        ,hdrClientCode = 'GRANGE01'
         ,hdrVersNum = '001'
         ,hdrDate = (SELECT MAX(PrgPayDate) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK))
         ,hdrCustSpecId = '925268111'
         ,hdrCustName = 'Grange'
-        ,hdrCycle = (SELECT MAX(PrgOrigPayPeriod + CAST(DATEPART(WEEK, PrgPayDate) AS VARCHAR)) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK))
+        ,hdrCycle = (SELECT MAX(PrgOrigPayPeriod + RIGHT('00' + CAST(DATEPART(WEEK, PrgPayDate) AS VARCHAR), 2)) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK))
         ,hdrPolNum = '0925268'
         ,hdrTypeFeed = 'PROD'
         ,hdrMultCovDataIndic = 'A'
@@ -842,11 +847,11 @@ BEGIN
     IF OBJECT_ID('U_EOPTFSAGRA_trlTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EOPTFSAGRA_trlTbl;
     SELECT DISTINCT
-         drvRecCount = RIGHT('000000' + (SELECT COUNT(1) FROM dbo.U_EOPTFSAGRA_drvTbl WITH(NOLOCK)), 6)
+         drvRecCount = '000000' --RIGHT('000000' + (SELECT COUNT(1) FROM dbo.U_EOPTFSAGRA_drvTbl WITH(NOLOCK)), 6)
         ,drvTotHealthLFSAContAmtSign = '+'
         ,drvTotHealthLFSAContAmt = '0000000000'
         ,drvTotDepCareFSAContAmtSign = '+'
-        ,drvTotDepCareFSAContAmt = CAST(ROUND((SELECT SUM(PehCurAmtYTD) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK)), 0) AS VARCHAR)
+        ,drvTotDepCareFSAContAmt = REPLACE(CAST(ROUND((SELECT SUM(PehCurAmtYTD) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK)), 0) AS VARCHAR), '.', '')
         ,drvTotHealthLFSAElectAmt = '0000000000'
         ,drvTotDepCareFSAElectAmt = '0000000000'
     INTO dbo.U_EOPTFSAGRA_trlTbl
