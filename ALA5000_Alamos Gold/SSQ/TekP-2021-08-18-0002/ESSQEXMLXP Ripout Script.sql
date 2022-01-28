@@ -5,7 +5,7 @@ ESSQEXMLXP: SSQ Benefits XML Export
 FormatCode:     ESSQEXMLXP
 Project:        SSQ Benefits XML Export
 Client ID:      ALA5000
-Date/time:      2022-01-20 08:40:38.900
+Date/time:      2022-01-27 06:13:43.880
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -325,7 +325,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20220120.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20220127.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -336,7 +336,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111199','EMPEXPORT','OEPASSIVE','Nov 24 2021  8:23AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14785','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export','202111199','EMPEXPORT','ONDEM_XOE','Nov 24 2021  8:24AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Sched','202111199','EMPEXPORT','SCH_ESSQEX','Nov 24 2021  8:26AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202201171','EMPEXPORT','TEST_XOE','Jan 17 2022  5:30PM','ESSQEXMLXP',NULL,NULL,NULL,'202201171','Jan 17 2022 12:00AM','Dec 30 1899 12:00AM','202201031','15122','','','202201031',dbo.fn_GetTimedKey(),NULL,'us3cPeALA5000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202201201','EMPEXPORT','TEST_XOE','Jan 26 2022  7:25PM','ESSQEXMLXP',NULL,NULL,NULL,'202201201','Jan 20 2022 12:00AM','Dec 30 1899 12:00AM','202201061','15174','','','202201061',dbo.fn_GetTimedKey(),NULL,'us3cPeALA5000',NULL);
 
 -----------
 -- AscImp inserts
@@ -458,9 +458,9 @@ CREATE TABLE [dbo].[U_ESSQEXMLXP_drvTbl_ContactInformation] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCity] varchar(255) NULL,
+    [drvAddressLine1] varchar(8000) NULL,
+    [drvAddressLine2] varchar(8000) NULL,
+    [drvAddressCity] varchar(8000) NULL,
     [drvProvinceStateCode] varchar(255) NULL,
     [drvPostalCode] varchar(50) NULL,
     [drvCountry] char(3) NULL,
@@ -535,7 +535,7 @@ CREATE TABLE [dbo].[U_ESSQEXMLXP_drvTbl_Dependent] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
     [drvRelationCode] varchar(1) NULL,
-    [drvConNameLast] varchar(100) NULL,
+    [drvConNameLast] varchar(8000) NULL,
     [drvConNameFirst] varchar(8000) NULL,
     [drvGender] varchar(1) NULL,
     [drvConDateOfBirth] datetime NULL,
@@ -615,8 +615,8 @@ CREATE TABLE [dbo].[U_ESSQEXMLXP_drvTbl_Identification] (
     [drvSort] varchar(16) NULL,
     [drvParticipant] char(9) NULL,
     [drvCertificateId] varchar(1) NOT NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvNameFirst] varchar(100) NULL,
+    [drvNameLast] varchar(8000) NULL,
+    [drvNameFirst] varchar(8000) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvGender] varchar(1) NULL,
     [drvLanguageCode] varchar(1) NULL,
@@ -983,8 +983,8 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvParticipant = EecEmpNo
         ,drvCertificateId = ''
-        ,drvNameLast = EepNameLast
-        ,drvNameFirst = EepNameFirst
+        ,drvNameLast = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameLast, 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
+        ,drvNameFirst = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepNameFirst, 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
         ,drvDateOfBirth = EepDateOfBirth
         ,drvGender =    CASE WHEN EepGender = 'M' THEN '1' 
                         WHEN EepGender = 'F' THEN '2' 
@@ -1015,9 +1015,9 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2 ' + xEEID + ' D'
         -- standard fields above and additional driver fields below
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
+        ,drvAddressLine1 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressLine1, 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
+        ,drvAddressLine2 = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressLine2, 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
+        ,drvAddressCity = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(EepAddressCity, 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
         ,drvProvinceStateCode = EepAddressState
         ,drvPostalCode = EepAddressZipCode
         ,drvCountry = EepAddressCountry
@@ -1132,8 +1132,8 @@ BEGIN
         ,drvRelationCode =    CASE WHEN ConRelationship IN ('CHL','STC') THEN '2'
                             WHEN ConRelationship IN ('COM','SPS') THEN '1'
                             END
-        ,drvConNameLast = ConNameLast
-        ,drvConNameFirst = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbo.dsi_fnRemoveChars('.,/-',ConNameFirst), 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u')
+        ,drvConNameLast = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(ConNameLast, 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
+        ,drvConNameFirst = REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(dbo.dsi_fnRemoveChars('.,/-',ConNameFirst), 'ñ', 'n'), 'á', 'a'), 'é','e'), 'í', 'i'), 'ó', 'o'), 'ú','u'), 'è', 'e'), 'à', 'a')
         ,drvGender =    CASE WHEN ConGender = 'M' THEN '1'
                         WHEN ConGender = 'F' THEN '2'
                         END
