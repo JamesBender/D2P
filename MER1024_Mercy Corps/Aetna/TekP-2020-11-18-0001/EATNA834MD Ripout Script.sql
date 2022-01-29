@@ -5,7 +5,7 @@ EATNA834MD: Aetna Med 834 Export
 FormatCode:     EATNA834MD
 Project:        Aetna Med 834 Export
 Client ID:      MER1024
-Date/time:      2021-12-06 18:58:40.607
+Date/time:      2022-01-27 18:14:48.977
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         N3SUP3DB04
 Database:       ULTIPRO_MERCY
 Web Filename:   MER1024_ZR6DH_EEHISTORY_EATNA834MD_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -350,7 +351,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EATNA834MD_20211206.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EATNA834MD_20220127.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -358,10 +359,10 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202010139','EMPEXPORT','CHANGES','Oct 13 2020  4:12PM','EATNA834MD',NULL,NULL,NULL,'202010139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202009291','7374','','','202009291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202111241','EMPEXPORT','FULLFILE','Nov 24 2021  8:43AM','EATNA834MD',NULL,NULL,NULL,'202111241','Nov 24 2021 12:00AM','Dec 30 1899 12:00AM','202111101','12611','','','202111101',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202201041','EMPEXPORT','FULLFILE','Jan  6 2022  1:40PM','EATNA834MD',NULL,NULL,NULL,'202201041','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202112281','13163','','','202112281',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202111161','EMPEXPORT','OEACTIVE','Nov 16 2021  1:23PM','EATNA834MD',NULL,NULL,NULL,'202111161','Nov 16 2021 12:00AM','Dec 30 1899 12:00AM','202111021','137','','','202111021',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202111161','EMPEXPORT','OEPASSIVE','Nov 16 2021  1:19PM','EATNA834MD',NULL,NULL,NULL,'202111161','Nov 16 2021 12:00AM','Dec 30 1899 12:00AM','202111021','12593','','','202111021',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','58879,587YD',NULL,NULL,NULL,'Aetna Med 834 Export','202012309','EMPEXPORT','SCHEDULED','Oct 13 2020  4:13PM','EATNA834MD',NULL,NULL,NULL,'202112069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202111291','7374','','','202012301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','58879,587YD',NULL,NULL,NULL,'Aetna Med 834 Export','202012309','EMPEXPORT','SCHEDULED','Oct 13 2020  4:13PM','EATNA834MD',NULL,NULL,NULL,'202201249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','7374','','','202012301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202111241','EMPEXPORT','TESTFILE','Nov 24 2021 12:00AM','EATNA834MD',NULL,NULL,NULL,'202111241','Nov 24 2021 12:00AM','Dec 30 1899 12:00AM','202111101','13403','','','202111101',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
 
 -----------
@@ -380,6 +381,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EATNA834MD','UseFileName','V','Y');
 
 -----------
@@ -808,9 +810,12 @@ Purpose: Aetna Med 834 Export
 Revision History
 ----------------
 12/06/2021 by AP:
-	- Updated min max date to 01/01/2022 per request.
-	- Added logic to set benefit start date to first of the month if the employee start date is on the 2nd or 3rd of the month
-	  and that date happens to be on a Monday.
+    - Updated min max date to 01/01/2022 per request.
+    - Added logic to set benefit start date to first of the month if the employee start date is on the 2nd or 3rd of the month
+      and that date happens to be on a Monday.
+
+01/27/2022 by AP:
+    - Updated logic to avoid minimum start date on a Saturday or Sunday.
 
 001+0170546+011+00001+26300+131
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EATNA834MD';
@@ -859,8 +864,8 @@ BEGIN
         ,@ExportCode      = ExportCode
         ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
-        ,@FileMinCovDate  = CAST('01/01/2022' as DATETIME)
-		--CAST('1/1/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) AS DATE)
+        ,@FileMinCovDate  = CAST('01/03/2022' as DATETIME)  -- The 1st of January lands on a weekend
+        --CAST('1/1/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) AS DATE)
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'EATNA834MD';
 
@@ -1468,9 +1473,14 @@ BEGIN
         ,drvDTP00_DateTime_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '348' END
         ,drvDTP02_DateTimeFormatQual_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN 'D8' END
-        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX', (CASE WHEN DATEPART(dw, eecdateoflasthire) = '02' AND DATEPART(dd, eecdateoflasthire) IN ('02', '03') THEN
-						cast(cast(datepart(year, eecdateoflasthire) as varchar) + '-' + cast(datepart(mm, eecdateoflasthire) as varchar) + '-01' as datetime) ELSE BdmBenStartDate END), @FileMinCovDate)
-		--dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate, '1/1/2021')) END  -- min is 1/1/2021
+        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX', (CASE WHEN datepart(dw, EecDateOfLastHire) = '7'
+                                        THEN cast(cast(datepart(year, eecdateoflasthire) as varchar) + '-' + cast(datepart(mm, eecdateoflasthire) as varchar) + '-03' as datetime)
+                                            WHEN datepart(dw, EecDateOfLastHire) = '1'
+                                        THEN cast(cast(datepart(year, eecdateoflasthire) as varchar) + '-' + cast(datepart(mm, eecdateoflasthire) as varchar) + '-02' as datetime)
+                                                ELSE BdmBenStartDate END), @FileMinCovDate)
+        --dbo.dsi_fnGetMinMaxDates('MAX', (CASE WHEN DATEPART(dw, eecdateoflasthire) = '02' AND DATEPART(dd, eecdateoflasthire) IN ('02', '03') THEN
+        --                cast(cast(datepart(year, eecdateoflasthire) as varchar) + '-' + cast(datepart(mm, eecdateoflasthire) as varchar) + '-01' as datetime) ELSE BdmBenStartDate END), @FileMinCovDate)
+        --dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, dbo.dsi_fnGetMinMaxDates('MAX',@FileMinCovDate, '1/1/2021')) END  -- min is 1/1/2021
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
         ,drvDTP00_DateTime_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') AND BdmBenStopDate IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') AND BdmBenStopDate IS NOT NULL THEN '349' END
