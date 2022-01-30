@@ -4,16 +4,17 @@ ELYRAEAPEX: Lyra EAP Export
 
 FormatCode:     ELYRAEAPEX
 Project:        Lyra EAP Export
-Client ID:      USG1000
-Date/time:      2022-01-27 11:48:44.940
+Client ID:      NEW1020
+Date/time:      2022-01-28 12:27:27.150
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_ELYRAEAPEX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW2WUP1DB02
+Database:       ULTIPRO_WPNEWG
+Web Filename:   NEW1020_CC960_EEHISTORY_ELYRAEAPEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -180,7 +181,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ELYRAEAPEXZ0','50','D','10','10',NULL,'mbr_street_2',NULL,NULL,'"drvAddressLine2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ELYRAEAPEXZ0','50','D','10','11',NULL,'mbr_city',NULL,NULL,'"drvAddressCity"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ELYRAEAPEXZ0','50','D','10','12',NULL,'mbr_state',NULL,NULL,'"drvAddressState"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ELYRAEAPEXZ0','50','D','10','13',NULL,'mbr_country',NULL,NULL,'"USA"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ELYRAEAPEXZ0','50','D','10','13',NULL,'mbr_country',NULL,NULL,'"drvAddressCountry"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ELYRAEAPEXZ0','50','D','10','14',NULL,'mbr_zip',NULL,NULL,'"drvAddressZipCode"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ELYRAEAPEXZ0','50','D','10','15',NULL,'mbr_phone',NULL,NULL,'"drvPhone"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ELYRAEAPEXZ0','50','D','10','16',NULL,'mbr_email_address',NULL,NULL,'"drvEmailAddress"','(''UA''=''T|'')');
@@ -222,16 +223,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELYRAEAPEX_20220127.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELYRAEAPEX_20220128.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lyra EAP Export','202201279','EMPEXPORT','ONDEM_XOE',NULL,'ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lyra EAP Export-Sched','202201279','EMPEXPORT','SCH_ELYRAE',NULL,'ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lyra EAP Export-Test','202201279','EMPEXPORT','TEST_XOE',NULL,'ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export','202201279','EMPEXPORT','ONDEM_XOE','Jan 28 2022 12:27PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export-Sched','202201279','EMPEXPORT','SCH_ELYRAE','Jan 28 2022 12:26PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export-Test','202201279','EMPEXPORT','TEST_XOE','Jan 28 2022 12:26PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -243,10 +244,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELYRAEAPEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -267,11 +269,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -297,11 +294,12 @@ CREATE TABLE [dbo].[U_ELYRAEAPEX_drvTbl] (
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
+    [drvAddressCountry] varchar(3) NOT NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvPhone] varchar(50) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvEthnicGroup] varchar(45) NULL,
-    [drvRelationshipDesc] varchar(10) NOT NULL,
+    [drvRelationshipDesc] varchar(35) NULL,
     [drvRelationshipClass] varchar(10) NOT NULL,
     [drvCobraDesc] varchar(5) NOT NULL,
     [drvEmployeeTitle] varchar(150) NULL,
@@ -413,14 +411,14 @@ BEGIN
     -- DETAIL RECORD - U_ELYRAEAPEX_drvTbl
     ---------------------------------
     IF OBJECT_ID('U_ELYRAEAPEX_drvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ELYRAEAPEX_drvTbl;
+        DROP TABLE dbo.U_ELYRAEAPEX_drvTbl        
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = xEEID + ' 01'                    
         -- standard fields above and additional driver fields below
-        ,drvMbrId = EecEmpNo + '01'                
+        ,drvMbrId = RTRIM(EecEmpNo) + '01'                
         ,drvEmployeeId = EecEmpNo
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = EepNameMiddle
@@ -436,12 +434,13 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
+        ,drvAddressCountry = 'USA'
         ,drvAddressZipCode = EepAddressZipCode
         ,drvPhone = EepPhoneHomeNumber
         ,drvEmailAddress = EepAddressEMail
         ,drvEthnicGroup = Ethnic.CodDesc
-        ,drvRelationshipDesc = 'Subscriber'
-        ,drvRelationshipClass = 'Subscriber'
+        ,drvRelationshipDesc = 'Subscriber' + SPACE(25)
+        ,drvRelationshipClass = 'Subscriber' --+ SPACE(25)
         ,drvCobraDesc = CASE WHEN ISNULL(EepUDField05, '') <> '' THEN 'TRUE' ELSE 'FALSE' END
         ,drvEmployeeTitle = JbcLongDesc
         ,drvEmployeeGroup = OrgDesc
@@ -465,11 +464,16 @@ BEGIN
         ON JbcJobCode = EecJobCode
     JOIN dbo.Orglevel WITH (NOLOCK)
         ON OrgCode = EecOrgLvl1
+        AND OrgLvl = 1
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    /*LEFT JOIN        
-        ON xEEID = ConEEID
-        AND ConRelationship IN ('DOM','DP','SPS','CHL','DAU','DPC','SON','STC')*/
+    WHERE EecEmplStatus <> 'T'
+            OR (EecEmplStatus = 'T' AND (
+                                            (ISNULL(EepUdField05, '') = '' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate) 
+                                            OR
+                                            (ISNULL(EepUdField05, '') <> '' AND ISNULL(EepUdField06, '') <> '' AND CAST(EepUdField06 AS DATE) BETWEEN @StartDate AND @EndDate)
+                                        )
+                )
     ;
 
 
@@ -478,15 +482,15 @@ BEGIN
     SELECT DISTINCT drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' ' + FORMAT(RN, '00') /*    CASE WHEN ConRelationship IN ('DOM', 'DP', 'SPS') THEN ' 02'                
+        ,drvSort = RTRIM(xEEID) + ' ' + FORMAT(RN, '00') /*    CASE WHEN ConRelationship IN ('DOM', 'DP', 'SPS') THEN ' 02'                
                                 WHEN ConRelationship IN ('CHL','DAU','DPC','SON','STC') THEN ' 03'
                                 END                    */    
         -- standard fields above and additional driver fields below
-        ,drvMbrId = EecEmpNo +    FORMAT(RN, '00') /*CASE WHEN ConRelationship IN ('DOM', 'DP', 'SPS') THEN FORMAT(RN, '00') -- '02'                
+        ,drvMbrId = RTRIM(EecEmpNo) +    FORMAT(RN, '00') /*CASE WHEN ConRelationship IN ('DOM', 'DP', 'SPS') THEN FORMAT(RN, '00') -- '02'                
                                 WHEN ConRelationship IN ('CHL','DAU','DPC','SON','STC') THEN FORMAT(RN, '00') --'03'
                                 END                */
         ,drvEmployeeId = EecEmpNo
-        ,drvNameFirst = ConNameFirst
+        ,drvNameFirst = LTRIM(ConNameFirst)
         ,drvNameMiddle = ConNameMiddle
         ,drvNameLast = ConNameLast
         ,drvCurrentStatus =    CASE EecEmplStatus
@@ -500,6 +504,7 @@ BEGIN
         ,drvAddressLine2 = ''
         ,drvAddressCity = ''
         ,drvAddressState = ''
+        ,drvAddressCountry = ''
         ,drvAddressZipCode = ''
         ,drvPhone = ConPhoneHomeNumber
         ,drvEmailAddress = ''
@@ -518,12 +523,12 @@ BEGIN
         ,drvCobraDesc = CASE WHEN ISNULL(EepUDField05, '') <> '' THEN 'TRUE' ELSE 'FALSE' END
         ,drvEmployeeTitle = JbcLongDesc
         ,drvEmployeeGroup = OrgDesc
-        ,drvOfficeStreet1 = LocAddressLine1
-        ,drvOfficeStreet2 = LocAddressLine2
-        ,drvOfficeCity = LocAddressCity
-        ,drvOfficeState = LocAddressState
-        ,drvOfficeCountry = LocAddressCountry
-        ,drvOfficeZipCode = LocAddressZipCode
+        ,drvOfficeStreet1 = ''
+        ,drvOfficeStreet2 = ''
+        ,drvOfficeCity = ''
+        ,drvOfficeState = ''
+        ,drvOfficeCountry = ''
+        ,drvOfficeZipCode = ''
     FROM dbo.U_ELYRAEAPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -537,6 +542,7 @@ BEGIN
         ON JbcJobCode = EecJobCode
     JOIN dbo.Orglevel WITH (NOLOCK)
         ON OrgCode = EecOrgLvl1
+        AND OrgLvl = 1
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
     JOIN( -- dbo.Contacts WITH (NOLOCK)
@@ -557,8 +563,15 @@ BEGIN
                 ) AS Con) as Contacts
         ON xEEID = ConEEID
     WHERE ConRelationship IN ('DOM','DP','SPS','CHL','DAU','DPC','SON','STC')
+    AND (EecEmplStatus <> 'T'
+            OR (EecEmplStatus = 'T' AND (
+                                            (ISNULL(EepUdField05, '') = '' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate) 
+                                            OR
+                                            (ISNULL(EepUdField05, '') <> '' AND ISNULL(EepUdField06, '') <> '' AND CAST(EepUdField06 AS DATE) BETWEEN @StartDate AND @EndDate)
+                                        )
+                ))
 
-
+    
     --==========================================
     -- Set FileName
     --==========================================
