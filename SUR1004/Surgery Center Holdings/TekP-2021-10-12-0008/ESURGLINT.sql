@@ -5,7 +5,7 @@ ESURGLINT: Glint Survey Demo
 FormatCode:     ESURGLINT
 Project:        Glint Survey Demo
 Client ID:      SUR1004
-Date/time:      2022-01-18 08:34:44.293
+Date/time:      2022-01-30 17:11:12.553
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -237,15 +237,15 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESURGLINT_20220118.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESURGLINT_20220130.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Glint Survey Demo-Chngs','202201101','EMPEXPORT','CHNGS_XOE','Jan 10 2022  2:13PM','ESURGLINT',NULL,NULL,NULL,'202201101','Jan 10 2022 12:00AM','Dec 30 1899 12:00AM','202201101','11','','','202201101',dbo.fn_GetTimedKey(),NULL,'us3cPeSUR1004',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Glint Survey Demo-FULLFILE','202112289','EMPEXPORT','FULLFILE',NULL,'ESURGLINT',NULL,NULL,NULL,'202112289','Dec 28 2021 11:02AM','Dec 28 2021 11:02AM','202112281',NULL,'','','202112281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Glint Survey Demo-Chngs','202201261','EMPEXPORT','CHNGS_XOE','Jan 26 2022 12:57PM','ESURGLINT',NULL,NULL,NULL,'202201261','Jan 26 2022 12:00AM','Dec 30 1899 12:00AM','202201251','14','','','202201251',dbo.fn_GetTimedKey(),NULL,'us3cPeSUR1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Glint Survey Demo-FULLFILE','202201261','EMPEXPORT','FULLFILE','Jan 26 2022 11:37AM','ESURGLINT',NULL,NULL,NULL,'202201261','Jan 26 2022 12:00AM','Dec 30 1899 12:00AM','202201261','7951','','','202201261',dbo.fn_GetTimedKey(),NULL,'us3cPeSUR1004',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Glint Survey Demo','202112289','EMPEXPORT','ONDEM_XOE',NULL,'ESURGLINT',NULL,NULL,NULL,'202112289','Dec 28 2021 11:02AM','Dec 28 2021 11:02AM','202112281',NULL,'','','202112281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Glint Survey Demo-Sched','202112289','EMPEXPORT','SCH_ESURGL',NULL,'ESURGLINT',NULL,NULL,NULL,'202112289','Dec 28 2021 11:02AM','Dec 28 2021 11:02AM','202112281',NULL,'','','202112281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
@@ -493,7 +493,18 @@ BEGIN
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_ESURGLINT_Audit ON dbo.U_ESURGLINT_Audit (audEEID,audKey2);
-
+	    --================
+		-- MGR Role table
+		--================
+	    IF OBJECT_ID('U_ESURGLINT_mgrTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ESURGLINT_mgrTbl;
+		SELECT DISTINCT
+         drvRUREEID = rurEEID
+		 ,drvrolName = rolName 
+		 INTO dbo.U_ESURGLINT_mgrTbl
+		 from RbsRoles JOIN rbsuserroles 
+		 ON rolID = rurRoleID 
+		 AND rolName = 'MGR'
     --================
     -- Changes Only
     --================
@@ -528,7 +539,7 @@ BEGIN
         ,drvHomeComp = [dbo].[dsi_fnlib_AddDoubleQuotes](CmpCompanyName)
         ,drvEmpType = FNEC.EETypeDesc
         ,drvPayGroup = dbo.vw_int_EmpComp.EecPayGroup
-        ,drvCity = EepAddressCity
+        ,drvCity =  [dbo].[dsi_fnlib_AddDoubleQuotes](EepAddressCity)
         ,drvState = EepAddressState
         ,drvDateinJob = dbo.vw_int_EmpComp.EecDateInJob
         ,drvOrigHireDate = dbo.vw_int_EmpComp.EecDateOfOriginalHire
@@ -538,21 +549,21 @@ BEGIN
         ,drvGenderCode = CASE WHEN EepGender in ('M','F') THEN EepGender END
         ,drvGender = CASE WHEN EepGender ='M' THEN 'Male' WHEN EepGender ='F' THEN 'Female' END
         ,drvJobCode = dbo.vw_int_EmpComp.EecJobCode
-        ,drvJobTitle = JC.JbcDesc
+        ,drvJobTitle =  [dbo].[dsi_fnlib_AddDoubleQuotes](JC.JbcDesc)
         ,drvFacilityCode = dbo.vw_int_EmpComp.EecOrgLvl2
-        ,drvFacility = OL.OrgDesc
+        ,drvFacility =  [dbo].[dsi_fnlib_AddDoubleQuotes](OL.OrgDesc)
         ,drvDeptCode = dbo.vw_int_EmpComp.EecOrgLvl3
-        ,drvDept = OL3.OrgDesc
+        ,drvDept =  [dbo].[dsi_fnlib_AddDoubleQuotes](OL3.OrgDesc)
         ,drvFullPartTime = CASE WHEN dbo.vw_int_EmpComp.EecFullTimeOrPartTime = 'F' THEN 'Full Time' ELSE 'Part Time' END
         ,drvSalaryorHourly = CASE WHEN dbo.vw_int_EmpComp.EecSalaryOrHourly = 'S' THEN 'Salaried' ELSE 'Hourly' END
         ,drvFLSACategory = CASE WHEN JHT.NewValue  = 'N' THEN 'Non Exempt' ELSE 'Exempt' END
         ,drvSupervisorNm = REPLACE(dbo.dsi_fnlib_GetSupervisorField_v2('', dbo.vw_int_EmpComp.EecEEID, 'NameLast, First MiddleInit') , ',', '')
         ,drvSchedWorkHours = CAST( dbo.vw_int_EmpComp.EecScheduledWorkHrs AS varchar)
-        ,drvJobFamily = JF.codDesc
-        ,drvJobGroup = JobGrp.CjgJobGroupDesc
+        ,drvJobFamily =  [dbo].[dsi_fnlib_AddDoubleQuotes](JF.codDesc)
+        ,drvJobGroup =  [dbo].[dsi_fnlib_AddDoubleQuotes] (JobGrp.CjgJobGroupDesc)
         ,drvReviewGoalScore = sd.ErvRating 
         ,drvReviewGoalScoreDesc = RatingDesc
-        ,drvManagerRole = CASE WHEN rolName = 'MGR' THEN 'Y' ELSE 'N' END
+        ,drvManagerRole = CASE WHEN drvrolName = 'MGR' THEN 'Y' ELSE 'N' END
     INTO dbo.U_ESURGLINT_drvTbl
     FROM dbo.U_ESURGLINT_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -593,11 +604,13 @@ BEGIN
         ON CjgJobGroupCode = EjhJobGroupCode
     LEFT JOIN fn_LocalizeCodesForCognos('JOBFAMILY','en') JF
         ON JF.codCode = JC.JbcJobFamily
-    LEFT JOIN rbsuserroles WITH (NOLOCK)
-        ON rurEEID = xEEID 
-    LEFT JOIN RbsRoles WITH (NOLOCK)
-        ON rolID = rurRoleID
-        AND rolName = 'MGR'
+	LEFT JOIN dbo.U_ESURGLINT_mgrTbl WITH (NOLOCK)
+		ON drvRUREEID = xEEID
+    --LEFT JOIN rbsuserroles WITH (NOLOCK)
+    --    ON rurEEID = xEEID 
+    --LEFT JOIN RbsRoles WITH (NOLOCK)
+    --    ON rolID = rurRoleID
+    --    AND rolName = 'MGR'
     LEFT JOIN (SELECT ErvEEID, ErvRating, ErvReviewDate, ROW_NUMBER() OVER(PARTITION BY ErvEEID ORDER BY ErvReviewDate DESC) rowNumber FROM vw_PM_EmpHRev) sd 
         ON sd.ErvEEID  = xEEID
         AND sd.rowNumber =1

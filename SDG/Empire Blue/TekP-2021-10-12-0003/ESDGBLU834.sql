@@ -5,7 +5,7 @@ ESDGBLU834: Empire Blue 834
 FormatCode:     ESDGBLU834
 Project:        Empire Blue 834
 Client ID:      SDG1000
-Date/time:      2022-01-27 10:59:51.160
+Date/time:      2022-02-01 09:29:35.210
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -342,7 +342,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESDGBLU834_20220127.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESDGBLU834_20220201.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -354,7 +354,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202201129','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ESDGBLU834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202201129','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ESDGBLU834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Empire Blue 834','202201129','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ESDGBLU834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202201199','EMPEXPORT','TEST_XOE','Jan 19 2022  3:48PM','ESDGBLU834',NULL,NULL,NULL,'202201199','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201191','11421','','','202201191',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202201311','EMPEXPORT','TEST_XOE','Jan 31 2022 11:25AM','ESDGBLU834',NULL,NULL,NULL,'202201311','Jan 31 2022 12:00AM','Dec 30 1899 12:00AM','202201191','11467','','','202201191',dbo.fn_GetTimedKey(),NULL,'us3cPeSDG1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -943,14 +943,14 @@ BEGIN
         DROP TABLE dbo.U_ESDGBLU834_HdrTbl;
     SELECT DISTINCT 
         drvISA05_SenderIDQual = 'ZZ'
-        ,drvISA06_SenderID = 'NY262WOE'
+        ,drvISA06_SenderID = 'NY262W0E'
         ,drvISA07_ReceiverIDQual = 'ZZ'
         ,drvISA08_ReceiverID = 'BCCAWGS'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
         --,drvISA15_UsageIndicator = CASE dbo.dsi_fnVariable(@ExportCode,'TEST_XOE') WHEN 'Y' THEN 'T' ELSE 'P' END
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
-        ,drvGS02_SenderID = 'NY262WOE'
+        ,drvGS02_SenderID = 'NY262W0E'
         ,drvGS03_ReceiverID = 'BCCAWGS'
         ,drvGS04_Date = @RunDate
         ,drvGS05_Time = @RunTime
@@ -1213,7 +1213,7 @@ BEGIN
                                            WHEN BdmDedCode IN ('VIS') THEN 'VIS'
                                      END
         ,drvHD04_PlanCoverageDesc = ''
-        ,drvHD05_CoverageLevelCode = CASE WHEN BdmDedCode IN ('M3000', 'M3001', 'M4000', 'M4001', 'M1500','VIS') THEN
+        ,drvHD05_CoverageLevelCode = CASE WHEN BdmDedCode IN ('M3000', 'M3001', 'M4000', 'M4001', 'M1500','VIS') AND BdmRecType = 'EMP'THEN
                                                 CASE WHEN BdmBenOption IN ('EE') THEN 'IND'
                                                      WHEN BdmBenOption IN ('EES') THEN 'ESP'
                                                      WHEN BdmBenOption IN ('EEC') THEN 'ECH'
@@ -1337,10 +1337,10 @@ WHERE AdfHeaderSystemID LIKE 'ESDGBLU834%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '201810011'
-       ,ExpStartPerControl     = '201810011'
-       ,ExpLastEndPerControl   = '201810019'
-       ,ExpEndPerControl       = '201810019'
+    SET ExpLastStartPerControl = '202201011'
+       ,ExpStartPerControl     = '202201011'
+       ,ExpLastEndPerControl   = '202202019'
+       ,ExpEndPerControl       = '202202019'
 WHERE ExpFormatCode = 'ESDGBLU834';
 **********************************************************************************/
 GO
