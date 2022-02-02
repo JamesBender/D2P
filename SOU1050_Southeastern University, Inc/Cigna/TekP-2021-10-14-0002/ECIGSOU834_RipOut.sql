@@ -5,7 +5,7 @@ ECIGSOU834: Cigna 834 Export
 FormatCode:     ECIGSOU834
 Project:        Cigna 834 Export
 Client ID:      SOU1050
-Date/time:      2022-01-14 22:08:29.717
+Date/time:      2022-02-02 16:50:30.580
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -14,6 +14,7 @@ Server:         EW4WUP4DB02
 Database:       ULTIPRO_WPSTHU
 Web Filename:   SOU1050_O7OH4_EEHISTORY_ECIGSOU834_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -111,6 +112,8 @@ IF OBJECT_ID('dsi_sp_BuildDriverTables_ECIGSOU834') IS NOT NULL DROP PROCEDURE [
 GO
 IF OBJECT_ID('dsi_sp_AfterCollect_ECIGSOU834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_ECIGSOU834];
 GO
+IF OBJECT_ID('U_ECIGSOU834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_ECIGSOU834_TrlTbl];
+GO
 IF OBJECT_ID('U_ECIGSOU834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_ECIGSOU834_HdrTbl];
 GO
 IF OBJECT_ID('U_ECIGSOU834_File') IS NOT NULL DROP TABLE [dbo].[U_ECIGSOU834_File];
@@ -150,9 +153,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECIGSOU834Z0','1','H','01','12',NULL,'Repetition Separator',NULL,NULL,'"^"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECIGSOU834Z0','5','H','01','13',NULL,'Interchange Control Ver #',NULL,NULL,'"00501"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECIGSOU834Z0','9','H','01','14',NULL,'Interchange Control #',NULL,NULL,'"000000001"','(''DA''=''F*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECIGSOU834Z0','1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"1"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECIGSOU834Z0','1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"0"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECIGSOU834Z0','1','H','01','16',NULL,'Usage Indicator',NULL,NULL,'"drvISA15_UsageIndicator"','(''UA''=''F*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECIGSOU834Z0','1','H','01','17',NULL,'Component Element Separator',NULL,NULL,'">"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECIGSOU834Z0','1','H','01','17',NULL,'Component Element Separator',NULL,NULL,'":"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECIGSOU834Z0','2','H','02','1',NULL,'GS Segment ID (Header)',NULL,NULL,'"GS"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECIGSOU834Z0','2','H','02','2',NULL,'Functional ID Code',NULL,NULL,'"BE"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECIGSOU834Z0','15','H','02','3',NULL,'Sender ID',NULL,NULL,'"drvGS02_SenderID"','(''UA''=''T*'')');
@@ -342,15 +345,15 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGSOU834_20220114.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGSOU834_20220202.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202201149','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only','202201149','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only','202201149','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Ondemand File Only','202201191','EMPEXPORT','ONDEM_XOE','Jan 19 2022 11:03PM','ECIGSOU834',NULL,NULL,NULL,'202201191','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201051','6883','','','202201051',dbo.fn_GetTimedKey(),NULL,'us3cPeSOU1050',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202201149','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202201149','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna 834 Export','202201149','EMPEXPORT','SCH_CIG834','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -371,7 +374,8 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGSOU834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGSOU834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGSOU834','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGSOU834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGSOU834','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIGSOU834','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -599,7 +603,7 @@ CREATE TABLE [dbo].[U_ECIGSOU834_DrvTbl_2300] (
     [drvDTP03_DateTimePeriod_303] datetime NULL,
     [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
     [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(5) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(50) NULL,
     [drvREF00_RefNumberQual2] varchar(1) NULL,
     [drvREF01_RefNumberQual2] varchar(1) NULL,
     [drvREF02_RefNumberQual2] varchar(1) NULL,
@@ -641,10 +645,10 @@ CREATE TABLE [dbo].[U_ECIGSOU834_EEList] (
 IF OBJECT_ID('U_ECIGSOU834_File') IS NULL
 CREATE TABLE [dbo].[U_ECIGSOU834_File] (
     [RecordSet] char(3) NOT NULL,
-    [InitialSort] varchar(50) NOT NULL,
-    [SubSort] varchar(50) NOT NULL,
-    [SubSort2] varchar(50) NULL,
-    [SubSort3] varchar(50) NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
 );
 
@@ -687,6 +691,15 @@ CREATE TABLE [dbo].[U_ECIGSOU834_HdrTbl] (
     [drvN102_Name2] varchar(5) NOT NULL,
     [drvN103_IDCodeQual2] varchar(2) NOT NULL,
     [drvN104_IDCode2] varchar(10) NOT NULL
+);
+
+-----------
+-- Create table U_ECIGSOU834_TrlTbl
+-----------
+
+IF OBJECT_ID('U_ECIGSOU834_TrlTbl') IS NULL
+CREATE TABLE [dbo].[U_ECIGSOU834_TrlTbl] (
+    [drvSE01_SegmentCount] varchar(4) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_ECIGSOU834]
@@ -752,8 +765,11 @@ Purpose: Cigna 834 Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
+02/02/2022 by AP:
+	- Fixed ISA14, ISA16.
+	- Loop 1000 N104 value changed.
+	- Loop 2300 fixed incorrect ded code in the WHERE clause.
+	- Loop 2300 REF 02 fix for HSAIF.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECIGSOU834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECIGSOU834';
@@ -763,8 +779,8 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECIGSOU834' ORD
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'FULLFILE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'CHANGES';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECIGSOU834', 'SCH_CIG834';
@@ -953,7 +969,7 @@ BEGIN
         ,drvN101_EntityIDCodeSponsor1 = 'P5'
         ,drvN102_Name1 = 'Southeastern University'
         ,drvN103_IDCodeQual1 = 'FI'
-        ,drvN104_IDCode1 = '06-0303370'
+        ,drvN104_IDCode1 = '590722789'
         ,drvN101_EntityIDCodeSponsor2 = 'IN'
         ,drvN102_Name2 = 'CIGNA'
         ,drvN103_IDCodeQual2 = 'FI'
@@ -1261,12 +1277,7 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-                      + CASE BdmDedType
-                             WHEN 'MED' THEN '1'
-                             WHEN 'DEN' THEN '2'
-                             WHEN 'VIS' THEN '3'
-                             ELSE '9'
-                      END
+                      + '1'
     INTO dbo.U_ECIGSOU834_DrvTbl_2300
     FROM dbo.U_ECIGSOU834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1363,12 +1374,7 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-                      + CASE BdmDedType
-                             WHEN 'MED' THEN '1'
-                             WHEN 'DEN' THEN '2'
-                             WHEN 'VIS' THEN '3'
-                             ELSE '9'
-                      END
+                      + '2'
  --   INTO dbo.U_ECIGSOU834_DrvTbl_2300
     FROM dbo.U_ECIGSOU834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1382,7 +1388,7 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-    WHERE BdmDedCode = 'FXD'
+    WHERE BdmDedCode = 'FXM'
 
     -- FXM LOOP
     INSERT INTO dbo.U_ECIGSOU834_DrvTbl_2300
@@ -1430,7 +1436,7 @@ BEGIN
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual1 = 'REF'
         ,drvREF01_RefNumberQual1 = '1L'
-        ,drvREF02_RefNumberQual1 = CAST(CASE WHEN BdmDedCode = 'HLD' AND EepAddressState <> 'CA' AND BdmBenOption <> 'EE' THEN '3343403ACT   HSAII'
+        ,drvREF02_RefNumberQual1 = CAST(CASE WHEN BdmDedCode = 'HLD' AND EepAddressState <> 'CA' AND BdmBenOption <> 'EE' THEN '3343403ACT   HSAIF'
                                             WHEN BdmDedCode = 'HLD' AND EepAddressState <> 'CA' AND BdmBenOption = 'EE' THEN '3343403ACT   HSAII'
                                             WHEN BdmDedCode = 'HLD' AND EepAddressState = 'CA' AND BdmBenOption <> 'EE' THEN '3343403ACT   HSFIC'
                                             WHEN BdmDedCode = 'HLD' AND EepAddressState = 'CA' AND BdmBenOption = 'EE' THEN '3343403ACT   HSIIC'
@@ -1480,12 +1486,7 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-                      + CASE BdmDedType
-                             WHEN 'MED' THEN '1'
-                             WHEN 'DEN' THEN '2'
-                             WHEN 'VIS' THEN '3'
-                             ELSE '9'
-                      END
+                      + '3'
  --   INTO dbo.U_ECIGSOU834_DrvTbl_2300
     FROM dbo.U_ECIGSOU834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1500,9 +1501,6 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode IN ('HLD', 'HNH', 'HNL')
-
-
-
 
     /**************************************************************************************************
         TRAILER RECORDS
