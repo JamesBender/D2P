@@ -5,7 +5,7 @@ ELYRAEAPEX: Lyra EAP Export
 FormatCode:     ELYRAEAPEX
 Project:        Lyra EAP Export
 Client ID:      NEW1020
-Date/time:      2022-01-28 12:27:27.150
+Date/time:      2022-02-01 06:49:44.447
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -223,7 +223,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELYRAEAPEX_20220128.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELYRAEAPEX_20220201.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -232,7 +232,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export','202201279','EMPEXPORT','ONDEM_XOE','Jan 28 2022 12:27PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export-Sched','202201279','EMPEXPORT','SCH_ELYRAE','Jan 28 2022 12:26PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export-Test','202201279','EMPEXPORT','TEST_XOE','Jan 28 2022 12:26PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','U5P4Y,CXNNJ',NULL,NULL,NULL,'Lyra EAP Export-Test','202201311','EMPEXPORT','TEST_XOE','Jan 31 2022 12:13PM','ELYRAEAPEX',NULL,NULL,NULL,'202201311','Jan 31 2022 12:00AM','Dec 30 1899 12:00AM','202201171','4055','','','202201171',dbo.fn_GetTimedKey(),NULL,'us3cPeNEW1020',NULL);
 
 -----------
 -- AscImp inserts
@@ -550,7 +550,7 @@ BEGIN
             FROM (
                     SELECT DISTINCT ConEEID, ConRelationship, ConNameFirst, ConNameLast, ConNameMiddle, ConDateOfBirth, ConGender, ConAddressLine1, ConAddressLine2, ConAddressCity, ConAddressState, ConAddressZipCode, ConPhoneHomeNumber, 2 AS RN 
                     FROM dbo.Contacts WITH (NOLOCK) 
-                    WHERE ConRelationship IN ('SPS','SP','DOM')
+                    WHERE ConRelationship IN ('SPS','SP','DOM') AND ConIsDependent = 'Y'
         
                     UNION 
         
@@ -559,7 +559,7 @@ BEGIN
                             SELECT DISTINCT ConEEID, ConRelationship, ConNameFirst, ConNameLast, ConNameMiddle, ConDateOfBirth, ConGender, ConAddressLine1, ConAddressLine2, ConAddressCity, ConAddressState, ConAddressZipCode, ConPhoneHomeNumber 
                             FROM dbo.Contacts WITH (NOLOCK) 
                             WHERE ConIsActive = 'Y' 
-                            AND ConRelationship IN ('CHL','DAU','DPC','SON','STC')) AS CHLD
+                            AND ConRelationship IN ('CHL','DAU','DPC','SON','STC') AND ConIsDependent = 'Y') AS CHLD
                 ) AS Con) as Contacts
         ON xEEID = ConEEID
     WHERE ConRelationship IN ('DOM','DP','SPS','CHL','DAU','DPC','SON','STC')
