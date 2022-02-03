@@ -5,7 +5,7 @@ EVOYAHWEXP: Voya Health and Welfare Export
 FormatCode:     EVOYAHWEXP
 Project:        Voya Health and Welfare Export
 Client ID:      GRE1021
-Date/time:      2022-01-05 08:54:04.207
+Date/time:      2022-02-02 10:04:51.160
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -201,7 +201,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EVOYAHWEXPZ0','50','D','10','23',NULL,'Employee Annual Salary',NULL,NULL,'"drvEmployeeAnnualSalary"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EVOYAHWEXPZ0','50','D','10','24',NULL,'Deduction Frequency (Pay Frequency)',NULL,NULL,'"drvDeductionFrequency"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EVOYAHWEXPZ0','50','D','10','25',NULL,'Employment Status',NULL,NULL,'"drvEmploymentStatus"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EVOYAHWEXPZ0','50','D','10','26',NULL,'Date of Hire',NULL,NULL,'"drvDateOfHire"','(''UMDY''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EVOYAHWEXPZ0','50','D','10','26',NULL,'Date of Hire',NULL,NULL,'"drvDateOfHire"','(''UDMDY''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EVOYAHWEXPZ0','50','D','10','27',NULL,'Employment Termination Date',NULL,NULL,'"drvEmploymentTerminationDate"','(''UDMDY''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EVOYAHWEXPZ0','50','D','10','28',NULL,'Takeover',NULL,NULL,'"N"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EVOYAHWEXPZ0','50','D','10','29',NULL,'Work Location',NULL,NULL,'"drvWorkLocation"','(''UA''=''T,'')');
@@ -233,7 +233,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EVOYAHWEXP_20220105.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EVOYAHWEXP_20220202.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -244,7 +244,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201039','EMPEXPORT','OEPASSIVE','Jan  5 2022  8:52AM','EVOYAHWEXP',NULL,NULL,NULL,'202201039','Jan  3 2022 12:41PM','Jan  3 2022 12:41PM','202201031','1710','','','202201031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Voya Health and Welfare Export','202201039','EMPEXPORT','ONDEM_XOE','Jan  5 2022  8:52AM','EVOYAHWEXP',NULL,NULL,NULL,'202201039','Jan  3 2022 12:41PM','Jan  3 2022 12:41PM','202201031','1710','','','202201031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Voya Health and Welfare -Sched','202201039','EMPEXPORT','SCH_EVOYAH','Jan  5 2022  8:53AM','EVOYAHWEXP',NULL,NULL,NULL,'202201039','Jan  3 2022 12:41PM','Jan  3 2022 12:41PM','202201031','1710','','','202201031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Voya Health and Welfare -Test','202201039','EMPEXPORT','TEST_XOE','Jan  5 2022  8:53AM','EVOYAHWEXP',NULL,NULL,NULL,'202201039','Jan  3 2022 12:41PM','Jan  3 2022 12:41PM','202201031','1710','','','202201031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OEZDW,OEZ87,RIWDE',NULL,NULL,NULL,'Voya Health and Welfare -Test','202202019','EMPEXPORT','TEST_XOE','Feb  1 2022  3:11PM','EVOYAHWEXP',NULL,NULL,NULL,'202202019','Feb  1 2022 12:00AM','Dec 30 1899 12:00AM','202201181','1731','','','202201181',dbo.fn_GetTimedKey(),NULL,'us3jReGRE1021',NULL);
 
 -----------
 -- AscImp inserts
@@ -351,7 +351,7 @@ CREATE TABLE [dbo].[U_EVOYAHWEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(5) NULL,
     [drvEmployeeID] char(9) NULL,
     [drvRelationship] varchar(2) NULL,
     [drvSSN] char(11) NULL,
@@ -539,7 +539,10 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = BdmDedCode /* '2 ' + xEEID +    CASE WHEN BdmRecType = 'EMP' THEN ' 1' 
+                                    WHEN ConRelationship = 'SPS' THEN ' 2'
+                                    WHEN ConRelationship IN ('CHL','STC') THEN ' 3' 
+                                    END*/
         -- standard fields above and additional driver fields below
         ,drvEmployeeID = EecEmpNo
         ,drvRelationship =    CASE WHEN BdmRecType = 'EMP' THEN 'EE' 
@@ -552,12 +555,32 @@ BEGIN
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvNameFirst = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
         ,drvNameMiddle = CASE WHEN BdmRecType = 'EMP' THEN EepNameMiddle ELSE ConNameMiddle END
-        ,drvAddressLine1 = REPLACE(CASE WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN ConAddressLine1 ELSE EepAddressLine1 END, ',','')
-        ,drvAddressLine2 = CASE WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN ConAddressLine2 ELSE EepAddressLine2 END
-        ,drvAddressCity = REPLACE(CASE WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN ConAddressCity ELSE  EepAddressCity END, ',', '')
-        ,drvAddressState = CASE WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN ConAddressState ELSE  EepAddressState END
-        ,drvAddressZipCode = CASE WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN ConAddressZipCode ELSE  EepAddressZipCode END
-        ,drvAddressCountry = CASE WHEN BdmRecType = 'DEP' AND ConAddressIsDifferent = 'Y' THEN ConAddressCountry ELSE  EepAddressCountry END
+        ,drvAddressLine1 = REPLACE(
+                                    CASE WHEN BdmRecType = 'DEP' THEN 
+                                        CASE WHEN  ConAddressIsDifferent = 'Y' THEN ConAddressLine1 END
+                                    ELSE EepAddressLine1 
+                                    END, ',','')
+        ,drvAddressLine2 =    CASE WHEN BdmRecType = 'DEP' THEN
+                                CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressLine2 END
+                            ELSE EepAddressLine2 
+                            END
+        ,drvAddressCity = REPLACE(
+                                    CASE WHEN BdmRecType = 'DEP' THEN
+                                        CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressCity END
+                                    ELSE  EepAddressCity 
+                                    END, ',', '')
+        ,drvAddressState =    CASE WHEN BdmRecType = 'DEP' THEN
+                                CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressState END
+                            ELSE  EepAddressState 
+                            END
+        ,drvAddressZipCode =    CASE WHEN BdmRecType = 'DEP' THEN
+                                    CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressZipCode END
+                                ELSE EepAddressZipCode 
+                                END
+        ,drvAddressCountry =    CASE WHEN BdmRecType = 'DEP' THEN
+                                    CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressCountry END
+                                ELSE  EepAddressCountry 
+                                END
         ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
         ,drvGender = CASE WHEN BdmRecType = 'EMP' THEN EepGender ELSE ConGender END
         ,drvPhone = CASE WHEN BdmRecType = 'EMP' THEN EepPhoneHomeNumber ELSE ConPhoneHomeNumber END
@@ -572,18 +595,24 @@ BEGIN
         ,drvWorkLocation = CASE WHEN BdmRecType = 'EMP' THEN LocAddressState END
         ,drvPlanType =    CASE WHEN BdmDedCode IN ('CIEC1','CIEC2','CIEE1','CIEE2','CIES1','CIES2','CIFM1','CREF2') THEN 'CI'
                         WHEN BdmDedCode IN ('ACC1','ACC2') THEN 'AC'
-                        WHEN BdmDedCode IN ('HOSP1','HOSP1') THEN 'HI'
+                        WHEN BdmDedCode IN ('HOSP1','HOSP2') THEN 'HI'
                         END
         ,drvBenefitClass =    CASE WHEN BdmDedCode = 'ACC1' THEN 'Low'
                             WHEN BdmDedCode = 'ACC2' THEN 'High'
                             END
         ,drvVoyaCoverageEffectiveDate = BdmBenStartDate
-        ,drvEEPaidAmount = FORMAT(BdmEEAmt, '#0.00')
+        ,drvEEPaidAmount = FORMAT(
+                                    CASE WHEN BdmDedCode IN ('CIEC1','CIEC2','CIEE1','CIEE2','CIES1','CIES2','CIFM1','CREF2') AND BdmRecType = 'EMP' THEN DedBenAmtMax
+                                    WHEN BdmDedCode IN ('CIEC1','CIEC2','CIEE1','CIEE2','CIES1','CIES2','CIFM1','CREF2') AND BdmRecType <> 'EMP' THEN DedBenAmtMax/2
+                                    WHEN BdmDedCode = 'HOSP1' THEN 100
+                                    WHEN BdmDedCode = 'HOSP2' THEN 200
+                                    END
+                                    , '#0.00')
         ,drvBenefitTermDate = BdmBenStopDate
         ,drvCoverageTier =    CASE WHEN BdmDedCode IN ('CIEE1','CIEE2') THEN 'EMP'
                             WHEN BdmDedCode IN ('CIES1','CIES2') THEN 'ESP'
                             WHEN BdmDedCode IN ('CIEC1','CIEC2') THEN 'ECH'
-                            WHEN BdmDedCode IN ('CIFM1','CIFM2') THEN 'FAM'
+                            WHEN BdmDedCode IN ('CIFM1','CIFM2','CREF2') THEN 'FAM'
                             END
         ,drvPayType = CASE WHEN BdmRecType = 'EMP' THEN EecSalaryOrHourly END
     INTO dbo.U_EVOYAHWEXP_drvTbl
@@ -605,6 +634,8 @@ BEGIN
         ON PgrPayGroup = EecPayGroup
     JOIN dbo.Location with (nolock)
         ON LocCode = EecLocation
+    JOIN dbo.DedCode WITH (NOLOCK)
+        ON BdmDedcode = DedDedCode
     ;
 
     --==========================================
