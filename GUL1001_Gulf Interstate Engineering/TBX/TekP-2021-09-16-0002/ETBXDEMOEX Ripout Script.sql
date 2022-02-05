@@ -5,7 +5,7 @@ ETBXDEMOEX: TBX Demographic Export
 FormatCode:     ETBXDEMOEX
 Project:        TBX Demographic Export
 Client ID:      GUL1001
-Date/time:      2022-01-18 10:44:59.150
+Date/time:      2022-01-27 04:59:54.053
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -251,7 +251,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220118.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220127.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -260,7 +260,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export','202201059','EMPEXPORT','ONDEM_XOE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Sched','202201059','EMPEXPORT','SCH_ETBXDE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Test','202201059','EMPEXPORT','TEST_XOE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Test','202201199','EMPEXPORT','TEST_XOE','Jan 19 2022  2:50PM','ETBXDEMOEX',NULL,NULL,NULL,'202201199','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201191','660','','','202201191',dbo.fn_GetTimedKey(),NULL,'us3rVaGUL1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -339,7 +339,7 @@ CREATE TABLE [dbo].[U_ETBXDEMOEX_drvTbl] (
     [drvEligibilityDate] datetime NULL,
     [drvStatus] char(1) NULL,
     [EecDateOfTermination] datetime NULL,
-    [drvEventDate] datetime NULL,
+    [drvEventDate] varchar(1) NOT NULL,
     [drvEventCode] varchar(3) NOT NULL,
     [drvEventDescription] varchar(52) NOT NULL
 );
@@ -487,19 +487,21 @@ BEGIN
         ,drvPayGroup = PgrDesc
         ,drvDepartment = OrgDesc
         ,drvTitle = JbcDesc
-        ,drvHireDate = EecDateOfOriginalHire
+        ,drvHireDate = EecDateOfLastHire
         ,drvEligibilityDate = EecDateOfLastHire
         ,drvStatus = CASE WHEN EecEmplStatus IN ('A','L','T') THEN EecEmplStatus END
         ,EecDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvEventDate = CASE WHEN CodDesc IS NOT NULL THEN EjhJobEffDate END
-        ,drvEventCode =    CASE WHEN EecTermReason = '203' THEN '28'
+        ,drvEventDate = '' --CASE WHEN CodDesc IS NOT NULL THEN EjhJobEffDate END
+        ,drvEventCode =    CASE WHEN EecEmplStatus IN ('A','L') THEN ''
+                        WHEN EecTermReason = '203' THEN '28'
                         WHEN EecTermReason = '206' THEN '303'
                         WHEN EecTermReason = 'T2' THEN '35'
                         WHEN EecTermReason = 'T1' THEN '55'
                         WHEN EecTermReason IN ('T5','202') THEN '101'
                         ELSE '9'
                         END
-        ,drvEventDescription =    CASE WHEN EecTermReason = '203' THEN 'Deceased Individual'
+        ,drvEventDescription =    CASE WHEN EecEmplStatus IN ('A','L') THEN ''
+                                WHEN EecTermReason = '203' THEN 'Deceased Individual'
                                 WHEN EecTermReason = '206' THEN 'Terminatated Employment (Gross Misconduct)'
                                 WHEN EecTermReason = 'T2' THEN 'Terminated Employment (Layoff / workforce reduction)'
                                 WHEN EecTermReason = 'T1' THEN 'Terminated Employment (Resignation)'

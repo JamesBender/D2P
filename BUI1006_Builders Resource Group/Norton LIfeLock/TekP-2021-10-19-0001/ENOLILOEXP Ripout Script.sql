@@ -5,7 +5,7 @@ ENOLILOEXP: Norton/LifeLock Export
 FormatCode:     ENOLILOEXP
 Project:        Norton/LifeLock Export
 Client ID:      BUI1006
-Date/time:      2022-01-26 11:23:40.070
+Date/time:      2022-01-28 08:50:48.440
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -195,18 +195,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENOLILOEXP_20220126.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENOLILOEXP_20220128.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202201249','EMPEXPORT','OEACTIVE',NULL,'ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241',NULL,'','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202201249','EMPEXPORT','OEPASSIVE',NULL,'ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241',NULL,'','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Norton/LifeLock Export','202201249','EMPEXPORT','ONDEM_XOE',NULL,'ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241',NULL,'','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Norton/LifeLock Export-Sched','202201249','EMPEXPORT','SCH_ENOLIL',NULL,'ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241',NULL,'','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Norton/LifeLock Export-Test','202201249','EMPEXPORT','TEST_XOE',NULL,'ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241',NULL,'','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201249','EMPEXPORT','OEACTIVE','Jan 26 2022 11:38AM','ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241','1','','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201249','EMPEXPORT','OEPASSIVE','Jan 26 2022 11:38AM','ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241','48','','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Norton/LifeLock Export','202201249','EMPEXPORT','ONDEM_XOE','Jan 26 2022 11:39AM','ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241','45','','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Norton/LifeLock Export-Sched','202201249','EMPEXPORT','SCH_ENOLIL','Jan 26 2022 11:40AM','ENOLILOEXP',NULL,NULL,NULL,'202201249','Jan 24 2022 12:41PM','Jan 24 2022 12:41PM','202201241','45','','','202201241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Norton/LifeLock Export-Test','202201279','EMPEXPORT','TEST_XOE','Jan 27 2022 11:28AM','ENOLILOEXP',NULL,NULL,NULL,'202201279','Jan 27 2022 12:00AM','Dec 30 1899 12:00AM','202201131','48','','','202201131',dbo.fn_GetTimedKey(),NULL,'us3jReBUI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -491,8 +491,8 @@ BEGIN
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvSubscriberId = EecEmpNo
         ,drvRelation =    CASE WHEN BdmRecType = 'EMP' THEN 'E'
-                        WHEN ConRelationship IN ('SPS','DP') THEN 'S'
-                        WHEN ConRelationship iN ('CHL','DPC','STC') THEN 'C'
+                        WHEN ConRelationship IN ('SPS') THEN 'S'
+                        WHEN ConRelationship iN ('CHL','STC') THEN 'C'
                         ELSE 'O'
                         END
         ,drvSSN = CASE WHEN BdmRecType = 'EMP' THEN eepSSN ELSE ConSSN END
@@ -502,7 +502,8 @@ BEGIN
         ,drvAddressZipCode = CASE WHEN BdmRecType = 'EMP' THEN EepAddressZipCode END
         ,drvHomePhone =    CASE WHEN BdmRecType = 'EMP' THEN 
                             CASE WHEN ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber
-                            ELSE EfoPhoneNumber
+                            WHEN ISNULL(EfoPhoneNumber, '') <> '' THEN EfoPhoneNumber
+                            ELSE EecPhoneBusinessNumber
                             END
                         END
         ,drvCoverage =    CASE WHEN BdmBenOption = 'EE' THEN 'EO' 
@@ -510,8 +511,8 @@ BEGIN
                         END
         ,drvTerminationDate = BdmBenStopDate
         ,drvEffectiveDate = BdmBenStartDate
-        ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth END
-        ,drvEmail = EepAddressEMail
+        ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
+        ,drvEmail = CASE WHEN BdmRecType = 'EMP' THEN EepAddressEMail END
     INTO dbo.U_ENOLILOEXP_drvTbl
     FROM dbo.U_ENOLILOEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -525,6 +526,7 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON xEEID = ConEEID
         AND BdmDepRecId = ConSystemId
+        AND ConRelationship NOT IN ('DP','DPC')
     LEFT JOIN (
                 SELECT EfoEEID, EfoPhoneNumber
                 FROM (

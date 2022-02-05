@@ -5,7 +5,7 @@ EDISCCOBR3: Discovery Benefits Cobra Exp TEST
 FormatCode:     EDISCCOBR3
 Project:        Discovery Benefits Cobra Exp TEST
 Client ID:      AGR1002
-Date/time:      2022-01-07 14:51:26.630
+Date/time:      2022-02-03 17:53:44.277
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -16,6 +16,7 @@ ExportPath:    \\us.saas\n0\data_exchange\AGR1002\Exports\
 TestPath:      \\us.saas\n1\Public\10691\Exports\Discovery\
 
 **********************************************************************************/
+
 
 SET NOCOUNT ON;
 
@@ -246,10 +247,10 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\20210902_Agribeef_NPM_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'New Plan Member Export','202108209','EMPEXPORT','NPMFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202108209','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202108131','20','','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\20210902_Agribeef_QB_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Export','202108209','EMPEXPORT','QBFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202108209','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202108131','52','','','202108131',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20210902_Agribeef_NPM_12805a.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test New Plan Member Export','202112289','EMPEXPORT','TESTNPM','Dec 28 2021  8:46PM','EDISCCOBR3',NULL,NULL,NULL,'202112289','Dec 28 2021 12:00AM','Dec 30 1899 12:00AM','202108011','1','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20211222_Agribeef_QB_12805a.txt',NULL,NULL,NULL,'19HGP',NULL,NULL,NULL,'Test Cobra Export','202112229','EMPEXPORT','TESTQB','Dec 28 2021  4:41PM','EDISCCOBR3',NULL,NULL,NULL,'202112229','Dec 22 2021 12:00AM','Dec 30 1899 12:00AM','202101011','16','','','202101011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File name is auto generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'New Plan Member Export','202201049','EMPEXPORT','NPMFILE','Feb  3 2022  4:15PM','EDISCCOBR3',NULL,NULL,NULL,'202201049','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202110011','6','','','202110011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File name is auto generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Export','202201289','EMPEXPORT','QBFILE','May  6 2021 12:00AM','EDISCCOBR3',NULL,NULL,NULL,'202201289','May  6 2021 12:00AM','Dec 30 1899 12:00AM','202201211','52','','','202201211',dbo.fn_GetTimedKey(),NULL,'ULTI_AGRI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20210902_Agribeef_NPM_12805',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test New Plan Member Export','202109021','EMPEXPORT','TESTNPM','Sep  8 2021  3:40PM','EDISCCOBR3',NULL,NULL,NULL,'202109021','Sep  2 2021 12:00AM','Aug 28 2021 12:00AM','202108141','9','','','202108141',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\N1\Public\10691\Exports\Discovery\TEST_20210902_Agribeef_QB_12805.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Cobra Export','202109029','EMPEXPORT','TESTQB','Sep  2 2021 12:31PM','EDISCCOBR3',NULL,NULL,NULL,'202109029','Sep  2 2021 12:00AM','Dec 30 1899 12:00AM','202106011','490','','','202106011',dbo.fn_GetTimedKey(),NULL,'us3rVaAGR1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -318,217 +319,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- Create table U_dsi_BDM_EDISCCOBR3
------------
-
-IF OBJECT_ID('U_dsi_BDM_EDISCCOBR3') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_EDISCCOBR3] (
-    [BdmRecType] varchar(3) NOT NULL,
-    [BdmCOID] char(5) NULL,
-    [BdmEEID] char(12) NOT NULL,
-    [BdmDepRecID] char(12) NULL,
-    [BdmSystemID] char(12) NULL,
-    [BdmRunID] varchar(32) NULL,
-    [BdmDedRowStatus] varchar(256) NULL,
-    [BdmRelationship] char(3) NULL,
-    [BdmDateOfBirth] datetime NULL,
-    [BdmDedCode] char(5) NULL,
-    [BdmDedType] varchar(32) NULL,
-    [BdmBenOption] char(6) NULL,
-    [BdmBenStatus] char(1) NULL,
-    [BdmBenStartDate] datetime NULL,
-    [BdmBenStopDate] datetime NULL,
-    [BdmBenStatusDate] datetime NULL,
-    [BdmBenOptionDate] datetime NULL,
-    [BdmChangeReason] char(6) NULL,
-    [BdmStartDate] datetime NULL,
-    [BdmStopDate] datetime NULL,
-    [BdmIsCobraCovered] char(1) NULL,
-    [BdmCobraReason] char(6) NULL,
-    [BdmDateOfCOBRAEvent] datetime NULL,
-    [BdmIsPQB] char(1) NULL,
-    [BdmIsChildOldest] char(1) NULL,
-    [BdmUSGField1] varchar(256) NULL,
-    [BdmUSGField2] varchar(256) NULL,
-    [BdmUSGDate1] datetime NULL,
-    [BdmUSGDate2] datetime NULL,
-    [BdmTVStartDate] datetime NULL,
-    [BdmSessionID] varchar(32) NULL,
-    [BdmEEAmt] money NULL,
-    [BdmEECalcRateOrPct] decimal NULL,
-    [BdmEEGoalAmt] money NULL,
-    [BdmEEMemberOrCaseNo] char(40) NULL,
-    [BdmERAmt] money NULL,
-    [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL,
-    [BdmNumDomPartners] int NULL,
-    [BdmNumDPChildren] int NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_NPM
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_NPM') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_NPM] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvSSN] char(11) NULL,
-    [drvEmpNo] char(9) NULL,
-    [drvClientName] varchar(19) NOT NULL,
-    [drvClientDivName] varchar(13) NOT NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvAddressEMail] varchar(50) NULL,
-    [drvPhoneHomeNumber] varchar(50) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvGender] char(1) NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(1) NOT NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_QB
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_QB') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QB] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvClientName] varchar(19) NOT NULL,
-    [drvClientDivName] varchar(13) NOT NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvSSN] char(11) NULL,
-    [drvEmpNo] char(9) NULL,
-    [drvAddressLine1] varchar(6000) NULL,
-    [drvAddressLine2] varchar(6000) NULL,
-    [drvAddressCity] varchar(6000) NULL,
-    [drvAddressState] varchar(6000) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvGender] char(1) NULL,
-    [drvDateOfBirth] datetime NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_QBDEP
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_QBDEP') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBDEP] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NULL,
-    [drvSSN] char(11) NOT NULL,
-    [drvRelationship] varchar(6) NOT NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameMiddle] varchar(1) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvIsAddressSame] varchar(5) NOT NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(255) NULL,
-    [drvAddressZipCode] varchar(50) NULL,
-    [drvGender] char(1) NULL,
-    [drvDateOfBirth] datetime NULL,
-    [drvISQMCO] varchar(5) NOT NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(13) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_QBDEPPLAN
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_QBDEPPLAN') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBDEPPLAN] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NULL,
-    [drvDedCode] char(5) NULL,
-    [drvPlanName] varchar(38) NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(13) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_QBEVENT
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_QBEVENT') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBEVENT] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvEventType] varchar(29) NOT NULL,
-    [drvEventDate] datetime NULL,
-    [drvEnrollmentDate] datetime NULL,
-    [drvSSN] char(11) NULL,
-    [drvName] varchar(201) NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_QBMSRI
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_QBMSRI') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBMSRI] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvPlanName] varchar(38) NULL,
-    [drvRate] money NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-
------------
--- Create table U_EDISCCOBR3_drvTbl_QBPLAN
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_drvTbl_QBPLAN') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_drvTbl_QBPLAN] (
-    [drvEEID] char(12) NOT NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] char(12) NOT NULL,
-    [drvDedCode] char(5) NULL,
-    [drvPlanName] varchar(38) NULL,
-    [drvCoverageLevel] varchar(11) NULL,
-    [eecpaygroup] char(6) NULL,
-    [drvSubSort] char(11) NULL,
-    [drvSubSort2] varchar(1) NOT NULL,
-    [drvSubSort3] varchar(208) NULL
-);
-
------------
--- Create table U_EDISCCOBR3_EEList
------------
-
-IF OBJECT_ID('U_EDISCCOBR3_EEList') IS NULL
-CREATE TABLE [dbo].[U_EDISCCOBR3_EEList] (
-    [xCOID] char(5) NULL,
-    [xEEID] char(12) NULL
-);
-
------------
 -- Create table U_EDISCCOBR3_File
 -----------
 
@@ -567,7 +357,7 @@ Kaitlyn Duesler            05/04/2021    SR-2021-00310467    Update to Plan Name
     - Changed client name and client division name for both NPM and QB records.
 
 01/07/2021 by AP:
-	- Updated Cient Division Name.
+    - Updated Cient Division Name.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISCCOBR3';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDISCCOBR3';
@@ -584,7 +374,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDISCCOBR3', 'TESTQB';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EDISCCOBR3';
 
-EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EDISCCOBR3', @AllObjects = 'Y', @IsWeb = 'N'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EDISCCOBR3', @AllObjects = 'N', @IsWeb = 'N'
 **********************************************************************************/
 BEGIN
 
