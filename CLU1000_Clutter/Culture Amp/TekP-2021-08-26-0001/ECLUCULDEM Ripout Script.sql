@@ -5,7 +5,7 @@ ECLUCULDEM: Culture Amp Demo Export
 FormatCode:     ECLUCULDEM
 Project:        Culture Amp Demo Export
 Client ID:      CLU1000
-Date/time:      2022-01-25 08:21:06.227
+Date/time:      2022-02-04 10:51:37.030
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -194,7 +194,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECLUCULDEM_20220125.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECLUCULDEM_20220204.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -205,7 +205,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202110169','EMPEXPORT','OEPASSIVE',NULL,'ECLUCULDEM',NULL,NULL,NULL,'202110169','Oct 16 2021 11:43PM','Oct 16 2021 11:43PM','202110161',NULL,'','','202110161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demo Export','202110169','EMPEXPORT','ONDEM_XOE',NULL,'ECLUCULDEM',NULL,NULL,NULL,'202110169','Oct 16 2021 11:43PM','Oct 16 2021 11:43PM','202110161',NULL,'','','202110161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Culture Amp Demo Export-Sched','202110169','EMPEXPORT','SCH_ECLUCU',NULL,'ECLUCULDEM',NULL,NULL,NULL,'202110169','Oct 16 2021 11:43PM','Oct 16 2021 11:43PM','202110161',NULL,'','','202110161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','0LQ95',NULL,NULL,NULL,'Culture Amp Demo Export-Test','202201039','EMPEXPORT','TEST_XOE','Jan  3 2022  8:16PM','ECLUCULDEM',NULL,NULL,NULL,'202201039','Jan  3 2022 12:00AM','Dec 30 1899 12:00AM','202112201','704','','','202112201',dbo.fn_GetTimedKey(),NULL,'us3lKiCLU1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','0LQ95',NULL,NULL,NULL,'Culture Amp Demo Export-Test','202202029','EMPEXPORT','TEST_XOE','Feb  2 2022 10:12AM','ECLUCULDEM',NULL,NULL,NULL,'202202029','Feb  2 2022 12:00AM','Dec 30 1899 12:00AM','202201191','777','','','202201191',dbo.fn_GetTimedKey(),NULL,'us3lKiCLU1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -290,7 +290,7 @@ CREATE TABLE [dbo].[U_ECLUCULDEM_drvTbl] (
     [drvDepartment] varchar(25) NULL,
     [drvEmploymentStatus] varchar(45) NULL,
     [drvEmploymentType] varchar(45) NULL,
-    [drvShift] varchar(45) NULL
+    [drvShift] char(24) NULL
 );
 
 -----------
@@ -626,7 +626,7 @@ BEGIN
         ,drvDepartment = OL2.OrgDesc
         ,drvEmploymentStatus = EeStatus.CodDesc
         ,drvEmploymentType = SOH.CodDesc
-        ,drvShift = SHFT.CodDesc
+        ,drvShift = ShfDescription
     INTO dbo.U_ECLUCULDEM_drvTbl
     FROM dbo.U_ECLUCULDEM_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp EEC WITH (NOLOCK)
@@ -652,9 +652,11 @@ BEGIN
     LEFT JOIN dbo.Codes SOH WITH (NOLOCK)  
         on SOH.CodCode = EecSalaryOrHourly
         and SOH.CodTable = 'SALARYORHOURLY'
-    LEFT JOIN dbo.Codes SHFT WITH (NOLOCK)  
-        on SHFT.CodCode = EecShift
-        and SHFT.CodTable = 'SHIFTGROUP'
+    --LEFT JOIN dbo.Codes SHFT WITH (NOLOCK)  
+    --    on SHFT.CodCode = EecShift
+    --    and SHFT.CodTable = 'ShiftCod'
+    JOIN dbo.ShiftCod WITH (NOLOCK)
+        ON EecShift = ShfShiftCode
     LEFT JOIN (select * from dbo.fn_MP_CustomFields_EmpComp_Export (NULL,NULL,NULL,NULL)) Team
         on Team.EecEEID =  xeeid
         and Team.EecCoID =  xcoid
