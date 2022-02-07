@@ -5,7 +5,7 @@ EDIRECTPA2: Test Direct Path Census Export
 FormatCode:     EDIRECTPA2
 Project:        Test Direct Path Census Export
 Client ID:      GRA1017
-Date/time:      2021-12-18 15:39:34.980
+Date/time:      2022-02-06 13:26:27.097
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -251,7 +251,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','E2LUTS000020','50','D','10','49',NULL,'Employment Field 1',NULL,NULL,'"drvEmploymentField1"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','E2LUTS000020','50','D','10','50',NULL,'Employment Field 1 Effective Date',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','E2LUTS000020','50','D','10','51',NULL,'Employment Field 2',NULL,NULL,'"drvEmploymentField2"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','E2LUTS000020','50','D','10','52',NULL,'Employment Field 2 Effective Date',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','E2LUTS000020','50','D','10','52',NULL,'Employment Field 2 Effective Date',NULL,NULL,'"drvEmploymentField2Date"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','E2LUTS000020','50','D','10','53',NULL,'Employment Field 3',NULL,NULL,'"drvEmploymentField3"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','E2LUTS000020','50','D','10','54',NULL,'Employment Field 3 Effective Date',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','E2LUTS000020','50','D','10','55',NULL,'Employment Field 4',NULL,NULL,'"drvEmploymentField4"','(''UA''=''T,'')');
@@ -278,7 +278,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EDIRECTPA2_20211218.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EDIRECTPA2_20220206.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -287,7 +287,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Direct Path Census Export','202102249','EMPEXPORT','ONDEM_XOE','Oct 18 2021 12:00AM','EDIRECTPA2',NULL,NULL,NULL,'202102249','Feb 24 2021 12:00AM','Dec 30 1899 12:00AM','202102011',NULL,NULL,NULL,'202102011',dbo.fn_GetTimedKey(),NULL,'MBUTTIMER01',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',NULL,NULL,NULL,NULL,'Direct Path Census Scheduled','202102239','EMPEXPORT','SCH_EDIREC',NULL,'EDIRECTPA2',NULL,NULL,NULL,'202112159','Jan 27 2020  6:01PM','Jan 27 2020  6:01PM','202112081',NULL,NULL,NULL,'202102011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Direct Path Census Test','202112159','EMPEXPORT','TEST_XOE','Jul  8 2021 12:00AM','EDIRECTPA2',NULL,NULL,NULL,'202112159','Jul  7 2021 12:00AM','Dec 30 1899 12:00AM','202112011',NULL,NULL,NULL,'202112011',dbo.fn_GetTimedKey(),NULL,'ULTI_GRYT',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Direct Path Census Test','202112159','EMPEXPORT','TEST_XOE','Feb  4 2022  2:05PM','EDIRECTPA2',NULL,NULL,NULL,'202112159','Jul  7 2021 12:00AM','Dec 30 1899 12:00AM','202112011','10681',NULL,NULL,'202112011',dbo.fn_GetTimedKey(),NULL,'ULTI_GRYT',NULL);
 
 -----------
 -- AscImp inserts
@@ -373,7 +373,7 @@ CREATE TABLE [dbo].[U_EDIRECTPA2_drvTbl] (
     [drvMiddleInitial] varchar(8000) NULL,
     [drvSuffix] varchar(30) NULL,
     [drvEmployeeType] char(1) NULL,
-    [drvBenefitClass] varchar(6) NOT NULL,
+    [drvBenefitClass] varchar(21) NOT NULL,
     [drvLocationName] varchar(255) NULL,
     [drvLocationCode] varchar(10) NULL,
     [drvGender] char(1) NULL,
@@ -471,13 +471,13 @@ NKowalchuk       03/05/2021        SF 20780739            Correct logic to send 
 Rishabh Verma    06/10/2021        SR-2021-00314848       Added drvEmploymentField1 and Updated BenefitsClass
 Rishabh Verma    07/27/2021        SR-2021-00317414       Updated the Termination Reason Field
 Darren Collard   12/18/2021        TekP-2021-10-25-0001   Field updates per spec
-
+Darren Collard   02/06/2022        TekP-2021-10-25-0001   Add local union date
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDIRECTPA2';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDIRECTPA2';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EDIRECTPA2';
 SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EDIRECTPA2';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EDIRECTPAT' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EDIRECTPA2' ORDER BY RunID DESC;
 
 Execute Export
 --------------
@@ -485,9 +485,8 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDIRECTPA2', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDIRECTPA2', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDIRECTPA2', 'SCH_EDIREC';
 
---========= Ripout Script Version Updated Verison 7.2 from Base Version ================--
 
-EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EDIRECTPA2', @AllObjects = 'Y',@FilePath = '', @IsWeb = 'Y', @NewFormatCode = '' 
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EDIRECTPA2', @AllObjects = 'Y',@FilePath = '', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -600,6 +599,7 @@ BEGIN
         ,drvSuffix = EepNameSuffix
         ,drvEmployeeType = EecFullTimeOrPartTime
         ,drvBenefitClass = CASE EecDedGroupCode ---- BenefitClass Updated SR-2021-00314848
+                                WHEN 'AFTRA' THEN 'All SAG-AFTRA (AFTRA)'
                                 WHEN 'EXEC' THEN 'FTEXEX'
                                 WHEN 'ALL' THEN 'FTALL'
                                 WHEN 'KHNL' THEN
@@ -672,6 +672,7 @@ BEGIN
         ,drvLOAstatus = CASE WHEN EecEmplStatus = 'L' AND LchFMLAQualified = 'Y' THEN '01' END
         ,drvEmploymentField1 = pcf.Employment_AcquisitionDate   ------ Populated AcquisitionDate(PlatForm Configurable Field)- SR-2021-00314848
         ,drvEmploymentField2 = EecUnionLocal  --DLC 12/18
+        ,drvEmploymentField2Date = EecDateofLocalUnion --DLC 02/06
         ,drvEmploymentField3 = EecUDField03   --DLC 12/18
         ,drvEmploymentField4 = iif(eecSalaryOrHourly='S','Salary','Hourly')   --DLC 12/18
     INTO dbo.U_EDIRECTPA2_drvTbl

@@ -5,7 +5,7 @@ ECULTIEXDE: CultureAmp Demo Export
 FormatCode:     ECULTIEXDE
 Project:        CultureAmp Demo Export
 Client ID:      IEX1000
-Date/time:      2022-01-20 20:14:41.307
+Date/time:      2022-02-03 19:19:01.287
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -180,7 +180,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECULTIEXDE_20220120.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECULTIEXDE_20220203.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -191,7 +191,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202201209','EMPEXPORT','OEPASSIVE',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CultureAmp Demo Export','202201209','EMPEXPORT','ONDEM_XOE',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CultureAmp Demo Export-Sched','202201209','EMPEXPORT','SCH_ECULTI',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'CultureAmp Demo Export-Test','202201209','EMPEXPORT','TEST_XOE',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CultureAmp Demo Export-Test','202201251','EMPEXPORT','TEST_XOE','Jan 25 2022 10:37AM','ECULTIEXDE',NULL,NULL,NULL,'202201251','Jan 25 2022 12:00AM','Dec 30 1899 12:00AM','202201111','276','','','202201111',dbo.fn_GetTimedKey(),NULL,'us3cPeIEX1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -303,9 +303,9 @@ CREATE TABLE [dbo].[U_ECULTIEXDE_drvTbl] (
     [drvPrefName] varchar(100) NULL,
     [drvEmpId] char(9) NULL,
     [drvEmail] varchar(50) NULL,
-    [drvDOB] VARCHAR(30) NULL,
-    [drvStartDt] VARCHAR(30) NULL,
-    [drvEndDt] varchar(30) NOT NULL,
+    [drvDOB] varchar(8000) NULL,
+    [drvStartDt] varchar(8000) NULL,
+    [drvEndDt] varchar(8000) NULL,
     [drvLanguage] char(2) NOT NULL,
     [drvManagerEmail] varchar(50) NULL,
     [drvManager] char(9) NULL,
@@ -398,8 +398,8 @@ Purpose: CultureAmp Demo Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
+02/03/2022 by AP:
+	- Removed commas from job title field.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECULTIEXDE';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECULTIEXDE';
@@ -629,7 +629,7 @@ BEGIN
         ,drvEmpType = CASE WHEN Ec.EecFullTimeOrPartTime = 'F' THEN 'Full-time'
                         WHEN Ec.EecFullTimeOrPartTime = 'P' THEN 'Part-time'
                         END
-        ,drvJobTitle = JbcDesc
+        ,drvJobTitle = REPLACE(JbcDesc, ',', '')
     INTO dbo.U_ECULTIEXDE_drvTbl
     FROM dbo.U_ECULTIEXDE_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers pers WITH (NOLOCK)
