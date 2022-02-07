@@ -5,7 +5,7 @@ EWESHSAEXP: WEX FSA Dep HAS Enrollment Payroll Export
 FormatCode:     EWESHSAEXP
 Project:        WEX FSA Dep HAS Enrollment Payroll Export
 Client ID:      WIL1015
-Date/time:      2022-01-26 06:09:40.647
+Date/time:      2022-02-03 11:40:51.757
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -257,7 +257,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWESHSAEXP_20220126.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWESHSAEXP_20220203.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -268,7 +268,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112179','EMPEXPORT','OEPASSIVE',NULL,'EWESHSAEXP',NULL,NULL,NULL,'202112179','Dec 17 2021 11:45AM','Dec 17 2021 11:45AM','202112171',NULL,'','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pay Exp','202112179','EMPEXPORT','ONDEM_XOE',NULL,'EWESHSAEXP',NULL,NULL,NULL,'202112179','Dec 17 2021 11:45AM','Dec 17 2021 11:45AM','202112171',NULL,'','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pa-Sched','202112179','EMPEXPORT','SCH_EWESHS',NULL,'EWESHSAEXP',NULL,NULL,NULL,'202112179','Dec 17 2021 11:45AM','Dec 17 2021 11:45AM','202112171',NULL,'','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pa-Test','202201269','EMPEXPORT','TEST_XOE','Jan 25 2022 12:48PM','EWESHSAEXP',NULL,NULL,NULL,'202201269','Jan 26 2022 12:00AM','Dec 30 1899 12:00AM','202201141','18689','eecPayGroup','BWE,BWEUS2,WKN,WKNUS2','202201141',dbo.fn_GetTimedKey(),NULL,'us3lKiWIL1015',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pa-Test','202201269','EMPEXPORT','TEST_XOE','Feb  3 2022 11:37AM','EWESHSAEXP',NULL,NULL,NULL,'202201269','Jan 26 2022 12:00AM','Dec 30 1899 12:00AM','202201141','4608','eecPayGroup','BWE,BWEUS2,WKN,WKNUS2','202201141',dbo.fn_GetTimedKey(),NULL,'us3lKiWIL1015',NULL);
 
 -----------
 -- AscImp inserts
@@ -796,13 +796,14 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    LEFT JOIN dbo.U_dsi_BDM_EWESHSAEXP WITH (NOLOCK)
+    /*LEFT*/ JOIN dbo.U_dsi_BDM_EWESHSAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_EWESHSAEXP_PDedHist
         ON PdhEEID = xEEID
-    WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
-        OR xEEID IN (SELECT DISTINCT drvEEID FROM dbo.U_EWESHSAEXP_drvTbl_CT WITH (NOLOCK))
+    WHERE ((EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
+        OR xEEID IN (SELECT DISTINCT drvEEID FROM dbo.U_EWESHSAEXP_drvTbl_CT WITH (NOLOCK)))
+        AND  BdmBenStatus <> 'W'
         --OR (
         --        PdhFSAHCContribAmt <> 0
         --        OR PdhFSADCContribAmt <> 0
@@ -845,13 +846,14 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    LEFT JOIN dbo.U_dsi_BDM_EWESHSAEXP WITH (NOLOCK)
+    /*LEFT*/ JOIN dbo.U_dsi_BDM_EWESHSAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_EWESHSAEXP_PDedHist
         ON PdhEEID = xEEID
-    WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
-        OR xEEID IN (SELECT DISTINCT drvEEID FROM dbo.U_EWESHSAEXP_drvTbl_CT WITH (NOLOCK))
+    WHERE ((EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
+        OR xEEID IN (SELECT DISTINCT drvEEID FROM dbo.U_EWESHSAEXP_drvTbl_CT WITH (NOLOCK)))
+        AND  BdmBenStatus <> 'W'
 
     --WHERE BdmEEID IS NOT NULL    
         --OR (
