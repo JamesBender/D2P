@@ -4,16 +4,17 @@ EWEXFSASYM: WEX FSA Export
 
 FormatCode:     EWEXFSASYM
 Project:        WEX FSA Export
-Client ID:      USG1000
-Date/time:      2022-01-28 18:54:11.537
+Client ID:      VEN1002
+Date/time:      2022-02-07 17:43:36.523
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EWEXFSASYM_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP1DB02
+Database:       ULTIPRO_WPVCR
+Web Filename:   VEN1002_0A9J7_EEHISTORY_EWEXFSASYM_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,29 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwEWEXFSASYM_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEWEXFSASYM_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EWEXFSASYM') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWEXFSASYM];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_trlTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_trlTbl];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_PTTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_PTTbl];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_PDedHist];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_hdrTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_hdrTbl];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_File') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_File];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_ENTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_ENTbl];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_EEList') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_EEList];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_DedList') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_DedList];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_CTTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_CTTbl];
+GO
+IF OBJECT_ID('U_dsi_BDM_EWEXFSASYM') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EWEXFSASYM];
 GO
 
 -----------
@@ -158,7 +181,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EWEXFSASYMZ0','50','D','10','31',NULL,'Payroll Frequency',NULL,NULL,'"drv10PayrollFreq"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EWEXFSASYMZ0','50','D','10','32',NULL,'Payroll Frequency Effective Date',NULL,NULL,'"drv10PayrollFreqEffDt"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EWEXFSASYMZ0','50','D','10','33',NULL,'Participant Status',NULL,NULL,'"drv10PartStat"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EWEXFSASYMZ0','50','D','10','34',NULL,'Status Effective Date',NULL,NULL,'"drv10StatEffDt"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EWEXFSASYMZ0','50','D','10','34',NULL,'Status Effective Date',NULL,NULL,'"drv10StatEffDt"','(''UD101''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EWEXFSASYMZ0','50','D','10','35',NULL,'Hold Payroll Deductions',NULL,NULL,'"drv10HoldPayDed"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EWEXFSASYMZ0','50','D','10','36',NULL,'Hold Employer Contributions',NULL,NULL,'"drv10HoldEmployerCont"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EWEXFSASYMZ0','50','D','10','37',NULL,'Incur Services',NULL,NULL,'"drv10IncurServ"','(''UA''=''T|'')');
@@ -190,7 +213,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EWEXFSASYMZ0','54','D','20','1',NULL,'Record Type',NULL,NULL,'"drv20RecType"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWEXFSASYMZ0','54','D','20','2',NULL,'Participant File Import ID',NULL,NULL,'"drv20PartFileImpId"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EWEXFSASYMZ0','54','D','20','3',NULL,'Plan Name',NULL,NULL,'"drv20PlanName"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EWEXFSASYMZ0','54','D','20','4',NULL,'Enrollment Effective Date',NULL,NULL,'"drv20EnrollEffDt"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EWEXFSASYMZ0','54','D','20','4',NULL,'Enrollment Effective Date',NULL,NULL,'"drv20EnrollEffDt"','(''UD101''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EWEXFSASYMZ0','54','D','20','5',NULL,'Participant Election Amount',NULL,NULL,'"drv20PartElectAmt"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EWEXFSASYMZ0','54','D','20','6',NULL,'Enrollment Termination Date',NULL,NULL,'"drv20EnrollTermDt"','(''UD101''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EWEXFSASYMZ0','54','D','20','7',NULL,'Employer Contribution Level',NULL,NULL,'"drv20EmployerContribLvl"','(''UA''=''T|'')');
@@ -231,7 +254,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWEXFSASYM_20220128.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWEXFSASYM_20220207.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -240,7 +263,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export','202201279','EMPEXPORT','ONDEM_XOE',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export-Sched','202201279','EMPEXPORT','SCH_EWEXFS',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export-Test','202201279','EMPEXPORT','TEST_XOE',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA Export-Test','202201289','EMPEXPORT','TEST_XOE','Feb  3 2022  9:05AM','EWEXFSASYM',NULL,NULL,NULL,'202201289','Jan 28 2022 12:00AM','Dec 30 1899 12:00AM','202201281','794','','','202201281',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -252,9 +275,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -282,9 +308,267 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_dsi_BDM_EWEXFSASYM
 -----------
 
+IF OBJECT_ID('U_dsi_BDM_EWEXFSASYM') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EWEXFSASYM] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_CTTbl
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_CTTbl') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_CTTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drv30RecordType] varchar(2) NOT NULL,
+    [drv30PartFileImpId] char(11) NULL,
+    [drv30PlanName] varchar(18) NOT NULL,
+    [drv30ContDt] datetime NULL,
+    [drv30ContDesc] varchar(17) NOT NULL,
+    [drv30ContAmt] varchar(30) NULL,
+    [drv30AmtType] varchar(6) NOT NULL,
+    [drv30TaxYear] varchar(7) NOT NULL,
+	drvInitialSort varchar(10) NOT NULL,
+	drvSubSort varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_DedList
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_DedList') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_EEList
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_EEList') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_ENTbl
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_ENTbl') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_ENTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drv20RecType] varchar(2) NOT NULL,
+    [drv20PartFileImpId] char(11) NULL,
+    [drv20PlanName] varchar(18) NULL,
+    [drv20EnrollEffDt] datetime NULL,
+    [drv20PartElectAmt] money NULL,
+    [drv20EnrollTermDt] varchar(30) NOT NULL,
+    [drv20EmployerContribLvl] varchar(1) NOT NULL,
+    [drv20EmployerContribAmt] varchar(1) NOT NULL,
+    [drv20PrimReimburse] varchar(1) NOT NULL,
+    [drv20AltReimburse] varchar(1) NOT NULL,
+    [drv20EnrolledInClaims] varchar(1) NOT NULL,
+    [drv20ElectAmtIndic] varchar(1) NOT NULL,
+    [drv20HDHPCovLvl] varchar(1) NOT NULL,
+    [drv20PlanYearStartDt] varchar(34) NULL,
+    [drv20TermCondAccept] varchar(1) NOT NULL,
+    [drv20TimeTermCondAccpt] varchar(1) NOT NULL,
+    [drv20ChangeDt] varchar(1) NOT NULL,
+    [drv20SpendDown] varchar(1) NOT NULL,
+	drvInitialSort varchar(10) NOT NULL,
+	drvSubSort varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_File
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_File') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(4000) NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_hdrTbl
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_hdrTbl') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_hdrTbl] (
+    [hdr01RecType] varchar(2) NOT NULL,
+    [hdr01AdminCode] varchar(3) NOT NULL,
+    [hdr01EmpCode] varchar(5) NOT NULL,
+    [hdr01SyncFlag] varchar(1) NOT NULL,
+    [hdr01SubmitDt] datetime NOT NULL,
+    [hdr01SubmitTime] varchar(10) NULL,
+    [hdr01FileVersion] varchar(3) NOT NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_PDedHist
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhCOID] char(5) NOT NULL,
+	[PdhDedCode] varchar(10) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSource1] numeric NULL,
+    [PdhSource2] numeric NULL,
+    [PdhSource3] numeric NULL,
+    [PdhSource4] numeric NULL,
+    [PdhSource5] numeric NULL,
+    [PdhSource6] numeric NULL,
+    [PdhSource7] numeric NULL,
+    [PdhSource8] numeric NULL,
+    [PdhSource9] numeric NULL,
+    [PdhSource10] numeric NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_PTTbl
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_PTTbl') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_PTTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drv10RecType] varchar(2) NOT NULL,
+    [drv10PartFileId] char(11) NULL,
+    [drv10EmployerEmpId] varchar(1) NOT NULL,
+    [drv10EmpNum] char(9) NULL,
+    [drv10LName] varchar(100) NULL,
+    [drv10FName] varchar(100) NULL,
+    [drv10MI] varchar(1) NULL,
+    [drv10Gender] char(1) NULL,
+    [drv10MaritalStat] varchar(1) NOT NULL,
+    [drv10MotherMN] varchar(1) NOT NULL,
+    [drv10DOB] datetime NULL,
+    [drv10SSN] char(11) NULL,
+    [drv10Add1] varchar(255) NULL,
+    [drv10Add2] varchar(255) NULL,
+    [drv10Add3] varchar(1) NOT NULL,
+    [drv10Add4] varchar(1) NOT NULL,
+    [drv10City] varchar(255) NULL,
+    [drv10State] varchar(255) NULL,
+    [drv10ZipCode] varchar(50) NULL,
+    [drv10Country] varchar(2) NOT NULL,
+    [drv10HPh] varchar(1) NOT NULL,
+    [drv10WPh] varchar(1) NOT NULL,
+    [drv10WPhExt] varchar(1) NOT NULL,
+    [drv10EmailAdd] varchar(50) NULL,
+    [drv10User] varchar(1) NOT NULL,
+    [drv10Pass] varchar(1) NOT NULL,
+    [drv10HireDt] datetime NULL,
+    [drv10Div] varchar(1) NOT NULL,
+    [drv10HrsPerWk] varchar(1) NOT NULL,
+    [drv10EmpClass] varchar(1) NOT NULL,
+    [drv10PayrollFreq] varchar(7) NOT NULL,
+    [drv10PayrollFreqEffDt] varchar(1) NOT NULL,
+    [drv10PartStat] varchar(10) NOT NULL,
+    [drv10StatEffDt] datetime NULL,
+    [drv10HoldPayDed] varchar(1) NOT NULL,
+    [drv10HoldEmployerCont] varchar(1) NOT NULL,
+    [drv10IncurServ] varchar(1) NOT NULL,
+    [drv10FinalPayProcDt] varchar(30) NOT NULL,
+    [drv10FinalContProcDt] varchar(30) NOT NULL,
+    [drv10HSACust] varchar(1) NOT NULL,
+    [drv10MediBen] varchar(1) NOT NULL,
+    [drv10MediId] varchar(1) NOT NULL,
+    [drv10ExIntId] varchar(1) NOT NULL,
+    [drv10RepLvl1] varchar(1) NOT NULL,
+    [drv10RepLvl2] varchar(1) NOT NULL,
+    [drv10RepLvl3] varchar(1) NOT NULL,
+    [drv10RepLvl4] varchar(1) NOT NULL,
+    [drv10CDDCitizen] varchar(1) NOT NULL,
+    [drv10CDDCountry] char(3) NULL,
+    [drv10CDDEmpStat] varchar(1) NOT NULL,
+    [drv10Employer] varchar(1) NOT NULL,
+    [drv10JobTitle] varchar(1) NOT NULL,
+    [drv10ClassEffDt] varchar(1) NOT NULL,
+    [drv10IDIdentType] varchar(1) NOT NULL,
+    [drv10IDIdentNum] varchar(1) NOT NULL,
+    [drv10IDIssuingState] varchar(255) NULL,
+    [drv10IDIssuer] varchar(1) NOT NULL,
+    [drv10IDIssueDt] varchar(1) NOT NULL,
+    [drv10IDExpirationDt] varchar(1) NOT NULL,
+    [drv10MobileCar] varchar(1) NOT NULL,
+    [drv10MobileNum] varchar(1) NOT NULL,
+    [drv10TimeZone] varchar(1) NOT NULL,
+	drvInitialSort varchar(10) NOT NULL,
+	drvSubSort varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_trlTbl
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_trlTbl') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_trlTbl] (
+    [trl90RecType] varchar(2) NOT NULL,
+    [trl90RecCount] int NULL,
+    [trl90AdminCode] varchar(3) NOT NULL,
+    [trl90EmpCode] varchar(5) NOT NULL,
+    [trl90SubmitDt] datetime NOT NULL,
+    [trl90SubmitTime] varchar(10) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWEXFSASYM]
     @SystemID char(12)
@@ -302,8 +586,13 @@ Purpose: WEX FSA Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
+02/07/2022 by AP:
+	- Fixed sort order of PT, EN, CT.
+	- Status effective date format change.
+	- Enrollment effective date format change.
+	- FSADC fix for dependent lines in EN.
+	- Contribution date changed to PrgPayDate.
+	- Breakout of deduction applied by grouping by PdhDedCode.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EWEXFSASYM';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EWEXFSASYM';
@@ -401,7 +690,8 @@ BEGIN
         DROP TABLE dbo.U_EWEXFSASYM_PDedHist;
     SELECT DISTINCT
          PdhEEID
-		,PdhCOID
+        ,PdhCOID
+		,PdhDedCode
         -- Current Payroll Amounts
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
@@ -426,10 +716,27 @@ BEGIN
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID, PdhCOID
+    GROUP BY PdhEEID, PdhCOID, PdhDedCode
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
     );
+
+    IF OBJECT_ID('U_EWEXFSASYM_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EWEXFSASYM_PEarHist;
+
+    SELECT DISTINCT
+         PehEEID
+		,PehCOID
+        ,PrgPayDate             = MAX(PrgPayDate)
+    INTO dbo.U_EWEXFSASYM_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID, PehCOID--,PrgPayGroup
+    HAVING SUM(PehCurAmt) <> 0.00;
+
 
 
     --==========================================
@@ -507,22 +814,24 @@ BEGIN
         ,drv10MobileCar = ''
         ,drv10MobileNum = ''
         ,drv10TimeZone = ''
+		,drvInitialSort = '1' + LTRIM(RTRIM(EepSSN))
+		,drvSubSort = '1' 
     INTO dbo.U_EWEXFSASYM_PTTbl
     FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
-	JOIN dbo.EmpPers WITH(NOLOCK) 
-	ON xEEID = EepEEID
-	JOIN dbo.EmpComp WITH(NOLOCK)
-	ON EecEEID = xEEID
-	AND EecCOID = xCOID
-	JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
-	ON PdhEEID = xEEID
-	AND PdhCOID = xCOID
-	JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-	ON EedEEID = xEEID
-	AND EedCOID = xCOID
-	AND EedFormatCode = @FormatCode
-	AND EedValidForExport = 'Y'
-	
+    JOIN dbo.EmpPers WITH(NOLOCK) 
+    ON xEEID = EepEEID
+    JOIN dbo.EmpComp WITH(NOLOCK)
+    ON EecEEID = xEEID
+    AND EecCOID = xCOID
+    JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
+    ON PdhEEID = xEEID
+    AND PdhCOID = xCOID
+    JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+    ON EedEEID = xEEID
+    AND EedCOID = xCOID
+    AND EedFormatCode = @FormatCode
+    AND EedValidForExport = 'Y'
+    
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWEXFSASYM_ENTbl
@@ -530,14 +839,14 @@ BEGIN
     IF OBJECT_ID('U_EWEXFSASYM_ENTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EWEXFSASYM_ENTbl;
     SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
+         drvEEID = drvEEID
+        ,drvCoID = drvCOID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
         ,drv20RecType = 'EN'
         ,drv20PartFileImpId = EepSSN
         ,drv20PlanName = CASE WHEN EedDedCode = 'FSA' THEN 'Medical FSA'
-                                WHEN EedDedCode = 'FSAD' THEN 'Dependent Care FSA' END
+                                WHEN EedDedCode = 'FSADC' THEN 'Dependent Care FSA' END
         ,drv20EnrollEffDt = EedBenStartDate
         ,drv20PartElectAmt = EedEEGoalAmt
         ,drv20EnrollTermDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN EecEmplStatus <> 'T' THEN EedBenStopDate END), 101), '')
@@ -553,21 +862,23 @@ BEGIN
         ,drv20TimeTermCondAccpt = ''
         ,drv20ChangeDt = ''
         ,drv20SpendDown = ''
+		,drvInitialSort
+		,drvSubSort = '2'
     INTO dbo.U_EWEXFSASYM_ENTbl
-    FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
-	JOIN dbo.EmpPers WITH(NOLOCK) 
-	ON xEEID = EepEEID
-	JOIN dbo.EmpComp WITH(NOLOCK)
-	ON EecEEID = xEEID
-	AND EecCOID = xCOID
-	JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
-	ON PdhEEID = xEEID
-	AND PdhCOID = xCOID
-	JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-	ON EedEEID = xEEID
-	AND EedCOID = xCOID
-	AND EedFormatCode = @FormatCode
-	AND EedValidForExport = 'Y'
+    FROM dbo.U_EWEXFSASYM_PTTbl WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH(NOLOCK) 
+    ON drvEEID = EepEEID
+    JOIN dbo.EmpComp WITH(NOLOCK)
+    ON EecEEID = drvEEID
+    AND EecCOID = drvCOID
+    JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
+    ON PdhEEID = drvEEID
+    AND PdhCOID = drvCOID
+    JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+    ON EedEEID = drvEEID
+    AND EedCOID = drvCOID
+    AND EedFormatCode = @FormatCode
+    AND EedValidForExport = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWEXFSASYM_CTTbl
@@ -575,35 +886,41 @@ BEGIN
     IF OBJECT_ID('U_EWEXFSASYM_CTTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EWEXFSASYM_CTTbl;
     SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
+         drvEEID = drvEEID
+        ,drvCoID = drvCOID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
         ,drv30RecordType = 'CT'
         ,drv30PartFileImpId = EepSSN
         ,drv30PlanName = CASE WHEN EedDedCode = 'FSA' THEN 'Medical FSA' ELSE 'Dependent Care FSA' END
-        ,drv30ContDt = PgrPayDate
+        ,drv30ContDt = PrgPayDate
         ,drv30ContDesc = 'Payroll Deduction'
         ,drv30ContAmt = CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR)
         ,drv30AmtType = 'Actual'
         ,drv30TaxYear = 'Current'
+		,drvInitialSort
+		,drvSubSort = '3'
     INTO dbo.U_EWEXFSASYM_CTTbl
-    FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
-	JOIN dbo.EmpPers WITH(NOLOCK) 
-	ON xEEID = EepEEID
-	JOIN dbo.EmpComp WITH(NOLOCK)
-	ON EecEEID = xEEID
-	AND EecCOID = xCOID
+    FROM dbo.U_EWEXFSASYM_PTTbl WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH(NOLOCK) 
+    ON EepEEID = drvEEID
+    JOIN dbo.EmpComp WITH(NOLOCK)
+    ON EecEEID = drvEEID
+    AND EecCOID = drvCOID
+	JOIN dbo.U_EWEXFSASYM_PEarHist WITH(NOLOCK)
+	ON PehEEID = drvEEID
+	AND PehCOID = drvCOID
+    JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
+    ON EedEEID = drvEEID
+    AND EedCOID = drvCOID
+    AND EedFormatCode = @FormatCode
+    AND EedValidForExport = 'Y'
 	JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
-	ON PdhEEID = xEEID
-	AND PdhCOID = xCOID
-	JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-	ON EedEEID = xEEID
-	AND EedCOID = xCOID
-	AND EedFormatCode = @FormatCode
-	AND EedValidForExport = 'Y'
-	JOIN dbo.PayGroup WITH(NOLOCK)
-	ON PgrPayGroup = EecPayGroup
+    ON PdhEEID = drvEEID
+    AND PdhCOID = drvCOID
+	AND PdhDedCode = EedDedCode
+    --JOIN dbo.PayGroup WITH(NOLOCK)
+    --ON PgrPayGroup = EecPayGroup
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -617,7 +934,7 @@ BEGIN
         ,hdr01SyncFlag = 'N'
         ,hdr01SubmitDt = GETDATE()
         ,hdr01SubmitTime = CONVERT(VARCHAR(10), GETDATE(), 108)
-		,hdr01FileVersion = '3.5'
+        ,hdr01FileVersion = '3.5'
     INTO dbo.U_EWEXFSASYM_hdrTbl
     FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
     ;
@@ -672,6 +989,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EWEXFSASYM';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEWEXFSASYM_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EWEXFSASYM_File WITH (NOLOCK)
+    ORDER BY InitialSort, SubSort
 
 GO
 
