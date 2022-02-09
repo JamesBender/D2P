@@ -5,7 +5,7 @@ EUNUMFSLEX: UNUM FMLA STD LTD Export
 FormatCode:     EUNUMFSLEX
 Project:        UNUM FMLA STD LTD Export
 Client ID:      CHA1022
-Date/time:      2022-02-02 09:21:08.300
+Date/time:      2022-02-08 06:48:28.217
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -295,7 +295,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMFSLEX_20220202.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMFSLEX_20220208.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -304,7 +304,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA STD LTD Export','202201179','EMPEXPORT','ONDEM_XOE','Jan 18 2022  8:12AM','EUNUMFSLEX',NULL,NULL,NULL,'202201179','Jan 17 2022  9:54AM','Jan 17 2022  9:54AM','202201171','1325','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA STD LTD Export-Sched','202201179','EMPEXPORT','SCH_EUNUMF','Jan 18 2022  8:12AM','EUNUMFSLEX',NULL,NULL,NULL,'202201179','Jan 17 2022  9:54AM','Jan 17 2022  9:54AM','202201171','1325','','','202201171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','K138Y',NULL,NULL,NULL,'UNUM FMLA STD LTD Export-Test','202201309','EMPEXPORT','TEST_XOE','Jan 30 2022  9:22PM','EUNUMFSLEX',NULL,NULL,NULL,'202201309','Jan 30 2022 12:00AM','Dec 30 1899 12:00AM','202201161','502','','','202201161',dbo.fn_GetTimedKey(),NULL,'us3jReCHA1022',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','K138Y',NULL,NULL,NULL,'UNUM FMLA STD LTD Export-Test','202202079','EMPEXPORT','TEST_XOE','Feb  7 2022 10:22AM','EUNUMFSLEX',NULL,NULL,NULL,'202202079','Feb  7 2022 12:00AM','Dec 30 1899 12:00AM','202201241','499','','','202201241',dbo.fn_GetTimedKey(),NULL,'us3jReCHA1022',NULL);
 
 -----------
 -- AscImp inserts
@@ -353,7 +353,7 @@ CREATE TABLE [dbo].[U_EUNUMFSLEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(255) NULL,
     [drvSSN] char(11) NULL,
     [drvEE_ID] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -585,15 +585,17 @@ BEGIN
         ,drvEmployeeHomePhoneNumber = EepPhoneHomeNumber
         ,drvHoursWorkedInPast12Months = FORMAT(ISNULL(PehCurHrsYTD, 0), '#0.00')
         ,drvSalaryMd = EecSalaryOrHourly
-        ,drvProduct1 = CASE WHEN LocAddressState = 'NY' THEN '8' END
-        ,drvPolicyNumber1 = CASE WHEN LocAddressState = 'NY' THEN '707729' END
-        ,drvDivision1 = CASE WHEN LocAddressState = 'NY' THEN '1' END
-        ,drvPolicyElgGrp1 = CASE WHEN LocAddressState = 'NY' THEN '1' END
-        ,drvPostTaxCntrbPct1 = CASE WHEN LocAddressState = 'NY' THEN '0' END
-        ,drvEarnings1 = CASE WHEN LocAddressState = 'NY' THEN FORMAT(EecAnnSalary/52, '#0.00') END
-        ,drvEarningsPeriod1 = CASE WHEN LocAddressState = 'NY' THEN 'WK' END
-        ,drvDateOfEECovg1 = CASE WHEN LocAddressState = 'NY' THEN dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfLastHire, '1/1/2022') END
-        ,drvCovgTermDate1 = CASE WHEN LocAddressState = 'NY' THEN EecDateOfTermination END
+
+
+        ,drvProduct1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN '8' END
+        ,drvPolicyNumber1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN '707729' END
+        ,drvDivision1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN '1' END
+        ,drvPolicyElgGrp1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN '1' END
+        ,drvPostTaxCntrbPct1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN '0' END -- field 55, 59 in excel
+        ,drvEarnings1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN FORMAT(EecAnnSalary/52, '#0.00') END
+        ,drvEarningsPeriod1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN 'WK' END
+        ,drvDateOfEECovg1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfLastHire, '1/1/2022') END
+        ,drvCovgTermDate1 = CASE WHEN (EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2') AND LocAddressState = 'NY' THEN EecDateOfTermination END
 
 
         ,drvProduct2 = CASE WHEN EecFullTimeOrPartTime = 'F' OR EecEEType = 'P2' THEN '31' END
