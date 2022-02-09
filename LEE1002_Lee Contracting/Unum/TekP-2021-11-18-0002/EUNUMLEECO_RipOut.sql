@@ -625,6 +625,42 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+	--Code for "terminations sent one time only". One time means sent one time during the per control range.
+
+	--Audit Table
+    IF OBJECT_ID('U_EUNUMLEECO_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EUNUMLEECO_AuditFields;
+    CREATE TABLE dbo.U_EUNUMLEECO_AuditFields (aTableName varchar(128),aFieldName varchar(128));
+    -- Insert tables/fields to be audited
+    INSERT INTO dbo.U_EUNUMLEECO_AuditFields VALUES ('Empcomp','EecEmplStatus');    
+    -- Create audit table
+    IF OBJECT_ID('U_EUNUMLEECO_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EUNUMLEECO_Audit;
+    SELECT
+         audTableName = adrTableName
+        ,audFieldName = adfFieldName
+        ,audKey1Value = ISNULL(adrKey1,'')
+        ,audKey2Value = ISNULL(adrKey2,'')
+        ,audKey3Value = ISNULL(adrKey3,'')
+        ,audDateTime  = adrProcessedDateTime
+        ,audOldValue  = adfOldData
+        ,audNewValue  = adfNewData
+        ,audRowNo     = ROW_NUMBER() OVER(PARTITION BY adrKey1, adrKey2, adrKey3, adfFieldName ORDER BY adrRecID DESC)
+    INTO dbo.U_EUNUMLEECO_Audit
+    FROM (SELECT *
+          FROM dbo.AuditRecords WITH (NOLOCK)
+          WHERE adrTableName IN (SELECT aTableName FROM dbo.U_EUNUMLEECO_AuditFields WITH (NOLOCK))) ADR
+    JOIN (SELECT *
+          FROM dbo.AuditFields WITH (NOLOCK)
+          WHERE adfFieldName IN (SELECT aFieldName FROM dbo.U_EUNUMLEECO_AuditFields WITH (NOLOCK))) ADF
+        ON adrSystemID = adfSystemID
+       AND adrKey = adfKey
+    WHERE adrType IN (1,2,5,6) -- Insert/Update; remove this to include Deletes and Viewed
+      AND adrProcessedDateTime BETWEEN @StartDate AND @EndDate;
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EUNUMLEECO_Audit ON dbo.U_EUNUMLEECO_Audit (audKey1Value, audKey2Value);
+
+
     --==========================================
     -- Build Working Tables
     --==========================================
@@ -738,7 +774,7 @@ BEGIN
         ,drvEmploymentStat = CASE WHEN EecEmplStatus IN ('A', 'O', 'S', 'T') THEN 'A'
                                     WHEN EecEmplStatus = 'R' THEN 'LAY'
                                     WHEN EecEmplStatus = 'L' THEN 'LOA' END
-        ,drvWeekSchWorkHrs = CAST(EecScheduledWorkHrs AS VARCHAR)
+        ,drvWeekSchWorkHrs = CAST(CAST(EecScheduledWorkHrs AS DECIMAL(5,2)) AS VARCHAR)
         ,drvAccoRestrict = 'Y'
         ,drvSickPayHrs = ''
         ,drvDtLastSalChng = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
@@ -748,7 +784,7 @@ BEGIN
         ,drvManEmail = ''
         ,drvEmpSecManEmail = ''
         ,drvEmpThirdManEmail = ''
-        ,drvHrsWrkedPast12Mo = CAST(Peh.PehCurHrs AS VARCHAR)
+        ,drvHrsWrkedPast12Mo = CAST(CAST(Peh.PehCurHrsYTD AS DECIMAL(7,2)) AS VARCHAR)
         ,drvWorkSunday = ''
         ,drvWorkMonday = ''
         ,drvWorkTuesday = ''
@@ -793,6 +829,8 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+		and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                                        AND EXISTS(select 1 from dbo.U_EUNUMLEECO_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
@@ -813,7 +851,7 @@ BEGIN
             AND EedValidForExport = 'Y'
             GROUP BY EedEEID, EedCOID
             ) D ON D.EedEEID = xEEID AND D.EedCOID = xCOID
-    LEFT JOIN (SELECT PehEEID, SUM(PehCurHrs) AS PehCurHrs
+    LEFT JOIN (SELECT PehEEID, SUM(PehCurHrsYTD) AS PehCurHrsYTD
                 FROM dbo.U_EUNUMLEECO_PEarHist WITH(NOLOCK)
                 WHERE PehEarnCode IN ('DT', 'MBDT', 'MBOT', 'MBRG', 'OT', 'REG')
                                         GROUP BY PehEEID) Peh ON Peh.PehEEID = xEEID
