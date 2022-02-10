@@ -4,15 +4,15 @@ EBCBSHW834: BCBS Health & Wellness 834
 
 FormatCode:     EBCBSHW834
 Project:        BCBS Health & Wellness 834
-Client ID:      USG1000
-Date/time:      2022-02-03 10:12:17.553
+Client ID:      MEN1004
+Date/time:      2022-02-08 12:31:24.140
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EBCBSHW834_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW4WUP5DB01
+Database:       ULTIPRO_WPMHCOO
+Web Filename:   MEN1004_B05JN_EEHISTORY_EBCBSHW834_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSHW834_20220203.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSHW834_20220208.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -458,11 +458,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
