@@ -5,7 +5,7 @@ EBCBSMD834: BCBS Med/Den 834 Export
 FormatCode:     EBCBSMD834
 Project:        BCBS Med/Den 834 Export
 Client ID:      UNI1070
-Date/time:      2022-01-07 06:32:15.047
+Date/time:      2022-02-11 11:28:11.870
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -171,7 +171,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EBCBSMD834Z0','35','H','03','4',NULL,'Implementation Convention Refe',NULL,NULL,'"005010X220A1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EBCBSMD834Z0','3','H','04','1',NULL,'BGN Segment ID (Header)',NULL,NULL,'"BGN"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EBCBSMD834Z0','2','H','04','2',NULL,'Transaction Set Purpose',NULL,NULL,'"00"','(''DA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EBCBSMD834Z0','50','H','04','3',NULL,'Reference Number',NULL,NULL,'"0001"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EBCBSMD834Z0','50','H','04','3',NULL,'Reference Number',NULL,NULL,'"284363"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EBCBSMD834Z0','8','H','04','4',NULL,'Date',NULL,NULL,'"drvBGN03_Date"','(''UD112''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EBCBSMD834Z0','8','H','04','5',NULL,'Time',NULL,NULL,'"drvBGN04_Time"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EBCBSMD834Z0','2','H','04','6',NULL,'Time Code',NULL,NULL,'"drvBGN05_TimeCode"','(''UA''=''T*'')');
@@ -330,6 +330,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EBCBSMD834Z0','3','D','86','1',NULL,'REF Segment ID (Loop 2750)',NULL,NULL,'"REF"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EBCBSMD834Z0','3','D','86','2',NULL,'Reference Identification Quali',NULL,NULL,'"drvREF01_RefNumberQual"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EBCBSMD834Z0','50','D','86','3',NULL,'Reference Identification Descr',NULL,NULL,'"drvREF02_RefNumberDesc"','(''UA''=''T*'')');
+
+
+
+
+
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EBCBSMD834Z0','3','D','87','1',NULL,'LE Segment ID (Loop 2750)',NULL,NULL,'"LE"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EBCBSMD834Z0','6','D','87','2',NULL,'Loop ID Code',NULL,NULL,'"drvLE01_LoopIDCode"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EBCBSMD834Z0','2','T','90','1',NULL,'SE Segment ID (Trailer)',NULL,NULL,'"SE"','(''DA''=''T*'')');
@@ -353,7 +358,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSMD834_20220107.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBCBSMD834_20220211.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -365,7 +370,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202201069','EMPEXPORT','OEACTIVE','Jan  7 2022  6:29AM','EBCBSMD834',NULL,NULL,NULL,'202201069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201061','112','','','202201061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202201069','EMPEXPORT','OEPASSIVE','Jan  7 2022  6:28AM','EBCBSMD834',NULL,NULL,NULL,'202201069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201061','28212','','','202201061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'BCBS Med/Den 834 Export','202201069','EMPEXPORT','SCHEDULED','Jan  7 2022  6:27AM','EBCBSMD834',NULL,NULL,NULL,'202201069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201061','28212','','','202201061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202201069','EMPEXPORT','TEST_XOE','Jan  7 2022  6:22AM','EBCBSMD834',NULL,NULL,NULL,'202201069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201061','28212','','','202201061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202049','EMPEXPORT','TEST_XOE','Feb 11 2022 11:26AM','EBCBSMD834',NULL,NULL,NULL,'202202049','Feb  4 2022 12:00AM','Dec 30 1899 12:00AM','202201211','27693','','','202201211',dbo.fn_GetTimedKey(),NULL,'us3lKiUNI1070',NULL);
 
 -----------
 -- AscImp inserts
@@ -628,9 +633,9 @@ CREATE TABLE [dbo].[U_EBCBSMD834_DrvTbl_2300] (
     [drvLX01_AssignedNumber] varchar(4) NOT NULL,
     [drvN101_EntityIDCodeSponsor] varchar(2) NOT NULL,
     [drvN102_Name] varchar(6) NOT NULL,
-    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
-    [drvREF02_RefNumberDesc] varchar(1) NULL,
-    [drvLE01_LoopIDCode] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(2) NOT NULL,
+    [drvREF02_RefNumberDesc] varchar(1) NOT NULL,
+    [drvLE01_LoopIDCode] varchar(4) NOT NULL,
     [drvEEID] char(12) NULL,
     [drvCOID] char(5) NULL,
     [drvDepRecID] char(12) NULL,
@@ -753,6 +758,26 @@ BEGIN
     UPDATE dbo.U_EBCBSMD834_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
     UPDATE dbo.U_EBCBSMD834_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
     UPDATE dbo.U_EBCBSMD834_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
+
+
+    DELETE dbo.U_EBCBSMD834_File
+    FROM dbo.U_EBCBSMD834_File A 
+    JOIN (
+            SELECT DISTINCT EepSSN AS DeleteOneSSN
+            FROM (
+                    SELECT EepSSN, COUNT(DISTINCT BdmDedCode) AS DedCount 
+                    FROM dbo.U_dsi_bdm_EBCBSMD834 WITH (NOLOCK)
+                    JOIN EmpPers WITH (NOLOCK)
+                        ON BdmEEID = EepEEID 
+                    GROUP BY EepSSN) AS X
+            WHERE DedCount > 1) AS Y
+    ON A.InitialSort = DeleteOneSSN
+    WHERE (LEFT(DATA, 2) IN ('LS','LX','N1','LE') OR RecordSet = 'D86')
+    
+    AND RIGHT(RTRIM(SubSort), 1) = '1'
+
+
+
 
     --====================================
     -- Update Record Count in SE Segment
@@ -960,7 +985,7 @@ BEGIN
     IF OBJECT_ID('U_EBCBSMD834_HdrTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EBCBSMD834_HdrTbl;
     SELECT DISTINCT drvISA05_SenderIDQual = 'ZZ'
-        ,drvISA06_SenderID = 'MIL829457B'
+        ,drvISA06_SenderID = 'MIL284363A'
         ,drvISA07_ReceiverIDQual = 'ZZ'
         ,drvISA08_ReceiverID = 'G00621'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
@@ -1255,7 +1280,7 @@ BEGIN
         ,drvREF02_RefNumberQual1 =    CASE WHEN CmpCompanyCode = '01' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('MTLEX') AND EecPayGroup IN ('UP') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970001'
                                     WHEN CmpCompanyCode = '04' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CHISTL') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970002'
                                     WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970003'
-                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MHDHP','UHDHP') THEN ''
+                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970018'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LAMSPEC') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970004'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IN ('LAMSPEC') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970005'
                                     WHEN CmpCompanyCode = 'LEXST' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LEXST') AND BdmDedCode IN ('MHDHP','UHDHP') THEN 'PK23970006'
@@ -1272,7 +1297,7 @@ BEGIN
                                     WHEN CmpCompanyCode = '01' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('MTLEX') AND EecPayGroup IN ('UP') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650001'
                                     WHEN CmpCompanyCode = '04' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CHISTL') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650002'
                                     WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650003'
-                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MDPPO','UMGOL') THEN ''
+                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650018'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LAMSPEC') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650004'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IN ('LAMSPEC') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650005'
                                     WHEN CmpCompanyCode = 'LEXST' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LEXST') AND BdmDedCode IN ('MDPPO','UMGOL') THEN '2843650006'
@@ -1286,7 +1311,7 @@ BEGIN
                                     WHEN CmpCompanyCode = '01' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('MTLEX') AND EecPayGroup IN ('UP') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660001'
                                     WHEN CmpCompanyCode = '04' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CHISTL') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660002'
                                     WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660003'
-                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MDCOR','UMSIL') THEN ''
+                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660018'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LAMSPEC') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660004'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IN ('LAMSPEC') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660005'
                                     WHEN CmpCompanyCode = 'LEXST' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LEXST') AND BdmDedCode IN ('MDCOR','UMSIL') THEN '2843660006'
@@ -1300,7 +1325,7 @@ BEGIN
                                     WHEN CmpCompanyCode = '01' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('MTLEX') AND EecPayGroup IN ('UP') AND BdmDedCode IN ('DEN','DENU') THEN '2843670001'
                                     WHEN CmpCompanyCode = '04' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CHISTL') AND BdmDedCode IN ('DEN','DENU') THEN '2843670002'
                                     WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('DEN','DENU') THEN '2843670003'
-                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('DEN','DENU') THEN ''
+                                    WHEN CmpCompanyCode = 'CSC' AND EecUnionLocal IN ('CSSCOH407','CSCIN142','CSCMI406') AND BdmDedCode IN ('DEN','DENU') THEN '2843670018'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LAMSPEC') AND BdmDedCode IN ('DEN','DENU') THEN '2843670004'
                                     WHEN CmpCompanyCode = '10' AND EecUnionLocal IN ('LAMSPEC') AND BdmDedCode IN ('DEN','DENU') THEN '2843670005'
                                     WHEN CmpCompanyCode = 'LEXST' AND EecUnionLocal IS NOT NULL AND EecUnionLocal NOT IN ('LEXST') AND BdmDedCode IN ('DEN','DENU') THEN '2843670006'
@@ -1342,14 +1367,14 @@ BEGIN
         ,drvN101_EntityIDCodeSponsor = '75'
         ,drvN102_Name = 'CMSESC'
         -- If drvREF01_RefNumberQual is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual = ''
-        ,drvREF02_RefNumberDesc = CASE BdmDedType
+        ,drvREF01_RefNumberQual = '17'
+        ,drvREF02_RefNumberDesc = 'A' /* CASE BdmDedType
                                        WHEN 'MED' THEN ''
                                        WHEN 'DEN' THEN ''
                                        WHEN 'VIS' THEN ''
-                                  END
+                                  END*/
         -- If drvLE01_LoopIDCode is Populated, then send LE Segment
-        ,drvLE01_LoopIDCode = ''
+        ,drvLE01_LoopIDCode = '2700'
         ---------------------------------
         ,drvEEID = xEEID
         ,drvCOID = xCOID

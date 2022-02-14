@@ -1196,7 +1196,7 @@ drvClassEffDate      = CAST(CASE
 drvClassID           =  CASE WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD40' THEN 'A001'
                              WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD60' THEN 'A002'
                              WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode IS NULL THEN 'A004'
-                             --WHEN EecPayGroup = 'WKLY' THEN 'A003'
+                             WHEN EecPayGroup = 'WKLY' THEN 'A003'
                              END,
                              
 drvRateEffDate       =  '', 

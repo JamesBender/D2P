@@ -5,7 +5,7 @@ EXPRESCEXP: Express Scripts Export
 FormatCode:     EXPRESCEXP
 Project:        Express Scripts Export
 Client ID:      FOL1004
-Date/time:      2022-01-19 05:54:40.333
+Date/time:      2022-02-14 05:14:41.587
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -305,7 +305,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EXPRESCEXP_20220119.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EXPRESCEXP_20220214.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -316,7 +316,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Passive Open Enrollment Export','202112219','EMPEXPORT','OEPASSIVE','Dec 22 2021  5:41PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','567','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export','202112219','EMPEXPORT','ONDEM_XOE','Dec 22 2021  5:42PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','573','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export-Sched','202112219','EMPEXPORT','SCH_EXPRES','Dec 22 2021  5:42PM','EXPRESCEXP',NULL,NULL,NULL,'202112219','Dec 21 2021  4:43PM','Dec 21 2021  4:43PM','202112211','573','','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export-Test','202201049','EMPEXPORT','TEST_XOE','Jan  4 2022 11:01AM','EXPRESCEXP',NULL,NULL,NULL,'202201049','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202112211','1044','','','202112211',dbo.fn_GetTimedKey(),NULL,'us3rVaFOL1004','',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Express Scripts Export-Test','202201049','EMPEXPORT','TEST_XOE','Jan 24 2022  6:45PM','EXPRESCEXP',NULL,NULL,NULL,'202201049','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202112211','1037','','','202112211',dbo.fn_GetTimedKey(),NULL,'us3rVaFOL1004','',NULL);
 
 -----------
 -- AscImp inserts
@@ -424,13 +424,13 @@ CREATE TABLE [dbo].[U_EXPRESCEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] nvarchar(4000) NULL,
+    [drvSort] char(6) NULL,
     [drvEligibilityGroupNumber] varchar(13) NULL,
     [drvSubscriberNumber] char(11) NULL,
     [drvPersonNumber] varchar(3) NOT NULL,
     [drvEligibilityEffectiveDate] datetime NULL,
     [drvEligibilityTermDate] datetime NULL,
-    [drvRelationship] varchar(1) NOT NULL,
+    [drvRelationship] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvDateOfBirth] datetime NULL,
@@ -627,7 +627,7 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + CASE WHEN BdmRecType = 'EMP' THEN ' 1' ELSE ' 2' END + ' ' + ISNULL(FORMAT(RN, '#0'), '')
+        ,drvSort = BdmBenOption -- xEEID + CASE WHEN BdmRecType = 'EMP' THEN ' 1' ELSE ' 2' END + ' ' + ISNULL(FORMAT(RN, '#0'), '')
         -- standard fields above and additional driver fields below
         ,drvEligibilityGroupNumber =    CASE WHEN BdmDedCode = 'MEDBS' AND EecEmplStatus IN ('A','L') THEN '9884PC2000ACT'
                                         WHEN BdmDedCode = 'MEDBS' AND EecEmplStatus IN ('T') THEN '9884PC2000COB'
@@ -642,10 +642,12 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
         ,drvPersonNumber = CASE WHEN BdmRecType = 'EMP' THEN '001' ELSE '002' END
         ,drvEligibilityEffectiveDate = BdmBenStartDate
         ,drvEligibilityTermDate = BdmBenStopDate
-        ,drvRelationship =    CASE WHEN ConRelationship IN ('SPS') THEN '2'
-                            WHEN ConRelationship IN ('CHL','DPC') THEN '3'
+        ,drvRelationship =    CASE WHEN BdmRecType = 'EMP' THEN '1'
+                            WHEN ConRelationship IN ('SPS') THEN '2'
+                            WHEN ConRelationship IN ('CH','DAU','SON','STC','CHL') THEN '3'
+                            WHEN ConRelationship IN ('CHD') THEN '5'
+                            WHEN ConRelationship IN ('BRO','COU','DAD','FIA','MOM','SIS','STF','ST','OTH') THEN '6'
                             WHEN ConRelationship IN ('DP') THEN '8'
-                            ELSE '1'
                             END
         ,drvNameLast = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
         ,drvNameFirst = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
@@ -664,7 +666,7 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
         ,drvAddressZipCode = CASE WHEN BdmRecType = 'EMP' THEN EepAddressZipCode ELSE ConAddressZipCode END
         
         ,drvTelephoneNumber = CASE WHEN BdmRecType = 'EMP' THEN EepPhoneHomeNumber ELSE ConPhoneHomeNumber END
-        ,drvCoverageCode = CASE WHEN BdmRecType = 'EMP' THEN '1' ELSE '6' END
+        ,drvCoverageCode = CASE WHEN BdmBenOption IN ('EE','EETU') THEN '1' ELSE '6' END
         ,drvCoverageCodeEffectiveDate = BdmBenStartDate
         ,drvUserSequenceLocator = EecLocation
         ,drvPayrollClass = EecSalaryOrHourly
