@@ -4,16 +4,17 @@ EFLORCOBQE: Flores COBRA Export
 
 FormatCode:     EFLORCOBQE
 Project:        Flores COBRA Export
-Client ID:      USG1000
-Date/time:      2022-02-10 00:20:41.650
+Client ID:      COM1070
+Date/time:      2022-02-14 18:07:27.717
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EFLORCOBQE_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW4WUP5DB01
+Database:       ULTIPRO_WPCHPCO
+Web Filename:   COM1070_K7VUJ_EEHISTORY_EFLORCOBQE_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -177,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220210.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220214.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -198,9 +199,10 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLORCOBQE','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -222,11 +224,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -307,6 +304,7 @@ CREATE TABLE [dbo].[U_EFLORCOBQE_drvDependent] (
     [drv20RelToIns] varchar(1) NULL,
     [drv20DOB] datetime NULL,
     [drv20Gender] char(1) NULL,
+	drv20BdmDepRecId varchar(50) NULL,
     [drvInitialSort] int NULL,
     [drvSubSort] varchar(1) NOT NULL
 );
@@ -588,6 +586,24 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EFLORCOBQE_drvDependent','U') IS NOT NULL
         DROP TABLE dbo.U_EFLORCOBQE_drvDependent;
+
+	SELECT drvEEID,
+			drvCOID,
+			drvDepRecID,
+			drv20DepIdent,
+			drv20EmpIdNumOfIns,
+			ROW_NUMBER() OVER(PARTITION BY drvEEID, drv20RelToIns ORDER BY drv20DOB) AS drv20DepNum,
+			drv20DepFName,
+			drv20DepLName,
+			drv20RelToIns,
+			drv20DOB,
+			drv20Gender,
+			drv20BdmDepRecId,
+			drvInitialSort,
+			drvSubSort
+	INTO dbo.U_EFLORCOBQE_drvDependent
+	FROM
+	(
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -595,16 +611,17 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drv20DepIdent = '2'
         ,drv20EmpIdNumOfIns = EepSSN
-        ,drv20DepNum = CASE WHEN BdmRecType = 'DEP' THEN ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmRelationship, BdmDateOfBirth) END
+        ,drv20DepNum = ''--ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmDateOfBirth)
         ,drv20DepFName = ConNameFirst
         ,drv20DepLName = ConNameLast
         ,drv20RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
                                 WHEN BdmRelationship IN ('CHL', 'DCH', 'DPC', 'STC') THEN 'C' END 
         ,drv20DOB = ConDateOfBirth
         ,drv20Gender = ConGender
+		,drv20BdmDepRecId = BdmDepRecId
         ,drvInitialSort = 1 + LTRIM(RTRIM(EepSSN))
         ,drvSubSort = '2'
-    INTO dbo.U_EFLORCOBQE_drvDependent
+   -- INTO dbo.U_EFLORCOBQE_drvDependent
     FROM dbo.U_EFLORCOBQE_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -615,12 +632,14 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId
     WHERE BdmRunID = 'QB'
+	AND BdmRecType = 'DEP') a
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFLORCOBQE_drvElection
     ---------------------------------
     IF OBJECT_ID('U_EFLORCOBQE_drvElection','U') IS NOT NULL
         DROP TABLE dbo.U_EFLORCOBQE_drvElection;
+
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -628,7 +647,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drv30ElectIdent = '3'
         ,drv30EmpIdNumOfIns = EepSSN
-        ,drv30DepNum = CASE WHEN BdmRecType = 'DEP' THEN ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmRelationship, BdmDateOfBirth) END
+        ,drv30DepNum = dep.drv20DepNum --CASE WHEN BdmRecType = 'DEP' THEN ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmRelationship, BdmDateOfBirth) END
         ,drv30PlanCodeEnrolledIn = CASE WHEN BdmDedCode = 'MEDLO' THEN
                                         CASE WHEN BdmBenOption = 'EE' THEN '4010'
                                                 WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '4011'
@@ -667,6 +686,8 @@ BEGIN
                                             END
                                     END
         ,drv30MonthlyPrem = ''
+		,drv30RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
+                                WHEN BdmRelationship IN ('CHL', 'DCH', 'DPC', 'STC') THEN 'C' END 
         ,drvInitialSort = 1 + LTRIM(RTRIM(EepSSN))
         ,drvSubSort = '3'
     INTO dbo.U_EFLORCOBQE_drvElection
@@ -676,8 +697,11 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EFLORCOBQE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+	LEFT JOIN dbo.U_EFLORCOBQE_drvDependent dep WITH(NOLOCK)
+		ON dep.drveeid = bdmeeid
+		and dep.drvcoid = bdmcoid
+		and dep.drv20BdmDepRecId = bdmdeprecid
     WHERE BdmRunID = 'QB'
-    ;
 
     --==========================================
     -- Set FileName
