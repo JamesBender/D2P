@@ -4,15 +4,15 @@ ECERTAXEXP: Certent Tax Export
 
 FormatCode:     ECERTAXEXP
 Project:        Certent Tax Export
-Client ID:      USG1000
-Date/time:      2022-02-14 08:36:04.487
+Client ID:      SRA1000
+Date/time:      2022-02-14 12:08:15.210
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_ECERTAXEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW3WUP2DB02
+Database:       ULTIPRO_WPSRAM
+Web Filename:   SRA1000_81871_EEHISTORY_ECERTAXEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -106,7 +106,17 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwECERTAXEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECERTAXEXP_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ECERTAXEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECERTAXEXP];
+GO
+IF OBJECT_ID('U_ECERTAXEXP_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECERTAXEXP_PEarHist];
+GO
+IF OBJECT_ID('U_ECERTAXEXP_File') IS NOT NULL DROP TABLE [dbo].[U_ECERTAXEXP_File];
+GO
+IF OBJECT_ID('U_ECERTAXEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECERTAXEXP_EEList];
+GO
+IF OBJECT_ID('U_ECERTAXEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECERTAXEXP_drvTbl];
 GO
 
 -----------
@@ -168,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Tax Export','202202149','EMPEXPORT','ONDEM_XOE',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Tax Export-Sched','202202149','EMPEXPORT','SCH_ECERTA',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Tax Export-Test','202202149','EMPEXPORT','TEST_XOE',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Certent Tax Export-Test','202202149','EMPEXPORT','TEST_XOE',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -209,9 +219,67 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_ECERTAXEXP_drvTbl
 -----------
 
+IF OBJECT_ID('U_ECERTAXEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ECERTAXEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvSort] varchar(1) NOT NULL,
+    [drvPartiicipantId] char(9) NULL,
+    [drvTaxYear] int NULL,
+    [drvYTDTotalCompensation] nvarchar(4000) NULL,
+    [drvYTDTaxableSuppCompensation] nvarchar(4000) NULL,
+    [drvYTDSocialSecurity] nvarchar(4000) NULL,
+    [drvYTDSDI] nvarchar(4000) NULL,
+    [drvYTDSUI] nvarchar(4000) NULL,
+    [drvStateCode] varchar(2) NULL,
+    [drvCompanyNumber] char(5) NOT NULL
+);
+
+-----------
+-- Create table U_ECERTAXEXP_EEList
+-----------
+
+IF OBJECT_ID('U_ECERTAXEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECERTAXEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_ECERTAXEXP_File
+-----------
+
+IF OBJECT_ID('U_ECERTAXEXP_File') IS NULL
+CREATE TABLE [dbo].[U_ECERTAXEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(1000) NULL
+);
+
+-----------
+-- Create table U_ECERTAXEXP_PEarHist
+-----------
+
+IF OBJECT_ID('U_ECERTAXEXP_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_ECERTAXEXP_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECERTAXEXP]
     @SystemID char(12)
@@ -281,6 +349,10 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_ECERTAXEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    DELETE FROM dbo.U_ECERTAXEXP_EEList WHERE xEEID NOT IN (
+        SELECT DISTINCT EecEEID FROM dbo.EmpComp WHERE EecUDField21 = 'Y'
+    )
+
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
@@ -323,19 +395,44 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvPartiicipantId = ''
-        ,drvTaxYear = ''
-        ,drvYTDTotalCompensation = ''
-        ,drvYTDTaxableSuppCompensation = ''
-        ,drvYTDSocialSecurity = ''
-        ,drvYTDSDI = ''
-        ,drvYTDSUI = ''
-        ,drvStateCode = EepAddressState
-        ,drvCompanyNumber = ''
+        ,drvPartiicipantId = EecEmpNo
+        ,drvTaxYear = DATEPART(YEAR, @ENDDATE)
+        ,drvYTDTotalCompensation = FORMAT(PehCurAmt, '#0.00')
+        ,drvYTDTaxableSuppCompensation = FORMAT(YTDPthCurSuppTaxableWages, '#0.00')
+        ,drvYTDSocialSecurity = FORMAT(YTDSocialSecurity, '#0.00')
+        ,drvYTDSDI = FORMAT(YTDSDI, '#0.00')
+        ,drvYTDSUI = FORMAT(YTDSUI, '#0.00')
+        ,drvStateCode = LEFT(EetTaxCode, 2)
+        ,drvCompanyNumber = EecCoID
     INTO dbo.U_ECERTAXEXP_drvTbl
     FROM dbo.U_ECERTAXEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    JOIN dbo.U_ECERTAXEXP_PEarHist
+        ON xEEID = PehEEID
+    JOIN (
+            SELECT PthEEID, PthCOID 
+                ,SUM(PthCurSuppTaxableWages) AS YTDPthCurSuppTaxableWages
+                ,SUM(CASE WHEN PthTaxCode LIKE 'USSOCEE%' THEN PthCurTaxAmt ELSE 0.00 END) AS YTDSocialSecurity
+                ,SUM(CASE WHEN PthTaxCode LIKE '%SDIEE%' THEN PthCurTaxAmt ELSE 0.00 END) AS YTDSDI
+                ,SUM(CASE WHEN PthTaxCode LIKE '%SUIEE%' THEN PthCurTaxAmt ELSE 0.00 END) AS YTDSUI
+            FROM dbo.PTaxHist WITH (NOLOCK)
+            WHERE LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
+                AND PthPerControl <= @EndPerControl
+            GROUP BY PthEEID, PthCoID ) AS PTH
+        ON PthEEID = xEEID
+        AND PthCOID = xCOID
+    JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
+    LEFT JOIN dbo.EmpTax WITH (NOLOCK)
+        ON EetEEID = xEEID
+        AND EetCOID = xCOID
+        AND EetTaxCode LIKE '%SDI%'
+        AND EepAddressState = LEFT(EetTaxCode, 2)
+    WHERE EecEmplStatus <> 'T'
     ;
 
     --==========================================
@@ -373,6 +470,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'ECERTAXEXP';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwECERTAXEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_ECERTAXEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
