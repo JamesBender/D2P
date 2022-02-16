@@ -5,7 +5,7 @@ EASCCONMID: Ascensus 401k Cont Export
 FormatCode:     EASCCONMID
 Project:        Ascensus 401k Cont Export
 Client ID:      MID1020
-Date/time:      2021-12-12 23:00:33.587
+Date/time:      2022-02-15 20:17:18.297
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -221,7 +221,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EASCCONMID_20211212.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EASCCONMID_20220215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -440,6 +440,11 @@ Revision History
 11/10/2021 by AP:
         - Adjusted profit sharing field.
 
+02/15/2022 by AP:
+		- Confirmed that EPRO is populating for columns 115-126 on the contribution file.
+		- Adjusted LoanPay4 amount to pre-update logic.
+		- Adjusted trailer record for drvProfitShareContrib.
+
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EASCCONMID';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EASCCONMID';
@@ -616,7 +621,8 @@ BEGIN
         ,drvLoanPay1             = dbo.dsi_fnPadZero(PdhSource6,12,2)
         ,drvLoanPay2             = dbo.dsi_fnPadZero(PdhSource7,12,2)
         ,drvLoanPay3             = dbo.dsi_fnPadZero(PdhSource8,12,2)
-        ,drvLoanPay4             = dbo.dsi_fnPadZero(PdhSource9,12,2)
+        ,drvLoanPay4             = dbo.dsi_fnPadZero(PdhSource10,12,2)  -- Backup production file uses 'XXX' dedcode for pdh
+		--dbo.dsi_fnPadZero(PdhSource9,12,2)
         ,drvLoanPay5             = dbo.dsi_fnPadZero(PdhSource10,12,2)
     INTO dbo.U_EASCCONMID_drvTbl
     FROM dbo.U_EASCCONMID_EEList WITH (NOLOCK)
@@ -656,7 +662,7 @@ BEGIN
         ,drvPayPerHoursTot             = dbo.dsi_fnPadZero(thrs,12,0)
         ,drvEmp401ContribTot         = dbo.dsi_fnPadZero(fsal,12,2)
         ,drvEmprMatchContribTot     = dbo.dsi_fnPadZero(msal,12,2)
-        ,drvProfitShareContribTot     = 0
+        ,drvProfitShareContribTot     = dbo.dsi_fnPadZero(psct,12,2)
         ,drvRothContribTot             = dbo.dsi_fnPadZero(rsal,12,2)
         ,drvClientDataFld1Tot         = 0
         ,drvClientDataFld2Tot         = 0
@@ -672,7 +678,7 @@ BEGIN
             sum(cast(drvEmprMatchContrib as money)) msal, sum(cast(drvRothContrib as money)) rsal,
             sum(cast(drvLoanPay1 as money)) l1sal, sum(cast(drvLoanPay2 as money)) l2sal,
             sum(cast(drvLoanPay3 as money)) l3sal, sum(cast(drvLoanPay4 as money)) l4sal,
-            sum(cast(drvLoanPay5 as money)) l5sal
+            sum(cast(drvLoanPay5 as money)) l5sal, sum(cast(drvProfitShareContrib as money)) psct
         from dbo.U_EASCCONMID_drvTbl ) cnt;
     ;
 
