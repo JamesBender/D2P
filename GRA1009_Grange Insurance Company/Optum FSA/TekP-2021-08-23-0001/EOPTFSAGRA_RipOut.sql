@@ -5,7 +5,7 @@ EOPTFSAGRA: Optum FSA
 FormatCode:     EOPTFSAGRA
 Project:        Optum FSA
 Client ID:      GRA1009
-Date/time:      2022-01-26 17:58:55.103
+Date/time:      2022-02-15 22:29:48.677
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -143,7 +143,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 -- AscDefF inserts
 -----------
 
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EOPTFSAGRAZ0','19','H','01','1',NULL,'Filler',NULL,NULL,'"0000000000000000000"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EOPTFSAGRAZ0','19','H','01','1',NULL,'Filler',NULL,NULL,'"0000000000000000000"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EOPTFSAGRAZ0','1','H','01','20',NULL,'Header Master Layout',NULL,NULL,'"hdrHeadMastLay"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EOPTFSAGRAZ0','3','H','01','21',NULL,'System Name',NULL,NULL,'"hdrSysName"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EOPTFSAGRAZ0','4','H','01','24',NULL,'System Number',NULL,NULL,'"hdrSysNum"','(''UA''=''F'')');
@@ -214,9 +214,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','EOPTFSAGRAZ0','1','D','10','470',NULL,'Prefund Sign',NULL,NULL,'"drvPrefundSign"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','EOPTFSAGRAZ0','7','D','10','471',NULL,'Prefund Amount',NULL,NULL,'"drvPrefundAmt"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','EOPTFSAGRAZ0','8','D','10','478',NULL,'Dependent Care FSA Term Date',NULL,NULL,'"drvDepCareFSATermDt"','(''UD112''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','EOPTFSAGRAZ0','8','D','10','486',NULL,'Dependent Care FSA Elect Eff Date',NULL,NULL,'"drvDepCareFSAElectEffDt"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','EOPTFSAGRAZ0','8','D','10','486',NULL,'Dependent Care FSA Elect Eff Date',NULL,NULL,'"drvDepCareFSAElectEffDt"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','EOPTFSAGRAZ0','7','D','10','494',NULL,'Dependent Care FSA Elect Amt',NULL,NULL,'"drvDepCareFSAElectAmt"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EOPTFSAGRAZ0','20','T','90','1',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EOPTFSAGRAZ0','20','T','90','1',NULL,'Filler',NULL,NULL,'"99999999999999999999"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EOPTFSAGRAZ0','6','T','90','21',NULL,'Record Count',NULL,NULL,'"drvRecCount"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EOPTFSAGRAZ0','1','T','90','27',NULL,'Total Health Lim FSA Contrib Amt Sign',NULL,NULL,'"drvTotHealthLFSAContAmtSign"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EOPTFSAGRAZ0','10','T','90','28',NULL,'Total Health Lim FSA Contrib Amt',NULL,NULL,'"drvTotHealthLFSAContAmt"','(''UA''=''F'')');
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220126.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -246,7 +246,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export','202112219','EMPEXPORT','ONDEM_XOE',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202112219','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202112211',NULL,'','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export-Sched','202112219','EMPEXPORT','SCH_EOPTFS',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202112219','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202112211',NULL,'','','202112211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum FSA Export-Test','202201061','EMPEXPORT','TEST_XOE','Jan 12 2022 12:31PM','EOPTFSAGRA',NULL,NULL,NULL,'202201061','Jan  6 2022 12:00AM','Jan  1 2022 12:00AM','202201061','58','','','202201061',dbo.fn_GetTimedKey(),NULL,'us3rVaGRA1009',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum FSA Export-Test','202201061','EMPEXPORT','TEST_XOE','Feb  3 2022  8:39AM','EOPTFSAGRA',NULL,NULL,NULL,'202201061','Jan  6 2022 12:00AM','Jan  1 2022 12:00AM','202201061','57','','','202201061',dbo.fn_GetTimedKey(),NULL,'us3rVaGRA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -404,7 +404,7 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_drvTbl] (
     [drvContribType2] varchar(3) NOT NULL,
     [drvContribSC2] varchar(1) NOT NULL,
     [drvContribSign2] varchar(1) NOT NULL,
-    [drvContribAmt2] varchar(7) NOT NULL,
+    [drvContribAmt2] varchar(7) NULL,
     [drvContribType3] varchar(3) NOT NULL,
     [drvContribSC3] varchar(1) NOT NULL,
     [drvContribSign3] varchar(1) NOT NULL,
@@ -414,14 +414,14 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_drvTbl] (
     [drvContribSign4] varchar(1) NOT NULL,
     [drvContribAmt4] varchar(7) NOT NULL,
     [drvAutoSubIndic] varchar(1) NOT NULL,
-    [drvHealthLPFSATermDt] varchar(30) NOT NULL,
-    [drvHealthLPFSAElectAmt] varchar(7) NOT NULL,
-    [drvHealthLPFSAElectEffDt] datetime NULL,
+    [drvHealthLPFSATermDt] varchar(1) NOT NULL,
+    [drvHealthLPFSAElectAmt] varchar(1) NOT NULL,
+    [drvHealthLPFSAElectEffDt] varchar(1) NOT NULL,
     [drvPrefundSign] varchar(1) NOT NULL,
-    [drvPrefundAmt] varchar(7) NOT NULL,
+    [drvPrefundAmt] varchar(1) NOT NULL,
     [drvDepCareFSATermDt] varchar(30) NOT NULL,
     [drvDepCareFSAElectEffDt] datetime NULL,
-    [drvDepCareFSAElectAmt] varchar(7) NOT NULL
+    [drvDepCareFSAElectAmt] varchar(7) NULL
 );
 
 -----------
@@ -457,12 +457,12 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_hdrTbl] (
     [hdrHeadMastLay] varchar(1) NOT NULL,
     [hdrSysName] varchar(3) NOT NULL,
     [hdrSysNum] varchar(4) NOT NULL,
-    [hdrClientCode] varchar(9) NOT NULL,
+    [hdrClientCode] varchar(8) NOT NULL,
     [hdrVersNum] varchar(3) NOT NULL,
     [hdrDate] datetime NULL,
     [hdrCustSpecId] varchar(9) NOT NULL,
     [hdrCustName] varchar(6) NOT NULL,
-    [hdrCycle] varchar(31) NULL,
+    [hdrCycle] varchar(3) NULL,
     [hdrPolNum] varchar(7) NOT NULL,
     [hdrTypeFeed] varchar(4) NOT NULL,
     [hdrMultCovDataIndic] varchar(1) NOT NULL
@@ -518,11 +518,11 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_PEarHist] (
 
 IF OBJECT_ID('U_EOPTFSAGRA_trlTbl') IS NULL
 CREATE TABLE [dbo].[U_EOPTFSAGRA_trlTbl] (
-    [drvRecCount] varchar(6) NULL,
+    [drvRecCount] varchar(6) NOT NULL,
     [drvTotHealthLFSAContAmtSign] varchar(1) NOT NULL,
     [drvTotHealthLFSAContAmt] varchar(10) NOT NULL,
     [drvTotDepCareFSAContAmtSign] varchar(1) NOT NULL,
-    [drvTotDepCareFSAContAmt] varchar(30) NULL,
+    [drvTotDepCareFSAContAmt] varchar(8000) NULL,
     [drvTotHealthLFSAElectAmt] varchar(10) NOT NULL,
     [drvTotDepCareFSAElectAmt] varchar(10) NOT NULL
 );
@@ -544,9 +544,15 @@ Purpose: Optum FSA
 Revision History
 ----------------
 01/26/2022 by AP:
-	- Header values updated.
-	- Updated multiple drv table values.
-	- Trailer updated.
+    - Header values updated.
+    - Updated multiple drv table values.
+    - Trailer updated.
+
+02/15/2022 by AP:
+	- Adjusted header record 1-19 with 0's.
+	- Fixed date format YYYYMMDD for dependent care fsa election effective date.
+	- Trailer fix for filler "all 9's".
+	- Trailer fix for 0's prefilled and right justified for record count.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EOPTFSAGRA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EOPTFSAGRA';
@@ -810,9 +816,9 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EOPTFSAGRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-	JOIN dbo.U_EOPTFSAGRA_PDedHist WITH(NOLOCK)
-		ON PdhEEID = xEEID
-		AND PdhCOID = xCOID
+    JOIN dbo.U_EOPTFSAGRA_PDedHist WITH(NOLOCK)
+        ON PdhEEID = xEEID
+        AND PdhCOID = xCOID
     JOIN dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK)
         ON PehEEID = xEEID
         AND PehCOID = xCOID
@@ -847,7 +853,7 @@ BEGIN
     IF OBJECT_ID('U_EOPTFSAGRA_trlTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EOPTFSAGRA_trlTbl;
     SELECT DISTINCT
-         drvRecCount = '000000' --RIGHT('000000' + (SELECT COUNT(1) FROM dbo.U_EOPTFSAGRA_drvTbl WITH(NOLOCK)), 6)
+         drvRecCount =  (SELECT RIGHT('000000' + CAST(COUNT(1) AS VARCHAR), 6) FROM dbo.U_EOPTFSAGRA_drvTbl WITH(NOLOCK))
         ,drvTotHealthLFSAContAmtSign = '+'
         ,drvTotHealthLFSAContAmt = '0000000000'
         ,drvTotDepCareFSAContAmtSign = '+'
