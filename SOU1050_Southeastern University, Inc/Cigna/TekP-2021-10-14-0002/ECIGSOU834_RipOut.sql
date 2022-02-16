@@ -5,7 +5,7 @@ ECIGSOU834: Cigna 834 Export
 FormatCode:     ECIGSOU834
 Project:        Cigna 834 Export
 Client ID:      SOU1050
-Date/time:      2022-02-07 18:29:55.730
+Date/time:      2022-02-15 21:48:05.880
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -345,7 +345,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGSOU834_20220207.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGSOU834_20220215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -356,7 +356,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202201149','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Ondemand File Only','202201191','EMPEXPORT','ONDEM_XOE','Jan 19 2022 11:03PM','ECIGSOU834',NULL,NULL,NULL,'202201191','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201051','6883','','','202201051',dbo.fn_GetTimedKey(),NULL,'us3cPeSOU1050',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna 834 Export','202201149','EMPEXPORT','SCH_CIG834','Oct  1 2018 12:00AM','ECIGSOU834',NULL,NULL,NULL,'202201149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201141',NULL,'','','202201141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202031','EMPEXPORT','TEST_XOE','Feb  3 2022  7:50PM','ECIGSOU834',NULL,NULL,NULL,'202202031','Feb  3 2022 12:00AM','Dec 30 1899 12:00AM','202202031','6628','','','202202031',dbo.fn_GetTimedKey(),NULL,'us3cPeSOU1050',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202081','EMPEXPORT','TEST_XOE','Feb  8 2022  9:21AM','ECIGSOU834',NULL,NULL,NULL,'202202081','Feb  8 2022 12:00AM','Dec 30 1899 12:00AM','202202031','6712','','','202202031',dbo.fn_GetTimedKey(),NULL,'us3cPeSOU1050',NULL);
 
 -----------
 -- AscImp inserts
@@ -583,15 +583,15 @@ CREATE TABLE [dbo].[U_ECIGSOU834_DrvTbl] (
 
 IF OBJECT_ID('U_ECIGSOU834_DrvTbl_2300') IS NULL
 CREATE TABLE [dbo].[U_ECIGSOU834_DrvTbl_2300] (
-    [drvHD00_HealthCoverage] varchar(2) NULL,
+    [drvHD00_HealthCoverage] varchar(2) NOT NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
     [drvHD04_PlanCoverageDesc] varchar(8000) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
-    [drvDTP00_DateTime_348] varchar(3) NULL,
-    [drvDTP01_DateTimeQualifier_348] varchar(3) NULL,
-    [drvDTP02_DateTimeFormatQual_348] varchar(2) NULL,
+    [drvDTP00_DateTime_348] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_348] datetime NULL,
     [drvDTP00_DateTime_349] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier_349] varchar(3) NULL,
@@ -771,9 +771,8 @@ Revision History
     - Loop 2300 fixed incorrect ded code in the WHERE clause.
     - Loop 2300 REF 02 fix for HSAIF.
 
-02/07/2022 by AP:
-	- Fixed incorrect FXM and FXD lines for 2300.
-
+02/15/2022 by AP:
+	- Fixed output for FXM and FXD ded codes loop 2300 for fields HD04 and REF02.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECIGSOU834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECIGSOU834';
@@ -1210,13 +1209,14 @@ BEGIN
                                            WHEN BdmDedType IN ('VIS') THEN ''
                                      END
         ,drvHD03_InsuranceLineCode = 'DCP'
-        ,drvHD04_PlanCoverageDesc = '000000' + CONVERT(VARCHAR, BdmBenStartDate, 101) + REPLACE(BdmUSGField1, '.00', '') + CONVERT(VARCHAR, BdmBenStartDate, 101) + 'N'
+        ,drvHD04_PlanCoverageDesc = '000000' + CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 112) + RIGHT('000000' + REPLACE(BdmUSGField1, '.00', ''), 6) + CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 112) + 'N'
+		--'000000' + CONVERT(VARCHAR, BdmBenStartDate, 101) + REPLACE(BdmUSGField1, '.00', '') + CONVERT(VARCHAR, BdmBenStartDate, 101) + 'N'
         -- CASE WHEN BdmDedType IN ('MED') THEN ''
         --                                    WHEN BdmDedType IN ('DEN') THEN ''
         --                                    WHEN BdmDedType IN ('VIS') THEN ''
         --                              END
         ,drvHD05_CoverageLevelCode = CAST('EE' AS VARCHAR(3))
-		--CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN
+        --CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN
                                         
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP' 
@@ -1236,7 +1236,7 @@ BEGIN
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual1 = 'REF'
         ,drvREF01_RefNumberQual1 = '1L'
-        ,drvREF02_RefNumberQual1 = CAST('DCFSA' AS VARCHAR(50))
+        ,drvREF02_RefNumberQual1 = CAST('3343403ACT   DCFSA' AS VARCHAR(50))
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         ,drvREF01_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
@@ -1305,14 +1305,14 @@ BEGIN
                                            WHEN BdmDedType IN ('VIS') THEN ''
                                      END
         ,drvHD03_InsuranceLineCode = 'MM'
-        ,drvHD04_PlanCoverageDesc = '000000' + CONVERT(VARCHAR, BdmBenStartDate, 101) + REPLACE(BdmUSGField1, '.00', '') + CONVERT(VARCHAR, BdmBenStartDate, 101) + 'NY'
-                                        + CONVERT(VARCHAR, BdmBenStartDate, 101) + 'NN'
+        ,drvHD04_PlanCoverageDesc = '000000' + CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 112) + RIGHT('000000' + REPLACE(BdmUSGField1, '.00', ''), 6) + CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 112) + 'NY'
+                                        + CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 112) + 'NN'
         -- CASE WHEN BdmDedType IN ('MED') THEN ''
         --                                    WHEN BdmDedType IN ('DEN') THEN ''
         --                                    WHEN BdmDedType IN ('VIS') THEN ''
         --                              END
         ,drvHD05_CoverageLevelCode = CAST('EE' AS VARCHAR(3))
-		--CASE WHEN BdmRecType = 'EMP' THEN 'EMP' END
+        --CASE WHEN BdmRecType = 'EMP' THEN 'EMP' END
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
@@ -1331,7 +1331,7 @@ BEGIN
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual1 = 'REF'
         ,drvREF01_RefNumberQual1 = '1L'
-        ,drvREF02_RefNumberQual1 = CAST('HCFSA' AS VARCHAR(50))
+        ,drvREF02_RefNumberQual1 = CAST('3343403ACT   HCFSA' AS VARCHAR(50))
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         ,drvREF01_RefNumberQual2 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
@@ -1416,7 +1416,7 @@ BEGIN
                                             WHEN BdmBenOption IN ('EEC') THEN 'ECH'
                                             WHEN BdmBenOption IN ('EEF', 'EEDPF', 'LSEEF') THEN 'FAM'
                                         END
-										ELSE ''
+                                        ELSE ''
                                     END AS VARCHAR(3))
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN 'DTP' END
