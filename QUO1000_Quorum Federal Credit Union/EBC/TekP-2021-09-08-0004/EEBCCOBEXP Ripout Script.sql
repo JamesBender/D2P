@@ -5,7 +5,7 @@ EEBCCOBEXP: EBC Cobra QB Export
 FormatCode:     EEBCCOBEXP
 Project:        EBC Cobra QB Export
 Client ID:      QUO1000
-Date/time:      2021-12-13 06:53:34.593
+Date/time:      2022-02-09 10:41:46.753
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -234,7 +234,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEBCCOBEXP_20211213.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEBCCOBEXP_20220209.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -245,7 +245,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202110189','EMPEXPORT','OEPASSIVE','Oct 20 2021  5:18AM','EEBCCOBEXP',NULL,NULL,NULL,'202110189','Oct 18 2021 11:50AM','Oct 18 2021 11:50AM','202110011','24','','','202110011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export','202110189','EMPEXPORT','ONDEM_XOE','Oct 20 2021  5:18AM','EEBCCOBEXP',NULL,NULL,NULL,'202110189','Oct 18 2021 11:50AM','Oct 18 2021 11:50AM','202110011','33','','','202110011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export-Sched','202110189','EMPEXPORT','SCH_EEBCCO','Oct 20 2021  5:19AM','EEBCCOBEXP',NULL,NULL,NULL,'202110189','Oct 18 2021 11:50AM','Oct 18 2021 11:50AM','202110011','33','','','202110011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export-Test','202112061','EMPEXPORT','TEST_XOE','Dec  6 2021  2:46PM','EEBCCOBEXP',NULL,NULL,NULL,'202112061','Dec  6 2021 12:00AM','Dec 30 1899 12:00AM','202110151','49','','','202110151',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC Cobra QB Export-Test','202202081','EMPEXPORT','TEST_XOE','Feb  8 2022  7:20PM','EEBCCOBEXP',NULL,NULL,NULL,'202202081','Feb  8 2022 12:00AM','Dec 30 1899 12:00AM','202201011','74','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -356,7 +356,7 @@ CREATE TABLE [dbo].[U_EEBCCOBEXP_drvTbl_QB] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] varchar(13) NULL,
     [drvClientDivisionName] varchar(34) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
@@ -841,26 +841,26 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' 1'
+        ,drvSort = EdhChangeReason + ' ' + BdmCobraReason -- xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvClientDivisionName =    CASE WHEN xCoID = 'IAGFG' THEN 'Quorum Federal Credit Union'
                                         WHEN xCoID = 'SSMNA' THEN 'Vacation Ownership Funding Company'
                                     END
-        ,drvNameFirst =    CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConNameFirst ELSE  EepNameFirst END
-        ,drvNameMiddle = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN LEFT(ConNameMiddle,1) ELSE LEFT(EepNameMiddle,1) END
-        ,drvNameLast = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConNameLast ELSE EepNameLast END
-        ,drvSSN = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConSSN ELSE eepSSN END
-        ,drvAddressLine1 = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressLine1 ELSE EepAddressLine1 END
-        ,drvAddressLine2 = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressLine2 ELSE EepAddressLine2 END
-        ,drvAddressCity = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressCity ELSE EepAddressCity END
-        ,drvAddressState = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressState ELSE EepAddressState END
-        ,drvAddressZipCode = CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressZipCode ELSE EepAddressZipCode END
-        ,drvGender =    CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN 
+        ,drvNameFirst =    CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConNameFirst ELSE  EepNameFirst END
+        ,drvNameMiddle = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN LEFT(ConNameMiddle,1) ELSE LEFT(EepNameMiddle,1) END
+        ,drvNameLast = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConNameLast ELSE EepNameLast END
+        ,drvSSN = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConSSN ELSE eepSSN END
+        ,drvAddressLine1 = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressLine1 ELSE EepAddressLine1 END
+        ,drvAddressLine2 = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressLine2 ELSE EepAddressLine2 END
+        ,drvAddressCity = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressCity ELSE EepAddressCity END
+        ,drvAddressState = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressState ELSE EepAddressState END
+        ,drvAddressZipCode = CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConAddressZipCode ELSE EepAddressZipCode END
+        ,drvGender =    CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN 
                             CASE WHEN ConGender IN ('M','F') THEN ConGender ELSE 'U' END
                         ELSE  
                             CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
                         END
-        ,drvDateOfBirth =    CASE WHEN EdhChangeReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConDateOfBirth ELSE EepDateOfBirth END
+        ,drvDateOfBirth =    CASE WHEN BdmCobraReason IN ('201','LEVNT3','204','210','LEVNT4') THEN ConDateOfBirth ELSE EepDateOfBirth END
     INTO dbo.U_EEBCCOBEXP_drvTbl_QB
     FROM dbo.U_EEBCCOBEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -876,7 +876,7 @@ BEGIN
                     JOIN dbo.BenChRsn WITH (NOLOCK)
                         ON EdhChangeReason = BchCode
                     WHERE EdhDedCode IN ('DENBK','DENL','DENG','DENKG','DEN','DENK1','MED','MED1','MED2','MED3','MEDK1','VIS','FSA','HRA') 
-                        AND edhChangeReason IN ('208','204','LEVNT4','205','201','302','LEVNT3', '203','202','206','200')
+                        AND edhChangeReason IN ('208','204','LEVNT4','205','201','302','LEVNT3', '203','202','206','200','210')
                 ) AS X
             WHERE RN = 1) AS Edh
         ON EdhEEID = xEEID
@@ -884,6 +884,8 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecId
+    WHERE (BdmRecType = 'EMP' AND BdmCobraReason NOT IN ('210'))
+        OR (ConRelationship IN ('SPS') AND BdmCobraReason IN ('210'))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EEBCCOBEXP_drvTbl_QBEVENT
@@ -967,7 +969,7 @@ BEGIN
                         END
         ,drvCoverageLevel =    CASE WHEN BdmDedCode IN ('FSA') THEN 'EE'
                             ELSE
-                                CASE WHEN EdhChangeReason IN ('204','LEVNT4','201','LEVNT3','210') AND BdmDedCode IN ('DENBK','DENL','DENG','DENKG','DEN','DENK1','MED','MED1','MED2','MED3','MEDK1','VIS','FSA','HRA') THEN
+                                CASE WHEN /*EdhChangeReason*/ BdmCobraReason IN ('204','LEVNT4','201','LEVNT3','210') AND BdmDedCode IN ('DENBK','DENL','DENG','DENKG','DEN','DENK1','MED','MED1','MED2','MED3','MEDK1','VIS','FSA','HRA') THEN
                                     CASE WHEN Spss > 0 AND Deps = 1 THEN 'EE+CHILD'
                                         WHEN Spss > 0 AND Deps > 1 THEN 'EE+CHILDREN'
                                         WHEN Spss = 0 AND Deps > 1 THEN 'EE+CHILDREN'
@@ -1106,7 +1108,8 @@ BEGIN
             WHERE RN = 1) AS Edh
         ON EdhEEID = xEEID
         AND EdhCoID = xCOID
-    WHERE EdhChangeReason NOT IN ('201','LEVNT3','204','210','LEVNT4')
+    WHERE --BdmCobraReason NOT IN ('201','LEVNT3','204','210','LEVNT4')
+        ConRelationship <> 'SPS' OR (ConRelationship = 'SPS' AND BdmCobraReason <> '210')
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EEBCCOBEXP_drvTbl_QBDEPENDENTPLANINITIAL

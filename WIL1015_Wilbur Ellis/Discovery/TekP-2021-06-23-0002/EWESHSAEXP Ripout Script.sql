@@ -5,7 +5,7 @@ EWESHSAEXP: WEX FSA Dep HAS Enrollment Payroll Export
 FormatCode:     EWESHSAEXP
 Project:        WEX FSA Dep HAS Enrollment Payroll Export
 Client ID:      WIL1015
-Date/time:      2022-02-03 11:40:51.757
+Date/time:      2022-02-10 08:59:49.087
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -224,7 +224,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EWESHSAEXPZ0','50','D','20','10',NULL,'Alternate Reimbursement',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EWESHSAEXPZ0','50','D','20','11',NULL,'Enrolled In Claims',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EWESHSAEXPZ0','50','D','20','12',NULL,'Election Amount Indicator',NULL,NULL,'"drvElectionAmountIndicator"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EWESHSAEXPZ0','50','D','20','13',NULL,'HDHP Coverage Level',NULL,NULL,'""','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EWESHSAEXPZ0','50','D','20','13',NULL,'HDHP Coverage Level',NULL,NULL,'"drvHDHPCoverageLevel"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EWESHSAEXPZ0','50','D','20','14',NULL,'Plan Year Start Date',NULL,NULL,'"drvPlanYearStartDate"','(''UDMDY''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EWESHSAEXPZ0','50','D','20','15',NULL,'Terms and Conditions Accepted',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EWESHSAEXPZ0','50','D','20','16',NULL,'Date Terms Conditions Accepted',NULL,NULL,'""','(''DA''=''T|'')');
@@ -257,7 +257,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWESHSAEXP_20220203.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWESHSAEXP_20220210.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -268,7 +268,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112179','EMPEXPORT','OEPASSIVE',NULL,'EWESHSAEXP',NULL,NULL,NULL,'202112179','Dec 17 2021 11:45AM','Dec 17 2021 11:45AM','202112171',NULL,'','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pay Exp','202112179','EMPEXPORT','ONDEM_XOE',NULL,'EWESHSAEXP',NULL,NULL,NULL,'202112179','Dec 17 2021 11:45AM','Dec 17 2021 11:45AM','202112171',NULL,'','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pa-Sched','202112179','EMPEXPORT','SCH_EWESHS',NULL,'EWESHSAEXP',NULL,NULL,NULL,'202112179','Dec 17 2021 11:45AM','Dec 17 2021 11:45AM','202112171',NULL,'','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pa-Test','202201269','EMPEXPORT','TEST_XOE','Feb  3 2022 11:37AM','EWESHSAEXP',NULL,NULL,NULL,'202201269','Jan 26 2022 12:00AM','Dec 30 1899 12:00AM','202201141','4608','eecPayGroup','BWE,BWEUS2,WKN,WKNUS2','202201141',dbo.fn_GetTimedKey(),NULL,'us3lKiWIL1015',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'WEX FSA Dep HAS Enrol Pa-Test','202202119','EMPEXPORT','TEST_XOE','Feb  9 2022  3:56PM','EWESHSAEXP',NULL,NULL,NULL,'202202119','Feb 11 2022 12:00AM','Dec 30 1899 12:00AM','202202041','4595','eecPayGroup','BWE,BWEUS2,SAMPLE,SMPWKL,WKN,WKNUS2','202202041',dbo.fn_GetTimedKey(),NULL,'us3lKiWIL1015',NULL);
 
 -----------
 -- AscImp inserts
@@ -378,7 +378,7 @@ CREATE TABLE [dbo].[U_EWESHSAEXP_drvTbl_CT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(16) NULL,
+    [drvSort] nvarchar(4000) NULL,
     [drvParticipantFileImportId] char(11) NULL,
     [drvPlanName] varchar(22) NULL,
     [drvContributionDate] datetime NULL,
@@ -401,6 +401,7 @@ CREATE TABLE [dbo].[U_EWESHSAEXP_drvTbl_EN] (
     [drvParicipationElectionAmount] money NULL,
     [drvEnrollmentTerminationDate] datetime NULL,
     [drvElectionAmountIndicator] varchar(6) NULL,
+    [drvHDHPCoverageLevel] varchar(6) NULL,
     [drvPlanYearStartDate] varchar(1) NOT NULL
 );
 
@@ -413,7 +414,7 @@ CREATE TABLE [dbo].[U_EWESHSAEXP_drvTbl_PT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(16) NULL,
+    [drvSort] varchar(514) NULL,
     [drvParticipantFileImportId] char(11) NULL,
     [drvEmployeeNumber] char(9) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -712,23 +713,24 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSort = ISNULL(BdmDedCode, 'none') + ' :: ' + FORMAT(PdhFSAHCContribAmt  , '#0.00') -- '2 ' + xEEID + ' 3'
         -- standard fields above and additional driver fields below
         ,drvParticipantFileImportId = EepSSN
-        ,drvPlanName =    CASE WHEN BdmDedCode IN ('FSAHC') OR PdhFSAHCContribAmt <> 0 THEN 'Medical FSA'
+        ,drvPlanName =    CASE WHEN BdmDedCode IN ('FSAHC')  OR PdhFSAHCContribAmt  <> 0 THEN 'Medical FSA'
                         WHEN BdmDedCode IN ('FSADC') OR PdhFSADCContribAmt <> 0 THEN 'Dependent Care FSA'
                         WHEN BdmDedCode IN ('FSALP') OR PdhFSALPContribAmt <> 0 THEN 'Limited Medical FSA'
                         WHEN BdmDedCode IN ('HSACF','HSACI') OR PdhHSACFContribAmt <> 0 OR PdhHSACIContribAmt <> 0 THEN 'Health Savings Account'
                         END
         ,drvContributionDate = PPayDate
         ,drvContributionAmount = FORMAT(
-                                            CASE WHEN BdmDedCode = 'FSAHC' OR PdhFSAHCContribAmt <> 0 THEN PdhFSAHCContribAmt  
+                                            CASE WHEN BdmDedCode = 'FSAHC' OR PdhFSAHCContribAmt  <> 0 THEN PdhFSAHCContribAmt  
                                             WHEN BdmDedCode = 'FSADC' OR PdhFSADCContribAmt <> 0 THEN PdhFSADCContribAmt     
                                             WHEN BdmDedCode = 'FSALP' OR PdhFSALPContribAmt <> 0 THEN PdhFSALPContribAmt     
                                             WHEN BdmDedCode = 'HSACF' OR PdhHSACFContribAmt <> 0 THEN PdhHSACFContribAmt 
                                             WHEN BdmDedCode = 'HSACI' OR PdhHSACIContribAmt <> 0 THEN PdhHSACIContribAmt
                                             END,
                                     '#0.00')
+                                    
     INTO dbo.U_EWESHSAEXP_drvTbl_CT
     FROM dbo.U_EWESHSAEXP_EEList WITH (NOLOCK)
     LEFT JOIN dbo.U_dsi_BDM_EWESHSAEXP WITH (NOLOCK)
@@ -768,7 +770,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '2 ' + xEEID + ' 1' 
+        ,drvSort = EepAddressLine1 + ' :: ' + ISNULL(EepAddressLine2, '') -- '2 ' + xEEID + ' 1' 
         -- standard fields above and additional driver fields below
         ,drvParticipantFileImportId = EepSSN
         ,drvEmployeeNumber = EecEmpNo
@@ -778,8 +780,8 @@ BEGIN
         ,drvGender = EepGender
         ,drvDateOfBirth = EepDateOfBirth
         ,drvSSN = eepSSN
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
+        ,drvAddressLine1 = CASE WHEN (EepAddressLine1 LIKE '%PO Box%' OR EepAddressLine1 LIKE '%Post Office%') AND ISNULL(EepAddressLine2, '') <> ''THEN EepAddressLine2 ELSE EepAddressLine1 END
+        ,drvAddressLine2 = CASE WHEN (EepAddressLine1 LIKE '%PO Box%' OR EepAddressLine1 LIKE '%Post Office%') AND ISNULL(EepAddressLine2, '') <> ''THEN '' ELSE EepAddressLine2 END
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
@@ -803,7 +805,7 @@ BEGIN
         ON PdhEEID = xEEID
     WHERE ((EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
         OR xEEID IN (SELECT DISTINCT drvEEID FROM dbo.U_EWESHSAEXP_drvTbl_CT WITH (NOLOCK)))
-        AND  BdmBenStatus <> 'W'
+        AND BdmBenStatus <> 'W'
         --OR (
         --        PdhFSAHCContribAmt <> 0
         --        OR PdhFSADCContribAmt <> 0
@@ -835,6 +837,9 @@ BEGIN
                                             END
         ,drvEnrollmentTerminationDate = CASE WHEN EecEmplStatus <> 'T' AND BdmDedCode IN ('FSAHC','FSADC','FSALP','HSACF','HSACI') THEN BdmBenStopDate END
         ,drvElectionAmountIndicator = CASE WHEN BdmDedCode IN ('HSACF','HSACI') THEN 'PerPay' END
+        ,drvHDHPCoverageLevel =    CASE WHEN EedDedCode IN ('NHSA1','NHSA2','NHSA3') AND EedBenOption = 'EE' THEN 'Single'
+                                WHEN EedDedCode IN ('NHSA1','NHSA2','NHSA3') AND EedBenOption <> 'EE' THEN 'Family'
+                                END
         ,drvPlanYearStartDate = ''
                                 --CASE WHEN @FormatCode IN ('ACTIVE','PASSIVE') THEN CONVERT(DATETIME,'1/1/' + CONVERT(VARCHAR(4), (DATEPART(YEAR, GETDATE())+1))) 
                                 --    ELSE CONVERT(DATETIME,'1/1/' + CONVERT(VARCHAR(4), (DATEPART(YEAR, GETDATE())))) 
@@ -851,9 +856,13 @@ BEGIN
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_EWESHSAEXP_PDedHist
         ON PdhEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND EedDedCode IN ('NHSA1','NHSA2','NHSA3')
     WHERE ((EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate))
         OR xEEID IN (SELECT DISTINCT drvEEID FROM dbo.U_EWESHSAEXP_drvTbl_CT WITH (NOLOCK)))
-        AND  BdmBenStatus <> 'W'
+        AND BdmBenStatus <> 'W'
 
     --WHERE BdmEEID IS NOT NULL    
         --OR (
