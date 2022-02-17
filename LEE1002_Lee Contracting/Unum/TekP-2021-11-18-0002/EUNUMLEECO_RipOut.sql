@@ -4,16 +4,17 @@ EUNUMLEECO: Unum FMLA Export
 
 FormatCode:     EUNUMLEECO
 Project:        Unum FMLA Export
-Client ID:      USG1000
-Date/time:      2022-02-08 20:42:28.573
+Client ID:      LEE1002
+Date/time:      2022-02-16 20:42:48.523
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EUNUMLEECO_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP1DB01
+Database:       ULTIPRO_WPLEEC
+Web Filename:   LEE1002_MV3A4_EEHISTORY_EUNUMLEECO_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -119,6 +120,10 @@ IF OBJECT_ID('U_EUNUMLEECO_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EUNUMLEECO_d
 GO
 IF OBJECT_ID('U_EUNUMLEECO_DedList') IS NOT NULL DROP TABLE [dbo].[U_EUNUMLEECO_DedList];
 GO
+IF OBJECT_ID('U_EUNUMLEECO_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EUNUMLEECO_AuditFields];
+GO
+IF OBJECT_ID('U_EUNUMLEECO_Audit') IS NOT NULL DROP TABLE [dbo].[U_EUNUMLEECO_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_EUNUMLEECO') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EUNUMLEECO];
 GO
 
@@ -157,7 +162,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EUNUMLEECOZ0','50','H','01','23',NULL,'Employment Status',NULL,NULL,'"EE_STATUS"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EUNUMLEECOZ0','50','H','01','24',NULL,'Weekly Scheduled Work Hours',NULL,NULL,'"WKLY_SCH_WRK_HRS"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EUNUMLEECOZ0','50','H','01','25',NULL,'Accommodates Restrictions',NULL,NULL,'"ACCOM_RSTCT"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EUNUMLEECOZ0','50','H','01','26',NULL,'Sick Pay Hours  ',NULL,NULL,'"SICK_PAY_HRS"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EUNUMLEECOZ0','50','H','01','26',NULL,'Sick Pay Hours',NULL,NULL,'"SICK_PAY_HRS"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EUNUMLEECOZ0','50','H','01','27',NULL,'Date of Last Salary Change',NULL,NULL,'"DATE_OF_LST_SLY_CHG"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EUNUMLEECOZ0','50','H','01','28',NULL,'Employee Home Phone Number',NULL,NULL,'"EE_HOME_PHONE"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EUNUMLEECOZ0','50','H','01','29',NULL,'Manager First Name',NULL,NULL,'"MGR_FIRST_NAME"','(''DA''=''T,'')');
@@ -220,14 +225,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EUNUMLEECOZ0','54','D','10','16',NULL,'EE Date of Birth',NULL,NULL,'"drvEEDOB"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EUNUMLEECOZ0','54','D','10','17',NULL,'EE Gender',NULL,NULL,'"drvEEGender"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EUNUMLEECOZ0','54','D','10','18',NULL,'Marital Status',NULL,NULL,'"drvMaritalStat"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EUNUMLEECOZ0','54','D','10','19',NULL,'Employee Job Title',NULL,NULL,'"drvEmpJobTitle"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EUNUMLEECOZ0','54','D','10','19',NULL,'Employee Job Title',NULL,NULL,'"drvEmpJobTitle"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EUNUMLEECOZ0','54','D','10','20',NULL,'Most Recent Hire Date',NULL,NULL,'"drvMostRecentHireDt"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EUNUMLEECOZ0','54','D','10','21',NULL,'Original Hire Date',NULL,NULL,'"drvOrigHireDt"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EUNUMLEECOZ0','54','D','10','22',NULL,'Employment Termination Date',NULL,NULL,'"drvEmploymentTermDt"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EUNUMLEECOZ0','54','D','10','23',NULL,'Employment Status',NULL,NULL,'"drvEmploymentStat"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EUNUMLEECOZ0','54','D','10','24',NULL,'Weekly Scheduled Work Hours',NULL,NULL,'"drvWeekSchWorkHrs"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EUNUMLEECOZ0','54','D','10','25',NULL,'Accommodates Restrictions',NULL,NULL,'"drvAccoRestrict"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EUNUMLEECOZ0','54','D','10','26',NULL,'Sick Pay Hours  ',NULL,NULL,'"drvSickPayHrs"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EUNUMLEECOZ0','54','D','10','26',NULL,'Sick Pay Hours',NULL,NULL,'"drvSickPayHrs"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EUNUMLEECOZ0','54','D','10','27',NULL,'Date of Last Salary Change',NULL,NULL,'"drvDtLastSalChng"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EUNUMLEECOZ0','54','D','10','28',NULL,'Employee Home Phone Number',NULL,NULL,'"drvEmpHomePh"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EUNUMLEECOZ0','54','D','10','29',NULL,'Manager First Name',NULL,NULL,'"drvManFName"','(''UA''=''T,'')');
@@ -284,7 +289,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMLEECO_20220208.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMLEECO_20220216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -293,7 +298,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum FMLA Export','202202089','EMPEXPORT','ONDEM_XOE',NULL,'EUNUMLEECO',NULL,NULL,NULL,'202202089','Feb  8 2022  7:01PM','Feb  8 2022  7:01PM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum FMLA Export-Sched','202202089','EMPEXPORT','SCH_EUNUML',NULL,'EUNUMLEECO',NULL,NULL,NULL,'202202089','Feb  8 2022  7:01PM','Feb  8 2022  7:01PM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum FMLA Export-Test','202202089','EMPEXPORT','TEST_XOE',NULL,'EUNUMLEECO',NULL,NULL,NULL,'202202089','Feb  8 2022  7:01PM','Feb  8 2022  7:01PM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Unum FMLA Export-Test','202202119','EMPEXPORT','TEST_XOE','Feb 11 2022 12:00AM','EUNUMLEECO',NULL,NULL,NULL,'202202119','Feb 11 2022 12:00AM','Dec 30 1899 12:00AM','202201281',NULL,'','','202201281',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -305,9 +310,10 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMLEECO','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -328,11 +334,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -382,6 +383,33 @@ CREATE TABLE [dbo].[U_dsi_BDM_EUNUMLEECO] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EUNUMLEECO_Audit
+-----------
+
+IF OBJECT_ID('U_EUNUMLEECO_Audit') IS NULL
+CREATE TABLE [dbo].[U_EUNUMLEECO_Audit] (
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audKey1Value] varchar(255) NOT NULL,
+    [audKey2Value] varchar(255) NOT NULL,
+    [audKey3Value] varchar(255) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EUNUMLEECO_AuditFields
+-----------
+
+IF OBJECT_ID('U_EUNUMLEECO_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EUNUMLEECO_AuditFields] (
+    [aTableName] varchar(128) NULL,
+    [aFieldName] varchar(128) NULL
 );
 
 -----------
@@ -535,8 +563,14 @@ Purpose: Unum FMLA Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
+02/16/2022 by AP:
+	- Fixed marital status output.
+	- Wrapped job title field with Q (quotes).
+	- Fixed hours worked past 12 months logic.
+	- Set employee work city to BLANK.
+	- Set FMLA reporting group field from BLANK to '1'.
+	- Fixed calculation for date range of policy eligibility group field.
+	- Added LTDP mapping and logic for mapping.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUNUMLEECO';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUNUMLEECO';
@@ -565,7 +599,8 @@ BEGIN
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
-            ,@FileMinCovDate    DATETIME;
+            ,@FileMinCovDate    DATETIME
+		    ,@12MonthRolling    varchar(10);
 
     -- Set FormatCode
     SELECT @FormatCode = 'EUNUMLEECO';
@@ -581,6 +616,12 @@ BEGIN
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
+	-- Grab 12 month rolling date for PEH table
+
+	SELECT @12MonthRolling = REPLACE(CONVERT(CHAR(10), DATEADD(YEAR, -1, @EndDate), 101), '/', '') + substring(@EndPerControl, 9, 1)
+
+	SELECT @12monthrolling
+
     --==========================================
     -- Clean EE List 
     -- Caution: Careful of cleaning EE List if including paycheck data
@@ -595,7 +636,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'STD,STD2,STD3,LTD';
+    SET @DedList = 'STD,STD2,STD3,LTD,LTDP';
 
     IF OBJECT_ID('U_EUNUMLEECO_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EUNUMLEECO_DedList;
@@ -625,9 +666,9 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-	--Code for "terminations sent one time only". One time means sent one time during the per control range.
+    --Code for "terminations sent one time only". One time means sent one time during the per control range.
 
-	--Audit Table
+    --Audit Table
     IF OBJECT_ID('U_EUNUMLEECO_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EUNUMLEECO_AuditFields;
     CREATE TABLE dbo.U_EUNUMLEECO_AuditFields (aTableName varchar(128),aFieldName varchar(128));
@@ -728,7 +769,8 @@ BEGIN
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl, 4) = YEAR(GETDATE()) - 1
+    WHERE PehPerControl >= @12MonthRolling
+	--LEFT(PehPerControl, 4) = YEAR(GETDATE()) - 1
     --LEFT(PehPerControl,4) - 1 = LEFT(@EndPerControl,4) - 1
     --PehPerControl <= @EndPerControl
     GROUP BY PehEEID, PehEarnCode
@@ -766,7 +808,8 @@ BEGIN
         ,drvEEWorkState = LocAddressState
         ,drvEEDOB = EepDateOfBirth
         ,drvEEGender = EepGender
-        ,drvMaritalStat = EepMaritalStatus
+        ,drvMaritalStat = CASE WHEN EepMaritalStatus = 'Z' THEN 'S' ELSE EepMaritalStatus END
+		--EepMaritalStatus
         ,drvEmpJobTitle = JbcDesc
         ,drvMostRecentHireDt = EecDateOfLastHire
         ,drvOrigHireDt = EecDateOfOriginalHire
@@ -796,17 +839,18 @@ BEGIN
         ,drvEmpWorkMailStreet1 = ''
         ,drvEmpWorkMailStreet2 = ''
         ,drvEmpWorkMailStreet3 = ''
-        ,drvEmpWorkCity = EepAddressCity
+        ,drvEmpWorkCity = ''
+		--EepAddressCity
         ,drvEmpWorkPostCode = ''
-        ,drvFMLARepGrp = ''
+        ,drvFMLARepGrp = '1'
         ,drvKeyEmp = ''
         ,drvEESalMode = EecSalaryOrHourly
         ,drvProduct1 = CASE WHEN STD IS NOT NULL THEN '469' END
         ,drvPolNum1 = CASE WHEN STD IS NOT NULL THEN '709744' END
         ,drvDiv1 = '1'
         ,drvPolEligGrp1 = CASE WHEN STD IS NOT NULL AND EecOrgLvl3 IN ('TRD', 'ADS') THEN '1'
-                                WHEN STD IS NOT NULL AND EecOrgLvl3 IN ('MGT', 'PFS', 'EXE') AND DATEDIFF(YEAR, GETDATE(), EecDateOfLastHire) < 3 THEN '2'
-                                WHEN STD IS NOT NULL AND EecOrgLvl3 IN ('MGT', 'PFS', 'EXE') AND DATEDIFF(YEAR, GETDATE(), EecDateOfLastHire) >= 3 THEN '3'
+                                WHEN STD IS NOT NULL AND EecOrgLvl3 IN ('MGT', 'PFS', 'EXE') AND DATEDIFF(YEAR, EecDateOfLastHire, GETDATE()) < 3 THEN '2'
+                                WHEN STD IS NOT NULL AND EecOrgLvl3 IN ('MGT', 'PFS', 'EXE') AND DATEDIFF(YEAR, EecDateOfLastHire, GETDATE()) >= 3 THEN '3'
                                     END
         ,drvChoice1 = '1'
         ,drvEmpPostTax1 = CASE WHEN STD IS NOT NULL THEN '0' END
@@ -829,7 +873,7 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-		and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+        and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
                                         AND EXISTS(select 1 from dbo.U_EUNUMLEECO_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -840,10 +884,10 @@ BEGIN
     -- JOIN dbo.U_dsi_BDM_EUNUMLEECO WITH (NOLOCK)
     --     ON BdmEEID = xEEID 
     --     AND BdmCoID = xCoID
-    JOIN (SELECT EedEEID, EedCOID, MAX(CASE WHEN EedDedCode = 'LTD' THEN 'LTD' END) AS LTD,
+    JOIN (SELECT EedEEID, EedCOID, MAX(CASE WHEN EedDedCode IN ('LTD', 'LTDP') THEN 'LTD' END) AS LTD,
                     MAX(CASE WHEN EedDedCode IN ('STD', 'STD2', 'STD3') THEN 'STD' END) AS STD,
-                    MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStartDate END) AS LTD_BenStartDate,
-                    MAX(CASE WHEN EedDedCode = 'LTD' THEN EedBenStopDate END) AS LTD_BenStopDate,
+                    MAX(CASE WHEN EedDedCode IN ('LTD', 'LTDP') THEN EedBenStartDate END) AS LTD_BenStartDate,
+                    MAX(CASE WHEN EedDedCode IN ('LTD', 'LTDP') THEN EedBenStopDate END) AS LTD_BenStopDate,
                     MAX(CASE WHEN EedDedCode IN ('STD', 'STD2', 'STD3')  THEN EedBenStartDate END) AS STD_BenStartDate,
                     MAX(CASE WHEN EedDedCode IN ('STD', 'STD2', 'STD3')  THEN EedBenStopDate END) AS STD_BenStopDate
             FROM dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
