@@ -5,7 +5,7 @@ EWEXFSASYM: WEX FSA Export
 FormatCode:     EWEXFSASYM
 Project:        WEX FSA Export
 Client ID:      VEN1002
-Date/time:      2022-02-07 17:43:36.523
+Date/time:      2022-02-17 20:22:28.963
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -113,6 +113,10 @@ GO
 IF OBJECT_ID('U_EWEXFSASYM_trlTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_trlTbl];
 GO
 IF OBJECT_ID('U_EWEXFSASYM_PTTbl') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_PTTbl];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_PHist') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_PHist];
+GO
+IF OBJECT_ID('U_EWEXFSASYM_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_PEarHist];
 GO
 IF OBJECT_ID('U_EWEXFSASYM_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EWEXFSASYM_PDedHist];
 GO
@@ -254,7 +258,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWEXFSASYM_20220207.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWEXFSASYM_20220217.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -263,7 +267,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export','202201279','EMPEXPORT','ONDEM_XOE',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export-Sched','202201279','EMPEXPORT','SCH_EWEXFS',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA Export-Test','202201289','EMPEXPORT','TEST_XOE','Feb  3 2022  9:05AM','EWEXFSASYM',NULL,NULL,NULL,'202201289','Jan 28 2022 12:00AM','Dec 30 1899 12:00AM','202201281','794','','','202201281',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA Export-Test','202201289','EMPEXPORT','TEST_XOE','Feb  8 2022 10:06AM','EWEXFSASYM',NULL,NULL,NULL,'202201289','Jan 28 2022 12:00AM','Dec 30 1899 12:00AM','202201281','794','','','202201281',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -276,10 +280,10 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWEXFSASYM','UseFileName','V','Y');
 
 -----------
@@ -372,8 +376,8 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_CTTbl] (
     [drv30ContAmt] varchar(30) NULL,
     [drv30AmtType] varchar(6) NOT NULL,
     [drv30TaxYear] varchar(7) NOT NULL,
-	drvInitialSort varchar(10) NOT NULL,
-	drvSubSort varchar(1) NOT NULL
+    [drvInitialSort] varchar(12) NULL,
+    [drvSubSort] varchar(1) NOT NULL
 );
 
 -----------
@@ -423,8 +427,8 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_ENTbl] (
     [drv20TimeTermCondAccpt] varchar(1) NOT NULL,
     [drv20ChangeDt] varchar(1) NOT NULL,
     [drv20SpendDown] varchar(1) NOT NULL,
-	drvInitialSort varchar(10) NOT NULL,
-	drvSubSort varchar(1) NOT NULL
+    [drvInitialSort] varchar(12) NULL,
+    [drvSubSort] varchar(1) NOT NULL
 );
 
 -----------
@@ -464,7 +468,7 @@ IF OBJECT_ID('U_EWEXFSASYM_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EWEXFSASYM_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhCOID] char(5) NOT NULL,
-	[PdhDedCode] varchar(10) NOT NULL,
+    [PdhDedCode] char(5) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
@@ -479,6 +483,29 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_PDedHist] (
     [PdhSource8] numeric NULL,
     [PdhSource9] numeric NULL,
     [PdhSource10] numeric NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_PEarHist
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PehCOID] char(5) NOT NULL,
+    [PrgPayDate] datetime NULL
+);
+
+-----------
+-- Create table U_EWEXFSASYM_PHist
+-----------
+
+IF OBJECT_ID('U_EWEXFSASYM_PHist') IS NULL
+CREATE TABLE [dbo].[U_EWEXFSASYM_PHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PehCOID] char(5) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL
 );
 
 -----------
@@ -552,8 +579,8 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_PTTbl] (
     [drv10MobileCar] varchar(1) NOT NULL,
     [drv10MobileNum] varchar(1) NOT NULL,
     [drv10TimeZone] varchar(1) NOT NULL,
-	drvInitialSort varchar(10) NOT NULL,
-	drvSubSort varchar(1) NOT NULL
+    [drvInitialSort] varchar(12) NULL,
+    [drvSubSort] varchar(1) NOT NULL
 );
 
 -----------
@@ -587,12 +614,15 @@ Purpose: WEX FSA Export
 Revision History
 ----------------
 02/07/2022 by AP:
-	- Fixed sort order of PT, EN, CT.
-	- Status effective date format change.
-	- Enrollment effective date format change.
-	- FSADC fix for dependent lines in EN.
-	- Contribution date changed to PrgPayDate.
-	- Breakout of deduction applied by grouping by PdhDedCode.
+    - Fixed sort order of PT, EN, CT.
+    - Status effective date format change.
+    - Enrollment effective date format change.
+    - FSADC fix for dependent lines in EN.
+    - Contribution date changed to PrgPayDate.
+    - Breakout of deduction applied by grouping by PdhDedCode.
+
+02/17/2022 by AP:
+	- Removed "IsValidExport" from empdeductions tables to make sure we don't exclude term employees.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EWEXFSASYM';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EWEXFSASYM';
@@ -691,7 +721,7 @@ BEGIN
     SELECT DISTINCT
          PdhEEID
         ,PdhCOID
-		,PdhDedCode
+        ,PdhDedCode
         -- Current Payroll Amounts
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
@@ -726,7 +756,7 @@ BEGIN
 
     SELECT DISTINCT
          PehEEID
-		,PehCOID
+        ,PehCOID
         ,PrgPayDate             = MAX(PrgPayDate)
     INTO dbo.U_EWEXFSASYM_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
@@ -814,8 +844,8 @@ BEGIN
         ,drv10MobileCar = ''
         ,drv10MobileNum = ''
         ,drv10TimeZone = ''
-		,drvInitialSort = '1' + LTRIM(RTRIM(EepSSN))
-		,drvSubSort = '1' 
+        ,drvInitialSort = '1' + LTRIM(RTRIM(EepSSN))
+        ,drvSubSort = '1' 
     INTO dbo.U_EWEXFSASYM_PTTbl
     FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH(NOLOCK) 
@@ -830,7 +860,7 @@ BEGIN
     ON EedEEID = xEEID
     AND EedCOID = xCOID
     AND EedFormatCode = @FormatCode
-    AND EedValidForExport = 'Y'
+    AND (EedValidForExport = 'Y' OR EedDedRowStatus = 'Deduction Termed') -- VALUE CAUSING TERMED EMPLOYEES NOT TO LOAD ON FINAL PAY
     
     ;
     ---------------------------------
@@ -862,8 +892,8 @@ BEGIN
         ,drv20TimeTermCondAccpt = ''
         ,drv20ChangeDt = ''
         ,drv20SpendDown = ''
-		,drvInitialSort
-		,drvSubSort = '2'
+        ,drvInitialSort
+        ,drvSubSort = '2'
     INTO dbo.U_EWEXFSASYM_ENTbl
     FROM dbo.U_EWEXFSASYM_PTTbl WITH (NOLOCK)
     JOIN dbo.EmpPers WITH(NOLOCK) 
@@ -878,7 +908,7 @@ BEGIN
     ON EedEEID = drvEEID
     AND EedCOID = drvCOID
     AND EedFormatCode = @FormatCode
-    AND EedValidForExport = 'Y'
+	AND (EedValidForExport = 'Y' OR EedDedRowStatus = 'Deduction Termed') -- VALUE CAUSING TERMED EMPLOYEES NOT TO LOAD ON FINAL PAY
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWEXFSASYM_CTTbl
@@ -898,8 +928,8 @@ BEGIN
         ,drv30ContAmt = CAST(CAST(PdhEECurAmt AS DECIMAL(10,2)) AS VARCHAR)
         ,drv30AmtType = 'Actual'
         ,drv30TaxYear = 'Current'
-		,drvInitialSort
-		,drvSubSort = '3'
+        ,drvInitialSort
+        ,drvSubSort = '3'
     INTO dbo.U_EWEXFSASYM_CTTbl
     FROM dbo.U_EWEXFSASYM_PTTbl WITH (NOLOCK)
     JOIN dbo.EmpPers WITH(NOLOCK) 
@@ -907,18 +937,18 @@ BEGIN
     JOIN dbo.EmpComp WITH(NOLOCK)
     ON EecEEID = drvEEID
     AND EecCOID = drvCOID
-	JOIN dbo.U_EWEXFSASYM_PEarHist WITH(NOLOCK)
-	ON PehEEID = drvEEID
-	AND PehCOID = drvCOID
+    JOIN dbo.U_EWEXFSASYM_PEarHist WITH(NOLOCK)
+    ON PehEEID = drvEEID
+    AND PehCOID = drvCOID
     JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
     ON EedEEID = drvEEID
     AND EedCOID = drvCOID
     AND EedFormatCode = @FormatCode
-    AND EedValidForExport = 'Y'
-	JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
+	AND (EedValidForExport = 'Y' OR EedDedRowStatus = 'Deduction Termed') -- VALUE CAUSING TERMED EMPLOYEES NOT TO LOAD ON FINAL PAY
+    JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
     ON PdhEEID = drvEEID
     AND PdhCOID = drvCOID
-	AND PdhDedCode = EedDedCode
+    AND PdhDedCode = EedDedCode
     --JOIN dbo.PayGroup WITH(NOLOCK)
     --ON PgrPayGroup = EecPayGroup
     ;

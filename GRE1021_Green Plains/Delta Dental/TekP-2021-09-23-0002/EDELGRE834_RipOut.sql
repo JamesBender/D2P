@@ -5,7 +5,7 @@ EDELGRE834: Delta Dental 834 Export
 FormatCode:     EDELGRE834
 Project:        Delta Dental 834 Export
 Client ID:      GRE1021
-Date/time:      2022-01-12 19:16:27.260
+Date/time:      2022-02-16 20:10:04.707
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -14,6 +14,7 @@ Server:         EW2WUP3DB03
 Database:       ULTIPRO_WPGREPL
 Web Filename:   GRE1021_96C5A_EEHISTORY_EDELGRE834_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -111,9 +112,21 @@ IF OBJECT_ID('dsi_sp_BuildDriverTables_EDELGRE834') IS NOT NULL DROP PROCEDURE [
 GO
 IF OBJECT_ID('dsi_sp_AfterCollect_EDELGRE834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_EDELGRE834];
 GO
+IF OBJECT_ID('U_EDELGRE834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_TrlTbl];
+GO
+IF OBJECT_ID('U_EDELGRE834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_HdrTbl];
+GO
 IF OBJECT_ID('U_EDELGRE834_File') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_File];
 GO
 IF OBJECT_ID('U_EDELGRE834_EEList') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_EEList];
+GO
+IF OBJECT_ID('U_EDELGRE834_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_DrvTbl_2300];
+GO
+IF OBJECT_ID('U_EDELGRE834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_DrvTbl];
+GO
+IF OBJECT_ID('U_EDELGRE834_DedList') IS NOT NULL DROP TABLE [dbo].[U_EDELGRE834_DedList];
+GO
+IF OBJECT_ID('U_dsi_BDM_EDELGRE834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EDELGRE834];
 GO
 
 -----------
@@ -138,7 +151,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EDELGRE834Z0','6','H','01','10',NULL,'Interchange Date',NULL,NULL,'"drvISA09_InterchangeDate"','(''UD12''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EDELGRE834Z0','4','H','01','11',NULL,'Interchange Time',NULL,NULL,'"drvISA10_InterchangeTime"','(''UA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EDELGRE834Z0','1','H','01','12',NULL,'Repetition Separator',NULL,NULL,'"^"','(''DA''=''F*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EDELGRE834Z0','5','H','01','13',NULL,'Interchange Control Ver #',NULL,NULL,'"00501"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EDELGRE834Z0','5','H','01','13',NULL,'Interchange Control Ver #',NULL,NULL,'"05010"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EDELGRE834Z0','9','H','01','14',NULL,'Interchange Control #',NULL,NULL,'"000000001"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EDELGRE834Z0','1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"1"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EDELGRE834Z0','1','H','01','16',NULL,'Usage Indicator',NULL,NULL,'"drvISA15_UsageIndicator"','(''UA''=''F*'')');
@@ -335,7 +348,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EDELGRE834_20220112.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EDELGRE834_20220216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -343,7 +356,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File','202201129','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','EDELGRE834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only','202201129','EMPEXPORT','FULLFILE','Oct  1 2018 12:00AM','EDELGRE834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202201299','EMPEXPORT','FULLFILE','Jan 29 2022 10:20PM','EDELGRE834',NULL,NULL,NULL,'202201299','Jan 29 2022 12:00AM','Dec 30 1899 12:00AM','202201151','27744','','','202201151',dbo.fn_GetTimedKey(),NULL,'us3jReGRE1021',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202201129','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EDELGRE834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202201129','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EDELGRE834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Delta Dental 834 Export','202201129','EMPEXPORT','SCH_DEL834','Oct  1 2018 12:00AM','EDELGRE834',NULL,NULL,NULL,'202201129','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201121',NULL,'','','202201121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -364,7 +377,8 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDELGRE834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDELGRE834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDELGRE834','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDELGRE834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDELGRE834','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EDELGRE834','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -429,6 +443,198 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
+-- Create table U_dsi_BDM_EDELGRE834
+-----------
+
+IF OBJECT_ID('U_dsi_BDM_EDELGRE834') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EDELGRE834] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EDELGRE834_DedList
+-----------
+
+IF OBJECT_ID('U_EDELGRE834_DedList') IS NULL
+CREATE TABLE [dbo].[U_EDELGRE834_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedLongDesc] varchar(40) NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EDELGRE834_DrvTbl
+-----------
+
+IF OBJECT_ID('U_EDELGRE834_DrvTbl') IS NULL
+CREATE TABLE [dbo].[U_EDELGRE834_DrvTbl] (
+    [drvINS01_YesNoCond] varchar(1) NOT NULL,
+    [drvINS02_RelationshipCode] varchar(2) NOT NULL,
+    [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
+    [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
+    [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
+    [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
+    [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
+    [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
+    [drvINS08_EmploymentStatusCode] varchar(2) NULL,
+    [drvINS09_StudentStatusCode] varchar(1) NULL,
+    [drvINS10_ResponseCode] varchar(1) NULL,
+    [drvINS11_DateTimeFormatQual] varchar(2) NULL,
+    [drvINS12_DateTimePeriod] varchar(8) NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(6) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(4) NOT NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(4) NOT NULL,
+    [drvDTP00_DateTime1] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
+    [drvDTP00_DateTime2] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier2] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual2] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod2] varchar(1) NOT NULL,
+    [drvNM103_NameLast1] varchar(6000) NULL,
+    [drvNM104_NameFirst1] varchar(6000) NULL,
+    [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
+    [drvNM106_NamePrefix1] varchar(30) NULL,
+    [drvNM107_NameSuffix1] varchar(30) NULL,
+    [drvNM108_IDCodeQualifier1] varchar(2) NULL,
+    [drvNM109_IDCode1] char(11) NULL,
+    [drvPER02_Name] varchar(1) NOT NULL,
+    [drvPER03_CommNumberQualifier] varchar(2) NULL,
+    [drvPER04_CommunicationNumber] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(2) NULL,
+    [drvPER06_CommunicationNumber] varchar(50) NULL,
+    [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
+    [drvN301_AddressLine1] varchar(6000) NULL,
+    [drvN302_AddressLine2] varchar(6000) NULL,
+    [drvN401_City] varchar(6000) NULL,
+    [drvN402_State] varchar(255) NULL,
+    [drvN403_Zip] varchar(50) NULL,
+    [drvN404_CountryCode] char(3) NULL,
+    [drvDMG02_DateTimePeriod1] varchar(8) NULL,
+    [drvDMG03_GenderCode1] varchar(1) NULL,
+    [drvDMG04_MaritalStatusCode1] varchar(1) NULL,
+    [drvICM01_FrequencyCode] varchar(1) NULL,
+    [drvICM02_MonetaryAmount] money NULL,
+    [drvICM03_Quantity] money NULL,
+    [drvICM04_LocationID] varchar(8) NULL,
+    [drvAMT00_SegmentID1] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
+    [drvAMT00_SegmentID2] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
+    [drvHLH00_SegmentID] varchar(1) NOT NULL,
+    [drvHLH01_HealthRelatedCode] varchar(1) NULL,
+    [drvHLH02_Height] varchar(1) NOT NULL,
+    [drvHLH03_Weight1] varchar(1) NOT NULL,
+    [drvHLH04_Weight2] varchar(1) NOT NULL,
+    [drvHLH05_Description1] varchar(1) NOT NULL,
+    [drvHLH06_CurrentHealthConditionCode] varchar(1) NOT NULL,
+    [drvHLH07_Description2] varchar(1) NOT NULL,
+    [drvEEID] char(12) NULL,
+    [drvCOID] char(5) NULL,
+    [drvDepRecID] char(12) NULL,
+    [drvSSN] char(11) NULL,
+    [drvInitialSort] varchar(11) NULL,
+    [drvSubSort] char(21) NULL
+);
+
+-----------
+-- Create table U_EDELGRE834_DrvTbl_2300
+-----------
+
+IF OBJECT_ID('U_EDELGRE834_DrvTbl_2300') IS NULL
+CREATE TABLE [dbo].[U_EDELGRE834_DrvTbl_2300] (
+    [drvHD00_HealthCoverage] varchar(2) NULL,
+    [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
+    [drvHD02_MaintReasonCode] varchar(1) NULL,
+    [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
+    [drvHD04_PlanCoverageDesc] varchar(1) NULL,
+    [drvHD05_CoverageLevelCode] varchar(3) NULL,
+    [drvDTP00_DateTime_348] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier_348] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual_348] varchar(2) NULL,
+    [drvDTP03_DateTimePeriod_348] datetime NULL,
+    [drvDTP00_DateTime_349] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier_349] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual_349] varchar(2) NULL,
+    [drvDTP03_DateTimePeriod_349] datetime NULL,
+    [drvDTP00_DateTime_303] varchar(1) NULL,
+    [drvDTP01_DateTimeQualifier_303] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual_303] varchar(2) NULL,
+    [drvDTP03_DateTimePeriod_303] datetime NULL,
+    [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(6) NOT NULL,
+    [drvREF00_RefNumberQual2] varchar(3) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(4) NOT NULL,
+    [drvAMT00_AmountQualifierCode1] varchar(1) NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(1) NULL,
+    [drvAMT02_MonetaryAmount1] varchar(1) NULL,
+    [drvAMT00_AmountQualifierCode2] varchar(1) NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(1) NULL,
+    [drvAMT02_MonetaryAmount2] varchar(1) NULL,
+    [drvLS01_LoopIDCode] varchar(1) NOT NULL,
+    [drvLX01_AssignedNumber] varchar(1) NOT NULL,
+    [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
+    [drvN102_Name] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
+    [drvREF02_RefNumberDesc] varchar(1) NULL,
+    [drvLE01_LoopIDCode] varchar(1) NOT NULL,
+    [drvEEID] char(12) NULL,
+    [drvCOID] char(5) NULL,
+    [drvDepRecID] char(12) NULL,
+    [drvSSN] char(11) NULL,
+    [drvInitialSort] varchar(11) NULL,
+    [drvSubSort] varchar(22) NULL
+);
+
+-----------
 -- Create table U_EDELGRE834_EEList
 -----------
 
@@ -445,11 +651,61 @@ CREATE TABLE [dbo].[U_EDELGRE834_EEList] (
 IF OBJECT_ID('U_EDELGRE834_File') IS NULL
 CREATE TABLE [dbo].[U_EDELGRE834_File] (
     [RecordSet] char(3) NOT NULL,
-    [InitialSort] varchar(50) NOT NULL,
-    [SubSort] varchar(50) NOT NULL,
-    [SubSort2] varchar(50) NULL,
-    [SubSort3] varchar(50) NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
+);
+
+-----------
+-- Create table U_EDELGRE834_HdrTbl
+-----------
+
+IF OBJECT_ID('U_EDELGRE834_HdrTbl') IS NULL
+CREATE TABLE [dbo].[U_EDELGRE834_HdrTbl] (
+    [drvISA05_SenderIDQual] varchar(2) NOT NULL,
+    [drvISA06_SenderID] char(9) NULL,
+    [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
+    [drvISA08_ReceiverID] varchar(9) NOT NULL,
+    [drvISA09_InterchangeDate] varchar(6) NULL,
+    [drvISA10_InterchangeTime] varchar(4) NULL,
+    [drvISA15_UsageIndicator] varchar(1) NOT NULL,
+    [drvGS02_SenderID] char(9) NULL,
+    [drvGS03_ReceiverID] varchar(9) NOT NULL,
+    [drvGS04_Date] varchar(8) NULL,
+    [drvGS05_Time] varchar(4) NULL,
+    [drvBGN03_Date] varchar(8) NULL,
+    [drvBGN04_Time] varchar(4) NULL,
+    [drvBGN05_TimeCode] varchar(1) NOT NULL,
+    [drvBGN06_RefID] varchar(1) NOT NULL,
+    [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
+    [drvBGN08_ActionCode] varchar(2) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual1] varchar(1) NOT NULL,
+    [drvQTY02_Quantity1] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual2] varchar(1) NOT NULL,
+    [drvQTY02_Quantity2] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
+    [drvQTY02_Quantity3] varchar(1) NOT NULL,
+    [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
+    [drvN102_Name1] varchar(18) NOT NULL,
+    [drvN103_IDCodeQual1] varchar(2) NOT NULL,
+    [drvN104_IDCode1] char(9) NULL,
+    [drvN101_EntityIDCodeSponsor2] varchar(2) NOT NULL,
+    [drvN102_Name2] varchar(12) NOT NULL,
+    [drvN103_IDCodeQual2] varchar(2) NOT NULL,
+    [drvN104_IDCode2] varchar(9) NOT NULL
+);
+
+-----------
+-- Create table U_EDELGRE834_TrlTbl
+-----------
+
+IF OBJECT_ID('U_EDELGRE834_TrlTbl') IS NULL
+CREATE TABLE [dbo].[U_EDELGRE834_TrlTbl] (
+    [drvSE01_SegmentCount] varchar(4) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_EDELGRE834]
@@ -515,8 +771,12 @@ Purpose: Delta Dental 834 Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
+02/16/2022 by AP:
+	- ISA12 updated.
+	- DTP 336 EecDateOfLastHire added to loop 2000.
+	- NM106 and NM107 commented out.
+	- PER record commented out.
+	- Marital Status ELSE 'U' added.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDELGRE834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EDELGRE834';
@@ -531,7 +791,6 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDELGRE834', 'CHANGES';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDELGRE834', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDELGRE834', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EDELGRE834', 'SCH_DEL834';
-
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EDELGRE834';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EDELGRE834', @AllObjects = 'Y', @IsWeb = 'Y';
@@ -796,10 +1055,10 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual1 = ''
         ,drvDTP03_DateTimePeriod1 = ''
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = ''
-        ,drvDTP01_DateTimeQualifier2 = ''
-        ,drvDTP02_DateTimeFormatQual2 = ''
-        ,drvDTP03_DateTimePeriod2 = ''
+        ,drvDTP00_DateTime2 = 'DTP'
+        ,drvDTP01_DateTimeQualifier2 = '336'
+        ,drvDTP02_DateTimeFormatQual2 = 'D8'
+        ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
@@ -815,10 +1074,10 @@ BEGIN
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
-                                END
+        ,drvNM106_NamePrefix1 = ''--CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
+        ,drvNM107_NameSuffix1 = ''--CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
+                                   --  WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+                              --  END
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' AND EepSSN NOT IN ('000000000', '999999999', '888888888', '123456789') AND LEFT(EepSSN, 3) NOT IN ('999','998') THEN '34'
                                           WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' AND ConSSN NOT IN ('000000000', '999999999', '888888888', '123456789') AND LEFT(ConSSN, 3) NOT IN ('999','998') THEN '34'
                                      END
@@ -826,20 +1085,24 @@ BEGIN
                                  WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' AND ConSSN NOT IN ('000000000', '999999999', '888888888', '123456789') AND LEFT(ConSSN, 3) NOT IN ('999','998') THEN ConSSN
                                      END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN 'HP'
-                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN 'EM'
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN 'HP'
-                                             END
+        ,drvPER03_CommNumberQualifier = ''
+		--CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN 'HP'
+  --                                           WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN 'EM'
+  --                                            WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN 'HP'
+  --                                           END
 
-        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN ISNULL(EepPhoneHomeNumber,'') 
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(eepAddressEMail,'')
-                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN  ISNULL(EepPhoneHomeNumber,'') 
+        ,drvPER04_CommunicationNumber = ''
+		--CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN ISNULL(EepPhoneHomeNumber,'') 
+  --                                            WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(eepAddressEMail,'')
+  --                                            WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN  ISNULL(EepPhoneHomeNumber,'') 
 
-                                             END
+                                          --  END
 
-        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'EM' END
+        ,drvPER05_CommNumberQualifier = ''
+		--CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'EM' END
 
-        ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN ISNULL(eepAddressEMail,'') END
+        ,drvPER06_CommunicationNumber = ''
+		--CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN ISNULL(eepAddressEMail,'') END
 
         ,drvPER07_CommNumberQualifier = ''
         ,drvPER08_CommunicationNumber = ''
@@ -857,7 +1120,7 @@ BEGIN
                                      ELSE 'M'
                                 END
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
-                                                CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
+                                                CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'U' END
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' THEN '' END --'7'

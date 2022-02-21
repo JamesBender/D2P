@@ -5,7 +5,7 @@ EGUASOU834: Guardian 834 Export
 FormatCode:     EGUASOU834
 Project:        Guardian 834 Export
 Client ID:      SOU1050
-Date/time:      2022-02-07 19:18:25.957
+Date/time:      2022-02-15 23:04:56.617
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -285,7 +285,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUASOU834Z0','1','D','27','2',NULL,'Frequency Code',NULL,NULL,'"drvICM01_FrequencyCode"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUASOU834Z0','18','D','27','3',NULL,'Monetary Amount',NULL,NULL,'"drvICM02_MonetaryAmount"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EGUASOU834Z0','15','D','27','4',NULL,'Quantity',NULL,NULL,'"drvICM03_Quantity"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EGUASOU834Z0','30','D','27','5',NULL,'Location Identifier Description',NULL,NULL,'"drvICM04_LocationID"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EGUASOU834Z0','30','D','27','5',NULL,'Location Identifier Description',NULL,NULL,'"drvICM04_LocationID"','(''UD112''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGUASOU834Z0','3','D','28','1',NULL,'ACM Segment ID (Loop1000A)',NULL,NULL,'"drvAMT00_SegmentID1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUASOU834Z0','18','D','28','2',NULL,'Monetary Amount',NULL,NULL,'"drvAMT01_AmountQualifierCode1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUASOU834Z0','1','D','28','3',NULL,'Credit/Debit Flag Code',NULL,NULL,'"drvAMT02_MonetaryAmount1"','(''UA''=''T*'')');
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUASOU834_20220207.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUASOU834_20220215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202202019','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EGUASOU834',NULL,NULL,NULL,'202202019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202202019','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EGUASOU834',NULL,NULL,NULL,'202202019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian 834 Export','202202019','EMPEXPORT','SCH_GUA834','Oct  1 2018 12:00AM','EGUASOU834',NULL,NULL,NULL,'202202019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202041','EMPEXPORT','TEST_XOE','Feb  4 2022 12:09PM','EGUASOU834',NULL,NULL,NULL,'202202041','Feb  4 2022 12:00AM','Dec 30 1899 12:00AM','202201211','26090','','','202201211',dbo.fn_GetTimedKey(),NULL,'us3cPeSOU1050',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202041','EMPEXPORT','TEST_XOE','Feb  8 2022 11:37AM','EGUASOU834',NULL,NULL,NULL,'202202041','Feb  4 2022 12:00AM','Dec 30 1899 12:00AM','202201211','23942','','','202201211',dbo.fn_GetTimedKey(),NULL,'us3cPeSOU1050',NULL);
 
 -----------
 -- AscImp inserts
@@ -585,7 +585,7 @@ CREATE TABLE [dbo].[U_EGUASOU834_DrvTbl] (
     [drvICM01_FrequencyCode] varchar(1) NULL,
     [drvICM02_MonetaryAmount] money NULL,
     [drvICM03_Quantity] money NULL,
-    [drvICM04_LocationID] varchar(8) NULL,
+    [drvICM04_LocationID] datetime NULL,
     [drvAMT00_SegmentID1] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
@@ -805,13 +805,21 @@ Purpose: Guardian 834 Export
 Revision History
 ----------------
 02/7/2022 by AP:
-	- Fixed ISA14 header item.
-	- ICM04 fix applied.
-	- Sorting for HD segment 2300 applied.
-	- HD04 amounts fixed for LEE, LSP and LCH.
-	- DTP*348 adjusted for mininum date.
-	- Canceled records removed.
-	- Adjusted LSP and LCH records for just spouse or children respectively.
+    - Fixed ISA14 header item.
+    - ICM04 fix applied.
+    - Sorting for HD segment 2300 applied.
+    - HD04 amounts fixed for LEE, LSP and LCH.
+    - DTP*348 adjusted for mininum date.
+    - Canceled records removed.
+    - Adjusted LSP and LCH records for just spouse or children respectively.
+
+02/16/2022 by AP:
+	- Fixed date format for 337.
+	- Fixed date format for ICM04.
+	- Adjusted ded code for vision 2300 loop.
+	- Fixed amounts for LSP and LCH.
+	- Fixed other employee specific issues.
+	- For employees dependents >= 26 fix for loop 2000 duplicates.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGUASOU834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EGUASOU834';
@@ -1083,10 +1091,11 @@ BEGIN
         -- CASE WHEN BdmRecType = 'DEP' THEN
         --                                         CASE WHEN ConIsStudent = 'Y' THEN 'F' END --Full-time
         --                               END
-        ,drvINS10_ResponseCode = CASE WHEN BdmRecType = 'DEP' AND DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) >= 26 THEN 
-                                        CASE WHEN ConIsDisabled = 'Y' THEN 'Y' ELSE 'N'
-                                    END
-                                END
+        ,drvINS10_ResponseCode = condis_disability
+		--CASE WHEN BdmRecType = 'DEP' AND DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) >= 26 THEN 
+  --                                      CASE WHEN ConIsDisabled = 'Y' THEN 'Y' ELSE 'N'
+  --                                  END
+  --                              END
         -- CASE WHEN BdmRecType = 'EMP' THEN
         --                                 CASE WHEN EepIsDisabled = 'Y' THEN 'Y'
         --                                      ELSE 'N'
@@ -1124,7 +1133,7 @@ BEGIN
         ,drvDTP00_DateTime3 = CASE WHEN EecDateOfTermination IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier3 = CASE WHEN EecDateOfTermination IS NOT NULL THEN '337' END
         ,drvDTP02_DateTimeFormatQual3 = CASE WHEN EecDateOfTermination IS NOT NULL THEN 'D8' END
-        ,drvDTP03_DateTimePeriod3 = ISNULL(CONVERT(VARCHAR, EecDateOfTermination, 101), '')
+        ,drvDTP03_DateTimePeriod3 = ISNULL(CONVERT(VARCHAR, EecDateOfTermination, 112), '')
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
@@ -1211,7 +1220,7 @@ BEGIN
                                     END
         --CONVERT(MONEY,EecScheduledWorkHrs) END
         ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' THEN
-										dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
+                                        dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
                                         --CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
                                         --    ELSE CONVERT(CHAR(4),YEAR(GETDATE())) + '0101'
                                         --END
@@ -1267,8 +1276,17 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-    WHERE EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C' -- Cancelled;
+	LEFT JOIN (SELECT DISTINCT BdmEEID as condis_eeid, BdmCOID as condis_coid, BdmDepRecId as condis_deprecid
+				, MAX(CASE WHEN ConIsDisabled = 'Y' THEN 'Y' ELSE 'N' END) as condis_disability
+				FROM dbo.U_dsi_bdm_EGUASOU834 WITH(NOLOCK)
+					JOIN dbo.Contacts WITH(NOLOCK) ---- This cleans up the disability Y or N and avoids duplicate records for dependents >= 26
+					ON BdmEEID = ConEEID
+					AND BdmDepRecId = ConSystemId
+					WHERE BdmRecType = 'DEP' 
+					AND DATEDIFF(year, ConDateOfBirth, BdmBenStartDate ) >= 26
+					GROUP BY BdmEEID, BdmCOID, BdmDepRecId) condis ON condis.condis_eeid = bdmeeid and condis.condis_coid = bdmcoid and condis.condis_deprecid = bdmdeprecid 
+    WHERE (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C' -- Cancelled;
 
     /**************************************************************************************************************
         DETAIL RECORDS
@@ -1379,8 +1397,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'DEN'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
     -- DED CODE = DTL
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -1479,8 +1497,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'DTL'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = VSN
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -1578,9 +1596,9 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-    WHERE BdmDedCode = 'VIS'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    WHERE BdmDedCode = 'VSN'
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = GLIFE
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -1674,8 +1692,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'GLIFE'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = GLIFE
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -1768,8 +1786,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'GLIFE'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = STD
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -1862,8 +1880,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'STD'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = STDE
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -1956,8 +1974,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'STDE'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = LTD
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2050,8 +2068,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'LTD'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = LEE
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2067,7 +2085,7 @@ BEGIN
         --                                    ELSE ''
         --                              END
         ,drvHD04_PlanCoverageDesc = CAST(BdmUSGField1 AS VARCHAR)
-		--CAST(BdmEEAmt AS VARCHAR)
+        --CAST(BdmEEAmt AS VARCHAR)
         ,drvHD05_CoverageLevelCode = 'EMP'
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -2145,8 +2163,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'LEE'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = LEE
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2161,7 +2179,8 @@ BEGIN
         --                                    WHEN BdmDedType IN ('VIS') THEN 'VIS'
         --                                    ELSE ''
         --                              END
-        ,drvHD04_PlanCoverageDesc = CAST(BdmEEAmt AS VARCHAR)
+        ,drvHD04_PlanCoverageDesc = CAST(BdmUSGField1 AS VARCHAR)
+		--CAST(BdmEEAmt AS VARCHAR)
         ,drvHD05_CoverageLevelCode = 'EMP'
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -2239,8 +2258,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'LEE'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = ABU, ABUG, ACC, ACCG
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2338,8 +2357,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode IN ('ABU', 'ABUG', 'ACC', 'ACCG')
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = CAN
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2437,8 +2456,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'CAN'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = CNE
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2536,8 +2555,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'CNE'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = GIM
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2635,8 +2654,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'GIM'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = GAP
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2734,8 +2753,8 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'GAP'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C'; -- Cancelled;
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C'; -- Cancelled;
 
      -- DED CODE = LSP
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2750,8 +2769,8 @@ BEGIN
         --                                    WHEN BdmDedType IN ('VIS') THEN 'VIS'
         --                                    ELSE ''
         --                              END
-        ,drvHD04_PlanCoverageDesc = CAST(BdmUSGField1 AS VARCHAR)
-		--CAST(BdmEEAmt AS VARCHAR)
+        ,drvHD04_PlanCoverageDesc = CAST(DedEEBenAmt AS VARCHAR)
+        --CAST(BdmEEAmt AS VARCHAR)
         ,drvHD05_CoverageLevelCode = 'SPO'
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -2825,14 +2844,20 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EGUASOU834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
-		AND BdmRelationship = 'SPS'
-    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        AND BdmRelationship = 'SPS'
+	JOIN dbo.U_dsi_bdm_DepDeductions WITH(NOLOCK)
+		ON DbnEEID = BdmEEID
+		AND DbnCOID = BdmCOID
+		AND DbnDedCode = BdmDedCode
+		AND DbnFormatCode = @FormatCode
+		AND DbnValidForExport = 'Y'
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'LSP'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C' -- Cancelled;
---	AND BdmRelationship = 'SPS'; 
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C' -- Cancelled;
+--    AND BdmRelationship = 'SPS'; 
 
      -- DED CODE = LCH
     INSERT INTO dbo.U_EGUASOU834_DrvTbl_2300
@@ -2847,8 +2872,9 @@ BEGIN
         --                                    WHEN BdmDedType IN ('VIS') THEN 'VIS'
         --                                    ELSE ''
         --                              END
-        ,drvHD04_PlanCoverageDesc = CAST(BdmUSGField1 AS VARCHAR)
-		--CAST(BdmEEAmt AS VARCHAR)
+        ,drvHD04_PlanCoverageDesc = CAST(DedEEBenAmt AS VARCHAR)
+		--CAST(BdmUSGField1 AS VARCHAR)
+        --CAST(BdmEEAmt AS VARCHAR)
         ,drvHD05_CoverageLevelCode = 'CHD'
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -2922,14 +2948,20 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EGUASOU834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
-		AND BdmRelationship IN ('CHL', 'LGC', 'STC')
-    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        AND BdmRelationship IN ('CHL', 'LGC', 'STC')
+	JOIN dbo.U_dsi_bdm_DepDeductions WITH(NOLOCK)
+		ON DbnEEID = BdmEEID
+		AND DbnCOID = BdmCOID
+		AND DbnDedCode = BdmDedCode
+		AND DbnFormatCode = @FormatCode
+		AND DbnValidForExport = 'Y'
+    JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmDedCode = 'LCH'
-    AND EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE))
-	AND BdmBenStatus <> 'C' -- Cancelled;
-	--AND BdmRelationship IN ('CHL', 'LGC', 'STC'); 
+    AND (EecDateOfTermination IS NULL OR CAST(EecDateOfTermination AS DATE) >= DATEADD(day, -14, CAST(GETDATE() AS DATE)))
+    AND BdmBenStatus <> 'C' -- Cancelled;
+    --AND BdmRelationship IN ('CHL', 'LGC', 'STC'); 
 
     /**************************************************************************************************
         TRAILER RECORDS
