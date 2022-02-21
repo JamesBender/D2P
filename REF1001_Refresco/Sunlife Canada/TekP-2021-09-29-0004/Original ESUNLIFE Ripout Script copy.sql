@@ -1,19 +1,19 @@
 /**********************************************************************************
 
-ESUNLIF2: Sunlife XML Export V2
+ESUNLIFE: Sunlife XML Export
 
-FormatCode:     ESUNLIF2
-Project:        Sunlife XML Export V2
+FormatCode:     ESUNLIFE
+Project:        Sunlife XML Export
 Client ID:      REF1001
-Date/time:      2022-02-17 12:59:06.513
+Date/time:      2022-02-17 08:20:01.293
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
-Environment:    NZ16
-Server:         NZ1SUP6DB01
+Environment:    E43
+Server:         E4SUP3DB01
 Database:       ULTIPRO_RBUS
-ExportPath:    \\us.saas\nz\Public\REF1001\Exports_Test\
-TestPath:      \\us.saas\nz\Public\REF1001\Exports_Test\Sunlife\
+ExportPath:    \\us.saas\E0\data_exchange\REF1001\Exports\
+TestPath:      \\us.saas\e4\Public\REF1001\Exports\Sunlife\
 
 **********************************************************************************/
 
@@ -23,7 +23,7 @@ SET NOCOUNT ON;
 -- Drop the SavePath table if it exists
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_SavePath') IS NOT NULL DROP TABLE dbo.U_ESUNLIF2_SavePath
+IF OBJECT_ID('U_ESUNLIFE_SavePath') IS NOT NULL DROP TABLE dbo.U_ESUNLIFE_SavePath
 
 
 -----------
@@ -48,7 +48,7 @@ END
 -- Clear U_dsi_RipoutParms
 -----------
 
-DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ESUNLIF2'
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ESUNLIFE'
 
 
 -----------
@@ -64,7 +64,7 @@ CfgName,
 CfgValue
 
 FROM dbo.U_Dsi_Configuration
-WHERE FormatCode = 'ESUNLIF2'
+WHERE FormatCode = 'ESUNLIFE'
 AND CfgName LIKE '%path%'
 
 
@@ -81,114 +81,114 @@ ExpExportCode,
 ExpSystemID
 
 FROM dbo.AscExp
-WHERE ExpFormatCode = 'ESUNLIF2'
+WHERE ExpFormatCode = 'ESUNLIFE'
 
 
 -----------
 -- Delete configuration data
 -----------
 
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ESUNLIF2')
-DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ESUNLIF2'
-DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ESUNLIF2'
-DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ESUNLIF2'
-DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ESUNLIF2'
-DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ESUNLIF2'
-DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ESUNLIF2'
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ESUNLIFE')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ESUNLIFE'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ESUNLIFE'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ESUNLIFE'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ESUNLIFE'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ESUNLIFE'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ESUNLIFE'
 
-IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ESUNLIF2'
-IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ESUNLIF2'
-IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ESUNLIF2'
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ESUNLIFE'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ESUNLIFE'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ESUNLIFE'
 
 
 -----------
 -- Drop export-specific objects
 -----------
 
-IF OBJECT_ID('dsi_vwESUNLIF2_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwESUNLIF2_Export];
+IF OBJECT_ID('dsi_vwESUNLIFE_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwESUNLIFE_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_ESUNLIF2') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESUNLIF2];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ESUNLIFE') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESUNLIFE];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Salary') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Salary];
+IF OBJECT_ID('U_ESUNLIFE_Salary') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Salary];
 GO
-IF OBJECT_ID('U_ESUNLIF2_PolNum') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_PolNum];
+IF OBJECT_ID('U_ESUNLIFE_PolNum') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_PolNum];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Person') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Person];
+IF OBJECT_ID('U_ESUNLIFE_Person') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Person];
 GO
-IF OBJECT_ID('U_ESUNLIF2_OverRideDate') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_OverRideDate];
+IF OBJECT_ID('U_ESUNLIFE_OverRideDate') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_OverRideDate];
 GO
-IF OBJECT_ID('U_ESUNLIF2_NewEmp') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_NewEmp];
+IF OBJECT_ID('U_ESUNLIFE_NewEmp') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_NewEmp];
 GO
-IF OBJECT_ID('U_ESUNLIF2_NewDedStart') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_NewDedStart];
+IF OBJECT_ID('U_ESUNLIFE_NewDedStart') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_NewDedStart];
 GO
-IF OBJECT_ID('U_ESUNLIF2_NewDedDt') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_NewDedDt];
+IF OBJECT_ID('U_ESUNLIFE_NewDedDt') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_NewDedDt];
 GO
-IF OBJECT_ID('U_ESUNLIF2_NewDedDate') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_NewDedDate];
+IF OBJECT_ID('U_ESUNLIFE_NewDedDate') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_NewDedDate];
 GO
-IF OBJECT_ID('U_ESUNLIF2_New') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_New];
+IF OBJECT_ID('U_ESUNLIFE_New') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_New];
 GO
-IF OBJECT_ID('U_ESUNLIF2_MTrailer') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_MTrailer];
+IF OBJECT_ID('U_ESUNLIFE_MTrailer') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_MTrailer];
 GO
-IF OBJECT_ID('U_ESUNLIF2_MemberClose') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_MemberClose];
+IF OBJECT_ID('U_ESUNLIFE_MemberClose') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_MemberClose];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Member') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Member];
+IF OBJECT_ID('U_ESUNLIFE_Member') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Member];
 GO
-IF OBJECT_ID('U_ESUNLIF2_LTrailer') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_LTrailer];
+IF OBJECT_ID('U_ESUNLIFE_LTrailer') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_LTrailer];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Load') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Load];
+IF OBJECT_ID('U_ESUNLIFE_Load') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Load];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Header') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Header];
+IF OBJECT_ID('U_ESUNLIFE_Header') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Header];
 GO
-IF OBJECT_ID('U_ESUNLIF2_File') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_File];
+IF OBJECT_ID('U_ESUNLIFE_File') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_File];
 GO
-IF OBJECT_ID('U_ESUNLIF2_EEList') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_EEList];
+IF OBJECT_ID('U_ESUNLIFE_EEList') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_EEList];
 GO
-IF OBJECT_ID('U_ESUNLIF2_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_drvTbl];
+IF OBJECT_ID('U_ESUNLIFE_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_drvTbl];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Dep') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Dep];
+IF OBJECT_ID('U_ESUNLIFE_Dep') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Dep];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Ded') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Ded];
+IF OBJECT_ID('U_ESUNLIFE_Ded') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Ded];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Benefit') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Benefit];
+IF OBJECT_ID('U_ESUNLIFE_Benefit') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Benefit];
 GO
-IF OBJECT_ID('U_ESUNLIF2_BenEffDt') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_BenEffDt];
+IF OBJECT_ID('U_ESUNLIFE_BenEffDt') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_BenEffDt];
 GO
-IF OBJECT_ID('U_ESUNLIF2_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_AuditFields];
+IF OBJECT_ID('U_ESUNLIFE_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_AuditFields];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Audit') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Audit];
+IF OBJECT_ID('U_ESUNLIFE_Audit') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Audit];
 GO
-IF OBJECT_ID('U_ESUNLIF2_Address') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIF2_Address];
+IF OBJECT_ID('U_ESUNLIFE_Address') IS NOT NULL DROP TABLE [dbo].[U_ESUNLIFE_Address];
 GO
 
 -----------
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ESUNLIF2','Sunlife XML Export V2','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','ESUNLIF200Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ESUNLIFE','Sunlife XML Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','ESUNLIFE00Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
 -----------
 
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','50','H','01','1',NULL,'Header',NULL,NULL,'"drvHeader"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','H','02','1',NULL,'Loader',NULL,NULL,'"drvLoader"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','D','10','1',NULL,'Member',NULL,NULL,'"drvMemberOpen"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','D','30','1',NULL,'Person',NULL,NULL,'"drvPersonOpen"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','D','40','1',NULL,'Salary',NULL,NULL,'"drvSalOpen"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','D','50','1',NULL,'Address',NULL,NULL,'"drvAddOpen"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','D','60','1',NULL,'Person Link',NULL,NULL,'"drvDepOpen"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','8000','D','70','1',NULL,'Benefits',NULL,NULL,'"drvBeneOpen"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIF200Z0','50','D','80','1',NULL,'Member End',NULL,NULL,'"drvMemberClose"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','50','H','01','1',NULL,'Header',NULL,NULL,'"drvHeader"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','H','02','1',NULL,'Loader',NULL,NULL,'"drvLoader"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','D','10','1',NULL,'Member',NULL,NULL,'"drvMemberOpen"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','D','30','1',NULL,'Person',NULL,NULL,'"drvPersonOpen"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','D','40','1',NULL,'Salary',NULL,NULL,'"drvSalOpen"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','D','50','1',NULL,'Address',NULL,NULL,'"drvAddOpen"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','D','60','1',NULL,'Person Link',NULL,NULL,'"drvDepOpen"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','8000','D','70','1',NULL,'Benefits',NULL,NULL,'"drvBeneOpen"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESUNLIFE00Z0','50','D','80','1',NULL,'Member End',NULL,NULL,'"drvMemberClose"','(''UA''=''T'')');
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202202101','EMPEXPORT','OEACTIVE','Jun 17 2019 12:00AM','ESUNLIF2',NULL,NULL,NULL,'202202101','Jun 17 2019 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'SMACKIN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202202101','EMPEXPORT','OEPASSIVE',NULL,'ESUNLIF2',NULL,NULL,NULL,'202202101','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife XML Export','202202101','EMPEXPORT','ONDEMAND','Nov  5 2020 12:00AM','ESUNLIF2',NULL,NULL,NULL,'202202101','Nov  3 2020 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202202101','EMPEXPORT','SCHEDULED','Feb 16 2022 11:01AM','ESUNLIF2',NULL,NULL,NULL,'202202101','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\e4sup3db01\UltiProData\TCI\Export_Test\EOPTUMHSAC_20210317.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202202101','EMPEXPORT','TEST','Dec 20 2020 12:00AM','ESUNLIF2',NULL,NULL,NULL,'202202101','Dec 15 2020 12:00AM','Dec 30 1899 12:00AM','202201011','4250','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','201906179','EMPEXPORT','OEACTIVE','Jun 17 2019 12:00AM','ESUNLIFE',NULL,NULL,NULL,'201906179','Jun 17 2019 12:00AM','Dec 30 1899 12:00AM','201906171',NULL,'','','201906171',dbo.fn_GetTimedKey(),NULL,'SMACKIN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','201904159','EMPEXPORT','OEPASSIVE',NULL,'ESUNLIFE',NULL,NULL,NULL,'201904159','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','201904151',NULL,'','','201904151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife XML Export','202011031','EMPEXPORT','ONDEMAND','Nov  5 2020 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202011031','Nov  3 2020 12:00AM','Dec 30 1899 12:00AM','202010281',NULL,'','','202010281',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202202159','EMPEXPORT','SCHEDULED','Feb 16 2022 11:01AM','ESUNLIFE',NULL,NULL,NULL,'202202159','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\e4sup3db01\UltiProData\TCI\Export_Test\EOPTUMHSAC_20210317.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202012151','EMPEXPORT','TEST','Dec 20 2020 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202012151','Dec 15 2020 12:00AM','Dec 30 1899 12:00AM','202012091','4250','','','202012091',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
 
 -----------
 -- AscImp inserts
@@ -199,14 +199,14 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -- U_dsi_Configuration inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','ExportPath','V','\\us.saas\nz\Public\REF1001\Exports_Test\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','SubSort','C','drvSubSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','TestPath','V','\\us.saas\nz\Public\REF1001\Exports_Test\Sunlife\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','UDESPath','C','\\us.saas\nz\Public\REF1001\Exports_Test\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIF2','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','ExportPath','V','\\us.saas\E0\data_exchange\REF1001\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','TestPath','V','\\us.saas\e4\Public\REF1001\Exports\Sunlife\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','UDESPath','C','\\us.saas\E0\data_exchange\REF1001\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESUNLIFE','UseFileName','V','N');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -217,15 +217,15 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','H01','dbo.U_ESUNLIF2_Header',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','H02','dbo.U_ESUNLIF2_Load',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D10','dbo.U_ESUNLIF2_Member',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D30','dbo.U_ESUNLIF2_Person',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D40','dbo.U_ESUNLIF2_Salary',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D50','dbo.U_ESUNLIF2_Address',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D60','dbo.U_ESUNLIF2_Dep',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D70','dbo.U_ESUNLIF2_Benefit',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIF2','D80','dbo.U_ESUNLIF2_MemberClose',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','H01','dbo.U_ESUNLIFE_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','H02','dbo.U_ESUNLIFE_Load',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D10','dbo.U_ESUNLIFE_Member',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D30','dbo.U_ESUNLIFE_Person',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D40','dbo.U_ESUNLIFE_Salary',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D50','dbo.U_ESUNLIFE_Address',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D60','dbo.U_ESUNLIFE_Dep',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D70','dbo.U_ESUNLIFE_Benefit',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLIFE','D80','dbo.U_ESUNLIFE_MemberClose',NULL);
 
 -----------
 -- U_dsi_Translations inserts
@@ -238,11 +238,11 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- Create table U_ESUNLIF2_Address
+-- Create table U_ESUNLIFE_Address
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Address') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Address] (
+IF OBJECT_ID('U_ESUNLIFE_Address') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Address] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvAddOpen] varchar(8000) NULL,
@@ -251,11 +251,11 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Address] (
 );
 
 -----------
--- Create table U_ESUNLIF2_Audit
+-- Create table U_ESUNLIFE_Audit
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Audit') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Audit] (
+IF OBJECT_ID('U_ESUNLIFE_Audit') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Audit] (
     [audEEID] varchar(255) NOT NULL,
     [audKey2] varchar(255) NOT NULL,
     [audKey3] varchar(255) NOT NULL,
@@ -269,30 +269,30 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Audit] (
 );
 
 -----------
--- Create table U_ESUNLIF2_AuditFields
+-- Create table U_ESUNLIFE_AuditFields
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_AuditFields') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_AuditFields] (
+IF OBJECT_ID('U_ESUNLIFE_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_AuditFields] (
     [aTableName] varchar(30) NULL,
     [aFieldName] varchar(30) NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_BenEffDt
+-- Create table U_ESUNLIFE_BenEffDt
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_BenEffDt') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_BenEffDt] (
+IF OBJECT_ID('U_ESUNLIFE_BenEffDt') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_BenEffDt] (
     [BenEEID] varchar(255) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_Benefit
+-- Create table U_ESUNLIFE_Benefit
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Benefit') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Benefit] (
+IF OBJECT_ID('U_ESUNLIFE_Benefit') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Benefit] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvBeneOpen] varchar(156) NOT NULL,
@@ -301,11 +301,11 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Benefit] (
 );
 
 -----------
--- Create table U_ESUNLIF2_Ded
+-- Create table U_ESUNLIFE_Ded
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Ded') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Ded] (
+IF OBJECT_ID('U_ESUNLIFE_Ded') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Ded] (
     [EEID] char(12) NOT NULL,
     [COID] char(5) NOT NULL,
     [DCRSP] numeric NULL,
@@ -316,11 +316,11 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Ded] (
 );
 
 -----------
--- Create table U_ESUNLIF2_Dep
+-- Create table U_ESUNLIFE_Dep
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Dep') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Dep] (
+IF OBJECT_ID('U_ESUNLIFE_Dep') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Dep] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepOpen] nvarchar(4000) NULL,
@@ -329,11 +329,11 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Dep] (
 );
 
 -----------
--- Create table U_ESUNLIF2_drvTbl
+-- Create table U_ESUNLIFE_drvTbl
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_drvTbl') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_drvTbl] (
+IF OBJECT_ID('U_ESUNLIFE_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_drvTbl] (
     [drvNationalID] varchar(50) NOT NULL,
     [drvEinNationalID] varchar(50) NOT NULL,
     [drvNameLast] varchar(100) NULL,
@@ -369,21 +369,21 @@ CREATE TABLE [dbo].[U_ESUNLIF2_drvTbl] (
 );
 
 -----------
--- Create table U_ESUNLIF2_EEList
+-- Create table U_ESUNLIFE_EEList
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_EEList') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_EEList] (
+IF OBJECT_ID('U_ESUNLIFE_EEList') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_File
+-- Create table U_ESUNLIFE_File
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_File') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_File] (
+IF OBJECT_ID('U_ESUNLIFE_File') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(100) NOT NULL,
     [SubSort] varchar(100) NOT NULL,
@@ -393,38 +393,38 @@ CREATE TABLE [dbo].[U_ESUNLIF2_File] (
 );
 
 -----------
--- Create table U_ESUNLIF2_Header
+-- Create table U_ESUNLIFE_Header
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Header') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Header] (
+IF OBJECT_ID('U_ESUNLIFE_Header') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Header] (
     [drvHeader] varchar(43) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_Load
+-- Create table U_ESUNLIFE_Load
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Load') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Load] (
+IF OBJECT_ID('U_ESUNLIFE_Load') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Load] (
     [drvLoader] varchar(82) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_LTrailer
+-- Create table U_ESUNLIFE_LTrailer
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_LTrailer') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_LTrailer] (
+IF OBJECT_ID('U_ESUNLIFE_LTrailer') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_LTrailer] (
     [drvLoader] varchar(9) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_Member
+-- Create table U_ESUNLIFE_Member
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Member') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Member] (
+IF OBJECT_ID('U_ESUNLIFE_Member') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Member] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvMemberOpen] varchar(274) NOT NULL,
@@ -433,94 +433,94 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Member] (
 );
 
 -----------
--- Create table U_ESUNLIF2_MemberClose
+-- Create table U_ESUNLIFE_MemberClose
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_MemberClose') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_MemberClose] (
+IF OBJECT_ID('U_ESUNLIFE_MemberClose') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_MemberClose] (
     [drvMemberClose] varchar(9) NOT NULL,
     [drvInitialSort] char(9) NULL,
     [drvSubSort] varchar(12) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_MTrailer
+-- Create table U_ESUNLIFE_MTrailer
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_MTrailer') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_MTrailer] (
+IF OBJECT_ID('U_ESUNLIFE_MTrailer') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_MTrailer] (
     [drvMember] varchar(9) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_New
+-- Create table U_ESUNLIFE_New
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_New') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_New] (
+IF OBJECT_ID('U_ESUNLIFE_New') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_New] (
     [NewEEID] varchar(255) NOT NULL,
     [NewDed] nvarchar(2000) NULL,
     [NewMem] datetime NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_NewDedDate
+-- Create table U_ESUNLIFE_NewDedDate
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_NewDedDate') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_NewDedDate] (
+IF OBJECT_ID('U_ESUNLIFE_NewDedDate') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_NewDedDate] (
     [NewDedEEID] varchar(255) NOT NULL,
     [NewDedDt] datetime NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_NewDedDt
+-- Create table U_ESUNLIFE_NewDedDt
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_NewDedDt') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_NewDedDt] (
+IF OBJECT_ID('U_ESUNLIFE_NewDedDt') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_NewDedDt] (
     [NewDedEEID] varchar(255) NOT NULL,
     [NewDedCode] varchar(255) NOT NULL,
     [NewDedDt] nvarchar(2000) NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_NewDedStart
+-- Create table U_ESUNLIFE_NewDedStart
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_NewDedStart') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_NewDedStart] (
+IF OBJECT_ID('U_ESUNLIFE_NewDedStart') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_NewDedStart] (
     [NewStartEEID] varchar(255) NOT NULL,
     [NewStartDt] nvarchar(2000) NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_NewEmp
+-- Create table U_ESUNLIFE_NewEmp
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_NewEmp') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_NewEmp] (
+IF OBJECT_ID('U_ESUNLIFE_NewEmp') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_NewEmp] (
     [NewEmp] char(12) NULL,
     [NewEmpDt] datetime NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_OverRideDate
+-- Create table U_ESUNLIFE_OverRideDate
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_OverRideDate') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_OverRideDate] (
+IF OBJECT_ID('U_ESUNLIFE_OverRideDate') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_OverRideDate] (
     [EhcEEID] char(12) NOT NULL,
     [EhcCOID] char(5) NOT NULL,
     [OverrideDate] datetime NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_Person
+-- Create table U_ESUNLIFE_Person
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Person') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Person] (
+IF OBJECT_ID('U_ESUNLIFE_Person') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Person] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvPersonOpen] varchar(8000) NULL,
@@ -529,22 +529,22 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Person] (
 );
 
 -----------
--- Create table U_ESUNLIF2_PolNum
+-- Create table U_ESUNLIFE_PolNum
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_PolNum') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_PolNum] (
+IF OBJECT_ID('U_ESUNLIFE_PolNum') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_PolNum] (
     [PEEID] char(12) NOT NULL,
     [PCOID] char(5) NOT NULL,
     [PolNum] varchar(6) NOT NULL
 );
 
 -----------
--- Create table U_ESUNLIF2_Salary
+-- Create table U_ESUNLIFE_Salary
 -----------
 
-IF OBJECT_ID('U_ESUNLIF2_Salary') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIF2_Salary] (
+IF OBJECT_ID('U_ESUNLIFE_Salary') IS NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_Salary] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvSalOpen] varchar(78) NOT NULL,
@@ -552,7 +552,7 @@ CREATE TABLE [dbo].[U_ESUNLIF2_Salary] (
     [drvSubSort] varchar(1) NOT NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESUNLIF2]
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESUNLIFE]
     @SystemID char(12)
 AS
 SET NOCOUNT ON;
@@ -571,13 +571,11 @@ Revision History
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/2019     SR-2019-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ESUNLIF2';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ESUNLIF2';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ESUNLIF2';
-SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode LIKE 'ESUNLIF%'
-AND ExpExportCode LIKE '%TEST%'
-;
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ESUNLIF2' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ESUNLIFE';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ESUNLIFE';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ESUNLIFE';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ESUNLIFE';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ESUNLIFE' ORDER BY RunID DESC;
 
 Job Ownership Scripts
 ---------------------
@@ -589,15 +587,15 @@ EXEC msdb..usg_set_job_owner @job_name = '', @set_owner_to_self = 1;
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIF2', 'ONDEMAND';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIF2', 'TEST';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIF2', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIF2', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIF2', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIFE', 'ONDEMAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIFE', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIFE', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIFE', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESUNLIFE', 'SCHEDULED';
 
-EXEC dbo.dsi_BDM_sp_ErrorCheck 'ESUNLIF2';
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'ESUNLIFE';
 
-EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ESUNLIF2', @AllObjects = 'Y', @IsWeb = 'N'
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ESUNLIFE', @AllObjects = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -612,7 +610,7 @@ BEGIN
             ,@EndPerControl     VARCHAR(9);
 
     -- Set FormatCode
-    SELECT @FormatCode = 'ESUNLIF2';
+    SELECT @FormatCode = 'ESUNLIFE';
 
     -- Declare dates from Parameter file
     SELECT
@@ -630,37 +628,37 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_ESUNLIF2_EEList
+    DELETE FROM dbo.U_ESUNLIFE_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_ESUNLIF2_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ESUNLIFE_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
     --==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_ESUNLIF2_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_AuditFields;
-    CREATE TABLE dbo.U_ESUNLIF2_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empcomp','eecemplstatus');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empcomp','EecDedGroupCode');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empcomp','EecAnnSalary');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empcomp','EecDateOfOriginalHire');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empded','EedBenStopDate');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empded','EedDedCode');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('empded','EedBenOption');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('emppers','EepAddressLine1');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('emppers','EepAddressLine2');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('emppers','EepAddressCity');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('emppers','EepAddressState');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('emppers','EepAddressZipCode');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('contacts','ConNameFirst');
-    insert into dbo.U_ESUNLIF2_AuditFields values ('depbplan','DbnDedCode');
+    IF OBJECT_ID('U_ESUNLIFE_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_AuditFields;
+    CREATE TABLE dbo.U_ESUNLIFE_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empcomp','eecemplstatus');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empcomp','EecDedGroupCode');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empcomp','EecAnnSalary');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empcomp','EecDateOfOriginalHire');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empded','EedBenStopDate');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empded','EedDedCode');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('empded','EedBenOption');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('emppers','EepAddressLine1');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('emppers','EepAddressLine2');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('emppers','EepAddressCity');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('emppers','EepAddressState');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('emppers','EepAddressZipCode');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('contacts','ConNameFirst');
+    insert into dbo.U_ESUNLIFE_AuditFields values ('depbplan','DbnDedCode');
 
 
     -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_ESUNLIF2_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Audit;
+    IF OBJECT_ID('U_ESUNLIFE_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Audit;
     SELECT 
         audEEID  = audKey1Value
         ,audKey2 = audKey2Value
@@ -672,9 +670,9 @@ BEGIN
         ,audOldValue
         ,audNewValue
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_ESUNLIF2_Audit                --select * from U_ESUNLIF2_Audit where audfieldname = 'eeddedcode' and audnewvalue = 'CDENT'
+    INTO dbo.U_ESUNLIFE_Audit                --select * from U_ESUNLIFE_Audit where audfieldname = 'eeddedcode' and audnewvalue = 'CDENT'
     FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_ESUNLIF2_AuditFields WITH (NOLOCK) 
+    JOIN dbo.U_ESUNLIFE_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
@@ -682,11 +680,11 @@ BEGIN
     AND ISNULL(AudNewValue, '') <> '';
 
     -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_ESUNLIF2_Audit ON dbo.U_ESUNLIF2_Audit (audEEID,audKey2);
+    CREATE CLUSTERED INDEX CDX_U_ESUNLIFE_Audit ON dbo.U_ESUNLIFE_Audit (audEEID,audKey2);
 
-     Delete from dbo.U_ESUNLIF2_EEList
+     Delete from dbo.U_ESUNLIFE_EEList
      where exists (Select 1 from dbo.EmpComp where EecEEID = xEEID and EecCoID = xCOID and EecEmplStatus IN ('T','R')) 
-     AND Not exists (Select 1 from dbo.U_ESUNLIF2_Audit where audeeid = xeeid and audKey2 =xcoid and audfieldname = 'eecemplstatus' and isnull(audnewvalue, '') IN ('T','R'));
+     AND Not exists (Select 1 from dbo.U_ESUNLIFE_Audit where audeeid = xeeid and audKey2 =xcoid and audfieldname = 'eecemplstatus' and isnull(audnewvalue, '') IN ('T','R'));
 
     --==========================================
     -- BDM Section
@@ -714,24 +712,24 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-    --mark waived deductions as valid for export and exists in audit - U_ESUNLIF2_Audit
+    --mark waived deductions as valid for export and exists in audit - U_ESUNLIFE_Audit
     UPDATE dbo.U_DSI_BDM_EmpDeductions SET EedValidForExport = 'Y' 
     FROM dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)
-    JOIN dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
+    JOIN dbo.U_ESUNLIFE_Audit WITH (NOLOCK)
         ON AudEEID = EedEEID
         AND AudKey2 = EedCOID
         AND AudKey3 = EedDedCode
         AND AudTableName = 'EmpDed'
-        WHERE EedFormatCode = 'ESUNLIF2' AND EedDedRowStatus = 'Deduction start date = end date'
+        WHERE EedFormatCode = 'ESUNLIFE' AND EedDedRowStatus = 'Deduction start date = end date'
 
     --mark termed deduction as not valid for export when an active deduction in the same ded type exists
     UPDATE T SET T.EedValidForExport = 'N'
     FROM dbo.U_DSI_BDM_EmpDeductions T WITH (NOLOCK)
     WHERE T.EedBenStopdate IS NOT NULL
-    AND T.EedFormatCode = 'ESUNLIF2' AND T.EedValidForExport = 'Y'
+    AND T.EedFormatCode = 'ESUNLIFE' AND T.EedValidForExport = 'Y'
     AND EXISTS(SELECT * FROM dbo.U_DSI_BDM_EmpDeductions A WITH (NOLOCK)
     WHERE A.EedEEID = T.EedEEID AND A.EedBenStopdate IS NULL AND A.DedDedType = T.DedDedType
-    AND A.EedFormatCode = 'ESUNLIF2' AND A.EedValidForExport = 'Y')
+    AND A.EedFormatCode = 'ESUNLIFE' AND A.EedValidForExport = 'Y')
 
     --Identify employees whom have stopped all of their deds
 
@@ -744,7 +742,7 @@ BEGIN
 
     INTO dbo.EmpsWithAllStops
 
-    From dbo.u_ESUNLIF2_EELIST
+    From dbo.u_ESUNLIFE_EELIST
     Left Join
     (Select Eedeeid EEID,Eedcoid COID,count(*) as Total 
     From U_dsi_bdm_EmpDeductions 
@@ -769,28 +767,28 @@ BEGIN
     (Select DbnDepRecID DepID,count(*) as Total 
     From U_dsi_bdm_DepDeductions 
     Where (DbnBenStopDate is null or DbnBenStopDate > @EndDate)
-    and Dbnformatcode = 'ESUNLIF2' and Dbnvalidforexport = 'Y'
+    and Dbnformatcode = 'ESUNLIFE' and Dbnvalidforexport = 'Y'
     Group by DbnDepRecID
     ) as IsOneActive on ConSystemID = IsOneActive.DepID
     Where isnull(Total,0)=0
 
 
     --get override date
-    IF OBJECT_ID('U_ESUNLIF2_OverRideDate') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_OverRideDate;
+    IF OBJECT_ID('U_ESUNLIFE_OverRideDate') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_OverRideDate;
     SELECT EhcEEID,EhcCOID,MAX(OverrideDate) OverrideDate
-    INTO dbo.U_ESUNLIF2_OverRideDate                --SELECT * FROM U_ESUNLIF2_OverRideDate
+    INTO dbo.U_ESUNLIFE_OverRideDate                --SELECT * FROM U_ESUNLIFE_OverRideDate
     FROM dbo.EmpHComp WITH (NOLOCK)
     JOIN dbo.DedGroupChangeDateOverride WITH (NOLOCK)
         ON SystemID = EhcSystemID
     GROUP BY EhcEEID,EhcCOID
 
     --determine if this is the first time the employee has been sent on the file
-    IF OBJECT_ID('U_ESUNLIF2_NewEmp','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_NewEmp;
+    IF OBJECT_ID('U_ESUNLIFE_NewEmp','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_NewEmp;
     SELECT xEEID NewEmp,dbo.dsi_fnGetMinMaxDates ('MAX',MAX(NE.AudDateTime),MAX(ND.AudDateTime)) NewEmpDt
-    INTO dbo.U_ESUNLIF2_NewEmp                        --select * from U_ESUNLIF2_NewEmp WHERE NEWEEID = 'D7YIFY000020'
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_NewEmp                        --select * from U_ESUNLIFE_NewEmp WHERE NEWEEID = 'D7YIFY000020'
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     LEFT JOIN dbo.VW_AuditData NE WITH (NOLOCK)
         ON xEEID = NE.AudKey1Value
         AND NE.AudFieldname = 'EecEmplStatus' 
@@ -808,11 +806,11 @@ BEGIN
     ;
 
     --determine if a new deduction code is added by deduction
-    IF OBJECT_ID('U_ESUNLIF2_New','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_New;
+    IF OBJECT_ID('U_ESUNLIFE_New','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_New;
     SELECT AudKey1Value NewEEID,AudNewValue NewDed,MAX(AudDateTime) NewMem
-    INTO dbo.U_ESUNLIF2_New                        --select * from U_ESUNLIF2_New WHERE NEWEEID = 'D7YIFY000020'
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_New                        --select * from U_ESUNLIFE_New WHERE NEWEEID = 'D7YIFY000020'
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.VW_AuditData WITH (NOLOCK)
         ON xEEID = AudKey1Value
     WHERE AudFieldname = 'EedDedCode' AND AudTableName = 'EmpDed' 
@@ -822,10 +820,10 @@ BEGIN
     ;
 
     --determine if a deduction code got new dates - this is how they process rehires
-    IF OBJECT_ID('U_ESUNLIF2_NewDedDt','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_NewDedDt;
+    IF OBJECT_ID('U_ESUNLIFE_NewDedDt','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_NewDedDt;
     SELECT DISTINCT M.AudKey1Value NewDedEEID, M.AudKey3Value NewDedCode, MAX(M.AudNewValue) NewDedDt
-    INTO dbo.U_ESUNLIF2_NewDedDt                        --select * from U_ESUNLIF2_NewDedDt WHERE NewDedEEID = 'CDWDMR0160K0'
+    INTO dbo.U_ESUNLIFE_NewDedDt                        --select * from U_ESUNLIFE_NewDedDt WHERE NewDedEEID = 'CDWDMR0160K0'
     FROM dbo.VW_AuditData M WITH (NOLOCK)
     WHERE M.AudFieldname = 'EedStartDate' AND M.AudTableName = 'EmpDed' AND AudDateTime BETWEEN @StartDate AND @EndDate
     AND M.AudKey3Value IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF')
@@ -835,10 +833,10 @@ BEGIN
     ;
 
     --get max ded date when benefits are restarted
-    IF OBJECT_ID('U_ESUNLIF2_NewDedStart','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_NewDedStart;
+    IF OBJECT_ID('U_ESUNLIFE_NewDedStart','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_NewDedStart;
     SELECT DISTINCT AudKey1Value NewStartEEID, MAX(AudNewValue) NewStartDt
-    INTO dbo.U_ESUNLIF2_NewDedStart                        --select * from U_ESUNLIF2_NewDedDt WHERE NewDedEEID = 'CDWDMR0160K0'
+    INTO dbo.U_ESUNLIFE_NewDedStart                        --select * from U_ESUNLIFE_NewDedDt WHERE NewDedEEID = 'CDWDMR0160K0'
     FROM dbo.VW_AuditData WITH (NOLOCK)
     WHERE AudFieldname = 'EedStartDate' AND AudTableName = 'EmpDed' AND AudDateTime BETWEEN @StartDate AND @EndDate 
     AND AudKey3Value IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF')
@@ -846,27 +844,27 @@ BEGIN
     ;
 /*
     --get policy number
-    IF OBJECT_ID('U_ESUNLIF2_PolNum','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_PolNum;
+    IF OBJECT_ID('U_ESUNLIFE_PolNum','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_PolNum;
     SELECT EedEEID PEEID,EedCOID PCOID
     ,PolNum = '102716'
-    INTO dbo.U_ESUNLIF2_PolNum                                    --SELECT * FROM U_ESUNLIF2_PolNum WHERE PEEID = 'CDWDLB00J0K0'
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)                    --SP_GETEEID '603066'
+    INTO dbo.U_ESUNLIFE_PolNum                                    --SELECT * FROM U_ESUNLIFE_PolNum WHERE PEEID = 'CDWDLB00J0K0'
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)                    --SP_GETEEID '603066'
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)                --SELECT * FROM U_DSI_BDM_EmpDeductions
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ESUNLIF2'
+        AND EedFormatCode = 'ESUNLIFE'
         AND EedValidForExport = 'Y'
     GROUP BY EedEEID,EedCOID;
     ;
 */
 
     --only send benefit effective and lock in dates once when deduction is first added
-    IF OBJECT_ID('U_ESUNLIF2_BenEffDt','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_BenEffDt;
+    IF OBJECT_ID('U_ESUNLIFE_BenEffDt','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_BenEffDt;
     SELECT AudKey1Value BenEEID
-    INTO dbo.U_ESUNLIF2_BenEffDt                        --select * from U_ESUNLIF2_BenEffDt
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_BenEffDt                        --select * from U_ESUNLIFE_BenEffDt
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.VW_AuditData WITH (NOLOCK)
         ON xEEID = AudKey1Value
     WHERE AudFieldname = 'EedDedCode' AND AudTableName = 'EmpDed' AND AudOldValue IS NULL AND AudNewValue IS NOT NULL AND AudDateTime BETWEEN @StartDate AND @EndDate 
@@ -875,10 +873,10 @@ BEGIN
     ;
 
     ---------------------------------
-    -- DETAIL RECORD - U_ESUNLIF2_Member
+    -- DETAIL RECORD - U_ESUNLIFE_Member
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Member','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Member;
+    IF OBJECT_ID('U_ESUNLIFE_Member','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Member;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -965,19 +963,19 @@ BEGIN
         ISNULL(CASE WHEN EecEmplStatus IN ('T','R') AND (EecTermReason = '203' OR EdhChangeReason = '210') THEN 'TermReasonCd="' + '6' + '" '
                     WHEN (EecEmplStatus IN ('T','R') OR (EecDedGroupCode = 'NONE')) THEN 'TermReasonCd="' + '2' + '" ' END, '') +
         'UpdateFlag="' + ISNULL(CASE WHEN NewEmpDt BETWEEN @StartDate AND @EndDate THEN 'False' ELSE 'True' END, '') + '" ' +
-        'ApplyDate="' + ISNULL(CASE WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecEmplStatus' AND AudOldValue IS NULL AND AudNewValue = 'A' AND AudEEID = xEEID) THEN 
+        'ApplyDate="' + ISNULL(CASE WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecEmplStatus' AND AudOldValue IS NULL AND AudNewValue = 'A' AND AudEEID = xEEID) THEN 
                                     LEFT(CONVERT(VARCHAR(8),EecDateOfLastHire, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfLastHire, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfLastHire, 112), 7, 2)  --Add
                                         WHEN EecEmplStatus = 'T' THEN LEFT(CONVERT(VARCHAR(8),EecDateOfTermination   , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfTermination   , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfTermination   , 112), 7, 2)  --Term
                                         WHEN EecEmplStatus = 'R' THEN LEFT(CONVERT(VARCHAR(8),EshStatusStartDate    , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EshStatusStartDate    , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EshStatusStartDate    , 112), 7, 2)  --Released/Laid Off
-                                        WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecEmplStatus' AND ISNULL(AudOldValue, '') IN ('T','R') AND ISNULL(AudNewValue, '') = 'A') THEN 
+                                        WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecEmplStatus' AND ISNULL(AudOldValue, '') IN ('T','R') AND ISNULL(AudNewValue, '') = 'A') THEN 
                                                 LEFT(CONVERT(VARCHAR(8),EecDateOfLastHire, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfLastHire, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfLastHire, 112), 7, 2)  --ReHire
-                                        WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIF2_NewDedStart WITH (NOLOCK) WHERE NewStartEEID = xEEID) THEN (SELECT LEFT(CONVERT(VARCHAR(8),MAX(EedBenStartDate)  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate)  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate)  , 112), 7, 2) FROM dbo.EmpDed WHERE EedEEID = xEEID) --restart deds
+                                        WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIFE_NewDedStart WITH (NOLOCK) WHERE NewStartEEID = xEEID) THEN (SELECT LEFT(CONVERT(VARCHAR(8),MAX(EedBenStartDate)  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate)  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate)  , 112), 7, 2) FROM dbo.EmpDed WHERE EedEEID = xEEID) --restart deds
                                         WHEN NewMem BETWEEN @StartDate AND @EndDate THEN 
-                                                (SELECT LEFT(CONVERT(VARCHAR(8),MAX(EedBenStartDate), 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate), 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate), 112), 7, 2) FROM dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK) WHERE EedEEID = xEEID AND EedFormatCode = 'ESUNLIF2' AND EedValidForExport = 'Y')
-                                        WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EedBenOption' AND ISNULL(AudOldValue, '') <> ISNULL(AudNewValue, '') AND AudOldValue IS NOT NULL) THEN  --Tier Change
+                                                (SELECT LEFT(CONVERT(VARCHAR(8),MAX(EedBenStartDate), 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate), 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(EedBenStartDate), 112), 7, 2) FROM dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK) WHERE EedEEID = xEEID AND EedFormatCode = 'ESUNLIFE' AND EedValidForExport = 'Y')
+                                        WHEN EXISTS(SELECT * FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EedBenOption' AND ISNULL(AudOldValue, '') <> ISNULL(AudNewValue, '') AND AudOldValue IS NOT NULL) THEN  --Tier Change
                                                 (SELECT CASE WHEN MAX(DbnBenStopDate) IS NOT NULL THEN LEFT(CONVERT(VARCHAR(8),MAX(DbnBenStopDate), 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(DbnBenStopDate), 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(DbnBenStopDate), 112), 7, 2) 
                                                              ELSE LEFT(CONVERT(VARCHAR(8),MAX(DbnBenStartDate), 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(DbnBenStartDate), 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(DbnBenStartDate), 112), 7, 2)END
-                                                            FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK) JOIN dbo.Contacts WITH (NOLOCK) ON ConEEID = AudEEID JOIN dbo.DepBPlan WITH (NOLOCK) ON DbnDepRecID = ConSystemID AND AudKey3 = DbnDedCode 
+                                                            FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) JOIN dbo.Contacts WITH (NOLOCK) ON ConEEID = AudEEID JOIN dbo.DepBPlan WITH (NOLOCK) ON DbnDepRecID = ConSystemID AND AudKey3 = DbnDedCode 
                                                             WHERE AudEEID = xEEID AND AudFieldName = 'EedBenOption' AND ISNULL(AudOldValue, '') <> ISNULL(AudNewValue, ''))
                                         WHEN ISNULL(OverrideDate, '') <> '' THEN LEFT(CONVERT(VARCHAR(8),OverrideDate, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),OverrideDate, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),OverrideDate, 112), 7, 2) --Coverage Changes
                                         WHEN AudFieldName = 'EecDedGroupCode' AND ISNULL(AudNewValue, '') IN ('CONPC','CALG','SURR','VISC','PTCL','SAL','CONTR','RNUN','SALS','PCSAL') THEN 
@@ -996,21 +994,21 @@ BEGIN
         '>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ''
-    INTO dbo.U_ESUNLIF2_Member            --SELECT DRVEEID,COUNT(*) FROM U_ESUNLIF2_Member GROUP BY DRVEEID HAVING COUNT(*) > 1
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_Member            --SELECT DRVEEID,COUNT(*) FROM U_ESUNLIFE_Member GROUP BY DRVEEID HAVING COUNT(*) > 1
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
         AND (EecEmplStatus NOT IN ('T','R') OR (EecEmplStatus IN ('T','R') AND ISNULL(EecTermReason, '') NOT IN ('TRI','TRO')
-                AND EXISTS(SELECT * FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK) WHERE AudFieldName = 'EecEmplStatus' AND ISNULL(AudNewValue, '') IN ('T','R'))))            --SELECT * FROM U_ESUNLIF2_AuditFields
+                AND EXISTS(SELECT * FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) WHERE AudFieldName = 'EecEmplStatus' AND ISNULL(AudNewValue, '') IN ('T','R'))))            --SELECT * FROM U_ESUNLIFE_AuditFields
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)                --SELECT DEDLONGDESC FROM U_DSI_BDM_EmpDeductions
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ESUNLIF2'
-        --AND EedValidForExport = 'Y'
-    --JOIN dbo.U_ESUNLIF2_PolNum WITH (NOLOCK)
+        AND EedFormatCode = 'ESUNLIFE'
+        AND EedValidForExport = 'Y'
+    --JOIN dbo.U_ESUNLIFE_PolNum WITH (NOLOCK)
         --ON PEEID = xEEID
         --AND PCOID = xCOID
     LEFT JOIN dbo.EmpsWithAllStops WITH (NOLOCK)
@@ -1018,14 +1016,14 @@ BEGIN
         AND COID = xCOID
     LEFT JOIN dbo.BenChRsn WITH (NOLOCK)
         ON BchCode = EecTermReason
-    LEFT JOIN dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_Audit WITH (NOLOCK)
         ON AudEEID = xEEID
         AND AudFieldName = 'EecDedGroupCode'
-        AND AudDateTime = (SELECT MAX(AudDateTime) FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecDedGroupCode')
-    LEFT JOIN dbo.U_ESUNLIF2_OverRideDate WITH (NOLOCK)
+        AND AudDateTime = (SELECT MAX(AudDateTime) FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecDedGroupCode')
+    LEFT JOIN dbo.U_ESUNLIFE_OverRideDate WITH (NOLOCK)
         ON EhcEEID = xEEID
         AND EhcCOID = xCOID
-    LEFT JOIN dbo.U_ESUNLIF2_New WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_New WITH (NOLOCK)
         ON NewEEID = xEEID
         AND NewDed = EedDedCode
     LEFT JOIN dbo.EmpHJob WITH (NOLOCK)
@@ -1040,24 +1038,10 @@ BEGIN
         ON EshEEID = xEEID
         AND EshIsCurrent = 'Y' 
         AND EshEmplStatus = 'R'
-    LEFT JOIN dbo.U_ESUNLIF2_NewEmp WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_NewEmp WITH (NOLOCK)
         ON NewEmp = xEEID
-    LEFT JOIN (
-                SELECT AudEEID AS TerEEID, AudKey2 AS TerCOID, audDateTime AS TerDateTime, audOldValue AS TerOldValue, audNewValue AS TerNewValue
-                FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
-                WHERE audTableName = 'EmpComp'
-                    AND audFieldName = 'EecEmplStatus'
-                    AND audRowNo = 1) Ter
-        ON xEEID = TerEEID
-        AND xCOID = TerCOID
-    WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
-            --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
-            (
-                    EecEmplStatus = 'A' 
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)
-                    OR (TerOldValue = 'R' AND TerNewValue = 'T' AND TerDateTime BETWEEN @StartDate AND @EndDate)
-                )
+    WHERE EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
+                    AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
     AND EecEmpNo <> '208681'
     GROUP BY xEEID,xCOID,EecLocation,EecEmpNo,EecDateOfOriginalHire,EecStateSui,EecEmplStatus,EecSalaryOrHourly,EecTermReason,EdhChangeReason,EecDateOfTermination,EshStatusStartDate,EEID,BchCode,EepAddressState,DedLongDesc,EecDedGroupCode,EecDateOfLastHire,OverrideDate,AudFieldName,AudOldValue,AudNewValue,AudDateTime,NewMem,EjhIsRateChange,EjhJobEffDate,AudEEID,EedDedCode,NewEmpDt
     ;
@@ -1065,20 +1049,20 @@ BEGIN
     ---------------------------------
     -- MEMBER CLOSE RECORD
     ---------------------------------
-    IF OBJECT_ID('dbo.U_ESUNLIF2_MemberClose','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_MemberClose;            --SELECT * FROM U_ESUNLIF2_MemberClose
+    IF OBJECT_ID('dbo.U_ESUNLIFE_MemberClose','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_MemberClose;            --SELECT * FROM U_ESUNLIFE_MemberClose
     SELECT DISTINCT
          drvMemberClose = '</Member>'
         ,drvInitialSort = drvInitialSort
         ,drvSubSort = 'ZZZZZZZZZZZZ'
-    INTO dbo.U_ESUNLIF2_MemberClose
-    FROM dbo.U_ESUNLIF2_Member WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_MemberClose
+    FROM dbo.U_ESUNLIFE_Member WITH (NOLOCK)
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_ESUNLIF2_Person
+    -- DETAIL RECORD - U_ESUNLIFE_Person
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Person','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Person;
+    IF OBJECT_ID('U_ESUNLIFE_Person','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Person;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1116,42 +1100,29 @@ BEGIN
         '/>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ''
-    INTO dbo.U_ESUNLIF2_Person
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_Person
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        --AND EecEmplStatus NOT IN ('T','R')
+        AND EecEmplStatus NOT IN ('T','R')
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)                --SELECT DEDLONGDESC FROM U_DSI_BDM_EmpDeductions
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ESUNLIF2'
+        AND EedFormatCode = 'ESUNLIFE'
         AND EedValidForExport = 'Y'
-    LEFT JOIN (
-                SELECT AudEEID AS TerEEID, AudKey2 AS TerCOID, audDateTime AS TerDateTime, audOldValue AS TerOldValue, audNewValue AS TerNewValue
-                FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
-                WHERE audTableName = 'EmpComp'
-                    AND audFieldName = 'EecEmplStatus'
-                    AND audRowNo = 1) Ter
-        ON xEEID = TerEEID
-        AND xCOID = TerCOID
-    WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
-            --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
-            (
-                    EecEmplStatus = 'A' 
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
-                    --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)                
-                )
+    WHERE EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
+                    AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
     AND EecEmpNo <> '208681'
     GROUP BY xEEID,xCOID,EepNameFirst,EepNameMiddle,EepNameLast,EepDateofBirth,EepAddressState,EepGender,EepIsSmoker,EecLanguageCode,EecEmpNo
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_ESUNLIF2_Salary
+    -- DETAIL RECORD - U_ESUNLIFE_Salary
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Salary','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Salary;
+    IF OBJECT_ID('U_ESUNLIFE_Salary','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Salary;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1163,40 +1134,27 @@ BEGIN
         '/>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ''
-    INTO dbo.U_ESUNLIF2_Salary                    --select * from U_ESUNLIF2_Salary
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_Salary                    --select * from U_ESUNLIFE_Salary
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        --AND EecEmplStatus NOT IN ('T','R')
+        AND EecEmplStatus NOT IN ('T','R')
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)                --SELECT DEDLONGDESC FROM U_DSI_BDM_EmpDeductions
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ESUNLIF2'
+        AND EedFormatCode = 'ESUNLIFE'
         AND EedValidForExport = 'Y'
-    LEFT JOIN (
-                SELECT AudEEID AS TerEEID, AudKey2 AS TerCOID, audDateTime AS TerDateTime, audOldValue AS TerOldValue, audNewValue AS TerNewValue
-                FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
-                WHERE audTableName = 'EmpComp'
-                    AND audFieldName = 'EecEmplStatus'
-                    AND audRowNo = 1) Ter
-        ON xEEID = TerEEID
-        AND xCOID = TerCOID
-    WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
-            --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
-                (
-                    EecEmplStatus = 'A' 
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
-                    --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)
-                )
+    WHERE EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
+                    AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
     AND EecEmpNo <> '208681'
     ;
 
     ---------------------------------
-    -- DETAIL RECORD - U_ESUNLIF2_Address
+    -- DETAIL RECORD - U_ESUNLIFE_Address
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Address','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Address;
+    IF OBJECT_ID('U_ESUNLIFE_Address','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Address;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1235,43 +1193,31 @@ BEGIN
         '/>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ''
-    INTO dbo.U_ESUNLIF2_Address
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_Address
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        --AND EecEmplStatus NOT IN ('T','R')
+        AND EecEmplStatus NOT IN ('T','R')
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)                --SELECT DEDLONGDESC FROM U_DSI_BDM_EmpDeductions
         ON EedEEID = xEEID
         AND EedCOID = xCOID
-        AND EedFormatCode = 'ESUNLIF2'
+        AND EedFormatCode = 'ESUNLIFE'
         AND EedValidForExport = 'Y'
-    LEFT JOIN dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_Audit WITH (NOLOCK)
         ON AudEEID = xEEID
         AND AudFieldName IN ('EepAddressLine1','EepAddressLine2','EepAddressCity','EepAddressState','EepAddressZipCode')
-    LEFT JOIN (
-                SELECT AudEEID AS TerEEID, AudKey2 AS TerCOID, audDateTime AS TerDateTime, audOldValue AS TerOldValue, audNewValue AS TerNewValue
-                FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
-                WHERE audTableName = 'EmpComp'
-                    AND audFieldName = 'EecEmplStatus'
-                    AND audRowNo = 1) Ter
-        ON xEEID = TerEEID
-        AND xCOID = TerCOID
-    WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
-            --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
-                (
-                    EecEmplStatus = 'A' 
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
-                )
+    WHERE EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
+                    AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
     AND EecEmpNo <> '208681'
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_ESUNLIF2_Dep
+    -- DETAIL RECORD - U_ESUNLIFE_Dep
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Dep','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Dep;
+    IF OBJECT_ID('U_ESUNLIFE_Dep','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Dep;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1305,58 +1251,43 @@ BEGIN
         '/>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ConSystemID
-    INTO dbo.U_ESUNLIF2_Dep                --select * from U_ESUNLIF2_Dep
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_Dep                --select * from U_ESUNLIFE_Dep
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        --AND EecEmplStatus NOT IN ('T','R')
+        AND EecEmplStatus NOT IN ('T','R')
     JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConRelationship IN ('SPS','CHL','STC','CHD','LEG')
     AND ConIsDependent = 'Y'
     JOIN dbo.U_DSI_BDM_DepDeductions WITH (NOLOCK)
         ON DbnDepRecID = ConSystemID
-        AND DbnFormatCode = 'ESUNLIF2'
+        AND DbnFormatCode = 'ESUNLIFE'
         AND DbnValidForExport = 'Y'
-    AND DbnBenStartDate = (SELECT MAX(DbnBenStartDate) FROM dbo.U_DSI_BDM_DepDeductions WITH (NOLOCK) WHERE DbnDepRecID = ConSystemID AND DbnFormatCode = 'ESUNLIF2' AND DbnValidForExport = 'Y')
+    AND DbnBenStartDate = (SELECT MAX(DbnBenStartDate) FROM dbo.U_DSI_BDM_DepDeductions WITH (NOLOCK) WHERE DbnDepRecID = ConSystemID AND DbnFormatCode = 'ESUNLIFE' AND DbnValidForExport = 'Y')
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID
-        AND EedFormatCode = 'ESUNLIF2'
+        AND EedFormatCode = 'ESUNLIFE'
         AND EedValidForExport = 'Y'
         AND EedDedCode = DbnDedCode
     LEFT JOIN dbo.EmpHDed WITH (NOLOCK)
         ON EdhEEID = xEEID
         AND EdhCOID = xCOID
         AND EdhDateTimeCreated = (SELECT MAX(EdhDateTimeCreated) FROM dbo.EmpHDed WITH (NOLOCK) WHERE EdhEEID = xEEID AND EdhCOID = xCOID)
-    LEFT JOIN dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_Audit WITH (NOLOCK)
         ON AudEEID = xEEID
         AND AudFieldName = 'ConNameFirst'
         AND AudNewValue = ConNameFirst
-    LEFT JOIN (
-                SELECT AudEEID AS TerEEID, AudKey2 AS TerCOID, audDateTime AS TerDateTime, audOldValue AS TerOldValue, audNewValue AS TerNewValue
-                FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
-                WHERE audTableName = 'EmpComp'
-                    AND audFieldName = 'EecEmplStatus'
-                    AND audRowNo = 1) Ter
-        ON xEEID = TerEEID
-        AND xCOID = TerCOID
-    WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
-            --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
-                    -- ?
-                (
-                    EecEmplStatus = 'A' 
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
-                    --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)                    
-                )
-                    -- ?
+    WHERE EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
+                    AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
     AND EecEmpNo <> '208681'
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_ESUNLIF2_Benefit
+    -- DETAIL RECORD - U_ESUNLIFE_Benefit
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Benefit','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Benefit;                --SELECT * FROM U_ESUNLIF2_Benefit
+    IF OBJECT_ID('U_ESUNLIFE_Benefit','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Benefit;                --SELECT * FROM U_ESUNLIFE_Benefit
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1416,82 +1347,68 @@ BEGIN
                         END + '" ', '') + 
         ISNULL(CASE WHEN (NewDedDt BETWEEN @StartDate AND @EndDate AND NewDed = EedDedCode OR BenEEID IS NOT NULL) THEN 'EffectiveDt="' +  LEFT(CONVERT(VARCHAR(8),EedBenStartDate, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStartDate, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStartDate, 112), 7, 2) END + '" ', '') + 
         ISNULL(CASE WHEN (NewDedDt BETWEEN @StartDate AND @EndDate AND NewDed = EedDedCode OR BenEEID IS NOT NULL) THEN 'LockInDt="' +  LEFT(CONVERT(VARCHAR(8),EedBenStartDate, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStartDate, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStartDate, 112), 7, 2) END + '" ', '') + 
-        'StatusCd="' + ISNULL(CASE WHEN EedBenStopDate IS NOT NULL AND EedBenStopDate BETWEEN @StartDate AND @EndDate then '3'
-                                            --WHEN EedBenStopDate IS NULL then
-                                             ELSE '1'
+        'StatusCd="' + ISNULL(CASE WHEN EedBenStopDate IS NOT NULL then '3'
+                                            WHEN EedBenStopDate IS NULL then '1'
                                     END, '') + '" ' + 
-        ISNULL(CASE WHEN EedBenStatus IN ('T','R') AND EedBenStopDate BETWEEN @StartDate AND @EndDate THEN 'TermReasonCd="' + '2' + '" ' END, '') + 
-        ISNULL(CASE WHEN ISNULL(EedBenStopDate, '') <> '' AND EedBenStopDate BETWEEN @StartDate AND @EndDate THEN 'TermDt= "' + ISNULL(LEFT(CONVERT(VARCHAR(8),EedBenStopDate, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStopDate, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStopDate, 112), 7, 2), '') + '"' END, '')  + 
+        ISNULL(CASE WHEN EedBenStatus IN ('T','R') THEN 'TermReasonCd="' + '2' + '" ' END, '') + 
+        ISNULL(CASE WHEN ISNULL(EedBenStopDate, '') <> '' THEN 'TermDt= "' + ISNULL(LEFT(CONVERT(VARCHAR(8),EedBenStopDate, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStopDate, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStopDate, 112), 7, 2), '') + '"' END, '')  + 
         '/>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ''
-    INTO dbo.U_ESUNLIF2_Benefit                    --select * from U_ESUNLIF2_Benefit
-    FROM dbo.U_ESUNLIF2_EEList WITH (NOLOCK)
+    INTO dbo.U_ESUNLIFE_Benefit                    --select * from U_ESUNLIFE_Benefit
+    FROM dbo.U_ESUNLIFE_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        --AND EecEmplStatus NOT IN ('T','R')
+        AND EecEmplStatus NOT IN ('T','R')
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = xEEID
-        AND EedFormatCode = 'ESUNLIF2'
+        AND EedFormatCode = 'ESUNLIFE'
         AND EedValidForExport = 'Y'
-    LEFT JOIN dbo.U_ESUNLIF2_BenEffDt WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_BenEffDt WITH (NOLOCK)
         ON BenEEID = xEEID
-    LEFT JOIN dbo.U_ESUNLIF2_New WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_New WITH (NOLOCK)
         ON NewEEID = xEEID
         AND NewDed = EedDedCode
-    LEFT JOIN dbo.U_ESUNLIF2_NewDedDt WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_NewDedDt WITH (NOLOCK)
         ON NewDedEEID = xEEID
         AND EedDedCode = NewDedCode
-    LEFT JOIN (
-                SELECT AudEEID AS TerEEID, AudKey2 AS TerCOID, audDateTime AS TerDateTime, audOldValue AS TerOldValue, audNewValue AS TerNewValue
-                FROM dbo.U_ESUNLIF2_Audit WITH (NOLOCK)
-                WHERE audTableName = 'EmpComp'
-                    AND audFieldName = 'EecEmplStatus'
-                    AND audRowNo = 1) Ter
-        ON xEEID = TerEEID
-        AND xCOID = TerCOID
-    WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
-            --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
-                (
-                    EecEmplStatus = 'A' 
-                    OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
-                    --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)
-                )
+    WHERE EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
+                    AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
     AND EecEmpNo <> '208681'
     ;
 
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Header','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Header;
+    IF OBJECT_ID('U_ESUNLIFE_Header','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Header;
     SELECT DISTINCT
          drvHeader = '<?xml version=”1.0” encoding=”ISO-8859-1”?>'
-    INTO dbo.U_ESUNLIF2_Header
+    INTO dbo.U_ESUNLIFE_Header
     ;
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
-    IF OBJECT_ID('U_ESUNLIF2_Load','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_Load;
+    IF OBJECT_ID('U_ESUNLIFE_Load','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_Load;
     SELECT DISTINCT
         drvLoader = '<Loader PolicyNum="102716" ClientName="Refresco Canada Inc." ReportLanguageCd="1">'
-    INTO dbo.U_ESUNLIF2_Load                    --select * from U_ESUNLIF2_Load    PolicyNum="Refresco Canada Inc." 
+    INTO dbo.U_ESUNLIFE_Load                    --select * from U_ESUNLIFE_Load    PolicyNum="Refresco Canada Inc." 
     ;
     
     ---------------------------------
     -- TRAILER RECORD
     ---------------------------------
-    INSERT INTO dbo.U_ESUNLIF2_File (RecordSet,InitialSort,SubSort,SubSort2,SubSort3,Data) VALUES ('T99','9999999','9999999','9999999','9999999','</Loader>');
+    INSERT INTO dbo.U_ESUNLIFE_File (RecordSet,InitialSort,SubSort,SubSort2,SubSort3,Data) VALUES ('T99','9999999','9999999','9999999','9999999','</Loader>');
  /*   
-    IF OBJECT_ID('U_ESUNLIF2_LTrailer','U') IS NOT NULL
-        DROP TABLE dbo.U_ESUNLIF2_LTrailer;
+    IF OBJECT_ID('U_ESUNLIFE_LTrailer','U') IS NOT NULL
+        DROP TABLE dbo.U_ESUNLIFE_LTrailer;
     SELECT DISTINCT
          drvLoader = '</Loader>'
-    INTO dbo.U_ESUNLIF2_LTrailer
+    INTO dbo.U_ESUNLIFE_LTrailer
     ;
 */
     --==========================================
@@ -1508,33 +1425,33 @@ END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vwESUNLIF2_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_ESUNLIF2_File (NOLOCK)
+ALTER VIEW dbo.dsi_vwESUNLIFE_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ESUNLIFE_File (NOLOCK)
     ORDER BY CASE WHEN RecordSet = 'H01' THEN 1
                   ELSE 2 END, InitialSort, RIGHT(RecordSet,2);
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE 'ESUNLIF2%'
+WHERE AdfHeaderSystemID LIKE 'ESUNLIFE%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202201011'
-       ,expStartPerControl     = '202201011'
-       ,expLastEndPerControl   = '202202101'
-       ,expEndPerControl       = '202202101'
-WHERE expFormatCode = 'ESUNLIF2';
+    SET expLastStartPerControl = '201904081'
+       ,expStartPerControl     = '201904081'
+       ,expLastEndPerControl   = '201904159'
+       ,expEndPerControl       = '201904159'
+WHERE expFormatCode = 'ESUNLIFE';
 
 
 
-    --------JOB NAME: Sunlife XML Export (ESUNLIF2) - Weekly, Wednesday, 11:01AM ET--------
+    --------JOB NAME: Sunlife XML Export (ESUNLIFE) - Weekly, Wednesday, 11:01AM ET--------
     --Copy and paste this in environment to create job script
 
     BEGIN TRANSACTION
     DECLARE @ReturnCode INT, @JobName varchar(100), @dbName varchar(50)
     SELECT @ReturnCode = 0
-    SELECT @JobName = RTRIM(REPLACE(DB_NAME(),'ULTIPRO_','')) + ' - Sunlife XML Export (ESUNLIF2) - Weekly, Wednesday, 11:01AM ET'
+    SELECT @JobName = RTRIM(REPLACE(DB_NAME(),'ULTIPRO_','')) + ' - Sunlife XML Export (ESUNLIFE) - Weekly, Wednesday, 11:01AM ET'
     SELECT @dbname = RTRIM(DB_NAME())
 
     -- Job Params
@@ -1562,7 +1479,7 @@ WHERE expFormatCode = 'ESUNLIF2';
     IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 
     -- Step 'Update AscExp'
-    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Update AscExp Start/End Date (ESUNLIF2)', 
+    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Update AscExp Start/End Date (ESUNLIFE)', 
             @step_id=1, 
             @cmdexec_success_code=0, 
             @on_success_action=3, 
@@ -1586,14 +1503,14 @@ SET    expStartPerControl = @StartPerControl,
     expEndPerControl = @EndPerControl,
     expLastEndPerControl = @EndPerControl,
     expExported = @RunDate
-WHERE expFormatCode = ''ESUNLIF2''
+WHERE expFormatCode = ''ESUNLIFE''
   AND expExportCode = ''SCHEDULED'';',
             @database_name=@dbName,
             @flags=0
     IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 
     -- Step 'Run SP'
-    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Create Export File (ESUNLIF2)', 
+    EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Create Export File (ESUNLIFE)', 
             @step_id=2, 
             @cmdexec_success_code=0, 
             @on_success_action=1, 
@@ -1603,7 +1520,7 @@ WHERE expFormatCode = ''ESUNLIF2''
             @retry_attempts=0, 
             @retry_interval=0, 
             @os_run_priority=0, @subsystem=N'TSQL', 
-            @command=N'EXEC dbo.dsi_sp_TestSwitchbox_v2 ''ESUNLIF2'', ''SCHEDULED'';', 
+            @command=N'EXEC dbo.dsi_sp_TestSwitchbox_v2 ''ESUNLIFE'', ''SCHEDULED'';', 
             @database_name=@dbName, 
             @flags=0
     IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
@@ -1636,8 +1553,8 @@ WHERE expFormatCode = ''ESUNLIF2''
     --------END JOB SCRIPT--------
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwESUNLIF2_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_ESUNLIF2_File (NOLOCK)
+CREATE VIEW dbo.dsi_vwESUNLIFE_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ESUNLIFE_File (NOLOCK)
     ORDER BY CASE WHEN RecordSet = 'H01' THEN 1
                   ELSE 2 END, InitialSort, RIGHT(RecordSet,2);
 
@@ -1652,7 +1569,7 @@ UPDATE dbo.U_dsi_Configuration
    SET CfgValue = rpoParmValue02
   FROM dbo.U_dsi_Configuration
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
- WHERE rpoFormatCode = 'ESUNLIF2'
+ WHERE rpoFormatCode = 'ESUNLIFE'
    AND rpoParmType = 'Path'
 
 
@@ -1664,7 +1581,7 @@ UPDATE dbo.AscExp
    SET expSystemID = rpoParmValue02
   FROM dbo.AscExp
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
- WHERE rpoFormatCode = 'ESUNLIF2'
+ WHERE rpoFormatCode = 'ESUNLIFE'
    AND rpoParmType = 'expSystemID'
 
 

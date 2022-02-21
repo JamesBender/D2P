@@ -5,7 +5,7 @@ EASSCENSUS: Assurity Census Export
 FormatCode:     EASSCENSUS
 Project:        Assurity Census Export
 Client ID:      MOR1021
-Date/time:      2022-01-18 10:04:30.703
+Date/time:      2022-02-21 06:25:46.163
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -294,7 +294,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EASSCENSUS_20220118.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EASSCENSUS_20220221.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -304,8 +304,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202102029','EMPEXPORT','OEACTIVE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202102029','EMPEXPORT','OEPASSIVE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assurity Census Export','202102029','EMPEXPORT','ONDEM_XOE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202102029','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202102021',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8IICB,8IIA4',NULL,NULL,NULL,'Assurity Census Export-Sched','202102029','EMPEXPORT','SCH_EASSCE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202201149','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202201071',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Assurity Census Export-Test','202201149','EMPEXPORT','TEST_XOE','Jan 17 2022  4:27AM','EASSCENSUS',NULL,NULL,NULL,'202201149','Jan 14 2022 12:00AM','Dec 30 1899 12:00AM','202201071','296','','','202201071',dbo.fn_GetTimedKey(),NULL,'us3jBeMOR1021',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','8IICB,8IIA4',NULL,NULL,NULL,'Assurity Census Export-Sched','202102029','EMPEXPORT','SCH_EASSCE',NULL,'EASSCENSUS',NULL,NULL,NULL,'202202189','Feb  2 2021  9:46AM','Feb  2 2021  9:46AM','202202111',NULL,'','','202102021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Assurity Census Export-Test','202201149','EMPEXPORT','TEST_XOE','Feb  7 2022 10:21AM','EASSCENSUS',NULL,NULL,NULL,'202201149','Jan 14 2022 12:00AM','Dec 30 1899 12:00AM','202201071','299','','','202201071',dbo.fn_GetTimedKey(),NULL,'us3jBeMOR1021',NULL);
 
 -----------
 -- AscImp inserts
@@ -468,7 +468,7 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvCompStateSpecificHlthQues] varchar(255) NULL,
     [drvAEPlanType] varchar(8) NULL,
     [drvAEInsuredOption] varchar(3) NULL,
-    [drvAEPremiumAmount] varchar(1) NOT NULL,
+    [drvAEPremiumAmount] nvarchar(4000) NULL,
     [drvAEIssueDate] datetime NULL,
     [drvAESignedDate] datetime NULL,
     [drvAETerminationDate] datetime NULL,
@@ -481,7 +481,7 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvCIPlanType] varchar(6) NULL,
     [drvCIInsuredOption] varchar(3) NULL,
     [drvCIBenefitAmount] varchar(5) NULL,
-    [drvCIPremiumAmount] varchar(1) NOT NULL,
+    [drvCIPremiumAmount] nvarchar(4000) NULL,
     [drvCIIssueDate] datetime NULL,
     [drvCISignedDate] datetime NULL,
     [drvCITerminationDate] datetime NULL,
@@ -495,7 +495,7 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvHIPlanType] varchar(2) NULL,
     [drvHIInsuredOption] varchar(3) NULL,
     [drvHIBenefitAmount] varchar(256) NULL,
-    [drvHIPremiumAmount] varchar(1) NOT NULL,
+    [drvHIPremiumAmount] nvarchar(4000) NULL,
     [drvHIIssueDate] datetime NULL,
     [drvHISignedDate] datetime NULL,
     [drvHITerminationDate] datetime NULL,
@@ -600,6 +600,9 @@ BEGIN
         ,@ExportCode      = ExportCode
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
+
+    
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
 
     --==========================================
     -- Clean EE List 
@@ -710,7 +713,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = ConSystemID --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort =  ''
         -- standard fields above and additional driver fields below
         ,drvEmployeeSSN = eepSSN
         ,drvRelation =  CASE WHEN bdmRectype= 'EMP' THEN 'EE'
@@ -718,11 +721,11 @@ BEGIN
                              WHEN bdmRecType = 'DEP' and Conrelationship = 'CHL' THEN 'CH'
                          END
         ,drvSpouseandorChildSSN = ConSSN
-        ,drvFirstName = EepNameFirst
-        ,drvLastName = EepNameLast
-        ,drvMiddleName = LEFT(EepNameMiddle,1)
-        ,drvGender = EepGender
-        ,drvDOB = EepDateOfBirth
+        ,drvFirstName = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
+        ,drvLastName = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END
+        ,drvMiddleName = CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1) ELSE LEFT(ConNameMiddle,1) END
+        ,drvGender = CASE WHEN BdmRecType = 'EMP' THEN EepGender ELSE ConGender END
+        ,drvDOB = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
         ,drvDateofHire = EecDateOfLastHire
         ,drvGroupIdentifier = '' -- leave blank
         ,drvHoursWorkedPerWeek = CONVERT(VARCHAR, CONVERT(DECIMAL(10,0), EecScheduledWorkHrs))
@@ -743,7 +746,17 @@ BEGIN
         ,drvCompStateSpecificHlthQues = EepAddressState
         ,drvAEPlanType = BdmAEPlanType
         ,drvAEInsuredOption = BdmAEInsuredOption
-        ,drvAEPremiumAmount = '' --leave blank
+        ,drvAEPremiumAmount =    CASE WHEN BdmRecType = 'EMP' THEN
+                                    CASE WHEN AeAmount IS NOT NULL THEN FORMAT(AeAmount,'#0.00') 
+                                    ELSE (
+                                            SELECT TOP 1 FORMAT(ISNULL(CorEERate*100, -1), '#0.00')
+                                            FROM dbo.OptRate WITH (NOLOCK)
+                                            WHERE CorDedCode = 'ASACC'
+                                                AND CorBenOption = BdmAEBenOption
+                                            ORDER BY CorEffDate DESC)
+                                    END                                
+                                END
+                                -- JCB
         ,drvAEIssueDate = BdmAEIssueDate
         ,drvAESignedDate = BdmAESignedDate
         ,drvAETerminationDate =  BdmAETerminationDate
@@ -764,7 +777,18 @@ BEGIN
                                  -- END
                               --END
         ,drvCIBenefitAmount = BdmCIBenefitAmount
-        ,drvCIPremiumAmount = ''
+        ,drvCIPremiumAmount =    CASE WHEN BdmRecType = 'EMP' THEN
+                                    CASE WHEN CiAmount IS NOT NULL THEN FORMAT(CiAmount, '#0.00')
+                                    ELSE (
+                                            SELECT TOP 1 FORMAT(ISNULL(CorEERate*100, -1), '#0.00')
+                                            FROM dbo.OptRate WITH (NOLOCK)
+                                            WHERE CorDedCode = BdmCIDedCode
+                                                AND CorBenOption = BdmCIBenOption
+                                            ORDER BY CorEffDate DESC)
+                                    END
+                                END
+        --FORMAT(CiAmount, '#0.00')
+        --BdmCIDedCode
         ,drvCIIssueDate = BdmCIIssueDate
         ,drvCISignedDate = BdmCISignedDate
         ,drvCITerminationDate = BdmCITerminationDate
@@ -778,7 +802,16 @@ BEGIN
         ,drvHIPlanType = BdmHIPlanType
         ,drvHIInsuredOption = BdmHIInsuredOption
         ,drvHIBenefitAmount = BdmHIBenefitAmount
-        ,drvHIPremiumAmount = '' -- leave blank
+        ,drvHIPremiumAmount =    CASE WHEN BdmRecType = 'EMP' THEN
+                                    CASE WHEN HiAmount IS NOT NULL THEN  FORMAT(HiAmount, '#0.00') 
+                                    ELSE (
+                                            SELECT TOP 1 FORMAT(ISNULL(CorEERate*100, -1), '#0.00')
+                                            FROM dbo.OptRate WITH (NOLOCK)
+                                            WHERE CorDedCode = 'ASHOS'
+                                                AND CorBenOption = BdmHiBenOption
+                                            ORDER BY CorEffDate DESC)                                                            
+                                    END                                
+                                END
         ,drvHIIssueDate =  BdmHIIssueDate
         ,drvHISignedDate = BdmHISignedDate
         ,drvHITerminationDate = BdmHITerminationDate
@@ -806,6 +839,7 @@ BEGIN
     JOIN (SELECT  BdmEEID, BdmCOID, BdmDepRecID
                 ,BdmRecType = MAX(bdmRectype)
                 ,BdmAEPlanType = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN 'Accident' ELSE '' END)
+                ,BdmAEBenOption = MAX(CASE WHEN BdmDedCode = 'ASACC' THEN BdmBenOption END)
                 ,BdmAEInsuredOption = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN
                                   CASE
                                     WHEN BdmBenOption IN ('EE', 'EET', 'IND', 'SING') THEN 'EE'
@@ -817,6 +851,8 @@ BEGIN
         ,BdmAEIssueDate = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN BdmBenStartDate ELSE NULL END)
         ,BdmAESignedDate = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN  DATEADD(D, -1, BdmBenStartDate) ELSE NULL END)
         ,BdmAETerminationDate = MAX(CASE WHEN bdmdedcode = 'ASACC' THEN bdmBenStopDate ELSE NULL END)  
+        ,BdmCIDedCode = MAX(CASE WHEN BdmDedCode IN ('ECI10','ECS10','ECI20','ECS20','ECI30','ECS30') THEN BdmDedCode END)
+        ,BdmCIBenOption = MAX(CASE WHEN BdmDedCode IN ('ECI10','ECS10','ECI20','ECS20','ECI30','ECS30') THEN BdmBenOption END)
         ,BdmCIPlanType = MAX(CASE 
                             WHEN Bdmdedcode IN ('ECI10','ECS10') THEN 'CI 10K'
                             WHEN Bdmdedcode IN ('ECI20','ECS20') THEN 'CI 20K'
@@ -843,6 +879,7 @@ BEGIN
                                     WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEFT', 'FAM')  THEN 'FAM' 
                                   END
                               END)
+        ,BdmHIBenOption = MAX(CASE WHEN BdmDedCode = 'ASHOS' THEN BdmBenOption END)
         ,BdmHIBenefitAmount = MAX(CASE WHEN Bdmdedcode = 'ASHOS' THEN  
                                         CASE WHEN BdmDedCode = 'ASHOS' and bdmRecType = 'DEP' THEN bdmUSGField1
                                              WHEN BdmDedCode = 'ASHOS' and bdmRecType = 'EMP' THEN bdmUSGField1
@@ -859,6 +896,17 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON conSystemId = BdmDepRecID
        AND xEEID = ConEEID
+    LEFT JOIN (
+                SELECT BcaEEID, BcaCOID
+                    ,SUM(CASE WHEN BcaDedCode = 'ASACC' AND BcaEEAmt IS NOT NULL THEN BcaEEAmt END) AS AeAmount
+                    ,SUM(CASE WHEN BcaDedCode IN ('ECI10','ECS10','ECI20','ECI30') AND BcaEEAmt IS NOT NULL THEN BcaEEAmt END) AS CiAmount
+                    ,SUM(CASE WHEN BcaDedCode = 'ASHOS' AND BcaEEAmt IS NOT NULL THEN BcaEEAmt END) AS HiAmount
+                FROM dbo.u_dsi_bdm_BenCalculationAmounts WITH (NOLOCK)
+                WHERE BcaFormatCode like '%EASSCENSUS%'
+                AND BcaDedCode IN ('ASACC','ECI10','ECS10','ECI20','ECI30','ASHOS')
+                GROUP BY BcaEEID, BcaCOID) AS Bca
+        ON BcaEEID = xEEID
+        AND BcaCOID = xCOID
     --JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
     --    ON EedEEID = xEEID 
     --    AND EedCoID = xCoID
