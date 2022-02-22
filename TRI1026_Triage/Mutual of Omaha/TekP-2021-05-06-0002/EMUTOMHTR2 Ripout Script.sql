@@ -5,7 +5,7 @@ EMUTOMHTR2: Mutual of Omaha Benefits Export V2
 FormatCode:     EMUTOMHTR2
 Project:        Mutual of Omaha Benefits Export V2
 Client ID:      TRI1026
-Date/time:      2022-02-09 05:14:14.413
+Date/time:      2022-02-18 05:10:17.330
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -346,7 +346,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMUTOMHTR2_20220209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMUTOMHTR2_20220218.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -495,7 +495,7 @@ CREATE TABLE [dbo].[U_Dsi_DrvTbl_EMUTOMHTR2] (
     [drvSalMode] varchar(50) NULL,
     [drvSalAmt] varchar(50) NULL,
     [drvClassEffDate] varchar(50) NULL,
-    [drvClassID] varchar(4) NULL,
+    [drvClassID] varchar(4) NOT NULL,
     [drvRateEffDate] varchar(1) NOT NULL,
     [drvSmoker] varchar(1) NOT NULL,
     [drvDentalLateEntrant] varchar(1) NOT NULL,
@@ -1193,11 +1193,13 @@ drvClassEffDate      = CAST(CASE
                           ELSE CONVERT(VARCHAR(8), EecDateOfLastHire, 112) 
                        END  AS VARCHAR (50)), -- EecDateInJob
 
-drvClassID           =  CASE WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD40' THEN 'A001'
+drvClassID           =  CASE WHEN EecLocation = 'NE000' THEN 'A001' ELSE 'A002' END
+                            /*CASE WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD40' THEN 'A001'
                              WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD60' THEN 'A002'
                              WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode IS NULL THEN 'A004'
-                             WHEN EecPayGroup = 'WKLY' THEN 'A003'
-                             END,
+                             --WHEN EecPayGroup = 'WKLY' THEN 'A003'
+                             END*/
+                             ,
                              
 drvRateEffDate       =  '', 
                       --CAST (CASE 

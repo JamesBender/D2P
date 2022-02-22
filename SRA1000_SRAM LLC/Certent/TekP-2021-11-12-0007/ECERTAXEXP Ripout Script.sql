@@ -5,7 +5,7 @@ ECERTAXEXP: Certent Tax Export
 FormatCode:     ECERTAXEXP
 Project:        Certent Tax Export
 Client ID:      SRA1000
-Date/time:      2022-02-14 12:08:15.210
+Date/time:      2022-02-17 06:00:30.610
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -169,16 +169,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECERTAXEXP_20220214.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECERTAXEXP_20220217.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Tax Export','202202149','EMPEXPORT','ONDEM_XOE',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Certent Tax Export-Sched','202202149','EMPEXPORT','SCH_ECERTA',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Certent Tax Export-Test','202202149','EMPEXPORT','TEST_XOE',NULL,'ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141',NULL,'','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Certent Tax Export','202202149','EMPEXPORT','ONDEM_XOE','Feb 14 2022 12:10PM','ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141','72','','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Certent Tax Export-Sched','202202149','EMPEXPORT','SCH_ECERTA','Feb 14 2022 12:10PM','ECERTAXEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  8:34AM','Feb 14 2022  8:34AM','202202141','72','','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Certent Tax Export-Test','202202189','EMPEXPORT','TEST_XOE','Feb 14 2022  6:38PM','ECERTAXEXP',NULL,NULL,NULL,'202202189','Feb 18 2022 12:00AM','Dec 30 1899 12:00AM','202202111','67','eecPayGroup','SRAMBW,SRAMIN,SRAMPR','202202111',dbo.fn_GetTimedKey(),NULL,'us3jReSRA1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -397,7 +397,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvPartiicipantId = EecEmpNo
         ,drvTaxYear = DATEPART(YEAR, @ENDDATE)
-        ,drvYTDTotalCompensation = FORMAT(PehCurAmt, '#0.00')
+        ,drvYTDTotalCompensation = FORMAT(PehCurAmtYTD, '#0.00')
         ,drvYTDTaxableSuppCompensation = FORMAT(YTDPthCurSuppTaxableWages, '#0.00')
         ,drvYTDSocialSecurity = FORMAT(YTDSocialSecurity, '#0.00')
         ,drvYTDSDI = FORMAT(YTDSDI, '#0.00')
@@ -430,7 +430,7 @@ BEGIN
     LEFT JOIN dbo.EmpTax WITH (NOLOCK)
         ON EetEEID = xEEID
         AND EetCOID = xCOID
-        AND EetTaxCode LIKE '%SDI%'
+        AND EetTaxCode LIKE '%SDIEE%'
         AND EepAddressState = LEFT(EetTaxCode, 2)
     WHERE EecEmplStatus <> 'T'
     ;
