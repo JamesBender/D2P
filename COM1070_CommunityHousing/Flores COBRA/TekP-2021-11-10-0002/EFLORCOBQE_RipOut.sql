@@ -5,7 +5,7 @@ EFLORCOBQE: Flores COBRA Export
 FormatCode:     EFLORCOBQE
 Project:        Flores COBRA Export
 Client ID:      COM1070
-Date/time:      2022-02-14 18:07:27.717
+Date/time:      2022-02-21 17:11:00.767
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -178,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220214.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220221.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -187,7 +187,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export','202202099','EMPEXPORT','ONDEM_XOE',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export-Sched','202202099','EMPEXPORT','SCH_EFLORC',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export-Test','202202099','EMPEXPORT','TEST_XOE',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202202169','EMPEXPORT','TEST_XOE','Feb 16 2022 12:00AM','EFLORCOBQE',NULL,NULL,NULL,'202202169','Feb 16 2022 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
 
 -----------
 -- AscImp inserts
@@ -294,7 +294,7 @@ CREATE TABLE [dbo].[U_EFLORCOBQE_coverage] (
 IF OBJECT_ID('U_EFLORCOBQE_drvDependent') IS NULL
 CREATE TABLE [dbo].[U_EFLORCOBQE_drvDependent] (
     [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
+    [drvCOID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drv20DepIdent] varchar(1) NOT NULL,
     [drv20EmpIdNumOfIns] char(11) NULL,
@@ -302,9 +302,9 @@ CREATE TABLE [dbo].[U_EFLORCOBQE_drvDependent] (
     [drv20DepFName] varchar(100) NULL,
     [drv20DepLName] varchar(100) NULL,
     [drv20RelToIns] varchar(1) NULL,
-    [drv20DOB] datetime NULL,
+    [drv20DOB] varchar(30) NULL,
     [drv20Gender] char(1) NULL,
-	drv20BdmDepRecId varchar(50) NULL,
+    [drv20BdmDepRecId] char(12) NULL,
     [drvInitialSort] int NULL,
     [drvSubSort] varchar(1) NOT NULL
 );
@@ -321,8 +321,9 @@ CREATE TABLE [dbo].[U_EFLORCOBQE_drvElection] (
     [drv30ElectIdent] varchar(1) NOT NULL,
     [drv30EmpIdNumOfIns] char(11) NULL,
     [drv30DepNum] bigint NULL,
-    [drv30PlanCodeEnrolledIn] varchar(4) NULL,
+    [drv30PlanCodeEnrolledIn] varchar(5) NULL,
     [drv30MonthlyPrem] varchar(1) NOT NULL,
+    [drv30RelToIns] varchar(1) NULL,
     [drvInitialSort] int NULL,
     [drvSubSort] varchar(1) NOT NULL
 );
@@ -347,7 +348,7 @@ CREATE TABLE [dbo].[U_EFLORCOBQE_drvInsured] (
     [drv10Zip] varchar(50) NULL,
     [drv10Phone] varchar(50) NULL,
     [drv10Email] varchar(50) NULL,
-    [drv10DOB] datetime NULL,
+    [drv10DOB] varchar(30) NULL,
     [drv10StateOfEmploy] varchar(1) NOT NULL,
     [drv10TypeOfEvent] varchar(2) NULL,
     [drv10DtOfEvent] varchar(30) NOT NULL,
@@ -398,8 +399,8 @@ Purpose: Flores COBRA Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
+02/21/2022 by AP:
+	- Added insert for employee death.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFLORCOBQE';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFLORCOBQE';
@@ -499,6 +500,59 @@ BEGIN
     -- Run BDM for QB
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+	-- 203 death insert employee
+	INSERT INTO [dbo].[U_dsi_BDM_EFLORCOBQE]
+	([BdmRecType]
+	,[BdmCOID]
+	,[BdmEEID]
+	,[BdmDepRecID]
+	,[BdmSystemID]
+	,[BdmRunID]
+	,[BdmDedRowStatus]
+	,[BdmRelationship]
+	,[BdmDateOfBirth]
+	,[BdmDedCode]
+	,[BdmBenOption]
+	,[BdmBenStartDate]
+	,[BdmBenStopDate]
+	,[BdmBenStatusDate]
+	,[BdmDateOFCobraEvent]
+	,[BdmChangeReason]
+	,[BdmCobraReason]
+	,[BdmStartDate]
+	,[BdmStopDate]
+	,[BdmIsPQB]
+	)
+	SELECT DISTINCT 'EMP'
+	,EecCOID
+	,EecEEID
+	,NULL
+	,NULL
+	,'QB'
+	,'Data inserted for 203 term reason'
+	,'Emp'
+	,EepDateOfBirth
+	,DedDedCode
+	,EedBenOption
+	,EedBenStartDate
+	,EedBenStopDate
+	,EedBenStatusDate
+	,EedBenStatusDate
+	,'203'
+	,'203'
+	,EedStartDate
+	,EedStopDate
+	,'Y'
+	FROM dbo.EmpComp WITH(NOLOCK)
+	JOIN dbo.u_dsi_bdm_EmpDeductions WITH(NOLOCK)
+	ON EecEEID = EedEEID
+	AND EecCOID = EedCOID
+	JOIN dbo.EmpPers WITH(NOLOCK)
+	ON EecEEID = EepEEID
+	WHERE EedValidForExport = 'N'
+	AND EedFormatCode = @FormatCode
+	AND EecTermReason = '203'
+
     --==========================================
     -- Build Working Tables
     --==========================================
@@ -551,7 +605,7 @@ BEGIN
         ,drv10Zip = EepAddressZipCode
         ,drv10Phone = EepPhoneHomeNumber
         ,drv10Email = EepAddressEMail
-        ,drv10DOB = CASE WHEN BdmChangeReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') OR EecTermReason = '203' then ConDateOfBirth ELSE EepDateOfBirth END
+        ,drv10DOB = CASE WHEN BdmChangeReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') OR EecTermReason = '203' then CONVERT(VARCHAR, ConDateOfBirth, 101) ELSE CONVERT(VARCHAR, EepDateOfBirth, 101) END
         ,drv10StateOfEmploy = ''
         ,drv10TypeOfEvent = CASE WHEN BdmChangeReason IN ('204', 'LEVNT4') THEN '4'
                                 WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN '3'
@@ -587,23 +641,23 @@ BEGIN
     IF OBJECT_ID('U_EFLORCOBQE_drvDependent','U') IS NOT NULL
         DROP TABLE dbo.U_EFLORCOBQE_drvDependent;
 
-	SELECT drvEEID,
-			drvCOID,
-			drvDepRecID,
-			drv20DepIdent,
-			drv20EmpIdNumOfIns,
-			ROW_NUMBER() OVER(PARTITION BY drvEEID, drv20RelToIns ORDER BY drv20DOB) AS drv20DepNum,
-			drv20DepFName,
-			drv20DepLName,
-			drv20RelToIns,
-			drv20DOB,
-			drv20Gender,
-			drv20BdmDepRecId,
-			drvInitialSort,
-			drvSubSort
-	INTO dbo.U_EFLORCOBQE_drvDependent
-	FROM
-	(
+    SELECT drvEEID,
+            drvCOID,
+            drvDepRecID,
+            drv20DepIdent,
+            drv20EmpIdNumOfIns,
+            ROW_NUMBER() OVER(PARTITION BY drvEEID, drv20RelToIns ORDER BY drv20DOB) AS drv20DepNum,
+            drv20DepFName,
+            drv20DepLName,
+            drv20RelToIns,
+            drv20DOB,
+            drv20Gender,
+            drv20BdmDepRecId,
+            drvInitialSort,
+            drvSubSort
+    INTO dbo.U_EFLORCOBQE_drvDependent
+    FROM
+    (
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -616,9 +670,9 @@ BEGIN
         ,drv20DepLName = ConNameLast
         ,drv20RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
                                 WHEN BdmRelationship IN ('CHL', 'DCH', 'DPC', 'STC') THEN 'C' END 
-        ,drv20DOB = ConDateOfBirth
+        ,drv20DOB = CONVERT(VARCHAR, ConDateOfBirth, 101)
         ,drv20Gender = ConGender
-		,drv20BdmDepRecId = BdmDepRecId
+        ,drv20BdmDepRecId = BdmDepRecId
         ,drvInitialSort = 1 + LTRIM(RTRIM(EepSSN))
         ,drvSubSort = '2'
    -- INTO dbo.U_EFLORCOBQE_drvDependent
@@ -632,7 +686,7 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId
     WHERE BdmRunID = 'QB'
-	AND BdmRecType = 'DEP') a
+    AND BdmRecType = 'DEP') a
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFLORCOBQE_drvElection
@@ -678,15 +732,16 @@ BEGIN
                                                 WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '6032'
                                                 WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '6033'
                                             END
-                                        WHEN BdmDedCode = 'VISION' THEN
+                                        WHEN BdmDedCode = 'VISON' THEN
                                         CASE WHEN BdmBenOption = 'EE' THEN '8050'
                                                 WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '8051'
                                                 WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '8052'
                                                 WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '8053'
                                             END
+                                        WHEN BdmDedCode = 'FSAM' THEN '10000' 
                                     END
         ,drv30MonthlyPrem = ''
-		,drv30RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
+        ,drv30RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
                                 WHEN BdmRelationship IN ('CHL', 'DCH', 'DPC', 'STC') THEN 'C' END 
         ,drvInitialSort = 1 + LTRIM(RTRIM(EepSSN))
         ,drvSubSort = '3'
@@ -697,10 +752,10 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EFLORCOBQE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-	LEFT JOIN dbo.U_EFLORCOBQE_drvDependent dep WITH(NOLOCK)
-		ON dep.drveeid = bdmeeid
-		and dep.drvcoid = bdmcoid
-		and dep.drv20BdmDepRecId = bdmdeprecid
+    LEFT JOIN dbo.U_EFLORCOBQE_drvDependent dep WITH(NOLOCK)
+        ON dep.drveeid = bdmeeid
+        and dep.drvcoid = bdmcoid
+        and dep.drv20BdmDepRecId = bdmdeprecid
     WHERE BdmRunID = 'QB'
 
     --==========================================
