@@ -5,7 +5,7 @@ EGRDHW834E: Guardian H/W 834 Export
 FormatCode:     EGRDHW834E
 Project:        Guardian H/W 834 Export
 Client ID:      MEN1004
-Date/time:      2022-02-08 06:13:32.893
+Date/time:      2022-02-21 09:00:28.827
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -153,7 +153,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EGRDHW834EZ0','1','H','01','12',NULL,'Repetition Separator',NULL,NULL,'"^"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EGRDHW834EZ0','5','H','01','13',NULL,'Interchange Control Ver #',NULL,NULL,'"00501"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EGRDHW834EZ0','9','H','01','14',NULL,'Interchange Control #',NULL,NULL,'"000000001"','(''DA''=''F*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EGRDHW834EZ0','1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"1"','(''DA''=''F*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EGRDHW834EZ0','1','H','01','15',NULL,'Acknowledgement Requested',NULL,NULL,'"0"','(''DA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EGRDHW834EZ0','1','H','01','16',NULL,'Usage Indicator',NULL,NULL,'"drvISA15_UsageIndicator"','(''UA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EGRDHW834EZ0','1','H','01','17',NULL,'Component Element Separator',NULL,NULL,'"drvISA16_ComponentSeprator"','(''UA''=''F*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGRDHW834EZ0','2','H','02','1',NULL,'GS Segment ID (Header)',NULL,NULL,'"GS"','(''DA''=''T*'')');
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGRDHW834E_20220208.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGRDHW834E_20220221.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202202089','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EGRDHW834E',NULL,NULL,NULL,'202202089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202202089','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EGRDHW834E',NULL,NULL,NULL,'202202089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian H/W 834 Export','202202089','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EGRDHW834E',NULL,NULL,NULL,'202202089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202202089','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EGRDHW834E',NULL,NULL,NULL,'202202089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202089','EMPEXPORT','TEST_XOE','Feb 11 2022 12:00AM','EGRDHW834E',NULL,NULL,NULL,'202202089','Feb  8 2022 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'us3cPeMEN1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -555,15 +555,15 @@ CREATE TABLE [dbo].[U_EGRDHW834E_DrvTbl] (
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod2] datetime NULL,
-    [drvDTP00_DateTime3] varchar(3) NOT NULL,
+    [drvDTP00_DateTime3] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier3] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual3] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod3] datetime NULL,
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
-    [drvNM106_NamePrefix1] varchar(30) NULL,
-    [drvNM107_NameSuffix1] varchar(30) NULL,
+    [drvNM106_NamePrefix1] varchar(1) NOT NULL,
+    [drvNM107_NameSuffix1] varchar(1) NOT NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
     [drvPER02_Name] varchar(1) NOT NULL,
@@ -656,7 +656,7 @@ CREATE TABLE [dbo].[U_EGRDHW834E_DrvTbl_2300] (
     [drvDepRecID] char(12) NULL,
     [drvSSN] char(11) NULL,
     [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(22) NULL
+    [drvSubSort] varchar(38) NULL
 );
 
 -----------
@@ -1107,7 +1107,7 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual2 = 'D8'
         ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 = 'DTP'
+        ,drvDTP00_DateTime3 = CASE WHEN EecEmplStatus = 'T' THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier3 = '337'
         ,drvDTP02_DateTimeFormatQual3 = 'D8'
         ,drvDTP03_DateTimePeriod3 = EecDateOfTermination
@@ -1126,10 +1126,10 @@ BEGIN
                                        CASE WHEN BdmRecType = 'EMP' AND EepNameMiddle <> 'Z' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' AND ConNameMiddle <> 'Z' THEN LEFT(ConNameMiddle,1)
                                        END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
-                                END
+        ,drvNM106_NamePrefix1 = '' -- CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
+        ,drvNM107_NameSuffix1 = '' --CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
+                                     --WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+                                --END
         ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                             WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
                                         END        
@@ -1243,7 +1243,7 @@ BEGIN
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
-        ,drvHD02_MaintReasonCode = ''
+        ,drvHD02_MaintReasonCode = '' --BdmDedCode + ' :: ' + BdmBenOption +  ' :: ' + BdmCodeToUse +  ' :: ' + BdmBenOptionToUse
         ,drvHD03_InsuranceLineCode =    CASE WHEN BdmRecType = 'EMP' THEN
                                             CASE WHEN BdmDedCode IN ('CIEE','CIS','CI') THEN 'AG'
                                             WHEN BdmDedCode IN ('ACCG','GSEP','GEACH','GEF') THEN 'EPO'
@@ -1255,10 +1255,21 @@ BEGIN
                                             WHEN BdmDedCode IN ('CAES','CAEC','CAEF') THEN 'PRA'
                                             END
                                         END
-        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedType = 'EMP' THEN 
-                                        CASE WHEN BdmDedCode = 'CIEE' AND BdmBenOption IN ('10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
+        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmRecType = 'EMP' THEN 
+                                        /*CASE WHEN BdmDedCode = 'CIEE' AND BdmBenOption IN ('10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
                                         WHEN BdmDedCode = 'CIEE' AND BdmBenOption IN ('20KCIF','20KCIR','20KCIS','20KCIT','20KCIV','20KCIX') THEN '20000.00'
-                                        WHEN BdmDedCode = 'CIEE' AND BdmBenOption IN ('30KCIF','30KCIR','30KCIS','30KCIT','30KCIV','30KCIX') THEN '30000.00'
+                                        WHEN BdmDedCode = 'CIEE' AND BdmBenOption IN ('30KCIF','30KCIR','30KCIS','30KCIT','30KCIV','30KCIX') THEN '30000.00'                                        
+                                        WHEN BdmDedCode = 'CI' AND BdmBenOption IN ('10CI6','10KCI3','10KCI4','10KCI5','10KCI7','10KCII') THEN '10000.00'
+                                        WHEN BdmDedCode = 'CI' AND BdmBenOption IN ('20KCI','20KCI4','20KCI5','20KCI6','20KCI7','20KCII') THEN '20000.00'
+                                        WHEN BdmDedCode = 'CI' AND BdmBenOption IN ('30KC3','30KCI','30KCI4','30KCI5','30KCI6','30KCI7') THEN '30000.00'
+                                        END*/
+
+                                        CASE WHEN BdmCodeToUse = 'CIEE' AND BdmBenOptionToUse IN ('10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
+                                        WHEN BdmCodeToUse= 'CIEE' AND BdmBenOptionToUse IN ('20KCIF','20KCIR','20KCIS','20KCIT','20KCIV','20KCIX') THEN '20000.00'
+                                        WHEN BdmCodeToUse = 'CIEE' AND BdmBenOptionToUse IN ('30KCIF','30KCIR','30KCIS','30KCIT','30KCIV','30KCIX') THEN '30000.00'                                        
+                                        WHEN BdmCodeToUse = 'CI' AND BdmBenOptionToUse IN ('10CI6','10KCI3','10KCI4','10KCI5','10KCI7','10KCII') THEN '10000.00'
+                                        WHEN BdmCodeToUse = 'CI' AND BdmBenOptionToUse IN ('20KCI','20KCI4','20KCI5','20KCI6','20KCI7','20KCII') THEN '20000.00'
+                                        WHEN BdmCodeToUse = 'CI' AND BdmBenOptionToUse IN ('30KC3','30KCI','30KCI4','30KCI5','30KCI6','30KCI7') THEN '30000.00'
                                         END
                                     WHEN BdmRecType = 'DEP' THEN
                                         CASE WHEN BdmDedCode = 'CIS' AND BdmBenOption IN ('10CS30','10CS39','10CS49','10CS59','10CS69','10CS70') THEN '10000.00'
@@ -1269,7 +1280,6 @@ BEGIN
                                         WHEN BdmDedCode = 'CI' AND BdmBenOption IN ('30KC3','30KCI','30KCI4','30KCI5','30KCI6','30KCI7') THEN '15000.00'
                                         END
                                     END
-
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' THEN
                                             CASE WHEN BdmDedCode IN ('CIEE','CIS','CI') THEN 'EMP'
                                             WHEN BdmDedCode IN ('ACCG','CAE') THEN 'EMP'
@@ -1347,7 +1357,7 @@ BEGIN
                              WHEN 'DEN' THEN '2'
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
-                      END
+                      END + ' ' + CASE WHEN BdmDedCode IN ('CI','CIS','CIEE') THEN BdmCodeToUse ELSE BdmDedCode END
     INTO dbo.U_EGRDHW834E_DrvTbl_2300
     FROM dbo.U_EGRDHW834E_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1360,7 +1370,34 @@ BEGIN
         AND BdmCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID;
+        AND ConSystemID = BdmDepRecID
+    LEFT JOIN (
+                SELECT BdmEEID AS CI_BdmEEID, BdmCOID AS CI_BdmCOID,
+                CASE WHEN BdmCI IS NOT NULL AND BdmCIS IS NOT NULL THEN BdmCI 
+                WHEN BdmCI IS NOT NULL AND BdmCIEE IS NOT NULL THEN BdmCI 
+                WHEN BdmCIEE IS NOT NULL AND BdmCIS IS NOT NULL THEN BdmCIS
+                ELSE RTRIM(LTRIM(ISNULL(BdmCI,'') + ISNULL(BdmCIS, '') + ISNULL(BdmCIEE, '')))
+                END AS BdmCodeToUse
+                ,CASE WHEN BdmCI IS NOT NULL AND BdmCIS IS NOT NULL THEN BdmCIBO 
+                WHEN BdmCI IS NOT NULL AND BdmCIEE IS NOT NULL THEN BdmCIBO 
+                WHEN BdmCIEE IS NOT NULL AND BdmCIS IS NOT NULL THEN BdmCISBO
+                ELSE RTRIM(LTRIM(ISNULL(BdmCIBO,'') + ISNULL(BdmCISBO, '') + ISNULL(BdmCIEEBO, '')))
+                END AS BdmBenOptionToUse
+            FROM (
+                    SELECT BdmEEID, BdmCOID
+                        ,MAX(CASE WHEN BdmDedCode = 'CI' THEN BdmDedCode END) AS BdmCI
+                        ,MAX(CASE WHEN BdmDedCode = 'CIS' THEN BdmDedCode END) AS BdmCIS
+                        ,MAX(CASE WHEN BdmDedCode = 'CIEE' THEN BdmDedCode END) AS BdmCIEE
+                        ,MAX(CASE WHEN BdmDedCode = 'CI' THEN BdmBenOption END) AS BdmCIBo
+                        ,MAX(CASE WHEN BdmDedCode = 'CIS' THEN BdmBenOption END) AS BdmCISBo
+                        ,MAX(CASE WHEN BdmDedCode = 'CIEE' THEN BdmBenOption END) AS BdmCIEEBo
+                    FROM dbo.U_dsi_bdm_EGRDHW834E WITH (NOLOCK)
+                    WHERE BdmDedCode IN ('CI','CIS','CIEE')
+                    AND BdmRecType = 'EMP'
+                    GROUP BY BdmEEID, BdmCOID) AS BIBdm ) AS CI
+        ON CI_BdmEEID = xEEID
+        AND CI_BdmCOID = xCOID
+    ;
 
     /**************************************************************************************************
         TRAILER RECORDS

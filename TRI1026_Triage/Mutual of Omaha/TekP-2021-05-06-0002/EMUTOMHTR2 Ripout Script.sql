@@ -5,7 +5,7 @@ EMUTOMHTR2: Mutual of Omaha Benefits Export V2
 FormatCode:     EMUTOMHTR2
 Project:        Mutual of Omaha Benefits Export V2
 Client ID:      TRI1026
-Date/time:      2022-01-25 09:09:39.430
+Date/time:      2022-02-18 05:10:17.330
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -346,7 +346,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMUTOMHTR2_20220125.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMUTOMHTR2_20220218.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -356,7 +356,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Open enrollment - active','201608159','EMPEXPORT','OEACTIVE','Sep 14 2021  5:49PM','EMUTOMHTR2',NULL,NULL,NULL,'201608159','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','201605011','0','','','201605011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Open enrollment - passive','201608159','EMPEXPORT','OEPASSIVE','Jul 12 2016  6:20PM','EMUTOMHTR2',NULL,NULL,NULL,'201608159','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','201605011',NULL,'','','201605011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XPJBH',NULL,NULL,NULL,'MoO VolLife, Dis wkly Tues2pm','201905029','EMPEXPORT','SCHEDULED','Jul 12 2016  6:20PM','EMUTOMHTR2',NULL,NULL,NULL,'202110059','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','202109281',NULL,'','','201905021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test purposes only','202201121','EMPEXPORT','TEST','Jan 12 2022  3:23PM','EMUTOMHTR2',NULL,NULL,NULL,'202201121','Jan 12 2022 12:00AM','Dec 30 1899 12:00AM','202112291','2354','','','202112291',dbo.fn_GetTimedKey(),NULL,'us3rVaTRI1026',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test purposes only','202201121','EMPEXPORT','TEST','Jan 31 2022  3:32PM','EMUTOMHTR2',NULL,NULL,NULL,'202201121','Jan 12 2022 12:00AM','Dec 30 1899 12:00AM','202112291','2421','','','202112291',dbo.fn_GetTimedKey(),NULL,'us3rVaTRI1026',NULL);
 
 -----------
 -- AscImp inserts
@@ -495,7 +495,7 @@ CREATE TABLE [dbo].[U_Dsi_DrvTbl_EMUTOMHTR2] (
     [drvSalMode] varchar(50) NULL,
     [drvSalAmt] varchar(50) NULL,
     [drvClassEffDate] varchar(50) NULL,
-    [drvClassID] varchar(4) NULL,
+    [drvClassID] varchar(4) NOT NULL,
     [drvRateEffDate] varchar(1) NOT NULL,
     [drvSmoker] varchar(1) NOT NULL,
     [drvDentalLateEntrant] varchar(1) NOT NULL,
@@ -1039,6 +1039,7 @@ SELECT distinct BdmBenStartDate, BdmBenStopDate, BdmCOID, BdmDedCode,BdmRelation
 INTO dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage
 FROM U_dsi_bdm_EMUTOMHTR2
 Where BdmBenStartDate is not Null
+AND BdmBenStatus <> 'T'
 
 -----------
 -- Update coverage table with benefit amounts
@@ -1192,11 +1193,13 @@ drvClassEffDate      = CAST(CASE
                           ELSE CONVERT(VARCHAR(8), EecDateOfLastHire, 112) 
                        END  AS VARCHAR (50)), -- EecDateInJob
 
-drvClassID           =  CASE WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD40' THEN 'A001'
+drvClassID           =  CASE WHEN EecLocation = 'NE000' THEN 'A001' ELSE 'A002' END
+                            /*CASE WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD40' THEN 'A001'
                              WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD60' THEN 'A002'
                              WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode IS NULL THEN 'A004'
-                             WHEN EecPayGroup = 'WKLY' THEN 'A003'
-                             END,
+                             --WHEN EecPayGroup = 'WKLY' THEN 'A003'
+                             END*/
+                             ,
                              
 drvRateEffDate       =  '', 
                       --CAST (CASE 
@@ -1638,7 +1641,8 @@ LEFT JOIN dbo.U_EMUTOMHTR2_Audit WITH (NOLOCK)
     ON MstEEID = audEEID
     AND MstCOID = audKey2
 
-WHERE EXISTS (Select 1 from U_Dsi_DrvTbl_EMUTOMHTR2_Coverage Where bdmEEID = mstEEID)            
+WHERE EXISTS (Select 1 from U_Dsi_DrvTbl_EMUTOMHTR2_Coverage Where bdmEEID = mstEEID)      
+--AND EecPayGroup <> 'WKLY'
 
 
 
