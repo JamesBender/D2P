@@ -5,7 +5,7 @@ EPAYPREVOM: PayActiv Demographic Export
 FormatCode:     EPAYPREVOM
 Project:        PayActiv Demographic Export
 Client ID:      PRE1028
-Date/time:      2022-01-06 19:10:23.700
+Date/time:      2022-02-21 20:28:45.277
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -165,7 +165,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPAYPREVOM_20220106.csv';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPAYPREVOM_20220221.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -174,7 +174,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PayActiv Demographic Export','202112169','EMPEXPORT','ONDEM_XOE',NULL,'EPAYPREVOM',NULL,NULL,NULL,'202112169','Dec 16 2021 12:32PM','Dec 16 2021 12:32PM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PayActiv Demographic Exp-Sched','202112169','EMPEXPORT','SCH_EPAYPR',NULL,'EPAYPREVOM',NULL,NULL,NULL,'202112169','Dec 16 2021 12:32PM','Dec 16 2021 12:32PM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'PayActiv Demographic Exp-Test','202112319','EMPEXPORT','TEST_XOE','Dec 31 2021  4:06PM','EPAYPREVOM',NULL,NULL,NULL,'202112319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202112171','266','eecLocation','2','202112171',dbo.fn_GetTimedKey(),NULL,'us3cPePRE1028',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'PayActiv Demographic Exp-Test','202201191','EMPEXPORT','TEST_XOE','Jan 19 2022  5:43PM','EPAYPREVOM',NULL,NULL,NULL,'202201191','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201051','268','eecLocation','2','202201051',dbo.fn_GetTimedKey(),NULL,'us3cPePRE1028',NULL);
 
 -----------
 -- AscImp inserts
@@ -254,7 +254,7 @@ CREATE TABLE [dbo].[U_EPAYPREVOM_drvTbl] (
     [drvLName] varchar(100) NULL,
     [drvEmpType] varchar(6) NOT NULL,
     [drvIncomeRate] varchar(30) NULL,
-    [drvPhNum] varchar(12) NULL,
+    [drvPhNum] varchar(13) NULL,
     [drvEmail] varchar(50) NULL,
     [drvLocId] varchar(25) NULL,
     [drvPayGroup] char(6) NULL,
@@ -303,8 +303,11 @@ Purpose: PayActiv Demographic Export
 Revision History
 ----------------
 01/06/2022 by AP:
-	- Updated employee id field logic.
-	- Cleaned up phone number logic.
+    - Updated employee id field logic.
+    - Cleaned up phone number logic.
+
+02/21/2022 by AP:
+	- Added Mobile Phone to phone number field.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EPAYPREVOM';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EPAYPREVOM';
@@ -514,9 +517,15 @@ BEGIN
         ,drvLName = EepNameLast
         ,drvEmpType = CASE WHEN EecSalaryOrHourly = 'S' THEN 'Salary' ELSE 'Hourly' END
         ,drvIncomeRate = CAST(CASE WHEN EecSalaryOrHourly = 'S' THEN EecAnnSalary ELSE CAST(EecHourlyPayRate AS DECIMAL(10,2)) END AS VARCHAR)
-        ,drvPhNum = '(' + SUBSTRING(EepPhoneHomeNumber, 1, 3) + ')' + 
+        ,drvPhNum = CASE WHEN M.EfoPhoneNumber IS NOT NULL THEN 
+						'(' + SUBSTRING(M.EfoPhoneNumber, 1, 3) + ')' + 
+                    SUBSTRING(M.EfoPhoneNumber, 4, 3) + '-' + 
+                    SUBSTRING(M.EfoPhoneNumber, 7, 4)
+					
+					ELSE '(' + SUBSTRING(EepPhoneHomeNumber, 1, 3) + ')' + 
                     SUBSTRING(EepPhoneHomeNumber, 4, 3) + '-' + 
                     SUBSTRING(EepPhoneHomeNumber, 7, 4)
+				END
         ,drvEmail = EepAddressEMail
         ,drvLocId = LocDesc
         ,drvPayGroup = EecPayGroup
@@ -533,6 +542,7 @@ BEGIN
         ON LocCode = EecLocation
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+	OUTER APPLY (SELECT TOP 1 EfoEEID, EfoPhoneNumber FROM dbo.EmpMPhon WITH(NOLOCK) WHERE efoPhoneType = 'CEL' AND EfoEEID = xEEID) M
     ;
 
     --==========================================
