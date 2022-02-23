@@ -1,5 +1,0 @@
-Interface details (ENEWVAL834)
-Env – NW12 
-Server – NW1WUP2DB02
-Database – ULTIPRO_WPVST
-Export Name – New England 834 Export

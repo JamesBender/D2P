@@ -1,5 +1,0 @@
-Interface details (EDOENYLBAX)
-Env – EW33
-Server – EW3WUP3DB01
-Database – ULTIPRO_WPDOE
-Export Name – NY Life Beneficiary Admin

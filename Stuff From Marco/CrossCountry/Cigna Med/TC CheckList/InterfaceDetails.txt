@@ -1,5 +1,0 @@
-Interface details (ECIGMED834)
-Env – NW13 
-Server – NW1WUP3DB03
-Database – ULTIPRO_WPALKMI
-Export Name – Cigna Medical 834 Export

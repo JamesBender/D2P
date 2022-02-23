@@ -1,6 +1,0 @@
-Interface details (EHLFIAFPAY)
-Env – T11 
-Server – T1SUP1DB03
-Database – ULTIPRO_HLIFE
-Export Name – iA Financial Group Payroll Export
-

@@ -1,5 +1,0 @@
-Interface details (EFUADOL401)
-Env – EW43 
-Server – EW4WUP3DB01
-Database – ULTIPRO_WPLGCSI
-Export Name – ForUsAll 401K Export

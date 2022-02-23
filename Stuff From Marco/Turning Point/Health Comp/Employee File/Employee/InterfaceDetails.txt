@@ -1,6 +1,0 @@
-Interface details (EHCMEMPEXP)
-Env – NW14 
-Server – NW1WUP4DB02    
-Database – ULTIPRO_WPTPCC
-Export Name – Health Comp FSA Employee Export
-

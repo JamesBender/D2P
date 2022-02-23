@@ -1,5 +1,0 @@
-Interface details (ELOMMED834)
-Env – EW44 
-Server – EW4WUP4DB01
-Database – ULTIPRO_WPNCO
-Export Name – Loomis 834 Export

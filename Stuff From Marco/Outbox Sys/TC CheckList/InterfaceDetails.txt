@@ -1,5 +1,0 @@
-Interface details (EMASMUTUAL)
-Env – NW11 
-Server – NW1WUP1DB03
-Database – ULTIPRO_WPOUTB
-Export Name – Mass Mutual 401K Export

@@ -1,5 +1,0 @@
-Interface details (EDASCIGRET)
-Env – EW11 
-Server – EW1WUP1DB01
-Database – ULTIPRO_WPDASDI
-Export Name – Cigna LTD STD FMLA Export

@@ -1,5 +1,0 @@
-Interface details (EFIDEL401K)
-Env – NW13 
-Server – NW1WUP3DB03
-Database – ULTIPRO_WPALKMI
-Export Name – Fidelity 401k Export

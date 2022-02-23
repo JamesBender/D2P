@@ -1,5 +1,0 @@
-Interface details (ECOBREG2QB)
-Env – EW24 
-Server – EW2WUP4DB02
-Database – ULTIPRO_WPREGLT
-Export Name – Discovery COBRA QB file 2

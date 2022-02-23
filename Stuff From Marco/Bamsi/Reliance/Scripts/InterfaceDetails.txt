@@ -1,5 +1,0 @@
-Interface details (ERELDAMEXP)
-Env – E32 
-Server – E3SUP2DB01
-Database – ULTIPRO_BAMSI
-Export Name – Reliance Disability Management Export

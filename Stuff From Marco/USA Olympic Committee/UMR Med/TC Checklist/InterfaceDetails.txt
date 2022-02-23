@@ -1,5 +1,0 @@
-Interface details (EUMRUSO834)
-Env – EW33 
-Server – EW3WUP3DB03
-Database – ULTIPRO_WPUSOC
-Export Name – UMR MED 834 Export

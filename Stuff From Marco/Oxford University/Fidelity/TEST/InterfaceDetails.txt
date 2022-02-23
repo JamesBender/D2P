@@ -1,5 +1,0 @@
-Interface details (EFIDEL403B)
-Env – EW23 
-Server – EW2WUP3DB03
-Database – ULTIPRO_WPOXFUP
-Export Name – Fidelity 403B Export

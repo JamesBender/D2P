@@ -1,5 +1,0 @@
-Interface details (EDISCCOBRA)
-Env – NW14 
-Server – NW1WUP4DB02
-Database – ULTIPRO_WPTRCL
-Export Name – Discovery Benefits Cobra Export

@@ -1,5 +1,0 @@
-Interface details (ERELCIAEXP)
-Env – NW14 
-Server – NW1WUP4DB02
-Database – ULTIPRO_WPMIDD
-Export Name – Reliance CI ACC Export

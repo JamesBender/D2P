@@ -1,5 +1,0 @@
-Interface details (EEBCBADCES)
-Env – EW11 
-Server – EW1WUP1DB01
-Database – ULTIPRO_WPBAD
-Export Name – EBC Commute Ease Flex File

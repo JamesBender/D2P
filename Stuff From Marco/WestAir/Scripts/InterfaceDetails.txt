@@ -1,5 +1,0 @@
-Interface details (ECIGNCCHOS)
-Env – EW41 
-Server – EW4WUP1DB01
-Database – ULTIPRO_WPWGE
-Export Name – Cigna Accidental and Hospital Export

@@ -1,5 +1,0 @@
-Interface details (EUNUMBAWFE)
-Env – EW23 
-Server – EW2WUP3DB02
-Database – ULTIPRO_WPBATES
-Export Name – Unum Basic Life, Vol Life ADD Export

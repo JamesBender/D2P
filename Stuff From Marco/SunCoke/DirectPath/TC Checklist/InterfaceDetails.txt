@@ -1,5 +1,0 @@
-Interface details (EDPTCENEXP)
-Env – EW23 
-Server – EW2WUP3DB03
-Database – ULTIPRO_WPSUNCO
-Export Name – Direct Path Medical Export

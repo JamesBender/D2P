@@ -1,5 +1,0 @@
-Interface details (EDRBMUSEXP)
-Env – NW15 
-Server – NW1WUP5DB01
-Database – ULTIPRO_WPMEES
-Export Name – Dearborn File Export

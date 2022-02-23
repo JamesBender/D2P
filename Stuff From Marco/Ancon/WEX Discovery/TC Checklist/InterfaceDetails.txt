@@ -1,5 +1,0 @@
-Interface details (EDISCANEXP)
-Env – EW34 
-Server – EW3WUP4DB01
-Database – ULTIPRO_WPANCON
-Export Name – WEX/Discovery Benefits Cobra Export

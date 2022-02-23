@@ -1,5 +1,0 @@
-Interface details (ETRACOL401)
-Env – NW14 
-Server – N1SUP4DB54
-Database – ULTIPRO_COLLINS
-Export Name – TransAmerica 401k Export

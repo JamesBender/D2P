@@ -1,5 +1,0 @@
-Interface details (ESURADP401)
-Env – EW15 
-Server – EW1WUP5DB04
-Database – ULTIPRO_WPSURE
-Export Name – ADP 401k Export

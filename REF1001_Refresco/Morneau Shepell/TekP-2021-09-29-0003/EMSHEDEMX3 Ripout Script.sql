@@ -1,11 +1,11 @@
 /**********************************************************************************
 
-EMSHEDEMX3: Morneau Shepell Demograpic Export
+EMSHEDEMX3: Morneau Shepell Demograpic Export V3
 
 FormatCode:     EMSHEDEMX3
-Project:        Morneau Shepell Demograpic Export
+Project:        Morneau Shepell Demograpic Export V3
 Client ID:      REF1001
-Date/time:      2021-11-16 09:49:54.637
+Date/time:      2022-02-23 10:13:44.443
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -224,16 +224,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMSHEDEMX3_20211116.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMSHEDEMX3_20220223.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Morneau Shepell Demo Export','202011229','EMPEXPORT','ONDEM_XOE','Dec  3 2020 12:00AM','EMSHEDEMX3',NULL,NULL,NULL,'202011229','Nov 22 2020 12:00AM','Dec 30 1899 12:00AM','202011221',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Morneau Shepell Demo Export','202201249','EMPEXPORT','ONDEM_XOE','Jan 24 2022 12:00AM','EMSHEDEMX3',NULL,NULL,NULL,'202201249','Jan 24 2022 12:00AM','Dec 30 1899 12:00AM','202201101',NULL,'','','202201101',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',CMCOX',NULL,NULL,NULL,'Morneau Shepell Demo-Wed 11pm','202011229','EMPEXPORT','SCH_EMSHED','Dec  3 2020 12:00AM','EMSHEDEMX3',NULL,NULL,NULL,'202111109','Nov 22 2020 12:00AM','Dec 30 1899 12:00AM','202111031',NULL,'','','202011221',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','CMCOX',NULL,NULL,NULL,'Morneau Shepell Demo Exp-Test','202106049','EMPEXPORT','TEST_XOE','Jun  4 2021  2:18PM','EMSHEDEMX3',NULL,NULL,NULL,'202106049','Jun  4 2021 12:00AM','Dec 30 1899 12:00AM','202105211','465','','','202105211',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','CMCOX',NULL,NULL,NULL,'Morneau Shepell Demo Exp-Test','202201249','EMPEXPORT','TEST_XOE','Jan 24 2022  4:43PM','EMSHEDEMX3',NULL,NULL,NULL,'202201249','Jan 24 2022 12:00AM','Dec 30 1899 12:00AM','202201101','431','','','202201101',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts

@@ -1,5 +1,0 @@
-Interface details (EAMCBRNPM)
-Env – EW41 
-Server – EW4WUP1DB01
-Database – ULTIPRO_WPUPI
-Export Name – Ameriflex Cobra NPM Export

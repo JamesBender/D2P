@@ -1,5 +1,0 @@
-Interface details (EHRTDAYEXP)
-Env – EW21 
-Server – EW2WUP1DB03
-Database – ULTIPRO_WPDAYG
-Export Name –  HireTech Payroll Export

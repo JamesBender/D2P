@@ -1,5 +1,0 @@
-Interface details (EKAINSP834)
-Env – INSPR 
-Server – EW3WUP4DB03
-Database – ULTIPRO_WPINSPR
-Export Name – Kaiser Med 834 Export

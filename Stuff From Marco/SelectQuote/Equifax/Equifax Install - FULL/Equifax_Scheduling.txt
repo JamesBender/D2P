@@ -1,7 +1,0 @@
-update AscExp
-  set expLastStartPerControl = convert(varchar(10),getdate()-7,112)+ '2',
-      expLastEndPerControl = convert(varchar(10),getdate(),112) + '1'
-  where expFormatCode = 'EEQFX' and expExportCode = 'SCHEDULED';
-GO
-EXEC dbo.dsi_sp_testswitchbox_v2 'EEQFX', 'SCHEDULED';
-GO

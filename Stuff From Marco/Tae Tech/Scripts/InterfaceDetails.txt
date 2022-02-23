@@ -1,6 +1,0 @@
-Interface details (ECIGTAE834)
-Env – NW11 
-Server – NW1WUP1DB03
-Database – ULTIPRO_WPTRIAE
-Export Name – Cigna 834 Export
-

@@ -1,6 +1,0 @@
-Interface details (EUHCWYN834)
-Env – EW14 
-Server – EW1WUP4DB03
-Database – ULTIPRO_WPWAYNE
-Export Name – UHC 834 Export
-

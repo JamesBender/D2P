@@ -1,5 +1,0 @@
-Interface details (EDRMLDBEXP)
-Env – TW11 
-Server – TW1WUP1DB02
-Database – ULTIPRO_WPDOMC
-Export Name – League Med and LTD Export

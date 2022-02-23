@@ -1,5 +1,0 @@
-Interface details (EKAIBYP834)
-Env – NW13 
-Server – NW1WUP3DB03
-Database – ULTIPRO_WPBPCO
-Export Name – Kaiser 834 Export

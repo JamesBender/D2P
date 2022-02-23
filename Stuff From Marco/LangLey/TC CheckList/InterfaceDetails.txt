@@ -1,5 +1,0 @@
-Interface details (EKAZDEMEXP)
-Env – EW15 
-Server – EW4WUP5DB03
-Database – ULTIPRO_WPLNG
-Export Name – Kazoo Demo Export

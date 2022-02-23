@@ -1,5 +1,0 @@
-Interface details (EUMRFSAEXP)
-Env – EW11 
-Server – EW2WUP4DB02
-Database – ULTIPRO_WPTRNTY
-Export Name – UMR FSA Export

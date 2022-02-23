@@ -1,5 +1,0 @@
-Interface details (ECCCPAYEXP)
-Env – E32 
-Server – E3SUP2ST01
-Database – ULTIPRO_GLEN
-Export Name – CCC Payroll Export

@@ -1,6 +1,0 @@
-Interface details (ECSC834LAI)
-Env – NW11 
-Server – NW1WUP1DB03
-Database – ULTIPRO_WPLAIKA
-Export Name – CoreSource 834 Export
-

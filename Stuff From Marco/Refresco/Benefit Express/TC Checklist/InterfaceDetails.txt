@@ -1,5 +1,0 @@
-Interface details (EBENACAEXP)
-Env – E43 
-Server – E4SUP3DB01
-Database – ULTIPRO_RBUS
-Export Name – Payroll Hours and Earning Export

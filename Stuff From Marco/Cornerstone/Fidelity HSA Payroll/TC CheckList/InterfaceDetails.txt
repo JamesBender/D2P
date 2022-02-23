@@ -1,5 +1,0 @@
-Interface details (EFIDHSAPAY)
-Env – NW12
-Server – NW1WUP2DB03
-Database – ULTIPRO_WPCHLI
-Export Name – Fidelity FSA HSA Payroll

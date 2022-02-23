@@ -1,5 +1,0 @@
-Interface details (EANTLIFEXP)
-Env – NW13 
-Server – NW1WUP3DB03
-Database – ULTIPRO_WPBPCO
-Export Name – Anthem VOL Plans Export

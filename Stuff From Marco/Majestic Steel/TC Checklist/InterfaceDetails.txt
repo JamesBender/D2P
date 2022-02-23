@@ -1,5 +1,0 @@
-Interface details (EOPTMAJHSA)
-Env – EW15 
-Server – EW1WUP5DB01
-Database – ULTIPRO_WPMJS
-Export Name – Optum HSA Export

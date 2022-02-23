@@ -1,5 +1,0 @@
-Interface details (EUHC834EXPs)
-Env – NM14 
-Server – NW1WUP4DB01
-Database – ULTIPRO_WPSSMCO
-Export Name – UHC 834 Export

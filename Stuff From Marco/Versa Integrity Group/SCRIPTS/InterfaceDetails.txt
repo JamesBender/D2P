@@ -1,5 +1,0 @@
-Interface details (EHSAVIGEXP)
-Env – NW12 
-Server – NW1WUP2DB01
-Database – ULTIPRO_WPVIGI
-Export Name – HSA Contribution Export

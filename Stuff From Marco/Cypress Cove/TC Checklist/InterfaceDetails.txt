@@ -1,5 +1,0 @@
-Interface details (ECYCDPEXP)
-Env – EW33 
-Server – EW3WUP3DB01
-Database – ULTIPRO_WPCCHP
-Export Name – Daily Pay Earnings File

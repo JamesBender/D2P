@@ -1,6 +1,0 @@
-Interface details (ECIGNVS834)
-Env – EW23 
-Server – EW2WUP3DB03
-Database – ULTIPRO_WPNORVI
-Export Name – Cigna 834 Export
-

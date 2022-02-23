@@ -1,5 +1,0 @@
-Interface details (ELFGEDIT2C)
-Env – EW33 
-Server – EW3WUP3DB03
-Database – ULTIPRO_WPTECHI
-Export Name – Lincoln EDI file V2

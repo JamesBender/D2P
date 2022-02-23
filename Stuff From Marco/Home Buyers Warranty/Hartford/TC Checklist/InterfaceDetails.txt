@@ -1,5 +1,0 @@
-Interface details (EHARTHBFML)
-Env – EW42
-Server – EW4WUP2DB03
-Database – ULTIPRO_WPHBWC
-Export Name – Hartford STD LTD Export

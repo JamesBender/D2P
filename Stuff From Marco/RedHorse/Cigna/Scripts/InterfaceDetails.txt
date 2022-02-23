@@ -1,5 +1,0 @@
-Interface details (ECIG834RED)
-Env – NW13 
-Server – NW1WUP3DB02
-Database – ULTIPRO_WPREDCO
-Export Name – Cigna 834 Export File

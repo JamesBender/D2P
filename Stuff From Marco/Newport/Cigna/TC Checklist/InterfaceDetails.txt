@@ -1,5 +1,0 @@
-Interface details (ECIGNEWSAE)
-Env – EW21
-Server – EW2WUP1DB02
-Database – ULTIPRO_WPNEWG
-Export Name – Cigna Critical Illness Export

@@ -1,5 +1,0 @@
-Interface details (EBHRELIEXP)
-Env – EW22 
-Server – EW2WUP2DB03
-Database – ULTIPRO_WPSEAG
-Export Name – Bright Horizon Eligibility Export

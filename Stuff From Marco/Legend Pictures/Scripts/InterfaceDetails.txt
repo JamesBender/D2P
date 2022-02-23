@@ -1,5 +1,0 @@
-Interface details (EDISLEGFSA)
-Env – NW13 
-Server – NW1WUP3DB01
-Database – ULTIPRO_WPLEGEN
-Export Name – Discovery FSA Eligibility Export

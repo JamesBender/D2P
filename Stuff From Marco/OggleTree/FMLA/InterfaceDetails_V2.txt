@@ -1,5 +1,0 @@
-Interface details (EYWFML2EXP)
-Env – E11 
-Server – E1SUP1DB52
-Database – ULTIPRO_OGLT
-Export Name – York/CareWorks FMLA Export V2

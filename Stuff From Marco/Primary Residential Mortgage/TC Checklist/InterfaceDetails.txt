@@ -1,5 +1,0 @@
-Interface details (ECIGELIPRM)
-Env – NW12 
-Server – EW3WUP3DB01
-Database – ULTIPRO_WPPRSMO
-Export Name – Cigna/Kadalyst Eligibility Export

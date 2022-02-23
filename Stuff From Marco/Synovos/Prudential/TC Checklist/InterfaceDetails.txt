@@ -1,5 +1,0 @@
-Interface details (EPRUDELIXP)
-Env – EW13 
-Server – EW1WUP3DB02
-Database – ULTIPRO_WPSTORE
-Export Name – Prudential Benefit Eligibility

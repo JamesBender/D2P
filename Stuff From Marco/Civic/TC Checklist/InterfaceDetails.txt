@@ -1,5 +1,0 @@
-Interface details (EDSICIBEXP)
-Env – NW13 
-Server – NW1WUP3DB01
-Database – ULTIPRO_WPCIPLI
-Export Name – Discovery Benefits Cobra Export

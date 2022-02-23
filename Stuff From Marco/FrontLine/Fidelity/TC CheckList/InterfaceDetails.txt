@@ -1,5 +1,0 @@
-Interface details (EFIDRES401)
-Env – EW12 
-Server – EW1WUP2DB01
-Database – ULTIPRO_WPFTECH
-Export Name – Fidelity 401k Export

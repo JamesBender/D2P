@@ -1,5 +1,0 @@
-Interface details (EAFLACCEXP)
-Env – EW33
-Server – EW3WUP3DB01
-Database – ULTIPRO_WPADMHN
-Export Name – Aflac ACC/HOSP/CRIT Illness Export

@@ -1,5 +1,0 @@
-Interface details (EOPTENRNET)
-Env – EW24 
-Server – EW2WUP4DB03
-Database – ULTIPRO_WPNHSI
-Export Name – Optum HSA Enrollment Export

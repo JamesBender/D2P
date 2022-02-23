@@ -1,5 +1,0 @@
-Interface details (EAET834EXP)
-Env – E42
-Server – E4SUP2DB04
-Database – ULTIPRO_NYAR
-Export Name – Aetna 834 Export
