@@ -1,0 +1,5 @@
+Interface details (ECIGFCC834)
+Env – EW21 
+Server – EW2WUP1DB01
+Database – ULTIPRO_WPFCCU
+Export Name – Cigna 834 Export

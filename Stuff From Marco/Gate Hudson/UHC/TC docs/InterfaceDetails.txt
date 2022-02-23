@@ -1,0 +1,5 @@
+Interface details (EUHCGHAEXP)
+Env – EW44 
+Server – EW4WUP4DB03
+Database – ULTIPRO_WPGHAI
+Export Name – UHC Accident and Hospital Export

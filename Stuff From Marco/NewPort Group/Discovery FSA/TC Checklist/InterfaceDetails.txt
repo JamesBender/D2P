@@ -1,0 +1,5 @@
+Interface details (EDISNPGFSA)
+Env – EW21 
+Server – EW2WUP1DB02
+Database – ULTI_WPNEWG
+Export Name – Discovery FSA Eligibility Export

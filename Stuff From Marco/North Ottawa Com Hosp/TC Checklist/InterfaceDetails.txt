@@ -1,0 +1,5 @@
+Interface details (ENORUNUACC)
+Env – N13 
+Server – N1SUP3DB52
+Database – ULTIPRO_NOCH
+Export Name – Accident and Critical Illness

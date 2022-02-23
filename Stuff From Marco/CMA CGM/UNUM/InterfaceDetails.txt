@@ -1,0 +1,7 @@
+Interface details (EMERLTDEXP)
+Env – EW23 
+Server – EW2WUP3DB01
+Database – ULTIPRO_WPCCG
+Export Name – Mercer Pension Export
+
+

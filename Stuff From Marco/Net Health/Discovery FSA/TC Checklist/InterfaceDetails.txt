@@ -1,0 +1,5 @@
+Interface details (EDISNETFSA)
+Env – EW24 
+Server – EW2WUP4DB03
+Database – ULTIPRO_WPNHSI
+Export Name – Discovery FSA Eligibility Export

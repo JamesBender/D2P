@@ -1,0 +1,5 @@
+Interface details (EOPTNPGENR)
+Env – EW21 
+Server – EW2WUP1DB02
+Database – ULTI_WPNEWG
+Export Name – Optum HSA Eligibility Export

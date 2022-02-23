@@ -1,0 +1,5 @@
+Interface details (EREGDD83EP)
+Env – EW31 
+Server – EW3WUP1DB04
+Database – ULTIPRO_WPWADEN
+Export Name – Regence 834 Export

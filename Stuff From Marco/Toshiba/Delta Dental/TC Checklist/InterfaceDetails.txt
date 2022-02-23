@@ -1,0 +1,5 @@
+Interface details (EDELTOS834)
+Env – EW24 
+Server – EW4WUP2DB03
+Database – ULTIPRO_WPTOAM
+Export Name – Delta Dental 834 Export

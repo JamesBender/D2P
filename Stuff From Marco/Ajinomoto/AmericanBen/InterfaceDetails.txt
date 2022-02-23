@@ -1,0 +1,5 @@
+Interface details (EAMBEN834X)
+Env – EW11 
+Server – EW1WUP1DB03
+Database – ULTIPRO_WPAJINO
+Export Name – AmeriBen 834 Export

@@ -1,0 +1,5 @@
+Interface details (EUMDMDV834)
+Env – EW24 
+Server – EW2WUP4DB02
+Database – ULTIPRO_WPTRNTY
+Export Name – UMR MedDenVis 834 Export

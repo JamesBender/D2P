@@ -1,0 +1,54 @@
+0A2S27M001		if eeddedcode = MPPO, MPPOA and eeclocation = 010,020,040,050,070,100, 160,500,999 send 0A2S27M001
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 010,020,040,050,070,100, 160,500,999 send 0A2S27V001
+0A2S27M002		if eeddedcode = MPPO, MPPOA and eeclocation = 090,140 send 0A2S27M002
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 090,140 send 0A2S27V001
+0A2S27M003		if eeddedcode = MPPO, MPPOA and eeclocation = 030,060,080 send 0A2S27M003
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 030,060,080 send 0A2S27V001
+0A2S27M004		if eeddedcode = MPPO, MPPOA and eeclocation = 110150210 send 0A2S27M004
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 110150210 send 0A2S27V001
+0A2S27M005		if eeddedcode = MPPO, MPPOA and eeclocation = 120 send 0A2S27M005
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 120 send 0A2S27V001
+0A2S27M006		if eeddedcode = MPPO, MPPOA and eeclocation = 410, 420 send 0A2S27M006
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 410, 420 send 0A2S27V001
+0A2S27M007		if eeddedcode = MPPO, MPPOA and eeclocation = 190 send 0A2S27M007
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 190 send 0A2S27V001
+0A2S27M008		if eeddedcode = MCDHP, MCHDA and eeclocation = 010,020,040,050,070,100, 160,500,999 send 0A2S27M008
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 010,020,040,050,070,100, 160,500,999 send 0A2S27V001
+0A2S27M009		if eeddedcode = MCDHP, MCHDA and eeclocation = 090,140 send 0A2S27M009
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 090,140 send 0A2S27V001
+0A2S27M010		if eeddedcode = MCDHP, MCHDA and eeclocation = 030,060,080 send 0A2S27M010
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 030,060,080 send 0A2S27V001
+0A2S27M011		if eeddedcode = MCDHP, MCHDA and eeclocation = 110150210 send 0A2S27M011
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 110150210 send 0A2S27V001
+0A2S27M012		if eeddedcode = MCDHP, MCHDA and eeclocation = 120 send 0A2S27M012
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 120 send 0A2S27V001
+0A2S27M013		if eeddedcode = MCDHP, MCHDA and eeclocation = 410, 420 send 0A2S27M013
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 410, 420 send 0A2S27V001
+0A2S27M014		if eeddedcode = MCDHP, MCHDA and eeclocation = 190 send 0A2S27M014
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 190 send 0A2S27V001
+0A2S27M015		if eeddedcode = MPPO, MPPOA and eeclocation = 610, 620 send 0A2S27M015
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 610, 620 send 0A2S27V001
+0A2S27M016		if eeddedcode = MCDHP, MCHDA and eeclocation = 610, 620 send 0A2S27M016
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 610, 620 send 0A2S27V001
+0A2S27M017		if eeddedcode = MPPO, MPPOA and eeclocation = 430 send 0A2S27M017
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 430 send 0A2S27V001
+0A2S27M018		if eeddedcode = MCDHP, MCHDA and eeclocation = 430 send 0A2S27M018
+0A2S27V001		if eeddedcode = MPPO, MPPOA, MCDHP, MCHDA and eeclocation = 430 send 0A2S27V001
+0A2S27D001	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 010,020,040,050,070,100, 160,500,999 send 0A2S27D001
+0A2S27D002	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 010,020,040,050,070,100, 160,500,999 send 0A2S27D002
+0A2S27D003	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 090,140 send 0A2S27D003
+0A2S27D004	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 090,140 send 0A2S27D004
+0A2S27D005	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 110150210 send 0A2S27D005
+0A2S27D006	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 110150210 send 0A2S27D006
+0A2S27D007	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 030,060,080 send 0A2S27D007
+0A2S27D008	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 030,060,080 send 0A2S27D008
+0A2S27D009	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 120 send 0A2S27D009
+0A2S27D010	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 120 send 0A2S27D010
+0A2S27D011	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 410, 420 send 0A2S27D011
+0A2S27D012	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 410, 420 send 0A2S27D012
+0A2S27D013	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 190 send 0A2S27D013
+0A2S27D014	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 190 send 0A2S27D014
+0A2S27D015	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 610, 620 send 0A2S27D015
+0A2S27D016	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 610, 620 send 0A2S27D016
+0A2S27D017	Migrated	if eeddedcode = DENB, DENBA and eeclocation = 430 send 0A2S27D017
+0A2S27D018	Migrated	if eeddedcode = DENM, DENMA and eeclocation = 430 send 0A2S27D018

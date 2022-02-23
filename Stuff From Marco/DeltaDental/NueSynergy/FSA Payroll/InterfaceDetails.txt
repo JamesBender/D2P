@@ -1,0 +1,5 @@
+Interface details (ENUEDDFSAX)
+Env – EW31 
+Server – EW3WUP1DB04
+Database – ULTIPRO_WPWADEN
+Export Name – NueSynergy FSA Payroll Export

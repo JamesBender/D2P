@@ -1,0 +1,7 @@
+Interface details (EANTNRP834)
+Env – EW33 
+Server – EW3WUP3DB01
+Database – ULTIPRO_WPNRPIC
+Export Name – Anthem 834 Export
+
+

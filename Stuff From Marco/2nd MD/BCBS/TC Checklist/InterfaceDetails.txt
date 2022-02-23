@@ -1,0 +1,5 @@
+Interface details (EBCBS834EX)
+Env – NW11 
+Server – NW1WUP1DB03
+Database – ULTIPRO_WPNDMD
+Export Name – BCBS 834 Export

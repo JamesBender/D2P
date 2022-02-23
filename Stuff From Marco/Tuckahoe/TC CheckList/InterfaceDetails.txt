@@ -1,0 +1,6 @@
+Interface details (EEYETUC834)
+Env – EW44 
+Server – EW4WUP4DB03
+Database – ULTIPRO_WPTUHOL
+Export Name – EyeMed 834 Export
+

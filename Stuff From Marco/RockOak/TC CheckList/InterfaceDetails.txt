@@ -1,0 +1,5 @@
+Interface details (ELEGROCEXP)
+Env – NW15 
+Server – NW1WUP5DB03
+Database – ULTIPRO_WPROSG
+Export Name – Legion General Export

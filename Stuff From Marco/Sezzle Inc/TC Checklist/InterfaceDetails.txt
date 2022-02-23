@@ -1,0 +1,5 @@
+Interface details (ESEZUHC834)
+Env – NW15
+Server – NW1WUP5DB04
+Database – ULTIPRO_WPSEZZ
+Export Name – UHC 834 Export

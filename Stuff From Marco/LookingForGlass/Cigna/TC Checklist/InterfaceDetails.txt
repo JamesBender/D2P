@@ -1,0 +1,5 @@
+Interface details (ECIG834EXP)
+Env – EW43 
+Server – EW4WUP3DB01
+Database – ULTIPRO_WPLGCSI
+Export Name – Cigna MED 834 Export

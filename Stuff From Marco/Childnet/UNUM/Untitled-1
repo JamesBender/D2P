@@ -1,0 +1,26 @@
+    LEFT JOIN (
+        -- Get NewHire, ReHire, Terms from Audit
+        SELECT audEEID
+            ,audNewHire = MAX(audNewHire)
+            ,audReHire = MAX(audReHire)
+            ,audTerm = MAX(audTerm)
+            ,audSalaryChange = MAX(audSalaryChange)
+        FROM dbo.U_EUNUMCHLFE_Audit
+        WHERE (audNewHire = 'Y'
+            OR audReHire = 'Y'
+            OR audTerm = 'Y'
+            OR audSalaryChange = 'Y'
+        )
+        GROUP BY audEEID
+    ) AuditRecords
+        ON audEEID = xEEID
+    LEFT JOIN (
+        -- Get Most Recent Salary Change Date
+        SELECT EjhEEID, EjhCOID
+            ,EjhJobEffDate = MAX(EjhJobEffDate)
+        FROM dbo.EmpHJob
+        WHERE EjhIsRateChange = 'Y'
+        GROUP BY EjhEEID, EjhCOID
+    ) EmpHJob
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID;

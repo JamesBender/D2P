@@ -1,0 +1,5 @@
+Interface details (EMEDCAN834)
+Env – EW42 
+Server – EW4WUP2DB01
+Database – ULTIPRO_WPCBP
+Export Name – Medica 834 Export

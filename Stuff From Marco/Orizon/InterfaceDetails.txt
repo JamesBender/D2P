@@ -1,0 +1,5 @@
+Interface details (EBCBS834EX)
+Env – EW33 
+Server – EW3WUP3DB03
+Database – ULTIPRO_WPTECHI
+Export Name – BCBS 834 Export

@@ -1,0 +1,5 @@
+Interface details (EBCBSTFBN)
+Env – EW12 
+Server – EW1WUP2DB01
+Database – ULTIPRO_WPTCASH
+Export Name – BCBSIL/Dearborn Group Export

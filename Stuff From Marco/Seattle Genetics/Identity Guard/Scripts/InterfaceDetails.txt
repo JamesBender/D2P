@@ -1,0 +1,5 @@
+Interface details (EIDGAENEXP)
+Env – EW22 
+Server – EW2WUP2DB03
+Database – ULTIPRO_WPSEAG
+Export Name – Identity Guard Auto Enrollment Export

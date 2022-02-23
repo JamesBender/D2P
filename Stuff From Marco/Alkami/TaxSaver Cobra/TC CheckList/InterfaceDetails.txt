@@ -1,0 +1,5 @@
+Interface details (EALKCBREXP)
+Env – NW13 
+Server – NW1WUP3DB03
+Database – ULTIPRO_WPALKMI
+Export Name – Tax Saver Cobra QB Export

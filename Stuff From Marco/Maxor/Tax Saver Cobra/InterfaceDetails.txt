@@ -1,0 +1,5 @@
+Interface details (ETSMCBREXP)
+Env – EW34 
+Server – EW3WUP4DB01
+Database – ULTIPRO_WPMAXOR
+Export Name – TaxSaver COBRA QB Export

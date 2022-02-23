@@ -1,0 +1,5 @@
+Interface details (ECSB401KEX)
+Env – NW12 
+Server – NW1WUP2DB02
+Database – ULTIPRO_WPSQINC
+Export Name – Charles Schwab 401k Export

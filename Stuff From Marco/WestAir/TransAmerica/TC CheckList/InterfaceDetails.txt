@@ -1,0 +1,5 @@
+Interface details (ETRNWES401)
+Env – EW41 
+Server – EW4WUP1DB01
+Database – ULTIPRO_WPWGE
+Export Name – TransAmerica 401k Export

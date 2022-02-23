@@ -1,0 +1,5 @@
+Interface details (EDISNETFSA)
+Env – EW12 
+Server – EW1WUP2DB01
+Database – ULTIPRO_WPTCASH
+Export Name – Discovery Benefits HSA Export

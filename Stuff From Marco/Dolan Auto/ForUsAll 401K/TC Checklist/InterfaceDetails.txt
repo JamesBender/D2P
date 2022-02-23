@@ -1,0 +1,5 @@
+Interface details (EFUADOL401)
+Env – NW13 
+Server – NW1WUP3DB03
+Database – ULTIPRO_WPDOLAN
+Export Name – ForUsAll 401K Export

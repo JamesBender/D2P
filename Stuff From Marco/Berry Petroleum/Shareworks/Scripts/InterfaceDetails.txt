@@ -1,0 +1,5 @@
+Interface details (ESWELBPEXP)
+Env – NW13 
+Server – NW1WUP3DB03
+Database – ULTIPRO_WPBPCO
+Export Name – Shareworks Eligibility Export

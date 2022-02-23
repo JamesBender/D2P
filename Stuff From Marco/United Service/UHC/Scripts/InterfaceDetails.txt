@@ -1,0 +1,6 @@
+Interface details (EUHCUSO834)
+Env – EW21 
+Server – EW2WUP1DB02
+Database – ULTIPRO_WPUSO
+Export Name – UHC 834 Export (MED/DENT/VIS)
+

@@ -1,0 +1,5 @@
+Interface details (ECIGWRH834)
+Env – EW45 
+Server – EW4WUP5DB01
+Database – ULTIPRO_WPWRH
+Export Name – Cigna 834 Dental Export

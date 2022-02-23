@@ -1,0 +1,5 @@
+Interface details (ESTAUNIACC)
+Env – E41
+Server – E4SUP1DB01
+Database – ULTIPRO_STDRD
+Export Name – UniFocus Employee Accrual

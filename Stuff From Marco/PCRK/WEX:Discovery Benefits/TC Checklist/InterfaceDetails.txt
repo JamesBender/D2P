@@ -1,0 +1,5 @@
+Interface details (EDISPCRFSA)
+Env – NW16
+Server –  NW1WUP6DB02
+Database – ULTIPRO_WPPCRK
+Export Name – Discovery FSA Enrollment Export

@@ -1,0 +1,5 @@
+Interface details (EFIDFIS401)
+Env – FBINC 
+Server – NW1WUP2DB03
+Database – ULTIPRO_WPFBINC
+Export Name – Fidelity 401K Export

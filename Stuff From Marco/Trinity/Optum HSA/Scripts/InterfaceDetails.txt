@@ -1,0 +1,5 @@
+Interface details (EOPTTRIHSA)
+Env – EW24 
+Server – EW2WUP4DB02
+Database – ULTIPRO_WPTRNTY
+Export Name – Optum HSA Export

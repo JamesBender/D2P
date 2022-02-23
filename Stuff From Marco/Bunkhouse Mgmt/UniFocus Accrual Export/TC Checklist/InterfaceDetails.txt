@@ -1,0 +1,5 @@
+Interface details (EBUNUNIACC)
+Env – N34 
+Server – N3SUP4DB01
+Database – ULTIPRO_BNKH
+Export Name – UniFocus Employee Accrual

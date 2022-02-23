@@ -1,0 +1,5 @@
+Interface details (EDELDRGEXP)
+Env – NW15 
+Server – NW1WUP5DB03
+Database – ULTIPRO_WPDTAI
+Export Name – Delta Dental 834 Export

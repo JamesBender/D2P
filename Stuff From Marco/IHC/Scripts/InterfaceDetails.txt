@@ -1,0 +1,5 @@
+Interface details (EBNDIHC834)
+Env – EW22 
+Server – EW2WUP2DB01
+Database – ULTIPRO_WPTWICO
+Export Name – Bind 834 Export

@@ -1,0 +1,5 @@
+Interface details (EUNUMARMEX)
+Env – EW41 
+Server – EW4WUP1DB03
+Database – ULTIPRO_WPARMAN
+Export Name – UNUM Accident and Hospital Export

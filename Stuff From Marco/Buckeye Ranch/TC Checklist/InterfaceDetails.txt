@@ -1,0 +1,5 @@
+Interface details (EMETBUCLIF)
+Env – EW15 
+Server – EW1WUP5DB03
+Database – ULTIPRO_WPBKE
+Export Name – Metlife Life Export

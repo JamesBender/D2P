@@ -1,0 +1,7 @@
+Interface details (EABGFSAEXP)
+Env – EW11 
+Server – EW1WUP1DB03
+Database – ULTIPRO_WPUSPC
+Export Name – American Benefit Group FSA Export
+
+

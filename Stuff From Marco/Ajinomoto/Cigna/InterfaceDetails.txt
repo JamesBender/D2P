@@ -1,0 +1,5 @@
+Interface details (ECIGAJI834)
+Env – EW11 
+Server – EW1WUP1DB03
+Database – ULTIPRO_WPAJINO
+Export Name – Cigna 834 Export

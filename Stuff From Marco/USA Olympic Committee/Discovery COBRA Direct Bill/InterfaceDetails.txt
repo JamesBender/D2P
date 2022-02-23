@@ -1,0 +1,5 @@
+Interface details (EDISCCOBRA)
+Env – EW33 
+Server – EW3WUP3DB03
+Database – ULTIPRO_WPUSOC
+Export Name – Discovery Benefits Cobra Export

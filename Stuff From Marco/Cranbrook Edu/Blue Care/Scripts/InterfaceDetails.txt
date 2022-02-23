@@ -1,0 +1,5 @@
+Interface details (EBCBCRA834)
+Env – EW21
+Server – EW2WUP1DB01
+Database – ULTIPRO_WPCRANB
+Export Name – BCBS 834 Export

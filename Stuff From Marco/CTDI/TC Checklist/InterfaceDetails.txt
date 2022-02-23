@@ -1,0 +1,6 @@
+Interface details (ECCCPAYEXP)
+Env – E22 
+Server – E2SUP2DB04
+Database – ULTIPRO_CTDI
+Export Name – CCC Payroll Export
+

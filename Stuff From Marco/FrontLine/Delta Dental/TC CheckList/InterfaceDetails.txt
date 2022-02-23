@@ -1,0 +1,5 @@
+Interface details (EDEDFRO834)
+Env – EW12 
+Server – EW1WUP2DB01
+Database – ULTIPRO_WPFTECH
+Export Name – Delta Dental 834 Export

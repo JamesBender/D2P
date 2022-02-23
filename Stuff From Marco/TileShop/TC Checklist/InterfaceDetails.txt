@@ -1,0 +1,5 @@
+Interface details (ELINCTT2LC)
+Env – NW12 
+Server – NW1WUP2DB02
+Database – ULTIPRO_WPTTLLC
+Export Name – Lincoln LFG Claims Elig (V2)

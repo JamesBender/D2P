@@ -1,0 +1,5 @@
+Interface details (EAFLENREXP)
+Env – EW44
+Server – EW4WUP4DB02
+Database – ULTIPRO_WPVIGRH
+Export Name – Aflac Enrollment Export

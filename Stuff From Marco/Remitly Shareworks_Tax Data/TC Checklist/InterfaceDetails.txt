@@ -1,0 +1,5 @@
+Interface details (EREMSHAYTD)
+Env – NW13 
+Server – NW1WUP3DB04
+Database – ULTIPRO_WPREMY
+Export Name – ShareWorks YTD Taxes Export

@@ -1,0 +1,5 @@
+Interface details (EFACCIGHSA)
+Env – EW43 
+Server – EW4WUP3DB01
+Database – ULTIPRO_WPFSINC
+Export Name – Cigna HSA Payroll

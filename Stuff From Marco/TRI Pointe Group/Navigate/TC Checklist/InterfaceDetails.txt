@@ -1,0 +1,5 @@
+Interface details (ETRINAVELI)
+Env – N35 
+Server – N3SUP5DB01
+Database – ULTIPRO_TRIP
+Export Name – Navigate Eligibility Export

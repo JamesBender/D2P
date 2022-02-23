@@ -1,0 +1,240 @@
+AuditAction	tinyint	no	1	3    	0    	yes	(n/a)	(n/a)	NULL
+AuditKey	int	no	4	10   	0    	no	(n/a)	(n/a)	NULL
+EecAcademicRankCode	char	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecAccrSuspHrlyPdFromDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecAccrSuspHrlyPdToDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecAccrSuspTimePdFromDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecAccrSuspTimePdToDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecAnnSalary	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecArrearsSuspFromDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecArrearsSuspToDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecAutoAllocate	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecAvgPayRateCurPer	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecBatchID	char	no	15	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecBonusTotalHrs	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecBonusTotalOTHrs	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecClockCode	char	no	3	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecCoBankID	char	no	4	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecCoID	char	no	5	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecContractAmt	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecContractMonthlyAmt	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecContractPerGameRate	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecContractPerPSGameRate	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecContractPostSeasonAmt	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecContractPostSnNoOfGame	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+EecContractSeasonNoOfGame	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+EecDateInJob	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateLastPayDatePaid	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateLastWorked	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfBenefitSeniority	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfEarlyRetirement	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfIPEDS	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfLastHire	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfLastPerfReview	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfLastSalReview	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfLocalUnion	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfNationalUnion	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfNextPerfReview	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfNextSalReview	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfOriginalHire	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfRetirement	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfSeniority	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfSuspension	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateOfTermination	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDatePaidThru	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateTimeChanged	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateTimeCreated	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateTopPromAdded	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDateTopPromRemoved	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDedGroupCode	char	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecDistributionCenterCode	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecEarnGroupCode	char	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecEEID	char	no	12	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecEEType	char	no	3	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecEmplStatus	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecEmplStatusNotes	text	no	16	     	     	yes	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+EecEmplStatusStartDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecEmpNo	char	no	9	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecEstNetCommissionAmt	money	no	8	19   	4    	no	(n/a)	(n/a)	NULL
+EecEstTotCommissionExpAmt	money	no	8	19   	4    	no	(n/a)	(n/a)	NULL
+EecEstTotRemunerationAmt	money	no	8	19   	4    	no	(n/a)	(n/a)	NULL
+EecFullTimeOrPartTime	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecFundingTypeCode	char	no	3	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecHcsoEndDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecHcsoNotCovered	char	no	1	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecHcsoStartDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecHireSource	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecHourlyPayRate	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecIsAgricultural	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsAutoAllocated	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsAutopaid	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsCommissionEE	char	no	1	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecIsDirectLaborEE	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsDirectSales	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsFaculty	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsHighlyComp	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsKeyEmployee	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsMultiLocalEE	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsMultiLocalTaxEE	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsMultipleJob	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsMultiStateEE	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsPensioner	char	no	1	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecIsProductionTrainee	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsSeasonalWorker	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsSeverance	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsSubjectToBackupWH	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsTaxAllocated	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsWCExcludedEE	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsWhiteCollarTrainee	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecIsWorkingOwner	bit	no	1	     	     	yes	(n/a)	(n/a)	NULL
+EecIsYouthTraining	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecJobChangeReason	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecJobCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecJobGroupCode	char	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecJobtitle	varchar	no	150	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLanguageCode	char	no	2	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecLeaveReason	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITNotSubjectToRes	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITNotSubjectToSD	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITNotSubjectToWorkIn	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITOccCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITOtherCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITResidentCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITResidentCounty	varchar	no	24	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITSDCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITWccCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITWorkInCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLITWorkInCounty	varchar	no	24	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecLocation	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecMailstop	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecModifyStamp	char	no	12	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecNativeExemptPct	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecOETCTrackAndOrReduce	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecOKToRehire	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecOrgLvl1	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecOrgLvl2	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecOrgLvl3	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecOrgLvl4	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecOtherRate1	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecOtherRate2	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecOtherRate3	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecOtherRate4	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecPayGroup	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPayPeriod	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPayrollStatusNote	text	no	16	     	     	yes	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+EecPayScaleCode	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPaySuspFromDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecPaySuspToDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecPeriodPayRate	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecPhoneBusinessCountry	char	no	3	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPhoneBusinessExt	char	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPhoneBusinessNumber	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPiecePayRate	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecPlannedLeaveReason	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPlannedStatus	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPlannedStatusEndDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecPlannedStatusNotes	text	no	16	     	     	yes	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+EecPlannedStatusStartDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecPlayerPayPlanType	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPlayerType	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecPositionCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecProject	char	no	15	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecProvNormWorkIn	char	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecProvNormWorkInIsSplit	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecReviewerPerf	varchar	no	255	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecReviewerSalary	varchar	no	255	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecReviewPerfRating	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecReviewSalaryRating	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecReviewTypePerf	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecReviewTypeSalary	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecROEDateIssued	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecROEFinalPayDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecROEIssueReason	char	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSalaryContractLengthCode	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSalaryOrHourly	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecScheduledAnnualHrs	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecScheduledFTE	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecScheduledWorkHrs	decimal	no	9	16   	6    	yes	(n/a)	(n/a)	NULL
+EecShift	char	no	2	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecShiftGroup	char	no	5	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSITNotSubjectToResidnt	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSITNotSubjectToWorkIn	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSITRcvdCertOfNonRes	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSITResidentStateCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSITWorkInStateCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+eecSpecialStatute	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecStateSDI	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecStateSUI	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecStatusExpectedEndDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecStepNo	smallint	no	2	5    	0    	yes	(n/a)	(n/a)	NULL
+EecSUIAreaCode	char	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIBranchID	char	no	3	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIDateOfSeparation	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecSUIIsOfficer	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIIsProbationary	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIJobCode	char	no	22	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIPlanType	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSupervisorID	char	no	12	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecTenureCode	char	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecTerminationNote	text	no	16	     	     	yes	(n/a)	(n/a)	SQL_Latin1_General_CP1_CI_AS
+EecTermReason	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecTermType	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecTimeclockID	char	no	12	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecTopPromotable	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecTotalAnnSalary	money	no	8	19   	4    	no	(n/a)	(n/a)	NULL
+EecUDField01	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField02	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField03	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField04	varchar	no	25	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField05	varchar	no	25	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField06	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField07	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField08	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField09	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecUDField10	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecUDField11	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField12	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField13	char	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField14	varchar	no	25	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField15	varchar	no	25	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField16	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField17	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField18	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField19	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecUDField20	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecUDField21	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField22	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField23	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField24	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUDField25	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecUDField26	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecUDField27	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField28	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecUDField29	varchar	no	40	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUnionLocal	char	no	12	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecUnionNational	char	no	12	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecVarPayPlanCode	char	no	6	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecVarPayPlanDate	smalldatetime	no	4	     	     	yes	(n/a)	(n/a)	NULL
+EecW2IsHousehold	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecW2IsLegalRep	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecW2IsPension	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecW2IsStatutory	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecWCOfficerType	char	no	1	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS
+EecWCState	char	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecWeeklyPayRate	money	no	8	19   	4    	yes	(n/a)	(n/a)	NULL
+EecWorkPatternCode	char	no	8	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIFamilyBusinessOwner	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIGeographicCode	varchar	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecSUIOccupationalCode	varchar	no	10	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecEstTotIntlPretaxAmt	money	no	8	19   	4    	no	(n/a)	(n/a)	NULL
+EecLastRegPayDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecWCHoursLimitRule	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+eecSeasonalWorkerCode	char	no	2	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecROEIssueReasonDate	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecNumberOfPayments	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+EecWeeklyHours	decimal	no	9	16   	6    	no	(n/a)	(n/a)	NULL
+EecDataPrivacyLastModified	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecDataPrivacyStatus	char	no	1	     	     	yes	no	yes	SQL_Latin1_General_CP1_CI_AS
+EecDataPrivacyUserID	int	no	4	10   	0    	yes	(n/a)	(n/a)	NULL
+EecRowLastChanged	datetime	no	8	     	     	yes	(n/a)	(n/a)	NULL
+EecPrefLangWebPayStmt	char	no	2	     	     	no	no	no	SQL_Latin1_General_CP1_CI_AS

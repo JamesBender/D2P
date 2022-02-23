@@ -1,0 +1,5 @@
+Interface details (EASC401CEN)
+Env – EW15
+Server – EW1WUP5DB01
+Database – ULTIPRO_SCHOS
+Export Name – Ascensus 401k Export(Census)

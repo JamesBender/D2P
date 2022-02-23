@@ -1,0 +1,5 @@
+Interface details (EALIJOH401)
+Env – EW45 
+Server – EW4WUP5DB03
+Database – ULTIPRO_ALCS
+Export Name – John Hancock_401K

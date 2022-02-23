@@ -1,0 +1,5 @@
+Interface details (ECOLTRFSAX)
+Env – E11
+Server – E1SUP1ST56
+Database – ULTIPRO_CFP
+Export Name – TriAD Flex Payroll Export

@@ -1,0 +1,187 @@
+USE [ULTIPRO_YOSHI]
+GO
+/****** Object:  StoredProcedure [dbo].[dsi_sp_BuildDriverTables_EASCDM401K]    Script Date: 10/4/2019 4:00:23 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EASCDM401K]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Qdoba
+
+Created By: Marco Lagrosa
+Business Analyst: Sarah Roberts
+Create Date: 10/04/2019
+Service Request Number: SR-2018-00214622
+
+Purpose: Ascensus 401k Demo 
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2019     SR-2019-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EASCDM401K';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EASCDM401K';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EASCDM401K';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EASCDM401K';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EASCDM401K' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASCDM401K', 'ONDEMAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASCDM401K', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASCDM401K', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASCDM401K', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EASCDM401K', 'SCHEDULED';
+
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'EASCDM401K';
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EASCDM401K', @AllObjects = 'Y', @IsWeb = 'N'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EASCDM401K';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EASCDM401K_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EASCDM401K_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EASCDM401K_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EASCDM401K_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EASCDM401K_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvInitialSort = ''
+        -- standard fields above and additional driver fields below
+        ,dvSSN = eepSSN
+        ,drvNameLast = EepNameLast
+        ,drvNameMiddle = LEFT(EepNameMiddle,1)
+        ,drvNameFirst = EepNameFirst
+        ,drvLocationCode = ''
+        ,drvEmployeeNumber = eecEmpNo
+        ,drvAddressLine1 = EepAddressLine1
+        ,drvAddressLine2 = EepAddressLine2
+        ,drvCity = EepAddressCity
+        ,drvState = EepAddressState
+        ,drvZipCode = EepAddressZipCode
+        ,drvGender = EepGender
+        ,drvDateOfBirth = EepDateOfBirth
+        ,drvCurrentHireDate = EecDateOfOriginalHire
+        ,drvCurrentTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvPriorHireDate = NULL
+        ,drvPriorTerminationDate = ''
+        ,drvEstimatedAnnualComp = ''
+        ,drvThousandsHoursServiceCode = ''
+        ,drvNumberFederalExemptions = ''
+        ,drvMaritalStatus = ''
+        ,drvEmployeeStatusCode = ''
+        ,drvPayrollFreqCode = CASE WHEN EecPayPeriod IN ('W') THEN '0'
+								   WHEN EecPayPeriod IN ('S') THEN '2'	
+								   WHEN EecPayPeriod IN ('B') THEN '1'	
+								   WHEN EecPayPeriod IN ('M') THEN '3'	
+							  END
+        ,drvHighlyCompCode = ''
+        ,drvInsiderCode = ''
+        ,drvUnionClassificationCode = ''
+        ,drvPayrollStatusCode = CASE WHEN EecSalaryOrHourly IN ('H') THEN 'HRLY'
+									 WHEN EecSalaryOrHourly IN ('S') THEN 'SLRY'
+								END
+    INTO dbo.U_EASCDM401K_drvTbl
+    FROM dbo.U_EASCDM401K_EEList WITH (NOLOCK)
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+	WHERE EecDateOfOriginalHire <  GETDATE()
+    ;
+    ---------------------------------
+    -- HEADER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EASCDM401K_drvHeader','U') IS NOT NULL
+        DROP TABLE dbo.U_EASCDM401K_drvHeader;
+    SELECT DISTINCT
+         drvHeader = 'HDR'
+        ,drvFileType = 'CENS'
+        ,drvClientId = '239216'
+        ,drvSpace1 = ''
+        ,drvClientName = 'Qdoba'
+        ,drvSpace2 = ''
+    INTO dbo.U_EASCDM401K_drvHeader
+   
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN '239216_CEN_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE '%TEST%' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEASCDM401K_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EASCDM401K_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID LIKE 'EASCDM401K%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '201909271'
+       ,expStartPerControl     = '201909271'
+       ,expLastEndPerControl   = '201910049'
+       ,expEndPerControl       = '201910049'
+WHERE expFormatCode = 'EASCDM401K';
+
+**********************************************************************************/

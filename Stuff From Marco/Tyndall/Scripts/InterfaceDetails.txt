@@ -1,0 +1,5 @@
+Interface details (ESUNTFC834)
+Env – EW32 
+Server – EW3WUP2DB02
+Database – ULTIPRO_WPTYFC
+Export Name – Sunlife 834 Export

@@ -1,0 +1,5 @@
+Interface details (EYCFHISEXP)
+Env – E11 
+Server – E1SUP1DB52
+Database – ULTIPRO_OGLT
+Export Name – Careworks FMLA Historical Data

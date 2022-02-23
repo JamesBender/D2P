@@ -1,0 +1,5 @@
+Interface details (EDOENYLCON)
+Env – EW33
+Server – EW3WUP3DB01
+Database – ULTIPRO_WPDOE
+Export Name – NYLife Port and Convert Export

@@ -1,0 +1,5 @@
+Interface details (EEMP403EXP)
+Env – NW12 
+Server – NW1WUP2DB02
+Database – ULTIPRO_WPPPL
+Export Name – Empower 403B Export
