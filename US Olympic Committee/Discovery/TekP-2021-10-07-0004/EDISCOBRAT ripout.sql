@@ -5,7 +5,7 @@ EDISCOBRAT: ZDiscovery Benefits Cobra Export
 FormatCode:     EDISCOBRAT
 Project:        ZDiscovery Benefits Cobra Export
 Client ID:      USO1001
-Date/time:      2022-02-04 21:48:45.870
+Date/time:      2022-02-23 21:15:01.553
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -364,7 +364,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EDISCOBRAT_20220204.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EDISCOBRAT_20220223.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'ZNPM/Cobra Export','202002289','EMPEXPORT','ONDEMAND','Mar  2 2020  4:28PM','EDISCOBRAT',NULL,NULL,NULL,'202002289','Oct 30 2017 12:00AM','Dec 30 1899 12:00AM','202002141','3858',NULL,NULL,'202002141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',NULL,NULL,NULL,NULL,'ZDiscovery COBRA','202011139','EMPEXPORT','SCH_DISC','Nov 19 2020 12:00AM','EDISCOBRAT',NULL,NULL,NULL,'202201149','Nov 13 2020 12:00AM','Dec 30 1899 12:00AM','202201071',NULL,NULL,NULL,'202011061',dbo.fn_GetTimedKey(),NULL,'us3lKiUSO1001A',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'ZDiscovery COBRA - OLD','202201099','EMPEXPORT','SCHEDULED','Jan  9 2022 12:00AM','EDISCOBRAT',NULL,NULL,NULL,'202201099','Jan  9 2022 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,NULL,NULL,'202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiUSO1001A',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V5C6H,V5C45',NULL,NULL,NULL,'ZTest NPM/Cobra Export','202202059','EMPEXPORT','TEST','Feb  4 2022 12:00AM','EDISCOBRAT',NULL,NULL,NULL,'202202059','Feb  5 2022 12:00AM','Dec 30 1899 12:00AM','202201011','56','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiUSO1001A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V5C6H,V5C45',NULL,NULL,NULL,'ZTest NPM/Cobra Export','202202179','EMPEXPORT','TEST','Feb  4 2022 12:00AM','EDISCOBRAT',NULL,NULL,NULL,'202202179','Feb  5 2022 12:00AM','Dec 30 1899 12:00AM','202202011','56','','','202202011',dbo.fn_GetTimedKey(),NULL,'us3lKiUSO1001A',NULL);
 
 -----------
 -- AscImp inserts
@@ -859,7 +859,7 @@ Purpose: Discovery Benefits Cobra Export - Combined NPM/QB
 Revision History
 ----------------
 Update By            Date           Request Num            Desc
-Darren Collard       01/17/2022     TekP-2021-10-07-0004   Update FSA plan name from “DBI FSA” to “WEX FSA” where term date > 12/31/2021
+Darren Collard       01/17/2022     TekP-2021-10-07-0004   Update FSA plan name from "DBI FSA" to "WEX FSA" where term date > 12/31/2021
 Darren Collard       02/04/2022     TekP-2021-10-07-0004   Do not delete dependent if the employee was updated after the start date
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EDISCOBRAT';
@@ -973,6 +973,40 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
 
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+
+INSERT INTO [dbo].[U_dsi_BDM_EDISCOBRAT]
+           ([BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+
+    )
+ Select DISTINCT rectype = 'DEP', EdhCoid, EdhEEID, DbnDepRecID, DbnDepRecID, 'QB', 'Data Inserted for 201 Chg reason', 
+            DbnRelationship, DbnDateOfBirth, EdhDedCode, DbnBenStatus,  DbnBenStartDate, DbnBenStopDate, DbnBenStatusDate,'201'
+            ,edhStartDate, edhStopDate, 'Y'
+            from dbo.emphded with (nolock)
+            JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = @FormatCode AND edhDedCode = dbnDedCode
+            WHERE edhChangeReason in ('201') 
+            AND EdhEffDAte BETWEEN @StartDate AND @EndDate 
+            AND dbnValidForExport = 'N'
+            AND DedIsCobraCovered='Y'
+            AND DbnBenStopDate IS NOT NULL
+
 
 --    Delete from dbo.U_dsi_BDM_EDISCOBRAT where bdmRunID  = 'SPM' and bdmbenstatusdate < @StartDate 
 
@@ -1119,22 +1153,22 @@ BEGIN
          drvEEID           = drvEEID
         ,drvCoID           = drvCoID
         ,drvDepRecID       = drvDepRecID
-        ,drvEventType      = CASE WHEN EecTermReason = '202' THEN 'RETIREMENT'
-                                  WHEN EecTermReason = '203' THEN 'DEATH'
-                                  WHEN BdmCobraReason IN ('201','LEVNT3') THEN 'INELIGIBLEDEPENDENT'
-                                  WHEN BdmCobraReason IN ('204','LEVNT4') THEN 'DIVORCELEGALSEPARATION'
-                                  WHEN BdmCobraReason = '210' THEN 'DEATH'
-                                  WHEN BdmCobraReason IN ('202','CHGRP') THEN 'LOSSOFELIGIBILITY'
-                                  WHEN BdmCobraReason IN ('203','202') THEN 'REDUCTIONINHOURSSTATUSCHANGE '
-                                  WHEN BdmCobraReason = '205' THEN 'MEDICARE'
-                                  WHEN BdmCobraReason = '206' THEN 'REDUCTIONINHOURSENDOFLEAVE'
-                                  WHEN BdmCobraReason = '207' THEN 'USERRA-REDUCTIONINHOURS'
-                                  WHEN BdmCobraReason = '208' THEN 'RETIREMENT'
-                                  WHEN BdmCobraReason = '209' THEN 'WORKSTOPPAGE'
-                                  WHEN EecEmplStatus = 'T' and eectermtype  = 'I' THEN 'INVOLUNTARYTERMINATION'
+        ,drvEventType      = CASE WHEN ISNULL(EecTermReason,'') = '202' THEN 'RETIREMENT'
+                                  WHEN ISNULL(EecTermReason,'') = '203' THEN 'DEATH'
+                                  WHEN ISNULL(BdmCobraReason,'') IN ('201','LEVNT3') THEN 'INELIGIBLEDEPENDENT'
+                                  WHEN ISNULL(BdmCobraReason,'') IN ('204','LEVNT4') THEN 'DIVORCELEGALSEPARATION'
+                                  WHEN ISNULL(BdmCobraReason,'') = '210' THEN 'DEATH'
+                                  WHEN ISNULL(BdmCobraReason,'') IN ('202','CHGRP') THEN 'LOSSOFELIGIBILITY'
+                                  WHEN ISNULL(BdmCobraReason,'') IN ('203','202') THEN 'REDUCTIONINHOURSSTATUSCHANGE '
+                                  WHEN ISNULL(BdmCobraReason,'') = '205' THEN 'MEDICARE'
+                                  WHEN ISNULL(BdmCobraReason,'') = '206' THEN 'REDUCTIONINHOURSENDOFLEAVE'
+                                  WHEN ISNULL(BdmCobraReason,'') = '207' THEN 'USERRA-REDUCTIONINHOURS'
+                                  WHEN ISNULL(BdmCobraReason,'') = '208' THEN 'RETIREMENT'
+                                  WHEN ISNULL(BdmCobraReason,'') = '209' THEN 'WORKSTOPPAGE'
+                                  WHEN ISNULL(EecEmplStatus,'') = 'T' and eectermtype  = 'I' THEN 'INVOLUNTARYTERMINATION'
                                   ELSE 'TERMINATION'
                              END
-        ,drvEventDate      = CASE WHEN BdmCobraReason in ('204','201','LEVNT3','LEVNT4') THEN  BdmDateOfCOBRAEvent ELSE BdmDateOfCOBRAEvent END
+        ,drvEventDate      = CASE WHEN BdmCobraReason in ('204','201','LEVNT3','LEVNT4') THEN  ISNULL(BdmDateOfCOBRAEvent,BdmBenStopDate) ELSE BdmDateOfCOBRAEvent END
         ,drvEnrollmentDate = BdmBenStartDate
         ,drvSSN            = eepSSN
         ,drvName           = CASE WHEN BdmRecType = 'DEP' THEN RTRIM(EepNameFirst)
@@ -1157,6 +1191,7 @@ BEGIN
             ,BdmCoID
             ,BdmDepRecID
             ,BdmRecType
+            ,BdmBenStopDate = MAX(BdmBenStopDate)
             ,BdmCobraReason = MAX(BdmCobraReason)
             ,BdmBenStartDate = MIN(BdmBenStartDate)
             ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
@@ -1790,8 +1825,8 @@ ALTER VIEW dbo.dsi_vwEDISCOBRAT_Export AS
     FROM dbo.U_EDISCOBRAT_File WITH (NOLOCK)
     ORDER BY InitialSort, SubSort, SubSort2, SubSort3, RecordSet;
 
---Check out AscDefF
-SELECT adhSystemId FROM dbo.AscDefh WHERE AdhformatCode = 'EDISCOBRAT'
+--Check out AscDefH
+SELECT adhSystemId,* FROM dbo.AscDefh WHERE AdhformatCode = 'EDISCOBRAT'
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
@@ -1800,10 +1835,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-SET expLastStartPerControl = '202201011'
-   ,expStartPerControl     = '202201011'
-   ,expLastEndPerControl   = '202202059'
-   ,expEndPerControl       = '202202059'
+SET expLastStartPerControl = '202202011'
+   ,expStartPerControl     = '202202011'
+   ,expLastEndPerControl   = '202202179'
+   ,expEndPerControl       = '202202179'
 WHERE expFormatCode = 'EDISCOBRAT'
   AND expExportCode LIKE 'TEST%';
 */
