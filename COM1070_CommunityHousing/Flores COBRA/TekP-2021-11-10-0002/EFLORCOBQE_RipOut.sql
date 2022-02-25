@@ -5,7 +5,7 @@ EFLORCOBQE: Flores COBRA Export
 FormatCode:     EFLORCOBQE
 Project:        Flores COBRA Export
 Client ID:      COM1070
-Date/time:      2022-02-21 17:11:00.767
+Date/time:      2022-02-24 18:40:56.707
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -178,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220221.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220224.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -400,7 +400,10 @@ Purpose: Flores COBRA Export
 Revision History
 ----------------
 02/21/2022 by AP:
-	- Added insert for employee death.
+    - Added insert for employee death.
+
+02/24/2022 by AP:
+	- Added 204 reason (divorce legal separation)
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFLORCOBQE';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFLORCOBQE';
@@ -500,7 +503,59 @@ BEGIN
     -- Run BDM for QB
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-	-- 203 death insert employee
+    -- 203 death insert employee
+    INSERT INTO [dbo].[U_dsi_BDM_EFLORCOBQE]
+    ([BdmRecType]
+    ,[BdmCOID]
+    ,[BdmEEID]
+    ,[BdmDepRecID]
+    ,[BdmSystemID]
+    ,[BdmRunID]
+    ,[BdmDedRowStatus]
+    ,[BdmRelationship]
+    ,[BdmDateOfBirth]
+    ,[BdmDedCode]
+    ,[BdmBenOption]
+    ,[BdmBenStartDate]
+    ,[BdmBenStopDate]
+    ,[BdmBenStatusDate]
+    ,[BdmDateOFCobraEvent]
+    ,[BdmChangeReason]
+    ,[BdmCobraReason]
+    ,[BdmStartDate]
+    ,[BdmStopDate]
+    ,[BdmIsPQB]
+    )
+    SELECT DISTINCT 'EMP'
+    ,EecCOID
+    ,EecEEID
+    ,NULL
+    ,NULL
+    ,'QB'
+    ,'Data inserted for 203 term reason'
+    ,'Emp'
+    ,EepDateOfBirth
+    ,DedDedCode
+    ,EedBenOption
+    ,EedBenStartDate
+    ,EedBenStopDate
+    ,EedBenStatusDate
+    ,EedBenStatusDate
+    ,'203'
+    ,'203'
+    ,EedStartDate
+    ,EedStopDate
+    ,'Y'
+    FROM dbo.EmpComp WITH(NOLOCK)
+    JOIN dbo.u_dsi_bdm_EmpDeductions WITH(NOLOCK)
+    ON EecEEID = EedEEID
+    AND EecCOID = EedCOID
+    JOIN dbo.EmpPers WITH(NOLOCK)
+    ON EecEEID = EepEEID
+    WHERE EedValidForExport = 'N'
+    AND EedFormatCode = @FormatCode
+    AND EecTermReason = '203'
+
 	INSERT INTO [dbo].[U_dsi_BDM_EFLORCOBQE]
 	([BdmRecType]
 	,[BdmCOID]
@@ -523,35 +578,34 @@ BEGIN
 	,[BdmStopDate]
 	,[BdmIsPQB]
 	)
-	SELECT DISTINCT 'EMP'
-	,EecCOID
-	,EecEEID
-	,NULL
-	,NULL
+	SELECT DISTINCT rectype = 'DEP'
+	,EdhCoid
+	,EdhEEID
+	,DbnDepRecID
+	,DbnDepRecID
 	,'QB'
-	,'Data inserted for 203 term reason'
-	,'Emp'
-	,EepDateOfBirth
-	,DedDedCode
-	,EedBenOption
-	,EedBenStartDate
-	,EedBenStopDate
-	,EedBenStatusDate
-	,EedBenStatusDate
-	,'203'
-	,'203'
-	,EedStartDate
-	,EedStopDate
-	,'Y'
-	FROM dbo.EmpComp WITH(NOLOCK)
-	JOIN dbo.u_dsi_bdm_EmpDeductions WITH(NOLOCK)
-	ON EecEEID = EedEEID
-	AND EecCOID = EedCOID
-	JOIN dbo.EmpPers WITH(NOLOCK)
-	ON EecEEID = EepEEID
-	WHERE EedValidForExport = 'N'
-	AND EedFormatCode = @FormatCode
-	AND EecTermReason = '203'
+	,'Data Inserted for 204 Chg reason'
+	,DbnRelationship
+	,DbnDateOfBirth
+	,EdhDedCode
+	,DbnBenOption
+	,EdhBenStartDate
+	,EdhBenStopDate
+	,EdhBenStatusDate
+	,EdhBenStatusDate
+	,'204'
+	,'204'
+	,EdhStartDate
+	,EdhStopDate
+	,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
+	FROM dbo.emphded WITH (NOLOCK)
+	JOIN dbo.U_dsi_BDM_DepDeductions
+	ON dbneeid = edheeid
+	AND dbnformatcode = 'EFLORCOBQE'
+	WHERE edhChangeReason in ('204')
+	--AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
+	AND dbnValidForExport = 'N'
+	--AND dbnRelationship <> 'Z'
 
     --==========================================
     -- Build Working Tables
