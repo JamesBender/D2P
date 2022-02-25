@@ -5,7 +5,7 @@ ECCCPAYEXP: CCC Payroll Export
 FormatCode:     ECCCPAYEXP
 Project:        CCC Payroll Export
 Client ID:      GPS1000
-Date/time:      2022-02-14 12:02:42.107
+Date/time:      2022-02-22 12:08:00.620
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -277,7 +277,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECCCPAYEXP_20220214.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECCCPAYEXP_20220222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -370,7 +370,7 @@ CREATE TABLE [dbo].[U_ECCCPAYEXP_drvTbl] (
     [drvCheckDate] varchar(8) NULL,
     [drvHoursPaidByType] nvarchar(4000) NULL,
     [drvGrossWagesByType] nvarchar(4000) NULL,
-    [drvPayType] varchar(2) NULL,
+    [drvPayType] varchar(2) NOT NULL,
     [drvEmployeeYTDEarnings] nvarchar(4000) NULL,
     [drvEmployeeYTDHours] nvarchar(4000) NULL
 );
@@ -636,7 +636,7 @@ BEGIN
                     --WHERE PehPerControl BETWEEN @StartPerControl AND @EndPerControl --) AS IPEH
             GROUP BY PehEEID, PehCOID, PehEarnCode) AS Peh
         ON PehEEID = xEEID 
-        AND PehCOID = xCOID
+        --AND PehCOID = xCOID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN DATEADD(YEAR, -1, @EndDate) AND @EndDate)
     ;
 

@@ -5,7 +5,7 @@ EASSCENSUS: Assurity Census Export
 FormatCode:     EASSCENSUS
 Project:        Assurity Census Export
 Client ID:      MOR1021
-Date/time:      2022-02-21 06:25:46.163
+Date/time:      2022-02-22 04:57:47.013
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -294,7 +294,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EASSCENSUS_20220221.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EASSCENSUS_20220222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -439,7 +439,7 @@ CREATE TABLE [dbo].[U_EASSCENSUS_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] char(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(8) NULL,
     [drvEmployeeSSN] char(11) NULL,
     [drvRelation] varchar(2) NULL,
     [drvSpouseandorChildSSN] char(11) NULL,
@@ -746,7 +746,7 @@ BEGIN
         ,drvCompStateSpecificHlthQues = EepAddressState
         ,drvAEPlanType = BdmAEPlanType
         ,drvAEInsuredOption = BdmAEInsuredOption
-        ,drvAEPremiumAmount =    CASE WHEN BdmRecType = 'EMP' THEN
+        ,drvAEPremiumAmount =    CASE WHEN BdmAEPlanType <> '' THEN
                                     CASE WHEN AeAmount IS NOT NULL THEN FORMAT(AeAmount,'#0.00') 
                                     ELSE (
                                             SELECT TOP 1 FORMAT(ISNULL(CorEERate*100, -1), '#0.00')
@@ -754,7 +754,7 @@ BEGIN
                                             WHERE CorDedCode = 'ASACC'
                                                 AND CorBenOption = BdmAEBenOption
                                             ORDER BY CorEffDate DESC)
-                                    END                                
+                                    END    
                                 END
                                 -- JCB
         ,drvAEIssueDate = BdmAEIssueDate
@@ -777,7 +777,7 @@ BEGIN
                                  -- END
                               --END
         ,drvCIBenefitAmount = BdmCIBenefitAmount
-        ,drvCIPremiumAmount =    CASE WHEN BdmRecType = 'EMP' THEN
+        ,drvCIPremiumAmount =    CASE WHEN BdmCIDedCode IS NOT NULL THEN
                                     CASE WHEN CiAmount IS NOT NULL THEN FORMAT(CiAmount, '#0.00')
                                     ELSE (
                                             SELECT TOP 1 FORMAT(ISNULL(CorEERate*100, -1), '#0.00')
@@ -802,7 +802,7 @@ BEGIN
         ,drvHIPlanType = BdmHIPlanType
         ,drvHIInsuredOption = BdmHIInsuredOption
         ,drvHIBenefitAmount = BdmHIBenefitAmount
-        ,drvHIPremiumAmount =    CASE WHEN BdmRecType = 'EMP' THEN
+        ,drvHIPremiumAmount =    CASE WHEN BdmHIPlanType <> '' THEN
                                     CASE WHEN HiAmount IS NOT NULL THEN  FORMAT(HiAmount, '#0.00') 
                                     ELSE (
                                             SELECT TOP 1 FORMAT(ISNULL(CorEERate*100, -1), '#0.00')

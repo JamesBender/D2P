@@ -5,7 +5,7 @@ ELYRAEAPEX: Lyra EAP Export
 FormatCode:     ELYRAEAPEX
 Project:        Lyra EAP Export
 Client ID:      NEW1020
-Date/time:      2022-02-15 09:52:04.240
+Date/time:      2022-02-22 08:19:55.160
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -223,7 +223,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELYRAEAPEX_20220215.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELYRAEAPEX_20220222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -232,7 +232,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export','202201279','EMPEXPORT','ONDEM_XOE','Jan 28 2022 12:27PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lyra EAP Export-Sched','202201279','EMPEXPORT','SCH_ELYRAE','Jan 28 2022 12:26PM','ELYRAEAPEX',NULL,NULL,NULL,'202201279','Jan 27 2022  9:04AM','Jan 27 2022  9:04AM','202201271','4071','','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','U5P4Y,CXNNJ',NULL,NULL,NULL,'Lyra EAP Export-Test','202202091','EMPEXPORT','TEST_XOE','Feb  9 2022  8:23PM','ELYRAEAPEX',NULL,NULL,NULL,'202202091','Feb  9 2022 12:00AM','Dec 30 1899 12:00AM','202202091','3256','','','202202091',dbo.fn_GetTimedKey(),NULL,'us3cPeNEW1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','U5P4Y,CXNNJ',NULL,NULL,NULL,'Lyra EAP Export-Test','202202151','EMPEXPORT','TEST_XOE','Feb 15 2022 11:04PM','ELYRAEAPEX',NULL,NULL,NULL,'202202151','Feb 15 2022 12:00AM','Dec 30 1899 12:00AM','202202091','3284','','','202202091',dbo.fn_GetTimedKey(),NULL,'us3cPeNEW1020',NULL);
 
 -----------
 -- AscImp inserts
@@ -473,6 +473,8 @@ BEGIN
         ON LocCode = EecLocation
     WHERE EecEmplStatus <> 'T'
             OR (EecEmplStatus = 'T' AND (
+                                            (ISNULL(EepUDField05, '') <> '' AND ISNULL(EepUDField06, '') = '')
+                                            OR
                                             (ISNULL(EepUdField05, '') = '' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate) 
                                             OR
                                             (ISNULL(EepUdField05, '') <> '' AND ISNULL(EepUdField06, '') <> '' AND CAST(EepUdField06 AS DATE) BETWEEN @StartDate AND @EndDate)
@@ -524,7 +526,7 @@ BEGIN
         ,drvRelationshipClass =    CASE WHEN ConRelationship IN ('DOM','DP','SPS') THEN 'Spouse'
                                 WHEN ConRelationship IN ('CHL','DAU','DPC','SON','STC') THEN 'Dependent'
                                 END
-        ,drvCobraDesc = CASE WHEN ISNULL(EepUDField05, '') <> '' THEN 'TRUE' ELSE 'FALSE' END
+        ,drvCobraDesc = CASE WHEN EecEmplStatus = 'T' AND ISNULL(EepUDField05, '') <> '' THEN 'TRUE' ELSE 'FALSE' END
         ,drvEmployeeTitle = JbcLongDesc
         ,drvEmployeeGroup = OrgDesc
         ,drvOfficeStreet1 = ''
@@ -571,9 +573,9 @@ BEGIN
             OR (EecEmplStatus = 'T' AND (
                                             (ISNULL(EepUDField05, '') <> '' AND ISNULL(EepUDField06, '') = '')
                                             OR
-                                            (ISNULL(EepUdField05, '') <> '' AND ISNULL(EepUdField06, '') <> '' AND CAST(EepUdField06 AS DATE) BETWEEN @StartDate AND @EndDate)
+                                            (ISNULL(EepUdField05, '') = '' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate) 
                                             OR
-                                            (ISNULL(EepUdField05, '') = '' AND EecDateOfTermination BETWEEN @StartDate AND @EndDate)                                                                                       
+                                            (ISNULL(EepUdField05, '') <> '' AND ISNULL(EepUdField06, '') <> '' AND CAST(EepUdField06 AS DATE) BETWEEN @StartDate AND @EndDate)
                                         )
                 ))
     AND ConIsDependent = 'Y'
