@@ -5,7 +5,7 @@ EUHCFSA: UHC FSA
 FormatCode:     EUHCFSA
 Project:        UHC FSA
 Client ID:      FLA1000
-Date/time:      2022-02-26 10:39:54.770
+Date/time:      2021-12-03 13:45:38.963
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -234,7 +234,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUHCFSA_20220226.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUHCFSA_20211203.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -243,7 +243,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UHC FSA Export','202106199','EMPEXPORT','ONDEM_XOE','Aug 25 2021  7:49PM','EUHCFSA',NULL,NULL,NULL,'202106199','Jun 19 2021  1:18PM','Jun 19 2021  1:18PM','202106191','373','','','202103191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UHC FSA-Sched Export','202106199','EMPEXPORT','SCH_EUHCFS',NULL,'EUHCFSA',NULL,NULL,NULL,'202106199','Jun 19 2021  1:18PM','Jun 19 2021  1:18PM','202106191',NULL,'','','202103191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UHC FSA-Test Export','202201141','EMPEXPORT','TEST_XOE','Feb  2 2022  1:27PM','EUHCFSA',NULL,NULL,NULL,'202201141','Jan 14 2022 12:00AM','Jan 15 2022 12:00AM','202201141','316','','','202201141',dbo.fn_GetTimedKey(),NULL,'us3rVaFLA1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UHC FSA-Test Export','202108319','EMPEXPORT','TEST_XOE','Sep 14 2021 11:20AM','EUHCFSA',NULL,NULL,NULL,'202108319','Aug 31 2021 12:00AM','Dec 30 1899 12:00AM','202108311','331','','','202108311',dbo.fn_GetTimedKey(),NULL,'us3rVaFLA1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -369,13 +369,13 @@ CREATE TABLE [dbo].[U_EUHCFSA_drvTbl] (
     [drvContributionSource2] varchar(1) NULL,
     [drvContributionSign2] varchar(1) NOT NULL,
     [drvContributionAmount2] numeric NULL,
-    [drvHlthTermDate] datetime NULL,
+    [drvHlthTermDate] int NULL,
     [drvHlthElectionDate] int NULL,
     [drvPayFreq] varchar(1) NOT NULL,
     [drvPayFreqEffDate] int NULL,
     [drvPrefundSign] varchar(1) NOT NULL,
     [drvPrefundAmt] varchar(1) NOT NULL,
-    [drvFSATermDate] datetime NULL,
+    [drvFSATermDate] int NULL,
     [drvFSABenStartDate] int NULL,
     [drvFSAElectionAmt] varchar(1) NOT NULL
 );
@@ -469,8 +469,8 @@ Purpose: UHC FSA
 
 Revision History
 ----------------
-Update By         Date         Request Num             Desc
-Darren Collard    12/04/2021   TekP-2021-10-13-0003    Send Stop Date for "Healthcare or Limited Purpose FSA Termination Date" and "Dependent Care FSA Termination Date"
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUHCFSA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUHCFSA';
@@ -649,7 +649,7 @@ BEGIN
                                      ELSE '+'
                                 END
         ,drvContributionAmount2 = PdhFSADCContAmt
-        ,drvHlthTermDate =  BdmFSAHCLPStopDate  --DC 12/4/21
+        ,drvHlthTermDate =  NULL--BdmFSAMDStopDate
         ,drvHlthElectionDate = NULL--dbo.dsi_fnGetMinMaxDates('MAX',BdmFSAMDStartDate,  @FileMinCovDate) 
         ,drvPayFreq = ''/*CASE EecPayGroup 
                             WHEN 'REG' THEN 'Bi-Weekly'
@@ -660,7 +660,7 @@ BEGIN
         ,drvPayFreqEffDate = NULL--CASE WHEN ISNULL(BdmFSADCStartDate,'19000101') > ISNULL(BdmFSAMDStartDate,'19000101') THEN BdmFSAMDStartDate ELSE BdmFSADCStartDate END
         ,drvPrefundSign = ''--CASE WHEN SIGN(0) = '1' THEN '+' END
         ,drvPrefundAmt = ''--Wait for email from richard.
-        ,drvFSATermDate = BdmFSADCStopDate   --DC 12/4/21
+        ,drvFSATermDate =NULL-- BdmFSADCStopDate
         ,drvFSABenStartDate = NULL--BdmFSADCStartDate
         ,drvFSAElectionAmt = ''--PdhFSADCContAmt
     INTO dbo.U_EUHCFSA_drvTbl
@@ -680,7 +680,6 @@ BEGIN
                 ,BdmFSADCStopDate = MAX(CASE WHEN BdmDedCode = 'FSADC' THEN BdmBenStopDate END)
                 ,BdmFSAMDStartDate = MAX(CASE WHEN BdmDedCode = 'FSAMD' THEN BdmBenStartDate END)
                 ,BdmFSAMDStopDate = MAX(CASE WHEN BdmDedCode = 'FSAMD' THEN BdmBenStopDate END)
-                ,BdmFSAHCLPStopDate = MAX(CASE WHEN BdmDedCode IN ('FSAI', 'FSALP') THEN BdmBenStopDate END)
             FROM dbo.u_dsi_bdm_EUHCFSA WITH (NOLOCK)
             GROUP BY BdmEEID
                     ,BdmCOID
