@@ -5,7 +5,7 @@ EHIRTPRLEX: HireTech Payroll Export
 FormatCode:     EHIRTPRLEX
 Project:        HireTech Payroll Export
 Client ID:      MAR1038
-Date/time:      2022-02-25 10:58:30.933
+Date/time:      2022-03-01 06:06:05.740
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -217,7 +217,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHIRTPRLEX_20220225.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHIRTPRLEX_20220301.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -311,9 +311,9 @@ CREATE TABLE [dbo].[U_EHIRTPRLEX_drvTbl] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvAddressCity] varchar(255) NULL,
+    [drvAddressLine1] varchar(8000) NULL,
+    [drvAddressLine2] varchar(8000) NULL,
+    [drvAddressCity] varchar(8000) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvOriginalHireDate] datetime NULL,
@@ -325,20 +325,20 @@ CREATE TABLE [dbo].[U_EHIRTPRLEX_drvTbl] (
     [drvSeperationCode] char(6) NULL,
     [drvSeperationReason] char(6) NULL,
     [drvDateOfBirth] datetime NULL,
-    [drvJobTitle] varchar(150) NULL,
+    [drvJobTitle] varchar(8000) NULL,
     [drvCheckDate] datetime NULL,
-    [drvPayStartDate] varchar(1) NOT NULL,
-    [drvPayEndDate] varchar(1) NOT NULL,
-    [drvGrossHours] varchar(1) NOT NULL,
-    [drvGrossWages] varchar(1) NOT NULL,
-    [drvRegularWages] varchar(1) NOT NULL,
-    [drvOvertimeWages] varchar(1) NOT NULL,
-    [drvBonusWages] varchar(1) NOT NULL,
-    [drvCommissionWages] varchar(1) NOT NULL,
-    [drvTipIncome] varchar(1) NOT NULL,
-    [drvOtherWages] varchar(1) NOT NULL,
-    [drvPayRate] varchar(1) NOT NULL,
-    [drvPayFrequency] varchar(1) NOT NULL
+    [drvPayStartDate] datetime NULL,
+    [drvPayEndDate] datetime NULL,
+    [drvGrossHours] nvarchar(4000) NULL,
+    [drvGrossWages] nvarchar(4000) NULL,
+    [drvRegularWages] nvarchar(4000) NULL,
+    [drvOvertimeWages] nvarchar(4000) NULL,
+    [drvBonusWages] nvarchar(4000) NULL,
+    [drvCommissionWages] nvarchar(4000) NULL,
+    [drvTipIncome] nvarchar(4000) NULL,
+    [drvOtherWages] nvarchar(4000) NULL,
+    [drvPayRate] nvarchar(4000) NULL,
+    [drvPayFrequency] char(1) NULL
 );
 
 -----------
@@ -380,7 +380,13 @@ CREATE TABLE [dbo].[U_EHIRTPRLEX_PEarHist] (
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompHrs] decimal NULL,
     [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+    [PehInclInDefCompHrsYTD] decimal NULL,
+    [PehCurAmtReg] numeric NULL,
+    [PehCurAmtOT] numeric NULL,
+    [PehCurAmtBon] numeric NULL,
+    [PehCurAmtCom] numeric NULL,
+    [PehCurAmtTip] numeric NULL,
+    [PehCurAmtOth] numeric NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHIRTPRLEX]
@@ -511,10 +517,19 @@ BEGIN
         -- YTD Include Deferred Comp Amount/Hours
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+        -- Custom
+        ,PehCurAmtReg              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND ErnReportCategory = 'REG' THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtOT               = SUM(CASE WHEN PehPerControl >= @StartPerControl AND ErnReportCategory = 'OT' THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtBon              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND ErnReportCategory = 'BON' THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtCom              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND ErnReportCategory = 'COM' THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtTip              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND ErnReportCategory = 'TIP' THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurAmtOth              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND ErnReportCategory = 'OTH' THEN PehCurAmt ELSE 0.00 END)
     INTO dbo.U_EHIRTPRLEX_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
+    JOIN dbo.EarnCode WITH (NOLOCK)
+        ON ErnEarnCode = PehEarnCode
     WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
     AND PehPerControl <= @EndPerControl
     GROUP BY PehEEID
@@ -543,9 +558,9 @@ BEGIN
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = EepNameLast
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
+        ,drvAddressLine1 = REPLACE(EepAddressLine1, ',','')
+        ,drvAddressLine2 = REPLACE(EepAddressLine2, ',','')
+        ,drvAddressCity = REPLACE(EepAddressCity, ',','')
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
         ,drvOriginalHireDate = EecDateOfOriginalHire
@@ -557,20 +572,27 @@ BEGIN
         ,drvSeperationCode = EecTermReason
         ,drvSeperationReason = EecTermType
         ,drvDateOfBirth = EepDateOfBirth
-        ,drvJobTitle = EecJobtitle
+        ,drvJobTitle = REPLACE(EecJobtitle, ',', '')
         ,drvCheckDate = PrgPayDate
-        ,drvPayStartDate = ''
-        ,drvPayEndDate = ''
-        ,drvGrossHours = ''
-        ,drvGrossWages = ''
-        ,drvRegularWages = ''
-        ,drvOvertimeWages = ''
-        ,drvBonusWages = ''
-        ,drvCommissionWages = ''
-        ,drvTipIncome = ''
-        ,drvOtherWages = ''
-        ,drvPayRate = ''
-        ,drvPayFrequency = ''
+        ,drvPayStartDate = PrgPeriodStart
+        ,drvPayEndDate = PrgPeriodEnd
+        ,drvGrossHours = FORMAT(PehCurHrs, '#0.00')
+        ,drvGrossWages = FORMAT(PehCurAmt, '#0.00')
+        ,drvRegularWages = FORMAT(PehCurAmtReg, '#0.00')
+        ,drvOvertimeWages = FORMAT(PehCurAmtOt, '#0.00')
+        ,drvBonusWages = FORMAT(PehCurAmtBon, '#0.00')
+        ,drvCommissionWages = FORMAT(PehCurAmtCom, '#0.00')
+        ,drvTipIncome = FORMAT(PehCurAmtTip, '#0.00')
+        ,drvOtherWages = FORMAT(PehCurAmtOth, '#0.00')
+        ,drvPayRate =    FORMAT(
+                        CASE WHEN EecPayPeriod = 'W' AND EecSalaryOrHourly <> 'H' THEN EecAnnSalary/52
+                        WHEN EecPayPeriod = 'B' AND EecSalaryOrHourly <> 'H' THEN EecAnnSalary/26
+                        WHEN EecPayPeriod = 'S' AND EecSalaryOrHourly <> 'H' THEN EecAnnSalary/24
+                        WHEN EecPayPeriod = 'M' AND EecSalaryOrHourly <> 'H' THEN EecAnnSalary/12
+                        ELSE EecHourlyPayRate
+                        END
+                        , '#0.00')
+        ,drvPayFrequency = EecPayPeriod
     INTO dbo.U_EHIRTPRLEX_drvTbl
     FROM dbo.U_EHIRTPRLEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -592,6 +614,11 @@ BEGIN
         AND audCOID = xCOID
     JOIN dbo.U_EHIRTPRLEX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
+    LEFT JOIN (SELECT PgpPayGroup, CAST( LEFT(MAX(PgpPeriodControl),8) as datetime) as PayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
+                   FROM dbo.PgPayPer WITH (NOLOCK)
+                   WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
+                   GROUP BY PgpPayGroup) as PayGRP
+        on PayGRP.PgpPayGroup =  eecpaygroup
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDAteTime BETWEEN @StartDate AND @EndDate)
     ;
 
