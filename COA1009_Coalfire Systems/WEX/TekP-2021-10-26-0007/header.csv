@@ -1,0 +1,45 @@
+Record Type 
+Participant File Import ID 
+Employer Employee ID 
+Employee Number 
+Last Name 
+First Name 
+Middle Initial 
+Gender 
+Marital Status 
+Mothers Maiden Name 
+Date Of Birth 
+SSN 
+Address Line 1 
+Address Line 2
+Address Line 3
+Address Line 4 
+City
+State 
+Zip Code 
+Country 
+Home Phone 
+Work Phone 
+Work Phone Extension 
+Email Address
+Username 
+Password 
+Hire Date 
+Division 
+Hours Per Week
+Employee Class
+Payroll Frequency 
+Payroll Frequency Effective Date
+Participant Status 
+Status Effective Date 
+Hold Payroll Deductions
+Hold Employer Contributions 
+Incur Services
+Final Payroll Process Date
+Final Contribution Process Date
+HSA Custodian 
+Medicare Beneficiary 
+Medicare ID 
+Exchange Integration ID 
+Reporting Hierarchy Level 1 
+Reporting Hierarchy Level 2|Reporting Hierarchy Level 3|Reporting Hierarchy Level 4|CDD_Citizenship|CDD_Country|CDD_Employm entStatus|CDD_Employer|CDD_JobTitle|Class Effective Date|ID_Identification Type|ID_Identification Number|ID_IssuingStateID_Issuer|ID_IssueDate|ID_ExpirationDa te|Mobile Carrier|Mobile Number|Time Zone
