@@ -439,6 +439,7 @@ Revision History
 
 03/01/2022 by AP:
 	- Added ded code to filter children and spouse properly on secondary loads.
+	- Updated DT23 Member Original Eff Date with new deduction codes.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUHCFINPRO';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUHCFINPRO';
@@ -696,7 +697,8 @@ BEGIN
                             WHEN RTRIM(LTRIM(EedDedCode)) IN ('LIFES','CIS10') THEN 'F'
                             WHEN RTRIM(LTRIM(EedDedCode)) IN ('LIFEC','CIS5') THEN 'G'
                         END
-        ,drvMemberOrigEffDate = ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode IN ('STDER', 'LTDEX', 'LTD') THEN
+        ,drvMemberOrigEffDate = ISNULL(CONVERT(VARCHAR, (CASE WHEN EedDedCode IN ('GTLEX', 'ADDCX', 'CIE20', 'CIS10', 'CIS5',
+											'ACC', 'HSPL', 'HSPH', 'STDER', 'LTDEX', 'GTLEE', 'ADDCE', 'LIFEE', 'LIFES', 'LIFEC', 'LTD') THEN
                                     dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate, @FileMinCovDate) END), 112), '')
         --dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfLastHire, @FileMinCovDate) 
         ,drvDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
