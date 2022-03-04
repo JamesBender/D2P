@@ -5,7 +5,7 @@ EMARNACHHB: Huntington Bank NACHA
 FormatCode:     EMARNACHHB
 Project:        Huntington Bank NACHA
 Client ID:      MAR1020
-Date/time:      2022-01-26 10:08:22.953
+Date/time:      2022-03-03 11:53:31.670
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -171,14 +171,13 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EMARNACHHBZ0','7','D','10','88',NULL,'Batch Number',NULL,NULL,'"0000001"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EMARNACHHBZ0','1','D','20','1',NULL,'Record Type Code',NULL,NULL,'"6"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EMARNACHHBZ0','2','D','20','2',NULL,'Transaction Code',NULL,NULL,'"drvTransactionCode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EMARNACHHBZ0','8','D','20','4',NULL,'Receiving DFI Identification',NULL,NULL,'"drvReceivingDFIIdentification"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EMARNACHHBZ0','1','D','20','12',NULL,'Check Digit',NULL,NULL,'"drvCheckDigit"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EMARNACHHBZ0','9','D','20','4',NULL,'Receiving DFI Identification',NULL,NULL,'"drvReceivingDFIIdentification"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EMARNACHHBZ0','17','D','20','13',NULL,'DFI Account Number',NULL,NULL,'"drvDFIAccountNumber"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EMARNACHHBZ0','10','D','20','30',NULL,'Amount',NULL,NULL,'"drvAmount"','(''UN0''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EMARNACHHBZ0','15','D','20','40',NULL,'Identification Number',NULL,NULL,'"drvIdentificationNumber"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EMARNACHHBZ0','22','D','20','55',NULL,'Receiving Company Name',NULL,NULL,'"drvReceivingCompanyName"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EMARNACHHBZ0','2','D','20','77',NULL,'Discretionary Data',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EMARNACHHBZ0','1','D','20','79',NULL,'Addenda Record Indicator',NULL,NULL,'"0"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EMARNACHHBZ0','1','D','20','49',NULL,'Addenda Record Indicator',NULL,NULL,'"0"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EMARNACHHBZ0','15','D','20','80',NULL,'Trace Number',NULL,NULL,'"drvTraceNumber"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EMARNACHHBZ0','1','D','30','1',NULL,'Record Type Code',NULL,NULL,'"8"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EMARNACHHBZ0','3','D','30','2',NULL,'Service Class Code',NULL,NULL,'"200"','(''UA''=''F'')');
@@ -212,15 +211,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHHB_20220126.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHHB_20220303.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','L68RQ',NULL,NULL,NULL,'Huntington Bank NACHA','202112171','EMPEXPORT','ONDEMAND','Dec 21 2021  8:21PM','EMARNACHHB',NULL,NULL,NULL,'202112171','Dec 17 2021 12:00AM','Dec 12 2021 12:00AM','202112171','220','eecPayGroup','SLRYS,HRLYS','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI_WPMARBA',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','X245M',NULL,NULL,NULL,'Huntington Bank NACHA TEST','202112179','EMPEXPORT','TEST','Dec 28 2021  4:24PM','EMARNACHHB',NULL,NULL,NULL,'202112179','Dec 17 2021 12:00AM','Dec 30 1899 12:00AM','202112151','9','eecPayGroup','HRLYGW,SLRYGW,HRLYSG,SLRYSG','202112151',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA','202201211','EMPEXPORT','ONDEMAND','Jan 28 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202201211','Jan 21 2022 12:00AM','Jan 15 2022 12:00AM','202201211','220','eecPayGroup','CORPBW','202201211',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA Sched','202202049','EMPEXPORT','SCHEDULED','Feb  9 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202202049','Feb  4 2022 12:00AM','Dec 30 1899 12:00AM','202202041','9','eecPayGroup','CORPBW','202202041',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA TEST','202202181','EMPEXPORT','TEST','Feb 22 2022  6:44PM','EMARNACHHB',NULL,NULL,NULL,'202202181','Feb 18 2022 12:00AM','Feb 12 2022 12:00AM','202202181','140','eecPayGroup','CORPBW','202202181',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
 
 -----------
 -- AscImp inserts
@@ -289,8 +289,9 @@ CREATE TABLE [dbo].[U_EMARNACHHB_Bank] (
 
 IF OBJECT_ID('U_EMARNACHHB_D5') IS NULL
 CREATE TABLE [dbo].[U_EMARNACHHB_D5] (
-    [drvCompanyName] char(16) NULL,
+    [drvCompanyName] varchar(7) NOT NULL,
     [drvCompanyIdentification] varchar(10) NOT NULL,
+    [drvCompDescDate] char(6) NULL,
     [drvEffectiveEntryDate] char(6) NULL,
     [drvOriginatingDFIIdentifictin] varchar(8) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL
@@ -302,15 +303,14 @@ CREATE TABLE [dbo].[U_EMARNACHHB_D5] (
 
 IF OBJECT_ID('U_EMARNACHHB_D6') IS NULL
 CREATE TABLE [dbo].[U_EMARNACHHB_D6] (
-    [drvTransactionCode] varchar(2) NOT NULL,
-    [drvReceivingDFIIdentification] varchar(8) NULL,
-    [drvCheckDigit] varchar(1) NULL,
-    [drvDFIAccountNumber] char(25) NULL,
-    [drvAmount] numeric NULL,
+    [drvTransactionCode] varchar(2) NULL,
+    [drvReceivingDFIIdentification] varchar(9) NULL,
+    [drvDFIAccountNumber] varchar(22) NULL,
+    [drvAmount] money NULL,
     [drvIdentificationNumber] char(11) NULL,
     [drvReceivingCompanyName] varchar(201) NULL,
     [drvTraceNumber] varchar(32) NULL,
-    [drvInitialSort] varchar(10) NULL
+    [drvInitialSort] varchar(25) NULL
 );
 
 -----------
@@ -359,11 +359,11 @@ CREATE TABLE [dbo].[U_EMARNACHHB_File] (
 IF OBJECT_ID('U_EMARNACHHB_H1') IS NULL
 CREATE TABLE [dbo].[U_EMARNACHHB_H1] (
     [drvImmediateDestination] varchar(10) NULL,
-    [drvImmediateOriginCode] char(10) NULL,
+    [drvImmediateOriginCode] varchar(10) NULL,
     [drvFileCreationDate] char(6) NULL,
     [drvFileCreationTime] varchar(8000) NULL,
-    [drvImmediateDestinationName] varchar(16) NOT NULL,
-    [drvImmediateOriginName] char(16) NULL
+    [drvImmediateDestinationName] varchar(23) NOT NULL,
+    [drvImmediateOriginName] varchar(7) NOT NULL
 );
 
 -----------
@@ -372,7 +372,7 @@ CREATE TABLE [dbo].[U_EMARNACHHB_H1] (
 
 IF OBJECT_ID('U_EMARNACHHB_Nines') IS NULL
 CREATE TABLE [dbo].[U_EMARNACHHB_Nines] (
-    [drvNines] varchar(94) NULL
+    [drvNines] varchar(95) NULL
 );
 
 -----------
@@ -388,12 +388,11 @@ CREATE TABLE [dbo].[U_EMARNACHHB_PDedHist] (
     [EepNameLast] varchar(100) NULL,
     [EepSSN] char(11) NULL,
     [EecEmpNo] char(9) NULL,
-    [EecUDField03] char(10) NULL,
-    [EecUDField04] varchar(25) NULL,
-    [EEPUDFIELD01] char(25) NULL,
-    [EEPUDFIELD02] char(25) NULL,
-    [PdhEECurAmt] numeric NULL,
-    [PdhERCurAmt] numeric NULL
+    [PrhEEBankRoute] char(9) NULL,
+    [PrhAcct] varchar(22) NULL,
+    [PrhAccttype] char(1) NULL,
+    [PrhGenNumber] char(12) NOT NULL,
+    [PdhEECurAmt] money NULL
 );
 
 -----------
@@ -451,6 +450,7 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EMARNACHHB', 'ONDEMAND';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EMARNACHHB', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EMARNACHHB', 'SCHEDULED';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4  'EMARNACHHB', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
@@ -498,46 +498,31 @@ BEGIN
     -----------------------------
     IF OBJECT_ID('U_EMARNACHHB_PDedHist','U') IS NOT NULL
         DROP TABLE dbo.U_EMARNACHHB_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        ,PdhCoID
+    SELECT 
+         PdhEEID = PrgEEID
+        ,PdhCoID = PrgCoID
         ,PrgCoBankID
         ,EepNameFirst
         ,EepNameLast
         ,EepSSN
-        ,EecEmpNo
-        ,EecUDField03
-        ,EecUDField04
-        ,EEPUDFIELD01
-        ,EEPUDFIELD02
-        ,PdhEECurAmt = SUM(CASE WHEN PdhDedCode IN ('HSACF', 'HSACI', 'HSAD', 'HSADM', 'HSAEA', 'HSAEE', 'HSAF', 'HSAFA', 'HSAFM', 'HSAIA')  THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt = SUM(CASE WHEN PdhDedCode IN ('HSAER') THEN PdhEECurAmt ELSE 0.00 END)
+        ,EecEmpNo = PrgEmpNo
+        ,PrhEEBankRoute
+        ,PrhAcct
+        ,PrhAccttype
+        ,PrhGenNumber
+        ,PdhEECurAmt = prhDepositAmt
     INTO dbo.U_EMARNACHHB_PDedHist
-    FROM dbo.U_EMARNACHHB_EEList WITH (NOLOCK)
-    JOIN dbo.PayReg WITH (NOLOCK)
-        ON PrgEEID = xEEID
-        AND PrgCoID = xCoID
-        AND PrgPerControl BETWEEN @StartPerControl AND @EndPerControl
-    JOIN dbo.PDedHist WITH (NOLOCK)
-        ON PdhEEID = PrgEEID
-        AND PdhCoID = PrgCoID
-        AND PdhGenNumber = PrgGenNumber
-        AND PdhDedCode IN ('HSACF', 'HSACI', 'HSAD', 'HSADM', 'HSAEA', 'HSAEE', 'HSAF', 'HSAFA', 'HSAFM', 'HSAIA')
+    FROM dbo.PayReg WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON eepEEID = xEEID
+        ON eepEEID = PrgEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID
-        AND EecCoID = xCOID
-    --JOIN dbo.PDirHist WITH (NOLOCK)
-    --    ON PrhEeId = xEEID
-    --    AND PrhCoId = xCOID
-    --    AND PrhGenNumber = PrgGenNumber
-    --JOIN dbo.empdirdp WITH(NOLOCK) 
-    --    ON EddEEID = xEEID
-    --    AND EddCOID = xCOID
---    WHERE ISNULL(EecUDField03,'') <> '' AND ISNULL(EecUDField04,'') <> ''
-    GROUP BY PdhEEID, PdhCoID, PrgCoBankID, EepNameFirst, EepNameLast, EepSSN, EecEmpNo, EecUDField03, EecUDField04,EEPUDFIELD01, EEPUDFIELD02
-    HAVING (SUM(PdhEECurAmt) <> 0.00 OR SUM(PdhERCurAmt) <> 0.00);
+        ON EecEEID = PrgEEID
+        AND EecCoID = PrgCoID
+        AND EecPayGroup = 'CORPBW'
+    JOIN dbo.iPDirHist WITH (NOLOCK)
+        ON PrhGenNumber = PrgGenNumber
+        AND PrgPayDate BETWEEN @StartDate AND @EndDate
+        AND PrgCoID = 'IAGFG'
 
     -----------------------------
     -- Working Table - Bank
@@ -557,7 +542,7 @@ BEGIN
         ,BnkDDRecord8Pos80To87
     INTO dbo.U_EMARNACHHB_Bank
     FROM dbo.Bank WITH (NOLOCK)
-        JOIN dbo.U_EMARNACHHB_PDedHist 
+        JOIN dbo.U_EMARNACHHB_PDedHist WITH (NOLOCK)
         on prgCoBankID = BnkCoBankID
          JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrBankId = BnkCoBankID
@@ -588,6 +573,7 @@ BEGIN
         drvCompanyName = 'MAR-BAL'
         --,drvCompanyDiscretionaryData = BnkDDRecord5Pos21To40
         ,drvCompanyIdentification = '1341059601'
+        ,drvCompDescDate = CONVERT(CHAR(6),GETDATE(),12)
         ,drvEffectiveEntryDate = CONVERT(CHAR(6),@PrgPayDate,12)
         ,drvOriginatingDFIIdentifictin = '04400002' --BnkDDRecord5Pos80To87
         ,drvInitialSort = '1'
@@ -602,26 +588,30 @@ BEGIN
     IF OBJECT_ID('U_EMARNACHHB_D6','U') IS NOT NULL
         DROP TABLE dbo.U_EMARNACHHB_D6;
     SELECT DISTINCT
-        drvTransactionCode = CASE WHEN EddAcctType = 'Checking' THEN '22'
-                                  WHEN EddAcctType = 'Savings' THEN '32'
+        drvTransactionCode = CASE WHEN PrhAccttype = 'C' THEN '22'
+                                  WHEN PrhAccttype = 'S' THEN '32'
                                   END
-        ,drvReceivingDFIIdentification = SUBSTRING(EddEeBankRoute,1,9)
-        ,drvCheckDigit = SUBSTRING(EddEeBankRoute,10,1)
+        ,drvReceivingDFIIdentification = SUBSTRING(PrhEEBankRoute,1,9)
+        --,drvCheckDigit = SUBSTRING(EddEeBankRoute,10,1)
         ---May not need check digit
-        ,drvDFIAccountNumber = EddAcct
+        ,drvDFIAccountNumber = PrhAcct
         ,drvAmount = ISNULL(PdhEECurAmt,0.00) * 100 
         --PrgDDAmt For Percontrols posted in the date range of the file
         ,drvIdentificationNumber = EepSSN
         ,drvReceivingCompanyName = UPPER(RTRIM(EepNameLast)) + SPACE(1) + UPPER(EepNameFirst)
         ,drvTraceNumber = '04400002'+ dbo.dsi_fnPadZero(ROW_NUMBER() OVER (ORDER BY RTRIM(EecEmpNo)),7,0)
-        ,drvInitialSort = '2' + RTRIM(EecEmpNo) 
+        ,drvInitialSort = '2' + dbo.dsi_fnPadZero(ROW_NUMBER() OVER (ORDER BY RTRIM(EecEmpNo)),7,0)
     INTO dbo.U_EMARNACHHB_D6
     FROM dbo.U_EMARNACHHB_Bank WITH (NOLOCK)
     JOIN dbo.U_EMARNACHHB_PDedHist WITH (NOLOCK)
         ON BnkCoBankID = PrgCoBankID
-    JOIN dbo.empdirdp WITH(NOLOCK) 
-        ON EddEEID = PdhEEID
-        AND EddCOID = PdhCoID;
+  --  JOIN dbo.empdirdp WITH(NOLOCK) 
+  --      ON EddEEID = PdhEEID
+  --      AND EddCOID = PdhCoID
+        --AND rtrim(EddEeBankRoute) = PrhEEBankRoute
+        --AND rtrim(EddAcct) = PrhAcct
+        --AND EddAccountIsInactive = 'N'
+;
            -- ON PdhEEID = PrgEEID
         --AND PdhCoID = PrgCoID
     --------------------------------------------
@@ -631,13 +621,14 @@ BEGIN
         DROP TABLE dbo.U_EMARNACHHB_D8;
     SELECT DISTINCT
         drvEntryAddendaCount = CONVERT(DECIMAL(10,0),ISNULL((SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK)),0))
-        ,drvEntryHash = (SELECT SUM(CONVERT(DECIMAL(10,0),drvReceivingDFIIdentification)) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK))
+        ,drvEntryHash = (SELECT SUM(CONVERT(DECIMAL(10,0),LEFT(drvReceivingDFIIdentification,8))) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK))
         ---check that 8 digits
     --        If the first 8 digits in the Receiving DFI ID field are 24107041
         --If there are 2 record type 6 entries on the file with the same number the value in this field is
         --24107041 x 2 = 48214082
         ,drvTotalDebitEntryDollarAmt = CONVERT(DECIMAL(10,0),0)
-        ,drvTotalCreditEntryDollarAmt = SUM(CONVERT(DECIMAL(10,0),(ISNULL(PdhEECurAmt,0.00)* 100 )))
+        ,drvTotalCreditEntryDollarAmt = (select SUM(CONVERT(DECIMAL(10,0),(ISNULL(drvAmount,0.00) ))) from dbo.U_EMARNACHHB_D6 WITH (NOLOCK))
+        --SUM(CONVERT(DECIMAL(10,0),(ISNULL(PdhEECurAmt,0.00)* 100 )))
         --SUM PrgDDAmt of all Record Type 6
         --This is the total amount sent for all Record Type 6 records
         ,drvCompanyIdentification = '1341059601'
@@ -658,13 +649,15 @@ BEGIN
         DROP TABLE dbo.U_EMARNACHHB_T9;
     SELECT DISTINCT
         --drvBlockCount = (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D5) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D8) + 2
-         drvBlockCount = (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D5) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D8) + 2
+         drvBlockCount = (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D5 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D8 WITH (NOLOCK)) + 2
         ,drvEntryAddendaCount = SUM(CONVERT(DECIMAL(10,0),drvEntryAddendaCount))
-        ,drvEntryHash = SUM(CONVERT(DECIMAL(10,0),drvEntryHash))
+        ,drvEntryHash = (SELECT SUM(CONVERT(DECIMAL(10,0),LEFT(drvReceivingDFIIdentification,8))) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK))
+        --SUM(CONVERT(DECIMAL(10,0),drvReceivingDFIIdentification)) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK)
+        --SUM(CONVERT(DECIMAL(10,0),drvEntryHash))
         ,drvTotalDebitEntryDollarAmt = CONVERT(DECIMAL(10,0),0)
-        ,drvTotalCreditEntryDollarAmt = SUM(CONVERT(DECIMAL(10,0),drvTotalCreditEntryDollarAmt) )
+        ,drvTotalCreditEntryDollarAmt = (select SUM(CONVERT(DECIMAL(10,0),(ISNULL(drvAmount,0.00) ))) from dbo.U_EMARNACHHB_D6 WITH (NOLOCK))
         --,drvBlockCountNines = (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D5) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D8) + 2
-        ,drvBlockCountNines = (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D5) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D8) + 2
+        ,drvBlockCountNines = (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D5 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D6 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EMARNACHHB_D8 WITH (NOLOCK)) + 2
     INTO dbo.U_EMARNACHHB_T9
     FROM dbo.U_EMARNACHHB_D8 WITH (NOLOCK);
 
@@ -699,12 +692,12 @@ BEGIN
     --END;
 
         DECLARE @Nines INT
-    SET @Nines = (10 - (SELECT (drvBlockCountNines % 10) FROM dbo.U_EMARNACHHB_T9))
+    SET @Nines = (10 - (SELECT (drvBlockCountNines % 10) FROM dbo.U_EMARNACHHB_T9 WITH (NOLOCK)))
 
     IF object_id('U_EMARNACHHB_Nines','U') IS NOT NULL
         DROP TABLE dbo.U_EMARNACHHB_Nines
     CREATE TABLE dbo.U_EMARNACHHB_Nines (
-        drvNines VARCHAR(94)
+        drvNines VARCHAR(95)
     );
 
     WHILE @Nines > 0

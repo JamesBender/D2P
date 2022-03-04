@@ -5,7 +5,7 @@ EOPTFSAGRA: Optum FSA
 FormatCode:     EOPTFSAGRA
 Project:        Optum FSA
 Client ID:      GRA1009
-Date/time:      2022-02-15 22:29:48.677
+Date/time:      2022-03-03 22:46:47.597
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220215.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220303.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -549,10 +549,14 @@ Revision History
     - Trailer updated.
 
 02/15/2022 by AP:
-	- Adjusted header record 1-19 with 0's.
-	- Fixed date format YYYYMMDD for dependent care fsa election effective date.
-	- Trailer fix for filler "all 9's".
-	- Trailer fix for 0's prefilled and right justified for record count.
+    - Adjusted header record 1-19 with 0's.
+    - Fixed date format YYYYMMDD for dependent care fsa election effective date.
+    - Trailer fix for filler "all 9's".
+    - Trailer fix for 0's prefilled and right justified for record count.
+
+03/03/2022 by AP:
+	- Contribution type 2 updated to use PdhSource2.
+	- Fixed contribution amotn output to show two decimal places.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EOPTFSAGRA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EOPTFSAGRA';
@@ -661,7 +665,7 @@ BEGIN
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
         ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('DEP') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('FLXDG') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('FLXDG') THEN CAST(PdhEECurAmt AS DECIMAL(10,2)) ELSE 0.00 END)
         ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
         ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
@@ -786,7 +790,7 @@ BEGIN
         ,drvContribType2 = 'DEP'
         ,drvContribSC2 = 'E'
         ,drvContribSign2 = '+' 
-        ,drvContribAmt2 = RIGHT('0000000' + REPLACE(CAST(PdhSource1 AS VARCHAR), '.', ''), 7)
+        ,drvContribAmt2 = RIGHT('0000000' + REPLACE(CAST(PdhSource2 AS VARCHAR), '.', ''), 7)
         ,drvContribType3 = 'MED'
         ,drvContribSC3 = 'P'
         ,drvContribSign3 = '+'
