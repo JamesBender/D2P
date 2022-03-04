@@ -5,7 +5,7 @@ EEXPRSC834: Express Scripts 834 Export
 FormatCode:     EEXPRSC834
 Project:        Express Scripts 834 Export
 Client ID:      COA1009
-Date/time:      2022-02-19 11:32:50.967
+Date/time:      2022-03-03 20:20:10.363
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -106,6 +106,8 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_fn_ConvertAccent_EEXPRSC834') IS NOT NULL DROP FUNCTION [dbo].[dsi_fn_ConvertAccent_EEXPRSC834];
+GO
 IF OBJECT_ID('dsi_vwEEXPRSC834_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEEXPRSC834_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EEXPRSC834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EEXPRSC834];
@@ -276,7 +278,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEXPRSC834_20220219.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEXPRSC834_20220303.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -287,7 +289,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202202069','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EEXPRSC834',NULL,NULL,NULL,'202202069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202061',NULL,'','','202202061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202202069','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EEXPRSC834',NULL,NULL,NULL,'202202069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202061',NULL,'','','202202061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Express Scripts 834 Export','202202069','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EEXPRSC834',NULL,NULL,NULL,'202202069','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202202061',NULL,'','','202202061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202202149','EMPEXPORT','TEST_XOE','Feb 14 2022  9:34PM','EEXPRSC834',NULL,NULL,NULL,'202202149','Feb 14 2022 12:00AM','Dec 30 1899 12:00AM','202202011','17091','','','202202011',dbo.fn_GetTimedKey(),NULL,'us3cPeCOA1009',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202203011','EMPEXPORT','TEST_XOE','Mar  1 2022 11:01AM','EEXPRSC834',NULL,NULL,NULL,'202203011','Mar  1 2022 12:00AM','Dec 30 1899 12:00AM','202202281','16981','','','202202281',dbo.fn_GetTimedKey(),NULL,'us3cPeCOA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -954,14 +956,14 @@ BEGIN
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
-        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
+        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',dbo.dsi_fn_ConvertAccent_EEXPRSC834(
                               CASE WHEN BdmRecType = 'EMP' THEN EepNameLast
                                    WHEN BdmRecType = 'DEP' THEN ConNameLast
-                              END)
-        ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-',
+                              END))
+        ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-', dbo.dsi_fn_ConvertAccent_EEXPRSC834(
                                CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
                                     WHEN BdmRecType = 'DEP' THEN ConNameFirst
-                               END)
+                               END))
         ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
                                        NULLIF(CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                                    WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
@@ -1245,6 +1247,14 @@ GO
 CREATE VIEW dbo.dsi_vwEEXPRSC834_Export AS
     SELECT TOP 20000000 DATA FROM dbo.U_EEXPRSC834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
+GO
+CREATE FUNCTION [dbo].[dsi_fn_ConvertAccent_EEXPRSC834](@name varchar(200))
+RETURNS varchar(200)
+AS 
+BEGIN
+    DECLARE @return varchar(200) = (SELECT @name COLLATE SQL_Latin1_general_CP1253_CI_AI)
+    RETURN  @return
+END
 
 GO
 
