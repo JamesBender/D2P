@@ -5,7 +5,7 @@ EANT834EXP: Anthem Health & Wellness 834 Export
 FormatCode:     EANT834EXP
 Project:        Anthem Health & Wellness 834 Export
 Client ID:      COL1025
-Date/time:      2022-02-01 06:34:58.937
+Date/time:      2022-03-03 06:35:17.860
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -345,7 +345,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANT834EXP_20220201.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANT834EXP_20220303.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -353,7 +353,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202112179','EMPEXPORT','CHANGES','Dec 17 2021  8:52AM','EANT834EXP',NULL,NULL,NULL,'202112179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202112171','4375','','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202201319','EMPEXPORT','FULLFILE','Jan 31 2022 11:53AM','EANT834EXP',NULL,NULL,NULL,'202201319','Jan 31 2022 12:00AM','Dec 30 1899 12:00AM','202201171','4881','','','202201171',dbo.fn_GetTimedKey(),NULL,'us3rVaCOL1025',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202201319','EMPEXPORT','FULLFILE','Feb  8 2022 10:17AM','EANT834EXP',NULL,NULL,NULL,'202201319','Jan 31 2022 12:00AM','Dec 30 1899 12:00AM','202201171','4881','','','202201171',dbo.fn_GetTimedKey(),NULL,'us3rVaCOL1025',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202112179','EMPEXPORT','OEACTIVE','Dec 17 2021  8:52AM','EANT834EXP',NULL,NULL,NULL,'202112179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202112171','3','','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202112179','EMPEXPORT','OEPASSIVE','Dec 17 2021  8:53AM','EANT834EXP',NULL,NULL,NULL,'202112179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202112171','4375','','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EATHW834EX','202112179','EMPEXPORT','SCHEDULED','Dec 17 2021  8:56AM','EANT834EXP',NULL,NULL,NULL,'202112179','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202112171','4375','','','202112171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -626,7 +626,7 @@ CREATE TABLE [dbo].[U_EANT834EXP_DrvTbl_2300] (
     [drvDepRecID] char(12) NULL,
     [drvSSN] char(11) NULL,
     [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(22) NULL
+    [drvSubSort] varchar(28) NULL
 );
 
 -----------
@@ -678,9 +678,9 @@ CREATE TABLE [dbo].[U_EANT834EXP_HdrTbl] (
     [drvBGN08_ActionCode] varchar(2) NOT NULL,
     [drvREF01_RefNumberQual] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual] varchar(1) NOT NULL,
-    [drvQTY01_QuantityQual1] varchar(1) NOT NULL,
-    [drvQTY02_Quantity1] varchar(2) NOT NULL,
-    [drvQTY01_QuantityQual2] int NULL,
+    [drvQTY01_QuantityQual1] varchar(2) NOT NULL,
+    [drvQTY02_Quantity1] int NULL,
+    [drvQTY01_QuantityQual2] varchar(1) NOT NULL,
     [drvQTY02_Quantity2] varchar(1) NOT NULL,
     [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
     [drvQTY02_Quantity3] varchar(1) NOT NULL,
@@ -946,7 +946,7 @@ BEGIN
         ,drvISA08_ReceiverID = 'BCCAWGS'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
-        ,drvISA15_UsageIndicator = CASE dbo.dsi_fnVariable(@FormatCode,'Testing') WHEN 'Y' THEN 'T' ELSE 'P' END
+        ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
         ,drvGS02_SenderID = 'VA61295E'
         ,drvGS03_ReceiverID = 'BCCAWGS'
         ,drvGS04_Date = @RunDate
@@ -959,9 +959,9 @@ BEGIN
         ,drvBGN08_ActionCode = 'RX'
         ,drvREF01_RefNumberQual = ''
         ,drvREF02_RefNumberQual = ''
-        ,drvQTY01_QuantityQual1 = ''
-        ,drvQTY02_Quantity1 = 'TO'
-        ,drvQTY01_QuantityQual2 = (SELECT COUNT(DISTINCT(BdmEEID)) FROM dbo.U_dsi_bdm_EANT834EXP WITH(NOLOCK) WHERE BdmRecType = 'EMP') + (SELECT COUNT(DISTINCT(BdmDepRecID)) FROM dbo.U_dsi_bdm_EANT834EXP WITH(NOLOCK) WHERE BdmRecType = 'DEP')
+        ,drvQTY01_QuantityQual1 = 'TO'
+        ,drvQTY02_Quantity1 = (SELECT COUNT(DISTINCT(BdmEEID)) FROM dbo.U_dsi_bdm_EANT834EXP WITH(NOLOCK) WHERE BdmRecType = 'EMP') + (SELECT COUNT(DISTINCT(BdmDepRecID)) FROM dbo.U_dsi_bdm_EANT834EXP WITH(NOLOCK) WHERE BdmRecType = 'DEP')
+        ,drvQTY01_QuantityQual2 = ''
         ,drvQTY02_Quantity2 = ''
         ,drvQTY01_QuantityQual3 = ''
         ,drvQTY02_Quantity3 = ''
@@ -973,7 +973,7 @@ BEGIN
         ,drvN102_Name2 = 'ANTHEMBLUE CROSS'
         ,drvN103_IDCodeQual2 = 'FI'
         ,drvN104_IDCode2 = '953760001'
-    INTO dbo.U_EANT834EXP_HdrTbl
+    INTO dbo.U_EANT834EXP_HdrTbl 
     FROM dbo.U_EANT834EXP_EELIST WITH (NOLOCK)
     JOIN dbo.U_dsi_bdm_EANT834EXP WITH (NOLOCK)
         ON BdmEEID = xEEID
@@ -1090,7 +1090,10 @@ BEGIN
                                      WHEN BdmRecType = 'DEP' THEN ConGender
                                 END
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
-                                                CASE EepMaritalStatus WHEN 'S' THEN 'I' ELSE EepMaritalStatus END
+                                                CASE WHEN EepMaritalStatus = 'S' THEN 'I' 
+                                                WHEN EepMaritalStatus = 'Z' THEN 'U'
+                                                ELSE EepMaritalStatus 
+                                                END
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' THEN '' END --'7'
@@ -1269,7 +1272,7 @@ BEGIN
                              WHEN 'DEN' THEN '2'
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
-                      END
+                      END + ' ' + BdmDedCode
     INTO dbo.U_EANT834EXP_DrvTbl_2300
     FROM dbo.U_EANT834EXP_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
