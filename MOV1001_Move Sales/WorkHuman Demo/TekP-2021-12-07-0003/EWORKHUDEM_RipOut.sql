@@ -212,7 +212,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWORKHUDEM','H01','None',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWORKHUDEM','H01','dbo.u_',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWORKHUDEM','D10','dbo.U_EWORKHUDEM_drvTbl',NULL);
 
 -----------
@@ -458,7 +458,7 @@ BEGIN
     ---------------------------------
     -- DETAIL RECORD - U_EWORKHUDEM_drvTbl
     ---------------------------------
-    IF OBJECT_ID('U_EWORKHUDEM_drvTbl','U') IS NOT NULL
+    IF OBJECT_ID('U_EWORKHUDEM_drvContribution','U') IS NOT NULL
         DROP TABLE dbo.U_EWORKHUDEM_drvTbl;
     SELECT DISTINCT
          drvEEID = xEEID
@@ -536,6 +536,18 @@ BEGIN
     AND LocCode <> 'OFFSH' 
     AND Ec.EecEmplStatus <> 'T'
     ;
+
+    -- Header load
+    insert into 
+    select *
+    into dbo.headertable
+    from 
+    IF OBJECT_ID('U_EWORKHUDEM_drvLoan','U') IS NOT NULL
+        DROP TABLE dbo.U_EWORKHUDEM_drvTbl;
+
+
+    IF OBJECT_ID('U_EWORKHUDEM_drvEmployee','U') IS NOT NULL
+        DROP TABLE dbo.U_EWORKHUDEM_drvTbl;
 
     --==========================================
     -- Set FileName
