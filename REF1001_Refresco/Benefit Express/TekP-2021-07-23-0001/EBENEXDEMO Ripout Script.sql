@@ -5,7 +5,7 @@ EBENEXDEMO: Benefit Express Census Export
 FormatCode:     EBENEXDEMO
 Project:        Benefit Express Census Export
 Client ID:      REF1001
-Date/time:      2022-03-03 05:09:35.450
+Date/time:      2022-03-07 05:23:58.370
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -321,7 +321,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBENEXDEMO_20220303.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBENEXDEMO_20220307.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -330,7 +330,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census-Wed 6am','202108119','EMPEXPORT','ONDEM_XOE','Aug 12 2021  5:54AM','EBENEXDEMO',NULL,NULL,NULL,'202203029','Aug 11 2021 12:00AM','Dec 30 1899 12:00AM','202202231','4203','','','202108041',dbo.fn_GetTimedKey(),NULL,'JBENDER10',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census-Mon 6am','202103059','EMPEXPORT','SCH_EBENEX','Aug 12 2021  5:55AM','EBENEXDEMO',NULL,NULL,NULL,'202202289','Mar  5 2021  7:49AM','Mar  5 2021  7:49AM','202202211','4175','','','202103051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census E-Test','202203029','EMPEXPORT','TEST_XOE','Mar  2 2022  7:00PM','EBENEXDEMO',NULL,NULL,NULL,'202203029','Mar  2 2022 12:00AM','Dec 30 1899 12:00AM','202202161','5167','','','202202161',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Benefit Express Census E-Test','202202169','EMPEXPORT','TEST_XOE','Mar  3 2022  3:02PM','EBENEXDEMO',NULL,NULL,NULL,'202202169','Mar  2 2022 12:00AM','Dec 30 1899 12:00AM','202202161','5177','','','202202161',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -729,8 +729,8 @@ BEGIN
         DROP TABLE dbo.U_EBENACAEXP_PEarHist_52_P;
     SELECT DISTINCT
          PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        ,PehCurHrsMiscErn        = SUM(CASE WHEN PehPerControl >=  @Last52WeekPerControl and PehPerControl <= @EndPercontrol and PehInclInMiscEarn4 = 'Y' THEN PehCurHrs ELSE 0.00 END)  --SUM(CASE WHEN PehInclInMiscEarn4 = 'Y' THEN PehCurHrs ELSE 0.00 END)  
+        ,PrgPayDate         = MAX(PrgPayDate)
+        ,PehCurHrsMiscErn   = SUM(CASE WHEN PehPerControl >=  @Last52WeekPerControl and PehPerControl <= @EndPercontrol and PehInclInMiscEarn4 = 'Y' THEN PehCurHrs ELSE 0.00 END)  --SUM(CASE WHEN PehInclInMiscEarn4 = 'Y' THEN PehCurHrs ELSE 0.00 END)  
     INTO dbo.U_EBENACAEXP_PEarHist_52_P
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
@@ -893,7 +893,8 @@ BEGIN
                                             )
                                         )
                                 ) 
-                            THEN CONVERT(VARCHAR, CONVERT(MONEY, ISNULL(PehCurHrsMiscErn, 0.00)) + CONVERT(MONEY,Employment_DecemberHoursWorked))   -- '1'    
+                            THEN CONVERT(VARCHAR, CONVERT(MONEY, ISNULL(PehCurHrsMiscErn, 0.00)) + CONVERT(MONEY,ISNULL(Employment_DecemberHoursWorked, 0.00)))   -- '1' 
+                            WHEN Employee_DateOfTempToHire IS NULL or Employee_DateOfAcquisition is NULL THEN CONVERT(VARCHAR,(CONVERT(MONEY, ISNULL(PehCurHrsMiscErn, 0.00)))) 
                             ELSE CONVERT(VARCHAR,(CONVERT(MONEY, ISNULL(PehCurHrsMiscErn, 0.00)))) --'2'
                        END
                        --ISNULL(CAST(CONVERT(INT,PehCurHrsYTD) as VARCHAR(7)),'0') 
