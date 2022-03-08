@@ -307,7 +307,7 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EWORKHUDEM' ORD
 Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWORKHUDEM', 'ONDEM_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWORKHUDEM', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWORKHUDEM', 'TEST_XOE';;
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWORKHUDEM', 'SCH_EWORKH';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EWORKHUDEM';
