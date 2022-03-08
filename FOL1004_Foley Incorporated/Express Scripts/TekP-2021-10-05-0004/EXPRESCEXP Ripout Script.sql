@@ -5,7 +5,7 @@ EXPRESCEXP: Express Scripts Export
 FormatCode:     EXPRESCEXP
 Project:        Express Scripts Export
 Client ID:      FOL1004
-Date/time:      2022-02-23 12:39:48.563
+Date/time:      2022-03-08 05:47:07.327
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -305,7 +305,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EXPRESCEXP_20220223.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EXPRESCEXP_20220308.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -573,7 +573,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
+SET @DedList = 'MEDBS,MEDBU,MED,MEDUN,MEDTE';
 
     IF OBJECT_ID('U_EXPRESCEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EXPRESCEXP_DedList;
@@ -635,8 +635,8 @@ SET @DedList = 'MEDBS,MEDBU,MED,MEDUN';
                                         WHEN BdmDedCode = 'MEDBU' AND EecEmplStatus IN ('T') THEN '9884PC1500COB'
                                         WHEN BdmDedCode = 'MED' AND EecEmplStatus IN ('A','L') THEN '9884PC500ACT'
                                         WHEN BdmDedCode = 'MED' AND EecEmplStatus IN ('T') THEN '9884PC500COB'
-                                        WHEN BdmDedCode = 'MEDUN' AND EecEmplStatus IN ('A','L') THEN '9884LOC542ACT'
-                                        WHEN BdmDedCode = 'MEDUN' AND EecEmplStatus IN ('T') THEN '9884LOC542COB'
+                                        WHEN BdmDedCode IN ('MEDUN','MEDTE') AND EecEmplStatus IN ('A','L') THEN '9884LOC542ACT'
+                                        WHEN BdmDedCode IN ('MEDUN','MEDTE') AND EecEmplStatus IN ('T') THEN '9884LOC542COB'
                                         END
         ,drvSubscriberNumber = EepSSN
         ,drvPersonNumber = CASE WHEN BdmRecType = 'EMP' THEN '001' ELSE '002' END
