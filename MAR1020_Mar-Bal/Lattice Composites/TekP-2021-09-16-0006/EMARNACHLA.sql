@@ -5,10 +5,10 @@ EMARNACHLA: Lattice Huntington NACHA
 FormatCode:     EMARNACHLA
 Project:        Lattice Huntington NACHA
 Client ID:      MAR1020
-Date/time:      2022-03-03 11:52:27.597
+Date/time:      2022-03-08 13:22:07.637
 Ripout version: 7.4
 Export Type:    Web
-Status:         Testing
+Status:         Production
 Environment:    EWP
 Server:         EW1WUP4DB02
 Database:       ULTIPRO_WPMARBA
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHLA_20220303.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHLA_20220308.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -234,7 +234,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','InitialSort','C','drvInitialSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','Testing','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EMARNACHLA','UseFileName','V','Y');
 
@@ -306,7 +306,7 @@ CREATE TABLE [dbo].[U_EMARNACHLA_D6] (
     [drvTransactionCode] varchar(2) NULL,
     [drvReceivingDFIIdentification] varchar(9) NULL,
     [drvCheckDigit] varchar(1) NULL,
-    [drvDFIAccountNumber] char(22) NULL,
+    [drvDFIAccountNumber] varchar(22) NULL,
     [drvAmount] money NULL,
     [drvIdentificationNumber] char(11) NULL,
     [drvReceivingCompanyName] varchar(201) NULL,
@@ -510,7 +510,12 @@ BEGIN
         ,EecEmpNo = PrgEmpNo
         ,PdhEECurAmt = prhDepositAmt
     INTO dbo.U_EMARNACHLA_PDedHist
-    FROM dbo.PayReg WITH (NOLOCK)
+    FROM dbo.U_EMARNACHLA_EEList WITH (NOLOCK)    
+    JOIN dbo.PayReg WITH (NOLOCK)
+        ON PrgEEID = xEEID
+        AND PrgCoID = xCoID
+        AND PrgPerControl BETWEEN @StartPerControl AND @EndPerControl
+        --AND PrgPayDate BETWEEN @StartDate AND @EndDate
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON eepEEID = PrgEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
@@ -518,8 +523,8 @@ BEGIN
         AND EecCoID = PrgCoID
     JOIN dbo.iPDirHist WITH (NOLOCK)
         ON PrhGenNumber = PrgGenNumber
-        AND PrgPayDate BETWEEN @StartDate AND @EndDate
-        AND PrgCoID = 'GSKFT'
+
+        --AND PrgCoID = 'GSKFT'
 
     -----------------------------
     -- Working Table - Bank
