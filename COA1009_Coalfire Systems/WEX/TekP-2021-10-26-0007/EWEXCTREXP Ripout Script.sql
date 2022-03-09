@@ -5,7 +5,7 @@ EWEXCTREXP: WEX FSA/DepCare/HAS/T & P Export
 FormatCode:     EWEXCTREXP
 Project:        WEX FSA/DepCare/HAS/T & P Export
 Client ID:      COA1009
-Date/time:      2022-03-02 06:07:49.560
+Date/time:      2022-03-07 12:41:26.003
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -255,18 +255,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWEXCTREXP_20220302.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWEXCTREXP_20220307.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202202289','EMPEXPORT','OEACTIVE',NULL,'EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202202289','EMPEXPORT','OEPASSIVE',NULL,'EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & P Exp','202202289','EMPEXPORT','ONDEM_XOE',NULL,'EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Sched','202202289','EMPEXPORT','SCH_EWEXCT',NULL,'EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Test','202202289','EMPEXPORT','TEST_XOE',NULL,'EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202202289','EMPEXPORT','OEACTIVE','Mar  2 2022  6:10AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','2','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202202289','EMPEXPORT','OEPASSIVE','Mar  2 2022  6:10AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','1717','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & P Exp','202202289','EMPEXPORT','ONDEM_XOE','Mar  2 2022  6:11AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','1717','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Sched','202202289','EMPEXPORT','SCH_EWEXCT','Mar  2 2022  6:11AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','1717','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Test','202202289','EMPEXPORT','TEST_XOE','Mar  4 2022  8:10PM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Feb 28 2022 12:00AM','Dec 30 1899 12:00AM','202202281','1725','eecPayGroup','CFSAL,CFHRLY,FEDSAL','202202281',dbo.fn_GetTimedKey(),NULL,'us3cPeCOA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -487,7 +487,14 @@ CREATE TABLE [dbo].[U_EWEXCTREXP_PDedHist] (
     [PdhSourceFSA] numeric NULL,
     [PdhSourceFSAD] numeric NULL,
     [PdhSourceFSAL] numeric NULL,
-    [PdhSourceHSA] numeric NULL,
+    [PdhSourceHSACF] numeric NULL,
+    [PdhSourceHSACI] numeric NULL,
+    [PdhSourceHSAF] numeric NULL,
+    [PdhSourceHSAI] numeric NULL,
+    [PdhSourceHSRF] numeric NULL,
+    [PdhSourceHSAER] numeric NULL,
+    [PdhSourceHSERF] numeric NULL,
+    [PdhSourceHSERI] numeric NULL,
     [PdhSourceTRANS] numeric NULL,
     [PdhSourcePARK] numeric NULL
 );
@@ -579,7 +586,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'FSA,FSAD,FSAL,HSACF,HSACI,HSAF,HSAI,TRANS,PARK,PARKP';
+    SET @DedList = 'FSA,FSAD,FSAL,HSACF,HSACI,HSAF,HSAI,TRANS,PARK,PARKP,HSERF';
 
     IF OBJECT_ID('U_EWEXCTREXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EWEXCTREXP_DedList;
@@ -643,7 +650,14 @@ BEGIN
         ,PdhSourceFSA        = SUM(CASE WHEN PdhDedCode IN ('FSA') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSourceFSAD        = SUM(CASE WHEN PdhDedCode IN ('FSAD') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSourceFSAL        = SUM(CASE WHEN PdhDedCode IN ('FSAL')  THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSourceHSA        = SUM(CASE WHEN PdhDedCode IN ('HSACF','HSACI','HSAF','HSAI','HSRF','HSAER','HSERF','HSERI')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSACF        = SUM(CASE WHEN PdhDedCode IN ('HSACF')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSACI        = SUM(CASE WHEN PdhDedCode IN ('HSACI')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSAF        = SUM(CASE WHEN PdhDedCode IN ('HSAF')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSAI        = SUM(CASE WHEN PdhDedCode IN ('HSAI')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSRF        = SUM(CASE WHEN PdhDedCode IN ('HSRF')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSAER        = SUM(CASE WHEN PdhDedCode IN ('HSAER')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSERF        = SUM(CASE WHEN PdhDedCode IN ('HSERF')  THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSourceHSERI        = SUM(CASE WHEN PdhDedCode IN ('HSERI')  THEN PdhEECurAmt ELSE 0.00 END)            
         ,PdhSourceTRANS        = SUM(CASE WHEN PdhDedCode IN ('TRANS')  THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSourcePARK        = SUM(CASE WHEN PdhDedCode IN ('PARK','PARKP')  THEN PdhEECurAmt ELSE 0.00 END)
     INTO dbo.U_EWEXCTREXP_PDedHist
@@ -789,8 +803,15 @@ BEGIN
         ,drvContributionAmont =    FORMAT(
                                     CASE WHEN BdmDedCode IN ('FSA') THEN PdhSourceFSA
                                     WHEN BdmDedCode IN ('FSAD') THEN PdhSourceFSAD
-                                    WHEN BdmDedCode IN ('FSAL') THEN PdhSourceFSAL
-                                    WHEN BdmDedCode IN ('HSACF','HSACI','HSAF','HSAI','HSRF','HSAER','HSERF','HSERI') THEN PdhSourceHSA
+                                    WHEN BdmDedCode IN ('FSAL') THEN PdhSourceFSAL                                    
+                                    WHEN BdmDedCode IN ('HSACF') THEN PdhSourceHSACF
+                                    WHEN BdmDedCode IN ('HSACI') THEN PdhSourceHSACI
+                                    WHEN BdmDedCode IN ('HSAF') THEN PdhSourceHSAF    
+                                    WHEN BdmDedCode IN ('HSAI') THEN PdhSourceHSAI
+                                    WHEN BdmDedCode IN ('HSRF') THEN PdhSourceHSRF
+                                    WHEN BdmDedCode IN ('HSAER') THEN PdhSourceHSAER
+                                    WHEN BdmDedCode IN ('HSERF') THEN PdhSourceHSERF
+                                    WHEN BdmDedCode IN ('HSERI') THEN PdhSourceHSERI        
                                     WHEN BdmDedCode IN ('TRANS') THEN PdhSourceTRANS
                                     WHEN BdmDedCode IN ('PARK','PARKP') THEN PdhSourcePARK
                                     END

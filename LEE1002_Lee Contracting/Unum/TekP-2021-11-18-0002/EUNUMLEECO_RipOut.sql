@@ -5,7 +5,7 @@ EUNUMLEECO: Unum FMLA Export
 FormatCode:     EUNUMLEECO
 Project:        Unum FMLA Export
 Client ID:      LEE1002
-Date/time:      2022-02-16 20:42:48.523
+Date/time:      2022-03-07 13:54:19.517
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -289,7 +289,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMLEECO_20220216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMLEECO_20220307.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -298,7 +298,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum FMLA Export','202202089','EMPEXPORT','ONDEM_XOE',NULL,'EUNUMLEECO',NULL,NULL,NULL,'202202089','Feb  8 2022  7:01PM','Feb  8 2022  7:01PM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum FMLA Export-Sched','202202089','EMPEXPORT','SCH_EUNUML',NULL,'EUNUMLEECO',NULL,NULL,NULL,'202202089','Feb  8 2022  7:01PM','Feb  8 2022  7:01PM','202202081',NULL,'','','202202081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Unum FMLA Export-Test','202202119','EMPEXPORT','TEST_XOE','Feb 11 2022 12:00AM','EUNUMLEECO',NULL,NULL,NULL,'202202119','Feb 11 2022 12:00AM','Dec 30 1899 12:00AM','202201281',NULL,'','','202201281',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Unum FMLA Export-Test','202202189','EMPEXPORT','TEST_XOE','Feb 17 2022 12:00AM','EUNUMLEECO',NULL,NULL,NULL,'202202189','Feb 18 2022 12:00AM','Dec 30 1899 12:00AM','202202031',NULL,'','','202202031',dbo.fn_GetTimedKey(),NULL,'us3jReLEE1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -448,7 +448,7 @@ CREATE TABLE [dbo].[U_EUNUMLEECO_drvTbl] (
     [drvEEWorkState] varchar(255) NULL,
     [drvEEDOB] datetime NULL,
     [drvEEGender] char(1) NULL,
-    [drvMaritalStat] char(1) NULL,
+    [drvMaritalStat] varchar(1) NULL,
     [drvEmpJobTitle] varchar(25) NOT NULL,
     [drvMostRecentHireDt] datetime NULL,
     [drvOrigHireDt] datetime NULL,
@@ -476,7 +476,7 @@ CREATE TABLE [dbo].[U_EUNUMLEECO_drvTbl] (
     [drvEmpWorkMailStreet1] varchar(1) NOT NULL,
     [drvEmpWorkMailStreet2] varchar(1) NOT NULL,
     [drvEmpWorkMailStreet3] varchar(1) NOT NULL,
-    [drvEmpWorkCity] varchar(255) NULL,
+    [drvEmpWorkCity] varchar(1) NOT NULL,
     [drvEmpWorkPostCode] varchar(1) NOT NULL,
     [drvFMLARepGrp] varchar(1) NOT NULL,
     [drvKeyEmp] varchar(1) NOT NULL,
@@ -544,7 +544,8 @@ CREATE TABLE [dbo].[U_EUNUMLEECO_PEarHist] (
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompHrs] decimal NULL,
     [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+    [PehInclInDefCompHrsYTD] decimal NULL,
+    [pehpercontrol] char(9) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EUNUMLEECO]
@@ -564,13 +565,16 @@ Purpose: Unum FMLA Export
 Revision History
 ----------------
 02/16/2022 by AP:
-	- Fixed marital status output.
-	- Wrapped job title field with Q (quotes).
-	- Fixed hours worked past 12 months logic.
-	- Set employee work city to BLANK.
-	- Set FMLA reporting group field from BLANK to '1'.
-	- Fixed calculation for date range of policy eligibility group field.
-	- Added LTDP mapping and logic for mapping.
+    - Fixed marital status output.
+    - Wrapped job title field with Q (quotes).
+    - Fixed hours worked past 12 months logic.
+    - Set employee work city to BLANK.
+    - Set FMLA reporting group field from BLANK to '1'.
+    - Fixed calculation for date range of policy eligibility group field.
+    - Added LTDP mapping and logic for mapping.
+
+03/07/2022 by AP:
+	- Fixed 12month hours.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EUNUMLEECO';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EUNUMLEECO';
@@ -600,7 +604,7 @@ BEGIN
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
             ,@FileMinCovDate    DATETIME
-		    ,@12MonthRolling    varchar(10);
+            ,@12MonthRolling    varchar(10);
 
     -- Set FormatCode
     SELECT @FormatCode = 'EUNUMLEECO';
@@ -616,11 +620,13 @@ BEGIN
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
-	-- Grab 12 month rolling date for PEH table
+    -- Grab 12 month rolling date for PEH table
 
-	SELECT @12MonthRolling = REPLACE(CONVERT(CHAR(10), DATEADD(YEAR, -1, @EndDate), 101), '/', '') + substring(@EndPerControl, 9, 1)
+	SELECT @12MonthRolling = REPLACE(CONVERT(VARCHAR(10), DATEADD(YEAR, -1, @EndDate), 112), '/', '')
 
-	SELECT @12monthrolling
+    --SELECT @12MonthRolling = REPLACE(CONVERT(CHAR(10), DATEADD(YEAR, -1, @EndDate), 101), '/', '') + substring(@EndPerControl, 9, 1)
+
+    --select @12monthrolling
 
     --==========================================
     -- Clean EE List 
@@ -751,11 +757,12 @@ BEGIN
     SELECT DISTINCT
          PehEEID
         ,PehEarnCode
+		,PehPayDate				= MAX(PehPayDate)
         ,PrgPayDate             = MAX(PrgPayDate)
         ,PayEarnCode            = MAX(PehEarnCode)
         -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        ,PehCurAmt              = SUM(CASE WHEN CONVERT(VARCHAR(10), PehPayDate, 112) >= @12MonthRolling THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN CONVERT(VARCHAR(10), PehPayDate, 112) >= @12MonthRolling THEN PehCurHrs ELSE 0.00 END)
         -- YTD Payroll Amount/Hours
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
@@ -765,15 +772,16 @@ BEGIN
         -- YTD Include Deferred Comp Amount/Hours
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+        ,pehpercontrol
     INTO dbo.U_EUNUMLEECO_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
-    WHERE PehPerControl >= @12MonthRolling
-	--LEFT(PehPerControl, 4) = YEAR(GETDATE()) - 1
+    WHERE --PehPerControl >= @12MonthRolling
+    --LEFT(PehPerControl, 4) = YEAR(GETDATE()) - 1
     --LEFT(PehPerControl,4) - 1 = LEFT(@EndPerControl,4) - 1
-    --PehPerControl <= @EndPerControl
-    GROUP BY PehEEID, PehEarnCode
+    PehPerControl <= @EndPerControl
+    GROUP BY PehEEID, PehEarnCode, pehpercontrol--, @12monthrolling
     HAVING SUM(PehCurAmt) <> 0.00;
 
     --==========================================
@@ -809,7 +817,7 @@ BEGIN
         ,drvEEDOB = EepDateOfBirth
         ,drvEEGender = EepGender
         ,drvMaritalStat = CASE WHEN EepMaritalStatus = 'Z' THEN 'S' ELSE EepMaritalStatus END
-		--EepMaritalStatus
+        --EepMaritalStatus
         ,drvEmpJobTitle = JbcDesc
         ,drvMostRecentHireDt = EecDateOfLastHire
         ,drvOrigHireDt = EecDateOfOriginalHire
@@ -827,7 +835,7 @@ BEGIN
         ,drvManEmail = ''
         ,drvEmpSecManEmail = ''
         ,drvEmpThirdManEmail = ''
-        ,drvHrsWrkedPast12Mo = CAST(CAST(Peh.PehCurHrsYTD AS DECIMAL(7,2)) AS VARCHAR)
+        ,drvHrsWrkedPast12Mo = CAST(CAST(Peh.PehCurHrs AS DECIMAL(7,2)) AS VARCHAR)
         ,drvWorkSunday = ''
         ,drvWorkMonday = ''
         ,drvWorkTuesday = ''
@@ -840,7 +848,7 @@ BEGIN
         ,drvEmpWorkMailStreet2 = ''
         ,drvEmpWorkMailStreet3 = ''
         ,drvEmpWorkCity = ''
-		--EepAddressCity
+        --EepAddressCity
         ,drvEmpWorkPostCode = ''
         ,drvFMLARepGrp = '1'
         ,drvKeyEmp = ''
@@ -895,7 +903,7 @@ BEGIN
             AND EedValidForExport = 'Y'
             GROUP BY EedEEID, EedCOID
             ) D ON D.EedEEID = xEEID AND D.EedCOID = xCOID
-    LEFT JOIN (SELECT PehEEID, SUM(PehCurHrsYTD) AS PehCurHrsYTD
+    LEFT JOIN (SELECT PehEEID, SUM(PehCurHrs) AS PehCurHrs
                 FROM dbo.U_EUNUMLEECO_PEarHist WITH(NOLOCK)
                 WHERE PehEarnCode IN ('DT', 'MBDT', 'MBOT', 'MBRG', 'OT', 'REG')
                                         GROUP BY PehEEID) Peh ON Peh.PehEEID = xEEID
