@@ -4,6 +4,7 @@ SELECT eepNameLast, EepNameFirst
 	,ActActionEffDate
 	,OEjhReason
 	,OEjhJobEffDate
+	,LeaveStopDate
                   
 
 FROM dbo.U_EEMPYDEMO_EEList WITH (NOLOCK)
@@ -154,4 +155,13 @@ FROM dbo.U_EEMPYDEMO_EEList WITH (NOLOCK)
                 GROUP BY EshEEID, EshCOID) AS PERSNL
         ON EshEEID = xEEID
         AND EshCOID = xCOID
+	LEFT JOIN (
+				SELECT EshEEID AS LeaveEEID, EshCOID AS LeaveCOID
+					,MAX(EshStatusStopDate) AS LeaveStopDate
+				FROM dbo.EmpHStat WITH (NOLOCK)
+				WHERE EshEmplStatus = 'L'
+					AND EshStatusStopDate IS NOT NULL
+				GROUP BY EshEEID, EshCOID) AS LeaveReturnDate
+		ON LeaveEEID = xEEID
+		AND LeaveCOID = xCOID
 	WHERE xEEID = 'BRJEZ500Q0K0'

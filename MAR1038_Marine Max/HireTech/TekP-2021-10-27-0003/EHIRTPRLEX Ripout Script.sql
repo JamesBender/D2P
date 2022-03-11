@@ -5,7 +5,7 @@ EHIRTPRLEX: HireTech Payroll Export
 FormatCode:     EHIRTPRLEX
 Project:        HireTech Payroll Export
 Client ID:      MAR1038
-Date/time:      2022-03-01 06:06:05.740
+Date/time:      2022-03-09 10:28:16.707
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -171,8 +171,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EHIRTPRLEXZ0','50','H','01','36',NULL,'Pay Frequency',NULL,NULL,'"Pay Frequency"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EHIRTPRLEXZ0','50','D','10','1',NULL,'Payroll Location ID',NULL,NULL,'"drvPayrollLocation"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EHIRTPRLEXZ0','50','D','10','2',NULL,'Employee ID',NULL,NULL,'"drvEmployeeID"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHIRTPRLEXZ0','50','D','10','3',NULL,'FEIN',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHIRTPRLEXZ0','50','D','10','4',NULL,'SSN',NULL,NULL,'"drvFEIN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHIRTPRLEXZ0','50','D','10','3',NULL,'FEIN',NULL,NULL,'"drvFEIN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHIRTPRLEXZ0','50','D','10','4',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EHIRTPRLEXZ0','50','D','10','5',NULL,'First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EHIRTPRLEXZ0','50','D','10','6',NULL,'Middle Name',NULL,NULL,'"drvNameMiddle"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EHIRTPRLEXZ0','50','D','10','7',NULL,'Last Name',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
@@ -217,16 +217,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHIRTPRLEX_20220301.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHIRTPRLEX_20220309.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HireTech Payroll Export','202202259','EMPEXPORT','ONDEM_XOE',NULL,'EHIRTPRLEX',NULL,NULL,NULL,'202202259','Feb 25 2022  9:47AM','Feb 25 2022  9:47AM','202202251',NULL,'','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HireTech Payroll Export-Sched','202202259','EMPEXPORT','SCH_EHIRTP',NULL,'EHIRTPRLEX',NULL,NULL,NULL,'202202259','Feb 25 2022  9:47AM','Feb 25 2022  9:47AM','202202251',NULL,'','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'HireTech Payroll Export-Test','202202259','EMPEXPORT','TEST_XOE',NULL,'EHIRTPRLEX',NULL,NULL,NULL,'202202259','Feb 25 2022  9:47AM','Feb 25 2022  9:47AM','202202251',NULL,'','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HireTech Payroll Export','202202259','EMPEXPORT','ONDEM_XOE','Mar  4 2022  3:34AM','EHIRTPRLEX',NULL,NULL,NULL,'202202259','Feb 25 2022  9:47AM','Feb 25 2022  9:47AM','202202251','1088','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HireTech Payroll Export-Sched','202202259','EMPEXPORT','SCH_EHIRTP','Mar  4 2022  3:35AM','EHIRTPRLEX',NULL,NULL,NULL,'202202259','Feb 25 2022  9:47AM','Feb 25 2022  9:47AM','202202251','1088','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'HireTech Payroll Export-Test','202202189','EMPEXPORT','TEST_XOE','Mar  7 2022 12:00AM','EHIRTPRLEX',NULL,NULL,NULL,'202202189','Feb 18 2022 12:00AM','Dec 30 1899 12:00AM','202202181','1088','','','202202181',dbo.fn_GetTimedKey(),NULL,'us3cBeMAR1038',NULL);
 
 -----------
 -- AscImp inserts
@@ -303,11 +303,11 @@ CREATE TABLE [dbo].[U_EHIRTPRLEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(6) NULL,
     [drvPayrollLocation] char(6) NULL,
     [drvEmployeeID] char(9) NULL,
-    [drvSSN] char(11) NULL,
     [drvFEIN] varchar(9) NULL,
+    [drvSSN] char(11) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -549,12 +549,12 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = EecPayGroup
         -- standard fields above and additional driver fields below
         ,drvPayrollLocation = EecLocation
         ,drvEmployeeID = EecEmpNo
-        ,drvSSN = eepSSN
         ,drvFEIN = @FedTaxId
+        ,drvSSN = eepSSN        
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = EepNameLast
@@ -614,12 +614,23 @@ BEGIN
         AND audCOID = xCOID
     JOIN dbo.U_EHIRTPRLEX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
-    LEFT JOIN (SELECT PgpPayGroup, CAST( LEFT(MAX(PgpPeriodControl),8) as datetime) as PayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
+    JOIN (SELECT PgpPayGroup, CAST( LEFT(MAX(PgpPeriodControl),8) as datetime) as PayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
                    FROM dbo.PgPayPer WITH (NOLOCK)
                    WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
                    GROUP BY PgpPayGroup) as PayGRP
         on PayGRP.PgpPayGroup =  eecpaygroup
-    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDAteTime BETWEEN @StartDate AND @EndDate)
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND 
+                                    (
+                                        PehCurHrs > 0.00
+                                        OR PehCurAmt > 0.00
+                                        OR PehCurAmtReg > 0.00
+                                        OR PehCurAmtOt > 0.00
+                                        OR PehCurAmtBon > 0.00
+                                        OR PehCurAmtCom > 0.00
+                                        OR PehCurAmtTip > 0.00
+                                        OR PehCurAmtOth > 0.00
+                                    )
+                                )
     ;
 
     --==========================================
