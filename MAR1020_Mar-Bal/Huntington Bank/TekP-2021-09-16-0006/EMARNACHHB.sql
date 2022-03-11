@@ -5,7 +5,7 @@ EMARNACHHB: Huntington Bank NACHA
 FormatCode:     EMARNACHHB
 Project:        Huntington Bank NACHA
 Client ID:      MAR1020
-Date/time:      2022-03-03 11:53:31.670
+Date/time:      2022-03-08 13:23:50.360
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -112,8 +112,6 @@ IF OBJECT_ID('dsi_sp_BuildDriverTables_EMARNACHHB') IS NOT NULL DROP PROCEDURE [
 GO
 IF OBJECT_ID('U_EMARNACHHB_T9') IS NOT NULL DROP TABLE [dbo].[U_EMARNACHHB_T9];
 GO
-IF OBJECT_ID('U_EMARNACHHB_SavePath') IS NOT NULL DROP TABLE [dbo].[U_EMARNACHHB_SavePath];
-GO
 IF OBJECT_ID('U_EMARNACHHB_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EMARNACHHB_PDedHist];
 GO
 IF OBJECT_ID('U_EMARNACHHB_Nines') IS NOT NULL DROP TABLE [dbo].[U_EMARNACHHB_Nines];
@@ -211,16 +209,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHHB_20220303.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHHB_20220308.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA','202201211','EMPEXPORT','ONDEMAND','Jan 28 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202201211','Jan 21 2022 12:00AM','Jan 15 2022 12:00AM','202201211','220','eecPayGroup','CORPBW','202201211',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA Sched','202202049','EMPEXPORT','SCHEDULED','Feb  9 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202202049','Feb  4 2022 12:00AM','Dec 30 1899 12:00AM','202202041','9','eecPayGroup','CORPBW','202202041',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA TEST','202202181','EMPEXPORT','TEST','Feb 22 2022  6:44PM','EMARNACHHB',NULL,NULL,NULL,'202202181','Feb 18 2022 12:00AM','Feb 12 2022 12:00AM','202202181','140','eecPayGroup','CORPBW','202202181',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA','202203079','EMPEXPORT','ONDEMAND','Mar  8 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202203079','Mar  7 2022 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'us3mThMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Huntington Bank NACHA Sched','202203079','EMPEXPORT','SCHEDULED',NULL,'EMARNACHHB',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Huntington Bank NACHA TEST','202203079','EMPEXPORT','TEST','Mar  8 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202203079','Mar  7 2022 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'eecPayGroup','MOWK','202202011',dbo.fn_GetTimedKey(),NULL,'us3mThMAR1020',NULL);
 
 -----------
 -- AscImp inserts
@@ -396,17 +394,6 @@ CREATE TABLE [dbo].[U_EMARNACHHB_PDedHist] (
 );
 
 -----------
--- Create table U_EMARNACHHB_SavePath
------------
-
-IF OBJECT_ID('U_EMARNACHHB_SavePath') IS NULL
-CREATE TABLE [dbo].[U_EMARNACHHB_SavePath] (
-    [svFormatCode] char(10) NOT NULL,
-    [svCfgName] varchar(32) NOT NULL,
-    [svCfgValue] varchar(150) NULL
-);
-
------------
 -- Create table U_EMARNACHHB_T9
 -----------
 
@@ -452,34 +439,39 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EMARNACHHB', 'ONDEMAND';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EMARNACHHB', 'TEST';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EMARNACHHB', 'SCHEDULED';
 
-EXEC dbo._dsi_usp_ExportRipOut_v7_4  'EMARNACHHB', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EMARNACHHB', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
     --==========================================
-    -- Declare Variables
+    -- Declare variables
     --==========================================
-    DECLARE  @FormatCode         VARCHAR(12)
-            ,@ExportCode         VARCHAR(12)
-            ,@StartDate          DATETIME
-            ,@EndDate            DATETIME
-            ,@StartPerControl    VARCHAR(9)
-            ,@EndPerControl      VARCHAR(9)
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9)
             ,@RunDate            DATETIME
             ,@PrgPayDate         DATETIME
             ,@IncludeOffset      CHAR(1)
+;
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EMARNACHHB';
 
     -- Declare dates from Parameter file
     SELECT
          @StartPerControl = StartPerControl
         ,@EndPerControl   = EndPerControl
-        ,@StartDate       = CAST(LEFT(StartPerControl,8) AS DATETIME)
-        ,@EndDate         = DATEADD(SS,-1,DATEADD(DD,1,LEFT(EndPerControl,8)))
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@FormatCode      = FormatCode
         ,@ExportCode      = ExportCode
         ,@RunDate         = GETDATE()
+
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = 'EMARNACHHB';
+    WHERE FormatCode = @FormatCode;
 
     -- Set @PrgPayDate to MAX Pay Date for File Header
     SET @PrgPayDate = (SELECT MAX(PrgPayDate) FROM dbo.PayReg WITH (NOLOCK) WHERE PrgPerControl BETWEEN @StartPerControl AND @EndPerControl);
@@ -491,9 +483,9 @@ BEGIN
     SET @IncludeOffset = 'N'; -- 'N' (Unbalanace - Most Common) / 'Y' (Balanced - Rare)
 
     --==========================================
-    -- Build Employee Data and the driver tables
+    -- Build Driver Tables
     --==========================================
-    -----------------------------
+   -----------------------------
     -- Working Table - PDedHist
     -----------------------------
     IF OBJECT_ID('U_EMARNACHHB_PDedHist','U') IS NOT NULL
@@ -512,17 +504,23 @@ BEGIN
         ,PrhGenNumber
         ,PdhEECurAmt = prhDepositAmt
     INTO dbo.U_EMARNACHHB_PDedHist
-    FROM dbo.PayReg WITH (NOLOCK)
+    FROM dbo.U_EMARNACHHB_EEList WITH (NOLOCK)
+    JOIN dbo.PayReg WITH (NOLOCK)
+        ON PrgEEID = xEEID
+        AND PrgCoID = xCoID
+        AND PrgPerControl BETWEEN @StartPerControl AND @EndPerControl
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON eepEEID = PrgEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = PrgEEID
         AND EecCoID = PrgCoID
-        AND EecPayGroup = 'CORPBW'
+        --AND EecPayGroup = 'CORPBW'
     JOIN dbo.iPDirHist WITH (NOLOCK)
         ON PrhGenNumber = PrgGenNumber
-        AND PrgPayDate BETWEEN @StartDate AND @EndDate
-        AND PrgCoID = 'IAGFG'
+        --AND PrgPayDate BETWEEN @StartDate AND @EndDate
+        --AND PrgCoID = 'IAGFG'
+        --AND PrgPayGroup = 'CORPBW'
+        ;
 
     -----------------------------
     -- Working Table - Bank
@@ -707,39 +705,50 @@ BEGIN
         PRINT @Nines;
     END;
 
+
     --==========================================
     -- Set FileName
     --==========================================
+    --IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    --BEGIN
+    --    UPDATE dbo.U_dsi_Parameters
+    --        SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'EMARNACHHB_TEST_' + CONVERT(CHAR(8),GETDATE(),112) + '.txt'
+    --                              ELSE 'EMARNACHHB_' + CONVERT(CHAR(8),GETDATE(),112) + '.txt'
+    --                         END
+    --    WHERE FormatCode = @FormatCode;
+    --END
     IF (dbo.dsi_fnVariable('EMARNACHHB','UseFileName') = 'N')
     BEGIN
         UPDATE dbo.U_dsi_Parameters
             SET ExportFile = 'EMARNACHHB_' + CONVERT(CHAR(8),GETDATE(),112) + '.txt'
         WHERE FormatCode = 'EMARNACHHB';
-    END;
-
-END
+    END
+END;
 /**********************************************************************************
+
 --Alter the View
 ALTER VIEW dbo.dsi_vwEMARNACHHB_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EMARNACHHB_File (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
-GO
---Check out AscDefF
-SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID IN (SELECT AdhSystemID FROM dbo.AscDefH WHERE AdhFormatCode = 'EMARNACHHB')
+
+--Check out iascDefF
+SELECT * FROM dbo.iascDefF
+WHERE AdfHeaderSystemID LIKE 'EMARNACHHB%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
+
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '202112011'
-       ,ExpStartPerControl     = '202112011'
-       ,ExpLastEndPerControl   = '202112109'
-       ,ExpEndPerControl       = '202112109'
-WHERE ExpFormatCode = 'EMARNACHHB';
+    SET expLastStartPerControl = '202202281'
+       ,expStartPerControl     = '202202281'
+       ,expLastEndPerControl   = '202203079'
+       ,expEndPerControl       = '202203079'
+WHERE expFormatCode = 'EMARNACHHB';
+
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEMARNACHHB_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EMARNACHHB_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+CREATE VIEW dbo.dsi_vwEMARNACHHB_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EMARNACHHB_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
