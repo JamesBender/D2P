@@ -5,7 +5,7 @@ EMARNACHHB: Huntington Bank NACHA
 FormatCode:     EMARNACHHB
 Project:        Huntington Bank NACHA
 Client ID:      MAR1020
-Date/time:      2022-03-08 13:23:50.360
+Date/time:      2022-03-11 08:54:04.057
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -209,7 +209,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHHB_20220308.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMARNACHHB_20220311.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -218,7 +218,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank NACHA','202203079','EMPEXPORT','ONDEMAND','Mar  8 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202203079','Mar  7 2022 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'us3mThMAR1020',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Huntington Bank NACHA Sched','202203079','EMPEXPORT','SCHEDULED',NULL,'EMARNACHHB',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Huntington Bank NACHA TEST','202203079','EMPEXPORT','TEST','Mar  8 2022 12:00AM','EMARNACHHB',NULL,NULL,NULL,'202203079','Mar  7 2022 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'eecPayGroup','MOWK','202202011',dbo.fn_GetTimedKey(),NULL,'us3mThMAR1020',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Huntington Bank NACHA TEST','202203111','EMPEXPORT','TEST','Mar  8 2022  3:14PM','EMARNACHHB',NULL,NULL,NULL,'202203111','Mar 11 2022 12:00AM','Mar  5 2022 12:00AM','202203111','350','eecPayGroup','MOWK,OHWK,VAWK','202203111',dbo.fn_GetTimedKey(),NULL,'us3cPeMAR1020',NULL);
 
 -----------
 -- AscImp inserts
@@ -336,6 +336,15 @@ CREATE TABLE [dbo].[U_EMARNACHHB_EEList] (
     [xEEID] char(12) NULL
 );
 
+-----------
+-- Create table U_EMARNACHHB_Lookup
+-----------
+
+IF OBJECT_ID('U_EMARNACHHB_Lookup') IS NULL
+CREATE TABLE [dbo].[U_EMARNACHHB_Lookup] (
+    --[COID] char(5) NULL,
+    [PayGroup] char(6) NULL
+);
 -----------
 -- Create table U_EMARNACHHB_File
 -----------
@@ -485,6 +494,32 @@ BEGIN
     --==========================================
     -- Build Driver Tables
     --==========================================
+
+	----To Change the Paygroup field to PrgPayGroup vs EecPayGroup, lookup table for variables
+
+	IF OBJECT_ID('U_EMARNACHHB_Lookup','U') IS NOT NULL
+		DROP TABLE dbo.U_EMARNACHHB_Lookup;
+	SELECT 
+		--COID = (SELECT ExpCOIDList FROM dbo.AscExp WITH (NOLOCK) WHERE ExpFormatCode = 'EMARNACHHB' AND expExportCode = @ExportCode)
+		PayGroup = SelectValue
+	INTO dbo.U_EMARNACHHB_Lookup
+	FROM  dbo.U_dsi_SelectByList_V2 WITH (NOLOCK)
+		where slvFormatCode = @FormatCode;
+
+	--- In case its empty, fill it up
+
+	IF OBJECT_ID('U_EMARNACHHB_Lookup','U') IS NULL 
+	SELECT 
+		--COID = PgcCoID 
+		PayGroup = PgcPayGroup
+	INTO dbo.U_EMARNACHHB_Lookup
+	FROM  dbo.PyGrComp WITH (NOLOCK)
+		WHERE PgcCoID  = 'IAGFG';
+
+	-----I need to do something about Blank company selections or blank Paygroup selections
+
+	-- Create Index
+    --CREATE CLUSTERED INDEX CDX_U_EMARNACHHB_Lookup ON dbo.U_EMARNACHHB_Lookup (COID, PayGroup);
    -----------------------------
     -- Working Table - PDedHist
     -----------------------------
@@ -504,10 +539,11 @@ BEGIN
         ,PrhGenNumber
         ,PdhEECurAmt = prhDepositAmt
     INTO dbo.U_EMARNACHHB_PDedHist
-    FROM dbo.U_EMARNACHHB_EEList WITH (NOLOCK)
-    JOIN dbo.PayReg WITH (NOLOCK)
-        ON PrgEEID = xEEID
-        AND PrgCoID = xCoID
+    --FROM dbo.U_EMARNACHHB_EEList WITH (NOLOCK)
+    FROM dbo.PayReg WITH (NOLOCK)
+	JOIN dbo.U_EMARNACHHB_Lookup WITH (NOLOCK)
+        --ON COID = PrgCoID 
+        ON PrgPayGroup in (PayGroup)
         AND PrgPerControl BETWEEN @StartPerControl AND @EndPerControl
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON eepEEID = PrgEEID
@@ -519,7 +555,7 @@ BEGIN
         ON PrhGenNumber = PrgGenNumber
         --AND PrgPayDate BETWEEN @StartDate AND @EndDate
         --AND PrgCoID = 'IAGFG'
-        --AND PrgPayGroup = 'CORPBW'
+        --AND  = 'CORPBW'
         ;
 
     -----------------------------
