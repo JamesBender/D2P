@@ -5,7 +5,7 @@ EGRDHW834E: Guardian H/W 834 Export
 FormatCode:     EGRDHW834E
 Project:        Guardian H/W 834 Export
 Client ID:      MEN1004
-Date/time:      2022-02-24 08:53:20.123
+Date/time:      2022-03-10 06:52:07.227
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGRDHW834E_20220224.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGRDHW834E_20220310.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -1264,12 +1264,20 @@ BEGIN
                                         WHEN BdmDedCode = 'CI' AND BdmBenOption IN ('30KC3','30KCI','30KCI4','30KCI5','30KCI6','30KCI7') THEN '30000.00'
                                         END*/
 
-                                        CASE WHEN BdmCodeToUse IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
+                                        /*CASE WHEN BdmCodeToUse IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
                                         WHEN BdmCodeToUse IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('20KCIF','20KCIR','20KCIS','20KCIT','20KCIV','20KCIX') THEN '20000.00'
                                         WHEN BdmCodeToUse IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('30KCIF','30KCIR','30KCIS','30KCIT','30KCIV','30KCIX') THEN '30000.00'                                        
                                         WHEN BdmCodeToUse = 'CI' AND BdmBenOptionToUse IN ('10CI6','10KCI3','10KCI4','10KCI5','10KCI7','10KCII') THEN '10000.00'
                                         WHEN BdmCodeToUse = 'CI' AND BdmBenOptionToUse IN ('20KCI','20KCI4','20KCI5','20KCI6','20KCI7','20KCII') THEN '20000.00'
                                         WHEN BdmCodeToUse = 'CI' AND BdmBenOptionToUse IN ('30KC3','30KCI','30KCI4','30KCI5','30KCI6','30KCI7') THEN '30000.00'
+                                        END*/
+
+                                        CASE WHEN BdmDedCode IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
+                                        WHEN BdmDedCode IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('20KCIF','20KCIR','20KCIS','20KCIT','20KCIV','20KCIX') THEN '20000.00'
+                                        WHEN BdmDedCode IN ('CIEE','CIS') AND BdmBenOptionToUse IN ('30KCIF','30KCIR','30KCIS','30KCIT','30KCIV','30KCIX') THEN '30000.00'                                        
+                                        WHEN BdmDedCode = 'CI' AND BdmBenOptionToUse IN ('10CI6','10KCI3','10KCI4','10KCI5','10KCI7','10KCII') THEN '10000.00'
+                                        WHEN BdmDedCode = 'CI' AND BdmBenOptionToUse IN ('20KCI','20KCI4','20KCI5','20KCI6','20KCI7','20KCII') THEN '20000.00'
+                                        WHEN BdmDedCode = 'CI' AND BdmBenOptionToUse IN ('30KC3','30KCI','30KCI4','30KCI5','30KCI6','30KCI7') THEN '30000.00'
                                         END
                                     WHEN BdmRecType = 'DEP' THEN
                                         CASE WHEN BdmDedCode = 'CIS' AND BdmBenOption IN ('10CS30','10CS39','10CS49','10CS59','10CS69','10CS70','10CKIE','10KCE3','10KCE4','10KCE5','10KCE6','10KCE7') THEN '10000.00'
