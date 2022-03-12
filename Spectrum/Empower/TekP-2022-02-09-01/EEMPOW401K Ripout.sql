@@ -5,7 +5,7 @@ EEMPOW401K: Empower 401k Export
 FormatCode:     EEMPOW401K
 Project:        Empower 401k Export
 Client ID:      SPE1014
-Date/time:      2022-02-27 11:43:30.930
+Date/time:      2022-03-12 05:08:17.450
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -109,6 +109,8 @@ IF OBJECT_ID('dsi_vwEEMPOW401K_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEEMPO
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EEMPOW401K') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EEMPOW401K];
 GO
+IF OBJECT_ID('U_EEMPOW401K_TermKeyed') IS NOT NULL DROP TABLE [dbo].[U_EEMPOW401K_TermKeyed];
+GO
 IF OBJECT_ID('U_EEMPOW401K_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EEMPOW401K_PEarHist];
 GO
 IF OBJECT_ID('U_EEMPOW401K_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EEMPOW401K_PDedHist];
@@ -205,7 +207,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEMPOW401K_20220227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEMPOW401K_20220312.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -216,7 +218,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202004249','EMPEXPORT','OEPASSIVE',NULL,'EEMPOW401K',NULL,NULL,NULL,'202004249','Apr  1 2020 10:38AM','Apr  1 2020 10:38AM','202004241',NULL,'','','202004241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ZLXKO,ZLXEN,ZLXIY,ZLXFP,ZLX6Z,ZLXAY,6PJW1,6PK5J,ZLXGT,ZLXBY,ZLX92,ZLXCU,ZLXDO,ZLX9U,ZLXLO,ZLXJX,0YDGF,ZLXHP,7RV7K',NULL,NULL,NULL,'Empower 401k Export','202202251','EMPEXPORT','ONDEMAND','Feb 24 2022  3:16PM','EEMPOW401K',NULL,NULL,NULL,'202202251','Feb 25 2022 12:00AM','Feb 15 2022 12:00AM','202202251','2446','eecPayGroup','SRMIL,SRMNM,SRCAZ,SRCCO,SRCIL,SRCIN,SRCKS,SRCMAZ,SRCMCO,SRCMO,SRCNM,SRCOH,SRCOPS,SRCOR,SRCTX','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI_WPRTIRE',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202004249','EMPEXPORT','SCHEDULED',NULL,'EEMPOW401K',NULL,NULL,NULL,'202004249','Apr  1 2020 10:38AM','Apr  1 2020 10:38AM','202004241',NULL,'','','202004241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ZLXEN,ZLXFP,ZLX6Z,ZLXAY,6PJW1,6PK5J,ZLXGT,ZLXBY,ZLX92,ZLXCU,ZLXDO,ZLX9U,ZLXLO,ZLXJX,ZLXHP,7RV7K',NULL,NULL,NULL,'Test Purposes Only','202202251','EMPEXPORT','TEST','Mar 12 2021  8:50AM','EEMPOW401K',NULL,NULL,NULL,'202202251','Mar 10 2021 12:00AM','Dec 30 1899 12:00AM','202202251','2971','','','202202251',dbo.fn_GetTimedKey(),NULL,'us3lKiSPE1014A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','ZLXEN,ZLXFP,ZLX6Z,ZLXAY,6PJW1,6PK5J,ZLXGT,ZLXBY,ZLX92,ZLXCU,ZLXDO,ZLX9U,ZLXLO,ZLXJX,0YDGF,ZLXHP,7RV7K',NULL,NULL,NULL,'Test Purposes Only','202203101','EMPEXPORT','TEST','Feb 28 2022 12:00AM','EEMPOW401K',NULL,NULL,NULL,'202203101','Feb 10 2022 12:00AM','Jan 31 2022 12:00AM','202203101','2808','',NULL,'202203101',dbo.fn_GetTimedKey(),NULL,'us3lKiSPE1014A',NULL);
 
 -----------
 -- AscImp inserts
@@ -362,7 +364,7 @@ CREATE TABLE [dbo].[U_EEMPOW401K_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] int NULL,
     [drvSSN] char(11) NULL,
     [drvDivisionNumber] char(5) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -460,6 +462,16 @@ CREATE TABLE [dbo].[U_EEMPOW401K_PEarHist] (
     [PehInclInDefCompHrsYTD] decimal NULL,
     [PehHourWorked] decimal NULL
 );
+
+-----------
+-- Create table U_EEMPOW401K_TermKeyed
+-----------
+
+IF OBJECT_ID('U_EEMPOW401K_TermKeyed') IS NULL
+CREATE TABLE [dbo].[U_EEMPOW401K_TermKeyed] (
+    [tkdEEID] varchar(30) NULL,
+    [tkdCOID] varchar(30) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EEMPOW401K]
     @SystemID char(12)
@@ -480,6 +492,7 @@ Revision History
 Update By           Date           Request Num                Desc
 Inshan Singh       02/25/2021      TekP-2021-01-27-0004        Update company code and fix issue for supplemental percontrol sequence not producing file
 Darren Collard       02/27/2022      TekP-2022-02-09-01       Update Term Logic, and YTD Comp
+Darren Collard     03/12/2022      TekP-2022-02-09-01       Include Terms keyed in last 30 days      
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEMPOW401K';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EEMPOW401K';
@@ -523,7 +536,7 @@ BEGIN
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
---==========================================
+    --==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing
@@ -551,10 +564,7 @@ BEGIN
     JOIN dbo.U_EEMPOW401K_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audOldValue = 'L'
-    AND audNewValue = 'A'
-    AND audAction <> 'DELETE';
+    WHERE (audDateTime BETWEEN @StartDate AND @EndDate AND audOldValue = 'L' AND audNewValue = 'A' AND audAction <> 'DELETE') --Back from LOA
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EEMPOW401K_Audit ON dbo.U_EEMPOW401K_Audit (audEEID,audCOID);
@@ -579,6 +589,32 @@ BEGIN
     WHERE xEEID IN (
         SELECT DISTINCT EepEEID from EmpPers WHERE EepSSN IN ('999999999')
     );
+
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EEMPOW401K_TermKeyed','U') IS NOT NULL
+        DROP TABLE dbo.U_EEMPOW401K_TermKeyed;
+    CREATE TABLE dbo.U_EEMPOW401K_TermKeyed (tkdEEID varchar(30), tkdCOID varchar(30));
+
+
+    --===================================================
+    -- Identify Terms keyed in past 30 days
+    -- NOTE: this is much faster that using audit table
+    --===================================================
+    INSERT INTO dbo.U_EEMPOW401K_TermKeyed 
+    SELECT tkdEEID = xEEID, 
+           tkdCOID = xCOID
+    FROM [dbo].[U_EEMPOW401K_EEList]
+    WHERE EXISTS (SELECT 1 
+                  FROM dbo.vw_AuditData 
+                  WHERE audKey1Value = xEEID 
+                    AND audDateTime BETWEEN DateAdd(DAY, -30, @EndDate) AND @EndDate 
+                    AND audNewValue = 'T' 
+                    AND audAction <> 'DELETE' 
+                    AND audTableName='Empcomp' 
+                    AND audFieldName='EecEmplStatus')
+
+    CREATE CLUSTERED INDEX CDX_U_EEMPOW401K_TermsKeyed ON dbo.U_EEMPOW401K_TermKeyed (tkdEEID,tkdCOID);
+
 
 
     --==========================================
@@ -723,7 +759,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '' --CONVERT(DATE, PayGroupDate) --EecPayGroup + ' ' + CAST(PayGroupDate AS VARCHAR) + ' ' + FORMAT(PrgPayDate, 'MM/dd/yyyy')
+        ,drvSort = CHECKSUM(eepSSN) --CONVERT(DATE, PayGroupDate) --EecPayGroup + ' ' + CAST(PayGroupDate AS VARCHAR) + ' ' + FORMAT(PrgPayDate, 'MM/dd/yyyy')
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvDivisionNumber = CmpCompanyCode
@@ -870,10 +906,6 @@ BEGIN
                 AND PrgTransactionType IN ('D', 'C')
             GROUP BY PrgEEID, PrgCOID) AS PAY_DATES
 
-
-
-
-
         ON PrgEEID = xEEID
         AND PrgCOID = xCOID
     LEFT JOIN (
@@ -899,11 +931,9 @@ BEGIN
         ON PtdEEID = xEEID
         AND PtdCOID = xCOID
     WHERE EecEmplStatus <> 'T' -- JCB
-            OR (EecEmplStatus = 'T' AND EecDateOfTermination >= DATEADD(DAY, -90, @EndDate))                           -- Keep terms in for 90 days
-            OR ISNULL(PdhEECurAmt,0.00) <> 0.00 OR ISNULL(PehCurAmt,0.00) <> 0.00 OR ISNULL(PdhERCurAmt,0.00) <> 0.00  -- Do not exclude if terms with adjustments
-            
-
-    ;
+            OR (EecEmplStatus = 'T' AND EecDateOfTermination >= DATEADD(DAY, -90, @EndDate))                            -- Keep terms in for 90 days
+            OR ISNULL(PdhEECurAmt,0.00) <> 0.00 OR ISNULL(PehCurAmt,0.00) <> 0.00 OR ISNULL(PdhERCurAmt,0.00) <> 0.00   -- Do not exclude if terms with adjustments
+            OR EXISTS (SELECT 1 FROM dbo.U_EEMPOW401K_TermKeyed WHERE tkdEEID = xEEID AND tkdCOID=xCOID)                -- Term keyed in past 30 days
 
     --==========================================
     -- Set FileName
@@ -933,10 +963,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202202251'
-       ,expStartPerControl     = '202202251'
-       ,expLastEndPerControl   = '202202251'
-       ,expEndPerControl       = '202202251'
+    SET expLastStartPerControl = '202203101'
+       ,expStartPerControl     = '202203101'
+       ,expLastEndPerControl   = '202203101'
+       ,expEndPerControl       = '202203101'
        ,expAscFileName         = CONCAT('\\us.saas\EW3\EW34\Downloads\V10\Exports\RTIRE\EmployeeHistoryExport\'
                                         ,RTRIM(expFormatCode),'_',RTRIM(expExportCode),'_',CONVERT(varchar, GETDATE(),112),'.txt')
 WHERE expFormatCode = 'EEMPOW401K' and expExportcode LIKE '%TEST%';
