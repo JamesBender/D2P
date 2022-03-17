@@ -5,7 +5,7 @@ EANTHBD834: Anthem D/V/L/VL/LTD/STD Export
 FormatCode:     EANTHBD834
 Project:        Anthem D/V/L/VL/LTD/STD Export
 Client ID:      ANC1000
-Date/time:      2022-03-15 13:45:57.970
+Date/time:      2022-03-17 11:30:14.520
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANTHBD834_20220315.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANTHBD834_20220317.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -641,9 +641,9 @@ CREATE TABLE [dbo].[U_EANTHBD834_DrvTbl_2300] (
     [drvAMT00_AmountQualifierCode1] varchar(3) NULL,
     [drvAMT01_AmountQualifierCode1] varchar(2) NULL,
     [drvAMT02_MonetaryAmount1] money NULL,
-    [drvAMT00_AmountQualifierCode2] varchar(1) NOT NULL,
-    [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
-    [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
+    [drvAMT00_AmountQualifierCode2] varchar(3) NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(2) NULL,
+    [drvAMT02_MonetaryAmount2] numeric NOT NULL,
     [drvLS01_LoopIDCode] varchar(1) NOT NULL,
     [drvLX01_AssignedNumber] varchar(1) NOT NULL,
     [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
@@ -1168,7 +1168,8 @@ BEGIN
                                                 END
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
-        ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4','RELI5') THEN '7' END --'7'
+        ,drvICM01_FrequencyCode = CASE WHEN ICM01 IS NOT NULL THEN '7' END
+        -- CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4','RELI5') THEN '7' END --'7'
         ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
         ,drvICM03_Quantity =    CASE WHEN BdmRecType = 'EMP' THEN 
                                     CONVERT(MONEY,
@@ -1240,6 +1241,7 @@ BEGIN
     JOIN (
             SELECT BdmEEID as BenStartEEID, BdmCOID AS BenStartCOID
                 ,MAX(BdmBenStartDate) AS BenStartDate
+                ,MAX(CASE WHEN BdmRecType = 'EMP' AND BdmDedCOde IN ('ADD','ADDF','RELI1','RELI3','RELI4','RELI5') THEN BdmDedCode END) AS ICM01
             FROM dbo.U_dsi_bdm_EANTHBD834 WITH (NOLOCK) 
             GROUP BY BdmEEID, BdmCOID) AS StartDate
         ON BenStartEEID = xEEID
@@ -1264,7 +1266,7 @@ BEGIN
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
-        ,drvHD02_MaintReasonCode = ''
+        ,drvHD02_MaintReasonCode = '' --dmDedCode -- + ' ' + ISNULL(BdmBenOption, 'na')
         ,drvHD03_InsuranceLineCode =    CASE WHEN BdmRecType = 'EMP' THEN
                                             CASE WHEN BdmDedCode IN ('ADEN1','ADEN2') THEN 'DEN'
                                             WHEN BdmDedCode IN ('AVIS') THEN 'VIS'
@@ -1280,17 +1282,19 @@ BEGIN
         ,drvHD04_PlanCoverageDesc = ''
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' THEN
                                             CASE WHEN BdmDedCode IN ('ADEN1','ADEN2','AVIS') THEN
-                                                CASE WHEN BdmBenOption = 'EE' THEN 'EMP'
-                                                WHEN BdmBenOption IN ('EES','EEDP') THEN 'ESP'
-                                                WHEN BdmBenOption = 'EEC' THEN 'ECH'
-                                                WHEN BdmBenOption IN ('EEF','EEDPF') THEN 'FAM'
-                                            END
+                                                CASE WHEN BdmBenOption IN ('EE','EREE') THEN 'EMP'
+                                                WHEN BdmBenOption IN ('EES','EEDP','EREES') THEN 'ESP'
+                                                WHEN BdmBenOption IN ('EEC','ERECC') THEN 'ECH'
+                                                WHEN BdmBenOption IN ('EEF','EEDPF','EREEF') THEN 'FAM'
+                                                END                                            
                                             WHEN BdmDedCode = 'ADD' THEN 'EMP'
                                             WHEN BdmDedCode = 'ADDF' THEN 'FAM'
+                                            WHEN (Reli1DedCode IS NOT NULL AND Reli3DedCode IS NOT NULL)
+                                                OR (Reli1DedCode IS NOT NULL AND Reli4DedCode IS NOT NULL)
+                                                OR (Reli4DedCode IS NOT NULL AND Reli3DedCode IS NOT NULL) THEN 'FAM'
                                             WHEN BdmDedCode = 'RELI1' THEN 'EMP'
                                             WHEN BdmDedCode = 'RELI3' THEN 'ESP'
-                                            WHEN BdmDedCode = 'RELI4' THEN 'ECH'
-                                            WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'FAM'
+                                            WHEN BdmDedCode = 'RELI4' THEN 'ECH'                                            
                                             WHEN BdmDedCode = 'RELI5' THEN 'EMP'
                                             END
                                         END
@@ -1300,7 +1304,7 @@ BEGIN
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
-        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2022') 
+        ,drvDTP03_DateTimePeriod_348 = BdmBenStartDate
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
         ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
@@ -1310,7 +1314,7 @@ BEGIN
         ,drvDTP00_DateTime_303 = ''
         ,drvDTP01_DateTimeQualifier_303 = '303'
         ,drvDTP02_DateTimeFormatQual_303 = 'D8'
-        ,drvDTP03_DateTimePeriod_303 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate)
+        ,drvDTP03_DateTimePeriod_303 = CASE WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN ReliBenStatusDate ELSE dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate) END
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual1 = 'REF'
         ,drvREF01_RefNumberQual1 = '1L'
@@ -1320,7 +1324,7 @@ BEGIN
                                         WHEN BdmDedCode = 'AVIS' THEN '2806330005'
                                         WHEN BdmDedCode = 'ADD' THEN '280633N001'
                                         WHEN BdmDedCode = 'ADDF' THEN '280633NF01'
-                                        WHEN BdmDedCode = 'RELI1' THEN '280633S001'
+                                        --WHEN BdmDedCode = 'RELI1' THEN '280633S001'
                                         WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN '280633SF01'
                                         WHEN BdmDedCode = 'RELI5' THEN '280633L001'
                                         END
@@ -1340,26 +1344,27 @@ BEGIN
                                     WHEN BdmDedCode = 'RELI5' THEN '06000'
                                     END
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4') THEN 'AMT' END
+        ,drvAMT00_AmountQualifierCode1 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
+                                            --CASE WHEN BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4') THEN 'AMT' END
         ,drvAMT01_AmountQualifierCode1 =    CASE WHEN BdmDedCode = 'ADD' THEN 'P3'
                                             WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN 'D2'
                                             WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN 'C1'
-                                            WHEN BdmDedCode = 'RELI1' THEN 'P3'
-                                            WHEN BdmDedCode = 'RELI3' THEN 'D2'
-                                            WHEN BdmDedCode = 'RELI4' THEN 'C1'
+                                            WHEN Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'P3'
+                                            --WHEN BdmDedCode = 'RELI3' THEN 'D2'
+                                            --WHEN BdmDedCode = 'RELI4' THEN 'C1'                                            
                                             END
         ,drvAMT02_MonetaryAmount1 =    --FORMAT(
                                     CASE WHEN BdmDedCode = 'ADD' THEN BdmEEAmt
                                     WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN BdmEEAmt
                                     WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN BdmEEAmt
-                                    WHEN BdmDedCode = 'RELI1' THEN BdmEEAmt
-                                    WHEN BdmDedCode = 'RELI3' THEN BdmEEAmt
-                                    WHEN BdmDedCode = 'RELI4' THEN BdmEEAmt
+                                    --WHEN Reli1DedCode IS NOT NULL THEN 11.00 --ELSE 0.00
+                                    --WHEN BdmDedCode = 'RELI3' THEN BdmEEAmt
+                                    --WHEN BdmDedCode = 'RELI4' THEN BdmEEAmt
                                     END --, '0.00')
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode2 = ''
-        ,drvAMT01_AmountQualifierCode2 = ''
-        ,drvAMT02_MonetaryAmount2 = ''
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
+        ,drvAMT01_AmountQualifierCode2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'D2' END
+        ,drvAMT02_MonetaryAmount2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 10.00 ELSE 0.00 END
         --=====================
         -- Loop 2700 RECORDS
         --=====================
@@ -1394,7 +1399,7 @@ BEGIN
                              WHEN 'DEN' THEN '2'
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
-                      END + ' ' + BdmDedCode
+                      END + ' ' + CASE WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'RELIX' ELSE BdmDedCode END
     INTO dbo.U_EANTHBD834_DrvTbl_2300
     FROM dbo.U_EANTHBD834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1407,7 +1412,19 @@ BEGIN
         AND BdmCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID;
+        AND ConSystemID = BdmDepRecID
+    LEFT JOIN (
+                SELECT BdmEEID AS ReliEEID, BdmCOID AS ReliCOID
+                    ,MAX(CASE WHEN BdmDedCode = 'RELI1' THEN BdmDedCode END) AS Reli1DedCode
+                    ,MAX(CASE WHEN BdmDedCode = 'RELI3' THEN BdmDedCode END) AS Reli3DedCode
+                    ,MAX(CASE WHEN BdmDedCode = 'RELI4' THEN BdmDedCode END) AS Reli4DedCode
+                    ,MAX(BdmBenStatusDate) AS ReliBenStatusDate
+                FROM dbo.U_dsi_bdm_EANTHBD834 WITH (NOLOCK) 
+                WHERE BdmDedCode IN ('RELI1','RELI3','RELI4')
+                GROUP BY BdmEEID, BdmCOID) AS Reli
+        ON ReliEEID = xEEID
+        AND ReliCOID = xCOID
+    ;
 
     /**************************************************************************************************
         TRAILER RECORDS
