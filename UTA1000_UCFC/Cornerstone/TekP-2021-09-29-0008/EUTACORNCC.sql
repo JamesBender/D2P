@@ -4,16 +4,17 @@ EUTACORNCC: Cornerstone Cost Center
 
 FormatCode:     EUTACORNCC
 Project:        Cornerstone Cost Center
-Client ID:      USG1000
-Date/time:      2022-03-07 09:27:16.917
+Client ID:      UTA1000
+Date/time:      2022-03-18 11:01:29.507
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_LUIGI
-Web Filename:   USG1000_79690_EEHISTORY_EUTACORNCC_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\NZ1SUP1DB03\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW3WUP3DB03
+Database:       ULTIPRO_WPUTCFC
+Web Filename:   UTA1000_E52D4_EEHISTORY_EUTACORNCC_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,15 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwEUTACORNCC_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEUTACORNCC_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EUTACORNCC') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EUTACORNCC];
+GO
+IF OBJECT_ID('U_EUTACORNCC_File') IS NOT NULL DROP TABLE [dbo].[U_EUTACORNCC_File];
+GO
+IF OBJECT_ID('U_EUTACORNCC_EEList') IS NOT NULL DROP TABLE [dbo].[U_EUTACORNCC_EEList];
+GO
+IF OBJECT_ID('U_EUTACORNCC_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EUTACORNCC_drvTbl];
 GO
 
 -----------
@@ -129,7 +138,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EUTACORNCCZ0','50','D','10','1',NULL,'OU ID',NULL,NULL,'"drvOUID"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EUTACORNCCZ0','50','D','10','2',NULL,'OU Name',NULL,NULL,'"drvOUName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EUTACORNCCZ0','50','D','10','3',NULL,'Active',NULL,NULL,'"TRUE"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EUTACORNCCZ0','50','D','10','4',NULL,'Allow Reconciliation',NULL,NULL,'"FALSE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EUTACORNCCZ0','50','D','10','4',NULL,'Allow Reconciliation',NULL,NULL,'"TRUE"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EUTACORNCCZ0','50','D','10','5',NULL,'Parent ID',NULL,NULL,'"drvParentID"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EUTACORNCCZ0','50','D','10','6',NULL,'Owner ID',NULL,NULL,'"drvOwnerID"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EUTACORNCCZ0','50','D','10','7',NULL,'Description',NULL,NULL,'"drvDescription"','(''UA''=''T,'')');
@@ -146,16 +155,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUTACORNCC_20220307.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUTACORNCC_20220318.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Cost Center','202203079','EMPEXPORT','ONDEM_XOE',NULL,'EUTACORNCC',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202203071',NULL,'','','202203071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',XAH9W',NULL,NULL,NULL,'Cornerstone Cost Center','202203079','EMPEXPORT','ONDEM_XOE',NULL,'EUTACORNCC',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202203071',NULL,'','','202203071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Cost Center-Sched','202203079','EMPEXPORT','SCH_EUTACO',NULL,'EUTACORNCC',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202203071',NULL,'','','202203071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Cost Center-Test','202203079','EMPEXPORT','TEST_XOE',NULL,'EUTACORNCC',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202203071',NULL,'','','202203071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cornerstone Cost Center-Test','202203079','EMPEXPORT','TEST_XOE',NULL,'EUTACORNCC',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202203071',NULL,'','','202203071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -167,10 +176,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','ExportPath','V','\\NZ1SUP1DB03\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','InitialSort','C','drvEmpNoSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUTACORNCC','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -195,9 +205,43 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_EUTACORNCC_drvTbl
 -----------
 
+IF OBJECT_ID('U_EUTACORNCC_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EUTACORNCC_drvTbl] (
+    [drvEmpNoSort] char(10) NOT NULL,
+    [drvOUID] char(10) NOT NULL,
+    [drvOUName] varchar(25) NULL,
+    [drvParentID] varchar(1) NOT NULL,
+    [drvOwnerID] varchar(1) NOT NULL,
+    [drvDescription] varchar(1) NOT NULL,
+    [drvApproverID] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EUTACORNCC_EEList
+-----------
+
+IF OBJECT_ID('U_EUTACORNCC_EEList') IS NULL
+CREATE TABLE [dbo].[U_EUTACORNCC_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EUTACORNCC_File
+-----------
+
+IF OBJECT_ID('U_EUTACORNCC_File') IS NULL
+CREATE TABLE [dbo].[U_EUTACORNCC_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(1000) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EUTACORNCC]
     @SystemID char(12)
@@ -258,6 +302,16 @@ BEGIN
     WHERE FormatCode = @FormatCode;
 
     --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    --DELETE FROM dbo.U_EUTACORNCC_EEList
+    --WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    --AND xEEID IN (SELECT xEEID FROM dbo.U_EUTACORNCC_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    --==========================================
     -- Build Driver Tables
     --==========================================
     ---------------------------------
@@ -282,9 +336,9 @@ BEGIN
     --JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
     --    ON EecEEID = xEEID 
     --    AND EecCoID = xCoID
-	FROM dbo.OrgLevel  WITH (NOLOCK)
+    FROM dbo.vwOrgLevel2 WITH (NOLOCK)
         --ON OrgCode = EecOrgLvl2
-        WHERE OrgLvl = '2'
+        --WHERE OrgLvl = '2'
     ;
 
     --==========================================
@@ -321,6 +375,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EUTACORNCC';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEUTACORNCC_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EUTACORNCC_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
