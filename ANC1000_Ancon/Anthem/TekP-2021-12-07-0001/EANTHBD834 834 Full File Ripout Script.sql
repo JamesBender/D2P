@@ -5,7 +5,7 @@ EANTHBD834: Anthem D/V/L/VL/LTD/STD Export
 FormatCode:     EANTHBD834
 Project:        Anthem D/V/L/VL/LTD/STD Export
 Client ID:      ANC1000
-Date/time:      2022-03-17 11:30:14.520
+Date/time:      2022-03-17 12:42:28.623
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -330,6 +330,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EANTHBD834Z0','3','D','51','1',NULL,'AMT Segment ID (Loop 2300) - Loop 1',NULL,NULL,'"drvAMT00_AmountQualifierCode2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EANTHBD834Z0','3','D','51','2',NULL,'Amount Qualifier Code',NULL,NULL,'"drvAMT01_AmountQualifierCode2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EANTHBD834Z0','18','D','51','3',NULL,'Monetary Amount',NULL,NULL,'"drvAMT02_MonetaryAmount2"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EANTHBD834Z0','3','D','52','1',NULL,'AMT Segment ID (Loop 2300) - Loop 1',NULL,NULL,'"drvAMT00_AmountQualifierCode3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EANTHBD834Z0','3','D','52','2',NULL,'Amount Qualifier Code',NULL,NULL,'"drvAMT01_AmountQualifierCode3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EANTHBD834Z0','18','D','52','3',NULL,'Monetary Amount',NULL,NULL,'"drvAMT02_MonetaryAmount3"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EANTHBD834Z0','2','D','80','1',NULL,'LS Segment ID (Loop 2700)',NULL,NULL,'"LS"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EANTHBD834Z0','6','D','80','2',NULL,'Loop ID Code',NULL,NULL,'"drvLS01_LoopIDCode"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EANTHBD834Z0','2','D','81','1',NULL,'LX Segment ID (Loop 2700)',NULL,NULL,'"LX"','(''DA''=''T*'')');
@@ -442,6 +445,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D46','U_EANTHBD834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D50','U_EANTHBD834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D51','U_EANTHBD834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D52','U_EANTHBD834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode3,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D80','U_EANTHBD834_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D81','U_EANTHBD834_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANTHBD834','D85','U_EANTHBD834_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
@@ -639,11 +643,14 @@ CREATE TABLE [dbo].[U_EANTHBD834_DrvTbl_2300] (
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(5) NULL,
     [drvAMT00_AmountQualifierCode1] varchar(3) NULL,
-    [drvAMT01_AmountQualifierCode1] varchar(2) NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(2) NOT NULL,
     [drvAMT02_MonetaryAmount1] money NULL,
     [drvAMT00_AmountQualifierCode2] varchar(3) NULL,
-    [drvAMT01_AmountQualifierCode2] varchar(2) NULL,
-    [drvAMT02_MonetaryAmount2] numeric NOT NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(2) NOT NULL,
+    [drvAMT02_MonetaryAmount2] money NULL,
+    [drvAMT00_AmountQualifierCode3] varchar(3) NULL,
+    [drvAMT01_AmountQualifierCode3] varchar(2) NOT NULL,
+    [drvAMT02_MonetaryAmount3] money NULL,
     [drvLS01_LoopIDCode] varchar(1) NOT NULL,
     [drvLX01_AssignedNumber] varchar(1) NOT NULL,
     [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
@@ -1346,25 +1353,37 @@ BEGIN
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
         ,drvAMT00_AmountQualifierCode1 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
                                             --CASE WHEN BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4') THEN 'AMT' END
-        ,drvAMT01_AmountQualifierCode1 =    CASE WHEN BdmDedCode = 'ADD' THEN 'P3'
-                                            WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN 'D2'
-                                            WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN 'C1'
+        ,drvAMT01_AmountQualifierCode1 = 'P3'
+                                            /*
+                                            CASE WHEN BdmDedCode = 'ADD' THEN 'P3'
+                                            --WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN 'D2'
+                                            --WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN 'C1'
                                             WHEN Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'P3'
                                             --WHEN BdmDedCode = 'RELI3' THEN 'D2'
                                             --WHEN BdmDedCode = 'RELI4' THEN 'C1'                                            
                                             END
+                                            */
         ,drvAMT02_MonetaryAmount1 =    --FORMAT(
                                     CASE WHEN BdmDedCode = 'ADD' THEN BdmEEAmt
                                     WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN BdmEEAmt
                                     WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN BdmEEAmt
-                                    --WHEN Reli1DedCode IS NOT NULL THEN 11.00 --ELSE 0.00
+                                    WHEN Reli1DedCode IS NOT NULL THEN P3Amt
                                     --WHEN BdmDedCode = 'RELI3' THEN BdmEEAmt
                                     --WHEN BdmDedCode = 'RELI4' THEN BdmEEAmt
                                     END --, '0.00')
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
-        ,drvAMT01_AmountQualifierCode2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'D2' END
-        ,drvAMT02_MonetaryAmount2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 10.00 ELSE 0.00 END
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
+        --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
+        ,drvAMT01_AmountQualifierCode2 = 'C1' --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'C1' END
+        ,drvAMT02_MonetaryAmount2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN C1Amt END
+
+        -- If drvAMT00_AmountQualifierCode3 is Populated, then Send AMT Segment
+        ,drvAMT00_AmountQualifierCode3 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
+        --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
+        ,drvAMT01_AmountQualifierCode3 = 'D2' --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'D2' END
+        ,drvAMT02_MonetaryAmount3 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN D2Amt END
+
+
         --=====================
         -- Loop 2700 RECORDS
         --=====================
@@ -1424,6 +1443,17 @@ BEGIN
                 GROUP BY BdmEEID, BdmCOID) AS Reli
         ON ReliEEID = xEEID
         AND ReliCOID = xCOID
+    LEFT JOIN (
+                SELECT EedEEID, EedCOID
+                    ,MAX(CASE WHEN EedDeDCode = 'RELI1' THEN EedBenAmt END) AS P3Amt
+                    ,MAX(CASE WHEN EedDeDCode = 'RELI3' THEN EedBenAmt END) AS D2Amt
+                    ,MAX(CASE WHEN EedDeDCode = 'RELI4' THEN EedBenAmt END) AS C1Amt
+                FROM dbo.EmpDed WITH (NOLOCK)
+                WHERE EedDedCode IN ('RELI1','RELI3','RELI4')
+                                --AND eedEEID = @EEID
+                GROUP BY EedEEID, EedCOID) AS ReliAmts
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
     ;
 
     /**************************************************************************************************
