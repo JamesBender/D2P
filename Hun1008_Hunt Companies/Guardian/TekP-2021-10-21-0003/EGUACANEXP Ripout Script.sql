@@ -5,7 +5,7 @@ EGUACANEXP: Guardian Cancer Export
 FormatCode:     EGUACANEXP
 Project:        Guardian Cancer Export
 Client ID:      HUN1008
-Date/time:      2022-01-19 05:06:32.933
+Date/time:      2022-03-21 06:52:36.043
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -211,18 +211,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUACANEXP_20220119.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUACANEXP_20220321.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202201319','EMPEXPORT','OEACTIVE',NULL,'EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202201319','EMPEXPORT','OEPASSIVE',NULL,'EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian Cancer Export','202201319','EMPEXPORT','ONDEM_XOE',NULL,'EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian Cancer Export-Sched','202201319','EMPEXPORT','SCH_EGUACA',NULL,'EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Guardian Cancer Export-Test','202201319','EMPEXPORT','TEST_XOE',NULL,'EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201319','EMPEXPORT','OEACTIVE','Jan 27 2022  5:25AM','EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011','191','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201319','EMPEXPORT','OEPASSIVE','Jan 27 2022  5:26AM','EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011','191','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Guardian Cancer Export','202201319','EMPEXPORT','ONDEM_XOE','Jan 27 2022  5:26AM','EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011','191','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Guardian Cancer Export-Sched','202201319','EMPEXPORT','SCH_EGUACA','Jan 27 2022  5:28AM','EGUACANEXP',NULL,NULL,NULL,'202201319','Jan 13 2022 10:40AM','Jan 13 2022 10:40AM','202201011','191','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Guardian Cancer Export-Test','202202039','EMPEXPORT','TEST_XOE','Feb 16 2022 12:00AM','EGUACANEXP',NULL,NULL,NULL,'202202039','Feb  3 2022 12:00AM','Dec 30 1899 12:00AM','202201201','190','','','202201201',dbo.fn_GetTimedKey(),NULL,'us3rVaHUN1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -350,7 +350,7 @@ CREATE TABLE [dbo].[U_EGUACANEXP_drvTbl] (
     [drvSpouseSSN] char(11) NULL,
     [drvSpouseSexAssignedAtBirth] varchar(1) NULL,
     [drvSpouseDateOfBirth] datetime NULL,
-    [drvPreimumAmount] money NULL,
+    [drvPreimumAmount] varchar(5) NOT NULL,
     [drvPermiumIndicator] varchar(1) NULL,
     [drvPermiumEffectiveDate] datetime NULL,
     [drvMemberStatus] varchar(1) NOT NULL,
@@ -526,16 +526,25 @@ BEGIN
         ,drvAddressState = EepAddressState
         ,drvAddressCountry = EepAddressCountry
         ,drvAddressZipCode = EepAddressZipCode
-        ,drvSexAssignedAtBirth = CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
+        ,drvSexAssignedAtBirth =    CASE WHEN (ISNULL(EepGender, '') = '' OR EepGender NOT IN ('M','F')) AND ConSSN IS NULL THEN ''
+                                    ELSE
+                                        CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
+                                    END
         ,drvSpouseNameFirst = ConNameFirst
         ,drvSpouseNameLast = ConNameLast
         ,drvSpouseEmail = ConEmailAddr
         ,drvSpouseSSN = ConSSN
         ,drvSpouseSexAssignedAtBirth = CASE WHEN ConGender IN ('M','F') THEN ConGender ELSE 'U' END
         ,drvSpouseDateOfBirth = ConDateOfBirth
-        ,drvPreimumAmount =    CASE WHEN DedCode_3721 IS NOT NULL THEN EEAmt_3721
-                            WHEN DedCode_3722 IS NOT NULL THEN EEAmt_3722
+        ,drvPreimumAmount =    CASE WHEN DedCode_3721 IS NOT NULL AND EecPayGroup IN ('AILLC','MIWHI') THEN '20.00'
+                            WHEN DedCode_3722 IS NOT NULL AND EecPayGroup IN ('AILLC','MIWHI') THEN '40.00'
+                            ELSE '0.00'
                             END
+        
+                            /*CASE WHEN DedCode_3721 IS NOT NULL /*AND EecPayGroup IN ('AILLC','MIWHI') AND BdmDedRecId IS NULL*/ THEN EEAmt_3721
+                            --WHEN DedCode_3721 IS NOT NULL AND EecPayGroup IN ('AILLC','MIWHI') AND BdmDedRecId IS NULL THEN EEAmt_3721
+                            WHEN DedCode_3722 IS NOT NULL THEN EEAmt_3722
+                            END*/
         ,drvPermiumIndicator =    CASE WHEN EecPayGroup IN ('AILLC','MIWHI') THEN 'M'
                                 WHEN EecPayGroup IN ('BANK','CAZCR','CGLFM','CGLMS','HBC2','HBROK','HCBS','HCM','HCP','HCSS','HDG','HFLY','HMHSS','NR') THEN 'B'
                                 END
