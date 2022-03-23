@@ -5,7 +5,7 @@ EBADUCM: UCM Telemedicine
 FormatCode:     EBADUCM
 Project:        UCM Telemedicine
 Client ID:      BAD1000
-Date/time:      2021-12-30 12:53:25.310
+Date/time:      2022-03-22 07:06:53.920
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -205,18 +205,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBADUCM_20211230.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBADUCM_20220322.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201011','EMPEXPORT','OEACTIVE','Dec 28 2021  8:02PM','EBADUCM',NULL,NULL,NULL,'202201011','Jan  1 2022 12:00AM','Dec 30 1899 12:00AM','202112311','419','','','202112311',dbo.fn_GetTimedKey(),NULL,'us3cPeBAD1000A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202201011','EMPEXPORT','OEACTIVE','Dec 30 2021  6:27PM','EBADUCM',NULL,NULL,NULL,'202201011','Jan  1 2022 12:00AM','Dec 30 1899 12:00AM','202201011','397','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeBAD1000A',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201011','EMPEXPORT','OEPASSIVE','Dec 28 2021  7:59PM','EBADUCM',NULL,NULL,NULL,'202201011','Jan  1 2022 12:00AM','Dec 30 1899 12:00AM','202201011','419','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeBAD1000A',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'UCM Telemedicine','202112099','EMPEXPORT','ONDEM_XOE',NULL,'EBADUCM',NULL,NULL,NULL,'202112099','Dec  9 2021 10:30AM','Dec  9 2021 10:30AM','202101021',NULL,'','','202101021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UCM Telemedicine-Sched','202112099','EMPEXPORT','SCH_EBADUC',NULL,'EBADUCM',NULL,NULL,NULL,'202112099','Dec  9 2021 10:30AM','Dec  9 2021 10:30AM','202101021',NULL,'','','202101021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UCM Telemedicine-Test','202112151','EMPEXPORT','TEST_XOE','Dec 28 2021  7:45PM','EBADUCM',NULL,NULL,NULL,'202112151','Dec 15 2021 12:00AM','Dec 15 2021 12:00AM','202112011','1','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3cPeBAD1000A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',IAGFG',NULL,NULL,NULL,'UCM Telemedicine-Sched','202201039','EMPEXPORT','SCH_EBADUC',NULL,'EBADUCM',NULL,NULL,NULL,'202203219','Dec  9 2021 10:30AM','Dec  9 2021 10:30AM','202203141',NULL,'','','202201031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UCM Telemedicine-Test','202202281','EMPEXPORT','TEST_XOE','Mar  9 2022 10:09AM','EBADUCM',NULL,NULL,NULL,'202202281','Feb 28 2022 12:00AM','Feb 28 2022 12:00AM','202201011','401','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeBAD1000A',NULL);
 
 -----------
 -- AscImp inserts
@@ -600,8 +600,10 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-                   And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
-          and EXISTS (Select 1 from dbo.U_EBADUCM_Audit where audEEID = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+         /*And (
+                eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+                and EXISTS (Select 1 from dbo.U_EBADUCM_Audit where audEEID = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T'))
+          )*/
           AND EecEEType = 'REG'
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -616,6 +618,8 @@ BEGIN
         AND BdmCoID = xCoID
         AND BdmRecType = 'EMP'
         --WHERE (CASE WHEN BdmRelationship in ('CHL','STC') AND DATEDIFF(YYYY, BdmDateofBirth,GETDATE()) > 26 THEN 'N' ELSE 'Y' END) = 'Y'
+    WHERE EecEmplStatus <> 'T' 
+        OR (EecEmplStatus = 'T' AND EXISTS (Select 1 from dbo.U_EBADUCM_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T'))
     ;
 
     INSERT INTO dbo.U_EBADUCM_drvTbl

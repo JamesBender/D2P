@@ -5,7 +5,7 @@ EANTHBD834: Anthem D/V/L/VL/LTD/STD Export
 FormatCode:     EANTHBD834
 Project:        Anthem D/V/L/VL/LTD/STD Export
 Client ID:      ANC1000
-Date/time:      2022-03-17 12:42:28.623
+Date/time:      2022-03-22 13:25:26.423
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -366,7 +366,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANTHBD834_20220317.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANTHBD834_20220322.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -639,7 +639,7 @@ CREATE TABLE [dbo].[U_EANTHBD834_DrvTbl_2300] (
     [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
     [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual1] varchar(10) NULL,
-    [drvREF00_RefNumberQual2] varchar(3) NOT NULL,
+    [drvREF00_RefNumberQual2] varchar(3) NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(5) NULL,
     [drvAMT00_AmountQualifierCode1] varchar(3) NULL,
@@ -1342,9 +1342,9 @@ BEGIN
                                         END
                                     END
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-        ,drvREF00_RefNumberQual2 = 'REF'
+        ,drvREF00_RefNumberQual2 =    CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4','RELI5') THEN 'REF' END
         ,drvREF01_RefNumberQual2 = 'ZZ'
-        ,drvREF02_RefNumberQual2 =    CASE WHEN BdmDedCode = 'ADD' THEN '05000'
+        ,drvREF02_RefNumberQual2 =  CASE WHEN BdmDedCode = 'ADD' THEN '05000'
                                     WHEN BdmDedCode = 'ADDF' THEN '05000'
                                     WHEN BdmDedCode = 'RELI1' THEN '05000'
                                     WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN '05000'
@@ -1372,16 +1372,20 @@ BEGIN
                                     --WHEN BdmDedCode = 'RELI4' THEN BdmEEAmt
                                     END --, '0.00')
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode2 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN (BdmDedCode IN ('ADD','ADDF') AND Child IS NOT NULL) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
         --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
         ,drvAMT01_AmountQualifierCode2 = 'C1' --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'C1' END
-        ,drvAMT02_MonetaryAmount2 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN C1Amt END
+        ,drvAMT02_MonetaryAmount2 =    CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN C1Amt 
+                                    WHEN BdmDedCOde IN ('ADD','ADDF') AND Child IS NOT NUll THEN AddAmt
+                                    END
 
         -- If drvAMT00_AmountQualifierCode3 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode3 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
+        ,drvAMT00_AmountQualifierCode3 = CASE WHEN (BdmDedCode IN ('ADD','ADDF') AND Spouse IS NOT NULL) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
         --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
         ,drvAMT01_AmountQualifierCode3 = 'D2' --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'D2' END
-        ,drvAMT02_MonetaryAmount3 = CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN D2Amt END
+        ,drvAMT02_MonetaryAmount3 =    CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN D2Amt 
+                                    WHEN BdmDedCOde IN ('ADD','ADDF') AND Spouse IS NOT NUll THEN AddAmt
+                                    END
 
 
         --=====================
@@ -1454,6 +1458,22 @@ BEGIN
                 GROUP BY EedEEID, EedCOID) AS ReliAmts
         ON EedEEID = xEEID
         AND EedCOID = xCOID
+    LEFT JOIN (
+                SELECT ConEEID AS SocEEID
+                    ,MAX(CASE WHEN ConRelationship IN ('SPS','SP') THEN ConRelationship END) AS Spouse
+                    ,MAX(CASE WHEN ConRelationship IN ('CHD','CHL','DPC'',STC') THEN ConRelationship END) AS Child
+                FROM dbo.Contacts WITH (NOLOCK)
+                WHERE ConIsDependent = 'Y'
+                GROUP BY ConEEID) As Con
+        ON xEEID = SocEEID
+    LEFT JOIN (
+                SELECT EedEEID AS AddEeid, EedCOID AS AddCOID, MAX(EedBenAmt) AS AddAmt
+                FROM dbo.EmpDed WITH (NOLOCK)
+                WHERE EedDedCode IN ('ADD','ADDF')
+                AND EedBenStatus = 'A'
+                GROUP BY EedEEID, EedCOID) AS AddBenAmt
+        ON  AddEeid = xEEID
+        AND AddCOID = xCOID
     ;
 
     /**************************************************************************************************
