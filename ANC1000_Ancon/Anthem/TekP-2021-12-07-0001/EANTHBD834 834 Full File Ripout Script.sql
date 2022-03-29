@@ -5,7 +5,7 @@ EANTHBD834: Anthem D/V/L/VL/LTD/STD Export
 FormatCode:     EANTHBD834
 Project:        Anthem D/V/L/VL/LTD/STD Export
 Client ID:      ANC1000
-Date/time:      2022-03-25 06:22:17.590
+Date/time:      2022-03-29 05:07:09.247
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -366,7 +366,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANTHBD834_20220325.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANTHBD834_20220329.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -377,7 +377,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202203029','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EANTHBD834',NULL,NULL,NULL,'202203029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203021',NULL,'','','202203021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202203029','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EANTHBD834',NULL,NULL,NULL,'202203029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203021',NULL,'','','202203021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Anthem D/V/L/VL/LTD/STD Export','202203029','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EANTHBD834',NULL,NULL,NULL,'202203029','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203021',NULL,'','','202203021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202203231','EMPEXPORT','TEST_XOE','Mar 23 2022  9:48AM','EANTHBD834',NULL,NULL,NULL,'202203231','Mar 23 2022 12:00AM','Dec 30 1899 12:00AM','202203091','11457','','','202203091',dbo.fn_GetTimedKey(),NULL,'us3cPeANC1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202203231','EMPEXPORT','TEST_XOE','Mar 25 2022  7:50PM','EANTHBD834',NULL,NULL,NULL,'202203231','Mar 23 2022 12:00AM','Dec 30 1899 12:00AM','202203091','11007','','','202203091',dbo.fn_GetTimedKey(),NULL,'us3cPeANC1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -1324,14 +1324,14 @@ BEGIN
         ,drvDTP03_DateTimePeriod_303 = CASE WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN ReliBenStatusDate ELSE dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate) END
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual1 = 'REF'
-        ,drvREF01_RefNumberQual1 = '1L'
+        ,drvREF01_RefNumberQual1 = '1L' -- Reli3DedCode
         ,drvREF02_RefNumberQual1 =    CASE WHEN BdmRecType = 'EMP' THEN
                                         CASE WHEN BdmDedCode = 'ADEN1' THEN '2806330001'
                                         WHEN BdmDedCode = 'ADEN2' THEN '2806330003'
                                         WHEN BdmDedCode = 'AVIS' THEN '2806330005'
                                         WHEN BdmDedCode = 'ADD' THEN '280633N001'
                                         WHEN BdmDedCode = 'ADDF' THEN '280633NF01'
-                                        --WHEN BdmDedCode = 'RELI1' THEN '280633S001'
+                                        WHEN BdmDedCode = 'RELI1' AND Reli3DedCode IS NULL AND Reli4DedCode IS NULL THEN '280633S001'
                                         WHEN BdmDedCode IN ('RELI1','RELI3','RELI4') THEN '280633SF01'
                                         WHEN BdmDedCode = 'RELI5' THEN '280633L001'
                                         END
@@ -1352,39 +1352,24 @@ BEGIN
                                     END
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
         ,drvAMT00_AmountQualifierCode1 = CASE WHEN (BdmDedCode IN ('ADD','ADDF')) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4')) THEN 'AMT' END
-                                            --CASE WHEN BdmDedCode IN ('ADD','ADDF','RELI1','RELI3','RELI4') THEN 'AMT' END
         ,drvAMT01_AmountQualifierCode1 = 'P3'
-                                            /*
-                                            CASE WHEN BdmDedCode = 'ADD' THEN 'P3'
-                                            --WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN 'D2'
-                                            --WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN 'C1'
-                                            WHEN Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'P3'
-                                            --WHEN BdmDedCode = 'RELI3' THEN 'D2'
-                                            --WHEN BdmDedCode = 'RELI4' THEN 'C1'                                            
-                                            END
-                                            */
-        ,drvAMT02_MonetaryAmount1 =    --FORMAT(
-                                    CASE WHEN BdmDedCode = 'ADD' THEN ADDAmt
-                                    WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('SPS','DP') THEN ADDAmt --BdmEEAmt
-                                    WHEN BdmDedCode = 'ADDF' AND ConRelationship IN ('CHD','CHL','DPC','STC') THEN ADDAmt --BdmEEAmt
+
+        ,drvAMT02_MonetaryAmount1 =    CASE WHEN BdmDedCode IN ('ADD','ADDF') THEN ADDAmt
                                     WHEN Reli1DedCode IS NOT NULL THEN P3Amt
-                                    --WHEN BdmDedCode = 'RELI3' THEN BdmEEAmt
-                                    --WHEN BdmDedCode = 'RELI4' THEN BdmEEAmt
-                                    END --, '0.00')
+                                    END 
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode2 = CASE WHEN ((BdmDedCode IN ('ADD','ADDF') AND Child IS NOT NULL) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4'))) AND C1Amt IS NOT NULL THEN 'AMT' END
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN ((BdmDedCode IN ('ADDF') AND Child IS NOT NULL) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4'))) AND C1Amt IS NOT NULL THEN 'AMT' END
         --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
-        ,drvAMT01_AmountQualifierCode2 = 'C1' --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'C1' END
+        ,drvAMT01_AmountQualifierCode2 = 'C1' 
         ,drvAMT02_MonetaryAmount2 =    CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN C1Amt 
-                                    WHEN BdmDedCOde IN ('ADD','ADDF') AND Child IS NOT NUll THEN AddAmt
+                                    WHEN BdmDedCOde IN ('ADDF') AND Child IS NOT NUll THEN AddAmt
                                     END
 
         -- If drvAMT00_AmountQualifierCode3 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode3 = CASE WHEN ((BdmDedCode IN ('ADD','ADDF') AND Spouse IS NOT NULL) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4'))) AND D2Amt IS NOT NULL THEN 'AMT' END
-        --CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN 'AMT' END
+        ,drvAMT00_AmountQualifierCode3 = CASE WHEN ((BdmDedCode IN ('ADDF') AND Spouse IS NOT NULL) OR (Reli1DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4'))) AND D2Amt IS NOT NULL THEN 'AMT' END
         ,drvAMT01_AmountQualifierCode3 =  'D2'
         ,drvAMT02_MonetaryAmount3 =    CASE WHEN Reli3DedCode IS NOT NULL AND BdmDedCode IN ('RELI1','RELI3','RELI4') THEN D2Amt 
-                                    WHEN BdmDedCOde IN ('ADD','ADDF') AND Spouse IS NOT NUll THEN AddAmt
+                                    WHEN BdmDedCOde IN ('ADDF') AND Spouse IS NOT NUll THEN AddAmt
                                     END
 
 

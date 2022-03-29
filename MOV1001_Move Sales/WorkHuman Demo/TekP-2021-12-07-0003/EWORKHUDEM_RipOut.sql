@@ -5,7 +5,7 @@ EWORKHUDEM: Work Human Demo Export
 FormatCode:     EWORKHUDEM
 Project:        Work Human Demo Export
 Client ID:      MOV1001
-Date/time:      2022-03-21 10:05:55.610
+Date/time:      2022-03-28 08:44:47.830
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -164,7 +164,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EWORKHUDEMZ0','50','D','10','16',NULL,'Approver 2',NULL,NULL,'"drvApp2"','(''UA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EWORKHUDEMZ0','50','D','10','17',NULL,'Approver 3',NULL,NULL,'"drvApp3"','(''UA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EWORKHUDEMZ0','50','D','10','18',NULL,'Revenue Org Participants',NULL,NULL,'"drvRevOrgPart"','(''UA''=''TT'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EWORKHUDEMZ0','50','D','10','19',NULL,'Revenue Org Nominators',NULL,NULL,'"drvRevOrgNom"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EWORKHUDEMZ0','50','D','10','19',NULL,'Revenue Org Nominators',NULL,NULL,'"drvRevOrgNom"','(''UA''=''TT'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EWORKHUDEMZ0','50','D','10','20',NULL,'Pay Group Description',NULL,NULL,'"drvPayGroupDesc"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -177,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDEM_20220321.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDEM_20220328.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -242,17 +243,18 @@ CREATE TABLE [dbo].[U_EWORKHUDEM_drvTbl] (
     [drvFunc] varchar(25) NULL,
     [drvCountry] varchar(2) NULL,
     [drvHireDt] datetime NULL,
-    [drvManagerId] char(9) NULL,
+    [drvManagerId] varchar(30) NULL,
     [drvAdmin] varchar(1) NULL,
     [drvCostCent] varchar(20) NOT NULL,
     [drvLocCode] varchar(25) NULL,
     [drvJobLvl] char(10) NULL,
-    [drvEmpType] char(3) NULL,
+    [drvEmpType] varchar(45) NULL,
     [drvAlternateTitle] varchar(25) NOT NULL,
     [drvApp2] varchar(9) NULL,
     [drvApp3] varchar(9) NULL,
     [drvRevOrgPart] varchar(1) NOT NULL,
-    [drvRevOrgNom] varchar(1) NOT NULL
+    [drvRevOrgNom] varchar(1) NOT NULL,
+    [drvPayGroupDesc] varchar(25) NULL
 );
 
 -----------
@@ -481,7 +483,10 @@ BEGIN
         --O1.OrgDesc
         ,drvCountry = LEFT(pers.EepAddressCountry, 2) -- Cheryl follow up
         ,drvHireDt = Ec.EecDateOfSeniority
-        ,drvManagerId = EC2.EecEmpNo
+        ,drvManagerId = CAST(CAST(
+                                    CASE WHEN Ec.EecEEType = 'POI' AND Ec.EecJobCode = 'UEX1010I' THEN Ec.EecEmpNo 
+                                    ELSE EC2.EecEmpNo 
+                                    END AS INTEGER) AS VARCHAR)
         ,drvAdmin = CASE Ec.EecEmpNo
                         WHEN '000116305' THEN 'Y'
                         WHEN '000604401' THEN 'Y'
@@ -493,7 +498,7 @@ BEGIN
         ,drvCostCent = CONCAT(LTRIM(RTRIM(O1.OrgCode)), LTRIM(RTRIM(O2.OrgCode)))
         ,drvLocCode = LocDesc
         ,drvJobLvl = je.JbcUDField2
-        ,drvEmpType = Ec.EecEEType
+        ,drvEmpType = EmpType.CodDesc -- Ec.EecEEType
         ,drvAlternateTitle = je.JbcDesc
         --Ec.EecJobTitle
         ,drvApp2 = CASE WHEN je2.JbcUDField2 IN ('M4', 'M5', 'M6', 'M7', 'M8', 'M9') THEN  ''
@@ -502,9 +507,10 @@ BEGIN
         ,drvApp3 = CASE WHEN je2.JbcUDField2 IN ('M5', 'M6', 'M7', 'M8', 'M9') THEN  ''
                         ELSE SUBSTRING(Ec3.EecEmpNo, PATINDEX('%[^0]%', Ec3.EecEmpNo+'.'), LEN(Ec3.EecEmpNo))
                         END
-        ,drvRevOrgPart = CASE WHEN Ec.EecCOID IN ('OG4IV', 'NR767') AND Ec.EecOrgLvl3 IN ('CONEXP', 'OPERAT', 'SALES') AND je.JbcUDField2 IN ('M4', 'M5', 'M6', 'M7') THEN 'Y' ELSE '' END
+        ,drvRevOrgPart = CASE WHEN Ec.EecEEType = 'REG' AND /*Ec.EecCOID IN ('OG4IV', 'NR767') AND*/ Ec.EecOrgLvl3 IN ('CONEXP', 'OPERAT', 'SALES') AND je.JbcUDField2 IN ('M4', 'M5', 'M6', 'M7') THEN 'Y' ELSE '' END
         ,drvRevOrgNom = CASE WHEN Ec.EecCOID IN ('OG4IV', 'NR767') AND Ec.EecOrgLvl3 IN ('CONEXP', 'OPERAT', 'SALES') OR je.JbcUDField2 IN 
                             ('M4', 'M5', 'M6', 'M7') THEN 'Y' ELSE '' END
+        ,drvPayGroupDesc = PayGroup.PgrDesc
     INTO dbo.U_EWORKHUDEM_drvTbl
     FROM dbo.U_EWORKHUDEM_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers pers WITH (NOLOCK)
@@ -542,6 +548,11 @@ BEGIN
         ON Ec3.EecEEID = pers3.EepEEID
     LEFT JOIN dbo.JobCode je3 -- test
         ON je3.JbcJobCode = Ec3.EecJobCode
+    JOIN dbo.Codes AS EmpType WITH (NOLOCK)
+        ON Ec.EecEEType = EmpType.CodCode
+        AND EmpType.CodTable = 'EmpType'
+    JOIN dbo.PayGroup AS PayGroup WITH (NOLOCK)
+        ON Ec.EecPayGroup = PayGroup.PgrPayGroup        
     -- JOIN dbo.U_dsi_BDM_EWORKHUDEM WITH (NOLOCK)
     --     ON BdmEEID = xEEID 
     --     AND BdmCoID = xCoID
