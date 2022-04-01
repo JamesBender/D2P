@@ -5,7 +5,7 @@ EATNA834MD: Aetna Med 834 Export
 FormatCode:     EATNA834MD
 Project:        Aetna Med 834 Export
 Client ID:      MER1024
-Date/time:      2022-01-27 18:14:48.977
+Date/time:      2022-03-21 05:40:59.737
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -351,7 +351,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EATNA834MD_20220127.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EATNA834MD_20220321.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -359,10 +359,10 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Changes Only File','202010139','EMPEXPORT','CHANGES','Oct 13 2020  4:12PM','EATNA834MD',NULL,NULL,NULL,'202010139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202009291','7374','','','202009291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202201041','EMPEXPORT','FULLFILE','Jan  6 2022  1:40PM','EATNA834MD',NULL,NULL,NULL,'202201041','Jan  4 2022 12:00AM','Dec 30 1899 12:00AM','202112281','13163','','','202112281',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Full File Only','202203091','EMPEXPORT','FULLFILE','Mar  9 2022  4:44PM','EATNA834MD',NULL,NULL,NULL,'202203091','Mar  9 2022 12:00AM','Dec 30 1899 12:00AM','202202231','13149','','','202202231',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202111161','EMPEXPORT','OEACTIVE','Nov 16 2021  1:23PM','EATNA834MD',NULL,NULL,NULL,'202111161','Nov 16 2021 12:00AM','Dec 30 1899 12:00AM','202111021','137','','','202111021',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202111161','EMPEXPORT','OEPASSIVE','Nov 16 2021  1:19PM','EATNA834MD',NULL,NULL,NULL,'202111161','Nov 16 2021 12:00AM','Dec 30 1899 12:00AM','202111021','12593','','','202111021',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','58879,587YD',NULL,NULL,NULL,'Aetna Med 834 Export','202012309','EMPEXPORT','SCHEDULED','Oct 13 2020  4:13PM','EATNA834MD',NULL,NULL,NULL,'202201249','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202201171','7374','','','202012301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','58879,587YD',NULL,NULL,NULL,'Aetna Med 834 Export','202012309','EMPEXPORT','SCHEDULED','Oct 13 2020  4:13PM','EATNA834MD',NULL,NULL,NULL,'202203149','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203071','7374','','','202012301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202111241','EMPEXPORT','TESTFILE','Nov 24 2021 12:00AM','EATNA834MD',NULL,NULL,NULL,'202111241','Nov 24 2021 12:00AM','Dec 30 1899 12:00AM','202111101','13403','','','202111101',dbo.fn_GetTimedKey(),NULL,'RVAS',NULL);
 
 -----------
@@ -1277,7 +1277,7 @@ BEGIN
                                            WHEN BdmDedType IN ('DEN') THEN 'DEN'
                                            WHEN BdmDedType IN ('VIS') THEN 'VIS'
                                      END*/
-        ,drvHD04_PlanCoverageDesc =    CASE 
+        ,drvHD04_PlanCoverageDesc = CASE 
 
                                             WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EE') THEN '001+0170546+011+00001+78800+131'
                                             WHEN EepAddressState = 'KY' AND BdmDedCode IN ('USHDP','USHDP') AND BdmBenOption IN ('EECH','EECHLD','EECHLD','EEFAM','EES') THEN '001+0170546+011+00001+78900+131'
@@ -1402,10 +1402,14 @@ BEGIN
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'NY' THEN '001+0170546+010+00002+11400+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'NY' THEN '001+0170546+011+00001+22700+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'NY' THEN '001+0170546+011+00001+22800+131'
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
-                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
-                                            WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
-                                            WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'OH' THEN ''  -- Values supplied by AETNA - waiting on client to update logic to use a custom field for the ones that there are no values
+
+
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EECH','EECHLD','EEFAM','EES') AND EepAddressState = 'OH' THEN (SELECT TOP 1 CodDesc FROM Codes WITH (NOLOCK) WHERE CodTable = 'CO_MCAETNASTATES' AND CodCode = 'OHHSA2')
+                                            WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'OH' THEN (SELECT TOP 1 CodDesc FROM Codes WITH (NOLOCK) WHERE CodTable = 'CO_MCAETNASTATES' AND CodCode = 'OHHSA1')
+                                            WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EECH1','EES1','EEFAM1') AND EepAddressState = 'OH' THEN (SELECT TOP 1 CodDesc FROM Codes WITH (NOLOCK) WHERE CodTable = 'CO_MCAETNASTATES' AND CodCode = 'OHPPO2')
+                                            WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'OH' THEN (SELECT TOP 1 CodDesc FROM Codes WITH (NOLOCK) WHERE CodTable = 'CO_MCAETNASTATES' AND CodCode = 'OHPPO1')
+
+
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE1','EECH1','EES1','EEFAM1') AND EepAddressState = 'OR' THEN '001+0170546+010+00001+00100+131'
                                             WHEN bdmDedCode = 'USPPO' AND bdmBenOption IN  ('EE2','EE3','EE4','EE5','EECH2','EECH3','EECH4','EECH5','EES2','EES3','EES4','EES5','EEFAM2','EEFAM3','EEFAM4','EEFAM5') AND EepAddressState = 'OR' THEN '001+0170546+010+00002+10100+131'
                                             WHEN bdmDedCode = 'USHDP' AND bdmBenOption IN  ('EE') AND EepAddressState = 'OR' THEN '001+0170546+011+00001+20100+131'
@@ -1461,7 +1465,7 @@ BEGIN
                                                             WHERE CodTable = 'CO_MCAETNASTATES'
                                                             AND LEFT(RIGHT(RTRIM(CodCode), 4), 3) = 'PPO'
                                                             AND RIGHT(RTRIM(CodCode), 1) = '2'
-                                                            AND LEFT(A.CodCode, 2) = EepAddressState) 
+                                                            AND LEFT(A.CodCode, 2) = EepAddressState)                                                     
                                                     END 
                                     END
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmDedCode IN ('USHDP','USPPO') THEN

@@ -5,7 +5,7 @@ ELMSCSVUT2: Torch LMS Export V2
 FormatCode:     ELMSCSVUT2
 Project:        Torch LMS Export V2
 Client ID:      UTA1000
-Date/time:      2022-03-08 05:17:01.403
+Date/time:      2022-03-17 06:04:02.200
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -110,6 +110,8 @@ IF OBJECT_ID('dsi_vwELMSCSVUT2_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwELMSC
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ELMSCSVUT2') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ELMSCSVUT2];
 GO
+IF OBJECT_ID('U_ELMSCSVUT2_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ELMSCSVUT2_PEarHist];
+GO
 IF OBJECT_ID('U_ELMSCSVUT2_File') IS NOT NULL DROP TABLE [dbo].[U_ELMSCSVUT2_File];
 GO
 IF OBJECT_ID('U_ELMSCSVUT2_EEList') IS NOT NULL DROP TABLE [dbo].[U_ELMSCSVUT2_EEList];
@@ -175,7 +177,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELMSCSVUT2_20220308.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELMSCSVUT2_20220317.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -276,6 +278,27 @@ CREATE TABLE [dbo].[U_ELMSCSVUT2_File] (
     [SubSort3] varchar(100) NULL,
     [Data] varchar(max) NULL
 );
+
+-----------
+-- Create table U_ELMSCSVUT2_PEarHist
+-----------
+
+IF OBJECT_ID('U_ELMSCSVUT2_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_ELMSCSVUT2_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PehCOID] char(5) NOT NULL,
+    [PgrPayGroup] char(6) NULL,
+    [PrgPayDate] datetime NULL,
+    [PgrPayFrequency] char(1) NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ELMSCSVUT2]
     @SystemID char(12)
@@ -357,6 +380,41 @@ BEGIN
     AND EecDateOfTermination <= DATEADD(dd,-90,@EndDate)
 
 
+    -------------------------------
+    ---- Working Table - PEarHist YTD
+    -------------------------------
+    IF OBJECT_ID('U_ELMSCSVUT2_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ELMSCSVUT2_PEarHist;
+    SELECT DISTINCT
+         PehEEID
+        ,PehCOID
+        ,PgrPayGroup = MAX(PgrPayGroup)
+        ,PrgPayDate             = MAX(PrgPayDate)
+        ,PgrPayFrequency        = MAX(PgrPayFrequency)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_ELMSCSVUT2_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    JOIN dbo.PayGroup WITH(NOLOCK)
+        ON PrgPayGroup = PgrPayGroup
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID, PehCOID
+    HAVING SUM(PehCurAmt) <> 0.00;
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -380,7 +438,7 @@ BEGIN
         ,drvAllowReconciliation = 'TRUE'
         ,drvEmail = EEP.EepAddressEmail
         ,drvRequiredTrainingApprov = '1'
-        ,drvExempt = '1'  --CASE WHEN EjhFLSACategory = 'E' THEN '1' ELSE '0' END
+        ,drvExempt = CASE WHEN PgrPayGroup = 'EXEMPT' THEN '1' ELSE '0' END --CASE WHEN EjhFLSACategory = 'E' THEN '1' ELSE '0' END
         ,drvOriginalHireDate = EEC.EecDateOfOriginalHire
         ,drvLastHireDate = EEC.EecDateOfLastHire
         ,drvStatus = CASE WHEN EEC.EecEmplStatus = 'A' THEN '1' ELSE '0' END
@@ -389,7 +447,7 @@ BEGIN
         ,drvDepartment = O2.OrgCode
         ,drvTerminationDate = EEC.EecDateOfTermination
         ,drvFullTime = CASE WHEN EEC.EecFullTimeOrPartTime = 'F' THEN '1' ELSE '0' END
-        ,drvExemptPayroll = CASE WHEN EjhFLSACategory = 'E' THEN '1' ELSE '0' END
+        ,drvExemptPayroll = CASE WHEN PgrPayGroup = 'EXEMPT' THEN '1' ELSE '0' END -- CASE WHEN EjhFLSACategory = 'E' THEN '1' ELSE '0' END
     /*
         -- standard fields above and additional driver fields below
         ,drvUsername = CASE WHEN ISNULL((SELECT UPN FROM dbo.vw_ADFS_GetSSOUsers JOIN dbo.vw_rbsUserFind ON dbo.vw_ADFS_GetSSOUsers.sususername = dbo.vw_rbsUserFind.sususername  WHERE sucEEID = xEEID),'') = '' THEN EepAddressEmail
@@ -458,6 +516,8 @@ BEGIN
         ON EEC.EecOrgLvl2 = O2.OrgCode
     LEFT JOIN dbo.vw_rbsusers WITH (NOLOCK)
         ON susUserId = EEP.EepUserId
+    LEFT JOIN dbo.U_ELMSCSVUT2_PEarHist
+        ON PehEEID = xEEID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND DATEADD(DAY, 90, EecDateOfTermination) >= @EndDate)
     
     ;

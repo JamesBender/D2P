@@ -5,7 +5,7 @@ EMETVLTDVE: MetLife L/VL L/STD Den Vis Export
 FormatCode:     EMETVLTDVE
 Project:        MetLife L/VL L/STD Den Vis Export
 Client ID:      CLI1006
-Date/time:      2022-03-09 12:24:33.517
+Date/time:      2022-03-23 07:05:01.353
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -553,7 +553,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMETVLTDVE_20220309.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMETVLTDVE_20220323.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -564,7 +564,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202201079','EMPEXPORT','OEPASSIVE','Jan 11 2022 11:20AM','EMETVLTDVE',NULL,NULL,NULL,'202201079','Jan  7 2022 10:51AM','Jan  7 2022 10:51AM','202201071','422','','','202201071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V Export','202201079','EMPEXPORT','ONDEM_XOE','Jan 11 2022 11:21AM','EMETVLTDVE',NULL,NULL,NULL,'202201079','Jan  7 2022 10:51AM','Jan  7 2022 10:51AM','202201071','416','','','202201071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V E-Sched','202201079','EMPEXPORT','SCH_EMETVL','Jan 11 2022 11:22AM','EMETVLTDVE',NULL,NULL,NULL,'202201079','Jan  7 2022 10:51AM','Jan  7 2022 10:51AM','202201071','416','','','202201071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V E-Test','202203089','EMPEXPORT','TEST_XOE','Mar  8 2022 12:00AM','EMETVLTDVE',NULL,NULL,NULL,'202203089','Mar  8 2022 12:00AM','Dec 30 1899 12:00AM','202202221','378','','','202202221',dbo.fn_GetTimedKey(),NULL,'us3lKiCLI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MetLife L/VL L/STD D/V E-Test','202203229','EMPEXPORT','TEST_XOE','Mar 22 2022  6:22PM','EMETVLTDVE',NULL,NULL,NULL,'202203229','Mar 22 2022 12:00AM','Dec 30 1899 12:00AM','202203081','376','','','202203081',dbo.fn_GetTimedKey(),NULL,'us3lKiCLI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -937,6 +937,7 @@ BEGIN
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CalcBenOptionDate','2');
 
     -- Required OE parameters
     IF @ExportCode LIKE '%PASSIVE'
@@ -952,6 +953,8 @@ BEGIN
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
 
     --==========================================
     -- Build Driver Tables
@@ -979,7 +982,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID + ' ' +    CASE WHEN ConRelationship IN ('DP','SPS') THEN '01'
+        ,drvSort =  xEEID + ' ' +    CASE WHEN ConRelationship IN ('DP','SPS') THEN '01'
                                     WHEN ConRelationship IN ('CHL','STC','DPC','DCH') THEN '02'
                                     ELSE '00'
                                     END
@@ -1022,8 +1025,8 @@ BEGIN
         ,drvCoverageCode1 = CASE WHEN DENC_DedCode IS NOT NULL OR DENH_DedCode IS NOT NULL THEN 'D' END
         ,drvCoverageStartDate1 =    CASE WHEN DENC_DedCode IS NOT NULL OR DENH_DedCode IS NOT NULL THEN
                                         dbo.dsi_fnGetMinMaxDates('MAX',
-                                            CASE WHEN DENC_DedCode IS NOT NULL THEN DENC_BenStartDate
-                                            WHEN DENH_DedCode IS NOT NULL THEN DENH_BenStartDate 
+                                            CASE WHEN DENC_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2022', DENC_BenStartDate)
+                                            WHEN DENH_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, '1/1/2022', DENH_BenStartDate)
                                             END, '1/1/2022')
                                     END
         ,drvCoverageStopDate1 =    CASE WHEN DENC_DedCode IS NOT NULL THEN DENC_BenStopDate
@@ -1051,8 +1054,8 @@ BEGIN
         ,drvCoverageCode2 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'CP' END
         ,drvCoverageStartDate2 =    CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN
                                             dbo.dsi_fnGetMinMaxDates('MAX',
-                                            CASE WHEN GLIFE_DedCode IS NOT NULL THEN GLIFE_BenStartDate
-                                            WHEN GLIF5_DedCode IS NOT NULL THEN GLIF5_BenStartDate 
+                                            CASE WHEN GLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
+                                            WHEN GLIF5_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
                                             END, '1/1/2022')
                                     END
         ,drvCoverageStopDate2 = CASE WHEN GLIFE_DedCode IS NOT NULL THEN GLIFE_BenStopDate
@@ -1065,8 +1068,8 @@ BEGIN
                         END
         ,drvStatusCode2 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'A' END
         ,drvMembersCoveredCode2 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN '1' END
-        ,drvAnnualBenefitAmount2 = FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL THEN @GLIFEPct * EecAnnSalary
-                                    WHEN GLIF5_DedCode IS NOT NULL THEN @GLIF5MaxAmt
+        ,drvAnnualBenefitAmount2 = FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL THEN GLifeBcaAmt -- @GLIFEPct * EecAnnSalary
+                                    WHEN GLIF5_DedCode IS NOT NULL THEN GLifeBcaAmt -- @GLIF5MaxAmt
                                     END, '00000000')
         ,drvSalaryMode2 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'A' END
         ,drvSalaryAmount2 = FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN EecAnnSalary END, '0000000')
@@ -1075,8 +1078,8 @@ BEGIN
         ,drvCoverageCode3 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'AD' END
         ,drvCoverageStartDate3 =   CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN
                                         dbo.dsi_fnGetMinMaxDates('MAX',
-                                            CASE WHEN GLIFE_DedCode IS NOT NULL THEN GLIFE_BenStartDate
-                                            WHEN GLIF5_DedCode IS NOT NULL THEN GLIF5_BenStartDate 
+                                            CASE WHEN GLIFE_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
+                                            WHEN GLIF5_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
                                             END, '1/1/2022')
                                     END
         ,drvCoverageStopDate3 =    CASE WHEN GLIFE_DedCode IS NOT NULL THEN GLIFE_BenStopDate
@@ -1089,14 +1092,14 @@ BEGIN
                         END
         ,drvStatusCode3 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'A' END
         ,drvMembersCoveredCode3 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN '1' END
-        ,drvAnnualBenefitAmount3 =    FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL THEN @GLIFEPct * EecAnnSalary
-                                    WHEN GLIF5_DedCode IS NOT NULL THEN @GLIF5MaxAmt
+        ,drvAnnualBenefitAmount3 =    FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL THEN GLifeBcaAmt-- @GLIFEPct * EecAnnSalary
+                                    WHEN GLIF5_DedCode IS NOT NULL THEN GLifeBcaAmt -- @GLIF5MaxAmt
                                     END, '00000000')
         ,drvSalaryMode3 = CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN 'A' END
         ,drvSalaryAmount3 = FORMAT(CASE WHEN GLIFE_DedCode IS NOT NULL OR GLIF5_DedCode IS NOT NULL THEN EecAnnSalary END, '0000000')
 
         ,drvCoverageCode4 = CASE WHEN LTD_DedCode IS NOT NULL THEN 'LT' END
-        ,drvCoverageStartDate4 = CASE WHEN LTD_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX',LTD_BenStartDate, '1/1/2022') END
+        ,drvCoverageStartDate4 = CASE WHEN LTD_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END
         ,drvCoverageStopDate4 = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_BenStopDate END
         ,drvGroupNumber4 = CASE WHEN LTD_DedCode IS NOT NULL THEN '5391831' END
         ,drvSubCode4 = CASE WHEN LTD_DedCode IS NOT NULL THEN '0001' END
@@ -1110,7 +1113,7 @@ BEGIN
         ,drvSalaryAmount4 = FORMAT(CASE WHEN LTD_DedCode IS NOT NULL THEN EecAnnSalary END, '0000000')
         
         ,drvCoverageCode5 = CASE WHEN STD2_DedCode IS NOT NULL THEN 'AS' END
-        ,drvCoverageStartDate5 = CASE WHEN STD2_DedCode IS NOT NULL THEN dbo.dsi_fnGetMinMaxDates('MAX', STD2_BenStartDate, '1/1/2022') END
+        ,drvCoverageStartDate5 = CASE WHEN STD2_DedCode IS NOT NULL THEN dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END
         ,drvCoverageStopDAte5 = CASE WHEN STD2_DedCode IS NOT NULL THEN STD2_BenStopDate END
         ,drvGroupNumber5 = CASE WHEN STD2_DedCode IS NOT NULL THEN '5391831' END
         ,drvSubCode5 = CASE WHEN STD2_DedCode IS NOT NULL THEN '0001' END
@@ -1335,6 +1338,7 @@ BEGIN
                 SELECT BcaEEID, BcaCOID
                     ,MAX(CASE WHEN BcaDedCode = 'LTD' THEN BcaBenAmtCalc END) AS LTD_Amount
                     ,MAX(CASE WHEN BcaDedCode = 'STD2' THEN BcaBenAmtCalc END) AS STD2_Amount
+                    ,MAX(CASE WHEN  BcaDedCode IN ('GLIFE','GLIF5') THEN BcaBenAmtCalc END) AS GLifeBcaAmt
                 FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH(NOLOCK)
                 --where BcaDedCode = 'LTD'
                 --WHERE BcaEEID = 'BACU7W03B0K0'

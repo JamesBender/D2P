@@ -4,16 +4,17 @@ EAMBIHW834: Ameriben H & W 834 Export
 
 FormatCode:     EAMBIHW834
 Project:        Ameriben H & W 834 Export
-Client ID:      USG1000
-Date/time:      2022-03-15 09:30:59.727
+Client ID:      DEL1009
+Date/time:      2022-03-28 06:16:58.927
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EAMBIHW834_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW2WUP4DB01
+Database:       ULTIPRO_WPDELTD
+Web Filename:   DEL1009_A515A_EEHISTORY_EAMBIHW834_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -329,6 +330,25 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','3','D','51','1',NULL,'AMT Segment ID (Loop 2300) - Loop 1',NULL,NULL,'"drvAMT00_AmountQualifierCode2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMBIHW834Z0','3','D','51','2',NULL,'Amount Qualifier Code',NULL,NULL,'"drvAMT01_AmountQualifierCode2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMBIHW834Z0','18','D','51','3',NULL,'Monetary Amount',NULL,NULL,'"drvAMT02_MonetaryAmount2"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','3','D','52','1',NULL,'HD Segment ID (Loop 2500) - Loop 1',NULL,NULL,'"drvFSA00_Coverage"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMBIHW834Z0','3','D','52','2',NULL,'Maintenance Type Code (2500)',NULL,NULL,'"drvFSA00_MaintTypeCode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMBIHW834Z0','3','D','52','3',NULL,'Flexible Spending Account Selection',NULL,NULL,'"drvFSA00_FSA_SelectionCode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAMBIHW834Z0','3','D','52','4',NULL,'Reason Code (2500)',NULL,NULL,'"drvFSA00_ReasonCode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EAMBIHW834Z0','3','D','52','5',NULL,'Account Number (2500)',NULL,NULL,'"drvFSA00_AccountNumber"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EAMBIHW834Z0','1','D','52','6',NULL,'Frequency Code',NULL,NULL,'"drvFSA00_FrequencyCode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EAMBIHW834Z0','50','D','52','7',NULL,'Plan Coverage Description',NULL,NULL,'"drvFSA00_PlanCoverageDesc"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EAMBIHW834Z0','1','D','52','8',NULL,'Production Option Code',NULL,NULL,'"drvFSA00_ProductOptionCode"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','3','D','53','1',NULL,'AMT Segment ID (Loop 2500) - FSA',NULL,NULL,'"drvFSA00_AmountQualifierCode1"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMBIHW834Z0','3','D','53','2',NULL,'Amount Qualifier Code',NULL,NULL,'"drvAMTFSA01_AmountQualifierCode1"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMBIHW834Z0','18','D','53','3',NULL,'Monetary Amount',NULL,NULL,'"drvAMTFSA02_MonetaryAmount1"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','3','D','54','1',NULL,'DTP Segment ID (Loop 2500) - Loop 1',NULL,NULL,'"drvDTP00FSA_DateTime_348"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMBIHW834Z0','3','D','54','2',NULL,'Date/Time Qualifier',NULL,NULL,'"drvDTP01FSA_DateTimeQualifier_348"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMBIHW834Z0','3','D','54','3',NULL,'Date/Time Format',NULL,NULL,'"drvDTP02FSA_DateTimeFormatQual_348"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAMBIHW834Z0','35','D','54','4',NULL,'Date/Time Period',NULL,NULL,'"drvDTP03FSA_DateTimePeriod_348"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','3','D','55','1',NULL,'DTP Segment ID (Loop 2500) - Loop 1',NULL,NULL,'"drvDTP00FSA_DateTime_349"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMBIHW834Z0','3','D','55','2',NULL,'Date/Time Qualifier',NULL,NULL,'"drvDTP01FSA_DateTimeQualifier_349"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMBIHW834Z0','3','D','55','3',NULL,'Date/Time Format',NULL,NULL,'"drvDTP02FSA_DateTimeFormatQual_349"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAMBIHW834Z0','35','D','55','4',NULL,'Date/Time Period',NULL,NULL,'"drvDTP03FSA_DateTimePeriod_349"','(''UD112''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','2','D','80','1',NULL,'LS Segment ID (Loop 2700)',NULL,NULL,'"LS"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMBIHW834Z0','6','D','80','2',NULL,'Loop ID Code',NULL,NULL,'"drvLS01_LoopIDCode"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMBIHW834Z0','2','D','81','1',NULL,'LX Segment ID (Loop 2700)',NULL,NULL,'"LX"','(''DA''=''T*'')');
@@ -362,7 +382,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAMBIHW834_20220315.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAMBIHW834_20220328.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -373,7 +393,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202203119','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111',NULL,'','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202203119','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111',NULL,'','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ameriben H & W 834 Export','202203119','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111',NULL,'','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only','202203119','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111',NULL,'','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202203119','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111',NULL,'','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -391,7 +411,8 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMBIHW834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMBIHW834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMBIHW834','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMBIHW834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMBIHW834','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMBIHW834','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -440,6 +461,10 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D46','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D50','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D51','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D52','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvFSA00_Coverage,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D53','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvFSA00_Coverage,'''') <> '''' AND ISNULL(drvFSA00_AmountQualifierCode1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D54','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvFSA00_Coverage,'''') <> '''' AND ISNULL(drvDTP00FSA_DateTime_348,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D55','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvFSA00_Coverage,'''') <> '''' AND ISNULL(drvDTP00FSA_DateTime_349,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D80','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D81','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMBIHW834','D85','U_EAMBIHW834_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
@@ -456,11 +481,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -532,17 +552,17 @@ CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl] (
     [drvINS01_YesNoCond] varchar(1) NOT NULL,
     [drvINS02_RelationshipCode] varchar(2) NOT NULL,
     [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
-    [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
+    [drvINS04_MaintReasonCode] varchar(1) NOT NULL,
     [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
     [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
     [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
     [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
     [drvINS08_EmploymentStatusCode] varchar(2) NULL,
-    [drvINS09_StudentStatusCode] varchar(1) NULL,
+    [drvINS09_StudentStatusCode] varchar(1) NOT NULL,
     [drvINS10_ResponseCode] varchar(1) NULL,
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
     [drvINS12_DateTimePeriod] varchar(8) NULL,
-    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
@@ -550,10 +570,10 @@ CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl] (
     [drvREF02_RefNumberQual3] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual4] varchar(1) NOT NULL,
-    [drvDTP00_DateTime1] varchar(1) NOT NULL,
-    [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
-    [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
+    [drvDTP00_DateTime1] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod1] datetime NULL,
     [drvDTP00_DateTime2] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(1) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(1) NOT NULL,
@@ -576,8 +596,8 @@ CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl] (
     [drvPER06_CommunicationNumber] varchar(50) NULL,
     [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
     [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
-    [drvN301_AddressLine1] varchar(6000) NULL,
-    [drvN302_AddressLine2] varchar(6000) NULL,
+    [drvN301_AddressLine1] varchar(30) NULL,
+    [drvN302_AddressLine2] varchar(30) NULL,
     [drvN401_City] varchar(6000) NULL,
     [drvN402_State] varchar(255) NULL,
     [drvN403_Zip] varchar(50) NULL,
@@ -620,8 +640,8 @@ CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NOT NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
-    [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
-    [drvHD04_PlanCoverageDesc] varchar(1) NOT NULL,
+    [drvHD03_InsuranceLineCode] varchar(2) NOT NULL,
+    [drvHD04_PlanCoverageDesc] varchar(5) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
@@ -647,6 +667,25 @@ CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl_2300] (
     [drvAMT00_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
+    [drvFSA00_Coverage] varchar(3) NULL,
+    [drvFSA00_MaintTypeCode] varchar(3) NULL,
+    [drvFSA00_ReasonCode] varchar(1) NOT NULL,
+    [drvFSA00_AccountNumber] varchar(1) NOT NULL,
+    [drvFSA00_FSA_SelectionCode] varchar(1) NOT NULL,
+    [drvFSA00_FrequencyCode] varchar(1) NOT NULL,
+    [drvFSA00_PlanCoverageDesc] varchar(1) NOT NULL,
+    [drvFSA00_ProductOptionCode] varchar(1) NOT NULL,
+    [drvFSA00_AmountQualifierCode1] varchar(3) NULL,
+    [drvAMTFSA01_AmountQualifierCode1] varchar(2) NULL,
+    [drvAMTFSA02_MonetaryAmount1] money NULL,
+    [drvDTP00FSA_DateTime_348] varchar(3) NULL,
+    [drvDTP01FSA_DateTimeQualifier_348] varchar(3) NULL,
+    [drvDTP02FSA_DateTimeFormatQual_348] varchar(2) NULL,
+    [drvDTP03FSA_DateTimePeriod_348] datetime NULL,
+    [drvDTP00FSA_DateTime_349] varchar(1) NOT NULL,
+    [drvDTP01FSA_DateTimeQualifier_349] varchar(1) NOT NULL,
+    [drvDTP02FSA_DateTimeFormatQual_349] varchar(1) NOT NULL,
+    [drvDTP03FSA_DateTimePeriod_349] varchar(1) NOT NULL,
     [drvLS01_LoopIDCode] varchar(1) NOT NULL,
     [drvLX01_AssignedNumber] varchar(1) NOT NULL,
     [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
@@ -1095,19 +1134,19 @@ BEGIN
         ,drvREF02_RefNumberQual4 = ''
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
         ,drvDTP00_DateTime1 = 'DTP'
-        ,drvDTP01_DateTimeQualifier1 = '356'
+        ,drvDTP01_DateTimeQualifier1 = '336'
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
-        ,drvDTP03_DateTimePeriod1 = GETDATE()
+        ,drvDTP03_DateTimePeriod1 = EecDateOfLastHire
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = 'DTP'
-        ,drvDTP01_DateTimeQualifier2 = '357'
-        ,drvDTP02_DateTimeFormatQual2 = 'D8'
-        ,drvDTP03_DateTimePeriod2 = GETDATE()
+        ,drvDTP00_DateTime2 = ''
+        ,drvDTP01_DateTimeQualifier2 = ''
+        ,drvDTP02_DateTimeFormatQual2 = ''
+        ,drvDTP03_DateTimePeriod2 = ''
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 = 'DTP'
-        ,drvDTP01_DateTimeQualifier3 = '303'
-        ,drvDTP02_DateTimeFormatQual3 = 'D8'
-        ,drvDTP03_DateTimePeriod3 = GETDATE()
+        ,drvDTP00_DateTime3 = ''
+        ,drvDTP01_DateTimeQualifier3 = ''
+        ,drvDTP02_DateTimeFormatQual3 = ''
+        ,drvDTP03_DateTimePeriod3 = ''
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
@@ -1265,7 +1304,7 @@ BEGIN
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
-        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
+        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2022') 
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
         ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
@@ -1292,6 +1331,29 @@ BEGIN
         ,drvAMT00_AmountQualifierCode2 = ''
         ,drvAMT01_AmountQualifierCode2 = ''
         ,drvAMT02_MonetaryAmount2 = ''
+        ,drvFSA00_Coverage = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN 'FSA' END 
+        ,drvFSA00_MaintTypeCode =    CASE WHEN BdmDedCode IN ('FSA','NFSA') THEN '010'
+                                    WHEN BdmDedCode IN ('FSAL','NFSAL') THEN '020'
+                                    WHEN BdmDedCode IN ('FSADC','NFSAC') THEN '008'
+                                    END
+        ,drvFSA00_ReasonCode = ''
+        ,drvFSA00_AccountNumber = ''
+        ,drvFSA00_FSA_SelectionCode  = ''
+        ,drvFSA00_FrequencyCode = ''  
+        ,drvFSA00_PlanCoverageDesc = '' 
+        ,drvFSA00_ProductOptionCode = ''
+        ,drvFSA00_AmountQualifierCode1 = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN 'AMT' END  
+        ,drvAMTFSA01_AmountQualifierCode1 = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN 'E2' END   
+        ,drvAMTFSA02_MonetaryAmount1 = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC')  THEN BdmEEGoalAmt END 
+        ,drvDTP00FSA_DateTime_348 = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN 'DTP' END   
+        ,drvDTP01FSA_DateTimeQualifier_348 = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN  '348' END  
+        ,drvDTP02FSA_DateTimeFormatQual_348 = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN  'D8' END  
+        ,drvDTP03FSA_DateTimePeriod_348  = CASE WHEN BdmDedcode IN ('FSA','NFSA','FSAL','NFSAL','FSADDC','NFSAC') THEN BdmBenStartDate END -- dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) END 
+        ,drvDTP00FSA_DateTime_349 = '' 
+        ,drvDTP01FSA_DateTimeQualifier_349 = '' 
+        ,drvDTP02FSA_DateTimeFormatQual_349 = '' 
+        ,drvDTP03FSA_DateTimePeriod_349 = '' 
+
         --=====================
         -- Loop 2700 RECORDS
         --=====================

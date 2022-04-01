@@ -4,15 +4,15 @@ EGUARDN834: Guardian H&W 834 Export
 
 FormatCode:     EGUARDN834
 Project:        Guardian H&W 834 Export
-Client ID:      USG1000
-Date/time:      2022-03-10 11:21:00.880
+Client ID:      CEL1009
+Date/time:      2022-03-29 06:17:23.040
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EGUARDN834_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW4WUP6DB01
+Database:       ULTIPRO_WPCENA
+Web Filename:   CEL1009_1N4MV_EEHISTORY_EGUARDN834_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20220310.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20220329.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -458,11 +458,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -622,8 +617,8 @@ CREATE TABLE [dbo].[U_EGUARDN834_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NOT NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
-    [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
-    [drvHD04_PlanCoverageDesc] varchar(1) NOT NULL,
+    [drvHD03_InsuranceLineCode] varchar(3) NULL,
+    [drvHD04_PlanCoverageDesc] nvarchar(4000) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
@@ -637,9 +632,9 @@ CREATE TABLE [dbo].[U_EGUARDN834_DrvTbl_2300] (
     [drvDTP01_DateTimeQualifier_303] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual_303] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_303] datetime NULL,
-    [drvREF00_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(8) NOT NULL,
     [drvREF00_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
@@ -661,7 +656,7 @@ CREATE TABLE [dbo].[U_EGUARDN834_DrvTbl_2300] (
     [drvDepRecID] char(12) NULL,
     [drvSSN] char(11) NULL,
     [drvInitialSort] varchar(11) NULL,
-    [drvSubSort] varchar(22) NULL
+    [drvSubSort] varchar(28) NULL
 );
 
 -----------
@@ -812,7 +807,7 @@ Revision History
 ----------------
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
-
+f
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGUARDN834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EGUARDN834';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EGUARDN834';
@@ -1246,24 +1241,43 @@ BEGIN
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedType IN ('MED') THEN 'HLT'
-                                           WHEN BdmDedType IN ('DEN') THEN 'DEN'
-                                           WHEN BdmDedType IN ('VIS') THEN 'VIS'
-                                           ELSE ''
-                                     END
-        ,drvHD04_PlanCoverageDesc = ''
-        ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEBenOpts')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ESPBenOpts')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ECHBenOpts')) THEN 'ECH'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEFAMBenOpts')) THEN 'FAM'
-                                                END
+        ,drvHD03_InsuranceLineCode =    CASE WHEN BdmRecType = 'EMP' THEN
+                                            CASE WHEN BdmDedCode = 'OBLIFE' THEN 'AH'
+                                            WHEN BdmDedCode = 'ADD' THEN 'AJ'
+                                            WHEN BdmDedCode = 'STD' THEN 'STD'
+                                            WHEN BdmDedCode = 'LTD' THEN 'LTD'
+                                            WHEN BdmDedCode = 'LIFEE' THEN 'FAC'
+                                            WHEN BdmDedCode = 'DENT' THEN 'DEN'
+                                            WHEN BdmDedCode = 'VIS' THEN 'VIS'
+                                            END
+                                        ELSE
+                                            CASE WHEN BdmDedCode = 'LIFES' THEN 'FAC'
+                                            WHEN BdmDedCode = 'LIFEC' THEN 'FAC'
+                                            WHEN BdmDedCode = 'VIS' THEN 'VIS'
+                                            WHEN BdmDedCode = 'DENT' THEN 'DEN'
+                                            END
+                                        END
+        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        CASE WHEN BdmDedCode = 'LIFEE' THEN FORMAT(LIFEE_Amt, '#0.00') END
+                                    ELSE
+                                        CASE WHEN BdmDedCode = 'LIFEC' THEN FORMAT(LIFEC_Amt, '#0.00')
+                                        WHEN BdmDedCode = 'LIFES' THEN FORMAT(LIFES_Amt, '#0.00')
+                                        END
+                                    END
+        ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' THEN
+                                            CASE WHEN BdmDedCode IN ('OBLIFE','STD','LTD','LIFEE','ADD','DEN','VIS') THEN 'EMP' END
+                                        ELSE
+                                            CASE WHEN BdmDedCode IN ('LIFES','DEN','VIS') AND ConRelationship = 'SPS' THEN 'SPO'
+                                            WHEN BdmDedCode IN ('LIFEC','DEN','VIS') AND ConRelationship = 'CHL' THEN 'CHD'
+                                            END
+                                        END
+
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
-        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
+        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2021') 
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
         ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
@@ -1273,11 +1287,11 @@ BEGIN
         ,drvDTP00_DateTime_303 = ''
         ,drvDTP01_DateTimeQualifier_303 = '303'
         ,drvDTP02_DateTimeFormatQual_303 = 'D8'
-        ,drvDTP03_DateTimePeriod_303 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate)
+        ,drvDTP03_DateTimePeriod_303 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, '1/1/2021')
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
-        ,drvREF00_RefNumberQual1 = ''
-        ,drvREF01_RefNumberQual1 = ''
-        ,drvREF02_RefNumberQual1 = ''
+        ,drvREF00_RefNumberQual1 = 'REF'
+        ,drvREF01_RefNumberQual1 = '1L'
+        ,drvREF02_RefNumberQual1 = '00561868'
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual2 = ''
         ,drvREF01_RefNumberQual2 = ''
@@ -1324,7 +1338,7 @@ BEGIN
                              WHEN 'DEN' THEN '2'
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
-                      END
+                      END + ' ' + BdmDedCode
     INTO dbo.U_EGUARDN834_DrvTbl_2300
     FROM dbo.U_EGUARDN834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1337,7 +1351,19 @@ BEGIN
         AND BdmCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID;
+        AND ConSystemID = BdmDepRecID
+    LEFT JOIN (
+                    SELECT EedEEID, EedCOID
+                        ,MAX(CASE WHEN EedDedCode = 'LIFEE' THEN EedBenAmt END) AS LIFEE_Amt
+                        ,MAX(CASE WHEN EedDedCode = 'LIFEC' THEN EedBenAmt END) AS LIFEC_Amt
+                        ,MAX(CASE WHEN EedDedCode = 'LIFES' THEN EedBenAmt END) AS LIFES_Amt
+                    FROM dbo.EmpDed WITH (NOLOCK)
+                    WHERE EedDedCode IN ('LIFEE','LIFEC','LIFES')
+                    GROUP BY EedEEID, EedCOID) AS LIFE
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+    WHERE NOT (BdmRecType = 'EMP' AND BdmDedCode IN ('LIFEC','LIFES'))
+    ;
 
     /**************************************************************************************************
         TRAILER RECORDS
