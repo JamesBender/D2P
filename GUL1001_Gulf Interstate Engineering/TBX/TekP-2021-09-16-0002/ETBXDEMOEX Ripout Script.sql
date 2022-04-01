@@ -5,7 +5,7 @@ ETBXDEMOEX: TBX Demographic Export
 FormatCode:     ETBXDEMOEX
 Project:        TBX Demographic Export
 Client ID:      GUL1001
-Date/time:      2022-02-08 08:28:08.220
+Date/time:      2022-03-15 12:53:57.483
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -251,7 +251,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220208.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220315.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -260,7 +260,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export','202201059','EMPEXPORT','ONDEM_XOE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Sched','202201059','EMPEXPORT','SCH_ETBXDE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Test','202201199','EMPEXPORT','TEST_XOE','Feb  1 2022  2:35PM','ETBXDEMOEX',NULL,NULL,NULL,'202201199','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201191','652','','','202201191',dbo.fn_GetTimedKey(),NULL,'us3rVaGUL1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Test','202201199','EMPEXPORT','TEST_XOE','Feb 10 2022 12:10PM','ETBXDEMOEX',NULL,NULL,NULL,'202201199','Jan 19 2022 12:00AM','Dec 30 1899 12:00AM','202201191','658','','','202201191',dbo.fn_GetTimedKey(),NULL,'us3rVaGUL1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -493,7 +493,11 @@ BEGIN
                         WHEN EjhFLSACategory = 'N' THEN 'Regular Non-Exempt'
                         WHEN EecFulltimeOrPartTime = 'P' THEN 'Part Time'
                         END
-        ,drvPayGroup = CASE WHEN EecPayGroup = 'BWFSV' THEN 'Bi-Weekly-GIE Location' END
+        ,drvPayGroup =    CASE WHEN PgrPayGroup = 'BWGIE' AND xCOID = 'VKEMN' THEN 'Bi-Weekly-GIE Location' 
+                        WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEMN' THEN 'GIFS Weekly' 
+                        WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEMN' THEN 'GIFS Bi-Weekly' 
+                        WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEMN' AND EecOrgLvl1 = 'FSCOL' THEN 'GIFS Colorado' 
+                        END
         ,drvDepartment = OrgDesc
         ,drvTitle = JbcDesc
         ,drvHireDate = EecDateOfLastHire

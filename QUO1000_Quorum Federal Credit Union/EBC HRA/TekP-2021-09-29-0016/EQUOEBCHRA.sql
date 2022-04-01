@@ -5,7 +5,7 @@ EQUOEBCHRA: EBC HRA Enrollment
 FormatCode:     EQUOEBCHRA
 Project:        EBC HRA Enrollment
 Client ID:      QUO1000
-Date/time:      2021-12-30 14:10:18.963
+Date/time:      2022-03-16 08:10:18.087
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -204,7 +204,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EQUOEBCHRAZ0','50','D','10','31',NULL,'Division',NULL,NULL,'"drvDivision"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EQUOEBCHRAZ0','50','D','10','32',NULL,'AltID',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQUOEBCHRAZ0','50','D','10','33',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EQUOEBCHRAZ0','50','D','10','34',NULL,'HICN',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EQUOEBCHRAZ0','50','D','10','34',NULL,'HICN',NULL,NULL,'""','(''SS''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EQUOEBCHRAZ0','50','T','90','1',NULL,'TotalRecordCount',NULL,NULL,'"TotalRecordCount"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQUOEBCHRAZ0','50','T','90','2',NULL,'RecCount',NULL,NULL,'"drvRecCount"','(''UNT0''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQUOEBCHRAZ0','50','T','90','3',NULL,'TotalNumberofParticipants',NULL,NULL,'"TotalNumberofParticipants"','(''DA''=''T|'')');
@@ -221,7 +221,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQUOEBCHRA_20211230.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQUOEBCHRA_20220316.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -232,7 +232,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112169','EMPEXPORT','OEPASSIVE',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'EBC HRA Enrollment','202112169','EMPEXPORT','ONDEM_XOE',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'EBC HRA Enrollment-Sched','202112169','EMPEXPORT','SCH_EQUOEB',NULL,'EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021  8:28AM','Dec 16 2021  8:28AM','202112161',NULL,'','','202112161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC HRA Enrollment-Test','202112169','EMPEXPORT','TEST_XOE','Dec 28 2021  6:26PM','EQUOEBCHRA',NULL,NULL,NULL,'202112169','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202112011','291','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC HRA Enrollment-Test','202202071','EMPEXPORT','TEST_XOE','Feb  7 2022  2:35PM','EQUOEBCHRA',NULL,NULL,NULL,'202202071','Feb  7 2022 12:00AM','Dec 30 1899 12:00AM','202201311','293','','','202201311',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -393,7 +393,7 @@ CREATE TABLE [dbo].[U_EQUOEBCHRA_drvTbl] (
     [drvEffDate] datetime NULL,
     [drvEndDate] datetime NULL,
     [drvElection] money NULL,
-    [drvDivision] varchar(2) NULL,
+    [drvDivision] varchar(5) NULL,
     [drvGender] varchar(1) NOT NULL
 );
 
@@ -644,24 +644,24 @@ BEGIN
         ,drvPrimaryPhone = EecPhoneBusinessNumber
         ,drvExtension = EecPhoneBusinessExt
         ,drvSecondaryPhone = EepPhoneHomeNumber
-        ,drvCellPhone = CASE WHEN efoPhoneType = 'CEL' THEN efoPhoneNumber END
+        ,drvCellPhone = dbo.dsi_fnlib_GetPhoneNumber(EepEEID, 'CEL')
         ,drvWorkEmail = EepAddressEMail
         ,drvPersonalEmail = eepAddressEMailAlternate
         ,drvUseWorkEmail = 0
-        ,drvEffDate = CASE WHEN BdmBenStartDate < '2021-01-01' THEN '2021-01-01' ELSE BdmBenStartDate END
+        ,drvEffDate = CASE WHEN BdmBenStartDate <  DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0)THEN  DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0)ELSE BdmBenStartDate END
         ,drvEndDate = CASE    
                             WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
                             Else '9999-12-31' 
                             END
         ,drvElection = BdmEEGoalAmt
-        ,drvDivision = CASE WHEN EecCoID = 'IAGFG' THEN 'QF'
-                            WHEN EecCoID = 'SSMNA' THEN 'VO'
+        ,drvDivision = CASE WHEN EecCoID = 'IAGFG' THEN 'QFCU'
+                            WHEN EecCoID = 'SSMNA' THEN 'VOFCO'
                         END
         ,drvGender = CASE    
                             WHEN BdmRecType = 'EMP' AND EepGender = 'M' THEN 'M'
                             WHEN BdmRecType = 'EMP' AND EepGender = 'F'  THEN 'F'
-                            WHEN BdmRecType = 'DEP' AND EepGender = 'M' THEN 'M'
-                            WHEN BdmRecType = 'DEP' AND EepGender = 'F'  THEN 'F'
+                            WHEN BdmRecType = 'DEP' AND ConGender = 'M' THEN 'M'
+                            WHEN BdmRecType = 'DEP' AND ConGender = 'F'  THEN 'F'
                             Else 'U'
                             END
     INTO dbo.U_EQUOEBCHRA_drvTbl
