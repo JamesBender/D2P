@@ -5,7 +5,7 @@ ECIGDEN834: Cigna Dental 834 Export
 FormatCode:     ECIGDEN834
 Project:        Cigna Dental 834 Export
 Client ID:      YAR1000
-Date/time:      2022-03-31 08:33:40.567
+Date/time:      2022-04-08 05:23:06.310
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,14 +363,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGDEN834_20220331.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGDEN834_20220408.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202203319','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECIGDEN834',NULL,NULL,NULL,'202203319','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203311',NULL,'','','202203311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202203319','EMPEXPORT','OEACTIVE','Apr  8 2022 12:00AM','ECIGDEN834',NULL,NULL,NULL,'202203319','Mar 31 2022 12:00AM','Dec 30 1899 12:00AM','202203311',NULL,'','','202203311',dbo.fn_GetTimedKey(),NULL,'us3jBeYAR1000',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202203319','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECIGDEN834',NULL,NULL,NULL,'202203319','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203311',NULL,'','','202203311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202203319','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ECIGDEN834',NULL,NULL,NULL,'202203319','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203311',NULL,'','','202203311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna Dental 834 Export','202203319','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ECIGDEN834',NULL,NULL,NULL,'202203319','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203311',NULL,'','','202203311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -632,9 +632,9 @@ CREATE TABLE [dbo].[U_ECIGDEN834_DrvTbl_2300] (
     [drvDTP01_DateTimeQualifier_303] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual_303] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_303] datetime NULL,
-    [drvREF00_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF00_RefNumberQual1] varchar(3) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(17) NULL,
     [drvREF00_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
@@ -1000,7 +1000,7 @@ BEGIN
         ,drvGS05_Time = @RunTime
         ,drvBGN03_Date = @RunDate
         ,drvBGN04_Time = @RunTime
-        ,drvBGN05_TimeCode = 'ES'
+        ,drvBGN05_TimeCode = 'CT'
         ,drvBGN06_RefID = ''
         ,drvBGN07_TransTypeCode = ''
         ,drvBGN08_ActionCode = '4'
@@ -1259,7 +1259,7 @@ BEGIN
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
-        ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
+        ,drvDTP03_DateTimePeriod_348 = BdmBenStartDate --dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
         ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
@@ -1269,11 +1269,17 @@ BEGIN
         ,drvDTP00_DateTime_303 = ''
         ,drvDTP01_DateTimeQualifier_303 = '303'
         ,drvDTP02_DateTimeFormatQual_303 = 'D8'
-        ,drvDTP03_DateTimePeriod_303 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate)
+        ,drvDTP03_DateTimePeriod_303 = BdmBenStatusDate --dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate)
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
-        ,drvREF00_RefNumberQual1 = ''
-        ,drvREF01_RefNumberQual1 = ''
-        ,drvREF02_RefNumberQual1 = ''
+        ,drvREF00_RefNumberQual1 = 'REF'
+        ,drvREF01_RefNumberQual1 = '1L'
+        ,drvREF02_RefNumberQual1 =    CASE WHEN xCoID = 'YARCO' AND BdmDedCode= 'DEN4' THEN '0627181A001 DPPOH'
+                                    WHEN xCoID = 'YARCO' AND BdmDedCode= 'DEN3' THEN '0627181A001 DPPOL'
+                                    WHEN xCoID = '4SIGH' AND BdmDedCode= 'DEN4' THEN '0627181A002 DPPOH'
+                                    WHEN xCoID = '4SIGH' AND BdmDedCode= 'DEN3' THEN '0627181A002 DPPOL'
+                                    WHEN xCoID = 'CLEAR' AND BdmDedCode= 'DEN4' THEN '0627181A003 DPPOH'
+                                    WHEN xCoID = 'CLEAR' AND BdmDedCode= 'DEN3' THEN '0627181A003 DPPOL'
+                                    END
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual2 = ''
         ,drvREF01_RefNumberQual2 = ''

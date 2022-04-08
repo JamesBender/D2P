@@ -626,7 +626,7 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-     --==========================================
+    --==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing

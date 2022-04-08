@@ -1,0 +1,642 @@
+First_Name,Last_Name,Preferred_First_Name,EmailAddress,Date_of_Birth,Seniority_Date,Last_HireDate,City,State,Cost_Center,Department_Number,Department_Description
+Jeffery,Bracewell,Jeff,jeffery.bracewell@primisbank.com,02/02/1966,12/27/2011,12/27/2011,Colonial Heights,VA,0000,91,Retail Banking
+Wendy,Belliar,,wendy.belliar@primisbank.com,01/12/1974,03/12/2007,03/12/2007,Hampton,VA,0000,27,Hampton
+Mary,Crowder,,mary.crowder@primisbank.com,02/17/1956,05/14/2012,05/14/2012,Hampton,VA,0000,93,Commercial Lending
+Sonya,Daniels,,sonya.daniels@primisbank.com,08/04/1971,11/04/2013,11/04/2013,Hampton,VA,0000,27,Hampton
+Lamarr,Derr,,lamarr.derr@sonabank.com,01/31/1969,02/15/2011,02/15/2011,Newport News,VA,0000,25,Newport News
+Janet,Evans,,janet.evans@primisbank.com,08/29/1974,10/31/2005,10/31/2005,Hampton,VA,0000,27,Hampton
+Rey,Feliciano,,rey.feliciano@primisbank.com,03/02/1976,04/02/2012,04/02/2012,Yorktown,VA,0000,93,Commercial Lending
+Cynthia,Ligart,Cindy,cindy.ligart@primisbank.com,04/12/1953,11/14/2005,11/14/2005,Poquoson,VA,0000,25,Newport News
+Alisa,Mcvey,,alisa.mcvey@primisbank.com,11/16/1972,07/20/2020,07/20/2020,YORKTOWN,VA,0000,93,Commercial Lending
+Elizabeth,Peterson,Ann,ann.peterson@primisbank.com,01/03/1954,09/28/2011,09/28/2011,Williamsburg,VA,0000,26,Williamsburg
+Robin,Weaver,,robin.weaver@primisbank.com,11/05/1964,11/14/2005,11/14/2005,Newport News,VA,0000,25,Newport News
+Mark,Easter,Mark,mark.easter@primisbank.com,06/24/1958,11/17/2014,11/17/2014,Tappahannock,VA,0000,39,Information Technology
+April,Adams,,april.adams@primisbank.com,06/01/1978,06/18/2001,06/18/2001,Quinton,VA,0000,93,Commercial Lending
+Darlyne,Wilkins,,darlyne.wilkins@primisbank.com,02/19/1969,10/01/1991,10/01/1991,Heathsville,VA,0000,21,Heathsville
+Lisa,Baughan,,lisa.baughan@primisbank.com,05/12/1965,06/01/1982,06/01/1982,Lottsburg,VA,0000,21,Heathsville
+Anitra,Brown,,anitra.brown@primisbank.com,03/15/1974,12/04/2000,12/04/2000,Tappahannock,VA,0000,01,Tappahannock
+Linda,Buhls,,linda.buhls@primisbank.com,06/29/1968,09/21/1987,09/21/1987,Waverly,VA,0000,14,Waverly
+Dianna,Carneal,,dianna.carneal@primisbank.com,07/30/1958,10/04/2004,10/04/2004,Tappahannock,VA,0000,33,Risk Management
+Marshall,Carter,Brandon,brandon.carter@primisbank.com,01/06/1983,09/03/2003,09/03/2003,Hague,VA,0000,39,Information Technology
+Kenyia,Charity,,kenyia.charity@sonabank.com,08/21/1976,02/01/2000,02/01/2000,Dendron,VA,0000,14,Waverly
+Brian,Crabbe,,brian.crabbe@primisbank.com,01/19/1978,10/06/1998,10/06/1998,Callao,VA,0000,39,Information Technology
+Barbara,Dobyns,,barbara.dobyns@primisbank.com,11/10/1960,08/11/1980,08/11/1980,Lottsburg,VA,0000,22,Callao
+Tanya,Douglas,,tanya.douglas@primisbank.com,08/18/1981,09/05/2000,09/05/2000,Warsaw,VA,0000,40,Bank Operations
+Kristine,Emerson,,kristine.emerson@sonabank.com,03/23/1969,07/06/2005,07/06/2005,Gloucester,VA,0000,09,Gloucester
+Rickey,Fulk,Rick,rick.fulk@primisbank.com,07/21/1966,04/20/1998,04/20/1998,Shacklefords,VA,0000,93,Commercial Lending
+Patricia,Gallagher,,patricia.gallagher@primisbank.com,08/07/1960,05/05/1980,05/05/1980,Tappahannock,VA,0000,01,Tappahannock
+Angela,Gay,,angela.gay@primisbank.com,11/02/1969,12/16/1996,12/16/1996,Waverly,VA,0000,14,Waverly
+Debra,Gordon,,debra.gordon@primisbank.com,12/31/1961,09/18/2000,09/18/2000,Farnham,VA,0000,40,Bank Operations
+Erick,Gray,,erick.gray@primisbank.com,06/16/1980,05/28/2003,05/28/2003,Henrico,VA,0000,40,Bank Operations
+Jamie,Hayden,,jamie.hayden@primisbank.com,11/23/1983,01/15/2002,01/15/2002,Heathsville,VA,0000,23,Burgess
+James,Hodges,Ray,ray.hodges@primisbank.com,08/27/1982,05/30/2000,05/30/2000,Dunnsville,VA,0000,39,Information Technology
+Elizabeth,Jackson,Lisa,lisa.jackson@primisbank.com,04/04/1966,05/23/2005,05/23/2005,Gloucester,VA,0000,04,Hartfield
+Mary,Jett,Robin,robin.jett@primisbank.com,01/07/1959,01/16/2001,01/16/2001,Reedville,VA,0000,91,Retail Banking
+Celia,Colvin,,celia.colvin@primisbank.com,07/31/1984,12/18/2003,12/18/2003,Smithfield,VA,0000,13,Surry
+Michelle,Jordan,,michelle.jordan@primisbank.com,11/25/1970,04/02/2001,04/02/2001,Tappahannock,VA,0000,40,Bank Operations
+Barbara,Joyner,,barbara.joyner@primisbank.com,01/25/1952,12/01/1971,12/01/1971,Courtland,VA,0000,12,Courtland
+Kelly,King,,kelly.king@primisbank.com,09/21/1973,02/26/2001,02/26/2001,Ivor,VA,0000,13,Surry
+Melissa,Kirby,,melissa.kirby@primisbank.com,07/23/1985,10/05/2004,10/05/2004,Manquin,VA,0000,39,Information Technology
+Ruby,Long,,ruby.long@primisbank.com,08/12/1956,10/07/2002,10/07/2002,Tappahannock,VA,0000,01,Tappahannock
+Susan,Miner,Chris,chris.miner@primisbank.com,12/11/1952,03/13/1989,03/13/1989,Tappahannock,VA,0000,40,Bank Operations
+James,Minor,Jim,jim.minor@primisbank.com,01/26/1958,05/11/2005,05/11/2005,Warsaw,VA,0000,21,Heathsville
+Pamela,Moore,,pamela.moore@primisbank.com,08/01/1978,06/15/1999,04/04/2016,Warsaw,VA,0000,34,Human Resources
+John,Muller,,john.muller@primisbank.com,06/03/1951,09/23/1996,09/23/1996,Weems,VA,0000,93,Commercial Lending
+Misty,O'Bier,,misty.obier@primisbank.com,06/18/1974,11/21/1994,11/21/1994,Callao,VA,0000,39,Information Technology
+Anita,Ottarson,,anita.ottarson@primisbank.com,06/09/1964,06/21/2004,06/21/2004,Bohannon,VA,0000,10,Gloucester Point
+Angela,Pond,Angie,angela.pond@primisbank.com,12/02/1972,07/15/1991,07/15/1991,Disputanta,VA,0000,92,Credit Administration
+Gina,Rogacki,,gina.rogacki@primisbank.com,12/23/1978,01/11/1999,01/11/1999,Tappahannock,VA,0000,39,Information Technology
+Paula,Salyers,,paula.salyers@primisbank.com,06/30/1972,10/15/2001,10/15/2001,Ashland,VA,0000,40,Bank Operations
+Joe,Shearin,,joe.shearin@primisbank.com,05/17/1956,08/23/2001,08/23/2001,N. Prince George,VA,0000,31,Corporate
+Martin,Smith,Marty,marty.smith@primisbank.com,02/17/1970,06/14/1999,06/14/1999,Tappahannock,VA,0000,39,Information Technology
+James,Stevens,,james.stevens@primisbank.com,04/07/1977,07/24/2000,07/24/2000,Lottsburg,VA,0000,92,Credit Administration
+Sandra,Stokes,,sandy.stokes@primisbank.com,07/20/1974,10/18/2021,10/18/2021,Richmond,VA,0000,38,Loan Operations
+Tami,Unroe,,tami.unroe@sonabank.com,01/11/1977,02/03/2003,02/03/2003,Suffolk,VA,0000,12,Courtland
+Jaclyn,Meadows,Jackie,jaclyn.meadows@primisbank.com,07/08/1979,03/03/2003,03/03/2003,Hudgins,VA,0000,39,Information Technology
+Karen,Turner,,karen.turner@primisbank.com,10/18/1962,10/03/1989,10/03/1989,Wicomico Church,VA,0000,40,Bank Operations
+Elizabeth,Vanderwerff,,elizabeth.vanderwerff@primisbank.com,12/29/1971,03/08/2004,03/08/2004,Sandston,VA,0000,16,Quinton
+Lynda,Willard,,lynda.willard@primisbank.com,09/22/1970,09/10/1997,09/10/1997,Mascot,VA,0000,33,Risk Management
+Kimberly,Williams,Kim,kim.williams@primisbank.com,05/06/1963,11/02/1981,11/02/1981,Courtland,VA,0000,12,Courtland
+Antoinette,Wingfield,,antoinette.wingfield@primisbank.com,11/07/1966,02/06/2004,02/06/2004,Mechanicsville,VA,0000,40,Bank Operations
+Cheryl,Wood,,cheryl.wood@primisbank.com,10/26/1981,05/18/2000,05/18/2000,Aylett,VA,0000,31,Corporate
+Michele,Hottle,,michele.hottle@primisbank.com,11/15/1967,06/01/2006,06/01/2006,Mechanicsville,VA,0000,51,Windmill
+Angela,Fitchett,Angela,angela.fitchett@primisbank.com,01/04/1985,06/21/2021,06/21/2021,Gloucester,VA,0000,40,Bank Operations
+Crystal,Carlton,,crystal.carlton@primisbank.com,04/01/1981,11/06/2006,11/06/2006,Gloucester,VA,0000,04,Hartfield
+Joyce,Wallace,,joyce.wallace@primisbank.com,03/23/1958,11/06/2006,11/06/2006,Millers Tavern,VA,0000,38,Loan Operations
+Tina,Brewer,,tina.brewer@primisbank.com,03/16/1989,06/13/2007,06/13/2007,Farnham,VA,0000,40,Bank Operations
+Candace,Keefer,,candace.keefer@primisbank.com,04/06/1971,08/20/2007,08/20/2007,Hayes,VA,0000,10,Gloucester Point
+Kimberly,Brown,,kimberly.brown@primisbank.com,01/22/1984,08/20/2007,08/20/2007,Farnham,VA,0000,23,Burgess
+Mary,Supko,,mary.supko@primisbank.com,06/14/1960,08/27/2007,08/27/2007,Millers Tavern,VA,0000,38,Loan Operations
+Bonnie,Smith,,bonnie.smith@primisbank.com,05/25/1962,02/04/2008,02/04/2008,Gloucester,VA,0000,09,Gloucester
+Mary,Farnsworth,,mary.farnsworth@primisbank.com,12/25/1966,10/17/2005,10/17/2005,Colonial Heights,VA,0000,18,Colonial Heights
+Mary,Holmes,,mary.holmes@primisbank.com,09/21/1951,10/24/2005,10/24/2005,Colonial Heights,VA,0000,18,Colonial Heights
+Mark,Zuskin,,mark.zuskin@primisbank.com,04/07/1968,07/18/2002,07/18/2002,Chester,VA,0000,93,Commercial Lending
+Tyanna,Chandler,,tyanna.chandler@primisbank.com,10/07/1988,03/31/2008,03/31/2008,Mechanicsville,VA,0000,40,Bank Operations
+Kimberly,Lipscomb,Kim,kim.lipscomb@primisbank.com,07/29/1970,04/14/2008,04/14/2008,King William,VA,0000,92,Credit Administration
+Amanda,Mantlo,,amanda.mantlo@primisbank.com,03/07/1983,04/14/2008,04/14/2008,Callao,VA,0000,93,Commercial Lending
+Ann,Giles,,ann.giles@primisbank.com,12/19/1964,05/27/2008,05/27/2008,Waverly,VA,0000,14,Waverly
+Veronica,Wilson,,veronica.wilson@primisbank.com,02/26/1987,06/30/2008,06/30/2008,CENTER CROSS,VA,0000,03,Essex Square
+Kaylene,Taylor-Fisher,Kaylene,kaylene.taylor-fisher@primisbank.com,05/30/1980,08/11/2008,08/11/2008,Warsaw,VA,0000,03,Essex Square
+Andrew,Pettit,,andrew.pettit@primisbank.com,01/09/1981,09/22/2008,09/22/2008,Yorktown,VA,0000,39,Information Technology
+Lisa,Dailey,,lisa.dailey@primisbank.com,01/17/1963,01/12/2009,01/12/2009,Mechanicsville,VA,0000,38,Loan Operations
+Jennifer,Mcclure,,jennifer.mcclure@sonabank.com,06/04/1979,04/27/2009,04/27/2009,King William,VA,0000,11,Central Garage
+Sheena,Harris,,sheena.harris@primisbank.com,09/06/1988,06/15/2009,06/15/2009,Aylett,VA,0000,38,Loan Operations
+Taryn,Wesson,,taryn.wesson@primisbank.com,01/10/1983,05/07/2018,05/07/2018,Aylett,VA,0000,38,Loan Operations
+Casie,Taylor,,casie.taylor@primisbank.com,02/03/1989,12/03/2009,12/03/2009,Farnham,VA,0000,01,Tappahannock
+Stacy,Barnes,,stacy.barnes@primisbank.com,07/28/1986,04/26/2010,04/26/2010,Franklin,VA,0000,12,Courtland
+Deborah,Crawford,,deborah.crawford@primisbank.com,09/17/1965,06/07/2010,06/07/2010,New Kent,VA,0000,38,Loan Operations
+Janet,Neilson,,janet.neilson@primisbank.com,01/16/1951,07/12/2010,07/12/2010,Midlothian,VA,0000,92,Credit Administration
+Kevin,Reid,,kevin.reid@primisbank.com,04/04/1974,08/23/2010,08/23/2010,Newtown,VA,0000,93,Commercial Lending
+Lisa,Hedgpeth,,lisa.hedgpeth@primisbank.com,11/21/1968,09/13/2010,09/13/2010,Mechanicsville,VA,0000,92,Credit Administration
+Gail,Oliver,,gail.oliver@primisbank.com,11/03/1963,08/16/2021,08/16/2021,Ashland,VA,0000,96,C3/Digital
+Patricia,Carter,,pat.carter@primisbank.com,09/03/1958,01/10/2011,01/10/2011,Quinton,VA,0000,38,Loan Operations
+Bruce,Brockwell,,bruce.brockwell@primisbank.com,12/02/1965,04/04/2011,04/04/2011,Chester,VA,0000,93,Commercial Lending
+Carrie,Haun,,carrie.haun@primisbank.com,01/20/1978,05/30/2011,05/30/2011,Aylett,VA,0000,11,Central Garage
+Ann-Cabell,Williams,,ann-cabell.williams@sonabank.com,12/15/1961,07/04/2011,07/04/2011,Livingston,TX,0000,91,Retail Banking
+Paula,McCarty,,paula.mccarty@primisbank.com,02/17/1968,07/11/2011,07/11/2011,Smithfield,VA,0000,96,C3/Digital
+Angela,Morgan,Dawn,dawn.morgan@primisbank.com,02/20/1975,07/11/2011,07/11/2011,Ruther Glen,VA,0000,39,Information Technology
+Courtney,Manns,,courtney.manns@primisbank.com,07/25/1991,05/12/2014,05/12/2014,Richmond,VA,0000,96,C3/Digital
+Dewayne,Johnson,,dewayne.johnson@primisbank.com,02/22/1973,08/08/2011,08/08/2011,Richmond,VA,0000,92,Credit Administration
+Karin,Lambert,,karin.lambert@primisbank.com,10/22/1959,01/26/2012,01/26/2012,Richmond,VA,0000,92,Credit Administration
+Barbara,Hopkins,,barbara.hopkins@sonabank.com,10/12/1948,02/21/2012,02/21/2012,Henrico,VA,0000,96,C3/Digital
+Ramon,Sanchez,Ray,ray.sanchez@primisbank.com,06/12/1971,08/31/2020,08/31/2020,Moseley,VA,0000,92,Credit Administration
+Kelsie,Daniels,,kelsie.daniels@primisbank.com,04/24/1990,07/09/2012,07/09/2012,Reedville,VA,0000,23,Burgess
+Tena,Morrison,,tena.morrison@primisbank.com,06/24/1961,08/27/2012,08/27/2012,Smithfield,VA,0000,13,Surry
+Crystal,Johnson,,crystal.johnson@primisbank.com,12/13/1983,11/05/2012,11/05/2012,Montross,VA,0000,03,Essex Square
+Julia,McBride,,julia.mcbride@primisbank.com,02/18/1976,12/10/2012,12/10/2012,Dinwiddie,VA,0000,17,Rivers Bend
+Kristine,Allen,Kristine,kristine.allen@primisbank.com,05/01/1987,12/03/2012,12/03/2012,South Chesterfield,VA,0000,18,Colonial Heights
+Tracy,Jackson,,tracy.jackson@primisbank.com,03/14/1969,02/19/2013,02/19/2013,Mechanicsville,VA,0000,93,Commercial Lending
+Doreen,Estes,,doreen.estes@primisbank.com,04/07/1963,02/25/2013,02/25/2013,MECHANICSVILLE,VA,0000,93,Commercial Lending
+Christopher,Wilson,Chris,chris.wilson@primisbank.com,06/27/1980,04/29/2013,04/29/2013,Aylett,VA,0000,11,Central Garage
+Michelle,Simon,,michelle.simon@primisbank.com,08/13/1976,05/15/2013,05/15/2013,Midlothian,VA,0000,95,Marketing
+Timothy,Saunders,Tim,tim.saunders@primisbank.com,01/06/1974,08/03/2015,08/03/2015,Tappahannock,VA,0000,01,Tappahannock
+Jacqueline,Holmes,Jackie,jacqueline.holmes@primisbank.com,05/27/1972,02/05/2018,02/05/2018,Church View,VA,0000,03,Essex Square
+Nicole,Warner,,nicole.warner@primisbank.com,05/20/1987,08/12/2013,08/12/2013,Lancaster,VA,0000,36,Training
+Amber,Day,,amber.day@primisbank.com,02/25/1987,08/12/2013,08/12/2013,Newtown,VA,0000,35,Finance & Accounting
+Lisa,Cannon,,lisa.cannon@primisbank.com,12/13/1967,09/03/2013,09/03/2013,Mechanicsville,VA,0000,38,Loan Operations
+Lindsay,Kidd,,lindsay.kidd@primisbank.com,02/10/1988,09/03/2013,09/03/2013,Disputanta,VA,0000,54,Ashland
+Jessica,Pringle,Jessi,jessica.pringle@primisbank.com,09/16/1983,09/09/2013,09/09/2013,Sandston,VA,0000,40,Bank Operations
+Cathy,Jackson,,cathy.jackson@primisbank.com,05/12/1957,09/09/2013,09/09/2013,Sandston,VA,0000,96,C3/Digital
+Elizabeth,Davenport,Beth,beth.davenport@primisbank.com,02/23/1978,09/23/2013,09/23/2013,Franklin,VA,0000,12,Courtland
+Virginia,Powell,Genii,genii.powell@primisbank.com,08/20/1985,09/23/2013,09/23/2013,Locust Hill,VA,0000,04,Hartfield
+Megan,Vetter,,megan.vetter@sonabank.com,04/06/1988,09/23/2013,09/23/2013,Manquin,VA,0000,11,Central Garage
+Pamela,Milne,Pam,pam.milne@primisbank.com,04/18/1957,12/16/2013,12/16/2013,Glen Allen,VA,0000,92,Credit Administration
+Robert,Bowles,Danny,danny.bowles@primisbank.com,04/03/1979,01/06/2014,01/06/2014,Colonial Heights,VA,0000,18,Colonial Heights
+Jonathan,Driver,Jon,jon.driver@sonabank.com,03/23/1984,01/06/2014,01/06/2014,Sandston,VA,0000,39,Information Technology
+Sherry,Jenkins,,sherry.jenkins@primisbank.com,12/14/1961,03/31/2014,03/31/2014,The Villages,FL,0000,96,C3/Digital
+Susan,Young,,susan.young@primisbank.com,08/11/1957,04/14/2014,04/14/2014,Chester,VA,0000,17,Rivers Bend
+Banu,Boyd,,banu.boyd@primisbank.com,02/25/1958,04/28/2014,04/28/2014,Richmond,VA,0000,92,Credit Administration
+Shelbie,Schools,,shelbie.schools@primisbank.com,07/29/1992,06/02/2014,06/02/2014,Mechanicsville,VA,0000,11,Central Garage
+Penny,Althizer,Penny,penny.althizer@primisbank.com,08/04/1962,09/29/2014,09/29/2014,Mechanicsville,VA,0000,38,Loan Operations
+Brittany,Jones,,brittany.jones@primisbank.com,03/11/1993,09/30/2014,09/30/2014,Ruther Glen,VA,0000,38,Loan Operations
+Jeromy,Cox,,jeromy.cox@primisbank.com,05/21/1976,12/15/2014,12/15/2014,Spotsylvania,VA,0000,31,Corporate
+Andrea,Banks,,andrea.banks@primisbank.com,11/04/1966,03/02/2015,03/02/2015,Heathsville,VA,0000,24,Kilmarnock
+Connie,Birdsall,,connie.birdsall@primisbank.com,11/01/1964,03/23/2015,03/23/2015,Gloucester,VA,0000,05,Urbanna
+Stephanie,Hildebrand,Stephanie,stephanie.hildebrand@primisbank.com,08/22/1972,04/13/2015,04/13/2015,Williamsburg,VA,0000,26,Williamsburg
+Gary,Crutchfield,,gary.crutchfield@sonabank.com,07/22/1950,04/13/2015,04/13/2015,Chester,VA,0000,93,Commercial Lending
+Earlyne,Glenn,Frances,frances.glenn@primisbank.com,07/12/1979,05/04/2015,05/04/2015,Hartfield,VA,0000,04,Hartfield
+Lauren,Whitlow,,lauren.whitlow@sonabank.com,07/22/1990,05/18/2015,05/18/2015,Richmond,VA,0000,95,Marketing
+Emily,Norton,,emily.norton@primisbank.com,06/02/1994,06/15/2020,06/15/2020,Disputanta,VA,0000,18,Colonial Heights
+Evan,Van Leeuwen,,evan.vanleeuwen@sonabank.com,09/23/1953,05/18/2015,05/18/2015,Gloucester,VA,0000,93,Commercial Lending
+Erin,King,,erin.king@primisbank.com,02/17/1990,06/30/2015,06/30/2015,Heathsville,VA,0000,22,Callao
+Ira,Usry,,ira.usry@primisbank.com,09/25/1992,08/23/2021,08/23/2021,Richmond,VA,0000,92,Credit Administration
+Julie,Hill,,julie.hill@primisbank.com,10/25/1963,07/15/2015,07/15/2015,Mechanicville,VA,0000,95,Marketing
+Wanda,Lewter,,wanda.lewter@primisbank.com,11/30/1967,08/17/2015,08/17/2015,Saluda,VA,0000,04,Hartfield
+Bonita,Selwaeh,Bonnie,bonnie.selwaeh@primisbank.com,10/19/1967,09/01/2015,09/01/2015,Williamsburg,VA,0000,91,Retail Banking
+Amy,Hooper,,amy.hooper@primisbank.com,04/19/1986,06/12/2006,06/12/2006,King William,VA,0000,36,Training
+Alicia,Horsley,,alicia.horsley@primisbank.com,08/24/1988,11/04/2013,11/04/2013,ARK,VA,0000,10,Gloucester Point
+Shanita,Byrd,,shanita.byrd@sonabank.com,02/11/1976,12/09/2013,12/09/2013,Richmond,VA,0000,34,Human Resources
+Cheryl,Makulowich,Cheryl,cheryl.makulowich@primisbank.com,06/03/1982,01/04/2016,01/04/2016,White Stone,VA,0000,24,Kilmarnock
+Barry,Almond,Barry,barry.almond@primisbank.com,08/19/1961,09/16/2019,09/16/2019,Midlothian,VA,0000,91,Retail Banking
+Thomas,Blatt,Toby,toby.blatt@sonabank.com,02/12/1978,02/22/2016,02/22/2016,Mechanicsville,VA,0000,53,Kings Charter
+Lindsey,Humphreys,Lindsey,lindsey.humphreys@primisbank.com,05/10/1988,03/14/2016,03/14/2016,Powhatan,VA,0000,40,Bank Operations
+Jason,Williams,Jason,jason.williams@primisbank.com,05/13/1987,03/14/2016,03/14/2016,Glen Allen,VA,0000,19,Broad Street
+Brooke,Balderson,Brooke,brooke.balderson@sonabank.com,01/08/1997,04/04/2016,04/04/2016,Deltaville,VA,0000,04,Hartfield
+Jonathan,Shearin,Jonathan,jonathan.shearin@primisbank.com,10/28/1994,05/24/2016,05/24/2016,Deltaville,VA,0000,93,Commercial Lending
+Lori,Sears,Lori,lori.sears@primisbank.com,05/12/1968,05/24/2016,05/24/2016,Gloucester,VA,0000,09,Gloucester
+Marnie,Triscari,,marnie.triscari@sonabank.com,10/09/1966,06/27/2016,06/27/2016,Ashland,VA,0000,54,Ashland
+Markeia,Johnson,,markeia.johnson@primisbank.com,04/16/1986,06/27/2016,06/27/2016,Richmond,VA,0000,19,Broad Street
+Shavonne,Seymour,Shavonne,shavonne.seymour@primisbank.com,09/04/1984,07/11/2016,07/11/2016,Richmond,VA,0000,96,C3/Digital
+Holly,Winkler,Holly,holly.winkler@primisbank.com,09/25/1971,08/18/2016,08/18/2016,Mechanicsville,VA,0000,85,Internal Audit
+Kristen,Lyell,Kristen,kristen.lyell@sonabank.com,09/14/1993,09/12/2016,09/12/2016,Hampton,VA,0000,27,Hampton
+Sally,Sample,Sally,pamela.moore@primisbank.com,01/01/1969,01/01/2012,01/01/2012,Warsaw,VA,0000,DEFAUL,Default
+John,Doe,John,pamela.moore@primisbank.com,10/18/1954,02/01/2000,02/01/2000,Ashland,VA,0000,DEFAUL,Default
+Sheila,Freeman,Sheila,sheila.freeman@primisbank.com,02/08/1967,09/15/2016,09/15/2016,Hanover,VA,0000,91,Retail Banking
+Beth,Nilles,Beth,beth.nilles@primisbank.com,12/25/1966,02/14/2022,02/14/2022,Midlothian,VA,0000,33,Risk Management
+Joshua,Yager,Josh,josh.yager@primisbank.com,02/19/1985,11/01/2016,11/01/2016,Richmond,VA,0000,39,Information Technology
+Jessica,Ragsdale,,jessica.ragsdale@primisbank.com,06/09/1995,01/09/2017,01/09/2017,Richmond,VA,0000,31,Corporate
+Ashley,Varcasia,,ashley.varcasia@primisbank.com,05/31/1995,02/11/2019,02/11/2019,Williamsburg,VA,0000,26,Williamsburg
+Madison,Davis,Madison,madison.davis@primisbank.com,04/05/1996,07/10/2017,07/10/2017,Dunnsville,VA,0000,03,Essex Square
+Jolynn,Wood,Jolynn,jolynn.wood@sonabank.com,11/21/1976,07/17/2017,07/17/2017,Warsaw,VA,0000,22,Callao
+Brittany,Ambrose,,brittany.ambrose@primisbank.com,07/14/1993,07/24/2017,07/24/2017,Callao,VA,0000,23,Burgess
+Tammy,Williams,Tammy,tammy.williams@sonabank.com,07/17/1963,07/24/2017,07/24/2017,Glen Allen,VA,0000,40,Bank Operations
+Bambi,Parker,Bambi,bambi.parker@primisbank.com,05/04/1964,08/14/2017,08/14/2017,Hudgins,VA,0000,96,C3/Digital
+Dawn,Taylor,,dawn.taylor@primisbank.com,02/15/1993,08/14/2017,08/14/2017,Farnham,VA,0000,22,Callao
+Sharon,Taylor,Sharon,sharon.taylor@primisbank.com,03/02/1984,12/01/2006,12/01/2006,Sumerduck,VA,0000,57,SBA Lending
+Rachael,Brady,,rachael.brady@primisbank.com,03/05/1988,08/21/2017,08/21/2017,Yale,VA,0000,96,C3/Digital
+Mary,Pusey,Mary,mary.pusey@primisbank.com,06/23/1959,08/28/2017,08/28/2017,Mechanicsville,VA,0000,96,C3/Digital
+Erlene,Russell,Erlene,erlene.russell@primisbank.com,04/22/1992,06/17/2019,06/17/2019,Tappahannock,VA,0000,03,Essex Square
+Amanda,Horsley,,amanda.horsley@sonabank.com,01/03/1996,10/30/2017,10/30/2017,Deltaville,VA,0000,04,Hartfield
+Claudia,Vivas,,claudia.vivas@primisbank.com,03/11/1975,11/06/2006,11/06/2006,Manassas Park,VA,0000,68,Old Town
+Josephine,Arroyo,,josephine.arroyo@primisbank.com,06/07/1957,11/01/2006,11/01/2006,Herndon,VA,0000,91,Retail Banking
+Vanessa,Settles,,vanessa.settles@sonabank.com,01/19/1972,12/16/2006,12/16/2006,Herndon,VA,0000,85,Internal Audit
+Matthew,Lodge,,matthew.lodge@primisbank.com,12/12/1980,01/16/2007,01/16/2007,Covington,VA,0000,33,Risk Management
+Savany,Lep,,savany.lep@primisbank.com,03/07/1969,01/29/2007,01/29/2007,Herndon,VA,0000,64,Reston
+James,Wyckoff,,james.wyckoff@primisbank.com,11/05/1982,05/14/2007,05/14/2007,Alexandria,VA,0000,93,Commercial Lending
+Bonnie,Donohue,,bonnie.donohue@primisbank.com,02/26/1966,06/11/2007,06/11/2007,Warrenton,VA,0000,38,Loan Operations
+Michelle,Douglas,,michelle.douglas@primisbank.com,04/06/1971,06/18/2007,06/18/2007,Warrenton,VA,0000,57,SBA Lending
+Aidan,Harland,,aidan.harland@primisbank.com,06/05/1937,07/01/2007,07/01/2007,Midlothian,VA,0000,33,Risk Management
+William,Wilkerson,,william.wilkerson@primisbank.com,07/21/1982,04/14/2015,04/14/2015,Falls Church,VA,0000,92,Credit Administration
+Sharon,Tyson,,sharon.tyson@primisbank.com,03/23/1981,07/16/2007,07/16/2007,Fredericksburg,VA,0000,38,Loan Operations
+Samina,Saleem,,samina.saleem@primisbank.com,08/19/1957,09/14/2021,09/14/2021,Herndon,VA,0000,64,Reston
+Tanya,Rosenberry,,tanya.rosenberry@primisbank.com,03/03/1969,04/07/2008,04/07/2008,Strasburg,VA,0000,70,Front Royal
+Dianne,Joynes,,dianne.joynes@primisbank.com,07/29/1970,04/07/2008,04/07/2008,Warrenton,VA,0000,35,Finance & Accounting
+Dung,Nguyen,,dung.nguyen@primisbank.com,05/02/1954,03/25/2008,03/25/2008,Leesburg,VA,0000,63,McLean
+Maria,Briceno,,maria.briceno@primisbank.com,11/24/1954,07/07/2008,07/07/2008,Chantilly,VA,0000,65,Fairfax
+Charlene,Benjamin,,charlene.benjamin@primisbank.com,05/13/1967,08/05/2008,08/05/2008,Gum Spring,VA,0000,38,Loan Operations
+Natalie,Lacaze,,natalie.lacaze@primisbank.com,12/08/1975,07/13/2009,07/13/2009,The Plains,VA,0000,73,Middleburg
+Joyce,Harding,,joyce.harding@sonabank.com,01/03/1947,08/04/2009,08/04/2009,Warrenton,VA,0000,35,Finance & Accounting
+Tia,Pham,,tia.pham@primisbank.com,03/14/1973,11/02/2009,11/02/2009,Sterling,VA,0000,91,Retail Banking
+Davin,Envuthy,,davin.envuthy@primisbank.com,01/01/1973,12/04/2009,12/04/2009,Sterling,VA,0000,65,Fairfax
+Carroll,Amos,,carroll.amos@sonabank.com,07/02/1947,12/04/2009,12/04/2009,Sterling,VA,0000,92,Credit Administration
+Aman,Verma,Aman,aman.verma@primisbank.com,08/19/1979,12/04/2009,12/04/2009,Clarksburg,MD,0000,93,Commercial Lending
+Chasity,Burner,,chasity.burner@primisbank.com,05/28/1980,12/04/2009,12/04/2009,Front Royal,VA,0000,38,Loan Operations
+Michelle,Sealock,,michelle.sealock@primisbank.com,03/28/1974,12/04/2009,12/04/2009,Front Royal,VA,0000,38,Loan Operations
+Lorrie,Sealock,,lorrie.sealock@primisbank.com,05/19/1967,12/04/2009,12/04/2009,Front Royal,VA,0000,38,Loan Operations
+Candice,Smallwood,,candice.smallwood@sonabank.com,03/07/1986,12/29/2014,12/29/2014,Edinburg,VA,0000,38,Loan Operations
+Teresa,Woodard,,teresa.woodard@primisbank.com,10/04/1966,12/04/2009,12/04/2009,Front Royal,VA,0000,38,Loan Operations
+Matthew,Pascal,,matthew.pascal@primisbank.com,06/21/1983,12/04/2009,12/04/2009,Ashburn,VA,0000,67,Leesburg
+Ariana,Nelson,Blaise,blaise.nelson@primisbank.com,10/07/1980,12/04/2009,12/04/2009,Edinburg,VA,0000,71,New Market
+George,Sheflett,Cody,cody.sheflett@primisbank.com,06/04/1970,12/10/2009,12/10/2009,Charlestown,WV,0000,39,Information Technology
+Robert,Neff,Bob,bob.neff@primisbank.com,08/01/1947,12/10/2009,12/10/2009,Crofton,MD,0000,93,Commercial Lending
+Sheila,Stoll,,sheila.stoll@primisbank.com,02/05/1962,12/11/2009,12/11/2009,Front Royal,VA,0000,38,Loan Operations
+James,Tabor,,james.tabor@primisbank.com,04/28/1979,12/16/2009,12/16/2009,Fairfax,VA,0000,92,Credit Administration
+Raymond,Verhaalen,,raymond.verhaalen@primisbank.com,03/18/1955,12/21/2009,12/21/2009,Amissville,VA,0000,39,Information Technology
+Christopher,Padden,,christopher.padden@primisbank.com,07/31/1967,06/01/2010,06/01/2010,Leesburg,VA,0000,93,Commercial Lending
+R,Porter,,rod.porter@sonabank.com,04/11/1945,01/01/2005,01/01/2005,The Plains,VA,0000,31,Corporate
+Robyn,Reid,,robyn.reid@primisbank.com,01/23/1967,02/28/2005,02/28/2005,Warrenton,VA,0000,35,Finance & Accounting
+Teri,Tosti,,teri.tosti@primisbank.com,06/11/1962,04/01/2005,04/01/2005,Frederickburg,VA,0000,57,SBA Lending
+Charles,Bruce,,charles.bruce@sonabank.com,03/04/1956,03/16/2005,03/16/2005,Palmyra,VA,0000,93,Commercial Lending
+Georgia,Derrico,,georgia.derrico@sonabank.com,10/06/1944,01/01/2005,01/01/2005,The Plains,VA,0000,31,Corporate
+Laura,Satchell,,laura.satchell@primisbank.com,06/20/1981,03/07/2005,03/07/2005,Henrico,VA,0000,85,Internal Audit
+William,Lagos,,william.lagos@sonabank.com,11/05/1950,03/10/2005,03/10/2005,Reston,VA,0000,31,Corporate
+Marie,Leibson,,marie.leibson@primisbank.com,08/06/1964,03/07/2005,03/07/2005,Gainesville,VA,0000,92,Credit Administration
+Amy,Riley,,amy.hargrove@primisbank.com,12/26/1970,06/06/2005,06/06/2005,Winchester,VA,0000,38,Loan Operations
+Lisa,Deeds,,lisa.deeds@primisbank.com,10/18/1963,10/01/1986,12/03/2005,Clifton Forge,VA,0000,33,Risk Management
+Kevin,Persinger,,kevin.persinger@primisbank.com,05/30/1959,12/03/2005,12/03/2005,Clifton Forge,VA,0000,02,Clifton Forge
+Kimberly,Unroe,,kimberly.unroe@primisbank.com,06/27/1973,02/07/1994,12/03/2005,Clifton Forge,VA,0000,33,Risk Management
+Diane,Wilcher,,diane.wilcher@primisbank.com,07/13/1956,03/04/2002,03/04/2002,Millboro,VA,0000,33,Risk Management
+William,Stevens,Bill,william.stevens@primisbank.com,11/24/1944,04/14/2005,04/14/2005,Washington,DC,0000,92,Credit Administration
+Bridgett,Goff,,bridgett.goff@primisbank.com,03/08/1987,03/03/2011,03/03/2011,Covington,VA,0000,02,Clifton Forge
+Linda,Sandridge,,linda.sandridge@sonabank.com,02/10/1953,03/01/2011,03/01/2011,Middleburg,VA,0000,92,Credit Administration
+Cynthia,Cotto,,cynthia.cotto@primisbank.com,03/10/1969,09/06/2011,09/06/2011,Woodbridge,VA,0000,65,Fairfax
+Chingmel,Whichard,,chingmel.whichard@primisbank.com,08/04/1984,08/25/2011,08/25/2011,Rockville,MD,0000,39,Information Technology
+Carl,Huners,,carl.huners@primisbank.com,07/08/1986,09/21/2011,09/21/2011,Herndon,VA,0000,67,Leesburg
+Sherry,Dobie-Davis,,sherry.dobie-davis@primisbank.com,12/24/1963,10/01/2011,10/01/2011,Chester,VA,0000,15,Hull Street
+Naomi,Hill,,naomi.hill@primisbank.com,11/22/1972,10/01/2011,10/01/2011,Richmond,VA,0000,15,Hull Street
+Richard,North,,richard.north@primisbank.com,10/03/1973,02/21/2012,02/21/2012,Brightwood,VA,0000,39,Information Technology
+Darshana,Tatwadhia,,darshana.tatwadhia@sonabank.com,04/01/1962,04/28/2012,04/28/2012,Germantown,MD,0000,33,Risk Management
+Joshua,Henry,Josh,josh.henry@sonabank.com,04/04/1996,01/06/2020,01/06/2020,Warrenton,VA,0000,68,Old Town
+Rosa,Aleman,,rosa.aleman@primisbank.com,04/07/1982,11/12/2019,11/12/2019,Frederick,MD,0000,67,Leesburg
+Lori,Sprouse,,lori.sprouse@primisbank.com,04/03/1971,08/24/2012,08/24/2012,Sumerduck,VA,0000,33,Risk Management
+John,Harding,Marc,marc.harding@primisbank.com,04/06/1976,10/22/2012,10/22/2012,Richmond,VA,0000,33,Risk Management
+Beth,Hendricks,,beth.hendricks@primisbank.com,01/09/1964,01/24/2013,01/24/2013,Alexandria,VA,0000,33,Risk Management
+Paria,Bakhshi,,paria.bakhshi@sonabank.com,05/16/1982,03/26/2013,03/26/2013,Springfield,VA,0000,65,Fairfax
+Daniel,Olego,,daniel.olego@primisbank.com,08/16/1984,01/22/2018,01/22/2018,Rockville,MD,0000,75,Bethesda
+Sholeh,Barzin,,sholeh.barzin@primisbank.com,09/20/1954,03/19/2013,03/19/2013,Alexandria,VA,0000,75,Bethesda
+Mahesh,Dave,,mahesh.dave@primisbank.com,11/21/1951,05/06/2013,05/06/2013,Laurel,MD,0000,69,Rockville
+John,Colantoni,,john.colantoni@primisbank.com,12/24/1957,06/17/2013,06/17/2013,Chantilly,VA,0000,33,Risk Management
+Thomas,Leszczynski,,thomas.leszczynski@sonabank.com,11/01/1986,01/25/2019,01/25/2019,Potomac,MD,0000,33,Risk Management
+Ashley,Wolfe,,ashley.wolfe@primisbank.com,01/03/1993,09/23/2013,09/23/2013,Covington,VA,0000,33,Risk Management
+Evie,Huynh,,evie.huynh@primisbank.com,07/08/1969,09/23/2013,09/23/2013,Aldie,VA,0000,67,Leesburg
+Svetlana,Khadjieva,,svetlana.khadjieva@primisbank.com,07/04/1970,10/02/2013,10/02/2013,Germantown,MD,0000,69,Rockville
+Katherine,Wagner,Kate,kate.wagner@primisbank.com,08/10/1960,12/02/2013,12/02/2013,Midlothian,VA,0000,93,Commercial Lending
+Diana,Carter,,diana.carter@sonabank.com,07/05/1967,11/27/2017,11/27/2017,Warrenton,VA,0000,38,Loan Operations
+Maria,Cuadro,Celina,maria.cuadro@primisbank.com,12/02/1969,03/31/2014,03/31/2014,Silver Spring,MD,0000,63,McLean
+Lisa,Ahlbrand,,lisa.ahlbrand@sonabank.com,02/27/1961,04/21/2014,04/21/2014,Clifton Forge,VA,0000,33,Risk Management
+Karen,Maslin,,karen.maslin@primisbank.com,10/14/1953,04/21/2014,04/21/2014,Charlottesville,VA,0000,38,Loan Operations
+Erich,Wolf,,erich.wolf@sonabank.com,08/01/1984,12/12/2011,12/12/2011,Mound,MN,0000,81,Brandywine
+LaTonya,Bryant,,latonya.bryant@primisbank.com,08/06/1986,08/08/2008,08/08/2008,Clinton,MD,0000,81,Brandywine
+Kimberly,Sole,,kimberly.sole@primisbank.com,02/18/1976,11/07/2011,11/07/2011,Marbury,MD,0000,81,Brandywine
+Kimberly,Freeland,,kimberly.freeland@primisbank.com,11/11/1963,03/01/2010,03/01/2010,Prince Frederick,MD,0000,57,SBA Lending
+Autumn,Garner,,autumn.garner@primisbank.com,09/15/1988,01/22/2007,01/22/2007,Lusby,MD,0000,78,Upper Marlboro
+Hal,Rich,,hal.rich@primisbank.com,05/18/1961,08/01/1992,08/01/1992,Brandywine,MD,0000,91,Retail Banking
+Joan,Knopp,,joan.knopp@primisbank.com,10/13/1943,02/10/2003,02/10/2003,Deale,MD,0000,79,Owings
+Penny,Willis,,penny.willis@primisbank.com,09/17/1962,09/25/2000,09/25/2000,Huntingtown,MD,0000,78,Upper Marlboro
+Timothy,Johnson,,timothy.johnson@primisbank.com,03/01/1991,11/14/2013,11/14/2013,Huntingtown,MD,0000,78,Upper Marlboro
+Thuy,Nguyen,,thuy.nguyen@primisbank.com,10/06/1973,09/29/2014,09/29/2014,Ashburn,VA,0000,57,SBA Lending
+Kasey,Ford,,kasey.ford@primisbank.com,06/26/1994,10/27/2014,10/27/2014,Strasburg,VA,0000,70,Front Royal
+Susan,Williamson,,susie.williamson@primisbank.com,02/13/1962,07/27/2020,07/27/2020,Franklin,VA,0000,33,Risk Management
+John,Shelko,,john.shelko@primisbank.com,01/10/1967,11/24/2014,11/24/2014,Annapolis,MD,0000,39,Information Technology
+Arlinda,Harris,,arlinda.harris@primisbank.com,05/31/1972,12/05/2014,12/05/2014,Brandywine,MD,0000,81,Brandywine
+Dena,Brady,,dena.brady@primisbank.com,11/07/1973,01/26/2015,01/26/2015,Clifton Forge,VA,0000,33,Risk Management
+Rebecca,Johnson,,rebecca.johnson@primisbank.com,11/28/1971,02/02/2015,02/02/2015,Troy,VA,0000,62,Mortgage Warehouse
+Kesia,Batres,,kesia.batres@primisbank.com,11/20/1993,02/09/2015,02/09/2015,Maurertown,VA,0000,71,New Market
+Daniel,Evans,,daniel.evans@primisbank.com,10/28/1990,02/18/2015,02/18/2015,Huntingtown,MD,0000,79,Owings
+Grace,Blackburn,,grace.blackburn@primisbank.com,07/15/1984,12/13/2021,12/13/2021,Front Royal,VA,0000,70,Front Royal
+Devon,Robinson,,devon.robinson@primisbank.com,05/15/1996,08/17/2015,08/17/2015,Stephens City,VA,0000,71,New Market
+Mai,Ngo,,mai.ngo@primisbank.com,05/06/1987,09/01/2015,09/01/2015,Waldorf,MD,0000,35,Finance & Accounting
+Catherine,Burkindine,,catherine.burkindine@sonabank.com,09/11/1958,10/01/2015,10/01/2015,Luray,VA,0000,71,New Market
+Betty,Simms,,betty.simms@primisbank.com,12/22/1957,11/02/2015,11/02/2015,Charlottesville,VA,0000,06,Forest Lakes
+Amber,Arthur,,amber.arthur@primisbank.com,08/31/1993,11/09/2015,11/09/2015,Covington,VA,0000,33,Risk Management
+Yong,Brown,,yong.brown@primisbank.com,09/09/1965,11/09/2015,11/09/2015,Huntingtown,MD,0000,79,Owings
+Heather,Kerns,,heather.kerns@primisbank.com,05/27/1987,02/11/2016,02/11/2016,Washington,VA,0000,57,SBA Lending
+Sarah,Knupp,,sarah.knupp@primisbank.com,07/04/1974,02/16/2016,02/16/2016,Timberville,VA,0000,71,New Market
+Kathryn,Ryan,Kate,kate.ryan@primisbank.com,11/11/1981,05/02/2016,05/02/2016,The Plains,VA,0000,93,Commercial Lending
+Carmelita,Bernardo,,carmelita.bernardo@primisbank.com,12/22/1953,01/23/2017,01/23/2017,Bristow,VA,0000,92,Credit Administration
+Robert,Porter,,devon.porter@primisbank.com,11/21/1976,01/01/2005,01/01/2005,Kearneysville,WV,0000,93,Commercial Lending
+Benjamin,Lakeway,,benjamin.lakeway@primisbank.com,08/05/1992,01/30/2017,01/30/2017,Leesburg,VA,0000,39,Information Technology
+Amanda,Mongold,,amanda.mongold@sonabank.com,05/27/1994,04/17/2017,04/17/2017,Edinburg,VA,0000,70,Front Royal
+Hemlata,Rani,,hemlata.rani@primisbank.com,05/17/1971,05/08/2017,05/08/2017,Manassas,VA,0000,64,Reston
+Leslie,Cabral Chavez,,leslie.chavez@primisbank.com,08/19/1997,06/05/2017,06/05/2017,Linden,VA,0000,73,Middleburg
+Luigi,Mirto,,luigi.mirto@sonabank.com,05/05/1951,09/22/2014,09/22/2014,Washington,DC,0000,63,McLean
+Gregory,Brown,,gregory.brown@primisbank.com,08/28/1990,11/20/2017,11/20/2017,Richmond,VA,0000,19,Broad Street
+Jessica,Grulkowski,,jessica.grulkowski@sonabank.com,01/08/1993,12/04/2017,12/04/2017,Glen Allen,VA,0000,54,Ashland
+Jorge,Ramirez,,jorge.ramirez@primisbank.com,09/01/1967,01/02/2018,01/02/2018,Falls Church,VA,0000,57,SBA Lending
+Serena Arlene,Hernandez,,serena.hernandez@primisbank.com,08/16/1971,01/02/2018,01/02/2018,Silver Spring,MD,0000,69,Rockville
+Joanne,Martin,Joanne,joanne.martin@primisbank.com,11/24/1959,01/08/2018,01/08/2018,Glen Allen,VA,0000,35,Finance & Accounting
+Chad,Davis,,chad.davis@primisbank.com,05/02/1994,01/16/2018,01/16/2018,King William,VA,0000,51,Windmill
+Jane,Davis,Beth,beth.davis@primisbank.com,12/30/1962,01/29/2018,01/29/2018,Glen Allen,VA,0000,51,Windmill
+Heather,Sharpe,,heather.sharpe@primisbank.com,12/20/1988,02/01/2018,02/01/2018,Mechanicsville,VA,0000,40,Bank Operations
+Allison,Cox,,allison.cox@sonabank.com,02/25/1997,10/07/2019,10/07/2019,Warrenton,VA,0000,68,Old Town
+Linda,Ford,,linda.ford@primisbank.com,10/30/1966,02/12/2018,02/12/2018,Saint Stephens Church,VA,0000,39,Information Technology
+Megan,Rine,Meg,megan.rine@sonabank.com,10/27/1980,03/05/2018,03/05/2018,Fredericksburg,VA,0000,68,Old Town
+Barbara,Cannon,BJ,barbara.cannon@sonabank.com,06/14/1975,03/12/2018,03/12/2018,Ashland,VA,0000,54,Ashland
+Kaitlyn,Lawson,,kaitlyn.lawson@primisbank.com,05/06/1996,03/26/2018,03/26/2018,Deltaville,VA,0000,24,Kilmarnock
+Megan,Elbourn,,megan.elbourn@primisbank.com,09/01/1998,05/07/2018,05/07/2018,Warsaw,VA,0000,40,Bank Operations
+Sherita,Hayes,,sherita.hayes@sonabank.com,03/15/1980,05/14/2018,05/14/2018,Maidens,VA,0000,15,Hull Street
+Laura,Allen,Laura,laura.allen@primisbank.com,09/02/1983,05/14/2018,05/14/2018,Farnham,VA,0000,22,Callao
+Ryan,Haynes,,ryan.haynes@primisbank.com,05/11/1999,05/21/2018,05/21/2018,Annandale,VA,0000,59,Credit Risk Management
+Susan,Merkle,,susan.merkle@sonabank.com,06/30/1994,05/21/2018,05/21/2018,Churchton,MD,0000,78,Upper Marlboro
+Jesse,Procious,Jesse,jesse.procious@primisbank.com,04/21/1973,02/28/2022,02/28/2022,Henrico,VA,0000,38,Loan Operations
+Luis,Reis,,luis.reis@sonabank.com,10/06/1980,05/21/2018,05/21/2018,Mechanicsville,VA,0000,53,Kings Charter
+Caroline,Tucker,,caroline.tucker@primisbank.com,07/02/1999,05/21/2018,05/21/2018,Hanover,VA,0000,51,Windmill
+John,White,Barrett,barrett.white@primisbank.com,07/22/1997,05/21/2018,05/21/2018,Mechanicsville,VA,0000,53,Kings Charter
+Alexxus,Canter,Alexx,alexxus.canter@sonabank.com,05/01/1997,05/29/2018,05/29/2018,Warsaw,VA,0000,03,Essex Square
+Jessica,Wingle,,jessica.wingle@primisbank.com,08/05/1983,06/04/2018,06/04/2018,Mechanicsville,VA,0000,36,Training
+Jennifer,Auton,,jennifer.auton@primisbank.com,12/01/1973,06/18/2018,06/18/2018,Disputanta,VA,0000,38,Loan Operations
+Shemika,Stanley,,shemika.stanley@sonabank.com,09/10/1990,08/06/2018,08/06/2018,Richmond,VA,0000,40,Bank Operations
+Tomekye,Wilkerson,,tomekye.wilkerson@primisbank.com,02/17/1975,09/04/2018,05/10/2021,Powhatan,VA,0000,35,Finance & Accounting
+Stacey,Miller,,stacey.miller@primisbank.com,09/21/1984,09/04/2018,09/04/2018,Charlottesville,VA,0000,06,Forest Lakes
+Jeffrey,Karafa,Jeff,jeff.karafa@primisbank.com,02/11/1965,09/19/2018,09/19/2018,Midlothian,VA,0000,35,Finance & Accounting
+Deepti,Sitani,,deepti.sitani@primisbank.com,09/14/1977,10/22/2018,10/22/2018,Glen Allen,VA,0000,35,Finance & Accounting
+Christine,Jeune,Chris,christine.jeune@sonabank.com,01/05/1990,11/13/2018,11/13/2018,Henrico,VA,0000,39,Information Technology
+Christopher,Harding,,christopher.harding@primisbank.com,12/19/1996,01/07/2019,01/07/2019,CHARLOTTESVILLE,VA,0000,92,Credit Administration
+Richard,Esque,Will,will.esque@sonabank.com,09/05/1995,01/22/2019,01/22/2019,Chester,VA,0000,93,Commercial Lending
+Chantharaphon,Wyatt,Gift,gift.wyatt@primisbank.com,09/17/1984,01/28/2019,01/28/2019,Sterling,VA,0000,93,Commercial Lending
+Danielle,Elmes,Dani,danielle.elmes@primisbank.com,06/18/1997,03/04/2019,03/04/2019,Kents Store,VA,0000,38,Loan Operations
+Sheila,Mercer,,sheila.mercer@sonabank.com,10/06/1967,03/04/2019,03/04/2019,Petersburg,VA,0000,18,Colonial Heights
+Juancarlos,Benavidez,,juancarlos.benavidez@sonabank.com,04/15/1988,03/11/2019,03/11/2019,Manassas,VA,0000,77,Haymarket
+Kayla,Bess,Kayla,kayla.bess@primisbank.com,04/20/1996,04/15/2019,04/15/2019,Covington,VA,0000,02,Clifton Forge
+Rebecca,Ring,Becky,becky.ring@primisbank.com,07/15/1982,04/15/2019,04/15/2019,Louisa,VA,0000,06,Forest Lakes
+Robert,Bowles,Robert,robert.bowles@primisbank.com,04/13/1965,04/22/2019,04/22/2019,Richmond,VA,0000,33,Risk Management
+Imani,Hale,,imani.hale@primisbank.com,11/28/1995,04/29/2019,04/29/2019,Severna Park,MD,0000,78,Upper Marlboro
+Magdalena,Johnston,Maggie,maggie.johnston@sonabank.com,09/28/1963,04/29/2019,04/29/2019,Leesburg,VA,0000,73,Middleburg
+Alula,Kinfu,Alula,alula.kinfu@sonabank.com,07/27/2000,05/06/2019,05/06/2019,Annandale,VA,0000,63,McLean
+Preston,Eacho,,preston.eacho@sonabank.com,10/20/1999,05/13/2019,05/13/2019,Mechanicsville,VA,0000,40,Bank Operations
+Noah,Kitson,,noah.kitson@sonabank.com,12/06/1997,05/13/2019,05/13/2019,Williamsburg,VA,0000,95,Marketing
+Marcia,Swann,Lizzie,lizzie.swann@sonabank.com,09/24/2000,05/13/2019,05/13/2019,Lottsburg,VA,0000,23,Burgess
+Lauren,Butler,,lauren.butler@sonabank.com,08/10/2000,05/13/2019,05/13/2019,Mechanicsville,VA,0000,51,Windmill
+Ling,Lin,,ling.lin@sonabank.com,07/24/1963,05/13/2019,05/13/2019,Haymarket,VA,0000,77,Haymarket
+Mark,Hewitt,,mark.hewitt@primisbank.com,01/04/1980,05/16/2019,05/16/2019,Ashland,VA,0000,39,Information Technology
+Kumiko,Loftus,,kumiko.loftus@primisbank.com,03/22/1988,05/20/2019,05/20/2019,Colonial Heights,VA,0000,40,Bank Operations
+Toni,Stamper,Toni,toni.stamper@primisbank.com,04/27/1966,05/20/2019,05/20/2019,Chester,VA,0000,40,Bank Operations
+Blair,Kenyon,,blair.kenyon@primisbank.com,08/01/1973,05/28/2019,05/28/2019,Reedville,VA,0000,24,Kilmarnock
+Brittany,Jones,,brittany.a.jones@primisbank.com,07/14/1996,09/21/2020,09/21/2020,Burgess,VA,0000,24,Kilmarnock
+Hakeem,Everett,,hakeem.everett@sonabank.com,05/06/1998,06/03/2019,06/03/2019,Welcome,MD,0000,78,Upper Marlboro
+Christian,Cassell,,christian.cassell@sonabank.com,12/28/1992,06/10/2019,06/10/2019,Rockville,MD,0000,74,Shady Grove
+Keith,Hawkins,Keith,keith.hawkins@sonabank.com,03/22/1957,06/17/2019,06/17/2019,Chesapeake,VA,0000,93,Commercial Lending
+Beverly,Bowen,,beverly.bowen@sonabank.com,05/12/1972,06/24/2019,06/24/2019,Huntingtown,MD,0000,78,Upper Marlboro
+Afiya,James,,afiya.james@sonabank.com,01/02/1988,07/22/2019,07/22/2019,Hampton,VA,0000,27,Hampton
+Catherine,Hogge,Cathy,cathy.hogge@primisbank.com,05/28/1969,08/05/2019,08/05/2019,Gloucester,VA,0000,05,Urbanna
+Nikkia,Foreman,,nikkia.foreman@primisbank.com,03/21/1987,08/12/2019,08/12/2019,Richmond,VA,0000,40,Bank Operations
+Donna,Mackey,Donna,donna.mackey@primisbank.com,05/16/1965,08/19/2019,08/19/2019,Mechanicsville,VA,0000,38,Loan Operations
+Dana,Brocklebank,,dana.brocklebank@sonabank.com,12/27/1970,08/26/2019,08/26/2019,Lancaster,VA,0000,22,Callao
+Ureathis,Evans,Cheryl,cheryl.evans@primisbank.com,03/24/1975,08/26/2019,08/26/2019,Owings Mills,MD,0000,75,Bethesda
+Elisabeth,Schurlknight,,libby.schurlknight@sonabank.com,10/24/1955,09/03/2019,09/03/2019,Midlothian,VA,0000,96,C3/Digital
+Valerie,Hayden,,valerie.hayden@primisbank.com,06/30/1974,09/16/2019,09/16/2019,TAPPAHANNOCK,VA,0000,05,Urbanna
+Caresha,Nickens,,caresha.nickens@primisbank.com,05/13/1986,09/23/2019,09/23/2019,Lancaster,VA,0000,22,Callao
+Omar,Shands,Omar,omar.shands@primisbank.com,02/01/1982,09/30/2019,09/30/2019,Midlothian,VA,0000,33,Risk Management
+Tanya,Miracle,,tanya.miracle@sonabank.com,04/16/1978,10/07/2019,10/07/2019,Ruther Glen,VA,0000,51,Windmill
+Janet,Lowry,,janet.lowry@sonabank.com,07/04/1969,10/15/2019,10/15/2019,Midlothian,VA,0000,15,Hull Street
+Taylor,Ginger,Taylor,taylor.ginger@primisbank.com,01/05/1997,10/15/2019,10/15/2019,Covington,VA,0000,02,Clifton Forge
+Barbara,Rountrey,Barbara,barbara.rountrey@primisbank.com,03/09/1955,10/21/2019,10/21/2019,Ophelia,VA,0000,23,Burgess
+Brian,Lange,,brian.lange@primisbank.com,12/08/1976,10/28/2019,10/28/2019,Midlothian,VA,0000,15,Hull Street
+Krizelle,Harmon,Elisabeth,elisabeth.harmon@sonabank.com,11/09/1980,11/04/2019,11/04/2019,Toano,VA,0000,26,Williamsburg
+Katelyn,Eubank,,katelyn.eubank@primisbank.com,11/15/1999,11/04/2019,11/04/2019,Cobbs Creek,VA,0000,04,Hartfield
+Kevin,Verhaalen,,kevin.verhaalen@primisbank.com,10/06/1991,11/12/2019,11/12/2019,Amissville,VA,0000,39,Information Technology
+Brian,Franz,,brian.franz@sonabank.com,05/01/1985,11/12/2019,11/12/2019,Bealeton,VA,0000,68,Old Town
+Shannon,Atene,,shannon.atene@primisbank.com,05/05/1978,11/18/2019,11/18/2019,Gloucester,VA,0000,08,Deltaville
+Kristin,Huntley,Kristin,kristin.huntley@sonabank.com,05/31/1983,11/18/2019,11/18/2019,Gloucester,VA,0000,09,Gloucester
+Caitlin,Gagnon,,caitlin.gagnon@primisbank.com,12/18/1993,11/25/2019,11/25/2019,Lancaster,VA,0000,23,Burgess
+Pamela,Langfitt,Pam,pam.langfitt@primisbank.com,12/16/1965,12/02/2019,12/02/2019,Glen Allen,VA,0000,91,Retail Banking
+Jacqueline,Karber,Jackie,jackie.karber@sonabank.com,07/14/1971,12/02/2019,12/02/2019,Locust Hill,VA,0000,03,Essex Square
+Kinsee,Stonebraker,,kinsee.stonebraker@primisbank.com,06/27/1996,12/03/2019,12/03/2019,Mechanicsville,VA,0000,34,Human Resources
+Taylor,Montgomery,,taylor.montgomery@primisbank.com,10/28/1996,12/16/2019,12/16/2019,Glen Allen,VA,0000,54,Ashland
+Emily,Sandy,,emily.sandy@sonabank.com,02/13/1993,12/16/2019,12/16/2019,Glen Allen,VA,0000,51,Windmill
+Giuseppe,Carollo,,giuseppe.carollo@sonabank.com,01/02/1973,01/06/2020,01/06/2020,North Chesterfield,VA,0000,53,Kings Charter
+Karen,Huffman,,karen.huffman@primisbank.com,05/18/1959,01/06/2020,01/06/2020,Glen Allen,VA,0000,40,Bank Operations
+Lucretia,Jones,Lucy,lucy.jones@sonabank.com,03/14/1978,01/06/2020,01/06/2020,Glen Allen,VA,0000,40,Bank Operations
+William,Riefner,Willie,willie.riefner@primisbank.com,02/08/1965,01/13/2020,01/13/2020,Mechanicsville,VA,0000,33,Risk Management
+Joshua,Mitchell,,joshua.mitchell@primisbank.com,01/26/1993,02/18/2020,02/18/2020,Hartfield,VA,0000,09,Gloucester
+Dennis,Zember,Dennis,dennis.zember@primisbank.com,06/19/1969,02/19/2020,02/19/2020,Jacksonville,FL,0000,31,Corporate
+Cindy,Arrington,,cindy.arrington@primisbank.com,03/04/1969,02/21/2020,02/21/2020,Newport News,VA,0000,25,Newport News
+Zertihun,Kebede,,zertihun.kebede@sonabank.com,12/25/1970,03/09/2020,03/09/2020,Herndon,VA,0000,63,McLean
+Haley,Douglas,,haley.douglas@sonabank.com,01/20/2001,03/09/2020,03/09/2020,Farnham,VA,0000,24,Kilmarnock
+Charlotte,Sanchez,Charlotte,charlotte.sanchez@primisbank.com,12/25/1975,03/10/2020,03/10/2020,Yorktown,VA,0000,27,Hampton
+Hollie,Dyson,,hollie.dyson@primisbank.com,06/14/1982,03/16/2020,03/16/2020,Hanover,VA,0000,33,Risk Management
+Stephen,Weber,,stephen.weber@primisbank.com,07/12/1974,04/29/2020,04/29/2020,Midlothian,VA,0000,31,Corporate
+Chloe,Jeffery,,chloe.jeffery@primisbank.com,11/22/1993,05/04/2020,05/04/2020,Henrico,VA,0000,96,C3/Digital
+Lorrie,Stokes,Lorrie,lorrie.stokes@sonabank.com,03/04/1976,05/04/2020,05/04/2020,Callao,VA,0000,23,Burgess
+Mubashir,Ali,Mubashir,mubashir.ali@primisbank.com,02/03/1974,05/04/2020,05/04/2020,Short Pump,VA,0000,33,Risk Management
+Mark,Beeman,,mark.beeman@primisbank.com,11/08/1998,05/18/2020,05/18/2020,Herndon,VA,0000,63,McLean
+Heather,Aaron,Heather,heather.aaron@sonabank.com,08/15/1993,05/18/2020,05/18/2020,Mechanicsville,VA,0000,53,Kings Charter
+Amme,Saunders,,amme.saunders@primisbank.com,03/26/2002,05/18/2020,05/18/2020,Warsaw,VA,0000,01,Tappahannock
+Kylie,Stonebraker,,kylie.stonebraker@primisbank.com,03/05/1998,05/18/2020,05/18/2020,Mechanicsville,VA,0000,51,Windmill
+Keith,Avant,,kla626@yahoo.com,07/11/1968,05/18/2020,05/18/2020,Milton,GA,0000,92,Credit Administration
+Blake,Crittenden,,blake.crittenden@primisbank.com,04/28/1998,05/18/2020,05/18/2020,Hartfield,VA,0000,24,Kilmarnock
+Sydney,Heflin,,sydney.heflin@sonabank.com,10/25/2000,05/18/2020,05/18/2020,Disputanta,VA,0000,14,Waverly
+Cora,Harris,,cora.harris@primisbank.com,04/29/2001,05/18/2020,05/18/2020,Hampton,VA,0000,27,Hampton
+Muniza,Siddiqui,,muniza.siddiqui@sonabank.com,07/29/2000,05/18/2020,05/18/2020,Glen Allen,VA,0000,51,Windmill
+Anna,Pitts,,anna.pitts@sonabank.com,04/27/2001,06/01/2020,06/01/2020,Callao,VA,0000,23,Burgess
+Michael,Tyler,Mike,mike.tyler@primisbank.com,12/11/1983,06/01/2020,06/01/2020,Midlothian,VA,0000,35,Finance & Accounting
+Leslie,Chrimes,Leslie,leslie.chrimes@primisbank.com,04/29/1983,06/01/2020,06/01/2020,Front Royal,VA,0000,70,Front Royal
+Luresa,Tyler,Luresa,luresa.tyler@primisbank.com,05/30/1962,06/01/2020,06/01/2020,Franklin,VA,0000,12,Courtland
+Erin,Quick,Erin,erin.quick@primisbank.com,06/06/1994,06/15/2020,06/15/2020,Gloucester,VA,0000,04,Hartfield
+Melanie,Pollard,,melanie.pollard@primisbank.com,11/06/1977,06/15/2020,06/15/2020,Manassas,VA,0000,68,Old Town
+Ruthann,McDermott,,ruthann.mcdermott@primisbank.com,09/01/1963,06/22/2020,06/22/2020,Williamsburg,VA,0000,26,Williamsburg
+Molly,Harder,,molly.harder@sonabank.com,06/22/1981,07/06/2020,07/06/2020,Herndon,VA,0000,57,SBA Lending
+Michael,Shaver,,mike.shaver@primisbank.com,07/20/1962,07/13/2020,07/13/2020,Roanoke,VA,0000,93,Commercial Lending
+Annie,McKenney,Annie,annie.mckenney@sonabank.com,11/19/1988,07/13/2020,07/13/2020,Farnham,VA,0000,22,Callao
+Amanda,Gravely,,amanda.gravely@primisbank.com,11/17/1986,07/13/2020,07/13/2020,Richmond,VA,0000,53,Kings Charter
+Tonesha,Outlaw,Tonesha,tonesha.outlaw@sonabank.com,05/13/1991,07/13/2020,07/13/2020,Newport News,VA,0000,09,Gloucester
+Clinton,Stafford,Tyler,tyler.stafford@panaceafinancial.com,03/23/1985,07/09/2020,07/09/2020,Little Rock,AR,0000,41,Panacea Financial
+Kelly,Brown,Kelly,kelly.brown@primisbank.com,02/17/1978,07/27/2020,07/27/2020,Maidens,VA,0000,85,Internal Audit
+Christina,Clough,,christina.clough@primisbank.com,05/11/1977,08/03/2020,08/03/2020,Charlottesville,VA,0000,93,Commercial Lending
+Jeral,Self,,jeral.self@panaceafinancial.com,11/25/1986,08/01/2020,08/01/2020,Houston,TX,0000,41,Panacea Financial
+Natalia,Shulinina,Natasha,natasha.shulinina@primisbank.com,09/13/1973,08/10/2020,08/10/2020,Washington,DC,0000,93,Commercial Lending
+Glenda,Gaubert,,glenda.gaubert@primisbank.com,08/29/1962,08/10/2020,08/10/2020,Glen Allen,VA,0000,33,Risk Management
+Parker,Beller,,parker.beller@panaceafinancial.com,08/15/1991,08/10/2020,08/10/2020,Castle Rock,CO,0000,41,Panacea Financial
+Rebecca,Osuna Alba,Rebecca,becky.alba@primisbank.com,06/06/1978,08/10/2020,08/10/2020,Mattaponi,VA,0000,26,Williamsburg
+Hanseok,Yoo,Sam,sam.yoo@primisbank.com,01/19/1998,08/10/2020,08/10/2020,Charlottesville,VA,0000,35,Finance & Accounting
+Matthew,Ho,,matt.ho@primisbank.com,10/28/1988,08/17/2020,08/17/2020,Richmond,VA,0000,57,SBA Lending
+Daniel,Stout,Dan,dan.stout@sonabank.com,08/18/1964,08/17/2020,08/17/2020,Baltimore,MD,0000,57,SBA Lending
+Nathaniel,Kauffman,Nate,nate.kauffman@primisbank.com,04/20/1991,08/24/2020,08/24/2020,Richmond,VA,0000,53,Kings Charter
+Amy,Childress,Amy,amy.childress@primisbank.com,05/10/1981,08/24/2020,08/24/2020,Aylett,VA,0000,01,Tappahannock
+Anna,McGrath,Anna,anna.mcgrath@panaceafinancial.com,09/21/1983,09/01/2020,09/01/2020,Little Rock,AR,0000,41,Panacea Financial
+Stephanie,Griffin,,stephanie.griffin@primisbank.com,11/25/1975,09/08/2020,09/08/2020,Glen Allen,VA,0000,91,Retail Banking
+Brittany,Vailati,,brittany.vailati@primisbank.com,07/13/1984,09/14/2020,09/14/2020,Ashland,VA,0000,40,Bank Operations
+Stephen,McNiff,,stephen.mcniff@primisbank.com,02/03/1978,09/14/2020,09/14/2020,Mechanicsville,VA,0000,40,Bank Operations
+Eryn,Leyda,,eryn.leyda@primisbank.com,11/16/1999,09/14/2020,09/14/2020,Mechanicsville,VA,0000,40,Bank Operations
+Trevor,Kane,,trevor.kane@sonabank.com,07/30/1996,09/14/2020,09/14/2020,Marshall,VA,0000,73,Middleburg
+Alexander,Kugler,Alex,alex.kugler@panaceafinancial.com,03/10/1991,09/15/2020,09/15/2020,Jersey City,NJ,0000,41,Panacea Financial
+Amber,Birdsong,Amber,amber.birdsong@sonabank.com,08/15/1997,09/14/2020,09/14/2020,Warsaw,VA,0000,01,Tappahannock
+James,Burnett,,james.burnett@panaceafinancial.com,02/01/1995,09/28/2020,09/28/2020,Houston,TX,0000,41,Panacea Financial
+Colin,Mauger,,colin.mauger@primisbank.com,01/18/1980,09/28/2020,09/28/2020,Henrico,VA,0000,16,Quinton
+Taylor,Glass,Taylor,taylor.glass@sonabank.com,02/16/1995,09/28/2020,09/28/2020,Tappahannock,VA,0000,11,Central Garage
+Danyal,Guerrieri,Danyal,danyal.guerrieri@primisbank.com,02/25/1968,09/28/2020,09/28/2020,Marshall,VA,0000,68,Old Town
+Todd,Eltimsahy,,todd.eltimsahy@primisbank.com,09/04/1975,10/05/2020,10/05/2020,Washington,DC,0000,92,Credit Administration
+Amy,Miller,Amy,amy.miller@primisbank.com,08/07/1983,10/13/2020,10/13/2020,Hudgins,VA,0000,04,Hartfield
+Kimberly,Atkins,Kim,kim.atkins@primisbank.com,10/25/1971,10/13/2020,10/13/2020,FRONT ROYAL,VA,0000,38,Loan Operations
+Nicole,Smith,,nicole.smith@primisbank.com,09/28/1993,10/13/2020,10/13/2020,Richmond,VA,0000,40,Bank Operations
+Teresa,Rios,,teresa.rios@primisbank.com,12/02/1983,10/13/2020,10/13/2020,Reston,VA,0000,91,Retail Banking
+Meenu,Nandra,Meenu,meenu.nandra@sonabank.com,08/24/1961,10/19/2020,10/19/2020,Fairfax Station,VA,0000,72,South Riding
+Isabel,Acevedo,,isabel.acevedo@sonabank.com,02/11/1995,10/19/2020,10/19/2020,Aldie,VA,0000,73,Middleburg
+Bridget,Downey,,bridget.downey@sonabank.com,06/14/1980,10/19/2020,10/19/2020,Warrenton,VA,0000,68,Old Town
+Marjorie,Graziano,Margie,marjorie.graziano@primisbank.com,08/16/1959,11/02/2020,11/02/2020,Newsoms,VA,0000,12,Courtland
+Norma,Arellano,,norma.arellano@primisbank.com,08/22/1999,11/16/2020,11/16/2020,Boyce,VA,0000,73,Middleburg
+Megan,Boykin,Megan,megan.boykin@primisbank.com,08/10/1986,11/16/2020,11/16/2020,North Chesterfield,VA,0000,19,Broad Street
+Cynthia,Kerr,Cindi,cindi.kerr@primisbank.com,08/01/1968,11/16/2020,11/16/2020,Chesterfield,VA,0000,34,Human Resources
+Charles,Utley,,chick.utley@sonabank.com,12/18/1951,11/16/2020,11/16/2020,Ashland,VA,0000,39,Information Technology
+Lashawn,Maxwell,,lashawn.maxwell@sonabank.com,03/21/1979,11/16/2020,11/16/2020,Chester,VA,0000,18,Colonial Heights
+Brittney,Pacini,Brittney,brittney.pacini@primisbank.com,09/07/1995,11/16/2020,11/16/2020,Aylett,VA,0000,11,Central Garage
+Julie,Kraska,,julie.kraska@primisbank.com,12/21/1975,11/16/2020,11/16/2020,Chesterfield,VA,0000,15,Hull Street
+Krystal,Loyd,Krystal,krystal.loyd@primisbank.com,01/07/1982,11/16/2020,11/16/2020,Driftwood,TX,0000,57,SBA Lending
+Christopher,Holman,Chris,chris.holman@primisbank.com,02/04/1975,11/30/2020,11/30/2020,Cheyenne,WY,0000,93,Commercial Lending
+James,Morrison,James,jim.morrison@primisbank.com,07/08/1960,11/30/2020,11/30/2020,Bowie,MD,0000,93,Commercial Lending
+Cory,Duffy,Cory,cory.duffy@primisbank.com,11/20/1990,11/30/2020,11/30/2020,Alexandria,VA,0000,39,Information Technology
+Ashley,Pryor,,ashley.pryor@primisbank.com,09/15/1993,11/30/2020,11/30/2020,Henrico,VA,0000,96,C3/Digital
+Zaria,Ramirez,,zaria.ramirez@primisbank.com,04/24/1997,11/30/2020,11/30/2020,Henrico,VA,0000,96,C3/Digital
+Darien,Bryant,,darien.bryant@primisbank.com,04/16/1993,11/30/2020,11/30/2020,Richmond,VA,0000,40,Bank Operations
+Jasmine,Wise,,jasmine.wise@primisbank.com,05/27/1995,12/07/2020,12/07/2020,Henrico,VA,0000,92,Credit Administration
+Bradford,Coleman,,brad.coleman@sonabank.com,05/27/1980,12/07/2020,12/07/2020,Richmond,VA,0000,38,Loan Operations
+Adam,Kerr,Adam,adam.kerr@sonabank.com,07/23/2001,12/14/2020,12/14/2020,Chesterfield,VA,0000,91,Retail Banking
+Heather,Atchison-Bronson,,heather.atchison-bronson@primisbank.com,10/14/1985,12/14/2020,12/14/2020,Owings,MD,0000,78,Upper Marlboro
+Kelly,Wells,,kelly.wells@primisbank.com,05/16/1990,12/14/2020,12/14/2020,Montpelier,VA,0000,19,Broad Street
+Lakeisha,Newman,Keisha,keisha.newman@primisbank.com,10/06/1994,12/14/2020,12/14/2020,Lottsburg,VA,0000,01,Tappahannock
+Jonathan,Capek,,jonathan.capek@primisbank.com,06/15/1986,12/14/2020,12/14/2020,Richmond,VA,0000,39,Information Technology
+Andre,Cunha,Andre,andre.cunha@panaceafinancial.com,03/18/1994,12/14/2020,12/14/2020,North Little Rock,AR,0000,41,Panacea Financial
+Raquel,Powers,,raquel.powers@panaceafinancial.com,06/18/1985,01/04/2021,01/04/2021,Larkspur,CO,0000,41,Panacea Financial
+Michael,Sontag,,mike.sontag@primisbank.com,02/22/1979,01/04/2021,01/04/2021,Reisterstown,MD,0000,93,Commercial Lending
+Helen,Holt,Helen,helen.holt@primisbank.com,11/29/1988,01/04/2021,01/04/2021,Richmond,VA,0000,96,C3/Digital
+Briana,Stith,,briana.stith@primisbank.com,02/17/1995,01/04/2021,01/04/2021,Petersburg,VA,0000,96,C3/Digital
+Michelle,Haley,Michelle,michelle.haley@primisbank.com,09/25/1973,01/04/2021,01/04/2021,Gainesville,VA,0000,93,Commercial Lending
+Johanna,Munford,Johanna,johanna.munford@primisbank.com,04/30/1986,01/04/2021,01/04/2021,Church Road,VA,0000,92,Credit Administration
+Gregory,Davis,,greg.davis@primisbank.com,11/05/1989,01/11/2021,01/11/2021,Washington,DC,0000,92,Credit Administration
+April,Wootton,,april.wootton@primisbank.com,01/14/1980,01/11/2021,01/11/2021,Mechanicsville,VA,0000,38,Loan Operations
+Ashley,Fugett,,ashley.fugett@primisbank.com,07/16/1987,01/11/2021,01/11/2021,Milford,VA,0000,33,Risk Management
+Jennifer,Brewer,,jennifer.brewer@primisbank.com,03/17/1974,01/11/2021,01/11/2021,Heathsville,VA,0000,21,Heathsville
+Sydney,Collins,,sydney.collins@primisbank.com,01/23/1996,01/11/2021,01/11/2021,Richmond,VA,0000,51,Windmill
+Annelise,Frakes,,annelise.frakes@primisbank.com,09/15/1968,01/11/2021,01/11/2021,Chantilly,VA,0000,73,Middleburg
+Kimberly,Webster,Kimberly,kimberly.webster@primisbank.com,09/06/1964,01/11/2021,01/11/2021,Mechanicsville,VA,0000,38,Loan Operations
+Matthew,Switzer,Matt,matthew.switzer@primisbank.com,06/06/1977,01/11/2021,01/11/2021,Midlothian,VA,0000,35,Finance & Accounting
+Anthony,Eiser,Tony,tony.eiser@primisbank.com,12/17/1962,01/11/2021,01/11/2021,Richmond,VA,0000,39,Information Technology
+Romelo,Estrada,,romelo.estrada@sonabank.com,11/27/1995,01/25/2021,01/25/2021,Richmond,VA,0000,91,Retail Banking
+TyNia,Lanier,Nia,nia.lanier@sonabank.com,12/04/1995,01/25/2021,01/25/2021,South Hill,VA,0000,14,Waverly
+Amanda,Cooke,Amanda,amanda.cooke@primisbank.com,08/06/1988,02/01/2021,02/01/2021,Chesterfield,VA,0000,34,Human Resources
+Amanda,Willis,Amanda,amanda.willis@primisbank.com,08/24/1987,02/08/2021,02/08/2021,Henrico,VA,0000,38,Loan Operations
+Travis,McCoy,,travis.mccoy@primisbank.com,12/04/1991,02/08/2021,02/08/2021,Luray,VA,0000,71,New Market
+Shirley,Sanchez,,shirley.sanchez@primisbank.com,01/10/1980,02/08/2021,02/08/2021,Stone Ridge,VA,0000,73,Middleburg
+Ryan,Holt,,ryan.holt@primisbank.com,05/13/1996,02/22/2021,02/22/2021,Chesterfield,VA,0000,95,Marketing
+Jessica,Thomas,Jessie,jessie.thomas@sonabank.com,12/31/1991,02/22/2021,02/22/2021,Gloucester,VA,0000,09,Gloucester
+Jason,Namkung,Jason,jason.namkung@primisbank.com,01/05/1964,02/22/2021,02/22/2021,Annandale,VA,0000,93,Commercial Lending
+Elsie,Bohon,,elsie.bohon@primisbank.com,12/28/1962,02/22/2021,02/22/2021,Manassas,VA,0000,93,Commercial Lending
+Berkley,Young,Berkley,berkley.young@primisbank.com,11/16/2004,02/22/2021,02/22/2021,Henrico,VA,0000,95,Marketing
+Shentel,Meadows,,shentel.meadows@primisbank.com,12/09/1996,02/22/2021,02/22/2021,Midlothian,VA,0000,95,Marketing
+Michael,Benjamin,,michael.benjamin@primisbank.com,11/12/1971,03/01/2021,03/01/2021,Glen Burnie,MD,0000,93,Commercial Lending
+Kathryn,DeFrank,Kat,kathryn.defrank@primisbank.com,06/10/1996,03/01/2021,03/01/2021,Richmond,VA,0000,95,Marketing
+Patrick,Brown,Patrick,patrick.brown@primisbank.com,01/08/1980,03/08/2021,03/08/2021,Spotsylvania,VA,0000,33,Risk Management
+Janna,Woo,Janna,janna.woo@primisbank.com,04/27/1979,03/08/2021,03/08/2021,Henrico,VA,0000,39,Information Technology
+Mindy,Alfonso,,mindy.alfonso@primisbank.com,06/07/1986,03/22/2021,03/22/2021,Aylett,VA,0000,33,Risk Management
+Staci,Haynes,,staci.haynes@primisbank.com,05/06/1976,03/22/2021,03/22/2021,Sandston,VA,0000,53,Kings Charter
+Julie,Reed,,julie.reed@primisbank.com,08/07/1970,03/22/2021,03/22/2021,Mechanicsville,VA,0000,38,Loan Operations
+Kaki,Sheffield,,kaki.sheffield@primisbank.com,08/25/2000,03/22/2021,03/22/2021,Mechanicsvlle,VA,0000,11,Central Garage
+Alyssa,Busick,Alyssa,alyssa.busick@primisbank.com,10/09/1997,03/22/2021,03/22/2021,Millers Tavern,VA,0000,22,Callao
+Jane,Doe,Jane,pamela.moore@primisbank.com,06/24/1970,03/01/2021,03/01/2021,Nowhere,VA,0000,DEFAUL,Default
+Dylan,Martinez,,dylan.martinez@primisbank.com,04/17/2001,04/05/2021,04/05/2021,North Chesterfield,VA,0000,94,Fulfillment
+Nicholas,Woodson,,nick.woodson@primisbank.com,10/29/1998,04/05/2021,04/05/2021,Hampton,VA,0000,27,Hampton
+Amber,Forry,Amber,amber.forry@primisbank.com,09/29/1982,04/05/2021,04/05/2021,Bealeton,VA,0000,57,SBA Lending
+Christen,Baker,,christen.baker@primisbank.com,11/28/1990,04/19/2021,04/19/2021,Mechanicsville,VA,0000,11,Central Garage
+Pierre-Thony,Jacques,,thony.jacques@primisbank.com,11/22/1970,05/03/2021,05/03/2021,Miami,FL,0000,33,Risk Management
+Brittany,Tucker,,brittany.tucker@primisbank.com,07/05/1986,05/03/2021,05/03/2021,Sutherland,VA,0000,18,Colonial Heights
+Mary,Poppins,Mary,mary.poppins@primisbank.com,04/06/1985,01/01/2021,01/01/2021,Glen Allen,VA,0000,DEFAUL,Default
+Jim,Carrey,Jim,jim.carrey@primisbank.com,08/13/1972,02/01/2021,02/01/2021,Washington,VA,0000,DEFAUL,Default
+Matthew,Fore,,matt.fore@primisbank.com,11/13/1990,05/17/2021,05/17/2021,Powhatan,VA,0000,33,Risk Management
+Mary,Kennedy,,mary.kennedy@primisbank.com,07/29/1997,05/17/2021,05/17/2021,Dendron,VA,0000,14,Waverly
+Heather,Rhoney,,heather.rhoney@primisbank.com,04/19/1984,05/17/2021,05/17/2021,Waverly,VA,0000,14,Waverly
+Madison,Grocia,,madison.grocia@primisbank.com,01/23/2001,05/17/2021,05/17/2021,Upper Marlboro,MD,0000,78,Upper Marlboro
+Crystal,Holsclaw,Chris,crystal.holsclaw@primisbank.com,09/06/1981,05/17/2021,05/17/2021,Urbanna,VA,0000,04,Hartfield
+Kacey,Doyle,,kacey.doyle@primisbank.com,05/11/1990,05/17/2021,05/17/2021,Bealeton,VA,0000,68,Old Town
+Wilson,Teewia,,wilson.teewia@primisbank.com,08/06/1988,05/17/2021,05/17/2021,Doswell,VA,0000,39,Information Technology
+Lauren,Parker,,lauren.parker@primisbank.com,11/01/2000,05/17/2021,05/17/2021,North,VA,0000,04,Hartfield
+Amy,Walton,,kelley.walton@primisbank.com,03/13/1973,05/17/2021,05/17/2021,North Dinwiddie,VA,0000,38,Loan Operations
+Ethan,Rogers,,ethan.rogers@primisbank.com,08/09/2001,05/17/2021,05/17/2021,Windsor,VA,0000,14,Waverly
+William,West,,william.west@primisbank.com,12/12/2001,05/17/2021,05/17/2021,Warsaw,VA,0000,23,Burgess
+Britney,Thomas,,britney.thomas@primisbank.com,12/28/2000,05/17/2021,05/17/2021,Lancaster,VA,0000,24,Kilmarnock
+Hunter,Hipschen,,hunter.hipschen@primisbank.com,02/28/1996,05/17/2021,05/17/2021,Richmond,VA,0000,39,Information Technology
+Lucy,Tignor,,lucy.tignor@primisbank.com,11/13/1999,05/17/2021,05/17/2021,Midlothian,VA,0000,17,Rivers Bend
+Brandon,Finazzo,,brandon.finazzo@panaceafinancial.com,01/14/1983,05/24/2021,05/24/2021,New Braunfels,TX,0000,41,Panacea Financial
+Desiree,Lytton,Des,desiree.lytton@primisbank.com,04/11/1959,06/07/2021,06/07/2021,Mechanicsville,VA,0000,16,Quinton
+Kenneth,Downs,Scott,scott.downs@primisbank.com,05/08/1967,06/07/2021,06/07/2021,North Chesterfield,VA,0000,94,Fulfillment
+Hunter,Bailey,,hunter.bailey@primisbank.com,07/07/1999,06/07/2021,06/07/2021,Woodbridge,VA,0000,59,Credit Risk Management
+Jessica,Durham,,jessy.durham@primisbank.com,08/03/1983,06/07/2021,06/07/2021,Yale,VA,0000,96,C3/Digital
+Charles,Hilson,Chuck,charles.hilson@primisbank.com,09/21/1968,06/07/2021,06/07/2021,Moseley,VA,0000,96,C3/Digital
+Janet,McCullen,Janet,janet.mccullen@primisbank.com,10/26/1987,06/07/2021,06/07/2021,Prince George,VA,0000,96,C3/Digital
+Stefani,Bruce,,stefani.bruce@primisbank.com,09/02/1986,06/07/2021,06/07/2021,Lawrenceville,VA,0000,33,Risk Management
+Alex,Valme,,alex.valme@primisbank.com,04/02/1970,06/07/2021,06/07/2021,Homestead,FL,0000,33,Risk Management
+Jeffrey,Baker,Jeff,jeff.baker@primisbank.com,11/19/1966,06/21/2021,06/21/2021,Midlothian,VA,0000,94,Fulfillment
+Jeffrey,Perry,,jeff.perry@primisbank.com,10/19/1965,06/21/2021,06/21/2021,King William,VA,0000,94,Fulfillment
+Erin,Pitts,,erin.pitts@primisbank.com,11/14/1991,06/21/2021,06/21/2021,White Stone,VA,0000,09,Gloucester
+Joseph,Skibinski,Joe,joseph.skibinski@primisbank.com,04/19/1986,06/21/2021,06/21/2021,Williamsburg,VA,0000,38,Loan Operations
+Albert,Sanderson,Al,al.sanderson@primisbank.com,11/01/1958,06/21/2021,06/21/2021,Chesterfield,VA,0000,94,Fulfillment
+Asa,Sturtevant,,asa.sturtevant@primisbank.com,05/13/1997,06/21/2021,06/21/2021,Henrico,VA,0000,40,Bank Operations
+Srikar,Tatineni,,srikar.tatineni@primisbank.com,09/15/2001,06/21/2021,06/21/2021,Glen Allen,VA,0000,59,Credit Risk Management
+Michael,Jerkins,,michael.jerkins@panaceafinancial.com,10/15/1984,07/01/2021,07/01/2021,Little Rock,AR,0000,41,Panacea Financial
+Edwin,Palmer,Ned,ned.palmer@panaceafinancial.com,12/15/1985,07/01/2021,07/01/2021,Little Rock,AR,0000,41,Panacea Financial
+Brittany,Hunt,,brittany.hunt@primisbank.com,02/01/2001,07/12/2021,07/12/2021,Hartfield,VA,0000,24,Kilmarnock
+Karen,Jackson,Karen,karen.jackson@primisbank.com,01/06/1963,07/12/2021,07/12/2021,Mechanicsville,VA,0000,51,Windmill
+Shannon,Meeks,,shannon.meeks@primisbank.com,12/14/1986,07/12/2021,07/12/2021,Richmond,VA,0000,94,Fulfillment
+Denise,Smith,Denise,denise.smith@primisbank.com,05/18/1962,07/12/2021,07/12/2021,Yorktown,VA,0000,27,Hampton
+Mitchell,Broughton,,mitchell.broughton@primisbank.com,11/02/1998,07/19/2021,07/19/2021,Charlottesville,VA,0000,95,Marketing
+Mylacia,Hopkins,,mylacia.hopkins@primisbank.com,08/01/1993,07/19/2021,07/19/2021,Fredericksburg,VA,0000,96,C3/Digital
+Nija,Hunter,,nija.hunter@primisbank.com,08/31/1992,07/19/2021,07/19/2021,Richmond,VA,0000,96,C3/Digital
+Jeffrey,Springston,Jeff,jeff.springston@primisbank.com,07/02/1994,07/26/2021,07/26/2021,Colonial Heights,VA,0000,18,Colonial Heights
+Michael,Dunaway,,mike.dunaway@primisbank.com,12/25/1963,07/26/2021,07/26/2021,Warsaw,VA,0000,94,Fulfillment
+Steven,Cunningham,Steve,steven.cunningham@primisbank.com,12/10/1970,08/16/2021,08/16/2021,Lancaster,PA,0000,57,SBA Lending
+Jennifer,Jones,,jennifer.jones@primisbank.com,03/30/1977,08/16/2021,08/16/2021,Surry,VA,0000,13,Surry
+Nicole,Littlejohn,,nicole.littlejohn@primisbank.com,12/20/1976,08/16/2021,08/16/2021,Chester,VA,0000,85,Internal Audit
+Carla,Wiseman,,carla.wiseman@primisbank.com,12/02/1974,08/16/2021,08/16/2021,Warsaw,VA,0000,03,Essex Square
+Lakevia,Duparl,Lakevia,lakevia.duparl@primisbank.com,08/15/1981,08/30/2021,08/30/2021,Petersburg,VA,0000,43,Primis Works
+Imani,Hampton,Imani,imani.hampton@primisbank.com,01/27/1999,08/30/2021,08/30/2021,Richmond,VA,0000,43,Primis Works
+Johanna,Maignan,Jo,johanna.maignan@primisbank.com,03/23/1986,08/30/2021,08/30/2021,Ashland,VA,0000,38,Loan Operations
+DeVonna,Outlaw,,devonna.outlaw@primisbank.com,10/02/1989,08/30/2021,08/30/2021,Dinwiddie,VA,0000,33,Risk Management
+Ashley,Poole,,ashley.poole@primisbank.com,11/19/1987,08/30/2021,08/30/2021,Louisa,VA,0000,06,Forest Lakes
+Tarsha,Lewis,,tarsha.lewis@primisbank.com,07/02/1987,08/30/2021,08/30/2021,Mechanicsville,VA,0000,51,Windmill
+Robert,Borcherding,,rob.borcherding@panaceafinancial.com,05/16/1979,08/30/2021,08/30/2021,Wayzata,MN,0000,41,Panacea Financial
+Sarah,Fierst,Sarah,sarah.fierst@primisbank.com,02/02/1983,08/30/2021,08/30/2021,Richmond,VA,0000,33,Risk Management
+Shawanda,Lawrence,,shawanda.lawrence@primisbank.com,11/08/1978,08/30/2021,08/30/2021,Chesterfield,VA,0000,18,Colonial Heights
+Kevin,Noyes,,kevin.noyes@primisbank.com,10/23/1968,08/30/2021,08/30/2021,Arlington,VA,0000,65,Fairfax
+Mark,Kennedy,Mark,mark.kennedy@primisbank.com,10/07/1958,08/30/2021,08/30/2021,Potomac Falls,VA,0000,64,Reston
+Simone,Vinson,,simone.vinson@primisbank.com,11/26/1998,08/30/2021,08/30/2021,Chester,VA,0000,33,Risk Management
+Patricia,Burnley,,patricia.burnley@primisbank.com,05/30/1963,09/13/2021,09/13/2021,Charlottesville,VA,0000,06,Forest Lakes
+Ann-Stanton,Gore,Ann-Stanton,ann-stanton.gore@primisbank.com,05/05/1985,09/13/2021,09/13/2021,Columbia,SC,0000,95,Marketing
+Samantha,Marker,,samantha.marker@primisbank.com,03/11/1987,09/13/2021,09/13/2021,Mechanicsville,VA,0000,40,Bank Operations
+Michael,Holland,Mike,michael.holland@primisbank.com,04/04/1955,09/13/2021,09/13/2021,Richmond,VA,0000,39,Information Technology
+Lyndsay,Greene,,lyndsay.greene@primisbank.com,02/23/2001,09/27/2021,09/27/2021,Champlain,VA,0000,03,Essex Square
+Sylvia,Robinson,,sylvia.robinson@primisbank.com,07/01/1965,09/27/2021,09/27/2021,Aylett,VA,0000,03,Essex Square
+Andrea,Curry,,andrea.curry@primisbank.com,12/25/1981,10/04/2021,10/04/2021,Suffolk,VA,0000,33,Risk Management
+Brianda,Washington,,brianda.washington@primisbank.com,05/19/1995,10/18/2021,10/18/2021,Henrico,VA,0000,96,C3/Digital
+Kevin,Stewart,Kevin,kevin.stewart@primisbank.com,04/21/1992,10/18/2021,10/18/2021,Henrico,VA,0000,39,Information Technology
+Nancy-Marie,Baublitz,Nancy,nancy.baublitz@primisbank.com,10/13/1983,10/18/2021,10/18/2021,Lancaster,VA,0000,24,Kilmarnock
+Julia,Fredricks,,julia.fredricks@primisbank.com,07/04/1964,10/18/2021,10/18/2021,Glen Allen,VA,0000,33,Risk Management
+Richard,Fortino,,rich.fortino@panaceafinancial.com,04/14/1964,10/18/2021,10/18/2021,Philadelphia,PA,0000,41,Panacea Financial
+Aaliyah,Gay,,aaliyah.gay@primisbank.com,01/01/1999,10/18/2021,10/18/2021,Petersburg,VA,0000,96,C3/Digital
+Samantha,Snyder,,samantha.snyder@primisbank.com,01/21/1984,10/18/2021,10/18/2021,Warsaw,VA,0000,03,Essex Square
+Mandi,Gilbert,,mandi.gilbert@primisbank.com,09/23/1982,10/18/2021,10/18/2021,Columbia,SC,0000,95,Marketing
+Sandra,Vargas,Sandy,sandy.vargas@panaceafinancial.com,06/15/1960,10/18/2021,10/18/2021,Walnut Creek,CA,0000,41,Panacea Financial
+Gentian,Meta,,genti.meta@primisbank.com,07/30/1980,10/25/2021,10/25/2021,Glen Allen,VA,0000,35,Finance & Accounting
+Kristine,Dunn,Kristine,kristine.dunn@primisbank.com,06/09/1994,10/26/2021,10/26/2021,Glen Allen,VA,0000,34,Human Resources
+Benjamin,Bunch,Ben,benjamin.bunch@primisbank.com,09/02/1985,10/29/2021,10/29/2021,Chicago,IL,0000,42,Life Premium Finance
+Steven,Gleicher,,steven.gleicher@primisbank.com,05/30/1984,10/29/2021,10/29/2021,Jersey City,NJ,0000,42,Life Premium Finance
+Sarah,Funai,,sarah.funai@primisbank.com,03/18/1981,11/01/2021,11/01/2021,Aylett,VA,0000,11,Central Garage
+Starlene,Reeves,,starlene.reeves@panaceafinancial.com,04/12/1983,11/01/2021,11/01/2021,Mullica Hill,NJ,0000,41,Panacea Financial
+Hector,Carmelo,,hector.carmelo@primisbank.com,06/23/1964,11/01/2021,11/01/2021,Glen Allen,VA,0000,33,Risk Management
+Elizabeth,Allen,,elizabeth.allen@primisbank.com,01/23/1990,11/01/2021,11/01/2021,Henrico,VA,0000,19,Broad Street
+Taylor,Poore,,taylor.poore@primisbank.com,03/12/1995,11/01/2021,11/01/2021,King William,VA,0000,01,Tappahannock
+Pureza,Rhodes,,pureza.rhodes@primisbank.com,06/30/1996,11/01/2021,11/01/2021,Mount Jackson,VA,0000,71,New Market
+Angelique,Richardson-Smith,,angelique.richardson@primisbank.com,07/20/1982,11/01/2021,11/01/2021,Mechanicsville,VA,0000,51,Windmill
+Anthony,Mola,,anthony.mola@primisbank.com,01/03/1984,11/05/2021,11/05/2021,Oxford,FL,0000,42,Life Premium Finance
+Tyeisha,Muse,,tyeisha.muse@primisbank.com,12/01/1978,11/15/2021,11/15/2021,Callao,VA,0000,22,Callao
+Ashley,Perrey,,ashley.perrey@primisbank.com,09/21/2001,11/15/2021,11/15/2021,Warsaw,VA,0000,23,Burgess
+LaWanda,Kelly,,lawanda.kelly@primisbank.com,11/06/1986,11/15/2021,11/15/2021,Richmond,VA,0000,51,Windmill
+Shannon,Lynch,Shannon,shannon.lynch@panaceafinancial.com,04/18/1969,11/15/2021,11/15/2021,Haverhill,MA,0000,41,Panacea Financial
+LaTangela,Rivers,Tangie,latangela.rivers@primisbank.com,09/30/1987,11/15/2021,11/15/2021,Richmond,VA,0000,96,C3/Digital
+Amber,Harwood,,amber.harwood@primisbank.com,03/12/1999,11/15/2021,11/15/2021,Center Cross,VA,0000,23,Burgess
+Jon,Voeller,,jon.voeller@panaceafinancial.com,06/27/1975,11/22/2021,11/22/2021,Parker,CO,0000,41,Panacea Financial
+Tracy,Hodock,,tracy.hodock@primisbank.com,02/10/1975,11/29/2021,11/29/2021,Saluda,VA,0000,09,Gloucester
+Rafael,Carbajal,,rafael.carbajal@primisbank.com,09/27/1992,11/29/2021,11/29/2021,Alexandria,VA,0000,63,McLean
+Ivory,May,Ivory,ivory.grimes@primisbank.com,09/07/1986,11/29/2021,11/29/2021,Clifton Forge,VA,0000,02,Clifton Forge
+Taylor,Williams,,taylor.williams@primisbank.com,12/24/1998,11/29/2021,11/29/2021,Front Royal,VA,0000,38,Loan Operations
+Zabie,Hussini,Zabie,zabie.hussini@primisbank.com,01/20/1984,12/13/2021,12/13/2021,Vienna,VA,0000,63,McLean
+Davena,Murray,,davena.murray@primisbank.com,11/04/1999,12/13/2021,12/13/2021,Richmond,VA,0000,96,C3/Digital
+Michael,Fernandez,,michael.fernandez@primisbank.com,06/03/1976,12/13/2021,12/13/2021,Miami,FL,0000,33,Risk Management
+Kallie,Niedhammer,,kallie.niedhammer@primisbank.com,03/18/1992,12/13/2021,12/13/2021,Henrico,VA,0000,38,Loan Operations
+Joan,Chetosky,Jojo,joan.chetosky@primisbank.com,05/25/1967,12/13/2021,12/13/2021,Front Royal,VA,0000,70,Front Royal
+An,Le,,an.le@primisbank.com,04/01/1993,12/13/2021,12/13/2021,Annandale,VA,0000,63,McLean
+Alexandra,Barnes,Raleigh,raleigh.barnes@panaceafinancial.com,05/25/1996,01/03/2022,01/03/2022,Little Rock,AR,0000,41,Panacea Financial
+Natalie,Monaco,,natalie.monaco@primisbank.com,04/28/1982,01/03/2022,01/03/2022,Culpeper,VA,0000,38,Loan Operations
+Ramon,Matsuy,,ramon.matsuy@panaceafinancial.com,05/17/1994,01/03/2022,01/03/2022,Little Rock,AR,0000,41,Panacea Financial
+Jakeeta,Plumley,,jakeeta.plumley@primisbank.com,04/27/1964,01/10/2022,01/10/2022,Moseley,VA,0000,34,Human Resources
+Michael,Taylor,Mike,mike.taylor@primisbank.com,09/29/1982,01/10/2022,01/10/2022,Sutherland,VA,0000,92,Credit Administration
+Victoria,Moore,Vicki,vicki.moore@primisbank.com,08/13/1985,01/10/2022,01/10/2022,Warsaw,VA,0000,33,Risk Management
+Krystina,Smith,,krystina.smith@primisbank.com,05/27/1989,01/10/2022,01/10/2022,Smithfield,VA,0000,27,Hampton
+Alexis,LeRoy,,alexis.leroy@primisbank.com,12/06/2001,01/10/2022,01/10/2022,Glen Allen,VA,0000,54,Ashland
+Charles,Vaughters,Charlie,charles.vaughters@primisbank.com,01/19/1981,01/18/2022,01/18/2022,Manakin Sabot,VA,0000,93,Commercial Lending
+Marcus,Nicolois,Marcus,marcus.nicolois@primisbank.com,01/19/1998,01/24/2022,01/24/2022,Chester,VA,0000,95,Marketing
+Joanna,Richardson,Joanna,joanna.richardson@primisbank.com,12/11/1984,01/24/2022,01/24/2022,Powhatan,VA,0000,94,Fulfillment
+Jacques,Smith,,jacques.smith@primisbank.com,05/03/1962,01/31/2022,01/31/2022,Warrenton,VA,0000,39,Information Technology
+Helen,Blier,,helen.blier@panaceafinancial.com,08/11/1966,02/01/2022,02/01/2022,Philadelphia,PA,0000,41,Panacea Financial
+Shelby,Bihm,,shelby.bihm@primisbank.com,01/26/1998,02/14/2022,02/14/2022,Heathsville,VA,0000,24,Kilmarnock
+Katelyn,Haynie,,katelyn.haynie@primisbank.com,11/05/1998,02/14/2022,02/14/2022,Burgess,VA,0000,24,Kilmarnock
+Crystal,Blue,,crystal.blue@primisbank.com,04/17/1996,02/14/2022,02/14/2022,Lancaster,VA,0000,24,Kilmarnock
+Sheryl,Phillips,,sheri.phillips@primisbank.com,09/14/1966,02/14/2022,02/14/2022,Mechanicsville,VA,0000,51,Windmill
+Kylee,Osborne,,kylee.osborne@panaceafinancial.com,12/03/1998,02/14/2022,02/14/2022,Seguin,TX,0000,41,Panacea Financial
+George,Anderson,George,george.anderson@primisbank.com,07/10/1965,02/28/2022,02/28/2022,Richmond,TX,0000,57,SBA Lending
+Cheyanne,Nelson,,cheyanne.nelson@primisbank.com,06/05/1992,02/28/2022,02/28/2022,Linden,VA,0000,96,C3/Digital
+John,Whelan,Whelan,john.whelan@primisbank.com,11/27/1970,02/28/2022,02/28/2022,Fort Worth,TX,0000,33,Risk Management
+Stephanie,Jackson Mathis,,stephanie.jackson-mathis@panaceafinancial.com,04/19/1966,02/28/2022,02/28/2022,Pinole,CA,0000,41,Panacea Financial
+Keshawna,Nelson,,keshawna.nelson@primisbank.com,03/05/2001,02/28/2022,02/28/2022,Chester,VA,0000,96,C3/Digital
+Daja,Fitzgerald,,daja.fitzgerald@primisbank.com,06/03/1996,03/07/2022,03/07/2022,Midlothian,VA,0000,96,C3/Digital
+Abigail,Baker,Abby,abigail.baker@primisbank.com,11/16/1998,03/14/2022,03/14/2022,Sedley,VA,0000,14,Waverly
+Emma,Aly,,emma.aly@panaceafinancial.com,01/09/1998,03/14/2022,03/14/2022,McKinney,TX,0000,41,Panacea Financial
+Claudio,Acosta,,claudio.acosta@primisbank.com,05/23/1977,03/14/2022,03/14/2022,Miami,FL,0000,33,Risk Management

@@ -5,7 +5,7 @@ ETBXDEMOEX: TBX Demographic Export
 FormatCode:     ETBXDEMOEX
 Project:        TBX Demographic Export
 Client ID:      GUL1001
-Date/time:      2022-03-22 05:56:09.963
+Date/time:      2022-04-07 11:30:09.520
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -251,7 +251,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220322.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETBXDEMOEX_20220407.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -260,7 +260,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export','202201059','EMPEXPORT','ONDEM_XOE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Sched','202201059','EMPEXPORT','SCH_ETBXDE','Jan 18 2022 10:41AM','ETBXDEMOEX',NULL,NULL,NULL,'202201059','Jan  5 2022 10:43AM','Jan  5 2022 10:43AM','202201051','662','','','202201051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Test','202203211','EMPEXPORT','TEST_XOE','Mar 21 2022  1:11PM','ETBXDEMOEX',NULL,NULL,NULL,'202203211','Mar 21 2022 12:00AM','Dec 30 1899 12:00AM','202203211','736','','','202203211',dbo.fn_GetTimedKey(),NULL,'us3rVaGUL1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TBX Demographic Export-Test','202203221','EMPEXPORT','TEST_XOE','Mar 22 2022  6:05PM','ETBXDEMOEX',NULL,NULL,NULL,'202203221','Mar 22 2022 12:00AM','Dec 30 1899 12:00AM','202203221','742','','','202203221',dbo.fn_GetTimedKey(),NULL,'us3rVaGUL1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -309,7 +309,7 @@ CREATE TABLE [dbo].[U_ETBXDEMOEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(6) NOT NULL,
     [drvSSN] char(11) NULL,
     [drvEID] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -332,7 +332,7 @@ CREATE TABLE [dbo].[U_ETBXDEMOEX_drvTbl] (
     [drvGrossSalary] nvarchar(4000) NULL,
     [drvLocation] varchar(40) NULL,
     [drvJObClass] varchar(23) NULL,
-    [drvPayGroup] varchar(22) NULL,
+    [drvPayGroup] varchar(23) NULL,
     [drvDepartment] varchar(25) NULL,
     [drvTitle] varchar(25) NOT NULL,
     [drvHireDate] datetime NULL,
@@ -452,7 +452,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = PgrPayGroup 
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvEID = EecEmpNo
@@ -471,11 +471,16 @@ BEGIN
         ,drvMobilePhone = EfoPhoneNumber
         ,drvWorkPhone = EecPhoneBusinessNumber
         ,drvEmail = EepAddressEMail
-        ,drvPayrollFrequency =    CASE WHEN PgrPayFrequency = 'W' THEN '52'
+        ,drvPayrollFrequency =    CASE WHEN PgrPayGroup = 'BWGIE' THEN '26'
+                                WHEN PgrPayGroup = 'MNGIE' THEN '12'
+                                WHEN PgrPayGroup = 'BWFSV' THEN '24'
+                                WHEN PgrPayGroup = 'WKFSV' THEN '52'
+                                END
+                                /*CASE WHEN PgrPayFrequency = 'W' THEN '52'
                                 WHEN PgrPayFrequency = 'B' THEN '26'
                                 WHEN PgrPayFrequency = 'S' THEN '24'
                                 WHEN PgrPayFrequency = 'M' THEN '12'
-                                END
+                                END*/
         ,drvDeductionFrequency =    CASE WHEN PgrPayFrequency = 'W' THEN '48'
                                     WHEN PgrPayFrequency = 'B' THEN '26'
                                     WHEN PgrPayFrequency = 'S' THEN '24'
@@ -484,20 +489,28 @@ BEGIN
         ,drvGrossSalary = FORMAT(EecAnnSalary, '#0.00')
         ,drvLocation = CmpCompanyName
         ,drvJObClass =    CASE WHEN EecJobCode IN ('900','753','097') THEN 'Senior Management'
+                        WHEN EecFulltimeOrPartTime = 'P' THEN 'Part Time'
                         WHEN EecEEType = 'MR' THEN 'Modified Regular Exempt'
                         WHEN EecEEType = 'P' THEN 'Provisional'
                         WHEN EecEEType = 'MP' THEN 'Modified Provisional'
-                        WHEN EecEEType = 'C' THEN 'Contract'
+                        WHEN EecEEType = 'C' /*AND PgrPayGroup = 'WKFSV'*/ THEN 'GIFS Weekly' -- 'Contract'
                         WHEN EecEEType = 'INT' THEN 'intern'
-                        WHEN EjhFLSACategory = 'E' THEN 'Regular Exempt'
-                        WHEN EjhFLSACategory = 'N' THEN 'Regular Non-Exempt'
-                        WHEN EecFulltimeOrPartTime = 'P' THEN 'Part Time'
+                        WHEN /*PgrPayGroup IN ('WKFSV','BWFSV') AND*/ EjhFLSACategory = 'E' THEN 'GIFS Bi-Weekly'
+                        WHEN /*PgrPayGroup IN ('WKFSV','BWFSV') AND*/ EjhFLSACategory <> 'E' THEN 'GIFS Weekly'
+                        --WHEN EjhFLSACategory = 'E' THEN 'Regular Exempt'
+                        --WHEN EjhFLSACategory = 'N' THEN 'Regular Non-Exempt'                        
                         END
-        ,drvPayGroup =    CASE WHEN PgrPayGroup = 'BWGIE' AND xCOID = 'VKEMN' THEN 'Bi-Weekly-GIE Location' 
+        ,drvPayGroup =    CASE WHEN PgrPayGroup = 'BWGIE' and xCOID = 'VKEMN' THEN 'Bi-Weekly- GIE Location'
+                        WHEN PgrPayGroup = 'WKFSV' AND xCOID = 'VKEP2' THEN 'GIFS Weekly'
+                        WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEP2' AND EecOrgLvl1 <> 'FSCOL' THEN 'GIFS Bi-Weekly'
+                        WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEP2' AND EecOrgLvl1 = 'FSCOL' THEN 'GIFS Colorado'
+                        END
+                        --CASE WHEN EecEEType = 'C' AND PgrPayGroup = 
+                        /*CASE WHEN PgrPayGroup = 'BWGIE' AND xCOID = 'VKEMN' THEN 'Bi-Weekly-GIE Location' 
                         WHEN PgrPayGroup = 'WKFSV' AND xCOID = 'VKEP2' THEN 'GIFS Weekly' 
                         WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEP2' AND EecOrgLvl1 = 'FSCOL' THEN 'GIFS Colorado' 
                         WHEN PgrPayGroup = 'BWFSV' AND xCOID = 'VKEP2' THEN 'GIFS Bi-Weekly'                         
-                        END
+                        END*/
         ,drvDepartment = OrgDesc
         ,drvTitle = JbcDesc
         ,drvHireDate = EecDateOfLastHire

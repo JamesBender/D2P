@@ -5,7 +5,7 @@ EWORKHUDEM: Work Human Demo Export
 FormatCode:     EWORKHUDEM
 Project:        Work Human Demo Export
 Client ID:      MOV1001
-Date/time:      2022-03-30 04:56:40.827
+Date/time:      2022-04-05 05:13:52.083
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -146,8 +146,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EWORKHUDEMZ0','50','H','01','17',NULL,'Approver 3',NULL,NULL,'"Approver 3"','(''DA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EWORKHUDEMZ0','50','H','01','18',NULL,'Revenue Org Participants',NULL,NULL,'"Revenue Org Participants"','(''DA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EWORKHUDEMZ0','50','H','01','19',NULL,'Revenue Org Nominators',NULL,NULL,'"Revenue Org Nominators"','(''DA''=''TT'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EWORKHUDEMZ0','50','H','01','20',NULL,'Pay Group Description',NULL,NULL,'"Pay Group"','(''DA''=''T'')');
-
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EWORKHUDEMZ0','50','H','01','20',NULL,'Pay Group',NULL,NULL,'"Pay Group"','(''DA''=''TT'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EWORKHUDEMZ0','50','H','01','21',NULL,'HBRP',NULL,NULL,'"HBRP"','(''DA''=''TT'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EWORKHUDEMZ0','50','H','01','22',NULL,'Gender',NULL,NULL,'"Gender"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EWORKHUDEMZ0','50','D','10','1',NULL,'Unique ID',NULL,NULL,'"drvUniqueId"','(''UA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWORKHUDEMZ0','50','D','10','2',NULL,'Login ID',NULL,NULL,'"drvLoginId"','(''UA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EWORKHUDEMZ0','50','D','10','3',NULL,'First Name',NULL,NULL,'"drvFName"','(''UA''=''TT'')');
@@ -167,7 +168,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EWORKHUDEMZ0','50','D','10','17',NULL,'Approver 3',NULL,NULL,'"drvApp3"','(''UA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EWORKHUDEMZ0','50','D','10','18',NULL,'Revenue Org Participants',NULL,NULL,'"drvRevOrgPart"','(''UA''=''TT'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EWORKHUDEMZ0','50','D','10','19',NULL,'Revenue Org Nominators',NULL,NULL,'"drvRevOrgNom"','(''UA''=''TT'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EWORKHUDEMZ0','50','D','10','20',NULL,'Pay Group Description',NULL,NULL,'"drvPayGroupDesc"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EWORKHUDEMZ0','50','D','10','20',NULL,'Pay Group Description',NULL,NULL,'"drvPayGroupDesc"','(''UA''=''TT'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EWORKHUDEMZ0','50','D','10','21',NULL,'HBRP',NULL,NULL,'"drvHBRP"','(''UA''=''TT'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EWORKHUDEMZ0','50','D','10','22',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -180,7 +183,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDEM_20220330.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDEM_20220405.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -189,7 +192,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Work Human Demo Export','202203049','EMPEXPORT','ONDEM_XOE',NULL,'EWORKHUDEM',NULL,NULL,NULL,'202203049','Mar  4 2022  2:32PM','Mar  4 2022  2:32PM','202203041',NULL,'','','202203041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Work Human Demo Export-Sched','202203049','EMPEXPORT','SCH_EWORKH',NULL,'EWORKHUDEM',NULL,NULL,NULL,'202203049','Mar  4 2022  2:32PM','Mar  4 2022  2:32PM','202203041',NULL,'','','202203041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export-Test','202203071','EMPEXPORT','TEST_XOE','Mar 28 2022 12:25PM','EWORKHUDEM',NULL,NULL,NULL,'202203071','Mar  7 2022 12:00AM','Dec 30 1899 12:00AM','202203011','2377','','','202203011',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export-Test','202203301','EMPEXPORT','TEST_XOE','Mar 30 2022  6:52PM','EWORKHUDEM',NULL,NULL,NULL,'202203301','Mar 30 2022 12:00AM','Dec 30 1899 12:00AM','202203161','2382','','','202203161',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -256,7 +259,9 @@ CREATE TABLE [dbo].[U_EWORKHUDEM_drvTbl] (
     [drvApp3] varchar(9) NULL,
     [drvRevOrgPart] varchar(1) NOT NULL,
     [drvRevOrgNom] varchar(1) NOT NULL,
-    [drvPayGroupDesc] varchar(25) NULL
+    [drvPayGroupDesc] varchar(25) NULL,
+    [drvHBRP] varchar(6) NULL,
+    [drvGender] char(1) NULL
 );
 
 -----------
@@ -511,8 +516,15 @@ BEGIN
                         END
         -- Revenue Org Participants
         ,drvRevOrgPart = CASE WHEN Ec.EecEEType = 'REG' AND  Ec.EecOrgLvl3 IN ('CONEXP', 'OPERAT', 'SALES')  THEN 'Y' ELSE '' END
-        ,drvRevOrgNom = CASE WHEN Ec.EecEEType = 'REG' AND Ec.EecOrgLvl3 IN ('CONEXP', 'OPERAT', 'SALES') OR je.JbcUDField2 IN ('M4', 'M5', 'M6', 'M7') THEN 'Y' ELSE '' END
+        ,drvRevOrgNom = CASE WHEN Ec.EecEEType = 'REG' AND Ec.EecOrgLvl3 IN ('CONEXP', 'OPERAT', 'SALES') AND je.JbcUDField2 IN ('M4', 'M5', 'M6', 'M7') THEN 'Y' ELSE '' END
         ,drvPayGroupDesc = PayGroup.PgrDesc
+        ,drvHBRP =    CASE WHEN EC.EecOrgLvl3 IN ('BUSOPR','MARKT','CUSTCR','FINACT','LEGAL') THEN '608304'
+                    WHEN EC.EecOrgLvl3 IN ('PRODCT','TECH') THEN '603878'
+                    WHEN EC.EecOrgLvl3 IN ('CONEXP') THEN '606000'
+                    WHEN EC.EecOrgLvl3 IN ('SALES','OPERAT') THEN '606221'
+                    WHEN EC.EecOrgLvl3 IN ('HRFAC','CSUITE') THEN '603972'
+                    END
+        ,drvGender =    CASE WHEN pers.EepGender IN ('M','F') THEN pers.EepGender END
     INTO dbo.U_EWORKHUDEM_drvTbl
     FROM dbo.U_EWORKHUDEM_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers pers WITH (NOLOCK)
