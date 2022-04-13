@@ -5,7 +5,7 @@ EPATOPTHSA: Optum HSA Contributions
 FormatCode:     EPATOPTHSA
 Project:        Optum HSA Contributions
 Client ID:      PAT1012
-Date/time:      2022-03-23 12:32:44.010
+Date/time:      2022-04-13 11:21:10.477
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -144,7 +144,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPATOPTHSAZ0','50','H','01','5',NULL,'Social Security Number',NULL,NULL,'"Social Security Number"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPATOPTHSAZ0','50','D','10','1',NULL,'Transaction Type',NULL,NULL,'"Contribution"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPATOPTHSAZ0','50','D','10','2',NULL,'Account Number',NULL,NULL,'"drvAccountNumber"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPATOPTHSAZ0','50','D','10','3',NULL,'Credit Amount',NULL,NULL,'"drvCreditAmt"','(''UNT2''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPATOPTHSAZ0','50','D','10','3',NULL,'Credit Amount',NULL,NULL,'"drvCreditAmt"','(''UNT0''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPATOPTHSAZ0','50','D','10','4',NULL,'Contribution Type',NULL,NULL,'"drvContribType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPATOPTHSAZ0','50','D','10','5',NULL,'Social Security Number',NULL,NULL,'"drvSSN"','(''UA''=''T'')');
 
@@ -159,7 +159,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPATOPTHSA_20220323.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPATOPTHSA_20220413.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -168,7 +168,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum HSA Contributions','202203229','EMPEXPORT','ONDEM_XOE',NULL,'EPATOPTHSA',NULL,NULL,NULL,'202203229','Mar 22 2022 11:47AM','Mar 22 2022 11:47AM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum HSA Contributions-Sched','202203229','EMPEXPORT','SCH_EPATOP',NULL,'EPATOPTHSA',NULL,NULL,NULL,'202203229','Mar 22 2022 11:47AM','Mar 22 2022 11:47AM','202101151',NULL,'','','202101151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum HSA Contributions-Test','202203119','EMPEXPORT','TEST_XOE','Mar 23 2022 11:06AM','EPATOPTHSA',NULL,NULL,NULL,'202203119','Mar 11 2022 12:00AM','Dec 30 1899 12:00AM','202103111','24','','','202103111',dbo.fn_GetTimedKey(),NULL,'us3cBePAT1012',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2O3DP',NULL,NULL,NULL,'Optum HSA Contributions-Test','202203259','EMPEXPORT','TEST_XOE','Mar 28 2022 12:00AM','EPATOPTHSA',NULL,NULL,NULL,'202203259','Mar 25 2022 12:00AM','Dec 30 1899 12:00AM','202103251','24','','','202103251',dbo.fn_GetTimedKey(),NULL,'us3cBePAT1012',NULL);
 
 -----------
 -- AscImp inserts
@@ -567,7 +567,7 @@ BEGIN
         ,drvSSNSort = eepSSN
         -- standard fields above and additional driver fields below
         ,drvAccountNumber = ''
-        ,drvCreditAmt = PdhSource4
+        ,drvCreditAmt = PdhSource4*100
         --CASE WHEN TransType = 'EMPLOYEE' THEN PdhSource4 ELSE PdhSource3 END
         ,drvContribType = 'Current Year Employee Contribution'
         --CASE WHEN TransType = 'EMPLOYEE' THEN 'Current Year Employee Contribution' ELSE 'Current Year Employer Contribution' END
