@@ -1,11 +1,11 @@
 /**********************************************************************************
 
-EFLORCOBQE: Flores COBRA Export
+EFLORCOBQE: Flores COBRA QB
 
 FormatCode:     EFLORCOBQE
-Project:        Flores COBRA Export
+Project:        Flores COBRA QB
 Client ID:      COM1070
-Date/time:      2022-02-24 18:40:56.707
+Date/time:      2022-04-18 10:17:02.633
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -129,7 +129,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EFLORCOBQE','Flores COBRA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EFLORCOBQEZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EFLORCOBQE','Flores COBRA QB','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EFLORCOBQEZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -178,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220224.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220418.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -187,7 +187,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export','202202099','EMPEXPORT','ONDEM_XOE',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export-Sched','202202099','EMPEXPORT','SCH_EFLORC',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202202169','EMPEXPORT','TEST_XOE','Feb 16 2022 12:00AM','EFLORCOBQE',NULL,NULL,NULL,'202202169','Feb 16 2022 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202203119','EMPEXPORT','TEST_XOE','Mar 11 2022 12:00AM','EFLORCOBQE',NULL,NULL,NULL,'202203119','Mar 11 2022 12:00AM','Dec 30 1899 12:00AM','202201021',NULL,'','','202201021',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
 
 -----------
 -- AscImp inserts
@@ -351,7 +351,7 @@ CREATE TABLE [dbo].[U_EFLORCOBQE_drvInsured] (
     [drv10DOB] varchar(30) NULL,
     [drv10StateOfEmploy] varchar(1) NOT NULL,
     [drv10TypeOfEvent] varchar(2) NULL,
-    [drv10DtOfEvent] varchar(30) NOT NULL,
+    [drv10DtOfEvent] varchar(30) NULL,
     [drv10DtPremPaidThrough] varchar(1) NOT NULL,
     [drv10Loc] varchar(1) NOT NULL,
     [drv10Gender] char(1) NULL,
@@ -403,7 +403,11 @@ Revision History
     - Added insert for employee death.
 
 02/24/2022 by AP:
-	- Added 204 reason (divorce legal separation)
+    - Added 204 reason (divorce legal separation)
+
+03/09/2022 by AP:
+    - Fixed "duplicate" lines of event date.
+    - Added BdmIsPQB = 'Y' to each load type.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFLORCOBQE';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFLORCOBQE';
@@ -556,56 +560,58 @@ BEGIN
     AND EedFormatCode = @FormatCode
     AND EecTermReason = '203'
 
-	INSERT INTO [dbo].[U_dsi_BDM_EFLORCOBQE]
-	([BdmRecType]
-	,[BdmCOID]
-	,[BdmEEID]
-	,[BdmDepRecID]
-	,[BdmSystemID]
-	,[BdmRunID]
-	,[BdmDedRowStatus]
-	,[BdmRelationship]
-	,[BdmDateOfBirth]
-	,[BdmDedCode]
-	,[BdmBenOption]
-	,[BdmBenStartDate]
-	,[BdmBenStopDate]
-	,[BdmBenStatusDate]
-	,[BdmDateOFCobraEvent]
-	,[BdmChangeReason]
-	,[BdmCobraReason]
-	,[BdmStartDate]
-	,[BdmStopDate]
-	,[BdmIsPQB]
-	)
-	SELECT DISTINCT rectype = 'DEP'
-	,EdhCoid
-	,EdhEEID
-	,DbnDepRecID
-	,DbnDepRecID
-	,'QB'
-	,'Data Inserted for 204 Chg reason'
-	,DbnRelationship
-	,DbnDateOfBirth
-	,EdhDedCode
-	,DbnBenOption
-	,EdhBenStartDate
-	,EdhBenStopDate
-	,EdhBenStatusDate
-	,EdhBenStatusDate
-	,'204'
-	,'204'
-	,EdhStartDate
-	,EdhStopDate
-	,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
-	FROM dbo.emphded WITH (NOLOCK)
-	JOIN dbo.U_dsi_BDM_DepDeductions
-	ON dbneeid = edheeid
-	AND dbnformatcode = 'EFLORCOBQE'
-	WHERE edhChangeReason in ('204')
-	--AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
-	AND dbnValidForExport = 'N'
-	--AND dbnRelationship <> 'Z'
+    INSERT INTO [dbo].[U_dsi_BDM_EFLORCOBQE]
+    ([BdmRecType]
+    ,[BdmCOID]
+    ,[BdmEEID]
+    ,[BdmDepRecID]
+    ,[BdmSystemID]
+    ,[BdmRunID]
+    ,[BdmDedRowStatus]
+    ,[BdmRelationship]
+    ,[BdmDateOfBirth]
+    ,[BdmDedCode]
+    ,[BdmBenOption]
+    ,[BdmBenStatus]
+    ,[BdmBenStartDate]
+    ,[BdmBenStopDate]
+    ,[BdmBenStatusDate]
+    ,[BdmDateOFCobraEvent]
+    ,[BdmChangeReason]
+    ,[BdmCobraReason]
+    ,[BdmStartDate]
+    ,[BdmStopDate]
+    ,[BdmIsPQB]
+    )
+    SELECT DISTINCT rectype = 'DEP'
+    ,EdhCoid
+    ,EdhEEID
+    ,DbnDepRecID
+    ,DbnDepRecID
+    ,'QB'
+    ,'Data Inserted for 204 Chg reason'
+    ,DbnRelationship
+    ,DbnDateOfBirth
+    ,DbnDedCode --EdhDedCode
+    ,DbnBenOption
+    ,DbnBenStatus
+    ,EdhBenStartDate
+    ,EdhBenStopDate
+    ,EdhBenStatusDate
+    ,EdhBenStatusDate
+    ,'204'
+    ,'204'
+    ,EdhStartDate
+    ,EdhStopDate
+    ,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
+    FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_DepDeductions
+    ON dbneeid = edheeid
+    AND dbnformatcode = 'EFLORCOBQE'
+    WHERE edhChangeReason in ('204')
+    --AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
+    --AND dbnValidForExport = 'N'
+    --AND dbnRelationship <> 'Z'
 
     --==========================================
     -- Build Working Tables
@@ -668,10 +674,14 @@ BEGIN
                                 WHEN EecEmplStatus = 'T' AND EecTermType = 'V' THEN '1'
                                 WHEN BdmChangeReason IN ('202', '203') THEN '2'
                                 WHEN EecEmplStatus = 'T' AND EecTermReason <> '203' AND EecTermType = 'I' THEN '10' END
-        ,drv10DtOfEvent = ISNULL(CONVERT(VARCHAR, BdmBenStopDate, 101), '')
+        ,drv10DtOfEvent = (SELECT MAX(ISNULL(CONVERT(VARCHAR, BdmBenStopDate, 101), ''))
+                            FROM dbo.U_dsi_BDM_EFLORCOBQE WITH (NOLOCK)
+                            WHERE BdmEEID = xEEID
+                            AND BdmCOID = xCOID) 
+                            --ISNULL(CONVERT(VARCHAR, BdmBenStopDate, 101), '') 
         ,drv10DtPremPaidThrough = ''
         ,drv10Loc = ''
-        ,drv10Gender = EepGender
+        ,drv10Gender = CASE WHEN BdmChangeReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') OR EecTermReason = '203' then ConGender ELSE EepGender END  --EepGender
         ,drvInitialSort = 1 + LTRIM(RTRIM(EepSSN))
         ,drvSubSort = '1'
     INTO dbo.U_EFLORCOBQE_drvInsured
@@ -688,6 +698,7 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId
     WHERE BdmRunID = 'QB'
+    AND BdmIsPQB = 'Y'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFLORCOBQE_drvDependent
@@ -740,7 +751,9 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId
     WHERE BdmRunID = 'QB'
-    AND BdmRecType = 'DEP') a
+    AND BdmRecType = 'DEP'
+    AND BdmIsPQB = 'N') a
+    --AND BdmIsPQB = 'Y') a
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EFLORCOBQE_drvElection
@@ -755,44 +768,44 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drv30ElectIdent = '3'
         ,drv30EmpIdNumOfIns = EepSSN
-        ,drv30DepNum = dep.drv20DepNum --CASE WHEN BdmRecType = 'DEP' THEN ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmRelationship, BdmDateOfBirth) END
+        ,drv30DepNum = CASE WHEN dep.drv20DepNum IS NOT NULL THEN dep.drv20DepNum ELSE 0 END --CASE WHEN BdmRecType = 'DEP' THEN ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmRelationship, BdmDateOfBirth) END
         ,drv30PlanCodeEnrolledIn = CASE WHEN BdmDedCode = 'MEDLO' THEN
-                                        CASE WHEN BdmBenOption = 'EE' THEN '4010'
-                                                WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '4011'
-                                                WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '4012'
-                                                WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '4013'
+                                        CASE WHEN EedBenOption = 'EE' THEN '4010'
+                                                WHEN EedBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '4011'
+                                                WHEN EedBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '4012'
+                                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN '4013'
                                             END
                                         WHEN BdmDedCode = 'HDHP' THEN
-                                        CASE WHEN BdmBenOption = 'EE' THEN '7040'
-                                                WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '7041'
-                                                WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '7042'
-                                                WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '7043'
+                                        CASE WHEN EedBenOption = 'EE' THEN '7040'
+                                                WHEN EedBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '7041'
+                                                WHEN EedBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '7042'
+                                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN '7043'
                                             END
                                         WHEN BdmDedCode = 'MEDHI' THEN
-                                        CASE WHEN BdmBenOption = 'EE' THEN '9060'
-                                                WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '9061'
-                                                WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '9062'
-                                                WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '9063'
+                                        CASE WHEN EedBenOption = 'EE' THEN '9060'
+                                                WHEN EedBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '9061'
+                                                WHEN EedBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '9062'
+                                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN '9063'
                                             END
                                         WHEN BdmDedCode = 'DENLO' THEN
-                                        CASE WHEN BdmBenOption = 'EE' THEN '5020'
-                                                WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '5021'
-                                                WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '5022'
-                                                WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '5023'
+                                        CASE WHEN EedBenOption = 'EE' THEN '5020'
+                                                WHEN EedBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '5021'
+                                                WHEN EedBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '5022'
+                                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN '5023'
                                             END
                                         WHEN BdmDedCode = 'DENHI' THEN
-                                        CASE WHEN BdmBenOption = 'EE' THEN '6030'
-                                                WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '6031'
-                                                WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '6032'
-                                                WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '6033'
+                                        CASE WHEN EedBenOption = 'EE' THEN '6030'
+                                                WHEN EedBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '6031'
+                                                WHEN EedBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '6032'
+                                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN '6033'
                                             END
                                         WHEN BdmDedCode = 'VISON' THEN
-                                        CASE WHEN BdmBenOption = 'EE' THEN '8050'
-                                                WHEN BdmBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '8051'
-                                                WHEN BdmBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '8052'
-                                                WHEN BdmBenOption IN ('EEF', 'EEDPF') THEN '8053'
+                                        CASE WHEN EedBenOption = 'EE' THEN '8050'
+                                                WHEN EedBenOption IN ('EES', 'EEDP', 'EEDOP') THEN '8051'
+                                                WHEN EedBenOption IN ('EEC', 'EECHD', 'EECN', 'EECHIL') THEN '8052'
+                                                WHEN EedBenOption IN ('EEF', 'EEDPF') THEN '8053'
                                             END
-                                        WHEN BdmDedCode = 'FSAM' THEN '10000' 
+                                        WHEN BdmDedCode IN ('FSAM','FSAMS') THEN '10000' 
                                     END
         ,drv30MonthlyPrem = ''
         ,drv30RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
@@ -806,11 +819,17 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EFLORCOBQE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmBenStatus <> 'A'
     LEFT JOIN dbo.U_EFLORCOBQE_drvDependent dep WITH(NOLOCK)
         ON dep.drveeid = bdmeeid
         and dep.drvcoid = bdmcoid
         and dep.drv20BdmDepRecId = bdmdeprecid
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND EedDedCode = BdmDedCode
     WHERE BdmRunID = 'QB'
+    --AND BdmIsPQB = 'Y'
 
     --==========================================
     -- Set FileName

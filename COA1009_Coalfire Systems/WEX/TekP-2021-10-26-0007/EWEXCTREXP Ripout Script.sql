@@ -5,7 +5,7 @@ EWEXCTREXP: WEX FSA/DepCare/HAS/T & P Export
 FormatCode:     EWEXCTREXP
 Project:        WEX FSA/DepCare/HAS/T & P Export
 Client ID:      COA1009
-Date/time:      2022-03-17 13:05:52.950
+Date/time:      2022-04-15 10:29:51.250
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -255,7 +255,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWEXCTREXP_20220317.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWEXCTREXP_20220415.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -266,7 +266,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202202289','EMPEXPORT','OEPASSIVE','Mar  2 2022  6:10AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','1717','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & P Exp','202202289','EMPEXPORT','ONDEM_XOE','Mar  2 2022  6:11AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','1717','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Sched','202202289','EMPEXPORT','SCH_EWEXCT','Mar  2 2022  6:11AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Mar  1 2022  9:35AM','Mar  1 2022  9:35AM','202202281','1717','','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Test','202202289','EMPEXPORT','TEST_XOE','Mar 15 2022 11:40AM','EWEXCTREXP',NULL,NULL,NULL,'202202289','Feb 28 2022 12:00AM','Dec 30 1899 12:00AM','202202281','2201','eecPayGroup','CFSAL,CFHRLY,FEDSAL','202202281',dbo.fn_GetTimedKey(),NULL,'us3cPeCOA1009',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA/DepCare/HAS/T & -Test','202203151','EMPEXPORT','TEST_XOE','Apr 12 2022 12:10PM','EWEXCTREXP',NULL,NULL,NULL,'202203151','Mar 15 2022 12:00AM','Mar 15 2022 12:00AM','202203151','1716','eecPayGroup','CFSAL,CFHRLY,FEDSAL,NPG','202203151',dbo.fn_GetTimedKey(),NULL,'us3cPeCOA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -730,8 +730,8 @@ BEGIN
                         WHERE EfoPhoneType = 'CEL') AS Efo
                 WHERE RN = 1 ) AS EfoPhone
         ON EfoEEID = xEEID
-    JOIN dbo.U_EWEXCTREXP_PDedHist WITH (NOLOCK)
-        ON PdhEEID = xEEID
+    --JOIN dbo.U_EWEXCTREXP_PDedHist WITH (NOLOCK)
+    --    ON PdhEEID = xEEID
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWEXCTREXP_drvTbl_EN

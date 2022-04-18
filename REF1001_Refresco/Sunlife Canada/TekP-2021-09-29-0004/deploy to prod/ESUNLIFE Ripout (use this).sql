@@ -5,7 +5,7 @@ ESUNLIFE: Sunlife XML Export V2
 FormatCode:     ESUNLIFE
 Project:        Sunlife XML Export V2
 Client ID:      REF1001
-Date/time:      2022-03-07 06:43:25.487
+Date/time:      2022-04-11 11:59:23.833
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -187,8 +187,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202202101','EMPEXPORT','OEACTIVE','Jun 17 2019 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202202101','Jun 17 2019 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'SMACKIN',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202202101','EMPEXPORT','OEPASSIVE',NULL,'ESUNLIFE',NULL,NULL,NULL,'202202101','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife XML Export','202202101','EMPEXPORT','ONDEMAND','Nov  5 2020 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202202101','Nov  3 2020 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202202101','EMPEXPORT','SCHEDULED','Feb 16 2022 11:01AM','ESUNLIFE',NULL,NULL,NULL,'202202101','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\e4sup3db01\UltiProData\TCI\Export_Test\ESUNLIFE_20220303.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202203039','EMPEXPORT','TEST','Mar  3 2022  3:48PM','ESUNLIFE',NULL,NULL,NULL,'202203039','Mar  3 2022 12:00AM','Dec 30 1899 12:00AM','202202171','4308','','','202202171',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202204059','EMPEXPORT','SCHEDULED','Apr  6 2022 11:01AM','ESUNLIFE',NULL,NULL,NULL,'202204059','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202203301',NULL,'','','202203301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\e4sup3db01\UltiProData\TCI\Export_Test\ESUNLIFE_20220405.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202204059','EMPEXPORT','TEST','Apr  6 2022  9:46AM','ESUNLIFE',NULL,NULL,NULL,'202204059','Apr  5 2022 12:00AM','Dec 30 1899 12:00AM','202203301','4274','','','202203301',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -283,8 +283,7 @@ CREATE TABLE [dbo].[U_ESUNLIFE_AuditFields] (
 -----------
 
 IF OBJECT_ID('U_ESUNLIFE_BenEffDt') IS NULL
-CREATE TABLE [dbo].[U_ESUNLIFE_BenEffDt] (
-    [BenEEID] varchar(255) NOT NULL
+CREATE TABLE [dbo].[U_ESUNLIFE_BenEffDt] 
 );
 
 -----------
@@ -964,8 +963,8 @@ BEGIN
                             Else '1' END + '" ' +
 -- RecentBenStopDate
         ISNULL(CASE WHEN EecEmplStatus = 'T' THEN 'TermDt="' + LEFT(CONVERT(VARCHAR(8),EecDateOfTermination  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfTermination  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfTermination  , 112), 7, 2)
-                     WHEN EecEmplStatus IN ('R','L') AND MAX(RecentBenStopDate) IS NOT NULL THEN 'TermDt="' + LEFT(CONVERT(VARCHAR(8),EecEmplStatusStartDate    , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecEmplStatusStartDate    , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecEmplStatusStartDate    , 112), 7, 2)  --Released/Laid Off with no active benefits
-                     WHEN ISNULL(EEID, '') <> '' then 'TermDt="' + LEFT(CONVERT(VARCHAR(8),MAX(RecentBenStopDate)  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(RecentBenStopDate)  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(RecentBenStopDate)  , 112), 7, 2)
+                     WHEN EecEmplStatus IN ('R','L') AND MAX(RecentBenStopDate) IS NOT NULL AND ISNULL(MAX(ActiveCoverages), 0) = 0 THEN 'TermDt="' + LEFT(CONVERT(VARCHAR(8),EecEmplStatusStartDate    , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecEmplStatusStartDate    , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecEmplStatusStartDate    , 112), 7, 2)  --Released/Laid Off with no active benefits
+                     WHEN ISNULL(EEID, '') <> '' AND ISNULL(MAX(ActiveCoverages), 0) = 0 then 'TermDt="' + LEFT(CONVERT(VARCHAR(8),MAX(RecentBenStopDate)  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(RecentBenStopDate)  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),MAX(RecentBenStopDate)  , 112), 7, 2)
                             END + '" ', '') +
 /*
     ISNULL(CASE WHEN EecEmplStatus = 'T' THEN 'TermDt="' + LEFT(CONVERT(VARCHAR(8),EecDateOfTermination  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfTermination  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EecDateOfTermination  , 112), 7, 2)
@@ -1074,10 +1073,18 @@ BEGIN
                     ,MAX(EedBenStopDate) AS RecentBenStopDate
                 FROM dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK)
                 where EedFormatCode = 'ESUNLIFE'
-                AND EedBenStatus <> 'A'
+                AND EedBenStatus IN ('T','C')
                 GROUP BY EedEEID, EedCOID) AS BenStop
         ON xEEID = BsEEID
         AND xCOID = BsCOID
+    JOIN (
+            SELECT EedEEID AS ActEEID, EedCOID AS ActCOID, COUNT(*) AS ActiveCoverages 
+            FROM dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK) --where  EedEEID = 'CDWDO602J0K0'
+            WHERE EedFormatCode = 'ESUNLIFE'
+            AND EedBenStatus = 'A'
+            GROUP BY EedEEID, EedCOID) AS ActiveCgs
+        ON xEEID = ActEEID
+        AND xCOID = ActCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
             (
@@ -1322,7 +1329,7 @@ BEGIN
                             ELSE ISNULL(LEFT(CONVERT(VARCHAR(8),EedBenStartDate   , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStartDate   , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStartDate   , 112), 7, 2), '')
                         END + '" ' + 
         ISNULL(CASE WHEN EXISTS(SELECT * FROM dbo.DepsWithAllStops WHERE ConSystemID = DbnDepRecID) THEN
-                             'TermDt="' + ISNULL(LEFT(CONVERT(VARCHAR(8),DbnBenStopDate  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),DbnBenStopDate  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),DbnBenStopDate  , 112), 7, 2), '') END + '" ', '') + 
+         'TermDt="' + ISNULL(LEFT(CONVERT(VARCHAR(8),DbnBenStopDate  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),DbnBenStopDate  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),DbnBenStopDate  , 112), 7, 2), '') END + '" ', '') + 
                     --WHEN ISNULL(EedBenStopDate, '') <> '' THEN 'TermDt="' + ISNULL(LEFT(CONVERT(VARCHAR(8),EedBenStopDate  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStopDate  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EedBenStopDate  , 112), 7, 2), '') END + '" ', '') + 
         'TermReasonCd="' + ISNULL(CASE WHEN ISNULL(DbnBenStopDate, '') <> '' OR ISNULL(EedBenStopDate, '') <> '' then 
                                 CASE WHEN EdhChangeReason= '300' then '6' Else '2' END
