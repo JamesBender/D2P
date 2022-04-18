@@ -1,19 +1,20 @@
 /**********************************************************************************
 
-EVENCOBBEN: Cobra Participant
+EVENCOBBEN: Cobra Beneficiary
 
 FormatCode:     EVENCOBBEN
-Project:        Cobra Participant
-Client ID:      USG1000
-Date/time:      2022-03-25 09:36:51.630
+Project:        Cobra Beneficiary
+Client ID:      VEN1005
+Date/time:      2022-04-15 18:09:12.787
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_LUIGI
-Web Filename:   USG1000_79690_EEHISTORY_EVENCOBBEN_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\NZ1SUP1DB03\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP5DB03
+Database:       ULTIPRO_WPVENA
+Web Filename:   VEN1005_HLL35_EEHISTORY_EVENCOBBEN_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,14 +106,34 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwEVENCOBBEN_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEVENCOBBEN_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EVENCOBBEN') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVENCOBBEN];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_TR_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_TR_drvTbl];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_HDR_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_HDR_drvTbl];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_File') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_File];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_EEList') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_EEList];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_drvTbl];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_DedList') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_DedList];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_AuditFields];
+GO
+IF OBJECT_ID('U_EVENCOBBEN_Audit') IS NOT NULL DROP TABLE [dbo].[U_EVENCOBBEN_Audit];
+GO
+IF OBJECT_ID('U_dsi_BDM_EVENCOBBEN') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EVENCOBBEN];
 GO
 
 -----------
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EVENCOBBEN','Cobra Participant','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EVENCOBBENZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EVENCOBBEN','Cobra Beneficiary','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EVENCOBBENZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -124,7 +145,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVENCOBBENZ0','8','H','01','23',NULL,'Date of File',NULL,NULL,'"drvCurrentDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVENCOBBENZ0','6','H','01','31',NULL,'Time of File',NULL,NULL,'"drvCurrentTime"','(''UDHMS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVENCOBBENZ0','20','H','01','37',NULL,'Contact Name',NULL,NULL,'"Michael Seeber"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVENCOBBENZ0','10','H','01','57',NULL,'Contact Phone',NULL,NULL,'"615-428-5089"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVENCOBBENZ0','10','H','01','57',NULL,'Contact Phone',NULL,NULL,'"6154285089"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVENCOBBENZ0','1','H','01','67',NULL,'Test/Production File',NULL,NULL,'"drvTestorProd"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EVENCOBBENZ0','4','H','01','68',NULL,'Version Number',NULL,NULL,'"drvVersionNum"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EVENCOBBENZ0','4','H','01','72',NULL,'Release Number',NULL,NULL,'"drvReleaseNum"','(''UA''=''F'')');
@@ -141,7 +162,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVENCOBBENZ0','8','T','90','23',NULL,'Date of File',NULL,NULL,'"drvCurrentDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVENCOBBENZ0','6','T','90','31',NULL,'Time of File',NULL,NULL,'"drvCurrentTime"','(''UDHMS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVENCOBBENZ0','20','T','90','37',NULL,'Contact Name',NULL,NULL,'"Michael Seeber "','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVENCOBBENZ0','10','T','90','57',NULL,'Contact Phone',NULL,NULL,'"615-428-5089"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVENCOBBENZ0','10','T','90','57',NULL,'Contact Phone',NULL,NULL,'"6154285089"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVENCOBBENZ0','9','T','90','67',NULL,'Records',NULL,NULL,'"drvRecCount"','(''UNT0''=''F'')');
 
 -----------
@@ -155,16 +176,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EVENCOBBEN_20220325.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EVENCOBBEN_20220415.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Participant','202203259','EMPEXPORT','ONDEM_XOE',NULL,'EVENCOBBEN',NULL,NULL,NULL,'202203259','Mar 25 2022  9:35AM','Mar 25 2022  9:35AM','202203251',NULL,'','','202203251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Participant-Sched','202203259','EMPEXPORT','SCH_EVENCO',NULL,'EVENCOBBEN',NULL,NULL,NULL,'202203259','Mar 25 2022  9:35AM','Mar 25 2022  9:35AM','202203251',NULL,'','','202203251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Participant-Test','202203259','EMPEXPORT','TEST_XOE',NULL,'EVENCOBBEN',NULL,NULL,NULL,'202203259','Mar 25 2022  9:35AM','Mar 25 2022  9:35AM','202203251',NULL,'','','202203251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Beneficiary','202203029','EMPEXPORT','ONDEM_XOE',NULL,'EVENCOBBEN',NULL,NULL,NULL,'202203029','Mar 25 2022  9:35AM','Mar 25 2022  9:35AM','202002231',NULL,'','','202002231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cobra Beneficiary-Sched','202203029','EMPEXPORT','SCH_EVENCO',NULL,'EVENCOBBEN',NULL,NULL,NULL,'202203029','Mar 25 2022  9:35AM','Mar 25 2022  9:35AM','202002231',NULL,'','','202002231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Cobra Beneficiary-Test','202203029','EMPEXPORT','TEST_XOE',NULL,'EVENCOBBEN',NULL,NULL,NULL,'202203029','Mar 25 2022  9:35AM','Mar 25 2022  9:35AM','202002231',NULL,'','','202002231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -176,10 +197,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','ExportPath','V','\\NZ1SUP1DB03\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','InitialSort','C','drvEmpNoSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVENCOBBEN','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -205,9 +227,156 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_dsi_BDM_EVENCOBBEN
 -----------
 
+IF OBJECT_ID('U_dsi_BDM_EVENCOBBEN') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EVENCOBBEN] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_Audit
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_Audit') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_AuditFields
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_DedList
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_DedList') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_drvTbl
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] char(9) NULL,
+    [drvSSN] char(11) NULL,
+    [drvCarrierID] varchar(8) NULL,
+    [drvCoverageCode] varchar(2) NOT NULL,
+    [drvPremium] money NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_EEList
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_EEList') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_File
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_File') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] char(1000) NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_HDR_drvTbl
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_HDR_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_HDR_drvTbl] (
+    [drvRecLength] varchar(2) NOT NULL,
+    [drvCurrentDate] datetime NOT NULL,
+    [drvCurrentTime] datetime NOT NULL,
+    [drvTestorProd] varchar(1) NOT NULL,
+    [drvVersionNum] varchar(4) NOT NULL,
+    [drvReleaseNum] varchar(4) NOT NULL
+);
+
+-----------
+-- Create table U_EVENCOBBEN_TR_drvTbl
+-----------
+
+IF OBJECT_ID('U_EVENCOBBEN_TR_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EVENCOBBEN_TR_drvTbl] (
+    [drvRecLength] varchar(2) NOT NULL,
+    [drvCurrentDate] datetime NOT NULL,
+    [drvCurrentTime] datetime NOT NULL,
+    [drvRecCount] int NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVENCOBBEN]
     @SystemID char(12)
@@ -219,9 +388,9 @@ Client Name: Venafi
 Created By: Marie Thomerson
 Business Analyst: Lea King
 Create Date: 03/25/2022
-Service Request Number: TekP-2021-10-28-0003
+Service Request Number: TekP-2021-10-28-0005
 
-Purpose: Cobra Participant
+Purpose: Cobra Beneficiary
 
 Revision History
 ----------------
@@ -370,7 +539,7 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-	    -- COBRA parameters
+        -- COBRA parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','QB');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'AddToPreviousRun','Y');  -- only used for NPM/QB combined files
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
@@ -590,24 +759,45 @@ BEGIN
         ,drvEmpNoSort = EecEmpNo
         -- standard fields above and additional driver fields below
         ,drvSSN = CASE WHEN BdmChangeReason in ('201', '210', '302', 'LEVNT3', '204', 'LEVNT4') THEN conSSN ELSE eepSSN END
-        ,drvCarrierID = CASE    WHEN BdmDedCode in ('MED1') THEN 'UHC 1000 DED CH+'
-                                WHEN BdmDedCode in ('MED3') THEN 'UHC 2000 DED HDHP CH+'
-                                WHEN BdmDedCode in ('MED2') THEN 'UHC 1000 PPO DED'
-                                WHEN BdmDedCode in ('MED4') THEN 'UHC 2000 DED PPO HDHP'
-                                WHEN BdmDedCode in ('FSA') THEN 'UHC FSA'
-                                WHEN BdmDedCode in ('DEN') THEN 'CIGNA DENTAL DPPO'
-                                WHEN BdmDedCode in ('FSAL') THEN 'UHC LIMITED FSA'
-                                WHEN BdmDedCode in ('MED5') THEN 'KAISER PERM HMO CA ONLY'
-                                WHEN BdmDedCode in ('VIS') THEN 'CIGNA VISION SOLUTION'
+        ,drvCarrierID = CASE    WHEN BdmDedCode in ('MED1') THEN '00050005'
+                                WHEN BdmDedCode in ('MED3') THEN '00060006'
+                                WHEN BdmDedCode in ('MED2') THEN '00070007'
+                                WHEN BdmDedCode in ('MED4') THEN '00080008'
+                                WHEN BdmDedCode in ('FSA') THEN 'CFSA'
+                                WHEN BdmDedCode in ('DEN') THEN 'DENT1'
+                                WHEN BdmDedCode in ('FSAL') THEN 'LFSA'
+                                WHEN BdmDedCode in ('MED5') THEN 'MEDHMO'
+                                WHEN BdmDedCode in ('VIS') THEN 'VIS1'
                         END 
-        ,drvCoverageCode = CASE WHEN BdmBenOption in ('EE') THEN 'Participant Only' 
-                                WHEN BdmBenOption in ('EEC') THEN 'Participant + Children' 
-                                WHEN BdmBenOption in ('EED') THEN 'Participant + One' 
-                                WHEN BdmBenOption in ('EEF', 'EEDPF') THEN 'Participant + Family' 
-                                WHEN BdmBenOption in ('EES', 'EEDP') THEN 'Participant + Spouse' 
-                                ELSE 'Flexible Spending Acct' 
-                            END  
-        ,drvPremium = CASE WHEN BdmDedCode in ('FSA', 'FSAL') THEN BdmEEAmt END
+         --,drvCarrierID = CASE    WHEN BdmDedCode in ('MED1') THEN 'UHC 1000 DED CH+'
+   --                             WHEN BdmDedCode in ('MED3') THEN 'UHC 2000 DED HDHP CH+'
+   --                             WHEN BdmDedCode in ('MED2') THEN 'UHC 1000 PPO DED'
+   --                             WHEN BdmDedCode in ('MED4') THEN 'UHC 2000 DED PPO HDHP'
+   --                             WHEN BdmDedCode in ('FSA') THEN 'UHC FSA'
+   --                             WHEN BdmDedCode in ('DEN') THEN 'CIGNA DENTAL DPPO'
+   --                             WHEN BdmDedCode in ('FSAL') THEN 'UHC LIMITED FSA'
+   --                             WHEN BdmDedCode in ('MED5') THEN 'KAISER PERM HMO CA ONLY'
+   --                             WHEN BdmDedCode in ('VIS') THEN 'CIGNA VISION SOLUTION'
+   --                     END 
+        ,drvCoverageCode = CASE WHEN BdmDedCode = 'DEN' AND BdmBenOption in ('EEF', 'EEDPF','EEC') AND BdmNumChildren > 1 THEN '04' 
+                                WHEN BdmDedCode = 'DEN' AND BdmBenOption in ('EEF', 'EEDPF','EEC') AND BdmNumChildren = 1 THEN '05'
+                                ELSE 
+                                CASE WHEN BdmBenOption in ('EE') THEN '01' 
+                                WHEN BdmBenOption in ('EEC') THEN '08' 
+                                WHEN BdmBenOption in ('EED') THEN '05' 
+                                WHEN BdmBenOption in ('EEF', 'EEDPF') THEN '04' 
+                                WHEN BdmBenOption in ('EES', 'EEDP') THEN '06' 
+                                ELSE 'FF' 
+                            END 
+                            END
+        --,drvCoverageCode = CASE WHEN BdmBenOption in ('EE') THEN 'Participant Only' 
+  --                              WHEN BdmBenOption in ('EEC') THEN 'Participant + Children' 
+  --                              WHEN BdmBenOption in ('EED') THEN 'Participant + One' 
+  --                              WHEN BdmBenOption in ('EEF', 'EEDPF') THEN 'Participant + Family' 
+  --                              WHEN BdmBenOption in ('EES', 'EEDP') THEN 'Participant + Spouse' 
+  --                              ELSE 'Flexible Spending Acct' 
+  --                          END  
+        ,drvPremium = CASE WHEN BdmDedCode in ('FSA', 'FSAL') THEN BdmEEAmt ELSE NULL END
     INTO dbo.U_EVENCOBBEN_drvTbl
     FROM dbo.U_EVENCOBBEN_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -693,6 +883,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EVENCOBBEN';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEVENCOBBEN_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EVENCOBBEN_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 

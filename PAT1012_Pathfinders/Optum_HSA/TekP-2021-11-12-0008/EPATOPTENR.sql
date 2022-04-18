@@ -5,7 +5,7 @@ EPATOPTENR: Optum HSA Enrollment
 FormatCode:     EPATOPTENR
 Project:        Optum HSA Enrollment
 Client ID:      PAT1012
-Date/time:      2022-04-04 08:25:29.130
+Date/time:      2022-04-13 11:14:24.797
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -193,7 +193,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPATOPTENR_20220404.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPATOPTENR_20220413.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -203,7 +203,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Optum HSA Enrollment-Changes','202203239','EMPEXPORT','CHANGES',NULL,'EPATOPTENR',NULL,NULL,NULL,'202203239','Mar 23 2022 10:47AM','Mar 23 2022 10:47AM','202203231',NULL,'','','202203231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum HSA Enrollment','202203239','EMPEXPORT','ONDEM_XOE',NULL,'EPATOPTENR',NULL,NULL,NULL,'202203239','Mar 23 2022 10:47AM','Mar 23 2022 10:47AM','202203231',NULL,'','','202203231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum HSA Enrollment-Sched','202203239','EMPEXPORT','SCH_EPATOP',NULL,'EPATOPTENR',NULL,NULL,NULL,'202203239','Mar 23 2022 10:47AM','Mar 23 2022 10:47AM','202203231',NULL,'','','202203231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum HSA Enrollment-Test','202204019','EMPEXPORT','TEST_XOE','Apr  1 2022 12:00AM','EPATOPTENR',NULL,NULL,NULL,'202204019','Apr  1 2022 12:00AM','Dec 30 1899 12:00AM','202204011','38','','','202204011',dbo.fn_GetTimedKey(),NULL,'us3cBePAT1012',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2O3DP',NULL,NULL,NULL,'Optum HSA Enrollment-Test','202204079','EMPEXPORT','TEST_XOE','Apr  7 2022 12:00AM','EPATOPTENR',NULL,NULL,NULL,'202204079','Apr  7 2022 12:00AM','Dec 30 1899 12:00AM','202204061','38','','','202204061',dbo.fn_GetTimedKey(),NULL,'us3cBePAT1012',NULL);
 
 -----------
 -- AscImp inserts
@@ -389,7 +389,7 @@ CREATE TABLE [dbo].[U_EPATOPTENR_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(599) NULL
+    [Data] char(600) NULL
 );
 
 -----------
