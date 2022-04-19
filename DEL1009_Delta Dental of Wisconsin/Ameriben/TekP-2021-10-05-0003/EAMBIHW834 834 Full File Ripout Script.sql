@@ -5,7 +5,7 @@ EAMBIHW834: Ameriben H & W 834 Export
 FormatCode:     EAMBIHW834
 Project:        Ameriben H & W 834 Export
 Client ID:      DEL1009
-Date/time:      2022-04-12 09:07:54.317
+Date/time:      2022-04-19 06:55:04.233
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -382,7 +382,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAMBIHW834_20220412.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAMBIHW834_20220419.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -393,7 +393,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202203119','EMPEXPORT','OEPASSIVE','Mar 28 2022  6:22AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111','13466','','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'On-Demand Only','202203119','EMPEXPORT','ONDM_XOE','Mar 28 2022  6:23AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111','13444','','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Ameriben H & W 834 Export','202203119','EMPEXPORT','SCHEDULED','Mar 28 2022  6:25AM','EAMBIHW834',NULL,NULL,NULL,'202203119','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203111','13444','','','202203111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202204119','EMPEXPORT','TEST_XOE','Apr 11 2022  7:57PM','EAMBIHW834',NULL,NULL,NULL,'202204119','Apr 11 2022 12:00AM','Dec 30 1899 12:00AM','202204041','13322','','','202204041',dbo.fn_GetTimedKey(),NULL,'us3jReDEL1009',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202204189','EMPEXPORT','TEST_XOE','Apr 18 2022  3:35PM','EAMBIHW834',NULL,NULL,NULL,'202204189','Apr 18 2022 12:00AM','Dec 30 1899 12:00AM','202204111','13161','','','202204111',dbo.fn_GetTimedKey(),NULL,'us3jReDEL1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -637,13 +637,13 @@ CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl] (
 
 IF OBJECT_ID('U_EAMBIHW834_DrvTbl_2300') IS NULL
 CREATE TABLE [dbo].[U_EAMBIHW834_DrvTbl_2300] (
-    [drvHD00_HealthCoverage] varchar(2) NOT NULL,
+    [drvHD00_HealthCoverage] varchar(2) NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
-    [drvHD03_InsuranceLineCode] varchar(2) NOT NULL,
+    [drvHD03_InsuranceLineCode] varchar(2) NULL,
     [drvHD04_PlanCoverageDesc] varchar(5) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
-    [drvDTP00_DateTime_348] varchar(3) NOT NULL,
+    [drvDTP00_DateTime_348] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod_348] datetime NULL,
@@ -1122,7 +1122,7 @@ BEGIN
         ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual1 = 'DX'
-        ,drvREF02_RefNumberQual1 =    CASE WHEN EecCOID = 'DDWI' THEN '101'
+        ,drvREF02_RefNumberQual1 =    CASE WHEN EecCOID = '5CX41' THEN '101'
                                     WHEN EecOrgLvl3 = 'NEXEC' THEN '100'
                                     WHEN EecOrgLvl3 = 'NSALPS' THEN '200'
                                     WHEN EecOrgLvl3 = 'NPRMNG' THEN '210'
@@ -1283,6 +1283,7 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EAMBIHW834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
+        AND BdmBenStatus <> 'C'
     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
         ON TchCode = EecTermReason
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
@@ -1303,16 +1304,16 @@ BEGIN
         DROP TABLE dbo.U_EAMBIHW834_DrvTbl_2300;
     SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
-        drvHD00_HealthCoverage = 'HD'
+        drvHD00_HealthCoverage = CASE WHEN BdmDedCode IN ('HDEPN','HDEPT','HDHP','HDHPN','HDPT','HDPTN','HLEPT','HLNEP','HLTH','HLTHN','NHDEP','NHDHP','NHDPT','NHLEP','NHLTH','NH1PT','NHEPT','NHPT2') THEN 'HD' END
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = '' --BdmDedCode --''
-        ,drvHD03_InsuranceLineCode = 'MM'
+        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedCode IN ('HDEPN','HDEPT','HDHP','HDHPN','HDPT','HDPTN','HLEPT','HLNEP','HLTH','HLTHN','NHDEP','NHDHP','NHDPT','NHLEP','NHLTH','NH1PT','NHEPT','NHPT2') THEN 'MM' END
         ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode IN ('HLEPT','HLNEP','HLTH','HLTHN') THEN 'DPPO'
                                     WHEN BdmDedCode IN ('HDHP','HDEPN','HDEPT','HDHPN','HDPT','HDPTN') AND BdmBenOption IN ('EE') THEN 'DHDE'
                                     WHEN BdmDedCode IN ('HDHP','HDEPN','HDEPT','HDHPN','HDPT','HDPTN') AND BdmBenOption IN ('EEC','EEF','EES') THEN 'DHDF'
                                     WHEN BdmDedCode IN ('NHLTH') THEN 'NPPO'
                                     WHEN BdmDedCode IN ('NHDHP') AND BdmBenOption IN ('EE') THEN 'NHD2E'
-                                    WHEN BdmDedCode IN ('NHDHP') AND BdmBenOption IN ('EEC','EEF','EES') THEN 'NHD2F'
+                                    WHEN BdmDedCode IN ('NHDHP') AND BdmBenOption IN ('EEC','EEF','EES','FAM') THEN 'NHD2F'
                                     WHEN BdmDedCode IN ('NHDEP') THEN 'NHD3'
                                     WHEN BdmDedCode IN ('NHDPT') THEN 'NHD3'
                                     WHEN BdmDedCode IN ('NH1PT') THEN 'NHD3'
@@ -1322,13 +1323,13 @@ BEGIN
                                     WHEN BdmDedCode IN ('NHLEP') THEN 'NPPO'
                                     END
         ,drvHD05_CoverageLevelCode =    CASE WHEN BdmBenOption IN ('EE') THEN 'EMP'
-                                        WHEN BdmBenOption IN ('EES') THEN 'ESP'
+                                        WHEN BdmBenOption IN ('EES','EESPSC') THEN 'ESP'
                                         WHEN BdmBenOption IN ('EEC') THEN 'ECH'
-                                        WHEN BdmBenOption IN ('EEF','FAM') THEN 'FAM'
+                                        WHEN BdmBenOption IN ('EEF','FAM','FASU') THEN 'FAM'
                                         END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
-        ,drvDTP00_DateTime_348 = 'DTP'
+        ,drvDTP00_DateTime_348 = CASE WHEN BdmDedCode IN ('HDEPN','HDEPT','HDHP','HDHPN','HDPT','HDPTN','HLEPT','HLNEP','HLTH','HLTHN','NHDEP','NHDHP','NHDPT','NHLEP','NHLTH','NH1PT','NHEPT','NHPT2') THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_348 = '348'
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
         ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2022') 
@@ -1426,6 +1427,7 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EAMBIHW834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
+        AND BdmBenStatus <> 'C'
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID;

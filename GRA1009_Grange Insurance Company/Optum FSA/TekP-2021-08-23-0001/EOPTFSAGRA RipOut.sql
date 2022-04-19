@@ -5,7 +5,7 @@ EOPTFSAGRA: Optum FSA
 FormatCode:     EOPTFSAGRA
 Project:        Optum FSA
 Client ID:      GRA1009
-Date/time:      2022-03-24 07:38:29.310
+Date/time:      2022-04-19 11:23:41.157
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -237,16 +237,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220324.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220419.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export','202203249','EMPEXPORT','ONDEM_XOE',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202203249','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202203011',NULL,'','','202203011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export-Sched','202203249','EMPEXPORT','SCH_EOPTFS',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202203249','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202203011',NULL,'','','202203011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum FSA Export-Test','202203249','EMPEXPORT','TEST_XOE','Mar  9 2022 11:48AM','EOPTFSAGRA',NULL,NULL,NULL,'202203249','Jan  6 2022 12:00AM','Jan  1 2022 12:00AM','202203011','57','','','202203011',dbo.fn_GetTimedKey(),NULL,'us3rVaGRA1009',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export','202204159','EMPEXPORT','ONDEM_XOE',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202204159','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202204011',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Optum FSA Export-Sched','202204159','EMPEXPORT','SCH_EOPTFS',NULL,'EOPTFSAGRA',NULL,NULL,NULL,'202204159','Dec 21 2021  4:29PM','Dec 21 2021  4:29PM','202204011',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Optum FSA Export-Test','202204159','EMPEXPORT','TEST_XOE','Apr 19 2022 12:00AM','EOPTFSAGRA',NULL,NULL,NULL,'202204159','Apr 15 2022 12:00AM','Dec 30 1899 12:00AM','202204011','57','eecPayGroup','GFT,GOFFIC,GPT','202204011',dbo.fn_GetTimedKey(),NULL,'us3jBeGRA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -481,7 +481,8 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_PDedHist] (
     [PdhEECurAmtYTD] money NULL,
     [PdhERCurAmtYTD] money NULL,
     [PdhSourceYTD] decimal NULL,
-    [PdhSource2] decimal NULL
+    [PdhSource2] decimal NULL,
+    [PdhSourceTrailer] numeric NULL
 );
 
 -----------
@@ -494,6 +495,7 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_PEarHist] (
     [PehCOID] char(5) NOT NULL,
     [PrgPayDate] datetime NULL,
     [PrgOrigPayPeriod] char(1) NULL,
+    [PgrPayFrequency] char(1) NULL,
     [PehCurAmt] numeric NULL,
     [PehCurHrs] decimal NULL,
     [PehCurAmtYTD] money NULL,
@@ -514,7 +516,7 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_trlTbl] (
     [drvTotHealthLFSAContAmtSign] varchar(1) NOT NULL,
     [drvTotHealthLFSAContAmt] varchar(10) NOT NULL,
     [drvTotDepCareFSAContAmtSign] varchar(1) NOT NULL,
-    [drvTotDepCareFSAContAmt] varchar(8000) NULL,
+    [drvTotDepCareFSAContAmt] nvarchar(4000) NULL,
     [drvTotHealthLFSAElectAmt] varchar(10) NOT NULL,
     [drvTotDepCareFSAElectAmt] varchar(10) NOT NULL
 );
@@ -658,6 +660,7 @@ BEGIN
         -- Categorize Payroll Amounts
         ,PdhSourceYTD     = SUM(CASE WHEN PdhDedCode IN ('FLXDG') THEN CAST(PdhEECurAmt AS DECIMAL(10,2)) ELSE 0.00 END)
         ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('FLXDG') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN CAST(PdhEECurAmt AS DECIMAL(10,2)) ELSE 0.00 END)
+        ,PdhSourceTrailer     = SUM(CASE WHEN PdhDedCode IN ('FLXDG') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         /*,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
         ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
@@ -667,7 +670,7 @@ BEGIN
         ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)*/
     INTO dbo.U_EOPTFSAGRA_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
+    FROM dbo.PDedHist WITH (NOLOCK)    
     JOIN dbo.U_EOPTFSAGRA_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
@@ -688,6 +691,7 @@ BEGIN
         ,PehCOID
         ,PrgPayDate             = MAX(PrgPayDate)
         ,PrgOrigPayPeriod        = MAX(PrgOrigPayPeriod)
+        ,PgrPayFrequency = MAX(PgrPayFrequency)
         -- Current Payroll Amount/Hours
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
@@ -701,9 +705,14 @@ BEGIN
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
     INTO dbo.U_EOPTFSAGRA_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)    
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
+    JOIN dbo.U_EOPTFSAGRA_EEList
+        ON PehEEID = xEEID
+        AND PehCOID = xCOID
+    JOIN dbo.PayGroup WITH (NOLOCK)
+        ON PrgPayGroup = PgrPayGroup
     WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
     AND PehPerControl <= @EndPerControl
     GROUP BY PehEEID, PehCOID
@@ -799,7 +808,8 @@ BEGIN
         ,drvPrefundAmt = ''
         ,drvDepCareFSATermDt = ISNULL(CONVERT(VARCHAR, (CASE WHEN BdmRecType = 'DEP' THEN BdmBenStopDate END), 112), '')
         ,drvDepCareFSAElectEffDt = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)
-        ,drvDepCareFSAElectAmt = RIGHT('0000000' + REPLACE(CAST(PdhSourceYTD AS VARCHAR), '.', ''), 7)
+        ,drvDepCareFSAElectAmt = RIGHT('0000000' + REPLACE(CAST(EedEEAmt AS VARCHAR), '.', ''), 7)
+            --RIGHT('0000000' + REPLACE(CAST(PdhSourceYTD AS VARCHAR), '.', ''), 7)
     INTO dbo.U_EOPTFSAGRA_drvTbl
     FROM dbo.U_EOPTFSAGRA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -821,6 +831,10 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH(NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecId
+    JOIN dbo.EmpDed WITH (NOLOCK)
+        ON xEEID = EedEEID
+        AND xCOID = EedCOID
+        AND BdmDedCode = EedDedCode
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -853,7 +867,7 @@ BEGIN
         ,drvTotHealthLFSAContAmtSign = '+'
         ,drvTotHealthLFSAContAmt = '0000000000'
         ,drvTotDepCareFSAContAmtSign = '+'
-        ,drvTotDepCareFSAContAmt = REPLACE(CAST(ROUND((SELECT SUM(PehCurAmtYTD) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK)), 0) AS VARCHAR), '.', '')
+        ,drvTotDepCareFSAContAmt = FORMAT((SELECT SUM(PdhSourceTrailer) FROM dbo.U_EOPTFSAGRA_PDedHist)*100, '#0') --REPLACE(CAST(ROUND((SELECT SUM(PehCurAmtYTD) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK)), 0) AS VARCHAR), '.', '')
         ,drvTotHealthLFSAElectAmt = '0000000000'
         ,drvTotDepCareFSAElectAmt = '0000000000'
     INTO dbo.U_EOPTFSAGRA_trlTbl
@@ -888,10 +902,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202203011'
-       ,expStartPerControl     = '202203011'
-       ,expLastEndPerControl   = '202203249'
-       ,expEndPerControl       = '202203249'
+    SET expLastStartPerControl = '202204011'
+       ,expStartPerControl     = '202204011'
+       ,expLastEndPerControl   = '202204159'
+       ,expEndPerControl       = '202204159'
 WHERE expFormatCode = 'EOPTFSAGRA';
 
 **********************************************************************************/
