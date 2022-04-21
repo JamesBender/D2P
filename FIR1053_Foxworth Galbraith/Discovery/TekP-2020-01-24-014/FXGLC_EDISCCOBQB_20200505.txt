@@ -1,0 +1,877 @@
+[Version],1.1
+[NPM],464798846,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ADRIAN,,ARELLANO,,,,,10701 Pescador Dr,,El Paso,TX,79935,,M,,FALSE,TRUE,
+[NPM],492942701,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DAVID,C,JENCKS,,,,,1301 Dewey Lane,,Alamogordo,NM,88310,,M,,FALSE,TRUE,
+[NPM],513827493,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,SHAWN,T,JESSON,,,,,1530 Chapel Hills Drive,#C101,Colorado Springs,CO,80920,,M,,FALSE,TRUE,
+[NPM],600253529,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,LUIS,,PORTILLO,,,,,402 W. Overland,,El Paso,TX,79901,,M,,FALSE,TRUE,
+[NPM],447045685,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JUSTIN,D,DONIHOO,,,,,PO Box 305,,Cartwright,OK,74731,,M,,FALSE,TRUE,
+[NPM],458695661,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DUANE,L,SMITH,,,,,1616 Middle Rd,,Denison,TX,75021,,M,,FALSE,TRUE,
+[NPM],641666692,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RYAN,P,ALGER,,,,,PO Box 156,,Van Alstyne,TX,75495,,M,,FALSE,TRUE,
+[NPM],567872417,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JEFFREY,R,MCGRAA,,,,,1814 Carol Lane,,Anna,TX,75409,,M,,FALSE,TRUE,
+[NPM],453291808,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,TYRONE,,INGE,,,,,1718 South 13th St,,Temple,TX,76504,,M,,FALSE,TRUE,
+[NPM],601617644,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,EMELLIO,I,LEAL,,,,,720 S. Mesa Dr,,Mesa,AZ,85210,,M,,FALSE,TRUE,
+[NPM],440866765,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,SHAWN,B,WILBANKS,,,,,3105 Southwest 94th Street,,Oklahoma City,OK,73159,,M,,FALSE,TRUE,
+[NPM],610343766,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANDREW,,CHAVEZ,,,,,568 E. Jasper Dr,,Gilbert,AZ,85296,,M,,FALSE,TRUE,
+[NPM],765126239,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,BRADY,E,SWANSON,,,,,7100 E Burro Ln,,Prescott Valley,AZ,86314,,M,,FALSE,TRUE,
+[NPM],610035808,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSE,L,SALCEDO,,,,,8420 SARATOGA,,EL PASO,TX,79912,,M,,FALSE,TRUE,
+[NPM],441883003,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANDREW,J,SHELBURN,,,,,3605 N Terry Ave,,OKC,OK,73111,,M,,FALSE,TRUE,
+[NPM],600737359,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,NIKITA,F,RUSSELL,,,,,5830 North 67th Avenue,Apt #233,Glendale,AZ,85301,,F,,FALSE,TRUE,
+[NPM],042355385,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,IRBIN,A,TAPIA LUNA,,,,,6447 W Oregon Ave,,Glendale,AZ,85301,,M,,FALSE,TRUE,
+[NPM],653526699,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,NICOLAS,,RODRIGUEZ,,,,,1726 W 35TH AVE,,DENVER,CO,80211,,M,,FALSE,TRUE,
+[NPM],269769170,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JEFFREY,M,BRADY,,,,,4585 N KIRKWOOD,,PRESCOTT VALLEY,AZ,86314,,M,,FALSE,TRUE,
+[NPM],380762499,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,BRIAN,C,FOX,,,,,1905 W. Colorado Ave,,Colorado springs,CO,80904,,M,,FALSE,TRUE,
+[NPM],525474968,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JEFFREY,J,PARHAM,,,,,1804 Capitan Ave,,Roswell,NM,88203,,M,,FALSE,TRUE,
+[NPM],523535460,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CURTIS,A,ELSLOO,,,,,2925 Tremont st.,Apt C5,Colorado Springs,CO,80907,,M,,FALSE,TRUE,
+[NPM],566746133,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JON,B,KLIMA,,,,,6601 REDWOOD LANE,,THE COLONY,TX,75056,,M,,FALSE,TRUE,
+[NPM],633764986,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,OBET,E,EUSEBIO,,,,,7003 Forth St.,Apt C,Canutillo,TX,79835,,M,,FALSE,TRUE,
+[NPM],525493740,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ELIO,,LUCERO,,,,,160 Montana Azul,,Anthony,NM,88021,,M,,FALSE,TRUE,
+[NPM],626127701,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,MIGUEL,,MENA VEGA,,,,,1955 Venadito Drive,,Anthony,NM,88021,,M,,FALSE,TRUE,
+[NPM],165901578,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ARTURO,,MACIAS,,,,,425 W 17 PLACE,,YUMA,AZ,85364,,M,,FALSE,TRUE,
+[NPM],650107186,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CHARLES,T,VIGIL,,,,,2525 E PIKES PEAK AVE,Apt# 105,COLORADO SPRINGS,CO,80910,,M,,FALSE,TRUE,
+[NPM],549115803,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,MATTHEW,E,BUSH,,,,,4350 E BAYBERRY AVE,,MESA,AZ,85206,,M,,FALSE,TRUE,
+[NPM],610680628,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,TYLER,L,HOCKENBERRY,,,,,2433 W Main Str,Apt. #107,Mesa,AZ,85201,,M,,FALSE,TRUE,
+[NPM],600907165,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,VERNELL,,JOE,,,,,1440 E Broadway Rd apt 2088,,Tempe,AZ,85282,,M,,FALSE,TRUE,
+[NPM],254258346,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CLAUDIA,J,WILSON,,,,,1102 FULBOURNE DR,,ANNA,TX,75409,,F,,FALSE,TRUE,
+[NPM],441847204,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,TRACY,A,BROWN,,,,,1120 E OAK ST,,EL RENO,OK,73036,,F,,FALSE,TRUE,
+[NPM],453910840,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,STEPHANIE,D,WHEELER,,,,,2317 SEPHORA  COURT,,ANNA,TX,75409,,F,,FALSE,TRUE,
+[NPM],600406068,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JAMES,D,HOOKER,,,,,6000 N. Hwy 89,# 201,Prescott,AZ,86301,,M,,FALSE,TRUE,
+[NPM],252434703,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANTONIO,B,HEATH,,,,,4802 BROWNING DR,,KILLEEN,TX,76542,,M,,FALSE,TRUE,
+[NPM],606384651,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,LIAM,F,MCKENNA,,,,,P O BOX 34,,BAYARD,NM,88023,,M,,FALSE,TRUE,
+[NPM],520082621,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DANIEL,,TORRES,,,,,505 SW 60TH TERR,,OKLAHOMA CITY,OK,73139,,M,,FALSE,TRUE,
+[NPM],645543699,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GONZALO,R,GARCIA,,,,,404 S. Montgomery st.,,Sherman,TX,75090,,M,,FALSE,TRUE,
+[NPM],507984943,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GREGGORY,S,HAAS,,,,,1200 Eula Lane,,Kingsland,TX,78639,,M,,FALSE,TRUE,
+[NPM],448066321,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CALEB,A,FOSTER,,,,,7300 Barren Oak Drive,,Oklahoma City,OK,73150,,M,,FALSE,TRUE,
+[NPM],446721848,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RICKEY,L,POOL,,,,,7133 South Villa,,Oklahoma city,OK,73159,,M,,FALSE,TRUE,
+[NPM],443946620,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JASON,R,MILLER,,,,,1808 January Place,,Moore,OK,73160,,M,,FALSE,TRUE,
+[NPM],162564413,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,MICHAEL,A,ARCHIE,,,,,2506 Coley Dr,,Killeen,TX,76543,,M,,FALSE,TRUE,
+[NPM],241191050,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ART,A,ALDRIDGE,,,,,6120 Worthing Dr.,,Temple,TX,76502,,M,,FALSE,TRUE,
+[NPM],575312960,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSHUA,M,COTTAM,,,,,85 SUNFLOWER ROAD,APT # 257,COLORADO SPRINGS,CO,80907,,M,,FALSE,TRUE,
+[NPM],388752474,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GLORIA,I,SANTAMARIA DE SCHWETZ,,,,,100 PINECREST DR,,RUIDOSO,NM,88345,,F,,FALSE,TRUE,
+[NPM],255659621,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,SEAN,P,TOOMEY,,,,,4563 W 18TH LANE,,YUMA,AZ,85364,,M,,FALSE,TRUE,
+[NPM],624423704,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,VINCENT,D,ZUNIGA,,,,,1305 Adams Ave,Lot 50A,Prescott,AZ,86305,,M,,FALSE,TRUE,
+[NPM],443131692,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,NICHOLAS,M,WHITE,,,,,1309 SONOMA LAKES BLVD,,MOORE,OK,73160,,M,,FALSE,TRUE,
+[NPM],524270440,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RAUL,,HERNANDEZ,,,,,778 Lincoln,P.O. Box 991,Anthony,NM,88021,,M,,FALSE,TRUE,
+[NPM],585739280,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GUILLERMO,L,BENITEZ,,,,,6204 Patria,,El Paso,TX,79932,,M,,FALSE,TRUE,
+[NPM],639689248,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSEPH,J,HUGGINS,,,,,102 W CEDAR ST,,WINNSBORO,TX,75494,,M,,FALSE,TRUE,
+[NPM],461512300,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DANIEL,,HERNANDEZ,,,,,5151 Chromite Bld 2 Apt.10,,El Paso,TX,79932,,M,,FALSE,TRUE,
+[NPM],441904360,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,WALI,C,JOHNSON,,,,,9618 HEFNER VILLAGE,,OKLAHOMA CITY,OK,76162,,M,,FALSE,TRUE,
+[NPM],595748655,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,BENJAMIN,T,BANKORD,,,,,3615 ROBERTS RD,,COLORADO SPRINGS,CO,80907,,M,,FALSE,TRUE,
+[NPM],680075067,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KYLIE,S,VINES,,,,,2270 Skyview Lane,Apt 3119,Colorado Springs,CO,80904,,F,,FALSE,TRUE,
+[NPM],521972288,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,THOMAS,A,FRANK,,,,,330 West Carr Ave,,Cripple Creek,CO,80813,,M,,FALSE,TRUE,
+[NPM],443763911,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,WILLIAM,M,SCHMULT,,,,,5400 Clearwater Dr,,Oklahoma City,OK,73179,,M,,FALSE,TRUE,
+[NPM],628283814,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,SAMMY,G,SIERRA,,,,,5110 Daybreak Dr,,Killeen,TX,76542,,M,,FALSE,TRUE,
+[NPM],638427893,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,NICHOLAS,R,KILBORN,,,,,108 SW 141 St,,Oklahoma city,OK,73170,,M,,FALSE,TRUE,
+[NPM],247575870,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,TIMOTHY,T,RUFF,,,,,3132 W JESSICA LN,,PHOENIX,AZ,85041,,M,,FALSE,TRUE,
+[NPM],453810672,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KARL,D,SPENSSER,,,,,1303 Hawk Trail,,Copperas Cove,TX,76522,,M,,FALSE,TRUE,
+[NPM],522710346,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JAZIAH,J,ROMERO,,,,,5225 N. Nolte,,Colorado Springs,CO,80916,,M,,FALSE,TRUE,
+[NPM],523992502,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DEVON,W,YAGER-ROSENBERG,,,,,1120 S Chelton Rd Apt 417,,Colorado Springs,CO,80910,,M,,FALSE,TRUE,
+[NPM],452493901,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JEFFREY,A,WARD,,,,,1007 County Road 3068,,Lampasas,TX,76550,,M,,FALSE,TRUE,
+[NPM],458418528,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,WALTER,R,HAMMETT,,,,,3626 WEST COLORADO,APT #21,COLORADO SPRINGS,CO,80904,,M,,FALSE,TRUE,
+[NPM],537863221,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,MICHAEL,H,VREDENBURG,,,,,431 W FAIRCHILD DR,,MIDWEST CITY,OK,73110,,M,,FALSE,TRUE,
+[NPM],601863270,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,COURTNEY,R,ANADON,,,,,5450 Escondido Dr,,Colorado Springs,CO,80918,,F,,FALSE,TRUE,
+[NPM],601079160,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RICHARD,M,CASILLAS,,,,,3264 N TANI RD,,PHOENIX,AZ,85033,,M,,FALSE,TRUE,
+[NPM],451819037,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JERAMIA,M,HALL,,,,,220 MOUNT VIEW LN,LOT# 5,COLORADO SPRINGS,CO,80907,,M,,FALSE,TRUE,
+[NPM],444764148,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JENNIFER,L,BARRY,,,,,8307 NW 7TH ST,,OKLAHOMA CITY,OK,73127,,F,,FALSE,TRUE,
+[NPM],610627207,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,BRENT,A,STONE,,,,,1341 Masters Drive,,Woodland Park,CO,80863,,M,,FALSE,TRUE,
+[NPM],532988192,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RICHARD,L,FRANKO,,,,,4221 PRESTIGE PL,,COLORADO SPRINGS,CO,80906,,M,,FALSE,TRUE,
+[NPM],446964340,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DUNCAN,C,NARCOMEY,,,,,2015 NW 19TH ST,,OKLAHOMA CITY,OK,73106,,M,,FALSE,TRUE,
+[NPM],600552203,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANA,M,HURTADO,,,,,10843 E Amber Dr,,Yuma,AZ,85365,,F,,FALSE,TRUE,
+[NPM],103028473,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,FABIO,M,ZAVALA MENDOZA,,,,,3137 SW 39th St,,Oklahoma City,OK,73119,,M,,FALSE,TRUE,
+[NPM],601171621,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RUDOLPH,M,BALDIZAN,,,,,61 S MILLER ST,,MESA,AZ,85204,,M,,FALSE,TRUE,
+[NPM],525113587,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ARMANDO,D,MENDOZA,,,,,6185 ERMITA ROAD,,LAS CRUCES,NM,88012,,M,,FALSE,TRUE,
+[NPM],453992226,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RUSSELL,D,BYNUM,,,,,314 E STEED DR,,MIDWEST CITY,OK,73110,,M,,FALSE,TRUE,
+[NPM],641564251,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,APRIL,,HERNANDEZ,,,,,18 Capitan Pl,,Roswell,NM,88203,,F,,FALSE,TRUE,
+[NPM],615051607,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JAMES,G,LEAMONS,,,,,4575 W 18th Lane,,Yuma,AZ,85364,,M,,FALSE,TRUE,
+[NPM],432354571,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RHEA,B,CRAWFORD,,,,,6221 TENDERFOOT TRAIL,,FT WORTH,TX,76135,,M,,FALSE,TRUE,
+[NPM],310782728,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSEPH,T,BROWN,,,,,2700 ANCESTOR DR,,KILLEEN,TX,76549,,M,,FALSE,TRUE,
+[NPM],633565696,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,TROY,A,GOETZ,,,,,102 E Ave A Apt 7,,Copperas cove,TX,76522,,M,,FALSE,TRUE,
+[NPM],632509296,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CHRISTOPHER,,GRACIA,,,,,1101 Circle M Dr,Apt A,Killeen,TX,76549,,M,,FALSE,TRUE,
+[NPM],585914877,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,NAVARRE,T,GULICK,,,,,Po Box 523,,Mimbres,NM,88049,,M,,FALSE,TRUE,
+[NPM],648012395,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ZAKARY,A,VARELA,,,,,P.O Box 163,,Silver City,NM,88062,,M,,FALSE,TRUE,
+[NPM],023728589,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JEREMIAH,W,LONGE,,,,,210 W REDD RD,APT# 712,EL PASO,TX,79932,,M,,FALSE,TRUE,
+[NPM],449257992,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GAY,L,FRITSCH,,,,,3667 CR 177,,ANNA,TX,75409,,F,,FALSE,TRUE,
+[NPM],521769808,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KEVIN,J,DUGGAN,,,,,5135 ALMONT AVE,,COLORADO SPRINGS,CO,80911,,M,,FALSE,TRUE,
+[NPM],304789048,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,LARRY,S,ELSEY,,,,,203 White Mountain Meadows Dr.,,Ruidoso,NM,88345,,M,,FALSE,TRUE,
+[NPM],096807117,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ALYSIA,L,PRATER,,,,,704 China Road,,Copperas Cove,TX,76522,,F,,FALSE,TRUE,
+[NPM],619762280,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANTHONY,J,UPTON,,,,,521 E. Veterans Memorial Blvd,Lot 510,Harker Heights,TX,76541,,M,,FALSE,TRUE,
+[NPM],443176915,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ZACHARY,E,HANSMEYER,,,,,2651 36th Ave NE,,Norman,OK,73026,,M,,FALSE,TRUE,
+[NPM],461559636,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSE,L,SILVA,,,,,5332 Yvette Avenue,,El Paso,TX,79915,,M,,FALSE,TRUE,
+[NPM],191599569,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,YOVANI,A,GUTIERREZ,,,,,2142 DUBLIN RD,THE VILLAGE,OKLAHOMA CITY,OK,73120,,M,,FALSE,TRUE,
+[NPM],440174375,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ERICK,M,HERNANDEZ,,,,,2712 SW 120TH ST,,OKLAHOMA CITY,OK,73170,,M,,FALSE,TRUE,
+[NPM],098663759,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KELLY,M,BOTHWELL,,,,,1712 VICTORIA PL,,EDMOND,OK,73003,,F,,FALSE,TRUE,
+[NPM],525655936,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,NATHAN,D,KENNARD,,,,,3701 BANDOLINA AVE,,ROSWELL,NM,88201,,M,,FALSE,TRUE,
+[NPM],440029118,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DUSTIN,T,CHESHIER,,,,,806 Winona Blvd,,Lindsay,OK,73052,,M,,FALSE,TRUE,
+[NPM],521197230,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSEPH,G,GIRON,,,,,1222 S WINTERHAVEN DR,,PUEBLO WEST,CO,81007,,M,,FALSE,TRUE,
+[NPM],442963943,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANTONIO,D,SHELBURN,,,,,20500 SE 15th St,,Harrah,OK,73045,,M,,FALSE,TRUE,
+[NPM],585530322,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JAMES,D,WILSON,,,,,1000 Joy Dr,,Alamogordo,NM,88310,,M,,FALSE,TRUE,
+[NPM],572838158,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CLAUDIA,T,VALENCIA,,,,,1133 KILBOURNE HOLE DR,,LAS CRUCES,NM,88012,,F,,FALSE,TRUE,
+[NPM],214294636,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JILL,E,BOBRUK,,,,,1291 Tree Top Drive,,Frisco,TX,75033,,F,,FALSE,TRUE,
+[NPM],094887670,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSHUA,A,DELGADO,,,,,1301 Chips Dr,Apt A,Killeen,TX,76549,,M,,FALSE,TRUE,
+[NPM],452773390,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,PATRICIA,P,LUCKIE,,,,,4309 SECRETARIAT DR,,KILLEEN,TX,76549,,F,,FALSE,TRUE,
+[NPM],594485993,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,APRIL,L,BROWN,,,,,7928 North MacArthur Blvd,Apt. 3097,Irving,TX,75063,,F,,FALSE,TRUE,
+[NPM],463190391,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DOUGLAS,W,HESTAND,,,,,800 HWY 377,APT# 705,WHITESBORO,TX,76273,,M,,FALSE,TRUE,
+[NPM],644289523,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JOSE,M,CABRERA,,,,,530 n woods st,,sherman,TX,75092,,M,,FALSE,TRUE,
+[NPM],456591145,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DANIEL,A,BURKE,,,,,P O BOX 67,,BUCHANAN DAM,TX,78609,,M,,FALSE,TRUE,
+[NPM],407868663,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GREGORY,T,DOYLE,,,,,440 Hanging Elm Dr,,Norman,OK,73071,,M,,FALSE,TRUE,
+[NPM],176680864,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ALICIA,M,RUFFOLO,,,,,2146 E. 29th Ave,,Apache Junction,AZ,85119,,F,,FALSE,TRUE,
+[NPM],062625694,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,BRIDGET,Y,SQUARE,,,,,8521 S Drexel Ave,,Oklahoma City,OK,73159,,F,,FALSE,TRUE,
+[NPM],576531304,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ERIC,M,CULLINA,,,,,325 Christopher Todd Dr,,Moore,OK,73160,,M,,FALSE,TRUE,
+[NPM],125508748,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,EDWARD,R,SMITH,,,,,14625 S MOUNTAIN PKWY,APT# 2056,PHOENIX,AZ,85044,,M,,FALSE,TRUE,
+[NPM],601359046,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JACOB,A,SWIFT,,,,,3370 E Cullumber Ct,,GILBERT,AZ,85234,,M,,FALSE,TRUE,
+[NPM],643143020,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,MANUEL,L,SOLORZANO,,,,,1569 Hillwood Drive,,Granite Shoals,TX,78654,,M,,FALSE,TRUE,
+[NPM],629347830,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,AARON,R,LAKE,,,,,289 Old Sherman Rd,,Whitesboro,TX,76273,,M,,FALSE,TRUE,
+[NPM],267394980,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ROBERT,L,SCHARFSCHWERDT,,,,,6820 BROOKE BLVD,,MIDLOTHIAN,TX,76065,,M,,FALSE,TRUE,
+[NPM],445139100,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JACOB,R,RICHARDSON,,,,,8907 BENNY BRUCE ST,,NORMAN,OK,73026,,M,,FALSE,TRUE,
+[NPM],442025839,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,WALTER,C,PRICE,,,,,233 Chalmette Dr,Apt A,Norman,OK,73071,,M,,FALSE,TRUE,
+[NPM],444020314,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GERARDO,,CASILLAS,,,,,900 SE 14th st,,Moore,OK,73160,,M,,FALSE,TRUE,
+[NPM],445065894,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CHAD,J,WILLIS-COFER,,,,,26290 state highway 76,,Blanchard,OK,73010,,M,,FALSE,TRUE,
+[NPM],641926533,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,JUAN,M,ARAGON,,,,,409 Wilkerson St,,Winnsboro,TX,75494,,M,,FALSE,TRUE,
+[NPM],378908505,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KIMBERLY,A,HOWARD,,,,,312 N Ash St,,Truth or Consequences,NM,87901,,F,,FALSE,TRUE,
+[NPM],443909561,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ANDREW,K,RAPSON,,,,,9328 Lyric Ln,,Midwest City,OK,73130,,M,,FALSE,TRUE,
+[NPM],240737937,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CAMERON,C,BULLUCK,,,,,112 N Jordan,,Whitesboro,TX,76273,,M,,FALSE,TRUE,
+[NPM],444136749,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GREYSON,R,GREENE,,,,,2209 Oak Dr,,Oklahoma City,OK,73170,,M,,FALSE,TRUE,
+[NPM],445047278,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,SADRE,T,SMITH,,,,,5200 HALES DRIVE,APT# 126,OKLAHOMA CITY,OK,73112,,M,,FALSE,TRUE,
+[NPM],444044064,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,DEVIN,M,MOOMEY,,,,,813 SW 10th Street,,Moore,OK,73160,,M,,FALSE,TRUE,
+[NPM],544663487,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RUSH,G,BEHNKE,,,,,505 E 3rd Ave unit 3A,,Truth or Consenquences,NM,87901,,M,,FALSE,TRUE,
+[NPM],576556616,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,ALBERT,M,ALLEN,,,,,2820 Lake Rd,Apt 126,Killeen,TX,76543,,M,,FALSE,TRUE,
+[NPM],816575417,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KAREN,L,REINMANN,,,,,4509 N 150TH AVE,,GOODYEAR,AZ,85395,,F,,FALSE,TRUE,
+[NPM],500864627,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,CRAIG,A,STOELZEL,,,,,1051 W ROCK CREEK,,NORMAN,OK,73069,,M,,FALSE,TRUE,
+[NPM],458377851,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,GRETCHEN,R,SZUKALA,,,,,1104 Stone Point Circle,,Edmond,OK,73034,,F,,FALSE,TRUE,
+[NPM],600749408,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,REBECCA,A,JOHNSON,,,,,4891 E Rolling Ridge Rd,,,San Tan Valley,AZ,85140,,F,,FALSE,TRUE,
+[NPM],496880741,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,RAYMOND,L,STACY,,,,,4102 Gus Dr. Apt.D,,Killeen,TX,76549,,M,,FALSE,TRUE,
+[NPM],765036846,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KEVIN,G,ARREDONDO ACOSTA,,,,,28513 N Opal Dr,,San Tan Valley,AZ,85143,,M,,FALSE,TRUE,
+[NPM],441985320,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,BRUCE,K,HARJO,,,,,6219 S INDEPENDENCE AVE,APT #131,OKLAHOMA CITY,OK,73159,,M,,FALSE,TRUE,
+[NPM],221846346,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,KRISTOPHER,D,ODAY,,,,,708 Whispering Oaks Blvd,,Moore,OK,73160,,M,,FALSE,TRUE,
+[NPM],537199655,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,REBEKAH,R,STEVENS,,,,,4961 Whispering Hills,,Silver City,NM,88061,,F,,FALSE,TRUE,
+[NPM],564456949,,Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,LORENZO,,LOZOYA,,,,,P O BOX 2334,,ANTHONY,NM,88021,,M,,FALSE,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ROY,W,HARZ,338441422,,,,,1939 N CHELTON RD,,COLORADO SPRINGS,CO,80909,,True,,,,,,,M,01/10/1950,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,03/20/2020,03/18/2016,338441422,ROY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],338441422,SPOUSE,,MARIA,,HARZ,,,,True,,,,,,,,F,12/16/1958,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,04/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TIMOTHY,N,LYONS,437980201,,,,,1717 Cottonwood Ave,,PRESCOTT,AZ,86305,,True,,,,,,,M,10/12/1958,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/03/2020,02/09/2020,437980201,TIMOTHY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],437980201,SPOUSE,,DEBBIE,,LYONS,,,,True,,,,,,,,F,06/13/1962,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DANIEL,G,JENSEN,469660090,,,,,10260 WASHINGTON ST,APT #1535,THORNTON,CO,80229,,True,,,,,,,M,09/07/1956,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,05/21/2020,03/13/2016,469660090,DANIEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DAVID,E,VIGIL,522117316,,,,,6347 LA PLATA PEAK DR,,COLORADO SPRINGS,CO,80923,,True,,,,,,,M,11/22/1959,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/11/2020,05/21/2017,522117316,DAVID,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MICHAEL,,LARSON,575862997,,,,,33515 HEASTON RD,,CALHAN,CO,80808,,True,,,,,,,M,01/23/1969,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/20/2020,01/01/2015,575862997,MICHAEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MAO,,JIMENEZ,616142727,,,,,8816 S AVENIDA DEL PRADO,# 110,YUMA,AZ,85365,,True,,,,,,,M,03/29/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/02/2020,01/01/2015,616142727,MAO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,01/01/2016,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],616142727,CHILD,,ZOEY,K,JIMENEZ,,,,True,,,,,,,,F,08/12/2002,
+[QBDEPENDENTPLAN],EyeMed Vision,01/01/2016,,TRUE,
+[QBDEPENDENT],616142727,SPOUSE,,RODEY,,JIMENEZ,,,,True,,,,,,,,F,10/28/1974,
+[QBDEPENDENTPLAN],EyeMed Vision,01/01/2016,,TRUE,
+[QBDEPENDENT],616142727,CHILD,,ASHLEY,O,JIMENEZ,,,,True,,,,,,,,F,02/03/2001,
+[QBDEPENDENTPLAN],EyeMed Vision,01/01/2016,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOSE,M,MEZA,642526645,,,,,12950 ALNOR STREET,APT # 72,SAN ELIZARIO,TX,79849,,True,,,,,,,M,07/05/1981,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/26/2020,01/01/2015,642526645,JOSE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BLANCHARD,R,ALLISON,458949407,,,,,8901 NW 109TH ST,,OKLAHOMA CITY,OK,731622613,,True,,,,,,,M,02/23/1958,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,03/20/2020,09/01/2015,458949407,BLANCHARD,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],458949407,SPOUSE,,JACQUELINE,,ALLISON,,,,True,,,,,,,,F,06/29/1962,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,04/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,STEVEN,E,WILLIAMSON,465912774,,,,,309 HIGHLAND AVE,,RED OAK,TX,75154,,True,,,,,,,M,12/28/1972,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/06/2020,01/01/2015,465912774,STEVEN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],465912774,CHILD,,KAMRYN,,WILLIAMSON,,,,True,,,,,,,,F,06/28/2002,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,04/01/2020,,TRUE,
+[QBDEPENDENT],465912774,SPOUSE,,DAWN,,WILLIAMSON,,,,True,,,,,,,,F,03/03/1969,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,04/01/2020,,TRUE,
+[QBDEPENDENT],465912774,CHILD,,TEXTUN,,ALLEN,,,,True,,,,,,,,M,07/31/2000,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,04/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,04/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JILL,C,MILLS,538825239,,,,,13021 NE 102nd Street,,Vancouver,WA,98682,,True,,,,,,,F,12/14/1963,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/04/2020,01/01/2015,538825239,JILL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MICHAEL,A,CHAVEZ,564747369,,,,,315 S EVERGREEN RD,,RUIDOSO,NM,88345,,True,,,,,,,M,10/19/1952,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,05/15/2020,10/14/2003,564747369,MICHAEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,FRANKLIN,,MONTOYA,585178126,,,,,2345 APACHE LANE,,ALAMOGORDO,NM,88310,,True,,,,,,,M,05/05/1964,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],DEATH,,04/22/2014,585178126,FRANKLIN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JUAN,C,GAYTAN,627167569,,,,,5057 MEADE CT,,EL PASO,TX,79904,,True,,,,,,,M,01/26/1975,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,,09/03/2003,627167569,JUAN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ANGEL,R,HERNANDEZ,652229142,,,,,1222 FLORENCE AVE,,COLORADO SPRINGS,CO,80905,,True,,,,,,,M,10/01/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/22/2020,01/01/2015,652229142,ANGEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],652229142,SPOUSE,,LORENA,,HERNANDEZ,,,,True,,,,,,,,F,07/13/1976,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QBDEPENDENT],652229142,CHILD,,ESMERALDA,,HERNANDEZ,,,,True,,,,,,,,F,08/19/1997,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QBDEPENDENT],652229142,CHILD,,ANGEL,,HERNANDEZ,,,,True,,,,,,,,M,12/15/2000,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QBDEPENDENT],652229142,CHILD,,MICHELLE,,HERNANDEZ,,,,True,,,,,,,,F,10/20/2003,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QBDEPENDENT],652229142,CHILD,,ALEXANDER,,HERNANDEZ,,,,True,,,,,,,,M,11/02/2010,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ALICIA,R,APSEY,574943011,,,,,P O BOX 232,,ELEPHANT BUTTE,NM,87935,,True,,,,,,,F,08/15/1987,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/03/2020,01/01/2015,574943011,ALICIA,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JUAN,C,ARREDONDO,642043682,,,,,8612 LAWSON,APT# 7,EL PASO,TX,79904,,True,,,,,,,M,07/15/1988,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,,05/13/2012,642043682,JUAN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRIAN,C,CARLSON,232082783,,,,,5220 Sodbuster Tr,,Colorado Springs,CO,80917,,True,,,,,,,M,12/19/1972,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/27/2020,04/21/2019,232082783,BRIAN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DOUGLAS,C,AMOS,527087034,,,,,9325 E HUNTERS RANCH RD,,PRESCOTT VALLEY,AZ,86315,,True,,,,,,,M,10/09/1955,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/22/2020,01/01/2015,527087034,DOUGLAS,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],527087034,SPOUSE,,COLLEEN,R,AMOS,,,,True,,,,,,,,F,06/07/1961,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CORY,W,GYSIN,524156692,,,,,109 CRYSTAL PARK RD,UNIT #1,MANITOU SPRINGS,CO,80829,,True,,,,,,,M,06/17/1964,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,06/12/2020,07/13/2015,524156692,CORY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,AIDA,,ORTIZ,551857657,,,,,8124 E OLIVE ANNE LN,,YUMA,AZ,85365,,True,,,,,,,F,03/04/1984,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,06/01/2020,11/12/2017,551857657,AIDA,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TIMOTHY,W,KOSATKA,462515665,,,,,595 N VALLEY DRIVE,APT #82,LAS CRUCES,NM,88005,,True,,,,,,,M,11/24/1969,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/15/2020,01/01/2019,462515665,TIMOTHY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,LADONNA,R,BURROWS,521047864,,,,,560 GREEWAY CT,APT #D,WOODLAND PARK,CO,80863,,True,,,,,,,F,11/01/1956,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/07/2020,07/06/2016,521047864,LADONNA,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DAVID,A,MURRAY,616765719,,,,,11109 E PIMA CIRCLE,,DEWEY,AZ,86327,,True,,,,,,,M,08/19/1992,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/15/2020,01/01/2017,616765719,DAVID,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TERRY,R,RIGGS,554083891,,,,,6745 STATE HWY 11,,SHERMAN,TX,75090,,True,,,,,,,M,11/05/1962,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/05/2020,07/07/2019,554083891,TERRY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],554083891,SPOUSE,,ROSE,,RIGGS,,,,True,,,,,,,,F,01/07/1960,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,07/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRETT,E,ZIELKE,515649446,,,,,4914 CALABAZILLA DR,,LAS CRUCES,NM,88011,,True,,,,,,,M,03/13/1958,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/05/2020,01/01/2018,515649446,BRETT,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CHRISTOPHER,D,HINES,546611749,,,,,13507 BRETT JACKSON,,FT WORTH,TX,76179,,True,,,,,,,M,03/24/1980,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/30/2020,01/29/2017,546611749,CHRISTOPHER,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ENRIQUE,,ALONSO,615705941,,,,,11108 N MARKWELL CT,,OKLAHOMA CITY,OK,73162,,True,,,,,,,M,04/09/1991,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,01/03/2020,01/01/2018,615705941,ENRIQUE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,NILO,A,LARA,446200348,,,,,1269 ATKINS HILL,LOT 14,NORMAN,OK,73072,,True,,,,,,,M,07/23/1978,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,02/18/2020,12/30/2016,446200348,NILO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,LORENA,L,MORALES,585550194,,,,,605 EDISON PLACE,,LAS CRUCES,NM,88007,,True,,,,,,,F,12/15/1968,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/08/2020,07/30/2017,585550194,LORENA,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,GABRIEL,C,RINCON,616184928,,,,,311 S 23RD AVE,,YUMA,AZ,85364,,True,,,,,,,M,03/21/1971,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/16/2020,08/15/2017,616184928,GABRIEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MATTHEW,B,BRUNER,448132970,,,,,316 NW 149th Terrace,,Edmond,OK,73013,,True,,,,,,,M,04/12/2000,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/01/2020,08/14/2019,448132970,MATTHEW,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRITTANY,F,MURIEL,300969473,,,,,2417 MARISA ATILANO WAY,,EL PASO,TX,79938,,True,,,,,,,F,05/10/1994,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/28/2020,11/26/2019,300969473,BRITTANY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],300969473,CHILD,,SAVVY,,MURIEL,,,,True,,,,,,,,F,11/26/2018,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,06/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ANDRE,L,JOYNER,376787877,,,,,360 N Nash Way,,Chandler,AZ,85225,,True,,,,,,,M,02/17/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/06/2020,01/01/2019,376787877,ANDRE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,EVERARDO,R,DIAZ HERNANDEZ,088719739,,,,,327 S MURRY BLVD,,COLORADO SPRINGS,CO,80916,,True,,,,,,,M,10/01/1996,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,02/27/2020,04/08/2018,088719739,EVERARDO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DARREN,J,ERVIN,600396421,,,,,891 westmoreland rd #301,,COLORADO SPRINGS,CO,80907,,True,,,,,,,M,01/16/1994,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/28/2020,05/22/2018,600396421,DARREN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,STEVEN,W,OWENS,600500702,,,,,1360 W Isabella Ave,2073,Mesa,AZ,85202,,True,,,,,,,M,11/10/1980,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/30/2020,04/15/2020,600500702,STEVEN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DAVID,J,SOUTHWICK,100627555,,,,,21 LA LUZ GATE RD,,ALAMOGORDO,NM,88310,,True,,,,,,,M,12/01/1969,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/24/2020,07/15/2018,100627555,DAVID,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CALEB,J,RICHARDS,305133448,,,,,4390 BURTON,APT 1533,COLORADO SPRINGS,CO,80918,,True,,,,,,,M,06/06/1992,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/02/2020,07/15/2018,305133448,CALEB,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],305133448,SPOUSE,,SHANNON,,RICHARDS,,,,True,,,,,,,,F,03/04/1989,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ROBIN,S,JONES,257237633,,,,,6250 SLAUGHTERVILLE RD,,LEXINGTON,OK,73051,,True,,,,,,,F,05/27/1961,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/20/2020,07/29/2018,257237633,ROBIN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,RALPH,P,LUMSDON,522211482,,,,,2203 WARWICK LANE,,COLORADO SPRINGS,CO,80909,,True,,,,,,,M,10/20/1965,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/14/2020,08/19/2018,522211482,RALPH,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TIFFANY,,HRADECKY,649101924,,,,,603 Horton St,,Quitman,TX,75783,,True,,,,,,,F,12/14/1996,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/09/2020,09/03/2018,649101924,TIFFANY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,OSCAR,A,MAYNES,585978258,,,,,600 country club dr,,Silver city,NM,88061,,True,,,,,,,M,02/13/1993,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/04/2020,09/19/2018,585978258,OSCAR,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JEFFREY,E,PEARSON,524394335,,,,,107 ASPEN ROAD,,WOODLAND PARK,CO,80863,,True,,,,,,,M,12/15/1962,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/11/2020,10/14/2018,524394335,JEFFREY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,FORREST,O,REDDING,443866343,,,,,404 S FRIENDLY RD,,MIDWEST CITY,OK,73130,,True,,,,,,,M,10/13/1985,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,07/06/2020,10/24/2018,443866343,FORREST,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ROBERT,C,BRANDIS,551880585,,,,,P O BOX 673,,WILLIAMSBURG,NM,87942,,True,,,,,,,M,09/05/1952,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/16/2020,10/25/2018,551880585,ROBERT,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,KENNETH,B,BROLL,456354124,,,,,517 KATE ST,,COPPERAS COVE,TX,76522,,True,,,,,,,M,02/25/1974,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/23/2020,11/23/2018,456354124,KENNETH,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ANDREW,G,BOZEMAN,261738239,,,,,603 NORTH  15TH ST,,COPPERAS COVE,TX,76522,,True,,,,,,,M,10/12/1962,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/06/2020,11/23/2018,261738239,ANDREW,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],261738239,SPOUSE,,BARBARA,,BOZEMAN,,,,True,,,,,,,,F,06/19/1965,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,AMY,D,MOON,451791453,,,,,5236 QUANAH VALLEY DR,,BELTON,TX,76513,,True,,,,,,,F,06/09/1982,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/17/2020,12/01/2019,451791453,AMY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],451791453,CHILD,,ALEXIS,L,LISENBE,,,,True,,,,,,,,F,10/21/2005,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QBDEPENDENT],451791453,CHILD,,KARLI,V,MOON,,,,True,,,,,,,,F,05/08/2006,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QBDEPENDENT],451791453,SPOUSE,,TRAVIS,W,MOON,,,,True,,,,,,,,M,12/07/1977,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRIAN,C,TRICE,566754889,,,,,205 JANELLE DRIVE,APT# B,COPPERAS COVE,TX,76522,,True,,,,,,,M,11/18/1969,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/17/2020,01/01/2019,566754889,BRIAN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JULIUS,W,HABEL,467685110,,,,,2147 190 LN,,BELTON,TX,76513,,True,,,,,,,M,07/19/1945,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,06/15/2020,11/23/2018,467685110,JULIUS,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,EDWIN,E,STABENO,464115526,,,,,740 CR 231,,Florence,TX,76527,,True,,,,,,,M,10/18/1955,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],RETIREMENT,06/17/2020,11/23/2018,464115526,EDWIN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,GUADALUPE,,SANDOVAL,525811100,,,,,200 E BALLARD ST,,ROSWELL,NM,88203,,True,,,,,,,F,01/10/1981,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/08/2020,05/10/2019,525811100,GUADALUPE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],525811100,SPOUSE,,MIGUEL,,JIMENEZ,,,,True,,,,,,,,M,12/21/1981,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,06/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,FRANCISCO,A,DELGADILLO,604501733,,,,,10703 S MCKENZIE AVE,,YUMA,AZ,85365,,True,,,,,,,M,10/06/1991,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,06/01/2020,11/18/2018,604501733,FRANCISCO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,PABLO,I,LUDINGTON,585834552,,,,,2002 SAN JUAN AVE,,LAS CRUCES,NM,88001,,True,,,,,,,M,01/31/1988,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/02/2020,12/03/2018,585834552,PABLO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,LYNETTE,G,LUCAS,522023577,,,,,3749 Woodbine Way,,Roswell,NM,88203,,True,,,,,,,F,10/07/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,07/02/2020,12/12/2018,522023577,LYNETTE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ZACHARY,T,WEATHERS,638467245,,,,,3202 OAKRIDGE BLVD,,HARKER HEIGHTS,TX,76548,,True,,,,,,,M,03/12/1995,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/30/2020,01/01/2020,638467245,ZACHARY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MICHAEL,A,FREEMAN,295749722,,,,,118 HARRELL DR,,COPPERAS COVE,TX,76522,,True,,,,,,,M,01/19/1976,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/08/2020,12/25/2018,295749722,MICHAEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],295749722,CHILD,,AYDEN,,FREEMAN,,,,True,,,,,,,,M,10/26/2001,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,06/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRENDA,D,SUMMERS,585631719,,,,,4902 S Lea,,Roswell,NM,88203,,True,,,,,,,F,07/24/1971,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/23/2020,01/01/2020,585631719,BRENDA,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],585631719,SPOUSE,,ROY,m,SUMMERS,,,,True,,,,,,,,M,06/24/1967,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ANTHONY,R,GEORGE,383823080,,,,,305 W Elms Rd A1,,Killeen,TX,76542,,True,,,,,,,M,06/28/1961,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/20/2020,01/13/2019,383823080,ANTHONY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,GEORGE,W,SHIVE,319782845,,,,,9704 E 38th Ln,,Yuma,AZ,85365,,True,,,,,,,M,04/11/1985,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/19/2020,02/03/2019,319782845,GEORGE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,NOEL,X,YOUNG,076884408,,,,,157 Ryan Street,,Anna,TX,75409,,True,,,,,,,M,10/07/1998,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/15/2020,03/17/2019,076884408,NOEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,GEORGE,H,WITCHER,258230985,,,,,6509 Alvin Dr,,Killeen,TX,76542,,True,,,,,,,M,07/05/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,03/12/2020,05/14/2019,258230985,GEORGE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,SHAWN,C,SCOTT,467796152,,,,,1405 Cherry St,,Gainesville,TX,76240,,True,,,,,,,M,08/26/1974,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/26/2020,06/09/2019,467796152,SHAWN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,GREGORY,L,KRUEGER,159644187,,,,,6745 STATE HWY 11,,SHERMAN,TX,75090,,True,,,,,,,M,11/09/1982,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/29/2020,06/25/2019,159644187,GREGORY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MICHAEL,A,PIERCE,625269421,,,,,702 SANTA ROSA,APT# 121A,KILLEEN,TX,76541,,True,,,,,,,M,07/10/1989,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,07/08/2020,01/01/2020,625269421,MICHAEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOSEPH,W,HAYES,496823489,,,,,3125 SINTON RD,UNIT #155,COLORADO SPRINGS,CO,80907,,True,,,,,,,M,10/31/1979,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,03/13/2020,07/21/2019,496823489,JOSEPH,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ROBERT,T,OBRIEN,603054246,,,,,6983 WHITE BUFFALO RD,,COLORADO SPIRNGS,CO,80919,,True,,,,,,,M,02/20/1981,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/07/2020,07/28/2019,603054246,ROBERT,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,WILLIAM,C,MARTIN,585469878,,,,,708 GROVE ST,,ROSWELL,NM,88201,,True,,,,,,,M,08/26/1953,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/01/2020,08/04/2019,585469878,WILLIAM,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JARED,G,PALMER,585759416,,,,,903 Bluebonnet Drive,,Deming,NM,88030,,True,,,,,,,M,07/01/1988,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/12/2020,08/01/2019,585759416,JARED,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,WILLIAM,R,PEEVLER,312765960,,,,,730 Log Haven,,Woodland Park,CO,80863,,True,,,,,,,M,01/22/1975,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/28/2020,08/11/2019,312765960,WILLIAM,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,KONIC,Z,HALL,497884266,,,,,3506 Stallion Drive,,Killeen,TX,76549,,True,,,,,,,M,05/06/1984,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/26/2020,08/13/2019,497884266,KONIC,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CARLOS,A,AMAYASOTO,601618347,,,,,934 Quain Dr,,Chino Valley,AZ,86323,,True,,,,,,,M,07/14/1996,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/04/2020,08/19/2019,601618347,CARLOS,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MICHELLE,K,MCKENNA,011821142,,,,,2525 E UINTAH ST,APT #17,COLORADO SPRINGS,CO,80909,,True,,,,,,,F,02/14/1998,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/05/2020,08/26/2019,011821142,MICHELLE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,IAN,T,MOORE,640664258,,,,,14414 Hwy 187,,Caballo,NM,87931,,True,,,,,,,M,06/15/1999,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/05/2020,08/29/2019,640664258,IAN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MASON,L,SIMMONS,634767995,,,,,112 MIll St,,Anna,TX,75409,,True,,,,,,,M,05/21/2001,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/13/2020,09/15/2019,634767995,MASON,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,VICTOR,S,SANTAMARIA SALAZAR,384654644,,,,,1301 EAST JONES ST,,SHERMAN,TX,75090,,True,,,,,,,M,11/17/1998,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/25/2020,10/27/2019,384654644,VICTOR,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CHRISTOPHER,D,MALDONADO,585332100,,,,,601 E AFTON,,LA MESA,NM,88044,,True,,,,,,,M,07/14/1978,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/02/2020,11/03/2019,585332100,CHRISTOPHER,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,WAYNE,A,SAMPSON,372061698,,,,,6008 Flat State Drive,,Killeen,TX,76542,,True,,,,,,,M,07/13/1986,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/09/2020,11/04/2019,372061698,WAYNE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,05/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JERMAINE,R,KENDRICK,592924355,,,,,4506 WATER OAK DR,,KILLEEN,TX,76542,,True,,,,,,,M,11/12/1986,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/20/2020,11/03/2019,592924355,JERMAINE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOAQUIN,J,GONZALEZ,585714357,,,,,1131 La Fonda,Unit 7,Las Cruces,NM,88001,,True,,,,,,,M,05/10/1979,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/11/2020,11/03/2019,585714357,JOAQUIN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JEFFREY,S,MULLINS,585690217,,,,,P O BOX 1936,,RUIDOSO,NM,88355,,True,,,,,,,M,04/07/1972,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/28/2020,11/04/2019,585690217,JEFFREY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,SHAVORROW,R,BROWN,463433681,,,,,5808 KINGSTON RD,,OKLAHOMA CITY,OK,73122,,True,,,,,,,M,01/31/1978,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/24/2020,01/01/2020,463433681,SHAVORROW,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,05/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,05/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],463433681,CHILD,,Chemarqus,D,Brown,,,,True,,,,,,,,M,02/15/2008,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],463433681,CHILD,,Serenity,,Johnson,,,,True,,,,,,,,F,07/28/2014,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],463433681,CHILD,,SirGregory,,Spencer,,,,True,,,,,,,,M,09/17/2004,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],463433681,CHILD,,Shaun,,Brown,,,,True,,,,,,,,M,04/17/2010,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],463433681,CHILD,,Chelyse,,Brown,,,,True,,,,,,,,F,02/21/2011,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],463433681,CHILD,,Sakira,,Brown,,,,True,,,,,,,,F,08/11/2004,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DAVE,,SAINTLOUIS,591880094,,,,,2400 MIKULEC DR,,KILLEEN,TX,76542,,True,,,,,,,M,08/29/1989,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,03/19/2020,11/17/2019,591880094,DAVE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,HENDERSON,E,NUNNALLY,526354035,,,,,3657 North Taylor Drive,,Prescott Valley,AZ,86314,,True,,,,,,,M,03/28/1963,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/17/2020,11/12/2019,526354035,HENDERSON,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TIFFANY,M,BERGEN,514152056,,,,,1800 BEAUMONT DR,APT# 1031,NORMAN,OK,73071,,True,,,,,,,F,05/05/1998,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/16/2020,12/08/2019,514152056,TIFFANY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRENT,J,MAST,444064694,,,,,4109 SE 43RD ST,,DEL CITY,OK,73115,,True,,,,,,,M,11/12/1994,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/23/2020,12/20/2019,444064694,BRENT,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DANIEL,L,SALAS,526818895,,,,,16031 W CULVER ST,,GOODYEAR,AZ,85338,,True,,,,,,,M,03/16/1979,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/15/2020,12/29/2019,526818895,DANIEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE+CHILD,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],526818895,CHILD,,Armando,,Salas,,,,True,,,,,,,,M,04/06/2006,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,06/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ARON,J,SELBY,560437201,,,,,15333 N Hayden Rd Apt 1126,,Scottsdale,AZ,85260,,True,,,,,,,M,01/28/1974,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/06/2020,12/29/2019,560437201,ARON,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOSEPH,E,TOEPFER,359604332,,,,,201 S Greenfield Road,Lot 209,Mesa,AZ,85206,,True,,,,,,,M,02/05/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/25/2020,12/29/2019,359604332,JOSEPH,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,HEATHER,L,ROMAN,525897951,,,,,C O KATHY  PASSIG,P O BOX 2805,RUIDOSO,NM,88345,,True,,,,,,,F,12/20/1990,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/15/2020,12/29/2019,525897951,HEATHER,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JEFFREY,L,CASSELL,464394285,,,,,20 Youngblood Drive,,Gordonville,TX,76245,,True,,,,,,,M,06/01/1970,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/04/2020,12/29/2019,464394285,JEFFREY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JAVIER,,JAQUEZ,652091347,,,,,5004 S Eastern Ave #465,,Oklahoma,OK,73129,,True,,,,,,,M,12/10/1998,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,01/06/2020,12/30/2019,652091347,JAVIER,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,04/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JESSIE,C,ROMAN,585990202,,,,,PO Box 2805,301 Carrizo Canyon Rd,Ruidoso,NM,88355,,True,,,,,,,M,06/28/1993,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/21/2020,12/31/2019,585990202,JESSIE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DELANO,R,KERFORD,441087443,,,,,4515 Sunnyview Dr,Apt 2110,Oklahoma City,OK,73135,,True,,,,,,,M,12/13/1995,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/23/2020,01/19/2020,441087443,DELANO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ALFREDO,R,CORDOVA,526239902,,,,,7711 N 51ST AVE,APT# 1070,GLENDALE,AZ,85301,,True,,,,,,,M,10/30/1956,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/15/2020,01/29/2020,526239902,ALFREDO,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,COLE,M,SIMMONS,600345696,,,,,2416 TREMONT ST,APT# 44,COLORADO SPRINGS,CO,80907,,True,,,,,,,M,04/28/1983,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/09/2020,01/31/2020,600345696,COLE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOHN,K,CHEESEMAN,414061648,,,,,8636 W BROWN ST,,PEORIA,AZ,85345,,True,,,,,,,M,01/21/1964,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/15/2020,02/02/2020,414061648,JOHN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JAMES,L,HEBERT,454854985,,,,,PO Box 1245,,Burnet,TX,78611,,True,,,,,,,M,11/08/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/03/2020,02/03/2020,454854985,JAMES,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TED,L,LATIMER,642682768,,,,,202 Butler St,,Trenton,TX,75490,,True,,,,,,,M,10/28/1999,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/18/2020,02/02/2020,642682768,TED,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MICHAEL,D,SALIBA,441765923,,,,,1906 JOE TAYLOR CIR,,NORMAN,OK,73072,,True,,,,,,,M,06/28/1962,NO,FTE,SALARY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/17/2020,02/03/2020,441765923,MICHAEL,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],441765923,SPOUSE,,Jeri,,Saliba,,,,True,,,,,,,,F,07/11/1960,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],441765923,CHILD,,Amelia,,Saliba,,,,True,,,,,,,,F,07/20/2001,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BENJAMIN,J,VASQUEZ,524614902,,,,,85 Sunflower Road,Lot number 257,Colorado Springs,CO,80907,,True,,,,,,,M,09/04/1982,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/08/2020,02/19/2020,524614902,BENJAMIN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOSE,G,GUERRERO RODRIGUEZ,689185642,,,,,300 Magnolia St,,Anthony,TX,79821,,True,,,,,,,M,07/28/1988,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,04/23/2020,03/08/2020,689185642,JOSE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,FREDRICK,H,LIGONS,443907169,,,,,17005 Barcelona Dr,,Oklahoma City,OK,73170,,True,,,,,,,M,02/20/1987,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/13/2020,03/09/2020,443907169,FREDRICK,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,06/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,06/01/2020,,EE+SPOUSE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],443907169,SPOUSE,,Kim,,Ligons,,,,True,,,,,,,,F,11/11/1982,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,06/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,06/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JENEEN,L,PHILLIPS,552733399,,,,,2619 E WILLAMETTE AVE,APT #4,COLORADO SPRINGS,CO,80909,,True,,,,,,,F,10/10/1966,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/04/2020,03/11/2020,552733399,JENEEN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BRANDON,C,ANDREWS,304256832,,,,,2348 Blue Ct,,Norman,OK,73026,,True,,,,,,,M,09/19/2001,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,03/31/2020,03/19/2020,304256832,BRANDON,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,RANDY,,BARAJAS,649050359,,,,,608 Hermosa Dr,,Roswell,NM,88201,,True,,,,,,,M,02/23/1995,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/04/2020,03/30/2020,649050359,RANDY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ERIC,A,WALKER,648201375,,,,,213 Robin Road,,Marble falls,TX,78654,,True,,,,,,,M,09/17/1999,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,03/31/2020,03/30/2020,648201375,ERIC,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JOEY,R,ALDRIDGE,446889539,,,,,1655 Sw 15th st,,OKLAHOMA CITY,OK,73108,,True,,,,,,,M,12/17/1986,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/18/2020,04/05/2020,446889539,JOEY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,JAZZALYNN,D,REBER,362110944,,,,,12485 Native Hill Drive,,Choctaw,OK,73020,,True,,,,,,,F,07/02/1989,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/29/2020,04/08/2020,362110944,JAZZALYNN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,05/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBDEPENDENT],362110944,SPOUSE,,Joshua,,Reber,,,,True,,,,,,,,M,06/19/1987,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],362110944,CHILD,,Brooke,,Reber,,,,True,,,,,,,,F,09/10/2006,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],362110944,CHILD,,Clayten,,Reber,,,,True,,,,,,,,M,08/30/2011,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QBDEPENDENT],362110944,CHILD,,Camden,,Reber,,,,True,,,,,,,,M,09/01/2015,
+[QBDEPENDENTPLAN],BCBS TX Dental HSA,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,05/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Medical HSA,05/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DESIREE,M,MARTINEZ,680162471,,,,,505 D Street,,Hurley,NM,88043,,True,,,,,,,F,06/06/1999,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,05/18/2020,04/09/2020,680162471,DESIREE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,ZACHARY,K,BUELTMAN,317114916,,,,,101 EAST ELMS ROAD,LOT #2,KILLEEN,TX,76542,,True,,,,,,,M,03/31/1992,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/22/2020,04/13/2020,317114916,ZACHARY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,06/01/2020,,EE,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,BOBBY,D,SARGENT,451499246,,,,,245 CR 1475,,COMO,TX,75431,,True,,,,,,,M,06/13/1965,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,04/28/2020,04/15/2020,451499246,BOBBY,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,WAYNE,T,YOST,649243158,,,,,109 Kaibab Dr,,Ruidoso,NM,88345,,True,,,,,,,M,05/05/2001,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/11/2020,04/20/2020,649243158,WAYNE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,LAWRENCE,,QUINTANILLA,606047510,,,,,5368 Billings St,,Denver,CO,80239,,True,,,,,,,M,12/06/1997,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/03/2020,04/21/2020,606047510,LAWRENCE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,LEONARD,A,ORSAK,456232875,,,,,637 County Road 4441,,Winnsboro,TX,75494,,True,,,,,,,M,09/19/1958,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/22/2020,05/03/2020,456232875,LEONARD,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,MARK,A,GONZALES,454672040,,,,,1406 W Harrison St,,Melissa,TX,75454,,True,,,,,,,M,02/01/1980,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/08/2020,05/17/2020,454672040,MARK,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Dental Standard,07/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBPLAN],BCBS TX Medical PPO Standard,07/01/2020,,EE+FAMILY,,,,,,,,,,,BCBS TX Medical PPO Standard/Dental/Vision
+[QBDEPENDENT],454672040,CHILD,,Zander,,Gonzalez,,,,True,,,,,,,,M,08/15/2003,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QBDEPENDENT],454672040,SPOUSE,,Kristie,,Gonzales,,,,True,,,,,,,,F,12/27/1977,
+[QBDEPENDENTPLAN],BCBS TX Medical PPO Standard,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],EyeMed Vision,07/01/2020,,TRUE,
+[QBDEPENDENTPLAN],BCBS TX Dental Standard,07/01/2020,,TRUE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,GRACE,M,SAMPLE,442130392,,,,,1710 Telstar Ct,,Norman,OK,73069,,True,,,,,,,F,03/08/1999,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/29/2020,05/19/2020,442130392,GRACE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,TREVIONE,D,BRUNER,447067726,,,,,2802 SW 59th St,Apt 115,Oklahoma City,OK,73119,,True,,,,,,,M,08/03/1995,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/29/2020,05/19/2020,447067726,TREVIONE,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,NORMAN,E,SANDOVAL,521153517,,,,,1416 E Ash St,,Pueblo,CO,81001,,True,,,,,,,M,11/27/1973,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,06/17/2020,05/24/2020,521153517,NORMAN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CALEB,B,GOODWIN,634788468,,,,,107 La Luz Ln,,RUIDOSO,NM,88345,,True,,,,,,,M,09/17/2001,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,05/29/2020,05/29/2020,634788468,CALEB,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,CHARLES,D,FAULKNER,560953819,,,,,4945 Mark Dabling Blvd,#71,Colorado Springs,CO,80918,,True,,,,,,,M,08/10/1974,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],INVOLUNTARYTERMINATION,06/15/2020,06/01/2020,560953819,CHARLES,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,07/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,STEVEN,R,PATTERSON,511980511,,,,,1404 Lakecrest Dr,,Norman,OK,73071,,True,,,,,,,M,08/26/1979,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/06/2020,06/15/2020,511980511,STEVEN,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QB],Foxworth-Galbraith Lumber Co 36333,Foxworth-Galbraith Lumber Co,,DONAVON,A,CONNER,537139398,,,,,6128 Antelope Villas Cir,#115,Prescott,AZ,86305,,True,,,,,,,M,06/30/1988,NO,FTE,HOURLY,,COUPONBOOK,,True,False,,,
+[QBEVENT],TERMINATION,07/06/2020,06/28/2020,537139398,DONAVON,
+[QBPLANINITIAL],Magellan EAP,EE,
+[QBPLAN],EyeMed Vision,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Medical HSA,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
+[QBPLAN],BCBS TX Dental HSA,08/01/2020,,EE,,,,,,,,,,,BCBS TX Medical HSA/Dental/Vision
