@@ -5,7 +5,7 @@ EAGLINCEXP: Lincoln Leave of Absence Interface Export
 FormatCode:     EAGLINCEXP
 Project:        Lincoln Leave of Absence Interface Export
 Client ID:      AGR1003
-Date/time:      2022-04-21 10:08:55.500
+Date/time:      2022-04-22 12:06:43.153
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -348,7 +348,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220421.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220422.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -492,12 +492,11 @@ IF OBJECT_ID('U_EAGLINCEXP_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EAGLINCEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
     [drvsort] varchar(1) NOT NULL,
     [drvDisabilityContactEmailAdd] varchar(32) NOT NULL,
     [drvEmployeeID] char(9) NULL,
     [drvEmployeeState] varchar(2) NULL,
-    [drvOccuptationDescription] varchar(150) NULL,
+    [drvOccuptationDescription] varchar(25) NOT NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
@@ -739,13 +738,13 @@ BEGIN
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvsort = ''
+       -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvsort = EecEmpNo
         -- standard fields above and additional driver fields below
         ,drvDisabilityContactEmailAdd =  'Shaun.Hurm@AgReliantGenetics.com'
         ,drvEmployeeID = EecEmpNo
         ,drvEmployeeState = LEFT(EecStateSUI,2)
-        ,drvOccuptationDescription =  EecJobTitle
+        ,drvOccuptationDescription =  JbcDesc 
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
@@ -784,7 +783,9 @@ BEGIN
         ,drvP2BenefitLevel = CASE WHEN BdmDedCode = 'LTDA' then '060' END
         ,drvP3CoverageEffectiveDate = EecDateOfOriginalHire
         ,drvLatestHireDate = EecDateOfLastHire
-        ,drvUnionEmployeeIndicator = ''
+        ,drvUnionEmployeeIndicator =  Case WHEN (eecunionlocal = 'union' or eecunionnational = 'union') THEN 'Y' 
+                                           WHEN (eecunionlocal = 'non-union' or eecunionnational = 'non-union') THEN 'N' Else 'N' 
+                                        END 
         ,drvExemptEmployeeIndicator = CASE WHEN  EecPayGroup = 'USSLRY' then 'Y' else 'N' END
         ,drvDateCreated = GetDate()
         ,drvRecordDelimiter = ''
@@ -798,6 +799,8 @@ BEGIN
     Left JOIN dbo.U_dsi_BDM_EAGLINCEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
     WHERE EecEmplStatus <> 'T'
         OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate)
     ;
