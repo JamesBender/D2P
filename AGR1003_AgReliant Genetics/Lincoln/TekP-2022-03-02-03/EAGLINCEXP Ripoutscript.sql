@@ -5,7 +5,7 @@ EAGLINCEXP: Lincoln Leave of Absence Interface Export
 FormatCode:     EAGLINCEXP
 Project:        Lincoln Leave of Absence Interface Export
 Client ID:      AGR1003
-Date/time:      2022-04-22 12:06:43.153
+Date/time:      2022-04-25 11:20:20.970
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -348,7 +348,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220422.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220425.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -492,7 +492,7 @@ IF OBJECT_ID('U_EAGLINCEXP_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EAGLINCEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvsort] varchar(1) NOT NULL,
+    [drvsort] char(9) NULL,
     [drvDisabilityContactEmailAdd] varchar(32) NOT NULL,
     [drvEmployeeID] char(9) NULL,
     [drvEmployeeState] varchar(2) NULL,
@@ -783,8 +783,8 @@ BEGIN
         ,drvP2BenefitLevel = CASE WHEN BdmDedCode = 'LTDA' then '060' END
         ,drvP3CoverageEffectiveDate = EecDateOfOriginalHire
         ,drvLatestHireDate = EecDateOfLastHire
-        ,drvUnionEmployeeIndicator =  Case WHEN (eecunionlocal = 'union' or eecunionnational = 'union') THEN 'Y' 
-                                           WHEN (eecunionlocal = 'non-union' or eecunionnational = 'non-union') THEN 'N' Else 'N' 
+        ,drvUnionEmployeeIndicator =  Case WHEN (eecunionlocal is not null or eecunionnational is not null) THEN 'Y' 
+                                           WHEN (eecunionlocal is null or eecunionnational is null) THEN 'N' Else 'N' 
                                         END 
         ,drvExemptEmployeeIndicator = CASE WHEN  EecPayGroup = 'USSLRY' then 'Y' else 'N' END
         ,drvDateCreated = GetDate()
