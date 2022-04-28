@@ -632,7 +632,7 @@ BEGIN
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
-        ,drvISA16_ComponentSeprator = '>'
+        ,drvISA16_ComponentSeprator = ':'
         ,drvGS02_SenderID = ''
         ,drvGS03_ReceiverID = ''
         ,drvGS04_Date = @RunDate

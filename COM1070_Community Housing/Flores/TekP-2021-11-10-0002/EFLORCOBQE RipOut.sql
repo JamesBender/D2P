@@ -5,7 +5,7 @@ EFLORCOBQE: Flores COBRA QB
 FormatCode:     EFLORCOBQE
 Project:        Flores COBRA QB
 Client ID:      COM1070
-Date/time:      2022-04-18 10:17:02.633
+Date/time:      2022-04-26 05:04:42.700
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -178,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220418.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220426.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -187,7 +187,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export','202202099','EMPEXPORT','ONDEM_XOE',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export-Sched','202202099','EMPEXPORT','SCH_EFLORC',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202203119','EMPEXPORT','TEST_XOE','Mar 11 2022 12:00AM','EFLORCOBQE',NULL,NULL,NULL,'202203119','Mar 11 2022 12:00AM','Dec 30 1899 12:00AM','202201021',NULL,'','','202201021',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202204219','EMPEXPORT','TEST_XOE','Apr 21 2022  3:52PM','EFLORCOBQE',NULL,NULL,NULL,'202204219','Apr 21 2022 12:00AM','Dec 30 1899 12:00AM','201603019','1795','','','201603019',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
 
 -----------
 -- AscImp inserts
@@ -494,7 +494,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4'); -- Eep/ConCobraReason first, then EdhChangeReason. Include CHGRP for elig. ben groups
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3'); -- EedBenStopDate and DbnBenStopDate, unless Eep/ConDateOfCOBRAEvent exists
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraPQBType','1'); -- If no EE or spouse, ALL children are PQB (not just oldest)
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraReasonsDepPQB','201,204,210,LEVNT3,LEVNT4'); -- Valid dependent PQB reasons
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraReasonsDepPQB','201,204,210,LEVNT3,LEVNT4,203'); -- Valid dependent PQB reasons
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidCobraReasonsEmp','201,204,210,LEVNT3,LEVNT4'); -- Invalidate employee when Cobra Reason is a dependent PQB reason
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidTermReasonsEmp','203'); -- Invalidate employee when Cobra Reason is "Death"
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons
@@ -514,6 +514,7 @@ BEGIN
     ,[BdmEEID]
     ,[BdmDepRecID]
     ,[BdmSystemID]
+    ,[BdmBenStatus]
     ,[BdmRunID]
     ,[BdmDedRowStatus]
     ,[BdmRelationship]
@@ -530,7 +531,41 @@ BEGIN
     ,[BdmStopDate]
     ,[BdmIsPQB]
     )
-    SELECT DISTINCT 'EMP'
+    SELECT DISTINCT 'DEP'
+    ,EecCOID
+    ,EecEEID
+    ,DbnDepRecID
+    ,DbnDepRecID
+    ,DbnBenStatus
+    ,'QB'
+    ,'Data inserted for 203 term reason'
+    ,DbnRelationship
+    ,EepDateOfBirth
+    ,DedDedCode
+    ,DbnBenOption
+    ,DbnBenStartDate
+    ,DbnBenStopDate
+    ,DbnBenStatusDate
+    ,DbnBenStatusDate
+    ,'203'
+    ,'203'
+    ,DbnBenStartDate
+    ,DbnBenStopDate
+    ,    CASE WHEN DbnRelationship IN ('SPS','DP') THEN 'Y' 
+        WHEN DbnRelationship NOT IN ('SPS','DP') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_DepDeductions SPS WITH (NOLOCK) WHERE SPS.DbnEEID = DbnEEID AND SPS.DbnFormatCode = 'EFLORCOBQE' AND SPS.DbnRelationship IN ('SPS','DP')) = 0 THEN 'Y' 
+        ELSE 'N' 
+        END
+    FROM dbo.EmpComp WITH(NOLOCK)
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH(NOLOCK)
+    ON DbnEEID = EecEEID
+    AND DbnCOID = EecCOID
+    JOIN dbo.EmpPers WITH(NOLOCK)
+    ON EecEEID = EepEEID
+    WHERE DbnValidForExport = 'N'
+    AND DbnFormatCode = @FormatCode
+    AND EecTermReason = '203'
+    ;
+    /*SELECT DISTINCT 'EMP'
     ,EecCOID
     ,EecEEID
     ,NULL
@@ -558,7 +593,7 @@ BEGIN
     ON EecEEID = EepEEID
     WHERE EedValidForExport = 'N'
     AND EedFormatCode = @FormatCode
-    AND EecTermReason = '203'
+    AND EecTermReason = '203'*/
 
     INSERT INTO [dbo].[U_dsi_BDM_EFLORCOBQE]
     ([BdmRecType]
@@ -609,6 +644,7 @@ BEGIN
     ON dbneeid = edheeid
     AND dbnformatcode = 'EFLORCOBQE'
     WHERE edhChangeReason in ('204')
+    AND DbnBenStatus <> 'A'
     --AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
     --AND dbnValidForExport = 'N'
     --AND dbnRelationship <> 'Z'
@@ -747,6 +783,9 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EFLORCOBQE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH(NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
     JOIN dbo.Contacts WITH(NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId

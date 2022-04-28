@@ -498,8 +498,8 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'MED,DEN,VIS';
-    --SET @DedList = 'MMCI1,MMCI2,MMCI3,MMSI1,MMSI2,MMSI3';
+    --SET @DedList = 'MED,DEN,VIS';
+    SET @DedList = 'MMCI1,MMCI2,MMCI3,MMSI1,MMSI2,MMSI3';
 
 
 
