@@ -1,77 +1,77 @@
 /*
 Directions:
 1) Find and replace each of the text below with the applicable information.
-       E.g. Replace the text "@DeveloperName" (excluding quotes) with "John Doe"
+       E.g. Replace the text "Roger Bynum" (excluding quotes) with "John Doe"
 2) Deploy this to client environment!
 
 -- Integration parameters
-@CustomerName - Replace with customer name
-@DeveloperName - Replace with TC name
-@IntegrationAnalystName - Replace with BA/IC name
-@CreateDate - Replace with date of creation
-@SRNumber - Replace with SR number
-@CustomFormatCode - Replace with Format Code (i.e., ESUNLIF834)
-@CustomFormatName - Replace with Name of Interface (AdfFormatName) (i.e., Sunlife 834 Export)
-@CompanyCode - Replace with Company Code (i.e., GOOG)
-@IsWebFlag - Replace with 'Y' (Yes) or 'N' (No) for Web Interface Settings
+Chatham Financial Corporation - Replace with customer name
+Roger Bynum - Replace with TC name
+Julie Reardon - 
+04/22/2022 - Replace with date of creation
+TekP-2021-10-07-0001 - Replace with SR number
+ECHAMER834 - Replace with Format Code (i.e., ESUNLIF834)
+Meridian Health 834 - Replace with Name of Interface (AdfFormatName) (i.e., Sunlife 834 Export)
+CHAT - Replace with Company Code (i.e., GOOG)
+'Y' - Replace with 'Y' (Yes) or 'N' (No) for Web Interface Settings
 
 -- File parameters
-@FileExportPath - Replace with the Export Path where the Error Report generates to (i.e., \\us.saas\e1\Public\[Client ARNum]\Imports\Accrual\Reports\)
+\\ - Replace with the Export Path where the Error Report generates to (i.e., \\us.saas\e1\Public\[Client ARNum]\Imports\Accrual\Reports\)
 
 -- Data parameters
-@CompanyCode - Replace with Company Code for Customer
+CHAT - Replace with Company Code for Customer
 @DedCodeList - Replace with Deduction Code List in CSV format (i.e., DED1,DED2,DED3)
 
 NOTE: SEARCH FOR THE BELOW PARAMETERS TO SKIP TO THE RECORD IN THE TABLE INSTEAD OF FIND/REPLACE, TO ENSURE ',' FORMAT IS CORRECT
-@SpousesCSV - Replace with SPS relationship codes in CSV format (i.e., SPS)
-@ChildrenCSV - Replace with CHL relationship codes in CSV format (i.e., CHL,STC)
+SPS - Replace with SPS relationship codes in CSV format (i.e., SPS)
+CHL,STC - Replace with CHL relationship codes in CSV format (i.e., CHL,STC)
 @DomPartnerCSV - Replace with DP relationship codes in CSV format (i.e., DP)
-@EEBenOpts - Replace with EE only benefit options for drvCoverageLevel (i.e., EE)
-@ECHBenOpts - Replace with EE+SPOUSE benefit options for drvCoverageLevel (i.e., EEC)
+EE - Replace with EE only benefit options for drvCoverageLevel (i.e., EE)
+EEC - Replace with EE+SPOUSE benefit options for drvCoverageLevel (i.e., EEC)
 @ESPBenOpts - Replace with EE+CHILDREN benefit options for drvCoverageLevel (i.e., EES)
 @EDPBenOpts - Replace with EE+DOMESTICPARTNER benefit options for drvCoverageLevel (i.e., EEDP)
 @EEFAMBenOpts - Replace with EE+FAMILY benefit options for drvCoverageLevel (i.e., FAM)
 */
-IF OBJECT_ID('dsi_vw@CustomFormatCode_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vw@CustomFormatCode_Export];
+IF OBJECT_ID('dsi_vwECHAMER834_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECHAMER834_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_@CustomFormatCode') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_@CustomFormatCode];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECHAMER834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECHAMER834];
 GO
-IF OBJECT_ID('dsi_sp_AfterCollect_@CustomFormatCode') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_@CustomFormatCode];
+IF OBJECT_ID('dsi_sp_AfterCollect_ECHAMER834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_ECHAMER834];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_TrlTbl];
+IF OBJECT_ID('U_ECHAMER834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_TrlTbl];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_HdrTbl];
+IF OBJECT_ID('U_ECHAMER834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_HdrTbl];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_File') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_File];
+IF OBJECT_ID('U_ECHAMER834_File') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_File];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_EEList') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_EEList];
+IF OBJECT_ID('U_ECHAMER834_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_EEList];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_DrvTbl_2300];
+IF OBJECT_ID('U_ECHAMER834_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_DrvTbl_2300];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_DrvTbl];
+IF OBJECT_ID('U_ECHAMER834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_DrvTbl];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_DedList') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_DedList];
+IF OBJECT_ID('U_ECHAMER834_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_DedList];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_AuditFields];
+IF OBJECT_ID('U_ECHAMER834_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_AuditFields];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_Audit') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_Audit];
+IF OBJECT_ID('U_ECHAMER834_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECHAMER834_Audit];
 GO
-IF OBJECT_ID('U_dsi_BDM_@CustomFormatCode') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_@CustomFormatCode];
+IF OBJECT_ID('U_dsi_BDM_ECHAMER834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECHAMER834];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = '@CustomFormatCode';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = '@CustomFormatCode';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = '@CustomFormatCode';
---DELETE [dbo].[iAscDefF] FROM [dbo].[iAscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = '@CustomFormatCode';
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = '@CustomFormatCode');
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = '@CustomFormatCode';
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ECHAMER834';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ECHAMER834';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ECHAMER834';
+--DELETE [dbo].[iAscDefF] FROM [dbo].[iAscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ECHAMER834';
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECHAMER834');
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ECHAMER834';
 GO
 
 DECLARE @AdhSystemID VARCHAR(12), @FixedFormatName1 VARCHAR(50), @FixedFormatName2 VARCHAR(50);
-SET @AdhSystemID = LEFT('@CustomFormatCode' + REPLICATE('0',10),10) + 'Z0';
-SET @FixedFormatName1 = LEFT('@CustomFormatName',50);
-SET @FixedFormatName2 = LEFT('@CustomFormatName',30);
+SET @AdhSystemID = LEFT('ECHAMER834' + REPLICATE('0',10),10) + 'Z0';
+SET @FixedFormatName1 = LEFT('Meridian Health 834',50);
+SET @FixedFormatName2 = LEFT('Meridian Health 834',30);
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) SELECT 'N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','@CustomFormatCode',@FixedFormatName1,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N',@AdhSystemID,'N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N';
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) SELECT 'N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECHAMER834',@FixedFormatName1,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N',@AdhSystemID,'N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '1',@AdhSystemID,'3','H','01','1',NULL,'ISA  Segment ID (Header)',NULL,NULL,'"ISA"','(''DA''=''F*'')';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '2',@AdhSystemID,'2','H','01','2',NULL,'Authorization Info Qualifier',NULL,NULL,'"00"','(''DA''=''F*'')';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '3',@AdhSystemID,'10','H','01','3',NULL,'Authorization Info',NULL,NULL,'""','(''SS''=''F*'')';
@@ -285,70 +285,70 @@ INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '2',@AdhSystemID,'5','T','92','2',NULL,'Number of Functional Groups In',NULL,NULL,'"1"','(''DA''=''T*'')';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '3',@AdhSystemID,'9','T','92','3',NULL,'Interchange Control Number',NULL,NULL,'"000000001"','(''DA''=''T*'')';
 -- Uncomment this line if a changes only version is needed
---INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
---INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','FULL_XOE','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,@FixedFormatName2,CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','@CustomFormatCode',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','834LineFeed','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','ExportPath','V','@FileExportPath');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','InitialSort','C','LEFT(drvInitialSort,20)');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','Is834','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','SubSort','C','drvSubSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','UseFileName','V','N');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H01','U_@CustomFormatCode_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H02','U_@CustomFormatCode_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H03','U_@CustomFormatCode_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H04','U_@CustomFormatCode_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H05','U_@CustomFormatCode_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H06','U_@CustomFormatCode_HdrTbl','ISNULL(drvDTP00_DateTime0,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H07','U_@CustomFormatCode_HdrTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H08','U_@CustomFormatCode_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H09','U_@CustomFormatCode_HdrTbl','ISNULL(drvQTY01_QuantityQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H10','U_@CustomFormatCode_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H11','U_@CustomFormatCode_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H12','U_@CustomFormatCode_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D13','U_@CustomFormatCode_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D14','U_@CustomFormatCode_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D15','U_@CustomFormatCode_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D16','U_@CustomFormatCode_DrvTbl','ISNULL(drvREF01_RefNumberQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D17','U_@CustomFormatCode_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D18','U_@CustomFormatCode_DrvTbl','ISNULL(drvREF01_RefNumberQual4,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D19','U_@CustomFormatCode_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D20','U_@CustomFormatCode_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D21','U_@CustomFormatCode_DrvTbl','ISNULL(drvDTP00_DateTime3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D22','U_@CustomFormatCode_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D23','U_@CustomFormatCode_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D24','U_@CustomFormatCode_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D25','U_@CustomFormatCode_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D26','U_@CustomFormatCode_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D27','U_@CustomFormatCode_DrvTbl','ISNULL(drvICM01_FrequencyCode,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D28','U_@CustomFormatCode_DrvTbl','ISNULL(drvAMT00_SegmentID1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D29','U_@CustomFormatCode_DrvTbl','ISNULL(drvAMT00_SegmentID2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D30','U_@CustomFormatCode_DrvTbl','ISNULL(drvHLH00_SegmentID,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D40','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D41','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_348,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D42','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_349,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D43','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_303,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D45','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D46','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D50','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D51','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D80','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D81','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D85','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D86','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvREF01_RefNumberQual,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D87','U_@CustomFormatCode_DrvTbl_2300','ISNULL(drvLE01_LoopIDCode,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','T90','U_@CustomFormatCode_TrlTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','T91','U_@CustomFormatCode_TrlTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','T92','U_@CustomFormatCode_TrlTbl',NULL);
+--INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+--INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','FULL_XOE','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,@FixedFormatName2,CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ECHAMER834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','834LineFeed','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','ExportPath','V','');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','InitialSort','C','LEFT(drvInitialSort,20)');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','Is834','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H01','U_ECHAMER834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H02','U_ECHAMER834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H03','U_ECHAMER834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H04','U_ECHAMER834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H05','U_ECHAMER834_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H06','U_ECHAMER834_HdrTbl','ISNULL(drvDTP00_DateTime0,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H07','U_ECHAMER834_HdrTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H08','U_ECHAMER834_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H09','U_ECHAMER834_HdrTbl','ISNULL(drvQTY01_QuantityQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H10','U_ECHAMER834_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H11','U_ECHAMER834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','H12','U_ECHAMER834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D13','U_ECHAMER834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D14','U_ECHAMER834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D15','U_ECHAMER834_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D16','U_ECHAMER834_DrvTbl','ISNULL(drvREF01_RefNumberQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D17','U_ECHAMER834_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D18','U_ECHAMER834_DrvTbl','ISNULL(drvREF01_RefNumberQual4,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D19','U_ECHAMER834_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D20','U_ECHAMER834_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D21','U_ECHAMER834_DrvTbl','ISNULL(drvDTP00_DateTime3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D22','U_ECHAMER834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D23','U_ECHAMER834_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D24','U_ECHAMER834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D25','U_ECHAMER834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D26','U_ECHAMER834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D27','U_ECHAMER834_DrvTbl','ISNULL(drvICM01_FrequencyCode,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D28','U_ECHAMER834_DrvTbl','ISNULL(drvAMT00_SegmentID1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D29','U_ECHAMER834_DrvTbl','ISNULL(drvAMT00_SegmentID2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D30','U_ECHAMER834_DrvTbl','ISNULL(drvHLH00_SegmentID,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D40','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D41','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_348,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D42','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_349,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D43','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_303,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D45','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D46','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D50','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D51','U_ECHAMER834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D80','U_ECHAMER834_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D81','U_ECHAMER834_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D85','U_ECHAMER834_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D86','U_ECHAMER834_DrvTbl_2300','ISNULL(drvREF01_RefNumberQual,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','D87','U_ECHAMER834_DrvTbl_2300','ISNULL(drvLE01_LoopIDCode,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','T90','U_ECHAMER834_TrlTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','T91','U_ECHAMER834_TrlTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECHAMER834','T92','U_ECHAMER834_TrlTbl',NULL);
 GO
-DECLARE @ISWEB CHAR(1) = '@IsWebFlag';
-DECLARE @FormatCode VARCHAR(10) = '@CustomFormatCode'
+DECLARE @ISWEB CHAR(1) = ''Y'';
+DECLARE @FormatCode VARCHAR(10) = 'ECHAMER834'
 DECLARE @Cnt CHAR(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 DECLARE @TestServer VARCHAR(5) = (SELECT CASE WHEN @@SERVERNAME LIKE '%Z%' THEN LEFT(@@SERVERNAME,3) + '\' ELSE '' END);
 DECLARE @UDENV VARCHAR(3) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END); 
@@ -365,18 +365,18 @@ BEGIN
     UPDATE dbo.U_Dsi_Configuration SET CfgValue = NULL WHERE FormatCode = @FormatCode AND CfgName = 'ExportPath';
 
     DELETE FROM dbo.AscExp WHERE expFormatCode = @FormatCode AND expExportCode = 'ZAP';
-    UPDATE dbo.AscExp SET expAscFileName = @FilePath + @FileName WHERE expFormatCode = '@CustomFormatCode';
+    UPDATE dbo.AscExp SET expAscFileName = @FilePath + @FileName WHERE expFormatCode = 'ECHAMER834';
 
-    DELETE FROM dbo.U_dsi_Configuration WHERE FormatCode = '@CustomFormatCode' AND CfgName IN ('TestPath','UDESPath');
+    DELETE FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECHAMER834' AND CfgName IN ('TestPath','UDESPath');
 END
 GO
-IF OBJECT_ID('U_@CustomFormatCode_EEList') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_EEList] (
+IF OBJECT_ID('U_ECHAMER834_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECHAMER834_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
-IF OBJECT_ID('U_@CustomFormatCode_File') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_File] (
+IF OBJECT_ID('U_ECHAMER834_File') IS NULL
+CREATE TABLE [dbo].[U_ECHAMER834_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(50) NOT NULL,
     [SubSort] varchar(50) NOT NULL,
@@ -385,15 +385,15 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_File] (
     [Data] varchar(2000) NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_@CustomFormatCode]
+CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_ECHAMER834]
 AS
 SET NOCOUNT ON;
 /************************************************************
-Client: @CustomerName
+Client: Chatham Financial Corporation
 
-Created By: @DeveloperName
-Create Date: @CreateDate
-ChangePoint Request Number: @SRNumber
+Created By: Roger Bynum
+Create Date: 04/22/2022
+ChangePoint Request Number: TekP-2021-10-07-0001
 
 Purpose: Remove "bad" elements where record ends with Asterisk and Tilde (*~)
 
@@ -408,67 +408,67 @@ BEGIN
     --==================================================
     -- Remove Blank Elements Where Row Ends With '*~'
     --==================================================
-    WHILE (SELECT COUNT(*) FROM dbo.U_@CustomFormatCode_File WHERE RIGHT(DATA,2) = '*~') > 0
+    WHILE (SELECT COUNT(*) FROM dbo.U_ECHAMER834_File WHERE RIGHT(DATA,2) = '*~') > 0
     BEGIN
-        UPDATE dbo.U_@CustomFormatCode_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
+        UPDATE dbo.U_ECHAMER834_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
 
     --========================================
     -- Remove Extra Records from PER Segment
     --========================================
-    UPDATE dbo.U_@CustomFormatCode_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
-    UPDATE dbo.U_@CustomFormatCode_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
-    UPDATE dbo.U_@CustomFormatCode_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
+    UPDATE dbo.U_ECHAMER834_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
+    UPDATE dbo.U_ECHAMER834_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
+    UPDATE dbo.U_ECHAMER834_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
 
     --====================================
     -- Update Record Count in SE Segment
     --====================================
     DECLARE @RecordCount INT;
-    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_@CustomFormatCode_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE'));
+    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_ECHAMER834_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE'));
 
-    UPDATE dbo.U_@CustomFormatCode_File
+    UPDATE dbo.U_ECHAMER834_File
     SET Data = REPLACE(Data,'9999',@RecordCount)
     WHERE LEFT(Data,2) = 'SE';
 
 END
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_@CustomFormatCode]
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECHAMER834]
     @systemid CHAR(12)
 AS
 SET NOCOUNT ON;
 /**********************************************************************************
-Client: @CustomerName
+Client: Chatham Financial Corporation
 
-Created By: @DeveloperName
-Business Analyst: @IntegrationAnalystName
-Create Date: @CreateDate
-Service Request Number: @SRNumber
+Created By: Roger Bynum
+Business Analyst: Julie Reardon
+Create Date: 04/22/2022
+Service Request Number: TekP-2021-10-07-0001
 
-Purpose: @CustomFormatName
+Purpose: Meridian Health 834
 
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.AscExp WHERE expFormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = '@CustomFormatCode' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECHAMER834';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECHAMER834';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECHAMER834';
+SELECT * FROM dbo.AscExp WHERE expFormatCode = 'ECHAMER834';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECHAMER834' ORDER BY RunID DESC;
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'FULLFILE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'CHANGES';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECHAMER834', 'FULLFILE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECHAMER834', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECHAMER834', 'CHANGES';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECHAMER834', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECHAMER834', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECHAMER834', 'SCHEDULED';
 
-EXEC dbo.dsi_BDM_sp_ErrorCheck '@CustomFormatCode';
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'ECHAMER834';
 
-EXEC dbo._dsi_usp_ExportRipOut_V7_4 @FormatCode = '@CustomFormatCode', @AllObjects = 'Y', @IsWeb = 'Y';
+EXEC dbo._dsi_usp_ExportRipOut_V7_4 @FormatCode = 'ECHAMER834', @AllObjects = 'Y', @IsWeb = 'Y';
 **********************************************************************************/
 BEGIN
 
@@ -497,20 +497,20 @@ BEGIN
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
         ,@FileMinCovDate  = ''
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = '@CustomFormatCode';
+    WHERE FormatCode = 'ECHAMER834';
 
     --==========================================
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = '@DedCodeList';
+    SET @DedList = 'MED01,MED02,MED03';
 
-    IF OBJECT_ID('U_@CustomFormatCode_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_DedList;
+    IF OBJECT_ID('U_ECHAMER834_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_ECHAMER834_DedList;
     SELECT DedCode = DedDedCode
         ,DedLongDesc
         ,DedType = DedDedType
-    INTO dbo.U_@CustomFormatCode_DedList
+    INTO dbo.U_ECHAMER834_DedList
     FROM dbo.dsi_BDM_fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
@@ -520,15 +520,15 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_@CustomFormatCode_EEList
+    DELETE FROM dbo.U_ECHAMER834_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_@CustomFormatCode_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ECHAMER834_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     IF @ExportCode LIKE 'OE%'
     BEGIN
         -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
-        DELETE FROM dbo.U_@CustomFormatCode_EEList
-        WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_@CustomFormatCode_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
+        DELETE FROM dbo.U_ECHAMER834_EEList
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ECHAMER834_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
     END;
 
     --==========================================
@@ -548,9 +548,9 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'IncludeOEDrops','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','@SpousesCSV');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','@ChildrenCSV');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL,STC');
+    --INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -570,8 +570,8 @@ BEGIN
     --=========================================
     UPDATE D
         SET D.BdmChangeReason = E.BdmChangeReason
-    FROM dbo.U_dsi_bdm_@CustomFormatCode D
-    JOIN dbo.U_dsi_bdm_@CustomFormatCode E
+    FROM dbo.U_dsi_bdm_ECHAMER834 D
+    JOIN dbo.U_dsi_bdm_ECHAMER834 E
         ON E.BdmEEID = D.BdmEEID
         AND E.BdmCOID = D.BdmCOID
         AND E.BdmDedCode = D.BdmDedCode
@@ -580,9 +580,9 @@ BEGIN
     --=====================================================
     -- Update BdmUSGField2 with EmpDedTVID for Employees
     --=====================================================
-    UPDATE dbo.U_dsi_bdm_@CustomFormatCode
+    UPDATE dbo.U_dsi_bdm_ECHAMER834
         SET BdmUSGField2 = EedEmpDedTVID
-    FROM dbo.U_dsi_bdm_@CustomFormatCode
+    FROM dbo.U_dsi_bdm_ECHAMER834
     JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = BdmEEID
         AND EedCOID = BdmCOID
@@ -592,9 +592,9 @@ BEGIN
     --=======================================================
     -- Update BdmUSGField2 with DepBPlanTVID for Dependents
     --=======================================================
-    UPDATE dbo.U_dsi_bdm_@CustomFormatCode
+    UPDATE dbo.U_dsi_bdm_ECHAMER834
         SET BdmUSGField2 = DbnDepBPlanTVID
-    FROM dbo.U_dsi_bdm_@CustomFormatCode
+    FROM dbo.U_dsi_bdm_ECHAMER834
     JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
         ON DbnEEID = BdmEEID
         AND DbnCOID = BdmCOID
@@ -604,9 +604,9 @@ BEGIN
     --======================================================
     -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
     --======================================================
-    UPDATE dbo.U_dsi_bdm_@CustomFormatCode
+    UPDATE dbo.U_dsi_bdm_ECHAMER834
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
-    FROM dbo.U_dsi_bdm_@CustomFormatCode
+    FROM dbo.U_dsi_bdm_ECHAMER834
     JOIN dbo.EmpDedFull WITH (NOLOCK)
         ON EedEmpDedTVID = BdmUSGField2;
 
@@ -623,8 +623,8 @@ BEGIN
     -------------------
     -- HEADER RECORD 
     -------------------
-    IF OBJECT_ID('U_@CustomFormatCode_HdrTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_HdrTbl;
+    IF OBJECT_ID('U_ECHAMER834_HdrTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECHAMER834_HdrTbl;
     SELECT DISTINCT drvISA05_SenderIDQual = ''
         ,drvISA06_SenderID = ''
         ,drvISA07_ReceiverIDQual = ''
@@ -632,7 +632,7 @@ BEGIN
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
-        ,drvISA16_ComponentSeprator = ':'
+        ,drvISA16_ComponentSeprator = '>'
         ,drvGS02_SenderID = ''
         ,drvGS03_ReceiverID = ''
         ,drvGS04_Date = @RunDate
@@ -667,9 +667,9 @@ BEGIN
         ,drvN102_Name2 = ''
         ,drvN103_IDCodeQual2 = ''
         ,drvN104_IDCode2 = ''
-    INTO dbo.U_@CustomFormatCode_HdrTbl
-    FROM dbo.U_@CustomFormatCode_EELIST WITH (NOLOCK)
-    JOIN dbo.U_dsi_bdm_@CustomFormatCode WITH (NOLOCK)
+    INTO dbo.U_ECHAMER834_HdrTbl
+    FROM dbo.U_ECHAMER834_EELIST WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_ECHAMER834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID;
 
@@ -683,8 +683,8 @@ BEGIN
     -------------------
     -- DETAIL RECORD 
     -------------------
-    IF OBJECT_ID('U_@CustomFormatCode_DrvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_DrvTbl;
+    IF OBJECT_ID('U_ECHAMER834_DrvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECHAMER834_DrvTbl;
     SELECT DISTINCT
         --=====================
         --LOOP 2000 RECORDS
@@ -695,9 +695,9 @@ BEGIN
                              END
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
                                         ELSE
-                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@SpousesCSV')) THEN '01'
+                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SPS')) THEN '01'
                                             WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@DomPartnerCSV')) THEN '53'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ChildrenCSV')) THEN '19'
+                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL,STC')) THEN '19'
                                             ELSE '19'
                                             END
                                         END
@@ -848,8 +848,8 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-    INTO dbo.U_@CustomFormatCode_DrvTbl
-    FROM dbo.U_@CustomFormatCode_EELIST WITH (NOLOCK)
+    INTO dbo.U_ECHAMER834_DrvTbl
+    FROM dbo.U_ECHAMER834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
@@ -857,7 +857,7 @@ BEGIN
         AND EecCOID = xCOID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    JOIN dbo.U_dsi_bdm_@CustomFormatCode WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_ECHAMER834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
@@ -876,8 +876,8 @@ BEGIN
     -------------------
     -- DETAIL RECORD 
     -------------------
-    IF OBJECT_ID('U_@CustomFormatCode_DrvTbl_2300','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_DrvTbl_2300;
+    IF OBJECT_ID('U_ECHAMER834_DrvTbl_2300','U') IS NOT NULL
+        DROP TABLE dbo.U_ECHAMER834_DrvTbl_2300;
     SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
@@ -890,9 +890,9 @@ BEGIN
                                      END
         ,drvHD04_PlanCoverageDesc = ''
         ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEBenOpts')) THEN 'EMP'
+                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
                                                      WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ESPBenOpts')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ECHBenOpts')) THEN 'ECH'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) THEN 'ECH'
                                                      WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEFAMBenOpts')) THEN 'FAM'
                                                 END
                                      
@@ -962,14 +962,14 @@ BEGIN
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
                       END
-    INTO dbo.U_@CustomFormatCode_DrvTbl_2300
-    FROM dbo.U_@CustomFormatCode_EELIST WITH (NOLOCK)
+    INTO dbo.U_ECHAMER834_DrvTbl_2300
+    FROM dbo.U_ECHAMER834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    JOIN dbo.U_dsi_bdm_@CustomFormatCode WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_ECHAMER834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
@@ -983,33 +983,33 @@ BEGIN
     ---------------------
     -- TRAILER RECORD
     --------------------
-    IF OBJECT_ID('U_@CustomFormatCode_TrlTbl') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_TrlTbl;
+    IF OBJECT_ID('U_ECHAMER834_TrlTbl') IS NOT NULL
+        DROP TABLE dbo.U_ECHAMER834_TrlTbl;
     SELECT DISTINCT drvSE01_SegmentCount = '9999'
-    INTO dbo.U_@CustomFormatCode_TrlTbl;
+    INTO dbo.U_ECHAMER834_TrlTbl;
 
     --==========================================
     -- Set FileName
     --==========================================
-    IF (dbo.dsi_fnVariable('@CustomFormatCode','UseFileName') = 'N')
+    IF (dbo.dsi_fnVariable('ECHAMER834','UseFileName') = 'N')
     BEGIN
         UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = '@CompanyCode_@CustomFormatCode_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-        WHERE FormatCode = '@CustomFormatCode';
+            SET ExportFile = 'CHAT_ECHAMER834_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+        WHERE FormatCode = 'ECHAMER834';
     END;
 
 END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vw@CustomFormatCode_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_@CustomFormatCode_File (NOLOCK)
+ALTER VIEW dbo.dsi_vwECHAMER834_Export AS
+    SELECT TOP 20000000 DATA FROM dbo.U_ECHAMER834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 GO
 
 --Check out iAscDefF
 SELECT * FROM dbo.AscDef
-WHERE AdfHeaderSystemID LIKE '@CustomFormatCode%'
+WHERE AdfHeaderSystemID LIKE 'ECHAMER834%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
@@ -1018,11 +1018,11 @@ UPDATE dbo.AscExp
        ,ExpStartPerControl     = '201810011'
        ,ExpLastEndPerControl   = '201810019'
        ,ExpEndPerControl       = '201810019'
-WHERE ExpFormatCode = '@CustomFormatCode';
+WHERE ExpFormatCode = 'ECHAMER834';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vw@CustomFormatCode_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_@CustomFormatCode_File (NOLOCK)
+CREATE VIEW dbo.dsi_vwECHAMER834_Export AS
+    SELECT TOP 20000000 DATA FROM dbo.U_ECHAMER834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 GO

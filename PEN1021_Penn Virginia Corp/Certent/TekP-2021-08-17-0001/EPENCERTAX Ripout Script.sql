@@ -5,7 +5,7 @@ EPENCERTAX: Penn Virginia Certent Tax File
 FormatCode:     EPENCERTAX
 Project:        Penn Virginia Certent Tax File
 Client ID:      PEN1021
-Date/time:      2022-04-20 06:00:44.413
+Date/time:      2022-04-26 04:28:36.597
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -166,7 +166,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPENCERTAX_20220420.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPENCERTAX_20220426.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -175,7 +175,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Penn Virginia Certent Tax File','202109289','EMPEXPORT','ONDEM_XOE',NULL,'EPENCERTAX',NULL,NULL,NULL,'202109289','Sep 28 2021  3:44PM','Sep 28 2021  3:44PM','202109281',NULL,'','','202109281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Penn Virginia Certent Ta-Sched','202109289','EMPEXPORT','SCH_EPENCE',NULL,'EPENCERTAX',NULL,NULL,NULL,'202109289','Sep 28 2021  3:44PM','Sep 28 2021  3:44PM','202109281',NULL,'','','202109281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Penn Virginia Certent Ta-Test','202204189','EMPEXPORT','TEST_XOE','Apr 18 2022 12:00AM','EPENCERTAX',NULL,NULL,NULL,'202204189','Apr 18 2022 12:00AM','Dec 30 1899 12:00AM','202204111','50','','','202204111',dbo.fn_GetTimedKey(),NULL,'us3jRePEN1021',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Penn Virginia Certent Ta-Test','202204219','EMPEXPORT','TEST_XOE','Apr 21 2022 12:00AM','EPENCERTAX',NULL,NULL,NULL,'202204219','Apr 21 2022 12:00AM','Dec 30 1899 12:00AM','202204211','50','','','202204211',dbo.fn_GetTimedKey(),NULL,'us3jRePEN1021',NULL);
 
 -----------
 -- AscImp inserts
@@ -293,7 +293,6 @@ CREATE TABLE [dbo].[U_EPENCERTAX_PEarHist] (
     [PehCurHrs] decimal NULL,
     [PehCurAmtYTD] money NULL,
     [PehCurHrsYTD] decimal NULL,
-    [PthMedicareYTD] numeric NULL,
     [PehCurAmtYTDSupp] money NULL,
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompHrs] decimal NULL,
@@ -400,7 +399,7 @@ BEGIN
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
         --,PthCurTaxAmtYTD        = SUM(PthCurTaxAmt)
-        ,PthMedicareYTD        = SUM(CASE WHEN PthTaxCode = 'USMEDEE' THEN PthCurTaxAmt ELSE 0.00 END)
+        --,PthMedicareYTD        = SUM(CASE WHEN PthTaxCode = 'USMEDEE' THEN PthCurTaxAmt ELSE 0.00 END)
         --,PehStateSUIYTD         = sum(CASE WHEN PthTaxCode like '%SUI%' THEN PthCurTaxAmt ELSE 0.00 END)
         --,PehCurAmtYTDSupp       = sum(CASE WHEN pehEarncode IN ('BONS1','BONS2','RELO','RELO2','RSTK','SEV','BONS3') THEN PehCurAmt ELSE 0.00 END) 
         ,PehCurAmtYTDSupp  = SUM(PthCurSuppTaxableWages) 
@@ -448,7 +447,7 @@ BEGIN
         ,drvYTDTaxableSupplemental = CONVERT(VARCHAR(10), CONVERT(MONEY, YtdSupp.PehCurAmtYTDSupp))
         --,drvCompensation   = ''
         ,drvYTDSocialSecurity  = CONVERT(VARCHAR(10), CONVERT(MONEY, YtdSocialSecurity))
-        ,drvYTDMedicare  = CONVERT(VARCHAR(10), CONVERT(MONEY, PthMedicareYTD))
+        ,drvYTDMedicare  = CONVERT(VARCHAR(10), CONVERT(MONEY, USMEDEE.PthMedicareYTD))
         ,drvYTDSDI  = '' -- Leave Blank
         ,drvYTDSUI  =  CONVERT(VARCHAR(10), CONVERT(MONEY, PehStateSUIYTD))
         ,drvYTDFLI  = '' -- Leave Blank
@@ -471,6 +470,15 @@ BEGIN
     LEFT JOIN dbo.U_EPENCERTAX_PEarHist
         ON PehEEID = xEEID
         AND PehCOID = xCOID
+    JOIN (
+            SELECT PthEEID, PthCOID ,SUM(PthCurTaxAmt) AS PthMedicareYTD
+            FROM dbo.PTaxHist WITH (NOLOCK)
+            WHERE LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
+                AND PthPerControl <= @EndPerControl
+                AND PthTaxCode = 'USMEDEE'
+            GROUP BY PthEEID, PthCOID) AS USMEDEE
+        ON USMEDEE.PthEEID = xEEID
+        AND USMEDEE.PthCOID = xCOID
     /*JOIN (SELECT pehEEID,PehCOID, SUM(PehCurAmt) AS PehCurAmtYTD   --SUM(PehCurAmtYTDSupp) AS PehCurAmtYTDSupp--,SUM(PehStateSUIYTD) AS PehStateSUIYTD
                FROM dbo.PEarHist WITH (NOLOCK)
                WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)

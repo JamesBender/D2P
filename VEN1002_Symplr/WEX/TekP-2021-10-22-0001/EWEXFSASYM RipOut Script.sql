@@ -5,7 +5,7 @@ EWEXFSASYM: WEX FSA Export
 FormatCode:     EWEXFSASYM
 Project:        WEX FSA Export
 Client ID:      VEN1002
-Date/time:      2022-04-21 06:47:21.250
+Date/time:      2022-04-27 06:00:29.723
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -258,7 +258,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWEXFSASYM_20220421.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWEXFSASYM_20220427.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -267,7 +267,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export','202201279','EMPEXPORT','ONDEM_XOE',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA Export-Sched','202201279','EMPEXPORT','SCH_EWEXFS',NULL,'EWEXFSASYM',NULL,NULL,NULL,'202201279','Jan 27 2022  9:19PM','Jan 27 2022  9:19PM','202201271',NULL,'','','202201271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA Export-Test','202204159','EMPEXPORT','TEST_XOE','Apr 12 2022  4:46PM','EWEXFSASYM',NULL,NULL,NULL,'202204159','Apr 15 2022 12:00AM','Dec 30 1899 12:00AM','202204081','885','','','202204081',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX FSA Export-Test','202204229','EMPEXPORT','TEST_XOE','Apr 21 2022 11:55AM','EWEXFSASYM',NULL,NULL,NULL,'202204229','Apr 22 2022 12:00AM','Dec 30 1899 12:00AM','202204221','1191','','','202204221',dbo.fn_GetTimedKey(),NULL,'us3lKiVEN1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -456,7 +456,7 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_hdrTbl] (
     [hdr01EmpCode] varchar(5) NOT NULL,
     [hdr01SyncFlag] varchar(1) NOT NULL,
     [hdr01SubmitDt] datetime NOT NULL,
-    [hdr01SubmitTime] varchar(10) NULL,
+    [hdr01SubmitTime] varchar(8000) NULL,
     [hdr01FileVersion] varchar(3) NOT NULL
 );
 
@@ -565,14 +565,14 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_PTTbl] (
     [drv10RepLvl3] varchar(1) NOT NULL,
     [drv10RepLvl4] varchar(1) NOT NULL,
     [drv10CDDCitizen] varchar(1) NOT NULL,
-    [drv10CDDCountry] char(3) NULL,
+    [drv10CDDCountry] varchar(1) NOT NULL,
     [drv10CDDEmpStat] varchar(1) NOT NULL,
     [drv10Employer] varchar(1) NOT NULL,
     [drv10JobTitle] varchar(1) NOT NULL,
     [drv10ClassEffDt] varchar(1) NOT NULL,
     [drv10IDIdentType] varchar(1) NOT NULL,
     [drv10IDIdentNum] varchar(1) NOT NULL,
-    [drv10IDIssuingState] varchar(255) NULL,
+    [drv10IDIssuingState] varchar(1) NOT NULL,
     [drv10IDIssuer] varchar(1) NOT NULL,
     [drv10IDIssueDt] varchar(1) NOT NULL,
     [drv10IDExpirationDt] varchar(1) NOT NULL,
@@ -594,7 +594,7 @@ CREATE TABLE [dbo].[U_EWEXFSASYM_trlTbl] (
     [trl90AdminCode] varchar(3) NOT NULL,
     [trl90EmpCode] varchar(5) NOT NULL,
     [trl90SubmitDt] datetime NOT NULL,
-    [trl90SubmitTime] varchar(10) NULL
+    [trl90SubmitTime] varchar(8000) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWEXFSASYM]
@@ -830,14 +830,14 @@ BEGIN
         ,drv10RepLvl3 = ''
         ,drv10RepLvl4 = ''
         ,drv10CDDCitizen = ''
-        ,drv10CDDCountry = EepAddressCountry
+        ,drv10CDDCountry = ''  --EepAddressCountry
         ,drv10CDDEmpStat = ''
         ,drv10Employer = ''
         ,drv10JobTitle = ''
         ,drv10ClassEffDt = ''
         ,drv10IDIdentType = ''
         ,drv10IDIdentNum = ''
-        ,drv10IDIssuingState = EepAddressState
+        ,drv10IDIssuingState = ''  --EepAddressState
         ,drv10IDIssuer = ''
         ,drv10IDIssueDt = ''
         ,drv10IDExpirationDt = ''
@@ -853,14 +853,16 @@ BEGIN
     JOIN dbo.EmpComp WITH(NOLOCK)
     ON EecEEID = xEEID
     AND EecCOID = xCOID
---    JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
---    ON PdhEEID = xEEID
---    AND PdhCOID = xCOID
+    LEFT JOIN dbo.U_EWEXFSASYM_PDedHist WITH(NOLOCK)
+        ON PdhEEID = xEEID
+        AND PdhCOID = xCOID
     JOIN dbo.U_dsi_bdm_EmpDeductions WITH(NOLOCK)
-    ON EedEEID = xEEID
-    AND EedCOID = xCOID
-    AND EedFormatCode = @FormatCode
-    AND (EedValidForExport = 'Y' OR EedDedRowStatus = 'Deduction Termed') -- VALUE CAUSING TERMED EMPLOYEES NOT TO LOAD ON FINAL PAY
+        ON EedEEID = xEEID
+        AND EedCOID = xCOID
+        AND EedFormatCode = @FormatCode
+        AND (EedBenStatus = 'A' OR (EedBenStatus <> 'A' AND (EedBenStopDate BETWEEN @StartDate AND @EndDate) OR ISNULL(PdhEECurAmt, 0.00 ) > 0.00 ))
+        AND (EedValidForExport = 'Y' OR EedDedRowStatus = 'Deduction Termed') -- VALUE CAUSING TERMED EMPLOYEES NOT TO LOAD ON FINAL PAY
+    --WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND ISNULL(PdhEECurAmt, 0.00 ) > 0.00)
     
     ;
     ---------------------------------
@@ -963,7 +965,7 @@ BEGIN
         ,hdr01EmpCode = '43104'
         ,hdr01SyncFlag = 'N'
         ,hdr01SubmitDt = GETDATE()
-        ,hdr01SubmitTime = CONVERT(VARCHAR(10), GETDATE(), 108)
+        ,hdr01SubmitTime = REPLACE(CONVERT(VARCHAR(10), GETDATE(), 108),':','')    ---CONVERT(VARCHAR(10), GETDATE(), 108)
         ,hdr01FileVersion = '3.5'
     INTO dbo.U_EWEXFSASYM_hdrTbl
     FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
@@ -979,7 +981,7 @@ BEGIN
         ,trl90AdminCode = 'DBI'
         ,trl90EmpCode = '43104'
         ,trl90SubmitDt = GETDATE()
-        ,trl90SubmitTime = CONVERT(VARCHAR(10), GETDATE(), 108)
+        ,trl90SubmitTime = REPLACE(CONVERT(VARCHAR(10), GETDATE(), 108),':','')    ---CONVERT(VARCHAR(10), GETDATE(), 108)
     INTO dbo.U_EWEXFSASYM_trlTbl
     FROM dbo.U_EWEXFSASYM_EEList WITH (NOLOCK)
     ;
