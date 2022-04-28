@@ -4,16 +4,17 @@ ESURCORNEX: Cornerstone Demo
 
 FormatCode:     ESURCORNEX
 Project:        Cornerstone Demo
-Client ID:      USG1000
-Date/time:      2022-04-15 08:20:49.873
+Client ID:      SUR1004
+Date/time:      2022-04-22 07:46:26.687
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ESURCORNEX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    E43
+Server:         E4SUP3DB01
+Database:       ULTIPRO_SRGY
+Web Filename:   SUR1004_WUIU2_EEHISTORY_ESURCORNEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,15 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwESURCORNEX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwESURCORNEX_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ESURCORNEX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESURCORNEX];
+GO
+IF OBJECT_ID('U_ESURCORNEX_File') IS NOT NULL DROP TABLE [dbo].[U_ESURCORNEX_File];
+GO
+IF OBJECT_ID('U_ESURCORNEX_EEList') IS NOT NULL DROP TABLE [dbo].[U_ESURCORNEX_EEList];
+GO
+IF OBJECT_ID('U_ESURCORNEX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ESURCORNEX_drvTbl];
 GO
 
 -----------
@@ -210,7 +219,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ESURCORNEXZ0','90','D','10','30',NULL,'Mobile',NULL,NULL,'"drvMobile"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ESURCORNEXZ0','91','D','10','31',NULL,'Home Phone',NULL,NULL,'"drvHomePhone"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ESURCORNEXZ0','92','D','10','32',NULL,'Fax',NULL,NULL,'"drvFax"','(''UA''=''Q,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ESURCORNEXZ0','93','D','10','33',NULL,'Status',NULL,NULL,'""','(''DA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ESURCORNEXZ0','93','D','10','33',NULL,'Status',NULL,NULL,'"drvStatus"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ESURCORNEXZ0','94','D','10','34',NULL,'User activation date',NULL,NULL,'""','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ESURCORNEXZ0','95','D','10','35',NULL,'User de-activation date',NULL,NULL,'""','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ESURCORNEXZ0','96','D','10','36',NULL,'Personal Email',NULL,NULL,'""','(''DA''=''Q,'')');
@@ -224,7 +233,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ESURCORNEXZ0','104','D','10','44',NULL,'Termination Reason',NULL,NULL,'""','(''DA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ESURCORNEXZ0','105','D','10','45',NULL,'Termination Date',NULL,NULL,'"drvTerminationDate"','(''UD23''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','ESURCORNEXZ0','106','D','10','46',NULL,'Eligible For Rehire',NULL,NULL,'""','(''DA''=''Q,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ESURCORNEXZ0','107','D','10','47',NULL,'Rehired Employee',NULL,NULL,'"drvRehiredEmployee"','(''UA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ESURCORNEXZ0','107','D','10','47',NULL,'Rehired Employee',NULL,NULL,'"drvRehiredEmployee"','(''UD23''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ESURCORNEXZ0','108','D','10','48',NULL,'Division',NULL,NULL,'"drvDivision"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','ESURCORNEXZ0','109','D','10','49',NULL,'Job Title',NULL,NULL,'"drvJobTitle"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','ESURCORNEXZ0','110','D','10','50',NULL,'Grade',NULL,NULL,'""','(''DA''=''Q,'')');
@@ -250,16 +259,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESURCORNEX_20220415.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESURCORNEX_20220422.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Demo','202204159','EMPEXPORT','ONDEM_XOE',NULL,'ESURCORNEX',NULL,NULL,NULL,'202204159','Apr 15 2022  8:19AM','Apr 15 2022  8:19AM','202204151',NULL,'','','202204151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Demo-Sched','202204159','EMPEXPORT','SCH_ESURCO',NULL,'ESURCORNEX',NULL,NULL,NULL,'202204159','Apr 15 2022  8:19AM','Apr 15 2022  8:19AM','202204151',NULL,'','','202204151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Demo-Test','202204159','EMPEXPORT','TEST_XOE',NULL,'ESURCORNEX',NULL,NULL,NULL,'202204159','Apr 15 2022  8:19AM','Apr 15 2022  8:19AM','202204151',NULL,'','','202204151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Demo','202204159','EMPEXPORT','ONDEM_XOE',NULL,'ESURCORNEX',NULL,NULL,NULL,'202204159','Apr 15 2022  9:35AM','Apr 15 2022  9:35AM','202204151',NULL,'','','202204151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cornerstone Demo-Sched','202204159','EMPEXPORT','SCH_ESURCO',NULL,'ESURCORNEX',NULL,NULL,NULL,'202204159','Apr 15 2022  9:35AM','Apr 15 2022  9:35AM','202204151',NULL,'','','202204151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Cornerstone Demo-Test','202204201','EMPEXPORT','TEST_XOE','Apr 20 2022  9:13PM','ESURCORNEX',NULL,NULL,NULL,'202204201','Apr 20 2022 12:00AM','Dec 30 1899 12:00AM','202204201','21352','','','202204201',dbo.fn_GetTimedKey(),NULL,'us3cPeSUR1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -271,10 +280,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','InitialSort','C','drvsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESURCORNEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -285,8 +295,13 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESURCORNEX','H01','dbo.U_ESURCORNEX_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESURCORNEX','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESURCORNEX','D10','dbo.U_ESURCORNEX_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
 
 -----------
 -- U_dsi_Translations_v2 inserts
@@ -294,9 +309,76 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_ESURCORNEX_drvTbl
 -----------
 
+IF OBJECT_ID('U_ESURCORNEX_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ESURCORNEX_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvsort] char(9) NULL,
+    [drvUserID] char(9) NULL,
+    [drvFirstName] varchar(100) NULL,
+    [drvMiddleName] varchar(50) NULL,
+    [drvLastName] varchar(100) NULL,
+    [drvSuffix] varchar(30) NULL,
+    [drvUserName] varchar(25) NULL,
+    [drvManager] varchar(256) NULL,
+    [drvAllowRecon] varchar(5) NOT NULL,
+    [drvEmailAddress] varchar(50) NULL,
+    [drvReqTrainingApproval] varchar(1) NOT NULL,
+    [drvGender] varchar(9) NOT NULL,
+    [drvExempt] varchar(1) NOT NULL,
+    [drvEthnicity] char(1) NULL,
+    [drvCompensationCurrency] varchar(3) NOT NULL,
+    [drvCountry] varchar(2) NOT NULL,
+    [drvOriginalHireDate] datetime NULL,
+    [drvLastHireDate] datetime NULL,
+    [drvPhone] varchar(50) NULL,
+    [drvMobile] varchar(16) NULL,
+    [drvHomePhone] varchar(50) NULL,
+    [drvFax] varchar(1) NOT NULL,
+    [drvStatus] varchar(8) NOT NULL,
+    [drvTimeZone] varchar(2) NOT NULL,
+    [drvTerminationDate] datetime NULL,
+    [drvRehiredEmployee] datetime NULL,
+    [drvDivision] char(25) NULL,
+    [drvJobTitle] char(8) NULL,
+    [drvFacility] varchar(10) NULL,
+    [drvDepartment] varchar(10) NULL,
+    [drvJobBusinessRole] nvarchar(4000) NULL,
+    [drvPreferredName] varchar(100) NULL,
+    [drvJobFamily] nvarchar(1000) NULL,
+    [drvJobLevel] nvarchar(4000) NULL,
+    [drvFLSAStatus] varchar(28) NULL,
+    [drvSPUserType] nvarchar(1000) NULL,
+    [drvParentID] varchar(3) NOT NULL
+);
+
+-----------
+-- Create table U_ESURCORNEX_EEList
+-----------
+
+IF OBJECT_ID('U_ESURCORNEX_EEList') IS NULL
+CREATE TABLE [dbo].[U_ESURCORNEX_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_ESURCORNEX_File
+-----------
+
+IF OBJECT_ID('U_ESURCORNEX_File') IS NULL
+CREATE TABLE [dbo].[U_ESURCORNEX_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(max) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESURCORNEX]
     @SystemID char(12)
@@ -374,56 +456,99 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ESURCORNEX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ESURCORNEX_drvTbl;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvsort = ''
-        -- standard fields above and additional driver fields below
-        ,drvUserID = ''
-        ,drvFirstName = EepNameFirst
-        ,drvMiddleName = LEFT(EepNameMiddle,1)
-        ,drvLastName = EepNameLast
-        ,drvSuffix = ''
-        ,drvUserName = ''
-        ,drvManager = ''
-        ,drvAllowRecon = ''
-        ,drvEmailAddress = EepAddressEMail
-        ,drvReqTrainingApproval = ''
-        ,drvGender = EepGender
-        ,drvExempt = ''
-        ,drvEthnicity = EepAddressCity
-        ,drvCompensationCurrency = ''
-        ,drvCountry = EepAddressCountry
-        ,drvOriginalHireDate = EecDateOfLastHire
-        ,drvLastHireDate = EecDateOfLastHire
-        ,drvPhone = ''
-        ,drvMobile = ''
-        ,drvHomePhone = EepPhoneHomeNumber
-        ,drvFax = ''
-        ,drvTimeZone = ''
-        ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvRehiredEmployee = ''
-        ,drvDivision = ''
-        ,drvJobTitle = ''
-        ,drvFacility = ''
-        ,drvDepartment = ''
-        ,drvJobBusinessRole = ''
-        ,drvPreferredName = EepNamePreferred
-        ,drvJobFamily = ''
-        ,drvJobLevel = ''
-        ,drvFLSAStatus = ''
-        ,drvSPUserType = ''
-        ,drvParentID = ''
+   SELECT DISTINCT
+         drvEEID                        = xEEID
+        ,drvCoID                        = xCoID
+        ,drvDepRecID                    = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvsort                        = EE.EecEmpNo
+        ,drvUserID                      = EE.eecempno
+        ,drvFirstName                   = EepNameFirst
+        ,drvMiddleName                  = EepNameMiddle
+        ,drvLastName                    = EepNameLast
+        ,drvSuffix                      = CASE WHEN eepnamesuffix <> 'Z' THEN eepnamesuffix ELSE '' END
+        ,drvUserName                    = CASE WHEN isnull(EE.EecUDField05, '')  <> '' THEN  EE.EecUDField05 ELSE left(EepNameFirst, 1) + left(EepNameLast, 1) + Right(RTrim(eepSSN), 4) END
+        ,drvManager                     = CASE WHEN EE.EecEMpNO = '1006351' THEN '' ELSE dbo.dsi_fnlib_GetSupervisorField_v2('', EE.EecEEID, 'EmpNo') END
+        ,drvAllowRecon                  = 'FALSE'
+        ,drvEmailAddress                = EepAddressEMail
+        ,drvReqTrainingApproval         = '1'
+        ,drvGender                        = CASE EepGender
+                                            WHEN 'M' then 'Male'
+                                            When 'F' then 'Female'
+                                            Else 'Not Known'
+                                            END
+        ,drvExempt                      = ''
+        ,drvEthnicity                   = EepEthnicID
+        ,drvCompensationCurrency        = 'USD'
+        ,drvCountry                     = 'US'
+        ,drvOriginalHireDate            = EE.EecDateOfOriginalHire
+        ,drvLastHireDate                = EE.EecDateOfLastHire
+        ,drvPhone                       = EE.EecPhoneBusinessNumber
+        ,drvMobile                      = dbo.dsi_fnlib_GetPhoneNumber(EepEEID, 'CEL') 
+        ,drvHomePhone                   = EepPhoneHomeNumber
+        ,drvFax                         = ''
+        ,drvStatus                      = CASE WHEN  EE.EecEmplStatus = 'A' THEN 'Active' ELSE 'Inactive' END 
+        ,drvTimeZone                    = '14'
+        ,drvTerminationDate             = EE.EecDateOfTermination
+        ,drvRehiredEmployee             = CASE When EE.EecDateOfOriginalHire <> EE.EecDateOfLastHire THEN EE.EecDateOfLastHire END
+        ,drvDivision                    = orcDescription
+        ,drvJobTitle                    = EE.EecJobCode
+        ,drvFacility                    = EE.EecOrgLvl2
+        ,drvDepartment                  = EE.EecOrgLvl3
+        ,drvJobBusinessRole             = Case Job_ClinicalorNonClinical 
+												When 'NONCL' THEN 'Non-Clinical' 
+												When 'CLINIC' THEN 'Clinical'
+												ELSE Job_ClinicalorNonClinical
+											END
+        ,drvPreferredName               = EepNamePreferred
+        ,drvJobFamily                   = JF.codDesc
+        ,drvJobLevel                    = CFJC.Job_JobLevel
+        ,drvFLSAStatus                  = CASE EjhFLSACategory    --- JbcFLSAType  --CASE EJH.EjhFLSACate WHEN 'N' THEN 'Non Exempt' ELSE  'Exempt'
+                                                WHEN 'A' THEN 'Administrative' 
+                                                When 'C' THEN 'Computer-Related' 
+                                                WHEN 'E' THEN 'Exempt' 
+                                                WHEN 'F' THEN 'No FLSA Required'
+                                                WHEN 'H' THEN 'Highly Compensated Employee' 
+                                                WHEN 'M' THEN 'Management (no longer valid)' 
+                                                WHEN 'N' THEN 'Non-Exempt' 
+                                                WHEN 'O' THEN 'Outside Sales'
+                                                WHEN 'P' THEN 'Professional' 
+                                                WHEN 'X' THEN 'Executive' 
+                                                WHEN 'Z' THEN 'None' 
+                                                Else EjhFLSACategory
+                                            END                                             
+        ,drvSPUserType                  = (SELECT  CodDesc FROM dbo.fn_localizeCodesForCognos('EMPTYPE' , 'en') Join dbo.empcomp with (nolock) on EecEEType = CodCode and EecCoID = xCoID and EecEEID = xEEID ) 
+        ,drvParentID                    = 'UKG'
     INTO dbo.U_ESURCORNEX_drvTbl
     FROM dbo.U_ESURCORNEX_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp EE WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
+    LEFT JOIN dbo.OrgLevel OL2 WITH (NOLOCK)
+        ON OL2.OrgCode = EE.EecOrgLvl2
+        AND OL2.OrgLvl = 2
+    LEFT JOIN OrgRpCat WITH (NOLOCK)
+        ON orcCode = OL2.OrgReportCategory
+    LEFT JOIN dbo.fn_MP_CustomFields_JobCode (NULL,NULL,NULL,NULL) CFJC 
+        ON CFJC.JbcJobCode = dbo.JobCode.JbcJobCode 
+    LEFT JOIN (
+            SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
+            FROM (
+                    SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                    FROM dbo.EmpHJob WITH (NOLOCK)) AS X
+            WHERE RN = 1) AS EJH
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
+        AND EjhJobCode = EecJobCode
+    --LEFT JOIN fn_BI_EmpComp ('en') FNEC 
+    --    ON FNEC.EecCoID = xCoID
+    --    AND FNEC.EecEEID = xEEID
+    LEFT JOIN fn_LocalizeCodesForCognos('JOBFAMILY','en') JF
+        ON JF.codCode = JbcJobFamily
+
     ;
 
     --==========================================
@@ -461,6 +586,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'ESURCORNEX';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwESURCORNEX_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_ESURCORNEX_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
