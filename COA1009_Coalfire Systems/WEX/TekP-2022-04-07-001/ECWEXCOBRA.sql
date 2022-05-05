@@ -5,7 +5,7 @@ ECWEXCOBRA: COBRA Newly Eligible Beneficiaries
 FormatCode:     ECWEXCOBRA
 Project:        COBRA Newly Eligible Beneficiaries
 Client ID:      USG1000
-Date/time:      2022-05-05 12:14:49.237
+Date/time:      2022-05-05 14:23:46.180
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -13,7 +13,8 @@ Environment:    EZ24
 Server:         EZ2SUP4DB01
 Database:       ULTIPRO_BETHB
 Web Filename:   USG1000_73487_EEHISTORY_ECWEXCOBRA_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,17 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwECWEXCOBRA_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECWEXCOBRA_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ECWEXCOBRA') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECWEXCOBRA];
+GO
+IF OBJECT_ID('U_ECWEXCOBRA_File') IS NOT NULL DROP TABLE [dbo].[U_ECWEXCOBRA_File];
+GO
+IF OBJECT_ID('U_ECWEXCOBRA_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECWEXCOBRA_EEList];
+GO
+IF OBJECT_ID('U_ECWEXCOBRA_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECWEXCOBRA_DedList];
+GO
+IF OBJECT_ID('U_dsi_BDM_ECWEXCOBRA') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECWEXCOBRA];
 GO
 
 -----------
@@ -270,9 +281,10 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECWEXCOBRA','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -301,6 +313,88 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 -- U_dsi_Translations_v3 inserts
 -----------
 
+
+-----------
+-- Create table U_dsi_BDM_ECWEXCOBRA
+-----------
+
+IF OBJECT_ID('U_dsi_BDM_ECWEXCOBRA') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_ECWEXCOBRA] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_ECWEXCOBRA_DedList
+-----------
+
+IF OBJECT_ID('U_ECWEXCOBRA_DedList') IS NULL
+CREATE TABLE [dbo].[U_ECWEXCOBRA_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_ECWEXCOBRA_EEList
+-----------
+
+IF OBJECT_ID('U_ECWEXCOBRA_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECWEXCOBRA_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_ECWEXCOBRA_File
+-----------
+
+IF OBJECT_ID('U_ECWEXCOBRA_File') IS NULL
+CREATE TABLE [dbo].[U_ECWEXCOBRA_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(3000) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECWEXCOBRA]
     @SystemID char(12)
@@ -428,7 +522,7 @@ BEGIN
 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
 
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4'); -- Eep/ConCobraReason first, then EdhChangeReason. Include CHGRP for elig. ben groups – 
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4'); -- Eep/ConCobraReason first, then BDMChangeReason. Include CHGRP for elig. ben groups – 
 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3'); -- EedBenStopDate and DbnBenStopDate, unless Eep/ConDateOfCOBRAEvent exists – 
 
@@ -465,39 +559,44 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
-        ,drvClientDivisionName = CASE WHEN EecCoID = 'T6L7H (Coalfire Federal)' THEN 'Veris Group LLC'
-                                      WHEN EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'Coalfire Systems Inc'
+        ,drvClientDivisionName = CASE WHEN BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'Veris Group LLC'
+                                      WHEN BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'Coalfire Systems Inc'
                                      END
 
-        ,drvNameFirst    = CASE WHEN  EdhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4')  THEN Confnamefirst ELSE EepNameFirst END
-        ,drvNameMiddle    = CASE WHEN  EdhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4')  THEN LEFT(Connamemiddle,1) ELSE LEFT(EepNameMiddle,1) END
-        ,drvNameLast    = CASE WHEN  EdhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4')  THEN ConnameLast ELSE  EepNameLast END
+        ,drvNameFirst     = CASE WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4')  THEN ConNamefirst ELSE EepNameFirst END
+        ,drvNameMiddle    = CASE WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4')  THEN LEFT(Connamemiddle,1) ELSE LEFT(EepNameMiddle,1) END
+        ,drvNameLast      = CASE WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4')  THEN ConnameLast ELSE  EepNameLast END
         ,drvSSN = eepSSN
         ,drvAddress1 = EepAddressLine1
         ,drvAddress2 = EepAddressLine2
         ,drvCity = EepAddressCity
         ,drvStateorProvince = EepAddressState
-        ,drvPostalCode = EepAddressZip
+        ,drvPostalCode = EepAddressZipCode
         ,drvCountry = EepAddressCountry
-        ,drvGender = CASE WHEN  EdhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') AND Congender = 'M' THEN 'M' 
-                          WHEN  EdhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') AND Congender = 'F' THEN 'F' 
-                          WHEN  EdhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') AND Congender NOT IN ( 'M', 'F') THEN 'U' 
+        ,drvGender = CASE WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') AND Congender = 'M' THEN 'M' 
+                          WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') AND Congender = 'F' THEN 'F' 
+                          WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') AND Congender NOT IN ( 'M', 'F') THEN 'U' 
                           ELSE 
                           CASE WHEN EepGender = 'M' THEN 'M' 
                                WHEN EepGender = 'F' THEN 'F'
                                Else 'U'
                             END
                         END
-        ,drvDOB = CASE WHEN  edhChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') THEN condateofbirth ELSE EepDateOfBirth END
+        ,drvDOB = CASE WHEN  BDMChangeReason IN ( '201', 'LEVNT3', '204', '210', 'LEVNT4') THEN condateofbirth ELSE EepDateOfBirth END
         ,drvEmployeePayrollType = CASE WHEN EecSalaryOrHourly = 'S' THEN 'SALARY' ELSE 'HOURLY' END
     INTO dbo.U_ECWEXCOBRA_drvTbl_QB
     FROM dbo.U_ECWEXCOBRA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+            JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EEcEEID = xEEID
     JOIN dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    ;
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecId
+     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECWEXCOBRA_drvTbl_QBEVENT
     ---------------------------------
@@ -508,23 +607,23 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
-        ,drvEventType = CASE WHEN EdhChangeReason IN ('204' , 'LEVNT4')  THEN 'DIVORCELEGALSEPARATION'
+        ,drvEventType = CASE WHEN BDMChangeReason IN ('204' , 'LEVNT4')  THEN 'DIVORCELEGALSEPARATION'
                              WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DEATH' 
-                             WHEN edhChangeReason = '205' THEN MEDICARE
-                             WHEN EdhChangeReason IN ('201' , 'LEVNT3') THEN 'INELIGIBLEDEPENDENT' 
+                             WHEN BDMChangeReason = '205' THEN 'MEDICARE'
+                             WHEN BDMChangeReason IN ('201' , 'LEVNT3') THEN 'INELIGIBLEDEPENDENT' 
                              WHEN EecEmplStatus = 'T' and EecTermReason NOT IN ('202' , '203') and Eectermtype = 'V' THEN 'TERMINATION' 
-                             WHEN (EdhChangeReason = '208' OR EecEmplStatus = 'T') AND EecTermReason = '202' THEN 'RETIREMENT'
-                             WHEN EdhChangeReason IN ( '203' , '202') THEN 'REDUCTIONINHOURS-STATUSCHANGE' 
-                             WHEN EdhChangeReason = '206' THEn 'REDUCTIONINHOURS-ENDOFLEAVE'
+                             WHEN (BDMChangeReason = '208' OR EecEmplStatus = 'T') AND EecTermReason = '202' THEN 'RETIREMENT'
+                             WHEN BDMChangeReason IN ( '203' , '202') THEN 'REDUCTIONINHOURS-STATUSCHANGE' 
+                             WHEN BDMChangeReason = '206' THEn 'REDUCTIONINHOURS-ENDOFLEAVE'
                              WHEN EecEmplStatus = 'T' AND Eectermtype = 'I' THEN 'INVOLUNTARYTERMINATION' 
                             END
         ,drvEventDate = CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ( '202', '203') THEN EecDateOfTermination
-                             WHEN EecEmplStatus = 'T' AND EecTermReason IN ( '202', '203') AND (EepDateOfCOBRAEvent = '' OR EepDateOfCOBRAEvent is NULL) THEn EecDateOfTermination
-                             WHEN EdhChangeReason IN  ( 'LEVNT3', 'LEVNT4', '204', '210', '201') THEN Edheffdate
-                             ELSE EepDateOfCOBRAEvent
+                             WHEN EecEmplStatus = 'T' AND EecTermReason IN ( '202', '203') AND (BdmDateOfCOBRAEvent = '' OR BdmDateOfCOBRAEvent is NULL) THEn EecDateOfTermination
+                             WHEN BDMChangeReason IN  ( 'LEVNT3', 'LEVNT4', '204', '210', '201') THEN BdmBenStartDate
+                             ELSE BdmDateOfCOBRAEvent
                             END
-        ,drvEnrollmentDate = CASE WHEN EdhChangeReason IN  ( 'LEVNT3', 'LEVNT4', '204', '210', '201') THEN MAX(Conbenstartdate)
-                                  ELSE MAX( Eedbenstartdate)
+        ,drvEnrollmentDate = CASE WHEN BDMChangeReason IN  ( 'LEVNT3', 'LEVNT4', '204', '210', '201') THEN MAX(BdmBenStartDate)
+                                  ELSE MAX( BdmBenStartDate)
                                  END
         ,drvEmployeeSSN  = Eepssn 
         ,drvEmployeeName  =  (Eepnamefirst + ' ' + Eepnamelast)
@@ -533,6 +632,23 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    Group by xEEID
+            ,xCoID
+            ,BDMChangeReason
+            ,EecEmplStatus
+            ,EecTermReason
+            ,EecTermType
+            ,EecDateOfTermination
+            ,BDMDateOfCOBRAEvent
+            ,BdmBenStartDate
+            ,eepSSN
+            ,(Eepnamefirst + ' ' + Eepnamelast)
+
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECWEXCOBRA_drvTbl_QBPLAN
@@ -544,41 +660,40 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
-        ,drvPlanName = CASE WHEN EedDedCode = 'DNTH' THEN 'Delta Dental CO Dental High'
-                            WHEN EedDedCode = 'DNTL' THEN 'Delta Dental CO Dental Low'
-                            WHEN EedDedCode = 'VISHP' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision High'
-                            WHEN EedDedCode = 'VISON' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision Low'
-                            WHEN EedDedCode = 'VISHP' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision High Veris'
-                            WHEN EedDedCode = 'VISON' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision Low Veris'
-                            WHEN EedDedCode = 'MPPOM' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $1500 PPO Coalfire'
-                            WHEN EedDedCode = 'MHDHP' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $3000 HDHP Coalfire'
-                            WHEN EedDedCode =' MPPO' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $500 PPO Coalfire'
-                            WHEN EedDedCode = 'MPPOM' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $1500 PPO Veris'
-                            WHEN EedDedCode = 'MHDHP' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $3000 HDHP Veris'
-                            WHEN EedDedCode = 'MPPO' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $500 PPO Veris'
-                            WHEN EedDedCode IN ('FSA', 'FSAL') THEN 'WEX FSA'
+        ,drvPlanName = CASE WHEN BDMDedCode = 'DNTH' THEN 'Delta Dental CO Dental High'
+                            WHEN BDMDedCode = 'DNTL' THEN 'Delta Dental CO Dental Low'
+                            WHEN BDMDedCode = 'VISHP' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision High'
+                            WHEN BDMDedCode = 'VISON' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision Low'
+                            WHEN BDMDedCode = 'VISHP' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision High Veris'
+                            WHEN BDMDedCode = 'VISON' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision Low Veris'
+                            WHEN BDMDedCode = 'MPPOM' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $1500 PPO Coalfire'
+                            WHEN BDMDedCode = 'MHDHP' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $3000 HDHP Coalfire'
+                            WHEN BDMDedCode =' MPPO' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $500 PPO Coalfire'
+                            WHEN BDMDedCode = 'MPPOM' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $1500 PPO Veris'
+                            WHEN BDMDedCode = 'MHDHP' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $3000 HDHP Veris'
+                            WHEN BDMDedCode = 'MPPO' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $500 PPO Veris'
+                            WHEN BDMDedCode IN ('FSA', 'FSAL') THEN 'WEX FSA'
                         END
 
 
-        ,drvStartDate = eedbenstopdate + 1 
+        ,drvStartDate = bdmbenstopdate + 1 
         ,drvEndDate = ''
-        ,drvCoverageLevel = CASE WHEN EedDedCode IN ( 'DNTH', 'DNTL', 'VISHP', 'VISON', 'MPPOM', 'MHDHP', 'MPPO')AND EedBenOption = 'EE' THEN 'EE'
-                                 WHEN EedBenOption = 'EEC' THEN 'EE+CHILDREN'
-                                 WHEN EedBenOption IN('EEF', 'EEDPF') THEN 'EE+FAMILY'
-                                 WHEN EedBenOption IN( 'EES', 'EEDP') THEN 'EE+SPOUSE'
-                                 WHEN EedDedCode IN ('FSA', 'FSAL') THEN 'EE'
-                                 WHEN  edhChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3', '210') AND bdmrelationship IN( 'DP', 'SPS') AND bdmrelationship  IN ( 'CHL', 'DCH', 'DPC', 'STC') THEN 'EE+CHILD' -- ??? bdmrelationship = DP, SPS and more than 1 CHL, DCH, DPC, STC THEN EE+CHILDREN
+        ,drvCoverageLevel = CASE WHEN BdmDedCode IN ( 'DNTH', 'DNTL', 'VISHP', 'VISON', 'MPPOM', 'MHDHP', 'MPPO')AND bdmBenOption = 'EE' THEN 'EE'
+                                 WHEN BdmBenOption = 'EEC' THEN 'EE+CHILDREN'
+                                 WHEN BdmBenOption IN('EEF', 'EEDPF') THEN 'EE+FAMILY'
+                                 WHEN BdmDedCode IN ('FSA', 'FSAL') THEN 'EE'
+                                 WHEN BDMChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3', '210') AND bdmrelationship IN( 'DP', 'SPS') AND bdmrelationship  IN ( 'CHL', 'DCH', 'DPC', 'STC') THEN 'EE+CHILD' -- ??? bdmrelationship = DP, SPS and more than 1 CHL, DCH, DPC, STC THEN EE+CHILDREN
                                  WHEN bdmrelationship IN( 'DP', 'SPS') AND bdmrelationship  IN ( 'CHL', 'DCH', 'DPC', 'STC') THEN 'EE+CHILDREN'   ---?? more than 1 CHL, DCH, DPC, STC THEN EE+CHILDREN
                                  WHEN bdmrelationship IN ( 'CHL', 'DCH', 'DPC', 'STC') THEN 'EE+CHILDREN' --??   more than 1 CHL, DIS, DPC, STC THEN EE+CHILDREN
                                  ELSE 'EE'
                             END
 
-        ,drvPlanBundleName = CASE WHEN EedDedCode = 'MPPOM' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Med $1500 PPO/ESI Rx Coalfire'
-                                  WHEN EedDedCode = 'MHDHP' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Med $3000 HDHP/ESI Rx Coalfire'
-                                  WHEN EedDedCode = 'MPPO' AND  EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Med $500 PPO/ESI Rx Coalfire'
-                                  WHEN EedDedCode = 'MPPOM' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Med $1500 PPO/ESI Rx Veris'
-                                  WHEN EedDedCode = MHDHP AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Med $3000 HDHP/ESI Rx Veris'
-                                  WHEN EedDedCode = MPPO AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Med $500 PPO/ESI Rx Veris'
+        ,drvPlanBundleName = CASE WHEN BDMDedCode = 'MPPOM' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Med $1500 PPO/ESI Rx Coalfire'
+                                  WHEN BDMDedCode = 'MHDHP' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Med $3000 HDHP/ESI Rx Coalfire'
+                                  WHEN BDMDedCode = 'MPPO' AND  BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Med $500 PPO/ESI Rx Coalfire'
+                                  WHEN BdmDedCode = 'MPPOM' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Med $1500 PPO/ESI Rx Veris'
+                                  WHEN BDMDedCode = 'MHDHP' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Med $3000 HDHP/ESI Rx Veris'
+                                  WHEN BDMDedCode = 'MPPO' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Med $500 PPO/ESI Rx Veris'
                                 END
     INTO dbo.U_ECWEXCOBRA_drvTbl_QBPLAN
     FROM dbo.U_ECWEXCOBRA_EEList WITH (NOLOCK)
@@ -618,6 +733,9 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecId
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECWEXCOBRA_drvTbl_QBDEPENDENTPLAN
@@ -629,21 +747,21 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
-        ,drvPlanName =  CASE WHEN DbnDedCode = 'DNTH' THEN 'Delta Dental CO Dental High'
-                             WHEN DbnDedCode = 'DNTL' THEN 'Delta Dental CO Dental Low'
-                             WHEN DbnDedCode = 'VISHP' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision High'
-                             WHEN DbnDedCode = 'VISON' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision Low'
-                             WHEN DbnDedCode = 'VISHP' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision High Veris'
-                             WHEN DbnDedCode = 'VISON' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision Low Veris'
-                             WHEN DbnDedCode = 'MPPOM' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $1500 PPO Coalfire'
-                             WHEN DbnDedCode = 'MHDHP' AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $3000 HDHP Coalfire'
-                             WHEN DbnDedCode = 'MPPO'  AND EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $500 PPO Coalfire'
-                             WHEN DbnDedCode = 'MPPOM' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $1500 PPO Veris'
-                             WHEN DbnDedCode = 'MHDHP' AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $3000 HDHP Veris'
-                             WHEN DbnDedCode = 'MPPO'  AND EecCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $500 PPO Veris'
+        ,drvPlanName =  CASE WHEN BDMDedCode = 'DNTH' THEN 'Delta Dental CO Dental High'
+                             WHEN BDMDedCode = 'DNTL' THEN 'Delta Dental CO Dental Low'
+                             WHEN BDMDedCode = 'VISHP' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision High'
+                             WHEN BDMDedCode = 'VISON' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'VSP Vision Low'
+                             WHEN BDMDedCode = 'VISHP' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision High Veris'
+                             WHEN BDMDedCode = 'VISON' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'VSP Vision Low Veris'
+                             WHEN BDMDedCode = 'MPPOM' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $1500 PPO Coalfire'
+                             WHEN BDMDedCode = 'MHDHP' AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $3000 HDHP Coalfire'
+                             WHEN BDMDedCode = 'MPPO'  AND BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'UHC Medical $500 PPO Coalfire'
+                             WHEN BDMDedCode = 'MPPOM' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $1500 PPO Veris'
+                             WHEN BDMDedCode = 'MHDHP' AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $3000 HDHP Veris'
+                             WHEN BDMDedCode = 'MPPO'  AND BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'UHC Medical $500 PPO Veris'
                          END
 
-        ,drvStartDate = Eedbenstopdate + 1 
+        ,drvStartDate = Bdmbenstopdate + 1 
     INTO dbo.U_ECWEXCOBRA_drvTbl_QBDEPENDENTPLAN
     FROM dbo.U_ECWEXCOBRA_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
@@ -660,9 +778,9 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
-        ,drvPlanName = CASE WHEn EedDedCode IN ('FSA', 'FSAL') THEN  'WEX FSA' END
-        ,drvStartDate = Eedbenstopdate + 1
-        ,drvRate = CASE WHEN Eeddedcode IN ('FSA', 'FSAL') THEN cast ((EedEEAmt * 24)/12 as numeric (16,2)) END ---multiplied by 24 (weeks) and divided by 12 (months) 
+        ,drvPlanName = CASE WHEn BdmDedCode IN ('FSA', 'FSAL') THEN  'WEX FSA' END
+        ,drvStartDate = Bdmbenstopdate + 1
+        ,drvRate = CASE WHEN Bdmdedcode IN ('FSA', 'FSAL') THEN cast ((BdmEEAmt * 24)/12 as numeric (16,2)) END ---multiplied by 24 (weeks) and divided by 12 (months) 
 
     INTO dbo.U_ECWEXCOBRA_drvTbl_QBPLANMEMBERSPECIFICRATE
     FROM dbo.U_ECWEXCOBRA_EEList WITH (NOLOCK)
@@ -681,8 +799,8 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
         ,drvSSN = EepSSN
-        ,drvClientDivisionName = CASE WHEN EecCoID = 'T6L7H (Coalfire Federal)' THEN 'Veris Group LLC' 
-                                      WHEN EecCoID = 'T6LB7 (Coalfire Systems)' THEN 'Coalfire Systems Inc'
+        ,drvClientDivisionName = CASE WHEN BdmCoID = 'T6L7H (Coalfire Federal)' THEN 'Veris Group LLC' 
+                                      WHEN BdmCoID = 'T6LB7 (Coalfire Systems)' THEN 'Coalfire Systems Inc'
                                     END
 
         ,drvNameFirst = EepNameFirst
@@ -709,6 +827,9 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecId
     ;
 
     --==========================================
@@ -746,6 +867,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'ECWEXCOBRA';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwECWEXCOBRA_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_ECWEXCOBRA_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
