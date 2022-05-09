@@ -297,7 +297,7 @@ Business Analyst: @IntegrationAnalystName
 Create Date: @CreateDate 
 Service Request Number: @SRNumber
 
-Purpose: To send employee information to Mass Mutual for plan administration.
+Purpose: To send employee information to ual for plan administration.
 
 Revision History
 ----------------

@@ -1,0 +1,403 @@
+USE [ULTIPRO_WPBUII]
+GO
+/****** Object:  StoredProcedure [dbo].[dsi_sp_BuildDriverTables_EBRGHBNACH]    Script Date: 5/2/2022 12:49:52 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EBRGHBNACH]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Builder's Resource Group Inc
+
+Created By: Marie Waters
+Business Analyst: Julie Reardon
+Create Date: 2022-01-20
+Service Request Number: TekP-2021-12-21-04
+
+Purpose: Huntington Bank ACH 
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBRGHBNACH';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBRGHBNACH';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EBRGHBNACH';
+SELECT * FROM dbo.AscExp WHERE ExpFormatCode = 'EBRGHBNACH';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EBRGHBNACH' ORDER BY RunID DESC;
+[dbo].[AscDefH]
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202101281'
+       ,expStartPerControl     = '202101281'
+       ,expLastEndPerControl   = '202205019'
+       ,expEndPerControl       = '202205019'
+WHERE expFormatCode = 'EBRGHBNACH';
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBRGHBNACH', 'ONDEMAND';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBRGHBNACH', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EBRGHBNACH', 'SCHEDULED';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EBRGHBNACH', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9)
+            ,@RunDate            DATETIME
+            ,@PrgPayDate         DATETIME
+            ,@IncludeOffset      CHAR(1)
+            ,@FedTaxID         VARCHAR(100)
+;
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EBRGHBNACH';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@FormatCode      = FormatCode
+        ,@ExportCode      = ExportCode
+        ,@RunDate         = GETDATE()
+
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    -- Set @PrgPayDate to MAX Pay Date for File Header
+    SET @PrgPayDate = (SELECT MAX(PrgPayDate) FROM dbo.PayReg WITH (NOLOCK) WHERE PrgPerControl BETWEEN @StartPerControl AND @EndPerControl);
+
+    --==========================================
+    -- Set @IncludeOffset Flag when including Batch Offset with Transaction Code '27' in Record Type '6' for a Balance NACHA File.
+    -- Please Note: The most common method is Unbalance NACHA Files, but for a Balance NACHA File, then set the Flag to 'Y' (Yes)
+    --==========================================
+    SET @IncludeOffset = 'N'; -- 'N' (Unbalanace - Most Common) / 'Y' (Balanced - Rare)
+
+
+    /**************************************************************************************************************************************
+    FEDERAL TAX INFO
+    **************************************************************************************************************************************/
+
+    SELECT @FedTaxID = SPACE(1) + CmpFedTaxID
+    FROM dbo.Company WITH (NOLOCK)
+    WHERE cmpCompanyCode = 'LPM'
+
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+
+    ----To Change the Paygroup field to PrgPayGroup vs EecPayGroup, lookup table for variables
+
+    IF OBJECT_ID('U_EBRGHBNACH_Lookup','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_Lookup;
+    SELECT 
+        --COID = (SELECT ExpCOIDList FROM dbo.AscExp WITH (NOLOCK) WHERE ExpFormatCode = 'EBRGHBNACH' AND expExportCode = @ExportCode)
+        PayGroup = SelectValue
+    INTO dbo.U_EBRGHBNACH_Lookup
+    FROM  dbo.U_dsi_SelectByList_V2 WITH (NOLOCK)
+        where slvFormatCode = @FormatCode;
+
+    --- In case its empty, fill it up
+
+    IF OBJECT_ID('U_EBRGHBNACH_Lookup','U') IS NULL 
+    SELECT 
+        --COID = PgcCoID 
+        PayGroup = PgcPayGroup
+    INTO dbo.U_EBRGHBNACH_Lookup
+    FROM  dbo.PyGrComp WITH (NOLOCK)
+       Where PgcPayGroup in ( 'CHR', 'BRG', 'LPM');
+
+    -----I need to do something about Blank company selections or blank Paygroup selections
+
+    -- Create Index
+    --CREATE CLUSTERED INDEX CDX_U_EBRGHBNACH_Lookup ON dbo.U_EBRGHBNACH_Lookup (COID, PayGroup);
+   -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_PDedHist;
+    SELECT 
+         PdhEEID = PrgEEID
+        ,PdhCoID = PrgCoID
+        ,PrgCoBankID
+        ,EepNameFirst
+        ,EepNameLast
+        ,EepSSN
+        ,EecEmpNo = PrgEmpNo
+        ,EECUDFIELD04
+        ,EECUDFIELD05
+        ,PrhEEBankRoute
+        ,PrhAcct
+        ,PrhAccttype
+        ,PrhGenNumber
+        ,PdhEECurAmt = prhDepositAmt
+    INTO dbo.U_EBRGHBNACH_PDedHist
+    FROM dbo.U_EBRGHBNACH_EEList WITH (NOLOCK)
+   JOIN dbo.PayReg WITH (NOLOCK)
+        ON PrgEEID = xEEID
+        AND PrgCoID = xCoID
+        AND PrgPerControl BETWEEN @StartPerControl AND @EndPerControl
+    JOIN dbo.PDedHist WITH (NOLOCK)
+        ON PdhEEID = PrgEEID
+        AND PdhCoID = PrgCoID
+        AND PdhGenNumber = PrgGenNumber
+        AND PdhDedCode IN ('HSACF','HSACI','HSAER','HSAF','HSAI')
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON eepEEID = xEEID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCoID = xCOID
+    JOIN dbo.PDirHist WITH (NOLOCK)
+        ON PrhEeId = xEEID
+        AND PrhCoId = xCOID
+        AND PrhGenNumber = PrgGenNumber
+    --WHERE ISNULL(EecUDField03,'') <> '' AND ISNULL(EecUDField04,'') <> ''
+    --GROUP BY PdhEEID, PdhCoID, PrgCoBankID, EepNameFirst, EepNameLast, EecEmpNo, EecUDField03, EecUDField04, PrhAcctType
+    --    ,CASE WHEN PdhDedCode IN ('HSAEE') THEN 'EE'
+    --          WHEN PdhDedCode IN ('HSAER') THEN 'ER'
+    --     END
+    --HAVING (SUM(PdhEECurAmt) <> 0.00 OR SUM(PdhERCurAmt) <> 0.00);
+       Where PrgPayGroup in ( 'CHR', 'BRG', 'LPM')
+        ;
+
+    -----------------------------
+    -- Working Table - Bank
+    -----------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_Bank','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_Bank;
+    SELECT DISTINCT BnkCoBankID
+        ,BnkBankName
+        ,BnkAchBankRoutingNo
+        ,BnkDDRecord1Pos14To23
+        ,BnkDDRecord5Pos05To20
+        ,BnkDDRecord5Pos21To40
+        ,BnkDDRecord5Pos41To50
+        ,BnkDDRecord5Pos80To87
+        ,BnkDDRecord6Pos80To87
+        ,BnkDDRecord8Pos45To54
+        ,BnkDDRecord8Pos80To87
+    INTO dbo.U_EBRGHBNACH_Bank
+    FROM dbo.Bank WITH (NOLOCK)
+        JOIN dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
+        on prgCoBankID = BnkCoBankID
+         JOIN dbo.PayGroup WITH (NOLOCK)
+        ON PgrBankId = BnkCoBankID
+        ;
+
+    ----------------------------------
+    -- File Header Record ? Type 1
+    ----------------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_H1','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_H1;
+    SELECT DISTINCT
+        drvImmediateDestination = SPACE(1) + '044000024' --BnkAchBankRoutingNo
+        ,drvImmediateOriginCode =  @FedTaxID
+        --BnkDDRecord1Pos14To23
+        ,drvFileCreationDate = CONVERT(CHAR(6),@RunDate,12)
+        ,drvFileCreationTime = REPLACE(CONVERT(VARCHAR(6),@RunDate,108),':',SPACE(0))
+        ,drvImmediateDestinationName = 'HUNTINGTON NATIONAL BKS' --BnkBankName
+        ,drvImmediateOriginName = 'BUILDERS RESOURCE GROUP'
+    INTO dbo.U_EBRGHBNACH_H1
+    FROM dbo.U_EBRGHBNACH_Bank WITH (NOLOCK)
+    ;
+
+    -------------------------------------------
+    -- Company/Batch Header Record  - Type 5
+    -------------------------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_D5','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_D5;
+    SELECT DISTINCT
+        drvCompanyName = 'BUILDERS RESOURCE GROUP'
+        --,drvCompanyDiscretionaryData = BnkDDRecord5Pos21To40
+        ,drvCompanyIdentification = BnkDDRecord5Pos41To50
+        ,drvCompDescDate = CONVERT(CHAR(6),GETDATE(),12)
+        ,drvCompanyEffectiveDate = CONVERT(CHAR(6),@PrgPayDate,12)
+        ,drvOriginatingDFIIdentifictin = '04400002' --BnkDDRecord5Pos80To87
+        ,drvInitialSort = '1'
+    INTO dbo.U_EBRGHBNACH_D5
+    FROM dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EBRGHBNACH_Bank WITH (NOLOCK)
+        ON BnkCoBankID = PrgCoBankID
+		;
+
+    ----------------------------------
+    -- Entry Detail Record - Type 6
+    ----------------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_D6','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_D6;
+    SELECT DISTINCT
+        drvTransactionCode = CASE WHEN PrhAccttype = 'C' THEN '22'
+                                 -- WHEN PrhAccttype = 'S' THEN '32'
+                                  END
+        ,drvRoutingTransitNumber = LEFT(EECUDFIELD04,8)
+        --,drvCheckDigit = SUBSTRING(EddEeBankRoute,10,1)
+        ---May not need check digit
+        ,drvAccountNumber = EECUDFIELD05
+        ,drvAmount = ISNULL(PdhEECurAmt,0.00) * 100 
+        --PrgDDAmt For Percontrols posted in the date range of the file
+        ,drvIdentificationNumber = EepSSN
+        ,drvIndivdualName = UPPER(RTRIM(EepNameLast)) + SPACE(1) + UPPER(EepNameFirst)
+        ,drvTraceNumber = '04400002'+ dbo.dsi_fnPadZero(ROW_NUMBER() OVER (ORDER BY RTRIM(EecEmpNo)),7,0)
+        ,drvInitialSort = '2' + dbo.dsi_fnPadZero(ROW_NUMBER() OVER (ORDER BY RTRIM(EecEmpNo)),7,0)
+    INTO dbo.U_EBRGHBNACH_D6
+    FROM dbo.U_EBRGHBNACH_Bank WITH (NOLOCK)
+    JOIN dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
+        ON BnkCoBankID = PrgCoBankID
+  --  JOIN dbo.empdirdp WITH(NOLOCK) 
+  --      ON EddEEID = PdhEEID
+  --      AND EddCOID = PdhCoID
+        --AND rtrim(EddEeBankRoute) = PrhEEBankRoute
+        --AND rtrim(EddAcct) = PrhAcct
+        --AND EddAccountIsInactive = 'N'
+;
+           -- ON PdhEEID = PrgEEID
+        --AND PdhCoID = PrgCoID
+    --------------------------------------------
+    -- Company/Batch Control Record - Type 8
+    --------------------------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_D8','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_D8;
+    SELECT DISTINCT
+        drvEntryAddendaCount = CONVERT(DECIMAL(10,0),ISNULL((SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK)),0))
+        ,drvEntryHash = (SELECT SUM(CONVERT(DECIMAL(10,0),LEFT(drvRoutingTransitNumber,8))) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK))
+        ---check that 8 digits
+    --        If the first 8 digits in the Receiving DFI ID field are 24107041
+        --If there are 2 record type 6 entries on the file with the same number the value in this field is
+        --24107041 x 2 = 48214082
+        ,drvTotalDebitEntryDollarAmt = CONVERT(DECIMAL(10,0),0)
+        ,drvTotalCreditEntryDollarAmt = (select SUM(CONVERT(DECIMAL(10,0),(ISNULL(drvAmount,0.00) ))) from dbo.U_EBRGHBNACH_D6 WITH (NOLOCK))
+        --SUM(CONVERT(DECIMAL(10,0),(ISNULL(PdhEECurAmt,0.00)* 100 )))
+        --SUM PrgDDAmt of all Record Type 6
+        --This is the total amount sent for all Record Type 6 records
+        ,drvCompanyIdentification = BnkDDRecord5Pos41To50
+        --BnkDDRecord8Pos45To54
+        --,drvOriginatingDFIIdentifictin = BnkDDRecord8Pos80To87
+        ,drvOriginatingDFIIdentifictin = '04400002'
+        ,drvInitialSort = '3'
+    INTO dbo.U_EBRGHBNACH_D8
+    FROM dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EBRGHBNACH_Bank WITH (NOLOCK)
+        ON BnkCoBankID = PrgCoBankID
+    --GROUP BY BnkDDRecord8Pos45To54, BnkDDRecord8Pos80To87;
+
+    ------------------------------------
+    -- File Control Record - Record 9
+    ------------------------------------
+    IF OBJECT_ID('U_EBRGHBNACH_T9','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_T9;
+    SELECT DISTINCT
+        --drvBlockCount = (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D5) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D6) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D8) + 2
+         drvBlockCount = (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D5 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D8 WITH (NOLOCK)) + 2
+        ,drvEntryAddendaCount = SUM(CONVERT(DECIMAL(10,0),drvEntryAddendaCount))
+        ,drvEntryHash = (SELECT SUM(CONVERT(DECIMAL(10,0),LEFT(drvRoutingTransitNumber,8))) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK))
+        --SUM(CONVERT(DECIMAL(10,0),drvRoutingTransitNumber)) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK)
+        --SUM(CONVERT(DECIMAL(10,0),drvEntryHash))
+        ,drvTotalDebitEntryDollarAmt = CONVERT(DECIMAL(10,0),0)
+        ,drvTotalCreditEntryDollarAmt = (select SUM(CONVERT(DECIMAL(10,0),(ISNULL(drvAmount,0.00) ))) from dbo.U_EBRGHBNACH_D6 WITH (NOLOCK))
+        --,drvBlockCountNines = (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D5) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D6) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D8) + 2
+        ,drvBlockCountNines = (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D5 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D8 WITH (NOLOCK)) + 2
+    INTO dbo.U_EBRGHBNACH_T9
+    FROM dbo.U_EBRGHBNACH_D8 WITH (NOLOCK);
+
+    ------------------------------------
+    -- Update Block Count
+    ------------------------------------
+    --UPDATE dbo.U_EBRGHBNACH_T9
+    --    SET drvBlockCount = CASE WHEN drvBlockCount % 10 = 0 THEN drvBlockCount/10
+    --                             ELSE drvBlockCount/10 + 1
+    --                        END;
+    UPDATE dbo.U_EBRGHBNACH_T9
+        SET drvBlockCount = CASE WHEN drvBlockCount % 10 = 0 THEN drvBlockCount/10
+                                 ELSE drvBlockCount/10 + 1
+                            END;
+    ---------------------------------------
+    -- Create 9 Records to Complete File
+    ----------------------------------------
+    --DECLARE @Nines INT
+    --SET @Nines = (10 - (SELECT CASE WHEN (drvBlockCountNines % 10) = 0 THEN 10 ELSE (drvBlockCountNines % 10) END FROM dbo.U_EBRGHBNACH_T9));
+
+    --IF object_id('U_EBRGHBNACH_Nines','U') IS NOT NULL
+    --    DROP TABLE dbo.U_EBRGHBNACH_Nines
+    --CREATE TABLE dbo.U_EBRGHBNACH_Nines (
+    --    drvNines VARCHAR(94)
+    --);
+
+    --WHILE @Nines > 0
+    --BEGIN
+    --    INSERT INTO dbo.U_EBRGHBNACH_Nines (drvNines) VALUES ('9');
+    --    SET @Nines -= 1;
+    --    PRINT @Nines;
+    --END;
+
+        DECLARE @Nines INT
+    SET @Nines = (10 - (SELECT (drvBlockCountNines % 10) FROM dbo.U_EBRGHBNACH_T9 WITH (NOLOCK)))
+
+    IF object_id('U_EBRGHBNACH_Nines','U') IS NOT NULL
+        DROP TABLE dbo.U_EBRGHBNACH_Nines
+    CREATE TABLE dbo.U_EBRGHBNACH_Nines (
+        drvNines VARCHAR(95)
+    );
+
+    WHILE @Nines > 0
+    BEGIN
+        INSERT INTO dbo.U_EBRGHBNACH_Nines (drvNines) VALUES ('9');
+        SET @Nines -= 1;
+        PRINT @Nines;
+    END;
+
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    --IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    --BEGIN
+    --    UPDATE dbo.U_dsi_Parameters
+    --        SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'EBRGHBNACH_TEST_' + CONVERT(CHAR(8),GETDATE(),112) + '.txt'
+    --                              ELSE 'EBRGHBNACH_' + CONVERT(CHAR(8),GETDATE(),112) + '.txt'
+    --                         END
+    --    WHERE FormatCode = @FormatCode;
+    --END
+    IF (dbo.dsi_fnVariable('EBRGHBNACH','UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = 'EBRGHBNACH_' + CONVERT(CHAR(8),GETDATE(),112) + '.txt'
+        WHERE FormatCode = 'EBRGHBNACH';
+    END
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEBRGHBNACH_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EBRGHBNACH_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out iascDefF
+SELECT * FROM dbo.iascDefF
+WHERE AdfHeaderSystemID LIKE 'EBRGHBNACH%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202202281'
+       ,expStartPerControl     = '202202281'
+       ,expLastEndPerControl   = '202203079'
+       ,expEndPerControl       = '202203079'
+WHERE expFormatCode = 'EBRGHBNACH';
+
+**********************************************************************************/
