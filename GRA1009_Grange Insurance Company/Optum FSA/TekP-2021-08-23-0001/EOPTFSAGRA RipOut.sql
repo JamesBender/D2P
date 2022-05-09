@@ -5,7 +5,7 @@ EOPTFSAGRA: Optum FSA
 FormatCode:     EOPTFSAGRA
 Project:        Optum FSA
 Client ID:      GRA1009
-Date/time:      2022-04-22 05:11:28.343
+Date/time:      2022-05-03 04:39:15.047
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220422.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220503.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -462,9 +462,9 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_hdrTbl] (
     [hdrClientCode] varchar(8) NOT NULL,
     [hdrVersNum] varchar(3) NOT NULL,
     [hdrDate] datetime NULL,
-    [hdrCustSpecId] varchar(1) NULL,
-    [hdrCustName] int NULL,
-    [hdrCycle] varchar(3) NULL,
+    [hdrCustSpecId] varchar(9) NOT NULL,
+    [hdrCustName] varchar(6) NOT NULL,
+    [hdrCycle] nvarchar(4000) NULL,
     [hdrPolNum] varchar(7) NOT NULL,
     [hdrTypeFeed] varchar(4) NOT NULL,
     [hdrMultCovDataIndic] varchar(1) NOT NULL
@@ -633,9 +633,10 @@ BEGIN
 
     -- Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate - 60);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','StopDate');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -833,8 +834,6 @@ BEGIN
     JOIN dbo.EmpComp WITH(NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        AND (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
-                                        and EXISTS(select 1 from dbo.U_EOPTFSAGRA_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     JOIN dbo.U_dsi_BDM_EOPTFSAGRA WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
@@ -851,6 +850,14 @@ BEGIN
         ON xEEID = EedEEID
         AND xCOID = EedCOID
         AND BdmDedCode = EedDedCode
+    WHERE (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and 
+                                                            (
+                                                                (eectermreason <>'TRO' and EXISTS(select 1 from dbo.U_EOPTFSAGRA_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T'))
+                                                                OR
+                                                                (PdhEECurAmt > 0.00)
+                                                            )
+                                    )
+            )          
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -874,9 +881,9 @@ BEGIN
         ,hdrClientCode = 'GRANGE01'
         ,hdrVersNum = '001'
         ,hdrDate = (SELECT MAX(PrgPayDate) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK))
-        ,hdrCustSpecId = @CycleInd -- '925268111'
-        ,hdrCustName = @CycleNo -- 'Grange'
-        ,hdrCycle = (SELECT MAX(PrgOrigPayPeriod + RIGHT('00' + CAST(DATEPART(WEEK, PrgPayDate) AS VARCHAR), 2)) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK))
+        ,hdrCustSpecId = '925268111'
+        ,hdrCustName = 'Grange'
+        ,hdrCycle = @CycleInd + FORMAT(@CycleNo, '0#') -- (SELECT MAX(PrgOrigPayPeriod + RIGHT('00' + CAST(DATEPART(WEEK, PrgPayDate) AS VARCHAR), 2)) FROM dbo.U_EOPTFSAGRA_PEarHist WITH(NOLOCK))
         ,hdrPolNum = '0925268'
         ,hdrTypeFeed = 'PROD'
         ,hdrMultCovDataIndic = 'A'

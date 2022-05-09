@@ -5,7 +5,7 @@ EFID401EXP: Fidelity 401k Contribution Export
 FormatCode:     EFID401EXP
 Project:        Fidelity 401k Contribution Export
 Client ID:      MGP1000
-Date/time:      2022-04-27 08:58:07.560
+Date/time:      2022-05-02 09:01:16.497
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -168,7 +168,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFID401EXP_20220427.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFID401EXP_20220502.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -179,7 +179,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202204089','EMPEXPORT','OEPASSIVE',NULL,'EFID401EXP',NULL,NULL,NULL,'202204089','Apr  8 2022 10:50AM','Apr  8 2022 10:50AM','202204011',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Fidelity 401k Contribution Exp','202204089','EMPEXPORT','ONDEM_XOE',NULL,'EFID401EXP',NULL,NULL,NULL,'202204089','Apr  8 2022 10:50AM','Apr  8 2022 10:50AM','202204011',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Fidelity 401k Contributi-Sched','202204089','EMPEXPORT','SCH_EFID40',NULL,'EFID401EXP',NULL,NULL,NULL,'202204089','Apr  8 2022 10:50AM','Apr  8 2022 10:50AM','202204011',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401k Contributi-Test','202204229','EMPEXPORT','TEST_XOE','Apr 25 2022  1:57PM','EFID401EXP',NULL,NULL,NULL,'202204229','Apr 22 2022 12:00AM','Dec 30 1899 12:00AM','202204221','76','eecPayGroup','LXUNI','202204221',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Fidelity 401k Contributi-Test','202204229','EMPEXPORT','TEST_XOE','Apr 28 2022  9:40AM','EFID401EXP',NULL,NULL,NULL,'202204229','Apr 22 2022 12:00AM','Dec 30 1899 12:00AM','202204221','70','eecPayGroup','LXUNI','202204221',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -290,7 +290,7 @@ CREATE TABLE [dbo].[U_EFID401EXP_drvTbl] (
     [drvPlanNumber] varchar(5) NOT NULL,
     [drvSSN] varchar(11) NULL,
     [drvSource] varchar(2) NOT NULL,
-    [drvAmount] varchar(42) NULL
+    [drvAmount] varchar(11) NULL
 );
 
 -----------
@@ -337,8 +337,8 @@ CREATE TABLE [dbo].[U_EFID401EXP_PDedHist] (
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
     [PdhERCurAmtYTD] money NULL,
-    [PdhC_ROTH_X] numeric NULL,
-    [PdhMX] numeric NULL
+    [PdhC_ROTH_X] money NULL,
+    [PdhMX] money NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFID401EXP]
@@ -477,8 +477,8 @@ BEGIN
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,PdhC_ROTH_X     = SUM(CASE WHEN PdhDedCode IN ('401CX','ROTHX') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhMX     = SUM(CASE WHEN PdhDedCode IN ('401MX') THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhC_ROTH_X     = SUM(CASE WHEN PdhDedCode IN ('401CX','ROTHX') THEN PdhEECurAmt*100 ELSE 0 END)
+        ,PdhMX     = SUM(CASE WHEN PdhDedCode IN ('401MX') THEN PdhERCurAmt*100 ELSE 0 END)
     INTO dbo.U_EFID401EXP_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_EFID401EXP_DedList WITH (NOLOCK)
@@ -513,10 +513,10 @@ BEGIN
                         WHEN BdmDedCode = '401MX' THEN '03'
                         ELSE '99'
                         END
-        ,drvAmount = 
+        ,drvAmount = RIGHT('00000000000' + 
                         CASE WHEN BdmDedCode IN ('401CX','ROTHX') THEN 
-                            LEFT(PdhC_ROTH_X, LEN(FORMAT(PdhC_ROTH_X, '#0.00'))-1) + CASE WHEN PdhC_ROTH_X > 0 THEN                                
-                                                                                        CASE RIGHT(FORMAT(PdhC_ROTH_X, '#0.00'), 1) 
+                            LEFT(PdhC_ROTH_X, LEN(FORMAT(PdhC_ROTH_X, '#0'))-1) + CASE WHEN PdhC_ROTH_X > 0 THEN                                
+                                                                                        CASE RIGHT(FORMAT(PdhC_ROTH_X, '#0'), 1) 
                                                                                             WHEN '1' THEN 'A'
                                                                                             WHEN '2' THEN 'B'
                                                                                             WHEN '3' THEN 'C'
@@ -529,7 +529,7 @@ BEGIN
                                                                                             WHEN '0' THEN '{'
                                                                                         END
                                                                                     ELSE
-                                                                                        CASE RIGHT(FORMAT(PdhC_ROTH_X, '#0.00'), 1) 
+                                                                                        CASE RIGHT(FORMAT(PdhC_ROTH_X, '#0'), 1) 
                                                                                             WHEN '1' THEN 'J'
                                                                                             WHEN '2' THEN 'K'
                                                                                             WHEN '3' THEN 'L'
@@ -543,8 +543,8 @@ BEGIN
                                                                                         END
                                                                                     END
                         WHEN BdmDedCode IN ('401MX') THEN --FORMAT(PdhMX, '#.00')
-                            LEFT(PdhMX, LEN(FORMAT(PdhMX, '#0.00'))-1) + CASE WHEN PdhMX > 0 THEN                                
-                                                                                        CASE RIGHT(FORMAT(PdhMX, '#0.00'), 1) 
+                            LEFT(PdhMX, LEN(FORMAT(PdhMX, '#0'))-1) + CASE WHEN PdhMX > 0 THEN                                
+                                                                                        CASE RIGHT(FORMAT(PdhMX, '#0'), 1) 
                                                                                             WHEN '1' THEN 'A'
                                                                                             WHEN '2' THEN 'B'
                                                                                             WHEN '3' THEN 'C'
@@ -557,7 +557,7 @@ BEGIN
                                                                                             WHEN '0' THEN '{'
                                                                                         END
                                                                                     ELSE
-                                                                                        CASE RIGHT(FORMAT(PdhMX, '#0.00'), 1) 
+                                                                                        CASE RIGHT(FORMAT(PdhMX, '#0'), 1) 
                                                                                             WHEN '1' THEN 'J'
                                                                                             WHEN '2' THEN 'K'
                                                                                             WHEN '3' THEN 'L'
@@ -570,7 +570,7 @@ BEGIN
                                                                                             WHEN '0' THEN '{'
                                                                                         END
                                                                                     END
-                        END
+                        END, 11)
     INTO dbo.U_EFID401EXP_drvTbl
     FROM dbo.U_EFID401EXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)

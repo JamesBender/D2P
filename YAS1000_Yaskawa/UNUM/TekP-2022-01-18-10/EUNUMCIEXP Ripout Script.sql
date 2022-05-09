@@ -4,16 +4,17 @@ EUNUMCIEXP: UNUM Critical Illness Export
 
 FormatCode:     EUNUMCIEXP
 Project:        UNUM Critical Illness Export
-Client ID:      USG1000
-Date/time:      2022-03-31 12:44:38.830
+Client ID:      YAS1000
+Date/time:      2022-05-04 04:49:12.527
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EUNUMCIEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW4WUP4DB01
+Database:       ULTIPRO_WPYAAMI
+Web Filename:   YAS1000_1TTK5_EEHISTORY_EUNUMCIEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -212,7 +213,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMCIEXP_20220331.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMCIEXP_20220504.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -223,7 +224,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202203319','EMPEXPORT','OEPASSIVE',NULL,'EUNUMCIEXP',NULL,NULL,NULL,'202203319','Mar 31 2022  9:57AM','Mar 31 2022  9:57AM','202003241',NULL,'','','202003241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Critical Illness Export','202203319','EMPEXPORT','ONDEM_XOE',NULL,'EUNUMCIEXP',NULL,NULL,NULL,'202203319','Mar 31 2022  9:57AM','Mar 31 2022  9:57AM','202003241',NULL,'','','202003241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Critical Illness Ex-Sched','202203319','EMPEXPORT','SCH_EUNUMC',NULL,'EUNUMCIEXP',NULL,NULL,NULL,'202203319','Mar 31 2022  9:57AM','Mar 31 2022  9:57AM','202003241',NULL,'','','202003241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Critical Illness Ex-Test','202203319','EMPEXPORT','TEST_XOE',NULL,'EUNUMCIEXP',NULL,NULL,NULL,'202203319','Mar 31 2022  9:57AM','Mar 31 2022  9:57AM','202003241',NULL,'','','202003241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UNUM Critical Illness Ex-Test','202204279','EMPEXPORT','TEST_XOE','Apr 27 2022 10:11AM','EUNUMCIEXP',NULL,NULL,NULL,'202204279','Apr 27 2022 12:00AM','Dec 30 1899 12:00AM','202204271','81','','','202204271',dbo.fn_GetTimedKey(),NULL,'us3cBeYAS1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -235,10 +236,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EUNUMCIEXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -259,11 +261,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -368,7 +365,7 @@ CREATE TABLE [dbo].[U_EUNUMCIEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
-    [drvEnroll2] varchar(1) NOT NULL,
+    [drvEnroll2] int NOT NULL,
     [drvMemberId] char(11) NULL,
     [drvDateOfHire] datetime NULL,
     [drvTermDate] datetime NULL,
@@ -601,7 +598,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvEnroll2 = ''
+        ,drvEnroll2 = 0
         ,drvMemberId = EepSSN
         ,drvDateOfHire = EecDateOfLastHire
         ,drvTermDate =    CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
@@ -705,6 +702,9 @@ BEGIN
         AND EedDedCode = BdmDedCode
     ;
 
+    UPDATE dbo.U_EUNUMCIEXP_drvTbl
+        SET drvEnroll2 = (SELECT COUNT(*) FROM dbo.U_EUNUMCIEXP_drvTbl)
+    ;
     --==========================================
     -- Set FileName
     --==========================================
@@ -741,9 +741,7 @@ WHERE expFormatCode = 'EUNUMCIEXP';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEUNUMCIEXP_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EUNUMCIEXP_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwEUNUMCIEXP_Export AS      SELECT TOP 200000000 Data FROM dbo.U_EUNUMCIEXP_File WITH (NOLOCK)     ORDER BY RIGHT(RecordSet,2), InitialSort  
 
 GO
 

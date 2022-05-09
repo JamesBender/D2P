@@ -5,7 +5,7 @@ EFLORCOBQE: Flores COBRA QB
 FormatCode:     EFLORCOBQE
 Project:        Flores COBRA QB
 Client ID:      COM1070
-Date/time:      2022-04-26 05:04:42.700
+Date/time:      2022-05-09 06:10:34.543
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -178,16 +178,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220426.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLORCOBQE_20220509.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export','202202099','EMPEXPORT','ONDEM_XOE',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export-Sched','202202099','EMPEXPORT','SCH_EFLORC',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202202099','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202091',NULL,'','','202202091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202204219','EMPEXPORT','TEST_XOE','Apr 21 2022  3:52PM','EFLORCOBQE',NULL,NULL,NULL,'202204219','Apr 21 2022 12:00AM','Dec 30 1899 12:00AM','201603019','1795','','','201603019',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export','202204309','EMPEXPORT','ONDEM_XOE',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202204309','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Export-Sched','202204309','EMPEXPORT','SCH_EFLORC',NULL,'EFLORCOBQE',NULL,NULL,NULL,'202204309','Feb  9 2022 10:22PM','Feb  9 2022 10:22PM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Flores COBRA Export-Test','202204309','EMPEXPORT','TEST_XOE','Apr 27 2022 10:12AM','EFLORCOBQE',NULL,NULL,NULL,'202204309','Apr 30 2022 12:00AM','Dec 30 1899 12:00AM','202202011','22','','','202202011',dbo.fn_GetTimedKey(),NULL,'us3lKiCOM1070',NULL);
 
 -----------
 -- AscImp inserts
@@ -500,7 +500,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL, DPC, STC');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL,DCH,DPC,STC');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
 
@@ -747,7 +747,7 @@ BEGIN
             drvDepRecID,
             drv20DepIdent,
             drv20EmpIdNumOfIns,
-            ROW_NUMBER() OVER(PARTITION BY drvEEID, drv20RelToIns ORDER BY drv20DOB) AS drv20DepNum,
+            drv20DepNum, --ROW_NUMBER() OVER(PARTITION BY drvEEID, drv20RelToIns ORDER BY drv20DOB) AS drv20DepNum,
             drv20DepFName,
             drv20DepLName,
             drv20RelToIns,
@@ -766,7 +766,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drv20DepIdent = '2'
         ,drv20EmpIdNumOfIns = EepSSN
-        ,drv20DepNum = ''--ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmDateOfBirth)
+        ,drv20DepNum = RN--ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmDateOfBirth)
         ,drv20DepFName = ConNameFirst
         ,drv20DepLName = ConNameLast
         ,drv20RelToIns = CASE WHEN BdmRelationship IN ('SPS', 'DP') THEN 'S'
@@ -776,7 +776,7 @@ BEGIN
         ,drv20BdmDepRecId = BdmDepRecId
         ,drvInitialSort = 1 + LTRIM(RTRIM(EepSSN))
         ,drvSubSort = '2'
-   -- INTO dbo.U_EFLORCOBQE_drvDependent
+    --INTO dbo.U_EFLORCOBQE_drvDependent
     FROM dbo.U_EFLORCOBQE_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -786,12 +786,28 @@ BEGIN
     JOIN dbo.EmpComp WITH(NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    JOIN dbo.Contacts WITH(NOLOCK)
+    --JOIN dbo.Contacts WITH(NOLOCK)
+    /*JOIN (
+            SELECT ConEEID, ConSystemId, ConNameFirst, ConNameLast, ConDateOfBirth, ConGender, ROW_NUMBER() OVER(PARTITION BY ConEEID ORDER BY ConDateOfBirth) AS RN
+            FROM dbo.Contacts WITH (NOLOCK)) AS Con*/
+    JOIN (
+            SELECT DISTINCT ConEEID, ConSystemId, ConNameFirst, ConNameLast, ConDateOfBirth, ConGender, ROW_NUMBER() OVER(PARTITION BY ConEEID ORDER BY ConDateOfBirth) AS RN
+            FROM (
+                    SELECT DISTINCT ConEEID, ConSystemId, ConNameFirst, ConNameLast, ConDateOfBirth, ConGender --, ROW_NUMBER() OVER(PARTITION BY ConEEID ORDER BY ConDateOfBirth) AS RN
+                                FROM dbo.Contacts WITH (NOLOCK)
+                                JOIN dbo.U_dsi_BDM_EFLORCOBQE iBdm WITH (NOLOCK)
+                                    ON iBdm.BdmEEID = ConEEID
+                                    AND iBdm.BdmDepRecID = ConSystemId
+                                    AND iBdm.BdmRunId = 'QB'
+                                    AND iBdm.BdmRecType = 'DEP'
+                                    AND iBdm.BdmIsPQB = 'N'
+                                --where ConEEID = @EEID
+                                ) NumberedCon) Con
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId
     WHERE BdmRunID = 'QB'
     AND BdmRecType = 'DEP'
-    AND BdmIsPQB = 'N') a
+    AND BdmIsPQB = 'N' ) a
     --AND BdmIsPQB = 'Y') a
     ;
     ---------------------------------
@@ -898,10 +914,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202202021'
-       ,expStartPerControl     = '202202021'
-       ,expLastEndPerControl   = '202202099'
-       ,expEndPerControl       = '202202099'
+    SET expLastStartPerControl = '202202011'
+       ,expStartPerControl     = '202202011'
+       ,expLastEndPerControl   = '202204309'
+       ,expEndPerControl       = '202204309'
 WHERE expFormatCode = 'EFLORCOBQE';
 
 **********************************************************************************/

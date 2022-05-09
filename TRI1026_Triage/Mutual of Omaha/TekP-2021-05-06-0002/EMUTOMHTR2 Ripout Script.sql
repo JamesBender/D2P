@@ -5,7 +5,7 @@ EMUTOMHTR2: Mutual of Omaha Benefits Export V2
 FormatCode:     EMUTOMHTR2
 Project:        Mutual of Omaha Benefits Export V2
 Client ID:      TRI1026
-Date/time:      2022-02-18 05:10:17.330
+Date/time:      2022-05-06 08:06:12.660
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -346,17 +346,17 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMUTOMHTR2_20220218.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMUTOMHTR2_20220506.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Open enrollment - active','201608159','EMPEXPORT','OEACTIVE','Sep 14 2021  5:49PM','EMUTOMHTR2',NULL,NULL,NULL,'201608159','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','201605011','0','','','201605011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Open enrollment - passive','201608159','EMPEXPORT','OEPASSIVE','Jul 12 2016  6:20PM','EMUTOMHTR2',NULL,NULL,NULL,'201608159','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','201605011',NULL,'','','201605011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XPJBH',NULL,NULL,NULL,'MoO VolLife, Dis wkly Tues2pm','201905029','EMPEXPORT','SCHEDULED','Jul 12 2016  6:20PM','EMUTOMHTR2',NULL,NULL,NULL,'202110059','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','202109281',NULL,'','','201905021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test purposes only','202201121','EMPEXPORT','TEST','Jan 31 2022  3:32PM','EMUTOMHTR2',NULL,NULL,NULL,'202201121','Jan 12 2022 12:00AM','Dec 30 1899 12:00AM','202112291','2421','','','202112291',dbo.fn_GetTimedKey(),NULL,'us3rVaTRI1026',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Open enrollment - active','202205039','EMPEXPORT','OEACTIVE','Sep 14 2021  5:49PM','EMUTOMHTR2',NULL,NULL,NULL,'202205039','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','202112011','0','','','202112011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Open enrollment - passive','202205039','EMPEXPORT','OEPASSIVE','Jul 12 2016  6:20PM','EMUTOMHTR2',NULL,NULL,NULL,'202205039','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','202112011',NULL,'','','202112011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XPJBH',NULL,NULL,NULL,'MoO VolLife, Dis wkly Tues2pm','202205039','EMPEXPORT','SCHEDULED','Jul 12 2016  6:20PM','EMUTOMHTR2',NULL,NULL,NULL,'202205039','Jul 12 2016  6:20PM','Dec 30 1899 12:00AM','202112011',NULL,'','','202112011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test purposes only','202205039','EMPEXPORT','TEST','Feb 23 2022  1:57PM','EMUTOMHTR2',NULL,NULL,NULL,'202205039','Jan 12 2022 12:00AM','Dec 30 1899 12:00AM','202112011','2387','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3rVaTRI1026',NULL);
 
 -----------
 -- AscImp inserts
@@ -636,7 +636,8 @@ CREATE TABLE [dbo].[U_Dsi_DrvTbl_EMUTOMHTR2_Coverage] (
     [BdmEEID] char(12) NOT NULL,
     [BdmBenOption] char(6) NULL,
     [BdmNumSpouses] int NULL,
-    [BdmNumChildren] int NULL
+    [BdmNumChildren] int NULL,
+    [BdmBenStatus] char(1) NULL
 );
 
 -----------
@@ -939,7 +940,8 @@ IF OBJECT_ID('dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage')    IS NOT NULL  DROP TABLE 
 
 DELETE FROM dbo.U_dsi_bdm_Configuration WHERE FormatCode = @FormatCode
 
-INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes', 'LIFEE,LIFES,LIFEC,STD40,STD60')   
+--INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes', 'LIFEE,LIFES,LIFEC,STD40,STD60')   
+INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodes', 'LIFEE,LIFES,LIFEC,STD40,STD60,ACC,CRILL,CRIL2,CRIL3,CRILC,CRILS,CRIS2,CRIS3')   
 INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TermSelectionOption', 'AuditDate')
 INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'BuildConsolidatedTable', 'Standard')
 INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'StartDateTime', @StartDate)
@@ -958,6 +960,8 @@ END
 
 EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode
 
+
+/* I don't know if we need this anymore - JCB
 --Spouse/Domestic Partner:
     INSERT INTO dbo.U_dsi_bdm_DepDeductions (dbnformatcode, dbncoid, dbneeid, dbndeprecid, DbnRelationship, dedeebenamt, dbnbenoption, dbnbenstatus, dbnbenstartdate, dbnbenstopdate, dbndedcode, dbnvalidforexport, deddedcode, deddedtype)
       (SELECT eedformatcode, ee.eedcoid, ee.eedeeid, consystemid, conrelationship, ee.eedbenamt, ee.eedbenoption, ee.eedbenstatus, ee.eedbenstartdate, ee.eedbenstopdate, ee.eeddedcode, ee.eedvalidforexport, ee.eeddedcode, ee.deddedtype
@@ -977,6 +981,7 @@ EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode
         AND ee.eeddedcode = ed.eeddedcode
     JOIN contacts WITH (NOLOCK) ON eedDepRecID = consystemid
     WHERE ee.eeddedcode in ('LIFEC') AND conrelationship in ('CHL'))
+*/
 
 -----------
 -- Reduce EEList to employees with benefits
@@ -1026,16 +1031,18 @@ CREATE TABLE [dbo].[U_Dsi_DrvTbl_EMUTOMHTR2_Master](
 INSERT INTO dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Master
 SELECT DISTINCT dbo.dsi_fn_GetCurrentCOID(BdmEEID), BDmEEID FROM U_dsi_bdm_EMUTOMHTR2
 
+/* I don't know if we need this anymore - JCB
 DELETE dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Master WHERE MstEEID NOT IN (
     SELECT DISTINCT BdmEEID FROM dbo.U_dsi_bdm_EMUTOMHTR2 WITH (NOLOCK) WHERE BdmDedCode IN ('LIFEC','LIFEE','LIFES')
 )
+*/
 
 -----------
 -- Create coverage table for employees
 -----------
 
 SELECT distinct BdmBenStartDate, BdmBenStopDate, BdmCOID, BdmDedCode,BdmRelationship, BdmEEAmt, BdmEEID,BdmBenOption, BdmNumSpouses, BdmNumChildren               --2/20/17 added distinct
-
+,BdmBenStatus
 INTO dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage
 FROM U_dsi_bdm_EMUTOMHTR2
 Where BdmBenStartDate is not Null
@@ -1162,16 +1169,24 @@ drvHomePhone         = '', --CAST (EepPhoneHomeNumber  AS VARCHAR (50)),
 drvWorkPhone         = '', --CAST(EecPhoneBusinessNumber  AS VARCHAR (50)),
 drvWorkExt           = '',
 drvDateOfHire        = CAST(CONVERT(VARCHAR(8), EecDateOforiginalHire, 112) AS VARCHAR (50)),
-drvEffDate           = CAST(CASE 
-                          WHEN EecDateOfLastHire < @PlanDate THEN CONVERT(CHAR(8), @PlanDate, 112)
-                          ELSE CONVERT(VARCHAR(8), EecDateOfLastHire, 112) 
-                       END  AS VARCHAR (50)),
+drvEffDate           = CAST(CONVERT(CHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',
+                            CASE 
+                            WHEN EecDateOfLastHire < @PlanDate THEN @PlanDate
+                            ELSE  EecDateOfLastHire
+                            END,   '1/1/2021'), 112)
+                        AS VARCHAR (50)),
 drvMemberSSN         = '', --CAST (EepSSN  AS VARCHAR (50)),
 drvFullTimeStudent   = '',
-drvRelationshipDate  = CAST (CASE 
-                          WHEN EecDateOfLastHire < @PlanDate THEN CONVERT(CHAR(8), @PlanDate, 112)
-                          ELSE CONVERT(VARCHAR(8), EecDateOfLastHire, 112) 
-                       END  AS VARCHAR (50)),
+drvRelationshipDate  = CAST(CONVERT(CHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',
+                            CASE 
+                            WHEN EecDateOfLastHire < @PlanDate THEN @PlanDate
+                            ELSE  EecDateOfLastHire
+                            END,   '1/1/2021'), 112)
+                        AS VARCHAR (50)),
+/*CAST (CASE 
+WHEN EecDateOfLastHire < @PlanDate THEN CONVERT(CHAR(8), @PlanDate, 112)
+ELSE CONVERT(VARCHAR(8), EecDateOfLastHire, 112) 
+END  AS VARCHAR (50))*/
 drvSubgroupID        = CAST ('0001'  AS VARCHAR (50)),
 -- the name of EmpDataSegDate was changed to location effective date in the new mapping
 drvEmpDataSegDate    = CONVERT(CHAR(8), dbo.dsi_fnGetMinMaxDates('MAX', audDateTime, '1/1/2021'), 112),
@@ -1188,10 +1203,12 @@ drvDateofLastHire    = EecDateofLastHire,
 drvSalEffDate        = CONVERT(CHAR(8), ''), -- This is being updated after the table gets created
 drvSalMode           = CAST ('A'  AS VARCHAR (50)),
 drvSalAmt            = CASE WHEN ISNULL(EecAnnSalary,0) <> 0 THEN CAST( convert(varchar,(dbo.dsi_fnPadZero(EecAnnSalary * 100, 16, 0)))  AS VARCHAR (50)) END,
-drvClassEffDate      = CAST(CASE 
-                          WHEN EecDateOfLastHire < @PlanDate THEN CONVERT(CHAR(8), @PlanDate, 112)
-                          ELSE CONVERT(VARCHAR(8), EecDateOfLastHire, 112) 
-                       END  AS VARCHAR (50)), -- EecDateInJob
+drvClassEffDate      = CAST(CONVERT(CHAR(8),
+                                CASE 
+                                WHEN EecDateOfLastHire < @PlanDate THEN @PlanDate
+                                ELSE EecDateOfLastHire
+                                END, 112)
+                                AS VARCHAR (50)), -- EecDateInJob
 
 drvClassID           =  CASE WHEN EecLocation = 'NE000' THEN 'A001' ELSE 'A002' END
                             /*CASE WHEN EecPayGroup IN ('BIWKLY','MNLY') AND vstd.BdmDedCode = 'STD40' THEN 'A001'
@@ -1336,12 +1353,14 @@ drvNomAmtT           = CAST(''  AS VARCHAR (50)),
 -- 3: Voluntary Term Life Coverage Member
 
 drvProdCat3          = CAST(CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN '3' ELSE '' END  AS VARCHAR (50)), 
-drvEffDate3          = CAST(CASE
-                          WHEN supplEE.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplEE.BdmBenStopDate + 1, 112)
-                          WHEN supplEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN supplEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplEE.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
+drvEffDate3          =    CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN
+                            CAST(CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                    CASE WHEN supplEE.BdmBenStopDate IS NOT NULL   THEN supplEE.BdmBenStopDate + 1
+                                    WHEN supplEE.BdmBenStartDate < @PlanDate  THEN @PlanDate
+                                    WHEN supplEE.BdmBenStartDate IS NOT NULL  THEN supplEE.BdmBenStartDate
+                                    END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,     
 drvEligEvent3        = CAST(CASE
                           WHEN supplEE.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplEE.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1359,12 +1378,14 @@ drvNomAmt3           = CAST(CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN dbo.ds
 -- 4: Voluntary Term Life Coverage Spouse
 
 drvProdCat4          = CAST( CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN '4' ELSE '' END  AS VARCHAR (50)),
-drvEffDate4          = CAST (CASE
-                          WHEN supplSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplSP.BdmBenStopDate + 1, 112)
-                          WHEN supplSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN supplSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplSP.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
+drvEffDate4          =    CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN
+                            CAST (CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                    CASE WHEN supplSP.BdmBenStopDate IS NOT NULL   THEN supplSP.BdmBenStopDate + 1
+                                    WHEN supplSP.BdmBenStartDate < @PlanDate  THEN @PlanDate
+                                    WHEN supplSP.BdmBenStartDate IS NOT NULL  THEN supplSP.BdmBenStartDate
+                                    END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END ,     
 drvEligEvent4        = CAST(CASE
                           WHEN supplSP.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplSP.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1382,12 +1403,14 @@ drvNomAmt4           = CAST(CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN dbo.ds
 -- 5: Voluntary Term Life Coverage Child
 
 drvProdCat5          = CAST(CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN '5' ELSE '' END  AS VARCHAR (50)),
-drvEffDate5          = CAST(CASE
-                          WHEN supplCH.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplCH.BdmBenStopDate + 1, 112)
-                          WHEN supplCH.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN supplCH.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplCH.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
+drvEffDate5          =    CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN
+                            CAST(CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                    CASE WHEN supplCH.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplCH.BdmBenStopDate + 1, 112)
+                                    WHEN supplCH.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                                    WHEN supplCH.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplCH.BdmBenStartDate, 112)
+                                    END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,     
 drvEligEvent5        = CAST(CASE
                           WHEN supplCH.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplCH.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1406,12 +1429,14 @@ drvNomAmt5           = CAST( CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN dbo.d
 -- c: Voluntary AD&D Coverage employee
 
 drvProdCatc          = CAST(CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN 'c' ELSE '' END  AS VARCHAR (50)),
-drvEffDatec          =  CAST(CASE
-                          WHEN supplEE.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplEE.BdmBenStopDate + 1, 112)
-                          WHEN supplEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN supplEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplEE.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),    
+drvEffDatec          =    CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN
+                            CAST(CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                    CASE WHEN supplEE.BdmBenStopDate IS NOT NULL   THEN supplEE.BdmBenStopDate + 1
+                                    WHEN supplEE.BdmBenStartDate < @PlanDate  THEN @PlanDate
+                                    WHEN supplEE.BdmBenStartDate IS NOT NULL  THEN supplEE.BdmBenStartDate
+                                    END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,    
 drvEligEventc        = CAST(CASE
                           WHEN supplEE.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplEE.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1429,12 +1454,14 @@ drvNomAmtc           = CAST( CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN dbo.d
 -- e: Voluntary AD&D Coverage Spouse
 
 drvProdCate          = CAST( CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN 'e' ELSE '' END  AS VARCHAR (50)),
-drvEffDatee          = CAST (CASE
-                          WHEN supplSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplSP.BdmBenStopDate + 1, 112)
-                          WHEN supplSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN supplSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplSP.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)), 
+drvEffDatee          =    CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN
+                            CAST (CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                CASE WHEN supplSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplSP.BdmBenStopDate + 1, 112)
+                                WHEN supplSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                                WHEN supplSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplSP.BdmBenStartDate, 112)
+                                END , '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END, 
 drvEligEvente        =CAST(CASE
                           WHEN supplSP.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplSP.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1452,12 +1479,14 @@ drvNomAmte           = CAST( CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN dbo.d
 -- d: Voluntary AD&D Coverage Dependent
 
 drvProdCatd          =  CAST(CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN 'd' ELSE '' END  AS VARCHAR (50)),
-drvEffDated          =  CAST (CASE
-                          WHEN supplCH.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplCH.BdmBenStopDate + 1, 112)    --supplSP
-                          WHEN supplCH.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN supplCH.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplCH.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),    
+drvEffDated          =  CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN
+                            CAST (CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                CASE WHEN supplCH.BdmBenStopDate IS NOT NULL   THEN supplCH.BdmBenStopDate + 1    --supplSP
+                                WHEN supplCH.BdmBenStartDate < @PlanDate  THEN @PlanDate
+                                WHEN supplCH.BdmBenStartDate IS NOT NULL  THEN supplCH.BdmBenStartDate
+                                END , '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,    
 drvEligEventd        =  CAST(CASE
                           WHEN supplCH.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplCH.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1475,12 +1504,14 @@ drvNomAmtd           =  CAST( CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN dbo.
 -- Q: STD
 
 drvProdCatQ          = CAST(CASE WHEN vstd.BdmDedCode IS NOT NULL THEN 'Q' ELSE '' END  AS VARCHAR (50)),
-drvEffDateQ          =CAST( CASE
-                          WHEN vstd.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), vstd.BdmBenStopDate + 1, 112)
-                          WHEN vstd.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN vstd.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), vstd.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
+drvEffDateQ          =    CASE WHEN vstd.BdmDedCode IS NOT NULL THEN
+                            CAST(CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                CASE WHEN vstd.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), vstd.BdmBenStopDate + 1, 112)
+                                WHEN vstd.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                                WHEN vstd.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), vstd.BdmBenStartDate, 112)
+                                END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,     
 drvEligEventQ        = CAST(CASE
                           WHEN vstd.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN vstd.BdmDedCode IS NOT NULL  THEN 'EN'
@@ -1527,76 +1558,123 @@ drvFamCovR           = CAST(CASE WHEN std.BdmDedCode IS NOT NULL  AND std.BdmDed
 
 
 -- A: Voluntary Employee/Children Critical Illness
-
-drvProdCatAA         = CAST(CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'A' ELSE '' END  AS VARCHAR (50)),
-drvEffDateAA         = CAST(CASE
-                          WHEN illnessEE.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStopDate + 1, 112)
-                          WHEN illnessEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN illnessEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
-drvEligEventAA       =CAST( CASE
-                          WHEN illnessEE.BdmBenStopDate IS NOT NULL THEN 'TM'
-                          WHEN illnessEE.BdmDedCode IS NOT NULL     THEN 'EN'
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
-drvPlanIDAA          = CAST(CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN '3CI00EDVAB' ELSE '' END  AS VARCHAR (50)),
-drvFamCovAA          = CAST(CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END  AS VARCHAR (50)),
-drvNomEffDateAA      = CAST(CASE
-                          WHEN illnessEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN illnessEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),
-drvNomAmtAA          = CAST(CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessEE.BdmEEAmt, 10, 0) ELSE '' END  AS VARCHAR (50)),
+drvProdCatAA         = CAST(CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'A' ELSE '' END  AS VARCHAR (50))    -- 1470
+-- causing dupes
+,drvEffDateAA         =    CASE WHEN  (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN
+                            CAST(
+                                CASE WHEN  /*(CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND*/  illnessEE.BdmBenStatus = 'A' THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
+                                WHEN  /*(CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND*/  illnessEE.BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStopDate, 112)
+                                END
+/*CASE
+WHEN illnessEE.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStopDate + 1, 112)
+WHEN illnessEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+WHEN illnessEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
+ELSE ''
+END*/ 
+                            AS VARCHAR (50))
+                        END,     
+drvEligEventAA       =CAST( 
+                                CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND illnessEE.BdmBenStatus = 'A' THEN 'EN'
+                                WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND illnessEE.BdmBenStatus IN ('T','C') THEN 'TM'
+                                END
+/*CASE
+WHEN illnessEE.BdmBenStopDate IS NOT NULL THEN 'TM'
+WHEN illnessEE.BdmDedCode IS NOT NULL     THEN 'EN'
+ELSE ''
+END */ 
+                       AS VARCHAR (50)),     
+drvPlanIDAA          = CAST(
+                                CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN '3CI00EDVAB' END
+/*CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN '3CI00EDVAB' ELSE '' END  
+*/
+                    AS VARCHAR (50)),
+drvFamCovAA          = CAST(
+                                CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN 'C' END
+--CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END  
+                        AS VARCHAR (50)),
+drvNomEffDateAA      = CAST(
+                                CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112) END
+/*CASE
+WHEN illnessEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+WHEN illnessEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
+ELSE ''*/
+                        AS VARCHAR (50)),
+drvNomAmtAA          = CAST(
+                                CASE WHEN CRIL2_DedCode IS NOT NULL THEN '0000020000'
+                                WHEN CRILL_DedCode IS NOT NULL THEN '0000030000'
+                                END
+--CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessEE.BdmEEAmt, 10, 0) ELSE '' END  
+                        AS VARCHAR (50)),
 
 -- J:Voluntary Spouse Critical Illness
 
-drvProdCatJ          = CAST(CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'J' ELSE '' END  AS VARCHAR (50)),
-drvEffDateJ          = CAST(CASE
-                          WHEN illnessSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStopDate + 1, 112)
-                          WHEN illnessSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
-                          WHEN illnessSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
-drvEligEventJ        =CAST( CASE
-                          WHEN illnessSP.BdmBenStopDate IS NOT NULL THEN 'TM'
-                          WHEN illnessSP.BdmDedCode IS NOT NULL     THEN 'EN'
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
-drvPlanIDJ           = CAST(CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN '3CI00SPVAB' ELSE '' END  AS VARCHAR (50)),
+drvProdCatJ          = CAST(CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'J' ELSE '' END  AS VARCHAR (50)), -- 1525
+drvEffDateJ          = CAST(
+                                CASE WHEN illnessSP.BdmDedCode IS NOT nUll and illnessSP.BdmBenStatus = 'A' THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
+                                WHEN illnessSP.BdmDedCode IS NOT nUll and illnessSP.BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStopDate, 112)
+                                END
+/*CASE
+WHEN illnessSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStopDate + 1, 112)
+WHEN illnessSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+WHEN illnessSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
+ELSE ''
+END  */
+                       AS VARCHAR (50)),     
+drvEligEventJ        =CAST( 
+                            CASE WHEN illnessSP.BdmDedCode IS NOT NUll AND illnessSP.BdmBenStatus = 'A' THEN 'EN'
+                            WHEN illnessSP.BdmDedCode IS NOT NUll AND illnessSP.BdmBenStatus IN ('T','C') THEN 'TM'
+                            END
+/*CASE
+WHEN illnessSP.BdmBenStopDate IS NOT NULL THEN 'TM'
+WHEN illnessSP.BdmDedCode IS NOT NULL     THEN 'EN'
+ELSE ''
+END */
+                       AS VARCHAR (50)),     
+drvPlanIDJ           = CAST(CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN '3CI00EDVAB' ELSE '' END  AS VARCHAR (50)),
 drvFamCovJ           = CAST(CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END  AS VARCHAR (50)),
 drvNomEffDateJ       = CAST(CASE
-                          WHEN illnessSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                          --WHEN illnessSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN illnessSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
-                          ELSE ''
+                          --ELSE ''
                        END  AS VARCHAR (50)),
-drvNomAmtJ           = CAST(CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessSP.BdmEEAmt, 10, 0) ELSE '' END  AS VARCHAR (50)),    
+drvNomAmtJ           = CAST(
+                                CASE WHEN CRILS_DedCode IS NOT NULL THEN '0000005000'
+                                WHEN CRIS2_DedCode IS NOT NULL THEN '0000010000'
+                                WHEN CRIS3_DedCode IS NOT NULL THEN '0000015000'
+                                END
+--CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessSP.BdmEEAmt, 10, 0) ELSE '' END  
+                        AS VARCHAR (50)),    
 
 
 -- J:Voluntary Accident
 
-drvProdCatg          = CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN 'g' ELSE '' END  AS VARCHAR (50)),
+drvProdCatg          = CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN 'h' END  AS VARCHAR (50)), -- 1855
 drvEffDateg          = CAST(CASE
-                          WHEN accident.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), accident.BdmBenStopDate + 1, 112)
-                          WHEN accident.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                          --WHEN accident.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), accident.BdmBenStopDate + 1, 112)
+                          --WHEN accident.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN accident.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), accident.BdmBenStartDate, 112)
-                          ELSE ''
+--                          ELSE ''
                        END  AS VARCHAR (50)),     
-drvEligEventg        = CAST(CASE
-                          WHEN accident.BdmBenStopDate IS NOT NULL THEN 'TM'
-                          WHEN accident.BdmDedCode IS NOT NULL     THEN 'EN'
-                          ELSE ''
-                       END  AS VARCHAR (50)),     
+drvEligEventg        = CAST(
+                                CASE WHEN accident.BdmDedCode IS NOT NULL AND accident.BdmBenStatus = 'A' THEN CONVERT(VARCHAR(8), accident.BdmBenStartDate, 112)
+                                WHEN accident.BdmDedCode IS NOT NULL AND accident.BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), accident.BdmBenStopDate, 112)
+                                END
+/*WHEN accident.BdmBenStopDate IS NOT NULL THEN 'TM'
+WHEN accident.BdmDedCode IS NOT NULL     THEN 'EN'
+ELSE ''*/
+--END  
+                        AS VARCHAR (50)),     
 drvPlanIDg           = CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN '6AS000VACC' ELSE '' END  AS VARCHAR (50)),
 drvFamCovg           = CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN CASE
                        WHEN accident.BdmBenOption in ('EEF') then 'A'
                        WHEN accident.BdmBenOption in ('EES') then 'B'
                        WHEN accident.BdmBenOption in ('EE') then 'C'
                        WHEN accident.BdmBenOption in ('EEC') then 'D'
-                       WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses <> 0 AND accident.BdmNumChildren = 0  then 'B'
-                       WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses = 0 AND accident.BdmNumChildren <> 0  then 'D'
-                       WHEN accident.BdmBenOption in ('EE2D') then 'A'
-                       Else 'A' End    
+                       --WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses <> 0 AND accident.BdmNumChildren = 0  then 'B'
+                       --WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses = 0 AND accident.BdmNumChildren <> 0  then 'D'
+                       --WHEN accident.BdmBenOption in ('EE2D') then 'A'
+                       --Else 'A' 
+                       End    
                        ELSE '' END  AS VARCHAR (50)),
 
 /*
@@ -1633,14 +1711,40 @@ LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage supplCH   WITH (NOLOCK) ON supplC
 LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage std       WITH (NOLOCK) ON std.BdmDedCode IN  ('')                     AND std.BdmEEID = MstEEID       AND std.BdmCOID = MstCOID   
 LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage ltd       WITH (NOLOCK) ON ltd.BdmDedCode IN  ('')                     AND ltd.BdmEEID = MstEEID       AND ltd.BdmCOID = MstCOID                           
 LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage vstd      WITH (NOLOCK) ON vstd.BdmDedCode IN  ('STD40','STD60')                     AND vstd.BdmEEID = MstEEID       AND vstd.BdmCOID = MstCOID     and vstd.BDMRelationship ='EMP' 
-LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessEE WITH (NOLOCK) ON illnessEE.BdmDedCode in ('')         AND illnessEE.BdmEEID = MstEEID AND illnessEE.BdmCOID = MstCOID  and illnessEE.BDMRelationship ='EMP' --   and illnessEE.bdmeeamt is not null  -- REMOVED 'CIC'
-LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessSP WITH (NOLOCK) ON illnessSP.BdmDedCode in ('')         AND illnessSP.BdmEEID = MstEEID AND illnessSP.BdmCOID = MstCOID   and illnessSp.BDMRelationship ='EMP'    --and illnessSP.bdmeeamt is not null 
-LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage accident  WITH (NOLOCK) ON accident.BdmDedCode in ('')                AND accident.BdmEEID = MstEEID AND accident.BdmCOID = MstCOID  and Accident.BDMRelationship ='EMP'
+LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessEE WITH (NOLOCK) 
+    ON illnessEE.BdmDedCode in ('CRIL2','CRILL','CRILC')         
+    AND illnessEE.BdmEEID = MstEEID 
+    AND illnessEE.BdmCOID = MstCOID  
+    and illnessEE.BDMRelationship ='EMP' --   and illnessEE.bdmeeamt is not null  -- REMOVED 'CIC'
+LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessSP WITH (NOLOCK) 
+    ON illnessSP.BdmDedCode in ('CRILS','CRIS2','CRIS3')
+    AND illnessSP.BdmEEID = MstEEID 
+    AND illnessSP.BdmCOID = MstCOID
+    AND illnessSp.BDMRelationship ='EMP'    --and illnessSP.bdmeeamt is not null 
+LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage accident  WITH (NOLOCK) 
+ON accident.BdmDedCode in ('ACC')
+    AND accident.BdmEEID = MstEEID 
+    AND accident.BdmCOID = MstCOID  
+    AND Accident.BDMRelationship ='EMP'
 LEFT JOIN (select orglvl,orgDesc, orgCode from vw_int_OrgLevel ) o1 on o1.orgLvl = 1 and o1.orgCode = eecOrgLvl1
 LEFT JOIN dbo.U_EMUTOMHTR2_Audit WITH (NOLOCK)
     ON MstEEID = audEEID
     AND MstCOID = audKey2
+JOIN (
+        SELECT BdmEEID, BdmCOID, BdmRecType, BdmDepRecId
+        ,MAX(CASE WHEN BdmDedCode = 'CRIL2' THEN BdmDedCode END) AS CRIL2_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRILL' THEN BdmDedCode END) AS CRILL_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRILC' THEN BdmDedCode END) AS CRILC_DedCode
 
+        ,MAX(CASE WHEN BdmDedCode = 'CRILS' THEN BdmDedCode END) AS CRILS_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRIS2' THEN BdmDedCode END) AS CRIS2_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRIS3' THEN BdmDedCode END) AS CRIS3_DedCode
+
+    FROM U_dsi_bdm_EMUTOMHTR2 WITH (NOLOCK)
+    GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId) Bdm
+    ON MstEEID = Bdm.BdmEEID
+    AND MstCOID = Bdm.BdmCOID
+    AND Bdm.BdmRecType = 'EMP'
 WHERE EXISTS (Select 1 from U_Dsi_DrvTbl_EMUTOMHTR2_Coverage Where bdmEEID = mstEEID)      
 --AND EecPayGroup <> 'WKLY'
 
@@ -1699,7 +1803,7 @@ drvRelationshipDate  = drvRelationshipDate,
                       --ELSE CONVERT(VARCHAR(8), DbnBenStartDate, 112) 
                       --END,
 drvSubgroupID        = drvSubgroupID,
-drvEmpDataSegDate  = '' , -- = '5/18/1972',
+drvEmpDataSegDate  = drvEmpDataSegDate, --'' , -- = '5/18/1972',
 drvOccupation        = '',
 drvDept              = '',
 drvLocID = '', --            = '',
@@ -1708,7 +1812,7 @@ drvDateofLastHire    = drvDateofLastHire,
 drvSalEffDate        = CONVERT(CHAR(8), ''), -- updated below
 drvSalMode           = '',
 drvSalAmt            = '',
-drvClassEffDate      = '',
+drvClassEffDate      = drvClassEffDate, -- '',
 drvClassID           = '',
 drvRateEffDate       = '',
 drvSmoker            = '',
@@ -1856,12 +1960,20 @@ drvNomAmt3           = '', --CASE WHEN supplEE.BdmDedCode IS NOT NULL THEN dbo.d
 -- 4: Voluntary Term Life Coverage Spouse
 
 drvProdCat4          = CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN '4' ELSE '' END,
-drvEffDate4          = CASE
+drvEffDate4          =    CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN
+                            CAST (CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                    CASE WHEN supplSP.BdmBenStopDate IS NOT NULL   THEN supplSP.BdmBenStopDate + 1
+                                    WHEN supplSP.BdmBenStartDate < @PlanDate  THEN @PlanDate
+                                    WHEN supplSP.BdmBenStartDate IS NOT NULL  THEN supplSP.BdmBenStartDate
+                                    END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END ,     
+                        /*CASE
                           WHEN supplSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplSP.BdmBenStopDate + 1, 112)
                           WHEN supplSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN supplSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplSP.BdmBenStartDate, 112)
                           ELSE ''
-                       END,  
+                       END,  */
 drvEligEvent4        = CASE
                           WHEN supplSP.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplSP.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1881,12 +1993,20 @@ drvNomAmt4           = --CASE WHEN supplSP.BdmDedCode IS NOT NULL THEN dbo.dsi_f
 -- 5: Voluntary Term Life Coverage Child
 
 drvProdCat5          = CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN '5' ELSE '' END,
-drvEffDate5          = CASE
+drvEffDate5          =    CASE WHEN supplCH.BdmDedCode IS NOT NULL THEN
+                            CAST(CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                    CASE WHEN supplCH.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplCH.BdmBenStopDate + 1, 112)
+                                    WHEN supplCH.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                                    WHEN supplCH.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplCH.BdmBenStartDate, 112)
+                                    END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,     
+                        /*CASE
                           WHEN supplCH.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), supplCH.BdmBenStopDate + 1, 112)
                           WHEN supplCH.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN supplCH.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), supplCH.BdmBenStartDate, 112)
                           ELSE ''
-                       END,     
+                       END,     */
 drvEligEvent5        = CASE
                           WHEN supplCH.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN supplCH.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1936,12 +2056,20 @@ drvNomAmtd           = '',
 -- Q: STD
 
 drvProdCatQ          = CASE WHEN std.BdmDedCode IS NOT NULL THEN 'Q' ELSE '' END,
-drvEffDateQ          = CASE
+drvEffDateQ          =    CASE WHEN vstd.BdmDedCode IS NOT NULL THEN
+                            CAST(CONVERT(VARCHAR(8), dbo.dsi_fnGetMinMaxDates('MAX',
+                                CASE WHEN vstd.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), vstd.BdmBenStopDate + 1, 112)
+                                WHEN vstd.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
+                                WHEN vstd.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), vstd.BdmBenStartDate, 112)
+                                END, '1/1/2021'), 112)
+                            AS VARCHAR (50))
+                        END,     
+                        /*CASE
                           WHEN std.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), std.BdmBenStopDate + 1, 112)
                           WHEN std.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN std.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), std.BdmBenStartDate, 112)
                           ELSE ''
-                       END,     
+                       END,   */  
 drvEligEventQ        = CASE
                           WHEN std.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN std.BdmDedCode IS NOT NULL     THEN 'EN'
@@ -1992,78 +2120,120 @@ drvFamCovR           = CAST(CASE WHEN vstd.BdmDedCode IS NOT NULL AND vw_int_Emp
 
 -- A: Voluntary Employee/Children Critical Illness
 
-drvProdCatAA         = CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'A' ELSE '' END,
-drvEffDateAA         = CASE
+drvProdCatAA         = CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'A' ELSE '' END, -- 1470
+drvEffDateAA         =    CASE WHEN  (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND  illnessEE.BdmBenStatus = 'A' THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
+                        WHEN  (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND  illnessEE.BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStopDate, 112)
+                        END
+                        /*CASE
                           WHEN illnessEE.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStopDate + 1, 112)
                           WHEN illnessEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN illnessEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
                           ELSE ''
-                       END,     
-drvEligEventAA       = CASE
+                       END*/ ,     
+drvEligEventAA       =    CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND illnessEE.BdmBenStatus = 'A' THEN 'EN'
+                        WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) AND illnessEE.BdmBenStatus IN ('T','C') THEN 'TM'
+                        END
+                        /*CASE
                           WHEN illnessEE.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN illnessEE.BdmDedCode IS NOT NULL     THEN 'EN'
                           ELSE ''
-                       END,     
-drvPlanIDAA          = CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN '3CI00EDVAB' ELSE '' END,
-drvFamCovAA          = CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END,
-drvNomEffDateAA      = CASE
+                       END*/ ,     
+drvPlanIDAA          = CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN '3CI00EDVAB' END,
+--CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN '3CI00EDVAB' ELSE '' END,
+drvFamCovAA          = CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN 'C' END,
+--CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END,
+drvNomEffDateAA      = CASE WHEN (CRIL2_DedCode IS NOT NULL OR CRILL_DedCode IS NOT NULL) THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112) END
+                        /*CASE
                           WHEN illnessEE.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN illnessEE.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessEE.BdmBenStartDate, 112)
                           ELSE ''
-                       END,
-drvNomAmtAA          = CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessEE.BdmEEAmt, 10, 0) ELSE '' END,    
+                       END*/ ,
+drvNomAmtAA          =    CASE WHEN CRIL2_DedCode IS NOT NULL THEN '0000020000'
+                        WHEN CRILL_DedCode IS NOT NULL THEN '0000030000'
+                        END,
+--CASE WHEN illnessEE.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessEE.BdmEEAmt, 10, 0) ELSE '' END,    
 
 
 -- J:Voluntary Spouse Critical Illness
 
-drvProdCatJ          = CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'J' ELSE '' END,
-drvEffDateJ          = CASE
+drvProdCatJ          = CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'J' ELSE '' END  , -- 1525
+drvEffDateJ          =    CASE WHEN illnessSP.BdmDedCode IS NOT nUll and illnessSP.BdmBenStatus = 'A' THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
+                        WHEN illnessSP.BdmDedCode IS NOT nUll and illnessSP.BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStopDate, 112)
+                        END
+                        /*CASE
                           WHEN illnessSP.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStopDate + 1, 112)
                           WHEN illnessSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN illnessSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
                           ELSE ''
-                       END,     
-drvEligEventJ        = CASE
+                       END*/,     
+drvEligEventJ        =    CASE WHEN illnessSP.BdmDedCode IS NOT NUll AND illnessSP.BdmBenStatus = 'A' THEN 'EN'
+                        WHEN illnessSP.BdmDedCode IS NOT NUll AND illnessSP.BdmBenStatus IN ('T','C') THEN 'TM'
+                        END
+                        /*CASE
                           WHEN illnessSP.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN illnessSP.BdmDedCode IS NOT NULL     THEN 'EN'
                           ELSE ''
-                       END,     
-drvPlanIDJ           = CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN '3CI00SPVAB' ELSE '' END,
+                       END*/ ,     
+drvPlanIDJ           = CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN '3CI00EDVAB' ELSE '' END,
+--CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN '3CI00SPVAB' ELSE '' END,
 drvFamCovJ           = CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END,
-drvNomEffDateJ       = CASE
+--CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END,
+drvNomEffDateJ       =    CASE
+                        WHEN illnessSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
+                       END
+                        /*CASE
                           WHEN illnessSP.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN illnessSP.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), illnessSP.BdmBenStartDate, 112)
                           ELSE ''
-                       END,
-drvNomAmtJ           = CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessSP.BdmEEAmt, 10, 0) ELSE '' END,    
+                       END*/,
+drvNomAmtJ           =    CASE WHEN illnessSP.BdmBenStartDate IS NOT NULL THEN
+                            CASE WHEN CRILS_DedCode IS NOT NULL THEN '0000005000'
+                            WHEN CRIS2_DedCode IS NOT NULL THEN '0000010000'
+                            WHEN CRIS3_DedCode IS NOT NULL THEN '0000015000'
+                            END
+                        END,
+
+--CASE WHEN illnessSP.BdmDedCode IS NOT NULL THEN dbo.dsi_fnPadZero(illnessSP.BdmEEAmt, 10, 0) ELSE '' END,    
 
  
 -- J:Voluntary Accident
 
-drvProdCatg          = CASE WHEN accident.BdmDedCode IS NOT NULL THEN 'g' ELSE '' END,
-drvEffDateg         = CASE
+drvProdCatg          =    CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN 'h' END  AS VARCHAR (50)), -- 1855
+drvEffDateg         =    CASE WHEN accident.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), accident.BdmBenStartDate, 112) END
+                        /*CASE
                           WHEN accident.BdmBenStopDate IS NOT NULL   THEN CONVERT(VARCHAR(8), accident.BdmBenStopDate + 1, 112)
                           WHEN accident.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN accident.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), accident.BdmBenStartDate, 112)
                           ELSE ''
-                       END,     
-drvEligEventg        = CASE
+                       END*/ ,     
+drvEligEventg        =    CASE WHEN accident.BdmDedCode IS NOT NULL AND accident.BdmBenStatus = 'A' THEN CONVERT(VARCHAR(8), accident.BdmBenStartDate, 112)
+                        WHEN accident.BdmDedCode IS NOT NULL AND accident.BdmBenStatus IN ('T','C') THEN CONVERT(VARCHAR(8), accident.BdmBenStopDate, 112)
+                        END
+                        /*CASE
                           WHEN accident.BdmBenStopDate IS NOT NULL THEN 'TM'
                           WHEN accident.BdmDedCode IS NOT NULL     THEN 'EN'
                           ELSE ''
-                       END,     
-drvPlanIDg           = CASE WHEN accident.BdmDedCode IS NOT NULL THEN '6AS000VACC' ELSE '' END,
-drvFamCovg           = --CASE WHEN accident.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END,
-                    CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN CASE
-                       WHEN accident.BdmBenOption in ('EEF') then 'A'
-                       WHEN accident.BdmBenOption in ('EES') then 'B'
-                       WHEN accident.BdmBenOption in ('EE') then 'C'
-                       WHEN accident.BdmBenOption in ('EEC') then 'D'
-                       WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses <> 0 AND accident.BdmNumChildren = 0  then 'B'
-                       WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses = 0 AND accident.BdmNumChildren <> 0  then 'D'
-                       WHEN accident.BdmBenOption in ('EE2D') then 'A'
-                       Else 'A' End    
-                       ELSE '' END  AS VARCHAR (50)),
+                       END*/ ,     
+drvPlanIDg           = CASE WHEN accident.BdmDedCode IS NOT NULL THEN '6AS000VACC' END,
+--CASE WHEN accident.BdmDedCode IS NOT NULL THEN '6AS000VACC' ELSE '' END,
+drvFamCovg           =    CASE WHEN accident.BdmDedCode IS NOT NULL THEN 
+                            CASE WHEN accident.BdmBenOption in ('EEF') then 'A'
+                            WHEN accident.BdmBenOption in ('EES') then 'B'
+                            WHEN accident.BdmBenOption in ('EE') then 'C'
+                            WHEN accident.BdmBenOption in ('EEC') then 'D'
+                            End    
+                        END,
+--CASE WHEN accident.BdmDedCode IS NOT NULL THEN 'C' ELSE '' END,
+/*CAST(CASE WHEN accident.BdmDedCode IS NOT NULL THEN CASE
+WHEN accident.BdmBenOption in ('EEF') then 'A'
+WHEN accident.BdmBenOption in ('EES') then 'B'
+WHEN accident.BdmBenOption in ('EE') then 'C'
+WHEN accident.BdmBenOption in ('EEC') then 'D'
+WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses <> 0 AND accident.BdmNumChildren = 0  then 'B'
+WHEN accident.BdmBenOption in ('EE1D') AND  accident.BdmNumSpouses = 0 AND accident.BdmNumChildren <> 0  then 'D'
+WHEN accident.BdmBenOption in ('EE2D') then 'A'
+Else 'A' End    
+ELSE '' END  AS VARCHAR (50)),*/
 drvNomEffDateg       = CASE
                           WHEN accident.BdmBenStartDate < @PlanDate  THEN CONVERT(VARCHAR(8), @PlanDate, 112)
                           WHEN accident.BdmBenStartDate IS NOT NULL  THEN CONVERT(VARCHAR(8), accident.BdmBenStartDate, 112)
@@ -2093,13 +2263,37 @@ FROM U_Dsi_DrvTbl_EMUTOMHTR2_Coverage) supplCH ON supplCH.BdmDedCode = 'LIFEC' A
 LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage std       WITH (NOLOCK) ON std.BdmDedCode IN ('')--('STD', 'STD1', 'STD2', 'STD3', 'STD4', 'STD5', 'STD6', 'STDV')  
 LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage vstd      WITH (NOLOCK) ON vstd.BdmDedCode IN ('')--STD
 LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage ltd       WITH (NOLOCK) ON ltd.BdmDedCode IN ('XXXX')                       AND ltd.BdmEEID = DbnEEID       AND ltd.BdmCOID = drvCOID              
-LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessEE WITH (NOLOCK) ON illnessEE.BdmDedCode in ('')   --CIENT      AND illnessEE.BdmEEID = DbnEEID AND illnessEE.BdmCOID = drvCOID -- and illnessEE.bdmeeamt is not null 
-LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessSP WITH (NOLOCK) ON illnessSP.BdmDedCode in ('XXXX')         AND illnessSP.BdmEEID = DbnEEID AND illnessSP.BdmCOID = drvCOID--  and illnessSP.bdmeeamt is not null
-LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage accident WITH (NOLOCK) ON accident.BdmDedCode in ('XXXX')                AND accident.BdmEEID = DbnEEID AND accident.BdmCOID = drvCOID   and accident.BdmRelationship = conRelationship
+LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessEE WITH (NOLOCK) 
+    ON illnessEE.BdmDedCode in ('CRIL2','CRILL','CRILC') 
+    AND illnessEE.BdmEEID =  DbnEEID 
+    AND illnessEE.BdmCOID = drvCOID -- and illnessEE.bdmeeamt is not null 
+LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage illnessSP WITH (NOLOCK) 
+    ON illnessSP.BdmDedCode  in ('CRILS','CRIS2','CRIS3')
+    AND illnessSP.BdmEEID = DbnEEID 
+    AND illnessSP.BdmCOID = drvCOID--  and illnessSP.bdmeeamt is not null
+LEFT JOIN dbo.U_Dsi_DrvTbl_EMUTOMHTR2_Coverage accident WITH (NOLOCK) 
+ON accident.BdmDedCode in ('ACC')
+AND accident.BdmEEID = DbnEEID 
+AND accident.BdmCOID = drvCOID   
+and accident.BdmRelationship = conRelationship
 /*LEFT JOIN dbo.U_EMUTOMHTR2_Audit WITH (NOLOCK)
     ON MstEEID = audEEID
     AND MstCOID = audKey2*/
+JOIN (
+        SELECT BdmEEID, BdmCOID, BdmRecType, BdmDepRecId
+        ,MAX(CASE WHEN BdmDedCode = 'CRIL2' THEN BdmDedCode END) AS CRIL2_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRILL' THEN BdmDedCode END) AS CRILL_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRILC' THEN BdmDedCode END) AS CRILC_DedCode
 
+        ,MAX(CASE WHEN BdmDedCode = 'CRILS' THEN BdmDedCode END) AS CRILS_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRIS2' THEN BdmDedCode END) AS CRIS2_DedCode
+        ,MAX(CASE WHEN BdmDedCode = 'CRIS3' THEN BdmDedCode END) AS CRIS3_DedCode
+
+    FROM U_dsi_bdm_EMUTOMHTR2 WITH (NOLOCK)
+    GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId) Bdm
+    ON DbnEEID  = Bdm.BdmEEID
+    AND drvCOID = Bdm.BdmCOID
+    AND BdmDepRecID = dbndeprecid
 
 where DbnFormatCode = @FormatCode and dbnvalidforexport = 'Y' 
 AND ConRelationship IN ('DP','SPS') -- Only include spouse records
@@ -2122,11 +2316,11 @@ WITH TempSelectTable AS (
    GROUP BY EjhEEID
 )
 UPDATE U_Dsi_DrvTbl_EMUTOMHTR2
-   SET drvSalEffDate = 
+   SET drvSalEffDate = CONVERT(CHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',
                        CASE 
-                          WHEN isnull(TmpJobEffDate,eecdateinjob) < @PlanDate THEN CONVERT(CHAR(8), @PlanDate, 112)
-                          ELSE CONVERT(VARCHAR(10), isnull(TmpJobEffDate,eecdateinjob), 112)
-                       END
+                          WHEN isnull(TmpJobEffDate,eecdateinjob) < @PlanDate THEN @PlanDate
+                          ELSE isnull(TmpJobEffDate,eecdateinjob)
+                       END, '1/1/2021'), 112)
   FROM U_Dsi_DrvTbl_EMUTOMHTR2
   left join TempSelectTable on DrvEEID = TmpEEID
      AND TmpJobEffDate IS NOT NULL
@@ -2143,6 +2337,17 @@ UPDATE U_Dsi_DrvTbl_EMUTOMHTR2
 --      SET ExportFile =  @FormatCode + '_' + CONVERT(CHAR(8) ,GETDATE(), 112) + '.txt'
 --    WHERE FormatCode = @FormatCode
 --END
+
+
+/*
+-- Update Dates
+UPDATE dbo.AscExp
+    SET ExpLastStartPerControl = '202112011'
+       ,ExpStartPerControl     = '202112011'
+       ,ExpLastEndPerControl   = '202205039'
+       ,ExpEndPerControl       = '202205039'
+WHERE ExpFormatCode = 'EMUTOMHTR2';
+*/
 
 END
 GO
