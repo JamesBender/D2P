@@ -5,7 +5,7 @@ EBOWDEMEXP: Bowman Certent Demographic
 FormatCode:     EBOWDEMEXP
 Project:        Bowman Certent Demographic
 Client ID:      BOW1003
-Date/time:      2022-03-01 22:44:48.570
+Date/time:      2022-05-10 04:19:21.453
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -219,7 +219,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBOWDEMEXP_20220301.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBOWDEMEXP_20220510.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -228,7 +228,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Bowman Certent Demographic','202108319','EMPEXPORT','ONDEM_XOE','Aug 23 2021  1:12PM','EBOWDEMEXP',NULL,NULL,NULL,'202108319','Aug 13 2021 12:00AM','Dec 30 1899 12:00AM','202108011','134','','','202108011',dbo.fn_GetTimedKey(),NULL,'us3rVaBOW1003',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Bowman Certent Demograph-Sched','202108319','EMPEXPORT','SCH_EBOWDE',NULL,'EBOWDEMEXP',NULL,NULL,NULL,'202108319','Aug  6 2021 10:41AM','Aug  6 2021 10:41AM','202108011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Bowman Certent Demograph-Test','202202211','EMPEXPORT','TEST_XOE','Feb 21 2022  3:53PM','EBOWDEMEXP',NULL,NULL,NULL,'202202211','Feb 21 2022 12:00AM','Dec 30 1899 12:00AM','202202071','79','','','202202071',dbo.fn_GetTimedKey(),NULL,'us3rVaBOW1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Bowman Certent Demograph-Test','202205061','EMPEXPORT','TEST_XOE','May 10 2022  4:17AM','EBOWDEMEXP',NULL,NULL,NULL,'202205061','May  6 2022 12:00AM','Apr 29 2022 12:00AM','202204291','342','','','202204291',dbo.fn_GetTimedKey(),NULL,'us3jReBOW1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -319,7 +319,7 @@ CREATE TABLE [dbo].[U_EBOWDEMEXP_drvTbl] (
     [drvFirstName] varchar(100) NULL,
     [drvLastName] varchar(100) NULL,
     [drvUserCode1] varchar(100) NULL,
-    [drvHomeAddressLine1] varchar(255) NULL,
+    [drvHomeAddressLine1] varchar(8000) NULL,
     [drvHomeAddressLine2] varchar(255) NULL,
     [drvHomeDistrictorRegion] varchar(1) NOT NULL,
     [drvHomeCity] varchar(255) NULL,
@@ -333,7 +333,7 @@ CREATE TABLE [dbo].[U_EBOWDEMEXP_drvTbl] (
     [drvTermDate] datetime NULL,
     [drvTermType] varchar(25) NULL,
     [drvSect16Emp] varchar(7) NOT NULL,
-    [drvCurrJobTitle] varchar(150) NULL,
+    [drvCurrJobTitle] varchar(8000) NULL,
     [drvCurrDept] varchar(5) NULL,
     [drvCurrSection] varchar(25) NULL,
     [drvCurrBranch] varchar(24) NULL,
@@ -473,7 +473,8 @@ CREATE TABLE [dbo].[U_EBOWDEMEXP_PEarHist] (
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompHrs] decimal NULL,
     [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+    [PehInclInDefCompHrsYTD] decimal NULL,
+    [PehYTDTaxableSupplementalCompensation] money NULL
 );
 
 -----------
@@ -516,7 +517,7 @@ Revision History
     - Added EEPUDFIELD01 and EEPUDFIELD02 to determine eligibility.
 
 03/01/2022 by AP:
-	- Adjusted logic for EEPUDFIELD01/EEPUDFIELD02 to determine eligibility.
+    - Adjusted logic for EEPUDFIELD01/EEPUDFIELD02 to determine eligibility.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBOWDEMEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBOWDEMEXP';
@@ -608,7 +609,7 @@ BEGIN
         ,drvFirstName = EepNameFirst
         ,drvLastName = EepNameLast
         ,drvUserCode1 = EepNamePreferred
-        ,drvHomeAddressLine1 = EepAddressLine1
+        ,drvHomeAddressLine1 = Replace(Replace(EepAddressLine1,CHAR(10),''),CHAR(13),'')
         ,drvHomeAddressLine2 = EepAddressLine2
         ,drvHomeDistrictorRegion = '' --leave blank
         ,drvHomeCity = EepAddressCity
@@ -622,7 +623,7 @@ BEGIN
         ,drvTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvTermType =  TchDesc
         ,drvSect16Emp = CASE WHEN EepUDField07 = 'Yes' THEN 'Insider' ELSE 'No' END
-        ,drvCurrJobTitle = EecJobTitle
+        ,drvCurrJobTitle = Replace(Replace(EecJobTitle,CHAR(10),''),CHAR(13),'')
         ,drvCurrDept = CASE WHEN Cmpcompanycode = 'BCG' THEN 'BCG'
                             WHEN Cmpcompanycode = 'BRCLC' THEN 'BRCLC'
                             WHEN Cmpcompanycode = 'NCPC2' THEN 'NCPC2'
