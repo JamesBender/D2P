@@ -1089,7 +1089,7 @@ BEGIN
         ON xEEID = CustomFields.EEID
     WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' ;
 
-    --Replicate the record for 457X dedcode
+    --the record for 457X dedcode
       INSERT INTO dbo.U_EFIDEL403B_drvTbl_02D
    SELECT DISTINCT
         drvPLANNUMBER = '76664'

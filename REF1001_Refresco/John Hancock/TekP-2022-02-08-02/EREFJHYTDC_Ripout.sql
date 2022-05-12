@@ -4,16 +4,17 @@ EREFJHYTDC: John Hancock YTD Comp
 
 FormatCode:     EREFJHYTDC
 Project:        John Hancock YTD Comp
-Client ID:      USG1000
-Date/time:      2022-04-28 14:12:59.100
+Client ID:      REF1001
+Date/time:      2022-05-10 11:40:46.380
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EREFJHYTDC_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    E43
+Server:         E4SUP3DB01
+Database:       ULTIPRO_RBUS
+Web Filename:   REF1001_XAC7C_EEHISTORY_EREFJHYTDC_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -117,6 +118,8 @@ IF OBJECT_ID('U_EREFJHYTDC_File') IS NOT NULL DROP TABLE [dbo].[U_EREFJHYTDC_Fil
 GO
 IF OBJECT_ID('U_EREFJHYTDC_EEList') IS NOT NULL DROP TABLE [dbo].[U_EREFJHYTDC_EEList];
 GO
+IF OBJECT_ID('U_EREFJHYTDC_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EREFJHYTDC_drvTbl];
+GO
 
 -----------
 -- AscDefH inserts
@@ -143,7 +146,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EREFJHYTDCZ0','50','D','10','5',NULL,'Eligible Plan Comp',NULL,NULL,'"drvEligiblePlanComp"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EREFJHYTDCZ0','50','D','10','6',NULL,'Match Eligible Plan Comp',NULL,NULL,'"dvrMatchEligiblePlanComp"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EREFJHYTDCZ0','50','D','10','7',NULL,'Union Code',NULL,NULL,'"drvUnionCode"','(''UA''=''Q,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EREFJHYTDCZ0','50','D','10','8',NULL,'Union Name',NULL,NULL,'"drvUnionName"','(''UA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EREFJHYTDCZ0','50','D','10','8',NULL,'Union Name',NULL,NULL,'"drvUnionName"','(''UA''=''Q'')');
 
 -----------
 -- Build web filename
@@ -156,7 +159,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREFJHYTDC_20220428.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREFJHYTDC_20220510.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -165,7 +168,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock YTD Comp','202204229','EMPEXPORT','ONDEM_XOE',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202204229','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202204221',NULL,'','','202204221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock YTD Comp-Sched','202204229','EMPEXPORT','SCH_EREFJH',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202204229','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202204221',NULL,'','','202204221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock YTD Comp-Test','202204229','EMPEXPORT','TEST_XOE',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202204229','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202204221',NULL,'','','202204221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp-Test','202205039','EMPEXPORT','TEST_XOE','May  3 2022 11:02AM','EREFJHYTDC',NULL,NULL,NULL,'202205039','May  3 2022 12:00AM','Dec 30 1899 12:00AM','202204261','5478','','','202204261',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -177,10 +180,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFJHYTDC','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -195,14 +199,33 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EREFJHYTDC','D10','dbo.U_EREFJHYTDC_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
 -----------
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_EREFJHYTDC_drvTbl
 -----------
 
+IF OBJECT_ID('U_EREFJHYTDC_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EREFJHYTDC_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvSort] varchar(1) NOT NULL,
+    [dvrSSN] char(11) NULL,
+    [dvrEmployeeName] varchar(202) NOT NULL,
+    [dvrGrossComp] money NULL,
+    [dvrPlanComp] money NULL,
+    [drvEligiblePlanComp] money NULL,
+    [dvrMatchEligiblePlanComp] money NULL,
+    [drvUnionCode] char(12) NULL,
+    [drvUnionName] char(15) NULL
+);
 
 -----------
 -- Create table U_EREFJHYTDC_EEList
@@ -236,6 +259,7 @@ IF OBJECT_ID('U_EREFJHYTDC_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EREFJHYTDC_PEarHist] (
     [PehEEID] char(12) NOT NULL,
     [PrgPayDate] datetime NULL,
+    [PehCurAmt] money NULL,
     [PehCurAmtYTD] money NULL,
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompYTD] money NULL
@@ -250,17 +274,7 @@ CREATE TABLE [dbo].[U_EREFJHYTDC_PTaxHist] (
     [PthEEID] char(12) NOT NULL,
     [PthCOID] char(5) NOT NULL,
     [PthCurTaxableWages] money NULL,
-    [PthSSNWages] numeric NULL,
-    [PthMedicareWages] numeric NULL,
-    [PthStateWithholding] numeric NULL,
-    [PthFederalWithholding] numeric NULL,
-    [PthSSNWithholding] numeric NULL,
-    [PthMedicareWithholding] numeric NULL,
-    [PthOterholding] numeric NULL,
-    [PthStateIncomeTax] numeric NULL,
-    [PthLocalIncomeTax] numeric NULL,
-    [PthStateWagesTipsEtc] numeric NULL,
-    [PthLocalWagesTipsEtc] numeric NULL
+    [PthFederalWithholding] numeric NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EREFJHYTDC]
@@ -331,61 +345,6 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EREFJHYTDC_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-    ----==========================================
-    ---- Create Deduction List
-    ----==========================================
-    --DECLARE @DedList VARCHAR(MAX)
-    --SET @DedList = 'DED1,DED2';
-
-    --IF OBJECT_ID('U_EREFJHYTDC_DedList','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EREFJHYTDC_DedList;
-    --SELECT DISTINCT
-    --     DedCode = DedDedCode
-    --    ,DedType = DedDedType
-    --INTO dbo.U_EREFJHYTDC_DedList
-    --FROM dbo.fn_ListToTable(@DedList)
-    --JOIN dbo.DedCode WITH (NOLOCK)
-    --    ON DedDedCode = Item;
-
-    ----==========================================
-    ---- Build Working Tables
-    ----==========================================
-
-    -------------------------------
-    ---- Working Table - PDedHist
-    -------------------------------
-    --IF OBJECT_ID('U_EREFJHYTDC_PDedHist','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EREFJHYTDC_PDedHist;
-    --SELECT DISTINCT
-    --     PdhEEID
-    --    -- Current Payroll Amounts
-    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-    --    -- YTD Payroll Amounts
-    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-    --    -- Categorize Payroll Amounts
-    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --INTO dbo.U_EREFJHYTDC_PDedHist
-    --FROM dbo.PDedHist WITH (NOLOCK)
-    --JOIN dbo.U_EREFJHYTDC_DedList WITH (NOLOCK)
-    --    ON DedCode = PdhDedCode
-    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PdhPerControl <= @EndPerControl
-    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    --GROUP BY PdhEEID
-    --HAVING (SUM(PdhEECurAmt) <> 0.00
-    --    OR SUM(PdhERCurAmt) <> 0.00
-    --);
 
 
     -----------------------------
@@ -396,18 +355,14 @@ BEGIN
     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        --,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
+        -- Current Payroll Amount
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        -- YTD Payroll Amount
         ,PehCurAmtYTD           = SUM(PehCurAmt)
-        --,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
+        -- Current Include Deferred Comp Amount
         ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
+        -- YTD Include Deferred Comp Amount
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
     INTO dbo.U_EREFJHYTDC_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
@@ -427,27 +382,13 @@ BEGIN
     SELECT DISTINCT
         PthEEID
         ,PthCOID
-        ,PthCurTaxableWages                     = SUM(PthCurTaxableWages)
-        --,PthSSNWages                            = SUM(CASE WHEN PthTaxCode IN ('USSOCEE') THEN PthCurTaxableWages ELSE 0.00 END)
-        --,PthMedicareWages                       = SUM(CASE WHEN PthTaxCode IN ('USMEDEE') THEN PthCurTaxableWages ELSE 0.00 END)
-
-        --,PthStateWithholding                    = SUM(CASE WHEN RTRIM(PthTaxCode) LIKE '%SIT' THEN PthCurTaxAmt ELSE 0.00 END)
-        ,PthFederalWithholding                  = SUM(CASE WHEN PthTaxCode = 'USFIT' THEN PthCurDefComp + PthCurSec125 + PthCurD125 ELSE 0.00 END)
-        --,PthSSNWithholding                      = SUM(CASE WHEN PthTaxCode = 'USSOCEE' THEN PthCurTaxAmt ELSE 0.00 END)
-        --,PthMedicareWithholding                 = SUM(CASE WHEN PthTaxCode = 'USMEDEE' THEN PthCurTaxAmt ELSE 0.00 END)
-        --,PthOterholding                         = SUM(CASE WHEN PthTaxCode NOT IN ('USMEDEE','USSOCEE','USFIT') AND PthTaxCode NOT LIKE '%LIT' AND PthTaxCode NOT LIKE '%SIT' THEN PthCurTaxAmt ELSE 0.00 END)
-        --,PthStateIncomeTax                      = SUM(CASE WHEN PthTaxCode LIKE '%SIT' THEN PthCurTaxAmt ELSE 0.00 END)
-        --,PthLocalIncomeTax                      = SUM(CASE WHEN PthTaxCode LIKE '%LIT' THEN PthCurTaxAmt ELSE 0.00 END)
-
-
-        --,PthStateWagesTipsEtc                   = SUM(CASE WHEN PthTaxCode LIKE '%SIT' THEN PthCurTaxableWages ELSE 0.00 END)
-        --,PthLocalWagesTipsEtc                   = SUM(CASE WHEN PthTaxCode LIKE '%LIT' THEN PthCurTaxableWages ELSE 0.00 END)
-
+        ,PthCurTaxableWages          = SUM(PthCurTaxableWages)
+        ,PthFederalWithholding       = SUM(CASE WHEN PthTaxCode = 'USFIT' THEN PthCurDefComp + PthCurSec125 + PthCurD125 ELSE 0.00 END)
     INTO dbo.U_EREFJHYTDC_PTaxHist
     FROM dbo.PTaxHist WITH (NOLOCK)
-    WHERE --LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
-        --AND PthPerControl <= @EndPerControl
-        PthPerControl BETWEEN @StartPerControl AND @EndPerControl
+    WHERE LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
+        AND PthPerControl <= @EndPerControl
+        --PthPerControl BETWEEN @StartPerControl AND @EndPerControl
     GROUP BY PthEEID, PthCOID
 
 
@@ -461,19 +402,19 @@ BEGIN
     IF OBJECT_ID('U_EREFJHYTDC_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EREFJHYTDC_drvTbl;
     SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+         drvEEID                    = xEEID
+        ,drvCoID                    = xCoID
+        --,drvDepRecID                = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,dvrSSN = eepSSN
-        ,dvrEmployeeName = ''
-        ,dvrGrossComp = ''
-        ,dvrPlanComp = ''
-        ,drvEligiblePlanComp = ''
-        ,dvrMatchEligiblePlanComp = ''
-        ,drvUnionCode = EecUnionLocal
-        ,drvUnionName = EecUnionLocal
+        ,dvrEmployeeName            = concat(Eepnamelast, ',' , '' , eepnamefirst)
+        ,dvrGrossComp                = PehCurAmtYTD
+        ,dvrPlanComp                = PehInclInDefCompYTD
+        ,drvEligiblePlanComp            = PehInclInDefCompYTD
+        ,dvrMatchEligiblePlanComp        = PehInclInDefCompYTD
+        ,drvUnionCode                = CASE WHEN EecUnionLocal <> 'N' THEN EecUnionLocal END
+    ,drvUnionName                = CASE WHEN unishortdesc <> 'No' THEN unishortdesc END
     INTO dbo.U_EREFJHYTDC_drvTbl
     FROM dbo.U_EREFJHYTDC_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -483,7 +424,11 @@ BEGIN
         AND EecCOID = xCOID 
     LEFT JOIN dbo.U_EREFJHYTDC_PTaxHist WITH (NOLOCK)
         On PthEeid =  xeeid
-        where eecCOID <> 'RCI'
+    LEFT Join dbo.U_EREFJHYTDC_PEarHist WITH (NOLOCK)
+        On PehEeid =  xeeid
+        Left Join dbo.LabUnion 
+        ON unicode = EecUnionLocal
+    where PehInclInDefCompYTD > 0.00
     ;
 
     --==========================================
