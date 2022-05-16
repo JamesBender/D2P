@@ -1,19 +1,20 @@
 /**********************************************************************************
 
-ECHAMER834: Meridian Health 834
+ECHAMER834: Meritain Health 834
 
 FormatCode:     ECHAMER834
-Project:        Meridian Health 834
-Client ID:      USG1000
-Date/time:      2022-04-22 17:59:10.110
+Project:        Meritain Health 834
+Client ID:      CHA1022
+Date/time:      2022-04-27 10:33:38.047
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_ECHAMER834_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW1WUP5DB02
+Database:       ULTIPRO_WPCHAT
+Web Filename:   CHA1022_0XR3V_EEHISTORY_ECHAMER834_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -356,7 +357,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECHAMER834_20220422.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECHAMER834_20220427.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -385,7 +386,8 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECHAMER834','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -450,11 +452,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -709,7 +706,7 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = 'LTD'--'MED01,MED02,MED03';
+    SET @DedList = 'MED01,MED02,MED03'; --'LTD'
 
     IF OBJECT_ID('U_ECHAMER834_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ECHAMER834_DedList;
@@ -732,7 +729,7 @@ BEGIN
 
     IF @ExportCode LIKE 'OE%'
     BEGIN
-        -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
+        -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List   
         DELETE FROM dbo.U_ECHAMER834_EEList
         WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ECHAMER834_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
     END;
@@ -940,17 +937,20 @@ BEGIN
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'DX'
         ,drvREF02_RefNumberQual3 = CASE WHEN locAddressState ='CO' THEN      
-					CASE BdmDedCode                                                 
-						WHEN 'Med02' THEN '310'                                                 
-						WHEN 'Med03' THEN '210'                                             
-					END                                         
-					ELSE                                             
-						CASE BdmDedCode                                                 
-							WHEN 'Med01' THEN '100'                                                     
-							WHEN 'Med02' THEN '300'                                                        
-							WHEN 'Med03' THEN '200'                                             
-						END                                         
-					END
+                    CASE BdmDedCode 
+                        WHEN 'Med01' THEN '110' 					
+                        WHEN 'Med02' THEN '310'                                                 
+                        WHEN 'Med03' THEN '210'                                             
+                    END                                         
+                    ELSE                                             
+                        CASE BdmDedCode                                                 
+                            WHEN 'Med01' THEN '100'                                                     
+                            WHEN 'Med02' THEN '300'                                                        
+                            WHEN 'Med03' THEN '200'                                             
+                        END                                         
+                    END
+
+
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''
@@ -1066,7 +1066,7 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-	;
+    ;
 
     /**************************************************************************************************************
         DETAIL RECORDS
@@ -1089,9 +1089,9 @@ BEGIN
         ,drvHD04_PlanCoverageDesc = 'CP2'
         ,drvHD05_CoverageLevelCode = 
                                                 CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ESPBenOpts')) THEN 'ESP'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES')) THEN 'ESP'
                                                      WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) THEN 'ECH'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEFAMBenOpts')) THEN 'FAM'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEF')) THEN 'FAM'
                                                 END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
