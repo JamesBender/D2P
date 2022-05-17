@@ -5,7 +5,7 @@ ECULTIEXDE: CultureAmp Demo Export
 FormatCode:     ECULTIEXDE
 Project:        CultureAmp Demo Export
 Client ID:      IEX1000
-Date/time:      2022-02-03 19:19:01.287
+Date/time:      2022-05-11 06:10:11.627
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -123,6 +123,10 @@ IF OBJECT_ID('U_ECULTIEXDE_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECULTIEXDE_d
 GO
 IF OBJECT_ID('U_ECULTIEXDE_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECULTIEXDE_DedList];
 GO
+IF OBJECT_ID('U_ECULTIEXDE_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECULTIEXDE_AuditFields];
+GO
+IF OBJECT_ID('U_ECULTIEXDE_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECULTIEXDE_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_ECULTIEXDE') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECULTIEXDE];
 GO
 
@@ -180,7 +184,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECULTIEXDE_20220203.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECULTIEXDE_20220511.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -191,7 +195,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202201209','EMPEXPORT','OEPASSIVE',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CultureAmp Demo Export','202201209','EMPEXPORT','ONDEM_XOE',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CultureAmp Demo Export-Sched','202201209','EMPEXPORT','SCH_ECULTI',NULL,'ECULTIEXDE',NULL,NULL,NULL,'202201209','Jan 20 2022  1:13PM','Jan 20 2022  1:13PM','202201201',NULL,'','','202201201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CultureAmp Demo Export-Test','202201251','EMPEXPORT','TEST_XOE','Jan 25 2022 10:37AM','ECULTIEXDE',NULL,NULL,NULL,'202201251','Jan 25 2022 12:00AM','Dec 30 1899 12:00AM','202201111','276','','','202201111',dbo.fn_GetTimedKey(),NULL,'us3cPeIEX1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CultureAmp Demo Export-Test','202203241','EMPEXPORT','TEST_XOE','Mar 24 2022  9:22AM','ECULTIEXDE',NULL,NULL,NULL,'202203241','Mar 24 2022 12:00AM','Dec 30 1899 12:00AM','202203241','286','','','202203241',dbo.fn_GetTimedKey(),NULL,'us3cPeIEX1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -281,6 +285,34 @@ CREATE TABLE [dbo].[U_dsi_BDM_ECULTIEXDE] (
 );
 
 -----------
+-- Create table U_ECULTIEXDE_Audit
+-----------
+
+IF OBJECT_ID('U_ECULTIEXDE_Audit') IS NULL
+CREATE TABLE [dbo].[U_ECULTIEXDE_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCoid] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_ECULTIEXDE_AuditFields
+-----------
+
+IF OBJECT_ID('U_ECULTIEXDE_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ECULTIEXDE_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
 -- Create table U_ECULTIEXDE_DedList
 -----------
 
@@ -314,7 +346,7 @@ CREATE TABLE [dbo].[U_ECULTIEXDE_drvTbl] (
     [drvLoc] varchar(25) NULL,
     [drvDept] varchar(25) NULL,
     [drvEmpType] varchar(9) NULL,
-    [drvJobTitle] varchar(25) NOT NULL
+    [drvJobTitle] varchar(8000) NULL
 );
 
 -----------
@@ -399,7 +431,7 @@ Purpose: CultureAmp Demo Export
 Revision History
 ----------------
 02/03/2022 by AP:
-	- Removed commas from job title field.
+    - Removed commas from job title field.
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECULTIEXDE';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECULTIEXDE';
@@ -596,6 +628,40 @@ BEGIN
     --AND PehPerControl <= @EndPerControl
     --GROUP BY PehEEID
     --HAVING SUM(PehCurAmt) <> 0.00;
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+     --Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_ECULTIEXDE_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ECULTIEXDE_AuditFields;
+    CREATE TABLE dbo.U_ECULTIEXDE_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    INSERT INTO dbo.U_ECULTIEXDE_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_ECULTIEXDE_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ECULTIEXDE_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audCoid = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_ECULTIEXDE_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_ECULTIEXDE_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    --audDateTime BETWEEN dateadd(D, -15, @EndDate) AND @EndDate  -- DATE EXCLUDED DUE TO MISSING VALUES THAT ARE TERMED WITHIN
+     AND audAction <> 'DELETE';
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -653,7 +719,11 @@ BEGIN
     ON Ec2.EecEEID = pers2.EepEEID
     LEFT JOIN dbo.OrgLevel O2 WITH(NOLOCK)
         ON O2.OrgCode = Ec.EecOrgLvl2
+    LEFT JOIN dbo.U_ECULTIEXDE_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audCOID = xCOID
     WHERE Ec.EecEEType <> 'CON'
+        AND (EC.EecEmplStatus <> 'T' OR (EC.EecEmplStatus = 'T' AND audDateTime IS NOT NULL))
     ;
     --==========================================
     -- Set FileName

@@ -5,7 +5,7 @@ ECSB401KEX: Charles Schwab 401k Export
 FormatCode:     ECSB401KEX
 Project:        Charles Schwab 401k Export
 Client ID:      SEL1005
-Date/time:      2022-02-28 12:19:51.193
+Date/time:      2022-05-11 05:32:00.657
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -112,6 +112,8 @@ GO
 IF OBJECT_ID('U_ECSB401KEX_Trailer') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_Trailer];
 GO
 IF OBJECT_ID('U_ECSB401KEX_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_PEarHist];
+GO
+IF OBJECT_ID('U_ECSB401KEX_PDedHist_FY') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_PDedHist_FY];
 GO
 IF OBJECT_ID('U_ECSB401KEX_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ECSB401KEX_PDedHist];
 GO
@@ -251,7 +253,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECSB401KEX_20220228.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECSB401KEX_20220511.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -262,7 +264,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202107099','EMPEXPORT','OEPASSIVE',NULL,'ECSB401KEX',NULL,NULL,NULL,'202107099','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202107091',NULL,'','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab 401k Export','202107099','EMPEXPORT','ONDEMAND',NULL,'ECSB401KEX',NULL,NULL,NULL,'202107099','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202107091',NULL,'','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202107099','EMPEXPORT','SCH_CHAEX',NULL,'ECSB401KEX',NULL,NULL,NULL,'202107099','Aug  7 2020  1:39PM','Aug  7 2020  1:39PM','202107091',NULL,'','','202107091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202202109','EMPEXPORT','TEST','Feb 15 2022  6:57PM','ECSB401KEX',NULL,NULL,NULL,'202202109','Feb 10 2022 12:00AM','Dec 30 1899 12:00AM','202202101','13290','eecPayGroup','SQAH,CORP,IR,LIFE,PH,SQRX,SENIR','202202101',dbo.fn_GetTimedKey(),NULL,'us3lKiSEL1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','08G50',NULL,NULL,NULL,'Test Purposes Only','202204251','EMPEXPORT','TEST','Apr 27 2022  6:57PM','ECSB401KEX',NULL,NULL,NULL,'202204251','Apr 25 2022 12:00AM','Apr 15 2022 12:00AM','202204251','2198514','eecPayGroup','SQAH,CORP,IR,LIFE,PH,SQRX,SENIR','202204251',dbo.fn_GetTimedKey(),NULL,'us3lKiSEL1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -500,16 +502,25 @@ CREATE TABLE [dbo].[U_ECSB401KEX_PDedHist] (
     [PdhEECurAmtYTD] money NULL,
     [PdhERCurAmtYTD] money NULL,
     [Pdh401FAmt] numeric NULL,
-    [Pdh401FAmtYTD] numeric NULL,
     [Pdh401FAmtYTD2] numeric NULL,
     [Pdh401CAmt] numeric NULL,
     [Pdh401CAmtYTD] numeric NULL,
     [PdhRothAmt] numeric NULL,
-    [PdhRothAmtYTD] numeric NULL,
     [PdhMatchAmt] numeric NULL,
-    [PdhMatchAmtYTD] numeric NULL,
     [Pdh401L1Amt] numeric NULL,
     [PdhDedCalcBasisAmt] numeric NULL
+);
+
+-----------
+-- Create table U_ECSB401KEX_PDedHist_FY
+-----------
+
+IF OBJECT_ID('U_ECSB401KEX_PDedHist_FY') IS NULL
+CREATE TABLE [dbo].[U_ECSB401KEX_PDedHist_FY] (
+    [PdhFyEEID] char(12) NOT NULL,
+    [Pdh401FAmtYTD] numeric NULL,
+    [PdhRothAmtYTD] numeric NULL,
+    [PdhMatchAmtYTD] numeric NULL
 );
 
 -----------
@@ -685,6 +696,7 @@ BEGIN
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
+
     IF OBJECT_ID('U_ECSB401KEX_PDedHist','U') IS NOT NULL
         DROP TABLE dbo.U_ECSB401KEX_PDedHist;
     SELECT DISTINCT
@@ -697,15 +709,15 @@ BEGIN
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
         ,Pdh401FAmt        = SUM(CASE WHEN PdhDedCode IN ('700','701') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,Pdh401FAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('700','701')  AND PdhPerControl >=  CAST( (YEAR(@StartDate)) as varchar) + '07011'  THEN PdhEECurAmt ELSE 0.00 END)
+        --,Pdh401FAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('700','701')  AND PdhPerControl >=  CAST( (YEAR(@StartDate)) as varchar) + '07011'  THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401FAmtYTD2    = SUM(CASE WHEN PdhDedCode IN ('700','701')  THEN PdhEECurAmt ELSE 0.00 END)
 
         ,Pdh401CAmt        = SUM(CASE WHEN PdhDedCode IN ('401C') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl  THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh401CAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('401C')   AND PdhPerControl >=  CAST( (YEAR(@StartDate) ) as varchar) + '07011' THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhRothAmt     = SUM(CASE WHEN PdhDedCode IN ('703','704') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)        
-        ,PdhRothAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('703','704')   AND PdhPerControl >=  CAST( (YEAR(@StartDate) ) as varchar) + '07011' THEN PdhEECurAmt ELSE 0.00 END)        
+        --,PdhRothAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('703','704')   AND PdhPerControl >=  CAST( (YEAR(@StartDate) ) as varchar) + '07011' THEN PdhEECurAmt ELSE 0.00 END)        
         ,PdhMatchAmt   = SUM(CASE WHEN PdhDedCode IN ('MATCH') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhMatchAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('MATCH')  AND PdhPerControl >=  CAST( (YEAR(@StartDate)) as varchar) + '07011' THEN PdhERCurAmt ELSE 0.00 END)
+        --,PdhMatchAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('MATCH')  AND PdhPerControl >=  CAST( (YEAR(@StartDate)) as varchar) + '07011' THEN PdhERCurAmt ELSE 0.00 END)
         ,Pdh401L1Amt     = SUM(CASE WHEN PdhDedCode IN ('764','765', '766', '767', '768', '769', '771', '775') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhDedCalcBasisAmt =  SUM(CASE WHEN PdhDedCode IN ('700','701','703','704','MATCH') AND PdhPerControl > CAST( (YEAR(@StartDate) ) as varchar) + '07011' THEN PdhEECurAmt ELSE 0.00 END)
     INTO dbo.U_ECSB401KEX_PDedHist
@@ -721,6 +733,32 @@ BEGIN
     --)
     
     ;
+
+
+    DECLARE @FiscYearStartPerControl VARCHAR(9)
+        ,@FiscYearEndPerControl VARCHAR(9)
+        ;
+
+
+    SELECT @FiscYearStartPerControl =  CASE WHEN DATEPART(MONTH, @EndDate) < 7  THEN CAST((DATEPART(YEAR, @EndDate) - 1) AS VARCHAR) + '07011' ELSE CAST(DATEPART(YEAR, @EndDate) AS VARCHAR) + '07011' END
+            ,@FiscYearEndPerControl =  CASE WHEN DATEPART(MONTH, @EndDate) < 7 THEN CAST(DATEPART(YEAR, @EndDate) AS VARCHAR) + '06309' ELSE CAST(DATEPART(YEAR, @EndDate) + 1 AS VARCHAR) + '06309' END 
+
+    IF OBJECT_ID('U_ECSB401KEX_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECSB401KEX_PDedHist_FY;
+    SELECT DISTINCT
+         PdhFyEEID = PdhEEID
+        ,Pdh401FAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('700','701') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhRothAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('703','704') THEN PdhEECurAmt ELSE 0.00 END)        
+        ,PdhMatchAmtYTD    = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)
+    INTO dbo.U_ECSB401KEX_PDedHist_FY
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_ECSB401KEX_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    WHERE --LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+     --PdhPerControl <= @EndPerControl
+     PdhPerControl BETWEEN @FiscYearStartPerControl AND @FiscYearEndPerControl
+    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID
 
 
     -----------------------------
@@ -917,6 +955,63 @@ BEGIN
         ,drvDateOfRetirement = ''
         ,drvDateOfDeath = ''
     INTO dbo.U_ECSB401KEX_drvTbl
+    FROM dbo.U_ECSB401KEX_EEList WITH (NOLOCK) 
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    LEFT JOIN dbo.U_ECSB401KEX_Audit WITH (NOLOCK)
+        ON audKey1Value = xEEID
+        AND audKey2Value = xCOID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
+    LEFT JOIN dbo.U_dsi_BDM_ECSB401KEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    LEFT JOIN dbo.U_ECSB401KEX_PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID    
+    LEFT JOIN dbo.U_ECSB401KEX_PDedHist_FY WITH (NOLOCK)
+        ON PdhFyEEID = xEEID    
+    LEFT JOIN dbo.U_ECSB401KEX_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+    JOIN dbo.PayGroup WITH (NOLOCK)
+        ON PgrPayGroup = EecPayGroup   
+    LEFT JOIN (
+                SELECT EshEEID, EshCOID, EshStatusStartDate, EshStatusStopDate
+                FROM (
+                        SELECT EshEEID, EshCOID, EshStatusStartDate, EshStatusStopDate, EshEmplStatus, ROW_NUMBER() OVER (PARTITION BY EshEEID, EshCOID ORDER BY EshStatusStartDate DESC) AS RN
+                        FROM dbo.EmpHStat WITH (NOLOCK) 
+                        WHERE EshEmplStatus = 'L'
+                    ) AS LOA_Dates 
+                WHERE RN = 1
+            ) AS Leave_StartEnd_Date
+        ON EshEEID = xEEID
+        AND EshCOID = xCOID
+    Join dbo.company WITH (NOLOCK) 
+        on cmpcoid = xcoid
+    LEFT JOIN (
+            SELECT distinct PthEEID AS SalPthEEID, PthCurGrossWages AS SalaryAmount
+            FROM dbo.PTaxHist WITH (NOLOCK)
+            WHERE PthPerControl BETWEEN @StartPerControl AND @EndPerControl
+                AND PthIsTaxReconAdjustment <> 'Y'
+            ) AS TotalSal            
+        ON SalPthEEID = xEEID
+    LEFT JOIN (
+            SELECT PehEEID AS SalYtdPehEEID, sum(PehCurAmt) AS YtdSalaryAmount
+            FROM dbo.PEarHist WITH (NOLOCK)
+            WHERE PehPerControl BETWEEN CASE WHEN @EndDate < '7/1/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) THEN CAST(DATEPART(YEAR, GETDATE())-1 AS VARCHAR) + '07011' ELSE CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) + '07011' END AND @EndPerControl
+            GROUP BY PehEEID) AS TotalYtdSal
+        ON SalYtdPehEEID = xEEID
+    WHERE eecemplstatus <> 'T'
+        OR (
+                (eecemplstatus = 'T' AND eectermreason <> 'TRO' AND audNewValue = 'T')
+                OR
+                (eecemplstatus = 'T' and /*eectermreason <> 'TRO'  and*/ (Pdh401FAmt > 0.00 or PdhRothAmt > 0.00 or Pdh401L1Amt > 0.00))    
+        )
+
+
+/*    
     FROM dbo.U_ECSB401KEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -925,10 +1020,10 @@ BEGIN
           --                              and EXISTS(select 1 from dbo.U_ECSB401KEX_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     --==========================================
     -- update to pull in termination not captured in audit
-          and (eecemplstatus <> 'T' 
-          OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
-                                        and EXISTS(select 1 from dbo.U_ECSB401KEX_Audit where  audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T'))
-                                        OR (eecemplstatus= 'T' and eectermreason <>'TRO' and
+          and eecemplstatus <> 'T' 
+          OR  (eecemplstatus = 'T' and eectermreason <> 'TRO' 
+                                        and EXISTS(select 1 from dbo.U_ECSB401KEX_Audit where audKey1Value = xEEID AND audKey2Value = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')
+                                        OR (eecemplstatus = 'T' and eectermreason <> 'TRO' and
                                         EXISTS(SELECT 1 from U_ECSB401KEX_PDedHist where pdheeid = xeeid and (Pdh401FAmt > 0.00 or PdhRothAmt > 0.00 or Pdh401L1Amt > 0.00) )))
     --==========================================
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -940,6 +1035,8 @@ BEGIN
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_ECSB401KEX_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID    
+    LEFT JOIN dbo.U_ECSB401KEX_PDedHist_FY WITH (NOLOCK)
+        ON PdhFyEEID = xEEID    
     LEFT JOIN dbo.U_ECSB401KEX_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID
     JOIN dbo.PayGroup WITH (NOLOCK)
@@ -984,7 +1081,8 @@ BEGIN
 
     --WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND PdhDedCalcBasisAmt > 0) --- DATEPART(YEAR, EecDateOfTermination) = DATEPART(YEAR, @ENDDATE))
     ;
-
+*/
+    
     Update dbo.U_ECSB401KEX_drvTbl set drvLoanPayment1Raw = 0 , drvLoanPayment1 = '000000000000' where drvLoanPayment1Raw  < 0
 
     Delete  from dbo.U_ECSB401KEX_drvTbl where YEAR(drvTerminationdate) <  YEAR(@EndDate) and drvPlanYTDHoursPaid = '0000'
