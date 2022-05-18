@@ -734,7 +734,7 @@ BEGIN
         ,drvSort                        = EepEEID
         ,drvSubSort                        = ISNULL(ConSystemID, 'a')
         -- standard fields above and additional driver fields below
-        ,drvEnroll2                        = ''                                                          --Number of rows excluding header
+        ,drvEnroll2                        = '    '                                                          --Number of rows excluding header
         ,drvPolicy                        = CASE WHEN DedCode_ADD = 'ADD' OR DedCode_GLIFE = 'GLIFE' OR DedCode_GLISF = 'GLISF' 
                                                  THEN '708016'
                                                 WHEN DedCode_ADDV = 'ADDV' OR DedCode_ADDC =  'ADDC' OR DedCode_ADDS = 'ADDS' OR DedCode_LIFEE = 'LIFEE' OR DedCode_LIFEC = 'LIFEC' OR DedCode_LIFES = 'LIFES' 
@@ -742,13 +742,20 @@ BEGIN
                                             END
         ,drvMemberID                    = eepSSN
         ,drvDOH                            = CONVERT(VARCHAR(10),EecDateOfLastHire, 112)
-        ,drvSalary                        = EecAnnSalary
+        ,drvSalary                        = CASE WHEN  DedCode_LIFEE = 'LIFEE ' THEN EecAnnSalary
+												 WHEN  DedCode_LIFES = 'LIFES' THEN EecAnnSalary
+												 WHEN  DedCode_LIFEC = 'LIFEC' THEN EecAnnSalary
+												 WHEN  DedCode_ADDV = 'ADDV' THEN EecAnnSalary
+												 WHEN  DedCode_ADDS = 'ADDS' THEN EecAnnSalary
+												 WHEN  DedCode_ADDC = 'ADDC' THEN EecAnnSalary 
+												ELSE '0.00'
+											END
         ,drvHours                        = ''
         ,drvTermDate                    = CASE WHEN EecEmplStatus = 'T' THEN CONVERT(VARCHAR(10),EecDateOfTermination, 112) END
         ,drvTermReason                    = CASE WHEN EecEmplStatus = 'T' THEN 
                                                 CASE WHEN EecTermReason = '203' THEN 'DT'
                                                      WHEN eecTermReason = '202' THEN 'RT'
-                                                ELSE ''
+                                                ELSE 'TE'
                                                 END
                                          END
         ,drvNewMemberId                    = CASE WHEN ISNULL(eepOldSSN, '') <> '' THEN EepSSN END
@@ -794,7 +801,7 @@ BEGIN
                                             END
         ,drvBenefitTermDate2              = CASE WHEN DedCode_LIFES = 'LIFES' AND EecEmplStatus <> 'T' THEN CONVERT(VARCHAR(10),BDM.BdmBenStopDate, 112) END
         ,drvBenefitSelectionAmount2       = PdhBenAmtLIFES
-        ,drvBenefitId3                    = CASE WHEN DedCode_LIFEC = 'LIFEC' THEN 'Lc' ELSE '' END
+        ,drvBenefitId3                    = CASE WHEN DedCode_LIFEC = 'LIFEC' THEN 'LC' ELSE '' END
         ,drvPlanCode3                     = CASE WHEN DedCode_LIFEC = 'LIFEC' THEN '5.0M04' ELSE '' END
         ,drvBenefitQualifyingDate3         = CASE WHEN DedCode_LIFEC = 'LIFEC' 
                                             AND Bdm.BdmChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
@@ -868,7 +875,7 @@ BEGIN
     SELECT @RecordCount = COUNT(1)
     FROM dbo.U_EGWVKUNUMH_drvTbl WITH(NOLOCK)
     UPDATE dbo.U_EGWVKUNUMH_drvTbl
-    SET drvEnroll2 = @RecordCount
+    SET drvEnroll2 = CAST(@RecordCount AS VARCHAR(5))
 
     --==========================================
     -- Set FileName
