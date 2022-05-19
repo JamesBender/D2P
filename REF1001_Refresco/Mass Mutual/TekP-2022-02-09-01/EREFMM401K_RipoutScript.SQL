@@ -5,7 +5,7 @@ EREFMM401K: Mass Mutual 401K Payroll Interface
 FormatCode:     EREFMM401K
 Project:        Mass Mutual 401K Payroll Interface
 Client ID:      REF1001
-Date/time:      2022-05-12 14:10:27.700
+Date/time:      2022-05-17 12:09:45.527
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -190,7 +190,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREFMM401K_20220512.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREFMM401K_20220517.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -199,7 +199,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll Inter','202205269','EMPEXPORT','ONDEM_XOE',NULL,'EREFMM401K',NULL,NULL,NULL,'202205269','Apr 26 2022  1:19PM','Apr 26 2022  1:19PM','202204191',NULL,'','','202204191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll-Sched','202205269','EMPEXPORT','SCH_EREFMM',NULL,'EREFMM401K',NULL,NULL,NULL,'202205269','Apr 26 2022  1:19PM','Apr 26 2022  1:19PM','202204191',NULL,'','','202204191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll-Test','202205069','EMPEXPORT','TEST_XOE','May 12 2022 12:00AM','EREFMM401K',NULL,NULL,NULL,'202205069','May  6 2022 12:00AM','Dec 30 1899 12:00AM','202204241',NULL,'','','202204241',dbo.fn_GetTimedKey(),NULL,'us3mWaREF1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll-Test','202205059','EMPEXPORT','TEST_XOE','May 17 2022 12:00AM','EREFMM401K',NULL,NULL,NULL,'202205059','May  5 2022 12:00AM','Dec 30 1899 12:00AM','202205051','179','','','202205051',dbo.fn_GetTimedKey(),NULL,'us3mWaREF1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -384,7 +384,7 @@ CREATE TABLE [dbo].[U_EREFMM401K_File] (
 
 IF OBJECT_ID('U_EREFMM401K_I_Header') IS NULL
 CREATE TABLE [dbo].[U_EREFMM401K_I_Header] (
-    [drvFileIDCode] varchar(1) NOT NULL
+    [drvFileIDCode] varchar(2) NOT NULL
 );
 
 -----------
@@ -517,11 +517,12 @@ BEGIN
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpPers','EepIsDisabled');
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpPers','EepMaritalStatus');
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
+    INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpComp','EecPhoneBusinessNumber')
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpComp','EecDateOfTermination');
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpComp','EecEmplStatusStartDate');
     INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpPers','eepAddressEMail');
-    INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpPers','eepAddressEMail');
+    INSERT INTO dbo.U_EREFMM401K_AuditFields VALUES ('EmpPers','eepAddressEMailAlternate');
 
 
     -- Create audit table based on fields defined above
@@ -546,7 +547,7 @@ BEGIN
     JOIN dbo.U_EREFMM401K_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    WHERE audDateTime BETWEEN DATEADD(DAY,-14,@StartDate) AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -572,7 +573,7 @@ BEGIN
     INTO dbo.U_EREFMM401K_DedList
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
-        ON DedDedCode = Item;
+        ON  DedDedCode = Item;
 
     --==========================================
     -- Build Working Tables
@@ -593,10 +594,9 @@ BEGIN
     SELECT DISTINCT
          PdhEEID
         ,PdhCategoryCode = Case WHEN PdhDedCode IN ('401KP','4CU2') THEN '01'
-                                WHEN PdhDedCode IN ('401PM') THEN '02'
-                                WHEN PdhDedCode IN ('401KA','4CU3') THEN '03'
-                                WHEN PdhDedCode IN ('P4L1','P4L2','P4L3') THEN '04'
-                                WHEN PdhDedCode IN ('ROTH2','RCU2') THEN '05'
+                                WHEN PdhDedCode IN ('401KA','4CU3') THEN '05'
+                                WHEN PdhDedCode IN ('P4L1','P4L2','P4L3') THEN '09'
+                                WHEN PdhDedCode IN ('ROTH2','RCU2') THEN '10'
                                 END
         -- Current Payroll Amounts
         ,PdhEECurAmt        = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
@@ -604,16 +604,33 @@ BEGIN
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_EREFMM401K_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-          AND PdhPerControl <= @EndPerControl
-          AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    -- LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    --      AND PdhPerControl <= @EndPerControl
+    --      AND 
+    WHERE      PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
     GROUP BY PdhEEID, Case WHEN PdhDedCode IN ('401KP','4CU2') THEN '01'
-                                WHEN PdhDedCode IN ('401PM') THEN '02'
-                                WHEN PdhDedCode IN ('401KA','4CU3') THEN '03'
-                                WHEN PdhDedCode IN ('P4L1','P4L2','P4L3') THEN '04'
-                                WHEN PdhDedCode IN ('ROTH2','RCU2') THEN '05'
+                                WHEN PdhDedCode IN ('401KA','4CU3') THEN '05'
+                                WHEN PdhDedCode IN ('P4L1','P4L2','P4L3') THEN '09'
+                                WHEN PdhDedCode IN ('ROTH2','RCU2') THEN '10'
                                 END
     HAVING  SUM(PdhEECurAmt) <> 0.00 
+
+    Union all
+        SELECT DISTINCT
+         PdhEEID
+        ,PdhCategoryCode = Case WHEN PdhDedCode IN ('401PM') THEN '02'END
+        -- Current Payroll Amounts
+        ,PdhEECurAmt        = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+   
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EREFMM401K_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    -- LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    --      AND PdhPerControl <= @EndPerControl
+    --      AND 
+    WHERE      PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID, Case WHEN PdhDedCode IN ('401PM') THEN '02'END
+    HAVING  SUM(PdhERCurAmt) <> 0.00 
    ;
 
 
@@ -701,7 +718,7 @@ BEGIN
                                         END 
                                 END
 
-        ,drvPhone = CASE WHEN eepphonehomenumber <> eepphonehomenumber THEN EecPhoneBusinessNumber END
+        ,drvPhone = CASE WHEN (eepAddressEMail IS NULL or eepphonehomenumber <> ' ' ) THEN eepphonehomenumber ELSE EecPhoneBusinessNumber  END
         ,drvEmail = CASE WHEN (eepAddressEMail IS NULL or eepAddressEMail <> ' ' )  THEN eepAddressEMail else eepAddressEMailAlternate END
     INTO dbo.U_EREFMM401K_D_drvTbl
     FROM dbo.U_EREFMM401K_EEList WITH (NOLOCK)
@@ -723,7 +740,7 @@ BEGIN
     IF OBJECT_ID('U_EREFMM401K_I_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EREFMM401K_I_Header;
     SELECT DISTINCT
-         drvFileIDCode =  CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
+         drvFileIDCode =  CASE WHEN @ExportCode LIKE '%TEST%' THEN 'X3' ELSE '03' END
     INTO dbo.U_EREFMM401K_I_Header
     ;
     ---------------------------------
@@ -739,6 +756,8 @@ BEGIN
         ,drvCoversTo = Max(prgperiodenddate)
     INTO dbo.U_EREFMM401K_A_Header
     FROM dbo.Payreg WITH (NOLOCK)
+    Where PrgPayDate = @StartDate
+
     
     ;
 
