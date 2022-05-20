@@ -479,7 +479,7 @@ BEGIN
                                         END
         ,drvDepartment              = OrgDesc
         ,drvLocation                = LocDesc
-        ,drvAssignedManager         = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail')    
+        ,drvAssignedManager         = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'empno')   
         ,drvBirthdate               = EepDateOfBirth
     INTO dbo.U_EKAZOODEM2_drvTbl
     FROM dbo.U_EKAZOODEM2_EEList WITH (NOLOCK)
