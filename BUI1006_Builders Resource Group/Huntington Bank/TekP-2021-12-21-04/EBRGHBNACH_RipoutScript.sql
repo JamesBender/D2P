@@ -555,7 +555,7 @@ BEGIN
         ,EECUDFIELD04
         ,EECUDFIELD05
        -- ,PrhEEBankRoute
-     --   ,PrhAcct
+       -- ,PrhAcct
         ,PrhAccttype
         ,PdhEECurAmt = PdhEECurAmt
     INTO dbo.U_EBRGHBNACH_PDedHist
