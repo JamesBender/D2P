@@ -5,7 +5,7 @@ EWELLPPEXP: Wells Fargo Positive Pay Export
 FormatCode:     EWELLPPEXP
 Project:        Wells Fargo Positive Pay Export
 Client ID:      AGR1004
-Date/time:      2022-05-12 05:53:41.997
+Date/time:      2022-05-18 13:09:53.740
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,6 +14,7 @@ Server:         NW1WUP3DB03
 Database:       ULTIPRO_WPAGFM
 Web Filename:   AGR1004_WO01I_EEHISTORY_EWELLPPEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -124,7 +125,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EWELLPPEXP','Wells Fargo Positive Pay Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EWELLPPEXPZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EWELLPPEXP','Wells Fargo Positive Pay Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','85','S','N','EWELLPPEXPZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -160,16 +161,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWELLPPEXP_20220512.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWELLPPEXP_20220518.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wells Fargo Positive Pay','202205119','EMPEXPORT','ONDEMAND',NULL,'EWELLPPEXP',NULL,NULL,NULL,'202205119','May  9 2017  8:49AM','May  9 2017  8:49AM','202204101',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test Purposes Only','202205119','EMPEXPORT','TEST',NULL,'EWELLPPEXP',NULL,NULL,NULL,'202205119','May  9 2017  8:49AM','May  9 2017  8:49AM','202204101',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Wells Fargo Positive Pay','202205119','EMPEXPORT','ONDEM_XOE',NULL,'EWELLPPEXP',NULL,NULL,NULL,'202205119','May  9 2017  8:49AM','May  9 2017  8:49AM','202204101',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Wells Fargo Positive Pay','202205119','EMPEXPORT','SCHEDULED',NULL,'EWELLPPEXP',NULL,NULL,NULL,'202205119','May  9 2017  8:49AM','May  9 2017  8:49AM','202204101',NULL,'','','202204011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202204279','EMPEXPORT','TEST_XOE','May 17 2022 12:00AM','EWELLPPEXP',NULL,NULL,NULL,'202204279','Apr 27 2022 12:00AM','Dec 30 1899 12:00AM','202204271',NULL,'eecPayGroup','JGDBW','202204271',dbo.fn_GetTimedKey(),NULL,'us3cPeAGR1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -185,6 +186,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELLPPEXP','InitialSort','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELLPPEXP','SubSort','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELLPPEXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELLPPEXP','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELLPPEXP','UseFileName','V','Y');
 
 -----------
@@ -303,8 +305,9 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EWELLPPEXP' ORD
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWELLPPEXP', 'ONDEMAND';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWELLPPEXP', 'TEST';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWELLPPEXP', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWELLPPEXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWELLPPEXP', 'SCHEDULED';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EWELLPPEXP', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
