@@ -5,7 +5,7 @@ EPREPRI834: Principal 834 Dental Vision
 FormatCode:     EPREPRI834
 Project:        Principal 834 Dental Vision
 Client ID:      PRE1035
-Date/time:      2022-05-11 08:30:50.440
+Date/time:      2022-05-18 08:45:58.980
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -203,11 +203,19 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPREPRI834Z0','60','H','11','3',NULL,'Name',NULL,NULL,'"drvN102_Name1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPREPRI834Z0','2','H','11','4',NULL,'Identification Code Qualifier',NULL,NULL,'"drvN103_IDCodeQual1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPREPRI834Z0','80','H','11','5',NULL,'Identification Code',NULL,NULL,'"drvN104_IDCode1"','(''UA''=''T*'')');
+
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPREPRI834Z0','2','H','12','1',NULL,'N1 Segment ID (Loop1000A/B)',NULL,NULL,'"N1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPREPRI834Z0','3','H','12','2',NULL,'Entity Identifier Code/Sponsor',NULL,NULL,'"drvN101_EntityIDCodeSponsor2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPREPRI834Z0','60','H','12','3',NULL,'Name',NULL,NULL,'"drvN102_Name2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPREPRI834Z0','2','H','12','4',NULL,'Identification Code Qualifier',NULL,NULL,'"drvN103_IDCodeQual2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPREPRI834Z0','80','H','12','5',NULL,'Identification Code',NULL,NULL,'"drvN104_IDCode2"','(''UA''=''T*'')');
+
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPREPRI834Z0','2','H','12','1',NULL,'N1 Segment ID (Loop1000A/B)',NULL,NULL,'"N1"','(''DA''=''T*'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPREPRI834Z0','3','H','12','2',NULL,'Entity Identifier Code/Sponsor',NULL,NULL,'"drvN101_EntityIDCodeSponsor3"','(''UA''=''T*'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPREPRI834Z0','60','H','12','3',NULL,'Name',NULL,NULL,'"drvN102_Name3"','(''UA''=''T*'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPREPRI834Z0','2','H','12','4',NULL,'Identification Code Qualifier',NULL,NULL,'"drvN103_IDCodeQual3"','(''UA''=''T*'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPREPRI834Z0','80','H','12','5',NULL,'Identification Code',NULL,NULL,'"drvN104_IDCode3"','(''UA''=''T*'')');
+
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPREPRI834Z0','3','D','13','1',NULL,'INS Segment ID (Loop 2000)',NULL,NULL,'"INS"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPREPRI834Z0','1','D','13','2',NULL,'Yes/No Condition',NULL,NULL,'"drvINS01_YesNoCond"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPREPRI834Z0','2','D','13','3',NULL,'Individual Relationship Code',NULL,NULL,'"drvINS02_RelationshipCode"','(''UA''=''T*'')');
@@ -363,7 +371,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPREPRI834_20220511.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPREPRI834_20220518.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -416,6 +424,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','H10','U_EPREPRI834_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','H11','U_EPREPRI834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','H12','U_EPREPRI834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
+--INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','H12','U_EPREPRI834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','D13','U_EPREPRI834_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','D14','U_EPREPRI834_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPREPRI834','D15','U_EPREPRI834_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
@@ -528,41 +537,41 @@ IF OBJECT_ID('U_EPREPRI834_DrvTbl') IS NULL
 CREATE TABLE [dbo].[U_EPREPRI834_DrvTbl] (
     [drvINS01_YesNoCond] varchar(1) NOT NULL,
     [drvINS02_RelationshipCode] varchar(2) NOT NULL,
-    [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
+    [drvINS03_MaintTypeCode] varchar(1) NOT NULL,
     [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
     [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
     [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
     [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
     [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
     [drvINS08_EmploymentStatusCode] varchar(2) NULL,
-    [drvINS09_StudentStatusCode] varchar(1) NULL,
+    [drvINS09_StudentStatusCode] varchar(1) NOT NULL,
     [drvINS10_ResponseCode] varchar(1) NULL,
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
     [drvINS12_DateTimePeriod] varchar(8) NULL,
-    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
-    [drvREF01_RefNumberQual3] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual3] varchar(1) NOT NULL,
-    [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual4] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] char(11) NULL,
+    [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(7) NOT NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(5) NOT NULL,
+    [drvREF01_RefNumberQual4] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual4] varchar(5) NULL,
     [drvDTP00_DateTime1] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
     [drvDTP00_DateTime2] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual2] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod2] varchar(1) NOT NULL,
     [drvDTP00_DateTime3] varchar(1) NOT NULL,
-    [drvDTP01_DateTimeQualifier3] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual3] varchar(1) NOT NULL,
-    [drvDTP03_DateTimePeriod3] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier3] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual3] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod3] datetime NULL,
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
-    [drvNM106_NamePrefix1] varchar(30) NULL,
+    [drvNM106_NamePrefix1] varchar(1) NOT NULL,
     [drvNM107_NameSuffix1] varchar(30) NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
@@ -578,14 +587,14 @@ CREATE TABLE [dbo].[U_EPREPRI834_DrvTbl] (
     [drvN401_City] varchar(6000) NULL,
     [drvN402_State] varchar(255) NULL,
     [drvN403_Zip] varchar(50) NULL,
-    [drvN404_CountryCode] char(3) NULL,
+    [drvN404_CountryCode] varchar(2) NOT NULL,
     [drvDMG02_DateTimePeriod1] varchar(8) NULL,
     [drvDMG03_GenderCode1] char(1) NULL,
     [drvDMG04_MaritalStatusCode1] varchar(1) NULL,
-    [drvICM01_FrequencyCode] varchar(1) NULL,
-    [drvICM02_MonetaryAmount] money NULL,
-    [drvICM03_Quantity] money NULL,
-    [drvICM04_LocationID] varchar(8) NULL,
+    [drvICM01_FrequencyCode] varchar(1) NOT NULL,
+    [drvICM02_MonetaryAmount] varchar(1) NOT NULL,
+    [drvICM03_Quantity] varchar(1) NOT NULL,
+    [drvICM04_LocationID] varchar(1) NOT NULL,
     [drvAMT00_SegmentID1] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
@@ -593,7 +602,7 @@ CREATE TABLE [dbo].[U_EPREPRI834_DrvTbl] (
     [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
     [drvHLH00_SegmentID] varchar(1) NOT NULL,
-    [drvHLH01_HealthRelatedCode] varchar(1) NULL,
+    [drvHLH01_HealthRelatedCode] varchar(1) NOT NULL,
     [drvHLH02_Height] varchar(1) NOT NULL,
     [drvHLH03_Weight1] varchar(1) NOT NULL,
     [drvHLH04_Weight2] varchar(1) NOT NULL,
@@ -690,47 +699,47 @@ CREATE TABLE [dbo].[U_EPREPRI834_File] (
 IF OBJECT_ID('U_EPREPRI834_HdrTbl') IS NULL
 CREATE TABLE [dbo].[U_EPREPRI834_HdrTbl] (
     [drvISA05_SenderIDQual] varchar(1) NOT NULL,
-    [drvISA06_SenderID] varchar(1) NOT NULL,
-    [drvISA07_ReceiverIDQual] varchar(1) NOT NULL,
-    [drvISA08_ReceiverID] varchar(1) NOT NULL,
+    [drvISA06_SenderID] varchar(9) NOT NULL,
+    [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
+    [drvISA08_ReceiverID] varchar(10) NOT NULL,
     [drvISA09_InterchangeDate] varchar(6) NULL,
     [drvISA10_InterchangeTime] varchar(4) NULL,
     [drvISA15_UsageIndicator] varchar(1) NOT NULL,
     [drvISA16_ComponentSeprator] varchar(1) NOT NULL,
-    [drvGS02_SenderID] varchar(1) NOT NULL,
-    [drvGS03_ReceiverID] varchar(1) NOT NULL,
+    [drvGS02_SenderID] varchar(9) NOT NULL,
+    [drvGS03_ReceiverID] varchar(10) NOT NULL,
     [drvGS04_Date] varchar(8) NULL,
     [drvGS05_Time] varchar(4) NULL,
     [drvBGN03_Date] varchar(8) NULL,
     [drvBGN04_Time] varchar(4) NULL,
-    [drvBGN05_TimeCode] varchar(1) NOT NULL,
+    [drvBGN05_TimeCode] varchar(2) NOT NULL,
     [drvBGN06_RefID] varchar(1) NOT NULL,
     [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
     [drvBGN08_ActionCode] varchar(1) NOT NULL,
-    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual] varchar(7) NOT NULL,
     [drvDTP00_DateTime0] varchar(1) NOT NULL,
-    [drvDTP01_DateTimeQualifier0] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual0] varchar(1) NOT NULL,
-    [drvDTP03_DateTimePeriod0] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier0] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual0] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod0] varchar(8) NULL,
     [drvDTP00_DateTime1] varchar(1) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
     [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
-    [drvQTY01_QuantityQual1] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual1] varchar(2) NOT NULL,
     [drvQTY02_Quantity1] varchar(1) NOT NULL,
     [drvQTY01_QuantityQual2] varchar(1) NOT NULL,
     [drvQTY02_Quantity2] varchar(1) NOT NULL,
     [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
     [drvQTY02_Quantity3] varchar(1) NOT NULL,
-    [drvN101_EntityIDCodeSponsor1] varchar(1) NOT NULL,
-    [drvN102_Name1] varchar(1) NOT NULL,
-    [drvN103_IDCodeQual1] varchar(1) NOT NULL,
-    [drvN104_IDCode1] varchar(1) NOT NULL,
-    [drvN101_EntityIDCodeSponsor2] varchar(1) NOT NULL,
-    [drvN102_Name2] varchar(1) NOT NULL,
-    [drvN103_IDCodeQual2] varchar(1) NOT NULL,
-    [drvN104_IDCode2] varchar(1) NOT NULL
+    [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
+    [drvN102_Name1] varchar(16) NOT NULL,
+    [drvN103_IDCodeQual1] varchar(2) NOT NULL,
+    [drvN104_IDCode1] varchar(9) NOT NULL,
+    [drvN101_EntityIDCodeSponsor2] varchar(2) NOT NULL,
+    [drvN102_Name2] varchar(25) NOT NULL,
+    [drvN103_IDCodeQual2] varchar(2) NOT NULL,
+    [drvN104_IDCode2] varchar(10) NOT NULL
 );
 
 -----------
@@ -998,9 +1007,7 @@ BEGIN
         ,drvREF01_RefNumberQual = '38'
         ,drvREF02_RefNumberQual = '1147556'
         ,drvDTP00_DateTime0 = ''
-        ,drvDTP01_DateTimeQualifier0 = '007'
---		Use 382 for OE sessions
---		Use 007 for all other sessions
+        ,drvDTP01_DateTimeQualifier0 = CASE WHEN @ExportCode LIKE '%OEACTIVE%' THEN '382' ELSE '007' END
         ,drvDTP02_DateTimeFormatQual0 = 'D8'
         ,drvDTP03_DateTimePeriod0 = @RunDate
         ,drvDTP00_DateTime1 = ''
@@ -1021,7 +1028,7 @@ BEGIN
         ,drvN102_Name2 = 'Principal Financial Group'
         ,drvN103_IDCodeQual2 = 'FI'
         ,drvN104_IDCode2 = '42-0127290'
-		--,drvN101_EntityIDCodeSponsor3 = 'TV'
+        --,drvN101_EntityIDCodeSponsor3 = 'TV'
   --      ,drvN102_Name3 = 'TPA/Broker name'
   --      ,drvN103_IDCodeQual3 = 'FI'
   --      ,drvN104_IDCode3 = 'TPA/Broker tax ID #'
@@ -1067,22 +1074,22 @@ BEGIN
         ,drvINS07_COBRAQualEventCode = ''
         ,drvINS08_EmploymentStatusCode = CASE WHEN BdmRecType = 'EMP' THEN
                                                 CASE WHEN EecEmplStatus = 'T' THEN 'TE' --Termination
-												ELSE 'AC'
+                                                ELSE 'AC'
                                                      --WHEN EecFullTimeOrPartTime = 'F' THEN 'FT' --Full time active employee
                                                      --WHEN EecFullTimeOrPartTime = 'P' THEN 'PT' --Part time active employee
                                                 END
                                          END
         ,drvINS09_StudentStatusCode = ''
-		--CASE WHEN BdmRecType = 'DEP' THEN
+        --CASE WHEN BdmRecType = 'DEP' THEN
   --                                              CASE WHEN ConIsStudent = 'Y' THEN 'F' END --Full-time
   --                                    END
-        ,drvINS10_ResponseCode = CASE WHEN BdmRecType = 'DEP' THEN 
-                                        CASE WHEN ConIsDisabled = 'Y' THEN 'Y' ELSE 'N' END
-										END
-        ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
-        ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
-		--EepDateDeceased or ConDeathDate or eecemplstatus = T and eectermreason = 203 send eecdateoftermination 
-
+        ,drvINS10_ResponseCode = CASE WHEN BdmRelationship in ('CHL','STC') THEN CASE WHEN
+                                       ConIsDisabled = 'Y' THEN 'Y' ELSE 'N' END END
+        ,drvINS11_DateTimeFormatQual = 'D8'
+		--CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
+        ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) 
+										WHEN ISNULL(ConDeathDate, '') <> '' THEN CONVERT(VARCHAR(8),ConDeathDate,112)
+										WHEN eecemplstatus = 'T' and eectermreason = '203'  THEN eecdateoftermination END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual1 = '0F'
         ,drvREF02_RefNumberQual1 = EepSsn
@@ -1094,7 +1101,7 @@ BEGIN
         ,drvREF02_RefNumberQual3 = CASE WHEN LEFT(EECStateSUI,2) = 'CA' then '00001' else '00002' END
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = 'ZZ'
-        ,drvREF02_RefNumberQual4 = CASE WHEN EecPayGroup = 'WEEKLY' then '00001' WHEN EecPayGroup = 'BIWEEKLY' then '00002' END
+        ,drvREF02_RefNumberQual4 = CASE WHEN EecPayGroup = 'EXT' then '00001' WHEN EecPayGroup = 'INT' then '00002' END
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
         ,drvDTP00_DateTime1 = ''
         ,drvDTP01_DateTimeQualifier1 = ''
@@ -1105,8 +1112,10 @@ BEGIN
         ,drvDTP01_DateTimeQualifier2 = ''
         ,drvDTP02_DateTimeFormatQual2 = 'D8'
         ,drvDTP03_DateTimePeriod2 = ''
-		--EffectiveChangeDate 
-		--for demographic changes - use most recent audit date
+        --EffectiveChangeDate 
+        --for demographic changes - use most recent audit date
+
+
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
         ,drvDTP00_DateTime3 = ''
         ,drvDTP01_DateTimeQualifier3 = '336'
@@ -1128,9 +1137,9 @@ BEGIN
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
         ,drvNM106_NamePrefix1 = ''
-		--CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+        --CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
+        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN CASE WHEN EepNameSuffix = 'Z' THEN '' ELSE EepNameSuffix END
+                                     WHEN BdmRecType = 'DEP' THEN CASE WHEN ConNameSuffix = 'Z' THEN '' ELSE ConNameSuffix  END
                                 END
         ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                             WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
@@ -1139,10 +1148,12 @@ BEGIN
                                 WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN ConSSN
                             END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP'
+        ,drvPER03_CommNumberQualifier = CASE 
+		--WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP'
                                             WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail, '') <> '' THEN 'EM'
                                         END
-        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber
+        ,drvPER04_CommunicationNumber = CASE 
+		--WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber
                                             WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail, '') <> '' THEN eepAddressEMail
                                         END
         ,drvPER05_CommNumberQualifier =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP' END
@@ -1163,20 +1174,20 @@ BEGIN
                                 END
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
                                                 CASE EepMaritalStatus 
-												WHEN 'S' THEN 'I' 
-												WHEN 'Z' THEN 'U' 
-												WHEN null THEN 'U' 
-												ELSE EepMaritalStatus END
+                                                WHEN 'S' THEN 'I' 
+                                                WHEN 'Z' THEN 'U' 
+                                                WHEN null THEN 'U' 
+                                                ELSE EepMaritalStatus END
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = ''
-		--CASE WHEN BdmRecType = 'EMP' THEN '' END --'7'
+        --CASE WHEN BdmRecType = 'EMP' THEN '' END --'7'
         ,drvICM02_MonetaryAmount = ''
-		--CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
+        --CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
         ,drvICM03_Quantity = ''
-		--CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecScheduledWorkHrs) END
+        --CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecScheduledWorkHrs) END
         ,drvICM04_LocationID = ''
-		--CASE WHEN BdmRecType = 'EMP' THEN
+        --CASE WHEN BdmRecType = 'EMP' THEN
   --                                      CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
   --                                          ELSE CONVERT(CHAR(4),YEAR(GETDATE())) + '0101'
   --                                      END
@@ -1192,7 +1203,7 @@ BEGIN
         -- If drvHLH00_SegmentID = 'HLH' is Populated, then Send HLH Segment
         ,drvHLH00_SegmentID = ''
         ,drvHLH01_HealthRelatedCode = ''
-		--CASE WHEN BdmRecType = 'EMP' THEN
+        --CASE WHEN BdmRecType = 'EMP' THEN
   --                                              CASE EepIsSmoker
   --                                                   WHEN 'Y' THEN 'T' --Tobacco Use
   --                                                   ELSE 'N' --None
@@ -1251,17 +1262,17 @@ BEGIN
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedType IN ('MED') THEN 'HLT'
+        ,drvHD03_InsuranceLineCode = CASE 
+		--WHEN BdmDedType IN ('MED') THEN 'HLT'
                                            WHEN BdmDedType IN ('DEN') THEN 'DEN'
                                            WHEN BdmDedType IN ('VIS') THEN 'VIS'
                                            ELSE ''
                                      END
         ,drvHD04_PlanCoverageDesc = ''
-        ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN ('EE')  THEN 'EMP'
-                                                     WHEN BdmBenOption IN ('EES') THEN 'ESP'
+        ,drvHD05_CoverageLevelCode =  CASE WHEN BdmBenOption IN ('EE')  THEN 'EMP'
+                                                     WHEN BdmBenOption IN ('EES','EEDP') THEN 'ESP'
                                                      WHEN BdmBenOption IN ('EEC') THEN 'ECH'
-                                                     WHEN BdmBenOption IN ('FAM') THEN 'FAM'
+                                                     WHEN BdmBenOption IN ('EEF','EEDPF') THEN 'FAM'
                                                 END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment

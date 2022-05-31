@@ -5,7 +5,7 @@ EBLASUNDEM: Blackbaud Demo Export
 FormatCode:     EBLASUNDEM
 Project:        Blackbaud Demo Export
 Client ID:      SUN1006
-Date/time:      2022-04-13 09:52:07.570
+Date/time:      2022-05-16 10:15:30.620
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -257,16 +257,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBLASUNDEM_20220413.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBLASUNDEM_20220516.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Blackbaud Demo Export','202203089','EMPEXPORT','ONDEM_XOE',NULL,'EBLASUNDEM',NULL,NULL,NULL,'202203089','Mar  8 2022  3:58PM','Mar  8 2022  3:58PM','202203081',NULL,'','','202203081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Blackbaud Demo Export-Sched','202203089','EMPEXPORT','SCH_EBLASU','Mar  8 2022 12:00AM','EBLASUNDEM',NULL,NULL,NULL,'202203089','Mar  8 2022 12:00AM','Dec 30 1899 12:00AM','202203011',NULL,'','','202203011',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Blackbaud Demo Export-Test','202204049','EMPEXPORT','TEST_XOE','Apr  4 2022  5:41PM','EBLASUNDEM',NULL,NULL,NULL,'202204049','Apr  4 2022 12:00AM','Dec 30 1899 12:00AM','202203211','380','eecPayGroup','779HRY,779SAL,768SAL,772SAL,759SAL,775SAL,784HRY,784SAL,787HNU,787SAL,785SAL,783HRY,783SAL,722SAL','202203211',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Blackbaud Demo Export','202203089','EMPEXPORT','ONDEM_XOE',NULL,'EBLASUNDEM',NULL,NULL,NULL,'202203089','Mar  8 2022  3:58PM','Mar  8 2022  3:58PM','202103011',NULL,'','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',THVLX,RXRA1,RXR08,RXQUC,RXR2J,RXR4M,TLLUS,RXR86,TKZGH,RXQLI,TMUGQ,OBW2M,RXRBK',NULL,NULL,NULL,'Blackbaud Demo - Wed 6am','202203089','EMPEXPORT','SCH_EBLASU','Mar  8 2022 12:00AM','EBLASUNDEM',NULL,NULL,NULL,'202203089','Mar  8 2022 12:00AM','Dec 30 1899 12:00AM','202103011',NULL,'eecPaygroup','779HRY,779SAL,768SAL,772SAL,759SAL,775SAL,784HRY,784SAL,787HNU,787SAL,785SAL,783HRY,783SAL,722SAL','202103011',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Blackbaud Demo Export-Test','202203089','EMPEXPORT','TEST_XOE','May 16 2022  8:53AM','EBLASUNDEM',NULL,NULL,NULL,'202203089','May 16 2022 12:00AM','Dec 30 1899 12:00AM','202103011','1','eecPayGroup','779HRY,779SAL,768SAL,772SAL,759SAL,775SAL,784HRY,784SAL,787HNU,787SAL,785SAL,783HRY,783SAL,722SAL','202103011',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -464,128 +464,26 @@ BEGIN
     -- Caution: Careful of cleaning EE List if including paycheck data
     --==========================================
 
-    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+ --   -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
     DELETE FROM dbo.U_EBLASUNDEM_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EBLASUNDEM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-    --DELETE FROM dbo.U_EBLASUNDEM_EEList
-    --WHERE xEEID IN (Select distinct eeceeid from dbo.EmpComp where eecemplstatus = 'T');
+    ----DELETE FROM dbo.U_EBLASUNDEM_EEList
+    ----WHERE xEEID IN (Select distinct eeceeid from dbo.EmpComp where eecemplstatus = 'T');
  
-    DELETE FROM dbo.U_EBLASUNDEM_EEList
-    WHERE xEEID IN (Select distinct eeceeid from dbo.EmpComp where eeceetype <> 'REG');
+    --DELETE FROM dbo.U_EBLASUNDEM_EEList
+    --WHERE xEEID IN (Select distinct eeceeid from dbo.EmpComp where eeceetype <> 'REG');
 
-    DELETE FROM dbo.U_EBLASUNDEM_EEList
-    WHERE xEEID IN (Select distinct eeceeid from dbo.EmpComp where EecDedGroupCode NOT IN ('SAL', '784SL', '784HR', '783HR', '779HR', '787SL', '787HR', '775HR'));
+    --DELETE FROM dbo.U_EBLASUNDEM_EEList
+    --WHERE xEEID IN (Select distinct eeceeid from dbo.EmpComp where EecDedGroupCode NOT IN ('SAL', '784SL', '784HR', '783HR', '779HR', '787SL', '787HR', '775HR'));
 
     DELETE FROM dbo.U_EBLASUNDEM_EEList
     WHERE xEEID IN (Select distinct eepeeid from dbo.EmpPers where Ltrim(eepAddressEMail) IS NULL);
 
-	DELETE FROM dbo.U_EBLASUNDEM_EEList
+    DELETE FROM dbo.U_EBLASUNDEM_EEList
     WHERE xEEID IN (Select distinct eepeeid from dbo.EmpPers where Ltrim(eepAddressEMail) ='');
-    --==========================================
-    -- Create Deduction List
-    --==========================================
-    --DECLARE @DedList VARCHAR(MAX)
-    --SET @DedList = 'DED1,DED2';
-
-    --IF OBJECT_ID('U_EBLASUNDEM_DedList','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EBLASUNDEM_DedList;
-    --SELECT DISTINCT
-    --     DedCode = DedDedCode
-    --    ,DedType = DedDedType
-    --INTO dbo.U_EBLASUNDEM_DedList
-    --FROM dbo.fn_ListToTable(@DedList)
-    --JOIN dbo.DedCode WITH (NOLOCK)
-    --    ON DedDedCode = Item;
-
-
-    ----==========================================
-    ---- BDM Section
-    ----==========================================
-    --DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
-
-    ---- Required parameters
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-
-    ---- Non-Required parameters
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CalcBenOptionDate','2');
-    ---- Run BDM Module
-    --EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
-
-    ----==========================================
-    ---- Build Working Tables
-    ----==========================================
-
-    -------------------------------
-    ---- Working Table - PDedHist
-    -------------------------------
-    --IF OBJECT_ID('U_EBLASUNDEM_PDedHist','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EBLASUNDEM_PDedHist;
-    --SELECT DISTINCT
-    --     PdhEEID
-    --    -- Current Payroll Amounts
-    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-    --    -- YTD Payroll Amounts
-    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-    --    -- Categorize Payroll Amounts
-    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --INTO dbo.U_EBLASUNDEM_PDedHist
-    --FROM dbo.PDedHist WITH (NOLOCK)
-    --JOIN dbo.U_EBLASUNDEM_DedList WITH (NOLOCK)
-    --    ON DedCode = PdhDedCode
-    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PdhPerControl <= @EndPerControl
-    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    --GROUP BY PdhEEID
-    --HAVING (SUM(PdhEECurAmt) <> 0.00
-    --    OR SUM(PdhERCurAmt) <> 0.00
-    --);
-
-
-    -------------------------------
-    ---- Working Table - PEarHist
-    -------------------------------
-    --IF OBJECT_ID('U_EBLASUNDEM_PEarHist','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EBLASUNDEM_PEarHist;
-    --SELECT DISTINCT
-    --     PehEEID
-    --    ,PrgPayDate             = MAX(PrgPayDate)
-    --    -- Current Payroll Amount/Hours
-    --    ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-    --    ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-    --    -- YTD Payroll Amount/Hours
-    --    ,PehCurAmtYTD           = SUM(PehCurAmt)
-    --    ,PehCurHrsYTD           = SUM(PehCurHrs)
-    --    -- Current Include Deferred Comp Amount/Hours
-    --    ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-    --    ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-    --    -- YTD Include Deferred Comp Amount/Hours
-    --    ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-    --    ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    --INTO dbo.U_EBLASUNDEM_PEarHist
-    --FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    --JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-    --    ON PehGenNumber = PrgGenNumber
-    --WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PehPerControl <= @EndPerControl
-    --GROUP BY PehEEID
-    --HAVING SUM(PehCurAmt) <> 0.00;
+   
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -605,9 +503,6 @@ BEGIN
                             WHEN EecSalaryOrHourly = 'F' THEN EepAddressEmailAlternate END
         ,drvEmpId = EecEmpNo
         ,drvSSOID = EepAddressEmail  
-            --CASE EecSalaryOrHourly
-        --                    WHEN 'S' THEN EepAddressEmail
-        --                    WHEN 'F' THEN EepAddressEmailAlternate END
         ,drvSalary = ''
         ,drvRegion = ''
         ,drvManEmpId = ''
@@ -667,7 +562,9 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-		AND eecemplstatus <> 'T'
+        AND eecemplstatus <> 'T'
+        AND EecDedGroupCode IN ('SAL', '784SL', '784HR', '783HR', '779HR', '787SL', '787HR', '775HR')
+        AND eeceetype = 'REG'
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
@@ -707,8 +604,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202203011'
-       ,expStartPerControl     = '202203011'
+    SET expLastStartPerControl = '202103011'
+       ,expStartPerControl     = '202103011'
        ,expLastEndPerControl   = '202203089'
        ,expEndPerControl       = '202203089'
 WHERE expFormatCode = 'EBLASUNDEM';
