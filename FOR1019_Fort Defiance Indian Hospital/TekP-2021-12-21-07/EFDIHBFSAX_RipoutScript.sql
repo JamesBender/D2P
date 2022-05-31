@@ -4,16 +4,17 @@ EFDIHBFSAX: Summit FSA, Dep Care Export
 
 FormatCode:     EFDIHBFSAX
 Project:        Summit FSA, Dep Care Export
-Client ID:      USG1000
-Date/time:      2022-05-04 15:20:55.467
+Client ID:      FOR1019
+Date/time:      2022-05-31 16:56:33.927
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EFDIHBFSAX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP2DB01
+Database:       ULTIPRO_WPFDIH
+Web Filename:   FOR1019_48SGR_EEHISTORY_EFDIHBFSAX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -159,7 +160,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EFDIHBFSAXZ0','50','D','10','2',NULL,'Last Name',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EFDIHBFSAXZ0','50','D','10','3',NULL,'First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EFDIHBFSAXZ0','50','D','10','4',NULL,'Middle Name',NULL,NULL,'"drvNameMiddle"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EFDIHBFSAXZ0','50','D','10','5',NULL,'Date of Birth',NULL,NULL,'"drvDateofBirth"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EFDIHBFSAXZ0','50','D','10','5',NULL,'Date of Birth',NULL,NULL,'"drvDateofBirth"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EFDIHBFSAXZ0','50','D','10','6',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EFDIHBFSAXZ0','50','D','10','7',NULL,'Mailing Address',NULL,NULL,'"drvAddress1"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EFDIHBFSAXZ0','50','D','10','8',NULL,'Secondary Street',NULL,NULL,'"drvAddress2"','(''UA''=''T,'')');
@@ -168,7 +169,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EFDIHBFSAXZ0','50','D','10','11',NULL,'Postal Code',NULL,NULL,'"drvPostalCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EFDIHBFSAXZ0','50','D','10','12',NULL,'Contact Phone',NULL,NULL,'"drvContactPhone"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EFDIHBFSAXZ0','50','D','10','13',NULL,'Primary Email',NULL,NULL,'"drvPrimaryEmail"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EFDIHBFSAXZ0','50','D','10','14',NULL,'Date Of Employment',NULL,NULL,'"drvDateOfEmployment"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EFDIHBFSAXZ0','50','D','10','14',NULL,'Date Of Employment',NULL,NULL,'"drvDateOfEmployment"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EFDIHBFSAXZ0','50','D','10','15',NULL,'Employment Termination Date',NULL,NULL,'"drvEmploymentTerminationDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EFDIHBFSAXZ0','50','D','10','16',NULL,'Coverage Effective Date',NULL,NULL,'"drvCoverageEffectiveDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EFDIHBFSAXZ0','50','D','10','17',NULL,'Original Effective Date',NULL,NULL,'"drvOriginalEffectiveDate"','(''UD101''=''T,'')');
@@ -190,7 +191,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFDIHBFSAX_20220504.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFDIHBFSAX_20220531.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -211,9 +212,10 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFDIHBFSAX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -228,12 +230,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFDIHBFSAX','D10','dbo.U_EFDIHBFSAX_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -399,20 +401,41 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EFDIHBFSAX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
+   --==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing
     IF OBJECT_ID('U_EFDIHBFSAX_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EFDIHBFSAX_AuditFields;
     CREATE TABLE dbo.U_EFDIHBFSAX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+ 
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpDed','EedEEAmt');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpDed','EedEEGoalAmt');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpDed','EedDedCode');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpDed','EedBenStartDate');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpDed','EedBenStopDate');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepDateOfBirth');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepGender');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepNameFirst');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepNameLast');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepAddressLine1');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepAddressLine2');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepAddressCity');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepAddressState');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepAddressZipCode');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepPhoneHomeNumber');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepOldSSN');
+    INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepSSN');
+
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EFDIHBFSAX_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EFDIHBFSAX_Audit;
     SELECT 
        audEEID  = audKey1Value
-        ,audCOID = audKey2Value
+        ,audKey2 = audKey2Value
         ,audKey3 = audKey3Value
         ,audTableName
         ,audFieldName
@@ -431,7 +454,7 @@ BEGIN
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
     AND audAction <> 'DELETE'
     --AND ISNULL(audNewValue,'') <> ''
-    AND audNewValue = 'T' 
+    --AND audNewValue = 'T' 
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EFDIHBFSAX_Audit ON dbo.U_EFDIHBFSAX_Audit (audEEID,audKey2);
@@ -442,63 +465,7 @@ BEGIN
     DELETE FROM dbo.U_EFDIHBFSAX_EEList
     WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFDIHBFSAX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
-    --==========================================
-    -- Create Deduction List
-    ----==========================================
-    --DECLARE @DedList VARCHAR(MAX)
-    --SET @DedList = 'FSA,FSADC';
-
-    --IF OBJECT_ID('U_EFDIHBFSAX_DedList','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EFDIHBFSAX_DedList;
-    --SELECT DISTINCT
-    --     DedCode = DedDedCode
-    --    ,DedType = DedDedType
-    --INTO dbo.U_EFDIHBFSAX_DedList
-    --FROM dbo.fn_ListToTable(@DedList)
-    --JOIN dbo.DedCode WITH (NOLOCK)
-    --    ON DedDedCode = Item;
-
-    --==========================================
-    -- Build Working Tables
-    --==========================================
-
-    -----------------------------
-    -- Working Table - PDedHist
-    -----------------------------
-    --IF OBJECT_ID('U_EFDIHBFSAX_PDedHist','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EFDIHBFSAX_PDedHist;
-    --SELECT DISTINCT
-    --     PdhEEID
-    --    -- Current Payroll Amounts
-    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-    --    -- YTD Payroll Amounts
-    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-    --    -- Categorize Payroll Amounts
-    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --INTO dbo.U_EFDIHBFSAX_PDedHist
-    --FROM dbo.PDedHist WITH (NOLOCK)
-    --JOIN dbo.U_EFDIHBFSAX_DedList WITH (NOLOCK)
-    --    ON DedCode = PdhDedCode
-    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PdhPerControl <= @EndPerControl
-    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    --GROUP BY PdhEEID
-    --HAVING (SUM(PdhEECurAmt) <> 0.00
-    --    OR SUM(PdhERCurAmt) <> 0.00
-    --);
-
-
+  
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -510,7 +477,7 @@ BEGIN
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
         ,drvMemberSSN = eepSSN
         ,drvNameLast = EepNameLast
@@ -532,8 +499,7 @@ BEGIN
         ,drvCoverageEndDate = CASE WHEN EedDedCode in ('FSA', 'FSADC') then EedBenStopDate END
         ,drvTotalAnnualElection = CASE WHEN EedDedCode in ('FSA', 'FSADC') then EedEEGoalAmt END
         ,drvMemberPerPeriodContrib = CASE WHEN EedDedCode in ('FSA', 'FSADC') then EedEEAmt END
-        ,drvAccountType = CASE WHEN EedDedCode = 'FSADC' then 'Dependent Care FSA' WHEN EedDedCode = 'FSA' then 'Medical FSA' END
-
+        ,drvAccountType = CASE WHEN EedDedCode = 'FSADC' then 'Dependent Care FSA' WHEN EedDedCode = 'FSA' then 'Medical FSA' Else EedDedCode END
     INTO dbo.U_EFDIHBFSAX_drvTbl
     FROM dbo.U_EFDIHBFSAX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -543,9 +509,10 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.EMPDED WITH (NOLOCK)
         ON EedEEID = xEEID
+        AND EedDedCode in ('FSA', 'FSADC')
     LEFT JOIN dbo.U_EFDIHBFSAX_Audit WITH (NOLOCK)
         ON xEEID = audEEID
-        --AND xCoID = audCOID
+      --  AND xCoID = audCOID
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -60, @EndDate) AND @EndDate)
     ;
     
@@ -587,10 +554,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202204271'
-       ,expStartPerControl     = '202204271'
-       ,expLastEndPerControl   = '202205049'
-       ,expEndPerControl       = '202205049'
+    SET expLastStartPerControl = '202101011'
+       ,expStartPerControl     = '202101011'
+       ,expLastEndPerControl   = '202112319'
+       ,expEndPerControl       = '202112319'
 WHERE expFormatCode = 'EFDIHBFSAX';
 
 **********************************************************************************/

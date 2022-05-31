@@ -468,7 +468,7 @@ CREATE TABLE [dbo].[U_EAGLINCEXP_Audit] (
 -- Create table U_EAGLINCEXP_AuditFields
 -----------
 
-IF OBJECT_ID('U_EAGLINCEXP_AuditFields') IS NULL
+IF OBJECT_ID('U_EAGLINCEXP_') IS NULL
 CREATE TABLE [dbo].[U_EAGLINCEXP_AuditFields] (
     [aTableName] varchar(30) NULL,
     [aFieldName] varchar(30) NULL
