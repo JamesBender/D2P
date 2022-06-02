@@ -470,7 +470,7 @@ BEGIN
         ,drvUserName                    = CASE WHEN isnull(EE.EecUDField05, '')  <> '' THEN  EE.EecUDField05 ELSE left(EepNameFirst, 1) + left(EepNameLast, 1) + Right(RTrim(eepSSN), 4) END
         ,drvManager                     = CASE WHEN EE.EecEMpNO = '1006351' THEN '' ELSE dbo.dsi_fnlib_GetSupervisorField_v2('', EE.EecEEID, 'EmpNo') END
         ,drvAllowRecon                  = 'FALSE'
-        ,drvEmailAddress                = EepAddressEMail
+        ,drvEmailAddress                = CASE WHEN (EepAddressEMail is not NULL or EepAddressEMail <> '') then EepAddressEMail  Else  eepAddressEMailAlternate END
         ,drvReqTrainingApproval         = '1'
         ,drvGender                        = CASE EepGender
                                             WHEN 'M' then 'Male'
