@@ -764,7 +764,7 @@ BEGIN
                         END
         ,drvDateOfBirth = EepDateOfBirth
         ,drvSalaryAmt = CASE WHEN EecPayGroup = 'USSLRY' then Format(EecAnnSalary, '#0.00') else '0.0' END
-        ,drvHourlyWage = CASE WHEN  EecPayGroup = 'USHRLY' then Format(EecAnnSalary, '#0.00') else '0.0' END
+        ,drvHourlyWage = CASE WHEN  EecPayGroup = 'USHRLY' then Format(EecHourlyPayRate, '#0.00') else '0.0' END
         ,drvSalaryEffectiveDate  = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         ,drvSalaryType = CASE WHEN EecSalaryOrHourly = 'S' then 'SL' else 'HR' END
         ,drvSalaryMode =  CASE WHEN EecSalaryOrHourly= 'S' then '6' else '1' END
@@ -816,7 +816,8 @@ BEGIN
     WHERE (EecEmplStatus <> 'T'
         OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate))
         --AND EecFullTimeOrPartTime <> 'P' 
-    ;
+		AND eecdedGroupCode not in ( 'NOBEN', 'None') 
+		AND ( EecUDField01 = 'AGREL' and EecFullTimeORPartTime <> 'P') 
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
