@@ -5,7 +5,7 @@ ESNAPRUDE: Prudential Eligibility
 FormatCode:     ESNAPRUDE
 Project:        Prudential Eligibility
 Client ID:      SNA1001
-Date/time:      2022-03-28 08:59:41.417
+Date/time:      2022-06-08 08:05:59.307
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -168,7 +168,6 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','10','5',NULL,'Associate Gender Code',NULL,NULL,'"drvAssGenderCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','10','6',NULL,'Associate Date of Birth',NULL,NULL,'"drvAssDateofBirth "','(''UD112''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','10','7',NULL,'Associate Date of Death',NULL,NULL,'""','(''SS''=''T~'')');
-
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','10','8',NULL,'Associate Smoker Status Code',NULL,NULL,'""','(''SS''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','10','9',NULL,'Associate Marital Status Code',NULL,NULL,'""','(''SS''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','10','10',NULL,'Associate Prefix Title Code',NULL,NULL,'""','(''SS''=''T~'')');
@@ -213,7 +212,6 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','ESNAPRUDE0Z0','50','D','10','49',NULL,'Associate Email Address Text 1',NULL,NULL,'"drvAssEmailAddress1 "','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','ESNAPRUDE0Z0','50','D','10','50',NULL,'Associate Email Address Type Code 2',NULL,NULL,'"WORK"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','ESNAPRUDE0Z0','50','D','10','51',NULL,'Associate Email Address Text 2',NULL,NULL,'"drvAssEmailAddress2 "','(''UA''=''T'')');
-
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','20','1',NULL,'Record Type',NULL,NULL,'"EMP"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','20','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','20','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
@@ -269,138 +267,134 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','ESNAPRUDE0Z0','50','D','20','53',NULL,'Comments',NULL,NULL,'""','(''SS''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','ESNAPRUDE0Z0','50','D','20','54',NULL,'YTD Earnings',NULL,NULL,'""','(''SS''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','ESNAPRUDE0Z0','50','D','20','55',NULL,'Earnings As of Date',NULL,NULL,'""','(''SS''=''T'')');
-
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','30','1',NULL,'Record Type',NULL,NULL,'"COV"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','30','1',NULL,'Record Type',NULL,NULL,'"DEP"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','30','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','30','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','30','4',NULL,'Product Code',NULL,NULL,'"drvProdCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','30','5',NULL,'Coverage Tier Code',NULL,NULL,'"drvCovTierCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','30','6',NULL,'Product Plan Code',NULL,NULL,'"drvProdPlanCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','30','7',NULL,'Coverage Buy Up Indicator',NULL,NULL,'"FALSE"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','30','8',NULL,'Coverage Amount',NULL,NULL,'"drvCovAmount"','(''UNT2''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','30','9',NULL,'Coverage  Effective Date',NULL,NULL,'"drvCovEffDate"','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','30','10',NULL,'Coverage  End Date',NULL,NULL,'"drvCovEndDate"','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESNAPRUDE0Z0','50','D','30','11',NULL,'Coverage Status Code',NULL,NULL,'"drvCovStatusCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESNAPRUDE0Z0','50','D','30','12',NULL,'Coverage Status Effective Date',NULL,NULL,'"drvCovStatusEfDate"','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESNAPRUDE0Z0','50','D','30','13',NULL,'CS Reason Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESNAPRUDE0Z0','50','D','30','14',NULL,'Term Red Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESNAPRUDE0Z0','50','D','30','15',NULL,'Term Red Amt',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESNAPRUDE0Z0','50','D','30','16',NULL,'Flat Benefit Indicator',NULL,NULL,'"FALSE"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESNAPRUDE0Z0','50','D','30','17',NULL,'Claim Branch Code',NULL,NULL,'"drvClaimBranchCd"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESNAPRUDE0Z0','50','D','30','18',NULL,'EOB Corr Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESNAPRUDE0Z0','50','D','30','19',NULL,'Assignment Indicator',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESNAPRUDE0Z0','50','D','30','20',NULL,'Orig LTD',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESNAPRUDE0Z0','50','D','30','21',NULL,'Part Prod Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESNAPRUDE0Z0','50','D','30','22',NULL,'Part Short Ben Desc',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ESNAPRUDE0Z0','50','D','30','23',NULL,'Client Cov Eff Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ESNAPRUDE0Z0','50','D','30','24',NULL,'Ben Option ID',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ESNAPRUDE0Z0','50','D','30','25',NULL,'Cov Increase 2 ind',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ESNAPRUDE0Z0','50','D','30','26',NULL,'Issuance Age',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ESNAPRUDE0Z0','50','D','30','27',NULL,'Voluntary Basis',NULL,NULL,'"drvVoluntaryBasis"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ESNAPRUDE0Z0','50','D','30','28',NULL,'Applicant Eligibility Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ESNAPRUDE0Z0','50','D','30','29',NULL,'Applicant Inforce Benefit Amount',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ESNAPRUDE0Z0','50','D','30','30',NULL,'Applicant Additional Benefit Amount',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ESNAPRUDE0Z0','50','D','30','31',NULL,'Applicant Relationship Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ESNAPRUDE0Z0','50','D','30','32',NULL,'Applicant EOI Branch Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ESNAPRUDE0Z0','50','D','30','33',NULL,'Deduction Type  Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ESNAPRUDE0Z0','50','D','30','34',NULL,'Deduction Amount',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ESNAPRUDE0Z0','50','D','30','35',NULL,'Deduction Frequency Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ESNAPRUDE0Z0','50','D','30','36',NULL,'Deduction Withholding State',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ESNAPRUDE0Z0','50','D','30','37',NULL,'Pay Ded Freq',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ESNAPRUDE0Z0','50','D','30','38',NULL,'Pay Ded Amt',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ESNAPRUDE0Z0','50','D','30','39',NULL,'Cov Event ID',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ESNAPRUDE0Z0','50','D','30','40',NULL,'Cov Event Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ESNAPRUDE0Z0','50','D','30','41',NULL,'Cov Event Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ESNAPRUDE0Z0','50','D','30','42',NULL,'Cov Marriage Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ESNAPRUDE0Z0','50','D','30','43',NULL,'Cov Div Date',NULL,NULL,'""','(''SS''=''T'')');
-
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','40','1',NULL,'Record Type',NULL,NULL,'"DEP"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','30','4',NULL,'DependentID',NULL,NULL,'"drvDependentID"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','30','5',NULL,'Dependent Relationship Type Code',NULL,NULL,'"drvDepRelTypeCode "','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','30','6',NULL,'Dependent Social Security Number',NULL,NULL,'"drvDependentSSN"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','30','7',NULL,'Dependent Gender Code',NULL,NULL,'"drvDepGenderCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','30','8',NULL,'Dependent Date of Birth',NULL,NULL,'"drvDepDateofBirth "','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','30','9',NULL,'Dependent Date of Death',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','30','10',NULL,'Dependent Smoker Status Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESNAPRUDE0Z0','50','D','30','11',NULL,'Dependent Marital Status Code',NULL,NULL,'"drvDepMaritalStatusCd"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESNAPRUDE0Z0','50','D','30','12',NULL,'Dependent Prefix Title Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESNAPRUDE0Z0','50','D','30','13',NULL,'Dependent Suffix',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESNAPRUDE0Z0','50','D','30','14',NULL,'Dependent Last Name',NULL,NULL,'"drvDepLastName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESNAPRUDE0Z0','50','D','30','15',NULL,'Dependent First Name',NULL,NULL,'"drvDepFirstName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESNAPRUDE0Z0','50','D','30','16',NULL,'Dependent Middle Name',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESNAPRUDE0Z0','50','D','30','17',NULL,'Dependent Address Type Code',NULL,NULL,'"HOME"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESNAPRUDE0Z0','50','D','30','18',NULL,'DependentAddress Line 1 Text',NULL,NULL,'"drvDepAddressLine1"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESNAPRUDE0Z0','50','D','30','19',NULL,'Dependent Address Line 2 Text',NULL,NULL,'"drvDepAddressLine2"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESNAPRUDE0Z0','50','D','30','20',NULL,'DependentAddress Line 3 Text',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESNAPRUDE0Z0','50','D','30','21',NULL,'Dependent City Name',NULL,NULL,'"drvDepCityName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESNAPRUDE0Z0','50','D','30','22',NULL,'Dependent State Province Code',NULL,NULL,'"drvDepStateProvinceCd"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ESNAPRUDE0Z0','50','D','30','23',NULL,'DependentPostal Code',NULL,NULL,'"drvDepPostalCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ESNAPRUDE0Z0','50','D','30','24',NULL,'Dependent Country Code',NULL,NULL,'"drvDepCountryCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ESNAPRUDE0Z0','50','D','30','25',NULL,'Dependent Telephone Type Code 1',NULL,NULL,'"HOME"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ESNAPRUDE0Z0','50','D','30','26',NULL,'Dependent Telephone Number 1',NULL,NULL,'"drvDepTelephoneNo1"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ESNAPRUDE0Z0','50','D','30','27',NULL,'Dependent Telephone Number Extension 1',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ESNAPRUDE0Z0','50','D','30','28',NULL,'Dependent Telephone Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ESNAPRUDE0Z0','50','D','30','29',NULL,'Dependent Telephone Number 2',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ESNAPRUDE0Z0','50','D','30','30',NULL,'Dependent Telephone Number Extension 2',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ESNAPRUDE0Z0','50','D','30','31',NULL,'Dependent Telephone  Type Code 3',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ESNAPRUDE0Z0','50','D','30','32',NULL,'Dependent Telephone Number 3',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ESNAPRUDE0Z0','50','D','30','33',NULL,'Dependent Telephone Number Extension 3',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ESNAPRUDE0Z0','50','D','30','34',NULL,'Dependent Email Address Type Code 1',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ESNAPRUDE0Z0','50','D','30','35',NULL,'Dependent Email Address Text 1',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ESNAPRUDE0Z0','50','D','30','36',NULL,'Dependent Email Address Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ESNAPRUDE0Z0','50','D','30','37',NULL,'Dependent Email Address Text 2',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ESNAPRUDE0Z0','50','D','30','38',NULL,'Dependent Status Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ESNAPRUDE0Z0','50','D','30','39',NULL,'Dependent Delete Reason Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ESNAPRUDE0Z0','50','D','30','40',NULL,'Student Status Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ESNAPRUDE0Z0','50','D','30','41',NULL,'Incapacitated Dependent Clause Certification Indic',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ESNAPRUDE0Z0','50','D','30','42',NULL,'Incapacitated Dependent Clause Certification Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ESNAPRUDE0Z0','50','D','30','43',NULL,'Dependent Event ID',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ESNAPRUDE0Z0','50','D','30','44',NULL,'Dependent Event Type Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ESNAPRUDE0Z0','50','D','30','45',NULL,'Dependent Event Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','ESNAPRUDE0Z0','50','D','30','46',NULL,'Dependent Marriage Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ESNAPRUDE0Z0','50','D','30','47',NULL,'Dependent Divorce Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ESNAPRUDE0Z0','50','D','30','48',NULL,'Dependent  PreferenceID',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','ESNAPRUDE0Z0','50','D','30','49',NULL,'Dependent  CorrespondenceTypeCode',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','ESNAPRUDE0Z0','50','D','30','50',NULL,'Dependent  Preferred Name',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','ESNAPRUDE0Z0','50','D','30','51',NULL,'Dependent  Preferred Language',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','40','1',NULL,'Record Type',NULL,NULL,'"COV"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','40','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','40','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','40','4',NULL,'DependentID',NULL,NULL,'"drvDependentID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','40','5',NULL,'Dependent Relationship Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','40','6',NULL,'Dependent Social Security Number',NULL,NULL,'"drvDependentSSN"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','40','7',NULL,'Dependent Gender Code',NULL,NULL,'"drvDepGenderCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','40','8',NULL,'Dependent Date of Birth',NULL,NULL,'"drvDepDateofBirth "','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','40','9',NULL,'Dependent Date of Death',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','40','10',NULL,'Dependent Smoker Status Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESNAPRUDE0Z0','50','D','40','11',NULL,'Dependent Marital Status Code',NULL,NULL,'"drvDepMaritalStatusCd"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESNAPRUDE0Z0','50','D','40','12',NULL,'Dependent Prefix Title Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESNAPRUDE0Z0','50','D','40','13',NULL,'Dependent Suffix',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESNAPRUDE0Z0','50','D','40','14',NULL,'Dependent Last Name',NULL,NULL,'"drvDepLastName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESNAPRUDE0Z0','50','D','40','15',NULL,'Dependent First Name',NULL,NULL,'"drvDepFirstName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESNAPRUDE0Z0','50','D','40','16',NULL,'Dependent Middle Name',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESNAPRUDE0Z0','50','D','40','17',NULL,'Dependent Address Type Code',NULL,NULL,'"HOME"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESNAPRUDE0Z0','50','D','40','18',NULL,'DependentAddress Line 1 Text',NULL,NULL,'"drvDepAddressLine1"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESNAPRUDE0Z0','50','D','40','19',NULL,'Dependent Address Line 2 Text',NULL,NULL,'"drvDepAddressLine2"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESNAPRUDE0Z0','50','D','40','20',NULL,'DependentAddress Line 3 Text',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESNAPRUDE0Z0','50','D','40','21',NULL,'Dependent City Name',NULL,NULL,'"drvDepCityName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESNAPRUDE0Z0','50','D','40','22',NULL,'Dependent State Province Code',NULL,NULL,'"drvDepStateProvinceCd"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ESNAPRUDE0Z0','50','D','40','23',NULL,'DependentPostal Code',NULL,NULL,'"drvDepPostalCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ESNAPRUDE0Z0','50','D','40','24',NULL,'Dependent Country Code',NULL,NULL,'"drvDepCountryCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ESNAPRUDE0Z0','50','D','40','25',NULL,'Dependent Telephone Type Code 1',NULL,NULL,'"HOME"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ESNAPRUDE0Z0','50','D','40','26',NULL,'Dependent Telephone Number 1',NULL,NULL,'"drvDepTelephoneNo1"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ESNAPRUDE0Z0','50','D','40','27',NULL,'Dependent Telephone Number Extension 1',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ESNAPRUDE0Z0','50','D','40','28',NULL,'Dependent Telephone Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ESNAPRUDE0Z0','50','D','40','29',NULL,'Dependent Telephone Number 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ESNAPRUDE0Z0','50','D','40','30',NULL,'Dependent Telephone Number Extension 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ESNAPRUDE0Z0','50','D','40','31',NULL,'Dependent Telephone  Type Code 3',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ESNAPRUDE0Z0','50','D','40','32',NULL,'Dependent Telephone Number 3',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ESNAPRUDE0Z0','50','D','40','33',NULL,'Dependent Telephone Number Extension 3',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ESNAPRUDE0Z0','50','D','40','34',NULL,'Dependent Email Address Type Code 1',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ESNAPRUDE0Z0','50','D','40','35',NULL,'Dependent Email Address Text 1',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ESNAPRUDE0Z0','50','D','40','36',NULL,'Dependent Email Address Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ESNAPRUDE0Z0','50','D','40','37',NULL,'Dependent Email Address Text 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ESNAPRUDE0Z0','50','D','40','38',NULL,'Dependent Status Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ESNAPRUDE0Z0','50','D','40','39',NULL,'Dependent Delete Reason Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ESNAPRUDE0Z0','50','D','40','40',NULL,'Student Status Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ESNAPRUDE0Z0','50','D','40','41',NULL,'Incapacitated Dependent Clause Certification Indic',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ESNAPRUDE0Z0','50','D','40','42',NULL,'Incapacitated Dependent Clause Certification Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ESNAPRUDE0Z0','50','D','40','43',NULL,'Dependent Event ID',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ESNAPRUDE0Z0','50','D','40','44',NULL,'Dependent Event Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ESNAPRUDE0Z0','50','D','40','45',NULL,'Dependent Event Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','ESNAPRUDE0Z0','50','D','40','46',NULL,'Dependent Marriage Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ESNAPRUDE0Z0','50','D','40','47',NULL,'Dependent Divorce Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ESNAPRUDE0Z0','50','D','40','48',NULL,'Dependent  PreferenceID',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','ESNAPRUDE0Z0','50','D','40','49',NULL,'Dependent  CorrespondenceTypeCode',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','ESNAPRUDE0Z0','50','D','40','50',NULL,'Dependent  Preferred Name',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','ESNAPRUDE0Z0','50','D','40','51',NULL,'Dependent  Preferred Language',NULL,NULL,'""','(''SS''=''T'')');
-
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','50','1',NULL,'Record Type',NULL,NULL,'"drvRecordType"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','50','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','50','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','50','4',NULL,'Custom Characteristic Code',NULL,NULL,'"drvCustomCharacCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','50','5',NULL,'Custom Characteristic Amount',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','50','6',NULL,'Custom Characteristic Date',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','50','7',NULL,'Custom Characteristic Percent',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','50','8',NULL,'Custom Characteristic Value Text',NULL,NULL,'"drvCustomCharacValue"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','60','1',NULL,'Record Type',NULL,NULL,'"CON"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','60','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','60','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','60','4',NULL,'Employment Contact ID',NULL,NULL,'"drvEmpContactID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','60','5',NULL,'Employment Contact Type Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','60','6',NULL,'Employment Contact First Name',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','60','7',NULL,'Employment Contact Last Name',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','60','8',NULL,'Employment Contact Middle Name',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','60','9',NULL,'Employment Contact Prefix Title Code',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','60','10',NULL,'Employment Contact Suffix',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESNAPRUDE0Z0','50','D','60','11',NULL,'Employment Contact Telephone Type Code 1',NULL,NULL,'"BUSINESS"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESNAPRUDE0Z0','50','D','60','12',NULL,'Employment Contact Telephone Number 1',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESNAPRUDE0Z0','50','D','60','13',NULL,'Employment Contact Telephone Number Extension 1',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESNAPRUDE0Z0','50','D','60','14',NULL,'Employment Contact Telephone Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESNAPRUDE0Z0','50','D','60','15',NULL,'Employment Contact Telephone Number 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESNAPRUDE0Z0','50','D','60','16',NULL,'Employment Contact Telephone Number Extension 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESNAPRUDE0Z0','50','D','60','17',NULL,'Employment Contact Telephone  Type Code 3',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESNAPRUDE0Z0','50','D','60','18',NULL,'Employment Contact Telephone Number 3',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESNAPRUDE0Z0','50','D','60','19',NULL,'Employment Contact Telephone Number Extension 3',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESNAPRUDE0Z0','50','D','60','20',NULL,'Employment Contact Email Address Type Code 1',NULL,NULL,'"WORK"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESNAPRUDE0Z0','50','D','60','21',NULL,'Employment Contact Email Address Text 1',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESNAPRUDE0Z0','50','D','60','22',NULL,'Employment Contact Email Address Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ESNAPRUDE0Z0','50','D','60','23',NULL,'Employment Contact Email Address Text 2',NULL,NULL,'""','(''SS''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ESNAPRUDE0Z0','50','D','60','24',NULL,'Employment Contact SSN',NULL,NULL,'"drvEmpContactSSN"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ESNAPRUDE0Z0','50','D','60','25',NULL,'Employment Contact Employee ID',NULL,NULL,'"drvEmpContactEmpID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ESNAPRUDE0Z0','50','D','60','26',NULL,'Employment Contact DOB',NULL,NULL,'""','(''SS''=''T'')');
-
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','40','4',NULL,'Product Code',NULL,NULL,'"drvProdCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','40','5',NULL,'Coverage Tier Code',NULL,NULL,'"drvCovTierCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','40','6',NULL,'Product Plan Code',NULL,NULL,'"drvProdPlanCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','40','7',NULL,'Coverage Buy Up Indicator',NULL,NULL,'"FALSE"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','40','8',NULL,'Coverage Amount',NULL,NULL,'"drvCovAmount"','(''UNT2''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','40','9',NULL,'Coverage  Effective Date',NULL,NULL,'"drvCovEffDate"','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','40','10',NULL,'Coverage  End Date',NULL,NULL,'"drvCovEndDate"','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESNAPRUDE0Z0','50','D','40','11',NULL,'Coverage Status Code',NULL,NULL,'"drvCovStatusCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESNAPRUDE0Z0','50','D','40','12',NULL,'Coverage Status Effective Date',NULL,NULL,'"drvCovStatusEfDate"','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESNAPRUDE0Z0','50','D','40','13',NULL,'CS Reason Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESNAPRUDE0Z0','50','D','40','14',NULL,'Term Red Type Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESNAPRUDE0Z0','50','D','40','15',NULL,'Term Red Amt',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESNAPRUDE0Z0','50','D','40','16',NULL,'Flat Benefit Indicator',NULL,NULL,'"FALSE"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESNAPRUDE0Z0','50','D','40','17',NULL,'Claim Branch Code',NULL,NULL,'"drvClaimBranchCd"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESNAPRUDE0Z0','50','D','40','18',NULL,'EOB Corr Type Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESNAPRUDE0Z0','50','D','40','19',NULL,'Assignment Indicator',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESNAPRUDE0Z0','50','D','40','20',NULL,'Orig LTD',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESNAPRUDE0Z0','50','D','40','21',NULL,'Part Prod Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESNAPRUDE0Z0','50','D','40','22',NULL,'Part Short Ben Desc',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ESNAPRUDE0Z0','50','D','40','23',NULL,'Client Cov Eff Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ESNAPRUDE0Z0','50','D','40','24',NULL,'Ben Option ID',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ESNAPRUDE0Z0','50','D','40','25',NULL,'Cov Increase 2 ind',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ESNAPRUDE0Z0','50','D','40','26',NULL,'Issuance Age',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ESNAPRUDE0Z0','50','D','40','27',NULL,'Voluntary Basis',NULL,NULL,'"drvVoluntaryBasis"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ESNAPRUDE0Z0','50','D','40','28',NULL,'Applicant Eligibility Date',NULL,NULL,'"drvAppEligDate"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ESNAPRUDE0Z0','50','D','40','29',NULL,'Applicant Inforce Benefit Amount',NULL,NULL,'"drvAppInfBenAmt"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ESNAPRUDE0Z0','50','D','40','30',NULL,'Applicant Additional Benefit Amount',NULL,NULL,'"drvAppAddtlBenAmt"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ESNAPRUDE0Z0','50','D','40','31',NULL,'Applicant Relationship Type Code',NULL,NULL,'"drvAppRelTypeCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ESNAPRUDE0Z0','50','D','40','32',NULL,'Applicant EOI Branch Code',NULL,NULL,'"001"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ESNAPRUDE0Z0','50','D','40','33',NULL,'Deduction Type  Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ESNAPRUDE0Z0','50','D','40','34',NULL,'Deduction Amount',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ESNAPRUDE0Z0','50','D','40','35',NULL,'Deduction Frequency Type Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ESNAPRUDE0Z0','50','D','40','36',NULL,'Deduction Withholding State',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ESNAPRUDE0Z0','50','D','40','37',NULL,'Pay Ded Freq',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ESNAPRUDE0Z0','50','D','40','38',NULL,'Pay Ded Amt',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ESNAPRUDE0Z0','50','D','40','39',NULL,'Cov Event ID',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ESNAPRUDE0Z0','50','D','40','40',NULL,'Cov Event Type Code',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ESNAPRUDE0Z0','50','D','40','41',NULL,'Cov Event Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ESNAPRUDE0Z0','50','D','40','42',NULL,'Cov Marriage Date',NULL,NULL,'""','(''SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ESNAPRUDE0Z0','50','D','40','43',NULL,'Cov Div Date',NULL,NULL,'""','(''SS''=''T'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','50','1',NULL,'Record Type',NULL,NULL,'"drvRecordType"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','50','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','50','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','50','4',NULL,'Custom Characteristic Code',NULL,NULL,'"drvCustomCharacCode"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','50','5',NULL,'Custom Characteristic Amount',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','50','6',NULL,'Custom Characteristic Date',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','50','7',NULL,'Custom Characteristic Percent',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','50','8',NULL,'Custom Characteristic Value Text',NULL,NULL,'"drvCustomCharacValue"','(''UA''=''T'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','D','60','1',NULL,'Record Type',NULL,NULL,'"CON"','(''DA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','D','60','2',NULL,'Client Control Number',NULL,NULL,'"70809"','(''DA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','D','60','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESNAPRUDE0Z0','50','D','60','4',NULL,'Employment Contact ID',NULL,NULL,'"drvEmpContactID"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESNAPRUDE0Z0','50','D','60','5',NULL,'Employment Contact Type Code',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESNAPRUDE0Z0','50','D','60','6',NULL,'Employment Contact First Name',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESNAPRUDE0Z0','50','D','60','7',NULL,'Employment Contact Last Name',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESNAPRUDE0Z0','50','D','60','8',NULL,'Employment Contact Middle Name',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESNAPRUDE0Z0','50','D','60','9',NULL,'Employment Contact Prefix Title Code',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESNAPRUDE0Z0','50','D','60','10',NULL,'Employment Contact Suffix',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESNAPRUDE0Z0','50','D','60','11',NULL,'Employment Contact Telephone Type Code 1',NULL,NULL,'"BUSINESS"','(''DA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESNAPRUDE0Z0','50','D','60','12',NULL,'Employment Contact Telephone Number 1',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESNAPRUDE0Z0','50','D','60','13',NULL,'Employment Contact Telephone Number Extension 1',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESNAPRUDE0Z0','50','D','60','14',NULL,'Employment Contact Telephone Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESNAPRUDE0Z0','50','D','60','15',NULL,'Employment Contact Telephone Number 2',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ESNAPRUDE0Z0','50','D','60','16',NULL,'Employment Contact Telephone Number Extension 2',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ESNAPRUDE0Z0','50','D','60','17',NULL,'Employment Contact Telephone  Type Code 3',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ESNAPRUDE0Z0','50','D','60','18',NULL,'Employment Contact Telephone Number 3',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ESNAPRUDE0Z0','50','D','60','19',NULL,'Employment Contact Telephone Number Extension 3',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ESNAPRUDE0Z0','50','D','60','20',NULL,'Employment Contact Email Address Type Code 1',NULL,NULL,'"WORK"','(''DA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ESNAPRUDE0Z0','50','D','60','21',NULL,'Employment Contact Email Address Text 1',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ESNAPRUDE0Z0','50','D','60','22',NULL,'Employment Contact Email Address Type Code 2',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ESNAPRUDE0Z0','50','D','60','23',NULL,'Employment Contact Email Address Text 2',NULL,NULL,'""','(''SS''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ESNAPRUDE0Z0','50','D','60','24',NULL,'Employment Contact SSN',NULL,NULL,'"drvEmpContactSSN"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ESNAPRUDE0Z0','50','D','60','25',NULL,'Employment Contact Employee ID',NULL,NULL,'"drvEmpContactEmpID"','(''UA''=''T~'')');
+--INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ESNAPRUDE0Z0','50','D','60','26',NULL,'Employment Contact DOB',NULL,NULL,'""','(''SS''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESNAPRUDE0Z0','50','T','90','1',NULL,'Record Type',NULL,NULL,'"drvRecordType"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESNAPRUDE0Z0','50','T','90','2',NULL,'Audit ID',NULL,NULL,'"drvAuditID"','(''UD112''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESNAPRUDE0Z0','50','T','90','3',NULL,'Absence Related Employment Information Record Quan',NULL,NULL,'""','(''SS''=''T~'')');
@@ -427,7 +421,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESNAPRUDE_20220328.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESNAPRUDE_20220608.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -436,7 +430,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Hospital Indemnity Export with','202201199','EMPEXPORT','ONDEM_XOE',NULL,'ESNAPRUDE',NULL,NULL,NULL,'202201199','Jan 19 2022 10:41AM','Jan 19 2022 10:41AM','202201191',NULL,'','','202201191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Hospital Indemnity Expor-Sched','202201199','EMPEXPORT','SCH_ESNAPR',NULL,'ESNAPRUDE',NULL,NULL,NULL,'202201199','Jan 19 2022 10:41AM','Jan 19 2022 10:41AM','202201191',NULL,'','','202201191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Hospital Indemnity Expor-Test','202203021','EMPEXPORT','TEST_XOE','Mar  2 2022 12:00AM','ESNAPRUDE',NULL,NULL,NULL,'202203021','Mar  2 2022 12:00AM','Dec 30 1899 12:00AM','202202161',NULL,'','','202202161',dbo.fn_GetTimedKey(),NULL,'US3RVASNA1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',XRSFO',NULL,NULL,NULL,'Hospital Indemnity Expor-Test','202203029','EMPEXPORT','TEST_XOE','Mar  2 2022 12:00AM','ESNAPRUDE',NULL,NULL,NULL,'202203029','Mar  2 2022 12:00AM','Dec 30 1899 12:00AM','202202161',NULL,'','','202202161',dbo.fn_GetTimedKey(),NULL,'US3RVASNA1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -466,10 +460,10 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','H01','dbo.U_ESNAPRUDE_hdrTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D10','dbo.U_ESNAPRUDE_AST_drvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D20','dbo.U_ESNAPRUDE_EMP_drvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D30','dbo.U_ESNAPRUDE_COV_drvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D40','dbo.U_ESNAPRUDE_DEP_drvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D50','dbo.U_ESNAPRUDE_CCH_drvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D60','dbo.U_ESNAPRUDE_CON_trTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D30','dbo.U_ESNAPRUDE_DEP_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D40','dbo.U_ESNAPRUDE_COV_drvTbl',NULL);
+--INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D50','dbo.U_ESNAPRUDE_CCH_drvTbl',NULL);
+--INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','D60','dbo.U_ESNAPRUDE_CON_trTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESNAPRUDE','T90','dbo.U_ESNAPRUDE_trTbl',NULL);
 
 -----------
@@ -542,7 +536,7 @@ CREATE TABLE [dbo].[U_ESNAPRUDE_AST_drvTbl] (
     [drvEmpNoSort] char(9) NULL,
     [drvAssociateID] char(9) NULL,
     [drvAssSSN] char(11) NULL,
-    [drvAssGenderCode] char(1) NULL,
+    [drvAssGenderCode] varchar(7) NOT NULL,
     [drvAssDateofBirth] datetime NULL,
     [drvAssLastName] varchar(100) NULL,
     [drvAssFirstName] varchar(100) NULL,
@@ -597,7 +591,7 @@ CREATE TABLE [dbo].[U_ESNAPRUDE_CCH_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvEmpNoSort] char(9) NULL,
     [drvRecordType] varchar(3) NOT NULL,
-    [drvAssociateID] varchar(1) NOT NULL,
+    [drvAssociateID] char(9) NULL,
     [drvCustomCharacCode] varchar(1) NOT NULL,
     [drvCustomCharacValue] varchar(1) NOT NULL
 );
@@ -611,11 +605,11 @@ CREATE TABLE [dbo].[U_ESNAPRUDE_CON_trTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvEmpNoSort] varchar(1) NOT NULL,
-    [drvAssociateID] varchar(1) NOT NULL,
-    [drvEmpContactID] varchar(1) NOT NULL,
+    [drvEmpNoSort] char(9) NULL,
+    [drvAssociateID] char(9) NULL,
+    [drvEmpContactID] char(9) NULL,
     [drvEmpContactSSN] char(11) NULL,
-    [drvEmpContactEmpID] varchar(1) NOT NULL
+    [drvEmpContactEmpID] char(9) NULL
 );
 
 -----------
@@ -637,7 +631,7 @@ CREATE TABLE [dbo].[U_ESNAPRUDE_COV_drvTbl] (
     [drvCovEndDate] datetime NULL,
     [drvCovStatusCode] varchar(10) NOT NULL,
     [drvCovStatusEfDate] datetime NULL,
-    [drvClaimBranchCd] varchar(1) NOT NULL,
+    [drvClaimBranchCd] varchar(5) NOT NULL,
     [drvVoluntaryBasis] varchar(9) NULL
 );
 
@@ -662,7 +656,7 @@ CREATE TABLE [dbo].[U_ESNAPRUDE_DEP_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvEmpNoSort] char(9) NULL,
     [drvAssociateID] char(9) NULL,
-    [drvDependentID] int NULL,
+    [drvDependentID] varchar(7) NULL,
     [drvDependentSSN] char(11) NULL,
     [drvDepGenderCode] varchar(7) NOT NULL,
     [drvDepDateofBirth] datetime NULL,
@@ -696,7 +690,6 @@ IF OBJECT_ID('U_ESNAPRUDE_EMP_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_ESNAPRUDE_EMP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
     [drvEmpNoSort] char(9) NULL,
     [drvAssociateID] char(9) NULL,
     [drvEmployeeID] char(9) NULL,
@@ -751,7 +744,15 @@ CREATE TABLE [dbo].[U_ESNAPRUDE_hdrTbl] (
 IF OBJECT_ID('U_ESNAPRUDE_trTbl') IS NULL
 CREATE TABLE [dbo].[U_ESNAPRUDE_trTbl] (
     [drvRecordType] varchar(3) NOT NULL,
-    [drvAuditID] datetime NOT NULL
+    [drvAuditID] datetime NOT NULL,
+    [drvAssRecQty] int NULL,
+    [drvCovRecQty] int NULL,
+    [drvDepRecQty] int NULL,
+    [drvEmpContRecQty] int NULL,
+    [drvEmpInfoRecQty] int NULL,
+    [drvCustCharRecQty] int NULL,
+    [drvTotCovAmt] money NULL,
+    [drvTotRecQty] int NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESNAPRUDE]
@@ -988,7 +989,7 @@ BEGIN
         ,drvEarningsEffDate1 =[dbo].[dsi_fnlib_GetAnnSalary_EffDate_WithStartDate] (EecEEID, EecCOID, '20220101',EecDateOfLastHire) 
         ,drvMemGroupCode = '001'
         ,drvEmpLocation = '001'
-        ,drvWorkLocStateCd = LocAddressState
+        ,drvWorkLocStateCd = EepAddressState
     INTO dbo.U_ESNAPRUDE_EMP_drvTbl
     FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -1016,28 +1017,42 @@ BEGIN
         ,drvEmpNoSort = EecEmpNo
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
-        ,drvProdCode = CASE WHEN BdmDedcode =  'STD' THEN 'WDI'
+        ,drvProdCode = CASE WHEN EetTaxCode = 'NYSDIEE' THEN 'DBL' ELSE CASE 
+                            WHEN BdmDedcode =  'STD' THEN 'WDI'
                             WHEN BdmDedcode =  'LTD' THEN 'LTD'
                             WHEN BdmDedcode =  'VLAC' THEN 'VACC'
                             WHEN BdmDedcode in ('VLCIA', 'VLC01', 'VLC02', 'VLC03', 'VLCIB', 'VLC04', 'VLC05', 'VLC06', 'VLCIC', 'VLC07', 'VLC08', 'VCL09') THEN 'VCI'
                             WHEN BdmDedcode =  'VLE' THEN 'OGL'
                             WHEN BdmDedcode in ('VLS', 'VLC') THEN 'ODGL'
+                            --WHEN EetTaxCode = 'NYSDIEE' THEN 'DBL'
                             END
-        ,drvCovTierCode = CASE    WHEN BdmBenOption = 'EE' and Bdmdedcode =  'STD' THEN 'EE'
-                                WHEN BdmBenOption = 'EE' and Bdmdedcode =  'LTD' THEN 'EE'
-                                WHEN BdmBenOption in ( 'EE', 'EES', 'EEC', 'EEDP', 'EEF') and Bdmdedcode =  'VLAC' THEN BdmBenOption
-                                --tier code (corresponding code: EE, ES, EC, FM)
-                                WHEN BdmBenOption in ( 'EE', 'EES', 'EEC', 'EEDP', 'EEF') and Bdmdedcode in ('VLCIA', 'VLC01', 'VLC02', 'VLC03', 'VLCIB', 'VLC04', 'VLC05', 'VLC06', 'VLCIC', 'VLC07', 'VLC08', 'VCL09') THEN BdmBenOption
-                                WHEN BdmBenOption in ( 'EE') and Bdmdedcode =  'VLE' THEN 'EE'
-                                WHEN BdmBenOption in ( 'EES', 'EEDP') and Bdmdedcode in ( 'VLS', 'VLC') THEN 'SP'
+                            END
+        ,drvCovTierCode = CASE	WHEN Bdmdedcode =  'STD' THEN 'EE'
+								WHEN Bdmdedcode =  'OGL' THEN 'EE'
+								WHEN Bdmdedcode =  'LTD' THEN 'EE'
+								WHEN Bdmdedcode =  'ODGL' THEN 'SP'
+								WHEN Bdmdedcode in ( 'VLAC','VLCI') THEN BdmBenOption
+								--tier code (corresponding code: EE, ES, EC, FM)
+								WHEN Bdmdedcode in ( 'VLE','VLCIA','VLCIB','VLCIC') THEN 'EE'
+
+								WHEN Bdmdedcode in ( 'VLS', 'VLC06', 'VLC07', 'VLCI1', 'VLCID', 'VLCIG', 'VCL02', 'VLCIJ') THEN 'SP'
+								WHEN Bdmdedcode in ('VLC', 'VLC01','VLC09', 'VLCIE', 'VLCIK', 'VLCIH', 'VCL05') THEN 'CH'
+								WHEN Bdmdedcode = 'VLCI' THEN 'EE'
+								WHEN Bdmdedcode in ('VLC03', 'VLC08', 'VLCIF', 'VLCII', 'VLCIL', 'VCL04') THEN 'FM'
+								--WHEN BdmBenOption in ( 'EE', 'EES', 'EEC', 'EEDP', 'EEF') and Bdmdedcode in ('VLCIA', 'VLC01', 'VLC02', 'VLC03', 'VLCIB', 'VLC04', 'VLC05', 'VLC06', 'VLCIC', 'VLC07', 'VLC08', 'VCL09') THEN BdmBenOption
+        --                        WHEN BdmBenOption in ( 'EES', 'EEDP') and Bdmdedcode in ( 'VLS', 'VLC') THEN 'SP'
                             END
         ,drvProdPlanCode = CASE WHEN Bdmdedcode = 'VLAC' THEN '5156'
                                 WHEN Bdmdedcode in ('VLCIA', 'VLC01', 'VLC02', 'VLC03', 'VLCIB', 'VLC04', 'VLC05', 'VLC06', 'VLCIC', 'VLC07', 'VLC08', 'VCL09','VCI')  THEN '5157'
                                 END
-        ,drvCovAmount = CASE WHEN BdmDedCode in ('VLCIA', 'VLC01', 'VLC02', 'VLC03', 'VLCIB', 'VLC04', 'VLC05', 'VLC06', 'VLCIC', 'VLC07', 'VLC08', 'VCL09') THEN BdmEEAmt else null END
-        ---?EedBenAmt
+        ,drvCovAmount = CASE	WHEN BdmDedCode in ('VLCI') THEN BdmEEAmt 
+								WHEN BdmDedCode in ('VCL02', 'VLC01', 'VLC03', 'VLCI1', 'VLCIA', 'VLCID', 'VLCIE', 'VLCIF') THEN '10000'
+								WHEN BdmDedCode in ('VCL04', 'VCL05', 'VLC06','VLCIB', 'VLCIG', 'VLCIH', 'VLCII') THEN '20000'
+								WHEN BdmDedCode in ('VLC07', 'VLC08', 'VLC09', 'VLCIC', 'VLCIJ', 'VLCIK', 'VLCIL') THEN '30000' 
+								--WHEN BdmDedCode in ('VLCIA', 'VLC01', 'VLC02', 'VLC03', 'VLCIB', 'VLC04', 'VLC05', 'VLC06', 'VLCIC', 'VLC07', 'VLC08', 'VCL09') THEN BdmEEAmt 
+								else null END
         ,drvCovEffDate = CASE WHEN BdmDedCode in ('STD', 'LTD', 'VLE', 'VLS', 'VLC') THEN BdmBenStartDate ELSE 
-                                    CASE WHEN BdmBenStartDate < 2021-01-01 THEN '1/1/2021' ELSE BdmBenStartDate 
+                                    CASE WHEN BdmBenStartDate < 2022-01-01 THEN '2022-01-01' ELSE BdmBenStartDate 
                                     END 
                                 END
         ,drvCovEndDate = BdmBenStopDate
@@ -1048,17 +1063,37 @@ BEGIN
         ,drvCovStatusEfDate = CASE    WHEN BdmBenStatus  = 'A' THEN BdmBenStopDate
                                     WHEN BdmBenStatus = 'W' THEN BdmBenStopDate
                                 END
-        ,drvClaimBranchCd = '00001'
+        ,drvClaimBranchCd = CASE	WHEN BdmDedCode='LTD' and EecOrgLvl1 ='EXEC' then '00001' 
+									WHEN BdmDedCode='LTD' and EecOrgLvl1 <>'EXEC' then '00002' 
+									WHEN BdmDedCode= 'STD' and EecFullTimeORPartTime = 'F' then '00001' 
+									WHEN BdmDedCode= 'STD' and EecFullTimeORPartTime <> 'F' then  ' ' 
+									WHEN EetTaxCode = 'NYSDIEE' then '00001' 
+									--EepAddressState = 'NY' and 
+									END
         ,drvVoluntaryBasis = CASE WHEN Bdmdedcode = 'VLAC' THEN 'TREATMENT'else NULL END
+		,drvAppEligDate = CASE WHEN BdmDedCode IN  ('VLE','VLS') THEN BdmBenStartDate else '  ' END
+		,drvAppInfBenAmt = CASE WHEN BdmDedCode IN  ('VLE','VLS') THEN BdmEEAmt else  '  ' END
+		,drvAppAddtlBenAmt = CASE WHEN BdmDedCode IN  ('VLC') THEN BdmEEAmt else  '  ' END
+		,drvAppRelTypeCode = CASE	WHEN BdmDedCode = 'VLE' THEN 'SELF'  
+									WHEN BdmDedCode = 'VLS' THEN 'SPOUSE' 
+									WHEN BdmDedCode = 'VLS' and ConRelationship= 'DP' THEN 'DOMESTIC PARTNER' 
+									else '  ' END
     INTO dbo.U_ESNAPRUDE_COV_drvTbl
     FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-		AND BdmRecType = 'EMP'
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        AND BdmRecType = 'EMP'
+	JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = BdmEEID 
+        AND ConImportID = BdmDepRecID
+    LEFT JOIN dbo.EmpTax 
+        ON EecCoID = EetCoID
+        AND EecEEID = EetEEID
+        AND eetTaxCode = 'NYSDIEE'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ESNAPRUDE_DEP_drvTbl
@@ -1074,6 +1109,10 @@ BEGIN
         ,drvAssociateID = EecEmpNo
         ,drvDependentID = CAST(EecEmpNo as VARCHAR(6)) + CAST(RN.rowNumber as VARCHAR(1))
         --- Plus number of dependents
+		,drvDepRelTypeCode = CASE	WHEN conrelationship = 'SPS' THEN 'SPOUSE'
+									WHEN conrelationship = 'DP' THEN 'DOMESTIC PARTNER'
+									WHEN conrelationship = 'CHL' THEN 'CHILD'
+									END
         ,drvDependentSSN = conSSN 
         ,drvDepGenderCode = CASE    WHEN ConGender = 'M' THEN 'MALE'
                                     WHEN ConGender = 'F' THEN 'FEMALE'
@@ -1081,7 +1120,7 @@ BEGIN
                                 END
         ,drvDepDateofBirth = ConDateOfBirth
         ,drvDepMaritalStatusCd = CASE    WHEN conrelationship = 'SPS' THEN 'MARRIED'
-                                        WHEN conrelationship = 'DP' THEN 'DOMESTIC PARTNER'
+                                        --WHEN conrelationship = 'DP' THEN 'DOMESTIC PARTNER'
                                         else 'SINGLE'
                                   END
         ,drvDepLastName = ConNameLast
@@ -1100,75 +1139,75 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-	JOIN (select BdmEEID EEID,BdmDepRecID DepEEID, ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmEEID, BdmDepRecID DESC) rowNumber FROM dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK) where BdmRecType = 'DEP') RN
-		ON EEID = BdmEEID
-		AND DepEEID = BdmDepRecID
+    JOIN (select BdmEEID EEID,BdmDepRecID DepEEID, ROW_NUMBER() OVER(PARTITION BY BdmEEID ORDER BY BdmEEID, BdmDepRecID DESC) rowNumber FROM dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK) where BdmRecType = 'DEP') RN
+        ON EEID = BdmEEID
+        AND DepEEID = BdmDepRecID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = BdmEEID 
-		AND ConImportID = BdmDepRecID
+        AND ConImportID = BdmDepRecID
     ;
-    ---------------------------------
-    -- DETAIL RECORD - U_ESNAPRUDE_CCH_drvTbl
-    ---------------------------------
-    IF OBJECT_ID('U_ESNAPRUDE_CCH_drvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ESNAPRUDE_CCH_drvTbl;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvEmpNoSort = EecEmpNo
-        -- standard fields above and additional driver fields below
-        ,drvRecordType = 'CCH'
-        ,drvAssociateID = EecEmpNo
-        ,drvCustomCharacCode = ''
-		--- Label for corresponding value which is sent in Amount; Date; Percent or Text fields.
-		--- For Disability: Value Reporting Coden (where n is a number from 1-20)
-		--- For EOI: Value EOI
-		--- Not required but can be provided when customer requires additional repotting needs
-		--- Up to 20 reporting codes can be accommodated per employee.
-		--- Value Reporting Code1, which represents the...
-        ,drvCustomCharacValue = ''
-		--- For Disability:  This will be the valid values defined by the customer - example '113'; '456'
-		--- For EOI:  This will be the valid value defined by the customer and Prudential - example 'SouthTerr'; 'NorthTerr'
-		--- For Reporting Code1, value the 
-    INTO dbo.U_ESNAPRUDE_CCH_drvTbl
-    FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    ;
-    ---------------------------------
-    -- DETAIL RECORD - U_ESNAPRUDE_CON_trTbl
-    ---------------------------------
-    IF OBJECT_ID('U_ESNAPRUDE_CON_trTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ESNAPRUDE_CON_trTbl;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvEmpNoSort = ''
-        -- standard fields above and additional driver fields below
-        ,drvAssociateID = EecEmpNo
-        ,drvEmpContactID = EecEmpNo
-        ,drvEmpContactSSN = eepSSN
-        ,drvEmpContactEmpID = EecEmpNo
-    INTO dbo.U_ESNAPRUDE_CON_trTbl
-    FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-	JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    ;
+    -----------------------------------
+    ---- DETAIL RECORD - U_ESNAPRUDE_CCH_drvTbl
+    -----------------------------------
+    --IF OBJECT_ID('U_ESNAPRUDE_CCH_drvTbl','U') IS NOT NULL
+    --    DROP TABLE dbo.U_ESNAPRUDE_CCH_drvTbl;
+    --SELECT DISTINCT
+    --     drvEEID = xEEID
+    --    ,drvCoID = xCoID
+    --    ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+    --    ,drvEmpNoSort = EecEmpNo
+    --    -- standard fields above and additional driver fields below
+    --    ,drvRecordType = 'CCH'
+    --    ,drvAssociateID = EecEmpNo
+    --    ,drvCustomCharacCode = ''
+    --    --- Label for corresponding value which is sent in Amount; Date; Percent or Text fields.
+    --    --- For Disability: Value Reporting Coden (where n is a number from 1-20)
+    --    --- For EOI: Value EOI
+    --    --- Not required but can be provided when customer requires additional repotting needs
+    --    --- Up to 20 reporting codes can be accommodated per employee.
+    --    --- Value Reporting Code1, which represents the...
+    --    ,drvCustomCharacValue = ''
+    --    --- For Disability:  This will be the valid values defined by the customer - example '113'; '456'
+    --    --- For EOI:  This will be the valid value defined by the customer and Prudential - example 'SouthTerr'; 'NorthTerr'
+    --    --- For Reporting Code1, value the 
+    --INTO dbo.U_ESNAPRUDE_CCH_drvTbl
+    --FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
+    --JOIN dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+    --JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    --    ON EecEEID = xEEID 
+    --    AND EecCoID = xCoID
+    --;
+    -----------------------------------
+    ---- DETAIL RECORD - U_ESNAPRUDE_CON_trTbl
+    -----------------------------------
+    --IF OBJECT_ID('U_ESNAPRUDE_CON_trTbl','U') IS NOT NULL
+    --    DROP TABLE dbo.U_ESNAPRUDE_CON_trTbl;
+    --SELECT DISTINCT
+    --     drvEEID = xEEID
+    --    ,drvCoID = xCoID
+    --    ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+    --    ,drvEmpNoSort = EecEmpNo
+    --    -- standard fields above and additional driver fields below
+    --    ,drvAssociateID = EecEmpNo
+    --    ,drvEmpContactID = EecEmpNo
+    --    ,drvEmpContactSSN = eepSSN
+    --    ,drvEmpContactEmpID = EecEmpNo
+    --INTO dbo.U_ESNAPRUDE_CON_trTbl
+    --FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --    ON EepEEID = xEEID
+    --JOIN dbo.U_dsi_BDM_ESNAPRUDE WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+    --JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    --    ON EecEEID = xEEID 
+    --    AND EecCoID = xCoID
+    --;
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
@@ -1176,7 +1215,7 @@ BEGIN
         DROP TABLE dbo.U_ESNAPRUDE_hdrTbl;
     SELECT DISTINCT
          drvCreationDateTime = GetDate()
-        ,drvActivityStartDT = GetDate()
+        ,drvActivityStartDT = DATEADD(dd,-6,GetDate())
         ,drvActivityEndDT = GetDate()
     INTO dbo.U_ESNAPRUDE_hdrTbl
     FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
@@ -1190,14 +1229,14 @@ BEGIN
          drvRecordType = 'TRL'
         ,drvAuditID = GetDate()
         ---Format = CCYYMMDD
-		,drvAssRecQty = (Select count(*) from dbo.U_ESNAPRUDE_AST_drvTbl WITH (NOLOCK))
-		,drvCovRecQty = (Select count(*) from dbo.U_ESNAPRUDE_COV_drvTbl WITH (NOLOCK))
-		,drvDepRecQty = (Select count(*) from dbo.U_ESNAPRUDE_DEP_drvTbl WITH (NOLOCK))
-		,drvEmpContRecQty = (Select count(*) from dbo.U_ESNAPRUDE_CON_trTbl WITH (NOLOCK))
-		,drvEmpInfoRecQty = (Select count(*) from dbo.U_ESNAPRUDE_EMP_drvTbl WITH (NOLOCK))
-		,drvCustCharRecQty = (Select count(*) from dbo.U_ESNAPRUDE_CCH_drvTbl WITH (NOLOCK))
-		,drvTotCovAmt =(select sum(drvCovAmount) from  dbo.U_ESNAPRUDE_COV_drvTbl WITH (NOLOCK))
-		,drvTotRecQty = (Select count(*) from dbo.U_ESNAPRUDE_AST_drvTbl WITH (NOLOCK)) +(Select count(*) from dbo.U_ESNAPRUDE_COV_drvTbl WITH (NOLOCK))+(Select count(*) from dbo.U_ESNAPRUDE_DEP_drvTbl WITH (NOLOCK)) +(Select count(*) from dbo.U_ESNAPRUDE_CON_trTbl WITH (NOLOCK))+(Select count(*) from dbo.U_ESNAPRUDE_EMP_drvTbl WITH (NOLOCK))+(Select count(*) from dbo.U_ESNAPRUDE_CCH_drvTbl WITH (NOLOCK))
+        ,drvAssRecQty = (Select count(*) from dbo.U_ESNAPRUDE_AST_drvTbl WITH (NOLOCK))
+        ,drvCovRecQty = (Select count(*) from dbo.U_ESNAPRUDE_COV_drvTbl WITH (NOLOCK))
+        ,drvDepRecQty = (Select count(*) from dbo.U_ESNAPRUDE_DEP_drvTbl WITH (NOLOCK))
+        ,drvEmpContRecQty = (Select count(*) from dbo.U_ESNAPRUDE_CON_trTbl WITH (NOLOCK))
+        ,drvEmpInfoRecQty = (Select count(*) from dbo.U_ESNAPRUDE_EMP_drvTbl WITH (NOLOCK))
+        ,drvCustCharRecQty = (Select count(*) from dbo.U_ESNAPRUDE_CCH_drvTbl WITH (NOLOCK))
+        ,drvTotCovAmt =(select sum(drvCovAmount) from  dbo.U_ESNAPRUDE_COV_drvTbl WITH (NOLOCK))
+        ,drvTotRecQty = (Select count(*) from dbo.U_ESNAPRUDE_AST_drvTbl WITH (NOLOCK)) +(Select count(*) from dbo.U_ESNAPRUDE_COV_drvTbl WITH (NOLOCK))+(Select count(*) from dbo.U_ESNAPRUDE_DEP_drvTbl WITH (NOLOCK)) +(Select count(*) from dbo.U_ESNAPRUDE_CON_trTbl WITH (NOLOCK))+(Select count(*) from dbo.U_ESNAPRUDE_EMP_drvTbl WITH (NOLOCK))+(Select count(*) from dbo.U_ESNAPRUDE_CCH_drvTbl WITH (NOLOCK))
     INTO dbo.U_ESNAPRUDE_trTbl
     FROM dbo.U_ESNAPRUDE_EEList WITH (NOLOCK)
     ;
@@ -1239,7 +1278,7 @@ WHERE expFormatCode = 'ESNAPRUDE';
 GO
 CREATE VIEW dbo.dsi_vwESNAPRUDE_Export AS 
     SELECT TOP 200000000 Data FROM dbo.U_ESNAPRUDE_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+    ORDER BY InitialSort, RIGHT(RecordSet,2)
 
 GO
 
