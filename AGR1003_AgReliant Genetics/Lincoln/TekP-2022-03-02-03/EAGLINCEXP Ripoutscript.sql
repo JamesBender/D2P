@@ -5,7 +5,7 @@ EAGLINCEXP: Lincoln Leave of Absence Interface Export
 FormatCode:     EAGLINCEXP
 Project:        Lincoln Leave of Absence Interface Export
 Client ID:      AGR1003
-Date/time:      2022-04-25 11:20:20.970
+Date/time:      2022-06-03 15:54:18.530
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -133,7 +133,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EAGLINCEXP','Lincoln Leave of Absence Interface Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','EAGLINCEXPZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','EAGLINCEXP','Lincoln Leave of Absence Interface Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2999','S','N','EAGLINCEXPZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -141,10 +141,9 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAGLINCEXPZ0','9','H','01','1',NULL,'Customer ID',NULL,NULL,'"09-LF0853"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAGLINCEXPZ0','7','H','01','10',NULL,'Record Number',NULL,NULL,'"drvRecordNumber"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAGLINCEXPZ0','10','H','01','17',NULL,'Date',NULL,NULL,'"drvDate"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAGLINCEXPZ0','10','H','01','17',NULL,'Date',NULL,NULL,'"drvDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAGLINCEXPZ0','7','H','01','27',NULL,'Record Length',NULL,NULL,'"drvRecordLength"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EAGLINCEXPZ0','2966','H','01','34',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EAGLINCEXPZ0','1','H','01','3000',NULL,'Record Delimiter',NULL,NULL,'"drvRecordDelimiter"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAGLINCEXPZ0','1','D','10','1',NULL,'Record Type',NULL,NULL,'"D"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAGLINCEXPZ0','6','D','10','2',NULL,'iCAM Account ID Number',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAGLINCEXPZ0','6','D','10','8',NULL,'iCAM Account Verification Number',NULL,NULL,'""','(''DA''=''F'')');
@@ -307,20 +306,20 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('160','EAGLINCEXPZ0','1','D','10','2347',NULL,'Entitlement Tracking Duration Type',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('161','EAGLINCEXPZ0','4','D','10','2348',NULL,'Fixed Start Date',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('162','EAGLINCEXPZ0','1','D','10','2352',NULL,'Eligibility Amount Mode',NULL,NULL,'"H"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('163','EAGLINCEXPZ0','11','D','10','2353',NULL,'Eligibility Amount Duration',NULL,NULL,'"0.0"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('163','EAGLINCEXPZ0','11','D','10','2353',NULL,'Eligibility Amount Duration',NULL,NULL,'"dvrEligibilityAmountDuration"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('164','EAGLINCEXPZ0','1','D','10','2364',NULL,'Eligibility Review Period Mode',NULL,NULL,'"M"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('165','EAGLINCEXPZ0','3','D','10','2365',NULL,'Eligibility Review Period Duration',NULL,NULL,'"012"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('166','EAGLINCEXPZ0','1','D','10','2368',NULL,'Service Mode',NULL,NULL,'"M"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('167','EAGLINCEXPZ0','12','D','10','2369',NULL,'Service Amount',NULL,NULL,'"0.0"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('167','EAGLINCEXPZ0','12','D','10','2369',NULL,'Service Amount',NULL,NULL,'"dvrServiceAmount"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('168','EAGLINCEXPZ0','1','D','10','2381',NULL,'Non-eligible Location indicator',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('169','EAGLINCEXPZ0','8','D','10','2382',NULL,'Work Schedule Effective Date',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('170','EAGLINCEXPZ0','9','D','10','2390',NULL,'Hours per Day – Monday',NULL,NULL,'"0.0"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('171','EAGLINCEXPZ0','9','D','10','2399',NULL,'Hours per Day – Tuesday',NULL,NULL,'"0.0"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('172','EAGLINCEXPZ0','9','D','10','2408',NULL,'Hours per Day – Wednesday',NULL,NULL,'"0.0"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('173','EAGLINCEXPZ0','9','D','10','2417',NULL,'Hours per Day – Thursday',NULL,NULL,'"0.0"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('174','EAGLINCEXPZ0','9','D','10','2426',NULL,'Hours per Day – Friday',NULL,NULL,'"0.0"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('175','EAGLINCEXPZ0','9','D','10','2435',NULL,'Hours per Day – Saturday',NULL,NULL,'"0.0"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('176','EAGLINCEXPZ0','9','D','10','2444',NULL,'Hours per Day – Sunday',NULL,NULL,'"0.0"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('170','EAGLINCEXPZ0','9','D','10','2390',NULL,'Hours per Day – Monday',NULL,NULL,'"dvrHoursPerDayMon"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('171','EAGLINCEXPZ0','9','D','10','2399',NULL,'Hours per Day – Tuesday',NULL,NULL,'"dvrHoursPerDayTues"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('172','EAGLINCEXPZ0','9','D','10','2408',NULL,'Hours per Day – Wednesday',NULL,NULL,'"dvrHoursPerDayWed"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('173','EAGLINCEXPZ0','9','D','10','2417',NULL,'Hours per Day – Thursday',NULL,NULL,'"dvrHoursPerDayThur"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('174','EAGLINCEXPZ0','9','D','10','2426',NULL,'Hours per Day – Friday',NULL,NULL,'"dvrHoursPerDayFri"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('175','EAGLINCEXPZ0','9','D','10','2435',NULL,'Hours per Day – Saturday',NULL,NULL,'"dvrHoursPerDaySat"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('176','EAGLINCEXPZ0','9','D','10','2444',NULL,'Hours per Day – Sunday',NULL,NULL,'"dvrHoursPerDaySun"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('177','EAGLINCEXPZ0','8','D','10','2453',NULL,'Acquisition Date',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('178','EAGLINCEXPZ0','8','D','10','2461',NULL,'Latest Hire Date',NULL,NULL,'"drvLatestHireDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('179','EAGLINCEXPZ0','1','D','10','2469',NULL,'Key Employee indicator',NULL,NULL,'""','(''SS''=''F'')');
@@ -329,13 +328,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('182','EAGLINCEXPZ0','11','D','10','2472',NULL,'Co-worker Spouse SSN',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('183','EAGLINCEXPZ0','8','D','10','2483',NULL,'Date Created',NULL,NULL,'"drvDateCreated"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('184','EAGLINCEXPZ0','509','D','10','2491',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('185','EAGLINCEXPZ0','1','D','10','3000',NULL,'Record Delimiter',NULL,NULL,'"drvRecordDelimiter"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAGLINCEXPZ0','9','T','90','1',NULL,'Customer ID',NULL,NULL,'"09-LF0853"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAGLINCEXPZ0','7','T','90','10',NULL,'Record #',NULL,NULL,'"9999999"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAGLINCEXPZ0','10','T','90','17',NULL,'Date',NULL,NULL,'"drvDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAGLINCEXPZ0','7','T','90','27',NULL,'Number of detailed records',NULL,NULL,'"drvNumberOfDetailedRecords"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EAGLINCEXPZ0','2966','T','90','34',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EAGLINCEXPZ0','1','T','90','3000',NULL,'Record Delimiter',NULL,NULL,'"drvRecordDelimiter"','(''UA''=''F'')');
 
 -----------
 -- Build web filename
@@ -348,16 +345,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220425.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220603.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Leave of Absence Inter','202204219','EMPEXPORT','ONDEM_XOE',NULL,'EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022  8:48AM','Apr 21 2022  8:48AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Leave of Absence-Sched','202204219','EMPEXPORT','SCH_EAGLIN',NULL,'EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022  8:48AM','Apr 21 2022  8:48AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Lincoln Leave of Absence-Test','202204219','EMPEXPORT','TEST_XOE',NULL,'EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022  8:48AM','Apr 21 2022  8:48AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Leave of Absence Inter','202204219','EMPEXPORT','ONDEM_XOE',NULL,'EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022  8:48AM','Apr 21 2022  8:48AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Leave of Absence-Sched','202204219','EMPEXPORT','SCH_EAGLIN','May  9 2022 12:00AM','EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022 12:00AM','Dec 30 1899 12:00AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'us3mWaAGR1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',WY9ZA',NULL,NULL,NULL,'Lincoln Leave of Absence-Test','202205099','EMPEXPORT','TEST_XOE','May  9 2022 12:00AM','EAGLINCEXP',NULL,NULL,NULL,'202205099','May  9 2022 12:00AM','Dec 30 1899 12:00AM','202205031',NULL,'','','202205031',dbo.fn_GetTimedKey(),NULL,'us3mWaAGR1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -497,7 +494,7 @@ CREATE TABLE [dbo].[U_EAGLINCEXP_drvTbl] (
     [drvEmployeeID] char(9) NULL,
     [drvEmployeeState] varchar(2) NULL,
     [drvOccuptationDescription] varchar(25) NOT NULL,
-    [drvNameFirst] varchar(100) NULL,
+    [drvNameFirst] varchar(8000) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvAddressLine1] varchar(255) NULL,
@@ -517,24 +514,32 @@ CREATE TABLE [dbo].[U_EAGLINCEXP_drvTbl] (
     [drvOriginalHireDate] datetime NULL,
     [drvEmploymentStatus] varchar(1) NOT NULL,
     [drvDateofTermination] datetime NULL,
-    [drvP1ProductCode] varchar(3) NULL,
-    [drvP1BenefitType] varchar(5) NULL,
-    [drvP1CoverageStatus] varchar(1) NULL,
+    [drvP1ProductCode] varchar(3) NOT NULL,
+    [drvP1BenefitType] varchar(5) NOT NULL,
+    [drvP1CoverageStatus] varchar(1) NOT NULL,
     [drvP1CoverageEffectiveDate] datetime NULL,
     [drvP1EmploymentPremContr] varchar(3) NOT NULL,
     [drvP1BenefitLevel] varchar(3) NOT NULL,
-    [drvP2ProductCode] varchar(3) NULL,
-    [drvP2BenefitType] varchar(5) NULL,
-    [drvP2CoverageStatus] varchar(1) NULL,
+    [drvP2ProductCode] varchar(5) NOT NULL,
+    [drvP2BenefitType] varchar(5) NOT NULL,
+    [drvP2CoverageStatus] varchar(1) NOT NULL,
     [drvP2CoverageEffectiveDate] datetime NULL,
-    [drvP2EmployeePremiumContrib] varchar(3) NULL,
-    [drvP2BenefitLevel] varchar(3) NULL,
+    [drvP2EmployeePremiumContrib] varchar(3) NOT NULL,
+    [drvP2BenefitLevel] varchar(3) NOT NULL,
     [drvP3CoverageEffectiveDate] datetime NULL,
+    [dvrEligibilityAmountDuration] varchar(4) NOT NULL,
+    [dvrServiceAmount] int NULL,
+    [dvrHoursPerDayMon] numeric NOT NULL,
+    [dvrHoursPerDayTues] numeric NOT NULL,
+    [dvrHoursPerDayWed] numeric NOT NULL,
+    [dvrHoursPerDayThur] numeric NOT NULL,
+    [dvrHoursPerDayFri] numeric NOT NULL,
+    [dvrHoursPerDaySat] numeric NOT NULL,
+    [dvrHoursPerDaySun] numeric NOT NULL,
     [drvLatestHireDate] datetime NULL,
     [drvUnionEmployeeIndicator] varchar(1) NOT NULL,
     [drvExemptEmployeeIndicator] varchar(1) NOT NULL,
-    [drvDateCreated] datetime NOT NULL,
-    [drvRecordDelimiter] varchar(1) NOT NULL
+    [drvDateCreated] datetime NOT NULL
 );
 
 -----------
@@ -558,7 +563,7 @@ CREATE TABLE [dbo].[U_EAGLINCEXP_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(3000) NULL
+    [Data] char(2999) NULL
 );
 
 -----------
@@ -568,9 +573,8 @@ CREATE TABLE [dbo].[U_EAGLINCEXP_File] (
 IF OBJECT_ID('U_EAGLINCEXP_Header') IS NULL
 CREATE TABLE [dbo].[U_EAGLINCEXP_Header] (
     [drvRecordNumber] varchar(7) NOT NULL,
-    [drvDate] datetime NOT NULL,
-    [drvRecordLength] varchar(4) NOT NULL,
-    [drvRecordDelimiter] varchar(1) NOT NULL
+    [drvDate] datetime NULL,
+    [drvRecordLength] varchar(4) NOT NULL
 );
 
 -----------
@@ -580,8 +584,7 @@ CREATE TABLE [dbo].[U_EAGLINCEXP_Header] (
 IF OBJECT_ID('U_EAGLINCEXP_Trailer') IS NULL
 CREATE TABLE [dbo].[U_EAGLINCEXP_Trailer] (
     [drvDate] datetime NOT NULL,
-    [drvNumberOfDetailedRecords] int NULL,
-    [drvRecordDelimiter] varchar(1) NOT NULL
+    [drvNumberOfDetailedRecords] int NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EAGLINCEXP]
@@ -745,7 +748,7 @@ BEGIN
         ,drvEmployeeID = EecEmpNo
         ,drvEmployeeState = LEFT(EecStateSUI,2)
         ,drvOccuptationDescription =  JbcDesc 
-        ,drvNameFirst = EepNameFirst
+        ,drvNameFirst = Replace(EepNameFirst,'ç','c')
         ,drvNameLast = EepNameLast
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvAddressLine1 = EepAddressLine1
@@ -761,34 +764,43 @@ BEGIN
                         END
         ,drvDateOfBirth = EepDateOfBirth
         ,drvSalaryAmt = CASE WHEN EecPayGroup = 'USSLRY' then Format(EecAnnSalary, '#0.00') else '0.0' END
-        ,drvHourlyWage = CASE WHEN  EecPayGroup = 'USHRLY' then Format(EecAnnSalary, '#0.00') else '0.0' END
+        ,drvHourlyWage = CASE WHEN  EecPayGroup = 'USHRLY' then Format(EecHourlyPayRate, '#0.00') else '0.0' END
         ,drvSalaryEffectiveDate  = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         ,drvSalaryType = CASE WHEN EecSalaryOrHourly = 'S' then 'SL' else 'HR' END
         ,drvSalaryMode =  CASE WHEN EecSalaryOrHourly= 'S' then '6' else '1' END
         ,drvEmploymentType = CASE WHEN EecFullTimeORPartTime = 'F' then '1' else '2' END
         ,drvOriginalHireDate = EecDateOfOriginalhire
-        ,drvEmploymentStatus = CASE WHEN EecEmplStatus = 'T' then 'T' else 'A' END
-        ,drvDateofTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvP1ProductCode = CASE WHEN EecFullTimeOrPartTime = 'F' then 'STD' END
-        ,drvP1BenefitType = CASE WHEN EecFullTimeOrPartTime = 'F' then 'STD01' END
-        ,drvP1CoverageStatus = CASE WHEN  EecFullTimeOrPartTime = 'F' then 'A' END 
-        ,drvP1CoverageEffectiveDate = EecDateOFLastHire
+        ,drvEmploymentStatus = CASE WHEN EecEmplStatus = 'T' then 'T' else 'A'  END
+        ,drvDateofTermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination ELSE '       ' END
+        ,drvP1ProductCode = CASE WHEN EecFullTimeOrPartTime = 'F' then 'STD' Else '' END
+        ,drvP1BenefitType = CASE WHEN EecFullTimeOrPartTime = 'F' then 'STD01' ELSE '     ' END
+        ,drvP1CoverageStatus = CASE WHEN  EecFullTimeOrPartTime = 'F' then 'A' ElSE '' END 
+        ,drvP1CoverageEffectiveDate = CASE WHEN  EecFullTimeOrPartTime = 'F' THEN EecDateOFLastHire ELSE  '        ' END
         ,drvP1EmploymentPremContr = CASE WHEN  EecFullTimeOrPartTime = 'F' then '000' else '0' END
         ,drvP1BenefitLevel = CASE WHEN  EecFullTimeOrPartTime = 'F' then '999' else '0' END
-        ,drvP2ProductCode = CASE WHEN BdmDedCode = 'LTDA' then 'LTD' END
-        ,drvP2BenefitType = CASE WHEN BdmDedCode = 'LTDA' then 'LTD01' END
-        ,drvP2CoverageStatus = CASE WHEN BdmDedCode = 'LTDA' then 'A' END
-        ,drvP2CoverageEffectiveDate = CASE WHEN BdmDedCode = 'LTDA' then EecDateOfLastHire END
-        ,drvP2EmployeePremiumContrib = CASE WHEN BdmDedCode = 'LTDA' then '000' END
-        ,drvP2BenefitLevel = CASE WHEN BdmDedCode = 'LTDA' then '060' END
+        ,drvP2ProductCode = CASE WHEN BdmDedCode = 'LTDA' then 'LTD' ELSE '     ' END
+        ,drvP2BenefitType = CASE WHEN BdmDedCode = 'LTDA' then 'LTD01' ELSE '     ' END
+        ,drvP2CoverageStatus = CASE WHEN BdmDedCode = 'LTDA' then 'A' Else '' END
+        ,drvP2CoverageEffectiveDate = CASE WHEN BdmDedCode = 'LTDA' then EecDateOfLastHire ELSE '       ' END
+        ,drvP2EmployeePremiumContrib = CASE WHEN BdmDedCode = 'LTDA' then '000' ELSE '0' END
+        ,drvP2BenefitLevel = CASE WHEN BdmDedCode = 'LTDA' then '060' ELSE '0' END
         ,drvP3CoverageEffectiveDate = EecDateOfOriginalHire
+        ,dvrEligibilityAmountDuration = CASE WHEN EecFullTimeORPartTime = 'F' then '2080' else '1040' END
+        ,dvrServiceAmount =  DateDiff(Month, EecDateOFLastHire, GetDate())
+        ,dvrHoursPerDayMon  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
+        ,dvrHoursPerDayTues = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
+        ,dvrHoursPerDayWed  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
+        ,dvrHoursPerDayThur = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
+        ,dvrHoursPerDayFri  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
+        ,dvrHoursPerDaySat  = 0.0 --CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END Changed 6/3/22 per request
+        ,dvrHoursPerDaySun  = 0.0 --CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END Changed 6/3/22 per request
         ,drvLatestHireDate = EecDateOfLastHire
-        ,drvUnionEmployeeIndicator =  Case WHEN (eecunionlocal is not null or eecunionnational is not null) THEN 'Y' 
-                                           WHEN (eecunionlocal is null or eecunionnational is null) THEN 'N' Else 'N' 
+        ,drvUnionEmployeeIndicator =  Case WHEN (eecunionlocal IS NULL or eecunionnational IS NULL) THEN 'N' 
+                                           Else 'Y' 
                                         END 
         ,drvExemptEmployeeIndicator = CASE WHEN  EecPayGroup = 'USSLRY' then 'Y' else 'N' END
         ,drvDateCreated = GetDate()
-        ,drvRecordDelimiter = ''
+      --  ,drvRecordDelimiter = ''
     INTO dbo.U_EAGLINCEXP_drvTbl
     FROM dbo.U_EAGLINCEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -801,9 +813,11 @@ BEGIN
         AND BdmCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    WHERE EecEmplStatus <> 'T'
-        OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate)
-    ;
+    WHERE (EecEmplStatus <> 'T'
+        OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate))
+        --AND EecFullTimeOrPartTime <> 'P' 
+		AND eecdedGroupCode not in ( 'NOBEN', 'None') 
+		AND ( EecUDField01 = 'AGREL' and EecFullTimeORPartTime <> 'P') 
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
@@ -811,9 +825,9 @@ BEGIN
         DROP TABLE dbo.U_EAGLINCEXP_Header;
     SELECT DISTINCT
          drvRecordNumber = '0000000'
-        ,drvDate =  Getdate()
+        ,drvDate =  Getdate() + '  '
         ,drvRecordLength = '3000'
-        ,drvRecordDelimiter = ''
+     --   ,drvRecordDelimiter = ''
     INTO dbo.U_EAGLINCEXP_Header
     ;
     ---------------------------------
@@ -822,9 +836,9 @@ BEGIN
     IF OBJECT_ID('U_EAGLINCEXP_Trailer','U') IS NOT NULL
         DROP TABLE dbo.U_EAGLINCEXP_Trailer;
     SELECT DISTINCT
-         drvDate = GetDate()
+         drvDate = GetDate() 
         ,drvNumberOfDetailedRecords = (SELECT count(*) FROM dbo.U_EAGLINCEXP_drvTbl)
-        ,drvRecordDelimiter = ''
+    --    ,drvRecordDelimiter = ''
     INTO dbo.U_EAGLINCEXP_Trailer
     ;
 
