@@ -5,7 +5,7 @@ ENAVFSAEXP: Navia FSA Export
 FormatCode:     ENAVFSAEXP
 Project:        Navia FSA Export
 Client ID:      ARM1005
-Date/time:      2022-01-04 10:30:46.040
+Date/time:      2022-06-09 10:17:24.570
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -193,8 +193,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','ENAVFSAEXPZ0','50','H','01','59',NULL,'Subsidy Applies To',NULL,NULL,'"Subsidy Applies To"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','ENAVFSAEXPZ0','50','H','01','60',NULL,'Subsidy Level',NULL,NULL,'"Subsidy Level"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ENAVFSAEXPZ0','50','D','10','1',NULL,'Employer Code',NULL,NULL,'"ANN"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ENAVFSAEXPZ0','50','D','10','2',NULL,'Plan Start',NULL,NULL,'"1/1/2021"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ENAVFSAEXPZ0','50','D','10','3',NULL,'Plan End Date',NULL,NULL,'"12/31/2021"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ENAVFSAEXPZ0','50','D','10','2',NULL,'Plan Start',NULL,NULL,'"drvplanstart"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ENAVFSAEXPZ0','50','D','10','3',NULL,'Plan End Date',NULL,NULL,'"drvplanend"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ENAVFSAEXPZ0','50','D','10','4',NULL,'Record Type',NULL,NULL,'"drvRecordType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ENAVFSAEXPZ0','50','D','10','5',NULL,'Post Date',NULL,NULL,'"drvPostDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ENAVFSAEXPZ0','50','D','10','6',NULL,'Unique ID',NULL,NULL,'"drvUniqueId"','(''UA''=''T,'')');
@@ -264,18 +264,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENAVFSAEXP_20220104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENAVFSAEXP_20220609.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',DBW13',NULL,NULL,NULL,'Active Open Enrollment Export','202101019','EMPEXPORT','OEACTIVE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202101019','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202009309','EMPEXPORT','OEPASSIVE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202009309','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navia FSA Export','202009309','EMPEXPORT','ONDEM_XOE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202009309','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navia FSA Export-Sched','202009309','EMPEXPORT','SCH_ENAVFS',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202009309','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202009301',NULL,'','','202009301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Navia FSA Export-Test','202112319','EMPEXPORT','TEST_XOE','Jan  4 2022 10:15AM','ENAVFSAEXP',NULL,NULL,NULL,'202112319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202112311','234','','','202112311',dbo.fn_GetTimedKey(),NULL,'us3lKiARM1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',DBW13',NULL,NULL,NULL,'Active Open Enrollment Export','202205319','EMPEXPORT','OEACTIVE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202205319','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202205311',NULL,'','','202205311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202205319','EMPEXPORT','OEPASSIVE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202205319','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202205311',NULL,'','','202205311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navia FSA Export','202205319','EMPEXPORT','ONDEM_XOE',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202205319','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202205311',NULL,'','','202205311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Navia FSA Export-Sched','202205319','EMPEXPORT','SCH_ENAVFS',NULL,'ENAVFSAEXP',NULL,NULL,NULL,'202205319','Oct  1 2020  6:22PM','Oct  1 2020  6:22PM','202205311',NULL,'','','202205311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',DBW13',NULL,NULL,NULL,'Navia FSA Export-Test','202205319','EMPEXPORT','TEST_XOE','May 16 2022 12:00AM','ENAVFSAEXP',NULL,NULL,NULL,'202205319','May 13 2022 12:00AM','Dec 30 1899 12:00AM','202205311','504','','','202205311',dbo.fn_GetTimedKey(),NULL,'us3lKiARM1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -382,6 +382,8 @@ CREATE TABLE [dbo].[U_ENAVFSAEXP_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
+    [drvplanstart] varchar(36) NULL,
+    [drvplanend] varchar(36) NULL,
     [drvRecordType] varchar(7) NOT NULL,
     [drvPostDate] datetime NULL,
     [drvUniqueId] char(11) NULL,
@@ -487,7 +489,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ENAVFSAEXP', 'SCH_ENAVFS';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'ENAVFSAEXP';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'ENAVFSAEXP', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ENAVFSAEXP', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -551,7 +553,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-
+    
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
 
@@ -610,6 +612,39 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+    -- Handle cases where a termed employee as a check that's after their termination date (they wont show up in the Bdm)
+    INSERT INTO dbo.U_dsi_BDM_ENAVFSAEXP (BdmEEID, BdmCOID, BdmRecType, BdmDedCode, BdmBenStartDate, BdmBenStopDate)
+    SELECT DISTINCT PdhEEID, xCOID, 'EMP', 'FSAHC', EedBenStartDate, EedBenStopDate
+    FROM dbo.U_ENAVFSAEXP_PDedHist WITH (NOLOCK) 
+    JOIN dbo.EmpDed WITH (NOLOCK)
+         ON PdhEEID = EedEEID
+         AND EedDedCode = 'FSAHC'
+    JOIN dbo.U_ENAVFSAEXP_EEList WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    WHERE PdhEEID NOT IN (SELECT DISTINCT BdmEEID FROM dbo.U_dsi_BDM_ENAVFSAEXP WITH (NOLOCK))
+    AND PdhEEFSAHCDeduction > 0.00 
+    UNION
+    SELECT DISTINCT PdhEEID, xCOID, 'EMP', 'FSADC', EedBenStartDate, EedBenStopDate
+    FROM dbo.U_ENAVFSAEXP_PDedHist WITH (NOLOCK) 
+    JOIN dbo.EmpDed WITH (NOLOCK)
+         ON PdhEEID = EedEEID
+         AND EedDedCode = 'FSADC'
+    JOIN dbo.U_ENAVFSAEXP_EEList WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    WHERE PdhEEID NOT IN (SELECT DISTINCT BdmEEID FROM dbo.U_dsi_BDM_ENAVFSAEXP WITH (NOLOCK))
+    AND PdhEEFSADCDeduction > 0.00 
+    UNION
+    SELECT DISTINCT PdhEEID, xCOID, 'EMP', 'FSALP', EedBenStartDate, EedBenStopDate
+    FROM dbo.U_ENAVFSAEXP_PDedHist WITH (NOLOCK) 
+    JOIN dbo.EmpDed WITH (NOLOCK)
+         ON PdhEEID = EedEEID
+         AND EedDedCode = 'FSALP'
+    JOIN dbo.U_ENAVFSAEXP_EEList WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    WHERE PdhEEID NOT IN (SELECT DISTINCT BdmEEID FROM dbo.U_dsi_BDM_ENAVFSAEXP WITH (NOLOCK))
+    AND PdhEEFSALPDeduction > 0.00 
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -624,6 +659,8 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
+        ,drvplanstart = '01/01/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) 
+        ,drvplanend = '12/31/' + CAST(DATEPART(YEAR, GETDATE()) AS VARCHAR) 
         ,drvRecordType = CASE WHEN BdmDedCode IN ('FSAHC','FSADC','FSALP') THEN 'Contrib' ELSE 'Elig' END
         ,drvPostDate = PrgPeriodEnd 
         ,drvUniqueId = EepSSN
@@ -677,7 +714,7 @@ BEGIN
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    JOIN dbo.U_dsi_BDM_ENAVFSAEXP WITH (NOLOCK)
+   LEFT JOIN dbo.U_dsi_BDM_ENAVFSAEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.PayGroup WITH (NOLOCK)
@@ -685,7 +722,7 @@ BEGIN
     JOIN (SELECT PgpPayGroup, LEFT(MAX(PgpPeriodControl),8) as PrgPayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
                    FROM dbo.PgPayPer WITH (NOLOCK)
                    WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
-                   AND PgpPeriodType = 'R'
+                   --AND PgpPeriodType = 'R'
                    GROUP BY PgpPayGroup
         ) Prg
             ON EecPayGroup = PgpPayGroup
@@ -721,10 +758,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202009301'
-       ,expStartPerControl     = '202009301'
-       ,expLastEndPerControl   = '202009309'
-       ,expEndPerControl       = '202009309'
+    SET expLastStartPerControl = '202205311'
+       ,expStartPerControl     = '202205311'
+       ,expLastEndPerControl   = '202205319'
+       ,expEndPerControl       = '202205319'
 WHERE expFormatCode = 'ENAVFSAEXP';
 
 **********************************************************************************/

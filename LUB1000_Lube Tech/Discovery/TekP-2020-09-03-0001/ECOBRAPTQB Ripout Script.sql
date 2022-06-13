@@ -5,7 +5,7 @@ ECOBRAPTQB: EBC QB Cobra Export
 FormatCode:     ECOBRAPTQB
 Project:        EBC QB Cobra Export
 Client ID:      LUB1000
-Date/time:      2022-05-18 14:30:39.790
+Date/time:      2022-06-09 04:22:08.170
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -231,7 +231,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECOBRAPTQB_20220518.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECOBRAPTQB_20220609.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -239,8 +239,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'EBC QB Cobra Export','202011119','EMPEXPORT','ONDEM_XOE',NULL,'ECOBRAPTQB',NULL,NULL,NULL,'202011119','Nov 11 2020  8:21AM','Nov 11 2020  8:21AM','201911041',NULL,'','','201911041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','BQ2L8,MVNEE,MVN6N,MVN97,MVNCJ,MVN3A',NULL,NULL,NULL,'EBC QB Cobra Export-Sched','202103039','EMPEXPORT','SCH_ECOBRA',NULL,'ECOBRAPTQB',NULL,NULL,NULL,'202205139','Nov 11 2020  8:21AM','Nov 11 2020  8:21AM','202205061',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','BQ2L8',NULL,NULL,NULL,'EBC QB Cobra Export-Test','202203189','EMPEXPORT','TEST_XOE','May 18 2022  2:21PM','ECOBRAPTQB',NULL,NULL,NULL,'202203189','Mar 18 2022 12:00AM','Dec 30 1899 12:00AM','202203121','33','','','202203121',dbo.fn_GetTimedKey(),NULL,'us3cPeLUB1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','BQ2L8,MVNEE,MVN6N,MVN97,MVNCJ,MVN3A',NULL,NULL,NULL,'EBC QB Cobra Export-Sched','202103039','EMPEXPORT','SCH_ECOBRA',NULL,'ECOBRAPTQB',NULL,NULL,NULL,'202206039','Nov 11 2020  8:21AM','Nov 11 2020  8:21AM','202205271',NULL,'','','202103031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','BQ2L8',NULL,NULL,NULL,'EBC QB Cobra Export-Test','202205271','EMPEXPORT','TEST_XOE','Jun  8 2022  4:25PM','ECOBRAPTQB',NULL,NULL,NULL,'202205271','May 27 2022 12:00AM','Dec 30 1899 12:00AM','202205211','39','','','202205211',dbo.fn_GetTimedKey(),NULL,'us3cPeLUB1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -809,7 +809,7 @@ BEGIN
     WHERE EdhChangeReason IN ('201') 
         AND dbnTVStartDate BETWEEN @startdate AND @enddate 
         AND dbnValidForExport = 'N' -- 4/16/2021 change from edhBenstatusdate to dbnTVStartDate as changes weren't reliable using status date
-        AND DbnBenStatus NOT IN ('C','W')
+        AND DbnBenStatus NOT IN ('C','W','T')
         AND DbnDedCode NOT IN  ('LIFEC','GCICH','GRACC','GCISP','GCISP','FSA','LIFES')
 
 

@@ -5,7 +5,7 @@ EMRKCLDEXP: Marketing Cloud Changes Export
 FormatCode:     EMRKCLDEXP
 Project:        Marketing Cloud Changes Export
 Client ID:      EVB1000
-Date/time:      2022-04-05 09:31:15.633
+Date/time:      2022-06-02 10:02:37.610
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -154,7 +154,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EMRKCLDEXPZ0','50','D','10','9',NULL,'State',NULL,NULL,'"drvAddressState"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EMRKCLDEXPZ0','50','D','10','10',NULL,'Cost_Center',NULL,NULL,'"drvCostCenter"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EMRKCLDEXPZ0','50','D','10','11',NULL,'Department_Number',NULL,NULL,'"drvDepartmentNumber"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EMRKCLDEXPZ0','50','D','10','12',NULL,'Department_Description',NULL,NULL,'"drvDepartmentDescription"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EMRKCLDEXPZ0','50','D','10','12',NULL,'Department_Description',NULL,NULL,'"drvDepartmentDescription"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EMRKCLDEXPZ0','50','D','10','13',NULL,'TerminatedDate',NULL,NULL,'"drvTerminatedDate"','(''UD101''=''T'')');
 
 -----------
 -- Build web filename
@@ -167,7 +168,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMRKCLDEXP_20220405.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMRKCLDEXP_20220602.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -175,8 +176,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Marketing Cloud Export','202203189','EMPEXPORT','ONDEM_XOE',NULL,'EMRKCLDEXP',NULL,NULL,NULL,'202203189','Mar 18 2022 10:28AM','Mar 18 2022 10:28AM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Marketing Cloud Export-Sched','202203189','EMPEXPORT','SCH_EMRKCL',NULL,'EMRKCLDEXP',NULL,NULL,NULL,'202203189','Mar 18 2022 10:28AM','Mar 18 2022 10:28AM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Marketing Cloud Export-Test','202203189','EMPEXPORT','TEST_XOE',NULL,'EMRKCLDEXP',NULL,NULL,NULL,'202203189','Mar 18 2022 10:28AM','Mar 18 2022 10:28AM','202001011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',U3A0I,T91B2,U3A44',NULL,NULL,NULL,'Marketing Cloud - Daily 5am','202203189','EMPEXPORT','SCH_EMRKCL',NULL,'EMRKCLDEXP',NULL,NULL,NULL,'202206029','Mar 18 2022 10:28AM','Mar 18 2022 10:28AM','202206011',NULL,'','','202001011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Marketing Cloud Export-Test','202204059','EMPEXPORT','TEST_XOE','Apr  5 2022 12:00AM','EMRKCLDEXP',NULL,NULL,NULL,'202204059','Apr  5 2022 12:00AM','Dec 30 1899 12:00AM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'us3lKiEVB1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -263,9 +264,10 @@ CREATE TABLE [dbo].[U_EMRKCLDEXP_drvTbl] (
     [drvLastHireDate] datetime NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
-    [drvCostCenter] char(15) NULL,
+    [drvCostCenter] varchar(10) NULL,
     [drvDepartmentNumber] char(10) NULL,
-    [drvDepartmentDescription] varchar(25) NULL
+    [drvDepartmentDescription] varchar(25) NULL,
+    [drvTerminatedDate] datetime NULL
 );
 
 -----------
@@ -378,7 +380,9 @@ BEGIN
     INSERT INTO dbo.U_EMRKCLDEXP_AuditFields VALUES ('EmpPers', 'EepAddressCity');
     INSERT INTO dbo.U_EMRKCLDEXP_AuditFields VALUES ('EmpPers', 'EepAddressSate');
     INSERT INTO dbo.U_EMRKCLDEXP_AuditFields VALUES ('EmpComp', 'EecOrgLvl1');
+    INSERT INTO dbo.U_EMRKCLDEXP_AuditFields VALUES ('EmpComp', 'EecOrgLvl3');
     INSERT INTO dbo.U_EMRKCLDEXP_AuditFields VALUES ('EmpComp', 'EecEmplStatus');
+    INSERT INTO dbo.U_EMRKCLDEXP_AuditFields VALUES ('EmpComp', 'EecDateOfTermination');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EMRKCLDEXP_Audit','U') IS NOT NULL
@@ -438,9 +442,10 @@ BEGIN
         ,drvLastHireDate = EecDateOfLastHire
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
-        ,drvCostCenter = EedGLExpAcct
+        ,drvCostCenter = EecOrglvl3 --EedGLExpAcct
         ,drvDepartmentNumber = EjhOrgLvl1
-        ,drvDepartmentDescription = OrgDesc
+        ,drvDepartmentDescription = OrgDesc,
+        drvTerminatedDate = EecDateOfTermination
     INTO dbo.U_EMRKCLDEXP_drvTbl
     FROM dbo.U_EMRKCLDEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
