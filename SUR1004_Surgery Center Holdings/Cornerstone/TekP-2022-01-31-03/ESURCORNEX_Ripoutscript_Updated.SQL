@@ -556,7 +556,7 @@ BEGIN
     --    AND FNEC.EecEEID = xEEID
     LEFT JOIN fn_LocalizeCodesForCognos('JOBFAMILY','en') JF
         ON JF.codCode = JbcJobFamily
-        WHERE EecJobCode <> 'LEASNOTR'
+         WHERE EecJobCode <> 'LEASNOTR'	and EepHomeCoID <> 'Z3OZH'
 
     ;
 

@@ -5,7 +5,7 @@ EFDIHBFSAX: Summit FSA, Dep Care Export
 FormatCode:     EFDIHBFSAX
 Project:        Summit FSA, Dep Care Export
 Client ID:      FOR1019
-Date/time:      2022-05-31 16:56:33.927
+Date/time:      2022-06-15 17:52:57.127
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -118,9 +118,13 @@ IF OBJECT_ID('U_EFDIHBFSAX_EEList') IS NOT NULL DROP TABLE [dbo].[U_EFDIHBFSAX_E
 GO
 IF OBJECT_ID('U_EFDIHBFSAX_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EFDIHBFSAX_drvTbl];
 GO
+IF OBJECT_ID('U_EFDIHBFSAX_DedList') IS NOT NULL DROP TABLE [dbo].[U_EFDIHBFSAX_DedList];
+GO
 IF OBJECT_ID('U_EFDIHBFSAX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EFDIHBFSAX_AuditFields];
 GO
 IF OBJECT_ID('U_EFDIHBFSAX_Audit') IS NOT NULL DROP TABLE [dbo].[U_EFDIHBFSAX_Audit];
+GO
+IF OBJECT_ID('U_dsi_BDM_EFDIHBFSAX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EFDIHBFSAX];
 GO
 
 -----------
@@ -191,16 +195,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFDIHBFSAX_20220531.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFDIHBFSAX_20220615.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Summit FSA, Dep Care Export','202205049','EMPEXPORT','ONDEM_XOE',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202205049','May  4 2022  2:38PM','May  4 2022  2:38PM','202205041',NULL,'','','202205041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Summit FSA, Dep Care Exp-Sched','202205049','EMPEXPORT','SCH_EFDIHB',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202205049','May  4 2022  2:38PM','May  4 2022  2:38PM','202205041',NULL,'','','202205041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Summit FSA, Dep Care Exp-Test','202205049','EMPEXPORT','TEST_XOE',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202205049','May  4 2022  2:38PM','May  4 2022  2:38PM','202205041',NULL,'','','202205041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202206159','EMPEXPORT','OEACTIVE',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202206159','Jun 15 2022  1:00PM','Jun 15 2022  1:00PM','202206151',NULL,'','','202206151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202206159','EMPEXPORT','OEPASSIVE',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202206159','Jun 15 2022  1:00PM','Jun 15 2022  1:00PM','202206151',NULL,'','','202206151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Summit FSA, Dep Care Export','202206159','EMPEXPORT','ONDEM_XOE',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202206159','Jun 15 2022  1:00PM','Jun 15 2022  1:00PM','202206151',NULL,'','','202206151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Summit FSA, Dep Care Exp-Sched','202206159','EMPEXPORT','SCH_EFDIHB',NULL,'EFDIHBFSAX',NULL,NULL,NULL,'202206159','Jun 15 2022  1:00PM','Jun 15 2022  1:00PM','202206151',NULL,'','','202206151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Summit FSA, Dep Care Exp-Test','202206159','EMPEXPORT','TEST_XOE','Jun 15 2022  4:08PM','EFDIHBFSAX',NULL,NULL,NULL,'202206159','Jun 15 2022 12:00AM','Dec 30 1899 12:00AM','202206011','21','','','202206011',dbo.fn_GetTimedKey(),NULL,'us3lKiFOR1019',NULL);
 
 -----------
 -- AscImp inserts
@@ -240,6 +246,54 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
+-- Create table U_dsi_BDM_EFDIHBFSAX
+-----------
+
+IF OBJECT_ID('U_dsi_BDM_EFDIHBFSAX') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EFDIHBFSAX] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
 -- Create table U_EFDIHBFSAX_Audit
 -----------
 
@@ -268,6 +322,16 @@ CREATE TABLE [dbo].[U_EFDIHBFSAX_AuditFields] (
 );
 
 -----------
+-- Create table U_EFDIHBFSAX_DedList
+-----------
+
+IF OBJECT_ID('U_EFDIHBFSAX_DedList') IS NULL
+CREATE TABLE [dbo].[U_EFDIHBFSAX_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
 -- Create table U_EFDIHBFSAX_drvTbl
 -----------
 
@@ -275,15 +339,14 @@ IF OBJECT_ID('U_EFDIHBFSAX_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EFDIHBFSAX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
     [drvMemberSSN] char(11) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(50) NULL,
     [drvDateofBirth] datetime NULL,
     [drvGender] char(1) NULL,
-    [drvAddress1] varchar(255) NULL,
-    [drvAddress2] varchar(255) NULL,
+    [drvAddress1] varchar(8000) NULL,
+    [drvAddress2] varchar(8000) NULL,
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
     [drvPostalCode] varchar(50) NULL,
@@ -329,7 +392,7 @@ CREATE TABLE [dbo].[U_EFDIHBFSAX_File] (
 
 IF OBJECT_ID('U_EFDIHBFSAX_Header') IS NULL
 CREATE TABLE [dbo].[U_EFDIHBFSAX_Header] (
-    [drvMemberPerPeriodContrib] varchar(1) NOT NULL
+    [drvMemberPerPeriodContrib] varchar(30) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFDIHBFSAX]
@@ -341,7 +404,7 @@ Client Name: Fort Defiance Indian Hospital Board
 
 Created By: Marie Waters
 Business Analyst: Julie Reardon
-Create Date: 05/04/2022
+Create Date: 06/15/2022
 Service Request Number: TekP-2021-12-21-07
 
 Purpose: Summit FSA, Dep Care Export
@@ -361,7 +424,11 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFDIHBFSAX', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFDIHBFSAX', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFDIHBFSAX', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFDIHBFSAX', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EFDIHBFSAX', 'SCH_EFDIHB';
+
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'EFDIHBFSAX';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EFDIHBFSAX', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
@@ -401,7 +468,7 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EFDIHBFSAX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-   --==========================================
+    ---==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing
@@ -428,13 +495,11 @@ BEGIN
     INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepPhoneHomeNumber');
     INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepOldSSN');
     INSERT INTO dbo.U_EFDIHBFSAX_AuditFields VALUES ('EmpPers','EepSSN');
-
-
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EFDIHBFSAX_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EFDIHBFSAX_Audit;
     SELECT 
-       audEEID  = audKey1Value
+        audEEID  = audKey1Value
         ,audKey2 = audKey2Value
         ,audKey3 = audKey3Value
         ,audTableName
@@ -445,27 +510,109 @@ BEGIN
         ,audNewValue
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
     INTO dbo.U_EFDIHBFSAX_Audit
-    FROM dbo.U_EFDIHBFSAX_EEList WITH (NOLOCK)
-    JOIN  dbo.vw_AuditData WITH (NOLOCK) 
-        ON audKey1Value = xEEID
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
     JOIN dbo.U_EFDIHBFSAX_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE'
-    --AND ISNULL(audNewValue,'') <> ''
-    --AND audNewValue = 'T' 
+    AND audAction <> 'DELETE';
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EFDIHBFSAX_Audit ON dbo.U_EFDIHBFSAX_Audit (audEEID,audKey2);
 
-    --================
-    -- Changes Only
-    --================
-    DELETE FROM dbo.U_EFDIHBFSAX_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFDIHBFSAX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_EFDIHBFSAX_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFDIHBFSAX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
-  
+    --==========================================
+    -- Create Deduction List
+    --==========================================
+    DECLARE @DedList VARCHAR(MAX)
+    SET @DedList = 'FSA, FSADC';
+
+    IF OBJECT_ID('U_EFDIHBFSAX_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_EFDIHBFSAX_DedList;
+    SELECT DISTINCT
+         DedCode = DedDedCode
+        ,DedType = DedDedType
+    INTO dbo.U_EFDIHBFSAX_DedList
+    FROM dbo.fn_ListToTable(@DedList)
+    JOIN dbo.DedCode WITH (NOLOCK)
+        ON DedDedCode = Item;
+
+
+    --==========================================
+    -- BDM Section
+    --==========================================
+    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+
+    -- Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','FSA, FSADC');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+
+    -- Non-Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+
+    -- Required OE parameters
+    IF @ExportCode LIKE '%PASSIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+    END;
+
+    IF @ExportCode LIKE '%ACTIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+    END;
+
+
+    -- Run BDM Module
+    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+    --==========================================
+    -- Build Working Tables
+    --==========================================
+
+    -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+    --IF OBJECT_ID('U_EFDIHBFSAX_PDedHist','U') IS NOT NULL
+    --    DROP TABLE dbo.U_EFDIHBFSAX_PDedHist;
+    --SELECT DISTINCT
+    --     PdhEEID
+    --    -- Current Payroll Amounts
+    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+    --    -- YTD Payroll Amounts
+    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+    --    -- Categorize Payroll Amounts
+    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --INTO dbo.U_EFDIHBFSAX_PDedHist
+    --FROM dbo.PDedHist WITH (NOLOCK)
+    --JOIN dbo.U_EFDIHBFSAX_DedList WITH (NOLOCK)
+    --    ON DedCode = PdhDedCode
+    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    --AND PdhPerControl <= @EndPerControl
+    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    --GROUP BY PdhEEID
+    --HAVING (SUM(PdhEECurAmt) <> 0.00
+    --    OR SUM(PdhERCurAmt) <> 0.00
+    --);
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -474,7 +621,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EFDIHBFSAX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EFDIHBFSAX_drvTbl;
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -485,8 +632,8 @@ BEGIN
         ,drvNameMiddle = EepNameMiddle
         ,drvDateofBirth = EepDateOfBirth
         ,drvGender = EepGender
-        ,drvAddress1 = EepAddressLine1
-        ,drvAddress2 = EepAddressLine2
+        ,drvAddress1 =  REPLACE(REPLACE(EepAddressLine1 , ',', ''), '.', '')
+        ,drvAddress2 = REPLACE(REPLACE(EepAddressLine2 , ',', ''), '.', '')
         ,drvCity = EepAddressCity
         ,drvState = EepAddressState
         ,drvPostalCode = EepAddressZipCode
@@ -494,12 +641,12 @@ BEGIN
         ,drvPrimaryEmail = EepAddressEMail
         ,drvDateOfEmployment = EecDateOfLastHire
         ,drvEmploymentTerminationDate = EecDateOfTermination
-        ,drvCoverageEffectiveDate = Case WHEN EedDedCode in  ('FSA', 'FSADC')  then EedBenStartDate END
+        ,drvCoverageEffectiveDate = Case WHEN BDMDedCode in  ('FSA', 'FSADC')  then BDMBenStartDate END
         ,drvOriginalEffectiveDate = EecDateOfLastHire
-        ,drvCoverageEndDate = CASE WHEN EedDedCode in ('FSA', 'FSADC') then EedBenStopDate END
-        ,drvTotalAnnualElection = CASE WHEN EedDedCode in ('FSA', 'FSADC') then EedEEGoalAmt END
-        ,drvMemberPerPeriodContrib = CASE WHEN EedDedCode in ('FSA', 'FSADC') then EedEEAmt END
-        ,drvAccountType = CASE WHEN EedDedCode = 'FSADC' then 'Dependent Care FSA' WHEN EedDedCode = 'FSA' then 'Medical FSA' Else EedDedCode END
+        ,drvCoverageEndDate = CASE WHEN BDMDedCode in ('FSA', 'FSADC') then BDMBenStopDate END
+        ,drvTotalAnnualElection = CASE WHEN BDMDedCode in ('FSA', 'FSADC') then BDMEEGoalAmt END
+        ,drvMemberPerPeriodContrib = CASE WHEN BDMDedCode in ('FSA', 'FSADC') then BDMEEAmt END
+        ,drvAccountType = CASE WHEN BDMDedCode = 'FSADC' then 'Dependent Care FSA' WHEN BDMDedCode = 'FSA' then 'Medical FSA' Else BDMDedCode END
     INTO dbo.U_EFDIHBFSAX_drvTbl
     FROM dbo.U_EFDIHBFSAX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -507,12 +654,13 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.EMPDED WITH (NOLOCK)
-        ON EedEEID = xEEID
-        AND EedDedCode in ('FSA', 'FSADC')
+   JOIN dbo.U_dsi_BDM_EFDIHBFSAX WITH (NOLOCK)
+         ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
     LEFT JOIN dbo.U_EFDIHBFSAX_Audit WITH (NOLOCK)
         ON xEEID = audEEID
       --  AND xCoID = audCOID
+    
     WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -60, @EndDate) AND @EndDate)
     ;
     
@@ -522,7 +670,7 @@ BEGIN
     IF OBJECT_ID('U_EFDIHBFSAX_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EFDIHBFSAX_Header;
     SELECT DISTINCT
-         drvMemberPerPeriodContrib = ''
+         drvMemberPerPeriodContrib = 'Member Per Period Contribution'
     INTO dbo.U_EFDIHBFSAX_Header
     ;
 
@@ -554,10 +702,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202101011'
-       ,expStartPerControl     = '202101011'
-       ,expLastEndPerControl   = '202112319'
-       ,expEndPerControl       = '202112319'
+    SET expLastStartPerControl = '202206081'
+       ,expStartPerControl     = '202206081'
+       ,expLastEndPerControl   = '202206159'
+       ,expEndPerControl       = '202206159'
 WHERE expFormatCode = 'EFDIHBFSAX';
 
 **********************************************************************************/

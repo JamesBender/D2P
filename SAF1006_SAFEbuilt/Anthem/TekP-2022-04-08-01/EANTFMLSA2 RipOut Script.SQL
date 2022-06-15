@@ -5,7 +5,7 @@ EANTFMLSA2: Anthem Life Compass v2
 FormatCode:     EANTFMLSA2
 Project:        Anthem Life Compass v2
 Client ID:      SAF1006
-Date/time:      2022-06-09 10:45:37.577
+Date/time:      2022-06-15 10:07:21.343
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -240,7 +240,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANTFMLSA2_20220609.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANTFMLSA2_20220615.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -250,7 +250,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',V7CQG,CWMD1',NULL,NULL,NULL,'Active Open Enrollment Export','202206279','EMPEXPORT','OEACTIVE','May 21 2019 12:00AM','EANTFMLSA2',NULL,NULL,NULL,'202206279','Jun 27 2017 12:00AM','Dec 30 1899 12:00AM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI_WPSAFEB',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',V7CQG,CWMD1',NULL,NULL,NULL,'Passive Open Enrollment Export','202206279','EMPEXPORT','OEPASSIVE','May 17 2019 12:00AM','EANTFMLSA2',NULL,NULL,NULL,'202206279','Jun 27 2017 12:00AM','Dec 30 1899 12:00AM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI_WPSAFEB',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V7CQG,CWMD1',NULL,NULL,NULL,'Anthem Life Compass','202206279','EMPEXPORT','ONDEMAND','Jul 23 2019 12:00AM','EANTFMLSA2',NULL,NULL,NULL,'202206279','Jul 23 2019 12:00AM','Dec 30 1899 12:00AM','202101011','10944','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI_WPSAFEB',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202206279','EMPEXPORT','TEST','Sep 17 2021 12:00AM','EANTFMLSA2',NULL,NULL,NULL,'202206279','Jun 29 2021 12:00AM','Dec 30 1899 12:00AM','202101011','16448','','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI_WPSAFEB',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202206149','EMPEXPORT','TEST','Jun 14 2022 12:00AM','EANTFMLSA2',NULL,NULL,NULL,'202206149','Jun 14 2022 12:00AM','Dec 30 1899 12:00AM','202206011','16448','','','202206011',dbo.fn_GetTimedKey(),NULL,'us3cPeSAF1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -808,14 +808,14 @@ SELECT
         ,drvAddressEmail = EepAddressEMail
         ,drvSmoker = '' --EepIsSmoker
         ,drvMaritalStatus = CASE WHEN eepMaritalStatus IN ('M','S') THEN eepMaritalStatus ELSE '' END
-        ,drvBillClass = CASE when eecPayGroup = 'SAFEB' AND  eeclocation <>  'CA'  then 'SAFE'
-                             when eecPayGroup =  'CGA'  AND  eeclocation <>  'CA'  then 'CGA'
-                             when eecPayGroup =  'ACQ'  AND  eeclocation <>  'CA'  then 'ACQ'
-                             when eecPayGroup =  'IWCG' AND  eeclocation <>  'CA'  then 'IWCG'
-                             when eecPayGroup = 'SAFEB' AND  eeclocation =   'CA'  then 'SAF0'
-                             when eecPayGroup =  'CGA'  AND  eeclocation =   'CA'  then 'CGA0'
-                             when eecPayGroup =  'ACQ'  AND  eeclocation =   'CA'  then 'ACQ0'
-                             when eecPayGroup =  'IWCG' AND  eeclocation =   'CA'  then 'IWC0'
+        ,drvBillClass = CASE when eecPayGroup = 'SAFEB' AND  LocAddressState <>  'CA'  then 'SAFE'
+                             when eecPayGroup =  'CGA'  AND  LocAddressState <>  'CA'  then 'CGA'
+                             when eecPayGroup =  'ACQ'  AND  LocAddressState <>  'CA'  then 'ACQ'
+                             when eecPayGroup =  'IWCG' AND  LocAddressState <>  'CA'  then 'IWCG'
+                             when eecPayGroup = 'SAFEB' AND  LocAddressState =   'CA'  then 'SAF0'
+                             when eecPayGroup =  'CGA'  AND  LocAddressState =   'CA'  then 'CGA0'
+                             when eecPayGroup =  'ACQ'  AND  LocAddressState =   'CA'  then 'ACQ0'
+                             when eecPayGroup =  'IWCG' AND  LocAddressState =   'CA'  then 'IWC0'
                         else eecpayGroup
                         END
                             --= CASE eecPayGroup                                                                    --9/13/21 new mapping!  00316110
@@ -1181,7 +1181,7 @@ SELECT
         -- standard fields above and additional driver fields below
         ,drvRecordType = '999'
         ,drvType = 'UDDT_HR_CNT_EMAIL' --HR Contact Email
-        ,drvValue = HR.eepAddressEMail --dbo.dsi_fnlib_GetSupervisorField_v2('', drvEEID, 'AddressEMail')
+        ,drvValue = Case when IsNull(HR.eepAddressEMail,'') = ''  THen  '' else HR.eepAddressEMail END --dbo.dsi_fnlib_GetSupervisorField_v2('', drvEEID, 'AddressEMail')
         --CAST('hr.forms@safeb.net' AS VARCHAR)
         ,drvLOB = ''
         ,drvEffDate = DR.drvEffDate
@@ -1190,7 +1190,7 @@ SELECT
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = DR.drvEEID
         AND EecCoID = DR.drvCoID
-    JOIN (Select  eecempno , eepAddressEMail 
+    Left JOIN (Select  eecempno , eepAddressEMail 
             FROM EmpPers WITH (NOLOCK)
             JOIN EmpComp WITH (NOLOCK) 
              ON EecEEID = EepEEID 
@@ -1265,17 +1265,20 @@ SELECT
         -- standard fields above and additional driver fields below
         ,drvRecordType = '999'
         ,drvType = 'UDDT_YR_HRS' --Hrs Last 12 Mo
-        ,drvValue = CAST(CAST(SUM(PehCurHrs)  as INT) AS VARCHAR)
+        ,drvValue = ISNULL(Hrs.PehCurHrs, 0)
         ,drvLOB = ''
         ,drvEffDate = drvEffDate
         ,drvFiller = ''
     FROM dbo.U_EANTFMLSA2_drvTbl WITH (NOLOCK)
-    JOIN dbo.PearHist WITH (NOLOCK)
-        ON Peheeid = drvEEID and pehcoid = drvCOID
-        Join EarnCode WITH (NOLOCK) 
-        ON ErnEarnCode = pehEarnCode and ErnInclInTotalHoursWorked = 'Y'
-        WHERE PehPerControl BETWEEN FORMAT(DATEADD(year, -1, GETDATE()), 'yyyyMMdd') + '1' AND @EndPerControl
-        Group by drvEEID, drvCoID, drvEffDate,pehEarnCode 
+    JOIN (select Peheeid, Pehcoid ,CAST(CAST(SUM(PehCurHrs)  as INT) AS VARCHAR) PehCurHrs 
+                        From dbo.PearHist WITH (NOLOCK)
+                        JOIN EarnCode WITH (NOLOCK) 
+                        ON ErnEarnCode = PehEarnCode 
+                        and ErnInclInTotalHoursWorked = 'Y'
+                WHERE PehPerControl BETWEEN FORMAT(DATEADD(year, -1, GETDATE()), 'yyyyMMdd') + '1' AND @EndPerControl
+                Group by Peheeid, Pehcoid 
+                ) Hrs
+        ON  Hrs.Peheeid = drvEEID and  Hrs.pehcoid = drvCOID
     
 
                 UNION
