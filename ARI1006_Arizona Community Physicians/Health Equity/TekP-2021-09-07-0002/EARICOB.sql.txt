@@ -5,7 +5,7 @@ EARICOB: Wageworks Cobra
 FormatCode:     EARICOB
 Project:        Wageworks Cobra
 Client ID:      ARI1006
-Date/time:      2022-04-08 14:57:32.720
+Date/time:      2022-06-10 10:18:53.267
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -299,18 +299,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARICOB_20220408.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARICOB_20220610.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202203289','EMPEXPORT','OEACTIVE',NULL,'EARICOB',NULL,NULL,NULL,'202203289','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203131',NULL,'','','202203131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202203289','EMPEXPORT','OEPASSIVE',NULL,'EARICOB',NULL,NULL,NULL,'202203289','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203131',NULL,'','','202203131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wageworks Cobra','202203289','EMPEXPORT','ONDEM_XOE',NULL,'EARICOB',NULL,NULL,NULL,'202203289','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203131',NULL,'','','202203131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',JMMPF',NULL,NULL,NULL,'Wageworks Cobra-Sched','202203289','EMPEXPORT','SCH_EARICO',NULL,'EARICOB',NULL,NULL,NULL,'202204029','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203261',NULL,'','','202203131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Wageworks Cobra-Test','202204091','EMPEXPORT','TEST_XOE','Apr  8 2022  1:59PM','EARICOB',NULL,NULL,NULL,'202204091','Apr  9 2022 12:00AM','Dec 30 1899 12:00AM','202204031','6','','','202204031',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202206019','EMPEXPORT','OEACTIVE',NULL,'EARICOB',NULL,NULL,NULL,'202206019','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203271',NULL,'','','202203271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202206019','EMPEXPORT','OEPASSIVE',NULL,'EARICOB',NULL,NULL,NULL,'202206019','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203271',NULL,'','','202203271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wageworks Cobra','202206019','EMPEXPORT','ONDEM_XOE',NULL,'EARICOB',NULL,NULL,NULL,'202206019','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202203271',NULL,'','','202203271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',JMMPF',NULL,NULL,NULL,'Wageworks Cobra-Sched','202206019','EMPEXPORT','SCH_EARICO',NULL,'EARICOB',NULL,NULL,NULL,'202206049','Dec  6 2021  9:15AM','Dec  6 2021  9:15AM','202205281',NULL,'','','202203271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Wageworks Cobra-Test','202206111','EMPEXPORT','TEST_XOE','Jun  8 2022  9:23PM','EARICOB',NULL,NULL,NULL,'202206111','Jun 11 2022 12:00AM','Dec 30 1899 12:00AM','202206051','1','','','202206051',dbo.fn_GetTimedKey(),NULL,'us3cPeARI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -397,55 +397,6 @@ CREATE TABLE [dbo].[U_dsi_BDM_EARICOB] (
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
 );
-
-
--------------
----- Create table U_dsi_BDM_EARICOB
--------------
-
---IF OBJECT_ID('U_dsi_BDM_EARICOB2') IS NULL
---CREATE TABLE [dbo].[U_dsi_BDM_EARICOB2] (
---    [BdmRecType] varchar(3) NOT NULL,
---    [BdmCOID] char(5) NULL,
---    [BdmEEID] char(12) NOT NULL,
---    [BdmDepRecID] char(12) NULL,
---    [BdmSystemID] char(12) NULL,
---    [BdmRunID] varchar(32) NULL,
---    [BdmDedRowStatus] varchar(256) NULL,
---    [BdmRelationship] char(3) NULL,
---    [BdmDateOfBirth] datetime NULL,
---    [BdmDedCode] char(5) NULL,
---    [BdmDedType] varchar(32) NULL,
---    [BdmBenOption] char(6) NULL,
---    [BdmBenStatus] char(1) NULL,
---    [BdmBenStartDate] datetime NULL,
---    [BdmBenStopDate] datetime NULL,
---    [BdmBenStatusDate] datetime NULL,
---    [BdmBenOptionDate] datetime NULL,
---    [BdmChangeReason] char(6) NULL,
---    [BdmStartDate] datetime NULL,
---    [BdmStopDate] datetime NULL,
---    [BdmIsCobraCovered] char(1) NULL,
---    [BdmCobraReason] char(6) NULL,
---    [BdmDateOfCOBRAEvent] datetime NULL,
---    [BdmIsPQB] char(1) NULL,
---    [BdmIsChildOldest] char(1) NULL,
---    [BdmUSGField1] varchar(256) NULL,
---    [BdmUSGField2] varchar(256) NULL,
---    [BdmUSGDate1] datetime NULL,
---    [BdmUSGDate2] datetime NULL,
---    [BdmTVStartDate] datetime NULL,
---    [BdmSessionID] varchar(32) NULL,
---    [BdmEEAmt] money NULL,
---    [BdmEECalcRateOrPct] decimal NULL,
---    [BdmEEGoalAmt] money NULL,
---    [BdmEEMemberOrCaseNo] char(40) NULL,
---    [BdmERAmt] money NULL,
---    [BdmNumSpouses] int NULL,
---    [BdmNumChildren] int NULL,
---    [BdmNumDomPartners] int NULL,
---    [BdmNumDPChildren] int NULL
---);
 
 -----------
 -- Create table U_EARICOB_Audit
@@ -597,10 +548,10 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EARICOB' ORDER 
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202204011'
-       ,expStartPerControl     = '202204011'
-       ,expLastEndPerControl   = '202204089'
-       ,expEndPerControl       = '202204089'
+    SET expLastStartPerControl = '202205151'
+       ,expStartPerControl     = '202205151'
+       ,expLastEndPerControl   = '202205211'
+       ,expEndPerControl       = '202205211'
 WHERE expFormatCode = 'EARICOB';
 
 Execute Export
@@ -681,7 +632,7 @@ BEGIN
     -- NPM parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','NPM');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- Include deds where DedIsCobraCovered = 'Y'
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeType','2'); -- 2 -- All new enrollees where no previous plan exists
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeType','4'); -- 2 -- All new enrollees where no previous plan exists
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeIncludeEmps','Y'); -- Include employees when dependent is eligible
 
     /*-- Required OE parameters
@@ -759,7 +710,7 @@ BEGIN
     INSERT INTO dbo.U_EARICOB_AuditFields VALUES ('EmpComp','EecDateofTermination');
     INSERT INTO dbo.U_EARICOB_AuditFields VALUES ('EmpComp','EecEmplStatus');
     --INSERT INTO dbo.U_EARIHSA_AuditFields VALUES ('EmpComp','EecTermReason');
-	INSERT INTO dbo.U_EARICOB_AuditFields VALUES ('EmpDed','eedBenStartDate');
+    INSERT INTO dbo.U_EARICOB_AuditFields VALUES ('EmpDed','eedBenStartDate');
     INSERT INTO dbo.U_EARICOB_AuditFields VALUES ('EmpDed','eedBenOption');
     INSERT INTO dbo.U_EARICOB_AuditFields VALUES ('EmpDed','eedDedCode');
 
@@ -914,9 +865,9 @@ BEGIN
          AND edhChangeReason IN ('200') 
         AND EedValidForExport = 'Y'
         AND EedRunID= 'QB'
-	JOIN dbo.EmpPers WITH (NOLOCK)
-		ON EepEEID = edheeid 
-		--AND EepCOID = EdhCoID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = edheeid 
+        --AND EepCOID = EdhCoID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EedEEID = EecEEID
         AND EecTermReason in ( '202','VRE')
@@ -924,7 +875,7 @@ BEGIN
         and EedBenStopDate BETWEEN @startdate AND @enddate 
         --and DbnRelationship = 'EMP'
 
---			select distinct EedEEID, EecTermReason  from dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) JOIN dbo.EmpComp WITH (NOLOCK) on EecEEID =  EedEEID AND  EedFormatCode = 'EARICOB' and EedRunID = 'QB' AND EedDedCode in ('CDENH','DENH','DENHD','DENHS','CDENL','DENL','DENLD','DENLS','CEDS','DEDS','DEDSD','DEDSS','CVIS','VIS','VISP','CFSAL','CFSAM','FSA','FSALP','CMHD','MHDEE','MPHY2','CMPPO','MPHY','MPPOE') 
+--            select distinct EedEEID, EecTermReason  from dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK) JOIN dbo.EmpComp WITH (NOLOCK) on EecEEID =  EedEEID AND  EedFormatCode = 'EARICOB' and EedRunID = 'QB' AND EedDedCode in ('CDENH','DENH','DENHD','DENHS','CDENL','DENL','DENLD','DENLS','CEDS','DEDS','DEDSD','DEDSS','CVIS','VIS','VISP','CFSAL','CFSAM','FSA','FSALP','CMHD','MHDEE','MPHY2','CMPPO','MPHY','MPPOE') 
 --AND EedBenStatus = 'T' and EedCobraReason = '200' AND EecTermReason in ( '202','VRE')
 --and EedBenSTopDate between @startdate AND @enddate 
  
@@ -951,7 +902,7 @@ BEGIN
  --           ,[BdmIsCobraCovered]
  --           ,[BdmSessionID]
  --   )
-	--	Select Distinct 'EMP'
+    --    Select Distinct 'EMP'
  --       ,EdhCoid
  --       ,EdhEEID
  --       ,'QB'
@@ -973,21 +924,21 @@ BEGIN
  --       ,'Y'
  --           ,ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, edhChangeReason, EdhDedCode ORDER BY EdhEffDate desc)
  --   FROM dbo.emphded WITH (NOLOCK)
-	--JOIN dbo.EmpPers WITH (NOLOCK)
-	--on EepEEID = edheeid 
-	----JOIN dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
-	----	ON BdmEEID = edheeid 
-	----	AND BdmCobraReason  = '200' 
-	----	and BdmRecType = 'EMP'
+    --JOIN dbo.EmpPers WITH (NOLOCK)
+    --on EepEEID = edheeid 
+    ----JOIN dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
+    ----    ON BdmEEID = edheeid 
+    ----    AND BdmCobraReason  = '200' 
+    ----    and BdmRecType = 'EMP'
  --   JOIN EmpComp WITH (NOLOCK)
  --       ON edheeid  = EecEEID
  --       AND EecTermReason in ( '202','VRE')
  --       --AND BdmBenStatus = 'T'
-	--	 AND edhChangeReason IN ('200') 
-	--	 AND EdhDedCode IN ('CDENH','DENH','DENHD','DENHS','CDENL','DENL','DENLD','DENLS','CEDS','DEDS','DEDSD','DEDSS','CVIS','VIS','VISP','CFSAL','CFSAM','FSA','FSALP','CMHD','MHDEE','MPHY2','CMPPO','MPHY','MPPOE') 
+    --     AND edhChangeReason IN ('200') 
+    --     AND EdhDedCode IN ('CDENH','DENH','DENHD','DENHS','CDENL','DENL','DENLD','DENLS','CEDS','DEDS','DEDSD','DEDSS','CVIS','VIS','VISP','CFSAL','CFSAM','FSA','FSALP','CMHD','MHDEE','MPHY2','CMPPO','MPHY','MPPOE') 
  --       and EecDateOfTermination BETWEEN @startdate AND @enddate 
-	--JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
-	--	ON BdmEEID <> dbneeid
+    --JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+    --    ON BdmEEID <> dbneeid
  --       --and DbnRelationship = 'EMP'
    ---========================================================================
  --   -- Insert into BDM Reason code 201 (Dependent at Max Age) - Only show EE
@@ -1120,7 +1071,7 @@ BEGIN
         AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
         AND dbnValidForExport = 'N'
 
-       ---====================================================
+   ---====================================================
  --   Insert into BDM Reason code 203 (Reduce Hours)
  --   --==================================================
     INSERT INTO [dbo].[U_dsi_BDM_EARICOB]
@@ -1145,8 +1096,8 @@ BEGIN
            ,[BdmStartDate]
            ,[BdmStopDate]
            ,[BdmIsPQB]
-            ,[BdmIsCobraCovered]
-            ,[BdmSessionID]
+           ,[BdmIsCobraCovered]
+           ,[BdmSessionID]
     )
         Select Distinct rectype = 'EMP'
         ,dbnCoid
@@ -1177,7 +1128,7 @@ BEGIN
     AND EecCOID = dbnCOID
          AND dbnformatcode = 'EARICOB'
           AND DbnCobraReason = '203'
-        AND DbnDateofCobraEvent BETWEEN @startdate AND @enddate 
+        AND DbnBenStatusDate BETWEEN @startdate AND @enddate 
       AND DbnDedCode in ('CDENH', 'DENH', 'DENHD', 'DENHS', 'CDENL', 'DENL', 'DENLD', 'DENLS', 'CEDS', 'DEDS', 'DEDSD', 'DEDSS', 'CVIS', 'VIS', 'VISP', 'CFSAL', 'CFSAM', 'FSA', 'FSALP', 'CMHD', 'MHDEE', 'MPHY2', 'CMPPO', 'MPHY', 'MPPOE')
 
    ---====================================================
@@ -1320,6 +1271,7 @@ BEGIN
         DELETE FROM dbo.U_dsi_BDM_EARICOB where BdmCobraReason = 'LEVNT6'
         DELETE FROM dbo.U_dsi_BDM_EARICOB where BdmCobraReason = 'LEVNT7'
         DELETE FROM dbo.U_dsi_BDM_EARICOB where BdmBenStatus = 'C'
+		DELETE FROM dbo.U_dsi_BDM_EARICOB where BdmChangeReason = '' and BdmCobraReason =  '203'
 
     -----------------------------
     -- Working Table - PlanRate3
@@ -1506,7 +1458,7 @@ BEGIN
                 ,MAX(CASE WHEN BdmDedCode in ('CMHD', 'MHDEE', 'MPHY2', 'CMPPO', 'MPHY', 'MPPOE') THEN BdmBenOption END) AS BenOption_MED
             FROM dbo.U_dsi_BDM_EARICOB WITH (NOLOCK)
             GROUP BY BdmRecType, BdmEEID, BdmCOID, BdmDepRecId, BdmRunId, BdmBenStatus
-			--, BdmDateOFCobraEvent - I know there was a reason I put it in the grouping but I'm taking it out so there is only a max date for the stop date of all benefits 2022-04-08
+            --, BdmDateOFCobraEvent - I know there was a reason I put it in the grouping but I'm taking it out so there is only a max date for the stop date of all benefits 2022-04-08
         ) AS BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
