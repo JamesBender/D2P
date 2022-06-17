@@ -5,7 +5,7 @@ EROLRSFMLA: Reliance Standard FMLA
 FormatCode:     EROLRSFMLA
 Project:        Reliance Standard FMLA
 Client ID:      ROL1002
-Date/time:      2022-06-16 11:59:44.540
+Date/time:      2022-06-17 10:21:04.410
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -313,7 +313,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EROLRSFMLA_20220616.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EROLRSFMLA_20220617.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -322,7 +322,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Standard FMLA','202206139','EMPEXPORT','ONDEM_XOE',NULL,'EROLRSFMLA',NULL,NULL,NULL,'202206139','Jun 16 2022  9:57AM','Jun 16 2022  9:57AM','202205061',NULL,'','','202205061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Standard FMLA-Sched','202206139','EMPEXPORT','SCH_EROLRS',NULL,'EROLRSFMLA',NULL,NULL,NULL,'202206139','Jun 16 2022  9:57AM','Jun 16 2022  9:57AM','202205061',NULL,'','','202205061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Reliance Standard FMLA-Test','202206139','EMPEXPORT','TEST_XOE','Jun 16 2022 12:00AM','EROLRSFMLA',NULL,NULL,NULL,'202206139','Jun 13 2022 12:00AM','Dec 30 1899 12:00AM','202205061',NULL,'','','202205061',dbo.fn_GetTimedKey(),NULL,'us3mWaROL1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Reliance Standard FMLA-Test','202206161','EMPEXPORT','TEST_XOE','Jun 16 2022 10:47PM','EROLRSFMLA',NULL,NULL,NULL,'202206161','Jun 16 2022 12:00AM','Dec 30 1899 12:00AM','202206081','17729','','','202206081',dbo.fn_GetTimedKey(),NULL,'us3cPeROL1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -811,7 +811,7 @@ BEGIN
         ,drvSupervisorAddress = Left(dbo.dsi_fnlib_GetSupervisorField_v2(EecCoid, EecEEID, 'AddressEmail'), 255)
         ,drvSupervisorPhone = Left(dbo.dsi_fnlib_GetSupervisorField_v2(EecCoid, EecEEID, 'Phone'), 25)
         ,drvSubA = Left(LocAddressState,20)
-        ,drvSubB = Left(EecCoID,20)
+        ,drvSubB = Left(cmpcompanycode,20)
         ,drvSubC = Left(EecOrgLvl1,20)
         ,drvSubD = Left(EecOrgLvl2,20)
         ,drvSubE = Left(EecOrgLvl3, 20) 
@@ -824,6 +824,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+        and EepAddressCountry = 'USA'
     LEFT JOIN dbo.U_EROLRSFMLA_PEarHist  WITH (NOLOCK) 
         ON PehEEID = xEEID     
     JOIN dbo.Location WITH (NOLOCK)
@@ -838,8 +839,11 @@ BEGIN
     LEFT JOIN dbo.U_EROLRSFMLA_Audit
         ON audEEID = xEEID
         AND audKey2 = xCOID
-    Where EepAddressCountry = 'USA' and EecCoID NOT In ('CPC','OPC')
-    AND EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -30, @EndDate) AND @EndDate)
+    JOIN dbo.COMPANY WITH (NOLOCK) 
+        ON eeccoid = cmpcoid
+        and cmpcompanycode NOT IN ('CPC','OPC')  
+    Where EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -30, @EndDate) AND @EndDate)
+    
     ;
     ---------------------------------
     -- HEADER RECORD

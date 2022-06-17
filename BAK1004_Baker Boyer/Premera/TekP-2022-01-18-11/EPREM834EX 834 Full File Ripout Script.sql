@@ -5,7 +5,7 @@ EPREM834EX: Premera Health & Welfare 834 Export
 FormatCode:     EPREM834EX
 Project:        Premera Health & Welfare 834 Export
 Client ID:      BAK1004
-Date/time:      2022-06-16 12:59:27.100
+Date/time:      2022-06-17 10:37:40.320
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPREM834EX_20220616.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPREM834EX_20220617.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -706,7 +706,7 @@ CREATE TABLE [dbo].[U_EPREM834EX_HdrTbl] (
     [drvBGN05_TimeCode] varchar(2) NOT NULL,
     [drvBGN06_RefID] varchar(1) NOT NULL,
     [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
-    [drvBGN08_ActionCode] varchar(1) NOT NULL,
+    [drvBGN08_ActionCode] varchar(2) NOT NULL,
     [drvREF01_RefNumberQual] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual] varchar(7) NOT NULL,
     [drvDTP00_DateTime0] varchar(3) NOT NULL,
@@ -726,7 +726,7 @@ CREATE TABLE [dbo].[U_EPREM834EX_HdrTbl] (
     [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
     [drvN102_Name1] varchar(7) NOT NULL,
     [drvN103_IDCodeQual1] varchar(2) NOT NULL,
-    [drvN104_IDCode1] varchar(7) NOT NULL,
+    [drvN104_IDCode1] varchar(9) NOT NULL,
     [drvN101_EntityIDCodeSponsor2] varchar(2) NOT NULL,
     [drvN102_Name2] varchar(1) NOT NULL,
     [drvN103_IDCodeQual2] varchar(2) NOT NULL,
@@ -807,6 +807,7 @@ Revision History
 ----------------
 Update By           Date           Request Num        Desc
 Marie Waters       06/16/2022     TekP-2022-01-18-11  BGN08 - replaced '4' with 'RX' and N104 = 910499247
+Marie Waters       06/17/2022     TekP-2022-01-18-11  ,drvNM106_NamePrefix1 = '' --CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EPREM834EX';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EPREM834EX';
@@ -1121,7 +1122,7 @@ BEGIN
                                         WHEN BdmRecType = 'DEP' THEN 
                                             CASE WHEN ConNameMiddle <> 'Z' THEN LEFT(ConNameMiddle,1) END
                                         END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
+        ,drvNM106_NamePrefix1 = '' --CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
         ,drvNM107_NameSuffix1 =    CASE WHEN BdmRecType = 'EMP' THEN 
                                     CASE WHEN EepNameSuffix <> 'Z' THEN EepNameSuffix END
                                 WHEN BdmRecType = 'DEP' THEN 
