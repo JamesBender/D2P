@@ -5,7 +5,7 @@ EGDLSTD834: Guardian L/S TD 834
 FormatCode:     EGDLSTD834
 Project:        Guardian L/S TD 834
 Client ID:      PRO1045
-Date/time:      2022-05-09 05:31:08.003
+Date/time:      2022-05-25 12:27:44.603
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGDLSTD834_20220509.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGDLSTD834_20220525.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -619,7 +619,7 @@ CREATE TABLE [dbo].[U_EGDLSTD834_DrvTbl_2300] (
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NULL,
     [drvHD04_PlanCoverageDesc] varchar(21) NULL,
-    [drvHD05_CoverageLevelCode] varchar(5) NULL,
+    [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
@@ -1258,8 +1258,8 @@ BEGIN
                                             WHEN BdmDedCode = 'ADDS' THEN 'HLT'
                                             WHEN BdmDedCode = 'LIFEC' THEN 'FAC' 
                                             WHEN BdmDedCode = 'ADDC' THEN 'HLT'
-                                            WHEN BdmDedCode = 'GLIFC' THEN 'HE'
-                                            WHEN BdmDedCode = 'GLIFS' THEN 'HE'
+                                            WHEN BdmDedCode = 'GLIFC' THEN 'AH'
+                                            WHEN BdmDedCode = 'GLIFS' THEN 'AH'
                                             END
                                         END
         ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'ADDE' THEN 'Member Voluntary AD&D'
@@ -1274,8 +1274,7 @@ BEGIN
         ,drvHD05_CoverageLevelCode = 
                                                 CASE WHEN BdmDedCode IN ('LIFEE','ADDE','GLIFE','STD','LTD') THEN 'EMP'
                                                      WHEN BdmDedCode IN ('LIFES','ADDS','GLIFS') THEN 'ESP'
-                                                     WHEN BdmDedCode IN ('LIFEC','ADDC','GLIFC') THEN 'ECH'                                                     
-                                                     ELSE BdmDedCode
+                                                     WHEN BdmDedCode IN ('LIFEC','ADDC','GLIFC') THEN 'ECH'                                                                                                          
                                                 END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment

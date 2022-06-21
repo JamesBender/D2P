@@ -1302,7 +1302,7 @@ DrvParticipantClass              = '',
 DrvParticipantDistrict           = ISNULL(cmpCompanycode,''),
 DrvParticipantDepartment         = EecOrgLvl3,
 DrvParticipantLocationStore      = EecLocation,
-DrvParticipantUnionCode          = eecUnionLocal,
+DrvParticipantCode          = eecUnionLocal,
 DrvParticipantPaymentFrequency   = CASE EecPayPeriod
                                     WHEN 'S' THEN '2'
                                     ELSE EecPayPeriod
@@ -1370,7 +1370,7 @@ DrvDivisionName         = EecOrgLvl1, --CASE WHEN cmpCompanyCode IN('HH','BHH') 
                              --  END,--OL1.OrgDesc, --Updated By j.tran
 DrvRegionName           = EecOrgLvl2, --CASE WHEN cmpCompanyCode IN('HH','BHH') THEN 'BLUE'
                              --  WHEN cmpCompanyCode = 'SNDNC' THEN 'SUN' 
-                            --   WHEN EecUnionLocal IS NOT NULL then 'AMC PILOTS'--new 4/22/2020
+                            --   WHEN EecLocal IS NOT NULL then 'AMC PILOTS'--new 4/22/2020
                            --    ELSE 'AMC'
                             --   END,--OL2.OrgDesc,
 DrvFiller3              = '',

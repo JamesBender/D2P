@@ -89,7 +89,7 @@ WHERE ExpFormatCode = 'EMICWEXFSA'
 -- Delete configuration data
 -----------
 
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EMICWEXFSA')
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EMIC')
 DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EMICWEXFSA'
 DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EMICWEXFSA'
 DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EMICWEXFSA'

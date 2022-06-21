@@ -5,7 +5,7 @@ EBRGHBNACH: Huntington Bank ACH
 FormatCode:     EBRGHBNACH
 Project:        Huntington Bank ACH
 Client ID:      BUI1006
-Date/time:      2022-05-06 12:31:02.083
+Date/time:      2022-06-16 14:38:11.850
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBRGHBNACH_20220506.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBRGHBNACH_20220616.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -220,7 +220,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Huntington Bank ACH','202203079','EMPEXPORT','ONDEMAND','Mar  8 2022 12:00AM','EBRGHBNACH',NULL,NULL,NULL,'202203079','Mar  7 2022 12:00AM','Dec 30 1899 12:00AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'us3mThMAR1020',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Huntington Bank ACH Sched','202203079','EMPEXPORT','SCHEDULED',NULL,'EBRGHBNACH',NULL,NULL,NULL,'202203079','Mar  7 2022  9:24AM','Mar  7 2022  9:24AM','202202011',NULL,'','','202202011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','1EVNK,YG3DY,1EVYF,FISRL,1EVVJ,1EVTO,1EVR7,1EVZW,1EVX1,1EW12',NULL,NULL,NULL,'Huntington Bank ACH TEST','202205069','EMPEXPORT','TEST','May  4 2022  1:12PM','EBRGHBNACH',NULL,NULL,NULL,'202205069','May  6 2022 12:00AM','Dec 30 1899 12:00AM','202205061','60','eecPayGroup','LPM','202205061',dbo.fn_GetTimedKey(),NULL,'us3jReBUI1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','1EVNK,YG3DY,1EVYF,FISRL,1EVVJ,1EVTO,1EVR7,1EVZW,1EVX1,1EW12',NULL,NULL,NULL,'Huntington Bank ACH TEST','202205069','EMPEXPORT','TEST','Jun 16 2022 12:00AM','EBRGHBNACH',NULL,NULL,NULL,'202205069','May  6 2022 12:00AM','Dec 30 1899 12:00AM','202205061','60','eecPayGroup','BRG','202205061',dbo.fn_GetTimedKey(),NULL,'us3mWaBUI1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -289,7 +289,7 @@ CREATE TABLE [dbo].[U_EBRGHBNACH_Bank] (
 
 IF OBJECT_ID('U_EBRGHBNACH_D5') IS NULL
 CREATE TABLE [dbo].[U_EBRGHBNACH_D5] (
-    [drvCompanyName] varchar(23) NOT NULL,
+    [drvCompanyName] varchar(16) NULL,
     [drvCompanyIdentification] char(10) NULL,
     [drvCompDescDate] char(6) NULL,
     [drvCompanyEffectiveDate] char(6) NULL,
@@ -303,8 +303,8 @@ CREATE TABLE [dbo].[U_EBRGHBNACH_D5] (
 
 IF OBJECT_ID('U_EBRGHBNACH_D6') IS NULL
 CREATE TABLE [dbo].[U_EBRGHBNACH_D6] (
-    [drvTransactionCode] varchar(2) NULL,
-    [drvRoutingTransitNumber] varchar(8) NULL,
+    [drvTransactionCode] varchar(2) NOT NULL,
+    [drvRoutingTransitNumber] varchar(9) NULL,
     [drvAccountNumber] varchar(25) NULL,
     [drvAmount] decimal NULL,
     [drvIdentificationNumber] char(11) NULL,
@@ -363,7 +363,7 @@ CREATE TABLE [dbo].[U_EBRGHBNACH_H1] (
     [drvFileCreationDate] char(6) NULL,
     [drvFileCreationTime] varchar(8000) NULL,
     [drvImmediateDestinationName] varchar(23) NOT NULL,
-    [drvImmediateOriginName] varchar(23) NOT NULL
+    [drvImmediateOriginName] varchar(10) NOT NULL
 );
 
 -----------
@@ -399,9 +399,6 @@ CREATE TABLE [dbo].[U_EBRGHBNACH_PDedHist] (
     [EecEmpNo] char(9) NULL,
     [EECUDFIELD04] varchar(25) NULL,
     [EECUDFIELD05] varchar(25) NULL,
-    [PrhEEBankRoute] char(9) NULL,
-    [PrhAcct] varchar(22) NULL,
-    [PrhAccttype] char(1) NULL,
     [PdhEECurAmt] money NULL
 );
 
@@ -546,7 +543,7 @@ BEGIN
     -----------------------------
     IF OBJECT_ID('U_EBRGHBNACH_PDedHist','U') IS NOT NULL
         DROP TABLE dbo.U_EBRGHBNACH_PDedHist;
-    SELECT 
+    SELECT DISTINCT
          PdhEEID = PrgEEID
         ,PdhCoID = PrgCoID
         ,PrgCoBankID
@@ -556,10 +553,10 @@ BEGIN
         ,EecEmpNo 
         ,EECUDFIELD04
         ,EECUDFIELD05
-        ,PrhEEBankRoute
-        ,PrhAcct
-        ,PrhAccttype
-        ,PdhEECurAmt = sum(PdhEECurAmt)  
+       -- ,PrhEEBankRoute
+       -- ,PrhAcct
+       -- ,PrhAccttype
+        ,PdhEECurAmt = PdhEECurAmt
     INTO dbo.U_EBRGHBNACH_PDedHist
     FROM dbo.U_EBRGHBNACH_EEList WITH (NOLOCK)
     JOIN dbo.PayReg WITH (NOLOCK)
@@ -580,22 +577,9 @@ BEGIN
         ON PrhEeId = xEEID
         AND PrhCoId = xCOID
         AND PrhGenNumber = PrgGenNumber    
-      Where PrgPayGroup in ( 'CHR', 'BRG', 'LPM')
-        AND PrhAccttype = 'C'
-      Group by
-         PrgEEID
-        ,PrgCoID
-        ,PrgCoBankID
-        ,EepNameFirst
-        ,EepNameLast
-        ,EepSSN
-        ,EecEmpNo 
-        ,EECUDFIELD04
-        ,EECUDFIELD05
-        ,PrhEEBankRoute
-        ,PrhAcct
-        ,PrhAccttype
-        ,PrhGenNumber
+     -- Where PrgPayGroup in ( 'CHR', 'BRG', 'LPM')
+        --AND PrhAccttype = 'C'
+     
         ;
 
     -----------------------------
@@ -616,9 +600,9 @@ BEGIN
         ,BnkDDRecord8Pos80To87
     INTO dbo.U_EBRGHBNACH_Bank
     FROM dbo.Bank WITH (NOLOCK)
-        JOIN dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
+       Left JOIN dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
         on prgCoBankID = BnkCoBankID
-         JOIN dbo.PayGroup WITH (NOLOCK)
+        JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrBankId = BnkCoBankID
         ;
 
@@ -633,7 +617,7 @@ BEGIN
         ,drvFileCreationDate = CONVERT(CHAR(6),@RunDate,12)
         ,drvFileCreationTime = REPLACE(CONVERT(VARCHAR(6),@RunDate,108),':',SPACE(0))
         ,drvImmediateDestinationName = 'HUNTINGTON NATIONAL BKS' --BnkBankName
-        ,drvImmediateOriginName = 'BUILDERS RESOURCE GROUP'
+        ,drvImmediateOriginName = 'LIFESTYLES'
     INTO dbo.U_EBRGHBNACH_H1
     FROM dbo.U_EBRGHBNACH_Bank WITH (NOLOCK)
     ;
@@ -644,7 +628,10 @@ BEGIN
     IF OBJECT_ID('U_EBRGHBNACH_D5','U') IS NOT NULL
         DROP TABLE dbo.U_EBRGHBNACH_D5;
     SELECT DISTINCT
-         drvCompanyName = 'BUILDERS RESOURCE GROUP'
+         drvCompanyName = CASE WHEN BnkDDRecord5Pos41To50 = '1352182377' THEN 'BUILDERS RESOURC'
+                               WHEN BnkDDRecord5Pos41To50 = '1331107705' THEN 'LIFESTYLE PROPER'
+                               WHEN BnkDDRecord5Pos41To50 = '1020731013' THEN 'LIFESTYLE REAL E'  
+                             END
         ,drvCompanyIdentification = BnkDDRecord5Pos41To50
         ,drvCompDescDate = CONVERT(CHAR(6),GETDATE(),12)
         ,drvCompanyEffectiveDate = CONVERT(CHAR(6),@PrgPayDate,12)
@@ -662,8 +649,8 @@ BEGIN
     IF OBJECT_ID('U_EBRGHBNACH_D6','U') IS NOT NULL
         DROP TABLE dbo.U_EBRGHBNACH_D6;
     SELECT DISTINCT
-         drvTransactionCode = CASE WHEN PrhAccttype = 'C' THEN '22' END                       
-        ,drvRoutingTransitNumber = LEFT(EECUDFIELD04,8)
+         drvTransactionCode =  '22'                      
+        ,drvRoutingTransitNumber = LEFT(EECUDFIELD04,9)
         ,drvAccountNumber = EECUDFIELD05
         ,drvAmount = SUM(CONVERT(DECIMAL(10,0),ISNULL(PdhEECurAmt,0.00) * 100))
         ,drvIdentificationNumber = EepSSN
@@ -674,9 +661,9 @@ BEGIN
     FROM dbo.U_EBRGHBNACH_Bank WITH (NOLOCK)
     JOIN dbo.U_EBRGHBNACH_PDedHist WITH (NOLOCK)
         ON BnkCoBankID = PrgCoBankID
-    Where PrhAccttype = 'C'
-    Group by PrhAccttype
-            ,LEFT(EECUDFIELD04,8)
+    --Where PrhAccttype = 'C'
+    Group by 
+            LEFT(EECUDFIELD04,9)
             ,EECUDFIELD05
             ,EepSSN
             ,EecEmpNo
@@ -713,8 +700,9 @@ BEGIN
         ,drvTotalCreditEntryDollarAmt = (select SUM(CONVERT(DECIMAL(10,0),(ISNULL(drvAmount,0.00) ))) from dbo.U_EBRGHBNACH_D6 WITH (NOLOCK))
         ,drvBlockCountNines = (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D5 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D6 WITH (NOLOCK)) + (SELECT COUNT(*) FROM dbo.U_EBRGHBNACH_D8 WITH (NOLOCK)) + 2
     INTO dbo.U_EBRGHBNACH_T9
-    FROM dbo.U_EBRGHBNACH_D8 WITH (NOLOCK);
-
+    FROM dbo.U_EBRGHBNACH_D8 WITH (NOLOCK)
+    
+        ;
     ------------------------------------
     -- Update Block Count
     ------------------------------------

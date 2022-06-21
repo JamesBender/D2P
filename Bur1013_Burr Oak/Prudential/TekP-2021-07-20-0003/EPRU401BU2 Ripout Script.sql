@@ -5,7 +5,7 @@ EPRU401BU2: Prudential 401K V2
 FormatCode:     EPRU401BU2
 Project:        Prudential 401K V2
 Client ID:      BUR1013
-Date/time:      2021-11-09 11:57:37.307
+Date/time:      2022-05-31 12:09:29.370
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -315,7 +315,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPRU401BU2_20211109.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPRU401BU2_20220531.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -323,7 +323,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'L3T5V',NULL,NULL,NULL,'Prudential 401K','201908301','EMPEXPORT','EPRU401BU2','Aug 27 2019 12:00AM','EPRU401BU2',NULL,NULL,NULL,'201908301','Aug 30 2019 12:00AM','Aug 24 2019 12:00AM','201908301',NULL,'eecPayGroup','BOT','201908301',dbo.fn_GetTimedKey(),NULL,'ULTI_WPBUO',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','L3T5V,L3TU6,JOCUJ',NULL,NULL,NULL,'TEST Prudential 401K','202106251','EMPEXPORT','TEST','Sep 27 2021 10:11AM','EPRU401BU2',NULL,NULL,NULL,'202106251','Jun 25 2021 12:00AM','Jun 19 2021 12:00AM','202106251','403','eecPayGroup','BOTSAL,BOT,OPS,OTS1','202106251',dbo.fn_GetTimedKey(),NULL,'us3rVaBUR1013',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','L3T5V,L3TU6,JOCUJ',NULL,NULL,NULL,'TEST Prudential 401K','202106251','EMPEXPORT','TEST','Dec  2 2021  1:59PM','EPRU401BU2',NULL,NULL,NULL,'202106251','Jun 25 2021 12:00AM','Jun 19 2021 12:00AM','202106251','403','eecPayGroup','BOTSAL,BOT,OPS,OTS1','202106251',dbo.fn_GetTimedKey(),NULL,'us3rVaBUR1013',NULL);
 
 -----------
 -- AscImp inserts
@@ -676,6 +676,8 @@ DSI_SP_TESTSWITCHBOX_V2 'EPRU401BU2', 'TEST';
 
 To turn off/on TESTEDT header record: 
 Update U_Dsi_Configuration set CfgValue = 'N' WHERE FormatCode = 'EPRU401BU2' AND CfgName = 'TESTING';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EPRU401BU2', @AllObjects = 'Y', @IsWeb = 'Y'
 
 **************************/
 

@@ -453,7 +453,7 @@ BEGIN
         ,drvNameFirst               = EepNameFirst
         ,drvNameLast                = EepNameLast
         ,drvNamePreferred           = EepNamePreferred
-        ,drvUserStatus              = CASE WHEN EecEmplStatus = 'T' THEN 'Terminated' Else 'Active' END
+        ,drvUserStatus              = CASE WHEN  EecEmplStatus = 'T' THEN 'Archived' Else 'Active' END ---CASE WHEN EecEmplStatus = 'T' THEN 'Terminated' Else 'Active' END
         ,drvStartDate               = EecDateOfLastHire
         ,drvOffboardDate            = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvEmployeeType            = CASE 

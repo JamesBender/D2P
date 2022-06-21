@@ -5,7 +5,7 @@ EOPTFSAGRA: Optum FSA
 FormatCode:     EOPTFSAGRA
 Project:        Optum FSA
 Client ID:      GRA1009
-Date/time:      2022-05-16 14:26:10.883
+Date/time:      2022-05-19 09:59:23.903
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220516.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EOPTFSAGRA_20220519.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -386,7 +386,7 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_drvTbl] (
     [drvEmpIdEmpAltId] varchar(9) NOT NULL,
     [drvMemLName] varchar(100) NULL,
     [drvMemFName] varchar(100) NULL,
-    [drvMI] char(5) NULL,
+    [drvMI] varchar(1) NOT NULL,
     [drvPermAdd1] varchar(255) NULL,
     [drvPermAdd2] varchar(255) NULL,
     [drvPermCity] varchar(255) NULL,
@@ -395,7 +395,7 @@ CREATE TABLE [dbo].[U_EOPTFSAGRA_drvTbl] (
     [drvMemDOB] datetime NULL,
     [drvPolNum] varchar(7) NOT NULL,
     [drvPlanCode] varchar(4) NOT NULL,
-    [drvPlanEffDt] nvarchar(4000) NULL,
+    [drvPlanEffDt] date NULL,
     [drvRepCode1] varchar(1) NOT NULL,
     [drvRepCode2] varchar(1) NOT NULL,
     [drvEnrollDt] datetime NULL,
@@ -797,10 +797,10 @@ BEGIN
         ,drvMemDOB = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
         ,drvPolNum = '0925268'
         ,drvPlanCode = '0001'
-        ,drvPlanEffDt = '1/1/' + FORMAT(DATEPART(YEAR, GETDATE()), '0000')
+        ,drvPlanEffDt = CAST('1/1/' + FORMAT(DATEPART(YEAR, GETDATE()), '0000') AS DATE)
         ,drvRepCode1 = ''
         ,drvRepCode2 = ''
-        ,drvEnrollDt = CASE WHEN BdmDedCode = 'FLXDG' THEN dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfOriginalHire, @FileMinCovDate) END
+        ,drvEnrollDt = CASE WHEN BdmDedCode = 'FLXDG' THEN BdmBenStartDate END -- dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfOriginalHire, @FileMinCovDate) END
         ,drvContribType1 = 'MED' 
         ,drvContribSC1 = 'E'
         ,drvContribSign1 = '+'

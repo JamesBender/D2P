@@ -5,7 +5,7 @@ EVOLISIGHT: iSight Export
 FormatCode:     EVOLISIGHT
 Project:        iSight Export
 Client ID:      VOL1006
-Date/time:      2022-04-06 10:37:11.370
+Date/time:      2022-06-15 10:32:41.690
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -131,40 +131,66 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 -- AscDefF inserts
 -----------
 
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOLISIGHTZ0','50','H','01','1',NULL,'SupervisorsName',NULL,NULL,'"Supervisors Name"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOLISIGHTZ0','50','H','01','2',NULL,'PositionTitle',NULL,NULL,'"Position Title"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOLISIGHTZ0','50','H','01','3',NULL,'EmploymentStatus',NULL,NULL,'"Employment Status"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOLISIGHTZ0','50','H','01','4',NULL,'FirstName',NULL,NULL,'"First Name"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOLISIGHTZ0','50','H','01','5',NULL,'PreferredFirstName',NULL,NULL,'"Preferred First Name"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOLISIGHTZ0','50','H','01','6',NULL,'LastName',NULL,NULL,'"Last Name"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVOLISIGHTZ0','50','H','01','7',NULL,'EmailAddress',NULL,NULL,'"Email Address"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVOLISIGHTZ0','50','H','01','8',NULL,'PrimaryPhoneNumber',NULL,NULL,'"Primary Phone Number"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EVOLISIGHTZ0','50','H','01','9',NULL,'SecondaryPhoneNumber',NULL,NULL,'"Secondary Phone Number"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EVOLISIGHTZ0','50','H','01','10',NULL,'PreferredContactMethod',NULL,NULL,'"Preferred Contact Method"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EVOLISIGHTZ0','50','H','01','11',NULL,'Address',NULL,NULL,'"Address"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EVOLISIGHTZ0','50','H','01','12',NULL,'City',NULL,NULL,'"City"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EVOLISIGHTZ0','50','H','01','13',NULL,'StateProvince',NULL,NULL,'"State/Province"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EVOLISIGHTZ0','50','H','01','14',NULL,'Country',NULL,NULL,'"Country"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EVOLISIGHTZ0','50','H','01','15',NULL,'ZipCodePostalCode',NULL,NULL,'"Zip Code/Postal Code"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EVOLISIGHTZ0','50','H','01','16',NULL,'Gender',NULL,NULL,'"Gender"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EVOLISIGHTZ0','50','H','01','17',NULL,'OtherGender',NULL,NULL,'"Other Gender"','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOLISIGHTZ0','50','D','10','1',NULL,'SupervisorsName',NULL,NULL,'"drvSupervisorsName"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOLISIGHTZ0','50','D','10','2',NULL,'PositionTitle',NULL,NULL,'"drvPositionTitle"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOLISIGHTZ0','50','D','10','3',NULL,'EmploymentStatus',NULL,NULL,'"drvEmploymentStatus"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOLISIGHTZ0','50','D','10','4',NULL,'FirstName',NULL,NULL,'"drvFirstName"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOLISIGHTZ0','50','D','10','5',NULL,'PreferredFirstName',NULL,NULL,'"drvPreferredFirstName"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOLISIGHTZ0','50','D','10','6',NULL,'LastName',NULL,NULL,'"drvLastName"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVOLISIGHTZ0','50','D','10','7',NULL,'EmailAddress',NULL,NULL,'"drvEmailAddress"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVOLISIGHTZ0','50','D','10','8',NULL,'PrimaryPhoneNumber',NULL,NULL,'"drvPrimaryPhoneNumber"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EVOLISIGHTZ0','50','D','10','9',NULL,'SecondaryPhoneNumber',NULL,NULL,'"drvSecondaryPhoneNumber"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EVOLISIGHTZ0','50','D','10','10',NULL,'PreferredContactMethod',NULL,NULL,'"drvPreferredContactMethod"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EVOLISIGHTZ0','50','D','10','11',NULL,'Address',NULL,NULL,'"drvAddress"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EVOLISIGHTZ0','50','D','10','12',NULL,'City',NULL,NULL,'"drvCity"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EVOLISIGHTZ0','50','D','10','13',NULL,'StateProvince',NULL,NULL,'"drvStateProvince"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EVOLISIGHTZ0','50','D','10','14',NULL,'Country',NULL,NULL,'"drvCountry"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EVOLISIGHTZ0','50','D','10','15',NULL,'ZipCodePostalCode',NULL,NULL,'"drvZipCodePostalCode"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EVOLISIGHTZ0','50','D','10','16',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EVOLISIGHTZ0','50','D','10','17',NULL,'OtherGender',NULL,NULL,'"drvOtherGender"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOLISIGHTZ0','50','H','01','1',NULL,'CompanyName',NULL,NULL,'"Company Name','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOLISIGHTZ0','50','H','01','2',NULL,'Manager',NULL,NULL,'"Manager','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOLISIGHTZ0','50','H','01','3',NULL,'PositionTitle',NULL,NULL,'"Position Title"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOLISIGHTZ0','50','H','01','4',NULL,'EmploymentStatus',NULL,NULL,'"Employment Status"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOLISIGHTZ0','50','H','01','5',NULL,'FirstName',NULL,NULL,'"First Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOLISIGHTZ0','50','H','01','6',NULL,'PreferredFirstName',NULL,NULL,'"Preferred First Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVOLISIGHTZ0','50','H','01','7',NULL,'MiddleInitial',NULL,NULL,'"Middle Initial"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVOLISIGHTZ0','50','H','01','8',NULL,'LastName',NULL,NULL,'"Last Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EVOLISIGHTZ0','50','H','01','9',NULL,'EmailAddress',NULL,NULL,'"Email - Work"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EVOLISIGHTZ0','50','H','01','10',NULL,'PrimaryPhoneNumber',NULL,NULL,'"Work Phone Number"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EVOLISIGHTZ0','50','H','01','11',NULL,'SecondaryPhoneNumber',NULL,NULL,'"Home Phone Number"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EVOLISIGHTZ0','50','H','01','12',NULL,'Address',NULL,NULL,'"Address"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EVOLISIGHTZ0','50','H','01','13',NULL,'City',NULL,NULL,'"City"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EVOLISIGHTZ0','50','H','01','14',NULL,'StateProvince',NULL,NULL,'"State/Province"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EVOLISIGHTZ0','50','H','01','15',NULL,'Country',NULL,NULL,'"Country"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EVOLISIGHTZ0','50','H','01','16',NULL,'ZipCodePostalCode',NULL,NULL,'"Zip Code/Postal Code"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EVOLISIGHTZ0','50','H','01','17',NULL,'Gender',NULL,NULL,'"Gender"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EVOLISIGHTZ0','50','H','01','18',NULL,'OtherGender',NULL,NULL,'"Other Gender"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EVOLISIGHTZ0','50','H','01','19',NULL,'DateOfBirth',NULL,NULL,'"Date Of Birth"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EVOLISIGHTZ0','50','H','01','20',NULL,'DateOfHire',NULL,NULL,'"Date of Hire"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EVOLISIGHTZ0','50','H','01','21',NULL,'Status',NULL,NULL,'"Status"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EVOLISIGHTZ0','50','H','01','22',NULL,'Division',NULL,NULL,'"Division"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EVOLISIGHTZ0','50','H','01','23',NULL,'ServiceGroup',NULL,NULL,'"Service Group"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EVOLISIGHTZ0','50','H','01','24',NULL,'Program',NULL,NULL,'"Program"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EVOLISIGHTZ0','50','H','01','25',NULL,'EmailPersonal',NULL,NULL,'"Email Personal"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EVOLISIGHTZ0','50','H','01','26',NULL,'EmployeeID',NULL,NULL,'"Employee ID"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EVOLISIGHTZ0','50','H','01','27',NULL,'EmployeeType',NULL,NULL,'"Employee Type"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EVOLISIGHTZ0','50','H','01','28',NULL,'FullTimePartTime',NULL,NULL,'"FullTime PartTime"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EVOLISIGHTZ0','50','H','01','29',NULL,'SeniorLeader',NULL,NULL,'"Senior Leader"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EVOLISIGHTZ0','50','H','01','30',NULL,'Race',NULL,NULL,'"Race"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOLISIGHTZ0','50','D','10','1',NULL,'CompanyName',NULL,NULL,'"drvCompanyName','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOLISIGHTZ0','50','D','10','2',NULL,'Manager',NULL,NULL,'"drvManager','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOLISIGHTZ0','50','D','10','3',NULL,'PositionTitle',NULL,NULL,'"drvPositionTitle"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOLISIGHTZ0','50','D','10','4',NULL,'EmploymentStatus',NULL,NULL,'"drvEmploymentStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOLISIGHTZ0','50','D','10','5',NULL,'FirstName',NULL,NULL,'"drvFirstName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOLISIGHTZ0','50','D','10','6',NULL,'PreferredFirstName',NULL,NULL,'"drvPreferredFirstName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVOLISIGHTZ0','50','D','10','7',NULL,'MiddleInitial',NULL,NULL,'"drvMiddleInitial"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVOLISIGHTZ0','50','D','10','8',NULL,'LastName',NULL,NULL,'"drvLastName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EVOLISIGHTZ0','50','D','10','9',NULL,'EmailAddress',NULL,NULL,'"drvEmailAddress"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EVOLISIGHTZ0','50','D','10','10',NULL,'PrimaryPhoneNumber',NULL,NULL,'"drvPrimaryPhoneNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EVOLISIGHTZ0','50','D','10','11',NULL,'SecondaryPhoneNumber',NULL,NULL,'"drvSecondaryPhoneNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EVOLISIGHTZ0','50','D','10','12',NULL,'Address',NULL,NULL,'"drvAddress"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EVOLISIGHTZ0','50','D','10','13',NULL,'City',NULL,NULL,'"drvCity"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EVOLISIGHTZ0','50','D','10','14',NULL,'StateProvince',NULL,NULL,'"drvStateProvince"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EVOLISIGHTZ0','50','D','10','15',NULL,'Country',NULL,NULL,'"drvCountry"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EVOLISIGHTZ0','50','D','10','16',NULL,'ZipCodePostalCode',NULL,NULL,'"drvZipCodePostalCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EVOLISIGHTZ0','50','D','10','17',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EVOLISIGHTZ0','50','D','10','18',NULL,'OtherGender',NULL,NULL,'"drvOtherGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EVOLISIGHTZ0','50','D','10','19',NULL,'DateOfBirth',NULL,NULL,'"drvDateOfBirth"','(''UDMDY''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EVOLISIGHTZ0','50','D','10','20',NULL,'DateOfHire',NULL,NULL,'"drvDateofHire"','(''UDMDY''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EVOLISIGHTZ0','50','D','10','21',NULL,'Status',NULL,NULL,'"drvStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EVOLISIGHTZ0','50','D','10','22',NULL,'Division',NULL,NULL,'"drvDivision"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EVOLISIGHTZ0','50','D','10','23',NULL,'ServiceGroup',NULL,NULL,'"drvServiceGroup"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EVOLISIGHTZ0','50','D','10','24',NULL,'Program',NULL,NULL,'"drvProgram"','(''UA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EVOLISIGHTZ0','50','D','10','25',NULL,'EmailPersonal',NULL,NULL,'"drvEmailPersonal"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EVOLISIGHTZ0','50','D','10','26',NULL,'EmployeeID',NULL,NULL,'"drvEmployeeID"','(''UA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EVOLISIGHTZ0','50','D','10','27',NULL,'EmployeeType',NULL,NULL,'"drvEmployeeType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EVOLISIGHTZ0','50','D','10','28',NULL,'FullTimePartTime',NULL,NULL,'"drvFullTimePartTime"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EVOLISIGHTZ0','50','D','10','29',NULL,'SeniorLeader',NULL,NULL,'"drvSeniorLeader"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EVOLISIGHTZ0','50','D','10','30',NULL,'Race',NULL,NULL,'"drvRace"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -177,7 +203,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EVOLISIGHT_20220406.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EVOLISIGHT_20220615.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -185,8 +211,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'iSight Export','202204069','EMPEXPORT','ONDEM_XOE',NULL,'EVOLISIGHT',NULL,NULL,NULL,'202204069','Apr  6 2022  9:02AM','Apr  6 2022  9:02AM','202204061',NULL,'','','202204061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'iSight Export-Sched','202204069','EMPEXPORT','SCH_EVOLIS',NULL,'EVOLISIGHT',NULL,NULL,NULL,'202204069','Apr  6 2022  9:02AM','Apr  6 2022  9:02AM','202204061',NULL,'','','202204061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'iSight Export-Test','202204069','EMPEXPORT','TEST_XOE',NULL,'EVOLISIGHT',NULL,NULL,NULL,'202204069','Apr  6 2022  9:02AM','Apr  6 2022  9:02AM','202204061',NULL,'','','202204061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'iSight Export-Sched','202204069','EMPEXPORT','SCH_EVOLIS','Apr  7 2022  9:43AM','EVOLISIGHT',NULL,NULL,NULL,'202204069','Apr  6 2022 12:00AM','Dec 30 1899 12:00AM','202204061','2811','','','202204061',dbo.fn_GetTimedKey(),NULL,'us3mThVOL1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'iSight Export-Test','202205279','EMPEXPORT','TEST_XOE','May 27 2022  9:11AM','EVOLISIGHT',NULL,NULL,NULL,'202205279','May 27 2022 12:00AM','Dec 30 1899 12:00AM','202205131','2843','','','202205131',dbo.fn_GetTimedKey(),NULL,'us3lKiVOL1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -200,7 +226,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','InitialSort','C','drvSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','IsUTF8','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','IsUTF8','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOLISIGHT','UseFileName','V','Y');
@@ -264,23 +290,36 @@ CREATE TABLE [dbo].[U_EVOLISIGHT_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvSort] char(9) NULL,
-    [drvSupervisorsName] varchar(8000) NULL,
+    [drvCompanyName] char(5) NULL,
+    [drvManager] varchar(8000) NULL,
     [drvPositionTitle] varchar(8000) NULL,
     [drvEmploymentStatus] varchar(6) NOT NULL,
     [drvFirstName] varchar(100) NULL,
     [drvPreferredFirstName] varchar(100) NULL,
+    [drvMiddleInitial] varchar(1) NULL,
     [drvLastName] varchar(100) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvPrimaryPhoneNumber] varchar(50) NULL,
     [drvSecondaryPhoneNumber] varchar(50) NULL,
-    [drvPreferredContactMethod] varchar(1) NOT NULL,
-    [drvAddress] varchar(511) NULL,
-    [drvCity] varchar(255) NULL,
+    [drvAddress] varchar(8000) NULL,
+    [drvCity] varchar(8000) NULL,
     [drvStateProvince] varchar(255) NULL,
     [drvCountry] char(3) NULL,
     [drvZipCodePostalCode] varchar(50) NULL,
     [drvGender] varchar(6) NULL,
-    [drvOtherGender] varchar(1) NOT NULL
+    [drvOtherGender] varchar(1) NOT NULL,
+    [drvDateOfBirth] datetime NULL,
+    [drvDateofHire] datetime NULL,
+    [drvStatus] char(1) NULL,
+    [drvDivision] varchar(25) NULL,
+    [drvServiceGroup] varchar(25) NULL,
+    [drvProgram] varchar(36) NULL,
+    [drvEmailPersonal] varchar(50) NULL,
+    [drvEmployeeID] varchar(8000) NULL,
+    [drvEmployeeType] nvarchar(1000) NULL,
+    [drvFullTimePartTime] char(1) NULL,
+    [drvSeniorLeader] char(12) NULL,
+    [drvRace] varchar(45) NULL
 );
 
 -----------
@@ -304,7 +343,7 @@ CREATE TABLE [dbo].[U_EVOLISIGHT_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] nvarchar(1000) NULL
+    [Data] varchar(1000) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVOLISIGHT]
@@ -429,25 +468,39 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = EecEmpNo
+        ,drvSort = dbo.vw_int_EmpComp.EecEmpNo
         -- standard fields above and additional driver fields below
-        ,drvSupervisorsName = REPLACE(dbo.dsi_fnlib_GetSupervisorField_v2('', EecEEID, 'NameFirst Last') , ',', '') 
-        ,drvPositionTitle = [dbo].[dsi_fnlib_AddDoubleQuotes] (JbcDesc)
-        ,drvEmploymentStatus = CASE WHEN EecEmplStatus = 'A' THEN 'Active' WHEN EecEmplStatus = 'L' THEN 'LOA' ELSE 'Termed' END
+        ,drvCompanyName = cmpcompanycode
+        ,drvManager = REPLACE(dbo.dsi_fnlib_GetSupervisorField_v2('', dbo.vw_int_EmpComp.EecEEID, 'NameFirst Last') , ',', '') 
+        ,drvPositionTitle = REPLACE(JbcDesc, ',','')
+        ,drvEmploymentStatus = CASE WHEN dbo.vw_int_EmpComp.EecEmplStatus = 'A' THEN 'Active' WHEN dbo.vw_int_EmpComp.EecEmplStatus = 'L' THEN 'LOA' ELSE 'Termed' END
         ,drvFirstName = EepNameFirst
         ,drvPreferredFirstName = EepNamepreferred
+        ,drvMiddleInitial = LEFT(EepNameMiddle,1) 
         ,drvLastName = EepNameLast
         ,drvEmailAddress = EepAddressEMail
-        ,drvPrimaryPhoneNumber = EecPhoneBusinessNumber
+        ,drvPrimaryPhoneNumber = dbo.vw_int_EmpComp.EecPhoneBusinessNumber
         ,drvSecondaryPhoneNumber = EepPhoneHomeNumber
-        ,drvPreferredContactMethod = ''
-        ,drvAddress = Eepaddressline1 +' ' +Eepaddressline2
-        ,drvCity = EepAddressCity
+        --,drvPreferredContactMethod = ''
+        ,drvAddress = REPLACE(Eepaddressline1 +' ' +Eepaddressline2, ',','')
+        ,drvCity = REPLACE(EepAddressCity, ',','')
         ,drvStateProvince = EepAddressState
         ,drvCountry = EepAddressCountry
         ,drvZipCodePostalCode = EepAddressZipCode
         ,drvGender = CASE WHEN EepGender = 'M' THEN 'MALE' WHEN EepGender = 'F' THEN 'FEMALE' END
         ,drvOtherGender = ''
+        ,drvDateOfBirth = eepdateofbirth
+        ,drvDateofHire = dbo.vw_int_EmpComp.eecdateoflasthire
+        ,drvStatus = dbo.vw_int_EmpComp.eecemplstatus
+        ,drvDivision = OL1.OrgDesc
+        ,drvServiceGroup = OL2.OrgDesc
+        ,drvProgram = OL3.OrgDesc + ' '+ OL3.OrgCode
+        ,drvEmailPersonal = eepAddressEMailalternate
+        ,drvEmployeeID = [dbo].[dsi_fnlib_AddDoubleQuotes] (dbo.vw_int_EmpComp.eecempno)
+        ,drvEmployeeType = FNEC.EETypeDesc
+        ,drvFullTimePartTime = dbo.vw_int_EmpComp.EecFullTimeOrPartTime
+        ,drvSeniorLeader = MGR.EecEmpNo
+        ,drvRace = ETH.CodDesc
     INTO dbo.U_EVOLISIGHT_drvTbl
     FROM dbo.U_EVOLISIGHT_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -455,10 +508,30 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-             and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
-                 and EXISTS(select 1 from dbo.U_EVOLISIGHT_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+        AND EecPayGroup <> 'TEST'
+                    and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                    and EXISTS(select 1 from dbo.U_EVOLISIGHT_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.company WITH (NOLOCK)
+        ON CmpCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
+    LEFT JOIN dbo.codes ETH WITH (NOLOCK)
+        ON ETH.CodCode = EepEthnicID
+        AND codTable = 'ETHNICCODE'
+    LEFT JOIN dbo.OrgLevel OL1 WITH (NOLOCK)
+        ON OL1.OrgCode = dbo.vw_int_EmpComp.EecOrgLvl1
+        AND OL1.OrgLvl = 1
+    LEFT JOIN dbo.OrgLevel OL2 WITH (NOLOCK)
+        ON OL2.OrgCode = dbo.vw_int_EmpComp.EecOrgLvl2
+        AND OL2.OrgLvl = 2
+    LEFT JOIN dbo.OrgLevel OL3 WITH (NOLOCK)
+        ON OL3.OrgCode = dbo.vw_int_EmpComp.EecOrgLvl3
+        AND OL3.OrgLvl = 3
+    LEFT JOIN dbo.vw_int_EmpComp MGR WITH (NOLOCK)
+        ON OL3.OrgManagerID = MGR.EecEEID
+    JOIN fn_BI_EmpComp ('en') FNEC
+        ON FNEC.EecCoID = xCoID
+        AND FNEC.EecEEID = xEEID
     ;
 
     --==========================================
