@@ -5,7 +5,7 @@ EROLRSFMLA: Reliance Standard FMLA
 FormatCode:     EROLRSFMLA
 Project:        Reliance Standard FMLA
 Client ID:      ROL1002
-Date/time:      2022-06-17 10:21:04.410
+Date/time:      2022-06-17 14:36:42.660
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -322,7 +322,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Standard FMLA','202206139','EMPEXPORT','ONDEM_XOE',NULL,'EROLRSFMLA',NULL,NULL,NULL,'202206139','Jun 16 2022  9:57AM','Jun 16 2022  9:57AM','202205061',NULL,'','','202205061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Standard FMLA-Sched','202206139','EMPEXPORT','SCH_EROLRS',NULL,'EROLRSFMLA',NULL,NULL,NULL,'202206139','Jun 16 2022  9:57AM','Jun 16 2022  9:57AM','202205061',NULL,'','','202205061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Reliance Standard FMLA-Test','202206161','EMPEXPORT','TEST_XOE','Jun 16 2022 10:47PM','EROLRSFMLA',NULL,NULL,NULL,'202206161','Jun 16 2022 12:00AM','Dec 30 1899 12:00AM','202206081','17729','','','202206081',dbo.fn_GetTimedKey(),NULL,'us3cPeROL1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Reliance Standard FMLA-Test','202206161','EMPEXPORT','TEST_XOE','Jun 17 2022 12:26PM','EROLRSFMLA',NULL,NULL,NULL,'202206161','Jun 16 2022 12:00AM','Dec 30 1899 12:00AM','202206081','16172','','','202206081',dbo.fn_GetTimedKey(),NULL,'us3cPeROL1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -803,7 +803,7 @@ BEGIN
         ,drvIsActive = CASE WHEN eecemplstatus = 'T' THEN 'N' else 'Y' END
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN  convert(varchar(10), cast(EecDateOfTermination as date), 101) END
         ,drvIsFulltime = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Y' ELSE 'N' END
-        ,drvIsExempt = CASE WHEN EjhFLSACategory = 'E' THEN 'Y' ELSE  'N' END
+        ,drvIsExempt = CASE WHEN EJH.EjhFLSACategory = 'E' THEN 'Y' ELSE  'N' END
         ,drvHRName = Left((SELECT OrgLevel1_HRLeaderName from dbo.fn_MP_CustomFields_vwOrgLevel1_Export (NULL,NULL,NULL,NULL)where EecOrgLvl1 = OrgCode),50)
         ,drvHRAddress = Left((SELECT OrgLevel1_HRLeaderEmail from dbo.fn_MP_CustomFields_vwOrgLevel1_Export (NULL,NULL,NULL,NULL)where EecOrgLvl1 = OrgCode),255)
         ,drvHRPhone = REPLACE(LTRIM(REPLACE((SELECT OrgLevel1_HRLeaderPhone from dbo.fn_MP_CustomFields_vwOrgLevel1_Export (NULL,NULL,NULL,NULL)where EecOrgLvl1 = OrgCode), '1-', ' ')), ' ', '1-')
@@ -842,6 +842,15 @@ BEGIN
     JOIN dbo.COMPANY WITH (NOLOCK) 
         ON eeccoid = cmpcoid
         and cmpcompanycode NOT IN ('CPC','OPC')  
+    LEFT JOIN (
+            SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
+            FROM (
+                    SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                    FROM dbo.EmpHJob WITH (NOLOCK)) AS X
+            WHERE RN = 1) AS EJH
+        ON EJH.EjhEEID = xEEID
+        AND EJH.EjhCOID = xCOID
+        AND EJH.EjhJobCode = EecJobCode 
     Where EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -30, @EndDate) AND @EndDate)
     
     ;

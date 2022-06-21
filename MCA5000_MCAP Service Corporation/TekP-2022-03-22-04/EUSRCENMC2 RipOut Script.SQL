@@ -559,11 +559,12 @@ BEGIN
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
     --supervisor info -same Coid
-    left join (select eepEEID seeid, b.eeccoid scoid,eepSSN ssn,LEFT(ISNULL(eepnameMiddle,''),1) mname,eepnamefirst fname, eepnamelast lname, eepAddressEMail email,vw_int_EmpComp.eecsupervisorid, b.eeceeid, b.eecempno empno, b.EecPhoneBusinessNumber workphone 
+Left join (select eepEEID seeid, b.eeccoid scoid,eepSSN ssn,LEFT(ISNULL(eepnameMiddle,''),1) mname,eepnamefirst fname, eepnamelast lname, eepAddressEMail email,c.eecsupervisorid, b.eeceeid, b.eecempno empno, b.EecPhoneBusinessNumber workphone 
                 ,b.EecUDField11 IT_Num    
-                from vw_int_EmpComp 
-                    join vw_int_EmpComp b on b.eeceeid = vw_int_EmpComp.eecsupervisorid
-    join emppers on emppers.eepeeid = b.eeceeid) super on super.sEEID = vw_int_EmpComp.eecSupervisorID --and super.scoid=vw_int_EmpComp.eeccoid
+                from vw_int_EmpComp c
+                join vw_int_EmpComp b on b.eeceeid = c.eecsupervisorid
+                join emppers on emppers.eepeeid = b.eeceeid) super on super.sEEID = vw_int_EmpComp.eecSupervisorID --and super.scoid=vw_int_EmpComp.eeccoid
+
 
     LEFT JOIN (select efoeeid eeid, auditkey audkey, efophonetype ptype, efophonenumber phone
                 from empmphon) cell on cell.eeid = xeeid and cell.ptype = 'CEL'
