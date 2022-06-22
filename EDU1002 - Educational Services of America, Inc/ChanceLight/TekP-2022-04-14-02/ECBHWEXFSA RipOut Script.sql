@@ -5,7 +5,7 @@ ECBHWEXFSA: WEX FSA, DEP Combined
 FormatCode:     ECBHWEXFSA
 Project:        WEX FSA, DEP Combined
 Client ID:      EDU1002
-Date/time:      2022-06-14 14:22:45.067
+Date/time:      2022-06-22 09:08:57.833
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -139,7 +139,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','SDF','ECBHWEXFSA','WEX FSA, DEP Combined','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','ECBHWEXFSAZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECBHWEXFSA','WEX FSA, DEP Combined','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','ECBHWEXFSAZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -151,7 +151,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECBHWEXFSAZ0','1','H','01','15',NULL,'Synchronize Flag',NULL,NULL,'"N"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECBHWEXFSAZ0','8','H','01','17',NULL,'Submitted Date',NULL,NULL,'"drvSubmittedDate"','(''UDMDY''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECBHWEXFSAZ0','6','H','01','26',NULL,'Submitted Time',NULL,NULL,'"drvSubmittedTime"','(''UDHMS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECBHWEXFSAZ0','2','H','01','33',NULL,'File Version',NULL,NULL,'"3.5"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECBHWEXFSAZ0','6','H','01','33',NULL,'File Version',NULL,NULL,'"3.5"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECBHWEXFSAZ0','2','D','10','1',NULL,'Record Type',NULL,NULL,'"PT"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECBHWEXFSAZ0','50','D','10','4',NULL,'Participant File Import ID',NULL,NULL,'"drvParticipantID"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECBHWEXFSAZ0','20','D','10','55',NULL,'Employer Employee ID',NULL,NULL,'""','(''SS''=''T|'')');
@@ -181,8 +181,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECBHWEXFSAZ0','8','D','10','839',NULL,NULL,NULL,NULL,'"drvHireDate"','(''UDMDY''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECBHWEXFSAZ0','100','D','10','848',NULL,'Division',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ECBHWEXFSAZ0','2','D','10','949',NULL,'Hours Per Week',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ECBHWEXFSAZ0','100','D','10','952',NULL,'Employee Class',NULL,NULL,'"E"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ECBHWEXFSAZ0','100','D','10','1053',NULL,'Payroll Frequency',NULL,NULL,'"Payroll"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ECBHWEXFSAZ0','100','D','10','952',NULL,'Employee Class',NULL,NULL,'"All Eligible"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ECBHWEXFSAZ0','100','D','10','1053',NULL,'Payroll Frequency',NULL,NULL,'"Bi-Weekly (B26)l"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ECBHWEXFSAZ0','8','D','10','1154',NULL,'Payroll Frequency Effective Date',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ECBHWEXFSAZ0','20','D','10','1163',NULL,'Participant Status',NULL,NULL,'"drvParticipantStatus"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ECBHWEXFSAZ0','8','D','10','1184',NULL,'Status Effective Date',NULL,NULL,'"drvStatusDate"','(''UDMDY''=''T|'')');
@@ -240,11 +240,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECBHWEXFSAZ0','30','D','30','165',NULL,'Contribution Description',NULL,NULL,'"drvContributionDescription"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECBHWEXFSAZ0','9','D','30','196',NULL,'Contribution Amount',NULL,NULL,'"drvContributionAmount"','(''UNT2''''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECBHWEXFSAZ0','6','D','30','206',NULL,'Amount Type',NULL,NULL,'"Actual"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECBHWEXFSAZ0','7','D','30','213',NULL,'Tax Year',NULL,NULL,'"Current"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECBHWEXFSAZ0','7','D','30','213',NULL,'Tax Year',NULL,NULL,'""','(''SS''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECBHWEXFSAZ0','2','T','90','1',NULL,'Record Type',NULL,NULL,'"FF"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECBHWEXFSAZ0','20','T','90','4',NULL,'Record Count',NULL,NULL,'"drvRecordCount"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECBHWEXFSAZ0','50','T','90','25',NULL,'Administrator Code',NULL,NULL,'"DBI"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECBHWEXFSAZ0','3','T','90','76',NULL,'Employer Code',NULL,NULL,'"14329"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECBHWEXFSAZ0','6','T','90','76',NULL,'Employer Code',NULL,NULL,'"14329"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECBHWEXFSAZ0','8','T','90','80',NULL,'Submitted Date',NULL,NULL,'"drvSubmittedDate"','(''UDMDY''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECBHWEXFSAZ0','6','T','90','89',NULL,'Submitted Time',NULL,NULL,'"drvSubmittedTime"','(''UDHMS''=''T'')');
 
@@ -259,7 +259,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECBHWEXFSA_20220614.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECBHWEXFSA_20220622.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -270,7 +270,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202206229','EMPEXPORT','OEPASSIVE',NULL,'ECBHWEXFSA',NULL,NULL,NULL,'202206229','Jun  6 2022  3:17PM','Jun  6 2022  3:17PM','202205131',NULL,'','','202205131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA, DEP Combined','202206229','EMPEXPORT','ONDEM_XOE',NULL,'ECBHWEXFSA',NULL,NULL,NULL,'202206229','Jun  6 2022  3:17PM','Jun  6 2022  3:17PM','202205131',NULL,'','','202205131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX FSA, DEP Combined-Sched','202206229','EMPEXPORT','SCH_ECBHWE',NULL,'ECBHWEXFSA',NULL,NULL,NULL,'202206229','Jun  6 2022  3:17PM','Jun  6 2022  3:17PM','202205131',NULL,'','','202205131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','T5MPL,VL4LN,6ZJUE,6ZJZT,OAK08,MZXL6,3LMN2,EPR5N,VHGEP,6ZJYR,SODK4,6ZJXC,9YSCR',NULL,NULL,NULL,'WEX FSA, DEP Combined-Test','202206229','EMPEXPORT','TEST_XOE','Jun 14 2022 12:00AM','ECBHWEXFSA',NULL,NULL,NULL,'202206229','Jun 10 2022 12:00AM','Dec 30 1899 12:00AM','202205131',NULL,'','','202205131',dbo.fn_GetTimedKey(),NULL,'us3mWaEDU1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','T5MPL,VL4LN,6ZJUE,6ZJZT,OAK08,MZXL6,3LMN2,EPR5N,VHGEP,6ZJYR,SODK4,6ZJXC,9YSCR',NULL,NULL,NULL,'WEX FSA, DEP Combined-Test','202206179','EMPEXPORT','TEST_XOE','Jun 20 2022 12:00AM','ECBHWEXFSA',NULL,NULL,NULL,'202206179','Jun 17 2022 12:00AM','Dec 30 1899 12:00AM','202206171',NULL,'eecPayGroup','CORP,OES,SCI','202206171',dbo.fn_GetTimedKey(),NULL,'us3cPeEDU1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -399,7 +399,7 @@ CREATE TABLE [dbo].[U_ECBHWEXFSA_CT_drvTbl] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvEmpNoSort] varchar(13) NULL,
-    [drvParticipantId] varchar(1) NOT NULL,
+    [drvParticipantId] char(9) NULL,
     [drvPlanName] varchar(18) NULL,
     [drvContributionDate] datetime NULL,
     [drvContributionDescription] varchar(17) NULL,
@@ -466,7 +466,7 @@ CREATE TABLE [dbo].[U_ECBHWEXFSA_File] (
     [SubSort] varchar(100) NOT NULL,
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
-    [Data] char(3000) NULL
+    [Data] varchar(3000) NULL
 );
 
 -----------
@@ -727,10 +727,10 @@ BEGIN
         -- Categorize Payroll Amounts MFLEX, DFLEX, TRAN, TRANP, PARK, PARKP
         ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('MFLEX') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('DFLEX') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('TRAN') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('TRAN') THEN PdhEECurAmt ELSE 0.00 END)        
         ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('TRANP') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('PARK') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('PARKP') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('PARKP') THEN PdhEECurAmt ELSE 0.00 END)
        
     INTO dbo.U_ECBHWEXFSA_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
@@ -776,7 +776,7 @@ BEGIN
         ,drvZipCode = EepAddressZipCode
         ,drvHomePhone = EepPhoneHomeNumber
         ,drvEmailAddress = EepAddressEMail
-        ,drvHireDate = EecDateOfLastHire
+        ,drvHireDate = EecDateOfOriginalHire
         ,drvParticipantStatus = CASE WHEN EecEmplStatus = 'T' THEN 'Terminated' ELSE 'Active' END
         ,drvStatusDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateofTermination ELSE EecDateOfLastHire END
         ,drvFinalPayProcDate = CASE WHEN EecEmplStatus = 'T' THEN DATEADD(Day, 30, EecDateofTermination) END
@@ -878,7 +878,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvEmpNoSort = EepSSN + ' 2'
         -- standard fields above and additional driver fields below
-        ,drvParticipantId = ''
+        ,drvParticipantId = eecempno
         ,drvPlanName = CASE WHEN PdhDedCode = 'MFLEX' THEN 'Medical FSA'
                             WHEN PdhDedCode = 'DFLEX' THEN 'Dependent Care FSA'
                             WHEn PdhDedCode IN ('TRAN', 'TRANP') THEN 'Mass Transit'
@@ -902,6 +902,9 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+    JOIN dbo.U_dsi_BDM_ECBHWEXFSA WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
     LEFT JOIN dbo.U_ECBHWEXFSA_Audit WITH (NOLOCK)
         ON audEEID = xEEID
         AND AudFieldName  = 'eecemplstatus' 
