@@ -5,7 +5,7 @@ EETPUSOEXP: Ethics Point Demo Export
 FormatCode:     EETPUSOEXP
 Project:        Ethics Point Demo Export
 Client ID:      USO1001
-Date/time:      2022-06-22 18:27:09.133
+Date/time:      2022-06-28 14:33:53.240
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -170,7 +170,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EETPUSOEXPZ0','50','H','01','29',NULL,'Age',NULL,NULL,'"Age"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EETPUSOEXPZ0','50','H','01','30',NULL,'Salary',NULL,NULL,'"Salary"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EETPUSOEXPZ0','50','H','01','31',NULL,'Compa-ratio',NULL,NULL,'"Compa-ratio"','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EETPUSOEXPZ0','50','D','10','1',NULL,'First name',NULL,NULL,'"drvFirstname"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EETPUSOEXPZ0','50','D','10','1',NULL,'First name',NULL,NULL,'"drvFirstname"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EETPUSOEXPZ0','50','D','10','2',NULL,'Preferred Name',NULL,NULL,'"drvPreferredName"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EETPUSOEXPZ0','50','D','10','3',NULL,'Last name',NULL,NULL,'"drvLastname"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EETPUSOEXPZ0','50','D','10','4',NULL,'HRID number',NULL,NULL,'"drvHRIDnumber"','(''UA''=''T|'')');
@@ -200,7 +200,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EETPUSOEXPZ0','100','D','10','28',NULL,'Ethnicity',NULL,NULL,'"drvEthnicity"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EETPUSOEXPZ0','100','D','10','29',NULL,'Age',NULL,NULL,'"drvAge"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EETPUSOEXPZ0','100','D','10','30',NULL,'Salary',NULL,NULL,'"drvSalary"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EETPUSOEXPZ0','100','D','10','31',NULL,'Compa-ratio',NULL,NULL,'"drvComparatio"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EETPUSOEXPZ0','100','D','10','31',NULL,'Compa-ratio',NULL,NULL,'"drvComparatio"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -213,18 +213,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EETPUSOEXP_20220622.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EETPUSOEXP_20220628.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202205109','EMPEXPORT','OEACTIVE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202205109','EMPEXPORT','OEPASSIVE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ethics Point Demo Export','202205109','EMPEXPORT','ONDEMAND',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202205109','EMPEXPORT','SCHEDULED',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V5C45',NULL,NULL,NULL,'Test Purposes Only','202206229','EMPEXPORT','TEST','Jun 22 2022  1:59PM','EETPUSOEXP',NULL,NULL,NULL,'202206229','Jun 22 2022 12:00AM','Dec 30 1899 12:00AM','202206151','549','','','202206151',dbo.fn_GetTimedKey(),NULL,'us3jReUSO1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202205109','EMPEXPORT','OE ACTIVE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202205109','EMPEXPORT','OE PASSIVE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ethics Point Demo Export','202205109','EMPEXPORT','ONDEM_XOE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202205109','EMPEXPORT','SCH_EETPUS',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V5C45',NULL,NULL,NULL,'Test Purposes Only','202206289','EMPEXPORT','TEST_XOE','Jun 28 2022  2:18PM','EETPUSOEXP',NULL,NULL,NULL,'202206289','Jun 28 2022 12:00AM','Dec 30 1899 12:00AM','202206211','551','','','202206211',dbo.fn_GetTimedKey(),NULL,'us3jReUSO1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -476,7 +476,8 @@ Purpose: Ethics Point Demo Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-Marie Waters       06/22/2022     TekP- 2022-01-31-001  Added code for Comparatio field
+Marie Waters       06/22/2022     TekP- 2022-01-31-001   Added code for Comparatio field
+Marie Waters       06/28/2022     TekP- 2022-01-31-001   FirstName and PreferredName were missing the Pipe delimiter
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EETPUSOEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EETPUSOEXP';
@@ -486,11 +487,11 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EETPUSOEXP' ORD
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'ONDEMAND';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'TEST';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'OE PASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'OE ACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EETPUSOEXP', 'SCH_EETPUS';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EETPUSOEXP';
 
