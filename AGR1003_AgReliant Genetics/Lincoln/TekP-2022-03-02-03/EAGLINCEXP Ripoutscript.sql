@@ -813,11 +813,12 @@ BEGIN
         AND BdmCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    WHERE (EecEmplStatus <> 'T'
+        WHERE (EecEmplStatus <> 'T'
         OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate))
         --AND EecFullTimeOrPartTime <> 'P' 
-		AND eecdedGroupCode not in ( 'NOBEN', 'None') 
-		AND ( EecUDField01 = 'AGREL' and EecFullTimeORPartTime <> 'P') 
+		---AND eecdedGroupCode not in ( 'NOBEN', 'None') ---client changed criteria wants where eecdedGroupCode = 'USFT'
+		AND ( EecUDField01 = 'AGREL' and EecFullTimeORPartTime <> 'P')   
+		AND eecdedGroupCode = 'USFT'
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------

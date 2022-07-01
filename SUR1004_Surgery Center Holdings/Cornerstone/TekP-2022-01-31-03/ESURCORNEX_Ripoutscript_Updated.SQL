@@ -468,7 +468,7 @@ BEGIN
         ,drvLastName                    = EepNameLast
         ,drvSuffix                      = CASE WHEN eepnamesuffix <> 'Z' THEN eepnamesuffix ELSE '' END
         ,drvUserName                    = CASE WHEN isnull(EE.EecUDField05, '')  <> '' THEN  EE.EecUDField05 ELSE left(EepNameFirst, 1) + left(EepNameLast, 1) + Right(RTrim(eepSSN), 4) END
-        ,drvManager                     = CASE WHEN EE.EecEMpNO = '1006351' THEN '' ELSE dbo.dsi_fnlib_GetSupervisorField_v2('', EE.EecEEID, 'EmpNo') END
+        ,drvManager                     = CASE WHEN (EE.EecEMpNO = dbo.dsi_fnlib_GetSupervisorField_v2('', EE.EecEEID, 'EmpNo') or EE.EecJobCode =  'EXCHBRD')  THEN '' ELSE dbo.dsi_fnlib_GetSupervisorField_v2('', EE.EecEEID, 'EmpNo') END
         ,drvAllowRecon                  = 'FALSE'
         ,drvEmailAddress                = CASE WHEN isnull(EepAddressEMail,'') = '' then eepAddressEMailAlternate else  EepAddressEMail   EN
         ,drvReqTrainingApproval         = '1'
@@ -556,7 +556,7 @@ BEGIN
     --    AND FNEC.EecEEID = xEEID
     LEFT JOIN fn_LocalizeCodesForCognos('JOBFAMILY','en') JF
         ON JF.codCode = JbcJobFamily
-        WHERE EecJobCode <> 'LEASNOTR'
+         WHERE EecJobCode <> 'LEASNOTR'	and EepHomeCoID <> 'Z3OZH'
 
     ;
 

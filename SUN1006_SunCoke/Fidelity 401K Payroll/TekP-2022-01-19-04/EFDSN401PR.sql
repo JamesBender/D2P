@@ -5,7 +5,7 @@ EFDSN401PR: Fidelity Payroll Export
 FormatCode:     EFDSN401PR
 Project:        Fidelity Payroll Export
 Client ID:      SUN1006
-Date/time:      2022-06-07 11:31:42.970
+Date/time:      2022-06-14 10:08:20.550
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -402,16 +402,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFDSN401PR_20220607.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFDSN401PR_20220614.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Fidely 401K Payroll Export','202002019','EMPEXPORT','ONDEMAND','Feb 10 2022 12:00AM','EFDSN401PR',NULL,NULL,NULL,'202002019','Feb  1 2020 12:00AM','Dec 30 1899 12:00AM','201705011','8027','','NEHRLY,NESAL,GGSENP,GGH,GGHNP,GGM,GGSNP,GGSE,GGS,GGSOE,GGSON,GGSECA,GMSH,GMSS,HOPEH,HOPES,N51,OBH,OBG,NYE,NYD,OBE,OBA,OBF,OBB,MSH,MBADMN,MBPROD,NRTHFH,NRTHFS,OBS,OBS2,RECRT,PBADMN,PBPROD,PBPRNY,PWPROD,OBD,SIERRA,SPRLT,COAST,COASTC,CORP,CPS','201705011',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','5WU8J',NULL,NULL,NULL,'Schedule Session','202112169','EMPEXPORT','SCH_SUNPAR','Feb 10 2022 12:00AM','EFDSN401PR',NULL,NULL,NULL,'202112169','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202112091','134','',NULL,'202112091',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','THVLX,RXRA1,RXR08,RXQUC,RXR2J,RXR4M,TLLUS,RXR86,TKZGH,RXQLI,TMUGQ,OBW2M,RXRBK',NULL,NULL,NULL,'Payroll Test','202205279','EMPEXPORT','TEST','Jun  1 2022  9:10AM','EFDSN401PR',NULL,NULL,NULL,'202205279','May 27 2022 12:00AM','Dec 30 1899 12:00AM','202205271','2051','eecPayGroup','779HRY,779SAL,768HRY,768SAL,768SNE,772HRY,772SAL,772SNE,759HRY,759SAL,759SNE,775HRY,775SAL,775SNE,705SAL,705HRY,705SNE,784HRY,784SAL,787HNU,787HRY,787SAL,785HNU,785SAL,783HRY,783SAL,701HRY,701SAL,701SNE,713HRY,713SAL,713SNE,722HRY,722SAL,722SNE,722HSV,722SSV','202205271',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Fidely 401K Payroll Export','202205279','EMPEXPORT','ONDEMAND','Feb 10 2022 12:00AM','EFDSN401PR',NULL,NULL,NULL,'202205279','Feb  1 2020 12:00AM','Dec 30 1899 12:00AM','202205271','8027','','NEHRLY,NESAL,GGSENP,GGH,GGHNP,GGM,GGSNP,GGSE,GGS,GGSOE,GGSON,GGSECA,GMSH,GMSS,HOPEH,HOPES,N51,OBH,OBG,NYE,NYD,OBE,OBA,OBF,OBB,MSH,MBADMN,MBPROD,NRTHFH,NRTHFS,OBS,OBS2,RECRT,PBADMN,PBPROD,PBPRNY,PWPROD,OBD,SIERRA,SPRLT,COAST,COASTC,CORP,CPS','202205271',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','5WU8J',NULL,NULL,NULL,'Schedule Session','202205279','EMPEXPORT','SCH_SUNPAR','Feb 10 2022 12:00AM','EFDSN401PR',NULL,NULL,NULL,'202205279','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202205271','134','',NULL,'202205271',dbo.fn_GetTimedKey(),NULL,'LKING21',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','THVLX,RXRA1,RXR08,RXQUC,RXR2J,RXR4M,TLLUS,RXR86,TKZGH,RXQLI,TMUGQ,OBW2M,RXRBK',NULL,NULL,NULL,'Payroll Test','202205279','EMPEXPORT','TEST','Jun  9 2022  7:20PM','EFDSN401PR',NULL,NULL,NULL,'202205279','May 27 2022 12:00AM','Dec 30 1899 12:00AM','202205271','1993','eecPayGroup','779HRY,779SAL,768SAL,768SNE,772HRY,772SAL,759HRY,759SAL,775SAL,784HRY,784SAL,787HNU,787HRY,787SAL,785SAL,783HRY,783SAL,722SAL,722SNE','202205271',dbo.fn_GetTimedKey(),NULL,'us3lKiSUN1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -921,11 +921,10 @@ CREATE TABLE [dbo].[U_EFDSN401PR_File] (
 IF OBJECT_ID('U_EFDSN401PR_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EFDSN401PR_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
-    [pdhdedcode] char(5) NOT NULL,
-    [PdhSource] varchar(8) NULL,
+    [PdhSource] varchar(11) NULL,
+    [PlanNo] varchar(5) NULL,
     [PdhEECurAmt] money NULL,
-    [PdhERCurAmt] money NULL,
-    [PlanNo] varchar(5) NULL
+    [PdhERCurAmt] money NULL
 );
 
 -----------
@@ -1157,10 +1156,17 @@ BEGIN
                           WHEN PdhDedCode IN ('401KR', '401RU', '40CKR', '4CKRU') THEN 'ROTH' 
                           WHEN PdhDedCode IN ('4KM82', '401KM', '4GTMT') THEN 'MATCH' 
                           WHEN PdhDedCode IN ('4SUBP', '4SUNP', '4TRMP') THEN 'BASIC' 
+                          WHEN PdhDedCode in ('409AP') THEN 'BASESALARY'
+                          WHEN PdhDedCode in ('409NF') THEN 'ERDisc'+LEFT(@StartPerControl,4)
+                          WHEN PdhDedCode in ('40F') THEN 'ERMatch'+LEFT(@StartPerControl,4)
+                          WHEN PdhDedCode in ('40SH' ) THEN 'ERSH'+LEFT(@StartPerControl,4)
+                          --WHEN PdhDedCode in ('409NF') THEN 'ERDisc2023'
+                          --WHEN PdhDedCode in ('40F') THEN 'ERMatch2023'
+                          --WHEN PdhDedCode in ('40SH') THEN 'ERSH2023'
                           WHEN PdhDedCode IN ('LOAN', 'LOAN2','LOAN3','LOAN4', 'LOAN5', 'LOAN6') THEN 'LOAN1' 
                      END
 
-		,PlanNo =  CASE WHEN PdhDedCode in ('401K', '401KU', '401T5', '401TD', '4GTMA', '4GTMC', '4HAVC', '4HAVH',
+        ,PlanNo =  CASE WHEN PdhDedCode in ('401K', '401KU', '401T5', '401TD', '4GTMA', '4GTMC', '4HAVC', '4HAVH',
                                            '401KR', '401RU', '40CKR', '4CKRU','4KM82', '401KM', '4GTMT', '4SUBP', '4SUNP', '4TRMP') THEN '1102M'
                         WHEN PdhDedCode in ('409AP', '409NF', '40F', '40SH' ) THEN '54099'
                    END
@@ -1170,7 +1176,7 @@ BEGIN
     INTO dbo.U_EFDSN401PR_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     WHERE 
-	PdhPerControl BETWEEN @StartPerControl AND @EndPerControl AND 
+    PdhPerControl BETWEEN @StartPerControl AND @EndPerControl AND 
     PdhDedCode IN ('4SUBP','4SUNP','4TRMP','401K','401KU','401T5','401TD','4GTMA','4GTMC','4HAVC','4HAVH',
                    '401KR','401RU','40CKR','4CKRU','4KM82','401KM','4GTMT','409AP','40SH','40F','409NF',
                    'LOAN','LOAN2','LOAN3','LOAN4','LOAN5','LOAN6','409AP','409NF','40F','40SH')
@@ -1178,6 +1184,13 @@ BEGIN
                           WHEN PdhDedCode IN ('401KR', '401RU', '40CKR', '4CKRU') THEN 'ROTH' 
                           WHEN PdhDedCode IN ('4KM82', '401KM', '4GTMT') THEN 'MATCH' 
                           WHEN PdhDedCode IN ('4SUBP', '4SUNP', '4TRMP') THEN 'BASIC' 
+                          WHEN PdhDedCode in ('409AP') THEN 'BASESALARY'
+                          WHEN PdhDedCode in ('409NF') THEN 'ERDisc'+LEFT(@StartPerControl,4)
+                          WHEN PdhDedCode in ('40F') THEN 'ERMatch'+LEFT(@StartPerControl,4)
+                          WHEN PdhDedCode in ('40SH' ) THEN 'ERSH'+LEFT(@StartPerControl,4)
+                          --WHEN PdhDedCode in ('409NF') THEN 'ERDisc2023'
+                          --WHEN PdhDedCode in ('40F') THEN 'ERMatch2023'
+                          --WHEN PdhDedCode in ('40SH') THEN 'ERSH2023'
                           WHEN PdhDedCode IN ('LOAN', 'LOAN2','LOAN3','LOAN4', 'LOAN5', 'LOAN6') THEN 'LOAN1' 
                      END
 ,CASE WHEN PdhDedCode in ('401K', '401KU', '401T5', '401TD', '4GTMA', '4GTMC', '4HAVC', '4HAVH',
@@ -1312,8 +1325,7 @@ BEGIN
 
     
     Delete  from dbo.U_EFDSN401PR_Employees WHERE  xEEID IN (SELECT eeceeid from dbo.EmpComp WITH (NOLOCK) where EecUnionNational in ('786','673', '364', '179')); 
-    --Delete  from dbo.U_EFDSN401PR_Employees WHERE xEEID IN (SELECT eeceeid from dbo.EmpComp WITH (NOLOCK) where eecpaygroup in ('GGHNP', 'GGSNP', 'GGSENP')) ; 
-
+    
     IF OBJECT_ID('U_EFDSN401PR_drvTbl_H01','U') IS NOT NULL
         DROP TABLE dbo.U_EFDSN401PR_drvTbl_H01;
     SELECT DISTINCT
@@ -1346,28 +1358,7 @@ BEGIN
     WHERE Record01Change = 'Y' or audNewHire = 'Y' or  audReHire = 'Y';
 
 
-    ---------------------------------
-    -- DETAIL RECORD - U_EFDSN401PR_drvTbl_02D
-    ---------------------------------
-    --IF OBJECT_ID('U_EFDSN401PR_drvTbl_02D','U') IS NOT NULL
-    --    DROP TABLE dbo.U_EFDSN401PR_drvTbl_02D;
-    --SELECT DISTINCT
-    --    drvPLANNUMBER = ''
-    --    ,drvBATCHGROUPID = ''
-    --    ,drvSOCIALSECURITYNUMBER = STUFF(STUFF(EepSSN,4,0,'-'), 7,0,'-')
-    --    ,drvHIREDATE = EecDateOfOriginalHire
-    --    ,drvVestingDAte = '00000000'
-    --    ,drvDATEOFBIRTH = EepDateOfBirth
-    --    ,drvDateSwitch = CASE WHEN audReHire = 'Y' THEN '5' ELSE '' END
-    --    ,drvTERMINATIONDATE = CASE WHEN EecEmplStatus = 'T' THEN replace(convert(char(10), EecDateOfTermination, 101), '/', '')  ELSE '00000000' END
-    --    ,drvEEID = xEEID
-    --    ,drvCoID = xCoID
-    --    ,drvInitialSort = RTRIM(EepSSN)
-    --    ,drvSubSort = '02D'
-    --INTO dbo.U_EFDSN401PR_drvTbl_02D
-    --FROM dbo.U_EFDSN401PR_Employees WITH (NOLOCK)
-    --WHERE Record02DChange = 'Y'  or audNewHire = 'Y' or  audReHire = 'Y' or audTerm = 'Y' ;
-
+    
     ---------------------------------
     -- DETAIL RECORD - U_EFDSN401PR_drvTbl_02E
     ---------------------------------
@@ -1650,11 +1641,25 @@ BEGIN
                           WHEN PdhSource IN ('ROTH') THEN '02' --ROTH
                           WHEN PdhSource IN ('MATCH') THEN '04' --MATCH
                           WHEN PdhSource IN ('BASIC') THEN '05' --BASIC
+                          WHEN PdhSource in ('BASESALARY') THEN '01'
+                          WHEN PdhSource in ('ERDisc2022') THEN '03'
+                          WHEN PdhSource in ('ERMatch2022') THEN '04'
+                          WHEN PdhSource in ('ERSH2022') THEN '05'
+                          WHEN PdhSource in ('ERDisc2023') THEN '06'
+                          WHEN PdhSource in ('ERMatch2023') THEN '07'
+                          WHEN PdhSource in ('ERSH2023') THEN '08'
                      END
         ,drvAMOUNT = CASE WHEN PdhSource in ('EEPRETAX') and PdhEECurAmt <> 0.00   then CONVERT(VARCHAR(13),PdhEECurAmt)
                           WHEN PdhSource in ('ROTH') and PdhEECurAmt <> 0.00   then CONVERT(VARCHAR(13),PdhEECurAmt)
                           WHEN PdhSource in ('MATCH') and PdhERCurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhERCurAmt)
                           WHEN PdhSource in ('BASIC') and PdhERCurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhERCurAmt)
+                          WHEN PdhSource in ('BASESALARY') and PdhEECurAmt <> 0.00   then CONVERT(VARCHAR(13),PdhEECurAmt)
+                          WHEN PdhSource in ('ERDisc2022') and PdhERCurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhERCurAmt)
+                          WHEN PdhSource in ('ERMatch2022') and PdhEECurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhEECurAmt)
+                          WHEN PdhSource in ('ERSH2022') and PdhEECurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhEECurAmt)
+                          WHEN PdhSource in ('ERDisc2023') and PdhERCurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhERCurAmt)
+                          WHEN PdhSource in ('ERMatch2023') and PdhEECurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhEECurAmt)
+                          WHEN PdhSource in ('ERSH2023') and PdhEECurAmt <> 0.00  then CONVERT(VARCHAR(13),PdhEECurAmt)
                       END 
         ,drvEEID = PdhEEID
         ,drvInitialSort = RTRIM(EepSSN)
@@ -1750,10 +1755,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '201702011'
-       ,ExpStartPerControl     = '201702011'
-       ,ExpLastEndPerControl   = '201702019'
-       ,ExpEndPerControl       = '201702019'
+    SET ExpLastStartPerControl = '202205271'
+       ,ExpStartPerControl     = '202205271'
+       ,ExpLastEndPerControl   = '202205279'
+       ,ExpEndPerControl       = '202205279'
 WHERE ExpFormatCode = 'EFDSN401PR';
 
 **********************************************************************************/

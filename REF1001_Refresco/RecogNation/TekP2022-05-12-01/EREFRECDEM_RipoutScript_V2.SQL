@@ -5,7 +5,7 @@ EREFRECDEM: RecogNation Demographic
 FormatCode:     EREFRECDEM
 Project:        RecogNation Demographic
 Client ID:      REF1001
-Date/time:      2022-06-01 10:31:34.707
+Date/time:      2022-06-10 15:13:57.143
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -14,7 +14,7 @@ Server:         E4SUP3DB01
 Database:       ULTIPRO_RBUS
 Web Filename:   REF1001_XAC7C_EEHISTORY_EREFRECDEM_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
-TestPath:      \\us.saas\E4\Public\REF1001\Exports\RecogNation
+TestPath:      
 
 **********************************************************************************/
 
@@ -158,7 +158,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EREFRECDEMZ0','50','H','01','29',NULL,'HRID',NULL,NULL,'"HRID"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EREFRECDEMZ0','50','H','01','30',NULL,'HRName',NULL,NULL,'"HRName"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EREFRECDEMZ0','50','H','01','31',NULL,'HREmail',NULL,NULL,'"HREmail"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EREFRECDEMZ0','50','H','01','32',NULL,'Union',NULL,NULL,'"Union"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EREFRECDEMZ0','50','H','01','32',NULL,'Union',NULL,NULL,'"Union"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EREFRECDEMZ0','50','H','01','33',NULL,'PreferredLanguage',NULL,NULL,'"PreferredLanguage"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EREFRECDEMZ0','50','D','10','1',NULL,'Location',NULL,NULL,'"drvLocation"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EREFRECDEMZ0','50','D','10','2',NULL,'CostCenter',NULL,NULL,'"drvCostCenter"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EREFRECDEMZ0','50','D','10','3',NULL,'ProfitCenter',NULL,NULL,'"drvProfitCenter"','(''UA''=''T,'')');
@@ -191,6 +192,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EREFRECDEMZ0','62','D','10','30',NULL,'HRName',NULL,NULL,'"drvHRName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EREFRECDEMZ0','63','D','10','31',NULL,'HREmail',NULL,NULL,'"drvHREmail"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EREFRECDEMZ0','64','D','10','32',NULL,'Union',NULL,NULL,'"drvUnion"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EREFRECDEMZ0','64','D','10','33',NULL,'PreferredLanguage',NULL,NULL,'"drvPreferredLanguage"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -203,7 +205,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREFRECDEM_20220601.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREFRECDEM_20220610.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -212,7 +214,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'RecogNation Demographic','202205189','EMPEXPORT','ONDEMAND',NULL,'EREFRECDEM',NULL,NULL,NULL,'202205189','May 18 2022  1:40PM','May 18 2022  1:40PM','202205181',NULL,'','','202205181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202205189','EMPEXPORT','SCHEDULED',NULL,'EREFRECDEM',NULL,NULL,NULL,'202205189','May 18 2022  1:40PM','May 18 2022  1:40PM','202205181',NULL,'','','202205181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test Purposes Only','202205319','EMPEXPORT','TEST','Jun  1 2022 12:00AM','EREFRECDEM',NULL,NULL,NULL,'202205319','May 31 2022 12:00AM','Dec 30 1899 12:00AM','202205181','5196','','','202205181',dbo.fn_GetTimedKey(),NULL,'us3mWaREF1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202206019','EMPEXPORT','TEST','Jun  1 2022 12:00AM','EREFRECDEM',NULL,NULL,NULL,'202206019','Jun  1 2022 12:00AM','Dec 30 1899 12:00AM','202205181','5201','','','202205181',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -226,11 +228,9 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','InitialSort','C','drvSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','TestPath','V','\\us.saas\E4\Public\REF1001\Exports\RecogNation');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','UDESPath','C','\\us.saas\0\data_exchange\REF1001\Exports\');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EREFRECDEM','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -269,7 +269,7 @@ CREATE TABLE [dbo].[U_EREFRECDEM_drvTbl] (
     [drvCostCenter] varchar(10) NULL,
     [drvProfitCenter] varchar(10) NULL,
     [drvDepartment] varchar(10) NULL,
-    [drvJobTitle] varchar(25) NOT NULL,
+    [drvJobTitle] varchar(8000) NULL,
     [drvEmployeeStatus] varchar(6) NULL,
     [drvEmployee_ID] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
@@ -292,7 +292,8 @@ CREATE TABLE [dbo].[U_EREFRECDEM_drvTbl] (
     [drvHRID] char(9) NULL,
     [drvHRName] varchar(201) NULL,
     [drvHREmail] varchar(50) NULL,
-    [drvUnion] char(12) NULL
+    [drvUnion] char(12) NULL,
+    [drvPreferredLanguage] varchar(45) NULL
 );
 
 -----------
@@ -406,7 +407,7 @@ BEGIN
         ,drvCostCenter = eecorglvl3
         ,drvProfitCenter = eecorglvl2
         ,drvDepartment = eecorglvl1
-        ,drvJobTitle = JbcDesc --JbcDesc where JbcCode = EecJobCode 
+        ,drvJobTitle = replace(JbcDesc,',','' )  --JbcDesc --JbcDesc where JbcCode = EecJobCode 
         ,drvEmployeeStatus = CASE WHEN eecemplstatus IN ('A',  'S') THEN 'Active' END
         ,drvEmployee_ID = eecempno
         ,drvNameFirst = EepNameFirst
@@ -430,6 +431,7 @@ BEGIN
         ,drvHRName =  NciNameFirst + ' ' + NciNameLast --HR manager by location - eepnamefirst space eepnamelast from codCode FROM dbo.Codes ON ON EecLocation = CodCode where codTable = 'CO_HRMANAGERBYLOCATI' - see coding used in export EBENEXDEMO
         ,drvHREmail =  NciEmailAddress --HR manager by location - eepaddressemail from codCode FROM dbo.Codes ON ON EecLocation = CodCode where codTable = 'CO_HRMANAGERBYLOCATI' - see coding used in export EBENEXDEMO
         ,drvUnion = CASE WHEN EecUnionLocal <> 'N' THEN EecUnionLocal END-- EecUnionNational
+        ,drvPreferredLanguage =  Codes.CodDesc
    INTO dbo.U_EREFRECDEM_drvTbl
     FROM dbo.U_EREFRECDEM_EEList WITH (NOLOCK)
    JOIN dbo.vw_int_EmpComp  WITH (NOLOCK)
@@ -452,6 +454,8 @@ BEGIN
         ON unicode = EecUnionLocal
     LEFT JOIN [dbo].[fn_MP_CustomFields_EmpPers_Export](null, null, null, null)
         ON EEID = xEEID 
+    LEFT JOIN (select CodCode, CodDesc from Codes WITH (NOLOCK)
+        where codtable = 'PAYSTMTLANG') Codes on Codes.CodCode = EecLanguageCode
         WHERE eecemplstatus IN ('A',  'S')
         AND EecEEtype IN( 'REG', 'HS', 'EXE')
     ;
@@ -463,7 +467,6 @@ BEGIN
     BEGIN
         UPDATE dbo.U_dsi_Parameters
             SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  WHEN @ExportCode LIKE '%TEST%' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
                                   WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
                                   ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
                              END
