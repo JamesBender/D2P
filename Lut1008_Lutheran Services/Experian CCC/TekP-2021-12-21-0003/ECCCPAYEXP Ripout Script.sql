@@ -5,7 +5,7 @@ ECCCPAYEXP: CCC Payroll Export
 FormatCode:     ECCCPAYEXP
 Project:        CCC Payroll Export
 Client ID:      LUT1008
-Date/time:      2022-02-21 05:42:57.327
+Date/time:      2022-06-15 12:29:35.497
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -198,7 +198,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','ECCCPAYEXPZ0','50','H','01','67',NULL,'Enrolled in Vision',NULL,NULL,'"Enrolled in Vision"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','ECCCPAYEXPZ0','50','H','01','68',NULL,'Vision Policy Number',NULL,NULL,'"Vision Policy Number"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','ECCCPAYEXPZ0','50','H','01','69',NULL,'Vision Phone Number',NULL,NULL,'"Vision Phone Number"','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECCCPAYEXPZ0','50','D','10','1',NULL,'Company Identifier',NULL,NULL,'""','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECCCPAYEXPZ0','50','D','10','1',NULL,'Company Identifier',NULL,NULL,'"17890"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECCCPAYEXPZ0','50','D','10','2',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECCCPAYEXPZ0','50','D','10','3',NULL,'State',NULL,NULL,'"drvState"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECCCPAYEXPZ0','50','D','10','4',NULL,'Employee ID',NULL,NULL,'"drvEmployee"','(''UA''=''T|'')');
@@ -279,16 +279,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECCCPAYEXP_20220221.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECCCPAYEXP_20220615.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CCC Payroll Export','202202149','EMPEXPORT','ONDEM_XOE','Feb 21 2022  5:42AM','ECCCPAYEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  9:57AM','Feb 14 2022  9:57AM','202202141','4861','','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CCC Payroll Export-Sched','202202149','EMPEXPORT','SCH_ECCCPA','Feb 21 2022  5:42AM','ECCCPAYEXP',NULL,NULL,NULL,'202202149','Feb 14 2022  9:57AM','Feb 14 2022  9:57AM','202202141','4861','','','202202141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'CCC Payroll Export-Test','202202149','EMPEXPORT','TEST_XOE','Feb 21 2022  5:35AM','ECCCPAYEXP',NULL,NULL,NULL,'202202149','Feb 14 2022 12:00AM','Dec 30 1899 12:00AM','202202141','4861','','','202202141',dbo.fn_GetTimedKey(),NULL,'us3jBeLUT1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CCC Payroll Export','202008076','EMPEXPORT','ONDEM_XOE','Feb 21 2022  5:42AM','ECCCPAYEXP',NULL,NULL,NULL,'202008076','Feb 14 2022  9:57AM','Feb 14 2022  9:57AM','202008076','4861','','','202008076',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'CCC Payroll Export-Sched','202008076','EMPEXPORT','SCH_ECCCPA','Feb 21 2022  5:42AM','ECCCPAYEXP',NULL,NULL,NULL,'202008076','Feb 14 2022  9:57AM','Feb 14 2022  9:57AM','202008076','4861','','','202008076',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'CCC Payroll Export-Test','202008076','EMPEXPORT','TEST_XOE','Jun 14 2022 12:16PM','ECCCPAYEXP',NULL,NULL,NULL,'202008076','Aug  7 2020 12:00AM','Dec 30 1899 12:00AM','202008076','3502','',NULL,'202008076',dbo.fn_GetTimedKey(),NULL,'us3lKiLUT1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -369,10 +369,10 @@ CREATE TABLE [dbo].[U_ECCCPAYEXP_drvTbl] (
     [drvReasonCode] char(6) NULL,
     [drvPayPeriodStartDate] datetime NULL,
     [drvPayPeriodEndDate] datetime NULL,
-    [drvCheckDate] varchar(8) NULL,
+    [drvCheckDate] datetime NULL,
     [drvHoursPaidByType] nvarchar(4000) NULL,
     [drvGrossWagesByType] nvarchar(4000) NULL,
-    [drvPayType] varchar(1) NOT NULL,
+    [drvPayType] varchar(2) NOT NULL,
     [drvEmployeeYTDEarnings] nvarchar(4000) NULL,
     [drvEmployeeYTDHours] nvarchar(4000) NULL
 );
@@ -490,7 +490,7 @@ BEGIN
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
-    IF OBJECT_ID('U_ECCCPAYEXP_PEarHist','U') IS NOT NULL
+  /* IF OBJECT_ID('U_ECCCPAYEXP_PEarHist','U') IS NOT NULL
         DROP TABLE dbo.U_ECCCPAYEXP_PEarHist;
     SELECT DISTINCT
          PehEEID
@@ -514,7 +514,7 @@ BEGIN
     WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
     AND PehPerControl <= @EndPerControl
     GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
+    HAVING SUM(PehCurAmt) <> 0.00; */
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -553,7 +553,7 @@ BEGIN
                                 END
         ,drvEmployeeType = EecFullTimeOrPartTime
         ,drvRateOfPay = FORMAT(CASE WHEN EecSalaryOrHourly = 'H' THEN EecHourlyPayRate ELSE EecAnnSalary END, '#0.00')
-        ,drvRateOfPayType = CASE WHEN EecSalaryOrHourly = 'T' THEN 'H' ELSE 'A' END
+        ,drvRateOfPayType = CASE WHEN EecSalaryOrHourly = 'H' THEN 'H' ELSE 'A' END
         ,EmployeeHomePhone = CASE WHEN EepPhoneHomeIsPrivate = 'N' THEN EepPhoneHomeNumber END
         ,drvEmployeeCellPhone = EfoPhoneNumber
         ,drvAddressLine1 = EepAddressLine1
@@ -606,16 +606,32 @@ BEGIN
                         ) AS CP
                 WHERE RN = 1
             ) AS Cel
-        ON EfoEEID = xEEID    
+        ON EfoEEID = xEEID   
+    --LEFT JOIN (
+ --              SELECT PgpPayGroup as PayGroup
+ --                   ,LEFT(MAX(PgpPeriodControl),8) as PayDate
+ --                   ,MAX(PgpPeriodStartDate) PrgPeriodStart
+ --                   ,MAX(PgpPeriodEndDate) PrgPeriodEnd 
+ --               FROM dbo.PgPayPer WITH (NOLOCK)
+ --               WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
+    --            GROUP BY PgpPayGroup
+    --            ) PayGrp
+ --       ON PayGrp.Paygroup = eecpaygroup
     LEFT JOIN (
-                SELECT PgpPayGroup as PayGroup
-                    ,LEFT(MAX(PgpPeriodControl),8) as PayDate
-                    ,MAX(PgpPeriodStartDate) PrgPeriodStart
-                    ,MAX(PgpPeriodEndDate) PrgPeriodEnd 
-                FROM dbo.PgPayPer WITH (NOLOCK)
-                WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
-                GROUP BY PgpPayGroup) PayGrp
-        ON PayGrp.Paygroup = eecpaygroup
+                SELECT PrgEEID AS PayGrpEEID, PrgCOID PayGrpCOID, PrgPerControl
+                    ,MAX(PrgPayDate) AS PayDate
+                    ,MAX(PrgPeriodStartDate) AS PrgPeriodStart
+                    ,MAX(PrgPeriodEndDate) AS PrgPeriodEnd
+                from dbo.PayReg WITH (NOLOCK)
+                WHERE PrgPerControl BETWEEN @StartPerControl AND @EndPerControl 
+                --and PrgEEID = @EEID
+                GROUP By PrgEEID, PrgCOID, PrgPerControl
+                ) PayGrp
+        ON PayGrpEEID = xEEID 
+            AND PayGrpCOID = xCOID
+    LEFT JOIN PayReg
+        on PrgEEID = xEEID
+        --AND PrgTransactionType <> 'T'
     JOIN (
             SELECT PehEEID
                 ,PehCOID
@@ -628,24 +644,32 @@ BEGIN
                     SELECT PehEEID
                         ,PehCOID
                         ,PehPerControl
-                        ,PehEarnCode =  CASE WHEN PehEarnCode IN ('8B','INCEN','INCNT','REFBO') THEN 'B'
-                                        WHEN PehEarnCode IN ('7L','CRACC','CRDEN','CRGRN','CRHLF','CRHOS','CRLGL','CRMED','CRVIS','CRVLF','EXP','EXPNG','GTL','MOV','PHON','RABBI','REFDD','STPND') THEN 'M'
-                                        WHEN PehEarnCode IN ('9O','9S','9SLO','OT','SFTOT','SNAPO') THEN 'O'
-                                        WHEN PehEarnCode IN ('2F','2H','3P','3PS','3V','4S','4SS','7B','7C','7D','7J','7N','7O','7OD','7R','7RH','7S','9SL','COVID','CRSTD','ERL','LWOP','LWP','MILOB','PBGH','REG','SICK','SNAP','SNPTR','SPFL') THEN 'R'                                       
+                        ,PehEarnCode =  CASE WHEN PehEarnCode IN ('8B','STPND','REFBO') THEN 'B'
+                                            WHEN PehEarnCode IN ('7S') THEN 'E'
+                                            WHEN PehEarnCode IN ('2F', '2H', 'SPFL') THEN 'H'
+                                            WHEN PehEarnCode IN ('INCEN','INCNT') THEN 'I'
+                                            WHEN PehEarnCode IN ('3P','3PS','3V') THEN 'N'
+                                        WHEN PehEarnCode IN ('9O','9SLO','OT','SFTOT','SNAPO') THEN 'O'
+                                        WHEN PehEarnCode IN ('7B','7C','7D','7J','7L','7O','7OD','9S','9SL','ERL','LWOP','LWP','MILOB','PBGH','REG','SNAP','SNPTR') THEN 'R'                                       
+                                        WHEN PehEarnCode IN ('7R','7RH') THEN 'RA'
+                                        WHEN PehEarnCode IN ('4S','4SS','SICK') THEN 'S'
+                                        WHEN PehEarnCode IN ('7N') THEN 'W'
                                         ELSE 'M'
                                         END
                         ,PehCurAmt
                         ,PehCurHrs
                     FROM dbo.PEarHist WITH (NOLOCK)
-                    WHERE --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-                        --AND 
-                        PehPerControl <= @EndPerControl) AS IPEH
+                    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+                        AND PehPerControl <= @EndPerControl) AS IPEH
                     --WHERE PehPerControl BETWEEN @StartPerControl AND @EndPerControl --) AS IPEH
             GROUP BY PehEEID, PehCOID, PehEarnCode) AS Peh
         ON PehEEID = xEEID 
-        AND PehCOID = xCOID
-    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND EecDateOfTermination BETWEEN DATEADD(YEAR, -1, @EndDate) AND @EndDate)
+        --AND PehCOID = xCOID
+    WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (PehCurAmt <> 0 OR PehCurHrs <> 0 OR EecDateOfTermination BETWEEN DATEADD(YEAR, -1, @EndDate) AND @EndDate))) and PrgTransactionType <> 'T'
+    
     ;
+
+    --WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (PehCurAmt > 0 OR PehCurHrs > 0 OR EecDateOfTermination BETWEEN DATEADD(YEAR, -1, @EndDate) AND @EndDate))) and PrgTransactionType <> 'T'
 
     --==========================================
     -- Set FileName
@@ -675,10 +699,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202202071'
-       ,expStartPerControl     = '202202071'
-       ,expLastEndPerControl   = '202202149'
-       ,expEndPerControl       = '202202149'
+    SET expLastStartPerControl = '202008076'
+       ,expStartPerControl     = '202008076'
+       ,expLastEndPerControl   = '202008076'
+       ,expEndPerControl       = '202008076'
 WHERE expFormatCode = 'ECCCPAYEXP';
 
 **********************************************************************************/

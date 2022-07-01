@@ -5,7 +5,7 @@ EFSMI834EX: First Stop Med 834 Export
 FormatCode:     EFSMI834EX
 Project:        First Stop Med 834 Export
 Client ID:      HUN1008
-Date/time:      2022-05-25 11:58:25.937
+Date/time:      2022-06-29 06:02:45.163
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -349,7 +349,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFSMI834EX_20220525.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFSMI834EX_20220629.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -855,7 +855,14 @@ BEGIN
     )
 
     DELETE FROM dbo.U_EFSMI834EX_EEList WHERE xEEID IN (
-        SELECT DISTINCT EecEEID FROm dbo.EmpComp WHERE EecEmplStatus = 'T'
+        SELECT DISTINCT EecEEID FROm (
+                                            SELECT EecEEID, EecEmplStatus
+                                            FROM (
+                                                    SELECT EecEEID, EecEmplStatus, ROW_NUMBER() OVER (PARTITION BY EecEEID ORDER BY EecEmplStatusStartDate DESC) AS RN
+                                                    FROM EmpComp        
+                                                    ) AS IEEC
+                                            WHERE RN = 1) AS X
+        WHERE EecEmplStatus = 'T'
     )
 
     DELETE FROM dbo.U_EFSMI834EX_EEList WHERE xEEID IN (
@@ -1223,6 +1230,7 @@ BEGIN
                                     WHEN BdmDedCode = '3510' THEN 'PPO Plan'
                                     WHEN BdmDedCode = '3515' THEN 'PPO Wellness Plan'
                                     WHEN BdmDedCode = '3518' THEN 'PPO 2'
+                                    WHEN BdmDedcode = '3513' THEN 'PPO Wellness'
                                     END
         ,drvHD05_CoverageLevelCode = CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN
                                                 CASE WHEN BdmBenOption IN ('EE') THEN 'EMP'

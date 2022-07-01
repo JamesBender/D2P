@@ -5,7 +5,7 @@ ECIGACHEXP: Cigna Acc/Crit Ill/Hosp Export
 FormatCode:     ECIGACHEXP
 Project:        Cigna Acc/Crit Ill/Hosp Export
 Client ID:      PHO1004
-Date/time:      2022-03-15 06:10:25.143
+Date/time:      2022-06-21 06:48:20.150
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -205,8 +205,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ECIGACHEXPZ0','50','D','10','22',NULL,'QLE/Revised Eligibility Date',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ECIGACHEXPZ0','50','D','10','23',NULL,'Plan Type',NULL,NULL,'"drvPlanType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ECIGACHEXPZ0','50','D','10','24',NULL,'AI/CI/HC Coverage Tier',NULL,NULL,'"drvAiCiHcCoverTier"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECIGACHEXPZ0','50','D','10','25',NULL,'EE CI Approved Coverage Amount',NULL,NULL,'"30000"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECIGACHEXPZ0','50','D','10','26',NULL,'SP CI Approved Coverage Amount',NULL,NULL,'"30000"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECIGACHEXPZ0','50','D','10','25',NULL,'EE CI Approved Coverage Amount',NULL,NULL,'"drvEECIAppCovAmount"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECIGACHEXPZ0','50','D','10','26',NULL,'SP CI Approved Coverage Amount',NULL,NULL,'"drvSPCIAppCovAmount"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECIGACHEXPZ0','50','D','10','27',NULL,'SP Coverage Effective Date',NULL,NULL,'"drvSpCoverageEffectiveDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECIGACHEXPZ0','50','D','10','28',NULL,'CH CI Approved Coverage Amount',NULL,NULL,'"15000"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ECIGACHEXPZ0','50','D','10','29',NULL,'CH Coverage Effective Date',NULL,NULL,'"drvChCoverageEffectiveDate"','(''UD101''=''T,'')');
@@ -239,18 +239,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220315.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220621.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202203119','EMPEXPORT','OEACTIVE',NULL,'ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202203119','EMPEXPORT','OEPASSIVE',NULL,'ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna Acc/Crit Ill/Hosp Export','202203119','EMPEXPORT','ONDEM_XOE',NULL,'ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna Acc/Crit Ill/Hosp -Sched','202203119','EMPEXPORT','SCH_ECIGAC',NULL,'ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Cigna Acc/Crit Ill/Hosp -Test','202203119','EMPEXPORT','TEST_XOE',NULL,'ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202203119','EMPEXPORT','OEACTIVE','Mar 15 2022  6:14AM','ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011','343','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202203119','EMPEXPORT','OEPASSIVE','Mar 15 2022  6:14AM','ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011','347','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cigna Acc/Crit Ill/Hosp Export','202203119','EMPEXPORT','ONDEM_XOE','Mar 15 2022  6:15AM','ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011','346','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Cigna Acc/Crit Ill/Hosp -Sched','202203119','EMPEXPORT','SCH_ECIGAC','Mar 15 2022  6:17AM','ECIGACHEXP',NULL,NULL,NULL,'202203119','Mar  4 2022  4:41AM','Mar  4 2022  4:41AM','202201011','346','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',8OYA9,GHNE0',NULL,NULL,NULL,'Cigna Acc/Crit Ill/Hosp -Test','202204229','EMPEXPORT','TEST_XOE','Apr 22 2022  5:26PM','ECIGACHEXP',NULL,NULL,NULL,'202204229','Apr 22 2022 12:00AM','Dec 30 1899 12:00AM','202201011','360','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cBePHO1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -357,7 +357,7 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(14) NULL,
+    [drvSort] char(12) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvStreetAddress] varchar(8000) NULL,
@@ -375,6 +375,8 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvCoverageEffectiveDate] datetime NULL,
     [drvPlanType] varchar(8) NULL,
     [drvAiCiHcCoverTier] varchar(10) NULL,
+    [drvEECIAppCovAmount] nvarchar(4000) NULL,
+    [drvSPCIAppCovAmount] nvarchar(4000) NULL,
     [drvSpCoverageEffectiveDate] datetime NULL,
     [drvChCoverageEffectiveDate] datetime NULL,
     [drvSpNameFirst] varchar(100) NULL,
@@ -647,7 +649,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = BdmDedCode + ' - ' + ISNULL(BdmBenOption, 'n/a')
+        ,drvSort = xEEID
         -- standard fields above and additional driver fields below
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
@@ -676,23 +678,32 @@ BEGIN
                         WHEN BdmDedCode = 'VACC' THEN 'A1962021'
                         WHEN BdmDedCode IN ('CIE','CIECH','CIEFM','CIESP') THEN 'CI961932'
                         END
+
         ,drvAiCiHcCoverTier =   CASE WHEN BdmDedCode = 'CIESP' THEN 'EE Plus SP'
                                 WHEN BdmDedCode IN ('VACC','VHOSP') AND BdmBenOption = 'EEC' THEN 'EE Plus CH'
                                 WHEN BdmDedCode = 'CIECH' THEN 'EE Plus CH'
                                 WHEN BdmDedCode IN ('VACC','VHOSP') AND BdmBenOption IN ('EEF','EEDPF') THEN 'Family'
                                 WHEN BdmDedCode = 'CIEFM' THEN 'Family'
-                                WHEN BdmDedCode = 'CIE' AND BdmBenOption = 'EE' THEN 'EE'
+                                WHEN BdmDedCode = 'CIE' /*AND BdmBenOption = 'EE'*/ THEN 'EE'
                                 WHEN BdmBenOption = 'EE' THEN 'EE'
-                                WHEN BdmBenOption = 'EEDP' THEN 'EE Plus SP'
+                                WHEN BdmBenOption IN ('EES','EEDP') THEN 'EE Plus SP'
                                 --ELSE BdmDedCode + ' ' + ISNULL(BdmBenOption, 'nope')
                                 END
+        ,drvEECIAppCovAmount = CASE WHEN BdmDedCode = 'CIE' THEN FORMAT(BdmEEAmt, '#0') ELSE '0' END
+        ,drvSPCIAppCovAmount = CASE WHEN BdmDedCode IN ('CIESP','CIEFM') THEN FORMAT(BdmEEAmt, '#0') ELSE '0' END
         ,drvSpCoverageEffectiveDate = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN BdmSpouseBenStartDate END
-        ,drvChCoverageEffectiveDate = CASE WHEN BdmDedCode IN ('VACC','VHOSP','CICH','CIEFM') AND BdmChildBenStatus <> 'A' THEN BdmChildBenStartDate END
-        ,drvSpNameFirst = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameFirst END
-        ,drvSpNameLast = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameLast END
-        ,drvSpSSN = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConSSN END
-        ,drvSpGender = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConGender END
-        ,drvSpDateOfBirth = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConDateOfBirth END
+        ,drvChCoverageEffectiveDate = CASE WHEN (BdmDedCode IN ('VACC','VHOSP') and ConRelationship IN ('CHD','CHL','STC','DPC')) OR BdmDedCode IN ('CICH','CIEFM') THEN BdmBenStartDate END
+        --CASE WHEN BdmDedCode IN ('VACC','VHOSP','CICH','CIEFM') AND BdmChildBenStatus <> 'A' THEN BdmChildBenStartDate END
+        ,drvSpNameFirst = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameFirst END
+        --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameFirst END
+        ,drvSpNameLast = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameLast END
+        --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameLast END
+        ,drvSpSSN = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConSSN END
+        --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConSSN END
+        ,drvSpGender = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConGender END
+        --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConGender END
+        ,drvSpDateOfBirth = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConDateOfBirth END
+        --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConDateOfBirth END
         ,drvPayrollDeductionAmt =    FORMAT(
                                             CASE WHEN BdmDedCode IN ('CIE') THEN PdhSourceCIE
                                             WHEN BdmDedCode IN ('CIECH') THEN PdhSourceCIECH
@@ -730,6 +741,7 @@ BEGIN
                 ,MAX(CASE WHEN BdmRelationship IN ('CHD','CHL','STC','DPC') THEN BdmDepRecId END) AS BdmChildDepRecId
                 ,MAX(CASE WHEN BdmRelationship IN ('CHD','CHL','STC','DPC') THEN BdmBenStatus END) AS BdmChildBenStatus
                 ,MAX(CASE WHEN BdmRelationship IN ('CHD','CHL','STC','DPC') THEN BdmBenStartDate END) AS BdmChildBenStartDate
+                ,MAX(BdmEEAmt) AS BdmEEAmt
             FROM dbo.U_dsi_BDM_ECIGACHEXP WITH (NOLOCK)
             GROUP BY BdmEEID, BdmCOID, BdmDedCode, BdmBenOption, BdmBenStatus, BdmBenStopDate) AS Bdm
         ON BdmEEID = xEEID 
