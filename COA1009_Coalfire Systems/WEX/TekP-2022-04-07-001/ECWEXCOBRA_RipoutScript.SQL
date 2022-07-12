@@ -5,7 +5,7 @@ ECWEXCOBRA: COBRA Newly Eligible Beneficiaries
 FormatCode:     ECWEXCOBRA
 Project:        COBRA Newly Eligible Beneficiaries
 Client ID:      COA1009
-Date/time:      2022-07-08 09:49:22.670
+Date/time:      2022-07-12 11:26:19.723
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -276,7 +276,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECWEXCOBRA_20220708.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECWEXCOBRA_20220712.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -287,7 +287,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202207169','EMPEXPORT','OEPASSIVE',NULL,'ECWEXCOBRA',NULL,NULL,NULL,'202207169','May 16 2022  8:25AM','May 16 2022  8:25AM','202105171',NULL,'','','202105171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COBRA Newly Eligible Beneficia','202207169','EMPEXPORT','ONDEM_XOE',NULL,'ECWEXCOBRA',NULL,NULL,NULL,'202207169','May 16 2022  8:25AM','May 16 2022  8:25AM','202105171',NULL,'','','202105171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COBRA Newly Eligible Ben-Sched','202207169','EMPEXPORT','SCH_ECWEXC',NULL,'ECWEXCOBRA',NULL,NULL,NULL,'202207169','May 16 2022  8:25AM','May 16 2022  8:25AM','202105171',NULL,'','','202105171',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'COBRA Newly Eligible Ben-Test','202207169','EMPEXPORT','TEST_XOE','Jul  6 2022  4:13PM','ECWEXCOBRA',NULL,NULL,NULL,'202207169','Jul  7 2022 12:00AM','Dec 30 1899 12:00AM','202105171','36','','','202105171',dbo.fn_GetTimedKey(),NULL,'us3cPeCOA1009',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'COBRA Newly Eligible Ben-Test','202207119','EMPEXPORT','TEST_XOE','Jul 11 2022 12:00AM','ECWEXCOBRA',NULL,NULL,NULL,'202207119','Jul 11 2022 12:00AM','Dec 30 1899 12:00AM','202112011','141','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3mWaCOA1009',NULL);
 
 -----------
 -- AscImp inserts
@@ -866,23 +866,43 @@ BEGIN
             ,'Y'
             ,'Y'
             , ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEEID, EdhDedCode, ConRelationship desc)
-        FROM dbo.EmpHDed WITH (NOLOCK)  
-        LEFT JOIN dbo.EmpComp WITH (NoLOCK)
-            ON EecEEID = edheeid 
-            AND EdhBenOption in ('EE1', 'EE2', 'EEC','EECH','EEF','EEF1', 'EES', 'EESPC', 'EESPCH')
-          --  and EdhBenStopDate BETWEEN @startdate AND @enddate
-         JOIN dbo.U_ECWEXCOBRA_Audit WITH (NOLOCK)
-          ON audEEID = EecEEID
-          and audFieldName = 'EecDateofTermination'
-          and audDateTime BETWEEN @startdate AND @enddate
+            FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+        ON dbneeid = edheeid
+        AND DbnCoID = EdhCoID
+        AND EdhDedCode = DbnDedCode
+        AND EdhBenOption = DbnBenOption
+        AND dbnformatcode = 'EARICOB'
+        AND edhChangeReason IN ('200')
+        AND dbnValidForExport = 'N'
+    JOIN dbo.U_ECWEXCOBRA_Audit WITH (NOLOCK)
+        ON audEEID = dbneeid
+        AND audKey2 = DbnCoID
+        AND audFieldName = 'EecDateofTermination'
+        AND audNewValue is not null
+        and audDateTime BETWEEN @startdate AND @enddate
+    JOIN EmpComp WITH (NOLOCK)
+        ON dbnEEID = EecEEID
+        AND EecTermReason in ('203','IDE')
+        AND DbnBenStatus = 'T'
+        AND EecEmplStatus = 'T'
+   --     FROM dbo.EmpHDed WITH (NOLOCK)  
+   --     LEFT JOIN dbo.EmpComp WITH (NoLOCK)
+   --         ON EecEEID = edheeid 
+   --         AND EdhBenOption in ('EE1', 'EE2', 'EEC','EECH','EEF','EEF1', 'EES', 'EESPC', 'EESPCH')
+   --       --  and EdhBenStopDate BETWEEN @startdate AND @enddate
+         --JOIN dbo.U_ECWEXCOBRA_Audit WITH (NOLOCK)
+         -- ON audEEID = EecEEID
+         -- and audFieldName = 'EecDateofTermination'
+         -- and audDateTime BETWEEN @startdate AND @enddate
         JOIN dbo.contacts WITH (NOLOCK)
             ON ConEEID = edheeid 
             AND ConRelationship in ('CHL','DIS', 'DPC','STC','DP','SPS')
-        LEFT JOIN dbo.BenChRsn WITH (NOLOCK)
-            ON EdhChangeReason = BchCode
-            Where EdhChangeReason = '200' and EecTermReason in ('DEA','203') 
-            AND EdhDedCode IN ('DNTH', 'DNTL', 'VISHP', 'VISON', 'MPPOM','MHDHP', 'MPPO', 'FSA', 'FSAL') 
-            and EdhBenStatus = 'T'
+   --     LEFT JOIN dbo.BenChRsn WITH (NOLOCK)
+   --         ON EdhChangeReason = BchCode
+   --         Where EdhChangeReason = '200' and EecTermReason in ('DEA','203') 
+   --         AND EdhDedCode IN ('DNTH', 'DNTL', 'VISHP', 'VISON', 'MPPOM','MHDHP', 'MPPO', 'FSA', 'FSAL') 
+   --         and EdhBenStatus = 'T'
         Order by dbo.EmpHDed.EdhEEID, dbo.EmpHDed.EdhDedCode, dbo.contacts.ConRelationship desc
 
  ---=======================================================================
@@ -1171,11 +1191,11 @@ BEGIN
         ,drvNameMiddle    =  LEFT(Connamemiddle,1) 
         ,drvNameLast      = ConnameLast 
         ,drvSSN = ConSSN
-        ,drvAddress1 = EepAddressLine1
-        ,drvAddress2 = EepAddressLine2
-        ,drvCity = EepAddressCity
-        ,drvStateorProvince = EepAddressState
-        ,drvPostalCode = EepAddressZipCode
+        ,drvAddress1 = ConAddressLine1
+        ,drvAddress2 = ConAddressLine2
+        ,drvCity = ConAddressCity
+        ,drvStateorProvince = ConAddressState
+        ,drvPostalCode = ConAddressZipCode
         ,drvCountry = ''
         ,drvGender = CASE WHEN  Congender = 'M' THEN 'M' 
                           WHEN Congender = 'F' THEN 'F' 
@@ -1194,6 +1214,7 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunID = 'QB'
+        and BdmIsPQB ='Y'
         AND BdmRecType <> 'EMP' AND BdmCobraReason in ( '201', 'LEVNT3', '204', '210', 'LEVNT4')
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = BdmEEID
@@ -1328,18 +1349,18 @@ BEGIN
     JOIN dbo.EmpPers WITH (NOLOCK)
       ON EepEEID = drvEEID
     JOIN dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
-      ON bdmEEID = drvEEID
-      AND bdmCOID = drvCOID
-    LEFT JOIN (SELECT  NdpEEID    = BdmEEID
-                      ,NdpDedCode = BdmDedCode
-                      ,NdpNumDeps = COUNT(1)
-                 FROM (SELECT DISTINCT BdmEEID, BdmDepRecID, BdmDedCode
-                       FROM dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
-                            WHERE BdmIsPQB = 'N') NDEP
-                       GROUP BY BdmEEID, BdmDedCode) NDP
-       ON NdpEEID = BdmEEID
-       AND NdpDedCode = BdmDedCode
-       WHERE bdmRunID = 'QB' and bdmIsPQB = 'Y'
+                ON bdmEEID = drvEEID
+                AND bdmCOID = drvCOID
+            LEFT JOIN (SELECT  NdpEEID    = BdmEEID
+                            ,NdpDedCode = BdmDedCode
+                            ,NdpNumDeps = COUNT(1)
+                        FROM (SELECT DISTINCT BdmEEID, BdmDepRecID, BdmDedCode
+                                FROM dbo.U_dsi_BDM_ECWEXCOBRA WITH (NOLOCK)
+                                WHERE BdmIsPQB = 'N') NDEP
+                        GROUP BY BdmEEID, BdmDedCode) NDP
+                ON NdpEEID = BdmEEID
+                AND NdpDedCode = BdmDedCode
+                WHERE bdmRunID = 'QB' and bdmIsPQB = 'Y'
       
     ;
     ---------------------------------
@@ -1418,7 +1439,8 @@ BEGIN
          ON BdmEEID = xEEID 
          AND BdmCoID = xCoID
          AND bdmRunID = 'QB'
-         AND BdmRecType = 'DEP'
+         AND BdmRecType = 'DEP' 
+         AND BdmIsPQB = 'Y'
          and BdmCobraReason not in ('201', 'LEVNT3')
     LEFT JOIN dbo.CONTACTS WITH (NOLOCK)
          ON ConEEID = xEEID
@@ -1447,6 +1469,7 @@ BEGIN
         AND BdmCoID = xCoID
         AND BdmRunID = 'QB'
         AND BdmRecType = 'EMP'
+        AND BdmIsPQB = 'Y'
         WHERE BdmDedCode IN ('FSA', 'FSAL')
   
     ;
