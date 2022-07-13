@@ -5,7 +5,7 @@ ECLUBDD834: Delta Dental 834 Export
 FormatCode:     ECLUBDD834
 Project:        Delta Dental 834 Export
 Client ID:      CLU1001
-Date/time:      2022-07-06 09:59:59.170
+Date/time:      2022-07-12 20:18:10.873
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -367,7 +367,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECLUBDD834_20220706.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECLUBDD834_20220712.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -377,8 +377,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202207059','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207051',NULL,'','','202207051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202207059','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207051',NULL,'','','202207051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202207059','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207051',NULL,'','','202207051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Delta Dental 834 Export','202207059','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207051',NULL,'','','202207051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202207059','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207051',NULL,'','','202207051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Delta Dental 834 Export','202207059','EMPEXPORT','SCH_ECLUB','Oct  1 2018 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207051',NULL,'','','202207051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202207129','EMPEXPORT','TEST_XOE','Jul 12 2022 12:00AM','ECLUBDD834',NULL,NULL,NULL,'202207129','Jul 12 2022 12:00AM','Dec 30 1899 12:00AM','202206281',NULL,'','','202206281',dbo.fn_GetTimedKey(),NULL,'us3lKiCLU1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -602,7 +602,7 @@ CREATE TABLE [dbo].[U_ECLUBDD834_DrvTbl] (
     [drvHLH02_Height] varchar(1) NOT NULL,
     [drvHLH03_Weight1] varchar(1) NOT NULL,
     [drvHLH04_Weight2] varchar(1) NOT NULL,
-    [drvHLH05_Description1] varchar(1) NOT NULL,
+    [drvHLH05_Description1] varchar(3) NULL,
     [drvHLH06_CurrentHealthConditionCode] varchar(1) NOT NULL,
     [drvHLH07_Description2] varchar(1) NOT NULL,
     [drvEEID] char(12) NULL,
@@ -694,15 +694,15 @@ CREATE TABLE [dbo].[U_ECLUBDD834_File] (
 
 IF OBJECT_ID('U_ECLUBDD834_HdrTbl') IS NULL
 CREATE TABLE [dbo].[U_ECLUBDD834_HdrTbl] (
-    [drvISA05_SenderIDQual] int NOT NULL,
-    [drvISA06_SenderID] char(9) NULL,
+    [drvISA05_SenderIDQual] varchar(2) NOT NULL,
+    [drvISA06_SenderID] varchar(9) NOT NULL,
     [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
     [drvISA08_ReceiverID] varchar(10) NOT NULL,
     [drvISA09_InterchangeDate] varchar(6) NULL,
     [drvISA10_InterchangeTime] varchar(4) NULL,
     [drvISA15_UsageIndicator] varchar(1) NOT NULL,
     [drvISA16_ComponentSeprator] varchar(1) NOT NULL,
-    [drvGS02_SenderID] char(9) NULL,
+    [drvGS02_SenderID] varchar(9) NOT NULL,
     [drvGS03_ReceiverID] varchar(10) NOT NULL,
     [drvGS04_Date] varchar(8) NULL,
     [drvGS05_Time] varchar(4) NULL,
@@ -830,7 +830,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBDD834', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBDD834', 'CHANGES';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBDD834', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBDD834', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBDD834', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBDD834', 'SCH_ECLUB';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'ECLUBDD834';
 
@@ -995,15 +995,15 @@ BEGIN
     -------------------
     IF OBJECT_ID('U_ECLUBDD834_HdrTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ECLUBDD834_HdrTbl;
-    SELECT DISTINCT drvISA05_SenderIDQual = 01
-        ,drvISA06_SenderID = (SELECT TOP 1 CmmFedTaxId from CompMast WITH (NOLOCK))
-        ,drvISA07_ReceiverIDQual = '01'
+    SELECT DISTINCT drvISA05_SenderIDQual = 'ZZ'
+        ,drvISA06_SenderID = '421556470'
+        ,drvISA07_ReceiverIDQual = 'ZZ'
         ,drvISA08_ReceiverID = '07 6334622'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
         ,drvISA16_ComponentSeprator = ':'
-        ,drvGS02_SenderID = (SELECT TOP 1 CmmFedTaxId from CompMast WITH (NOLOCK))
+        ,drvGS02_SenderID = '421556470'
         ,drvGS03_ReceiverID = '07 6334622'
         ,drvGS04_Date = @RunDate
         ,drvGS05_Time = @RunTime
@@ -1216,10 +1216,16 @@ BEGIN
         ,drvHLH02_Height = ''
         ,drvHLH03_Weight1 = ''
         ,drvHLH04_Weight2 = ''
-        ,drvHLH05_Description1 = ''
+        ,drvHLH05_Description1 = Case WHEN bdmbenoption = 'EE' THEN 'EMP'
+                                      WHEN bdmbenoption = 'EES' THEN 'ESP'
+                                      WHEN bdmbenoption = 'EEC' and bdmnumchildren = '1' THEN 'E1D'
+                                      WHEN bdmbenoption = 'EEC' and bdmnumchildren = '2' THEN 'E2D'
+                                      WHEN bdmbenoption = 'EEC' and bdmnumchildren = '3' THEN 'E3D'
+                                      WHEN bdmbenoption = 'EEC' and bdmnumchildren = '4' THEN 'E4D'
+                                      WHEN bdmbenoption =  'EEF' THEN 'FAM' 
+                                      END
         ,drvHLH06_CurrentHealthConditionCode = ''
         ,drvHLH07_Description2 = ''
-        ---------------------------------
         ,drvEEID = xEEID
         ,drvCOID = xCOID
         ,drvDepRecID = ConSystemID
@@ -1268,18 +1274,25 @@ BEGIN
           --                                 ELSE ''
           --                           END
         ,drvHD04_PlanCoverageDesc = 'DENTAL'
-        ,drvHD05_CoverageLevelCode =            CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEBenOpts')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EECBenOpts'))
-                                                        AND (SELECT COUNT (*) FROM dbo.Contacts WITH(NOLOCK) WHERE ConIsDependent = 'Y') = 1 THEN 'E1D'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EECBenOpts'))
-                                                        AND (SELECT COUNT (*) FROM dbo.Contacts WITH(NOLOCK) WHERE ConIsDependent = 'Y') > 1 THEN 'ECH'
-                                                     WHEN (BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEC1BenOpts'))
-                                                       OR BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EECHBenOpts'))
-                                                       OR BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEDPCBenOpts'))) THEN 'ED1'
-                                                     WHEN (BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEDPBenOpts'))
-                                                        OR BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EESBenOpts'))) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEFBenOpts')) THEN 'FAM'
-                                                END
+        ,drvHD05_CoverageLevelCode  = CASE WHEN BdmBenOption IN ('EE') THEN 'EMP'
+                                        WHEN BdmBenOption IN ('EES','EEDP') THEN 'ESP'
+                                        WHEN BdmBenOption IN ('EEC') THEN 'ECH'
+                                        WHEN BdmBenOption IN ('EEF','EEDPF') THEN 'FAM'
+                                        END        
+        
+        
+        ------------                               -CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEBenOpts')) THEN 'EMP'
+        --                                             WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EECBenOpts'))
+        --                                                AND (SELECT COUNT (*) FROM dbo.Contacts WITH(NOLOCK) WHERE ConIsDependent = 'Y') = 1 THEN 'E1D'
+        --                                             WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EECBenOpts'))
+        --                                                AND (SELECT COUNT (*) FROM dbo.Contacts WITH(NOLOCK) WHERE ConIsDependent = 'Y') > 1 THEN 'ECH'
+        --                                             WHEN (BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEC1BenOpts'))
+        --                                               OR BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EECHBenOpts'))
+        --                                               OR BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEDPCBenOpts'))) THEN 'ED1'
+        --                                             WHEN (BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEDPBenOpts'))
+        --                                                OR BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EESBenOpts'))) THEN 'ESP'
+        --                                             WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEFBenOpts')) THEN 'FAM'
+        --                                        END
                                      
                                                 --CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
                                                 --     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES')) THEN 'ESP'

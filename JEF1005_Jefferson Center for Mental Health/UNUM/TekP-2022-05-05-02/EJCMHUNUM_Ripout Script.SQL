@@ -5,7 +5,7 @@ EJCMHUNUM: UNUM FMLA STD LTD
 FormatCode:     EJCMHUNUM
 Project:        UNUM FMLA STD LTD
 Client ID:      JEF1005
-Date/time:      2022-07-08 14:04:07.273
+Date/time:      2022-07-12 18:41:05.167
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -212,7 +212,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EJCMHUNUM0Z0','50','D','10','19',NULL,'EE_JOB_TLE',NULL,NULL,'"drvJobTitle"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EJCMHUNUM0Z0','50','D','10','20',NULL,'MOST_RCNT_HIRE_DATE',NULL,NULL,'"drvRcntHireDate"','(''UD110''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EJCMHUNUM0Z0','50','D','10','21',NULL,'ORG_HIRE_DATE',NULL,NULL,'"drvOriginaHireDate"','(''UD110''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EJCMHUNUM0Z0','50','D','10','22',NULL,'EE_TERM_DATE',NULL,NULL,'"drvTermDate"','(''UD110''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EJCMHUNUM0Z0','50','D','10','22',NULL,'EE_TERM_DATE',NULL,NULL,'"drvTermDate"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EJCMHUNUM0Z0','50','D','10','23',NULL,'EE_STATUS',NULL,NULL,'"drvStatus"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EJCMHUNUM0Z0','50','D','10','24',NULL,'WKLY_SCH_WRK_HRS',NULL,NULL,'"drvWklySchWrkHrs"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EJCMHUNUM0Z0','50','D','10','25',NULL,'DATE_OF_LST_SLY_CHG',NULL,NULL,'"drvDateOfLstSlyChg"','(''UD110''=''T,'')');
@@ -259,7 +259,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EJCMHUNUM_20220708.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EJCMHUNUM_20220712.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -270,7 +270,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202206299','EMPEXPORT','OEPASSIVE',NULL,'EJCMHUNUM',NULL,NULL,NULL,'202206299','Jun 29 2022 12:52PM','Jun 29 2022 12:52PM','202206291',NULL,'','','202206291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM FMLA STD LTD','202206299','EMPEXPORT','ONDEM_XOE',NULL,'EJCMHUNUM',NULL,NULL,NULL,'202206299','Jun 29 2022 12:52PM','Jun 29 2022 12:52PM','202206291',NULL,'','','202206291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM FMLA STD LTD-Sched','202206299','EMPEXPORT','SCH_EJCMHU',NULL,'EJCMHUNUM',NULL,NULL,NULL,'202206299','Jun 29 2022 12:52PM','Jun 29 2022 12:52PM','202206291',NULL,'','','202206291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'UNUM FMLA STD LTD-Test','202206299','EMPEXPORT','TEST_XOE',NULL,'EJCMHUNUM',NULL,NULL,NULL,'202206299','Jun 29 2022 12:52PM','Jun 29 2022 12:52PM','202206291',NULL,'','','202206291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA STD LTD-Test','202207119','EMPEXPORT','TEST_XOE','Jul 11 2022 12:00AM','EJCMHUNUM',NULL,NULL,NULL,'202207119','Jul 11 2022 12:00AM','Dec 30 1899 12:00AM','202207041',NULL,'','','202207041',dbo.fn_GetTimedKey(),NULL,'us3kEpJEF1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -382,7 +382,7 @@ CREATE TABLE [dbo].[U_EJCMHUNUM_drvTbl] (
     [drvServiceIndicator] varchar(3) NOT NULL,
     [drvEESSN] varchar(13) NULL,
     [drvEmpno] char(9) NULL,
-    [drvEEIDType] char(12) NULL,
+    [drvEEIDType] varchar(4) NOT NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -467,12 +467,7 @@ CREATE TABLE [dbo].[U_EJCMHUNUM_File] (
 IF OBJECT_ID('U_EJCMHUNUM_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EJCMHUNUM_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
-    [PdhEECurAmt] numeric NULL,
-    [PdhERCurAmt] numeric NULL,
-    [PdhEECurAmtYTD] money NULL,
-    [PdhERCurAmtYTD] money NULL,
-    [PdhSource1] numeric NULL,
-    [PdhSource2] numeric NULL
+    [PdhERCurAmt] numeric NULL
 );
 
 -----------
@@ -485,13 +480,7 @@ CREATE TABLE [dbo].[U_EJCMHUNUM_PEarHist] (
     [PehEarnCode] char(5) NOT NULL,
     [PrgPayDate] datetime NULL,
     [PehCurAmt] numeric NULL,
-    [PehCurHrs] decimal NULL,
-    [PehCurAmtYTD] money NULL,
-    [PehCurHrsYTD] decimal NULL,
-    [PehInclInDefComp] money NULL,
-    [PehInclInDefCompHrs] decimal NULL,
-    [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+    [PehCurAmtYTD] money NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EJCMHUNUM]
@@ -562,9 +551,9 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EJCMHUNUM_EEList
-    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EJCMHUNUM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    --DELETE FROM dbo.U_EJCMHUNUM_EEList
+    --WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    --AND xEEID IN (SELECT xEEID FROM dbo.U_EJCMHUNUM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     --==========================================
     -- Create Deduction List
@@ -617,71 +606,73 @@ BEGIN
     --==========================================
 
     -----------------------------
-    -- Working Table - PDedHist
-    -----------------------------
-    IF OBJECT_ID('U_EJCMHUNUM_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EJCMHUNUM_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        -- Current Payroll Amounts
-        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        -- YTD Payroll Amounts
-        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-        -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('ZLTD') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ZSTD') THEN PdhEECurAmt ELSE 0.00 END)
-        --,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-        --,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        --,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        --,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        --,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        --,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        --,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        --,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    INTO dbo.U_EJCMHUNUM_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_EJCMHUNUM_DedList WITH (NOLOCK)
-        ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
-    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-        OR SUM(PdhERCurAmt) <> 0.00
-    );
+  --  -- Working Table - PDedHist
+  --  -----------------------------
+  --  IF OBJECT_ID('U_EJCMHUNUM_PDedHist','U') IS NOT NULL
+  --      DROP TABLE dbo.U_EJCMHUNUM_PDedHist;
+  --SELECT DISTINCT
+  --       PdhEEID
+  --      -- Current Payroll Amounts
+  --      --,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+  --      ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+  --      -- YTD Payroll Amounts
+  --      --,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+  --      --,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+  --      -- Categorize Payroll Amounts
+  --      --,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('ZLTD') THEN PdhEECurAmt ELSE 0.00 END)
+  --      --,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ZSTD') THEN PdhEECurAmt ELSE 0.00 END)
+  --      --,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+  --      --,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+  --      --,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+  --      --,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+  --      --,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+  --      --,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+  --      --,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+  --      --,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+  --  INTO dbo.U_EJCMHUNUM_PDedHist
+  --  FROM dbo.PDedHist WITH (NOLOCK)
+  --  JOIN dbo.U_EJCMHUNUM_DedList WITH (NOLOCK)
+  --      ON DedCode = PdhDedCode
+  --  WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+  --  AND PdhPerControl <= @EndPerControl
+  --  AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+  --  GROUP BY PdhEEID
+  --  HAVING (SUM(PdhEECurAmt) <> 0.00
+  --      OR SUM(PdhERCurAmt) <> 0.00
+  --  );
 
 
-    -----------------------------
-    -- Working Table - PEarHist
-    -----------------------------
-    IF OBJECT_ID('U_EJCMHUNUM_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EJCMHUNUM_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PehEarnCode
-        ,PrgPayDate             = MAX(PrgPayDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EJCMHUNUM_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl 
-    GROUP BY PehEEID, PehEarnCode
-    HAVING SUM(PehCurAmt) <> 0.00;
+  --  -----------------------------
+  --  -- Working Table - PEarHist
+  --  -----------------------------
+  --  IF OBJECT_ID('U_EJCMHUNUM_PEarHist','U') IS NOT NULL
+  --      DROP TABLE dbo.U_EJCMHUNUM_PEarHist;
+  --  SELECT DISTINCT
+  --       PehEEID
+  --      ,PehEarnCode
+  --      ,PrgPayDate             = MAX(PrgPayDate)
+  --      -- Current Payroll Amount/Hours
+  --      ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+  --      --,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+  --      -- YTD Payroll Amount/Hours
+  --      ,PehCurAmtYTD           = SUM(PehCurAmt)
+  --      --,PehCurHrsYTD           = SUM(PehCurHrs)
+  --      -- Current Include Deferred Comp Amount/Hours
+  --      --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+  --      --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+  --      ---- YTD Include Deferred Comp Amount/Hours
+  --      --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+  --      --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+  --  INTO dbo.U_EJCMHUNUM_PEarHist
+  --  FROM dbo.vw_int_PayReg WITH (NOLOCK)
+  --  JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+  --      ON PehGenNumber = PrgGenNumber
+  --  WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+  --  AND PehPerControl <= @EndPerControl 
+  --  GROUP BY PehEEID, PehEarnCode
+  --  HAVING SUM(PehCurAmt) <> 0.00;
+
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -700,7 +691,7 @@ BEGIN
         ,drvServiceIndicator = 'ELG'
         ,drvEESSN = stuff(stuff(eepSSN,6,0,'-'),4,0,'-') 
         ,drvEmpno = EecEmpNo
-        ,drvEEIDType = xEEID
+        ,drvEEIDType = 'EEID'
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = EepNameLast
@@ -720,10 +711,11 @@ BEGIN
         ,drvJobTitle = REPLACE(JbcDesc, ',', '')  --JbcDesc where JbcCode = EecJobCode
         ,drvRcntHireDate = EecDateOfLastHire
         ,drvOriginaHireDate = Eecdateoforiginalhire
-        ,drvTermDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination else '' END
+        ,drvTermDate = CASE WHEN EecEmplStatus = 'T' and  EecDateOfTermination = '1/1/1900' then '' 
+                            WHEN EecEmplStatus = 'T' and  EecDateOfTermination <> '1/1/1900' THEN  EecDateOfTermination END 
         ,drvStatus = CASE WHEN EecEmplStatus = 'L' THEN 'LOA' else  'ACT' END
         ,drvWklySchWrkHrs = FORMAT((EecScheduledWorkHrs)/2, '#0') 
-        ,drvDateOfLstSlyChg = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, '01/01/2010',EecDateOfLastHire)  ---max of most recent dsi_fnlib_GetAnnSalary_EffDate_WithStartDate or eecdateoflasthire
+        ,drvDateOfLstSlyChg = dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire), EecDateOfLastHire) ---max of most recent dsi_fnlib_GetAnnSalary_EffDate_WithStartDate or eecdateoflasthire
         ,drvHomePhone = EepPhoneHomeNumber
         ,drvMgrFirstName = ''
         ,drvMgrLastName = ''
@@ -743,9 +735,9 @@ BEGIN
         ,drvPolicyElgGrp1 = CASE WHEN D.STD IS NOT NULL THEN '1' END
         ,drvPostTaxCntrbPct1 = CASE WHEN D.STD IS NOT NULL THEN '0' END
         ,drvEarnings1 = CASE WHEN YEAR(EecDateOfLastHire) < YEAR(GETDATE()) THEN  
-                                CASE WHEN D.STD IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2), Peh.PehCurAmt / 52) AS VARCHAR) END 
+                                CASE WHEN D.STD IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2), EecAnnSalary / 52) AS VARCHAR) END 
                             WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN
-                                CASE WHEN D.STD IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2), ((EecAnnSalary + EecUDField09 + EecUDField10) / 52)) AS VARCHAR) END
+                                CASE WHEN D.STD IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2), ((EecAnnSalary) / 52)) AS VARCHAR) END
                             END
                             --eecdateoflasthire date is prior to current year then if eeddedcode= ZSTD send sum(pehcuramt) where pehearncode in (BONUS,BONSP, BONSR, COMM, HOL, BONSL, OT, PTO, REG, REGE, RETRO, SICK, COV19) for all per controls in prior calendar year divided by 52
                             --if eecdateoflasthire date is in the current year then if eeddedcode = ZSTD send eecannsalary plus EECUDFIELD09 plus EECUDFIELD10  divided by 52
@@ -758,9 +750,9 @@ BEGIN
         ,drvElgGrp2 = CASE WHEN D.LTD IS NOT NULL THEN '1' END
         ,drvPosttaxCntrbPct2 = CASE WHEN D.LTD IS NOT NULL THEN '0' END
         ,drvEarnings2 =   CASE WHEN YEAR(EecDateOfLastHire) < YEAR(GETDATE()) THEN
-                                CASE WHEN D.LTD IS NOT NULL  THEN  CAST(CONVERT(DECIMAL(10,2), ((EecAnnSalary + EecUDField09 + EecUDField10) / 12)) AS VARCHAR) END
+                                CASE WHEN D.LTD IS NOT NULL  THEN  CAST(CONVERT(DECIMAL(10,2), ((EecAnnSalary) / 12)) AS VARCHAR) END
                             WHEN YEAR(EecDateOFLastHire) = YEAR(GETDATE()) THEN 
-                                CASE WHEN D.LTD IS NOT NULL  THEN CAST(CONVERT(DECIMAL(10,2), ((EecAnnSalary + EecUDField09 + EecUDField10) / 12)) AS VARCHAR) END
+                                CASE WHEN D.LTD IS NOT NULL  THEN CAST(CONVERT(DECIMAL(10,2), ((EecAnnSalary) / 12)) AS VARCHAR) END
                             END
         -- if eecdateoflasthire date is prior to current year then
         -- if eeddedcode = ZLTD send sum(pehcuramt) where pehearncode in (BONUS,BONSP, BONSR, COMM, HOL, BONSL, OT, PTO, REG, REGE, RETRO, SICK, COV19) for all per controls in prior calendar year divided by 12
@@ -769,7 +761,7 @@ BEGIN
         ,drvDateOfEeCovg2 = CASE WHEN D.LTD IS NOT NULL THEN  D.LTD_BenStartDate END --eeddedcode = ZLTD send eedbenstartdate - default to 8/1/2022 or later
         ,drvTermDate2 = CASE WHEN D.LTD IS NOT NULL THEN  D.LTD_BenStopDate END
     INTO dbo.U_EJCMHUNUM_drvTbl
-    FROM dbo.U_EJCMHUNUM_EEList WITH (NOLOCK)
+   FROM dbo.U_EJCMHUNUM_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
@@ -793,12 +785,15 @@ BEGIN
             AND EedValidForExport = 'Y'
             GROUP BY EedEEID, EedCOID
             ) D ON D.EedEEID = xEEID AND D.EedCOID = xCOID
-    LEFT JOIN (SELECT PehEEID, PehEarnCode, PehCurAmt
-                FROM dbo.U_EJCMHUNUM_PEarHist WITH(NOLOCK)
-                WHERE pehearncode in ('BONUS','BONSP', 'BONSR', 'COMM', 'HOL', 'BONSL', 'OT', 'PTO', 'REG', 
-                                       'REGE', 'RETRO', 'SICK', 'COV19')) Peh ON Peh.PehEEID = xEEID
+    -- LEFT JOIN (SELECT PehEEID, PehEarnCode, sum(PehCurAmt)PehCurAmt, sum(PehCurAmtYTD) PehCurAmtYTD
+    --            FROM dbo.U_EJCMHUNUM_PEarHist WITH(NOLOCK)
+    --            --WHERE pehearncode in ('BONUS','BONSP', 'BONSR', 'COMM', 'HOL', 'BONSL', 'OT', 'PTO', 'REG', 
+    --            --                       'REGE', 'RETRO', 'SICK', 'COV19')
+                -- Group BY PehEEID, PehEarnCode
+                --                       ) Peh ON Peh.PehEEID = xEEID
      WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and EecDateOfTermination BETWEEN @StartDate AND @EndDate)
 
+   
     ;
 
     --==========================================

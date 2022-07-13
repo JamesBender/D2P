@@ -1432,7 +1432,7 @@ BEGIN
         ,drvHD02_MaintReasonCode 
         ,drvHD03_InsuranceLineCode = 'PDG'
         ,drvHD04_PlanCoverageDesc 
-        ,drvHD05_CoverageLevelCode 
+        ,drv_CoverageLevelCode 
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 
         ,drvDTP01_DateTimeQualifier_348
