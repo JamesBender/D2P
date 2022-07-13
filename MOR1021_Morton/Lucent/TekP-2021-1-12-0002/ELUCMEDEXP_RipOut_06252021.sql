@@ -1109,7 +1109,7 @@ BEGIN
                                         ELSE 'N36HDHPF' END
                                     ELSE 'N36COPAY'
                                     END
-        ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' THEN
+        ,drv_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' THEN
                                             CASE WHEN BdmBenOption IN ('EE','EET') THEN 'EMP'
                                                 WHEN BdmBenOption IN ('EES','EEDP', 'EEST') THEN 'ESP'
                                                 WHEN BdmBenOption IN ('EEC','EECT') THEN 'ECH'

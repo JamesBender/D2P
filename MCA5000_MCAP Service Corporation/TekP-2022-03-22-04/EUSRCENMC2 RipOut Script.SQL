@@ -569,11 +569,12 @@ Left join (select eepEEID seeid, b.eeccoid scoid,eepSSN ssn,LEFT(ISNULL(eepnameM
     LEFT JOIN (select efoeeid eeid, auditkey audkey, efophonetype ptype, efophonenumber phone
                 from empmphon) cell on cell.eeid = xeeid and cell.ptype = 'CEL'
                 and cell.audkey = (select max(auditkey) from empmphon where efophonetype = 'CEL' and efoeeid = xeeid)
-     left join vw_int_OrgLevel o1 with (nolock) on eecorglvl1 = o1.orgcode and o1.orglvl = '1'
-     left join vw_int_OrgLevel o2 with (nolock) on eecorglvl2 = o2.orgcode and o2.orglvl = '2'
-     left join vw_int_OrgLevel o3 with (nolock) on eecorglvl3 = o3.orgcode and o3.orglvl = '3'
-     left join vw_int_OrgLevel o4 with (nolock) on eecorglvl4 = o4.orgcode and o4.orglvl = '4'
+     left join vw_int_OrgLevel o1 with (nolock) on eecorglvl1 = o1.orgcode and o1.orglvl = '1' and o1.orgcode <> 'BDCOM' 
+     left join vw_int_OrgLevel o2 with (nolock) on eecorglvl2 = o2.orgcode and o2.orglvl = '2'  
+     left join vw_int_OrgLevel o3 with (nolock) on eecorglvl3 = o3.orgcode and o3.orglvl = '3' 
+     left join vw_int_OrgLevel o4 with (nolock) on eecorglvl4 = o4.orgcode and o4.orglvl = '4' 
      Join company on cmpCoid = eeccoid
+	 Where eecorglvl1 <> 'BDCOM' 
 
 --     LEFT JOIN( Select eecempno mID,eepNameLast lname,eepNameFirst fname from  emppers 
 --     join vw_int_EmpComp on eepeeid = eeceeid and eecemplstatus='A') MgrID on MgrID.lname=substring(rtrim(vw_int_EmpComp.EecUDField04),charindex(',',rtrim(vw_int_EmpComp.EecUDField04))+1,len(rtrim(vw_int_EmpComp.EecUDField04))) and MgrID.fname = left(rtrim(vw_int_EmpComp.EecUDField04),charindex(',',rtrim(vw_int_EmpComp.EecUDField04))-1) 

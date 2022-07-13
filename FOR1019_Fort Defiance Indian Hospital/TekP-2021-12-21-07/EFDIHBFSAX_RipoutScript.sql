@@ -520,11 +520,11 @@ BEGIN
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EFDIHBFSAX_Audit ON dbo.U_EFDIHBFSAX_Audit (audEEID,audKey2);
 
-    ----================
-    ---- Changes Only
-    ----================
-    --DELETE FROM dbo.U_EFDIHBFSAX_EEList
-    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFDIHBFSAX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    --================
+     --Changes Only
+    ----==-==============
+    DELETE FROM dbo.U_EFDIHBFSAX_EEList
+    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EFDIHBFSAX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
     --==========================================
     -- Create Deduction List
@@ -657,7 +657,7 @@ BEGIN
    JOIN dbo.U_dsi_BDM_EFDIHBFSAX WITH (NOLOCK)
          ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN dbo.U_EFDIHBFSAX_Audit WITH (NOLOCK)
+    JOIN dbo.U_EFDIHBFSAX_Audit WITH (NOLOCK)
         ON xEEID = audEEID
       --  AND xCoID = audCOID
     

@@ -617,7 +617,7 @@ EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EROLRSFMLA', @AllObjects = 'Y
 **********************************************************************************/
 BEGIN
 
-    --==========================================
+    -    --==========================================
     -- Declare variables
     --==========================================
     DECLARE  @FormatCode        VARCHAR(10)
@@ -651,7 +651,7 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EROLRSFMLA_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
+	--==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing
@@ -725,35 +725,34 @@ BEGIN
 
     -----------------------------
     -- Working Table - PEarHist
-    -----------------------------
-    IF OBJECT_ID('U_EROLRSFMLA_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EROLRSFMLA_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        ---- Current Payroll Amount/Hours
-        --,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        --,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        --,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           =  SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        ---- YTD Include Deferred Comp Amount/Hours
-        --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EROLRSFMLA_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    JOIN EarnCode WITH (NOLOCK) 
-        ON ErnEarnCode = pehEarnCode and ErnInclInTotalHoursWorked = 'Y'
-     WHERE PehPerControl BETWEEN FORMAT(DATEADD(MONTH, -12, @EndDATE), 'yyyyMMdd') + '1' AND @EndPerControl
-    --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
+--    -----------------------------
+--    IF OBJECT_ID('U_EROLRSFMLA_PEarHist','U') IS NOT NULL
+--        DROP TABLE dbo.U_EROLRSFMLA_PEarHist;
+--  SELECT DISTINCT
+--           xEEID eeeid
+--          ,xCOID ecoid
+--       -- ,PrgPayDate             = MAX(PrgPayDate)
+--        ---- Current Payroll Amount/Hours
+--        --,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+--        --,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+--        -- YTD Payroll Amount/Hours
+--        --,PehCurAmtYTD           = SUM(PehCurAmt)
+--        ,CAST(CAST(SUM(PehCurHrs)  as INT) AS VARCHAR) PehCurHrs 
+--        -- Current Include Deferred Comp Amount/Hours
+--        --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+--        --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+--        ---- YTD Include Deferred Comp Amount/Hours
+--        --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+--        --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+--   -- INTO dbo.U_EROLRSFMLA_PEarHist
+--       from dbo.u_EROLRSFMLA_EELIST 
+--    JOIN vw_int_PEarHist (nolock) ON xeeid = pehEEID and xCOID = PehCOID
+----        AND pehearncode in ('HOLW','OT','REG','DOT') 
+--        AND pehpaydate BETWEEN (@EndDate - 365) and @EndDate
+--		Where xEEID  ='DI92KX0000C0'
+--    GROUP BY xEEID,xCOID--,pehearncode
+   
+--    HAVING SUM(PehCurAmt) <> 0.00;
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -782,9 +781,9 @@ BEGIN
         ,drvAddressCity = Left(EepAddressCity, 35)
         ,drvAddressState = Left(EepAddressState, 2)
         ,drvAddressZip = CASE LEN(LTRIM(RTRIM(EepAddressZipCode)))
-                            WHEN 9 THEN LEFT(LTRIM(RTRIM(EepAddressZipCode)),5) + '-' + RIGHT(LTRIM(RTRIM(EepAddressZipCode)),4)
-                             ELSE EepAddressZipCode
-                            END
+							WHEN 9 THEN LEFT(LTRIM(RTRIM(EepAddressZipCode)),5) + '-' + RIGHT(LTRIM(RTRIM(EepAddressZipCode)),4)
+							 ELSE EepAddressZipCode
+							END
         ,drvPhonehomenumber = EepPhoneHomeNumber
         ,drvAddressEMailAlternate = EepAddressEMailAlternate
         ,drvMaritalStatus = eepMaritalStatus
@@ -815,8 +814,8 @@ BEGIN
         ,drvSubC = Left(EecOrgLvl1,20)
         ,drvSubD = Left(EecOrgLvl2,20)
         ,drvSubE = Left(EecOrgLvl3, 20) 
-        ,drvSubF = Left(Org3.OrgDesc,20)
-        ,drvHoursWorked =  ISNULL(Left(FORMAT(PehCurHrsYTD, '#0.00'),25),'0.00')  
+        ,drvSubF = Left(Replace(Org3.OrgDesc, ' ' , ''),20)
+        ,drvHoursWorked =  ISNULL(Hrs.PehCurHrs, 0.00) 
     INTO dbo.U_EROLRSFMLA_drvTbl
     FROM dbo.U_EROLRSFMLA_EEList WITH (NOLOCK)
        JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -824,9 +823,9 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-        and EepAddressCountry = 'USA'
-    LEFT JOIN dbo.U_EROLRSFMLA_PEarHist  WITH (NOLOCK) 
-        ON PehEEID = xEEID     
+		and EepAddressCountry = 'USA'
+    --LEFT JOIN dbo.U_EROLRSFMLA_PEarHist  WITH (NOLOCK) 
+    --    ON PehEEID = xEEID     
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
     JOIN dbo.vw_int_EmpHJob WITH (NOLOCK)
@@ -839,20 +838,28 @@ BEGIN
     LEFT JOIN dbo.U_EROLRSFMLA_Audit
         ON audEEID = xEEID
         AND audKey2 = xCOID
-    JOIN dbo.COMPANY WITH (NOLOCK) 
-        ON eeccoid = cmpcoid
-        and cmpcompanycode NOT IN ('CPC','OPC')  
-    LEFT JOIN (
+	JOIN dbo.COMPANY WITH (NOLOCK) 
+		ON eeccoid = cmpcoid
+		and cmpcompanycode NOT IN ('CPC','OPC')  
+	LEFT JOIN (
             SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours
             FROM (
                     SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
                     FROM dbo.EmpHJob WITH (NOLOCK)) AS X
-            WHERE RN = 1) AS EJH
+					WHERE RN = 1) AS EJH
         ON EJH.EjhEEID = xEEID
         AND EJH.EjhCOID = xCOID
         AND EJH.EjhJobCode = EecJobCode 
+	LEFT JOIN (select Peheeid, Pehcoid ,CAST(CAST(SUM(PehCurHrs) as decimal(12,2)) AS VARCHAR) PehCurHrs 
+                        From dbo.PearHist WITH (NOLOCK)
+                        JOIN EarnCode WITH (NOLOCK) 
+                        ON ErnEarnCode = PehEarnCode 
+                        and ErnInclInTotalHoursWorked = 'Y'
+                WHERE PehPerControl BETWEEN FORMAT(DATEADD(year, -1, GETDATE()), 'yyyyMMdd') + '1' AND @EndPerControl
+                Group by Peheeid, Pehcoid 
+                ) Hrs
+        ON  Hrs.Peheeid =  xEEID and  Hrs.pehcoid = xCOID
     Where EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -30, @EndDate) AND @EndDate)
-    
     ;
     ---------------------------------
     -- HEADER RECORD
