@@ -1,35 +1,35 @@
 /*
 Directions:
 1) Find and replace each of the text below with the applicable information.
-       E.g. Replace the text "@DeveloperName" (excluding quotes) with "John Doe"
+       E.g. Replace the text "James Bender" (excluding quotes) with "John Doe"
 2) Deploy this to client environment!
 
-@CustomFormatCode - Replace with format code, max length is 10. Start with capital E and try to make the code reflect the vendor/purpose
-@CustomShortFormatCode - Replace with short format code, max length is 6. Shortened version of Format Code for naming the scheduled session
-@CustomFormatName - Replace with Name of Interface (i.e. Discovery Combined Cobra/NPM Export)
-@ClientName - Name of client
-@DeveloperName - Name of TC
-@AnalystName - Name of IA
-@DateCreated - Date the file is being created
-@TekPNumber - The TekP Number from Pipedrive
-@DedCodeList - Replace with Deduction Code List in CSV format (i.e., DED1,DED2,DED3)
-@UseCobraCoveredDed - If this is set to 'Y' then the deduction code list is ignored
-@SpousesCSV - Replace with SPS relationship codes in CSV format (i.e., SPS)
-@ChildrenCSV - Replace with CHL relationship codes in CSV format (i.e., CHL,STC)
-@DomPartnerCSV - Replace with DP relationship codes in CSV format (i.e., DP)
+EWCOBNPMEX - Replace with format code, max length is 10. Start with capital E and try to make the code reflect the vendor/purpose
+EWCOBN - Replace with short format code, max length is 6. Shortened version of Format Code for naming the scheduled session
+Wex Cobra/Npm Export - Replace with Name of Interface (i.e. Discovery Combined Cobra/NPM Export)
+Lawry's - Name of client
+James Bender - Name of TC
+Julie Reardon - Name of IA
+6/1/2022 - Date the file is being created
+TekP-2021-11-19-0001 - The TekP Number from Pipedrive
+DEN,DPPO,MEDCA,MEDNV,MEDT2,MEDKB,125V,MFSA - Replace with Deduction Code List in CSV format (i.e., DED1,DED2,DED3)
+Y - If this is set to 'Y' then the deduction code list is ignored
+SPS - Replace with SPS relationship codes in CSV format (i.e., SPS)
+CHL,DA,DPC,STC - Replace with CHL relationship codes in CSV format (i.e., CHL,STC)
+DP - Replace with DP relationship codes in CSV format (i.e., DP)
 
 */
 
 
 SET NOCOUNT ON;
 
---DECLARE @FormatCde VARCHAR(10) = '@CustomFormatCode';
+--DECLARE @FormatCde VARCHAR(10) = 'EWCOBNPMEX';
 
 -----------
 -- Drop the SavePath table if it exists
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_SavePath') IS NOT NULL DROP TABLE dbo.U_@CustomFormatCode_SavePath
+IF OBJECT_ID('U_EWCOBNPMEX_SavePath') IS NOT NULL DROP TABLE dbo.U_EWCOBNPMEX_SavePath
 
 
 -----------
@@ -70,7 +70,7 @@ CfgName,
 CfgValue
 
 FROM dbo.U_Dsi_Configuration
-WHERE FormatCode = '@CustomFormatCode'
+WHERE FormatCode = 'EWCOBNPMEX'
 AND CfgName LIKE '%path%'
 
 
@@ -87,71 +87,71 @@ ExpExportCode,
 ExpSystemID
 
 FROM dbo.AscExp
-WHERE ExpFormatCode = '@CustomFormatCode'
+WHERE ExpFormatCode = 'EWCOBNPMEX'
 
 
 -----------
 -- Delete configuration data
 -----------
 
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = '@CustomFormatCode')
-DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = '@CustomFormatCode'
-DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = '@CustomFormatCode'
-DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = '@CustomFormatCode'
-DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = '@CustomFormatCode'
-DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = '@CustomFormatCode'
-DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = '@CustomFormatCode'
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EWCOBNPMEX')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EWCOBNPMEX'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EWCOBNPMEX'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EWCOBNPMEX'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EWCOBNPMEX'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EWCOBNPMEX'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EWCOBNPMEX'
 
-IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = '@CustomFormatCode'
-IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = '@CustomFormatCode'
-IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = '@CustomFormatCode'
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EWCOBNPMEX'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EWCOBNPMEX'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EWCOBNPMEX'
 
 
 -----------
 -- Drop export-specific objects
 -----------
 
-IF OBJECT_ID('dsi_vw@CustomFormatCode_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vw@CustomFormatCode_Export];
+IF OBJECT_ID('dsi_vwEWCOBNPMEX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEWCOBNPMEX_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_@CustomFormatCode') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_@CustomFormatCode];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EWCOBNPMEX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWCOBNPMEX];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_PEarHist];
+IF OBJECT_ID('U_EWCOBNPMEX_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_PEarHist];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_PDedHist];
+IF OBJECT_ID('U_EWCOBNPMEX_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_PDedHist];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_File') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_File];
+IF OBJECT_ID('U_EWCOBNPMEX_File') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_File];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_EEList') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_EEList];
+IF OBJECT_ID('U_EWCOBNPMEX_EEList') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_EEList];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBPLANINITIAL];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBPLANINITIAL];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBEVENT') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBEVENT];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBEVENT') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBEVENT];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBDEPENDENT') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBDEPENDENT];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBDEPENDENT') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBDEPENDENT];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QB') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_QB];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QB') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QB];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_NPM') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_drvTbl_NPM];
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_NPM') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_drvTbl_NPM];
 GO
-IF OBJECT_ID('U_@CustomFormatCode_DedList') IS NOT NULL DROP TABLE [dbo].[U_@CustomFormatCode_DedList];
+IF OBJECT_ID('U_EWCOBNPMEX_DedList') IS NOT NULL DROP TABLE [dbo].[U_EWCOBNPMEX_DedList];
 GO
-IF OBJECT_ID('U_dsi_BDM_@CustomFormatCode') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_@CustomFormatCode];
+IF OBJECT_ID('U_dsi_BDM_EWCOBNPMEX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EWCOBNPMEX];
 GO
 
 DECLARE @AdhSystemID VARCHAR(12), @FixedFormatName1 VARCHAR(50), @FixedFormatName2 VARCHAR(50);
-SET @AdhSystemID = LEFT('@CustomFormatCode' + REPLICATE('0',10),10) + 'Z0';
-SET @FixedFormatName1 = LEFT('@CustomFormatName',50);
-SET @FixedFormatName2 = LEFT('@CustomFormatName',30);
+SET @AdhSystemID = LEFT('EWCOBNPMEX' + REPLICATE('0',10),10) + 'Z0';
+SET @FixedFormatName1 = LEFT('Wex Cobra/Npm Export',50);
+SET @FixedFormatName2 = LEFT('Wex Cobra/Npm Export',30);
 
 -----------
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','@CustomFormatCode',@FixedFormatName1,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N',@AdhSystemID,'N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EWCOBNPMEX',@FixedFormatName1,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N',@AdhSystemID,'N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -270,18 +270,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = '@CustomFormatCode' + '_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX' + '_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202106119','EMPEXPORT','OEACTIVE','May 12 2021  2:35PM','@CustomFormatCode',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202106119','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','@CustomFormatCode',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202106119','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','@CustomFormatCode',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,@FixedFormatName2,'202106169','EMPEXPORT','SCH_@CustomShortFormatCode','May 12 2021  2:38PM','@CustomFormatCode',NULL,NULL,NULL,'202112319','May 11 2021  3:59PM','May 11 2021  3:59PM','202112241','300','','','202106161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202110129','EMPEXPORT','TEST_XOE','Oct 12 2021  9:26AM','@CustomFormatCode',NULL,NULL,NULL,'202110129','Oct 12 2021 12:00AM','Dec 30 1899 12:00AM','202105011','416','','','202105011',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202106119','EMPEXPORT','OEACTIVE','May 12 2021  2:35PM','EWCOBNPMEX',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202106119','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202106119','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,@FixedFormatName2,'202106169','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202112319','May 11 2021  3:59PM','May 11 2021  3:59PM','202112241','300','','','202106161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202110129','EMPEXPORT','TEST_XOE','Oct 12 2021  9:26AM','EWCOBNPMEX',NULL,NULL,NULL,'202110129','Oct 12 2021 12:00AM','Dec 30 1899 12:00AM','202105011','416','','','202105011',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -292,11 +292,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -- U_dsi_Configuration inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','ExportPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','InitialSort','C','drvSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('@CustomFormatCode','UseFileName','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWCOBNPMEX','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWCOBNPMEX','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWCOBNPMEX','InitialSort','C','drvSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWCOBNPMEX','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWCOBNPMEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -307,14 +307,14 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','H01','None',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D10','dbo.U_@CustomFormatCode_drvTbl_QB',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D20','dbo.U_@CustomFormatCode_drvTbl_QBEVENT',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D30','dbo.U_@CustomFormatCode_drvTbl_QBPLANINITIAL',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D40','dbo.U_@CustomFormatCode_drvTbl_QBDEPENDENT',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D50','dbo.U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D60','dbo.U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('@CustomFormatCode','D70','dbo.U_@CustomFormatCode_drvTbl_NPM',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','H01','None',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D10','dbo.U_EWCOBNPMEX_drvTbl_QB',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D20','dbo.U_EWCOBNPMEX_drvTbl_QBEVENT',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D30','dbo.U_EWCOBNPMEX_drvTbl_QBPLANINITIAL',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D40','dbo.U_EWCOBNPMEX_drvTbl_QBDEPENDENT',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D50','dbo.U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D60','dbo.U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EWCOBNPMEX','D70','dbo.U_EWCOBNPMEX_drvTbl_NPM',NULL);
 
 -----------
 -- U_dsi_Translations inserts
@@ -327,11 +327,11 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- Create table U_dsi_BDM_@CustomFormatCode
+-- Create table U_dsi_BDM_EWCOBNPMEX
 -----------
 
-IF OBJECT_ID('U_dsi_BDM_@CustomFormatCode') IS NULL
-CREATE TABLE [dbo].[U_dsi_BDM_@CustomFormatCode] (
+IF OBJECT_ID('U_dsi_BDM_EWCOBNPMEX') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EWCOBNPMEX] (
     [BdmRecType] varchar(3) NOT NULL,
     [BdmCOID] char(5) NULL,
     [BdmEEID] char(12) NOT NULL,
@@ -375,21 +375,21 @@ CREATE TABLE [dbo].[U_dsi_BDM_@CustomFormatCode] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_DedList
+-- Create table U_EWCOBNPMEX_DedList
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_DedList') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_DedList] (
+IF OBJECT_ID('U_EWCOBNPMEX_DedList') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_DedList] (
     [DedCode] char(5) NOT NULL,
     [DedType] char(4) NOT NULL
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_NPM
+-- Create table U_EWCOBNPMEX_drvTbl_NPM
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_NPM') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_NPM] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_NPM') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_NPM] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -408,11 +408,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_NPM] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_QB
+-- Create table U_EWCOBNPMEX_drvTbl_QB
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QB') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QB] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QB') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QB] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -431,11 +431,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QB] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_QBDEPENDENT
+-- Create table U_EWCOBNPMEX_drvTbl_QBDEPENDENT
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBDEPENDENT') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBDEPENDENT] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBDEPENDENT') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBDEPENDENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -450,11 +450,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBDEPENDENT] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL
+-- Create table U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -463,11 +463,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_QBEVENT
+-- Create table U_EWCOBNPMEX_drvTbl_QBEVENT
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBEVENT') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBEVENT] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBEVENT') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBEVENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -480,11 +480,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBEVENT] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_QBPLANINITIAL
+-- Create table U_EWCOBNPMEX_drvTbl_QBPLANINITIAL
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBPLANINITIAL') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBPLANINITIAL] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBPLANINITIAL') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -494,11 +494,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBPLANINITIAL] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
+-- Create table U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL] (
+IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
@@ -509,21 +509,21 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL] 
 );
 
 -----------
--- Create table U_@CustomFormatCode_EEList
+-- Create table U_EWCOBNPMEX_EEList
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_EEList') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_EEList] (
+IF OBJECT_ID('U_EWCOBNPMEX_EEList') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
 
 -----------
--- Create table U_@CustomFormatCode_File
+-- Create table U_EWCOBNPMEX_File
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_File') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_File] (
+IF OBJECT_ID('U_EWCOBNPMEX_File') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(100) NOT NULL,
     [SubSort] varchar(100) NOT NULL,
@@ -533,11 +533,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_File] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_PDedHist
+-- Create table U_EWCOBNPMEX_PDedHist
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_PDedHist') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_PDedHist] (
+IF OBJECT_ID('U_EWCOBNPMEX_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
@@ -556,11 +556,11 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_PDedHist] (
 );
 
 -----------
--- Create table U_@CustomFormatCode_PEarHist
+-- Create table U_EWCOBNPMEX_PEarHist
 -----------
 
-IF OBJECT_ID('U_@CustomFormatCode_PEarHist') IS NULL
-CREATE TABLE [dbo].[U_@CustomFormatCode_PEarHist] (
+IF OBJECT_ID('U_EWCOBNPMEX_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EWCOBNPMEX_PEarHist] (
     [PehEEID] char(12) NOT NULL,
     [PrgPayDate] datetime NULL,
     [PehCurAmt] numeric NULL,
@@ -573,17 +573,17 @@ CREATE TABLE [dbo].[U_@CustomFormatCode_PEarHist] (
     [PehInclInDefCompHrsYTD] decimal NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_@CustomFormatCode]
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EWCOBNPMEX]
     @SystemID char(12)
 AS
 SET NOCOUNT ON;
 /**********************************************************************************
-Client Name: @ClientName
+Client Name: Lawry's
 
-Created By: @DeveloperName
-Business Analyst: @AnalystName
-Create Date: @DateCreated
-Service Request Number: @TekPNumber
+Created By: James Bender
+Business Analyst: Julie Reardon
+Create Date: 6/1/2022
+Service Request Number: TekP-2021-11-19-0001
 
 Purpose: @FixedFormatName1
 
@@ -592,23 +592,23 @@ Revision History
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = '@CustomFormatCode';
-SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = '@CustomFormatCode';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = '@CustomFormatCode' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EWCOBNPMEX';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EWCOBNPMEX';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EWCOBNPMEX';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EWCOBNPMEX';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EWCOBNPMEX' ORDER BY RunID DESC;
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'ONDEM_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'SCH_@CustomShortFormatCode';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWCOBNPMEX', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWCOBNPMEX', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWCOBNPMEX', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWCOBNPMEX', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EWCOBNPMEX', 'SCH_EWCOBN';
 
-EXEC dbo.dsi_BDM_sp_ErrorCheck '@CustomFormatCode';
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'EWCOBNPMEX';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = '@CustomFormatCode', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'EWCOBNPMEX', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -623,7 +623,7 @@ BEGIN
             ,@EndPerControl     VARCHAR(9);
 
     -- Set FormatCode
-    SELECT @FormatCde = '@CustomFormatCode';
+    SELECT @FormatCde = 'EWCOBNPMEX';
 
     -- Declare dates from Parameter file
     SELECT
@@ -641,22 +641,22 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_@CustomFormatCode_EEList
+    DELETE FROM dbo.U_EWCOBNPMEX_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_@CustomFormatCode_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EWCOBNPMEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '@DedCodeList';
+    SET @DedList = 'DEN,DPPO,MEDCA,MEDNV,MEDT2,MEDKB,125V,MFSA';
 
-    IF OBJECT_ID('U_@CustomFormatCode_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_DedList;
+    IF OBJECT_ID('U_EWCOBNPMEX_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_DedList;
     SELECT DISTINCT
          DedCode = DedDedCode
         ,DedType = DedDedType
-    INTO dbo.U_@CustomFormatCode_DedList
+    INTO dbo.U_EWCOBNPMEX_DedList
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
@@ -678,7 +678,7 @@ BEGIN
 
     -- COBRA parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RunID','QB');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'UseCobraCoveredDeds','@UseCobraCoveredDed'); -- DedIsCobraCovered = 'Y'
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'CobraType','4'); -- Eep/ConCobraReason first, then EdhChangeReason. Include CHGRP for elig. ben groups – 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'CobraDate','3'); -- EedBenStopDate and DbnBenStopDate, unless Eep/ConDateOfCOBRAEvent exists – 
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'CobraPQBType','1'); -- If no EE or spouse, ALL children are PQB (not just oldest) – include this line if deps are sent as QB and not the employee.  
@@ -689,9 +689,9 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'InvalidTermReasonsEmp','203'); -- Invalidate employee when Cobra Reason is "Death".  Add the Death employment term reason (eectermreason)
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons – used when clients have Platform Configurable fields.  Add any other field names the client is using.
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'CountDependents','Y');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RelationshipsSpouse','@SpousesCSV'); -- update to the spouse relationship code
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RelationshipsChild', '@ChildrenCSV'); -- update to the child relationship codes
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RelationshipsDomPartner','@DomPartnerCSV'); -- update to the domestic partner relationship code
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RelationshipsSpouse','SPS'); -- update to the spouse relationship code
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RelationshipsChild', 'CHL,DA,DPC,STC'); -- update to the child relationship codes
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RelationshipsDomPartner','DP'); -- update to the domestic partner relationship code
 
 
     -- Required OE parameters
@@ -725,7 +725,7 @@ BEGIN
     -- NPM parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'RunID','NPM');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'AddToPreviousRun','Y');  -- only used for NPM/QB combined files
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'UseCobraCoveredDeds','@UseCobraCoveredDed'); -- DedIsCobraCovered = 'Y'
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCde,'NewEnrolleeType','4'); -- All new enrollees where no previous plan exists
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCde, 'GetChangeReason', 'Y')
 
@@ -752,7 +752,7 @@ BEGIN
     ---==========================================
  --   -- Insert into BDM Reason code 201 and 204
  --   --==========================================
-    INSERT INTO [dbo].[U_dsi_BDM_@CustomFormatCode]
+    INSERT INTO [dbo].[U_dsi_BDM_EWCOBNPMEX]
     (    [BdmRecType]
            ,[BdmCOID]
            ,[BdmEEID]
@@ -800,9 +800,9 @@ BEGIN
     WHERE edhChangeReason IN ('204') 
         and DbnBenstopdate BETWEEN @startdate AND @enddate 
         AND dbnValidForExport = 'N'
-		AND dbnformatcode = '@CustomFormatCode'
+		AND dbnformatcode = 'EWCOBNPMEX'
 
-    INSERT INTO [dbo].[U_dsi_BDM_@CustomFormatCode]
+    INSERT INTO [dbo].[U_dsi_BDM_EWCOBNPMEX]
     (    [BdmRecType]
            ,[BdmCOID]
            ,[BdmEEID]
@@ -850,9 +850,9 @@ BEGIN
     WHERE edhChangeReason IN ('201') 
         and DbnBenstopdate BETWEEN @startdate AND @enddate 
         AND dbnValidForExport = 'N'
-		AND dbnformatcode = '@CustomFormatCode'
+		AND dbnformatcode = 'EWCOBNPMEX'
 
-    Delete from dbo.U_dsi_BDM_@CustomFormatCode where bdmdedcode not in (Select dedcode from U_@CustomFormatCode_DedList)
+    Delete from dbo.U_dsi_BDM_EWCOBNPMEX where bdmdedcode not in (Select dedcode from U_EWCOBNPMEX_DedList)
 
     --==========================================
     -- Build Working Tables
@@ -861,8 +861,8 @@ BEGIN
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_PDedHist;
+    IF OBJECT_ID('U_EWCOBNPMEX_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_PDedHist;
     SELECT DISTINCT
          PdhEEID
         -- Current Payroll Amounts
@@ -882,9 +882,9 @@ BEGIN
         ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    INTO dbo.U_@CustomFormatCode_PDedHist
+    INTO dbo.U_EWCOBNPMEX_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_@CustomFormatCode_DedList WITH (NOLOCK)
+    JOIN dbo.U_EWCOBNPMEX_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
@@ -898,8 +898,8 @@ BEGIN
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_PEarHist;
+    IF OBJECT_ID('U_EWCOBNPMEX_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_PEarHist;
     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
@@ -915,7 +915,7 @@ BEGIN
         -- YTD Include Deferred Comp Amount/Hours
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_@CustomFormatCode_PEarHist
+    INTO dbo.U_EWCOBNPMEX_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
@@ -927,14 +927,14 @@ BEGIN
     -- Build Driver Tables
     --==========================================
 
-    DELETE dbo.U_dsi_BDM_@CustomFormatCode 
+    DELETE dbo.U_dsi_BDM_EWCOBNPMEX 
     WHERE BdmRunId = 'QB'
         AND BdmBenStatus = 'C'
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_QB
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QB
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QB','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_QB;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QB','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_QB;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -955,11 +955,11 @@ BEGIN
                     ELSE CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
                     END
         ,drvDateOfBirth = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConDateOfBirth ELSE EepDateOfBirth END
-    INTO dbo.U_@CustomFormatCode_drvTbl_QB
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_QB
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
@@ -983,10 +983,10 @@ BEGIN
         AND ConSystemID = BdmDepRecId
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_QBEVENT
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBEVENT
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBEVENT','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_QBEVENT;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBEVENT','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_QBEVENT;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1014,8 +1014,8 @@ BEGIN
         ,drvEnrollmentDate = BdmBenStartDate 
         ,drvEmployeeSSN = eepSSN
         ,drvEmployeeName = EepNameFirst + ' ' + EepNameLast
-    INTO dbo.U_@CustomFormatCode_drvTbl_QBEVENT
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_QBEVENT
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -1029,7 +1029,7 @@ BEGIN
                 ,BdmBenStopDate = MAX(BdmBenStopDate)
                 ,BdmBenStartDate = MIN(BdmBenStartDate)
                 ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
-              FROM dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
+              FROM dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
               WHERE BdmRunId = 'QB'
               GROUP BY BdmEEID, BdmCoID) AS Bdm
         ON BdmEEID = xEEID 
@@ -1049,10 +1049,10 @@ BEGIN
         AND EdhCoID = xCOID  
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_QBPLANINITIAL
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBPLANINITIAL
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBPLANINITIAL','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_QBPLANINITIAL;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBPLANINITIAL','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_QBPLANINITIAL;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1071,7 +1071,7 @@ BEGIN
                         END*/
         ,drvCoverageLevel = ''  -- Replace this with the mapping from the specification/mapping file. You can use as much/little of the sample code below as needed
                             /*CASE WHEN A.BdmCobraReason IN ('210') THEN
-                                CASE WHEN A.BdmRelationship IN ('SPS','DP') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_@CustomFormatCode B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CH','CHL','DPC','STC','DCH')) > 0 THEN 'EE+CHILDREN'
+                                CASE WHEN A.BdmRelationship IN ('SPS','DP') AND (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EWCOBNPMEX B WITH (NOLOCK) WHERE A.BdmEEID = B.BdmEEID AND B.BdmRelationship IN ('CH','CHL','DPC','STC','DCH')) > 0 THEN 'EE+CHILDREN'
                                     WHEN A.BdmRelationship IN ('CH','CHL','DPC','STC','DCH') THEN 'EE+CHILDREN'
                                     ELSE 'EE'
                                 END
@@ -1085,14 +1085,14 @@ BEGIN
                                     WHEN BdmBenOption = 'EES' THEN 'EE+SPOUSE'
                                 END
                             END*/
-    INTO dbo.U_@CustomFormatCode_drvTbl_QBPLANINITIAL
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_QBPLANINITIAL
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-    JOIN dbo.U_dsi_BDM_@CustomFormatCode A WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EWCOBNPMEX A WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
@@ -1111,10 +1111,10 @@ BEGIN
         AND EdhCoID = xCOID  
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_QBDEPENDENT
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBDEPENDENT
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBDEPENDENT','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_QBDEPENDENT;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBDEPENDENT','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_QBDEPENDENT;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1131,11 +1131,11 @@ BEGIN
         ,drvNameLast = ConNameLast
         ,drvSex = CASE WHEN ConGender IN ('M','F') THEN ConGender ELSE 'U' END
         ,drvDateOfBirth = ConDateOfBirth
-    INTO dbo.U_@CustomFormatCode_drvTbl_QBDEPENDENT
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_QBDEPENDENT
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
@@ -1145,10 +1145,10 @@ JOIN dbo.Contacts WITH (NOLOCK)
     WHERE BdmIsPQB = 'N'
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1164,11 +1164,11 @@ JOIN dbo.Contacts WITH (NOLOCK)
                             WHEN BdmDedCode = 'MPPO' THEN 'Aetna Medical PPO PTSC'
                             WHEN BdmDedCode = 'VIS' THEN 'EyeMed Vision Care'
                         END*/
-    INTO dbo.U_@CustomFormatCode_drvTbl_QBDEPENDENTPLANINITIAL
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
@@ -1181,10 +1181,10 @@ JOIN dbo.Contacts WITH (NOLOCK)
             OR (ConRelationship IN ('SPS', 'DP') AND BdmCobraReason NOT IN ('210', '204', 'LEVNT4')))
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1196,19 +1196,19 @@ JOIN dbo.Contacts WITH (NOLOCK)
                         -- CASE WHEN BdmDedCode = 'FSA' THEN 'DBI FSA' END
         ,drvRate = ''  -- Replace this with the mapping from the specification/mapping file. You can use as much/little of the sample code below as needed
                     -- FORMAT(CASE WHEN BdmDedCode = 'FSA' THEN BdmEEAmt END, '#0.00')
-    INTO dbo.U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
         AND BdmDedCode IN ('FSA')
     ;
     ---------------------------------
-    -- DETAIL RECORD - U_@CustomFormatCode_drvTbl_NPM
+    -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_NPM
     ---------------------------------
-    IF OBJECT_ID('U_@CustomFormatCode_drvTbl_NPM','U') IS NOT NULL
-        DROP TABLE dbo.U_@CustomFormatCode_drvTbl_NPM;
+    IF OBJECT_ID('U_EWCOBNPMEX_drvTbl_NPM','U') IS NOT NULL
+        DROP TABLE dbo.U_EWCOBNPMEX_drvTbl_NPM;
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
@@ -1226,14 +1226,14 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ,drvAddressZipCode = EepAddressZipCode
         ,drvSex = CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
         ,drvHireDate = EecDateOfLastHire
-    INTO dbo.U_@CustomFormatCode_drvTbl_NPM
-    FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    INTO dbo.U_EWCOBNPMEX_drvTbl_NPM
+    FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'NPM'
@@ -1258,13 +1258,13 @@ END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vw@CustomFormatCode_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_@CustomFormatCode_File (NOLOCK)
+ALTER VIEW dbo.dsi_vwEWCOBNPMEX_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EWCOBNPMEX_File (NOLOCK)
     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
 
 --Check out AscDefF
 SELECT * FROM dbo.AscDefF
-WHERE AdfHeaderSystemID LIKE '@CustomFormatCode%'
+WHERE AdfHeaderSystemID LIKE 'EWCOBNPMEX%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
@@ -1273,14 +1273,14 @@ UPDATE dbo.AscExp
        ,expStartPerControl     = '202106291'
        ,expLastEndPerControl   = '202107309'
        ,expEndPerControl       = '202107309'
-WHERE expFormatCode = '@CustomFormatCode'
+WHERE expFormatCode = 'EWCOBNPMEX'
 AND ExpExportCode = 'TEST_XOE'
 ;
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vw@CustomFormatCode_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_@CustomFormatCode_File (NOLOCK)
+CREATE VIEW dbo.dsi_vwEWCOBNPMEX_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EWCOBNPMEX_File (NOLOCK)
     ORDER BY  InitialSort, SubSort;
 
 GO
@@ -1293,7 +1293,7 @@ GO
 INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
 SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
   FROM dbo.AscDefH WITH (NOLOCK)
- WHERE AdhFormatCode = '@CustomFormatCode' AND AdhEngine = 'EMPEXPORT'
+ WHERE AdhFormatCode = 'EWCOBNPMEX' AND AdhEngine = 'EMPEXPORT'
    AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
 
 
@@ -1305,7 +1305,7 @@ UPDATE dbo.U_dsi_Configuration
    SET CfgValue = rpoParmValue02
   FROM dbo.U_dsi_Configuration
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
- WHERE rpoFormatCode = '@CustomFormatCode'
+ WHERE rpoFormatCode = 'EWCOBNPMEX'
    AND rpoParmType = 'Path'
 
 
@@ -1317,7 +1317,7 @@ UPDATE dbo.AscExp
    SET expSystemID = rpoParmValue02
   FROM dbo.AscExp
   JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
- WHERE rpoFormatCode = '@CustomFormatCode'
+ WHERE rpoFormatCode = 'EWCOBNPMEX'
    AND rpoParmType = 'expSystemID'
 
 
@@ -1325,15 +1325,15 @@ UPDATE dbo.AscExp
 -- This is a web export; set paths to NULL
 -----------
 
-EXEC dbo.dsi_sp_UpdateConfig '@CustomFormatCode', 'ExportPath', 'V', NULL
-EXEC dbo.dsi_sp_UpdateConfig '@CustomFormatCode', 'TestPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EWCOBNPMEX', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EWCOBNPMEX', 'TestPath', 'V', NULL
 
 
 -----------
 -- This is a web export; set UseFileName = Y
 -----------
 
-EXEC dbo.dsi_sp_UpdateConfig '@CustomFormatCode', 'UseFileName', 'V', 'Y'
+EXEC dbo.dsi_sp_UpdateConfig 'EWCOBNPMEX', 'UseFileName', 'V', 'Y'
 
 
 -- End ripout
