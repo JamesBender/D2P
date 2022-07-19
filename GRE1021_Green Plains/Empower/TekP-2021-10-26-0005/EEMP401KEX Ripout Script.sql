@@ -5,7 +5,7 @@ EEMP401KEX: Empower 401k Export
 FormatCode:     EEMP401KEX
 Project:        Empower 401k Export
 Client ID:      GRE1021
-Date/time:      2022-04-04 11:34:44.647
+Date/time:      2022-07-07 09:36:32.650
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -158,16 +158,13 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EEMP401KEXZ0','10','D','10','285',NULL,'Termination Date',NULL,NULL,'"drvTerminationDate"','(''UD101''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EEMP401KEXZ0','10','D','10','295',NULL,'Re-Hire Date',NULL,NULL,'"drvReHireDate"','(''UD101''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EEMP401KEXZ0','10','D','10','305',NULL,'Checkdate',NULL,NULL,'"drvCheckDate"','(''UD101''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EEMP401KEXZ0','10','D','10','315',NULL,'Pretax',NULL,NULL,'"drvPreTax"','(''UA''=''F'')'); -- 24
-
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EEMP401KEXZ0','10','D','10','325',NULL,'Employer Match',NULL,NULL,'"drvEmployerMatch"','(''UA''=''F'')'); -- 25 (change to employer match)
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EEMP401KEXZ0','10','D','10','335',NULL,'Loans',NULL,NULL,'"drvLoans"','(''UA''=''F'')'); -- 26 (leave)
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EEMP401KEXZ0','10','D','10','345',NULL,'Roth',NULL,NULL,'"drvRoth"','(''UA''=''F'')'); -- 27 (change to Roth)
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EEMP401KEXZ0','10','D','10','355',NULL,'EMPLOYER PROFIT SHARING',NULL,NULL,'""','(''DA''=''F'')'); -- 28 (leave)
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EEMP401KEXZ0','10','D','10','365',NULL,'EMPLOYER MONEY PURCHASE',NULL,NULL,'""','(''DA''=''F'')'); -- 29
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EEMP401KEXZ0','10','D','10','375',NULL,'Contribution Amount 7',NULL,NULL,'""','(''DA''=''F'')'); -- 30
-
-
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EEMP401KEXZ0','10','D','10','315',NULL,'Pretax',NULL,NULL,'"drvPreTax"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EEMP401KEXZ0','10','D','10','325',NULL,'Employer Match',NULL,NULL,'"drvEmployerMatch"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EEMP401KEXZ0','10','D','10','335',NULL,'Loans',NULL,NULL,'"drvLoans"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EEMP401KEXZ0','10','D','10','345',NULL,'Roth',NULL,NULL,'"drvRoth"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EEMP401KEXZ0','10','D','10','355',NULL,'EMPLOYER PROFIT SHARING',NULL,NULL,'""','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EEMP401KEXZ0','10','D','10','365',NULL,'EMPLOYER MONEY PURCHASE',NULL,NULL,'""','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EEMP401KEXZ0','10','D','10','375',NULL,'Contribution Amount 7',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EEMP401KEXZ0','10','D','10','385',NULL,'Contribution Amount 8',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EEMP401KEXZ0','5','D','10','395',NULL,'YTD Hours Worked',NULL,NULL,'"drvYTDHoursWorked"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EEMP401KEXZ0','11','D','10','400',NULL,'YTD Total Compensation',NULL,NULL,'"drvYTDCompensation"','(''UA''=''F'')');
@@ -206,7 +203,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEMP401KEX_20220404.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEMP401KEX_20220707.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -216,8 +213,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202202259','EMPEXPORT','OEACTIVE','Feb 18 2022 10:41AM','EEMP401KEX',NULL,NULL,NULL,'202202259','Feb 18 2022  5:36AM','Feb 18 2022  5:36AM','202202251','1','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202202259','EMPEXPORT','OEPASSIVE','Feb 18 2022 10:41AM','EEMP401KEX',NULL,NULL,NULL,'202202259','Feb 18 2022  5:36AM','Feb 18 2022  5:36AM','202202251','500','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Empower 401k Export','202202259','EMPEXPORT','ONDEM_XOE','Feb 18 2022 10:42AM','EEMP401KEX',NULL,NULL,NULL,'202202259','Feb 18 2022  5:36AM','Feb 18 2022  5:36AM','202202251','500','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Empower 401k Export-Sched','202202259','EMPEXPORT','SCH_EEMP40','Feb 18 2022 10:43AM','EEMP401KEX',NULL,NULL,NULL,'202202259','Feb 18 2022  5:36AM','Feb 18 2022  5:36AM','202202251','500','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Empower 401k Export-Test','202202159','EMPEXPORT','TEST_XOE','Feb 28 2022  8:54PM','EEMP401KEX',NULL,NULL,NULL,'202202159','Feb 15 2022 12:00AM','Dec 30 1899 12:00AM','202202151','192','','','202202151',dbo.fn_GetTimedKey(),NULL,'us3jReGRE1021',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','OEZDW,OEZ87,RIWDE',NULL,NULL,NULL,'Empower 401k Export-Sched','202202259','EMPEXPORT','SCH_EEMP40','Feb 18 2022 10:43AM','EEMP401KEX',NULL,NULL,NULL,'202206269','Feb 18 2022  5:36AM','Feb 18 2022  5:36AM','202206011','500','','','202202251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Empower 401k Export-Test','202206179','EMPEXPORT','TEST_XOE','Apr  5 2022  6:32AM','EEMP401KEX',NULL,NULL,NULL,'202206179','Mar 31 2022 12:00AM','Dec 30 1899 12:00AM','202206171','191','','','202206171',dbo.fn_GetTimedKey(),NULL,'us3jReGRE1021',NULL);
 
 -----------
 -- AscImp inserts
@@ -344,7 +341,7 @@ CREATE TABLE [dbo].[U_EEMP401KEX_drvTbl] (
     [drvReHireDate] datetime NULL,
     [drvCheckDate] datetime NULL,
     [drvPreTax] nvarchar(4000) NULL,
-    [drvEmployerMatch] nvarchar(4000) NULL, -- get's changed
+    [drvEmployerMatch] nvarchar(4000) NULL,
     [drvLoans] nvarchar(4000) NULL,
     [drvRoth] nvarchar(4000) NULL,
     [drvYTDHoursWorked] nvarchar(4000) NULL,
@@ -397,7 +394,7 @@ CREATE TABLE [dbo].[U_EEMP401KEX_PDedHist] (
     [PdhPreTax] numeric NULL,
     [PdhRoth] numeric NULL,
     [PdhLoans] numeric NULL,
-    [PdhSource4] numeric NULL,
+    [PdhEmployerMatch] numeric NULL,
     [PdhSource5] numeric NULL,
     [PdhSource6] numeric NULL,
     [PdhSource7] numeric NULL,
@@ -426,335 +423,9 @@ CREATE TABLE [dbo].[U_EEMP401KEX_PEarHist] (
     [PehInclInDefCompHrsYTD] decimal NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EEMP401KEX]
-    @SystemID char(12)
-AS
-SET NOCOUNT ON;
-/**********************************************************************************
-Client Name: Green Plains
-
-Created By: James Bender
-Business Analyst: Julie Reardon
-Create Date: 02/18/2022
-Service Request Number: TekP-2021-10-26-0005
-
-Purpose: Empower 401k Export
-
-Revision History
-----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
-
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEMP401KEX';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EEMP401KEX';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EEMP401KEX';
-SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EEMP401KEX';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EEMP401KEX' ORDER BY RunID DESC;
-
-Execute Export
---------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'ONDEM_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'SCH_EEMP40';
-
-EXEC dbo.dsi_BDM_sp_ErrorCheck 'EEMP401KEX';
-
-EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EEMP401KEX', @AllObjects = 'Y', @IsWeb = 'Y'
-**********************************************************************************/
-BEGIN
-
-    --==========================================
-    -- Declare variables
-    --==========================================
-    DECLARE  @FormatCode        VARCHAR(10)
-            ,@ExportCode        VARCHAR(10)
-            ,@StartDate         DATETIME
-            ,@EndDate           DATETIME
-            ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
-
-    -- Set FormatCode
-    SELECT @FormatCode = 'EEMP401KEX';
-
-    -- Declare dates from Parameter file
-    SELECT
-         @StartPerControl = StartPerControl
-        ,@EndPerControl   = EndPerControl
-        ,@StartDate       = LEFT(StartPerControl,8)
-        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
-        ,@ExportCode      = ExportCode
-    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = @FormatCode;
-
-    --==========================================
-    -- Clean EE List 
-    -- Caution: Careful of cleaning EE List if including paycheck data
-    --==========================================
-
-    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_EEMP401KEX_EEList
-    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_EEMP401KEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
-
-    --==========================================
-    -- Create Deduction List
-    --==========================================
-    DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '401CP,401CU,401ER,401F,401P,401RF,401RP,4KLN1,4KLN2,4KLN3,4KLN4,4KLN5,4KLN6,4KLN7,4KRCP,4KRCU';
-
-    IF OBJECT_ID('U_EEMP401KEX_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_EEMP401KEX_DedList;
-    SELECT DISTINCT
-         DedCode = DedDedCode
-        ,DedType = DedDedType
-    INTO dbo.U_EEMP401KEX_DedList
-    FROM dbo.fn_ListToTable(@DedList)
-    JOIN dbo.DedCode WITH (NOLOCK)
-        ON DedDedCode = Item;
-
-
-    --==========================================
-    -- BDM Section
-    --==========================================
-    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
-
-    -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-
-    -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
-
-    -- Required OE parameters
-    IF @ExportCode LIKE '%PASSIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
-    END;
-
-    IF @ExportCode LIKE '%ACTIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
-    END;
-
-
-    -- Run BDM Module
-    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
-
-    --==========================================
-    -- Build Working Tables
-    --==========================================
-
-    -----------------------------
-    -- Working Table - PDedHist
-    -----------------------------
-    IF OBJECT_ID('U_EEMP401KEX_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EEMP401KEX_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        -- Current Payroll Amounts
-        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        -- YTD Payroll Amounts
-        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-        ,PdhPayDate = MAX(PdhPayDate)
-        -- Categorize Payroll Amounts
-        ,PdhPreTax        = SUM(CASE WHEN PdhDedCode IN ('401CP','401CU','401F','401P') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhRoth        = SUM(CASE WHEN PdhDedCode IN ('401RF','401RP','4KRCP','4KRCU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhLoans        = SUM(CASE WHEN PdhDedCode IN ('4KLN1','4KLN2','4KLN3','4KLN4','4KLN4','4KLN5','4KLN6','4KLN7') THEN PdhEECurAmt ELSE 0.00 END)        
-        ,PdhEmployerMatch     = SUM(CASE WHEN PdhDedCode IN ('401ER') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    INTO dbo.U_EEMP401KEX_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_EEMP401KEX_DedList WITH (NOLOCK)
-        ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
-    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-        OR SUM(PdhERCurAmt) <> 0.00
-    );
-
-
-    -----------------------------
-    -- Working Table - PEarHist
-    -----------------------------
-    IF OBJECT_ID('U_EEMP401KEX_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EEMP401KEX_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND PehInclInDefComp = 'Y' THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND PehInclInDefCompHrs = 'Y' THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        ,PehCurHrsIncInDefCompYTD           = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs ELSE 0.00 END)
-        ,PehCurAmtIncInDefCompYTD           = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt ELSE 0.00 END)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EEMP401KEX_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
-    --==========================================
-    -- Build Driver Tables
-    --==========================================
-    ---------------------------------
-    -- DETAIL RECORD - U_EEMP401KEX_drvTbl
-    ---------------------------------
-    IF OBJECT_ID('U_EEMP401KEX_drvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_EEMP401KEX_drvTbl;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
-        -- standard fields above and additional driver fields below
-        ,drvSSN = eepSSN
-        ,drvDivisionNumber =    CASE WHEN EecPayGroup = 'BWFQT' THEN 'FQBW'
-                                WHEN EecPayGroup IN ('SMFQT','SMFQM') THEN 'FQSM'
-                                WHEN EecPayGroup IN ('BWCORP','BWTRAD','BWOBIO','BWSHEN','BWSUPE','BWOTTE','BWCC','BWBLEN','BWATK','BWWOOD','BWFAIR','BWBSTK','BWBPA','BWHOP','BWMADI','BWMTVN','BWYORK','BWOPTI') THEN 'GPBW'
-                                WHEN EecPayGroup IN ('SMCORP','SMTRAD','SMBLEN','SMOPTI') THEN 'GPSM'
-                                END
-        ,drvNameLast = EepNameLast
-        ,drvNameFirst = EepNameFirst
-        ,drvNameMiddle = LEFT(EepNameMiddle,1)
-        ,drvDateOfBirth = EepDateOfBirth
-        ,drvGender = EepGender
-        ,drvMaritalStatus = CASE WHEN EepMaritalStatus IS NULL OR EepMaritalStatus = 'Z' THEN 'S' ELSE eepMaritalStatus END
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
-        ,drvAddressState = EepAddressState
-        ,drvAddressZipCode = EepAddressZipCode
-        ,drvHomePhoneNumber = CASE WHEN EepPhoneHomeIsPrivate <> 'Y' THEN EepPhoneHomeNumber ELSE EecPhoneBusinessNumber END
-        ,drvHireDate = EecDateOfOriginalHire
-        ,drvTerminationDate =    CASE WHEN EecEmplStatus IN ('R','T') THEN EecDateOfTermination 
-                                WHEN EecEmplStatus NOT IN ('R','T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN DATEADD(DAY, -1, EjhJobEffDate)
-                                END
-        ,drvReHireDate = CASE WHEN EecEmplStatus NOT IN ('R','T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END
-        ,drvCheckDate = PdhPayDate -- PrgPayDate
-        ,drvPreTax = FORMAT(PdhPreTax, '0000000.00')
-        ,drvEmployerMatch = FORMAT(PdhEmployerMatch, '0000000.00') -- get's changed
-        ,drvLoans = FORMAT(PdhLoans, '0000000.00')
-        ,drvRoth = FORMAT(PdhRoth, '0000000.00') -- get's changed
-        ,drvYTDHoursWorked = FORMAT(PehCurHrsIncInDefCompYTD, '00000')
-        --,drvYTDCompensation = FORMAT(PthCurTaxableWagesYTD, '00000000.00')
-        ,drvYTDCompensation = FORMAT(PehCurAmtYTD, '00000000.00')
-        ,drvYTDPlanCompensation = FORMAT(PehCurAmtIncInDefCompYTD, '00000000.00')
-        ,drvEmailAddress = CASE WHEN eepAddressEMailAlternate IS NOT NULL THEN eepAddressEMailAlternate ELSE EepAddressEMail END
-        ,drvSalaryAmount = FORMAT(EecAnnSalary, '#0.00')
-        ,drvTerminationReasonCode =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DE'
-                                    WHEN EecEmplStatus = 'R' THEN 'LA'
-                                    WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'R'
-                                    WHEN EecEmplStatus = 'T' THEN 'S'
-                                    END
-        ,drvEmployeeAssignedId = EecEmpNo
-        ,drvMobilePhone = EfoPhoneNumber
-        ,drvPayFrequency = PgrPayFrequency
-    INTO dbo.U_EEMP401KEX_drvTbl
-    FROM dbo.U_EEMP401KEX_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EEMP401KEX WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    LEFT JOIN (
-                SELECT EjhEEID, EjhCOID
-                    ,MAX(EjhJobEffDate) AS EjhJobEffDate
-                FROM dbo.EmpHJob WITH (NOLOCK)
-                WHERE EjhEmplStatus = 'T'
-                GROUP BY EjhEEID, EjhCOID) EJH
-        on EjhEEID = xEEID
-        AND EjhCOID = xCOID
-    JOIN dbo.U_EEMP401KEX_PEarHist WITH (NOLOCK)
-        ON PehEEID = xEEID
-    JOIN dbo.U_EEMP401KEX_PDedHist WITH (NOLOCK)
-        ON PdhEEID = xEEID
-    LEFT JOIN (
-                SELECT PthEEID, PthCOID 
-                    ,SUM(PthCurTaxableWages) AS  PthCurTaxableWagesYTD
-                FROM dbo.PTaxHist WITH (NOLOCK)
-                WHERE PthTaxCode LIKE '%USFIT%'
-                AND LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)
-                    AND PthPerControl <= @EndPerControl 
-                GROUP BY PthEEID, PthCoID) PTH
-        ON PthEEID = xEEID
-        AND PthCOID = xCOID
-    LEFT JOIN (
-                SELECT EfoEEID, EfoPhoneNumber
-                FROM (
-                        SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY EfoPhoneNumber) AS RN --, ORDER BY Ef
-                        FROM  dbo.EmpMPhon WITH (NOLOCK)
-                        WHERE EfoPhoneType = 'CEL') AS Efo
-                WHERE RN = 1 ) AS EfoPhone
-        ON EfoEEID = xEEID
-    JOIN dbo.PayGroup WITH (NOLOCK)
-        ON PgrPayGroup = EecPayGroup
-    ;
-
-    --==========================================
-    -- Set FileName
-    --==========================================
-    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
-    BEGIN
-        UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-                             END
-        WHERE FormatCode = @FormatCode;
-    END
-
-END;
-/**********************************************************************************
-
---Alter the View
-ALTER VIEW dbo.dsi_vwEEMP401KEX_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EEMP401KEX_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
-
---Check out iascDefF
-SELECT * FROM dbo.iascDefF
-WHERE AdfHeaderSystemID LIKE 'EEMP401KEX%'
-ORDER BY AdfSetNumber, AdfFieldNumber;
-
---Update Dates
-UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202202111'
-       ,expStartPerControl     = '202202111'
-       ,expLastEndPerControl   = '202202119'
-       ,expEndPerControl       = '202202119'
-WHERE expFormatCode = 'EEMP401KEX';
-
-**********************************************************************************/
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EEMP401KEX]     @SystemID char(12) AS SET NOCOUNT ON; /********************************************************************************** Client Name: Green Plains  Created By: James Bender Business Analyst: Julie Reardon Create Date: 02/18/2022 Service Request Number: TekP-2021-10-26-0005  Purpose: Empower 401k Export  Revision History ---------------- Update By           Date           Request Num        Desc XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX  SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEMP401KEX'; SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EEMP401KEX'; SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EEMP401KEX'; SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EEMP401KEX'; SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EEMP401KEX' ORDER BY RunID DESC;  Execute Export -------------- EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'ONDEM_XOE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'TEST_XOE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'OEPASSIVE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'OEACTIVE'; EXEC dbo.dsi_sp_TestSwitchbox_v2 'EEMP401KEX', 'SCH_EEMP40';  EXEC dbo.dsi_BDM_sp_ErrorCheck 'EEMP401KEX';  EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EEMP401KEX', @AllObjects = 'Y', @IsWeb = 'Y' **********************************************************************************/ BEGIN      --==========================================     -- Declare variables     --==========================================     DECLARE  @FormatCode        VARCHAR(10)             ,@ExportCode        VARCHAR(10)             ,@StartDate         DATETIME             ,@EndDate           DATETIME             ,@StartPerControl   VARCHAR(9)             ,@EndPerControl     VARCHAR(9);      -- Set FormatCode     SELECT @FormatCode = 'EEMP401KEX';      -- Declare dates from Parameter file     SELECT          @StartPerControl = StartPerControl         ,@EndPerControl   = EndPerControl         ,@StartDate       = LEFT(StartPerControl,8)         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))         ,@ExportCode      = ExportCode     FROM dbo.U_dsi_Parameters WITH (NOLOCK)     WHERE FormatCode = @FormatCode;      --==========================================     -- Clean EE List      -- Caution: Careful of cleaning EE List if including paycheck data     --==========================================      -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company     DELETE FROM dbo.U_EEMP401KEX_EEList     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)     AND xEEID IN (SELECT xEEID FROM dbo.U_EEMP401KEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);      --==========================================     -- Create Deduction List     --==========================================     DECLARE @DedList VARCHAR(MAX)     SET @DedList = '401CP,401CU,401ER,401F,401P,401RF,401RP,4KLN1,4KLN2,4KLN3,4KLN4,4KLN5,4KLN6,4KLN7,4KRCP,4KRCU';      IF OBJECT_ID('U_EEMP401KEX_DedList','U') IS NOT NULL         DROP TABLE dbo.U_EEMP401KEX_DedList;     SELECT DISTINCT          DedCode = DedDedCode         ,DedType = DedDedType     INTO dbo.U_EEMP401KEX_DedList     FROM dbo.fn_ListToTable(@DedList)     JOIN dbo.DedCode WITH (NOLOCK)         ON DedDedCode = Item;       --==========================================     -- BDM Section     --==========================================     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;      -- Required parameters     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');      -- Non-Required parameters     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');      -- Required OE parameters     IF @ExportCode LIKE '%PASSIVE'     BEGIN         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');     END;      IF @ExportCode LIKE '%ACTIVE'     BEGIN         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');     END;       -- Run BDM Module     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;      --==========================================     -- Build Working Tables     --==========================================      -----------------------------     -- Working Table - PDedHist     -----------------------------     IF OBJECT_ID('U_EEMP401KEX_PDedHist','U') IS NOT NULL         DROP TABLE dbo.U_EEMP401KEX_PDedHist;     SELECT DISTINCT          PdhEEID         -- Current Payroll Amounts         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)         -- YTD Payroll Amounts         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)         ,PdhPayDate = MAX(PdhPayDate)         -- Categorize Payroll Amounts         ,PdhPreTax        = SUM(CASE WHEN PdhDedCode IN ('401CP','401CU','401F','401P') THEN PdhEECurAmt ELSE 0.00 END)         ,PdhRoth        = SUM(CASE WHEN PdhDedCode IN ('401RF','401RP','4KRCP','4KRCU') THEN PdhEECurAmt ELSE 0.00 END)         ,PdhLoans        = SUM(CASE WHEN PdhDedCode IN ('4KLN1','4KLN2','4KLN3','4KLN4','4KLN4','4KLN5','4KLN6','4KLN7') THEN PdhEECurAmt ELSE 0.00 END)                 ,PdhEmployerMatch     = SUM(CASE WHEN PdhDedCode IN ('401ER') THEN PdhERCurAmt ELSE 0.00 END)         ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)         ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)         ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)         ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)         ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)         ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)     INTO dbo.U_EEMP401KEX_PDedHist     FROM dbo.PDedHist WITH (NOLOCK)     JOIN dbo.U_EEMP401KEX_DedList WITH (NOLOCK)         ON DedCode = PdhDedCode     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)     AND PdhPerControl <= @EndPerControl     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.     GROUP BY PdhEEID     HAVING (SUM(PdhEECurAmt) <> 0.00         OR SUM(PdhERCurAmt) <> 0.00     );       -----------------------------     -- Working Table - PEarHist     -----------------------------     IF OBJECT_ID('U_EEMP401KEX_PEarHist','U') IS NOT NULL         DROP TABLE dbo.U_EEMP401KEX_PEarHist;     SELECT DISTINCT          PehEEID         ,PrgPayDate             = MAX(PrgPayDate)         -- Current Payroll Amount/Hours         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND PehInclInDefComp = 'Y' THEN PehCurAmt ELSE 0.00 END)         ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl AND PehInclInDefCompHrs = 'Y' THEN PehCurHrs ELSE 0.00 END)         -- YTD Payroll Amount/Hours         ,PehCurAmtYTD           = SUM(PehCurAmt)         ,PehCurHrsYTD           = SUM(PehCurHrs)         ,PehCurHrsIncInDefCompYTD           = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs ELSE 0.00 END)         ,PehCurAmtIncInDefCompYTD           = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt ELSE 0.00 END)         -- Current Include Deferred Comp Amount/Hours         ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)         ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)         -- YTD Include Deferred Comp Amount/Hours         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)     INTO dbo.U_EEMP401KEX_PEarHist     FROM dbo.vw_int_PayReg WITH (NOLOCK)     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)         ON PehGenNumber = PrgGenNumber     WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)     AND PehPerControl <= @EndPerControl     GROUP BY PehEEID     HAVING SUM(PehCurAmt) <> 0.00;     --==========================================     -- Build Driver Tables     --==========================================     ---------------------------------     -- DETAIL RECORD - U_EEMP401KEX_drvTbl     ---------------------------------     IF OBJECT_ID('U_EEMP401KEX_drvTbl','U') IS NOT NULL         DROP TABLE dbo.U_EEMP401KEX_drvTbl;     SELECT DISTINCT          drvEEID = xEEID         ,drvCoID = xCoID         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA         ,drvSort = ''         -- standard fields above and additional driver fields below         ,drvSSN = eepSSN         ,drvDivisionNumber =    CASE WHEN EecPayGroup = 'BWFQT' THEN 'FQBW'                                 WHEN EecPayGroup IN ('SMFQT','SMFQM') THEN 'FQSM'                                 WHEN EecPayGroup IN ('BWCORP','BWTRAD','BWOBIO','BWSHEN','BWSUPE','BWOTTE','BWCC','BWBLEN','BWATK','BWWOOD','BWFAIR','BWBSTK','BWBPA','BWHOP','BWMADI','BWMTVN','BWYORK','BWOPTI') THEN 'GPBW'                                 WHEN EecPayGroup IN ('SMCORP','SMTRAD','SMBLEN','SMOPTI') THEN 'GPSM'                                 END         ,drvNameLast = EepNameLast         ,drvNameFirst = EepNameFirst         ,drvNameMiddle = LEFT(EepNameMiddle,1)         ,drvDateOfBirth = EepDateOfBirth         ,drvGender = EepGender         ,drvMaritalStatus = CASE WHEN EepMaritalStatus IS NULL OR EepMaritalStatus = 'Z' THEN 'S' ELSE eepMaritalStatus END         ,drvAddressLine1 = EepAddressLine1         ,drvAddressLine2 = EepAddressLine2         ,drvAddressCity = EepAddressCity         ,drvAddressState = EepAddressState         ,drvAddressZipCode = EepAddressZipCode         ,drvHomePhoneNumber = CASE WHEN EepPhoneHomeIsPrivate <> 'Y' THEN EepPhoneHomeNumber ELSE EecPhoneBusinessNumber END         ,drvHireDate = EecDateOfOriginalHire         ,drvTerminationDate =    CASE WHEN EecEmplStatus IN ('R','T') THEN EecDateOfTermination                                  WHEN EecEmplStatus NOT IN ('R','T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN DATEADD(DAY, -1, EjhJobEffDate)                                 END         ,drvReHireDate = CASE WHEN EecEmplStatus NOT IN ('R','T') AND EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire END         ,drvCheckDate = PdhPayDate -- PrgPayDate         ,drvPreTax = FORMAT(PdhPreTax, '0000000.00')         ,drvEmployerMatch = FORMAT(PdhEmployerMatch, '0000000.00') -- get's changed         ,drvLoans = FORMAT(PdhLoans, '0000000.00')         ,drvRoth = FORMAT(PdhRoth, '0000000.00') -- get's changed         ,drvYTDHoursWorked = FORMAT(PehCurHrsIncInDefCompYTD, '00000')         --,drvYTDCompensation = FORMAT(PthCurTaxableWagesYTD, '00000000.00')         ,drvYTDCompensation = FORMAT(PehCurAmtYTD, '00000000.00')         ,drvYTDPlanCompensation = FORMAT(PehCurAmtIncInDefCompYTD, '00000000.00')         ,drvEmailAddress = CASE WHEN eepAddressEMailAlternate IS NOT NULL THEN eepAddressEMailAlternate ELSE EepAddressEMail END         ,drvSalaryAmount = FORMAT(EecAnnSalary, '#0.00')         ,drvTerminationReasonCode =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DE'                                     WHEN EecEmplStatus = 'R' THEN 'LA'                                     WHEN EecEmplStatus = 'T' AND EecTermReason = '202' THEN 'R'                                     WHEN EecEmplStatus = 'T' THEN 'S'                                     END         ,drvEmployeeAssignedId = EecEmpNo         ,drvMobilePhone = EfoPhoneNumber         ,drvPayFrequency = PgrPayFrequency     INTO dbo.U_EEMP401KEX_drvTbl     FROM dbo.U_EEMP401KEX_EEList WITH (NOLOCK)     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)         ON EecEEID = xEEID          AND EecCoID = xCoID     JOIN dbo.EmpPers WITH (NOLOCK)         ON EepEEID = xEEID     JOIN dbo.U_dsi_BDM_EEMP401KEX WITH (NOLOCK)         ON BdmEEID = xEEID          AND BdmCoID = xCoID     LEFT JOIN (                 SELECT EjhEEID, EjhCOID                     ,MAX(EjhJobEffDate) AS EjhJobEffDate                 FROM dbo.EmpHJob WITH (NOLOCK)                 WHERE EjhEmplStatus = 'T'                 GROUP BY EjhEEID, EjhCOID) EJH         on EjhEEID = xEEID         AND EjhCOID = xCOID     JOIN dbo.U_EEMP401KEX_PEarHist WITH (NOLOCK)         ON PehEEID = xEEID     LEFT JOIN dbo.U_EEMP401KEX_PDedHist WITH (NOLOCK)         ON PdhEEID = xEEID     LEFT JOIN (                 SELECT PthEEID, PthCOID                      ,SUM(PthCurTaxableWages) AS  PthCurTaxableWagesYTD                 FROM dbo.PTaxHist WITH (NOLOCK)                 WHERE PthTaxCode LIKE '%USFIT%'                 AND LEFT(PthPerControl,4) = LEFT(@EndPerControl,4)                     AND PthPerControl <= @EndPerControl                  GROUP BY PthEEID, PthCoID) PTH         ON PthEEID = xEEID         AND PthCOID = xCOID     LEFT JOIN (                 SELECT EfoEEID, EfoPhoneNumber                 FROM (                         SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY EfoPhoneNumber) AS RN --, ORDER BY Ef                         FROM  dbo.EmpMPhon WITH (NOLOCK)                         WHERE EfoPhoneType = 'CEL') AS Efo                 WHERE RN = 1 ) AS EfoPhone         ON EfoEEID = xEEID     JOIN dbo.PayGroup WITH (NOLOCK)         ON PgrPayGroup = EecPayGroup     ;      --==========================================     -- Set FileName     --==========================================     IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')     BEGIN         UPDATE dbo.U_dsi_Parameters             SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'                                   WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'                                   ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'                              END         WHERE FormatCode = @FormatCode;     END  END; /**********************************************************************************  --Alter the View ALTER VIEW dbo.dsi_vwEEMP401KEX_Export AS     SELECT TOP 20000000 Data FROM dbo.U_EEMP401KEX_File (NOLOCK)     ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;  --Check out iascDefF SELECT * FROM dbo.iascDefF WHERE AdfHeaderSystemID LIKE 'EEMP401KEX%' ORDER BY AdfSetNumber, AdfFieldNumber;  --Update Dates UPDATE dbo.AscExp     SET expLastStartPerControl = '202205171'        ,expStartPerControl     = '202206171'        ,expLastEndPerControl   = '202206171'        ,expEndPerControl       = '202206171' WHERE expFormatCode = 'EEMP401KEX'     AND expExportCode = 'TEST_XOE' ;  **********************************************************************************/ 
 GO
-CREATE VIEW dbo.dsi_vwEEMP401KEX_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EEMP401KEX_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwEEMP401KEX_Export AS      SELECT TOP 200000000 Data FROM dbo.U_EEMP401KEX_File WITH (NOLOCK)     ORDER BY RIGHT(RecordSet,2), InitialSort  
 
 GO
 
