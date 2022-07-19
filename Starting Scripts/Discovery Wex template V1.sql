@@ -608,7 +608,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 '@CustomFormatCode', 'SCH_@CustomShortFormatCod
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck '@CustomFormatCode';
 
-EXEC dbo._dsi_usp_ExportRipOut @FormatCode = '@CustomFormatCode', @AllObjects = 'Y', @IsWeb = 'Y'
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = '@CustomFormatCode', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
 BEGIN
 
@@ -1195,7 +1195,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ,drvPlanName = ''  -- Replace this with the mapping from the specification/mapping file. You can use as much/little of the sample code below as needed
                         -- CASE WHEN BdmDedCode = 'FSA' THEN 'DBI FSA' END
         ,drvRate = ''  -- Replace this with the mapping from the specification/mapping file. You can use as much/little of the sample code below as needed
-                    -- FORMAT(CASE WHEN BdmDedCode = 'FSA' THEN BdmEEAmt END, '#0.00')
+                    -- CASE WHEN BdmDedCode = 'FSA' THEN FORMAT(BdmEEAmt, '#0.00') END
     INTO dbo.U_@CustomFormatCode_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
     FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_@CustomFormatCode WITH (NOLOCK)
