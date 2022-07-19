@@ -665,8 +665,9 @@ BEGIN
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
     WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl 
-    AND PehPerControl BETWEEN @StartPerControl AND @EndPerControl
+    --AND PehPerControl <= @EndPerControl 
+	--AND PehPerControl BETWEEN @StartPerControl AND @EndPerControl
+	AND DATEDIFF(DAY, @EndDate , GETDATE()) <= 365
     GROUP BY PehEEID--, PehEarnCode
     HAVING SUM(PehCurAmt) <> 0.00;
 
