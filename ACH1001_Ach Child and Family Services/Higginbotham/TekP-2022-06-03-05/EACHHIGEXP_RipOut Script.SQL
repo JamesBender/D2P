@@ -547,10 +547,10 @@ BEGIN
     IF OBJECT_ID('U_EACHHIGEXP_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EACHHIGEXP_drvTbl;
     SELECT DISTINCT
-         drvEEID = xEEID
+        drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort =  replace(eepSSN, '-', '')
         -- standard fields above and additional driver fields below
         ,drvssn = eepSSN
         ,drvNameLast = EepNameLast
@@ -560,9 +560,9 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvCity = EepAddressCity
         ,drvState = EepAddressState
-        ,drvZipcode = EepAddressZipCode
+        ,drvZipcode = replace(EepAddressZipCode, '-', '')
         ,drvEmailAddress = EepAddressEMail
-        ,drvHomePhone = EepPhoneHomeNumber
+        ,drvHomePhone = replace(replace(EepPhoneHomeNumber, '-', ''), '.', '')
         ,drvDivision = ''
         ,drvPayroll = PgrPayFrequency
         ,drvEmploymentStatus = CASE WHEN eecemplstatus = 'A' THEN 'Active'
@@ -572,9 +572,9 @@ BEGIN
                                     WHEN eecemplstatus = 'T' and EecTermReason not in ('202', '205') THEN 'Terminate'
                                 END
         ,drvHireDate = EecDateOfLastHire
-        ,drvElectionAmount = FORMAT(CASE WHEN BdmDedCode IN ( 'FSA', 'FSADC') THEN BdmEEGoalAmt
-                                  WHEN BdmDedCode IN ( 'MDBP', 'MDPOS') THEN BdmBenOption
-                                END,'#0.00')
+        ,drvElectionAmount = CASE WHEN BdmDedCode IN ( 'FSA', 'FSADC') THEN replace(convert(varchar(30),BdmEEGoalAmt , 1) , ',', '')
+                                 WHEN BdmDedCode IN ( 'MDBP', 'MDPOS') THEN BdmBenOption
+                                END
         ,drvPlanName = CASE WHEN BdmDedCode = 'FSA' THEN 'FSA Medical'
                             WHEN BdmDedCode = 'FSADC' THEN 'FSA Dependent Care'
                             WHEN BdmDedCode IN ('MDBP', 'MDPOS') THEN 'HRA'
@@ -597,6 +597,7 @@ BEGIN
         ON xEEID = audEEID 
         where EecEEType <> 'TES'
         and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
+		AND  BdmDedCode in ('FSA', 'FSADC', 'MDBP', 'MDPOS')
     ;
 
     --==========================================
