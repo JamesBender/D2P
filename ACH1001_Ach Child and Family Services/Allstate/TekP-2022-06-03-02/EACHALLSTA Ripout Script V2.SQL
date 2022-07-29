@@ -5,7 +5,7 @@ EACHALLSTA: Allstate Group Accident and Illness
 FormatCode:     EACHALLSTA
 Project:        Allstate Group Accident and Illness
 Client ID:      ACH1001
-Date/time:      2022-07-25 15:53:00.437
+Date/time:      2022-07-28 15:36:02.050
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -119,6 +119,8 @@ GO
 IF OBJECT_ID('U_EACHALLSTA_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EACHALLSTA_PDedHist];
 GO
 IF OBJECT_ID('U_EACHALLSTA_OptTable') IS NOT NULL DROP TABLE [dbo].[U_EACHALLSTA_OptTable];
+GO
+IF OBJECT_ID('U_EACHALLSTA_InsRate') IS NOT NULL DROP TABLE [dbo].[U_EACHALLSTA_InsRate];
 GO
 IF OBJECT_ID('U_EACHALLSTA_Illness_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EACHALLSTA_Illness_drvTbl];
 GO
@@ -327,7 +329,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220725.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220728.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -338,7 +340,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202207229','EMPEXPORT','OEPASSIVE',NULL,'EACHALLSTA',NULL,NULL,NULL,'202207229','Jul 22 2022  3:37PM','Jul 22 2022  3:37PM','202207221',NULL,'','','202207221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Allstate Group Accident and Il','202207229','EMPEXPORT','ONDEM_XOE',NULL,'EACHALLSTA',NULL,NULL,NULL,'202207229','Jul 22 2022  3:37PM','Jul 22 2022  3:37PM','202207221',NULL,'','','202207221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Allstate Group Accident -Sched','202207229','EMPEXPORT','SCH_EACHAL',NULL,'EACHALLSTA',NULL,NULL,NULL,'202207229','Jul 22 2022  3:37PM','Jul 22 2022  3:37PM','202207221',NULL,'','','202207221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Allstate Group Accident -Test','202207229','EMPEXPORT','TEST_XOE',NULL,'EACHALLSTA',NULL,NULL,NULL,'202207229','Jul 22 2022  3:37PM','Jul 22 2022  3:37PM','202207221',NULL,'','','202207221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Allstate Group Accident -Test','202207229','EMPEXPORT','TEST_XOE','Jul 25 2022 12:00AM','EACHALLSTA',NULL,NULL,NULL,'202207229','Jul 22 2022 12:00AM','Dec 30 1899 12:00AM','202207081',NULL,'','','202207081',dbo.fn_GetTimedKey(),NULL,'us3cPeACH1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -452,9 +454,9 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Accident_drvTbl] (
     [drvRider2UnitsAmt] varchar(3) NOT NULL,
     [drvRider3] varchar(6) NOT NULL,
     [drvRider3UnitsAmt] varchar(3) NOT NULL,
-    [drvRider4] varchar(8) NOT NULL,
+    [drvRider4] varchar(5) NOT NULL,
     [drvRider4UnitsAmt] varchar(3) NOT NULL,
-    [drvRider5] varchar(8) NOT NULL,
+    [drvRider5] varchar(5) NOT NULL,
     [drvRider5UnitsAmt] varchar(3) NOT NULL,
     [drvPremiumBillingMode] varchar(2) NULL,
     [drvDateofFirstDeduction] datetime NULL,
@@ -540,14 +542,14 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Illness_drvTbl] (
     [drvSubSort] char(12) NULL,
     [drvRecordType] varchar(2) NOT NULL,
     [drvApplicationID] char(11) NULL,
-    [drvCoverageTier] varchar(1) NULL,
+    [drvCoverageTier] varchar(1) NOT NULL,
     [drvSection125] varchar(1) NOT NULL,
-    [drvBasicBenefitAmount] varchar(1) NOT NULL,
-    [drvTotalModePremium] varchar(1) NOT NULL,
+    [drvBasicBenefitAmount] varchar(5) NOT NULL,
+    [drvTotalModePremium] nvarchar(4000) NULL,
     [drvRider1] varchar(5) NOT NULL,
     [drvRider2] varchar(6) NOT NULL,
     [drvRider3] varchar(6) NOT NULL,
-    [drvRider4] varchar(7) NOT NULL,
+    [drvRider4] varchar(8) NOT NULL,
     [drvRider5] varchar(9) NOT NULL,
     [drvRider5UnitsAmt] varchar(3) NOT NULL,
     [drvRider6] varchar(8) NOT NULL,
@@ -561,6 +563,21 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Illness_drvTbl] (
     [drvSignedCityandState] varchar(16) NOT NULL,
     [drvDatesignedbyEmployee] datetime NULL,
     [drvReqCovEndDate] datetime NULL
+);
+
+-----------
+-- Create table U_EACHALLSTA_InsRate
+-----------
+
+IF OBJECT_ID('U_EACHALLSTA_InsRate') IS NULL
+CREATE TABLE [dbo].[U_EACHALLSTA_InsRate] (
+    [RatDedCode] char(5) NOT NULL,
+    [RatMinAge] decimal NOT NULL,
+    [RatMaxAge] decimal NULL,
+    [RatEERateNSFemale] money NULL,
+    [RatEERateSMFemale] money NULL,
+    [RatEERateNSmale] money NULL,
+    [RatEERateSMmale] money NULL
 );
 
 -----------
@@ -639,7 +656,7 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Person_drvTbl] (
     [drvPersonSSN] char(11) NULL,
     [drvGender] char(1) NULL,
     [drvDateofBirth] datetime NULL,
-    [drvFullStreetAddress] varchar(511) NOT NULL,
+    [drvFullStreetAddress] varchar(8000) NULL,
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
     [drvZip] varchar(50) NULL,
@@ -711,10 +728,12 @@ BEGIN
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
+            ,@EndPerControl     VARCHAR(9)
+            ,@FileMinCovDate    DATETIME;;
 
     -- Set FormatCode
     SELECT @FormatCode = 'EACHALLSTA';
+    SELECT @FileMinCovDate = '1/1/2020';
 
     -- Declare dates from Parameter file
     SELECT
@@ -749,6 +768,8 @@ BEGIN
     INSERT INTO dbo.U_EACHALLSTA_AuditFields VALUES ('EmpComp','EecDateofTermination');
     INSERT INTO dbo.U_EACHALLSTA_AuditFields VALUES ('EmpComp','EecEmplStatus');
     INSERT INTO dbo.U_EACHALLSTA_AuditFields VALUES ('EmpComp','EecTermReason');
+    INSERT INTO dbo.U_EACHALLSTA_AuditFields VALUES ('EmpDed', 'EedDedCode');
+    INSERT INTO dbo.U_EACHALLSTA_AuditFields VALUES ('EmpDed', 'EedBenStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EACHALLSTA_Audit','U') IS NOT NULL
@@ -914,12 +935,13 @@ BEGIN
     FROM dbo.OptRate WITH (NOLOCK)
     WHERE CorDedCode = 'ACCID' 
 
-    -- IF OBJECT_ID('U_EACHALLSTA_InsRate', 'U') IS NOT NULL
-    --    DROP TABLE dbo.U_EACHALLSTA_InsRate;
-    --SELECT RatDedCode, RatMinAge, (RatMaxAge-1) AS RatMaxAge, RatEERateNSFemale, RatEERateSMFemale, RatEERateNSmale, RatEERateSMmale 
-    --INTO dbo.U_EACHALLSTA_InsRate 
-    --FROM InsRate
-    --WHERE RatDedCode IN ('ACCID', 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+     IF OBJECT_ID('U_EACHALLSTA_InsRate', 'U') IS NOT NULL
+        DROP TABLE dbo.U_EACHALLSTA_InsRate;
+    SELECT RatDedCode, RatMinAge, (RatMaxAge-1) AS RatMaxAge, RatEERateNSFemale, RatEERateSMFemale, RatEERateNSmale, RatEERateSMmale 
+    INTO dbo.U_EACHALLSTA_InsRate 
+    FROM InsRate
+    WHERE RatDedCode IN ('ACCID', 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+
 
     --==========================================
     -- Build Driver Tables
@@ -960,7 +982,7 @@ BEGIN
         ,drvGender = CASE WHEN bdmrectype = 'EMP' THEN 
                                 CASE WHEN EepGender in ('M','F') THEN EepGender END ELSE CASE WHEN ConGender in ('M','F') THEN ConGender END END
         ,drvDateofBirth = CASE WHEN bdmrectype = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
-        ,drvFullStreetAddress =  CONCAT(eepaddressline1,' ', eepaddressline2)
+        ,drvFullStreetAddress =  REPLACE(CONCAT(eepaddressline1,' ', eepaddressline2), ',', '')
         ,drvCity = EepAddressCity
         ,drvState = EepAddressState
         ,drvZip = eepAddressZipCode
@@ -1010,24 +1032,24 @@ BEGIN
         ,drvBasePlanUnits = '200'
         ,drvRider1 =  'GP6AUC'
         ,drvRider1UnitsAmt = '200'
-        ,drvRider2 = 'CIHCR1'
+        ,drvRider2 = 'GP6ERS'
         ,drvRider2UnitsAmt = '200'
-        ,drvRider3 = 'CIHCR2'
+        ,drvRider3 = 'GP6OPT'
         ,drvRider3UnitsAmt = '200'
-        ,drvRider4 = 'GCIP4SR2'
+        ,drvRider4 = 'GP6DF'
         ,drvRider4UnitsAmt = '200'
-        ,drvRider5 = 'GCIP4FWR'
+        ,drvRider5 = 'GP6BE'
         ,drvRider5UnitsAmt = '200'
-        ,drvPremiumBillingMode = CASE WHEN PgrPayFrequency = 'Biweekly' THEN '26' END
+        ,drvPremiumBillingMode = CASE WHEN PgrPayFrequency = 'B' THEN '26' END
         ,drvDateofFirstDeduction = bdmbenstartdate
         ,drvReqCovEffectiveDate = CASE WHEN bdmdedcode = 'ACCID' THEN bdmbenstartdate END
         ,drvCaseNumber = '35611'
         ,drvStatusCode = CASE WHEN eecemplStatus = 'T' THEN 'T'
                                WHEN eecemplStatus = 'A' and bdmbenstatus <> 'A' THEN 'X'
                          END
-        ,drvReqCovEndDate = bdmbenstopdate
+        ,drvReqCovEndDate = CASE WHEN bdmdedcode = 'ACCID' THEN bdmbenstopdate END
         ,drvSignedCityandState = 'Grand Prairie TX'
-        ,drvDateSignedbyEmp =  bdmbenstopdate
+        ,drvDateSignedbyEmp =  Dateadd(day,-1,getdate())
     INTO dbo.U_EACHALLSTA_Accident_drvTbl
     FROM dbo.U_EACHALLSTA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1060,18 +1082,26 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvRecordType = '40'
         ,drvApplicationID = eepSSN
-        ,drvCoverageTier = CASE WHEN  Bdmdedcode  IN ('CRID', 'CRIEE', 'CRIES') THEN '1'
-                                WHEN  Bdmdedcode  IN ('CRID', 'CRIEE', 'CRIES') and ConRelationship in ( 'CHL', 'COD', 'DCH', 'DPC', 'STC') THEN '2'
-                                WHEN ConRelationship IN ( 'CHL', 'COD', 'DCH', 'DPC', 'STC') THEN '3'
-                                WHEN  Bdmdedcode  in ('CRIEF', 'CRIFS') THEN '4'
-                           END
+        ,drvCoverageTier =  BDM.CoverageTier
         ,drvSection125 = ''
-        ,drvBasicBenefitAmount = ''
-        ,drvTotalModePremium = ''
+        ,drvBasicBenefitAmount = '10000' 
+        ,drvTotalModePremium =  FORMAT((CASE WHEN EepGender = 'M' AND EepIsSmoker = 'N' THEN -- JCB
+                                    --CAST(
+                                    (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
+                                WHEN EepGender = 'M' AND EepIsSmoker = 'Y' THEN
+                                    --CAST(
+                                    (SELECT TOP 1 RatEERateSmMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                WHEN EepGender = 'F' AND EepIsSmoker = 'N' THEN
+                                    --CAST(
+                                    (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                WHEN EepGender = 'F' AND EepIsSmoker = 'Y' THEN
+                                    --CAST(
+                                    (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
+                            END)*2000, '000000')
         ,drvRider1 = 'CICR1'
         ,drvRider2 = 'CIHCR1'
         ,drvRider3 = 'CIHCR2'
-        ,drvRider4 = 'CIP4SR2'
+        ,drvRider4 = 'GCIP4SR2'
         ,drvRider5 = ' GCIP4FWR'
         ,drvRider5UnitsAmt = '200'
         ,drvRider6 = 'GCIP4CER'
@@ -1091,10 +1121,34 @@ BEGIN
     FROM dbo.U_EACHALLSTA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK)
-        ON BdmEEID = xEEID 
+      JOIN (Select distinct *
+                         , CoverageTier =  CASE WHEN BdmDedCode in ('CRID', 'CRIEE', 'CRIES') 
+                                    and Bdmrectype = 'Emp' 
+                                    and bdmeeid not in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where  Bdmrectype = 'DEP'
+                                    ) 
+                                    THEN '1' 
+                            ELSE 
+                                 CASE WHEN bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where Bdmrectype = 'DEP' and  BdmNumChildren = 0 and BdmNumSpouses > 0 
+                                        and BdmDedCode in ('CRID', 'CRIEF', 'CRIFS') and bdmRelationship  NOT IN (  'CHL', 'COD', 'DCH', 'DPC', 'STC')
+                                        )  
+                                    THEN '2'
+                                ELSE 
+                                    CASE WHEN  bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where  Bdmrectype = 'EMP' and BdmDedCode in ('CRID', 'CRIEE', 'CRIES') and BdmNumChildren > 0 and BdmNumSpouses = 0 
+                                         --bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where  Bdmrectype = 'DEP' and BdmDedCode in ('CRID', 'CRIEE', 'CRIES') )
+                                     )
+                                       THEN  '3'
+                            ELSE
+                                   '4' 
+                                END 
+                            END
+                        END
+    FROm dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK) 
+    Where bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+        and bdmRecType = 'EMP'
+         and bdmbenstartdate is not null
+    ) BDM
+        ON BDM. BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        and bdmbenstartdate is not null
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
@@ -1105,7 +1159,7 @@ BEGIN
     LEFT JOIN  dbo.U_EACHALLSTA_Audit WITH (NOLOCK)
         ON xEEID = audEEID 
         Where bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
-        AND EecEEType <> 'TES' AND  BdmRecType = 'EMP' 
+        AND EecEEType <> 'TES'  
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
     ;
     ---------------------------------

@@ -4,15 +4,15 @@ EACHHIGEXP: Higginbotham FSA/HRA Demo
 
 FormatCode:     EACHHIGEXP
 Project:        Higginbotham FSA/HRA Demo
-Client ID:      USG1000
-Date/time:      2022-07-11 17:09:44.693
+Client ID:      ACH1001
+Date/time:      2022-07-26 07:18:46.000
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EACHHIGEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    NWP
+Server:         NW1WUP5DB02
+Database:       ULTIPRO_WPACHS
+Web Filename:   ACH1001_XTE10_EEHISTORY_EACHHIGEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -185,7 +185,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EACHHIGEXP_20220711.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EACHHIGEXP_20220726.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -196,7 +196,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202207119','EMPEXPORT','OEPASSIVE',NULL,'EACHHIGEXP',NULL,NULL,NULL,'202207119','Jul 11 2022 12:31PM','Jul 11 2022 12:31PM','202207111',NULL,'','','202207111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Higginbotham FSA/HRA Demo','202207119','EMPEXPORT','ONDEM_XOE',NULL,'EACHHIGEXP',NULL,NULL,NULL,'202207119','Jul 11 2022 12:31PM','Jul 11 2022 12:31PM','202207111',NULL,'','','202207111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Higginbotham FSA/HRA Dem-Sched','202207119','EMPEXPORT','SCH_EACHHI',NULL,'EACHHIGEXP',NULL,NULL,NULL,'202207119','Jul 11 2022 12:31PM','Jul 11 2022 12:31PM','202207111',NULL,'','','202207111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Higginbotham FSA/HRA Dem-Test','202207119','EMPEXPORT','TEST_XOE',NULL,'EACHHIGEXP',NULL,NULL,NULL,'202207119','Jul 11 2022 12:31PM','Jul 11 2022 12:31PM','202207111',NULL,'','','202207111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Higginbotham FSA/HRA Dem-Test','202207221','EMPEXPORT','TEST_XOE','Jul 22 2022 12:00AM','EACHHIGEXP',NULL,NULL,NULL,'202207221','Jul 22 2022 12:00AM','Dec 30 1899 12:00AM','202207081',NULL,'','','202207081',dbo.fn_GetTimedKey(),NULL,'us3cPeACH1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -227,12 +227,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EACHHIGEXP','D10','dbo.U_EACHHIGEXP_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -331,24 +331,25 @@ CREATE TABLE [dbo].[U_EACHHIGEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(8000) NULL,
     [drvssn] char(11) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvNameFirst] varchar(100) NULL,
+    [drvNameLast] varchar(8000) NULL,
+    [drvNameFirst] varchar(8000) NULL,
     [drvDOB] datetime NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
-    [drvCity] varchar(255) NULL,
+    [drvAddressLine1] varchar(8000) NULL,
+    [drvAddressLine2] varchar(8000) NULL,
+    [drvCity] varchar(8000) NULL,
     [drvState] varchar(255) NULL,
-    [drvZipcode] varchar(50) NULL,
+    [drvZipcode] varchar(8000) NULL,
     [drvEmailAddress] varchar(50) NULL,
-    [drvHomePhone] varchar(50) NULL,
+    [drvHomePhone] varchar(8000) NULL,
     [drvDivision] varchar(1) NOT NULL,
     [drvPayroll] char(1) NULL,
-    [drvEmploymentStatus] varchar(9) NULL,
+    [drvEmploymentStatus] varchar(10) NULL,
     [drvHireDate] datetime NULL,
-    [drvElectionAmount] nvarchar(4000) NULL,
+    [drvElectionAmount] varchar(8000) NULL,
     [drvPlanName] varchar(18) NULL,
+    [BDMDedCode] char(5) NULL,
     [drvEnrollmentEffectiveDate] datetime NULL,
     [drvEnrollmentTermDate] datetime NULL
 );
@@ -550,36 +551,40 @@ BEGIN
         drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort =  replace(eepSSN, '-', '')
+        ,drvSort =  REPLACE(eepSSN, '-', '')
         -- standard fields above and additional driver fields below
         ,drvssn = eepSSN
-        ,drvNameLast = EepNameLast
-        ,drvNameFirst = EepNameFirst
+        ,drvNameLast = REPLACE(EepNameLast, ',', '')
+        ,drvNameFirst = REPLACE(EepNameFirst, ',', '')
         ,drvDOB = EepDateOfBirth
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvCity = EepAddressCity
+        ,drvAddressLine1 = REPLACE(EepAddressLine1, ',', '')
+        ,drvAddressLine2 = REPLACE(EepAddressLine2, ',', '')
+        ,drvCity = REPLACE(EepAddressCity, ',', '')
         ,drvState = EepAddressState
-        ,drvZipcode = replace(EepAddressZipCode, '-', '')
+        ,drvZipcode = REPLACE(EepAddressZipCode, '-', '')
         ,drvEmailAddress = EepAddressEMail
-        ,drvHomePhone = replace(replace(EepPhoneHomeNumber, '-', ''), '.', '')
+        ,drvHomePhone = REPLACE(REPLACE(EepPhoneHomeNumber, '-', ''), '.', '')
         ,drvDivision = ''
         ,drvPayroll = PgrPayFrequency
         ,drvEmploymentStatus = CASE WHEN eecemplstatus = 'A' THEN 'Active'
                                     WHEN eecemplstatus = 'L' THEN 'LOA'
                                     WHEN eecemplstatus = 'T' and EecTermReason = '202' THEN 'Retired'
                                     WHEN eecemplstatus = 'T' and EecTermReason = '205' THEN 'Laid Off'
-                                    WHEN eecemplstatus = 'T' and EecTermReason not in ('202', '205') THEN 'Terminate'
+                                    WHEN eecemplstatus = 'T' and EecTermReason not in ('202', '205') THEN 'Terminated'
                                 END
         ,drvHireDate = EecDateOfLastHire
-        ,drvElectionAmount = CASE WHEN BdmDedCode IN ( 'FSA', 'FSADC') THEN replace(convert(varchar(30),BdmEEGoalAmt , 1) , ',', '')
-                                 WHEN BdmDedCode IN ( 'MDBP', 'MDPOS') THEN BdmBenOption
+          ,drvElectionAmount = CASE WHEN BdmDedCode IN ( 'FSA', 'FSADC') THEN REPLACE(convert(varchar(30),BdmEEGoalAmt , 1) , ',', '')
+                                 WHEN BdmDedCode IN ( 'MDBP', 'MDPOS') THEN bnoDescription
                                 END
         ,drvPlanName = CASE WHEN BdmDedCode = 'FSA' THEN 'FSA Medical'
                             WHEN BdmDedCode = 'FSADC' THEN 'FSA Dependent Care'
                             WHEN BdmDedCode IN ('MDBP', 'MDPOS') THEN 'HRA'
                             END
-        ,drvEnrollmentEffectiveDate = Case WHEN BDMDedCode in  ('FSA', 'FSADC')  then BDMBenStartDate END
+                            ,BDMDedCode
+        ,drvEnrollmentEffectiveDate = Case WHEN BDMDedCode in  ('FSA', 'FSADC') and CONVERT(VARCHAR,BDMBenStartDate,112) <= 20211101 then '2021-11-01' 
+                                           WHEN BDMDedCode in  ('MDBP', 'MDPOS')  THEN  CONCAT(YEAR(Getdate()) , '-01-01') 
+                                           Else BDMBenStartDate
+                                        END
         ,drvEnrollmentTermDate = CASE WHEN BdmBenStatus = 'T' THEN BdmBenStopDate END
     INTO dbo.U_EACHHIGEXP_drvTbl
     FROM dbo.U_EACHHIGEXP_EEList WITH (NOLOCK)
@@ -595,9 +600,11 @@ BEGIN
         ON PgrPayGroup = EecPayGroup
     LEFT JOIN  dbo.U_EACHHIGEXP_Audit WITH (NOLOCK)
         ON xEEID = audEEID 
+    LEFT JOIN dbo.BenOpt WITH (NOLOCK)
+      ON bnoCode = BdmBenOption
         where EecEEType <> 'TES'
-        and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
-		AND  BdmDedCode in ('FSA', 'FSADC', 'MDBP', 'MDPOS')
+        and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
+        AND  BdmDedCode in ('FSA', 'FSADC', 'MDBP', 'MDPOS')
     ;
 
     --==========================================
