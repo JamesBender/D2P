@@ -5,7 +5,7 @@ EFLYHSABNK: HSA Bank Enrollment
 FormatCode:     EFLYHSABNK
 Project:        HSA Bank Enrollment
 Client ID:      FLY1000
-Date/time:      2022-05-10 12:10:20.747
+Date/time:      2022-07-26 09:31:55.630
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -168,21 +168,21 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EFLYHSABNKZ0','50','D','10','21',NULL,'F21.Mailing State',NULL,NULL,'"drvMailingState"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EFLYHSABNKZ0','50','D','10','22',NULL,'F22.Mailing Zip Code',NULL,NULL,'"drvMailingZipCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EFLYHSABNKZ0','50','D','10','23',NULL,'F23.Mailing Country',NULL,NULL,'"drvMailingCountry"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EFLYHSABNKZ0','50','D','10','24',NULL,'F24.Home Phone',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EFLYHSABNKZ0','50','D','10','24',NULL,'F24.Home Phone',NULL,NULL,'"drvHomePhone"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EFLYHSABNKZ0','50','D','10','25',NULL,'F25.Business Phone',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EFLYHSABNKZ0','50','D','10','26',NULL,'F26.Business Phone Extension',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EFLYHSABNKZ0','50','D','10','27',NULL,'F27.Email Address',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EFLYHSABNKZ0','50','D','10','27',NULL,'F27.Email Address',NULL,NULL,'"drvEmailAddress"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EFLYHSABNKZ0','50','D','10','28',NULL,'F28.Participant Employement Status',NULL,NULL,'"drvParticipantEmpStatus"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EFLYHSABNKZ0','50','D','10','29',NULL,'F29.Status Effective Date',NULL,NULL,'"drvStatusEffectiveDate"','(''UDMDY''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EFLYHSABNKZ0','50','D','10','30',NULL,'F30.Citizenship Status',NULL,NULL,'"US"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EFLYHSABNKZ0','50','D','10','31',NULL,'F31.Country of Citizenship',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EFLYHSABNKZ0','50','D','10','32',NULL,'F32.Employment Status',NULL,NULL,'"E"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EFLYHSABNKZ0','50','D','10','33',NULL,'F33.Employer Name',NULL,NULL,'"Flyhomes, Inc"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EFLYHSABNKZ0','50','D','10','33',NULL,'F33.Employer Name',NULL,NULL,'"Flyhomes Inc"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EFLYHSABNKZ0','50','D','10','34',NULL,'F34.Job Title Profession',NULL,NULL,'"drvJobTitleProfession"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EFLYHSABNKZ0','50','D','10','35',NULL,'F35.Hire Date',NULL,NULL,'"drvDateofLastHire"','(''UDMDY''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EFLYHSABNKZ0','50','D','10','36',NULL,'F36.Division',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EFLYHSABNKZ0','50','D','10','37',NULL,'F37.Hours Per Week',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EFLYHSABNKZ0','50','D','10','38',NULL,'F38.Employee Class',NULL,NULL,'"A"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EFLYHSABNKZ0','50','D','10','38',NULL,'F38.Employee Class',NULL,NULL,'"CL"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EFLYHSABNKZ0','50','D','10','39',NULL,'F39.Payroll Frequency',NULL,NULL,'"drvPayrollFrequency"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EFLYHSABNKZ0','50','D','10','40',NULL,'F40.Payroll Frequency Eff Date',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EFLYHSABNKZ0','50','D','10','41',NULL,'F41.Final Payroll Process Date',NULL,NULL,'""','(''SS''=''T,'')');
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EFLYHSABNKZ0','50','D','20','9',NULL,'F9.Filler',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EFLYHSABNKZ0','50','D','20','10',NULL,'F10.Filler',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EFLYHSABNKZ0','50','D','20','11',NULL,'F11.Filler',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EFLYHSABNKZ0','50','D','20','12',NULL,'F12.Election Amount Indicator',NULL,NULL,'"PP"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EFLYHSABNKZ0','50','D','20','12',NULL,'F12.Election Amount Indicator',NULL,NULL,'"PY"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EFLYHSABNKZ0','50','D','20','13',NULL,'F13.HDHP Coverage Level',NULL,NULL,'"drvHDHPCoverageLvl"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EFLYHSABNKZ0','50','D','20','14',NULL,'F14.Plan Year Start Date',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EFLYHSABNKZ0','50','D','20','15',NULL,'F15.Enrollment Termination Date',NULL,NULL,'""','(''SS''=''T,'')');
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLYHSABNK_20220523.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLYHSABNK_20220726.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -248,7 +248,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202205239','EMPEXPORT','OEPASSIVE',NULL,'EFLYHSABNK',NULL,NULL,NULL,'202205239','May 23 2022 10:27AM','May 23 2022 10:27AM','202205231',NULL,'','','202205231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HSA Bank Enrollment','202205239','EMPEXPORT','ONDEM_XOE',NULL,'EFLYHSABNK',NULL,NULL,NULL,'202205239','May 23 2022 10:27AM','May 23 2022 10:27AM','202205231',NULL,'','','202205231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HSA Bank Enrollment-Sched','202205239','EMPEXPORT','SCH_EFLYHS',NULL,'EFLYHSABNK',NULL,NULL,NULL,'202205239','May 23 2022 10:27AM','May 23 2022 10:27AM','202205231',NULL,'','','202205231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'HSA Bank Enrollment-Test','202205239','EMPEXPORT','TEST_XOE',NULL,'EFLYHSABNK',NULL,NULL,NULL,'202205239','May 23 2022 10:27AM','May 23 2022 10:27AM','202205231',NULL,'','','202205231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',3JAS5,9CHGQ',NULL,NULL,NULL,'HSA Bank Enrollment-Test','202207219','EMPEXPORT','TEST_XOE','Jul 21 2022 10:04AM','EFLYHSABNK',NULL,NULL,NULL,'202207219','Jul 21 2022 12:00AM','Dec 30 1899 12:00AM','202207071','984','','','202207071',dbo.fn_GetTimedKey(),NULL,'us3cBeFLY1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -326,10 +326,10 @@ CREATE TABLE [dbo].[U_EFLYHSABNK_Contrib_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] varchar(10) NULL,
     [drvEmployeeID] char(9) NULL,
-    [drvEnrollEffectiveDate] varchar(1) NOT NULL,
-    [drvHDHPCoverageLvl] varchar(1) NOT NULL
+    [drvEnrollEffectiveDate] datetime NULL,
+    [drvHDHPCoverageLvl] varchar(1) NULL
 );
 
 -----------
@@ -361,27 +361,34 @@ CREATE TABLE [dbo].[U_EFLYHSABNK_Enroll_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] varchar(10) NULL,
+    [drvEmployeeID] char(9) NULL,
+    [drvNameLast] varchar(100) NULL,
+    [drvNameFirst] varchar(100) NULL,
+    [drvNameMiddle] varchar(1) NULL,
+    [drvSSN] char(11) NULL,
     [drvDateofBirth] datetime NULL,
-    [drvMailingMethod] varchar(1) NOT NULL,
+    [drvGender] char(1) NULL,
+    [drvMaritalStatus] varchar(1) NOT NULL,
+    [drvMailingMethod] varchar(6) NOT NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
     [drvStreetCity] varchar(255) NULL,
     [drvStreetState] varchar(255) NULL,
     [drvStreetZipCode] varchar(50) NULL,
-    [drvStreetCountry] char(3) NULL,
+    [drvStreetCountry] varchar(3) NULL,
     [drvMailingAddrLine1] varchar(255) NULL,
     [drvMailingAddrLine2] varchar(255) NULL,
     [drvMailingCity] varchar(255) NULL,
     [drvMailingState] varchar(255) NULL,
     [drvMailingZipCode] varchar(50) NULL,
-    [drvMailingCountry] char(3) NULL,
+    [drvMailingCountry] varchar(2) NOT NULL,
     [drvParticipantEmpStatus] varchar(1) NOT NULL,
-    [drvStatusEffectiveDate] varchar(1) NOT NULL,
-    [drvJobTitleProfession] varchar(1) NOT NULL,
+    [drvStatusEffectiveDate] datetime NULL,
+    [drvJobTitleProfession] varchar(25) NOT NULL,
     [drvDateofLastHire] datetime NULL,
     [drvPayrollFrequency] varchar(1) NOT NULL,
-    [drvFedID] varchar(1) NOT NULL
+    [drvFedID] char(9) NULL
 );
 
 -----------
@@ -404,8 +411,8 @@ CREATE TABLE [dbo].[U_EFLYHSABNK_File] (
 
 IF OBJECT_ID('U_EFLYHSABNK_HDR_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EFLYHSABNK_HDR_drvTbl] (
-    [drvDate] varchar(1) NOT NULL,
-    [drvNumberofRecords] varchar(1) NOT NULL
+    [drvDate] datetime NOT NULL,
+    [drvNumberofRecords] int NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EFLYHSABNK]
@@ -578,7 +585,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = EecEmpNo
+        ,drvInitialSort = EecEmpNo + '1'
         -- standard fields above and additional driver fields below
         ,drvEmployeeID = EecEmpNo
         ,drvNameLast = EepNameLast
@@ -596,13 +603,16 @@ BEGIN
         ,drvStreetCity = CASE WHEN eepaddressline1 not like '%PO Box%' THEN EepAddressCity ELSE '' END
         ,drvStreetState = CASE WHEN eepaddressline1 not like '%PO Box%' THEN EepAddressState ELSE '' END
         ,drvStreetZipCode = CASE WHEN eepaddressline1 not like '%PO Box%' THEN EepAddressZipCode ELSE '' END
-        ,drvStreetCountry = CASE WHEN eepaddressline1 not like '%PO Box%' THEN EepAddressCountry ELSE '' END
+        ,drvStreetCountry = 'US'
+		--CASE WHEN eepaddressline1 not like '%PO Box%' THEN EepAddressCountry ELSE '' END
         ,drvMailingAddrLine1 = CASE WHEN eepaddressline1 like '%PO Box%' THEN EepAddressLine1 ELSE '' END
         ,drvMailingAddrLine2 = CASE WHEN eepaddressline1 like '%PO Box%' THEN EepAddressLine2 ELSE '' END
         ,drvMailingCity = CASE WHEN eepaddressline1 like '%PO Box%' THEN EepAddressCity ELSE '' END
         ,drvMailingState = CASE WHEN eepaddressline1 like '%PO Box%' THEN EepAddressState ELSE '' END
         ,drvMailingZipCode = CASE WHEN eepaddressline1 like '%PO Box%' THEN EepAddressZipCode ELSE '' END
         ,drvMailingCountry = CASE WHEN eepaddressline1 like '%PO Box%' THEN 'US' else '' END
+		,drvHomePhone = EepPhoneHomeNumber
+		,drvEmailAddress = EepAddressEMail
         ,drvParticipantEmpStatus = CASE WHEN eecemplstatus = 'T' THEN 'T'
                                         WHEN eecemplstatus  = 'L' THEN 'L' 
                                         ELSE 'A'
@@ -611,9 +621,9 @@ BEGIN
                                         WHEN eecemplstatus  = 'L' THEN EecEmplStatusStartDate 
                                         else eecdateoflasthire 
                                         END
-        ,drvJobTitleProfession = JbcDesc 
+        ,drvJobTitleProfession = REPLACE(JbcDesc,',','')
         ,drvDateofLastHire = EecDateOfLastHire
-        ,drvPayrollFrequency = ''
+        ,drvPayrollFrequency = 'O'
         --prgpayfrequency
         ,drvFedID = (select distinct CmmFedtaxId from CompMast WITH (NOLOCK))
     INTO dbo.U_EFLYHSABNK_Enroll_drvTbl
@@ -640,14 +650,13 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = EecEmpNo
+        ,drvInitialSort =  EecEmpNo + '2'
         -- standard fields above and additional driver fields below
         ,drvEmployeeID = EecEmpNo
-        ,drvEnrollEffectiveDate = EedBenStartDate
-        ,drvHDHPCoverageLvl = CASE    WHEN Eeddedcode IN ('HSA', 'HSAI1', 'HSAI', 'HSACI', 'HSCI1') THEN 'S'
-                                    WHEN Eeddedcode IN ('HSAF', 'HSF1', 'HSACF','HSCFI1') THEN 'F'
-                                    END
-
+        ,drvEnrollEffectiveDate = CASE WHEN EedDedCode in ('HSA', 'HSACF', 'HSACI', 'HASF', 'HSAI', 'HSAI1', 'HSCF1', 'HSCI1', 'HSF1') THEN EedBenStartDate END
+        ,drvHDHPCoverageLvl = CASE WHEN Eeddedcode IN ('HSA', 'HSAI1', 'HSAI', 'HSACI', 'HSCI1') THEN 'S'
+                                   WHEN Eeddedcode IN ('HSAF', 'HSF1', 'HSACF','HSCFI1') THEN 'F'
+                                   END
     INTO dbo.U_EFLYHSABNK_Contrib_drvTbl
     FROM dbo.U_EFLYHSABNK_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -713,7 +722,8 @@ WHERE expFormatCode = 'EFLYHSABNK';
 GO
 CREATE VIEW dbo.dsi_vwEFLYHSABNK_Export AS 
     SELECT TOP 200000000 Data FROM dbo.U_EFLYHSABNK_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+   
+    ORDER BY CASE WHEN InitialSort = '1' THEN '1' WHEN InitialSort = '9999' THEN '3' ELSE '2' END,  InitialSort, SubSort;
 
 GO
 
