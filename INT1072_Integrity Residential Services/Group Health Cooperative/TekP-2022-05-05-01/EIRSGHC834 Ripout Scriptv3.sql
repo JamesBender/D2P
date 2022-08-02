@@ -5,7 +5,7 @@ EIRSGHC834: Group Health Cooperative 834
 FormatCode:     EIRSGHC834
 Project:        Group Health Cooperative 834
 Client ID:      INT1072
-Date/time:      2022-07-29 12:39:12.553
+Date/time:      2022-08-02 15:08:16.167
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -367,18 +367,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIRSGHC834_20220729.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIRSGHC834_20220802.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202207189','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202207189','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202207189','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Group Health Cooperative 834','202207189','EMPEXPORT','SCH_EIRSGH','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202207189','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',3JJFX',NULL,NULL,NULL,'GHC Active OE','202207189','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',3JJFX',NULL,NULL,NULL,'GHC Passive OE','202207189','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',3JJFX',NULL,NULL,NULL,'GHC On-Demand','202207189','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',3JJFX',NULL,NULL,NULL,'GHC 834 SCH','202207189','EMPEXPORT','SCH_EIRSGH','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','3JJFX',NULL,NULL,NULL,'GHC834 Test','202207189','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -573,7 +573,7 @@ CREATE TABLE [dbo].[U_EIRSGHC834_DrvTbl] (
     [drvINS12_DateTimePeriod] varchar(8) NULL,
     [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual1] char(11) NULL,
-    [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] int NULL,
     [drvREF01_RefNumberQual3] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual3] varchar(1) NOT NULL,
@@ -848,9 +848,8 @@ SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EIRSGHC834' ORD
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'FULLFILE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'ONDM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'CHANGES';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EIRSGHC834', 'SCH_EIRSGH';
@@ -977,8 +976,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','DPC,STC,CHL');
+   -- INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -1166,7 +1165,7 @@ BEGIN
         ,drvREF01_RefNumberQual1 = ''
         ,drvREF02_RefNumberQual1 = EepSSN
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual2 = ''
+        ,drvREF01_RefNumberQual2 = 'IL'
         ,drvREF02_RefNumberQual2 = CASE WHEN BDMdedcode = 'GHCH0' THEN 7753000
 
                                         WHEN BDMdedcode = 'GHCH1' THEN 7753001 
@@ -1341,13 +1340,12 @@ BEGIN
                                         WHEN BdmDedCode IN ('GHCP0','GHCP1','GHCP5') THEN 'PPO'
                                         END
         ,drvHD04_PlanCoverageDesc = ''
-        ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES,EEDP')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) AND ConRelationship IN ('DPC','STC','CHL') AND (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID) = 1 THEN 'E1D'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) AND ConRelationship IN ('DPC','STC','CHL') AND (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID) > 1 THEN 'FAM'
+        ,drvHD05_CoverageLevelCode = CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES,EEDP,OEES')) THEN 'ESP'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) AND  (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID) = '1' THEN 'E1D' 
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) AND (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID) > '1' THEN 'FAM'
                                                      WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEF,EEDPF')) THEN 'FAM'
-                                                END                                     
+                                                END                                       
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'
@@ -1424,6 +1422,7 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EIRSGHC834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
+        
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID

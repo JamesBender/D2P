@@ -5,7 +5,7 @@ ELRNOCDEMO: LRN Demographic Export
 FormatCode:     ELRNOCDEMO
 Project:        LRN Demographic Export
 Client ID:      USO1001
-Date/time:      2022-07-21 12:07:26.637
+Date/time:      2022-08-02 10:35:12.583
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -149,7 +149,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELRNOCDEMO_20220721.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELRNOCDEMO_20220802.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -213,7 +213,7 @@ CREATE TABLE [dbo].[U_ELRNOCDEMO_drvTbl] (
     [drvLastName] varchar(100) NULL,
     [drvEmailAddress] varchar(50) NULL,
     [drvDepartment] varchar(10) NULL,
-    [drvTitleRole] varchar(25) NOT NULL,
+    [drvTitleRole] varchar(8000) NULL,
     [drvManagerName] varchar(513) NULL,
     [drvManagerEmail] varchar(256) NULL
 );
@@ -331,7 +331,7 @@ BEGIN
         ,drvLastName = EepNameLast
         ,drvEmailAddress = EepAddressEMail
         ,drvDepartment = eecorglvl2 
-        ,drvTitleRole = JbcDesc
+        ,drvTitleRole = REPLACE(JbcDesc, ',' ,'')
         ,drvManagerName = dbo.dsi_fnlib_GetSupervisorField('', EepEEID, 'NameFML')  + '' + ISNULL(dbo.dsi_fnlib_GetSupervisorField('', EepEEID, 'Suffix'),'')
         ,drvManagerEmail = dbo.dsi_fnlib_GetSupervisorField('', EepEEID, 'AddressEMail')
     INTO dbo.U_ELRNOCDEMO_drvTbl
@@ -350,6 +350,7 @@ BEGIN
         On cmpcoid = xCoID
         Where cmpcompanycode <> 'EAHI'
         AND eecemplstatus <> 'T'
+        AND xCoID <> '6IYSR' and JbcDesc <> 'Supervisor'
     ;
 
     --==========================================

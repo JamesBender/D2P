@@ -5,7 +5,7 @@ EACHALLSTA: Allstate Group Accident and Illness
 FormatCode:     EACHALLSTA
 Project:        Allstate Group Accident and Illness
 Client ID:      ACH1001
-Date/time:      2022-07-28 15:36:02.050
+Date/time:      2022-08-02 08:10:15.603
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -329,7 +329,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220728.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220802.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -447,17 +447,17 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Accident_drvTbl] (
     [drvCoverageTier] varchar(1) NULL,
     [drvSection125] varchar(1) NOT NULL,
     [drvTotalModePremium] nvarchar(4000) NULL,
-    [drvBasePlanUnits] varchar(3) NOT NULL,
-    [drvRider1] varchar(6) NOT NULL,
-    [drvRider1UnitsAmt] varchar(3) NOT NULL,
-    [drvRider2] varchar(6) NOT NULL,
-    [drvRider2UnitsAmt] varchar(3) NOT NULL,
-    [drvRider3] varchar(6) NOT NULL,
-    [drvRider3UnitsAmt] varchar(3) NOT NULL,
-    [drvRider4] varchar(5) NOT NULL,
-    [drvRider4UnitsAmt] varchar(3) NOT NULL,
-    [drvRider5] varchar(5) NOT NULL,
-    [drvRider5UnitsAmt] varchar(3) NOT NULL,
+    [drvBasePlanUnits] varchar(3) NULL,
+    [drvRider1] varchar(6) NULL,
+    [drvRider1UnitsAmt] varchar(3) NULL,
+    [drvRider2] varchar(6) NULL,
+    [drvRider2UnitsAmt] varchar(3) NULL,
+    [drvRider3] varchar(6) NULL,
+    [drvRider3UnitsAmt] varchar(3) NULL,
+    [drvRider4] varchar(5) NULL,
+    [drvRider4UnitsAmt] varchar(3) NULL,
+    [drvRider5] varchar(5) NULL,
+    [drvRider5UnitsAmt] varchar(3) NULL,
     [drvPremiumBillingMode] varchar(2) NULL,
     [drvDateofFirstDeduction] datetime NULL,
     [drvReqCovEffectiveDate] datetime NULL,
@@ -543,24 +543,24 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Illness_drvTbl] (
     [drvRecordType] varchar(2) NOT NULL,
     [drvApplicationID] char(11) NULL,
     [drvCoverageTier] varchar(1) NOT NULL,
-    [drvSection125] varchar(1) NOT NULL,
-    [drvBasicBenefitAmount] varchar(5) NOT NULL,
+    [drvSection125] varchar(1) NULL,
+    [drvBasicBenefitAmount] varchar(5) NULL,
     [drvTotalModePremium] nvarchar(4000) NULL,
-    [drvRider1] varchar(5) NOT NULL,
-    [drvRider2] varchar(6) NOT NULL,
-    [drvRider3] varchar(6) NOT NULL,
-    [drvRider4] varchar(8) NOT NULL,
-    [drvRider5] varchar(9) NOT NULL,
-    [drvRider5UnitsAmt] varchar(3) NOT NULL,
-    [drvRider6] varchar(8) NOT NULL,
-    [drvRider7] varchar(9) NOT NULL,
-    [drvRider8] varchar(9) NOT NULL,
+    [drvRider1] varchar(5) NULL,
+    [drvRider2] varchar(6) NULL,
+    [drvRider3] varchar(6) NULL,
+    [drvRider4] varchar(8) NULL,
+    [drvRider5] varchar(8) NULL,
+    [drvRider5UnitsAmt] varchar(3) NULL,
+    [drvRider6] varchar(8) NULL,
+    [drvRider7] varchar(9) NULL,
+    [drvRider8] varchar(9) NULL,
     [drvPremiumBillingMode] varchar(2) NULL,
     [drvDateofFirstDeduction] datetime NULL,
     [drvReqCovEffDate] datetime NULL,
-    [drvCaseNumber] varchar(5) NOT NULL,
+    [drvCaseNumber] varchar(5) NULL,
     [drvStatusCode] varchar(1) NULL,
-    [drvSignedCityandState] varchar(16) NOT NULL,
+    [drvSignedCityandState] varchar(16) NULL,
     [drvDatesignedbyEmployee] datetime NULL,
     [drvReqCovEndDate] datetime NULL
 );
@@ -677,7 +677,7 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Question_drvTbl] (
     [drvSubSort] char(12) NULL,
     [drvRecordType] varchar(2) NULL,
     [drvApplicationID] char(11) NULL,
-    [drvQuestion] varchar(3) NOT NULL,
+    [drvQuestion] varchar(3) NULL,
     [drvResponse] varchar(1) NOT NULL
 );
 GO
@@ -1006,6 +1006,7 @@ BEGIN
        ON audeeid = xEEID
     where EecEEType <> 'TES'
         and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
+        AND Bdmdedcode IN ('ACCID', 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
     
     ;
     ---------------------------------
@@ -1029,23 +1030,23 @@ BEGIN
                            END
         ,drvSection125 = 'Y'
         ,drvTotalModePremium =  FORMAT((SELECT CorEERate*200 FROM dbo.U_EACHALLSTA_OptTable WITH (NOLOCK) WHERE CorDedCode = 'ACCID' AND CorBenOption = BdmBenOption), '000000')
-        ,drvBasePlanUnits = '200'
-        ,drvRider1 =  'GP6AUC'
-        ,drvRider1UnitsAmt = '200'
-        ,drvRider2 = 'GP6ERS'
-        ,drvRider2UnitsAmt = '200'
-        ,drvRider3 = 'GP6OPT'
-        ,drvRider3UnitsAmt = '200'
-        ,drvRider4 = 'GP6DF'
-        ,drvRider4UnitsAmt = '200'
-        ,drvRider5 = 'GP6BE'
-        ,drvRider5UnitsAmt = '200'
+        ,drvBasePlanUnits = CASE WHEN bdmdedcode = 'ACCID' THEN '200' END
+        ,drvRider1 =  CASE WHEN bdmdedcode = 'ACCID' THEN 'GP6AUC' END
+        ,drvRider1UnitsAmt = CASE WHEN bdmdedcode = 'ACCID' THEN '200' END
+        ,drvRider2 = CASE WHEN bdmdedcode = 'ACCID' THEN 'GP6ERS'END
+        ,drvRider2UnitsAmt = CASE WHEN bdmdedcode = 'ACCID' THEN '200'END
+        ,drvRider3 = CASE WHEN bdmdedcode = 'ACCID' THEN 'GP6OPT' END
+        ,drvRider3UnitsAmt = CASE WHEN bdmdedcode = 'ACCID' THEN '200' END
+        ,drvRider4 = CASE WHEN bdmdedcode = 'ACCID' THEN 'GP6DF' END
+        ,drvRider4UnitsAmt = CASE WHEN bdmdedcode = 'ACCID' THEN '200'END
+        ,drvRider5 = CASE WHEN bdmdedcode = 'ACCID' THEN 'GP6BE' END
+        ,drvRider5UnitsAmt = CASE WHEN bdmdedcode = 'ACCID' THEN '200' END
         ,drvPremiumBillingMode = CASE WHEN PgrPayFrequency = 'B' THEN '26' END
         ,drvDateofFirstDeduction = bdmbenstartdate
         ,drvReqCovEffectiveDate = CASE WHEN bdmdedcode = 'ACCID' THEN bdmbenstartdate END
         ,drvCaseNumber = '35611'
         ,drvStatusCode = CASE WHEN eecemplStatus = 'T' THEN 'T'
-                               WHEN eecemplStatus = 'A' and bdmbenstatus <> 'A' THEN 'X'
+                               WHEN eecemplStatus = 'A' and bdmdedcode = 'ACCID' and bdmbenstatus <> 'A' THEN 'X'
                          END
         ,drvReqCovEndDate = CASE WHEN bdmdedcode = 'ACCID' THEN bdmbenstopdate END
         ,drvSignedCityandState = 'Grand Prairie TX'
@@ -1083,8 +1084,8 @@ BEGIN
         ,drvRecordType = '40'
         ,drvApplicationID = eepSSN
         ,drvCoverageTier =  BDM.CoverageTier
-        ,drvSection125 = ''
-        ,drvBasicBenefitAmount = '10000' 
+        ,drvSection125 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'N' END
+        ,drvBasicBenefitAmount = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '10000' END
         ,drvTotalModePremium =  FORMAT((CASE WHEN EepGender = 'M' AND EepIsSmoker = 'N' THEN -- JCB
                                     --CAST(
                                     (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
@@ -1098,25 +1099,25 @@ BEGIN
                                     --CAST(
                                     (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
                             END)*2000, '000000')
-        ,drvRider1 = 'CICR1'
-        ,drvRider2 = 'CIHCR1'
-        ,drvRider3 = 'CIHCR2'
-        ,drvRider4 = 'GCIP4SR2'
-        ,drvRider5 = ' GCIP4FWR'
-        ,drvRider5UnitsAmt = '200'
-        ,drvRider6 = 'GCIP4CER'
-        ,drvRider7 = 'GCIP4SC1R'
-        ,drvRider8 = 'GCIP4SC2R'
+        ,drvRider1 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CICR1' END
+        ,drvRider2 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CIHCR1' END
+        ,drvRider3 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CIHCR2' END
+        ,drvRider4 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4SR2' END
+        ,drvRider5 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4FWR' END
+        ,drvRider5UnitsAmt = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '200' END
+        ,drvRider6 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4CER' END
+        ,drvRider7 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4SC1R' END
+        ,drvRider8 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4SC2R' END
         ,drvPremiumBillingMode = CASE WHEN PgrPayFrequency = 'B' THEN '26' END
-        ,drvDateofFirstDeduction = bdmbenstartdate
-        ,drvReqCovEffDate = bdmbenstartdate
-        ,drvCaseNumber = '35611'
+        ,drvDateofFirstDeduction = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN bdmbenstartdate END
+        ,drvReqCovEffDate = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN bdmbenstartdate END
+        ,drvCaseNumber = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '35611' END
         ,drvStatusCode =  CASE WHEN eecemplStatus = 'T' THEN 'T'
-                               WHEN eecemplStatus = 'A' and bdmbenstatus <> 'A' THEN 'X'
+                               WHEN eecemplStatus = 'A' and BDM.bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') and bdmbenstatus <> 'A' THEN 'X'
                          END
-        ,drvSignedCityandState = 'Grand Prairie TX'
+        ,drvSignedCityandState = CASE WHEN BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'Grand Prairie TX' END
         ,drvDatesignedbyEmployee = Dateadd(day,-1,getdate()) 
-        ,drvReqCovEndDate = bdmbenstopdate
+        ,drvReqCovEndDate = CASE WHEN BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN bdmbenstopdate END
     INTO dbo.U_EACHALLSTA_Illness_drvTbl
     FROM dbo.U_EACHALLSTA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1129,7 +1130,7 @@ BEGIN
                                     THEN '1' 
                             ELSE 
                                  CASE WHEN bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where Bdmrectype = 'DEP' and  BdmNumChildren = 0 and BdmNumSpouses > 0 
-                                        and BdmDedCode in ('CRID', 'CRIEF', 'CRIFS') and bdmRelationship  NOT IN (  'CHL', 'COD', 'DCH', 'DPC', 'STC')
+                                        and BdmDedCode in ('CRID', 'CRIEF', 'CRIFS') and bdmRelationship  NOT IN ( 'CHL', 'COD', 'DCH', 'DPC', 'STC')
                                         )  
                                     THEN '2'
                                 ELSE 
@@ -1142,13 +1143,13 @@ BEGIN
                                 END 
                             END
                         END
-    FROm dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK) 
-    Where bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+    FROM dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK) 
+    Where bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
         and bdmRecType = 'EMP'
          and bdmbenstartdate is not null
     ) BDM
-        ON BDM. BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+        ON BDM.BdmEEID = xEEID 
+        AND BDM.BdmCoID = xCoID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
@@ -1158,7 +1159,7 @@ BEGIN
         ON PgrPayGroup = EecPayGroup
     LEFT JOIN  dbo.U_EACHALLSTA_Audit WITH (NOLOCK)
         ON xEEID = audEEID 
-        Where bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+        Where bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
         AND EecEEType <> 'TES'  
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
     ;
@@ -1174,10 +1175,10 @@ BEGIN
         ,drvSort = '2'+ eepssn
         ,drvSubSort = bdmdeprecid
         -- standard fields above and additional driver fields below
-        ,drvRecordType = CASE WHEN bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '15' END
-        ,drvApplicationID = eepssn
-        ,drvQuestion = '216'
-        ,drvResponse = CASE WHEN  bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') and EepIsSmoker = 'Y' THEN 'Y' Else  'N' END
+        ,drvRecordType = CASE WHEN bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '15' END
+        ,drvApplicationID = CASE WHEN bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN eepssn END
+        ,drvQuestion = CASE WHEN bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '216' END
+        ,drvResponse = CASE WHEN  bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') and EepIsSmoker = 'Y' THEN 'Y' Else  'N' END
     INTO dbo.U_EACHALLSTA_Question_drvTbl
     FROM dbo.U_EACHALLSTA_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK)

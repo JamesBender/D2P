@@ -4,15 +4,15 @@ EHIOMOOBEN: Mutual Of Omaha AD&D/Life/Vol Life/LTD/STD
 
 FormatCode:     EHIOMOOBEN
 Project:        Mutual Of Omaha AD&D/Life/Vol Life/LTD/STD
-Client ID:      USG1000
-Date/time:      2022-07-19 18:04:11.310
+Client ID:      HIO1000
+Date/time:      2022-08-01 16:34:21.213
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EHIOMOOBEN_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW4WUP5DB02
+Database:       ULTIPRO_WPHIOSE
+Web Filename:   HIO1000_N0854_EEHISTORY_EHIOMOOBEN_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -106,7 +106,27 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwEHIOMOOBEN_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEHIOMOOBEN_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EHIOMOOBEN') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHIOMOOBEN];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_PEarHist];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_PDedHist];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_File') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_File];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_EEList') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_EEList];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_drvTbl];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_DedList') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_DedList];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_AuditFields];
+GO
+IF OBJECT_ID('U_EHIOMOOBEN_Audit') IS NOT NULL DROP TABLE [dbo].[U_EHIOMOOBEN_Audit];
+GO
+IF OBJECT_ID('U_dsi_BDM_EHIOMOOBEN') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EHIOMOOBEN];
 GO
 
 -----------
@@ -194,7 +214,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHIOMOOBEN_20220719.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHIOMOOBEN_20220801.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -205,7 +225,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202207199','EMPEXPORT','OEPASSIVE',NULL,'EHIOMOOBEN',NULL,NULL,NULL,'202207199','Jul 19 2022  5:01PM','Jul 19 2022  5:01PM','202207191',NULL,'','','202207191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual Of Omaha AD&D/Life/Vol','202207199','EMPEXPORT','ONDEM_XOE',NULL,'EHIOMOOBEN',NULL,NULL,NULL,'202207199','Jul 19 2022  5:01PM','Jul 19 2022  5:01PM','202207191',NULL,'','','202207191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual Of Omaha AD&D/Lif-Sched','202207199','EMPEXPORT','SCH_EHIOMO',NULL,'EHIOMOOBEN',NULL,NULL,NULL,'202207199','Jul 19 2022  5:01PM','Jul 19 2022  5:01PM','202207191',NULL,'','','202207191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual Of Omaha AD&D/Lif-Test','202207199','EMPEXPORT','TEST_XOE',NULL,'EHIOMOOBEN',NULL,NULL,NULL,'202207199','Jul 19 2022  5:01PM','Jul 19 2022  5:01PM','202207191',NULL,'','','202207191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Mutual Of Omaha AD&D/Lif-Test','202207199','EMPEXPORT','TEST_XOE',NULL,'EHIOMOOBEN',NULL,NULL,NULL,'202207199','Jul 19 2022  5:01PM','Jul 19 2022  5:01PM','202207191',NULL,'','','202207191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -235,14 +255,232 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EHIOMOOBEN','D10','dbo.U_EHIOMOOBEN_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
 -----------
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_dsi_BDM_EHIOMOOBEN
 -----------
 
+IF OBJECT_ID('U_dsi_BDM_EHIOMOOBEN') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EHIOMOOBEN] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_Audit
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_Audit') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_AuditFields
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_DedList
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_DedList') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvSort] varchar(1) NOT NULL,
+    [drvTransDate] char(8) NULL,
+    [drvRelationshipCode] varchar(1) NOT NULL,
+    [drvEmployeeID] char(11) NULL,
+    [drvNameLast] varchar(50) NULL,
+    [drvNameFirst] varchar(50) NULL,
+    [drvGender] char(1) NULL,
+    [drvDateOfBirth] datetime NULL,
+    [drvDateOfHire] datetime NULL,
+    [drvEmployeeEffectiveDate] datetime NULL,
+    [drvBillGroupEffectiveDate] datetime NULL,
+    [drvBasicSalaryEffectiveDate] datetime NULL,
+    [drvBasicSalaryAmount] varchar(24) NULL,
+    [drvClassEffectiveDate] datetime NULL,
+    [drvClassID] varchar(4) NOT NULL,
+    [drvBLProductCategory] varchar(1) NULL,
+    [drvBLEffectiveDate] datetime NULL,
+    [drvBLEligibiltyEvent] varchar(2) NOT NULL,
+    [drvBLPlanID] varchar(10) NULL,
+    [drvBLFamilyCoverageInd] varchar(1) NULL,
+    [drvBADDProductCategory] varchar(1) NULL,
+    [drvBADDEffectiveDate] datetime NULL,
+    [drvBADDEligibiltyEvent] varchar(2) NOT NULL,
+    [drvBADDPlanID] varchar(10) NULL,
+    [drvBADDFamilyCoverageInd] varchar(1) NULL,
+    [drvBSTDProductCategory] varchar(1) NULL,
+    [drvBSTDEffectiveDate] datetime NULL,
+    [drvBSTDEligibiltyEvent] varchar(2) NULL,
+    [drvBSTDPlanID] varchar(10) NULL,
+    [drvBSTDFamilyCoverageInd] varchar(1) NULL,
+    [drvBLTDProductCategory] varchar(1) NULL,
+    [drvBLTDEffectiveDate] datetime NULL,
+    [drvBLTDEligibiltyEvent] varchar(2) NULL,
+    [drvBLTDPlanID] varchar(10) NULL,
+    [drvBLTDFamilyCoverageInd] varchar(1) NULL,
+    [drvVolTermLifeEmpProductCat] varchar(1) NULL,
+    [drvVolTermLifeEmpEffDate] datetime NULL,
+    [drvVolTermLifeEmpEligEvent] varchar(2) NULL,
+    [drvVolTermLifeEmpPlanID] varchar(11) NOT NULL,
+    [drvVolTermLifeEmpFamilyCvgInd] varchar(1) NULL,
+    [drvVolTermLifeEmpAppAmtEffDte] datetime NULL,
+    [drvVolTermLifeEmpApprovedAmt] varchar(24) NULL,
+    [drvVolTermLifeSpsProductCat] varchar(1) NULL,
+    [drvVolTermLifeSpsEffDate] datetime NULL,
+    [drvVolTermLifeSpsEligEvent] varchar(2) NULL,
+    [drvVolTermLifeSpsPlanID] varchar(10) NULL,
+    [drvVolTermLifeSpsFamilyCvgInd] varchar(1) NULL,
+    [drvVolTermLifeSpsAppAmtEffDte] datetime NULL,
+    [drvVolTermLifeSpsApprovedAmt] varchar(24) NULL,
+    [drvVolTermLifeDepProductCat] varchar(1) NULL,
+    [drvVolTermLifeDepEffDate] datetime NULL,
+    [drvVolTermLifeDepEligEvent] varchar(2) NULL,
+    [drvVolTermLifeDepPlanID] varchar(10) NULL,
+    [drvVolTermLifeDepFamilyCvgInd] varchar(1) NULL,
+    [drvVolTermLifeDepAppAmtEffDte] datetime NULL,
+    [drvVolTermLifeDepApprovedAmt] varchar(24) NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_EEList
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_EEList') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_File
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_File') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] char(2000) NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_PDedHist
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSource1] numeric NULL,
+    [PdhSource2] numeric NULL,
+    [PdhSource3] numeric NULL,
+    [PdhSource4] numeric NULL,
+    [PdhSource5] numeric NULL,
+    [PdhSource6] numeric NULL,
+    [PdhSource7] numeric NULL,
+    [PdhSource8] numeric NULL,
+    [PdhSource9] numeric NULL,
+    [PdhSource10] numeric NULL
+);
+
+-----------
+-- Create table U_EHIOMOOBEN_PEarHist
+-----------
+
+IF OBJECT_ID('U_EHIOMOOBEN_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EHIOMOOBEN_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHIOMOOBEN]
     @SystemID char(12)
@@ -291,7 +529,9 @@ BEGIN
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
+            ,@EndPerControl     VARCHAR(9)
+            ,@RunDate           VARCHAR(8)
+            ,@FileMinCovDate    DATETIME;;
 
     -- Set FormatCode
     SELECT @FormatCode = 'EHIOMOOBEN';
@@ -303,6 +543,8 @@ BEGIN
         ,@StartDate       = LEFT(StartPerControl,8)
         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@ExportCode      = ExportCode
+        ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
+        ,@FileMinCovDate  = '01/01/2022'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
@@ -324,6 +566,9 @@ BEGIN
     IF OBJECT_ID('U_EHIOMOOBEN_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EHIOMOOBEN_AuditFields;
     CREATE TABLE dbo.U_EHIOMOOBEN_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+      INSERT INTO dbo.U_EHIOMOOBEN_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+      INSERT INTO dbo.U_EHIOMOOBEN_AuditFields VALUES ('EmpComp','EecEmplStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EHIOMOOBEN_Audit','U') IS NOT NULL
@@ -350,17 +595,17 @@ BEGIN
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EHIOMOOBEN_Audit ON dbo.U_EHIOMOOBEN_Audit (audEEID,audKey2);
 
-    --================
-    -- Changes Only
-    --================
-    DELETE FROM dbo.U_EHIOMOOBEN_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EHIOMOOBEN_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_EHIOMOOBEN_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EHIOMOOBEN_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
     --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'DED1,DED2';
+    SET @DedList = 'STD,LTD,LIFEE,LIFEC,LIFES,ADD,GLIFE';
 
     IF OBJECT_ID('U_EHIOMOOBEN_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EHIOMOOBEN_DedList;
@@ -379,13 +624,16 @@ BEGIN
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'CountDependents','Y')
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'RelationshipsSpouse','SPS,SP')
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'RelationshipsChild','CHL,DPC,STC')
 
     -- Required OE parameters
     IF @ExportCode LIKE '%PASSIVE'
@@ -406,71 +654,71 @@ BEGIN
     -- Build Working Tables
     --==========================================
 
-    -----------------------------
-    -- Working Table - PDedHist
-    -----------------------------
-    IF OBJECT_ID('U_EHIOMOOBEN_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EHIOMOOBEN_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        -- Current Payroll Amounts
-        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        -- YTD Payroll Amounts
-        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-        -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    INTO dbo.U_EHIOMOOBEN_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_EHIOMOOBEN_DedList WITH (NOLOCK)
-        ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
-    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-        OR SUM(PdhERCurAmt) <> 0.00
-    );
+    -------------------------------
+    ---- Working Table - PDedHist
+    -------------------------------
+    --IF OBJECT_ID('U_EHIOMOOBEN_PDedHist','U') IS NOT NULL
+    --    DROP TABLE dbo.U_EHIOMOOBEN_PDedHist;
+    --SELECT DISTINCT
+    --     PdhEEID
+    --    -- Current Payroll Amounts
+    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+    --    -- YTD Payroll Amounts
+    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+    --    -- Categorize Payroll Amounts
+    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --INTO dbo.U_EHIOMOOBEN_PDedHist
+    --FROM dbo.PDedHist WITH (NOLOCK)
+    --JOIN dbo.U_EHIOMOOBEN_DedList WITH (NOLOCK)
+    --    ON DedCode = PdhDedCode
+    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    --AND PdhPerControl <= @EndPerControl
+    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    --GROUP BY PdhEEID
+    --HAVING (SUM(PdhEECurAmt) <> 0.00
+    --    OR SUM(PdhERCurAmt) <> 0.00
+    --);
 
 
-    -----------------------------
-    -- Working Table - PEarHist
-    -----------------------------
-    IF OBJECT_ID('U_EHIOMOOBEN_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EHIOMOOBEN_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EHIOMOOBEN_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
+    -------------------------------
+    ---- Working Table - PEarHist
+    -------------------------------
+    --IF OBJECT_ID('U_EHIOMOOBEN_PEarHist','U') IS NOT NULL
+    --    DROP TABLE dbo.U_EHIOMOOBEN_PEarHist;
+    --SELECT DISTINCT
+    --     PehEEID
+    --    ,PrgPayDate             = MAX(PrgPayDate)
+    --    -- Current Payroll Amount/Hours
+    --    ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+    --    ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+    --    -- YTD Payroll Amount/Hours
+    --    ,PehCurAmtYTD           = SUM(PehCurAmt)
+    --    ,PehCurHrsYTD           = SUM(PehCurHrs)
+    --    -- Current Include Deferred Comp Amount/Hours
+    --    ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+    --    ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+    --    -- YTD Include Deferred Comp Amount/Hours
+    --    ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+    --    ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    --INTO dbo.U_EHIOMOOBEN_PEarHist
+    --FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    --JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+    --    ON PehGenNumber = PrgGenNumber
+    --WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    --AND PehPerControl <= @EndPerControl
+    --GROUP BY PehEEID
+    --HAVING SUM(PehCurAmt) <> 0.00;
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -485,66 +733,96 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvTransDate = Getdate()
-        ,drvRelationshipCode = CASE WHEN EedDedCode = 'LIFEE' THEN 'M'
-                                    WHEN EedDedCode IN ('LIFEC','LIFES') and conrelationship = 'SPS' and congender  = 'M' THEN 'H'
-                                    WHEN EedDedCode IN ('LIFEC','LIFES') and conrelationship = 'SPS' and congender  = 'F' THEN 'W'
-                                    WHEN EedDedCode IN ('LIFEC','LIFES') and conrelationship in ( 'CHL', 'DCH', 'STC')  and congender  = 'M' THEN 'S'
-                                    WHEN EedDedCode IN ('LIFEC','LIFES') and conrelationship in ( 'CHL', 'DCH', 'STC')  and congender  = 'F' THEN 'D'
+        ,drvTransDate = CONVERT(CHAR(8), GETDATE(), 112)
+        ,drvRelationshipCode = CASE WHEN ConRelationship IN ('SPS','DP') AND ConGender = 'F' THEN 'W'
+                                    WHEN ConRelationship IN ('SPS','DP') AND ConGender = 'M' THEN 'H'
+                                    WHEN ConRelationship IN ('SPS','DP') AND ConGender NOT IN ('M','F') THEN 'H'
+                                    WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'F' THEN 'D'
+                                    WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender = 'M' THEN 'S'
+                                    WHEN ConRelationship IN ('CHL','DPC','STC') AND ConGender NOT IN  ('M','F') THEN 'S'
+                                    ELSE 'M'
                                 END
         ,drvEmployeeID = EepSSN
-        ,drvNameLast = EepNameLast
-        ,drvNameFirst = EepNameFirst
-        ,drvGender = EepGender
-        ,drvDateOfBirth = EepDateOfBirth
+        ,drvNameLast = CAST(ltrim(rtrim(CASE WHEN BdmRecType = 'EMP' THEN EepNameLast ELSE ConNameLast END)) AS VARCHAR(50))
+        ,drvNameFirst = CAST(ltrim(rtrim(CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END)) AS VARCHAR(50))
+        ,drvGender = CASE WHEN BdmRecType = 'EMP' THEN EepGender ELSE ConGender END
+        ,drvDateOfBirth = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOFBirth END
         ,drvDateOfHire = EecDateOfOriginalHire
         ,drvEmployeeEffectiveDate = EecDateOfLastHire
-        ,drvBillGroupEffectiveDate = CASE WHEN EecDateOfOriginalHire < EedBenStartDate then EedBenStartDate END
-        ,drvBasicSalaryEffectiveDate = '' ---MAX(EjhJobEffDate) where EjhisRateChange = 'Y'
-        ,drvBasicSalaryAmount = EecAnnSalary
-        ,drvClassEffectiveDate = CASE WHEN EecDateOfOriginalHire < EedBenStartDate then EedBenStartDate END
+        ,drvBillGroupEffectiveDate = CASE  WHEN BdmRecType = 'EMP' THEN 
+                                            CASE WHEN EecDateOfOriginalHire < EecDateOfLastHire  THEN EecDateOfLastHire ELSE EecDateOfOriginalHire END ---CASE WHEN EecDateOfOriginalHire < BdmBenStartDate then BdmBenStartDate END
+                                        END
+        ,drvBasicSalaryEffectiveDate =  MaxJobEffDate ---MAX(EjhJobEffDate) where EjhisRateChange = 'Y' ---CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire), '5/1/2020') END 
+        ,drvBasicSalaryAmount =  CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnPadZero(eecannsalary*100,16,0)  END
+        ,drvClassEffectiveDate = CASE  WHEN BdmRecType = 'EMP' THEN 
+                                        CASE WHEN EecDateOfOriginalHire < EecDateOfLastHire  THEN EecDateOfLastHire ELSE EecDateOfOriginalHire END 
+                                    END
         ,drvClassID = 'A001'
-        ,drvBLProductCategory = CASE WHEN EedDedCode = 'GLIFE' then '1' END
-        ,drvBLEffectiveDate = CASE WHEN EedDedCode = 'GLIFE' then EedBenStartDate END
-        ,drvBLEligibiltyEvent = CASE WHEN  EedDedCode = 'GLIFE' and EecEmplStatus= 'T' then 'TM' else 'EM' END
-        ,drvBLPlanID = CASE WHEN EedDedCode = 'GLIFE' then 'LTL00NCSAL' END
-        ,drvBLFamilyCoverageInd = 'C'
-        ,drvBADDProductCategory = CASE WHEN EedDedCode = 'ADD' then 'a' END
-        ,drvBADDEffectiveDate = CASE WHEN EedDedCode = 'ADD' then EedBenStartDate END
-        ,drvBADDEligibiltyEvent = CASE WHEN EedDedCode = 'ADD' and EecEmplStatus= 'T' then 'TM' else 'EM' END
-        ,drvBADDPlanID = CASE WHEN EedDedCode = 'ADD' then 'ATA00NCSAL' END
-        ,drvBADDFamilyCoverageInd = 'C'
-        ,drvBSTDProductCategory = CASE WHEN EedDedCode = 'STD' then 'S' END
-        ,drvBSTDEffectiveDate = CASE WHEN EedDedCode = 'STD' then EedBenStartDate END
-        ,drvBSTDEligibiltyEvent = CASE WHEN EedDedCode = "STD" and EecEmplStatus= 'T' then 'TM' else 'EM' END
-        ,drvBSTDPlanID = CASE WHEN EedDedCode = 'STD' then 'STS00NCSAL' END
-        ,drvBSTDFamilyCoverageInd = 'C'
-        ,drvBLTDProductCategory = CASE WHEN  EedDedCode = 'LTD' then 'T' END
-        ,drvBLTDEffectiveDate = CASE WHEN EedDedCode = 'LTD' then EedDedBenStartDate END
-        ,drvBLTDEligibiltyEvent =  CASE WHEN EedDedCode = 'LTD' and EecEmplStatus= 'T' THEN 'TM' else 'EM' END 
-        ,drvBLTDPlanID = cASE WHEN EedDedCode = 'LTD' then 'TTT00NCSAL' END
-        ,drvBLTDFamilyCoverageInd = 'C'
-        ,drvVolTermLifeEmpProductCat = CASE WHEN EedDedCode = 'LIFEE' then '3' END
-        ,drvVolTermLifeEmpEffDate = CASE WHEN EedDedCode = 'LIFEE' THEN EedBenStartDate END
-        ,drvVolTermLifeEmpEligEvent = CASE WHEN EedDedCode = 'LIFEE' and EecEmplStatus= 'T' then 'TM' else 'EM' END 
-        ,drvVolTermLifeEmpPlanID = CASE WHEN EedDedCode = 'LIFEE' and EecEmpNo IN ('10000979','10001570') THEN 'ETL00CEEGF' else 'ETL00CEEVAL' END
-        ,drvVolTermLifeEmpFamilyCvgInd = 'C'
-        ,drvVolTermLifeEmpAppAmtEffDte = CASE WHEN EedDedCode = 'LIFEE' THEN EedDedBenStartDate END
-        ,drvVolTermLifeEmpApprovedAmt = CASE WHEN EedDedCode = 'LIFEE' THEN EedBenAmt END
-        ,drvVolTermLifeSpsProductCat = CASE WHEN EedDedCode = 'LIFES' THEN '4' END
-        ,drvVolTermLifeSpsEffDate = CASE WHEN EedDedCode = 'LIFES' THEN EedDedBenStartDate END
-        ,drvVolTermLifeSpsEligEvent = CASE WHEN EedDedCode = 'LIFES' and EecEmplStatus= 'T' then 'TM' else 'EM' END
-        ,drvVolTermLifeSpsPlanID = 'C'
-        ,drvVolTermLifeSpsFamilyCvgInd = CASE WHEN EedDedCode = 'LIFEs' THEN EedDedBenStartDate END
-        ,drvVolTermLifeSpsAppAmtEffDte = CASE WHEN EedDedCode = 'LIFEs'and EecEmplStatus= 'T' then 'TM' else 'EM' END
-        ,drvVolTermLifeSpsApprovedAmt = cASE WHEN EedDedCode = 'LIFEs' then 'ETL0CDPVAL' END
-        ,drvVolTermLifeDepProductCat = CASE WHEN EedDedCode = 'LIFEC' THEN '5' END
-        ,drvVolTermLifeDepEffDate = CASE WHEN EedDedCode = 'LIFEC' THEN EedDedBenStartDate END
-        ,drvVolTermLifeDepEligEvent = CASE WHEN EedDedCode = 'LIFEC'and EecEmplStatus= 'T' then 'TM' else 'EM' END
-        ,drvVolTermLifeDepPlanID = cASE WHEN EedDedCode = 'LIFEC' then 'ETL0CDPVAL' END
-        ,drvVolTermLifeDepFamilyCvgInd = 'C'
-        ,drvVolTermLifeDepAppAmtEffDte = CASE WHEN EedDedCode = 'LIFEC' THEN EedBenStartDate END
-        ,drvVolTermLifeDepApprovedAmt = CASE WHEN EedDedCode = 'LIFEC' THEN EedBenAmt END
+        ,drvBLProductCategory =  CASE WHEN BdmRecType = 'EMP' AND GLIFE_DedCode IS NOT NULL THEN '1' END
+        ,drvBLEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND GLIFE_DedCode IS NOT NULL THEN 
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN GLIFE_BenStatus = 'T' THEN DATEADD(DAY, +1, GLIFE_BenStopDate) ELSE GLIFE_BenStartDate END, '5/1/2020')
+                                END
+        ,drvBLEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND GLIFE_DedCode IS NOT NULL and GLIFE_BenStatus= 'T' THEN 'TM' else 'EM' END
+        ,drvBLPlanID = CASE WHEN BdmRecType = 'EMP' AND GLIFE_DedCode IS NOT NULL THEN 'LTL00NCSAL' END
+        ,drvBLFamilyCoverageInd = CASE WHEN BdmRecType = 'EMP' AND GLIFE_DedCode IS NOT NULL THEN 'C' END
+        ,drvBADDProductCategory = CASE WHEN BdmRecType = 'EMP' AND ADD_DedCode IS NOT NULL then 'A' END
+        ,drvBADDEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND ADD_DedCode IS NOT NULL THEN 
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN ADD_BenStatus = 'T' THEN DATEADD(DAY, +1, ADD_BenStopDate) ELSE ADD_BenStartDate END, '5/1/2020')
+                                END
+        ,drvBADDEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND ADD_DedCode IS NOT NULL and ADD_BenStatus= 'T' then 'TM' else 'EM' END
+        ,drvBADDPlanID = CASE WHEN BdmRecType = 'EMP' AND ADD_DedCode IS NOT NULL THEN 'ATA00NCSAL' END
+        ,drvBADDFamilyCoverageInd = CASE WHEN BdmRecType = 'EMP' AND ADD_DedCode IS NOT NULL THEN 'C' END
+        ,drvBSTDProductCategory = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 'S' END
+        ,drvBSTDEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN STD_BenStatus = 'T' THEN DATEADD(DAY, +1, STD_BenStopDate) ELSE STD_BenStartDate END, '5/1/2020')
+                                    END
+        ,drvBSTDEligibiltyEvent = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 
+                                    CASE WHEN STD_BenStatus = 'T' THEN 'TM' ELSE 'EM' END
+                                    END
+        ,drvBSTDPlanID =  CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN  'STS00NCSAL' END
+        ,drvBSTDFamilyCoverageInd = CASE WHEN BdmRecType = 'EMP' AND STD_DedCode IS NOT NULL THEN 'C' END
+        ,drvBLTDProductCategory = CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 'T'  END
+        ,drvBLTDEffectiveDate = CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LTD_BenStatus = 'T' THEN DATEADD(DAY, +1, LTD_BenStopDate) ELSE LTD_BenStartDate END, '5/1/2020')
+                                END
+        ,drvBLTDEligibiltyEvent =   CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 
+                                    CASE WHEN LTD_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                END
+        ,drvBLTDPlanID = CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN  'TTT00NCSAL' END
+        ,drvBLTDFamilyCoverageInd = CASE WHEN BdmRecType = 'EMP' AND LTD_DedCode IS NOT NULL THEN 'C' END
+        ,drvVolTermLifeEmpProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN '3' END
+        ,drvVolTermLifeEmpEffDate = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL 
+                                         THEN  dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEE_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEE_BenStopDate) ELSE LIFEE_BenStartDate END, '5/1/2020')
+                                        END
+        ,drvVolTermLifeEmpEligEvent = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 
+                                            CASE WHEN LIFEE_BenStatus = 'T'  then 'TM' else 'EM' END 
+                                            END
+        ,drvVolTermLifeEmpPlanID =  CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL and EecEmpNo IN ('10000979','10001570') THEN 'ETL00CEEGF' else 'ETL00CEEVAL' END
+        ,drvVolTermLifeEmpFamilyCvgInd = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 'C' END
+        ,drvVolTermLifeEmpAppAmtEffDte = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL  THEN LIFEE_BenStartDate END
+        ,drvVolTermLifeEmpApprovedAmt = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN dbo.dsi_fnPadZero(LIFEE_BenAmt,10,0) END
+        ,drvVolTermLifeSpsProductCat = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN  '4' END
+        ,drvVolTermLifeSpsEffDate = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 
+                                    dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFES_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFES_BenStopDate) ELSE LIFES_BenStartDate END, '5/1/2020')
+                                END
+        ,drvVolTermLifeSpsEligEvent = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 
+                                        CASE WHEN LIFEE_BenStatus = 'T'then 'TM' else 'EM' END
+                                        END
+        ,drvVolTermLifeSpsPlanID = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 'ETL0CSPVAL' END
+        ,drvVolTermLifeSpsFamilyCvgInd = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN 'C' END
+        ,drvVolTermLifeSpsAppAmtEffDte = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN LIFES_BenStartDate END
+        ,drvVolTermLifeSpsApprovedAmt = CASE WHEN BdmRecType = 'EMP' AND LIFES_DedCode IS NOT NULL THEN dbo.dsi_fnPadZero(LIFES_BenAmt,10,0) END
+        ,drvVolTermLifeDepProductCat =  CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN  '5' END
+        ,drvVolTermLifeDepEffDate = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 
+                                        dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEC_BenStatus = 'T' THEN DATEADD(DAY, +1, LIFEC_BenStopDate) ELSE LIFEC_BenStartDate END, '5/1/2020')
+                                    END
+        ,drvVolTermLifeDepEligEvent = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 
+                                        CASE WHEN LIFEC_BenStatus = 'T' THEN 'TM' ELSE 'EN' END
+                                     END
+        ,drvVolTermLifeDepPlanID = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 'ETL0CDPVAL' END
+        ,drvVolTermLifeDepFamilyCvgInd = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN 'C' END
+        ,drvVolTermLifeDepAppAmtEffDte = CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN LIFEC_BenStartDate END
+        ,drvVolTermLifeDepApprovedAmt =CASE WHEN BdmRecType = 'EMP' AND LIFEC_DedCode IS NOT NULL THEN dbo.dsi_fnPadZero(LIFEC_BenAmt,10,0) END
     INTO dbo.U_EHIOMOOBEN_drvTbl
     FROM dbo.U_EHIOMOOBEN_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -552,9 +830,78 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EHIOMOOBEN WITH (NOLOCK)
+    --JOIN dbo.U_dsi_BDM_EHIOMOOBEN WITH (NOLOCK)
+ --       ON BdmEEID = xEEID 
+        --AND BdmCoID = xCoID
+    JOIN (
+            SELECT BdmRecType, BdmEEID, BdmCOID , BdmDepRecID
+                
+                ,MAX(CASE WHEN BdmDedCode = 'ADD' THEN BdmDedCode END) AS ADD_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmDedCode END) AS LTD_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmDedCode END) AS STD_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmDedCode END) AS LIFEC_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmDedCode END) AS LIFEE_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LIFES' THEN BdmDedCode END) AS LIFES_DedCode    
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmDedCode END) AS GLIFE_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'ADD' THEN BdmBenStatus END) AS ADD_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmBenStatus END) AS LTD_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStatus END) AS STD_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmBenStatus END) AS LIFEC_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmBenStatus END) AS LIFEE_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'LIFES' THEN BdmBenStatus END) AS LIFES_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmBenStatus END) AS GLIFE_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'ADD' THEN BdmBenStartDate END) AS ADD_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmBenStartDate END) AS LTD_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStartDate END) AS STD_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmBenStartDate END) AS LIFEC_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmBenStartDate END) AS LIFEE_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'LIFES' THEN BdmBenStartDate END) AS LIFES_BenStartDate
+                 ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmBenStartDate END) AS GLIFE_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'ADD' THEN BdmBenStopDate END) AS ADD_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmBenStopDate END) AS LTD_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStopDate END) AS STD_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEC' THEN BdmBenStopDate END) AS LIFEC_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LIFEE' THEN BdmBenStopDate END) AS LIFEE_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'LIFES' THEN BdmBenStopDate END) AS LIFES_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmBenStopDate END) AS GLIFE_BenStopDate
+            FROM dbo.U_dsi_BDM_EHIOMOOBEN WITH (NOLOCK)
+            GROUP BY BdmRecType, BdmEEID, BdmCOID , BdmDepRecID
+        ) AS DedCodes
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.Contacts
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecID
+    LEFT JOIN (
+                SELECT EdhEEID, EdhCOID
+                    ,MAX(CASE WHEN EdhDedCode = 'LIFEE' THEN EdhEEBenAmt END) AS LIFEE_BenAmt
+                    ,MAX(CASE WHEN EdhDedCode = 'LIFES' THEN EdhEEBenAmt END) AS LIFES_BenAmt
+                    ,MAX(CASE WHEN EdhDedCode = 'LIFEC' THEN EdhEEBenAmt END) AS LIFEC_BenAmt
+                FROM (
+                        SELECT EdhEEID, EdhCOID, EdhDedCode, EdhEEBenAmt
+                        FROM (
+                                SELECT EdhEEID, EdhCOID, EdhDedCode, EdhEEBenAmt, ROW_NUMBER() OVER (PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhBenStartDate DESC) AS RN
+                                FROM dbo.EmpHDed WITH (NOLOCK) 
+                                WHERE EdhDedCode IN ('LIFEE', 'LIFES', 'LIFEC') 
+                                    AND EdhBenStatus = 'A') AS T
+                WHERE RN = 1) AS Y
+                GROUP BY EdhEEID, EdhCOID
+            ) AS Life_Amount
+        ON EdhEEID = xEEID
+        AND EdhCOID = XCOID
+    LEFT JOIN dbo.U_EHIOMOOBEN_Audit WITH (NOLOCK)
+        ON AudEEID = xEEID
+     LEFT JOIN (
+                SELECT EjhEEID, EjhCOID, EjhReason, Max(EjhJobEffDate) AS MaxJobEffDate
+                FROM (
+                        SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
+                        FROM dbo.EmpHJob WITH (NOLOCK)) AS InnerEjh
+                WHERE RN = 1
+                Group By EjhEEID, EjhCOID, EjhReason) AS Ejh
+        ON EjhEEID = xEEID
+        AND EjhCOID = xCOID
+        WHERE  EecEEType <> 'TES'
+        and (EecEmplStatus  <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
     ;
 
     --==========================================
@@ -592,6 +939,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EHIOMOOBEN';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEHIOMOOBEN_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EHIOMOOBEN_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
