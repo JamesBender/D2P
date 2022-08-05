@@ -5,7 +5,7 @@ ECIGACHEXP: Cigna Acc/Crit Ill/Hosp Export
 FormatCode:     ECIGACHEXP
 Project:        Cigna Acc/Crit Ill/Hosp Export
 Client ID:      PHO1004
-Date/time:      2022-06-21 06:48:20.150
+Date/time:      2022-07-29 08:47:21.850
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -208,7 +208,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECIGACHEXPZ0','50','D','10','25',NULL,'EE CI Approved Coverage Amount',NULL,NULL,'"drvEECIAppCovAmount"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECIGACHEXPZ0','50','D','10','26',NULL,'SP CI Approved Coverage Amount',NULL,NULL,'"drvSPCIAppCovAmount"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECIGACHEXPZ0','50','D','10','27',NULL,'SP Coverage Effective Date',NULL,NULL,'"drvSpCoverageEffectiveDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECIGACHEXPZ0','50','D','10','28',NULL,'CH CI Approved Coverage Amount',NULL,NULL,'"15000"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECIGACHEXPZ0','50','D','10','28',NULL,'CH CI Approved Coverage Amount',NULL,NULL,'"drvChCoverageAmount"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ECIGACHEXPZ0','50','D','10','29',NULL,'CH Coverage Effective Date',NULL,NULL,'"drvChCoverageEffectiveDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ECIGACHEXPZ0','50','D','10','30',NULL,'SP First Name',NULL,NULL,'"drvSpNameFirst"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ECIGACHEXPZ0','50','D','10','31',NULL,'SP Last Name',NULL,NULL,'"drvSpNameLast"','(''UA''=''T,'')');
@@ -239,7 +239,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220621.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220729.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -357,7 +357,7 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] char(12) NULL,
+    [drvSort] varchar(9) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvStreetAddress] varchar(8000) NULL,
@@ -375,9 +375,10 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvCoverageEffectiveDate] datetime NULL,
     [drvPlanType] varchar(8) NULL,
     [drvAiCiHcCoverTier] varchar(10) NULL,
-    [drvEECIAppCovAmount] nvarchar(4000) NULL,
-    [drvSPCIAppCovAmount] nvarchar(4000) NULL,
+    [drvEECIAppCovAmount] varchar(5) NOT NULL,
+    [drvSPCIAppCovAmount] varchar(5) NOT NULL,
     [drvSpCoverageEffectiveDate] datetime NULL,
+    [drvChCoverageAmount] varchar(5) NULL,
     [drvChCoverageEffectiveDate] datetime NULL,
     [drvSpNameFirst] varchar(100) NULL,
     [drvSpNameLast] varchar(100) NULL,
@@ -649,7 +650,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = xEEID
+        ,drvSort = ConRelationship + ' ' + ISNULL(BdmDedCode , 'npon') -- xEEID
         -- standard fields above and additional driver fields below
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
@@ -675,7 +676,7 @@ BEGIN
                                 END
         ,drvCoverageEffectiveDate = BdmBenStartDate
         ,drvPlanType =    CASE WHEN BdmDedCode = 'VHOSP' THEN 'HC961200'
-                        WHEN BdmDedCode = 'VACC' THEN 'A1962021'
+                        WHEN BdmDedCode = 'VACC' THEN 'A962021'
                         WHEN BdmDedCode IN ('CIE','CIECH','CIEFM','CIESP') THEN 'CI961932'
                         END
 
@@ -689,20 +690,36 @@ BEGIN
                                 WHEN BdmBenOption IN ('EES','EEDP') THEN 'EE Plus SP'
                                 --ELSE BdmDedCode + ' ' + ISNULL(BdmBenOption, 'nope')
                                 END
-        ,drvEECIAppCovAmount = CASE WHEN BdmDedCode = 'CIE' THEN FORMAT(BdmEEAmt, '#0') ELSE '0' END
-        ,drvSPCIAppCovAmount = CASE WHEN BdmDedCode IN ('CIESP','CIEFM') THEN FORMAT(BdmEEAmt, '#0') ELSE '0' END
-        ,drvSpCoverageEffectiveDate = CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN BdmSpouseBenStartDate END
-        ,drvChCoverageEffectiveDate = CASE WHEN (BdmDedCode IN ('VACC','VHOSP') and ConRelationship IN ('CHD','CHL','STC','DPC')) OR BdmDedCode IN ('CICH','CIEFM') THEN BdmBenStartDate END
+
+
+
+
+        ,drvEECIAppCovAmount = CASE WHEN BdmDedCode IN ('CIE','CIESP','CIECH','CIEFM') THEN '30000' ELSE '0' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
+        ,drvSPCIAppCovAmount = CASE WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('DP','SPS') THEN '30000' ELSE '0' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
+        ,drvSpCoverageEffectiveDate =    CASE WHEN ConRelationship IN ('SPS','DP','Family') AND BdmDedCode IN ('VHOSP','VACC') THEN BdmBenStartDate
+                                        WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('SPS','DP','Family') THEN BdmSpouseBenStartDate
+                                        END
+
+        ,drvChCoverageAmount =    CASE WHEN BdmDedCode IN ('CIECH','CIEFM') AND BdmChildCode IN ('CHD','CHL','STC','DPC','Family') THEN '15000' END
+        ,drvChCoverageEffectiveDate =    CASE WHEN BdmDedCode IN ('VACC','VHOSP') AND BdmChildCode IN ('CHD','CHL','STD','DPC','Family') THEN BdmBenStartDate
+                                        WHEN BdmDedCode IN ('CIECH','CIEFM') AND BdmChildCode IN ('CHD','CHL','STC','DPC','Family') THEN BdmBenStartDate
+                                        END
+
+
+
+
+
+        --CASE WHEN (BdmDedCode IN ('VACC','VHOSP') and ConRelationship IN ('CHD','CHL','STC','DPC')) OR BdmDedCode IN ('CICH','CIEFM') THEN BdmBenStartDate END
         --CASE WHEN BdmDedCode IN ('VACC','VHOSP','CICH','CIEFM') AND BdmChildBenStatus <> 'A' THEN BdmChildBenStartDate END
-        ,drvSpNameFirst = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameFirst END
+        ,drvSpNameFirst = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameFirst END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameFirst END
-        ,drvSpNameLast = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameLast END
+        ,drvSpNameLast = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameLast END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameLast END
-        ,drvSpSSN = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConSSN END
+        ,drvSpSSN = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConSSN END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConSSN END
-        ,drvSpGender = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConGender END
+        ,drvSpGender = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConGender END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConGender END
-        ,drvSpDateOfBirth = CASE WHEN (ConRelationship IN ('SP','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConDateOfBirth END
+        ,drvSpDateOfBirth = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConDateOfBirth END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConDateOfBirth END
         ,drvPayrollDeductionAmt =    FORMAT(
                                             CASE WHEN BdmDedCode IN ('CIE') THEN PdhSourceCIE

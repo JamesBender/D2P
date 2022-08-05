@@ -5,7 +5,7 @@ EMOOSVAEXP: MoO STD VolL ADD Export
 FormatCode:     EMOOSVAEXP
 Project:        MoO STD VolL ADD Export
 Client ID:      PCR1000
-Date/time:      2022-06-23 05:28:04.643
+Date/time:      2022-07-20 05:38:09.313
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -224,7 +224,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMOOSVAEXP_20220623.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMOOSVAEXP_20220720.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -234,8 +234,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202112089','EMPEXPORT','OEACTIVE','Sep  1 2021  5:22AM','EMOOSVAEXP',NULL,NULL,NULL,'202112089','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202112041','0','','','202112041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202112089','EMPEXPORT','OEPASSIVE','Sep  1 2021  5:22AM','EMOOSVAEXP',NULL,NULL,NULL,'202112089','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202112041','225','','','202112041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export','202112089','EMPEXPORT','ONDEM_XOE','Sep  1 2021  5:23AM','EMOOSVAEXP',NULL,NULL,NULL,'202112089','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202112041','220','','','202112041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','MVM3U,MVM71,MVLY4,MUDKQ,MU7S2,MV8P2,MUBL8,MUBQI,MV8UA,MUDH8,MUDCZ,MUBX3,MU7K1',NULL,NULL,NULL,'MoO STD VolL ADD Export-Sched','202112279','EMPEXPORT','SCH_EMOOSV','Sep  1 2021  5:24AM','EMOOSVAEXP',NULL,NULL,NULL,'202206209','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202206131','220','','','202112271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export-Test','202205301','EMPEXPORT','TEST_XOE','Jun 22 2022 10:08AM','EMOOSVAEXP',NULL,NULL,NULL,'202205301','May 30 2022 12:00AM','Dec 30 1899 12:00AM','202205241','297','','','202205241',dbo.fn_GetTimedKey(),NULL,'us3jBePCR1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','MVM3U,MVM71,MVLY4,MUDKQ,MU7S2,MV8P2,MUBL8,MUBQI,MV8UA,MUDH8,MUDCZ,MUBX3,MU7K1',NULL,NULL,NULL,'MoO STD VolL ADD Export-Sched','202112279','EMPEXPORT','SCH_EMOOSV','Sep  1 2021  5:24AM','EMOOSVAEXP',NULL,NULL,NULL,'202207189','Aug 27 2021  8:35AM','Aug 27 2021  8:35AM','202207041','220','','','202112271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'MoO STD VolL ADD Export-Test','202207189','EMPEXPORT','TEST_XOE','Jul 19 2022 11:53PM','EMOOSVAEXP',NULL,NULL,NULL,'202207189','Jul 18 2022 12:00AM','Dec 30 1899 12:00AM','202203271','391','','','202203271',dbo.fn_GetTimedKey(),NULL,'us3cPePCR1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -964,31 +964,31 @@ BEGIN
                 ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmDedCode END) AS VLIFE_DedCode
                 ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmBenStatus END) AS VLIFE_BenStatus
                 ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmBenStartDate END) AS VLIFE_BenStartDate
-                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmStopDate END) AS VLIFE_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN BdmBenStopDate END) AS VLIFE_BenStopDate
                 ,MAX(CASE WHEN BdmDedCode = 'VLIFE' THEN EedBenAmt END) AS VLIFE_BenAmt
 
                 ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmDedCode END) AS VLFES_DedCode
                 ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmBenStatus END) AS VLFES_BenStatus
                 ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmBenStartDate END) AS VLFES_BenStartDate
-                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmStopDate END) AS VLFES_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN BdmBenStopDate END) AS VLFES_BenStopDate
                 ,MAX(CASE WHEN BdmDedCode = 'VLFES' THEN EedBenAmt END) AS VLFES_BenAmt
 
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmDedCode END) AS VLFEF_DedCode
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmBenStatus END) AS VLFEF_BenStatus
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmBenStartDate END) AS VLFEF_BenStartDate
-                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmStopDate END) AS VLFEF_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN BdmBenStopDate END) AS VLFEF_BenStopDate
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEF' THEN EedBenAmt END) AS VLFEF_BenAmt
 
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmDedCode END) AS VLFEC_DedCode
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmBenStatus END) AS VLFEC_BenStatus
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmBenStartDate END) AS VLFEC_BenStartDate
-                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmStopDate END) AS VLFEC_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN BdmBenStopDate END) AS VLFEC_BenStopDate
                 ,MAX(CASE WHEN BdmDedCode = 'VLFEC' THEN EedBenAmt END) AS VLFEC_BenAmt
 
                 ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmDedCode END) AS STD_DedCode
                 ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStatus END) AS STD_BenStatus
                 ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStartDate END) AS STD_BenStartDate
-                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmStopDate END) AS STD_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStopDate END) AS STD_BenStopDate
 
             FROM dbo.U_dsi_BDM_EMOOSVAEXP WITH (NOLOCK)
             JOIN dbo.EmpDed WITH (NOLOCK)
@@ -1030,11 +1030,13 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202112041'
-       ,expStartPerControl     = '202112041'
-       ,expLastEndPerControl   = '202112089'
-       ,expEndPerControl       = '202112089'
-WHERE expFormatCode = 'EMOOSVAEXP';
+    SET expLastStartPerControl = '202207181'
+       ,expStartPerControl     = '202207181'
+       ,expLastEndPerControl   = '202207189'
+       ,expEndPerControl       = '202207189'
+WHERE expFormatCode = 'EMOOSVAEXP'
+AND expExportCode = 'TEST_XOE';
+;
 
 **********************************************************************************/
 GO

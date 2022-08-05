@@ -5,7 +5,7 @@ EWORKHUDE2: Work Human Demo Export V2
 FormatCode:     EWORKHUDE2
 Project:        Work Human Demo Export V2
 Client ID:      MOV1001
-Date/time:      2022-07-18 11:26:11.310
+Date/time:      2022-07-22 08:41:27.763
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -187,7 +187,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDE2_20220718.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDE2_20220722.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -196,7 +196,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export','202203049','EMPEXPORT','ONDEM_XOE','Apr  7 2022  1:13PM','EWORKHUDE2',NULL,NULL,NULL,'202203049','Mar  4 2022 12:00AM','Dec 30 1899 12:00AM','202203041','2376','','','202203041',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','PPEYL,PJ6ZD,OG4IV,NR767,R4GFV',NULL,NULL,NULL,'Work Human Demo Export-Sched','202203049','EMPEXPORT','SCH_EWORKH',NULL,'EWORKHUDE2',NULL,NULL,NULL,'202207069','Mar  4 2022  2:32PM','Mar  4 2022  2:32PM','202206221',NULL,'','','202203041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export-Test','202207111','EMPEXPORT','TEST_XOE','Jul 11 2022  6:57PM','EWORKHUDE2',NULL,NULL,NULL,'202207111','Jul 11 2022 12:00AM','Dec 30 1899 12:00AM','202207111','2304','','','202207111',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export-Test','202207111','EMPEXPORT','TEST_XOE','Jul 21 2022 11:38AM','EWORKHUDE2',NULL,NULL,NULL,'202207111','Jul 11 2022 12:00AM','Dec 30 1899 12:00AM','202207111','2286','','','202207111',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -533,7 +533,7 @@ BEGIN
     audAction <> 'DELETE';
 
     DELETE dbo.U_EWORKHUDE2_Audit WHERE audRowNo <> 1
-    DELETE dbo.U_EWORKHUDE2_Audit WHERE audOldValue <> '215'
+    DELETE dbo.U_EWORKHUDE2_Audit WHERE audOldValue <> '215' or audOldValue IS NULL
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EWORKHUDE2_Audit ON dbo.U_EWORKHUDE2_Audit (audEEID,audKey2);
 
@@ -561,9 +561,10 @@ BEGIN
         ,drvFunc = O3.OrgDesc
         --O1.OrgDesc
         ,drvCountry = LEFT(pers.EepAddressCountry, 2) -- Cheryl follow up
-        ,drvHireDt =    CASE WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire THEN EC.EecDateOfLastHire
+        ,drvHireDt =    CASE WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire AND audOldValue = '215' THEN EC.EecDateOfLastHire                        
                         WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EjhJobEffDate,EC.EecDateOfLastHire) >= 5 THEN EC.EecDateOfLastHire
                         WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EjhJobEffDate,EC.EecDateOfLastHire) < 5 THEN EC.EecDateOfOriginalHire
+                        WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire THEN EC.EecDateOfLastHire
                         ELSE EC.EecDateOfOriginalHire
                         END
         ,drvManagerId = CAST(CAST(
@@ -688,6 +689,9 @@ BEGIN
     --WHERE Ec.EecEEType <> 'CON'
     --AND LocCode <> 'OFFSH' 
     --AND Ec.EecEmplStatus <> 'T'
+    LEFT JOIN dbo.U_EWORKHUDE2_Audit WITH (NOLOCK)
+            ON audEEID = xEEID
+            AND audKey2 = xCOID
     ;
 
     --==========================================

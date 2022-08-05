@@ -4,16 +4,17 @@ EWELM834XP: Wellmark Medical 834 Export
 
 FormatCode:     EWELM834XP
 Project:        Wellmark Medical 834 Export
-Client ID:      USG1000
-Date/time:      2022-07-13 06:38:26.913
+Client ID:      HIB1000
+Date/time:      2022-08-05 10:48:40.193
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EWELM834XP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    N32
+Server:         N3SUP2DB01
+Database:       ULTIPRO_HIBU
+Web Filename:   HIB1000_304F5_EEHISTORY_EWELM834XP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -362,18 +363,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWELM834XP_20220713.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWELM834XP_20220805.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202207139','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202207139','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202207139','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Wellmark Medical 834 Export','202207139','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only','202207139','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2QDZZ,2QE4A',NULL,NULL,NULL,'Wellmark Med 834 Active OE','202207139','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2QDZZ,2QE4A',NULL,NULL,NULL,'Wellmark Med 834 Passive OE','202207139','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2QDZZ,2QE4A',NULL,NULL,NULL,'Wellmark Med 834 On-Demand','202207139','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2QDZZ,2QE4A',NULL,NULL,NULL,'Wellmark Med 834 Export SCH','202207139','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2QDZZ,2QE4A',NULL,NULL,NULL,'Wellmark Med 834 Test File','202207201','EMPEXPORT','TEST_XOE','Aug  1 2022 12:00AM','EWELM834XP',NULL,NULL,NULL,'202207201','Jul 20 2022 12:00AM','Dec 30 1899 12:00AM','202207131',NULL,'','','202207131',dbo.fn_GetTimedKey(),NULL,'us3jBeHIB1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -388,10 +389,11 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','InitialSort','C','LEFT(drvInitialSort,20)');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','Is834','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','Is834','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EWELM834XP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -456,11 +458,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -531,8 +528,8 @@ IF OBJECT_ID('U_EWELM834XP_DrvTbl') IS NULL
 CREATE TABLE [dbo].[U_EWELM834XP_DrvTbl] (
     [drvINS01_YesNoCond] varchar(1) NOT NULL,
     [drvINS02_RelationshipCode] varchar(2) NOT NULL,
-    [drvINS03_MaintTypeCode] varchar(2) NOT NULL,
-    [drvINS04_MaintReasonCode] varchar(2) NULL,
+    [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
+    [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
     [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
     [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
     [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
@@ -542,8 +539,8 @@ CREATE TABLE [dbo].[U_EWELM834XP_DrvTbl] (
     [drvINS10_ResponseCode] varchar(1) NULL,
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
     [drvINS12_DateTimePeriod] varchar(8) NULL,
-    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual1] char(9) NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual3] varchar(1) NOT NULL,
@@ -773,6 +770,11 @@ BEGIN
         UPDATE dbo.U_EWELM834XP_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
 
+    WHILE (SELECT COUNT(*) FROM dbo.U_EWELM834XP_File WHERE RIGHT(RTRIM(DATA), 1) = '*') > 0
+    BEGIN
+        UPDATE dbo.U_EWELM834XP_File SET DATA = LEFT(DATA, LEN(DATA) - 1) WHERE RIGHT(RTRIM(DATA), 1)  = '*'
+    END
+
     --========================================
     -- Remove Extra Records from PER Segment
     --========================================
@@ -863,7 +865,7 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = 'MED,DEN,VIS'; -- '1000M,1001M';
+    SET @DedList = '1000M,1001M';
 
     IF OBJECT_ID('U_EWELM834XP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EWELM834XP_DedList;
@@ -1061,8 +1063,8 @@ BEGIN
                                             ELSE '19'
                                             END
                                         END
-        ,drvINS03_MaintTypeCode = '30'
-        ,drvINS04_MaintReasonCode = CASE WHEN ConRelationship IN ('HSB','WIF','SPS','DTR','SDT','SON','STS','CHL','DIS','WRD') AND ISNULL(ConDeathDate, '') <> '' THEN '03' END -- 'XN' --Notification Only
+        ,drvINS03_MaintTypeCode = '030'    ---'30'
+        ,drvINS04_MaintReasonCode = 'XN' ---CASE WHEN ConRelationship IN ('HSB','WIF','SPS','DTR','SDT','SON','STS','CHL','DIS','WRD') AND ISNULL(ConDeathDate, '') <> '' THEN '03' END -- 'XN' --Notification Only
         ,drvINS05_BenefitStatusCode = 'A'
         ,drvINS0601_MEDICAREPLANCODE = ''
         ,drvINS0602_EligibilityRsnCode = ''
@@ -1083,8 +1085,8 @@ BEGIN
         ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
         ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual1 = ''
-        ,drvREF02_RefNumberQual1 = ''
+        ,drvREF01_RefNumberQual1 = '17'
+        ,drvREF02_RefNumberQual1 = EecEmpNo
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = ''
         ,drvREF02_RefNumberQual2 = ''
@@ -1112,7 +1114,7 @@ BEGIN
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
-        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
+        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/',
                               CASE WHEN BdmRecType = 'EMP' THEN EepNameLast
                                    WHEN BdmRecType = 'DEP' THEN ConNameLast
                               END)
@@ -1349,7 +1351,7 @@ BEGIN
     IF (dbo.dsi_fnVariable('EWELM834XP','UseFileName') = 'N')
     BEGIN
         UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = 'ABCDE_EWELM834XP_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+            SET ExportFile = 'HIBU_EWELM834XP_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
         WHERE FormatCode = 'EWELM834XP';
     END;
 

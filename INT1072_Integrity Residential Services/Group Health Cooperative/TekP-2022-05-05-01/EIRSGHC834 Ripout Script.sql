@@ -4,16 +4,17 @@ EIRSGHC834: Group Health Cooperative 834
 
 FormatCode:     EIRSGHC834
 Project:        Group Health Cooperative 834
-Client ID:      USG1000
-Date/time:      2022-07-18 15:54:26.983
+Client ID:      INT1072
+Date/time:      2022-07-20 06:34:18.227
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EIRSGHC834_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    @FileExportPath
+Environment:    NWP
+Server:         NW1WUP1DB04
+Database:       ULTIPRO_WPITRS
+Web Filename:   INT1072_DM337_EEHISTORY_EIRSGHC834_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -111,9 +112,21 @@ IF OBJECT_ID('dsi_sp_BuildDriverTables_EIRSGHC834') IS NOT NULL DROP PROCEDURE [
 GO
 IF OBJECT_ID('dsi_sp_AfterCollect_EIRSGHC834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_EIRSGHC834];
 GO
+IF OBJECT_ID('U_EIRSGHC834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_TrlTbl];
+GO
+IF OBJECT_ID('U_EIRSGHC834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_HdrTbl];
+GO
 IF OBJECT_ID('U_EIRSGHC834_File') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_File];
 GO
 IF OBJECT_ID('U_EIRSGHC834_EEList') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_EEList];
+GO
+IF OBJECT_ID('U_EIRSGHC834_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_DrvTbl_2300];
+GO
+IF OBJECT_ID('U_EIRSGHC834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_DrvTbl];
+GO
+IF OBJECT_ID('U_EIRSGHC834_DedList') IS NOT NULL DROP TABLE [dbo].[U_EIRSGHC834_DedList];
+GO
+IF OBJECT_ID('U_dsi_BDM_EIRSGHC834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EIRSGHC834];
 GO
 
 -----------
@@ -350,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIRSGHC834_20220718.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIRSGHC834_20220720.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -361,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202207189','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202207189','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Group Health Cooperative 834','202207189','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only','202207189','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202207189','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EIRSGHC834',NULL,NULL,NULL,'202207189','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202207181',NULL,'','','202207181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -374,12 +387,13 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','834LineFeed','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','ExportPath','V','@FileExportPath');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','InitialSort','C','LEFT(drvInitialSort,20)');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRSGHC834','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -438,14 +452,212 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EIRSGHC834','T92','U_EIRSGHC834_TrlTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
 -----------
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_dsi_BDM_EIRSGHC834
 -----------
 
+IF OBJECT_ID('U_dsi_BDM_EIRSGHC834') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EIRSGHC834] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EIRSGHC834_DedList
+-----------
+
+IF OBJECT_ID('U_EIRSGHC834_DedList') IS NULL
+CREATE TABLE [dbo].[U_EIRSGHC834_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedLongDesc] varchar(40) NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EIRSGHC834_DrvTbl
+-----------
+
+IF OBJECT_ID('U_EIRSGHC834_DrvTbl') IS NULL
+CREATE TABLE [dbo].[U_EIRSGHC834_DrvTbl] (
+    [drvINS01_YesNoCond] varchar(1) NOT NULL,
+    [drvINS02_RelationshipCode] varchar(2) NOT NULL,
+    [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
+    [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
+    [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
+    [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
+    [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
+    [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
+    [drvINS08_EmploymentStatusCode] varchar(2) NULL,
+    [drvINS09_StudentStatusCode] varchar(1) NULL,
+    [drvINS10_ResponseCode] varchar(1) NULL,
+    [drvINS11_DateTimeFormatQual] varchar(2) NULL,
+    [drvINS12_DateTimePeriod] varchar(8) NULL,
+    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual3] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual4] varchar(1) NOT NULL,
+    [drvDTP00_DateTime1] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
+    [drvDTP00_DateTime2] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier2] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual2] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod2] varchar(1) NOT NULL,
+    [drvDTP00_DateTime3] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier3] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual3] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod3] varchar(1) NOT NULL,
+    [drvNM103_NameLast1] varchar(6000) NULL,
+    [drvNM104_NameFirst1] varchar(6000) NULL,
+    [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
+    [drvNM106_NamePrefix1] varchar(30) NULL,
+    [drvNM107_NameSuffix1] varchar(30) NULL,
+    [drvNM108_IDCodeQualifier1] varchar(2) NULL,
+    [drvNM109_IDCode1] char(11) NULL,
+    [drvPER02_Name] varchar(1) NOT NULL,
+    [drvPER03_CommNumberQualifier] varchar(2) NULL,
+    [drvPER04_CommunicationNumber] varchar(50) NULL,
+    [drvPER05_CommNumberQualifier] varchar(2) NULL,
+    [drvPER06_CommunicationNumber] varchar(50) NULL,
+    [drvPER07_CommNumberQualifier] varchar(1) NOT NULL,
+    [drvPER08_CommunicationNumber] varchar(1) NOT NULL,
+    [drvN301_AddressLine1] varchar(6000) NULL,
+    [drvN302_AddressLine2] varchar(6000) NULL,
+    [drvN401_City] varchar(6000) NULL,
+    [drvN402_State] varchar(255) NULL,
+    [drvN403_Zip] varchar(50) NULL,
+    [drvN404_CountryCode] char(3) NULL,
+    [drvDMG02_DateTimePeriod1] varchar(8) NULL,
+    [drvDMG03_GenderCode1] char(1) NULL,
+    [drvDMG04_MaritalStatusCode1] varchar(1) NOT NULL,
+    [drvICM01_FrequencyCode] varchar(1) NULL,
+    [drvICM02_MonetaryAmount] money NULL,
+    [drvICM03_Quantity] money NULL,
+    [drvICM04_LocationID] varchar(8) NULL,
+    [drvAMT00_SegmentID1] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
+    [drvAMT00_SegmentID2] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
+    [drvHLH00_SegmentID] varchar(1) NOT NULL,
+    [drvHLH01_HealthRelatedCode] varchar(1) NULL,
+    [drvHLH02_Height] varchar(1) NOT NULL,
+    [drvHLH03_Weight1] varchar(1) NOT NULL,
+    [drvHLH04_Weight2] varchar(1) NOT NULL,
+    [drvHLH05_Description1] varchar(1) NOT NULL,
+    [drvHLH06_CurrentHealthConditionCode] varchar(1) NOT NULL,
+    [drvHLH07_Description2] varchar(1) NOT NULL,
+    [drvEEID] char(12) NULL,
+    [drvCOID] char(5) NULL,
+    [drvDepRecID] char(12) NULL,
+    [drvSSN] char(11) NULL,
+    [drvInitialSort] varchar(11) NULL,
+    [drvSubSort] char(21) NULL
+);
+
+-----------
+-- Create table U_EIRSGHC834_DrvTbl_2300
+-----------
+
+IF OBJECT_ID('U_EIRSGHC834_DrvTbl_2300') IS NULL
+CREATE TABLE [dbo].[U_EIRSGHC834_DrvTbl_2300] (
+    [drvHD00_HealthCoverage] varchar(2) NOT NULL,
+    [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
+    [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
+    [drvHD03_InsuranceLineCode] varchar(3) NULL,
+    [drvHD04_PlanCoverageDesc] varchar(1) NOT NULL,
+    [drvHD05_CoverageLevelCode] varchar(3) NULL,
+    [drvDTP00_DateTime_348] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual_348] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod_348] datetime NULL,
+    [drvDTP00_DateTime_349] varchar(3) NULL,
+    [drvDTP01_DateTimeQualifier_349] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual_349] varchar(2) NULL,
+    [drvDTP03_DateTimePeriod_349] datetime NULL,
+    [drvDTP00_DateTime_303] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier_303] varchar(3) NOT NULL,
+    [drvDTP02_DateTimeFormatQual_303] varchar(2) NOT NULL,
+    [drvDTP03_DateTimePeriod_303] datetime NULL,
+    [drvREF00_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual1] varchar(1) NOT NULL,
+    [drvREF00_RefNumberQual2] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
+    [drvAMT00_AmountQualifierCode1] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
+    [drvAMT00_AmountQualifierCode2] varchar(1) NOT NULL,
+    [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
+    [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
+    [drvLS01_LoopIDCode] varchar(1) NOT NULL,
+    [drvLX01_AssignedNumber] varchar(1) NOT NULL,
+    [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
+    [drvN102_Name] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
+    [drvREF02_RefNumberDesc] varchar(1) NULL,
+    [drvLE01_LoopIDCode] varchar(1) NOT NULL,
+    [drvEEID] char(12) NULL,
+    [drvCOID] char(5) NULL,
+    [drvDepRecID] char(12) NULL,
+    [drvSSN] char(11) NULL,
+    [drvInitialSort] varchar(11) NULL,
+    [drvSubSort] varchar(22) NULL
+);
 
 -----------
 -- Create table U_EIRSGHC834_EEList
@@ -464,11 +676,70 @@ CREATE TABLE [dbo].[U_EIRSGHC834_EEList] (
 IF OBJECT_ID('U_EIRSGHC834_File') IS NULL
 CREATE TABLE [dbo].[U_EIRSGHC834_File] (
     [RecordSet] char(3) NOT NULL,
-    [InitialSort] varchar(50) NOT NULL,
-    [SubSort] varchar(50) NOT NULL,
-    [SubSort2] varchar(50) NULL,
-    [SubSort3] varchar(50) NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
     [Data] varchar(2000) NULL
+);
+
+-----------
+-- Create table U_EIRSGHC834_HdrTbl
+-----------
+
+IF OBJECT_ID('U_EIRSGHC834_HdrTbl') IS NULL
+CREATE TABLE [dbo].[U_EIRSGHC834_HdrTbl] (
+    [drvISA05_SenderIDQual] varchar(2) NOT NULL,
+    [drvISA06_SenderID] varchar(9) NOT NULL,
+    [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
+    [drvISA08_ReceiverID] varchar(9) NOT NULL,
+    [drvISA09_InterchangeDate] varchar(6) NULL,
+    [drvISA10_InterchangeTime] varchar(4) NULL,
+    [drvISA15_UsageIndicator] varchar(1) NOT NULL,
+    [drvISA16_ComponentSeprator] varchar(1) NOT NULL,
+    [drvGS02_SenderID] varchar(9) NOT NULL,
+    [drvGS03_ReceiverID] varchar(9) NOT NULL,
+    [drvGS04_Date] varchar(8) NULL,
+    [drvGS05_Time] varchar(4) NULL,
+    [drvBGN03_Date] varchar(8) NULL,
+    [drvBGN04_Time] varchar(4) NULL,
+    [drvBGN05_TimeCode] varchar(1) NOT NULL,
+    [drvBGN06_RefID] varchar(1) NOT NULL,
+    [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
+    [drvBGN08_ActionCode] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual] varchar(1) NOT NULL,
+    [drvDTP00_DateTime0] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier0] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual0] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod0] varchar(1) NOT NULL,
+    [drvDTP00_DateTime1] varchar(1) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(1) NOT NULL,
+    [drvDTP03_DateTimePeriod1] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual1] varchar(1) NOT NULL,
+    [drvQTY02_Quantity1] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual2] varchar(1) NOT NULL,
+    [drvQTY02_Quantity2] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
+    [drvQTY02_Quantity3] varchar(1) NOT NULL,
+    [drvN101_EntityIDCodeSponsor1] varchar(1) NOT NULL,
+    [drvN102_Name1] varchar(1) NOT NULL,
+    [drvN103_IDCodeQual1] varchar(1) NOT NULL,
+    [drvN104_IDCode1] varchar(1) NOT NULL,
+    [drvN101_EntityIDCodeSponsor2] varchar(1) NOT NULL,
+    [drvN102_Name2] varchar(1) NOT NULL,
+    [drvN103_IDCodeQual2] varchar(1) NOT NULL,
+    [drvN104_IDCode2] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EIRSGHC834_TrlTbl
+-----------
+
+IF OBJECT_ID('U_EIRSGHC834_TrlTbl') IS NULL
+CREATE TABLE [dbo].[U_EIRSGHC834_TrlTbl] (
+    [drvSE01_SegmentCount] varchar(4) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_EIRSGHC834]
@@ -589,7 +860,7 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = '@DedCodeList';
+    SET @DedList = 'GHCH0,GHCH1,GHCH5,GHCP0,GHCP1,GHCP5';
 
     IF OBJECT_ID('U_EIRSGHC834_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EIRSGHC834_DedList;
@@ -634,9 +905,9 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'IncludeOEDrops','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'OERemoveTermEmps','N');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','@SpousesCSV');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','@ChildrenCSV');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','');
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -713,7 +984,7 @@ BEGIN
         DROP TABLE dbo.U_EIRSGHC834_HdrTbl;
     SELECT DISTINCT drvISA05_SenderIDQual = 'ZZ'
         ,drvISA06_SenderID = '391996427'
-        ,drvISA07_ReceiverIDQual = 'zz'
+        ,drvISA07_ReceiverIDQual = 'ZZ'
         ,drvISA08_ReceiverID = '391199466'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
@@ -781,9 +1052,9 @@ BEGIN
                              END
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
                                         ELSE
-                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@SpousesCSV')) THEN '01'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@DomPartnerCSV')) THEN '53'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ChildrenCSV')) THEN '19'
+                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SPS')) THEN '01'
+                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('STC,DPC')) THEN '17'
+                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL')) THEN '19'
                                             ELSE '19'
                                             END
                                         END
@@ -888,9 +1159,10 @@ BEGIN
         ,drvDMG03_GenderCode1 = CASE WHEN BdmRecType = 'EMP' THEN EepGender
                                      WHEN BdmRecType = 'DEP' THEN ConGender
                                 END
-        ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
-                                                CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
-                                       END
+        ,drvDMG04_MaritalStatusCode1 = ''
+        --CASE WHEN BdmRecType = 'EMP' THEN
+  --                                              CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
+  --                                     END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' THEN '' END --'7'
         ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
@@ -969,19 +1241,17 @@ BEGIN
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedType IN ('MED') THEN 'HLT'
-                                           WHEN BdmDedType IN ('DEN') THEN 'DEN'
-                                           WHEN BdmDedType IN ('VIS') THEN 'VIS'
-                                           ELSE ''
-                                     END
+        ,drvHD03_InsuranceLineCode =    CASE WHEN BdmDedCode IN ('GHCH0','GHCH1','GHCH5') THEN 'HMO'
+                                        WHEN BdmDedCode IN ('GHCP0','GHCP1','GHCP5') THEN 'PPO'
+                                        END
         ,drvHD04_PlanCoverageDesc = ''
         ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEBenOpts')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ESPBenOpts')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ECHBenOpts')) THEN 'ECH'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEFAMBenOpts')) THEN 'FAM'
-                                                END
-                                     
+                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES,EEDP')) THEN 'ESP'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) AND ConRelationship IN ('DPC','STC','CHL') AND (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID) = 1 THEN 'E1D'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEC')) AND ConRelationship IN ('DPC','STC','CHL') AND (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID) > 1 THEN 'FAM'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEF,EEDPF')) THEN 'FAM'
+                                                END                                     
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'

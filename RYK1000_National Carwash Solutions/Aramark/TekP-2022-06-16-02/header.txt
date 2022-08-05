@@ -1,0 +1,42 @@
+Store#/BUID
+Department
+First Name
+Last Name
+Ship to Address Company Name
+Ship to Address First Name
+Ship to Address Last Name
+Ship to Street Address
+Ship to City
+Ship to State
+Ship to Zip
+Employee #
+Email Address
+Budget Allotted
+Open Account #
+Anniversary Date
+Amt. already spent
+Program Code
+Employee Status
+Ship-to country
+Area Code
+Phone number
+Phone Extension
+Phone Country
+Web UserName
+Web Password
+Web AccessLevel
+User Defined 1
+User Defined 2
+User Defined 3
+User Defined 4
+User Defined 5
+User Defined 6
+User Defined 7
+User Defined 8
+User Defined 9
+User Defined 10
+User Defined 11
+User Defined 12
+User Defined 13
+User Defined 14
+User Defined 15
