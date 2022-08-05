@@ -5,7 +5,7 @@ EQUOEBCFSA: EBC FSA Dep Care
 FormatCode:     EQUOEBCFSA
 Project:        EBC FSA Dep Care
 Client ID:      QUO1000
-Date/time:      2021-12-27 14:21:11.067
+Date/time:      2022-07-19 13:46:24.023
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -223,7 +223,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQUOEBCFSA_20211227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQUOEBCFSA_20220719.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -233,8 +233,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202112159','EMPEXPORT','OEACTIVE',NULL,'EQUOEBCFSA',NULL,NULL,NULL,'202112159','Dec 15 2021  9:55AM','Dec 15 2021  9:55AM','202112151',NULL,'','','202112151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202112159','EMPEXPORT','OEPASSIVE',NULL,'EQUOEBCFSA',NULL,NULL,NULL,'202112159','Dec 15 2021  9:55AM','Dec 15 2021  9:55AM','202112151',NULL,'','','202112151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'EBC FSA Dep Care','202112159','EMPEXPORT','ONDEM_XOE',NULL,'EQUOEBCFSA',NULL,NULL,NULL,'202112159','Dec 15 2021  9:55AM','Dec 15 2021  9:55AM','202112151',NULL,'','','202112151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'EBC FSA Dep Care-Sched','202112159','EMPEXPORT','SCH_EQUOEB',NULL,'EQUOEBCFSA',NULL,NULL,NULL,'202112159','Dec 15 2021  9:55AM','Dec 15 2021  9:55AM','202112151',NULL,'','','202112151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC FSA Dep Care-Test','202112161','EMPEXPORT','TEST_XOE','Dec 16 2021  7:44PM','EQUOEBCFSA',NULL,NULL,NULL,'202112161','Dec 16 2021 12:00AM','Dec 30 1899 12:00AM','202112011','84','','','202112011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','IAGFG,SSMNA',NULL,NULL,NULL,'EBC FSA Dep Care-Sched','202203169','EMPEXPORT','SCH_EQUOEB',NULL,'EQUOEBCFSA',NULL,NULL,NULL,'202207159','Dec 15 2021  9:55AM','Dec 15 2021  9:55AM','202207081',NULL,'','','202203161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'EBC FSA Dep Care-Test','202207089','EMPEXPORT','TEST_XOE','Jul 16 2022  2:57PM','EQUOEBCFSA',NULL,NULL,NULL,'202207089','Jun 30 2022 12:00AM','Dec 30 1899 12:00AM','202207011','95','','','202207011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -397,7 +397,7 @@ CREATE TABLE [dbo].[U_EQUOEBCFSA_drvTbl] (
     [drvEndDate] datetime NULL,
     [drvPlanType] varchar(3) NULL,
     [drvElection] money NULL,
-    [drvDivision] varchar(2) NULL,
+    [drvDivision] varchar(5) NULL,
     [drvGender] varchar(1) NOT NULL
 );
 
@@ -450,8 +450,8 @@ Purpose: EBC FSA Dep Care
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+Update By           Date           Request Num                Desc
+Darren Collard      07/19/2022     TekP-2021-09-29-0015        Update JOIN to empComp and Audit table
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EQUOEBCFSA';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EQUOEBCFSA';
@@ -630,23 +630,24 @@ BEGIN
         ,drvWorkEmail = EepAddressEMail
         ,drvPersonalEmail = eepAddressEMailAlternate
         ,drvUseWorkEmail = 0
-        ,drvEffDate = CASE WHEN BdmBenStartDate < '2021-01-01' THEN '2021-01-01' ELSE BdmBenStartDate END
+        ,drvEffDate = CASE WHEN BdmBenStartDate <  DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0) THEN  DATEADD(yy, DATEDIFF(yy, 0, GETDATE()), 0) ELSE BdmBenStartDate END
         --- Change to reflect what ever is the first of Jan of the current year
         ,drvEndDate = CASE    WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
-                            Else '2021-12-31' 
+                            Else    DATEADD(yy, DATEDIFF(yy, 0, GETDATE()) + 1, -1)
                             END
         --- Change to reflect what ever is the Last Date of the current year
         ,drvPlanType = CASE WHEN BdmDedCode = 'FSA' THEN 'MED'
                             WHEN BdmDedCode = 'FSADC' THEN 'DEP' 
                             END
         ,drvElection = BdmEEGoalAmt
-        ,drvDivision = CASE WHEN EecCoID = 'IAGFG' THEN 'QF'
-                            WHEN EecCoID = 'SSMNA' THEN 'VO'
+        ,drvDivision = CASE WHEN EecCoID = 'IAGFG' THEN 'QFCU'
+                            WHEN EecCoID = 'SSMNA' THEN 'VOFCO'
                         END
-        ,drvGender =  CASE    WHEN EepGender = 'M' THEN 'M'
+        ,drvGender =  CASE  WHEN EepGender = 'M' THEN 'M'
                             WHEN EepGender = 'F'  THEN 'F'
                             Else 'U'
                             END
+                            
     INTO dbo.U_EQUOEBCFSA_drvTbl
     --FROM dbo.U_EQUOEBCFSA_EEList WITH (NOLOCK)
     FROM dbo.U_dsi_BDM_EQUOEBCFSA WITH (NOLOCK)
@@ -654,8 +655,14 @@ BEGIN
         ON EepEEID = BdmEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = BdmEEID
-             And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
-          and EXISTS (Select 1 from dbo.U_EQUOEBCFSA_Audit where audEEID = Bdmcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+       AND EecCOID = BdmCOID
+       AND (eecemplstatus <> 'T' 
+              OR 
+             (    eecemplstatus = 'T' 
+                  AND eectermreason <> 'TRO' 
+                  AND EXISTS (Select 1 from dbo.U_EQUOEBCFSA_Audit where audEEID = BdmEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')
+             )
+           )
     --JOIN dbo.U_dsi_BDM_EQUOEBCFSA WITH (NOLOCK)
     --    ON BdmEEID = xEEID 
     --    AND BdmCoID = xCoID
@@ -701,11 +708,11 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202112081'
-       ,expStartPerControl     = '202112081'
-       ,expLastEndPerControl   = '202112159'
-       ,expEndPerControl       = '202112159'
-WHERE expFormatCode = 'EQUOEBCFSA';
+    SET expLastStartPerControl = '202207011'
+       ,expStartPerControl     = '202207011'
+       ,expLastEndPerControl   = '202207089'
+       ,expEndPerControl       = '202207089'
+WHERE expFormatCode = 'EQUOEBCFSA' AND expExportCode LIKE '%TEST%';
 
 **********************************************************************************/
 GO

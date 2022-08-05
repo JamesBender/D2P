@@ -5,7 +5,7 @@ EPCSROTH: PCS 401K ROTH Export
 FormatCode:     EPCSROTH
 Project:        PCS 401K ROTH Export
 Client ID:      TUR1007
-Date/time:      2022-07-19 07:50:09.310
+Date/time:      2022-07-19 12:53:32.300
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -229,9 +229,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PCS 401K ROTH Export','202107149','EMPEXPORT','ONDEM_XOE',NULL,'EPCSROTH',NULL,NULL,NULL,'202107149','Jul 14 2021  8:36AM','Jul 14 2021  8:36AM','202106071',NULL,'','','202106071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'PCS 401K ROTH Export','202207071','EMPEXPORT','ONDEM_XOE','Jul 19 2022 12:00AM','EPCSROTH',NULL,NULL,NULL,'202207071','Jul  7 2022 12:00AM','Jun 30 2022 12:00AM','202207071',NULL,'','001,002','202207071',dbo.fn_GetTimedKey(),NULL,'us3cPeTUR1007',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'PCS 401K ROTH Export-Sched','202107149','EMPEXPORT','SCH_EPCS40',NULL,'EPCSROTH',NULL,NULL,NULL,'202107149','Jul 14 2021  8:36AM','Jul 14 2021  8:36AM','202106071',NULL,'','','202106071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'PCS 401K ROTH Export-Test','202206079','EMPEXPORT','TEST_XOE','Sep 15 2021  2:40PM','EPCSROTH',NULL,NULL,NULL,'202206079','Sep  7 2021 12:00AM','Dec 30 1899 12:00AM','202206011','659','eecPayGroup','001','202206011',dbo.fn_GetTimedKey(),NULL,'us3cPeTUR1007',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'PCS 401K ROTH Export-Test','202206221','EMPEXPORT','TEST_XOE','Jul 19 2022 12:00AM','EPCSROTH',NULL,NULL,NULL,'202206221','Jun 22 2022 12:00AM','Jun 15 2022 12:00AM','202206221','659','eecPayGroup','001','202206221',dbo.fn_GetTimedKey(),NULL,'us3cPeTUR1007',NULL);
 
 -----------
 -- AscImp inserts
@@ -595,7 +595,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = ''
         -- standard fields above and additional driver fields below
-        ,drvPrgPayDate = (SELECT MAX(PrgPayDate) FROM dbo.U_EPCSROTHV2_PEarHist WITH (nolock))
+        ,drvPrgPayDate = (SELECT MAX(PrgPayDate) FROM dbo.U_EPCSROTH_PEarHist WITH (nolock))
         ,drvSSN =  SUBSTRING(eepSSN, 1, 3) + '-' + SUBSTRING(eepSSN, 4, 2) + '-' + SUBSTRING(eepSSN, 6,4)  
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
