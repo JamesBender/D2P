@@ -5,7 +5,7 @@ EFRAMED834: Medica 834 Export
 FormatCode:     EFRAMED834
 Project:        Medica 834 Export
 Client ID:      FRA1003
-Date/time:      2022-08-02 14:33:29.057
+Date/time:      2022-08-05 10:50:47.257
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,18 +363,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFRAMED834_20220802.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFRAMED834_20220805.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',RCHLG',NULL,NULL,NULL,' Medica 834 Active OE','202207279','EMPEXPORT','OEACTIVE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'RCHLG',NULL,NULL,NULL,'Medica 834 Passive OE','202207279','EMPEXPORT','OEPASSIVE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',RCHLG',NULL,NULL,NULL,'Medica 834 OnDemand','202207279','EMPEXPORT','ONDM_XOE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271','118','','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',RCHLG',NULL,NULL,NULL,'Medica 834 SCH','202207279','EMPEXPORT','SCH_EFRAME','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','RCHLG',NULL,NULL,NULL,'Medica 834 Test','202208029','EMPEXPORT','TEST_XOE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202208029','Aug  2 2022 12:00AM','Dec 30 1899 12:00AM','202207261','118','','','202207261',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'S9ZCA',NULL,NULL,NULL,' Medica 834 Active OE','202207279','EMPEXPORT','OEACTIVE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'S9ZCA',NULL,NULL,NULL,'Medica 834 Passive OE','202207279','EMPEXPORT','OEPASSIVE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','S9ZCA',NULL,NULL,NULL,'Medica 834 OnDemand','202207279','EMPEXPORT','ONDM_XOE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271','118','','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'S9ZCA',NULL,NULL,NULL,'Medica 834 SCH','202207279','EMPEXPORT','SCH_EFRAME','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','S9ZCA',NULL,NULL,NULL,'Medica 834 Test','202207279','EMPEXPORT','TEST_XOE','Aug  3 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Aug  3 2022 12:00AM','Dec 30 1899 12:00AM','202207271','118','','','202207271',dbo.fn_GetTimedKey(),NULL,'us3kEpFRA1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -542,7 +542,7 @@ CREATE TABLE [dbo].[U_EFRAMED834_DrvTbl] (
     [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual1] char(11) NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual2] varchar(8) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(8) NULL,
     [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual3] varchar(4) NULL,
     [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
@@ -563,7 +563,7 @@ CREATE TABLE [dbo].[U_EFRAMED834_DrvTbl] (
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
     [drvNM106_NamePrefix1] varchar(30) NULL,
-    [drvNM107_NameSuffix1] varchar(30) NULL,
+    [drvNM107_NameSuffix1] varchar(8000) NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
     [drvPER02_Name] varchar(1) NOT NULL,
@@ -1097,7 +1097,16 @@ BEGIN
         ,drvREF02_RefNumberQual1 = Eepssn
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = '1L'
-        ,drvREF02_RefNumberQual2 = 'MTK12345'
+        ,drvREF02_RefNumberQual2 = Case WHEN bdmDedCode = 'HE056' THEN 'MTK44766'
+                                        WHEN bdmDedCode IN( 'HE047', 'HE051') THEN 'MTK44767'
+                                        WHEN bdmDedCode = 'HE048' THEN 'MTK44768'
+                                        WHEN bdmDedCode = 'HE057' THEN 'MTK44769'
+                                        WHEN bdmDedCode = 'HE043' THEN 'MTK44770'
+                                        WHEN bdmDedCode = 'HE044' THEN 'MTK44771'
+                                        WHEN bdmDedCode =  'HE058' THEN 'MTK44772'
+                                        WHEN bdmDedCode =  'HE054' THEN 'MTK44773'
+                                        WHEN bdmDedCode =  'HE055' THEN 'MTK44774'
+                                    END
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'DX'
         ,drvREF02_RefNumberQual3 = CASE WHEN CmpcompanyCode IN ('FR100', 'RU100') THEN 'CORP' 
@@ -1136,15 +1145,15 @@ BEGIN
                                CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
                                     WHEN BdmRecType = 'DEP' THEN ConNameFirst
                                END)
-        ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
+        ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-Z',
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
         ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
+        ,drvNM107_NameSuffix1 = Replace(CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
                                      WHEN BdmRecType = 'DEP' THEN ConNameSuffix
-                                     WHEN (ConNameSuffix = 'Z' or EepNameSuffix= 'Z')  THEN '' 
-                                END
+                                    
+                                END, 'Z', '')
         ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                             WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
                                         END        
@@ -1398,10 +1407,11 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '201810011'
-       ,ExpStartPerControl     = '201810011'
-       ,ExpLastEndPerControl   = '201810019'
-       ,ExpEndPerControl       = '201810019'
+    SET ExpLastStartPerControl = '202207271'
+       ,ExpStartPerControl     = '202207271'
+       ,ExpLastEndPerControl   = '202207279'
+       ,ExpEndPerControl       = '202207279'
+       ,expcoidlist = ''
 WHERE ExpFormatCode = 'EFRAMED834';
 
 **********************************************************************************/
