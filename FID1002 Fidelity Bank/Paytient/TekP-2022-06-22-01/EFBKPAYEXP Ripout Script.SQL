@@ -4,15 +4,15 @@ EFBKPAYEXP: Paytient Census Export
 
 FormatCode:     EFBKPAYEXP
 Project:        Paytient Census Export
-Client ID:      USG1000
-Date/time:      2022-08-02 09:55:22.447
+Client ID:      FID1002
+Date/time:      2022-08-05 07:40:34.860
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EFBKPAYEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW3WUP3DB02
+Database:       ULTIPRO_WPFIDK
+Web Filename:   FID1002_639DE_EEHISTORY_EFBKPAYEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -163,7 +163,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFBKPAYEXP_20220802.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFBKPAYEXP_20220805.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -172,7 +172,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Paytient Census Export','202208029','EMPEXPORT','ONDEM_XOE',NULL,'EFBKPAYEXP',NULL,NULL,NULL,'202208029','Aug  2 2022  9:44AM','Aug  2 2022  9:44AM','202208021',NULL,'','','202208021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Paytient Census Export-Sched','202208029','EMPEXPORT','SCH_EFBKPA',NULL,'EFBKPAYEXP',NULL,NULL,NULL,'202208029','Aug  2 2022  9:44AM','Aug  2 2022  9:44AM','202208021',NULL,'','','202208021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Paytient Census Export-Test','202208029','EMPEXPORT','TEST_XOE',NULL,'EFBKPAYEXP',NULL,NULL,NULL,'202208029','Aug  2 2022  9:44AM','Aug  2 2022  9:44AM','202208021',NULL,'','','202208021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Paytient Census Export-Test','202208041','EMPEXPORT','TEST_XOE','Aug  4 2022 12:00AM','EFBKPAYEXP',NULL,NULL,NULL,'202208041','Aug  4 2022 12:00AM','Dec 30 1899 12:00AM','202207211',NULL,'','','202207211',dbo.fn_GetTimedKey(),NULL,'us3cPeFID1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -203,12 +203,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EFBKPAYEXP','D10','dbo.U_EFBKPAYEXP_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -223,10 +223,10 @@ CREATE TABLE [dbo].[U_EFBKPAYEXP_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] char(9) NULL,
     [drvEmployeeID] char(9) NULL,
-    [drvNameFirst] varchar(100) NULL,
-    [drvNameLast] varchar(100) NULL,
-    [drvAddressLine1] varchar(255) NULL,
-    [drvAddressLine2] varchar(255) NULL,
+    [drvNameFirst] varchar(6000) NULL,
+    [drvNameLast] varchar(6000) NULL,
+    [drvAddressLine1] varchar(6000) NULL,
+    [drvAddressLine2] varchar(6000) NULL,
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
     [drvZIPCode] varchar(5) NULL,
@@ -343,10 +343,10 @@ BEGIN
         ,drvSort = EecEmpNo
         -- standard fields above and additional driver fields below
         ,drvEmployeeID = EecEmpNo
-        ,drvNameFirst = EepNameFirst
-        ,drvNameLast = EepNameLast
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
+        ,drvNameFirst = dbo.dsi_fnRemoveChars('.,/-',EepNameFirst)
+        ,drvNameLast = dbo.dsi_fnRemoveChars('.,/-',EepNameLast)
+        ,drvAddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
+        ,drvAddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
         ,drvCity = EepAddressCity
         ,drvState = EepAddressState
         ,drvZIPCode = Left(EepAddressZipCode,5)
