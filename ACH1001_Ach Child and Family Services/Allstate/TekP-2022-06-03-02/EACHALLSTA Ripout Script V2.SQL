@@ -5,7 +5,7 @@ EACHALLSTA: Allstate Group Accident and Illness
 FormatCode:     EACHALLSTA
 Project:        Allstate Group Accident and Illness
 Client ID:      ACH1001
-Date/time:      2022-08-02 08:10:15.603
+Date/time:      2022-08-09 07:45:14.560
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -329,7 +329,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220802.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220809.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -445,7 +445,7 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Accident_drvTbl] (
     [drvRecordType] varchar(2) NOT NULL,
     [drvApplicationID] char(11) NULL,
     [drvCoverageTier] varchar(1) NULL,
-    [drvSection125] varchar(1) NOT NULL,
+    [drvSection125] varchar(1) NULL,
     [drvTotalModePremium] nvarchar(4000) NULL,
     [drvBasePlanUnits] varchar(3) NULL,
     [drvRider1] varchar(6) NULL,
@@ -1028,8 +1028,8 @@ BEGIN
                                 WHEN  Bdmbenoption = 'EEC' THEN '3'
                                 WHEN  Bdmbenoption IN ( 'EEF' , 'EEDPF',  'EEF2') THEN '4'
                            END
-        ,drvSection125 = 'Y'
-        ,drvTotalModePremium =  FORMAT((SELECT CorEERate*200 FROM dbo.U_EACHALLSTA_OptTable WITH (NOLOCK) WHERE CorDedCode = 'ACCID' AND CorBenOption = BdmBenOption), '000000')
+        ,drvSection125 = CASE WHEN  bdmdedcode = 'ACCID' THEN 'N' END
+        ,drvTotalModePremium =  FORMAT((SELECT CorEERate*100 FROM dbo.U_EACHALLSTA_OptTable WITH (NOLOCK) WHERE CorDedCode = 'ACCID' AND CorBenOption = BdmBenOption), '000000')
         ,drvBasePlanUnits = CASE WHEN bdmdedcode = 'ACCID' THEN '200' END
         ,drvRider1 =  CASE WHEN bdmdedcode = 'ACCID' THEN 'GP6AUC' END
         ,drvRider1UnitsAmt = CASE WHEN bdmdedcode = 'ACCID' THEN '200' END
@@ -1087,18 +1087,18 @@ BEGIN
         ,drvSection125 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'N' END
         ,drvBasicBenefitAmount = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '10000' END
         ,drvTotalModePremium =  FORMAT((CASE WHEN EepGender = 'M' AND EepIsSmoker = 'N' THEN -- JCB
-                                    --CAST(
-                                    (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
                                 WHEN EepGender = 'M' AND EepIsSmoker = 'Y' THEN
-                                    --CAST(
-                                    (SELECT TOP 1 RatEERateSmMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateSmMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
                                 WHEN EepGender = 'F' AND EepIsSmoker = 'N' THEN
-                                    --CAST(
-                                    (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
                                 WHEN EepGender = 'F' AND EepIsSmoker = 'Y' THEN
-                                    --CAST(
-                                    (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
-                            END)*2000, '000000')
+                                    (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
+                            END)*1000, '000000')
         ,drvRider1 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CICR1' END
         ,drvRider2 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CIHCR1' END
         ,drvRider3 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CIHCR2' END
