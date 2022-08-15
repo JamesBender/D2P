@@ -1,25 +1,25 @@
 /*
 Directions:
-1) Find and replace each of the text below with the applicable information.
-       E.g. Replace the text "James Bender" (excluding quotes) with "John Doe"
+1) Find and replace each of the textRoger Bynum below with the applicable information.
+       E.g. Replace the text "Roger Bynum" (excluding quotes) with "John Doe"
 2) Deploy this to client environment!
 
 -- Integration parameters
-Chatham Financial - Replace with customer name
-James Bender - Replace with TC name
-Julie Reardon - Replace with BA/IC name
-5/2/2022 - Replace with date of creation
-TekP-2021-10-07-0001 - Replace with SR number
-ETESTJCBX - Replace with Format Code (i.e., ESUNLIF834)
-Test - do not use - Replace with Name of Interface (AdfFormatName) (i.e., Sunlife 834 Export)
-@CompanyCode - Replace with Company Code (i.e., GOOG)
-@IsWebFlag - Replace with 'Y' (Yes) or 'N' (No) for Web Interface Settings
+Clubessential Holdings - Replace with customer name
+Roger Bynum - Replace with TC name
+Lea King - Replace with BA/IC name
+07/06/2022 - Replace with date of creation
+TekP-2022-05-03-01 - Replace with SR number
+ECLUBEM834 - Replace with Format Code (i.e., ESUNLIF834)
+EyeMed 834 Export - Replace with Name of Interface (AdfFormatName) (i.e., Sunlife 834 Export)
+CLBH - Replace with Company Code (i.e., GOOG)
+'Y' - Replace with 'Y' (Yes) or 'N' (No) for Web Interface Settings
 
 -- File parameters
 @FileExportPath - Replace with the Export Path where the Error Report generates to (i.e., \\us.saas\e1\Public\[Client ARNum]\Imports\Accrual\Reports\)
 
 -- Data parameters
-@CompanyCode - Replace with Company Code for Customer
+CLBH - Replace with Company Code for Customer
 @DedCodeList - Replace with Deduction Code List in CSV format (i.e., DED1,DED2,DED3)
 
 NOTE: SEARCH FOR THE BELOW PARAMETERS TO SKIP TO THE RECORD IN THE TABLE INSTEAD OF FIND/REPLACE, TO ENSURE ',' FORMAT IS CORRECT
@@ -32,46 +32,46 @@ NOTE: SEARCH FOR THE BELOW PARAMETERS TO SKIP TO THE RECORD IN THE TABLE INSTEAD
 @EDPBenOpts - Replace with EE+DOMESTICPARTNER benefit options for drvCoverageLevel (i.e., EEDP)
 @EEFAMBenOpts - Replace with EE+FAMILY benefit options for drvCoverageLevel (i.e., FAM)
 */
-IF OBJECT_ID('dsi_vwETESTJCBX_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwETESTJCBX_Export];
+IF OBJECT_ID('dsi_vwECLUBEM834_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECLUBEM834_Export];
 GO
-IF OBJECT_ID('dsi_sp_BuildDriverTables_ETESTJCBX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ETESTJCBX];
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECLUBEM834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECLUBEM834];
 GO
-IF OBJECT_ID('dsi_sp_AfterCollect_ETESTJCBX') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_ETESTJCBX];
+IF OBJECT_ID('dsi_sp_AfterCollect_ECLUBEM834') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_AfterCollect_ECLUBEM834];
 GO
-IF OBJECT_ID('U_ETESTJCBX_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_TrlTbl];
+IF OBJECT_ID('U_ECLUBEM834_TrlTbl') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_TrlTbl];
 GO
-IF OBJECT_ID('U_ETESTJCBX_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_HdrTbl];
+IF OBJECT_ID('U_ECLUBEM834_HdrTbl') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_HdrTbl];
 GO
-IF OBJECT_ID('U_ETESTJCBX_File') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_File];
+IF OBJECT_ID('U_ECLUBEM834_File') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_File];
 GO
-IF OBJECT_ID('U_ETESTJCBX_EEList') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_EEList];
+IF OBJECT_ID('U_ECLUBEM834_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_EEList];
 GO
-IF OBJECT_ID('U_ETESTJCBX_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_DrvTbl_2300];
+IF OBJECT_ID('U_ECLUBEM834_DrvTbl_2300') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_DrvTbl_2300];
 GO
-IF OBJECT_ID('U_ETESTJCBX_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_DrvTbl];
+IF OBJECT_ID('U_ECLUBEM834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_DrvTbl];
 GO
-IF OBJECT_ID('U_ETESTJCBX_DedList') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_DedList];
+IF OBJECT_ID('U_ECLUBEM834_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_DedList];
 GO
-IF OBJECT_ID('U_ETESTJCBX_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_AuditFields];
+IF OBJECT_ID('U_ECLUBEM834_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_AuditFields];
 GO
-IF OBJECT_ID('U_ETESTJCBX_Audit') IS NOT NULL DROP TABLE [dbo].[U_ETESTJCBX_Audit];
+IF OBJECT_ID('U_ECLUBEM834_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECLUBEM834_Audit];
 GO
-IF OBJECT_ID('U_dsi_BDM_ETESTJCBX') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ETESTJCBX];
+IF OBJECT_ID('U_dsi_BDM_ECLUBEM834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECLUBEM834];
 GO
-DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ETESTJCBX';
-DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ETESTJCBX';
-DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ETESTJCBX';
---DELETE [dbo].[iAscDefF] FROM [dbo].[iAscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ETESTJCBX';
-DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ETESTJCBX');
-DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ETESTJCBX';
+DELETE [dbo].[U_dsi_SQLClauses] FROM [dbo].[U_dsi_SQLClauses] WHERE FormatCode = 'ECLUBEM834';
+DELETE [dbo].[U_dsi_Configuration] FROM [dbo].[U_dsi_Configuration] WHERE FormatCode = 'ECLUBEM834';
+DELETE [dbo].[AscExp] FROM [dbo].[AscExp] WHERE expFormatCode = 'ECLUBEM834';
+--DELETE [dbo].[iAscDefF] FROM [dbo].[iAscDefF] JOIN AscDefH ON AdfHeaderSystemID = AdhSystemID WHERE AdhFormatCode = 'ECLUBEM834';
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECLUBEM834');
+DELETE [dbo].[AscDefH] FROM [dbo].[AscDefH] WHERE AdhFormatCode = 'ECLUBEM834';
 GO
 
 DECLARE @AdhSystemID VARCHAR(12), @FixedFormatName1 VARCHAR(50), @FixedFormatName2 VARCHAR(50);
-SET @AdhSystemID = LEFT('ETESTJCBX' + REPLICATE('0',10),10) + 'Z0';
-SET @FixedFormatName1 = LEFT('Test - do not use',50);
-SET @FixedFormatName2 = LEFT('Test - do not use',30);
+SET @AdhSystemID = LEFT('ECLUBEM834' + REPLICATE('0',10),10) + 'Z0';
+SET @FixedFormatName1 = LEFT('EyeMed 834 Export',50);
+SET @FixedFormatName2 = LEFT('EyeMed 834 Export',30);
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) SELECT 'N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ETESTJCBX',@FixedFormatName1,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N',@AdhSystemID,'N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N';
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) SELECT 'N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECLUBEM834',@FixedFormatName1,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N',@AdhSystemID,'N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '1',@AdhSystemID,'3','H','01','1',NULL,'ISA  Segment ID (Header)',NULL,NULL,'"ISA"','(''DA''=''F*'')';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '2',@AdhSystemID,'2','H','01','2',NULL,'Authorization Info Qualifier',NULL,NULL,'"00"','(''DA''=''F*'')';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '3',@AdhSystemID,'10','H','01','3',NULL,'Authorization Info',NULL,NULL,'""','(''SS''=''F*'')';
@@ -285,70 +285,70 @@ INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '2',@AdhSystemID,'5','T','92','2',NULL,'Number of Functional Groups In',NULL,NULL,'"1"','(''DA''=''T*'')';
 INSERT INTO [dbo].[iAscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) SELECT '3',@AdhSystemID,'9','T','92','3',NULL,'Interchange Control Number',NULL,NULL,'"000000001"','(''DA''=''T*'')';
 -- Uncomment this line if a changes only version is needed
---INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
---INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','FULL_XOE','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,@FixedFormatName2,CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ETESTJCBX',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','834LineFeed','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','ExportPath','V','@FileExportPath');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','InitialSort','C','LEFT(drvInitialSort,20)');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','Is834','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','SubSort','C','drvSubSort');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETESTJCBX','UseFileName','V','N');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H01','U_ETESTJCBX_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H02','U_ETESTJCBX_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H03','U_ETESTJCBX_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H04','U_ETESTJCBX_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H05','U_ETESTJCBX_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H06','U_ETESTJCBX_HdrTbl','ISNULL(drvDTP00_DateTime0,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H07','U_ETESTJCBX_HdrTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H08','U_ETESTJCBX_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H09','U_ETESTJCBX_HdrTbl','ISNULL(drvQTY01_QuantityQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H10','U_ETESTJCBX_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H11','U_ETESTJCBX_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','H12','U_ETESTJCBX_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D13','U_ETESTJCBX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D14','U_ETESTJCBX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D15','U_ETESTJCBX_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D16','U_ETESTJCBX_DrvTbl','ISNULL(drvREF01_RefNumberQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D17','U_ETESTJCBX_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D18','U_ETESTJCBX_DrvTbl','ISNULL(drvREF01_RefNumberQual4,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D19','U_ETESTJCBX_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D20','U_ETESTJCBX_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D21','U_ETESTJCBX_DrvTbl','ISNULL(drvDTP00_DateTime3,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D22','U_ETESTJCBX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D23','U_ETESTJCBX_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D24','U_ETESTJCBX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D25','U_ETESTJCBX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D26','U_ETESTJCBX_DrvTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D27','U_ETESTJCBX_DrvTbl','ISNULL(drvICM01_FrequencyCode,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D28','U_ETESTJCBX_DrvTbl','ISNULL(drvAMT00_SegmentID1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D29','U_ETESTJCBX_DrvTbl','ISNULL(drvAMT00_SegmentID2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D30','U_ETESTJCBX_DrvTbl','ISNULL(drvHLH00_SegmentID,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D40','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D41','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_348,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D42','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_349,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D43','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_303,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D45','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D46','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D50','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D51','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D80','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D81','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D85','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D86','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvREF01_RefNumberQual,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','D87','U_ETESTJCBX_DrvTbl_2300','ISNULL(drvLE01_LoopIDCode,'''') <>''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','T90','U_ETESTJCBX_TrlTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','T91','U_ETESTJCBX_TrlTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ETESTJCBX','T92','U_ETESTJCBX_TrlTbl',NULL);
+--INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Changes Only File',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','CHANGES','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+--INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Full File Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','FULL_XOE','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment',CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) SELECT 'File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,@FixedFormatName2,CONVERT(CHAR(8),GETDATE(),112) + '9','EMPEXPORT','SCH_ECLUBE','Oct  1 2018 12:00AM','ECLUBEM834',NULL,NULL,NULL,CONVERT(CHAR(8),GETDATE(),112) + '9','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM',CONVERT(CHAR(8),GETDATE(),112) + '1',NULL,'','',CONVERT(CHAR(8),GETDATE(),112) + '1',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL;
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','834LineFeed','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','ExportPath','V','@FileExportPath');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','InitialSort','C','LEFT(drvInitialSort,20)');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','Is834','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECLUBEM834','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H01','U_ECLUBEM834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H02','U_ECLUBEM834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H03','U_ECLUBEM834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H04','U_ECLUBEM834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H05','U_ECLUBEM834_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H06','U_ECLUBEM834_HdrTbl','ISNULL(drvDTP00_DateTime0,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H07','U_ECLUBEM834_HdrTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H08','U_ECLUBEM834_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H09','U_ECLUBEM834_HdrTbl','ISNULL(drvQTY01_QuantityQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H10','U_ECLUBEM834_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H11','U_ECLUBEM834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','H12','U_ECLUBEM834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D13','U_ECLUBEM834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D14','U_ECLUBEM834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D15','U_ECLUBEM834_DrvTbl','ISNULL(drvREF01_RefNumberQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D16','U_ECLUBEM834_DrvTbl','ISNULL(drvREF01_RefNumberQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D17','U_ECLUBEM834_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D18','U_ECLUBEM834_DrvTbl','ISNULL(drvREF01_RefNumberQual4,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D19','U_ECLUBEM834_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D20','U_ECLUBEM834_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D21','U_ECLUBEM834_DrvTbl','ISNULL(drvDTP00_DateTime3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D22','U_ECLUBEM834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D23','U_ECLUBEM834_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D24','U_ECLUBEM834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D25','U_ECLUBEM834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D26','U_ECLUBEM834_DrvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D27','U_ECLUBEM834_DrvTbl','ISNULL(drvICM01_FrequencyCode,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D28','U_ECLUBEM834_DrvTbl','ISNULL(drvAMT00_SegmentID1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D29','U_ECLUBEM834_DrvTbl','ISNULL(drvAMT00_SegmentID2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D30','U_ECLUBEM834_DrvTbl','ISNULL(drvHLH00_SegmentID,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D40','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D41','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_348,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D42','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_349,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D43','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_303,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D45','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D46','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvREF00_RefNumberQual2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D50','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode1,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D51','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvAMT00_AmountQualifierCode2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D80','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvLS01_LoopIDCode,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D81','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvLX01_AssignedNumber,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D85','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvN101_EntityIDCodeSponsor,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D86','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvREF01_RefNumberQual,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','D87','U_ECLUBEM834_DrvTbl_2300','ISNULL(drvLE01_LoopIDCode,'''') <>''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','T90','U_ECLUBEM834_TrlTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','T91','U_ECLUBEM834_TrlTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECLUBEM834','T92','U_ECLUBEM834_TrlTbl',NULL);
 GO
-DECLARE @ISWEB CHAR(1) = '@IsWebFlag';
-DECLARE @FormatCode VARCHAR(10) = 'ETESTJCBX'
+DECLARE @ISWEB CHAR(1) = 'Y';
+DECLARE @FormatCode VARCHAR(10) = 'ECLUBEM834'
 DECLARE @Cnt CHAR(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME,1) = 'T' THEN 'ca' ELSE 'us' END);
 DECLARE @TestServer VARCHAR(5) = (SELECT CASE WHEN @@SERVERNAME LIKE '%Z%' THEN LEFT(@@SERVERNAME,3) + '\' ELSE '' END);
 DECLARE @UDENV VARCHAR(3) = (SELECT CASE WHEN LEFT(@@SERVERNAME,3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME,2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME,3) ELSE LEFT(@@SERVERNAME,2) END); 
@@ -365,18 +365,18 @@ BEGIN
     UPDATE dbo.U_Dsi_Configuration SET CfgValue = NULL WHERE FormatCode = @FormatCode AND CfgName = 'ExportPath';
 
     DELETE FROM dbo.AscExp WHERE expFormatCode = @FormatCode AND expExportCode = 'ZAP';
-    UPDATE dbo.AscExp SET expAscFileName = @FilePath + @FileName WHERE expFormatCode = 'ETESTJCBX';
+    UPDATE dbo.AscExp SET expAscFileName = @FilePath + @FileName WHERE expFormatCode = 'ECLUBEM834';
 
-    DELETE FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ETESTJCBX' AND CfgName IN ('TestPath','UDESPath');
+    DELETE FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECLUBEM834' AND CfgName IN ('TestPath','UDESPath');
 END
 GO
-IF OBJECT_ID('U_ETESTJCBX_EEList') IS NULL
-CREATE TABLE [dbo].[U_ETESTJCBX_EEList] (
+IF OBJECT_ID('U_ECLUBEM834_EEList') IS NULL
+CREATE TABLE [dbo].[U_ECLUBEM834_EEList] (
     [xCOID] char(5) NULL,
     [xEEID] char(12) NULL
 );
-IF OBJECT_ID('U_ETESTJCBX_File') IS NULL
-CREATE TABLE [dbo].[U_ETESTJCBX_File] (
+IF OBJECT_ID('U_ECLUBEM834_File') IS NULL
+CREATE TABLE [dbo].[U_ECLUBEM834_File] (
     [RecordSet] char(3) NOT NULL,
     [InitialSort] varchar(50) NOT NULL,
     [SubSort] varchar(50) NOT NULL,
@@ -385,15 +385,15 @@ CREATE TABLE [dbo].[U_ETESTJCBX_File] (
     [Data] varchar(2000) NULL
 );
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_ETESTJCBX]
+CREATE PROCEDURE [dbo].[dsi_sp_AfterCollect_ECLUBEM834]
 AS
 SET NOCOUNT ON;
 /************************************************************
-Client: Chatham Financial
+Client: Clubessential Holdings
 
-Created By: James Bender
-Create Date: 5/2/2022
-ChangePoint Request Number: TekP-2021-10-07-0001
+Created By: Roger Bynum
+Create Date: 07/06/2022
+ChangePoint Request Number: TekP-2022-05-03-01
 
 Purpose: Remove "bad" elements where record ends with Asterisk and Tilde (*~)
 
@@ -408,67 +408,67 @@ BEGIN
     --==================================================
     -- Remove Blank Elements Where Row Ends With '*~'
     --==================================================
-    WHILE (SELECT COUNT(*) FROM dbo.U_ETESTJCBX_File WHERE RIGHT(DATA,2) = '*~') > 0
+    WHILE (SELECT COUNT(*) FROM dbo.U_ECLUBEM834_File WHERE RIGHT(DATA,2) = '*~') > 0
     BEGIN
-        UPDATE dbo.U_ETESTJCBX_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
+        UPDATE dbo.U_ECLUBEM834_File SET DATA = REPLACE(DATA,'*~','~') WHERE RIGHT(RTRIM(DATA),2) = '*~';
     END;
 
     --========================================
     -- Remove Extra Records from PER Segment
     --========================================
-    UPDATE dbo.U_ETESTJCBX_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
-    UPDATE dbo.U_ETESTJCBX_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
-    UPDATE dbo.U_ETESTJCBX_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
+    UPDATE dbo.U_ECLUBEM834_File SET DATA = REPLACE(DATA,'HP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%HP**%';
+    UPDATE dbo.U_ECLUBEM834_File SET DATA = REPLACE(DATA,'WP**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%WP**%';
+    UPDATE dbo.U_ECLUBEM834_File SET DATA = REPLACE(DATA,'EM**','') WHERE LEFT(DATA,3) = 'PER' AND DATA LIKE '%EM**%';
 
     --====================================
     -- Update Record Count in SE Segment
     --====================================
     DECLARE @RecordCount INT;
-    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_ETESTJCBX_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE'));
+    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_ECLUBEM834_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE'));
 
-    UPDATE dbo.U_ETESTJCBX_File
+    UPDATE dbo.U_ECLUBEM834_File
     SET Data = REPLACE(Data,'9999',@RecordCount)
     WHERE LEFT(Data,2) = 'SE';
 
 END
 GO
-CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ETESTJCBX]
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECLUBEM834]
     @systemid CHAR(12)
 AS
 SET NOCOUNT ON;
 /**********************************************************************************
-Client: Chatham Financial
+Client: Clubessential Holdings
 
-Created By: James Bender
-Business Analyst: Julie Reardon
-Create Date: 5/2/2022
-Service Request Number: TekP-2021-10-07-0001
+Created By: Roger Bynum
+Business Analyst: Lea King
+Create Date: 07/06/2022
+Service Request Number: TekP-2022-05-03-01
 
-Purpose: Test - do not use
+Purpose: EyeMed 834 Export
 
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
 XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX
 
-SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ETESTJCBX';
-SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ETESTJCBX';
-SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ETESTJCBX';
-SELECT * FROM dbo.AscExp WHERE expFormatCode = 'ETESTJCBX';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ETESTJCBX' ORDER BY RunID DESC;
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECLUBEM834';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECLUBEM834';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECLUBEM834';
+SELECT * FROM dbo.AscExp WHERE expFormatCode = 'ECLUBEM834';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECLUBEM834' ORDER BY RunID DESC;
 
 Execute Export
 --------------
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ETESTJCBX', 'FULLFILE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ETESTJCBX', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ETESTJCBX', 'CHANGES';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ETESTJCBX', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ETESTJCBX', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ETESTJCBX', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBEM834', 'FULLFILE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBEM834', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBEM834', 'CHANGES';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBEM834', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBEM834', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECLUBEM834', 'SCH_ECLUBE';
 
-EXEC dbo.dsi_BDM_sp_ErrorCheck 'ETESTJCBX';
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'ECLUBEM834';
 
-EXEC dbo._dsi_usp_ExportRipOut_V7_4 @FormatCode = 'ETESTJCBX', @AllObjects = 'Y', @IsWeb = 'Y';
+EXEC dbo._dsi_usp_ExportRipOut_V7_4 @FormatCode = 'ECLUBEM834', @AllObjects = 'Y', @IsWeb = 'Y';
 **********************************************************************************/
 BEGIN
 
@@ -497,20 +497,20 @@ BEGIN
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
         ,@FileMinCovDate  = ''
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
-    WHERE FormatCode = 'ETESTJCBX';
+    WHERE FormatCode = 'ECLUBEM834';
 
     --==========================================
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = '@DedCodeList';
+    SET @DedList = 'VIS';
 
-    IF OBJECT_ID('U_ETESTJCBX_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_ETESTJCBX_DedList;
+    IF OBJECT_ID('U_ECLUBEM834_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_ECLUBEM834_DedList;
     SELECT DedCode = DedDedCode
         ,DedLongDesc
         ,DedType = DedDedType
-    INTO dbo.U_ETESTJCBX_DedList
+    INTO dbo.U_ECLUBEM834_DedList
     FROM dbo.dsi_BDM_fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
@@ -520,15 +520,15 @@ BEGIN
     --==========================================
 
     -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
-    DELETE FROM dbo.U_ETESTJCBX_EEList
+    DELETE FROM dbo.U_ECLUBEM834_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
-    AND xEEID IN (SELECT xEEID FROM dbo.U_ETESTJCBX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ECLUBEM834_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     IF @ExportCode LIKE 'OE%'
     BEGIN
         -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
-        DELETE FROM dbo.U_ETESTJCBX_EEList
-        WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ETESTJCBX_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
+        DELETE FROM dbo.U_ECLUBEM834_EEList
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ECLUBEM834_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
     END;
 
     --==========================================
@@ -551,7 +551,8 @@ BEGIN
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','@SpousesCSV');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','@ChildrenCSV');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
-
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'FutureDatedStartDateDays', '30')
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'FutureDatedStopDateDays', '30') ---Todo - Need to check with Lea
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
     BEGIN
@@ -570,8 +571,8 @@ BEGIN
     --=========================================
     UPDATE D
         SET D.BdmChangeReason = E.BdmChangeReason
-    FROM dbo.U_dsi_bdm_ETESTJCBX D
-    JOIN dbo.U_dsi_bdm_ETESTJCBX E
+    FROM dbo.U_dsi_bdm_ECLUBEM834 D
+    JOIN dbo.U_dsi_bdm_ECLUBEM834 E
         ON E.BdmEEID = D.BdmEEID
         AND E.BdmCOID = D.BdmCOID
         AND E.BdmDedCode = D.BdmDedCode
@@ -580,9 +581,9 @@ BEGIN
     --=====================================================
     -- Update BdmUSGField2 with EmpDedTVID for Employees
     --=====================================================
-    UPDATE dbo.U_dsi_bdm_ETESTJCBX
+    UPDATE dbo.U_dsi_bdm_ECLUBEM834
         SET BdmUSGField2 = EedEmpDedTVID
-    FROM dbo.U_dsi_bdm_ETESTJCBX
+    FROM dbo.U_dsi_bdm_ECLUBEM834
     JOIN dbo.U_dsi_BDM_EmpDeductions WITH (NOLOCK)
         ON EedEEID = BdmEEID
         AND EedCOID = BdmCOID
@@ -592,9 +593,9 @@ BEGIN
     --=======================================================
     -- Update BdmUSGField2 with DepBPlanTVID for Dependents
     --=======================================================
-    UPDATE dbo.U_dsi_bdm_ETESTJCBX
+    UPDATE dbo.U_dsi_bdm_ECLUBEM834
         SET BdmUSGField2 = DbnDepBPlanTVID
-    FROM dbo.U_dsi_bdm_ETESTJCBX
+    FROM dbo.U_dsi_bdm_ECLUBEM834
     JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
         ON DbnEEID = BdmEEID
         AND DbnCOID = BdmCOID
@@ -604,9 +605,9 @@ BEGIN
     --======================================================
     -- Update BdmUSGField1 with Benefit Amount (EedBenAmt)
     --======================================================
-    UPDATE dbo.U_dsi_bdm_ETESTJCBX
+    UPDATE dbo.U_dsi_bdm_ECLUBEM834
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
-    FROM dbo.U_dsi_bdm_ETESTJCBX
+    FROM dbo.U_dsi_bdm_ECLUBEM834
     JOIN dbo.EmpDedFull WITH (NOLOCK)
         ON EedEmpDedTVID = BdmUSGField2;
 
@@ -623,53 +624,53 @@ BEGIN
     -------------------
     -- HEADER RECORD 
     -------------------
-    IF OBJECT_ID('U_ETESTJCBX_HdrTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ETESTJCBX_HdrTbl;
+    IF OBJECT_ID('U_ECLUBEM834_HdrTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECLUBEM834_HdrTbl;
     SELECT DISTINCT drvISA05_SenderIDQual = ''
-        ,drvISA06_SenderID = ''
-        ,drvISA07_ReceiverIDQual = ''
-        ,drvISA08_ReceiverID = ''
+        ,drvISA06_SenderID = (SELECT CmmFedTaxId FROM dbo.CompMast WITH(NOLOCK))
+        ,drvISA07_ReceiverIDQual = '30'
+        ,drvISA08_ReceiverID = '311656473'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
         ,drvISA16_ComponentSeprator = ':'
-        ,drvGS02_SenderID = ''
-        ,drvGS03_ReceiverID = ''
+        ,drvGS02_SenderID = (SELECT CmmFedTaxId FROM dbo.CompMast WITH(NOLOCK))
+        ,drvGS03_ReceiverID = '311656473'
         ,drvGS04_Date = @RunDate
         ,drvGS05_Time = @RunTime
         ,drvBGN03_Date = @RunDate
         ,drvBGN04_Time = @RunTime
-        ,drvBGN05_TimeCode = ''
+        ,drvBGN05_TimeCode = 'ES'
         ,drvBGN06_RefID = ''
         ,drvBGN07_TransTypeCode = ''
-        ,drvBGN08_ActionCode = '4'
-        ,drvREF01_RefNumberQual = ''
-        ,drvREF02_RefNumberQual = ''
+        ,drvBGN08_ActionCode = 'RX'
+        ,drvREF01_RefNumberQual = '38'
+        ,drvREF02_RefNumberQual = '1038470'
         ,drvDTP00_DateTime0 = ''
-        ,drvDTP01_DateTimeQualifier0 = ''
-        ,drvDTP02_DateTimeFormatQual0 = ''
-        ,drvDTP03_DateTimePeriod0 = ''
+        ,drvDTP01_DateTimeQualifier0 = '303'
+        ,drvDTP02_DateTimeFormatQual0 = 'D8'
+        ,drvDTP03_DateTimePeriod0 = @RunDate
         ,drvDTP00_DateTime1 = ''
         ,drvDTP01_DateTimeQualifier1 = ''
         ,drvDTP02_DateTimeFormatQual1 = ''
         ,drvDTP03_DateTimePeriod1 = ''
-        ,drvQTY01_QuantityQual1 = ''
+        ,drvQTY01_QuantityQual1 = 'DT'
         ,drvQTY02_Quantity1 = ''
-        ,drvQTY01_QuantityQual2 = ''
+        ,drvQTY01_QuantityQual2 = 'ET'
         ,drvQTY02_Quantity2 = ''
-        ,drvQTY01_QuantityQual3 = ''
+        ,drvQTY01_QuantityQual3 = 'TO'
         ,drvQTY02_Quantity3 = ''
-        ,drvN101_EntityIDCodeSponsor1 = ''
-        ,drvN102_Name1 = ''
-        ,drvN103_IDCodeQual1 = ''
-        ,drvN104_IDCode1 = ''
-        ,drvN101_EntityIDCodeSponsor2 = ''
-        ,drvN102_Name2 = ''
-        ,drvN103_IDCodeQual2 = ''
-        ,drvN104_IDCode2 = ''
-    INTO dbo.U_ETESTJCBX_HdrTbl
-    FROM dbo.U_ETESTJCBX_EELIST WITH (NOLOCK)
-    JOIN dbo.U_dsi_bdm_ETESTJCBX WITH (NOLOCK)
+        ,drvN101_EntityIDCodeSponsor1 = 'P5'
+        ,drvN102_Name1 = 'Clubessential Holdings'
+        ,drvN103_IDCodeQual1 = 'FI'
+        ,drvN104_IDCode1 = (SELECT CmmFedTaxId FROM dbo.CompMast WITH(NOLOCK))
+        ,drvN101_EntityIDCodeSponsor2 = 'IN'
+        ,drvN102_Name2 = 'EyeMed'
+        ,drvN103_IDCodeQual2 = 'FI'
+        ,drvN104_IDCode2 = '311656473'
+    INTO dbo.U_ECLUBEM834_HdrTbl
+    FROM dbo.U_ECLUBEM834_EELIST WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_ECLUBEM834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID;
 
@@ -683,8 +684,8 @@ BEGIN
     -------------------
     -- DETAIL RECORD 
     -------------------
-    IF OBJECT_ID('U_ETESTJCBX_DrvTbl','U') IS NOT NULL
-        DROP TABLE dbo.U_ETESTJCBX_DrvTbl;
+    IF OBJECT_ID('U_ECLUBEM834_DrvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECLUBEM834_DrvTbl;
     SELECT DISTINCT
         --=====================
         --LOOP 2000 RECORDS
@@ -707,32 +708,19 @@ BEGIN
         ,drvINS0601_MEDICAREPLANCODE = ''
         ,drvINS0602_EligibilityRsnCode = ''
         ,drvINS07_COBRAQualEventCode = ''
-        ,drvINS08_EmploymentStatusCode = CASE WHEN BdmRecType = 'EMP' THEN
-                                                CASE WHEN EecEmplStatus = 'T' THEN 'TE' --Termination
-                                                     WHEN EecFullTimeOrPartTime = 'F' THEN 'FT' --Full time active employee
-                                                     WHEN EecFullTimeOrPartTime = 'P' THEN 'PT' --Part time active employee
-                                                END
+        ,drvINS08_EmploymentStatusCode = CASE WHEN BdmRecType = 'EMP' THEN 'FT' --Full time active employee
+                                              ELSE ''
                                          END
-        ,drvINS09_StudentStatusCode = CASE WHEN BdmRecType = 'DEP' THEN
-                                                CASE WHEN ConIsStudent = 'Y' THEN 'F' END --Full-time
-                                      END
-        ,drvINS10_ResponseCode = CASE WHEN BdmRecType = 'EMP' THEN
-                                        CASE WHEN EepIsDisabled = 'Y' THEN 'Y'
-                                             ELSE 'N'
-                                        END
-                                      WHEN BdmRecType = 'DEP' THEN 
-                                        CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
-                                             ELSE 'N'
-                                        END
-                                END
+        ,drvINS09_StudentStatusCode = ''
+        ,drvINS10_ResponseCode = ''
         ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
-        ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
+        ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) ELSE '' END
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual1 = ''
-        ,drvREF02_RefNumberQual1 = ''
+        ,drvREF02_RefNumberQual1 = EepSSN
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual2 = ''
-        ,drvREF02_RefNumberQual2 = ''
+        ,drvREF01_RefNumberQual2 = '1L'
+        ,drvREF02_RefNumberQual2 = '1038470'
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = ''
         ,drvREF02_RefNumberQual3 = ''
@@ -769,13 +757,9 @@ BEGIN
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
-                                END
-        ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
-                                            WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
-                                        END        
+        ,drvNM106_NamePrefix1 = ''
+        ,drvNM107_NameSuffix1 = ''
+        ,drvNM108_IDCodeQualifier1 = '34'        
         ,drvNM109_IDCode1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN EepSSN
                                 WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN ConSSN
                             END
@@ -848,8 +832,8 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-    INTO dbo.U_ETESTJCBX_DrvTbl
-    FROM dbo.U_ETESTJCBX_EELIST WITH (NOLOCK)
+    INTO dbo.U_ECLUBEM834_DrvTbl
+    FROM dbo.U_ECLUBEM834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
@@ -857,7 +841,7 @@ BEGIN
         AND EecCOID = xCOID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    JOIN dbo.U_dsi_bdm_ETESTJCBX WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_ECLUBEM834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
@@ -876,19 +860,15 @@ BEGIN
     -------------------
     -- DETAIL RECORD 
     -------------------
-    IF OBJECT_ID('U_ETESTJCBX_DrvTbl_2300','U') IS NOT NULL
-        DROP TABLE dbo.U_ETESTJCBX_DrvTbl_2300;
+    IF OBJECT_ID('U_ECLUBEM834_DrvTbl_2300','U') IS NOT NULL
+        DROP TABLE dbo.U_ECLUBEM834_DrvTbl_2300;
     SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedType IN ('MED') THEN 'HLT'
-                                           WHEN BdmDedType IN ('DEN') THEN 'DEN'
-                                           WHEN BdmDedType IN ('VIS') THEN 'VIS'
-                                           ELSE ''
-                                     END
-        ,drvHD04_PlanCoverageDesc = ''
+        ,drvHD03_InsuranceLineCode = 'VIS'
+        ,drvHD04_PlanCoverageDesc = '1001'
         ,drvHD05_CoverageLevelCode = 
                                                 CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@EEBenOpts')) THEN 'EMP'
                                                      WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@ESPBenOpts')) THEN 'ESP'
@@ -962,14 +942,14 @@ BEGIN
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
                       END
-    INTO dbo.U_ETESTJCBX_DrvTbl_2300
-    FROM dbo.U_ETESTJCBX_EELIST WITH (NOLOCK)
+    INTO dbo.U_ECLUBEM834_DrvTbl_2300
+    FROM dbo.U_ECLUBEM834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    JOIN dbo.U_dsi_bdm_ETESTJCBX WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_ECLUBEM834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
@@ -983,33 +963,33 @@ BEGIN
     ---------------------
     -- TRAILER RECORD
     --------------------
-    IF OBJECT_ID('U_ETESTJCBX_TrlTbl') IS NOT NULL
-        DROP TABLE dbo.U_ETESTJCBX_TrlTbl;
+    IF OBJECT_ID('U_ECLUBEM834_TrlTbl') IS NOT NULL
+        DROP TABLE dbo.U_ECLUBEM834_TrlTbl;
     SELECT DISTINCT drvSE01_SegmentCount = '9999'
-    INTO dbo.U_ETESTJCBX_TrlTbl;
+    INTO dbo.U_ECLUBEM834_TrlTbl;
 
     --==========================================
     -- Set FileName
     --==========================================
-    IF (dbo.dsi_fnVariable('ETESTJCBX','UseFileName') = 'N')
+    IF (dbo.dsi_fnVariable('ECLUBEM834','UseFileName') = 'N')
     BEGIN
         UPDATE dbo.U_dsi_Parameters
-            SET ExportFile = '@CompanyCode_ETESTJCBX_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
-        WHERE FormatCode = 'ETESTJCBX';
+            SET ExportFile = 'CLBH_ECLUBEM834_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+        WHERE FormatCode = 'ECLUBEM834';
     END;
 
 END;
 /**********************************************************************************
 
 --Alter the View
-ALTER VIEW dbo.dsi_vwETESTJCBX_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_ETESTJCBX_File (NOLOCK)
+ALTER VIEW dbo.dsi_vwECLUBEM834_Export AS
+    SELECT TOP 20000000 DATA FROM dbo.U_ECLUBEM834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 GO
 
 --Check out iAscDefF
 SELECT * FROM dbo.AscDef
-WHERE AdfHeaderSystemID LIKE 'ETESTJCBX%'
+WHERE AdfHeaderSystemID LIKE 'ECLUBEM834%'
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
@@ -1018,11 +998,11 @@ UPDATE dbo.AscExp
        ,ExpStartPerControl     = '201810011'
        ,ExpLastEndPerControl   = '201810019'
        ,ExpEndPerControl       = '201810019'
-WHERE ExpFormatCode = 'ETESTJCBX';
+WHERE ExpFormatCode = 'ECLUBEM834';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwETESTJCBX_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_ETESTJCBX_File (NOLOCK)
+CREATE VIEW dbo.dsi_vwECLUBEM834_Export AS
+    SELECT TOP 20000000 DATA FROM dbo.U_ECLUBEM834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 GO
