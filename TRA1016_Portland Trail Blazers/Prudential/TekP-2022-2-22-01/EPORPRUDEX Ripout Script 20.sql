@@ -5,7 +5,7 @@ EPORPRUDEX: Prudential FLMA-STD-LTD
 FormatCode:     EPORPRUDEX
 Project:        Prudential FLMA-STD-LTD
 Client ID:      TRA1016
-Date/time:      2022-05-10 09:33:03.443
+Date/time:      2022-08-03 13:29:07.193
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -169,8 +169,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','10','4',NULL,'Associate Social Security Number',NULL,NULL,'"drvEepSSN"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPORPRUDEXZ0','50','D','10','5',NULL,'Associate Gender Code',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','10','6',NULL,'Associate Date of Birth',NULL,NULL,'"drvDateofBirth"','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','10','7',NULL,'Associate Date of Death',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','10','8',NULL,'Associate Smoker Status Code',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','10','7',NULL,'Associate Date of Death',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','10','8',NULL,'Associate Smoker Status Code',NULL,NULL,'"drvAssociateSmokerStatusCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','10','9',NULL,'Associate Marital Status Code',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','10','10',NULL,'Associate Prefix Title Code',NULL,NULL,'"drvAssociatePrefixTitleCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EPORPRUDEXZ0','50','D','10','11',NULL,'Associate Suffix',NULL,NULL,'"drvAssociateSuffix"','(''UA''=''T~'')');
@@ -203,10 +203,10 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EPORPRUDEXZ0','50','D','10','38',NULL,'Associate Country Code 3',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EPORPRUDEXZ0','50','D','10','39',NULL,'Associate Telephone Type Code 1',NULL,NULL,'"HOME"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EPORPRUDEXZ0','50','D','10','40',NULL,'Associate Telephone Number 1',NULL,NULL,'"drvPhoneHomeNumber"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EPORPRUDEXZ0','50','D','10','41',NULL,'Associate Telephone Number Extension 1',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EPORPRUDEXZ0','50','D','10','41',NULL,'Associate Telephone Number Extension 1',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EPORPRUDEXZ0','50','D','10','42',NULL,'Telephone Type Code 2',NULL,NULL,'"BUSINESS"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EPORPRUDEXZ0','50','D','10','43',NULL,'Associate Telephone Number 2',NULL,NULL,'"drvPhoneBusinessNumber"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EPORPRUDEXZ0','50','D','10','44',NULL,'Associate Telephone Number Extension 2',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EPORPRUDEXZ0','50','D','10','44',NULL,'Associate Telephone Number Extension 2',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EPORPRUDEXZ0','50','D','10','45',NULL,'Associate Telephone  Type Code 3',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','EPORPRUDEXZ0','50','D','10','46',NULL,'Associate Telephone Number 3',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','EPORPRUDEXZ0','50','D','10','47',NULL,'Associate Telephone Number Extension 3',NULL,NULL,'""','(''DA''=''T~'')');
@@ -271,15 +271,15 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','EPORPRUDEXZ0','50','D','20','55',NULL,'Earnings As of Date',NULL,NULL,'""','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPORPRUDEXZ0','50','D','30','1',NULL,'Record Type',NULL,NULL,'"CON"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPORPRUDEXZ0','50','D','30','2',NULL,'Client Control Number',NULL,NULL,'"62424"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPORPRUDEXZ0','50','D','30','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','30','4',NULL,'Employment Contact ID',NULL,NULL,'"drvEmploymentContactID"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPORPRUDEXZ0','50','D','30','3',NULL,'Employment Contact ID',NULL,NULL,'"drvEmploymentContactID"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','30','4',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPORPRUDEXZ0','50','D','30','5',NULL,'Employment Contact Type Code',NULL,NULL,'"drvEmploymentContactTypeCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','30','6',NULL,'Employment Contact First Name',NULL,NULL,'"drvEmploymentContactFirstName"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','30','7',NULL,'Employment Contact Last Name',NULL,NULL,'"drvEmploymentContactLastName"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','30','8',NULL,'Employment Contact Middle Name',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','30','9',NULL,'Employment Contact Prefix Title Code',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','30','10',NULL,'Employment Contact Suffix',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EPORPRUDEXZ0','50','D','30','11',NULL,'Employment Contact Telephone Type Code 1',NULL,NULL,'"BUSINESS"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EPORPRUDEXZ0','50','D','30','11',NULL,'Employment Contact Telephone Type Code 1',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EPORPRUDEXZ0','50','D','30','12',NULL,'Employment Contact Telephone Number 1',NULL,NULL,'"drvEEContactTelephoneNumber1"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EPORPRUDEXZ0','50','D','30','13',NULL,'Employment Contact Telephone Number Extension 1',NULL,NULL,'"drvEETelephoneNumberExt1"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EPORPRUDEXZ0','50','D','30','14',NULL,'Employment Contact Telephone Type Code 2',NULL,NULL,'"drvEETelephoneTypeCode2"','(''UA''=''T~'')');
@@ -297,61 +297,62 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EPORPRUDEXZ0','50','D','30','26',NULL,'Employment Contact DOB',NULL,NULL,'""','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPORPRUDEXZ0','50','D','40','1',NULL,'Record Type',NULL,NULL,'"DEP"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPORPRUDEXZ0','50','D','40','2',NULL,'Client Control Number',NULL,NULL,'"62424"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','40','4',NULL,'DependentID',NULL,NULL,'"drvDependentID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPORPRUDEXZ0','50','D','40','5',NULL,'Dependent Relationship Type Code',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','40','6',NULL,'Dependent Social Security Number',NULL,NULL,'"drvDependentSSN"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','40','7',NULL,'Dependent Gender Code',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','40','8',NULL,'Dependent Date of Birth',NULL,NULL,'"drvDependentDateOfBirth"','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','40','9',NULL,'Dependent Date of Death',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','40','10',NULL,'Dependent Smoker Status Code',NULL,NULL,'"drvDependentSmokerStatusCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EPORPRUDEXZ0','50','D','40','11',NULL,'Dependent Marital Status Code',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EPORPRUDEXZ0','50','D','40','12',NULL,'Dependent Prefix Title Code',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EPORPRUDEXZ0','50','D','40','13',NULL,'Dependent Suffix',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EPORPRUDEXZ0','50','D','40','14',NULL,'Dependent Last Name',NULL,NULL,'"drvDependentLastName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EPORPRUDEXZ0','50','D','40','15',NULL,'Dependent First Name',NULL,NULL,'"drvDependentFirstName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EPORPRUDEXZ0','50','D','40','16',NULL,'Dependent Middle Name',NULL,NULL,'"drvDependentMiddleName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EPORPRUDEXZ0','50','D','40','17',NULL,'Dependent Address Type Code',NULL,NULL,'"HOME"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EPORPRUDEXZ0','50','D','40','18',NULL,'DependentAddress Line 1 Text',NULL,NULL,'"drvDepAddressLine1Text"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EPORPRUDEXZ0','50','D','40','19',NULL,'Dependent Address Line 2 Text',NULL,NULL,'"drvDepAddressLine2Text"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EPORPRUDEXZ0','50','D','40','20',NULL,'DependentAddress Line 3 Text',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EPORPRUDEXZ0','50','D','40','21',NULL,'Dependent City Name',NULL,NULL,'"drvDependentCityName"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EPORPRUDEXZ0','50','D','40','22',NULL,'Dependent State Province Code',NULL,NULL,'"drvDependentStateProvinceCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EPORPRUDEXZ0','50','D','40','23',NULL,'DependentPostal Code',NULL,NULL,'"drvDependentPostalCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EPORPRUDEXZ0','50','D','40','24',NULL,'Dependent Country Code',NULL,NULL,'"USA"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EPORPRUDEXZ0','50','D','40','25',NULL,'Dependent Telephone Type Code 1',NULL,NULL,'"MOBILE"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EPORPRUDEXZ0','50','D','40','26',NULL,'Dependent Telephone Number 1',NULL,NULL,'"drvDepTelephoneNumber1"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EPORPRUDEXZ0','50','D','40','27',NULL,'Dependent Telephone Number Extension 1',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EPORPRUDEXZ0','50','D','40','28',NULL,'Dependent Telephone Type Code 2',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EPORPRUDEXZ0','50','D','40','29',NULL,'Dependent Telephone Number 2',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EPORPRUDEXZ0','50','D','40','30',NULL,'Dependent Telephone Number Extension 2',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EPORPRUDEXZ0','50','D','40','31',NULL,'Dependent Telephone  Type Code 3',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EPORPRUDEXZ0','50','D','40','32',NULL,'Dependent Telephone Number 3',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EPORPRUDEXZ0','50','D','40','33',NULL,'Dependent Telephone Number Extension 3',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EPORPRUDEXZ0','50','D','40','34',NULL,'Dependent Email Address Type Code 1',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EPORPRUDEXZ0','50','D','40','35',NULL,'Dependent Email Address Text 1',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EPORPRUDEXZ0','50','D','40','36',NULL,'Dependent Email Address Type Code 2',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EPORPRUDEXZ0','50','D','40','37',NULL,'Dependent Email Address Text 2',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EPORPRUDEXZ0','50','D','40','38',NULL,'Dependent Status Code',NULL,NULL,'"drvDependentStatusCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EPORPRUDEXZ0','50','D','40','39',NULL,'Dependent Delete Reason Code',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EPORPRUDEXZ0','50','D','40','40',NULL,'Student Status Code',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EPORPRUDEXZ0','50','D','40','41',NULL,'Incapacitated Dependent Clause Certification Indic',NULL,NULL,'"N"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EPORPRUDEXZ0','50','D','40','42',NULL,'Incapacitated Dependent Clause Certification Date',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EPORPRUDEXZ0','50','D','40','43',NULL,'Dependent Event ID',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EPORPRUDEXZ0','50','D','40','44',NULL,'Dependent Event Type Code',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EPORPRUDEXZ0','50','D','40','45',NULL,'Dependent Event Date',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','EPORPRUDEXZ0','50','D','40','46',NULL,'Dependent Marriage Date',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','EPORPRUDEXZ0','50','D','40','47',NULL,'Dependent Divorce Date',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','EPORPRUDEXZ0','50','D','40','48',NULL,'Dependent  PreferenceID',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','EPORPRUDEXZ0','50','D','40','49',NULL,'Dependent  CorrespondenceTypeCode',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','EPORPRUDEXZ0','50','D','40','50',NULL,'Dependent  Preferred Name',NULL,NULL,'""','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','EPORPRUDEXZ0','50','D','40','51',NULL,'Dependent  Preferred Language',NULL,NULL,'""','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPORPRUDEXZ0','50','D','40','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPORPRUDEXZ0','50','D','40','5',NULL,'DependentID',NULL,NULL,'"drvDependentID"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','40','6',NULL,'Dependent Relationship Type Code',NULL,NULL,'"drvRelationshipTypeCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','40','7',NULL,'Dependent Social Security Number',NULL,NULL,'"drvDependentSSN"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','40','8',NULL,'Dependent Gender Code',NULL,NULL,'"UNKNOWN"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','40','9',NULL,'Dependent Date of Birth',NULL,NULL,'"drvDependentDateOfBirth"','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','40','10',NULL,'Dependent Date of Death',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EPORPRUDEXZ0','50','D','40','11',NULL,'Dependent Smoker Status Code',NULL,NULL,'"drvDependentSmokerStatusCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EPORPRUDEXZ0','50','D','40','12',NULL,'Dependent Marital Status Code',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EPORPRUDEXZ0','50','D','40','13',NULL,'Dependent Prefix Title Code',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EPORPRUDEXZ0','50','D','40','14',NULL,'Dependent Suffix',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EPORPRUDEXZ0','50','D','40','15',NULL,'Dependent Last Name',NULL,NULL,'"drvDependentLastName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EPORPRUDEXZ0','50','D','40','16',NULL,'Dependent First Name',NULL,NULL,'"drvDependentFirstName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EPORPRUDEXZ0','50','D','40','17',NULL,'Dependent Middle Name',NULL,NULL,'"drvDependentMiddleName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EPORPRUDEXZ0','50','D','40','18',NULL,'Dependent Address Type Code',NULL,NULL,'"HOME"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EPORPRUDEXZ0','50','D','40','19',NULL,'DependentAddress Line 1 Text',NULL,NULL,'"drvDepAddressLine1Text"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EPORPRUDEXZ0','50','D','40','20',NULL,'Dependent Address Line 2 Text',NULL,NULL,'"drvDepAddressLine2Text"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EPORPRUDEXZ0','50','D','40','21',NULL,'DependentAddress Line 3 Text',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EPORPRUDEXZ0','50','D','40','22',NULL,'Dependent City Name',NULL,NULL,'"drvDependentCityName"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EPORPRUDEXZ0','50','D','40','23',NULL,'Dependent State Province Code',NULL,NULL,'"drvDependentStateProvinceCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EPORPRUDEXZ0','50','D','40','24',NULL,'DependentPostal Code',NULL,NULL,'"drvDependentPostalCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EPORPRUDEXZ0','50','D','40','25',NULL,'Dependent Country Code',NULL,NULL,'"USA"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EPORPRUDEXZ0','50','D','40','26',NULL,'Dependent Telephone Type Code 1',NULL,NULL,'"MOBILE"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EPORPRUDEXZ0','50','D','40','27',NULL,'Dependent Telephone Number 1',NULL,NULL,'"drvDepTelephoneNumber1"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EPORPRUDEXZ0','50','D','40','28',NULL,'Dependent Telephone Number Extension 1',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EPORPRUDEXZ0','50','D','40','29',NULL,'Dependent Telephone Type Code 2',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EPORPRUDEXZ0','50','D','40','30',NULL,'Dependent Telephone Number 2',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EPORPRUDEXZ0','50','D','40','31',NULL,'Dependent Telephone Number Extension 2',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EPORPRUDEXZ0','50','D','40','32',NULL,'Dependent Telephone  Type Code 3',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EPORPRUDEXZ0','50','D','40','33',NULL,'Dependent Telephone Number 3',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EPORPRUDEXZ0','50','D','40','34',NULL,'Dependent Telephone Number Extension 3',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EPORPRUDEXZ0','50','D','40','35',NULL,'Dependent Email Address Type Code 1',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EPORPRUDEXZ0','50','D','40','36',NULL,'Dependent Email Address Text 1',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EPORPRUDEXZ0','50','D','40','37',NULL,'Dependent Email Address Type Code 2',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EPORPRUDEXZ0','50','D','40','38',NULL,'Dependent Email Address Text 2',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EPORPRUDEXZ0','50','D','40','39',NULL,'Dependent Status Code',NULL,NULL,'"drvDependentStatusCode"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EPORPRUDEXZ0','50','D','40','40',NULL,'Dependent Delete Reason Code',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EPORPRUDEXZ0','50','D','40','41',NULL,'Student Status Code',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EPORPRUDEXZ0','50','D','40','42',NULL,'Incapacitated Dependent Clause Certification Indic',NULL,NULL,'"N"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EPORPRUDEXZ0','50','D','40','43',NULL,'Incapacitated Dependent Clause Certification Date',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EPORPRUDEXZ0','50','D','40','44',NULL,'Dependent Event ID',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EPORPRUDEXZ0','50','D','40','45',NULL,'Dependent Event Type Code',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','EPORPRUDEXZ0','50','D','40','46',NULL,'Dependent Event Date',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','EPORPRUDEXZ0','50','D','40','47',NULL,'Dependent Marriage Date',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','EPORPRUDEXZ0','50','D','40','48',NULL,'Dependent Divorce Date',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','EPORPRUDEXZ0','50','D','40','49',NULL,'Dependent  PreferenceID',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','EPORPRUDEXZ0','50','D','40','50',NULL,'Dependent  CorrespondenceTypeCode',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','EPORPRUDEXZ0','50','D','40','51',NULL,'Dependent  Preferred Name',NULL,NULL,'""','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','EPORPRUDEXZ0','50','D','40','52',NULL,'Dependent  Preferred Language',NULL,NULL,'""','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPORPRUDEXZ0','50','D','50','1',NULL,'Record Type',NULL,NULL,'"ABS"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPORPRUDEXZ0','50','D','50','2',NULL,'Client Control Number',NULL,NULL,'"62424"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPORPRUDEXZ0','50','D','50','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','50','4',NULL,'FMLA Branch Code',NULL,NULL,'"00001"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPORPRUDEXZ0','50','D','50','5',NULL,'FMLA Work Location Code',NULL,NULL,'"Trail Blazers, Inc"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','50','6',NULL,'Hours Worked in Last 12 Months',NULL,NULL,'"0"','(''DA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','50','7',NULL,'As of Date Hours Worked in Last 12 Months',NULL,NULL,'"drvDateHoursWorkedLast12"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','50','6',NULL,'Hours Worked in Last 12 Months',NULL,NULL,'"drvHoursWorkedLast12"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','50','7',NULL,'As of Date Hours Worked in Last 12 Months',NULL,NULL,'"drvAsOfDateHoursWorkedLast12"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','50','8',NULL,'Hours Worked Since Last File',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','50','9',NULL,'Other Hours Worked in Last 12 Months',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','50','10',NULL,'As of Date Other Hours Worked in Last 12 Months',NULL,NULL,'""','(''DA''=''T~'')');
@@ -391,10 +392,10 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','60','6',NULL,'Product Plan Code',NULL,NULL,'"drvProductPlanCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','60','7',NULL,'Coverage Buy Up Indicator',NULL,NULL,'"FALSE"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPORPRUDEXZ0','50','D','60','8',NULL,'Coverage Amount',NULL,NULL,'"drvCoverageAmount"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','60','9',NULL,'Coverage  Effective Date',NULL,NULL,'"drvCoverageEffectiveDate"','(''UD112''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','60','10',NULL,'Coverage  End Date',NULL,NULL,'"drvCoverageEndDate"','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPORPRUDEXZ0','50','D','60','9',NULL,'Coverage  Effective Date',NULL,NULL,'"drvCoverageEffectiveDate"','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EPORPRUDEXZ0','50','D','60','10',NULL,'Coverage  End Date',NULL,NULL,'"drvCoverageEndDate"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EPORPRUDEXZ0','50','D','60','11',NULL,'Coverage Status Code',NULL,NULL,'"drvCoverageStatusCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EPORPRUDEXZ0','50','D','60','12',NULL,'Coverage Status Effective Date',NULL,NULL,'"drvCoverageStatusEffDate"','(''UD112''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EPORPRUDEXZ0','50','D','60','12',NULL,'Coverage Status Effective Date',NULL,NULL,'"drvCoverageStatusEffDate"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EPORPRUDEXZ0','50','D','60','13',NULL,'Coverage Status Reason Code',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EPORPRUDEXZ0','50','D','60','14',NULL,'Coverage Termination Reduction Type Code',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EPORPRUDEXZ0','50','D','60','15',NULL,'Coverage Termination Reduction Amount',NULL,NULL,'""','(''DA''=''T~'')');
@@ -429,7 +430,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPORPRUDEXZ0','50','D','70','1',NULL,'Record Type',NULL,NULL,'"CCH"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPORPRUDEXZ0','50','D','70','2',NULL,'Client Control Number',NULL,NULL,'"62424"','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPORPRUDEXZ0','50','D','70','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','70','4',NULL,'Custom Characteristic Code',NULL,NULL,'"Trail Blazers, Inc"','(''DA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPORPRUDEXZ0','50','D','70','4',NULL,'Custom Characteristic Code',NULL,NULL,'"drvCustCharCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPORPRUDEXZ0','50','D','70','5',NULL,'Custom Characteristic Amount',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPORPRUDEXZ0','50','D','70','6',NULL,'Custom Characteristic Date',NULL,NULL,'""','(''DA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPORPRUDEXZ0','50','D','70','7',NULL,'Custom Characteristic Percent',NULL,NULL,'""','(''DA''=''T~'')');
@@ -460,18 +461,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPORPRUDEX_20220510.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPORPRUDEX_20220803.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202204299','EMPEXPORT','OEACTIVE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202204299','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202204291',NULL,'','','202204291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202204299','EMPEXPORT','OEPASSIVE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202204299','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202204291',NULL,'','','202204291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Prudential FLMA-STD-LTD','202204299','EMPEXPORT','ONDEM_XOE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202204299','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202204291',NULL,'','','202204291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Prudential FLMA-STD-LTD-Sched','202204299','EMPEXPORT','SCH_EPORPR',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202204299','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202204291',NULL,'','','202204291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Prudential FLMA-STD-LTD-Test','202204299','EMPEXPORT','TEST_XOE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202204299','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202204291',NULL,'','','202204291',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202206169','EMPEXPORT','OEACTIVE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202206169','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202206169','EMPEXPORT','OEPASSIVE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202206169','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Prudential FLMA-STD-LTD','202206169','EMPEXPORT','ONDEM_XOE',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202206169','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Prudential FLMA-STD-LTD-Sched','202206169','EMPEXPORT','SCH_EPORPR',NULL,'EPORPRUDEX',NULL,NULL,NULL,'202206169','Apr 29 2022 10:12AM','Apr 29 2022 10:12AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Prudential FLMA-STD-LTD-Test','202207289','EMPEXPORT','TEST_XOE','Jul 28 2022 12:00AM','EPORPRUDEX',NULL,NULL,NULL,'202207289','Jul 28 2022 12:00AM','Dec 30 1899 12:00AM','202207141',NULL,'','','202207141',dbo.fn_GetTimedKey(),NULL,'US3CBETRA1016','L4XIS,I7Y3C,I7XPM',NULL);
 
 -----------
 -- AscImp inserts
@@ -485,6 +486,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','InitialSort','C','drvSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EPORPRUDEX','UseFileName','V','Y');
@@ -586,8 +588,10 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_AbsenceInformation] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
     [drvAssociateID] char(9) NULL,
-    [drvDateHoursWorkedLast12] nvarchar(4000) NULL
+    [drvHoursWorkedLast12] varchar(30) NULL,
+    [drvAsOfDateHoursWorkedLast12] nvarchar(4000) NULL
 );
 
 -----------
@@ -600,9 +604,11 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Associate] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
     [drvAssociateID] char(9) NULL,
     [drvEepSSN] char(11) NULL,
     [drvDateofBirth] datetime NULL,
+    [drvAssociateSmokerStatusCode] varchar(10) NOT NULL,
     [drvAssociatePrefixTitleCode] varchar(1) NOT NULL,
     [drvAssociateSuffix] varchar(1) NOT NULL,
     [drvNameLast] varchar(100) NULL,
@@ -612,7 +618,7 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Associate] (
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
-    [drvAddressZipcode] varchar(50) NULL,
+    [drvAddressZipcode] varchar(5) NULL,
     [drvPhoneHomeNumber] varchar(50) NULL,
     [drvPhoneBusinessNumber] varchar(50) NULL,
     [drvAddressEmail] varchar(50) NULL
@@ -628,17 +634,18 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Contact] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
-    [drvAssociateID] char(9) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
     [drvEmploymentContactID] char(9) NULL,
-    [drvEmploymentContactTypeCode] varchar(1) NOT NULL,
+    [drvAssociateID] varchar(9) NOT NULL,
+    [drvEmploymentContactTypeCode] varchar(9) NULL,
     [drvEmploymentContactFirstName] varchar(100) NULL,
     [drvEmploymentContactLastName] varchar(100) NULL,
-    [drvEEContactTelephoneNumber1] varchar(50) NULL,
-    [drvEETelephoneNumberExt1] varchar(10) NULL,
+    [drvEEContactTelephoneNumber1] varchar(1) NOT NULL,
+    [drvEETelephoneNumberExt1] varchar(1) NOT NULL,
     [drvEETelephoneTypeCode2] varchar(1) NOT NULL,
     [drvEEContactTelephoneNumber2] varchar(1) NOT NULL,
     [drvEEContactEmailAddressText1] varchar(50) NULL,
-    [drvEEContactEmployeeID] char(9) NULL
+    [drvEEContactEmployeeID] varchar(9) NULL
 );
 
 -----------
@@ -651,16 +658,17 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Coverage] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
     [drvAssociateID] char(9) NULL,
-    [drvProductCode] varchar(4) NULL,
-    [drvCoverageTierCode] varchar(2) NULL,
+    [drvProductCode] varchar(4) NOT NULL,
+    [drvCoverageTierCode] varchar(2) NOT NULL,
     [drvProductPlanCode] varchar(4) NOT NULL,
-    [drvCoverageAmount] money NULL,
-    [drvCoverageEffectiveDate] datetime NULL,
-    [drvCoverageEndDate] datetime NULL,
+    [drvCoverageAmount] varchar(50) NULL,
+    [drvCoverageEffectiveDate] varchar(20) NULL,
+    [drvCoverageEndDate] varchar(20) NULL,
     [drvCoverageStatusCode] varchar(10) NOT NULL,
-    [drvCoverageStatusEffDate] datetime NULL,
-    [drvClaimBranchCode] varchar(5) NULL,
+    [drvCoverageStatusEffDate] varchar(30) NULL,
+    [drvClaimBranchCode] varchar(5) NOT NULL,
     [drvVoluntaryBasis] varchar(9) NOT NULL
 );
 
@@ -672,10 +680,11 @@ IF OBJECT_ID('U_EPORPRUDEX_drvTbl_CustomChars') IS NULL
 CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_CustomChars] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
     [drvAssociateID] char(9) NULL,
-    [drvCustCharValueText] char(10) NULL
+    [drvCustCharCode] varchar(16) NOT NULL,
+    [drvCustCharValueText] varchar(25) NOT NULL
 );
 
 -----------
@@ -688,10 +697,13 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Dependent] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
+    [drvAssociateID] char(9) NULL,
+    [drvRelationshipTypeCode] varchar(6) NULL,
     [drvDependentID] varchar(14) NULL,
     [drvDependentSSN] char(11) NULL,
     [drvDependentDateOfBirth] datetime NULL,
-    [drvDependentSmokerStatusCode] varchar(10) NOT NULL,
+    [drvDependentSmokerStatusCode] varchar(10) NULL,
     [drvDependentLastName] varchar(100) NULL,
     [drvDependentFirstName] varchar(100) NULL,
     [drvDependentMiddleName] varchar(50) NULL,
@@ -701,7 +713,7 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Dependent] (
     [drvDependentStateProvinceCode] varchar(255) NULL,
     [drvDependentPostalCode] varchar(50) NULL,
     [drvDepTelephoneNumber1] varchar(50) NULL,
-    [drvDependentStatusCode] varchar(7) NULL
+    [drvDependentStatusCode] varchar(7) NOT NULL
 );
 
 -----------
@@ -714,6 +726,7 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Employment] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
     [drvAssociateID] char(9) NULL,
     [drvEmployeeID] char(9) NULL,
     [drvHireDate] datetime NULL,
@@ -722,13 +735,13 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_drvTbl_Employment] (
     [drvAdjustedServiceDate] datetime NULL,
     [drvEmploymentStatusCode] varchar(10) NOT NULL,
     [drvEEStatusEffectiveDate] datetime NULL,
-    [drvJobTitleText] varchar(150) NULL,
+    [drvJobTitleText] varchar(25) NOT NULL,
     [drvWorkStatusCode] varchar(9) NOT NULL,
     [drvHourlySatusCode] varchar(8) NOT NULL,
     [drvEarningsAmount1] money NULL,
-    [drvEarningsEffectiveDate1] datetime NULL,
-    [drvEmploymentLocation] varchar(19) NOT NULL,
-    [drvWorkLocationStateCode] varchar(2) NULL
+    [drvEarningsEffectiveDate1] varchar(1) NOT NULL,
+    [drvEmploymentLocation] varchar(3) NOT NULL,
+    [drvWorkLocationStateCode] varchar(255) NULL
 );
 
 -----------
@@ -762,7 +775,7 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_File] (
 IF OBJECT_ID('U_EPORPRUDEX_Header') IS NULL
 CREATE TABLE [dbo].[U_EPORPRUDEX_Header] (
     [drvTransmissionGuid] varchar(1) NOT NULL,
-    [drvCreationDateTime] datetime NOT NULL,
+    [drvCreationDateTime] nvarchar(4000) NULL,
     [drvTestProductionCode] varchar(10) NOT NULL,
     [drvActivityStartDate] datetime NULL,
     [drvActivityEndDate] datetime NOT NULL
@@ -798,15 +811,8 @@ CREATE TABLE [dbo].[U_EPORPRUDEX_PDedHist] (
 IF OBJECT_ID('U_EPORPRUDEX_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EPORPRUDEX_PEarHist] (
     [PehEEID] char(12) NOT NULL,
-    [PrgPayDate] datetime NULL,
-    [PehCurAmt] numeric NULL,
-    [PehCurHrs] decimal NULL,
     [PehCurAmtYTD] money NULL,
-    [PehCurHrsYTD] decimal NULL,
-    [PehInclInDefComp] money NULL,
-    [PehInclInDefCompHrs] decimal NULL,
-    [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+    [PehCurHrsYTD] decimal NULL
 );
 
 -----------
@@ -855,6 +861,7 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPORPRUDEX', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPORPRUDEX', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPORPRUDEX', 'CHANGES';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPORPRUDEX', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPORPRUDEX', 'OEACTIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPORPRUDEX', 'SCH_EPORPR';
@@ -899,6 +906,18 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EPORPRUDEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
     --==========================================
+    --Delete Terminations over 30 days old AND JobCode = 'Player'
+    --==========================================
+
+    DELETE FROM dbo.U_EPORPRUDEX_EEList 
+    WHERE EXISTS
+    (SELECT * FROM EMPCOMP WHERE EecEEID = xEEID AND eecCOID = xCOID AND (EecEmplStatus = 'T' AND EecDateOfTermination < DATEADD(DAY,-30, GETDATE())))
+
+   DELETE FROM dbo.U_EPORPRUDEX_EEList 
+    WHERE EXISTS
+        (SELECT * FROM EMPCOMP WHERE EecEEID = xEEID AND eecCOID = xCOID AND  EecJobCode = 'PLAYER')
+
+    --==========================================
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
@@ -924,27 +943,35 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate')
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    --INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'TableType', 'DEP')
+    --INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedCodesDep', 'LTD,STD,ACID,CRIT1,CRIT2,CRIT3,ACCID')
+    --INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'DedTypesDep', 'LTD,STD,ACID,CRIT1,CRIT2,CRIT3,ACCID')
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS, DOM, WIF');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','DIS, CHL, DPC, STC, SON');
+
 
     -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+
 
     -- Required OE parameters
-    IF @ExportCode LIKE '%PASSIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
-    END;
+    --IF @ExportCode LIKE '%PASSIVE'
+    --BEGIN
+    --    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+    --END;
 
-    IF @ExportCode LIKE '%ACTIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
-    END;
+    --IF @ExportCode LIKE '%ACTIVE'
+    --BEGIN
+    --    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+    --END;
 
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-    --==========================================
+     --==========================================
     -- Build Working Tables
     --==========================================
 
@@ -988,31 +1015,57 @@ BEGIN
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
-    IF OBJECT_ID('U_EPORPRUDEX_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EPORPRUDEX_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EPORPRUDEX_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
+ --   IF OBJECT_ID('U_EPORPRUDEX_PEarHist','U') IS NOT NULL
+ --       DROP TABLE dbo.U_EPORPRUDEX_PEarHist;
+
+    --     SELECT DISTINCT
+ --        PehEEID
+ --       ,PehPayDate             = PehPayDate
+ --       -- Current Payroll Amount/Hours
+ --       --,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+ --       ,PehCurHrs              = SUM(PehCurHrs)
+ --       -- YTD Payroll Amount/Hours
+ --       --,PehCurAmtYTD           = SUM(PehCurAmt)
+ --       --,PehCurHrsYTD           = SUM(PehCurHrs)
+ --       -- Current Include Deferred Comp Amount/Hours
+ --       --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+ --       --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+ --       -- YTD Include Deferred Comp Amount/Hours
+ --       --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+ --       --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    --INTO dbo.U_EPORPRUDEX_PEarHist
+ --   --FROM dbo.vw_int_PayReg WITH (NOLOCK)
+
+    --FROM  dbo.vw_int_PEarHist WITH (NOLOCK)
+ --   --    ON PehGenNumber = PrgGenNumber
+ --   WHERE --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+ --   --AND 
+    --PehPerControl <= @EndPerControl
+ --   GROUP BY PehEEID, PehPaydate
+ ----   SELECT DISTINCT
+ ----        PehEEID
+ ----       ,PrgPayDate             = MAX(PrgPayDate)
+ ----       -- Current Payroll Amount/Hours
+ ----       --,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+ ----       ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+ ----       -- YTD Payroll Amount/Hours
+ ----       --,PehCurAmtYTD           = SUM(PehCurAmt)
+ ----       --,PehCurHrsYTD           = SUM(PehCurHrs)
+ ----       -- Current Include Deferred Comp Amount/Hours
+ ----       --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+ ----       --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+ ----       -- YTD Include Deferred Comp Amount/Hours
+ ----       --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+ ----       --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+ ----   INTO dbo.U_EPORPRUDEX_PEarHist
+ ----   FROM dbo.vw_int_PayReg WITH (NOLOCK)
+ ----   JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+ ----       ON PehGenNumber = PrgGenNumber
+ ------   WHERE --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+ ------   --AND 
+    ------PehPerControl <= @EndPerControl
+ ----   GROUP BY PehEEID
+ ----   --HAVING SUM(PehCurAmt) <> 0.00;
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -1026,10 +1079,12 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2 ' + xEEID + ' 1'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
         ,drvEepSSN = eepSSN
         ,drvDateofBirth = EepDateOfBirth
+        ,drvAssociateSmokerStatusCode = CASE WHEN eepIsSmoker = 'SMOKER' THEN 'Y' ELSE 'NON SMOKER' END
         ,drvAssociatePrefixTitleCode = ''
         ,drvAssociateSuffix = ''
         ,drvNameLast = EepNameLast
@@ -1039,7 +1094,7 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
-        ,drvAddressZipcode = EepAddressZipCode
+        ,drvAddressZipcode = LEFT(EepAddressZipCode, 5) --- + CASE WHEN LEN(EepAddressZipCode) > 5 THEN '-' + RIGHT(EepAddressZipCode, 4) ELSE '' END
         ,drvPhoneHomeNumber = EepPhoneHomeNumber
         ,drvPhoneBusinessNumber = EecPhoneBusinessNumber
         ,drvAddressEmail = EepAddressEMail
@@ -1050,7 +1105,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH(NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH(NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     ;
@@ -1064,25 +1119,38 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2 ' + xEEID + ' 2'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
         ,drvEmployeeID = EecEmpNo
         ,drvHireDate = EecDateOfLastHire
         ,drvEmploymentTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvEETerminationReasonCode = CASE WHEN EecEmplStatus = 'T'THEN 'TERMINATED' END
-        ,drvAdjustedServiceDate = EecDateOfSeniority
-        ,drvEmploymentStatusCode = CASE WHEN EecEmplStatus = 'T'THEN 'Terminated' ELSE 'Active' END
+        ,drvAdjustedServiceDate = CASE WHEN EecDateOfLastHire <> EecDateOfOriginalHIre 
+                                            THEN 
+                                            CASE WHEN  EecDateOfSeniority > eecDateOfLastHire 
+                                                    THEN eecDateOfLastHire  
+                                                    ELSE EecDateOfSeniority
+                                            END
+                                        WHEN EecDateOfLastHire = EecDateOfOriginalHIre 
+                                            THEN 
+                                            CASE WHEN  EecDateOfSeniority > eecDateOforiginalHire 
+                                                    THEN eecDateOforiginalHire  
+                                                    ELSE EecDateOfSeniority
+                                            END
+                                   END
+        ,drvEmploymentStatusCode = CASE WHEN EecEmplStatus = 'T' THEN 'Terminated' ELSE 'Active' END
         ,drvEEStatusEffectiveDate = EecEmplStatusStartDate
-        ,drvJobTitleText = EecJobTitle
+        ,drvJobTitleText = jbcDesc
         ,drvWorkStatusCode = CASE WHEN EecFullTimeORPartTime = 'F' then 'FULL TIME'
                                   WHEN  EecFullTimeOrPartTime = 'P' Then 'PART TIME'
                                   ELSE 'UNKNOWN'
                              END 
         ,drvHourlySatusCode = CASE WHEN EecSalaryOrHourly = 'S' THEN 'SALARIED' ELSE 'HOURLY' END    
         ,drvEarningsAmount1 = EecAnnSalary
-        ,drvEarningsEffectiveDate1 = EecDateOfLastSalReview
-        ,drvEmploymentLocation = CASE WHEN EecCoID = 'PRT' THEN 'Trail Blazers, Inc' ELSE 'Rip City Management' END
-        ,drvWorkLocationStateCode = LEFT(EecStateSUI,2)
+        ,drvEarningsEffectiveDate1 = ''
+        ,drvEmploymentLocation = CASE WHEN EecCoID = 'I7XPM' THEN '001' ELSE '002' END
+        ,drvWorkLocationStateCode = LocAddressState
     INTO dbo.U_EPORPRUDEX_drvTbl_Employment
     FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -1092,80 +1160,202 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN dbo.Location WITH(NOLOCK)
+        ON EecLocation = LocCode
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EPORPRUDEX_drvTbl_Contact
     ---------------------------------
     IF OBJECT_ID('U_EPORPRUDEX_drvTbl_Contact','U') IS NOT NULL
         DROP TABLE dbo.U_EPORPRUDEX_drvTbl_Contact;
+        SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = '2 ' + xEEID + ' 4'
+        ,drvSubSort = '2'
+        -- standard fields above and additional driver fields below
+        ,drvEmploymentContactID = ec.EecEmpNo
+        ,drvAssociateID = 'Contact 2'
+        ,drvEmploymentContactTypeCode = sp.ContactType
+        ,drvEmploymentContactFirstName = sp.EepNameFirst 
+        ,drvEmploymentContactLastName = sp.EepNameLast 
+        ,drvEEContactTelephoneNumber1 = ''--EecPhoneBusinessNumber
+        ,drvEETelephoneNumberExt1 = '' --EecPhoneBusinessExt
+        ,drvEETelephoneTypeCode2 = ''
+        ,drvEEContactTelephoneNumber2 = ''
+        ,drvEEContactEmailAddressText1 = sp.EepAddressEMail
+        ,drvEEContactEmployeeID = CASE WHEN spc.EecEmpNo IS NULL THEN '503251' ELSE spc.eecEmpNo END
+    INTO dbo.U_EPORPRUDEX_drvTbl_Contact
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    JOIN dbo.EmpComp as ec WITH (NOLOCK)
+        ON ec.EecEEID = xEEID 
+        AND ec.EecCoID = xCoID
+        AND ec.EecEmplStatus <> 'T'
+    JOIN dbo.EmpPers AS ep WITH (NOLOCK)
+        ON ep.EepEEID = xEEID
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    LEFT JOIN (SELECT EepEEID, 2 AS ContactNumber, 'SUP      ' AS ContactType, EepNameFirst, EepNameLast, EepAddressEMail
+        FROM dbo.EmpPers WITH(NOLOCK)) AS sp
+        ON sp.eepEEID = ec.EecSupervisorID
+    LEFT JOIN dbo.EmpComp AS spc WITH (NOLOCK) 
+        ON spc.EecEEID = ec.EecSupervisorID
+        AND spc.EecEmplStatus <> 'T'
+    --CROSS JOIN (SELECT 1 As ContactNumber, 'BNFT COOR' AS ContactType, 'Patrick' As FirstName, 'Staton' AS LastName) AS bc 
+    ;
+    INSERT INTO dbo.U_EPORPRUDEX_drvTbl_Contact
+        (drvEEID
+        ,drvCoID
+        ,drvDepRecID 
+        ,drvSort
+        ,drvSubSort
+        ,drvEmploymentContactID
+        ,drvAssociateID
+        ,drvEmploymentContactTypeCode
+        ,drvEmploymentContactFirstName
+        ,drvEmploymentContactLastName
+        ,drvEEContactTelephoneNumber1
+        ,drvEETelephoneNumberExt1
+        ,drvEETelephoneTypeCode2
+        ,drvEEContactTelephoneNumber2
+        ,drvEEContactEmailAddressText1
+        ,drvEEContactEmployeeID)
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSort = '2 ' + xEEID + ' 4'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
-        ,drvAssociateID = EecEmpNo
         ,drvEmploymentContactID = EecEmpNo
-        ,drvEmploymentContactTypeCode = ''                        ---ToDo: Need to add 2nd rows for ContactTypeCode, First and Last name?
-        ,drvEmploymentContactFirstName = EepNameFirst
-        ,drvEmploymentContactLastName = EepNameLast
-        ,drvEEContactTelephoneNumber1 = EecPhoneBusinessNumber
-        ,drvEETelephoneNumberExt1 = EecPhoneBusinessExt
+        ,drvAssociateID = 'Contact 1'
+        ,drvEmploymentContactTypeCode = bc.ContactType
+        ,drvEmploymentContactFirstName = bc.FirstName
+        ,drvEmploymentContactLastName = bc.LastName
+        ,drvEEContactTelephoneNumber1 = ''
+        ,drvEETelephoneNumberExt1 = ''
         ,drvEETelephoneTypeCode2 = ''
         ,drvEEContactTelephoneNumber2 = ''
-        ,drvEEContactEmailAddressText1 = EepAddressEMail
-        ,drvEEContactEmployeeID = EecEmpNo
-    INTO dbo.U_EPORPRUDEX_drvTbl_Contact
+        ,drvEEContactEmailAddressText1 = 'patrick.staton@trailblazers.com'
+        ,drvEEContactEmployeeID = '503251'
     FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    --JOIN (SELECT EepEEID, 2 AS ContactNumber, 'SUP' AS ContactType, EepNameFirst, EepNameLast
+    --    FROM dbo.EmpPers WITH(NOLOCK)) AS sp
+    --    ON sp.eepEEID = EecSupervisorID
+    CROSS JOIN (SELECT 1 As ContactNumber, 'HR REP' AS ContactType, 'Patrick' As FirstName, 'Staton' AS LastName ) AS bc 
+
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EPORPRUDEX_drvTbl_Dependent
     ---------------------------------
     IF OBJECT_ID('U_EPORPRUDEX_drvTbl_Dependent','U') IS NOT NULL
         DROP TABLE dbo.U_EPORPRUDEX_drvTbl_Dependent;
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2 ' + xEEID + ' 4'
-        -- standard fields above and additional driver fields below        --Todo - NEED column for AssociateID - EecEmpNo
-        ,drvDependentID = EecEmpNo + '_' + RIGHT(ConSSN,4)
-        ,drvDependentSSN = ConSSN
-        ,drvDependentDateOfBirth = ConDateOfBirth
-        ,drvDependentSmokerStatusCode = CASE WHEN ConIsSmoker = 'Y' THEN 'SMOKER' ELSE 'NON SMOKER' END
-        ,drvDependentLastName = ConNameLast
-        ,drvDependentFirstName = ConNameFirst
-        ,drvDependentMiddleName = ConNameMiddle
-        ,drvDepAddressLine1Text = CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressLine1 ELSE EepAddressLine1 END
-        ,drvDepAddressLine2Text = CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressLine2 ELSE EepAddressLine2 END
-        ,drvDependentCityName = CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressCity ELSE EepAddressCity END
-        ,drvDependentStateProvinceCode = CASE WHEN ConAddressIsDifferent = 'Y' THEN  ConAddressState ELSE EepAddressState END
-        ,drvDependentPostalCode = CASE WHEN ConAddressIsDifferent = 'Y' THEN ConAddressZipCode ELSE EepAddressZipCode END
-        ,drvDepTelephoneNumber1 = ConPhoneHomeNumber
-        ,drvDependentStatusCode = CASE WHEN BdmBenOption IN ('EEC','EDP','EES') THEN 'ACTIVE' WHEN BdmBenOption = 'EE' then 'REMOVED' END
+        ,drvSubSort = '1'
+        -- standard fields above and additional driver fields below        
+        ,drvAssociateID = eecEmpNo
+        ,drvRelationshipTypeCode = CASE WHEN c1.ConRelationship IN ('SPS','DOM','WIF','HUS') THEN 'SPOUSE'
+                                        WHEN c2.ConRelationship IN ('CHL','ECH','DPC','SON') THEN 'CHILD'
+                                        WHEN c3.ConRelationship IN ('SPS','DOM','WIF','HUS') THEN 'SPOUSE'
+                                        WHEN c3.ConRelationship IN ('CHL','ECH','DPC','SON') THEN 'CHILD'
+                                   END
+        ,drvDependentID  = RTRIM(EecEmpNo) + '_' + COALESCE(RIGHT(RTRIM(c1.ConSSN),4), (RIGHT(TRIM(c2.ConSSN),4)), (RIGHT(TRIM(c3.ConSSN),4)))
+        ,drvDependentSSN = COALESCE(c1.ConSSN, c2.ConSSN,C3.ConSSN)
+        ,drvDependentDateOfBirth = COALESCE(c1.ConDateOfBirth,C2.ConDateOFBIRTH,C3.conDateOfBirth)
+        ,drvDependentSmokerStatusCode = CASE WHEN c1.ConEEID IS NOT NULL THEN
+                                                                         CASE WHEN c1.ConIsSmoker = 'Y' THEN 'SMOKER' ELSE 'NON SMOKER' 
+                                                                         END
+                                             WHEN c2.ConEEID IS NOT NULL THEN
+                                                                         CASE WHEN c2.ConIsSmoker = 'Y' THEN 'SMOKER' ELSE 'NON SMOKER' 
+                                                                         END
+                                             WHEN c3.ConEEID IS NOT NULL THEN
+                                                                         CASE WHEN c3.ConIsSmoker = 'Y' THEN 'SMOKER' ELSE 'NON SMOKER' 
+                                                                         END                                            
+                                        END
+        ,drvDependentLastName = COALESCE(c1.ConNameLast, C2.ConNameLast, C3.ConNameLast)
+        ,drvDependentFirstName = COALESCE(c1.ConNameFirst, c2.ConNameFirst, c3.ConNameFirst)
+        ,drvDependentMiddleName = COALESCE(c1.ConNameMiddle, C2.ConNameMiddle, C3.ConNameMiddle)
+        ,drvDepAddressLine1Text = CASE WHEN c1.ConEEID IS NOT NULL THEN CASE WHEN c1.ConAddressIsDifferent = 'Y' THEN c1.ConAddressLine1 ELSE EepAddressLine1 END
+                                       WHEN c2.ConEEID IS NOT NULL THEN CASE WHEN c2.ConAddressIsDifferent = 'Y' THEN c2.ConAddressLine1 ELSE EepAddressLine1 END
+                                       WHEN c3.ConEEID IS NOT NULL THEN CASE WHEN c3.ConAddressIsDifferent = 'Y' THEN c3.ConAddressLine1 ELSE EepAddressLine1 END
+                                  END
+        ,drvDepAddressLine2Text = CASE WHEN c1.ConEEID IS NOT NULL THEN CASE WHEN c1.ConAddressIsDifferent = 'Y' THEN c1.ConAddressLine2 ELSE EepAddressLine2 END
+                                       WHEN c2.ConEEID IS NOT NULL THEN CASE WHEN c2.ConAddressIsDifferent = 'Y' THEN c2.ConAddressLine2 ELSE EepAddressLine2 END
+                                       WHEN c3.ConEEID IS NOT NULL THEN CASE WHEN c3.ConAddressIsDifferent = 'Y' THEN c3.ConAddressLine2 ELSE EepAddressLine2 END
+                                  END
+        ,drvDependentCityName =  CASE WHEN c1.ConEEID IS NOT NULL THEN CASE WHEN c1.ConAddressIsDifferent = 'Y' THEN c1.ConAddressCity ELSE EepAddressCity END
+                                      WHEN c2.ConEEID IS NOT NULL THEN CASE WHEN c2.ConAddressIsDifferent = 'Y' THEN c2.ConAddressCity ELSE EepAddressCity END 
+                                      WHEN c3.ConEEID IS NOT NULL THEN CASE WHEN c3.ConAddressIsDifferent = 'Y' THEN c3.ConAddressCity ELSE EepAddressCity END 
+                                 END        
+        ,drvDependentStateProvinceCode = CASE WHEN c1.ConEEID IS NOT NULL THEN CASE WHEN c1.ConAddressIsDifferent = 'Y' THEN  c1.ConAddressState ELSE EepAddressState END
+                                              WHEN c2.ConEEID IS NOT NULL THEN CASE WHEN c2.ConAddressIsDifferent = 'Y' THEN  c2.ConAddressState ELSE EepAddressState END
+                                              WHEN c3.ConEEID IS NOT NULL THEN CASE WHEN c3.ConAddressIsDifferent = 'Y' THEN  c3.ConAddressState ELSE EepAddressState END
+                                         END        
+        ,drvDependentPostalCode = CASE WHEN c1.ConEEID IS NOT NULL THEN CASE WHEN c1.ConAddressIsDifferent = 'Y' THEN c1.ConAddressZipCode ELSE EepAddressZipCode END
+                                       WHEN c2.ConEEID IS NOT NULL THEN CASE WHEN c2.ConAddressIsDifferent = 'Y' THEN c2.ConAddressZipCode ELSE EepAddressZipCode END
+                                       WHEN c3.ConEEID IS NOT NULL THEN CASE WHEN c3.ConAddressIsDifferent = 'Y' THEN c3.ConAddressZipCode ELSE EepAddressZipCode END
+                                  END
+        ,drvDepTelephoneNumber1 = COALESCE(c1.ConPhoneHomeNumber, c2.ConPhoneHomeNumber, c3.ConPhoneHomeNumber) 
+        ,drvDependentStatusCode = CASE WHEN b0.BdmEEID IS NOT NULL 
+                                                    OR b1.BdmEEID IS NOT NULL 
+                                                    OR b2.BdmEEID IS NOT NULL 
+                                                    OR b3.BdmEEID IS NOT NULL 
+                                            THEN 'ACTIVE'
+                                        ELSE 'REMOVED'
+                                   END        
     INTO dbo.U_EPORPRUDEX_drvTbl_Dependent
     FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    JOIN dbo.Contacts WITH(NOLOCK)
-        ON ConEEID = xEEID
-        AND BdmDepRecId = ConSystemId
+    JOIN dbo.U_dsi_BDM_EPORPRUDEX AS b0 WITH (NOLOCK)
+        ON b0.BdmEEID = xEEID 
+        AND b0.BdmCoID = xCoID
+        AND b0.BdmDedCode IN ('CRIT2','CRIT3','ACCID')
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX AS b1 WITH (NOLOCK)
+        ON b1.BdmEEID = xEEID 
+        AND b1.BdmCoID = xCoID
+        AND b1.BdmDedCode = 'CRIT2'
+    LEFT JOIN dbo.Contacts AS c1 WITH(NOLOCK)
+        ON c1.ConEEID = b1.bdmEEID
+        AND c1.ConRelationship IN ('SPS','DOM','WIF','HUS')
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX AS b2 WITH (NOLOCK)
+        ON b2.BdmEEID = xEEID 
+        AND b2.BdmCoID = xCoID
+        AND b2.BdmDedCode = 'CRIT3'
+    LEFT JOIN dbo.Contacts AS c2 WITH(NOLOCK)
+        ON c2.ConEEID = b2.bdmEEID
+        AND c2.ConRelationship IN ('CHL','ECH','DPC','SON')
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX AS b3 WITH (NOLOCK)
+        ON b3.BdmEEID = xEEID 
+        AND b3.BdmCoID = xCoID
+        AND b3.BdmDedCode = 'ACCID' AND b3.BdmBenOption IN ('EEC','EDP','EES','EECH', 'EECHDN','EDPCH','EDPDP','EDPCDN','EEDP','EE1', 'EESP','EEF','EEFM','EEFAM','EE3','EE2')
+    JOIN dbo.Contacts AS c3 WITH(NOLOCK)
+        ON c3.ConEEID = b3.bdmEEID
+        AND c3.conRelationship in ('SPS','DOM','WIF','HUS','CHL','ECH','DPC','SON')
+
+        --AND BdmBenOption = 'SP') --Join to spouce or chile
+        --OR (BdmDedCode = 'CRIT3') --)
+       -- OR (BdmDedCode = 'ACCID' AND BdmBenOption IN ('EEC','EDP','EES','EECH', 'EECHDN','EDPCH','EDPDP','EDPCDN','EEDP','EE1', 'EESP','EEF','EEFM','EEFAM')))
+
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EPORPRUDEX_drvTbl_AbsenceInformation
@@ -1177,78 +1367,356 @@ BEGIN
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2 ' + xEEID + ' 5'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
-        ,drvDateHoursWorkedLast12 = FORMAT(PehCurHrs, '#0.00')
+        ,drvHoursWorkedLast12 = CASE WHEN ISNULL(cs.ch, 0) > 3000 THEN '3000' 
+                                     WHEN ISNULL(cs.ch, 0) > 0 THEN CAST(CEILING(cs.ch) AS VARCHAR) 
+                                     ELSE ''
+                                END
+        ,drvAsOfDateHoursWorkedLast12 = FORMAT(GETDATE(), 'yyyyMMdd')
     INTO dbo.U_EPORPRUDEX_drvTbl_AbsenceInformation
     FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.EmpComp WITH(NOLOCK)
         ON EecEEID = xEEID
-    JOIN dbo.U_EPORPRUDEX_PEarHist WITH(NOLOCK)
-        ON pehEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN (SELECT PehEEID, SUM(PehCurHrs) AS ch
+            FROM dbo.vw_int_PEarHist    
+            WHERE PehPayDate BETWEEN  DATEADD(MONTH, -12, GETDATE()) AND GETDATE()
+            GROUP BY PehEEID) AS cs
+        ON pehEEID = xEEID    
+
+    --JOIN dbo.U_EPORPRUDEX_PEarHist WITH(NOLOCK)
+    --    ON pehEEID = xEEID
+    --JOIN (SELECT PehEEID, SUM(PehCurHrs)  AS ch
+    -- FROM dbo.U_EPORPRUDEX_PEarHist WITH (NOLOCK)
+    -- WHERE PehPayDate > DATEADD(MONTH, -12, GETDATE())
+    -- GROUP BY PehEEID) cs
+    --ON cs.PehEEID = xEEID
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EPORPRUDEX_drvTbl_Coverage
     ---------------------------------
     IF OBJECT_ID('U_EPORPRUDEX_drvTbl_Coverage','U') IS NOT NULL
         DROP TABLE dbo.U_EPORPRUDEX_drvTbl_Coverage;
-    SELECT DISTINCT
+        SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '2 ' + xEEID + ' 6'
+        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
-        ,drvProductCode = CASE  WHEN BdmDedCode = 'LTD' THEN 'LTD'   
-                                WHEN BdmDedCode = 'STD' THEN 'STD'
-                                WHEN BdmDedCode = 'ACID' THEN 'VACC'
-                                WHEN BdmDedCode IN ('CRIT1','CRIT2','CRIT3') THEN 'VCI'
-                          END
-        ,drvCoverageTierCode = CASE WHEN BdmBenOption = 'EE' THEN 'EE'
-                                    WHEN BdmBenOption = 'EEC' THEN 'EC'
-                                    WHEN BdmBenOption IN ('EDP', 'EES') THEN 'ES'  
-                                    WHEN BdmBenOption = 'EEF' THEN 'EF'
-                               END
-        ,drvProductPlanCode = CASE WHEN BdmDedCode = 'ACCID' THEN '5385'
-                                   WHEN BdmDedCode IN ('CRIT1','CRIT2','CRIT3') THEN '5387' 
-                                   ELSE  ''
-                              END
-        ,drvCoverageAmount = CASE WHEN BdmDedCode = 'ACCID' AND BdmBenOption = 'EE' THEN BdmEEAmt   
-                                  WHEN BdmDedCode = 'CRIT1' THEN BdmEEAmt 
-                                  WHEN BdmDedCode = 'CRIT2' and ConRelationship IN ('DP','SPS') THEN BdmEEAmt
-                             END
-        ,drvCoverageEffectiveDate = BdmBenStartDate
-        ,drvCoverageEndDate = BdmBenStopDate
-        ,drvCoverageStatusCode = CASE WHEN BdmBenStatus = 'A' AND BdmBenStopDate IS NULL THEN 'ACTIVE' ELSE 'TERMINATED' END
-        ,drvCoverageStatusEffDate = CASE WHEN BdmDedCode = 'ACCID' AND BdmBenOption = 'EE' THEN BdmBenStartDate 
-                                         WHEN BdmDedCode = 'CRIT1' THEN BdmBenStartDate 
-                                         WHEN BdmDedCode = 'CRIT2' and ConRelationship IN ('DP','SPS') THEN BdmBenStartDate 
-                                         WHEN BdmDedCode = 'CRIT3' THEN BdmBenStartDate 
-                                         ELSE  ''
-                                    END
-        ,drvClaimBranchCode = CASE WHEN EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'PTB' AND BdmDedCode = 'STD' THEN '00001'
-                                   WHEN EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'PTB' AND BdmDedCode = 'STD' THEN  '00002'
-                                   WHEN EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'RIP' AND BdmDedCode = 'STD'   THEN '00003'
-                                   When EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'RIP' AND BdmDedCode = 'STD' THEN  '00004'
-                                   When EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'PTB' AND BdmDedCode = 'LTD' THEN '00001'
-                                   When EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'PTB' AND BdmDedCode = 'LTD' THEN '00003' 
-                                   When EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'RIP' AND BdmDedCode = 'LTD' THEN '00005' 
-                                   When EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') AND EecCOID = 'RIP' AND BdmDedCode = 'LTD' THEN'00007'
-                              END
-        ,drvVoluntaryBasis = CASE WHEN BdmDedCode = 'ACCID' THEN 'TREATMENT' ELSE '' END
+        ,drvProductCode = 'VACC'   
+        ,drvCoverageTierCode = CASE WHEN EedBenOption NOT IN ('EEDP','EE1', 'EESP','EECH', 'EECHDN','EDPCH','SON','EDPDP','EDPCDN','EEFAM' ,'EE3','EE2','EEF' ) THEN 'EE' 
+                                    WHEN BdmBenOption IN ('EECH', 'EECHDN','EDPCH','EDPDP','EDPCDN','EE2') THEN 'EC' 
+                                    WHEN EedBenOption IN ('EEDP','EE1', 'EESP') THEN 'ES' 
+                                    WHEN EedBenOption IN ('EEFAM' ,'EEF','EE3') THEN 'FM' 
+                                    ELSE '' 
+                                END
+        ,drvProductPlanCode = '5385'
+        ,drvCoverageAmount = CAST(EedBenAmt AS VARCHAR(50))
+        ,drvCoverageEffectiveDate = CONVERT(VARCHAR(20), BdmStartDate, 112)
+        ,drvCoverageEndDate = CONVERT(VARCHAR(20), BdmStopDate, 101)
+        ,drvCoverageStatusCode = CASE WHEN BdmBenStatus = 'A' AND BDmBenStopDate IS NULL THEN 'ACTIVE'  
+                                      WHEN BdmBenStatus <>'A' AND BdmBenStopDate IS NOT NULL THEN 'TERMINATED' 
+                                      ELSE ''
+                                 END
+        ,drvCoverageStatusEffDate = CONVERT(VARCHAR, BdmStartDate, 112) 
+        ,drvClaimBranchCode = '     '
+        ,drvVoluntaryBasis = 'TREATMENT'
     INTO dbo.U_EPORPRUDEX_drvTbl_Coverage
     FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmDedCode = 'ACCID'
     JOIN dbo.EmpComp WITH(NOLOCK)
         ON EecEEID = xEEID
+        AND EecCOID = xCOID
     JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
     ;
+
+    INSERT INTO dbo.U_EPORPRUDEX_drvTbl_Coverage
+    (drvEEID
+    ,drvCoID
+    ,drvDepRecID
+    ,drvSort
+    ,drvSubSort
+    ,drvAssociateID
+    ,drvProductCode 
+    ,drvCoverageTierCode
+    ,drvProductPlanCode
+    ,drvCoverageAmount
+    ,drvCoverageEffectiveDate
+    ,drvCoverageEndDate
+    ,drvCoverageStatusCode
+    ,drvCoverageStatusEffDate
+    ,drvClaimBranchCode
+    ,drvVoluntaryBasis)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSubSort = '1'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvProductCode =  'WDI'   
+        ,drvCoverageTierCode = 'EE' 
+        ,drvProductPlanCode = ''
+        ,drvCoverageAmount =  ''  --CAST(EedBenAmt AS VARCHAR(50))
+        ,drvCoverageEffectiveDate = CONVERT(VARCHAR, (DATEADD(d, 1, EOMONTH(EecDateOfLastHire))), 112) 
+        ,drvCoverageEndDate = ''
+        ,drvCoverageStatusCode = 'ACTIVE' 
+        ,drvCoverageStatusEffDate = CONVERT(VARCHAR, (DATEADD(d, 1, EOMONTH(EecDateOfLastHire))), 112) 
+        ,drvClaimBranchCode = CASE WHEN EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') 
+                                        AND EecCOID = 'I7XPM' THEN '00001' 
+                                   WHEN EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO')
+                                        AND EecCOID = 'I7XPM' THEN '00002' 
+                                   WHEN EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') 
+                                        AND EecCOID = 'L4XIS' THEN '00003' 
+                                   WHEN EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO') 
+                                        AND EecCOID = 'L4XIS' THEN '00004'
+                              END
+        ,drvVoluntaryBasis = ''
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH(NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+        AND EecEEType = '001'
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    ;
+        INSERT INTO dbo.U_EPORPRUDEX_drvTbl_Coverage
+    (drvEEID
+    ,drvCoID
+    ,drvDepRecID
+    ,drvSort
+    ,drvSubSort
+    ,drvAssociateID
+    ,drvProductCode 
+    ,drvCoverageTierCode
+    ,drvProductPlanCode
+    ,drvCoverageAmount
+    ,drvCoverageEffectiveDate
+    ,drvCoverageEndDate
+    ,drvCoverageStatusCode
+    ,drvCoverageStatusEffDate
+    ,drvClaimBranchCode
+    ,drvVoluntaryBasis)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = '2 ' + xEEID + ' 6'
+        ,drvSubSort = '1'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvProductCode = 'VCI'   
+        ,drvCoverageTierCode = 'EE' 
+        ,drvProductPlanCode = '5387'
+        ,drvCoverageAmount = CAST(EedBenAmt AS VARCHAR(50))
+        ,drvCoverageEffectiveDate = CONVERT(VARCHAR(20), BdmStartDate, 112)
+        ,drvCoverageEndDate = ISNULL(CONVERT(VARCHAR(20), BdmStopDate, 112),'')
+        ,drvCoverageStatusCode = CASE WHEN BdmBenStatus = 'A' AND BDmBenStopDate IS NULL THEN 'ACTIVE'  
+                                      WHEN BdmBenStatus <>'A' AND BdmBenStopDate IS NOT NULL THEN 'TERMINATED' 
+                                      ELSE ''
+                                 END
+        ,drvCoverageStatusEffDate = CONVERT(VARCHAR, BdmStartDate, 112) 
+        ,drvClaimBranchCode = ''
+        ,drvVoluntaryBasis = ''
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        AND BdmDedCode = 'CRIT1'
+    JOIN dbo.EmpComp WITH(NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    ;
+
+            INSERT INTO dbo.U_EPORPRUDEX_drvTbl_Coverage
+    (drvEEID
+    ,drvCoID
+    ,drvDepRecID
+    ,drvSort
+    ,drvSubSort
+    ,drvAssociateID
+    ,drvProductCode 
+    ,drvCoverageTierCode
+    ,drvProductPlanCode
+    ,drvCoverageAmount
+    ,drvCoverageEffectiveDate
+    ,drvCoverageEndDate
+    ,drvCoverageStatusCode
+    ,drvCoverageStatusEffDate
+    ,drvClaimBranchCode
+    ,drvVoluntaryBasis)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSubSort = '1'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvProductCode =  'LTD'   
+        ,drvCoverageTierCode = 'EE' 
+        ,drvProductPlanCode = '    '
+        ,drvCoverageAmount = ''--CAST(EedBenAmt AS VARCHAR(50))
+        ,drvCoverageEffectiveDate = CONVERT(VARCHAR, (DATEADD(d, 1, EOMONTH(EecDateOfLastHire))), 112) 
+        ,drvCoverageEndDate = ''
+        ,drvCoverageStatusCode = 'ACTIVE' 
+        ,drvCoverageStatusEffDate = CONVERT(VARCHAR, (DATEADD(d, 1, EOMONTH(EecDateOfLastHire))), 112) 
+        ,drvClaimBranchCode = CASE WHEN EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO')  
+                                        AND EecCOID = 'I7XPM' THEN '00001'
+                                   WHEN EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO')  
+                                        AND EecCOID = 'I7XPM' THEN '00003'
+                                   WHEN EecJobCode IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO')  
+                                        AND EecCOID = 'L4XIS' THEN '00005'
+                                   WHEN EecJobCode NOT IN ('PRESCEO','PRESGM','PRES','GM','INTGM','PRESBBO')  
+                                        AND EecCOID = 'L4XIS' THEN '00007'
+                              END
+        ,drvVoluntaryBasis = ''
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH(NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+        AND EecEEType = '001'
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    ;
+            INSERT INTO dbo.U_EPORPRUDEX_drvTbl_Coverage
+    (drvEEID
+    ,drvCoID
+    ,drvDepRecID
+    ,drvSort
+    ,drvSubSort
+    ,drvAssociateID
+    ,drvProductCode 
+    ,drvCoverageTierCode
+    ,drvProductPlanCode
+    ,drvCoverageAmount
+    ,drvCoverageEffectiveDate
+    ,drvCoverageEndDate
+    ,drvCoverageStatusCode
+    ,drvCoverageStatusEffDate
+    ,drvClaimBranchCode
+    ,drvVoluntaryBasis)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSubSort = '1'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvProductCode = 'VCI'   
+        ,drvCoverageTierCode = 'CH' 
+        ,drvProductPlanCode = '5387'
+        ,drvCoverageAmount = EedBenAmt
+        ,drvCoverageEffectiveDate = CONVERT(VARCHAR(20), BdmStartDate, 112)
+        ,drvCoverageEndDate = CONVERT(VARCHAR(20), BdmStopDate, 112)
+        ,drvCoverageStatusCode = CASE WHEN BdmBenStatus = 'A' AND BDmBenStopDate IS NULL THEN 'ACTIVE'  
+                                      WHEN BdmBenStatus <>'A' AND BdmBenStopDate IS NOT NULL THEN 'TERMINATED' 
+                                      ELSE ''
+                                 END
+        ,drvCoverageStatusEffDate = CONVERT(VARCHAR, BdmStartDate, 112) 
+        ,drvClaimBranchCode = ''
+        ,drvVoluntaryBasis = ''
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        AND BdmDedCode = 'CRIT3'
+    JOIN dbo.EmpComp WITH(NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    ;
+            INSERT INTO dbo.U_EPORPRUDEX_drvTbl_Coverage
+    (drvEEID
+    ,drvCoID
+    ,drvDepRecID
+    ,drvSort
+    ,drvSubSort
+    ,drvAssociateID
+    ,drvProductCode 
+    ,drvCoverageTierCode
+    ,drvProductPlanCode
+    ,drvCoverageAmount
+    ,drvCoverageEffectiveDate
+    ,drvCoverageEndDate
+    ,drvCoverageStatusCode
+    ,drvCoverageStatusEffDate
+    ,drvClaimBranchCode
+    ,drvVoluntaryBasis)
+        SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = '2 ' + xEEID + ' 3'
+        ,drvSubSort = '1'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvProductCode = 'VCI'   
+        ,drvCoverageTierCode = 'SP' 
+        ,drvProductPlanCode = '5387'
+        ,drvCoverageAmount = CAST(EedBenAmt AS VARCHAR)
+        ,drvCoverageEffectiveDate = CONVERT(VARCHAR(20), BdmStartDate, 112)
+        ,drvCoverageEndDate = CONVERT(VARCHAR(20), BdmStopDate, 112)
+        ,drvCoverageStatusCode = CASE WHEN BdmBenStatus = 'A' AND BDmBenStopDate IS NULL THEN 'ACTIVE'  
+                                      WHEN BdmBenStatus <>'A' AND BdmBenStopDate IS NOT NULL THEN 'TERMINATED' 
+                                      ELSE ''
+                                 END
+        ,drvCoverageStatusEffDate = CONVERT(VARCHAR, BdmStartDate, 112) 
+        ,drvClaimBranchCode = ''
+        ,drvVoluntaryBasis = ''
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        AND BdmDedCode = 'CRIT2'
+    JOIN dbo.EmpComp WITH(NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+    LEFT JOIN dbo.EmpDed WITH(NOLOCK)
+        ON EedEEID = xEEID
+        AND EedDedCode = BdmDedCode
+    ;
+
+
     ---------------------------------
     -- DETAIL RECORD - U_EPORPRUDEX_drvTbl_CustomChars
     ---------------------------------
@@ -1257,19 +1725,109 @@ BEGIN
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2 ' + xEEID + ' 7'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
-        ,drvCustCharValueText = EecOrgLvl2
+        ,drvCustCharCode = 'Reporting Code 1'
+        ,drvCustCharValueText = CASE WHEN xCOID = 'L4XIS' THEN 'Rip City Management, LLC '
+                                     WHEN xCOID = 'I7XPM' THEN 'Trail Blazers Inc.'
+                                     ELSE ''
+                                END
     INTO dbo.U_EPORPRUDEX_drvTbl_CustomChars
     FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.Company WITH(NOLOCK)
+        ON cmpCOID = xCOID
     ;
+    INSERT INTO dbo.U_EPORPRUDEX_drvTbl_CustomChars
+    ( drvEEID
+        ,drvCoID
+        ,drvSort
+        ,drvSubSort
+        ,drvAssociateID
+        ,drvCustCharCode
+        ,drvCustCharValueText)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvSort = '2 ' + xEEID + ' 7'
+        ,drvSubSort = '2'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvCustCharCode = 'Reporting Code 2'
+        ,drvCustCharValueText = ISNULL(OrgDesc, '')
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.OrgLevel WITH(NOLOCK)
+        ON OrgCode = EecOrgLvl3
+            AND OrgLvl = 3
+    ;
+    INSERT INTO dbo.U_EPORPRUDEX_drvTbl_CustomChars
+    ( drvEEID
+        ,drvCoID
+        ,drvSort
+        ,drvSubSort
+        ,drvAssociateID
+        ,drvCustCharCode
+        ,drvCustCharValueText)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvSort = '2 ' + xEEID + ' 7'
+        ,drvSubSort = '3'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvCustCharCode = 'Reporting Code 3'
+        ,drvCustCharValueText = ISNULL(EecOrgLvl2, '')
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    --JOIN dbo.OrgLevel WITH(NOLOCK)
+    --    ON OrgCode = EecOrgLvl2
+    --    AND OrgLvl = 2
+    ;
+    INSERT INTO dbo.U_EPORPRUDEX_drvTbl_CustomChars
+    ( drvEEID
+        ,drvCoID
+        ,drvSort
+        ,drvSubSort
+        ,drvAssociateID
+        ,drvCustCharCode
+        ,drvCustCharValueText)
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvSort = '2 ' + xEEID + ' 7'
+        ,drvSubSort = '4'
+        -- standard fields above and additional driver fields below
+        ,drvAssociateID = EecEmpNo
+        ,drvCustCharCode = 'Reporting Code 4'
+        ,drvCustCharValueText = CASE WHEN codCode IN ('01','02','03') THEN codDesc ELSE '' END
+    FROM dbo.U_EPORPRUDEX_EEList WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EPORPRUDEX WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+    JOIN dbo.Project WITH(NOLOCK)
+        ON CodCode = EecProject
+
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
