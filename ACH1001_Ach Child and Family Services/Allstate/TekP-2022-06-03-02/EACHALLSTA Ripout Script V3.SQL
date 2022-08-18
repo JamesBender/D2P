@@ -5,7 +5,7 @@ EACHALLSTA: Allstate Group Accident and Illness
 FormatCode:     EACHALLSTA
 Project:        Allstate Group Accident and Illness
 Client ID:      ACH1001
-Date/time:      2022-08-09 07:45:14.560
+Date/time:      2022-08-11 16:38:31.483
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -329,7 +329,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220809.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EACHALLSTA_20220811.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -542,7 +542,7 @@ CREATE TABLE [dbo].[U_EACHALLSTA_Illness_drvTbl] (
     [drvSubSort] char(12) NULL,
     [drvRecordType] varchar(2) NOT NULL,
     [drvApplicationID] char(11) NULL,
-    [drvCoverageTier] varchar(1) NOT NULL,
+    [drvCoverageTier] varchar(1) NULL,
     [drvSection125] varchar(1) NULL,
     [drvBasicBenefitAmount] varchar(5) NULL,
     [drvTotalModePremium] nvarchar(4000) NULL,
@@ -790,7 +790,7 @@ BEGIN
     JOIN dbo.U_EACHALLSTA_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -1079,25 +1079,25 @@ BEGIN
         ,drvCoID = xCoID
        -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '2' + eepssn
-        ,drvSubSort = bdmdeprecid
+        ,drvSubSort = BDM.bdmdeprecid
         -- standard fields above and additional driver fields below
         ,drvRecordType = '40'
         ,drvApplicationID = eepSSN
-        ,drvCoverageTier =  BDM.CoverageTier
+        ,drvCoverageTier =  Cov.CoverageTier
         ,drvSection125 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'N' END
         ,drvBasicBenefitAmount = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '10000' END
         ,drvTotalModePremium =  FORMAT((CASE WHEN EepGender = 'M' AND EepIsSmoker = 'N' THEN -- JCB
-                                    (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
-                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BDM.BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
                                 WHEN EepGender = 'M' AND EepIsSmoker = 'Y' THEN
-                                    (SELECT TOP 1 RatEERateSmMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
-                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateSmMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
                                 WHEN EepGender = 'F' AND EepIsSmoker = 'N' THEN
-                                    (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
-                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
                                 WHEN EepGender = 'F' AND EepIsSmoker = 'Y' THEN
-                                    (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BdmDedCode 
-                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
+                                    (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
                             END)*1000, '000000')
         ,drvRider1 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CICR1' END
         ,drvRider2 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CIHCR1' END
@@ -1109,47 +1109,35 @@ BEGIN
         ,drvRider7 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4SC1R' END
         ,drvRider8 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'GCIP4SC2R' END
         ,drvPremiumBillingMode = CASE WHEN PgrPayFrequency = 'B' THEN '26' END
-        ,drvDateofFirstDeduction = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN bdmbenstartdate END
-        ,drvReqCovEffDate = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN bdmbenstartdate END
+        ,drvDateofFirstDeduction = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN  BDM.bdmbenstartdate END
+        ,drvReqCovEffDate = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN  BDM.bdmbenstartdate END
         ,drvCaseNumber = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN '35611' END
         ,drvStatusCode =  CASE WHEN eecemplStatus = 'T' THEN 'T'
-                               WHEN eecemplStatus = 'A' and BDM.bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') and bdmbenstatus <> 'A' THEN 'X'
+                               WHEN eecemplStatus = 'A' and BDM.bdmdedcode In ( 'CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') and  BDM.bdmbenstatus <> 'A' THEN 'X'
                          END
         ,drvSignedCityandState = CASE WHEN BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'Grand Prairie TX' END
         ,drvDatesignedbyEmployee = Dateadd(day,-1,getdate()) 
-        ,drvReqCovEndDate = CASE WHEN BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN bdmbenstopdate END
+        ,drvReqCovEndDate = CASE WHEN BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN  BDM.bdmbenstopdate END
     INTO dbo.U_EACHALLSTA_Illness_drvTbl
     FROM dbo.U_EACHALLSTA_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-      JOIN (Select distinct *
-                         , CoverageTier =  CASE WHEN BdmDedCode in ('CRID', 'CRIEE', 'CRIES') 
-                                    and Bdmrectype = 'Emp' 
-                                    and bdmeeid not in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where  Bdmrectype = 'DEP'
-                                    ) 
-                                    THEN '1' 
-                            ELSE 
-                                 CASE WHEN bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where Bdmrectype = 'DEP' and  BdmNumChildren = 0 and BdmNumSpouses > 0 
-                                        and BdmDedCode in ('CRID', 'CRIEF', 'CRIFS') and bdmRelationship  NOT IN ( 'CHL', 'COD', 'DCH', 'DPC', 'STC')
-                                        )  
-                                    THEN '2'
-                                ELSE 
-                                    CASE WHEN  bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where  Bdmrectype = 'EMP' and BdmDedCode in ('CRID', 'CRIEE', 'CRIES') and BdmNumChildren > 0 and BdmNumSpouses = 0 
-                                         --bdmeeid in (Select bdmeeid from dbo.U_dsi_BDM_EACHALLSTA Where  Bdmrectype = 'DEP' and BdmDedCode in ('CRID', 'CRIEE', 'CRIES') )
-                                     )
-                                       THEN  '3'
-                            ELSE
-                                   '4' 
-                                END 
-                            END
-                        END
-    FROM dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK) 
-    Where bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
-        and bdmRecType = 'EMP'
-         and bdmbenstartdate is not null
-    ) BDM
+       JOIN dbo.U_dsi_BDM_EACHALLSTA BDM WITH (NOLOCK)  
         ON BDM.BdmEEID = xEEID 
         AND BDM.BdmCoID = xCoID
+        AND BDM.bdmRecType = 'EMP'
+    JOIN (Select distinct *
+                          , CoverageTier =  CASE WHEN BdmDedCode in ('CRIEE', 'CRIES') THEN '1' 
+                                                 WHEN BdmDedCode in ('CRIEF', 'CRIFS') THEN '4' 
+                                                 END
+                                    
+    FROM dbo.U_dsi_BDM_EACHALLSTA WITH (NOLOCK) 
+    Where bdmdedcode In ( 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+        and bdmRecType = 'EMP'
+         and bdmbenstartdate is not null
+    ) Cov
+        ON Cov.BdmEEID = xEEID 
+        AND Cov.BdmCoID = xCoID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
@@ -1159,9 +1147,24 @@ BEGIN
         ON PgrPayGroup = EecPayGroup
     LEFT JOIN  dbo.U_EACHALLSTA_Audit WITH (NOLOCK)
         ON xEEID = audEEID 
-        Where bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
+        Where bdm.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS')
         AND EecEEType <> 'TES'  
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
+    	and isnull(FORMAT((CASE WHEN EepGender = 'M' AND EepIsSmoker = 'N' THEN -- JCB
+                                    (SELECT TOP 1 RatEERateNsMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode = BDM.BdmDedCode 
+									AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) -- AS VARCHAR)
+                                WHEN EepGender = 'M' AND EepIsSmoker = 'Y' THEN
+                                    (SELECT TOP 1 RatEERateSmMale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
+									AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                WHEN EepGender = 'F' AND EepIsSmoker = 'N' THEN
+                                    (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
+									AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                WHEN EepGender = 'F' AND EepIsSmoker = 'Y' THEN
+                                    (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
+									AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
+                            END)*1000, '000000'), '') <> ''
+
+    
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EACHALLSTA_Question_drvTbl

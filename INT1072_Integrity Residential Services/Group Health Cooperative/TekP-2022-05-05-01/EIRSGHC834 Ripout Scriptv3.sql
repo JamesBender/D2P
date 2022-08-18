@@ -5,7 +5,7 @@ EIRSGHC834: Group Health Cooperative 834
 FormatCode:     EIRSGHC834
 Project:        Group Health Cooperative 834
 Client ID:      INT1072
-Date/time:      2022-08-02 15:08:16.167
+Date/time:      2022-08-09 08:32:31.553
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -367,7 +367,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIRSGHC834_20220802.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIRSGHC834_20220809.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -575,8 +575,8 @@ CREATE TABLE [dbo].[U_EIRSGHC834_DrvTbl] (
     [drvREF02_RefNumberQual1] char(11) NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] int NULL,
-    [drvREF01_RefNumberQual3] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual3] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual3] char(9) NULL,
     [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual4] varchar(1) NOT NULL,
     [drvDTP00_DateTime1] varchar(3) NOT NULL,
@@ -1086,7 +1086,7 @@ BEGIN
         ,drvQTY02_Quantity2 = ''
         ,drvQTY01_QuantityQual3 = ''
         ,drvQTY02_Quantity3 = ''
-        ,drvN101_EntityIDCodeSponsor1 = 'PS'
+        ,drvN101_EntityIDCodeSponsor1 = 'P5'
         ,drvN102_Name1 = ''
         ,drvN103_IDCodeQual1 = 'FI'
         ,drvN104_IDCode1 = '391996427'
@@ -1165,7 +1165,7 @@ BEGIN
         ,drvREF01_RefNumberQual1 = ''
         ,drvREF02_RefNumberQual1 = EepSSN
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual2 = 'IL'
+        ,drvREF01_RefNumberQual2 = '1L'
         ,drvREF02_RefNumberQual2 = CASE WHEN BDMdedcode = 'GHCH0' THEN 7753000
 
                                         WHEN BDMdedcode = 'GHCH1' THEN 7753001 
@@ -1176,12 +1176,12 @@ BEGIN
 
                                         WHEN BDMdedcode = 'GHCP1' THEN 7753004 
 
-                                        WHEN BDMdedcode = 'GCHP5' THEN 7753005
+                                        WHEN BDMdedcode = 'GHCP5' THEN 7753005
                                     END
 
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual3 = ''
-        ,drvREF02_RefNumberQual3 = ''
+        ,drvREF01_RefNumberQual3 = '23'
+        ,drvREF02_RefNumberQual3 = EecEmpNo
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''

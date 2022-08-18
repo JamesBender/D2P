@@ -1,11 +1,11 @@
-/**********************************************************************************
+//**********************************************************************************
 
 EAGLINCEXP: Lincoln Leave of Absence Interface Export
 
 FormatCode:     EAGLINCEXP
 Project:        Lincoln Leave of Absence Interface Export
 Client ID:      AGR1003
-Date/time:      2022-05-20 11:57:53.800
+Date/time:      2022-08-10 12:12:38.500
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -345,7 +345,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220520.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAGLINCEXP_20220810.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -353,7 +353,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Lincoln Leave of Absence Inter','202204219','EMPEXPORT','ONDEM_XOE',NULL,'EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022  8:48AM','Apr 21 2022  8:48AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Lincoln Leave of Absence-Sched','202204219','EMPEXPORT','SCH_EAGLIN','May  9 2022 12:00AM','EAGLINCEXP',NULL,NULL,NULL,'202204219','Apr 21 2022 12:00AM','Dec 30 1899 12:00AM','202204211',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'us3mWaAGR1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','WY9ZA',NULL,NULL,NULL,'Lincoln Leave of Absence-Sched','202204219','EMPEXPORT','SCH_EAGLIN','May  9 2022 12:00AM','EAGLINCEXP',NULL,NULL,NULL,'202208049','Apr 21 2022 12:00AM','Dec 30 1899 12:00AM','202207281',NULL,'','','202204211',dbo.fn_GetTimedKey(),NULL,'us3mWaAGR1003',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',WY9ZA',NULL,NULL,NULL,'Lincoln Leave of Absence-Test','202205099','EMPEXPORT','TEST_XOE','May  9 2022 12:00AM','EAGLINCEXP',NULL,NULL,NULL,'202205099','May  9 2022 12:00AM','Dec 30 1899 12:00AM','202205031',NULL,'','','202205031',dbo.fn_GetTimedKey(),NULL,'us3mWaAGR1003',NULL);
 
 -----------
@@ -764,7 +764,7 @@ BEGIN
                         END
         ,drvDateOfBirth = EepDateOfBirth
         ,drvSalaryAmt = CASE WHEN EecPayGroup = 'USSLRY' then Format(EecAnnSalary, '#0.00') else '0.0' END
-        ,drvHourlyWage = CASE WHEN  EecPayGroup = 'USHRLY' then Format(EecAnnSalary, '#0.00') else '0.0' END
+        ,drvHourlyWage = CASE WHEN  EecPayGroup = 'USHRLY' then Format(EecHourlyPayRate, '#0.00') else '0.0' END
         ,drvSalaryEffectiveDate  = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         ,drvSalaryType = CASE WHEN EecSalaryOrHourly = 'S' then 'SL' else 'HR' END
         ,drvSalaryMode =  CASE WHEN EecSalaryOrHourly= 'S' then '6' else '1' END
@@ -792,8 +792,8 @@ BEGIN
         ,dvrHoursPerDayWed  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
         ,dvrHoursPerDayThur = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
         ,dvrHoursPerDayFri  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
-        ,dvrHoursPerDaySat  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
-        ,dvrHoursPerDaySun  = CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END
+        ,dvrHoursPerDaySat  = 0.0 --CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END Changed 6/3/22 per request
+        ,dvrHoursPerDaySun  = 0.0 --CASE WHEN EecFullTimeORPartTime = 'F' THEN 8.0 else 4.0 END Changed 6/3/22 per request
         ,drvLatestHireDate = EecDateOfLastHire
         ,drvUnionEmployeeIndicator =  Case WHEN (eecunionlocal IS NULL or eecunionnational IS NULL) THEN 'N' 
                                            Else 'Y' 
@@ -813,9 +813,13 @@ BEGIN
         AND BdmCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
+    JOIN  Company WITH (NOLOCK) 
+        ON CmpCoID = xCoID and CmpCompanyCode = 'AGREL'  --- added 8/10/2022 using company code instead of EecUDField01
     WHERE (EecEmplStatus <> 'T'
-        OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate))
-        --AND EecFullTimeOrPartTime <> 'P' 
+        OR (EecEmplStatus = 'T' AND EecDateOfTermination between Dateadd(day,-90 , @EndDate) and @EndDate)) 
+        ---AND eecdedGroupCode not in ( 'NOBEN', 'None') ---client changed criteria wants where eecdedGroupCode = 'USFT'
+        AND EecFullTimeORPartTime <> 'P' ---( EecUDField01 = 'AGREL' and EecFullTimeORPartTime <> 'P')   --changed 8/10/2022 per client USing companycode va EecUDField01
+        AND eecdedGroupCode = 'USFT'
     ;
     ---------------------------------
     -- HEADER RECORD
