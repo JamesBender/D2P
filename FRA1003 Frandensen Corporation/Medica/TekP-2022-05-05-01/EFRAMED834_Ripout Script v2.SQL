@@ -5,7 +5,7 @@ EFRAMED834: Medica 834 Export
 FormatCode:     EFRAMED834
 Project:        Medica 834 Export
 Client ID:      FRA1003
-Date/time:      2022-08-05 10:50:47.257
+Date/time:      2022-08-12 09:06:55.303
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFRAMED834_20220805.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFRAMED834_20220812.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'S9ZCA',NULL,NULL,NULL,'Medica 834 Passive OE','202207279','EMPEXPORT','OEPASSIVE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','S9ZCA',NULL,NULL,NULL,'Medica 834 OnDemand','202207279','EMPEXPORT','ONDM_XOE','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271','118','','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'S9ZCA',NULL,NULL,NULL,'Medica 834 SCH','202207279','EMPEXPORT','SCH_EFRAME','Aug  2 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Jul 27 2022 12:00AM','Dec 30 1899 12:00AM','202207271',NULL,'','','202207271',dbo.fn_GetTimedKey(),NULL,'us3mWaFRA1003',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','S9ZCA',NULL,NULL,NULL,'Medica 834 Test','202207279','EMPEXPORT','TEST_XOE','Aug  3 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202207279','Aug  3 2022 12:00AM','Dec 30 1899 12:00AM','202207271','118','','','202207271',dbo.fn_GetTimedKey(),NULL,'us3kEpFRA1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','RCHLG,S9Z0A,S9Z66,S9ZCA,S9ZEQ,S9ZKW',NULL,NULL,NULL,'Medica 834 Test','202208129','EMPEXPORT','TEST_XOE','Aug 12 2022 12:00AM','EFRAMED834',NULL,NULL,NULL,'202208129','Aug 12 2022 12:00AM','Dec 30 1899 12:00AM','202208111','118','','','202208111',dbo.fn_GetTimedKey(),NULL,'us3kEpFRA1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -385,7 +385,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -- U_dsi_Configuration inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFRAMED834','834LineFeed','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFRAMED834','834LineFeed','V','N');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFRAMED834','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFRAMED834','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFRAMED834','InitialSort','C','LEFT(drvInitialSort,20)');
@@ -534,7 +534,7 @@ CREATE TABLE [dbo].[U_EFRAMED834_DrvTbl] (
     [drvINS0601_MEDICAREPLANCODE] varchar(1) NOT NULL,
     [drvINS0602_EligibilityRsnCode] varchar(1) NOT NULL,
     [drvINS07_COBRAQualEventCode] varchar(1) NOT NULL,
-    [drvINS08_EmploymentStatusCode] varchar(2) NOT NULL,
+    [drvINS08_EmploymentStatusCode] varchar(2) NULL,
     [drvINS09_StudentStatusCode] varchar(1) NOT NULL,
     [drvINS10_ResponseCode] varchar(1) NULL,
     [drvINS11_DateTimeFormatQual] varchar(2) NULL,
@@ -562,16 +562,16 @@ CREATE TABLE [dbo].[U_EFRAMED834_DrvTbl] (
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
-    [drvNM106_NamePrefix1] varchar(30) NULL,
+    [drvNM106_NamePrefix1] varchar(1) NOT NULL,
     [drvNM107_NameSuffix1] varchar(8000) NULL,
     [drvNM108_IDCodeQualifier1] varchar(2) NULL,
     [drvNM109_IDCode1] char(11) NULL,
     [drvPER02_Name] varchar(1) NOT NULL,
-    [drvPER03_CommNumberQualifier] varchar(2) NOT NULL,
+    [drvPER03_CommNumberQualifier] varchar(2) NULL,
     [drvPER04_CommunicationNumber] varchar(50) NULL,
-    [drvPER05_CommNumberQualifier] varchar(2) NOT NULL,
+    [drvPER05_CommNumberQualifier] varchar(2) NULL,
     [drvPER06_CommunicationNumber] varchar(50) NULL,
-    [drvPER07_CommNumberQualifier] varchar(2) NOT NULL,
+    [drvPER07_CommNumberQualifier] varchar(2) NULL,
     [drvPER08_CommunicationNumber] varchar(50) NULL,
     [drvN301_AddressLine1] varchar(6000) NULL,
     [drvN302_AddressLine2] varchar(6000) NULL,
@@ -690,14 +690,14 @@ CREATE TABLE [dbo].[U_EFRAMED834_File] (
 IF OBJECT_ID('U_EFRAMED834_HdrTbl') IS NULL
 CREATE TABLE [dbo].[U_EFRAMED834_HdrTbl] (
     [drvISA05_SenderIDQual] varchar(2) NOT NULL,
-    [drvISA06_SenderID] char(9) NULL,
+    [drvISA06_SenderID] varchar(9) NOT NULL,
     [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
     [drvISA08_ReceiverID] varchar(8) NOT NULL,
     [drvISA09_InterchangeDate] varchar(6) NULL,
     [drvISA10_InterchangeTime] varchar(4) NULL,
     [drvISA15_UsageIndicator] varchar(1) NOT NULL,
     [drvISA16_ComponentSeprator] varchar(1) NOT NULL,
-    [drvGS02_SenderID] char(9) NULL,
+    [drvGS02_SenderID] varchar(9) NOT NULL,
     [drvGS03_ReceiverID] varchar(3) NOT NULL,
     [drvGS04_Date] varchar(8) NULL,
     [drvGS05_Time] varchar(4) NULL,
@@ -726,7 +726,7 @@ CREATE TABLE [dbo].[U_EFRAMED834_HdrTbl] (
     [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
     [drvN102_Name1] varchar(20) NOT NULL,
     [drvN103_IDCodeQual1] varchar(2) NOT NULL,
-    [drvN104_IDCode1] char(9) NULL,
+    [drvN104_IDCode1] varchar(9) NOT NULL,
     [drvN101_EntityIDCodeSponsor2] varchar(2) NOT NULL,
     [drvN102_Name2] varchar(6) NOT NULL,
     [drvN103_IDCodeQual2] varchar(2) NOT NULL,
@@ -982,14 +982,14 @@ BEGIN
     IF OBJECT_ID('U_EFRAMED834_HdrTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EFRAMED834_HdrTbl;
     SELECT DISTINCT drvISA05_SenderIDQual = '30'
-        ,drvISA06_SenderID = CmpFedTaxID
+        ,drvISA06_SenderID = '261541563' --CmpFedTaxID
         ,drvISA07_ReceiverIDQual = '30'
         ,drvISA08_ReceiverID = '41128245'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
         ,drvISA10_InterchangeTime = @RunTime
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
         ,drvISA16_ComponentSeprator = ':'
-        ,drvGS02_SenderID = CmpFedTaxID
+        ,drvGS02_SenderID = '261541563' --CmpFedTaxID
         ,drvGS03_ReceiverID = 'COS'
         ,drvGS04_Date = @RunDate
         ,drvGS05_Time = @RunTime
@@ -1018,7 +1018,7 @@ BEGIN
         ,drvN101_EntityIDCodeSponsor1 = 'P5'
         ,drvN102_Name1 = 'Frandsen Corporation'
         ,drvN103_IDCodeQual1 = 'FI'
-        ,drvN104_IDCode1 = CmpFedTaxID
+        ,drvN104_IDCode1 = '261541563' --CmpFedTaxID
         ,drvN101_EntityIDCodeSponsor2 = 'IN'
         ,drvN102_Name2 = 'MEDICA'
         ,drvN103_IDCodeQual2 = 'FI'
@@ -1070,7 +1070,7 @@ BEGIN
         ,drvINS0601_MEDICAREPLANCODE = ''
         ,drvINS0602_EligibilityRsnCode = ''
         ,drvINS07_COBRAQualEventCode = ''
-        ,drvINS08_EmploymentStatusCode = 'FT'
+        ,drvINS08_EmploymentStatusCode = CASE WHEN BdmRecType = 'EMP' THEN  'FT' END
                                             --CASE WHEN BdmRecType = 'EMP' THEN
                                             --    CASE WHEN EecEmplStatus = 'T' THEN 'TE' --Termination
                                             --         WHEN EecFullTimeOrPartTime = 'F' THEN 'FT' --Full time active employee
@@ -1120,7 +1120,7 @@ BEGIN
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = 'DPT'
+        ,drvDTP00_DateTime1 = 'DTP'
         ,drvDTP01_DateTimeQualifier1 = '336'
         ,drvDTP02_DateTimeFormatQual1 = '08'
         ,drvDTP03_DateTimePeriod1 =  EecDateOfLastHire 
@@ -1149,7 +1149,7 @@ BEGIN
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
+        ,drvNM106_NamePrefix1 = ''--CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
         ,drvNM107_NameSuffix1 = Replace(CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
                                      WHEN BdmRecType = 'DEP' THEN ConNameSuffix
                                     
@@ -1161,16 +1161,11 @@ BEGIN
                                 WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN ConSSN
                             END
         ,drvPER02_Name = ''
-        ,drvPER03_CommNumberQualifier = 'HP'
-                                        --CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP'
-                                        --    WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail, '') <> '' THEN 'EM'
-                                       -- END
-        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber
-                                          --  WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail, '') <> '' THEN eepAddressEMail
-                                        END
-        ,drvPER05_CommNumberQualifier =  'EM' --  CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' AND ISNULL(eepAddressEMail, '') <> '' THEN 'EM' END
+        ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP' END
+        ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN EepPhoneHomeNumber END
+        ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail, '') <> '' THEN 'EM' END
         ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ISNULL(eepAddressEMail, '') <> '' THEN eepAddressEMail END
-        ,drvPER07_CommNumberQualifier = 'WP' 
+        ,drvPER07_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EecPhoneBusinessNumber, '') <> '' THEN 'WP' END
         ,drvPER08_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EecPhoneBusinessNumber, '') <> '' THEN  EecPhoneBusinessNumber END
         ,drvN301_AddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
         ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
@@ -1281,10 +1276,10 @@ BEGIN
                                      END
         ,drvHD04_PlanCoverageDesc = ''
         ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM525')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM526')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM527')) THEN 'ECH'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM528')) THEN 'FAM'
+                                                CASE WHEN BdmRecType = 'EMP'and BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM525')) THEN 'EMP'
+                                                     WHEN BdmRecType = 'EMP' and BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM526')) THEN 'ESP'
+                                                     WHEN BdmRecType = 'EMP' and BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM527')) THEN 'ECH'
+                                                     WHEN BdmRecType = 'EMP' and BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EM528')) THEN 'FAM'
                                                 END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -1396,7 +1391,7 @@ END;
 
 --Alter the View
 ALTER VIEW dbo.dsi_vwEFRAMED834_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_EFRAMED834_File (NOLOCK)
+    SELECT TOP 20000000 UPPER(Data) AS UPPERDATA FROM dbo.U_EFRAMED834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 GO
 
@@ -1417,7 +1412,7 @@ WHERE ExpFormatCode = 'EFRAMED834';
 **********************************************************************************/
 GO
 CREATE VIEW dbo.dsi_vwEFRAMED834_Export AS
-    SELECT TOP 20000000 DATA FROM dbo.U_EFRAMED834_File (NOLOCK)
+    SELECT TOP 20000000 UPPER(Data) AS UPPERDATA FROM dbo.U_EFRAMED834_File (NOLOCK)
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 
 GO

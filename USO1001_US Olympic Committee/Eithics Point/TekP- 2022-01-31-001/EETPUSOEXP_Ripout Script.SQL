@@ -5,7 +5,7 @@ EETPUSOEXP: Ethics Point Demo Export
 FormatCode:     EETPUSOEXP
 Project:        Ethics Point Demo Export
 Client ID:      USO1001
-Date/time:      2022-06-28 14:33:53.240
+Date/time:      2022-08-18 11:49:07.407
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -213,7 +213,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EETPUSOEXP_20220628.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EETPUSOEXP_20220818.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -224,7 +224,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202205109','EMPEXPORT','OE PASSIVE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Ethics Point Demo Export','202205109','EMPEXPORT','ONDEM_XOE',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202205109','EMPEXPORT','SCH_EETPUS',NULL,'EETPUSOEXP',NULL,NULL,NULL,'202205109','May 10 2022  8:48PM','May 10 2022  8:48PM','202205101',NULL,'','','202205101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V5C45',NULL,NULL,NULL,'Test Purposes Only','202206289','EMPEXPORT','TEST_XOE','Jun 28 2022  2:18PM','EETPUSOEXP',NULL,NULL,NULL,'202206289','Jun 28 2022 12:00AM','Dec 30 1899 12:00AM','202206211','551','','','202206211',dbo.fn_GetTimedKey(),NULL,'us3jReUSO1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','V5C45',NULL,NULL,NULL,'Test Purposes Only','202208179','EMPEXPORT','TEST_XOE','Jul  1 2022  3:19PM','EETPUSOEXP',NULL,NULL,NULL,'202208179','Jul  1 2022 12:00AM','Dec 30 1899 12:00AM','202208171','551','','','202208171',dbo.fn_GetTimedKey(),NULL,'us3jReUSO1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -478,6 +478,7 @@ Revision History
 Update By           Date           Request Num        Desc
 Marie Waters       06/22/2022     TekP- 2022-01-31-001   Added code for Comparatio field
 Marie Waters       06/28/2022     TekP- 2022-01-31-001   FirstName and PreferredName were missing the Pipe delimiter
+Marie Waters       08/18/2022      TekP- 2022-01-31-001   Changed the tenure field     -- CAST( Format((DATEDIFF(day,EecDateOfLastHire,getdate()) / 365.2425 ),'N1') as varchar)        
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EETPUSOEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EETPUSOEXP';
@@ -596,7 +597,7 @@ BEGIN
         ,drvEmploymentStatus = eecEmplStatus
         ,drvDateofHire = EecDateOfLastHire
         ,drvTimeinJob = EecDateInJob
-        ,drvTenure = CAST( Format((DATEDIFF(day,EecDateOfLastHire,getdate()) / 365 ),'N2') as varchar)
+        ,drvTenure = CAST( Format((DATEDIFF(day,EecDateOfLastHire,getdate()) / 365.2425 ),'N1') as varchar)  -- updated per client 8/22/2022 from  CAST( Format((DATEDIFF(day,EecDateOfLastHire,getdate()) / 365 ),'N2') as varchar)
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
         ,drvAddress = Concat(Isnull(eepAddressLine1,''), ' ' , Isnull(eepAddressLine2,''))
         ,drvCity = EepAddressCity
@@ -701,11 +702,12 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202205031'
-       ,expStartPerControl     = '202205031'
-       ,expLastEndPerControl   = '202205109'
-       ,expEndPerControl       = '202205109'
-WHERE expFormatCode = 'EETPUSOEXP';
+    SET expLastStartPerControl = '202208171'
+       ,expStartPerControl     = '202208171'
+       ,expLastEndPerControl   = '202208179'
+       ,expEndPerControl       = '202208179'
+WHERE expFormatCode = 'EETPUSOEXP'
+and  ExpExportCode ='TEST_XOE';
 
 **********************************************************************************/
 GO
