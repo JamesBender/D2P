@@ -5,7 +5,7 @@ ECIGACHEXP: Cigna Acc/Crit Ill/Hosp Export
 FormatCode:     ECIGACHEXP
 Project:        Cigna Acc/Crit Ill/Hosp Export
 Client ID:      PHO1004
-Date/time:      2022-07-29 08:47:21.850
+Date/time:      2022-08-18 05:12:24.857
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -239,7 +239,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220729.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220818.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -357,7 +357,7 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(9) NULL,
+    [drvSort] char(12) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvStreetAddress] varchar(8000) NULL,
@@ -375,7 +375,7 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvCoverageEffectiveDate] datetime NULL,
     [drvPlanType] varchar(8) NULL,
     [drvAiCiHcCoverTier] varchar(10) NULL,
-    [drvEECIAppCovAmount] varchar(5) NOT NULL,
+    [drvEECIAppCovAmount] varchar(5) NULL,
     [drvSPCIAppCovAmount] varchar(5) NOT NULL,
     [drvSpCoverageEffectiveDate] datetime NULL,
     [drvChCoverageAmount] varchar(5) NULL,
@@ -650,7 +650,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ConRelationship + ' ' + ISNULL(BdmDedCode , 'npon') -- xEEID
+        ,drvSort = xEEID
         -- standard fields above and additional driver fields below
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
@@ -694,16 +694,16 @@ BEGIN
 
 
 
-        ,drvEECIAppCovAmount = CASE WHEN BdmDedCode IN ('CIE','CIESP','CIECH','CIEFM') THEN '30000' ELSE '0' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
+        ,drvEECIAppCovAmount = CASE WHEN BdmDedCode IN ('CIE','CIESP','CIECH','CIEFM') THEN '30000' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
         ,drvSPCIAppCovAmount = CASE WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('DP','SPS') THEN '30000' ELSE '0' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
-        ,drvSpCoverageEffectiveDate =    CASE WHEN ConRelationship IN ('SPS','DP','Family') AND BdmDedCode IN ('VHOSP','VACC') THEN BdmBenStartDate
+        ,drvSpCoverageEffectiveDate =  BdmSpouseBenStartDate /*  CASE WHEN ConRelationship IN ('SPS','DP','Family') AND BdmDedCode IN ('VHOSP','VACC') THEN BdmBenStartDate
                                         WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('SPS','DP','Family') THEN BdmSpouseBenStartDate
-                                        END
+                                        END*/
 
         ,drvChCoverageAmount =    CASE WHEN BdmDedCode IN ('CIECH','CIEFM') AND BdmChildCode IN ('CHD','CHL','STC','DPC','Family') THEN '15000' END
-        ,drvChCoverageEffectiveDate =    CASE WHEN BdmDedCode IN ('VACC','VHOSP') AND BdmChildCode IN ('CHD','CHL','STD','DPC','Family') THEN BdmBenStartDate
+        ,drvChCoverageEffectiveDate = BdmChildBenStartDate /*   CASE WHEN BdmDedCode IN ('VACC','VHOSP') AND BdmChildCode IN ('CHD','CHL','STD','DPC','Family') THEN BdmBenStartDate
                                         WHEN BdmDedCode IN ('CIECH','CIEFM') AND BdmChildCode IN ('CHD','CHL','STC','DPC','Family') THEN BdmBenStartDate
-                                        END
+                                        END*/
 
 
 
@@ -760,6 +760,7 @@ BEGIN
                 ,MAX(CASE WHEN BdmRelationship IN ('CHD','CHL','STC','DPC') THEN BdmBenStartDate END) AS BdmChildBenStartDate
                 ,MAX(BdmEEAmt) AS BdmEEAmt
             FROM dbo.U_dsi_BDM_ECIGACHEXP WITH (NOLOCK)
+            WHERE BdmBenStatus = 'A'
             GROUP BY BdmEEID, BdmCOID, BdmDedCode, BdmBenOption, BdmBenStatus, BdmBenStopDate) AS Bdm
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID

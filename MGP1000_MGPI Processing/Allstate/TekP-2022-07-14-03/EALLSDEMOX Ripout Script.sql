@@ -5,7 +5,7 @@ EALLSDEMOX: Allstate Demo Export
 FormatCode:     EALLSDEMOX
 Project:        Allstate Demo Export
 Client ID:      MGP1000
-Date/time:      2022-08-03 05:42:50.927
+Date/time:      2022-08-11 13:19:24.523
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -207,7 +207,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EALLSDEMOX_20220803.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EALLSDEMOX_20220811.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -216,7 +216,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Allstate Demo Export','202208029','EMPEXPORT','ONDEM_XOE','Aug  2 2022  5:27AM','EALLSDEMOX',NULL,NULL,NULL,'202208029','Aug  2 2022  4:43AM','Aug  2 2022  4:43AM','202208021','616','','','202208021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Allstate Demo Export-Sched','202208029','EMPEXPORT','SCH_EALLSD','Aug  2 2022  5:28AM','EALLSDEMOX',NULL,NULL,NULL,'202208029','Aug  2 2022  4:43AM','Aug  2 2022  4:43AM','202208021','616','','','202208021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','WA3OC,M0UP1,M0U4Y',NULL,NULL,NULL,'Allstate Demo Export-Test','202208029','EMPEXPORT','TEST_XOE','Aug  2 2022  9:08PM','EALLSDEMOX',NULL,NULL,NULL,'202208029','Aug  2 2022 12:00AM','Dec 30 1899 12:00AM','202207191','624','','','202207191',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','WA3OC,M0UP1,M0U4Y',NULL,NULL,NULL,'Allstate Demo Export-Test','202208101','EMPEXPORT','TEST_XOE','Aug 10 2022  2:02PM','EALLSDEMOX',NULL,NULL,NULL,'202208101','Aug 10 2022 12:00AM','Dec 30 1899 12:00AM','202208011','624','','','202208011',dbo.fn_GetTimedKey(),NULL,'us3cPeMGP1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -415,6 +415,9 @@ BEGIN
     DELETE FROM dbo.U_EALLSDEMOX_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EALLSDEMOX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    DELETE FROM dbo.U_EALLSDEMOX_EEList
+    WHERE xEEID IN (SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE EecEEType <> 'REG')
 
 
     --==========================================

@@ -5,7 +5,7 @@ EGDLSTD834: Guardian L/S TD 834
 FormatCode:     EGDLSTD834
 Project:        Guardian L/S TD 834
 Client ID:      PRO1045
-Date/time:      2022-08-05 11:50:50.207
+Date/time:      2022-08-15 05:20:56.300
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -285,7 +285,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGDLSTD834Z0','1','D','27','2',NULL,'Frequency Code',NULL,NULL,'"drvICM01_FrequencyCode"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGDLSTD834Z0','18','D','27','3',NULL,'Monetary Amount',NULL,NULL,'"drvICM02_MonetaryAmount"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EGDLSTD834Z0','15','D','27','4',NULL,'Quantity',NULL,NULL,'"drvICM03_Quantity"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EGDLSTD834Z0','30','D','27','5',NULL,'Location Identifier Description',NULL,NULL,'"drvICM04_LocationID"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EGDLSTD834Z0','30','D','27','5',NULL,'Location Identifier Description',NULL,NULL,'"drvICM04_LocationID"','(''UD112''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGDLSTD834Z0','3','D','28','1',NULL,'ACM Segment ID (Loop1000A)',NULL,NULL,'"drvAMT00_SegmentID1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGDLSTD834Z0','18','D','28','2',NULL,'Monetary Amount',NULL,NULL,'"drvAMT01_AmountQualifierCode1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGDLSTD834Z0','1','D','28','3',NULL,'Credit/Debit Flag Code',NULL,NULL,'"drvAMT02_MonetaryAmount1"','(''UA''=''T*'')');
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGDLSTD834_20220805.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGDLSTD834_20220815.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -618,7 +618,7 @@ CREATE TABLE [dbo].[U_EGDLSTD834_DrvTbl_2300] (
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NULL,
-    [drvHD04_PlanCoverageDesc] money NULL,
+    [drvHD04_PlanCoverageDesc] nvarchar(4000) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
@@ -860,7 +860,7 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = 'ADDC,ADDE,ADDS,ADDER,GLIFC,GLIFE,GLIFS,LIFEC,LIFEE,LIFES,STD,LTD';
+    SET @DedList = 'ADDC,ADDE,ADDS,ADDER,GLIFC,GLIFE,GLIFS,LIFEC,LIFEE,LIFES,STD,LTD,LTDP,STDP';
 
     IF OBJECT_ID('U_EGDLSTD834_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EGDLSTD834_DedList;
@@ -880,6 +880,10 @@ BEGIN
     DELETE FROM dbo.U_EGDLSTD834_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EGDLSTD834_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    DELETE FROM dbo.U_EGDLSTD834_EEList WHERE xEEID IN (
+        SELECT EepEEID FROM dbo.EmpPers WITH (NOLOCK) WHERE EepNameLast = 'Test 0' AND EepNameFirst = 'Test 0'
+    )
 
     IF @ExportCode LIKE 'OE%'
     BEGIN
@@ -1176,7 +1180,7 @@ BEGIN
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' THEN '7' END --'7'
         ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
-        ,drvICM03_Quantity = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecScheduledWorkHrs) END
+        ,drvICM03_Quantity = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,'40') END
         ,drvICM04_LocationID = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
                                 /*CASE WHEN BdmRecType = 'EMP' THEN
                                         CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
@@ -1252,7 +1256,7 @@ BEGIN
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
-        ,drvHD02_MaintReasonCode = ''
+        ,drvHD02_MaintReasonCode = '' --BdmDedCode
         ,drvHD03_InsuranceLineCode =    CASE    WHEN BdmRecType = 'EMP' THEN
                                             CASE    WHEN BdmDedCode = 'GLIFE' THEN 'AH'
                                                     WHEN BdmDedCode = 'ADD' THEN 'AJ'
@@ -1272,14 +1276,14 @@ BEGIN
                                                      WHEN BdmDedCode = 'GLIFS' THEN 'HE'
                                             END
                                         END
-        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'ADDE' THEN ADDE_BenAmt
-                                    WHEN BdmDedCode = 'ADDC' THEN ADDC_BenAmt
-                                    WHEN BdmDedCode = 'ADDS' THEN ADDS_BenAmt
-                                    WHEN BdmDedCode = 'LIFEE' THEN LIFEE_BenAmt
-                                    WHEN BdmDedCode = 'LIFEC' THEN LIFEC_BenAmt
-                                    WHEN BdmDedCode = 'LIFES' AND ConRelationship IN ('SPS','DP') THEN LIFES_BenAmt
-                                    WHEN BdmDedCode IN ('GLIFE','ADDER','LTD','LTDP','STD','STDP') THEN ''
-                                    END
+        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'ADDE' THEN FORMAT(ADDE_BenAmt, '#0.00')
+                                        WHEN BdmDedCode = 'ADDC' THEN FORMAT(ADDC_BenAmt, '#0.00')
+                                        WHEN BdmDedCode = 'ADDS' THEN FORMAT(ADDS_BenAmt, '#0.00')
+                                        WHEN BdmDedCode = 'LIFEE' THEN FORMAT(LIFEE_BenAmt, '#0.00')
+                                        WHEN BdmDedCode = 'LIFEC' THEN FORMAT(LIFEC_BenAmt, '#0.00')
+                                        WHEN BdmDedCode = 'LIFES' AND ConRelationship IN ('SPS','DP') THEN FORMAT(LIFES_BenAmt, '#0.00')
+                                        WHEN BdmDedCode IN ('GLIFE','ADDER','LTD','LTDP','STD','STDP') THEN ''
+                                        END
                                         --CASE WHEN BdmDedCode = 'ADDE' THEN 'Member Voluntary AD&D'
                                         --WHEN BdmDedCode = 'ADDC' THEN 'Child Voluntary AD&D'
                                         --WHEN BdmDedCode = 'ADDS' THEN 'Spouse Voluntary AD&D'
@@ -1301,7 +1305,7 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
         ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
-        ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
+        ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL AND BdmDedCode NOT IN ('LTD','LTDP','STD','STDP','GLIFE') THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
         ,drvDTP02_DateTimeFormatQual_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'D8' END
         ,drvDTP03_DateTimePeriod_349 = CASE WHEN BdmDedCode NOT IN ('GLIFS','GLIFC','GLIFE','STD','STDP','LTD','LTDP','ADDER') THEN BdmBenStopDate END
