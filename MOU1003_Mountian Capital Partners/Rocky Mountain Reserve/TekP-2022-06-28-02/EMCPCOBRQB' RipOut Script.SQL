@@ -5,7 +5,7 @@ EMCPCOBRQB: MCP Cobra QB Export
 FormatCode:     EMCPCOBRQB
 Project:        MCP Cobra QB Export
 Client ID:      MOU1003
-Date/time:      2022-08-18 10:25:36.700
+Date/time:      2022-08-31 10:17:14.057
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -118,8 +118,6 @@ IF OBJECT_ID('U_EMCPCOBRQB_File') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_Fil
 GO
 IF OBJECT_ID('U_EMCPCOBRQB_EEList') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_EEList];
 GO
-IF OBJECT_ID('U_EMCPCOBRQB_Edh_WorkingTable') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_Edh_WorkingTable];
-GO
 IF OBJECT_ID('U_EMCPCOBRQB_drvTbl_QBPLANINITIAL') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_drvTbl_QBPLANINITIAL];
 GO
 IF OBJECT_ID('U_EMCPCOBRQB_drvTbl_QBEVENT') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_drvTbl_QBEVENT];
@@ -131,6 +129,10 @@ GO
 IF OBJECT_ID('U_EMCPCOBRQB_drvTbl_QB') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_drvTbl_QB];
 GO
 IF OBJECT_ID('U_EMCPCOBRQB_DedList') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_DedList];
+GO
+IF OBJECT_ID('U_EMCPCOBRQB_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_AuditFields];
+GO
+IF OBJECT_ID('U_EMCPCOBRQB_Audit') IS NOT NULL DROP TABLE [dbo].[U_EMCPCOBRQB_Audit];
 GO
 IF OBJECT_ID('U_dsi_BDM_EMCPCOBRQB') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EMCPCOBRQB];
 GO
@@ -166,21 +168,21 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EMCPCOBRQBZ0','50','D','10','17',NULL,'PostalCode',NULL,NULL,'"drvAddressZipCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EMCPCOBRQBZ0','50','D','10','18',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EMCPCOBRQBZ0','50','D','10','19',NULL,'PremiumAddressSameAsPrimary',NULL,NULL,'"TRUE"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EMCPCOBRQBZ0','50','D','10','20',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EMCPCOBRQBZ0','50','D','10','21',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EMCPCOBRQBZ0','50','D','10','22',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EMCPCOBRQBZ0','50','D','10','23',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EMCPCOBRQBZ0','50','D','10','24',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EMCPCOBRQBZ0','50','D','10','25',NULL,NULL,NULL,NULL,'"drvGender"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EMCPCOBRQBZ0','50','D','10','26',NULL,'Gender',NULL,NULL,'"drvDateOfBirth"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EMCPCOBRQBZ0','50','D','10','27',NULL,'DOB',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EMCPCOBRQBZ0','50','D','10','20',NULL,NULL,NULL,NULL,'" "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EMCPCOBRQBZ0','50','D','10','21',NULL,NULL,NULL,NULL,'" "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EMCPCOBRQBZ0','50','D','10','22',NULL,NULL,NULL,NULL,'" "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EMCPCOBRQBZ0','50','D','10','23',NULL,NULL,NULL,NULL,'" "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EMCPCOBRQBZ0','50','D','10','24',NULL,NULL,NULL,NULL,'" "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EMCPCOBRQBZ0','50','D','10','25',NULL,NULL,NULL,NULL,'" "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EMCPCOBRQBZ0','50','D','10','26',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EMCPCOBRQBZ0','50','D','10','27',NULL,'DOB',NULL,NULL,'"drvDateOfBirth"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EMCPCOBRQBZ0','50','D','10','28',NULL,'TobaccoUse',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EMCPCOBRQBZ0','50','D','10','29',NULL,'EmployeeType',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EMCPCOBRQBZ0','50','D','10','30',NULL,'EmployeePayrollType',NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EMCPCOBRQBZ0','50','D','10','31',NULL,NULL,NULL,NULL,'"COUPONBOOK"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EMCPCOBRQBZ0','50','D','10','32',NULL,'PremiumCouponType',NULL,NULL,'"FALSE"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EMCPCOBRQBZ0','50','D','10','33',NULL,'UsesHCTC',NULL,NULL,'"TRUE"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EMCPCOBRQBZ0','50','D','10','34',NULL,'Active',NULL,NULL,'"FALSE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EMCPCOBRQBZ0','50','D','10','30',NULL,'EmployeePayrollType',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EMCPCOBRQBZ0','50','D','10','31',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EMCPCOBRQBZ0','50','D','10','32',NULL,'PremiumCouponType',NULL,NULL,'"COUPONBOOK"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EMCPCOBRQBZ0','50','D','10','33',NULL,'UsesHCTC',NULL,NULL,'"FALSE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EMCPCOBRQBZ0','50','D','10','34',NULL,'Active',NULL,NULL,'"TRUE"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EMCPCOBRQBZ0','50','D','10','35',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EMCPCOBRQBZ0','50','D','10','36',NULL,NULL,NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EMCPCOBRQBZ0','50','D','10','37',NULL,NULL,NULL,NULL,'""','(''DA''=''T'')');
@@ -232,7 +234,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMCPCOBRQB_20220818.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMCPCOBRQB_20220831.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -241,9 +243,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202208059','EMPEXPORT','OEACTIVE',NULL,'EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022  1:35PM','Aug  5 2022  1:35PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208059','EMPEXPORT','OEPASSIVE',NULL,'EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022  1:35PM','Aug  5 2022  1:35PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202208059','EMPEXPORT','ONDEM_XOE',NULL,'EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022  1:35PM','Aug  5 2022  1:35PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202208059','EMPEXPORT','SCH_EMCPCO',NULL,'EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022  1:35PM','Aug  5 2022  1:35PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,NULL,'202208059','EMPEXPORT','TEST_XOE',NULL,'EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022  1:35PM','Aug  5 2022  1:35PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MCP Cobra QB Export','202208059','EMPEXPORT','ONDEM_XOE','Aug 30 2022 12:00AM','EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022 12:00AM','Dec 30 1899 12:00AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'us3mWaMOU1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MCP Cobra QB Export-Sched','202208059','EMPEXPORT','SCH_EMCPCO','Aug 30 2022 12:00AM','EMCPCOBRQB',NULL,NULL,NULL,'202208059','Aug  5 2022 12:00AM','Dec 30 1899 12:00AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'us3mWaMOU1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'MCP Cobra QB Export-Test Only','202208319','EMPEXPORT','TEST_XOE','Aug 31 2022 12:00AM','EMCPCOBRQB',NULL,NULL,NULL,'202208319','Aug 31 2022 12:00AM','Dec 30 1899 12:00AM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'us3mWaMOU1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -336,6 +338,34 @@ CREATE TABLE [dbo].[U_dsi_BDM_EMCPCOBRQB] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EMCPCOBRQB_Audit
+-----------
+
+IF OBJECT_ID('U_EMCPCOBRQB_Audit') IS NULL
+CREATE TABLE [dbo].[U_EMCPCOBRQB_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EMCPCOBRQB_AuditFields
+-----------
+
+IF OBJECT_ID('U_EMCPCOBRQB_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EMCPCOBRQB_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
 );
 
 -----------
@@ -433,7 +463,7 @@ CREATE TABLE [dbo].[U_EMCPCOBRQB_drvTbl_QBEVENT] (
     [drvSort2] int NOT NULL,
     [drvSort3] varchar(1) NOT NULL,
     [drvSort4] int NOT NULL,
-    [edhChangeReason] char(6) NULL,
+    [BdmCobraReason] char(6) NULL,
     [drvEventType] varchar(29) NULL,
     [drvEventDate] datetime NULL,
     [drvEnrollmentDate] datetime NULL,
@@ -456,19 +486,6 @@ CREATE TABLE [dbo].[U_EMCPCOBRQB_drvTbl_QBPLANINITIAL] (
     [drvSort4] varchar(2) NOT NULL,
     [drvPlanName] varchar(31) NULL,
     [drvCoverageLevel] varchar(18) NULL
-);
-
------------
--- Create table U_EMCPCOBRQB_Edh_WorkingTable
------------
-
-IF OBJECT_ID('U_EMCPCOBRQB_Edh_WorkingTable') IS NULL
-CREATE TABLE [dbo].[U_EMCPCOBRQB_Edh_WorkingTable] (
-    [EdhEEID] char(12) NOT NULL,
-    [EdhCoID] char(5) NOT NULL,
-    [EdhDedCode] char(5) NOT NULL,
-    [EdhChangeReason] char(6) NULL,
-    [EdhEffDate] datetime NULL
 );
 
 -----------
@@ -612,6 +629,48 @@ BEGIN
         SELECT DISTINCT EecEEID FROM dbo.EmpComp WITH (NOLOCK) WHERE eecEEType IN('TES')
     );
 
+      --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EMCPCOBRQB_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EMCPCOBRQB_AuditFields;
+    CREATE TABLE dbo.U_EMCPCOBRQB_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    
+    INSERT INTO dbo.U_EMCPCOBRQB_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    INSERT INTO dbo.U_EMCPCOBRQB_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    INSERT INTO dbo.U_EMCPCOBRQB_AuditFields VALUES ('EmpComp','EecTermReason');
+    INSERT INTO dbo.U_EMCPCOBRQB_AuditFields VALUES ('EmpDed','eedBenStartDate');
+    INSERT INTO dbo.U_EMCPCOBRQB_AuditFields VALUES ('EmpDed','eedBenOption');
+    INSERT INTO dbo.U_EMCPCOBRQB_AuditFields VALUES ('EmpDed','eedDedCode');
+
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EMCPCOBRQB_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EMCPCOBRQB_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EMCPCOBRQB_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EMCPCOBRQB_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN dateadd(D, -14, @StartDate) AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EMCPCOBRQB_Audit ON dbo.U_EMCPCOBRQB_Audit (audEEID,audKey2);
+
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -686,58 +745,10 @@ BEGIN
 
 
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
-  ---==========================================
- --   -- Insert into BDM Reason code 201 and 204
- --   --==========================================
-    INSERT INTO [dbo].[U_dsi_BDM_EMCPCOBRQB]
-           ([BdmRecType]
-           ,[BdmCOID]
-           ,[BdmEEID]
-           ,[BdmDepRecID]
-           ,[BdmSystemID]
-           ,[BdmRunID]
-           ,[BdmDedRowStatus]
-           ,[BdmRelationship]
-           ,[BdmDateOfBirth]
-           ,[BdmDedCode]
-           ,[BdmBenOption]
-           ,[BdmBenStartDate]
-           ,[BdmBenStopDate]
-           ,[BdmBenStatusDate]
-           ,[BdmDateOFCobraEvent]
-           ,[BdmChangeReason]
-           ,[BdmCobraReason]
-           ,[BdmStartDate]
-           ,[BdmStopDate]
-           ,[BdmIsPQB]
-    )
-    SELECT rectype = 'DEP'
-        ,EdhCoid
-        ,EdhEEID
-        ,DbnDepRecID
-        ,DbnDepRecID
-        ,'QB'
-        ,'Data Inserted for 204 Chg reason'
-        ,DbnRelationship
-        ,DbnDateOfBirth
-        ,EdhDedCode
-        ,DbnBenOption
-        ,EdhBenStartDate
-        ,EdhBenStopDate
-        ,EdhBenStatusDate
-        ,EdhBenStatusDate
-        ,'204'
-        ,'204'
-        ,EdhStartDate
-        ,EdhStopDate
-        ,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
-    FROM dbo.emphded WITH (NOLOCK)
-        JOIN dbo.U_dsi_BDM_DepDeductions 
-            ON dbneeid = edheeid 
-            AND dbnformatcode = 'EMCPCOBRQB'
-    WHERE edhChangeReason in ('204') 
-        AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
-        AND dbnValidForExport = 'N'
+
+     ---========================================================================
+ --   -- Insert into BDM Reason code 201 (Dependent at Max Age) - Only show EE
+ --   --======================================================================
 
     INSERT INTO [dbo].[U_dsi_BDM_EMCPCOBRQB]
     (    [BdmRecType]
@@ -751,6 +762,7 @@ BEGIN
            ,[BdmDateOfBirth]
            ,[BdmDedCode]
            ,[BdmBenOption]
+           ,[BdmBenStatus]
            ,[BdmBenStartDate]
            ,[BdmBenStopDate]
            ,[BdmBenStatusDate]
@@ -760,126 +772,178 @@ BEGIN
            ,[BdmStartDate]
            ,[BdmStopDate]
            ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmEEAmt]
     )
-    Select rectype = 'DEP'
+    Select distinct
+        'EMP'
         ,EdhCoid
         ,EdhEEID
         ,DbnDepRecID
         ,DbnDepRecID
         ,'QB'
-        ,'Data Inserted for 201 Chg reason'
+        ,'Data Inserted for 201 (Dep at Max Age Dep/Loss of elig)'
+        ,'Emp'
+        ,EepDateofBirth
+        ,'EE'
+        ,DbnBenStatus
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        ,EdhBenStopDate
+        ,EdhBenStatusDate
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,EdhStartDate
+        ,EdhStopDate
+        ,'Y'
+        ,'Y'
+        ,edheeamt
+    FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = edheeid 
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+        ON dbneeid = edheeid 
+        AND DbnCoID = EdhCoID
+        AND EdhDedCode = DbnDedCode
+        AND EdhBenOption = DbnBenOption
+        AND dbnformatcode = 'EMCPCOBRQB'
+    WHERE edhChangeReason IN ('201','LEVNT3') 
+        and DbnBenstopdate BETWEEN @startdate AND @enddate 
+        AND dbnValidForExport = 'N'
+            AND DbnBenStatus = 'T'
+
+--    ========================================================================
+ --  Insert into BDM Reason code 204 / LEVNT4 (Divorce/Separation) 
+ --  ======================================================================
+    INSERT INTO [dbo].[U_dsi_BDM_EMCPCOBRQB]
+           ([BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmEEAmt]
+    )
+    SELECT Distinct rectype = 'DEP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 204/LEVNT4 (Divorce/Separation)'
         ,DbnRelationship
         ,DbnDateOfBirth
         ,EdhDedCode
         ,DbnBenOption
+        ,DbnBenStatus
         ,EdhBenStartDate
-        ,EdhBenStopDate
+        --,EdhBenStopDate
+        ,DbnBenStopDate
         ,EdhBenStatusDate
-        ,EdhBenStatusDate
-        ,'201'
-        ,'201'
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,EdhStartDate
+        ,EdhStopDate
+        ,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
+        ,'Y'
+        ,edheeamt
+    FROM dbo.emphded WITH (NOLOCK)
+        JOIN dbo.U_dsi_BDM_DepDeductions 
+            ON dbneeid = edheeid 
+            AND DbnCoID = EdhCoID
+            AND EdhDedCode = DbnDedCode
+            AND EdhBenOption = DbnBenOption
+            AND dbnformatcode = 'EMCPCOBRQB'
+    WHERE edhChangeReason in ('204','LEVNT4') 
+        AND DbnRelationShip = 'SPS'
+        AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
+        AND dbnValidForExport = 'N'
+
+--  --====================================================
+ --   Insert into BDM Reason code 302 (Remove Dependent)
+ --   --==================================================
+    INSERT INTO [dbo].[U_dsi_BDM_EMCPCOBRQB]
+    (    [BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmEEAmt] 
+    )
+    Select Distinct rectype = 'EMP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 302 (Remove Dependent)'
+        ,DbnRelationship
+        ,DbnDateOfBirth
+        ,EdhDedCode
+        ,DbnBenOption
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        ,DbnBenStopDate
+        ,edhEffDate
+        ,edhEffDate
+        ,edhChangeReason
+        ,'302'
         ,EdhStartDate
         ,EdhStopDate
         ,'Y'
+        ,'Y'
+        ,edheeamt
     FROM dbo.emphded WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
         ON dbneeid = edheeid 
+        AND DbnCoID = EdhCoID
+        AND EdhDedCode = DbnDedCode
+        AND EdhBenOption = DbnBenOption
         AND dbnformatcode = 'EMCPCOBRQB'
-    WHERE edhChangeReason IN ('201') 
+    WHERE edhChangeReason IN ('302') 
         and DbnBenstopdate BETWEEN @startdate AND @enddate 
         AND dbnValidForExport = 'N'
+        AND DbnBenStatus = 'T'
 
-    Delete from dbo.U_dsi_BDM_EMCPCOBRQB where bdmdedcode not in (Select dedcode from U_EMCPCOBRQB_DedList)
-
-
-    --==========================================
-    -- Build Working Tables
-    --==========================================
-
-    -----------------------------
-    -- Working Table - PDedHist
-    -----------------------------
-    IF OBJECT_ID('U_EMCPCOBRQB_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EMCPCOBRQB_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        -- Current Payroll Amounts
-        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        -- YTD Payroll Amounts
-        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-        -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    INTO dbo.U_EMCPCOBRQB_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_EMCPCOBRQB_DedList WITH (NOLOCK)
-        ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
-    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-        OR SUM(PdhERCurAmt) <> 0.00
-    );
+  Delete from dbo.U_dsi_BDM_EMCPCOBRQB where bdmdedcode not in (Select dedcode from U_EMCPCOBRQB_DedList)
 
 
-    -----------------------------
-    -- Working Table - PEarHist
-    -----------------------------
-    IF OBJECT_ID('U_EMCPCOBRQB_PEarHist','U') IS NOT NULL
-        DROP TABLE dbo.U_EMCPCOBRQB_PEarHist;
-    SELECT DISTINCT
-         PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
-        -- Current Payroll Amount/Hours
-        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-        -- YTD Payroll Amount/Hours
-        ,PehCurAmtYTD           = SUM(PehCurAmt)
-        ,PehCurHrsYTD           = SUM(PehCurHrs)
-        -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-        -- YTD Include Deferred Comp Amount/Hours
-        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    INTO dbo.U_EMCPCOBRQB_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    GROUP BY PehEEID
-    HAVING SUM(PehCurAmt) <> 0.00;
-
- --==========================================
-    -- Build Driver Tables
-    --==========================================
-    DECLARE @JcbDedCodes TABLE (DedCode VARCHAR(5));
-
-    INSERT INTO @JcbDedCodes VALUES ('DNTL'),('VIS'),('HDHP'),('HLTH'); 
-    IF OBJECT_ID('U_EMCPCOBRQB_Edh_WorkingTable','U') IS NOT NULL
-        DROP TABLE dbo.U_EMCPCOBRQB_Edh_WorkingTable;
-    SELECT EdhEEID, EdhCoID, EdhDedCode, EdhChangeReason, EdhEffDate
-    INTO dbo.U_EMCPCOBRQB_Edh_WorkingTable
-    FROM    (
-                SELECT EDHEEID, EdhCOID, EdhDedCode, edhChangeReason, EdhEffDate, ROW_NUMBER() OVER(PARTITION BY EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEffDate DESC) AS rn 
-                FROM dbo.EmpHDed a WITH (NOLOCK)
-                WHERE EdhDedCode IN ('DNTL', 'VIS', 'HDHP', 'HLTH') 
-                    AND edhChangeReason IN ('204', 'LEVNT4', '210', '201', '205', '200', '203', '206')
-            ) AS T
-    WHERE rn = 1;
-
+ 
 
     --==========================================
     -- Build Driver Tables
@@ -889,63 +953,70 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EMCPCOBRQB_drvTbl_QB','U') IS NOT NULL
         DROP TABLE dbo.U_EMCPCOBRQB_drvTbl_QB;
-    SELECT DISTINCT
+  SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort1 = xEEID --'' --EdhChangeReason 
+        ,drvSort1 = xEEID --'' --BdmCobraReason 
         ,drvSort2 = 1
         ,drvSort3 = '' --BdmRecType
         ,drvSort4 = '' --ConRelationship + ' -- ' + BdmCobraReason
         -- standard fields above and additional driver fields below
-        ,drvNameFirst = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN dbo.dsi_fnRemoveChars('.,/-',ConNameFirst) ELSE dbo.dsi_fnRemoveChars('.,/-',EepNameFirst)END
-        ,drvNameMIddleInit = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN LEFT(EepNameMiddle, 1) ELSE LEFT(EepNameMiddle,1) END
-        ,drvNameLast = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201')THEN dbo.dsi_fnRemoveChars('.,/-',ConNameLast) ELSE dbo.dsi_fnRemoveChars('.,/-',EepNameLast) END
-        ,drvSsn = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConSSN ELSE EepSsn END
+        ,drvNameFirst = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN dbo.dsi_fnRemoveChars('.,/-',ConNameFirst) ELSE dbo.dsi_fnRemoveChars('.,/-',EepNameFirst)END
+        ,drvNameMIddleInit = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN LEFT(EepNameMiddle, 1) ELSE LEFT(EepNameMiddle,1) END
+        ,drvNameLast = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201')THEN dbo.dsi_fnRemoveChars('.,/-',ConNameLast) ELSE dbo.dsi_fnRemoveChars('.,/-',EepNameLast) END
+        ,drvSsn = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConSSN ELSE EepSsn END
         ,drvIndividualId = EecEmpNo
         ,drvEmail = ''
         ,drvPhone = ''
-        ,drvAddressLine1 = '"' + CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressLine1) ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1) END + '"'
-        ,drvAddressLine2 = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressLine2) ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2) END
-        ,drvAddressCity = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConAddressCity ELSE EepAddressCity END
-        ,drvAddressState = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConAddressState ELSE EepAddressState END
-        ,drvAddressZipCode = CASE WHEN EdhChangeReason IN ('LEVNT4', '204', '210', '201') THEN ConAddressZipCode ELSE EepAddressZipCode END
-        ,drvGender = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') and ConGender = 'M' THEN 'M'
-                          WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') and ConGender = 'F' THEN 'F'
+        ,drvAddressLine1 = '"' + CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressLine1) ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1) END + '"'
+        ,drvAddressLine2 = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN dbo.dsi_fnRemoveChars('.,/-',ConAddressLine2) ELSE dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2) END
+        ,drvAddressCity = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConAddressCity ELSE EepAddressCity END
+        ,drvAddressState = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConAddressState ELSE EepAddressState END
+        ,drvAddressZipCode = CASE WHEN BdmCobraReason IN ('LEVNT4', '204', '210', '201') THEN ConAddressZipCode ELSE EepAddressZipCode END
+        
+        ,drvGender = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') and ConGender = 'M' THEN 'M'
+                          WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') and ConGender = 'F' THEN 'F'
                          ELSE 
                          CASE WHEN EepGender = 'M' THEN 'M'
                               WHEN EepGender = 'F' THEN 'F' 
                               WHEN EepGender not in ('M','F') and ConGender not in ('M','F') THEN 'U'
                              END
                         END
-        ,drvDateOfBirth = CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConDateOfBirth ELSE EepDateOfBirth END
-    INTO dbo.U_EMCPCOBRQB_drvTbl_QB
+        ,drvDateOfBirth = CASE WHEN BdmCobraReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN ConDateOfBirth ELSE EepDateOfBirth END
+   INTO dbo.U_EMCPCOBRQB_drvTbl_QB
     FROM dbo.U_EMCPCOBRQB_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    Left JOIN dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+      JOIN (SELECT
+                 BdmEEID
+                ,BdmCoID
+                ,BdmDepRecID
+                ,BdmRecType
+                ,BdmCobraReason = MAX(BdmCobraReason)
+                ,BdmBenStartDate = MIN(BdmBenStartDate)
+                ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
+                ,BdmUSGDate1 = MAX(BdmUSGDate1)
+                ,BdmStopDate = Max(bdmstopdate)
+              FROM dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)
+              Where BdmRunId = 'QB'
+                    AND BdmIsPQB = 'Y'             
+              GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType) BDM
+                  ON BdmEEID = xEEID
+           AND BdmCoID = xCoID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    JOIN dbo.U_EMCPCOBRQB_Edh_WorkingTable
-        ON EdhEEID = xEEID
-        AND EdhCOID = xCOID
-        AND EdhDedCode = BdmDedCode
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecId
-    --WHERE (BdmRecType = 'EMP' AND BdmCobraReason NOT IN ('210'))
-       -- OR (ConRelationship IN ('SPS') AND BdmCobraReason IN ('210'))
-    ;
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EMCPCOBRQB_drvTbl_QBEVENT
     ---------------------------------
     IF OBJECT_ID('U_EMCPCOBRQB_drvTbl_QBEVENT','U') IS NOT NULL
         DROP TABLE dbo.U_EMCPCOBRQB_drvTbl_QBEVENT;
-     SELECT DISTINCT
+    SELECT DISTINCT
             drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -953,57 +1024,47 @@ BEGIN
         ,drvSort2 =  3 
         ,drvSort3 = '' --ConNameFirst
         ,drvSort4 = 1
-        ,edhChangeReason
-        ,drvEventType = CASE WHEN EecEmplStatus = 'T' AND EdhChangeReason IN ('204', 'LEVNT4') THEN 'DIVORCELEGALSEPARATION' 
+        ,BdmCobraReason
+        ,drvEventType = CASE WHEN  BdmCobraReason IN ('204', 'LEVNT4') THEN 'DIVORCELEGALSEPARATION' 
                              WHEN EecEmplStatus  = 'T' AND EecTermReason  = '203' THEN 'DEATH'
-                             WHEN EecEmplStatus = 'T' AND EdhChangeReason IN ('201', 'LEVNT3') THEN 'INELIGIBLEDEPENDENT'
-                             WHEN EecEmplStatus = 'T' AND EdhChangeReason = '205' THEN 'MEDICARE'
+                             WHEN BdmCobraReason IN ('201', 'LEVNT3') THEN 'INELIGIBLEDEPENDENT'
+                             WHEN BdmCobraReason = '205' THEN 'MEDICARE'
                              WHEN EecEmplStatus  = 'T' AND EecTermReason NOT IN ( '202', ' 203') and eectermtype = 'V' THEN 'TERMINATION'
                              WHEN EecEmplStatus  = 'T' AND EecTermReason NOT IN ( '202', ' 203') and eectermtype = 'I' THEN 'INVOLUNTARYTERMINATION'
-                             WHEN EecEmplStatus  = 'T' AND EdhChangeReason = '208' AND EecTermReason = '202' THEN 'RETIREMENT' 
-                             WHEN EecEmplStatus = 'T' AND EdhChangeReason in ('203' , '202' ) THEN  'REDUCTIONINHOURS-STATUSCHANGE' 
-                             WHEN edhChangeReason = '206' THEN 'REDUCTIONINHOURS-ENDOFLEAVE'
-                          
-                        END
+                             WHEN EecEmplStatus  = 'T' AND BdmCobraReason = '208' AND EecTermReason = '202' THEN 'RETIREMENT' 
+                             WHEN BdmCobraReason in ('203' , '202' ) THEN  'REDUCTIONINHOURS-STATUSCHANGE' 
+                             WHEN BdmCobraReason = '206' THEN 'REDUCTIONINHOURS-ENDOFLEAVE'
+                         END
         ,drvEventDate = CASE WHEN EecEmplStatus = 'T' and EecTermReason  not in ( '202', '203') THEN EecDateOfTermination
                              WHEN EecEmplStatus = 'T' and EecTermReason  in ( '202', '203') and BdmDateOfCOBRAEvent is not null THEN EecDateOfTermination
-                             WHEN edhChangeReason IN ('LEVNT3', 'LEVNT4', '204', '210', '201') THEN edheffdate
-                            ELSE  eepDateOfCOBRAEvent
+                             WHEN BdmCobraReason IN ('LEVNT3', 'LEVNT4', '204', '210', '201') THEN BdmStopDate
+                            ELSE  BdmDateOfCOBRAEvent
                         END
         ,drvEnrollmentDate = EecDateOfLastHire
         ,drvEmployeeSsn = eepSSN
         ,drvEmployeeName = eepnamefirst + ' ' + eepnamelast
     INTO dbo.U_EMCPCOBRQB_drvTbl_QBEVENT
     FROM dbo.U_EMCPCOBRQB_EEList WITH (NOLOCK)
-   JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID
-        AND EecCOID = xCOID
- 
-   Left JOIN (
-        SELECT BdmEEID, BdmCOID, BdmBenStartDate, BdmDateOfCOBRAEvent, BdmDepRecId, BdmDedCode, BdmCobraReason
-        FROM (
-            SELECT BdmEEID, BdmCOID, BdmBenStartDate, BdmRecType, BdmDedType, BdmDedCode, BdmDateOfCOBRAEvent, BdmCobraReason, BdmDepRecId
-                ,ROW_NUMBER() OVER(PARTITION BY BdmEEID, BdmCOID ORDER BY 
-                                                                        CASE WHEN BdmDedType = 'MED' THEN 1
-                                                                            WHEN BdmDedType = 'DEN' THEN 2
-                                                                            WHEN BdmDedType = 'VIS' THEN 3
-                                                                            ELSE 4
-                                                                        END, 
-                                                                    BdmRecType DESC) AS RN
-            FROM dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)) AS T
-            WHERE RN = 1) AS BDM_Consolidated
-        ON BdmEEID = xEEID
-        AND BdmCOID = xCOID
-    LEFT JOIN dbo.Contacts WITH (NOLOCK)
-        ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecId
-        --AND a.EdhChangeReason IN ('204', 'LEVNT4', '210', '201')
-   JOIN dbo.U_EMCPCOBRQB_Edh_WorkingTable a
-        ON EdhEEID = xEEID
-        AND EdhCOID = xCOID
-        AND EdhDedCode = BdmDedCode
+      JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+            ON EecEEID = xEEID
+           AND EecCoID = xCoID
+        JOIN dbo.EmpPers WITH (NOLOCK)
+            ON EepEEID = xEEID
+        JOIN (SELECT
+                 BdmEEID
+                ,BdmCoID
+                ,BdmDepRecID
+                ,BdmRecType
+                ,BdmCobraReason = MAX(BdmCobraReason)
+                ,BdmBenStartDate = MIN(BdmBenStartDate)
+                ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
+                ,BdmUSGDate1 = MAX(BdmUSGDate1)
+                ,BdmStopDate = Max(bdmstopdate)
+              FROM dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)
+            Where BdmRunId = 'QB'
+              GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType) BDM
+            ON BdmEEID = xEEID
+           AND BdmCoID = xCoID
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EMCPCOBRQB_drvTbl_QBPLANINITIAL
@@ -1054,20 +1115,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    JOIN dbo.U_EMCPCOBRQB_Edh_WorkingTable
-        ON EdhEEID = xEEID
-        AND EdhCOID = xCOID
-        AND EdhDedCode = BdmDedCode
-      Where isnull(CASE WHEN bdmChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('DNTL') THEN 'Ameritas Dental Plan'
-                            WHEN bdmChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('VIS') THEN ' Ameritas Vision Plan'
-                            WHEN bdmChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('HDHP') THEN ' EBMS Consumer HDHP Medical Plan'
-                            WHEN bdmChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('HLTH') THEN 'EBMS PPO Medical Plan'
-                            WHEN bdmChangeReason NOT IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('DNTL') THEN 'Ameritas Dental Plan'
-                            WHEN bdmChangeReason NOT IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('VIS') THEN ' Ameritas Vision Plan'
-                            WHEN bdmChangeReason NOT IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('HDHP') THEN ' EBMS Consumer HDHP Medical Plan'
-                            WHEN bdmChangeReason NOT IN ('LEVNT3','LEVNT4', '204', '210', '201') AND BdmDedCode IN ('HLTH') THEN 'EBMS PPO Medical Plan'
-                           
-                        END,'') <> ''
+        WHERE BdmIsPQB = 'Y'
      
     ;
     ---------------------------------
@@ -1076,10 +1124,10 @@ BEGIN
     IF OBJECT_ID('U_EMCPCOBRQB_drvTbl_QBDEPENDENT','U') IS NOT NULL
         DROP TABLE dbo.U_EMCPCOBRQB_drvTbl_QBDEPENDENT;
     SELECT DISTINCT
-          drvEEID = xEEID
-        ,drvCoID = xCoID
+          drvEEID = drvEEID
+        ,drvCoID = drvCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort1 = xEEID
+        ,drvSort1 = drvEEID
         ,drvSort2 = 5
         ,drvSort3 = BdmDepRecId
         ,drvSort4 = 1
@@ -1101,20 +1149,18 @@ BEGIN
         ,drvGender = Case WHEN ConGender in ('M', 'F') THEN ConGender ELSE 'U' END
         ,drvDateOfBirth = ConDateOfBirth
     INTO dbo.U_EMCPCOBRQB_drvTbl_QBDEPENDENT
-    FROM dbo.U_EMCPCOBRQB_EEList WITH (NOLOCK)
+    FROM dbo.U_EMCPCOBRQB_drvTbl_QB WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
+        ON EepEEID = drvEEID
     JOIN dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+        ON BdmEEID = drvEEID 
+        AND BdmCoID = drvCoID
+        AND BdmRunId = 'QB'
     JOIN dbo.Contacts WITH (NOLOCK)
-        ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecId
-    JOIN dbo.U_EMCPCOBRQB_Edh_WorkingTable
-        ON EdhEEID = xEEID
-        AND EdhCOID = xCOID
-        AND EdhDedCode = BdmDedCode
-    WHERE EdhChangeReason NOT IN ('LEVNT4', '204', '201', '210') 
+        ON ConEEID = BdmEEID
+        AND ConSystemID = BdmDepRecID
+       WHERE BdmIsPQB = 'N'
+  
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EMCPCOBRQB_drvTbl_QBDEPENDENTPLANINITIAL
@@ -1140,17 +1186,14 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EMCPCOBRQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        AND BdmRecType <> 'EMP'
-    JOIN dbo.U_EMCPCOBRQB_Edh_WorkingTable
-        ON EdhEEID = xEEID
-        AND EdhCOID = xCOID
-        AND EdhDedCode = BdmDedCode
-    WHERE EdhChangeReason NOT IN ('LEVNT4', '204', '201', '210') 
-    and   isnull( CASE WHEN BdmDedCode IN ('DNTL') THEN 'Ameritas Dental Plan'
-                            WHEN BdmDedCode IN ('HDHP') THEN ' EBMS Consumer HDHP Medical Plan'
-                            WHEN BdmDedCode IN ('HLTH') THEN 'EBMS PPO Medical Plan'
-                            WHEN BdmDedCode IN ('VIS') THEN 'Ameritas Vision Plan'
-                        END , '') <> ''
+        AND BdmRunId = 'QB'
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecID
+        WHERE BdmRecType = 'DEP'
+        AND ((ConRelationship NOT IN ('SPS', 'DP') AND BdmCobraReason NOT IN ('201', 'LEVNT3'))
+            OR (ConRelationship IN ('SPS', 'DP') AND BdmCobraReason NOT IN ('210', '204', 'LEVNT4')))
+    ;
     ;
 
     --==========================================

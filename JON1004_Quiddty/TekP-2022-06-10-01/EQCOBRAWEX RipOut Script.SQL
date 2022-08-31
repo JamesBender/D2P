@@ -4,16 +4,17 @@ EQCOBRAWEX: COBRA SPM Export
 
 FormatCode:     EQCOBRAWEX
 Project:        COBRA SPM Export
-Client ID:      USG1000
-Date/time:      2022-08-25 14:34:22.563
+Client ID:      JON1004
+Date/time:      2022-08-31 07:20:49.100
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EQCOBRAWEX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP6DB02
+Database:       ULTIPRO_WPJACR
+Web Filename:   JON1004_W2G6K_EEHISTORY_EQCOBRAWEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -245,17 +246,17 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQCOBRAWEXZ0','50','D','20','2',NULL,'Client Name',NULL,NULL,'"Quiddity-1 Inc 36196"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQCOBRAWEXZ0','50','D','20','3',NULL,'oSSN',NULL,NULL,'"drvoSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EQCOBRAWEXZ0','50','D','20','4',NULL,'oBilling Start Date',NULL,NULL,'"drvoBillingStartDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQCOBRAWEXZ0','50','D','20','5',NULL,'oBilling Type',NULL,NULL,'"drvoBillingType"','(''UA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','20','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T)');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQCOBRAWEXZ0','50','D','20','5',NULL,'oBilling Type',NULL,NULL,'"drvoBillingType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','20','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EQCOBRAWEXZ0','50','D','25','1',NULL,'SPM Insert Indicator',NULL,NULL,'"[SPMPLANINSERT]"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQCOBRAWEXZ0','50','D','25','2',NULL,'Client Name',NULL,NULL,'"Quiddity-1 Inc 36196"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQCOBRAWEXZ0','50','D','25','3',NULL,'oSSN',NULL,NULL,'"drvoSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EQCOBRAWEXZ0','50','D','25','4',NULL,'oBilling Start Date',NULL,NULL,'"drvoBillingStartDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQCOBRAWEXZ0','50','D','25','5',NULL,'oBilling Type',NULL,NULL,'"drvoBillingType"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQCOBRAWEXZ0','50','D','25','5',NULL,'oBilling Type',NULL,NULL,'"drvoBillingType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','25','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQCOBRAWEXZ0','50','D','25','7',NULL,'Plan Name',NULL,NULL,'"drvPlanName"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQCOBRAWEXZ0','50','D','25','8',NULL,'Start Date',NULL,NULL,'"drvStartDate"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQCOBRAWEXZ0','50','D','25','9',NULL,'End Date',NULL,NULL,'"drvEndDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQCOBRAWEXZ0','50','D','25','8',NULL,'Start Date',NULL,NULL,'"drvStartDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQCOBRAWEXZ0','50','D','25','9',NULL,'End Date',NULL,NULL,'"drvEndDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EQCOBRAWEXZ0','50','D','25','10',NULL,'Coverage Level',NULL,NULL,'"drvCoverageLevel"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EQCOBRAWEXZ0','50','D','25','11',NULL,'First Day Of',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EQCOBRAWEXZ0','50','D','25','12',NULL,'Last Day Of',NULL,NULL,'""','(''SS''=''T,'')');
@@ -277,7 +278,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQCOBRAWEXZ0','50','D','35','3',NULL,'oSSN',NULL,NULL,'"drvoSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EQCOBRAWEXZ0','50','D','35','4',NULL,'oBilling Start Date',NULL,NULL,'"drvoBillingStartDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQCOBRAWEXZ0','50','D','35','5',NULL,'oBilling Type',NULL,NULL,'"drvoBillingType"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','35','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','35','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQCOBRAWEXZ0','50','D','35','7',NULL,'Plan Name',NULL,NULL,'"drvPlanName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQCOBRAWEXZ0','50','D','35','8',NULL,'Start Date',NULL,NULL,'"drvStartDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQCOBRAWEXZ0','50','D','35','9',NULL,'Effective Date',NULL,NULL,'"drvEffectiveDate"','(''UD101''=''T'')');
@@ -294,12 +295,12 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQCOBRAWEXZ0','50','D','45','3',NULL,'oSSN',NULL,NULL,'"drvoSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EQCOBRAWEXZ0','50','D','45','4',NULL,'oBilling Start Date',NULL,NULL,'"drvoBillingStartDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQCOBRAWEXZ0','50','D','45','5',NULL,'oBilling Type',NULL,NULL,'"drvoBillingType"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','45','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQCOBRAWEXZ0','50','D','45','7',NULL,'Plan Name',NULL,NULL,'"drvPlanName"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQCOBRAWEXZ0','50','D','45','6',NULL,'oBilling Frequency',NULL,NULL,'"MONTHLY"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQCOBRAWEXZ0','50','D','45','7',NULL,'Plan Name',NULL,NULL,'"drvPlanName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQCOBRAWEXZ0','50','D','45','8',NULL,'Start Date',NULL,NULL,'"drvStartDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQCOBRAWEXZ0','50','D','45','9',NULL,'Rate Start Date',NULL,NULL,'"drvRateStartDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EQCOBRAWEXZ0','50','D','45','10',NULL,'Rate End Date',NULL,NULL,'"drvRateEndDate"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EQCOBRAWEXZ0','50','D','45','11',NULL,'Rate',NULL,NULL,'"drvRate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EQCOBRAWEXZ0','50','D','45','11',NULL,'Rate',NULL,NULL,'"drvRate"','(''UA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EQCOBRAWEXZ0','50','D','50','1',NULL,'SPM PlanSpecificUpdate Indicator',NULL,NULL,'"[SPMPLANMEMBERSPECIFICRATEUPDATE]"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQCOBRAWEXZ0','50','D','50','2',NULL,'Client Name',NULL,NULL,'"Quiddity-1 Inc 36196"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQCOBRAWEXZ0','50','D','50','3',NULL,'oSSN',NULL,NULL,'"drvoSSN"','(''UA''=''T,'')');
@@ -333,7 +334,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQCOBRAWEX_20220825.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQCOBRAWEX_20220831.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -344,7 +345,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208259','EMPEXPORT','OEPASSIVE',NULL,'EQCOBRAWEX',NULL,NULL,NULL,'202208259','Aug 25 2022  9:36AM','Aug 25 2022  9:36AM','202208251',NULL,'','','202208251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COBRA SPM Export','202208259','EMPEXPORT','ONDEM_XOE',NULL,'EQCOBRAWEX',NULL,NULL,NULL,'202208259','Aug 25 2022  9:36AM','Aug 25 2022  9:36AM','202208251',NULL,'','','202208251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COBRA SPM Export-Sched','202208259','EMPEXPORT','SCH_EQCOBR',NULL,'EQCOBRAWEX',NULL,NULL,NULL,'202208259','Aug 25 2022  9:36AM','Aug 25 2022  9:36AM','202208251',NULL,'','','202208251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'COBRA SPM Export-Test','202208259','EMPEXPORT','TEST_XOE',NULL,'EQCOBRAWEX',NULL,NULL,NULL,'202208259','Aug 25 2022  9:36AM','Aug 25 2022  9:36AM','202208251',NULL,'','','202208251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'COBRA SPM Export-Test','202208259','EMPEXPORT','TEST_XOE','Aug 30 2022 12:00AM','EQCOBRAWEX',NULL,NULL,NULL,'202208259','Aug 25 2022 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'us3mWaJON1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -356,10 +357,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EQCOBRAWEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -370,7 +372,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EQCOBRAWEX','H01','dbo.U_EQCOBRAWEX_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EQCOBRAWEX','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EQCOBRAWEX','D10','dbo.U_EQCOBRAWEX_drvTbl_SPMINSERT',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EQCOBRAWEX','D15','dbo.U_EQCOBRAWEX_drvTbl_SPMUPDATE',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EQCOBRAWEX','D20','dbo.U_EQCOBRAWEX_drvTbl_SPMDELETE',NULL);
@@ -383,12 +385,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EQCOBRAWEX','D55','dbo.U_EQCOBRAWEX_drvTbl_SPMPLANMEMBERSPECIFICRATEDELETE',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -487,7 +489,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMDELETE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL
@@ -502,7 +504,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMINSERT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] char(11) NULL,
+    [drvSort] varchar(16) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -532,7 +534,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANDELETE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -549,7 +551,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANDROP] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(15) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -567,7 +569,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANINSERT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -586,7 +588,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANMEMBERSPECIFICRATEDELETE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(17) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -604,7 +606,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANMEMBERSPECIFICRATEINSERT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(15) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -624,7 +626,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANMEMBERSPECIFICRATEUPDATE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -645,7 +647,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMPLANUPDATE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL,
@@ -664,7 +666,7 @@ CREATE TABLE [dbo].[U_EQCOBRAWEX_drvTbl_SPMUPDATE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] varchar(16) NULL,
     [drvoSSN] char(11) NULL,
     [drvoBillingStartDate] datetime NULL,
     [drvoBillingType] varchar(14) NULL
@@ -1050,7 +1052,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = eepSSN
+        ,drvSort = '1 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
@@ -1087,7 +1089,9 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
-LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
+        AND BdmCoID = xCoID
+        and bdmrectype = 'Emp'
+     JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1103,7 +1107,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 2'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1122,7 +1126,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1138,7 +1143,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 3'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate =  CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1157,7 +1162,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
+        and bdmrectype = 'Emp'
+   JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1173,7 +1179,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 4'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate =  CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1208,7 +1214,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1223,7 +1230,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 5'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1259,7 +1266,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
+        and bdmrectype = 'Emp'
+  JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate, max(EshStatusStartDate) AS EshStatusStartDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1275,7 +1283,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + '6'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1304,12 +1312,13 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
         ON eshEEID = xEEID
-    LEFT JOIN (   SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent 
+    JOIN (   SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent 
             FROM (
                     SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent, ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID ORDER BY EdhEffDate desc) AS RN
                     FROM dbo.EmpHDed a WITH (NOLOCK)
@@ -1331,7 +1340,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 7'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1359,7 +1368,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1374,7 +1384,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + '8'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1397,7 +1407,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
                                  WHEN EecEmplStatus = 'T' and EshEmplStatus = 'L' THEN CONVERT(VARCHAR, DATEADD(day, 1, bdmBenStopDate), 101)
                               END
         ,drvRateEndDate = ''
-        ,drvRate = CASE WHEN bdmDedCode IN ( 'FSA', 'FSA', 'MFP' ) THEN 2*(bdmEEAMT) END
+        ,drvRate = CASE WHEN bdmDedCode IN ( 'FSA', 'LFP', 'MFP' ) THEN 2*(bdmEEAMT) END
     INTO dbo.U_EQCOBRAWEX_drvTbl_SPMPLANMEMBERSPECIFICRATEINSERT
     FROM dbo.U_EQCOBRAWEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -1407,7 +1417,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1422,7 +1433,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 9'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1456,7 +1467,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1471,7 +1483,7 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = '1 ' + xEEID + ' 10'
         -- standard fields above and additional driver fields below
         ,drvoSSN = eepSSN
         ,drvoBillingStartDate = CASE WHEN EecEmplStatus = 'L' THEN BdmBenStatusDate
@@ -1502,7 +1514,8 @@ LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusSto
     JOIN dbo.U_dsi_BDM_EQCOBRAWEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    LEFT JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
+        and bdmrectype = 'Emp'
+    JOIN (SELECT eshEEID, EshEmplStatus, MAX(EshStatusStopDate) AS EshStatusStopDate
             FROM EmpHStat
             WHERE EshEmplStatus = 'L'
             GROUP BY eshEEID, EshEmplStatus) AS esh
@@ -1528,7 +1541,7 @@ END;
 --Alter the View
 ALTER VIEW dbo.dsi_vwEQCOBRAWEX_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EQCOBRAWEX_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+    ORDER BY  InitialSort, SubSort, RIGHT(RecordSet,2);
 
 --Check out iascDefF
 SELECT * FROM dbo.iascDefF
@@ -1545,9 +1558,9 @@ WHERE expFormatCode = 'EQCOBRAWEX';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEQCOBRAWEX_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EQCOBRAWEX_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwEQCOBRAWEX_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EQCOBRAWEX_File (NOLOCK)
+    ORDER BY  InitialSort,  RIGHT(RecordSet,2);
 
 GO
 
