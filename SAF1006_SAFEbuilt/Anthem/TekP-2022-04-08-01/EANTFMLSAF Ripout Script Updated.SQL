@@ -1256,7 +1256,7 @@ SELECT
     --    ON eeeid = drvEEID and ecoid = drvCOID
 
 
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvInitialSort = '2'
          ,drvSubSort2 = '5'
         ,drvEEID = drvEEID
@@ -1265,12 +1265,12 @@ SELECT
         -- standard fields above and additional driver fields below
         ,drvRecordType = '999'
         ,drvType = 'UDDT_YR_HRS' --Hrs Last 12 Mo
-        ,drvValue = ISNULL(Hrs.PehCurHrs, 0)
+        ,drvValue = ISNULL(Hrs.PehCurHrs, '0000')
         ,drvLOB = ''
         ,drvEffDate = drvEffDate
         ,drvFiller = ''
     FROM dbo.U_EANTFMLSAF_drvTbl WITH (NOLOCK)
-    JOIN (select Peheeid, Pehcoid ,CAST(CAST(SUM(PehCurHrs)  as INT) AS VARCHAR) PehCurHrs  --- Updated 06/08/2022
+    LEFT JOIN (select Peheeid, Pehcoid ,CAST(CAST(SUM(PehCurHrs)  as INT) AS VARCHAR) PehCurHrs  --- Updated 06/08/2022
                         From dbo.PearHist WITH (NOLOCK)
                         JOIN EarnCode WITH (NOLOCK) 
                         ON ErnEarnCode = PehEarnCode 
