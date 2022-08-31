@@ -5,7 +5,7 @@ EUHCFINPRO: United Health Care Financial Protection
 FormatCode:     EUHCFINPRO
 Project:        United Health Care Financial Protection
 Client ID:      BRI1011
-Date/time:      2022-07-07 05:26:40.770
+Date/time:      2022-08-29 05:34:57.707
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUHCFINPRO_20220707.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUHCFINPRO_20220829.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -309,7 +309,7 @@ CREATE TABLE [dbo].[U_EUHCFINPRO_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvDedGroupCode] varchar(5) NULL,
     [drvSort] char(12) NULL,
-    [drvSubSort] varchar(2) NOT NULL,
+    [drvSubSort] char(5) NOT NULL,
     [drvSSN] char(11) NULL,
     [drvMemberIndicator] varchar(2) NOT NULL,
     [drvNameLast] varchar(100) NULL,
@@ -343,9 +343,9 @@ CREATE TABLE [dbo].[U_EUHCFINPRO_drvTbl] (
     [drvSubscriberClassID] varchar(4) NULL,
     [drvSubClassEffDate] datetime NULL,
     [drvSalaryType] varchar(1) NOT NULL,
-    [drvAnnSalary] varchar(30) NOT NULL,
+    [drvAnnSalary] nvarchar(4000) NULL,
     [drvSalaryEffDate] varchar(30) NULL,
-    [drvCoverageAmount] nvarchar(6) NULL,
+    [drvCoverageAmount] nvarchar(4000) NULL,
     [drvCoverageAmountEffDate] datetime NULL,
     [drvALTMemberIndicator] varchar(11) NOT NULL,
     [drvDedCode] char(5) NOT NULL
@@ -567,7 +567,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'GTLEX,ADDCX,CIE20,CIS10,CIS5,ACC,HSPL,HSPH,STDER,LTDEX,GTLEE,ADDCE,LIFEE,LIFES,LIFEC,CIE20,CIS5,ACCL,LTD,CIC2';
+    SET @DedList = 'GTLEX,ADDCX,CIE20,CIS10,CIS5,ACC,HSPL,HSPH,STDER,LTDEX,GTLEE,ADDCE,LIFEE,LIFES,LIFEC,CIE20,CIS5,ACCL,LTD,CIC2,CIC5';
 
     IF OBJECT_ID('U_EUHCFINPRO_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EUHCFINPRO_DedList;
@@ -759,16 +759,47 @@ BEGIN
         ,drvSubClassEffDate = dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate,@FileMinCovDate) 
         ,drvSalaryType = CASE WHEN EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE', 'LIFEE', 'LIFES', 'CIE20', 'CIS10', 'STDER', 'LTD', 'LTDEX') AND EecDedGroupCode IN ('EXEC', 'FT') THEN 'A' ELSE '' END
         --CASE WHEN EedDedCode IN ('STDER','LTDEX','LTD') THEN 'A' END 
-        ,drvAnnSalary = ISNULL(
+        -- DT37
+        ,drvAnnSalary = FORMAT(EecAnnSalary + EecUDField20, '#0.00')
+                        /*ISNULL(
                                 CASE WHEN EedDedCode IN ('STDER', 'LTDEX', 'LTD') THEN CAST(CAST(ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '') AS DECIMAL(10,2)) AS VARCHAR)
                                 WHEN EecDedGroupCode = 'EXEC' AND EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') THEN CAST(CAST(ROUND((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 2, 00) AS DECIMAL(10,2)) AS VARCHAR)
                                 WHEN EecDedGroupCode = 'FT' AND EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') THEN CAST(CAST(ROUND((ISNULL(EecAnnSalary, '') + ISNULL(EecUDField20, '')) * 1.5, 00) AS DECIMAL(10,2)) AS VARCHAR)
                                 WHEN EedDedCode IN ('LIFEE', 'LIFES', 'CIE20', 'CIS10') THEN CAST(CAST(DedEEBenAmt AS DECIMAL(10,2)) AS VARCHAR) 
-                                END, '')
+                                END, '') */
         --CONVERT(VARCHAR(10), CASE WHEN EedDedCode IN ('STDER','LTDEX','LTD') THEN EecAnnSalary END)
         ,drvSalaryEffDate = CONVERT(VARCHAR, dbo.dsi_fnGetMinMaxDates('MAX', EedBenStartDate,@FileMinCovDate), 112)
         --CASE WHEN EedDedCode IN ('STDER','LTDEX','LTD') THEN  dbo.dsi_fnGetMinMaxDates('MAX', (SELECT TOP 1 audDateTime FROM dbo.U_EUHCFINPRO_Audit WITH (NOLOCK) WHERE audEEID = xEEID AND audCOID = xCoID AND audFieldName = 'EecAnnSalary') , @FileMinCovDate) END 
-        ,drvCoverageAmount = LEFT(REPLACE(
+        -- DT39
+        ,drvCoverageAmount = FORMAT(
+                                CASE WHEN EedDedCode IN ('GTLEX','ADDCX') AND EecDedGroupCode = 'EXEC' THEN
+                                    CASE WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 <= 65 THEN
+                                        CASE WHEN EecAnnSalary + EecUDField20 > 500000 THEN 500000 ELSE EecAnnSalary + EecUDField20 END
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 BETWEEN 65 AND 69 THEN
+                                        CASE WHEN (EecAnnSalary + EecUDField20)*.65 > 500000 THEN 500000 ELSE (EecAnnSalary + EecUDField20)*.65 END
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 BETWEEN 70 AND 74 THEN
+                                        CASE WHEN (EecAnnSalary + EecUDField20)*.40 > 500000 THEN 500000 ELSE (EecAnnSalary + EecUDField20)*.40 END
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 >= 75 THEN
+                                        CASE WHEN (EecAnnSalary + EecUDField20)*.25 > 500000 THEN 500000 ELSE (EecAnnSalary + EecUDField20)*.25 END                                        
+                                    END                                    
+                                WHEN EedDedCode IN ('GTLEE','ADDCE') AND EecDedGroupCode = 'FT' THEN
+                                    CASE WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 <= 65 THEN
+                                        CASE WHEN EecAnnSalary + EecUDField20 > 500000 THEN 500000 ELSE EecAnnSalary + EecUDField20 END
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 BETWEEN 65 AND 69 THEN
+                                        CASE WHEN (EecAnnSalary + EecUDField20)*.65 > 500000 THEN 500000 ELSE (EecAnnSalary + EecUDField20)*.65 END
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 BETWEEN 70 AND 74 THEN
+                                        CASE WHEN (EecAnnSalary + EecUDField20)*.40 > 500000 THEN 500000 ELSE (EecAnnSalary + EecUDField20)*.40 END
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 >= 75 THEN
+                                        CASE WHEN (EecAnnSalary + EecUDField20)*.25 > 500000 THEN 500000 ELSE (EecAnnSalary + EecUDField20)*.25 END                                        
+                                    END        
+                                WHEN EedDedCode IN ('LIFEC','CIE20','CIS10','CIC5') THEN EedBenAmt
+                                WHEN EedDedCode IN ('LIFEE','LIFES') THEN
+                                    CASE WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 BETWEEN 65 AND 69 THEN EedBenAmt*.65
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 BETWEEN 70 AND 74 THEN EedBenAmt*.40
+                                    WHEN DATEDIFF(HOUR ,EepDateOfBirth, GETDATE())/8766 >= 75 THEN EedBenAmt*.25
+                                    END
+                                END, '#0.000')
+                                /*LEFT(REPLACE(
                                             CASE WHEN EedDedCode = 'STDER' AND STDER_DedCalcBasisAmt/52 > 1500 THEN '1500'
                                             WHEN EedDedCode = 'STDER' AND STDER_DedCalcBasisAmt/52 <= 1500 THEN FORMAT(FLOOR(STDER_DedCalcBasisAmt/52), '#0.00')
 
@@ -793,7 +824,7 @@ BEGIN
                                                     --WHEN EedDedCode IN ('STDER', 'LTDEX', 'LTD') THEN REPLACE(PdhDedCalcBasisAmt, '.00', '')
                                                     --DedEEBenAmt
                                                 END
-                                            END , '.00', ''), 6)
+                                            END , '.00', ''), 6)*/
         --LEFT(REPLACE(CASE WHEN EecDedGroupCode = 'EXEC' AND EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 2 > EedBenAmt THEN CAST(ROUND((EecAnnSalary + ISNULL(EecUDField20, '0')) * 2, -3) AS VARCHAR)
   --                                  WHEN EecDedGroupCode = 'EXEC' AND EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 2 < EedBenAmt THEN CAST(ROUND(EedBenAmt, -3) AS VARCHAR)
   --                                  WHEN EecDedGroupCode = 'FT' AND EedDedCode IN ('GTLEX', 'ADDCX', 'GTLEE', 'ADDCE') AND (EecAnnSalary + ISNULL(EecUDField20, '0')) * 1.5 > EedBenAmt THEN CAST(ROUND((EecAnnSalary + ISNULL(EecUDField20, '0')) * 1.5, -3) AS VARCHAR)
@@ -1175,8 +1206,8 @@ BEGIN
                                 'LE001928', 'LE000379', 'LE000770', 'LE001502', 'LE001503', 'LE000019', 'LE000137', 'LE002232',
                                 'LE002236', 'LE001924', 'LE001928', 'LE000379', 'LE000016') -- EE ONLY PLAN CODES
 
-    UPDATE dbo.U_EUHCFINPRO_drvTbl
-    SET drvCoverageAmount = floor((drvCoverageAmount + 999) / 1000) * 1000
+    --UPDATE dbo.U_EUHCFINPRO_drvTbl
+    --SET drvCoverageAmount = floor((drvCoverageAmount + 999) / 1000) * 1000
     
     ---------------------------------
     -- DETAIL RECORD - U_EUHCFINPRO_MemberID_drvTbl

@@ -4,15 +4,15 @@ EARAMRKEXP: Aramark Interface Export
 
 FormatCode:     EARAMRKEXP
 Project:        Aramark Interface Export
-Client ID:      USG1000
-Date/time:      2022-08-05 09:31:15.050
+Client ID:      RYK1000
+Date/time:      2022-08-30 11:37:16.520
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EARAMRKEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW3WUP1DB03
+Database:       ULTIPRO_WPRYKOS
+Web Filename:   RYK1000_B527E_EEHISTORY_EARAMRKEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -184,7 +184,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EARAMRKEXPZ0','50','D','10','13',NULL,'Email Address',NULL,NULL,'"drvEmailAddress"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EARAMRKEXPZ0','50','D','10','14',NULL,'Budget Allotted',NULL,NULL,'"drvBugetAlloted"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EARAMRKEXPZ0','50','D','10','15',NULL,'Open Account #',NULL,NULL,'""','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EARAMRKEXPZ0','50','D','10','16',NULL,'Anniversary Date',NULL,NULL,'"drvAnniversaryDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EARAMRKEXPZ0','50','D','10','16',NULL,'Anniversary Date',NULL,NULL,'"drvAnniversaryDate"','(''UD101''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EARAMRKEXPZ0','50','D','10','17',NULL,'Amt. already spent',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EARAMRKEXPZ0','50','D','10','18',NULL,'Program Code',NULL,NULL,'"75114"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EARAMRKEXPZ0','50','D','10','19',NULL,'Employee Status',NULL,NULL,'"drvEmployeeStatus"','(''UA''=''T|'')');
@@ -223,16 +223,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EARAMRKEXP_20220805.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EARAMRKEXP_20220830.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aramark Interface Export','202208059','EMPEXPORT','ONDEM_XOE',NULL,'EARAMRKEXP',NULL,NULL,NULL,'202208059','Aug  5 2022  9:13AM','Aug  5 2022  9:13AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aramark Interface Export-Sched','202208059','EMPEXPORT','SCH_EARAMR',NULL,'EARAMRKEXP',NULL,NULL,NULL,'202208059','Aug  5 2022  9:13AM','Aug  5 2022  9:13AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Aramark Interface Export-Test','202208059','EMPEXPORT','TEST_XOE',NULL,'EARAMRKEXP',NULL,NULL,NULL,'202208059','Aug  5 2022  9:13AM','Aug  5 2022  9:13AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Aramark Interface Export','202208059','EMPEXPORT','ONDEM_XOE',NULL,'EARAMRKEXP',NULL,NULL,NULL,'202208059','Aug  5 2022  9:13AM','Aug  5 2022  9:13AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Aramark Interface Export-Sched','202208059','EMPEXPORT','SCH_EARAMR',NULL,'EARAMRKEXP',NULL,NULL,NULL,'202208059','Aug  5 2022  9:13AM','Aug  5 2022  9:13AM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Aramark Interface Export-Test','202208309','EMPEXPORT','TEST_XOE','Aug 30 2022 12:00AM','EARAMRKEXP',NULL,NULL,NULL,'202208309','Aug 30 2022 12:00AM','Dec 30 1899 12:00AM','202208231',NULL,'','','202208231',dbo.fn_GetTimedKey(),NULL,'us3kEpRYK1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -273,11 +273,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
------------
-
-
------------
 -- Create table U_EARAMRKEXP_drvTbl
 -----------
 
@@ -297,7 +292,7 @@ CREATE TABLE [dbo].[U_EARAMRKEXP_drvTbl] (
     [drvShipToZipCode] varchar(50) NULL,
     [drvEmployeeNumber] char(9) NULL,
     [drvEmailAddress] varchar(50) NULL,
-    [drvBugetAlloted] varchar(1) NOT NULL,
+    [drvBugetAlloted] varchar(6) NOT NULL,
     [drvAnniversaryDate] datetime NULL,
     [drvEmployeeStatus] char(1) NULL,
     [drvShipToCountry] char(3) NULL,
@@ -422,7 +417,7 @@ BEGIN
         ,drvShipToZipCode = EepAddressZipCode
         ,drvEmployeeNumber = EecEmpNo
         ,drvEmailAddress = EepAddressEMail
-        ,drvBugetAlloted = ''
+        ,drvBugetAlloted = '350.00'
         ,drvAnniversaryDate = EecDateOfLastHire
         ,drvEmployeeStatus = EecEmplStatus
         ,drvShipToCountry = EepAddressCountry
@@ -438,6 +433,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
+    WHERE EecEmplStatus <> 'T'
     ;
 
     --==========================================

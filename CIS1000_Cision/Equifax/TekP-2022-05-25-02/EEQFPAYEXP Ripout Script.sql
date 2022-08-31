@@ -4,16 +4,17 @@ EEQFPAYEXP: Equifax Payroll Export
 
 FormatCode:     EEQFPAYEXP
 Project:        Equifax Payroll Export
-Client ID:      USG1000
-Date/time:      2022-08-09 14:42:32.460
+Client ID:      CIS1000
+Date/time:      2022-08-26 12:06:32.493
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EEQFPAYEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW3WUP3DB03
+Database:       ULTIPRO_WPCISIN
+Web Filename:   CIS1000_35B05_EEHISTORY_EEQFPAYEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -119,6 +120,10 @@ IF OBJECT_ID('U_EEQFPAYEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EEQFPAYEXP_E
 GO
 IF OBJECT_ID('U_EEQFPAYEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EEQFPAYEXP_drvTbl];
 GO
+IF OBJECT_ID('U_EEQFPAYEXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EEQFPAYEXP_AuditFields];
+GO
+IF OBJECT_ID('U_EEQFPAYEXP_Audit') IS NOT NULL DROP TABLE [dbo].[U_EEQFPAYEXP_Audit];
+GO
 
 -----------
 -- AscDefH inserts
@@ -212,16 +217,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEQFPAYEXP_20220809.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEQFPAYEXP_20220826.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax Payroll Export','202208099','EMPEXPORT','ONDEM_XOE',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208099','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax Payroll Export-Sched','202208099','EMPEXPORT','SCH_EEQFPA',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208099','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax Payroll Export-Test','202208099','EMPEXPORT','TEST_XOE',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208099','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Equifax Payroll Export','202208159','EMPEXPORT','ONDEM_XOE',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208159','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Equifax Payroll Export-Sched','202208159','EMPEXPORT','SCH_EEQFPA',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208159','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Equifax Payroll Export-Test','202208159','EMPEXPORT','TEST_XOE',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208159','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -233,10 +238,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EEQFPAYEXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -261,9 +267,32 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_EEQFPAYEXP_Audit
 -----------
 
+IF OBJECT_ID('U_EEQFPAYEXP_Audit') IS NULL
+CREATE TABLE [dbo].[U_EEQFPAYEXP_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audCOID] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EEQFPAYEXP_AuditFields
+-----------
+
+IF OBJECT_ID('U_EEQFPAYEXP_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EEQFPAYEXP_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
 
 -----------
 -- Create table U_EEQFPAYEXP_drvTbl
@@ -288,7 +317,7 @@ CREATE TABLE [dbo].[U_EEQFPAYEXP_drvTbl] (
     [drvGrossPay] nvarchar(4000) NULL,
     [drvW2Box1Deductions] nvarchar(4000) NULL,
     [drvJobTitle] varchar(150) NULL,
-    [drvWorkLocationState] varchar(255) NULL
+    [drvWorkLocationState] varchar(2) NULL
 );
 
 -----------
@@ -466,6 +495,40 @@ BEGIN
     AND PthPerControl <= @EndPerControl  --AND PthTaxCode = 'USFUTA'
     GROUP BY PthEEID;
 
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EEQFPAYEXP_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EEQFPAYEXP_AuditFields;
+    CREATE TABLE dbo.U_EEQFPAYEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    INSERT INTO dbo.U_EEQFPAYEXP_AuditFields VALUES ('EmpComp','EecEmplStatus');
+   
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EEQFPAYEXP_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EEQFPAYEXP_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audCOID = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EEQFPAYEXP_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EEQFPAYEXP_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE'    
+    ;
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -504,7 +567,7 @@ BEGIN
         ,drvGrossPay = FORMAT(PthGrossAmt, '#0.00')
         ,drvW2Box1Deductions = FORMAT(PthCurTaxableWages, '#0.00')
         ,drvJobTitle = EecJobTitle
-        ,drvWorkLocationState = EepAddressState
+        ,drvWorkLocationState = LEFT(EecSITResidentStateCode, 2)
     INTO dbo.U_EEQFPAYEXP_drvTbl
     FROM dbo.U_EEQFPAYEXP_EEList WITH (NOLOCK)
     JOIN dbo.Company WITH (NOLOCK)
@@ -522,6 +585,11 @@ BEGIN
         ON PthEEID = xEEID
     JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
+    LEFT JOIN dbo.U_EEQFPAYEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audCOID = xCOID
+        AND audNewValue = 'T'
+    WHERE EecEmplStatus = 'A' OR AudDateTime BETWEEN @StartDate AND @EndDate
     ;
 
     --==========================================
@@ -552,10 +620,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202208021'
-       ,expStartPerControl     = '202208021'
-       ,expLastEndPerControl   = '202208099'
-       ,expEndPerControl       = '202208099'
+    SET expLastStartPerControl = '202208011'
+       ,expStartPerControl     = '202208011'
+       ,expLastEndPerControl   = '202208159'
+       ,expEndPerControl       = '202208159'
 WHERE expFormatCode = 'EEQFPAYEXP';
 
 **********************************************************************************/
