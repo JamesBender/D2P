@@ -585,7 +585,7 @@ BEGIN
                                         CASE WHEN EecEmplStatus = 'A' THEN EecDateOfOriginalHire ELSE EecDateOfTermination END
                                     END
         ,drvDataSource = 'UKG'
-        ,drvIsInvalid = CASE WHEN audFieldName = 'EecEmplStatus'  AND audNewValue IN ( 'A', 'T', 'S', 'L','R') THEN 'YES'  ELSE 'NO' END
+        ,drvIsInvalid =  'No' --- CASE WHEN EecEmplStatus IN ('A','T','S','L','R') THEN 'Yes' ELSE 'No' END
         ,drvTransactionType = CASE WHEN EecEmplStatus IN ( 'A', 'L')  THEN 'HIR'
                                    WHEN EecEmplStatus = 'T' THEN 'TER'
                                    WHEN EecEmplStatus IN ( 'R', 'S' )  THEN 'JOB'

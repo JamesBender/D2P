@@ -500,7 +500,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvEmployerFEIN = CmpFedTaxID
         ,drvEmployeeUniqueIdentifier = EepSSN
-        ,drvIsInvalid = CASE WHEN EecEmplStatus IN ( 'A', 'T', 'S', 'L', 'R' ) THEN 'Yes' ELSE 'No' END
+        ,drvIsInvalid = 'No' --CASE WHEN EecEmplStatus IN ( 'A', 'T', 'S', 'L', 'R' ) THEN 'Yes' ELSE 'No' END
         ,drvLOAStartDate = CASE WHEN EshEmplStatus = 'L' THEN EshStatusStartDate END
         ,drvLOAEndDate = CASE WHEN EshEmplStatus  = 'L' THEN EshStatusStopDate  END
         ,drvLOAHours =  CASE WHEN EecEmplStatus IN ( 'A', 'L')  AND PehEarnCode = 'INTUN' THEN CurHours END

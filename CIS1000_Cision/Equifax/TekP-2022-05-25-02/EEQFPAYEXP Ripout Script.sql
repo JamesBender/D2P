@@ -551,7 +551,7 @@ BEGIN
         ,drvEmployerFEIN = @CmmFedTaxId
         ,drvPayPeriodStartDate = PrgPeriodStartDate
         ,drvPayPeriodEndDate = PrgPeriodEndDate
-        ,drvIsInvalid = CASE WHEN EecEmplStatus IN ('A','T','S','L','R') THEN 'Yes' ELSE 'No' END
+        ,drvIsInvalid = 'No'  --CASE WHEN EecEmplStatus IN ('A','T','S','L','R') THEN 'Yes' ELSE 'No' END
         ,drvPayDate = PrgPayDate
         ,drvPayRate =    FORMAT(
                         CASE WHEN EecSalaryOrHourly = 'H' THEN EecHourlyPayRate

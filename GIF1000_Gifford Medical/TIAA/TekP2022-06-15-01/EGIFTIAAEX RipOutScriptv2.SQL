@@ -5,7 +5,7 @@ EGIFTIAAEX: TIAA Deferred Compensation
 FormatCode:     EGIFTIAAEX
 Project:        TIAA Deferred Compensation
 Client ID:      GIF1000
-Date/time:      2022-08-26 11:42:27.610
+Date/time:      2022-09-02 11:46:41.230
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -298,18 +298,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','EGIFTIAAEXZ0','50','D','10','60',NULL,'ALTERNATIVE RETIREMENT VESTING ELIGIBILITY START D',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','EGIFTIAAEXZ0','50','D','10','61',NULL,'CONTRIBUTION SOURCE CODE1',NULL,NULL,'"drvCONTOURCECODE1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','EGIFTIAAEXZ0','50','D','10','62',NULL,'DEFERRAL PERCENTAGE - CS1',NULL,NULL,'"drvDEFERRALPERCENTAGECS1"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','EGIFTIAAEXZ0','50','D','10','63',NULL,'PAY PER DEFERRAL AMOUNT - CS1',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','EGIFTIAAEXZ0','50','D','10','63',NULL,'PAY PER DEFERRAL AMOUNT - CS1',NULL,NULL,'"drvPAYPERDEFERRALAMOUNT1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','EGIFTIAAEXZ0','50','D','10','64',NULL,'CONTRIBUTION SOURCE CODE2',NULL,NULL,'"drvCONTRIBUTIONSOURCECODE2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','EGIFTIAAEXZ0','50','D','10','65',NULL,'DEFERRAL PERCENTAGE - CS2',NULL,NULL,'"drvDEFERRALPERCENTAGECS2"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','EGIFTIAAEXZ0','50','D','10','66',NULL,'PAY PER DEFERRAL AMOUNT - CS2',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','EGIFTIAAEXZ0','50','D','10','66',NULL,'PAY PER DEFERRAL AMOUNT - CS2',NULL,NULL,'"drvPAYPERDEFERRALAMOUNT2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','EGIFTIAAEXZ0','50','D','10','67',NULL,'CONTRIBUTION SOURCE CODE3',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','EGIFTIAAEXZ0','50','D','10','68',NULL,'DEFERRAL PERCENTAGE - CS3',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','EGIFTIAAEXZ0','50','D','10','69',NULL,'PAY PER DEFERRAL AMOUNT - CS3',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','EGIFTIAAEXZ0','50','D','10','70',NULL,'PLAN ANNUAL SALARY',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','EGIFTIAAEXZ0','50','D','10','71',NULL,'Employer Contribution Eligibility Source1',NULL,NULL,'"drvEmployerContEligiSource1"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EGIFTIAAEXZ0','50','D','10','72',NULL,'Employer Contribution Eligibility Date1',NULL,NULL,'"drvEmployerContEligDate1"','(''UD112''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EGIFTIAAEXZ0','50','D','10','72',NULL,'Employer Contribution Eligibility Date1',NULL,NULL,'"drvEmployerContEligDate1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','EGIFTIAAEXZ0','50','D','10','73',NULL,'Employer Contribution Eligibility Source2',NULL,NULL,'"drvEmployerContEligiSource2"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EGIFTIAAEXZ0','50','D','10','74',NULL,'Employer Contribution Eligibility Date2',NULL,NULL,'"drvEmployerContEligDate2"','(''UD112''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EGIFTIAAEXZ0','50','D','10','74',NULL,'Employer Contribution Eligibility Date2',NULL,NULL,'"drvEmployerContEligDate2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EGIFTIAAEXZ0','50','D','10','75',NULL,'AUTO ENROLLMENT',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','EGIFTIAAEXZ0','50','D','10','76',NULL,'AUTO ENROLLMENT DATE',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('77','EGIFTIAAEXZ0','50','D','10','77',NULL,'NEXT AUTOMATIC DEFERRAL INCREASE DATE',NULL,NULL,'""','(''SS''=''T|'')');
@@ -343,18 +343,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGIFTIAAEX_20220826.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGIFTIAAEX_20220902.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Active Open Enrollment Export','202208269','EMPEXPORT','OEACTIVE','Aug 26 2022 11:16AM','EGIFTIAAEX',NULL,NULL,NULL,'202208269','Aug 26 2022 12:00AM','Dec 30 1899 12:00AM','202208191','514','','','202208191',dbo.fn_GetTimedKey(),NULL,'us3jReGIF1000','',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208249','EMPEXPORT','OEPASSIVE',NULL,'EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug  4 2022  1:01PM','Aug  4 2022  1:01PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'TIAA Deferred Compensation','202208249','EMPEXPORT','ONDEM_XOE',NULL,'EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug  4 2022  1:01PM','Aug  4 2022  1:01PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'TIAA Deferred Compensati-Sched','202208249','EMPEXPORT','SCH_EGIFTI',NULL,'EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug  4 2022  1:01PM','Aug  4 2022  1:01PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'TIAA Deferred Compensati-Test','202208269','EMPEXPORT','TEST_XOE','Aug 26 2022 11:22AM','EGIFTIAAEX',NULL,NULL,NULL,'202208269','Aug 26 2022 12:00AM','Dec 30 1899 12:00AM','202201011','973','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3jReGIF1000','',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Active Open Enrollment Export','202208249','EMPEXPORT','OEACTIVE','Aug 26 2022 11:16AM','EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug 26 2022 12:00AM','Dec 30 1899 12:00AM','202201011','514','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3jReGIF1000','',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208249','EMPEXPORT','OEPASSIVE',NULL,'EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug  4 2022  1:01PM','Aug  4 2022  1:01PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'TIAA Deferred Compensation','202208249','EMPEXPORT','ONDEM_XOE',NULL,'EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug  4 2022  1:01PM','Aug  4 2022  1:01PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'TIAA Deferred Compensati-Sched','202208249','EMPEXPORT','SCH_EGIFTI',NULL,'EGIFTIAAEX',NULL,NULL,NULL,'202208249','Aug  4 2022  1:01PM','Aug  4 2022  1:01PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'TIAA Deferred Compensati-Test','202209019','EMPEXPORT','TEST_XOE','Sep  2 2022 10:22AM','EGIFTIAAEX',NULL,NULL,NULL,'202209019','Sep  1 2022 12:00AM','Dec 30 1899 12:00AM','202201011','624','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3jReGIF1000','',NULL);
 
 -----------
 -- AscImp inserts
@@ -529,12 +529,14 @@ CREATE TABLE [dbo].[U_EGIFTIAAEX_drvTbl] (
     [drvPlanEntryDate] datetime NULL,
     [drvCONTOURCECODE1] varchar(1) NULL,
     [drvDEFERRALPERCENTAGECS1] nvarchar(4000) NULL,
+    [drvPAYPERDEFERRALAMOUNT1] money NULL,
     [drvCONTRIBUTIONSOURCECODE2] varchar(1) NULL,
     [drvDEFERRALPERCENTAGECS2] nvarchar(4000) NULL,
+    [drvPAYPERDEFERRALAMOUNT2] money NULL,
     [drvEmployerContEligiSource1] varchar(1) NULL,
-    [drvEmployerContEligDate1] datetime NULL,
+    [drvEmployerContEligDate1] varchar(30) NULL,
     [drvEmployerContEligiSource2] varchar(1) NULL,
-    [drvEmployerContEligDate2] datetime NULL,
+    [drvEmployerContEligDate2] varchar(30) NULL,
     [drvYEAR] varchar(4) NOT NULL,
     [drvTOTALCONTRIBUTIONYTD] nvarchar(4000) NULL,
     [drvCONTRIBSOURCECODE1] varchar(1) NULL,
@@ -818,9 +820,9 @@ BEGIN
         ,Pdh403      = SUM(CASE WHEN PdhDedCode IN ('403') THEN PdhERCurAmt ELSE 0.00 END)
         ,Pdh457x     = SUM(CASE WHEN PdhDedCode IN ('457','457CU') THEN PdhEECurAmt ELSE 0.00 END)
         ,Pdh403x     = SUM(CASE WHEN PdhDedCode IN ('403CU','403M','403PD') THEN PdhEECurAmt ELSE 0.00 END)
-        ,Pdh403ER     = SUM(CASE WHEN PdhDedCode IN ('403M') THEN PdhERCurAmt ELSE 0.00 END)
+        ,Pdh403ER    = SUM(CASE WHEN PdhDedCode IN ('403M') THEN PdhERCurAmt ELSE 0.00 END)
         ,PdhROTH     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)  
-        ,Pdh403M   = SUM(CASE WHEN PdhDedCode IN ('403M') THEN (PdhEECurAmt) ELSE 0.00 END)  
+        ,Pdh403M     = SUM(CASE WHEN PdhDedCode IN ('403M') THEN (PdhEECurAmt) ELSE 0.00 END)  
     INTO dbo.U_EGIFTIAAEX_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_EGIFTIAAEX_DedList WITH (NOLOCK)
@@ -875,8 +877,7 @@ BEGIN
     INTO dbo.U_EGIFTIAAEX_drvTbl
         FROM ( 
   
-           
-          SELECT DISTINCT
+         SELECT DISTINCT
                  drvEEID = xEEID
                 ,drvCoID = xCoID
                 ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -925,24 +926,26 @@ BEGIN
                                             ELSE 'E'
                                             END
                 ,drvPlanEntryDate = EecDateOfLastHire
-                ,drvCONTOURCECODE1 = CASE WHEN DedCode_403x  IS NOT NULL THEN 'E' END
-                ,drvDEFERRALPERCENTAGECS1 =  CASE WHEN DedCode_403x IS NOT NULL  THEN Format(BdmEECalcRateOrPct,'#0.00') END
-                ,drvCONTRIBUTIONSOURCECODE2 =  CASE WHEN DedCode_ROTH IS NOT NULL THEN '2' END 
-                ,drvDEFERRALPERCENTAGECS2 = CASE WHEN DedCode_ROTH IS NOT NULL   THEN Format(BdmEECalcRateOrPct,'#0.00') END
-                ,drvEmployerContEligiSource1 =  CASE WHEN DedCode_403 IS NOT NULL  THEN 'F' END
-                ,drvEmployerContEligDate1 = CASE WHEN DedCode_403 IS NOT NULL  THEN EecDateOfBenefitSeniority END
-                ,drvEmployerContEligiSource2 = CASE WHEn DedCode_403M IS NOT NULL then 'D' END
-                ,drvEmployerContEligDate2 =CASE WHEN DedCode_403M IS NOT NULL  THEN EecDateOfBenefitSeniority END
+                ,drvCONTOURCECODE1 = CASE WHEN (DedCode_403x IS NOT NULL and isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00') or isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00' or isnull(EEAmt403x,'0.00') > '0.00' THEN 'E' END
+                ,drvDEFERRALPERCENTAGECS1 =  CASE WHEN (DedCode_403x IS NOT NULL and isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00') or isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00' THEN Format(isnull(BdmEECalcRateOrPct_403x,'0.00') * 100,'#0.00') END
+                ,drvPAYPERDEFERRALAMOUNT1 = CASE WHEN (DedCode_403x IS NOT NULL and isnull(EEAmt403x,'0.00') > '0.00' ) or isnull(EEAmt403x,'0.00') > '0.00' THEN isnull(EEAmt403x,'0.00')  END
+                ,drvCONTRIBUTIONSOURCECODE2 =  CASE WHEN ( DedCode_ROTH IS NOT NULL and isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00' ) or isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00' or isnull(ROTHEEAmt,'0.00') > '0.00' THEN '2' END 
+                ,drvDEFERRALPERCENTAGECS2 = CASE WHEN (DedCode_ROTH IS NOT NULL and isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00') or isnull(BdmEECalcRateOrPct_403x,'0.00') > '0.00' THEN Format(isnull(BdmEECalcRateOrPct_403x,'0.00') *100 ,'#0.00') END
+                ,drvPAYPERDEFERRALAMOUNT2 = CASE WHEN (DedCode_ROTH IS NOT NULL and  isnull(ROTHEEAmt,'0.00') > '0.00') or  isnull(ROTHEEAmt,'0.00') > '0.00' then isnull(ROTHEEAmt,'0.00') END
+                ,drvEmployerContEligiSource1 =  CASE WHEN DedCode_403 IS NOT NULL and EecDateOfBenefitSeniority is not null THEN 'F' END
+                ,drvEmployerContEligDate1 = CONVERT(varchar,CASE WHEN DedCode_403 IS NOT NULL and EecDateOfBenefitSeniority is not null  THEN EecDateOfBenefitSeniority END,112)
+                ,drvEmployerContEligiSource2 = CASE WHEn DedCode_403M IS NOT NULL and EecDateOfBenefitSeniority is not null then 'D' END
+                ,drvEmployerContEligDate2 =CONVERT(varchar,CASE WHEN DedCode_403M IS NOT NULL and EecDateOfBenefitSeniority is not null THEN EecDateOfBenefitSeniority END,112)
                 ,drvYEAR = '2022'
                 ,drvTOTALCONTRIBUTIONYTD = Format(( Pdh403 + Pdh403x + Pdh403ER + PdhROTH ),'#0.00')
-                ,drvCONTRIBSOURCECODE1 = CASE WHEn  DedCode_403 IS NOT NULL  then 'F' END
-                ,drvTOTALCONTRIBSOURCE1 =  Format(Pdh403,'#0.00')  --'Sum (PdhEECurAmt) where PdhDedCode = '403' from 1st per control of the year to the last closed per control of the year
-                ,drvCONTRIBSOURCECODE2 = CASE WHEN DedCode_403x IS NOT NULL  then 'E' END
-                ,drvTOTALCONTRIBYTDSOURCE2 = Format(Pdh403x,'#0.00') --Format(PdhTOTALCONTRIBYTDSOURCE2,'#0.00') --Sum (PdhEECurAmt) where PdhDedCode in ('457','457CU', '403CU','403M','403PD') from 1st per control of the year to the last closed per control of the year
-                ,drvCONTRIBSOURCECODE3 = CASE WHEN DedCode_ROTH IS NOT NULL   then '2'END
-                ,drvTOTALCONTRIBYTDSOURCE3 = format(PdhROTH,'#0.00')--'Sum (PdhEECurAmt) where PdhDedCode = 'ROTH' from 1st per control of the year to the last closed per control of the year
-                ,drvCONTRIBSOURCECODE4 = CASE WHEN DedCode_403M IS NOT NULL  then 'D' END
-                ,drvTOTALCONTRIBYTDSOURCE4 = Format(Pdh403ER,'#0.00') --Sum (PdhERCurAmt) where PdhDedCode = '403M' from 1st per control of the year to the last closed per control of the year
+                ,drvCONTRIBSOURCECODE1 = CASE WHEN  ( DedCode_403 IS NOT NULL and  Format(Pdh403,'#0.00')  > '0.00' ) or Format(Pdh403,'#0.00')  > '0.00'  then 'F' END
+                ,drvTOTALCONTRIBSOURCE1 =  CASE WHEN Format(Pdh403,'#0.00')  > '0.00' THEN Format(Pdh403,'#0.00') END --'Sum (PdhEECurAmt) where PdhDedCode = '403' from 1st per control of the year to the last closed per control of the year
+                ,drvCONTRIBSOURCECODE2 = CASE WHEN (DedCode_403x IS NOT NULL and  Format(Pdh403x,'#0.00') > '0.00') or Format(Pdh403x,'#0.00') > '0.00' then 'E' END
+                ,drvTOTALCONTRIBYTDSOURCE2 = CASE WHEN Format(Pdh403x,'#0.00') > '0.00' THEN Format(Pdh403x,'#0.00') END --Format(PdhTOTALCONTRIBYTDSOURCE2,'#0.00') --Sum (PdhEECurAmt) where PdhDedCode in ('457','457CU', '403CU','403M','403PD') from 1st per control of the year to the last closed per control of the year
+                ,drvCONTRIBSOURCECODE3 = CASE WHEN (DedCode_ROTH IS NOT NULL and format(PdhROTH,'#0.00')  > '0.00' ) or format(PdhROTH,'#0.00')  > '0.00' then '2'END
+                ,drvTOTALCONTRIBYTDSOURCE3 = CASE WHEN  format(PdhROTH,'#0.00')  > '0.00' THEN format(PdhROTH,'#0.00') END--'Sum (PdhEECurAmt) where PdhDedCode = 'ROTH' from 1st per control of the year to the last closed per control of the year
+                ,drvCONTRIBSOURCECODE4 = CASE WHEN (DedCode_403M IS NOT NULL and  Format(Pdh403ER,'#0.00') > '0.00' ) or Format(Pdh403ER,'#0.00') > '0.00' then 'D' END
+                ,drvTOTALCONTRIBYTDSOURCE4 = CASE WHEN Format(Pdh403ER,'#0.00') > '0.00' THEN  Format(Pdh403ER,'#0.00') END --S
            -- INTO dbo.U_EGIFTIAAEX_drvTbl
              FROM dbo.U_EGIFTIAAEX_EEList WITH (NOLOCK)
             JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -960,16 +963,22 @@ BEGIN
             --    AND BdmCoID = xCoID 
                 --and BdmDedCode IN ('403','403CU','403M','403PD','ROTH')
             LEFT JOIN (
-                        SELECT BdmEEID AS BdmP1EEID, BdmCOID AS BdmP1COID ,BdmEECalcRateOrPct
+                        SELECT BdmEEID AS BdmP1EEID, BdmCOID AS BdmP1COID
+                            --,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmDedCode END) AS DedCode_457
+                            --,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmBenStopDate END) AS DedCode_457_StopDate
+                            --,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmEECalcRateOrPct END) AS BdmEECalcRateOrPct_457
+                            ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') and BdmEECalcRateOrPct> 0 THEN BdmEECalcRateOrPct END) AS BdmEECalcRateOrPct_403x
                             ,MAX(CASE WHEN BdmDedCode = '403' THEN BdmDedCode END) AS DedCode_403
                             ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmDedCode END) AS DedCode_403x
                             ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmBenStopDate END) AS DedCode_403x_StopDate
+                            ,MAX(CASE WHEN BdmDedCode = 'ROTH' and BdmEECalcRateOrPct> 0 THEN BdmEECalcRateOrPct END) AS BdmEECalcRateOrPct_ROTH
                             ,MAX(CASE WHEN BdmDedCode IN ('ROTH') THEN BdmDedCode END) AS DedCode_ROTH
                             ,MAX(CASE WHEN BdmDedCode IN ('403M') THEN BdmDedCode END) AS DedCode_403M
+                            ,MAX(CASE WHEN BdmDedCode IN ('ROTH') THEN BdmEEAmt END)  AS ROTHEEAmt
+                            ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmEEAmt END) AS EEAmt403x
                         FROM dbo.U_dsi_BDM_EGIFTIAAEX WITH (NOLOCK)
-                        WHERE BdmDedCode IN ('403','403CU','403M','403PD','ROTH')
-                    
-                        GROUP BY BdmEEID, BdmCOID, BdmEECalcRateOrPct) AS PlanOneBdm
+                        WHERE BdmDedCode IN ('403','403CU','403M','403PD','ROTH') -- ,'457','457CU')
+                        GROUP BY BdmEEID, BdmCOID) AS PlanOneBdm
                 ON BdmP1EEID = xEEID
                 AND BdmP1COID = xCOID
              LEFT JOIN (
@@ -1038,20 +1047,22 @@ BEGIN
                                             WHEN EecDedGroupCode IN ('PHYSF','PHYSP') AND DedCode_457 IS NULL THEN 'E'
                                             END
                 ,drvPlanEntryDate = EecDateOfLastHire
-                ,drvCONTOURCECODE1 = CASE WHEN DedCode_457 IS NOT NULL then 'E' END
-                ,drvDEFERRALPERCENTAGECS1 =  Format(CASE WHEN DedCode_457 IS NOT NULL then bdmEECalcRateOrPct END,'#0.00')
+                ,drvCONTOURCECODE1 = CASE WHEN (DedCode_457 IS NOT NULL and isnull(BdmEECalcRateOrPct_457,'0.00') > '0.00' ) or isnull(BdmEECalcRateOrPct_457,'0.00') > '0.00' or isnull(EEAmt457,'0.00') > '0.00' then 'E' END
+                ,drvDEFERRALPERCENTAGECS1 =  CASE WHEN (DedCode_457 IS NOT NULL and isnull(BdmEECalcRateOrPct_457,'0.00') > '0.00') or isnull(BdmEECalcRateOrPct_457,'0.00') > '0.00' then Format(isnull(BdmEECalcRateOrPct_457,'0.00') * 100,'#0.00') END
+                ,drvPAYPERDEFERRALAMOUNT1 = CASE WHEN (DedCode_457 IS NOT NULL and isnull (EEAmt457,'0.00') > '0.00') or isnull(EEAmt457,'0.00') > '0.00' THEN isnull(EEAmt457,'0.00') END
                 ,drvCONTRIBUTIONSOURCECODE2 = ''--  CASE WHEN DedDedCode  = 'ROTH' then '2' END 
                 ,drvDEFERRALPERCENTAGECS2 = ''-- Format(CASE WHEN DedDedCode  = 'ROTH' then eedEECalcRateOrPct END,'#0.00')
+                ,drvPAYPERDEFERRALAMOUNT2 = ''
                 ,drvEmployerContEligiSource1 = ''--  CASE WHEN DedDedCode  = '403' then 'F' END
                 ,drvEmployerContEligDate1 = ''-- CASE WHEN DedDedCode  = '403' then EecDateOfBenefitSeniority END
                 ,drvEmployerContEligiSource2 = ''-- CASE WHEn DedDedCode  = '403M' then 'D' END
                 ,drvEmployerContEligDate2 = ''-- CASE WHEN DedDedCode  = '403M' then EecDateOfBenefitSeniority END
                 ,drvYEAR = '2022'
-                ,drvTOTALCONTRIBUTIONYTD = Format(( Pdh457x ),'#0.00')
-                ,drvCONTRIBSOURCECODE1 =''--  CASE WHEn DedDedCode  = '403' then 'F' END
-                ,drvTOTALCONTRIBSOURCE1 = ''--  Format(Pdh403,'#0.00')  --'Sum (PdhEECurAmt) where PdhDedCode = '403' from 1st per control of the year to the last closed per control of the year
-                ,drvCONTRIBSOURCECODE2 = CASE WHEN DedCode_457 IS NOT NULL then 'E' END
-                ,drvTOTALCONTRIBYTDSOURCE2 = Format(Pdh457x,'#0.00') --Sum (PdhEECurAmt) where PdhDedCode in ('457','457CU', '403CU','403M','403PD') from 1st per control of the year to the last closed per control of the year
+                ,drvTOTALCONTRIBUTIONYTD = CASE WHEN Format(( Pdh457x ),'#0.00') > '0.00' THEN Format(( Pdh457x ),'#0.00') END
+                ,drvCONTRIBSOURCECODE1 =' '--  CASE WHEn DedDedCode  = '403' then 'F' END
+                ,drvTOTALCONTRIBSOURCE1 = ' '--  Format(Pdh403,'#0.00')  --'Sum (PdhEECurAmt) where PdhDedCode = '403' from 1st per control of the year to the last closed per control of the year
+                ,drvCONTRIBSOURCECODE2 = CASE WHEN (DedCode_457 IS NOT NULL and Format(Pdh457x,'#0.00') > '0.00') or Format(Pdh457x,'#0.00') > '0.00' THEN 'E' END
+                ,drvTOTALCONTRIBYTDSOURCE2 = CASE WHEN Format(Pdh457x,'#0.00') > '0.00'  THEN Format(Pdh457x,'#0.00') END--Sum (PdhEECurAmt) where PdhDedCode in ('457','457CU', '403CU','403M','403PD') from 1st per control of the year to the last closed per control of the year
                 ,drvCONTRIBSOURCECODE3 = ''-- CASE WHEN DedDedCode = 'ROTH' then '2'END
                 ,drvTOTALCONTRIBYTDSOURCE3 = ''-- format(PdhROTH,'#0.00')--'Sum (PdhEECurAmt) where PdhDedCode = 'ROTH' from 1st per control of the year to the last closed per control of the year
                 ,drvCONTRIBSOURCECODE4 = ''-- CASE WHEN DedDedCode = '403M' then 'D' END
@@ -1071,13 +1082,20 @@ BEGIN
             JOIN dbo.U_EGIFTIAAEX_PDedHist WITH (NOLOCK)
                 ON PdhEEID = xEEID
             LEFT JOIN (
-                        SELECT BdmEEID AS BdmP1EEID, BdmCOID AS BdmP1COID
+                            SELECT BdmEEID AS BdmP1EEID, BdmCOID AS BdmP1COID
                             ,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmDedCode END) AS DedCode_457
                             ,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmBenStopDate END) AS DedCode_457_StopDate
+                            ,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmEECalcRateOrPct END) AS BdmEECalcRateOrPct_457
+                            ,MAX(CASE WHEN BdmDedCode IN ('457','457CU') THEN BdmEEAmt END) EEAmt457
+                         --   ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmEECalcRateOrPct END) AS BdmEECalcRateOrPct_403x
+                            --,MAX(CASE WHEN BdmDedCode = '403' THEN BdmDedCode END) AS DedCode_403
                             --,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmDedCode END) AS DedCode_403x
+                            --,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmBenStopDate END) AS DedCode_403x_StopDate
+                            --,MAX(CASE WHEN BdmDedCode = 'ROTH' THEN BdmEECalcRateOrPct END) AS BdmEECalcRateOrPct_ROTH
                             --,MAX(CASE WHEN BdmDedCode IN ('ROTH') THEN BdmDedCode END) AS DedCode_ROTH
+                            --,MAX(CASE WHEN BdmDedCode IN ('403M') THEN BdmDedCode END) AS DedCode_403M
                         FROM dbo.U_dsi_BDM_EGIFTIAAEX WITH (NOLOCK)
-                        WHERE BdmDedCode IN ('457','457CU')
+                        WHERE BdmDedCode IN ('457','457CU') --,'403','403CU','403M','403PD','ROTH') 
                         GROUP BY BdmEEID, BdmCOID) AS PlanOneBdm
                 ON BdmP1EEID = xEEID
                 AND BdmP1COID = xCOID
@@ -1092,10 +1110,12 @@ BEGIN
               JOIN dbo.U_EGIFTIAAEX_PEarHist WITH (NOLOCK)
                 ON PehEEID = xEEID
             WHERE BdmDedCode NOT IN ('403','403CU','403M','403PD','ROTH')
-    
+
 
     )
     drv
+
+
         
     ;
     ---------------------------------
@@ -1154,8 +1174,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202208011'
-       ,expStartPerControl     = '202208011'
+    SET expLastStartPerControl = '202201011'
+       ,expStartPerControl     = '202201011'
        ,expLastEndPerControl   = '202208249'
        ,expEndPerControl       = '202208249'
 WHERE expFormatCode = 'EGIFTIAAEX';
