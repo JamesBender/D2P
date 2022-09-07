@@ -5,7 +5,7 @@ ESYNUNUMXP: UNUM FMLA STD LTD
 FormatCode:     ESYNUNUMXP
 Project:        UNUM FMLA STD LTD
 Client ID:      SYN1008
-Date/time:      2022-09-01 14:42:34.040
+Date/time:      2022-09-06 08:21:35.410
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -269,7 +269,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20220901.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20220906.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -419,8 +419,8 @@ CREATE TABLE [dbo].[U_ESYNUNUMXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitalSort] varchar(1) NOT NULL,
-    [drveEnroll2] char(11) NULL,
+    [drvInitalSort] char(11) NULL,
+    [drveEnroll2] char(6) NULL,
     [drvPOLICY] varchar(7) NULL,
     [drvDIVISION] varchar(4) NULL,
     [drvSSN] char(11) NULL,
@@ -784,9 +784,9 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitalSort = ''
+        ,drvInitalSort = eepSSN
         -- standard fields above and additional driver fields below
-        ,drveEnroll2 = eepSSN
+        ,drveEnroll2 = CONVERT(CHAR(6), '')
         ,drvPOLICY = Ltrim(RTrim(PolicyNumber))
         ,drvDIVISION = CASE WHEN cmpcompanycode = 'AERO' THEN '0003' 
                             WHEN cmpcompanycode = 'SYN' THEN '0001'
@@ -988,7 +988,9 @@ BEGIN
     where (EecEmplStatus <> 'T' OR (audTerm = 'Y' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
     ;
 
-    ;
+   --Update Header information for Enroll2 fields
+    Update TOP (1)  dbo.U_ESYNUNUMXP_drvTbl set drveEnroll2 = (SELECT CONVERT(CHAR(6),count(*)) from dbo.U_ESYNUNUMXP_drvTbl) FROM  dbo.U_ESYNUNUMXP_drvTbl
+    where drvInitalSort = (select top (1) drvInitalSort from dbo.U_ESYNUNUMXP_drvTbl order by drvInitalSort);
 
     --==========================================
     -- Set FileName

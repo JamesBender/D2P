@@ -584,7 +584,7 @@ BEGIN
                                   --  ELSE dbo.dsi_fnGetMinMaxDates('MAX',PrgPayDate, (SELECT top 1 prgPaydate from dbo.payreg with (nolock) where prgPaydate between @startdate and @enddate and prgpaygroup = 'SALARY') )  
                                 --END  --PrgPayDate
         ,drvBeginPayrollPeriod = PayGrp.PrgPeriodStart
-        --CASE WHEN PrgPeriodStartDate is null THEN (SELECT top 1 PrgPeriodStartDate from dbo.payreg with (nolock) where prgPercontrol between @startpercontrol and @endpercontrol and prgpaygroup = 'SALARY') 
+        --CASE WHEN PrgPeriodStartDate is null THEN (SELECT top 1  from dbo.payreg with (nolock) where prgPercontrol between @startpercontrol and @endpercontrol and prgpaygroup = 'SALARY') 
                                    -- ELSE dbo.dsi_fnGetMinMaxDates('MAX',PrgPeriodStartDate, (SELECT top 1 PrgPeriodStartDate from dbo.payreg with (nolock) where prgPercontrol between @startpercontrol and @endpercontrol and prgpaygroup = 'SALARY') )  
                                -- END --PrgPeriodStartDate
         ,drvEndPayrollPeriod = PayGrp.PrgPeriodEnd
