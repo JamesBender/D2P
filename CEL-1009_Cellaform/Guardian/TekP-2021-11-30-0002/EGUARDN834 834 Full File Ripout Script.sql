@@ -5,7 +5,7 @@ EGUARDN834: Guardian H&W 834 Export
 FormatCode:     EGUARDN834
 Project:        Guardian H&W 834 Export
 Client ID:      CEL1009
-Date/time:      2022-08-22 06:13:23.800
+Date/time:      2022-09-02 08:40:48.103
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20220822.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20220902.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -616,7 +616,7 @@ IF OBJECT_ID('U_EGUARDN834_DrvTbl_2300') IS NULL
 CREATE TABLE [dbo].[U_EGUARDN834_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NOT NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
-    [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
+    [drvHD02_MaintReasonCode] varchar(3) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NULL,
     [drvHD04_PlanCoverageDesc] nvarchar(4000) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
@@ -1240,8 +1240,8 @@ BEGIN
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
-        ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode =    CASE WHEN BdmRecType = 'EMP' THEN
+        ,drvHD02_MaintReasonCode = BdmRecType
+        ,drvHD03_InsuranceLineCode =    --CASE WHEN BdmRecType = 'EMP' THEN
                                             CASE WHEN BdmDedCode = 'OBLIF' THEN 'AH'
                                             WHEN BdmDedCode = 'ADD' THEN 'AJ'
                                             WHEN BdmDedCode = 'STD' THEN 'STD'
@@ -1253,39 +1253,42 @@ BEGIN
                                             WHEN BdmDedCode IN ('VIS2','VIS') THEN 'VIS'
                                             WHEN BdmDedCode IN ('CIE5K','CIE10','CIE20') THEN 'AG'
                                             WHEN BdmDedCode IN ('ACCID') THEN 'EPO'
-                                            END
-                                        ELSE
-                                            CASE WHEN BdmDedCode = 'LIFES' THEN 'FAC'
+                                            --END
+                                        --ELSE
+                                            --CASE 
+                                            WHEN BdmDedCode = 'LIFES' THEN 'FAC'
                                             WHEN BdmDedCode = 'LIFEC' THEN 'FAC'
                                             WHEN BdmDedCode IN ('VIS2','VIS') THEN 'VIS'
                                             WHEN BdmDedCode = 'DEN' THEN 'DEN'
                                             WHEN BdmDedCode IN ('CIS5K','CIS10','CIS20') THEN 'AG'
                                             END
-                                        END
-        ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmRecType = 'EMP' THEN
+                                        --END
+        ,drvHD04_PlanCoverageDesc =    --CASE WHEN BdmRecType = 'EMP' THEN
                                         CASE WHEN BdmDedCode = 'LIFEE' THEN FORMAT(LIFEE_Amt, '#0') 
                                         WHEN BdmDedCode = 'CIE5K' THEN FORMAT(CIE5K_Amt, '#0') 
                                         WHEN BdmDedCode = 'CIE10' THEN FORMAT(CIE10_Amt, '#0') 
                                         WHEN BdmDedCode = 'CIE20' THEN FORMAT(CIE20_Amt, '#0') 
-                                        END
-                                    ELSE
-                                        CASE WHEN BdmDedCode = 'LIFEC' THEN FORMAT(LIFEC_Amt, '#0')
+                                        --END
+          --                          ELSE
+                                        --CASE 
+                                        WHEN BdmDedCode = 'LIFEC' THEN FORMAT(LIFEC_Amt, '#0')
                                         WHEN BdmDedCode = 'LIFES' THEN FORMAT(LIFES_Amt, '#0')
-                                        WHEN BdmDedCode = 'CIS5K' THEN FORMAT(CIS5K_Amt, '#0') 
-                                        WHEN BdmDedCode = 'CIS10' THEN FORMAT(CIS10_Amt, '#0') 
-                                        WHEN BdmDedCode = 'CIS20' THEN FORMAT(CIS20_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIS5K','CIC5K') THEN '5000' --FORMAT(CIS5K_Amt, '#0') 
+                                        --WHEN BdmDedCode = 'CIS5K' THEN FORMAT(12345, '#0') 
+                                        WHEN BdmDedCode IN ('CIS10', 'CIC10') THEN '10000' --FORMAT(CIS10_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIS20', 'CIS20') THEN '20000' --FORMAT(CIS20_Amt, '#0') 
                                         END
-                                    END
-        ,drvHD05_CoverageLevelCode =    CASE WHEN BdmRecType = 'EMP' THEN
-                                            CASE WHEN BdmDedCode IN ('OBLIFE','STD','LTD','LIFEE','ADD','DEN','VIS','CIE5K','CIE10','CIE20','ACCID') THEN 'EMP' END
-                                        ELSE
-                                            CASE WHEN BdmDedCode IN ('LIFES','DEN','VIS') AND ConRelationship = 'SPS' THEN 'SPO'
+                                    --END
+        ,drvHD05_CoverageLevelCode =    --CASE WHEN BdmRecType = 'EMP' THEN
+                                            CASE WHEN BdmDedCode IN ('OBLIFE','STD','LTD','LIFEE','ADD','DEN','VIS','CIE5K','CIE10','CIE20','ACCID') THEN 'EMP' --END
+                                        --ELSE
+                                            --CASE 
+                                            WHEN BdmDedCode IN ('LIFES','DEN','VIS') AND ConRelationship = 'SPS' THEN 'SPO'
                                             WHEN BdmDedCode IN ('LIFEC','DEN','VIS') AND ConRelationship = 'CHL' THEN 'CHD'
                                             WHEN BdmDedCode IN ('CIS5K','CIS10','CIS20') THEN 'SPO'
+                                            WHEN BdmDedCode IN ('CIC5K','CIC10','CIC20') THEN 'SPO'
                                             END
-                                        END
-
-                                     
+                                        --END                                     
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
         ,drvDTP01_DateTimeQualifier_348 = '348'

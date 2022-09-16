@@ -1094,10 +1094,10 @@ BEGIN
                                     AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
                                 WHEN EepGender = 'F' AND EepIsSmoker = 'N' THEN
                                     (SELECT TOP 1 RatEERateNSFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
-                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM., @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge) --AS VARCHAR)
                                 WHEN EepGender = 'F' AND EepIsSmoker = 'Y' THEN
                                     (SELECT TOP 1 RatEERateSMFemale FROM dbo.U_EACHALLSTA_InsRate WITH (NOLOCK) WHERE RatDedCode =  BDM.BdmDedCode 
-                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM.BdmBenStartDate, @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
+                                    AND (SELECT DATEDIFF(MONTH, eepDateOFBirth, dbo.dsi_fnGetMinMaxDates('MAX', BDM., @FileMinCovDate)))/12 BETWEEN RatMinAge AND RatMaxAge)-- AS VARCHAR)
                             END)*1000, '000000')
         ,drvRider1 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CICR1' END
         ,drvRider2 = CASE WHEN  BDM.bdmdedcode In ('CRID', 'CRIEE', 'CRIEF', 'CRIES', 'CRIFS') THEN 'CIHCR1' END

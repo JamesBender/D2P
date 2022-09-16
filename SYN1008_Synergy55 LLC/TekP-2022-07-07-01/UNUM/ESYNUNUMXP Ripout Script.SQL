@@ -5,7 +5,7 @@ ESYNUNUMXP: UNUM FMLA STD LTD
 FormatCode:     ESYNUNUMXP
 Project:        UNUM FMLA STD LTD
 Client ID:      SYN1008
-Date/time:      2022-09-06 08:21:35.410
+Date/time:      2022-09-08 10:47:02.090
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -109,6 +109,8 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 IF OBJECT_ID('dsi_vwESYNUNUMXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwESYNUNUMXP_Export];
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ESYNUNUMXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESYNUNUMXP];
+GO
+IF OBJECT_ID('U_ESYNUNUMXP_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_ESYNUNUMXP_PDedHist];
 GO
 IF OBJECT_ID('U_ESYNUNUMXP_File') IS NOT NULL DROP TABLE [dbo].[U_ESYNUNUMXP_File];
 GO
@@ -269,7 +271,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20220906.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20220908.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -280,7 +282,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208189','EMPEXPORT','OEPASSIVE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM FMLA STD LTD','202208189','EMPEXPORT','ONDEM_XOE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM FMLA STD LTD-Sched','202208189','EMPEXPORT','SCH_ESYNUN',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'UNUM FMLA STD LTD-Test','202208189','EMPEXPORT','TEST_XOE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UNUM FMLA STD LTD-Test','202209079','EMPEXPORT','TEST_XOE','Sep  7 2022 12:00AM','ESYNUNUMXP',NULL,NULL,NULL,'202209079','Sep  7 2022 12:00AM','Dec 30 1899 12:00AM','202208311',NULL,'','','202208311',dbo.fn_GetTimedKey(),NULL,'us3kEpSYN1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -447,32 +449,32 @@ CREATE TABLE [dbo].[U_ESYNUNUMXP_drvTbl] (
     [drvPLANCODE1] varchar(6) NULL,
     [drvBENEFITQUALIFYINGDATE1] datetime NULL,
     [drvBENEFITTERMDATE1] datetime NULL,
-    [drvBENEFITSELECTIONAMOUNT1] varchar(256) NULL,
+    [drvBENEFITSELECTIONAMOUNT1] money NULL,
     [drvBENEFITID2] varchar(2) NULL,
     [drvPLANCODE2] varchar(6) NULL,
     [drvBENEFITQUALIFYINGDATE2] datetime NULL,
     [drvBENEFITTERMDATE2] datetime NULL,
-    [drvBENEFITSELECTIONAMOUNT2] varchar(256) NULL,
+    [drvBENEFITSELECTIONAMOUNT2] money NULL,
     [drvBENEFITID3] varchar(2) NULL,
     [drvPLANCODE3] varchar(6) NULL,
     [drvBENEFITQUALIFYINGDATE3] datetime NULL,
     [drvBENEFITTERMDATE3] datetime NULL,
-    [drvBENEFITSELECTIONAMOUNT3] varchar(256) NULL,
+    [drvBENEFITSELECTIONAMOUNT3] money NULL,
     [drvBENEFITID4] varchar(2) NULL,
     [drvPLANCODE4] varchar(6) NULL,
     [drvBENEFITQUALIFYINGDATE4] datetime NULL,
     [drvBENEFITTERMDATE4] datetime NULL,
-    [drvBENEFITSELECTIONAMOUNT4] varchar(256) NULL,
+    [drvBENEFITSELECTIONAMOUNT4] money NULL,
     [drvBENEFITID5] varchar(2) NULL,
     [drvPLANCODE5] varchar(6) NULL,
     [drvBENEFITQUALIFYINGDATE5] datetime NULL,
     [drvBENEFITTERMDATE5] datetime NULL,
-    [drvBENEFITSELECTIONAMOUNT5] varchar(256) NULL,
+    [drvBENEFITSELECTIONAMOUNT5] money NULL,
     [drvBENEFITID6] varchar(2) NULL,
     [drvPLANCODE6] varchar(6) NULL,
     [drvBENEFITQUALIFYINGDATE6] datetime NULL,
     [drvBENEFITTERMDATE6] datetime NULL,
-    [drvBENEFITSELECTIONAMOUNT6] varchar(256) NULL
+    [drvBENEFITSELECTIONAMOUNT6] money NULL
 );
 
 -----------
@@ -497,6 +499,28 @@ CREATE TABLE [dbo].[U_ESYNUNUMXP_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] varchar(4000) NULL
+);
+
+-----------
+-- Create table U_ESYNUNUMXP_PDedHist
+-----------
+
+IF OBJECT_ID('U_ESYNUNUMXP_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_ESYNUNUMXP_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhVLFEE] numeric NULL,
+    [PdhVLFCH] numeric NULL,
+    [PdhVLFSP] numeric NULL,
+    [PdhVADDC] numeric NULL,
+    [PdhVADDE] numeric NULL,
+    [PdhVADDS] numeric NULL,
+    [PdhGTL] numeric NULL,
+    [PdhGADD] numeric NULL,
+    [PdhLTDER] numeric NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESYNUNUMXP]
@@ -749,16 +773,16 @@ BEGIN
     --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
     --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
     --    -- Categorize Payroll Amounts
-    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhVLFEE     = SUM(CASE WHEN PdhDedCode IN ('VLFEE') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhVLFCH     = SUM(CASE WHEN PdhDedCode IN ('VLFCH') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhVLFSP     = SUM(CASE WHEN PdhDedCode IN ('VLFSP') THEN PdhEECurAmt ELSE 0.00 END)        
+    --    ,PdhVADDC     = SUM(CASE WHEN PdhDedCode IN ('VADDC') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhVADDE     = SUM(CASE WHEN PdhDedCode IN ('VADDE') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhVADDS     = SUM(CASE WHEN PdhDedCode IN ('VADDS') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhGTL     = SUM(CASE WHEN PdhDedCode IN ('GTL') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhGADD     = SUM(CASE WHEN PdhDedCode IN ('GADD') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhLTDER     = SUM(CASE WHEN PdhDedCode IN ('LTDER') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --   -- ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
     --INTO dbo.U_ESYNUNUMXP_PDedHist
     --FROM dbo.PDedHist WITH (NOLOCK)
     --JOIN dbo.U_ESYNUNUMXP_DedList WITH (NOLOCK)
@@ -829,37 +853,37 @@ BEGIN
         ,drvPLANCODE1 = CASE WHEN VLFEE IN ('VLFEE') THEN '5.0AL3' END
         ,drvBENEFITQUALIFYINGDATE1 = CASE WHEN VLFEE_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFEE_BenefitDate END
-        ,drvBENEFITTERMDATE1 = CASE WHEN EecEmplStatus <> 'T' THEN VLFEE_StopDate END
+        ,drvBENEFITTERMDATE1 = CASE WHEN VLFEE IN ('VLFEE') and EecEmplStatus <> 'T' THEN VLFEE_StopDate END
         ,drvBENEFITSELECTIONAMOUNT1 = CASE WHEN VLFSP IN ('VLFSP') THEN VLFEE_EEAmt END
         ,drvBENEFITID2 = CASE WHEN VLFEE IN ('VLFEE') THEN 'LS' END
         ,drvPLANCODE2 = CASE WHEN VLFSP IN ('VLFSP') THEN '5.AN3B' END
         ,drvBENEFITQUALIFYINGDATE2 = CASE WHEN VLFSP_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFSP_BenefitDate END
-        ,drvBENEFITTERMDATE2 = CASE WHEN EecEmplStatus <> 'T' THEN VLFSP_StopDate END
+        ,drvBENEFITTERMDATE2 = CASE WHEN VLFSP IN ('VLFSP')  and EecEmplStatus <> 'T' THEN VLFSP_StopDate END
         ,drvBENEFITSELECTIONAMOUNT2 = CASE WHEN VLFSP IN ('VLFSP') THEN VLFSP_EEAmt END
         ,drvBENEFITID3 = CASE WHEN VLFCH IN ('VLFCH') THEN 'LC' END
         ,drvPLANCODE3 = CASE WHEN VLFCH IN ('VLFCH') THEN '5.AM17' END
         ,drvBENEFITQUALIFYINGDATE3 =  CASE WHEN VLFCH_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFCH_BenefitDate END
-        ,drvBENEFITTERMDATE3 = CASE WHEN EecEmplStatus <> 'T' THEN VLFCH_StopDate END
+        ,drvBENEFITTERMDATE3 = CASE WHEN VLFCH IN ('VLFCH')  and  EecEmplStatus <> 'T' THEN VLFCH_StopDate END
         ,drvBENEFITSELECTIONAMOUNT3 = CASE WHEN VLFCH  IN ('VLFCH') THEN VLFCH_EEAmt END
-        ,drvBENEFITID4 = CASE WHEN VADDE IN ('VADDS') THEN 'AM' END
-        ,drvPLANCODE4 = CASE WHEN VADDE IN ('VADDS') THEN '5.0N29' END
+        ,drvBENEFITID4 = CASE WHEN VADDE IN ('VADDE') THEN 'AM' END
+        ,drvPLANCODE4 = CASE WHEN VADDE IN ('VADDE') THEN '5.0N29' END
         ,drvBENEFITQUALIFYINGDATE4 = CASE WHEN VADDE_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VADDE_BenefitDate END
-        ,drvBENEFITTERMDATE4 = CASE WHEN EecEmplStatus <> 'T' THEN VADDE_StopDate END
+        ,drvBENEFITTERMDATE4 = CASE WHEN VADDE IN ('VADDE') and EecEmplStatus <> 'T' THEN VADDE_StopDate END
         ,drvBENEFITSELECTIONAMOUNT4 = CASE WHEN VADDE IN ('VADDE') THEN VADDE_EEAmt END
         ,drvBENEFITID5 = CASE WHEN VADDS IS NOT NULL THEN 'AS' END
         ,drvPLANCODE5 = CASE WHEN VADDS IN ('VADDS') THEN '5.0AM6' END
         ,drvBENEFITQUALIFYINGDATE5 = CASE WHEN VADDS_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VADDS_BenefitDate END
-        ,drvBENEFITTERMDATE5 = CASE WHEN EecEmplStatus <> 'T' THEN VADDS_StopDate END
+        ,drvBENEFITTERMDATE5 = CASE WHEN VADDS IN ('VADDS') and EecEmplStatus <> 'T' THEN VADDS_StopDate END
         ,drvBENEFITSELECTIONAMOUNT5 = CASE WHEN VADDS IN ('VADDS') THEN VADDS_EEAmt END
         ,drvBENEFITID6 = CASE WHEN VADDC IS NOT NULL THEN 'AC' END
         ,drvPLANCODE6 = CASE WHEN VADDC IN ('VADDC') THEN '5.0AM5' END
         ,drvBENEFITQUALIFYINGDATE6 = CASE WHEN VADDC_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VADDC_BenefitDate END
-        ,drvBENEFITTERMDATE6 = CASE WHEN EecEmplStatus <> 'T' THEN VADDC_StopDate END
+        ,drvBENEFITTERMDATE6 = CASE WHEN VADDC IN ('VADDC') and EecEmplStatus <> 'T' THEN VADDC_StopDate END
         ,drvBENEFITSELECTIONAMOUNT6 = CASE WHEN VADDC IN ('VADDC') THEN VADDC_EEAmt END
     INTO dbo.U_ESYNUNUMXP_drvTbl
     FROM dbo.U_ESYNUNUMXP_EEList WITH (NOLOCK)
@@ -872,91 +896,101 @@ BEGIN
     --    ON BdmEEID = xEEID 
     --    AND BdmCoID = xCoID
           JOIN (
-            Select  bdmEEID,bdmcoid,BdmDepRecId,PolicyNumber = CASE 
-                                WHEN BDMDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS') THEN ' 915349' 
-                                WHEN BDMDedCode IN ('GTL', 'GADD', 'LTDER') THEN '915346' 
+             Select Distinct  EedEEID, Eedcoid,PolicyNumber = CASE 
+                                WHEN EedDedCode  IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS') THEN ' 915349' 
+                                WHEN EedDedCode  IN ('GTL', 'GADD', 'LTDER')  THEN '915346' 
                                END
            
             
             
-            ,VLFEE = MAX((CASE WHEN BDMDedCode IN ('VLFEE') then BDMDedCode END))
-            ,VLFEE_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('VLFEE') then  BdmUsgDate1 END))
-            ,VLFEE_StartDate = MAX((CASE WHEN BDMDedCode IN ('VLFEE') then  bdmBenStartDate END))
-            ,VLFEE_StopDate = MAX((CASE WHEN BDMDedCode IN ('VLFEE') then  BdmStopDate END))
-            ,VLFEE_EEAmt = MAX((CASE WHEN BDMDedCode IN ('VLFEE') then  BdmUSGField1 END))
-            ,VLFEE_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('VLFEE') then  bdmChangeReason END))
+            ,VLFEE = MAX((CASE WHEN EedDedCode  IN ('VLFEE') then EedDedCode  END))
+            ,VLFEE_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VLFEE') then  EedEEEligDate END))
+            ,VLFEE_StartDate = MAX((CASE WHEN EedDedCode  IN ('VLFEE') then  EedBenStartDate END))
+            ,VLFEE_StopDate = MAX((CASE WHEN EedDedCode  IN ('VLFEE') then  EedBenStopDate END))
+            ,VLFEE_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VLFEE') then   EedBenAmt  END))
+            ,VLFEE_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VLFEE') then  BdmChangeReason END))
 
             
-            ,VLFCH = MAX((CASE WHEN BDMDedCode IN ('VLFCH') then BDMDedCode END))
-            ,VLFCH_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('VLFCH') then  BdmUsgDate1 END))
-            ,VLFCH_StartDate = MAX((CASE WHEN BDMDedCode IN ('VLFCH') then  bdmBenStartDate END))
-            ,VLFCH_StopDate = MAX((CASE WHEN BDMDedCode IN ('VLFCH') then  BdmStopDate END))
-            ,VLFCH_EEAmt = MAX((CASE WHEN BDMDedCode IN ('VLFCH') then  BdmUSGField1 END))
-            ,VLFCH_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('VLFCH') then  bdmChangeReason END))
+            ,VLFCH = MAX((CASE WHEN EedDedCode  IN ('VLFCH') then EedDedCode  END))
+            ,VLFCH_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VLFCH') then  EedEEEligDate END))
+            ,VLFCH_StartDate = MAX((CASE WHEN EedDedCode  IN ('VLFCH') then  EedBenStartDate END))
+            ,VLFCH_StopDate = MAX((CASE WHEN EedDedCode  IN ('VLFCH') then  EedBenStopDate END))
+            ,VLFCH_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VLFCH') then   EedBenAmt END))
+            ,VLFCH_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VLFCH') then  BdmChangeReason END))
 
             
-            ,VLFSP = MAX((CASE WHEN BDMDedCode IN ('VLFSP') then BDMDedCode END))
-            ,VLFSP_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('VLFSP') then  BdmUsgDate1 END))
-            ,VLFSP_StartDate = MAX((CASE WHEN BDMDedCode IN ('VLFSP') then  bdmBenStartDate END))
-            ,VLFSP_StopDate = MAX((CASE WHEN BDMDedCode IN ('VLFSP') then  BdmStopDate END))
-            ,VLFSP_EEAmt = MAX((CASE WHEN BDMDedCode IN ('VLFSP') then  BdmUSGField1 END))
-            ,VLFSP_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('VLFSP') then  bdmChangeReason END))
+            ,VLFSP = MAX((CASE WHEN EedDedCode  IN ('VLFSP') then EedDedCode  END))
+            ,VLFSP_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VLFSP') then  EedEEEligDate END))
+            ,VLFSP_StartDate = MAX((CASE WHEN EedDedCode  IN ('VLFSP') then  EedBenStartDate END))
+            ,VLFSP_StopDate = MAX((CASE WHEN EedDedCode  IN ('VLFSP') then  EedBenStopDate END))
+            ,VLFSP_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VLFSP') then   EedBenAmt  END))
+            ,VLFSP_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VLFSP') then  BdmChangeReason END))
 
-            ,VADDC = MAX((CASE WHEN BDMDedCode IN ('VADDC') then BDMDedCode END))
-            ,VADDC_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('VADDC') then  BdmUsgDate1 END))
-            ,VADDC_StartDate = MAX((CASE WHEN BDMDedCode IN ('VADDC') then  bdmBenStartDate END))
-            ,VADDC_StopDate = MAX((CASE WHEN BDMDedCode IN ('VADDC') then  BdmStopDate END))
-            ,VADDC_EEAmt = MAX((CASE WHEN BDMDedCode IN ('VADDC') then  BdmUSGField1 END))
-            ,VADDC_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('VADDC') then  bdmChangeReason END))
+            ,VADDC = MAX((CASE WHEN EedDedCode  IN ('VADDC') then EedDedCode  END))
+            ,VADDC_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VADDC') then  EedEEEligDate END))
+            ,VADDC_StartDate = MAX((CASE WHEN EedDedCode  IN ('VADDC') then  EedBenStartDate END))
+            ,VADDC_StopDate = MAX((CASE WHEN EedDedCode  IN ('VADDC') then  EedBenStopDate END))
+            ,VADDC_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VADDC') then  EedBenAmt END))
+            ,VADDC_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VADDC') then  BdmChangeReason END))
             
-            ,VADDE = MAX((CASE WHEN BDMDedCode IN ('VADDE') then BDMDedCode END))
-            ,VADDE_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('VADDE') then  BdmUsgDate1 END))
-            ,VADDE_StartDate = MAX((CASE WHEN BDMDedCode IN ('VADDE') then  bdmBenStartDate END))
-            ,VADDE_StopDate = MAX((CASE WHEN BDMDedCode IN ('VADDE') then  BdmStopDate END))
-            ,VADDE_EEAmt = MAX((CASE WHEN BDMDedCode IN ('VADDE') then  BdmUSGField1 END))
-            ,VADDE_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('VADDE') then  bdmChangeReason END))
+            ,VADDE = MAX((CASE WHEN EedDedCode  IN ('VADDE') then EedDedCode  END))
+            ,VADDE_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VADDE') then  EedEEEligDate END))
+            ,VADDE_StartDate = MAX((CASE WHEN EedDedCode  IN ('VADDE') then  EedBenStartDate END))
+            ,VADDE_StopDate = MAX((CASE WHEN EedDedCode  IN ('VADDE') then  EedBenStopDate END))
+            ,VADDE_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VADDE') then   EedBenAmt  END))
+            ,VADDE_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VADDE') then  BdmChangeReason END))
 
-            ,BENEFIT_STARTDATE = MAX((CASE WHEN BDMDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS','GTL', 'GADD', 'LTDER') then  bdmBenStartDate END)) 
-            ,VADDS = MAX((CASE WHEN BDMDedCode IN ('VADDS') then BDMDedCode END))
-            ,VADDS_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('VADDS') then  BdmUsgDate1 END))
-            ,VADDS_StartDate = MAX((CASE WHEN BDMDedCode IN ('VADDS') then  bdmBenStartDate END))
-            ,VADDS_StopDate = MAX((CASE WHEN BDMDedCode IN ('VADDS') then  BdmStopDate END))
-            ,VADDS_EEAmt = MAX((CASE WHEN BDMDedCode IN ('VADDS') then  BdmUSGField1 END))
-            ,VADDS_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('VADDS') then  bdmChangeReason END))
-            ,VADDS_BenOption = MAX((CASE WHEN BDMDedCode IN ('VADDS') then  bdmBenOption END))
+            ,BENEFIT_STARTDATE = MAX((CASE WHEN EedDedCode  IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS', 'GTL', 'GADD', 'LTDER') then  EedBenStartDate END))
+            ,VADDS = MAX((CASE WHEN EedDedCode  IN ('VADDS') then EedDedCode  END))
+            ,VADDS_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  EedEEEligDate END))
+            ,VADDS_StartDate = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  EedBenStartDate END))
+            ,VADDS_StopDate = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  EedBenStopDate END))
+            ,VADDS_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VADDS') then   EedBenAmt END))
+            ,VADDS_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  BdmChangeReason END))
+            --,VADDS_BenOption = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  bdmBenOption END))
 
-            ,Signature_Date = MAX((CASE WHEN BDMDedCode IN ('LFEE', 'LFSP', 'LFCH1','LFCH2') then  bdmBenStartDate END)) 
-            ,GTL = MAX((CASE WHEN BDMDedCode IN ('GTL') then BDMDedCode END))
-            ,GTL_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('GTL') then  BdmUsgDate1 END))
-            ,GTL_StartDate = MAX((CASE WHEN BDMDedCode IN ('GTL') then  bdmBenStartDate END))
-            ,GTL_StopDate = MAX((CASE WHEN BDMDedCode IN ('GTL') then  BdmStopDate END))
-            ,GTL_EEAmt = MAX((CASE WHEN BDMDedCode IN ('GTL') then  BdmUSGField1 END))
-            ,GTL_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('GTL') then  bdmChangeReason END))
-            ,GTL_BenOption = MAX((CASE WHEN BDMDedCode IN ('GTL') then  bdmBenOption END))
+            ,Signature_Date = MAX((CASE WHEN EedDedCode  IN ('LFEE', 'LFSP', 'LFCH1','LFCH2') then  EedBenStartDate END)) 
+            ,GTL = MAX((CASE WHEN EedDedCode  IN ('GTL')  then EedDedCode  END))
+            --,GTL_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  EedEEEligDate END))
+            --,GTL_StartDate = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  EedBenStartDate END))
+            --,GTL_StopDate = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  EedBenStopDate END))
+            --,GTL_EEAmt = MAX((CASE WHEN EedDedCode IN ('GTL') and  EedBenAmt  > 0 then   EedBenAmt END))
+            --,GTL_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  BdmChangeReason END))
+            --,GTL_BenOption = MAX((CASE WHEN EedDedCode  IN ('GTL') then  bdmBenOption END))
 
 
-            ,GADD = MAX((CASE WHEN BDMDedCode IN ('GADD') then BDMDedCode END))
-            ,GADD_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('GADD') then  BdmUsgDate1 END))
-            ,GADD_StartDate = MAX((CASE WHEN BDMDedCode IN ('GADD') then  bdmBenStartDate END))
-            ,GADD_StopDate = MAX((CASE WHEN BDMDedCode IN ('GADD') then  BdmStopDate END))
-            ,GADD_EEAmt = MAX((CASE WHEN BDMDedCode IN ('GADD') then  BdmUSGField1 END))
-            ,GADD_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('GADD') then  bdmChangeReason END))
+            ,GADD = MAX((CASE WHEN EedDedCode  IN ('GADD')  then EedDedCode  END))
+            --,GADD_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('GADD') and EedBenAmt  > 0 then  EedEEEligDate END))
+            --,GADD_StartDate = MAX((CASE WHEN EedDedCode  IN ('GADD') and EedBenAmt  > 0 then  EedBenStartDate END))
+            --,GADD_StopDate = MAX((CASE WHEN EedDedCode  IN ('GADD') and EedBenAmt  > 0 then  EedBenStopDate END))
+            --,GADD_EEAmt = MAX((CASE WHEN EedDedCode  IN ('GADD') and EedBenAmt  > 0 then   EedBenAmt  END))
+            --,GADD_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('GADD') and EedBenAmt  > 0 then  BdmChangeReason END))
 
-            ,LTDER = MAX((CASE WHEN BDMDedCode IN ('LTDER') then BDMDedCode END))
-            ,LTDER_BenefitDate = MAX((CASE WHEN BDMDedCode IN ('LTDER') then  BdmUsgDate1 END))
-            ,LTDER_StartDate = MAX((CASE WHEN BDMDedCode IN ('LTDER') then  bdmBenStartDate END))
-            ,LTDER_StopDate = MAX((CASE WHEN BDMDedCode IN ('LTDER') then  BdmStopDate END))
-            ,LTDER_EEAmt = MAX((CASE WHEN BDMDedCode IN ('LTDER') then  BdmUSGField1 END))
-            ,LTDER_ChangeReason = MAX((CASE WHEN BDMDedCode IN ('LTDER') then  bdmChangeReason END))
+            ,LTDER = MAX((CASE WHEN EedDedCode  IN ('LTDER')  then EedDedCode  END))
+            --,LTDER_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('LTDER') and  EedBenAmt  > 0 then  EedEEEligDate END))
+            --,LTDER_StartDate = MAX((CASE WHEN EedDedCode  IN ('LTDER') and  EedBenAmt  > 0  then  EedBenStartDate END))
+            --,LTDER_StopDate = MAX((CASE WHEN EedDedCode  IN ('LTDER') and  EedBenAmt  > 0 then  EedBenStopDate END))
+            --,LTDER_EEAmt = MAX((CASE WHEN EedDedCode  IN ('LTDER') and  EedBenAmt  > 0  then  EedEEAmt END))
+            --,LTDER_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('LTDER') and  EedBenAmt  > 0 then BdmChangeReason END))
                       
-            from U_dsi_BDM_ESYNUNUMXP WITH (NOLOCK) where BdmRecType = 'EMP' group by bdmEEID,bdmcoid,BdmDepRecId,CASE 
-                                WHEN BDMDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS') THEN ' 915349' 
-                                WHEN BDMDedCode IN ('GTL', 'GADD', 'LTDER') THEN '915346' 
+            FROM dbo.u_dsi_bdm_EmpDeductions WITH (NOLOCK)
+            Join U_dsi_BDM_ESYNUNUMXP  WITH (NOLOCK)
+                ON BdmDedCode = EedDedCode 
+                AND bdmeeid = EedEEID
+            JOIN dbo.EmpHDed WITH (NOLOCK)
+                ON edhEEID = EedEEID
+                AND EdhDedCode= EedDedCode
+            where  EedDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS', 'GTL', 'GADD', 'LTDER')
+                            AND EedFormatCode = 'ESYNUNUMXP'
+                        
+            GROUP BY EedEEID,Eedcoid,CASE 
+                                WHEN EedDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS') THEN ' 915349' 
+                                WHEN EedDedCode IN ('GTL', 'GADD', 'LTDER') THEN '915346' 
                                END
                      
     ) as BdmConsolidated 
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+        ON EedEEID = xEEID 
+        AND EedCoID = xCoID
      LEFT JOIN (
         -- Get NewHire, ReHire, Terms from Audit
         SELECT AudDateTime, audEEID

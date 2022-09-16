@@ -4,16 +4,17 @@ ELRPAYREXP: DailyPay User Roster Export
 
 FormatCode:     ELRPAYREXP
 Project:        DailyPay User Roster Export
-Client ID:      USG1000
-Date/time:      2022-09-07 18:28:30.333
+Client ID:      LIB1002
+Date/time:      2022-09-13 11:05:02.160
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ELRPAYREXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW3WUP1DB02
+Database:       ULTIPRO_WPLIBRE
+Web Filename:   LIB1002_87810_EEHISTORY_ELRPAYREXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,19 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwELRPAYREXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwELRPAYREXP_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ELRPAYREXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ELRPAYREXP];
+GO
+IF OBJECT_ID('U_ELRPAYREXP_File') IS NOT NULL DROP TABLE [dbo].[U_ELRPAYREXP_File];
+GO
+IF OBJECT_ID('U_ELRPAYREXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_ELRPAYREXP_EEList];
+GO
+IF OBJECT_ID('U_ELRPAYREXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ELRPAYREXP_drvTbl];
+GO
+IF OBJECT_ID('U_ELRPAYREXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ELRPAYREXP_AuditFields];
+GO
+IF OBJECT_ID('U_ELRPAYREXP_Audit') IS NOT NULL DROP TABLE [dbo].[U_ELRPAYREXP_Audit];
 GO
 
 -----------
@@ -164,16 +177,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELRPAYREXP_20220907.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELRPAYREXP_20220913.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay User Roster Export','202209079','EMPEXPORT','ONDEM_XOE',NULL,'ELRPAYREXP',NULL,NULL,NULL,'202209079','Sep  7 2022  6:10PM','Sep  7 2022  6:10PM','202209071',NULL,'','','202209071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay User Roster Exp-Sched','202209079','EMPEXPORT','SCH_ELRPAY',NULL,'ELRPAYREXP',NULL,NULL,NULL,'202209079','Sep  7 2022  6:10PM','Sep  7 2022  6:10PM','202209071',NULL,'','','202209071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay User Roster Exp-Test','202209079','EMPEXPORT','TEST_XOE',NULL,'ELRPAYREXP',NULL,NULL,NULL,'202209079','Sep  7 2022  6:10PM','Sep  7 2022  6:10PM','202209071',NULL,'','','202209071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay User Roster Export','202209079','EMPEXPORT','ONDEM_XOE',NULL,'ELRPAYREXP',NULL,NULL,NULL,'202209079','Sep  7 2022  6:10PM','Sep  7 2022  6:10PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'DailyPay User Roster Exp-Sched','202209079','EMPEXPORT','SCH_ELRPAY',NULL,'ELRPAYREXP',NULL,NULL,NULL,'202209079','Sep  7 2022  6:10PM','Sep  7 2022  6:10PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'DailyPay User Roster Exp-Test','202209079','EMPEXPORT','TEST_XOE',NULL,'ELRPAYREXP',NULL,NULL,NULL,'202209079','Sep  7 2022  6:10PM','Sep  7 2022  6:10PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -185,11 +198,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELRPAYREXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -200,8 +214,13 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ELRPAYREXP','H01','dbo.U_ELRPAYREXP_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ELRPAYREXP','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ELRPAYREXP','D10','dbo.U_ELRPAYREXP_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
 
 -----------
 -- U_dsi_Translations_v2 inserts
@@ -209,9 +228,80 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_ELRPAYREXP_Audit
 -----------
 
+IF OBJECT_ID('U_ELRPAYREXP_Audit') IS NULL
+CREATE TABLE [dbo].[U_ELRPAYREXP_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_ELRPAYREXP_AuditFields
+-----------
+
+IF OBJECT_ID('U_ELRPAYREXP_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ELRPAYREXP_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_ELRPAYREXP_drvTbl
+-----------
+
+IF OBJECT_ID('U_ELRPAYREXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ELRPAYREXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] char(9) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
+    [drvuserid] char(9) NULL,
+    [drvfirstname] varchar(100) NULL,
+    [drvlastname] varchar(100) NULL,
+    [drvaccountnumber] varchar(4) NULL,
+    [drvemail] varchar(50) NULL,
+    [drvphonenumber] varchar(52) NULL,
+    [drvpaygroup] char(6) NULL,
+    [drvlocation] char(6) NULL,
+    [drvpayrate] nvarchar(4000) NULL,
+    [drvalternativeid] varchar(1) NOT NULL,
+    [drvemployeetype] varchar(6) NULL
+);
+
+-----------
+-- Create table U_ELRPAYREXP_EEList
+-----------
+
+IF OBJECT_ID('U_ELRPAYREXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_ELRPAYREXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_ELRPAYREXP_File
+-----------
+
+IF OBJECT_ID('U_ELRPAYREXP_File') IS NULL
+CREATE TABLE [dbo].[U_ELRPAYREXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(1000) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ELRPAYREXP]
     @SystemID char(12)
@@ -290,6 +380,10 @@ BEGIN
         DROP TABLE dbo.U_ELRPAYREXP_AuditFields;
     CREATE TABLE dbo.U_ELRPAYREXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
 
+     INSERT INTO dbo.U_ELRPAYREXP_AuditFields VALUES ('EmpComp','EecDateofTermination');
+     INSERT INTO dbo.U_ELRPAYREXP_AuditFields VALUES ('EmpComp','EecEmplStatus');
+     --INSERT INTO dbo.U_ELRPAYREXP_AuditFields VALUES ('EmpComp','EecTermReason');
+
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_ELRPAYREXP_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_ELRPAYREXP_Audit;
@@ -309,17 +403,19 @@ BEGIN
     JOIN dbo.U_ELRPAYREXP_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
+        and audNewValue <> 'A' 
+        and isnull(audNewValue, '') <> ''
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_ELRPAYREXP_Audit ON dbo.U_ELRPAYREXP_Audit (audEEID,audKey2);
 
-    --================
-    -- Changes Only
-    --================
-    DELETE FROM dbo.U_ELRPAYREXP_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_ELRPAYREXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_ELRPAYREXP_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_ELRPAYREXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
     --==========================================
     -- Build Driver Tables
@@ -339,12 +435,12 @@ BEGIN
         ,drvuserid = EecEmpno
         ,drvfirstname = EepNameFirst
         ,drvlastname = EepNameLast
-        ,drvaccountnumber = Right(PrhAcct, 4)
+        ,drvaccountnumber = Right(ltrim(rtrim(PrhAcct)), 4)
         ,drvemail = EepAddressEMail
         ,drvphonenumber =  efoPhoneNumber 
         ,drvpaygroup = EecPayGroup
         ,drvlocation = EecLocation
-        ,drvpayrate = EecHourlyPayRate
+        ,drvpayrate = Format(EecHourlyPayRate, '0.00')
         ,drvalternativeid = ''
         ,drvemployeetype = CASE WHEN EecSalaryOrHourly = 'H' THEN 'Hourly' END
 
@@ -362,15 +458,20 @@ BEGIN
         ON PrhEeId = xEEID
         AND PrhCoId = xCOID
         AND PrhGenNumber = PrgGenNumber
+        and PrhDepositamt <> 0
      LEFT JOIN (
                 SELECT EfoEEID, EfoPhoneNumber
                 FROM (
-                        SELECT EfoEEID, EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY EfoPhoneNumber) AS RN --, ORDER BY Ef
+                        SELECT EfoEEID, stuff(stuff(EfoPhoneNumber, 4, 0, '-'), 8, 0, '-') as EfoPhoneNumber, ROW_NUMBER() OVER (PARTITION BY EfoEEID ORDER BY EfoPhoneNumber) AS RN --, ORDER BY Ef
                         FROM  dbo.EmpMPhon WITH (NOLOCK)
                         WHERE EfoPhoneType = 'CEL') AS Efo
                 WHERE RN = 1 ) AS EfoPhone
         ON EfoEEID = xEEID
-        Where EecSalaryOrHourly = 'H'
+    LEFT JOIN dbo.U_ELRPAYREXP_Audit WITH (NOLOCK) 
+        ON audEEID = xEEID 
+        WHERE EecEEtype = 'REG' 
+        AND EecSalaryOrHourly = 'H'
+        and  (eecemplstatus <> 'T' or (eecemplstatus ='T' and  xEEID IN (select audEEID from dbo.U_ELRPAYREXP_Audit where audfieldname = 'eecemplstatus' and audNewValue = 'T')))
     ;
 
     --==========================================
@@ -401,13 +502,17 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202208311'
-       ,expStartPerControl     = '202208311'
+    SET expLastStartPerControl = '202207011'
+       ,expStartPerControl     = '202207011'
        ,expLastEndPerControl   = '202209079'
        ,expEndPerControl       = '202209079'
 WHERE expFormatCode = 'ELRPAYREXP';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwELRPAYREXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_ELRPAYREXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort
 
 GO
 
