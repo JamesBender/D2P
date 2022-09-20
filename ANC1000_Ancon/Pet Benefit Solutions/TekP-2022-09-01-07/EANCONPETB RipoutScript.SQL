@@ -5,7 +5,7 @@ EANCONPETB: Pet Benefit Solutions Enrollment
 FormatCode:     EANCONPETB
 Project:        Pet Benefit Solutions Enrollment
 Client ID:      USG1000
-Date/time:      2022-09-20 11:49:47.850
+Date/time:      2022-09-20 13:31:54.977
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -185,9 +185,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pet Benefit Solutions Enrollme','202209209','EMPEXPORT','ONDEM_XOE',NULL,'EANCONPETB',NULL,NULL,NULL,'202209209','Sep 20 2022 11:30AM','Sep 20 2022 11:30AM','202209201',NULL,'','','202209201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pet Benefit Solutions En-Sched','202209209','EMPEXPORT','SCH_EANCON',NULL,'EANCONPETB',NULL,NULL,NULL,'202209209','Sep 20 2022 11:30AM','Sep 20 2022 11:30AM','202209201',NULL,'','','202209201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pet Benefit Solutions En-Test','202209209','EMPEXPORT','TEST_XOE',NULL,'EANCONPETB',NULL,NULL,NULL,'202209209','Sep 20 2022 11:30AM','Sep 20 2022 11:30AM','202209201',NULL,'','','202209201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pet Benefit Solutions Enrollme','202209209','EMPEXPORT','ONDEM_XOE',NULL,'EANCONPETB',NULL,NULL,NULL,'202209209','Sep 20 2022 12:48PM','Sep 20 2022 12:48PM','202209201',NULL,'','','202209201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pet Benefit Solutions En-Sched','202209209','EMPEXPORT','SCH_EANCON',NULL,'EANCONPETB',NULL,NULL,NULL,'202209209','Sep 20 2022 12:48PM','Sep 20 2022 12:48PM','202209201',NULL,'','','202209201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Pet Benefit Solutions En-Test','202209209','EMPEXPORT','TEST_XOE',NULL,'EANCONPETB',NULL,NULL,NULL,'202209209','Sep 20 2022 12:48PM','Sep 20 2022 12:48PM','202209201',NULL,'','','202209201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -333,8 +333,8 @@ CREATE TABLE [dbo].[U_EANCONPETB_drvTbl] (
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
-    [drvHomePhone] nvarchar(4000) NULL,
-    [drvWorkPhone] nvarchar(4000) NULL,
+    [drvHomePhone] varchar(52) NULL,
+    [drvWorkPhone] varchar(52) NULL,
     [drvWorkPhoneExt] varchar(10) NULL,
     [drvPersonalEmail] varchar(50) NULL,
     [drvWorkEmail] varchar(50) NULL,
@@ -443,7 +443,11 @@ BEGIN
     -- Get data from audit fields table. Add fields here if auditing
     IF OBJECT_ID('U_EANCONPETB_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EANCONPETB_AuditFields;
+
     CREATE TABLE dbo.U_EANCONPETB_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EANCONPETB_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    INSERT INTO dbo.U_EANCONPETB_AuditFields VALUES ('EmpComp','EecEmplStatus');
+
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EANCONPETB_Audit','U') IS NOT NULL
@@ -470,11 +474,11 @@ BEGIN
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EANCONPETB_Audit ON dbo.U_EANCONPETB_Audit (audEEID,audKey2);
 
-    --================
-    -- Changes Only
-    --================
-    DELETE FROM dbo.U_EANCONPETB_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EANCONPETB_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_EANCONPETB_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EANCONPETB_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
     --==========================================
     -- Create Deduction List
@@ -535,8 +539,8 @@ BEGIN
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
-        ,drvHomePhone = CASE WHEN EepPhoneHomeNumber is not null  THEN FORMAT(CAST(EepPhoneHomeNumber AS int),'000-000-0000') ELSE FORMAT(CAST(efoPhoneNumber AS int),'000-000-0000') END
-        ,drvWorkPhone = FORMAT(CAST(EecPhoneBusinessNumber AS int),'000-000-0000')
+        ,drvHomePhone = CASE WHEN EepPhoneHomeNumber is not null  THEN STUFF(STUFF(EepPhoneHomeNumber, 7, 0, '-'), 4, 0, '-') ELSE  STUFF(STUFF(efoPhoneNumber , 7, 0, '-'), 4, 0, '-')END
+        ,drvWorkPhone = STUFF(STUFF(EecPhoneBusinessNumber, 7, 0, '-'), 4, 0, '-')
         ,drvWorkPhoneExt = EecPhoneBusinessExt
         ,drvPersonalEmail = EepAddressEmailAlternate
         ,drvWorkEmail = EepAddressEMail
@@ -549,7 +553,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EANCONPETB WITH (NOLOCK)
+    Left JOIN dbo.U_dsi_BDM_EANCONPETB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN (
@@ -560,6 +564,8 @@ BEGIN
                         WHERE EfoPhoneType = 'CEL') AS Efo
                 WHERE RN = 1 ) AS EfoPhone
         ON EfoEEID = xEEID
+    ;
+
     ;
 
     --==========================================
