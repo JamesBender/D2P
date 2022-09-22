@@ -5,7 +5,7 @@ EHIOMOOBEN: Mutual Of Omaha AD&D/Life/Vol Life/LTD/STD
 FormatCode:     EHIOMOOBEN
 Project:        Mutual Of Omaha AD&D/Life/Vol Life/LTD/STD
 Client ID:      HIO1000
-Date/time:      2022-09-19 13:23:46.270
+Date/time:      2022-09-21 08:50:06.907
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -214,7 +214,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHIOMOOBEN_20220919.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHIOMOOBEN_20220921.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -359,7 +359,7 @@ CREATE TABLE [dbo].[U_EHIOMOOBEN_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(1) NOT NULL,
+    [drvSort] char(9) NULL,
     [drvTransDate] char(8) NULL,
     [drvRelationshipCode] varchar(1) NOT NULL,
     [drvEmployeeID] char(11) NULL,
@@ -734,7 +734,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = ''
+        ,drvSort = EecEmpNo
         -- standard fields above and additional driver fields below
         ,drvTransDate = CONVERT(CHAR(8), GETDATE(), 112)
         ,drvRelationshipCode =  
@@ -767,7 +767,7 @@ BEGIN
                                                     THEN   MaxJobEffDate else dbo.dsi_fnGetMinMaxDates('MAX', EecDateOfLastHire , @FileMinCovDate)
                                                     END  
                                                 END ---MAX(EjhJobEffDate) where EjhisRateChange = 'Y' ---CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire), ''01/01/2022') END 
-        ,drvBasicSalaryMode = CASE WHEN BdmRecType = 'EMP' THEN 'A' END 
+        ,drvBasicSalaryMode = CASE WHEN BdmRecType = 'EMP' THEN 'a' END 
         ,drvBasicSalaryAmount =  CASE  WHEN BdmRecType = 'EMP' THEN dbo.dsi_fnPadZero(eecannsalary*100,16,0)  END
         ,drvClassEffectiveDate = CASE  WHEN BdmRecType = 'EMP' THEN 
                                         CASE WHEN EecDateOfOriginalHire < dbo.dsi_fnGetMinMaxDates('MAX', MAXBenStartDate, @FileMinCovDate)  THEN dbo.dsi_fnGetMinMaxDates('MAX', MAXBenStartDate, @FileMinCovDate) ELSE BdmBenStartDate END 
@@ -823,8 +823,8 @@ BEGIN
                                                 WHEN BdmRecType = 'EMP' AND LIFEE_BenStatus  <> 'T' THEN 'EN'END 
                                                 END
         ,drvVolTermLifeEmpPlanID        = CASE WHEN BdmRecType = 'EMP' and LIFEE_DedCode IS NOT NULL  AND  EecEmpNo IN ('10001986') THEN 'ETL00CEEGF' 
-                                            WHEn BdmRecType = 'EMP' and LIFEE_DedCode IS NOT NULL THEN 'ETL00CEEVAL'  END
-        ,drvVolTermLifeEmpFamilyCvgInd    = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 'C' END
+                                            WHEn BdmRecType = 'EMP' and LIFEE_DedCode IS NOT NULL  AND  EecEmpNo NOT IN ('10001986')  THEN 'ETL00CEEVAL'  END
+        ,drvVolTermLifeEmpFamilyCvgInd    = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL AND  EecEmpNo NOT IN ('10001986')THEN 'C' END
         ,drvVolTermLifeEmpAppAmtEffDte    = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL  THEN dbo.dsi_fnGetMinMaxDates('MAX', CASE WHEN LIFEE_DedCode = 'T' THEN DATEADD(DAY, +1, LIFEE_BenStopDate) ELSE LIFEE_BenStartDate END, @FileMinCovDate) END
         ,drvVolTermLifeEmpApprovedAmt    = CASE WHEN BdmRecType = 'EMP' AND LIFEE_DedCode IS NOT NULL THEN 
                                            CASE WHEN EecEmpNo ='10001986' THEN  '0000025000'

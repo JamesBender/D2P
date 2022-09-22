@@ -5,7 +5,7 @@ ECLHELTHEQ: Health Equity FSA Dep Care HRA Export
 FormatCode:     ECLHELTHEQ
 Project:        Health Equity FSA Dep Care HRA Export
 Client ID:      CEL1009
-Date/time:      2022-09-16 15:19:16.070
+Date/time:      2022-09-21 08:13:27.953
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -195,7 +195,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECLHELTHEQ_20220916.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECLHELTHEQ_20220921.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -206,7 +206,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202209139','EMPEXPORT','OEPASSIVE',NULL,'ECLHELTHEQ',NULL,NULL,NULL,'202209139','Sep 13 2022  8:13AM','Sep 13 2022  8:13AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Equity FSA Dep Care HRA','202209139','EMPEXPORT','ONDEM_XOE',NULL,'ECLHELTHEQ',NULL,NULL,NULL,'202209139','Sep 13 2022  8:13AM','Sep 13 2022  8:13AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Health Equity FSA Dep Ca-Sched','202209139','EMPEXPORT','SCH_ECLHEL',NULL,'ECLHELTHEQ',NULL,NULL,NULL,'202209139','Sep 13 2022  8:13AM','Sep 13 2022  8:13AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Health Equity FSA Dep Ca-Test','202209139','EMPEXPORT','TEST_XOE',NULL,'ECLHELTHEQ',NULL,NULL,NULL,'202209139','Sep 13 2022  8:13AM','Sep 13 2022  8:13AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',KSOJ8',NULL,NULL,NULL,'Health Equity FSA Dep Ca-Test','202211049','EMPEXPORT','TEST_XOE',NULL,'ECLHELTHEQ',NULL,NULL,NULL,'202211049','Sep 13 2022  8:13AM','Sep 13 2022  8:13AM','202209061',NULL,'','','202209061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -401,6 +401,7 @@ CREATE TABLE [dbo].[U_ECLHELTHEQ_Header] (
 
 IF OBJECT_ID('U_ECLHELTHEQ_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_ECLHELTHEQ_PDedHist] (
+    [PdhPerControl] char(9) NOT NULL,
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] money NULL
 );
@@ -413,14 +414,7 @@ IF OBJECT_ID('U_ECLHELTHEQ_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_ECLHELTHEQ_PEarHist] (
     [PehEEID] char(12) NOT NULL,
     [PrgPayDate] datetime NULL,
-    [PehCurAmt] numeric NULL,
-    [PehCurHrs] decimal NULL,
-    [PehCurAmtYTD] money NULL,
-    [PehCurHrsYTD] decimal NULL,
-    [PehInclInDefComp] money NULL,
-    [PehInclInDefCompHrs] decimal NULL,
-    [PehInclInDefCompYTD] money NULL,
-    [PehInclInDefCompHrsYTD] decimal NULL
+    [PehCurAmt] numeric NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECLHELTHEQ]
@@ -587,54 +581,55 @@ BEGIN
     -- Build Working Tables
     --==========================================
 
+ --   -----------------------------
+ --   -- Working Table - PDedHist
+ --   -----------------------------
+ --   IF OBJECT_ID('U_ECLHELTHEQ_PDedHist','U') IS NOT NULL
+ --       DROP TABLE dbo.U_ECLHELTHEQ_PDedHist;
+ --   SELECT DISTINCT
+    --PdhPerControl
+ --        ,PdhEEID
+ --       ,PdhEECurAmt = SUM(PdhEECurAmt)
+ --   INTO dbo.U_ECLHELTHEQ_PDedHist
+ --   FROM dbo.PDedHist WITH (NOLOCK)
+ --   JOIN dbo.U_ECLHELTHEQ_DedList WITH (NOLOCK)
+ --       ON DedCode = PdhDedCode
+ --   WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+ --   AND PdhPerControl <= @EndPerControl
+ -- -- AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+ --   GROUP BY PdhPerControl,PdhEEID,PdhPerControl 
+ --   HAVING (SUM(PdhEECurAmt) <> 0.00
+ --       OR SUM(PdhERCurAmt) <> 0.00)
+
+
     -----------------------------
-    -- Working Table - PDedHist
+    -- Working Table - PEarHist
     -----------------------------
-    IF OBJECT_ID('U_ECLHELTHEQ_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_ECLHELTHEQ_PDedHist;
+    IF OBJECT_ID('U_ECLHELTHEQ_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_ECLHELTHEQ_PEarHist;
     SELECT DISTINCT
-         PdhEEID
-        ,PdhEECurAmt = SUM(PdhEECurAmt)
-    INTO dbo.U_ECLHELTHEQ_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_ECLHELTHEQ_DedList WITH (NOLOCK)
-        ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
-   -- AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID,PdhPerControl 
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-        OR SUM(PdhERCurAmt) <> 0.00)
-
-
-    -------------------------------
-    ---- Working Table - PEarHist
-    -------------------------------
-    --IF OBJECT_ID('U_ECLHELTHEQ_PEarHist','U') IS NOT NULL
-    --    DROP TABLE dbo.U_ECLHELTHEQ_PEarHist;
-    --SELECT DISTINCT
-    --     PehEEID
-    --    ,PrgPayDate             = MAX(PrgPayDate)
-    --    -- Current Payroll Amount/Hours
-    --    ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
-    --    ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
-    --    -- YTD Payroll Amount/Hours
-    --    ,PehCurAmtYTD           = SUM(PehCurAmt)
-    --    ,PehCurHrsYTD           = SUM(PehCurHrs)
-    --    -- Current Include Deferred Comp Amount/Hours
-    --    ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-    --    ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
-    --    -- YTD Include Deferred Comp Amount/Hours
-    --    ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-    --    ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
-    --INTO dbo.U_ECLHELTHEQ_PEarHist
-    --FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    --JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-    --    ON PehGenNumber = PrgGenNumber
-    --WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    --AND PehPerControl <= @EndPerControl
-    --GROUP BY PehEEID
-    --HAVING SUM(PehCurAmt) <> 0.00;
+         PehEEID
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        --,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        ---- YTD Payroll Amount/Hours
+        --,PehCurAmtYTD           = SUM(PehCurAmt)
+        --,PehCurHrsYTD           = SUM(PehCurHrs)
+        ---- Current Include Deferred Comp Amount/Hours
+        --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        ---- YTD Include Deferred Comp Amount/Hours
+        --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        --,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_ECLHELTHEQ_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+     AND PehPerControl Between @StartPerControl and  @EndPerControl
+    GROUP BY PehEEID
+    HAVING SUM(PehCurAmt) <> 0.00;
     --==========================================
     -- Build Driver Tables
     --==========================================
