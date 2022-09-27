@@ -5,7 +5,7 @@ EREFMM401K: Mass Mutual 401K Payroll Interface
 FormatCode:     EREFMM401K
 Project:        Mass Mutual 401K Payroll Interface
 Client ID:      REF1001
-Date/time:      2022-08-25 13:03:00.993
+Date/time:      2022-09-07 14:09:13.847
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -130,8 +130,6 @@ IF OBJECT_ID('U_EREFMM401K_B_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EREFMM401K
 GO
 IF OBJECT_ID('U_EREFMM401K_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EREFMM401K_AuditFields];
 GO
-IF OBJECT_ID('U_EREFMM401K_Audit') IS NOT NULL DROP TABLE [dbo].[U_EREFMM401K_Audit];
-GO
 IF OBJECT_ID('U_EREFMM401K_A_Header') IS NOT NULL DROP TABLE [dbo].[U_EREFMM401K_A_Header];
 GO
 
@@ -190,7 +188,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREFMM401K_20220825.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREFMM401K_20220907.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -198,8 +196,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll Inter','202205269','EMPEXPORT','ONDEM_XOE',NULL,'EREFMM401K',NULL,NULL,NULL,'202205269','Apr 26 2022  1:19PM','Apr 26 2022  1:19PM','202204191',NULL,'','','202204191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',DAJ4C,DCQJ1,DAJ8D,CIUJE,CMCOX,CITIX',NULL,NULL,NULL,'Mass Mut 401K Pay-Thurs 7am','202205269','EMPEXPORT','SCH_EREFMM',NULL,'EREFMM401K',NULL,NULL,NULL,'202208259','Apr 26 2022  1:19PM','Apr 26 2022  1:19PM','202208191',NULL,'','','202204191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll-Test','202208259','EMPEXPORT','TEST_XOE','Aug 25 2022 12:00AM','EREFMM401K',NULL,NULL,NULL,'202208259','Aug 25 2022 12:00AM','Dec 30 1899 12:00AM','202208191','289','','','202208191',dbo.fn_GetTimedKey(),NULL,'us3mWaREF1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',DAJ4C,DCQJ1,DAJ8D,CIUJE,CMCOX,CITIX',NULL,NULL,NULL,'Mass Mut 401K Pay-Thurs 7am','202205269','EMPEXPORT','SCH_EREFMM',NULL,'EREFMM401K',NULL,NULL,NULL,'202209019','Apr 26 2022  1:19PM','Apr 26 2022  1:19PM','202208261',NULL,'','','202204191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Mass Mutual 401K Payroll-Test','202208259','EMPEXPORT','TEST_XOE','Sep  6 2022  3:21PM','EREFMM401K',NULL,NULL,NULL,'202208259','Aug 25 2022 12:00AM','Dec 30 1899 12:00AM','202208191','308','','','202208191',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -253,30 +251,9 @@ IF OBJECT_ID('U_EREFMM401K_A_Header') IS NULL
 CREATE TABLE [dbo].[U_EREFMM401K_A_Header] (
     [drvCompanyCode] varchar(4) NOT NULL,
     [drvCompanyName] varchar(8) NOT NULL,
-    [drvPayDate] varchar(9) NULL,
-    [drvCoversFrom] varchar(9) NULL,
-    [drvCoversTo] varchar(9) NULL
-);
-
------------
--- Create table U_EREFMM401K_Audit
------------
-
-IF OBJECT_ID('U_EREFMM401K_Audit') IS NULL
-CREATE TABLE [dbo].[U_EREFMM401K_Audit] (
-    [audEEID] varchar(255) NOT NULL,
-    [audKey2] varchar(255) NOT NULL,
-    [audKey3] varchar(255) NOT NULL,
-    [audTableName] varchar(128) NOT NULL,
-    [audFieldName] varchar(128) NOT NULL,
-    [audAction] varchar(6) NOT NULL,
-    [audDateTime] datetime NOT NULL,
-    [audOldValue] nvarchar(2000) NULL,
-    [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL,
-    [audNewHire] varchar(1) NOT NULL,
-    [audTermintation] varchar(1) NOT NULL,
-    [audBenefitChange] varchar(1) NOT NULL
+    [drvPayDate] datetime NULL,
+    [drvCoversFrom] datetime NULL,
+    [drvCoversTo] datetime NULL
 );
 
 -----------
@@ -748,16 +725,27 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EREFMM401K_A_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EREFMM401K_A_Header;
-      SELECT DISTINCT
-         drvCompanyCode = '0242'
-        ,drvCompanyName = 'Refresco'
-        ,drvPayDate = @EndPerControl --MAX(PrgPayDate)
-        ,drvCoversFrom = @StartPerControl --Max(prgperiodstartdate)
-        ,drvCoversTo = @EndPerControl --Max(prgperiodenddate)
-    INTO dbo.U_EREFMM401K_A_Header
-    FROM dbo.Payreg WITH (NOLOCK)
-    --Where PrgPayDate = @StartDate
+         SELECT DISTINCT  
+          drvCompanyCode = '0242'
+         ,drvCompanyName = 'Refresco'
+         ,drvPayDate = MAX(PrgPayDate)
+         ,drvCoversFrom = MAX(PrgPeriodStartDate)
+         ,drvCoversTo = MAX(PrgPeriodEndDate)
+         INTO dbo.U_EREFMM401K_A_Header
+         FROM dbo.PayReg WITH (NOLOCK)
+          WHERE PrgPerControl BETWEEN @StartPerControl AND @EndPerControl 
+                 and PrgPayGroup = 'PAWPAW'
+              
 
+    --  SELECT DISTINCT
+    --     drvCompanyCode = '0242'
+    --    ,drvCompanyName = 'Refresco'
+    --    ,drvPayDate = @EndPerControl --MAX(PrgPayDate)
+    --    ,drvCoversFrom = @StartPerControl --Max(prgperiodstartdate)
+    --    ,drvCoversTo = @EndPerControl --Max(prgperiodenddate)
+    --INTO dbo.U_EREFMM401K_A_Header
+    --FROM dbo.PayReg WITH (NOLOCK)
+    
     
     ;
 

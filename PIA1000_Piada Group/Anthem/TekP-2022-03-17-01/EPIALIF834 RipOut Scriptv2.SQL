@@ -1,11 +1,11 @@
 /**********************************************************************************
 
-EPIALIF834: Anthem 834 Export
+EPIALIF834: Anthem Life 834 Export
 
 FormatCode:     EPIALIF834
-Project:        Anthem 834 Export
+Project:        Anthem Life 834 Export
 Client ID:      PIA1000
-Date/time:      2022-09-06 11:28:42.133
+Date/time:      2022-09-09 10:26:10.343
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -126,6 +126,10 @@ IF OBJECT_ID('U_EPIALIF834_DrvTbl') IS NOT NULL DROP TABLE [dbo].[U_EPIALIF834_D
 GO
 IF OBJECT_ID('U_EPIALIF834_DedList') IS NOT NULL DROP TABLE [dbo].[U_EPIALIF834_DedList];
 GO
+IF OBJECT_ID('U_EPIALIF834_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EPIALIF834_AuditFields];
+GO
+IF OBJECT_ID('U_EPIALIF834_Audit') IS NOT NULL DROP TABLE [dbo].[U_EPIALIF834_Audit];
+GO
 IF OBJECT_ID('U_dsi_BDM_EPIALIF834') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EPIALIF834];
 GO
 
@@ -133,7 +137,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EPIALIF834','Anthem 834 Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','EPIALIF834Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EPIALIF834','Anthem Life 834 Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','EPIALIF834Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -366,7 +370,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPIALIF834_20220906.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPIALIF834_20220909.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -514,6 +518,37 @@ CREATE TABLE [dbo].[U_dsi_BDM_EPIALIF834] (
 );
 
 -----------
+-- Create table U_EPIALIF834_Audit
+-----------
+
+IF OBJECT_ID('U_EPIALIF834_Audit') IS NULL
+CREATE TABLE [dbo].[U_EPIALIF834_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL,
+    [audDedCodeChange] varchar(1) NOT NULL,
+    [audStatChange] varchar(1) NOT NULL,
+    [audGrpChange] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EPIALIF834_AuditFields
+-----------
+
+IF OBJECT_ID('U_EPIALIF834_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EPIALIF834_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
 -- Create table U_EPIALIF834_DedList
 -----------
 
@@ -531,7 +566,7 @@ CREATE TABLE [dbo].[U_EPIALIF834_DedList] (
 IF OBJECT_ID('U_EPIALIF834_DrvTbl') IS NULL
 CREATE TABLE [dbo].[U_EPIALIF834_DrvTbl] (
     [drvINS01_YesNoCond] varchar(1) NOT NULL,
-    [drvINS02_RelationshipCode] varchar(2) NOT NULL,
+    [drvINS02_RelationshipCode] varchar(2) NULL,
     [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
     [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
     [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
@@ -555,14 +590,22 @@ CREATE TABLE [dbo].[U_EPIALIF834_DrvTbl] (
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] datetime NULL,
-    [drvDTP00_DateTime2] varchar(1) NOT NULL,
+    [drvDTP00_DateTime2] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual2] varchar(1) NOT NULL,
-    [drvDTP03_DateTimePeriod2] varchar(1) NOT NULL,
-    [drvDTP00_DateTime3] varchar(1) NOT NULL,
-    [drvDTP01_DateTimeQualifier3] varchar(1) NOT NULL,
-    [drvDTP02_DateTimeFormatQual3] varchar(1) NOT NULL,
-    [drvDTP03_DateTimePeriod3] varchar(1) NOT NULL,
+    [drvDTP02_DateTimeFormatQual2] varchar(3) NOT NULL,
+    [drvDTP03_DateTimePeriod2] datetime NULL,
+    [drvDTP00_DateTime3] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier3] varchar(2) NOT NULL,
+    [drvDTP02_DateTimeFormatQual3] varchar(3) NOT NULL,
+    [drvDTP03_DateTimePeriod3] datetime NULL,
+    [drvDTP00_DateTime4] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier4] varchar(2) NOT NULL,
+    [drvDTP02_DateTimeFormatQual4] varchar(3) NOT NULL,
+    [drvDTP03_DateTimePeriod4] datetime NULL,
+    [drvDTP00_DateTime5] varchar(3) NOT NULL,
+    [drvDTP01_DateTimeQualifier5] varchar(2) NOT NULL,
+    [drvDTP02_DateTimeFormatQual5] varchar(3) NOT NULL,
+    [drvDTP03_DateTimePeriod5] datetime NULL,
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
@@ -642,9 +685,9 @@ CREATE TABLE [dbo].[U_EPIALIF834_DrvTbl_2300] (
     [drvREF00_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
-    [drvAMT00_AmountQualifierCode1] varchar(1) NOT NULL,
-    [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
-    [drvAMT02_MonetaryAmount1] varchar(1) NOT NULL,
+    [drvAMT00_AmountQualifierCode1] varchar(3) NOT NULL,
+    [drvAMT01_AmountQualifierCode1] varchar(2) NOT NULL,
+    [drvAMT02_MonetaryAmount1] money NULL,
     [drvAMT00_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
@@ -863,6 +906,47 @@ BEGIN
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'EPIALIF834';
 
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EPIALIF834_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EPIALIF834_AuditFields;
+    CREATE TABLE dbo.U_EPIALIF834_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    -- Audit Fields
+   -- INSERT INTO dbo.U_EPIALIF834_AuditFields VALUES ('EmpDed', 'EedDedCode');
+   -- INSERT INTO dbo.U_EPIALIF834_AuditFields VALUES ('EmpDed', 'EedBenStatus');
+    INSERT INTO dbo.U_EPIALIF834_AuditFields VALUES ('EmpComp','EecDedGroupCode');
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EPIALIF834_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EPIALIF834_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        ,audDedCodeChange = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedDedCode' AND ISNULL(audNewValue , '') <> '' THEN 'Y' ELSE 'N' END
+        ,audStatChange = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenStatus' AND ISNULL(audNewValue, '') <> '' THEN 'Y' ELSE 'N' END
+        ,audGrpChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecDedGroupCode' AND ISNULL(audNewValue, '') <> '' THEN 'Y' ELSE 'N' END
+    INTO dbo.U_EPIALIF834_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EPIALIF834_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EPIALIF834_Audit ON dbo.U_EPIALIF834_Audit (audEEID,audKey2);
+
+
     --==========================================
     -- Deduction Code List
     --==========================================
@@ -1058,12 +1142,12 @@ BEGIN
                                  ELSE 'N'
                              END
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
-                                        ELSE
-                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SPS,DP')) THEN '01'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('DP')) THEN '53'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL,DIS,DPC,STC')) THEN '19'
-                                            ELSE '19'
-                                            END
+                                        --ELSE
+                                        --    CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SPS,DP')) THEN '01'
+                                        --    WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('DP')) THEN '53'
+                                        --    WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL,DIS,DPC,STC')) THEN '19'
+                                        --    ELSE '19'
+                                        --    END
                                         END
         ,drvINS03_MaintTypeCode = '030' --Audit or Compare
         ,drvINS04_MaintReasonCode = 'XN' --Notification Only
@@ -1084,10 +1168,10 @@ BEGIN
                                         CASE WHEN EepIsDisabled = 'Y' THEN 'Y'
                                              ELSE 'N'
                                         END
-                                      WHEN BdmRecType = 'DEP' THEN 
-                                        CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
-                                             ELSE 'N'
-                                        END
+                                      --WHEN BdmRecType = 'DEP' THEN 
+                                      --  CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
+                                      --       ELSE 'N'
+                                      --  END
                                 END
         ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
         ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
@@ -1109,39 +1193,49 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = EecDateOfLastHire
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = ''
-        ,drvDTP01_DateTimeQualifier2 = ''
-        ,drvDTP02_DateTimeFormatQual2 = ''
-        ,drvDTP03_DateTimePeriod2 = ''
+        ,drvDTP00_DateTime2 = 'DTP'
+        ,drvDTP01_DateTimeQualifier2 = '7'
+        ,drvDTP02_DateTimeFormatQual2 = '356'
+        ,drvDTP03_DateTimePeriod2 = Case when dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETDATE(),EecDateInJob)   is not null then dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GETDATE(),EecDateInJob)   else eecdateoflasthire END
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 = ''
-        ,drvDTP01_DateTimeQualifier3 = ''
-        ,drvDTP02_DateTimeFormatQual3 = ''
-        ,drvDTP03_DateTimePeriod3 = ''
+        ,drvDTP00_DateTime3 = 'DTP'
+        ,drvDTP01_DateTimeQualifier3 = 'D8'
+        ,drvDTP02_DateTimeFormatQual3 = '356'
+        ,drvDTP03_DateTimePeriod3 = eecdateoflasthire
+         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
+        ,drvDTP00_DateTime4 = 'DTP'
+        ,drvDTP01_DateTimeQualifier4 = 'D8'
+        ,drvDTP02_DateTimeFormatQual4 = '356'
+        ,drvDTP03_DateTimePeriod4 = CASE WHEN audGrpChange = 'Y' THEn audDateTime END---EecDedGroupCode changes during the date range of the file send audit date
+               -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
+        ,drvDTP00_DateTime5 = 'DTP'
+        ,drvDTP01_DateTimeQualifier5 = 'D8'
+        ,drvDTP02_DateTimeFormatQual5 = '356'
+        ,drvDTP03_DateTimePeriod5 = eecdateoflasthire
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
         ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
                               CASE WHEN BdmRecType = 'EMP' THEN EepNameLast
-                                   WHEN BdmRecType = 'DEP' THEN ConNameLast
+                                  -- WHEN BdmRecType = 'DEP' THEN ConNameLast
                               END)
         ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-',
                                CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
-                                    WHEN BdmRecType = 'DEP' THEN ConNameFirst
+                                  --  WHEN BdmRecType = 'DEP' THEN ConNameFirst
                                END)
         ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
                                        CASE WHEN BdmRecType = 'EMP' and EepNameMiddle <> 'Z'THEN LEFT(EepNameMiddle,1)
-                                            WHEN BdmRecType = 'DEP' and ConNameMiddle <> 'Z' THEN LEFT(ConNameMiddle,1)
+                                          --  WHEN BdmRecType = 'DEP' and ConNameMiddle <> 'Z' THEN LEFT(ConNameMiddle,1)
                                        END)
         ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
         ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' and EepNameSuffix <> 'Z' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' and ConNameSuffix <> 'Z' THEN ConNameSuffix
+                                    -- WHEN BdmRecType = 'DEP' and ConNameSuffix <> 'Z' THEN ConNameSuffix
                                 END
         ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
-                                            WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
+                                          --  WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
                                         END        
         ,drvNM109_IDCode1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN EepSSN
-                                WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN ConSSN
+                              --  WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN ConSSN
                             END
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepPhoneHomeNumber, '') <> '' THEN 'HP'
@@ -1164,10 +1258,10 @@ BEGIN
                                          WHEN BdmRecType = 'DEP' THEN CONVERT(VARCHAR(8),ConDateOfBirth,112)
                                     END
         ,drvDMG03_GenderCode1 = CASE WHEN BdmRecType = 'EMP' THEN EepGender
-                                     WHEN BdmRecType = 'DEP' THEN ConGender
+                                     --WHEN BdmRecType = 'DEP' THEN ConGender
                                 END
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
-                                                CASE EepMaritalStatus WHEN 'S' THEN 'I' ELSE EepMaritalStatus END
+                                                CASE WHEN EepMaritalStatus in ('Z',  'S')THEN 'I' ELSE EepMaritalStatus END
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN BdmRecType = 'EMP' THEN '7' END --'7'
@@ -1193,11 +1287,11 @@ BEGIN
                                                      WHEN 'Y' THEN 'T' --Tobacco Use
                                                      ELSE 'N' --None
                                                 END
-                                           WHEN BdmRecType = 'DEP' THEN
-                                                CASE ConIsSmoker
-                                                     WHEN 'Y' THEN 'T' --Tobacco Use
-                                                     ELSE 'N' --None
-                                                END
+                                         --  WHEN BdmRecType = 'DEP' THEN
+                                           --     CASE ConIsSmoker
+                                               --      WHEN 'Y' THEN 'T' --Tobacco Use
+                                                --     ELSE 'N' --None
+                                                --END
                                       END
         ,drvHLH02_Height = ''
         ,drvHLH03_Weight1 = ''
@@ -1212,7 +1306,7 @@ BEGIN
         ,drvSSN = EepSSN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
-    INTO dbo.U_EPIALIF834_DrvTbl
+   INTO dbo.U_EPIALIF834_DrvTbl
     FROM dbo.U_EPIALIF834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -1229,7 +1323,12 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-        Where  eecEEtype <> 'TES';
+    Left JOIN dbo.U_EPIALIF834_Audit WITH (NOLOCK)
+        ON audeeid = xeeid
+        Where  eecEEtype <> 'TES'
+        and bdmbenstatus <>'T'
+        and BdmRecType = 'EMP';
+
 
     /**************************************************************************************************************
         DETAIL RECORDS
@@ -1276,9 +1375,9 @@ BEGIN
         ,drvREF01_RefNumberQual2 = ''
         ,drvREF02_RefNumberQual2 = ''
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode1 = ''
-        ,drvAMT01_AmountQualifierCode1 = ''
-        ,drvAMT02_MonetaryAmount1 = ''
+        ,drvAMT00_AmountQualifierCode1 = 'AMT'
+        ,drvAMT01_AmountQualifierCode1 = 'P3'
+        ,drvAMT02_MonetaryAmount1 = CASE WHEN bdmdedcode IN ( 'DLIFC', 'DLIFS', 'DLIFE', 'DADDE', 'DADDS', 'DADDC') THEN eedbenamt END
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
         ,drvAMT00_AmountQualifierCode2 = ''
         ,drvAMT01_AmountQualifierCode2 = ''
@@ -1328,7 +1427,7 @@ BEGIN
         ,drvSubSort =   CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
                       + BdmDedCode
             
-    INTO dbo.U_EPIALIF834_DrvTbl_2300
+   INTO dbo.U_EPIALIF834_DrvTbl_2300
     FROM dbo.U_EPIALIF834_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -1338,10 +1437,15 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EPIALIF834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
+    JOIN dbo.EmpDed WITH (NOLOCK)
+    ON  EedEEID = XEEID
+    AND BdmDedCode = EedDedCode
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-        Where  eecEEtype <> 'TES';
+    Where  eecEEtype <> 'TES'
+    and bdmbenstatus <>'T'
+    and BdmRecType = 'EMP';
 
     /**************************************************************************************************
         TRAILER RECORDS

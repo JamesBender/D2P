@@ -5,7 +5,7 @@ EABDMA403B: Mutual of America 403b Export
 FormatCode:     EABDMA403B
 Project:        Mutual of America 403b Export
 Client ID:      ABI1001
-Date/time:      2022-09-06 15:14:30.793
+Date/time:      2022-09-09 14:38:09.663
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -315,7 +315,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EABDMA403B_20220906.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EABDMA403B_20220909.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -326,7 +326,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE',NULL,'EABDMA403B',NULL,NULL,NULL,'202209029','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202208201',NULL,'','','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual of America 403b Export','202209029','EMPEXPORT','ONDEM_XOE',NULL,'EABDMA403B',NULL,NULL,NULL,'202209029','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202208201',NULL,'','','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Mutual of America 403b E-Sched','202209029','EMPEXPORT','SCH_EABDMA',NULL,'EABDMA403B',NULL,NULL,NULL,'202209029','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202208201',NULL,'','','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Mutual of America 403b E-Test','202209029','EMPEXPORT','TEST_XOE',NULL,'EABDMA403B',NULL,NULL,NULL,'202209029','Aug 31 2022  2:37PM','Aug 31 2022  2:37PM','202208201',NULL,'','','202208201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Mutual of America 403b E-Test','202209029','EMPEXPORT','TEST_XOE','Sep  9 2022 12:00AM','EABDMA403B',NULL,NULL,NULL,'202209029','Sep  2 2022 12:00AM','Dec 30 1899 12:00AM','202208201',NULL,'','','202208201',dbo.fn_GetTimedKey(),NULL,'us3lKiABI1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -469,15 +469,15 @@ CREATE TABLE [dbo].[U_EABDMA403B_drvTbl] (
     [drvSSN] char(11) NULL,
     [drvGender] char(1) NULL,
     [drvMaritalStatus] char(1) NULL,
-    [drvAddressline1] varchar(255) NULL,
-    [drvAddressline2] varchar(255) NULL,
+    [drvAddressline1] varchar(8000) NULL,
+    [drvAddressline2] varchar(8000) NULL,
     [drvAddressCity] varchar(255) NULL,
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvDOB] datetime NULL,
-    [drvOriginalHireDate] datetime NULL,
+    [drvOriginalHireDate] nvarchar(10) NULL,
     [drvTerminationDate] datetime NULL,
-    [drvPayrollDate] varchar(9) NULL,
+    [drvPayrollDate] datetime NULL,
     [drvPlanCompensation] nvarchar(4000) NULL,
     [drvHours] nvarchar(4000) NULL,
     [drvExcludedEarnings] nvarchar(4000) NULL,
@@ -491,17 +491,17 @@ CREATE TABLE [dbo].[U_EABDMA403B_drvTbl] (
     [drvPlanYTDEmployerBase] nvarchar(4000) NULL,
     [drvEmployerNumber] varchar(6) NOT NULL,
     [drvPlanType] varchar(4) NOT NULL,
-    [drvPayrollProviderCompanyCode] varchar(40) NULL,
+    [drvPayrollProviderCompanyCode] varchar(8000) NULL,
     [drvMiddleName] varchar(1) NULL,
-    [drvTitle] varchar(150) NULL,
+    [drvTitle] varchar(8000) NULL,
     [drvEmployeeID] char(9) NULL,
     [drvEmployeeStatus] char(1) NULL,
     [drvPayType] char(1) NULL,
-    [drvRehireDate] datetime NULL,
+    [drvRehireDate] nvarchar(10) NULL,
     [drvLeaveOfAbsenceBeginDate] datetime NULL,
     [drvLeaveOfAbsenceEndDate] datetime NULL,
-    [drvPayrollBeginDate] varchar(9) NULL,
-    [drvPayrollEndDate] varchar(9) NULL,
+    [drvPayrollBeginDate] datetime NULL,
+    [drvPayrollEndDate] datetime NULL,
     [drvPayrollFrequency] char(1) NULL,
     [drvLoanPayment1] nvarchar(4000) NULL,
     [drvEmployeeEmailAddress] varchar(50) NULL
@@ -654,6 +654,7 @@ BEGIN
     DELETE FROM dbo.U_EABDMA403B_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EABDMA403B_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+    
 
 
     --==========================================
@@ -663,6 +664,8 @@ BEGIN
     IF OBJECT_ID('U_EABDMA403B_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EABDMA403B_AuditFields;
     CREATE TABLE dbo.U_EABDMA403B_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+     INSERT INTO dbo.U_EABDMA403B_AuditFields VALUES ('EmpComp','EecDateofTermination');
+     INSERT INTO dbo.U_EABDMA403B_AuditFields VALUES ('EmpComp','EecEmplStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EABDMA403B_Audit','U') IS NOT NULL
@@ -683,7 +686,7 @@ BEGIN
     JOIN dbo.U_EABDMA403B_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    WHERE audDateTime  BETWEEN '01/01/' + CONVERT(VARCHAR(4), DATEPART(yy, @StartDate))  AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -699,7 +702,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '0003,0007,0015,0016,LOAN1,LOAN2,LOAN3,LOAN4,LOAN5';
+    SET @DedList = '0003,0007,0015,0016,LOAN1,LOAN2,LOAN3,LOAN4,LOAN5,LOAN6,LOAN7,LOAN8';
 
     IF OBJECT_ID('U_EABDMA403B_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EABDMA403B_DedList;
@@ -756,7 +759,7 @@ BEGIN
         ,PdhEEDeff        = SUM(CASE WHEN PdhDedCode IN ('0003 ','0007') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhEMPMatch    = SUM(CASE WHEN PdhDedCode IN ('0015') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         ,PdhEMPBaseCon  = SUM(CASE WHEN PdhDedCode IN ('0016') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhLoanAmnt = SUM(CASE WHEN PdhDedCode IN ('LOAN1', 'LOAN2', 'LOAN3', 'LOAN4', 'LOAN5') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END) 
+        ,PdhLoanAmnt = SUM(CASE WHEN PdhDedCode IN ('LOAN1', 'LOAN2', 'LOAN3', 'LOAN4', 'LOAN5', 'LOAN6','LOAN7','LOAN8') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END) 
         -- YTD Payroll Amounts
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
@@ -771,7 +774,7 @@ BEGIN
     JOIN dbo.U_EABDMA403B_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
+    AND left(PdhPerControl,8) >= DATEADD(DAY, -365, Left(@StartPerControl, 8))
    -- AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
     GROUP BY PdhEEID
     HAVING (SUM(PdhEECurAmt) <> 0.00
@@ -784,7 +787,7 @@ BEGIN
     -----------------------------
     IF OBJECT_ID('U_EABDMA403B_PEarHist','U') IS NOT NULL
         DROP TABLE dbo.U_EABDMA403B_PEarHist;
-    SELECT DISTINCT
+     SELECT DISTINCT
          PehEEID
         ,PrgPayDate             = MAX(PrgPayDate)
         -- Current Payroll Amount/Hours
@@ -805,10 +808,11 @@ BEGIN
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
+    WHERE  left(PehPerControl,8) >= DATEADD(DAY, -365, Left(@StartPerControl, 8))
     GROUP BY PehEEID
-      HAVING SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)> 0.00;
+      HAVING SUM( PehCurAmt)> 0.00;
+
+   
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -829,15 +833,15 @@ BEGIN
         ,drvSSN = eepSSN
         ,drvGender = EepGender
         ,drvMaritalStatus = eepMaritalStatus
-        ,drvAddressline1 = EepAddressLine1
-        ,drvAddressline2 = EepAddressLine2
+        ,drvAddressline1 = [dbo].[dsi_fnlib_AddDoubleQuotes] (EepAddressLine1)
+        ,drvAddressline2 = [dbo].[dsi_fnlib_AddDoubleQuotes] (EepAddressLine2)
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
         ,drvDOB = EepDateOfBirth
-        ,drvOriginalHireDate = EecDateOfOriginalHire
+        ,drvOriginalHireDate = convert(nvarchar(10), EecDateOfOriginalHire, 101) 
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvPayrollDate =  @EndPerControl
+        ,drvPayrollDate =  Cast(left(@EndPerControl,8)as Datetime)
         ,drvPlanCompensation = FORMAT(isnull(PehInclInDefCompY, 0.00),'#0.00')  
         ,drvHours = FORMAT(PehInclInDefCompHrsY,'#0.00')
         ,drvExcludedEarnings = FORMAT(isnull(PehInclInDefCompN, 0.00),'#0.00')
@@ -851,20 +855,20 @@ BEGIN
         ,drvPlanYTDEmployerBase = FORMAT(isnull(PdhYTDEMPBaseCon,0.00),'#0.00')
         ,drvEmployerNumber = '007295'
         ,drvPlanType = '403B'
-        ,drvPayrollProviderCompanyCode = cmpcompanyname
+        ,drvPayrollProviderCompanyCode = [dbo].[dsi_fnlib_AddDoubleQuotes](cmpcompanyname)  --cmpcompanyname
         ,drvMiddleName = LEFT(EepNameMiddle,1)
-        ,drvTitle = JbcLongDesc
+        ,drvTitle = [dbo].[dsi_fnlib_AddDoubleQuotes] (JbcLongDesc)
         ,drvEmployeeID = EecEmpNo
         ,drvEmployeeStatus = EecEmplStatus
         ,drvPayType = EecSalaryOrHourly
         ,drvRehireDate = CASE WHEN EjhReason IN ('500', 'TRO', 'TRI' , 'TRB')  then '' 
                                          WHEN  EecDateOfOriginalHire = EecDateOfLastHire THEN ''  
-                                         ELSE EecDateOfLastHire 
+                                         ELSE convert(nvarchar(10), EecDateOfLastHire, 101)
                                         END 
         ,drvLeaveOfAbsenceBeginDate = CASE WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate END
         ,drvLeaveOfAbsenceEndDate = CASE WHEN EecEmplStatus = 'A' and  EshEmplStatus = 'L' THEN  EshStatusStopDate END
-        ,drvPayrollBeginDate = @StartPerControl
-        ,drvPayrollEndDate = @EndPerControl
+        ,drvPayrollBeginDate = Cast(left(@StartPerControl,8)as Datetime)
+        ,drvPayrollEndDate = Cast(left(@EndPerControl,8)as Datetime)
         ,drvPayrollFrequency = EecPayPeriod
         ,drvLoanPayment1 = FORMAT(isnull(PdhLoanAmnt, 0.00), '#0.00')
         ,drvEmployeeEmailAddress = EepAddressEMail
@@ -877,7 +881,7 @@ BEGIN
         ON CmpCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EABDMA403B WITH (NOLOCK)
+   LEFT JOIN dbo.U_dsi_BDM_EABDMA403B WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
       JOIN dbo.JobCode WITH (NOLOCK)
@@ -910,9 +914,12 @@ BEGIN
                 WHERE RN = 1) AS EshDates 
         ON EshEEID = xEEID 
         AND EshCOID = xCOID
-        WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (isnull(PdhEEDeff,0) > 0 OR isnull(PdhEMPMatch, 0) > 0 OR isnull(PdhEMPBaseCon, 0) > 0 OR isnull(PdhLoanAmnt, 0) > 0 )) )
+    Left Join dbo.U_EABDMA403B_Audit
+        ON audeeid = xeeid
+        and audKey2 = xcoid
+            WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime BETWEEN '01/01/' + CONVERT(VARCHAR(4), DATEPART(yy, @StartDate))  AND @EndDate  ))
         and  eecorglvl1 = 'EMPL' and EecEEType <> 'TES'
-    ;
+        and ((PehCurAmt) > 0.00  OR (PdhEECurAmtYTD) > 0.00 )
     ;
     ---------------------------------
     -- HEADER RECORD
