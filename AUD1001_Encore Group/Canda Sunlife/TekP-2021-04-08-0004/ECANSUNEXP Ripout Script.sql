@@ -5,7 +5,7 @@ ECANSUNEXP: Canada Sunlife XML Export
 FormatCode:     ECANSUNEXP
 Project:        Canada Sunlife XML Export
 Client ID:      AUD1001
-Date/time:      2022-08-25 08:47:12.833
+Date/time:      2022-09-19 10:33:45.963
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -131,6 +131,10 @@ GO
 IF OBJECT_ID('U_ECANSUNEXP_drvTbl_Address') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_drvTbl_Address];
 GO
 IF OBJECT_ID('U_ECANSUNEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_DedList];
+GO
+IF OBJECT_ID('U_ECANSUNEXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_AuditFields];
+GO
+IF OBJECT_ID('U_ECANSUNEXP_Audit') IS NOT NULL DROP TABLE [dbo].[U_ECANSUNEXP_Audit];
 GO
 IF OBJECT_ID('U_dsi_BDM_ECANSUNEXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_ECANSUNEXP];
 GO
@@ -287,18 +291,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECANSUNEXP_20220825.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECANSUNEXP_20220919.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202108059','EMPEXPORT','OEACTIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202108059','EMPEXPORT','OEPASSIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Export','202108059','EMPEXPORT','ONDEM_XOE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Sched','202108059','EMPEXPORT','SCH_ECANSU',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202108059','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202108051',NULL,'','','202108051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','0JWM2,2CVHL,LMQT8',NULL,NULL,NULL,'Canada Sunlife XML Expor-Test','202208259','EMPEXPORT','TEST_XOE','Aug 25 2022 12:00AM','ECANSUNEXP',NULL,NULL,NULL,'202208259','Aug 25 2022 12:00AM','Dec 30 1899 12:00AM','202208041','9440','','','202208041',dbo.fn_GetTimedKey(),NULL,'us3lKiAUD1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202208259','EMPEXPORT','OEACTIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202208259','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202208111',NULL,'','','202208111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208259','EMPEXPORT','OEPASSIVE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202208259','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202208111',NULL,'','','202208111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Export','202208259','EMPEXPORT','ONDEM_XOE',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202208259','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202208111',NULL,'','','202208111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Canada Sunlife XML Expor-Sched','202208259','EMPEXPORT','SCH_ECANSU',NULL,'ECANSUNEXP',NULL,NULL,NULL,'202208259','Aug  5 2021 11:14AM','Aug  5 2021 11:14AM','202208111',NULL,'','','202208111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','5ROHV,0JWM2,SM69G,7DOFP,6BWFY,HGNW7,OROS1,HGO4Y,NYAGD,IJDBJ,9JGM2,IJD61,PGO77,HGO1C,2CVHL,SKT81,DASO7,HGNZ2,NYA7A,LMQT8,LMQFS,SKTTZ,SZ734,UGSFM,SZ74Y,S3VZ6,SM6AO,Y6XLP,FPNW3,ZMT1X,FPNX4,919SZ,H9K07,C29UO,FVBXA,O0S9D,O2QHG',NULL,NULL,NULL,'Canada Sunlife XML Expor-Test','202208259','EMPEXPORT','TEST_XOE','Sep 19 2022 12:00AM','ECANSUNEXP',NULL,NULL,NULL,'202208259','Aug 25 2022 12:00AM','Dec 30 1899 12:00AM','202208111','9440','','','202208111',dbo.fn_GetTimedKey(),NULL,'us3jBeAUD1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -392,6 +396,34 @@ CREATE TABLE [dbo].[U_dsi_BDM_ECANSUNEXP] (
     [BdmNumChildren] int NULL,
     [BdmNumDomPartners] int NULL,
     [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_ECANSUNEXP_Audit
+-----------
+
+IF OBJECT_ID('U_ECANSUNEXP_Audit') IS NULL
+CREATE TABLE [dbo].[U_ECANSUNEXP_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_ECANSUNEXP_AuditFields
+-----------
+
+IF OBJECT_ID('U_ECANSUNEXP_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_ECANSUNEXP_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
 );
 
 -----------
@@ -717,6 +749,48 @@ BEGIN
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
 
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_ECANSUNEXP_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ECANSUNEXP_AuditFields;
+    CREATE TABLE dbo.U_ECANSUNEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    --INSERT INTO dbo.U_ECANSUNEXP_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    INSERT INTO dbo.U_ECANSUNEXP_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    --INSERT INTO dbo.U_ECANSUNEXP_AuditFields VALUES ('EmpComp','EecTermReason');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_ECANSUNEXP_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ECANSUNEXP_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_ECANSUNEXP_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_ECANSUNEXP_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_ECANSUNEXP_Audit ON dbo.U_ECANSUNEXP_Audit (audEEID,audKey2);
+
+
+
+
+
     -----------------------------
     -- Working Table - PEarHist
     -----------------------------
@@ -835,7 +909,8 @@ BEGIN
                                 END
                                 , 126)
         ,drvTransferFlg = 'Implicit'
-        ,drvReinstatementFlg = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN 'True' ELSE 'False' END
+        ,drvReinstatementFlg = CASE WHEN EjhReason = '101' THEN 'True' ELSE 'False' END
+        --CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN 'True' ELSE 'False' END
     INTO dbo.U_ECANSUNEXP_drvTbl_Member
     FROM dbo.U_ECANSUNEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -850,6 +925,9 @@ BEGIN
         ON CmpCOID = xCOID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
+    LEFT JOIN dbo.U_ECANSUNEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
     LEFT JOIN (
                 SELECT EjhEEID, EjhCOID, EjhReason, EjhJobEffDate
                 FROM (
@@ -858,6 +936,7 @@ BEGIN
                 WHERE RN = 1) AS Ejh
         ON EjhEEID = xEEID
         AND EjhCOID = xCOID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Person
@@ -902,12 +981,16 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
+    LEFT JOIN dbo.U_ECANSUNEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
     JOIN (
                 SELECT DISTINCT BdmEEID AS DepTypeEEID, BdmCOID AS DepTypeCOID
                 FROM dbo.U_dsi_BDM_ECANSUNEXP WITH (NOLOCK)
                 WHERE BdmDedCode IN ('CDENT','CMED') AND BdmBenOption IN ('FAMILY','FAMON','FAMQC')) AS DepType
         ON DepTypeEEID = xEEID
         AND DepTypeCOID = xCOID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Salary
@@ -940,6 +1023,10 @@ BEGIN
         ON PgrPayGroup = EecPayGroup
     JOIN dbo.U_ECANSUNEXP_PEarHist
         ON PehEEID = xEEID
+    LEFT JOIN dbo.U_ECANSUNEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Address
@@ -978,6 +1065,13 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECANSUNEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN dbo.U_ECANSUNEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_PersonLink
@@ -1016,6 +1110,10 @@ BEGIN
     JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
+    LEFT JOIN dbo.U_ECANSUNEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECANSUNEXP_drvTbl_Benefits
@@ -1064,7 +1162,11 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECANSUNEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    WHERE EecEmplStatus <> 'T'
+    LEFT JOIN dbo.U_ECANSUNEXP_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
+    --WHERE EecEmplStatus <> 'T'
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -1107,10 +1209,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202110011'
-       ,expStartPerControl     = '202110011'
-       ,expLastEndPerControl   = '202111299'
-       ,expEndPerControl       = '202111299'
+    SET expLastStartPerControl = '202208111'
+       ,expStartPerControl     = '202208111'
+       ,expLastEndPerControl   = '202208259'
+       ,expEndPerControl       = '202208259'
 WHERE expFormatCode = 'ECANSUNEXP';
 
 **********************************************************************************/

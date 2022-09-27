@@ -5,7 +5,7 @@ ESUNLIFE: Sunlife XML Export V2
 FormatCode:     ESUNLIFE
 Project:        Sunlife XML Export V2
 Client ID:      REF1001
-Date/time:      2022-09-20 11:59:54.867
+Date/time:      2022-09-20 11:35:57.757
 Ripout version: 7.4
 Export Type:    Back Office
 Status:         Production
@@ -184,11 +184,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202207131','EMPEXPORT','OEACTIVE','Jun 17 2019 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202207131','Jun 17 2019 12:00AM','Dec 30 1899 12:00AM','202207061',NULL,'','','202207061',dbo.fn_GetTimedKey(),NULL,'SMACKIN',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202207131','EMPEXPORT','OEPASSIVE',NULL,'ESUNLIFE',NULL,NULL,NULL,'202207131','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202207061',NULL,'','','202207061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife XML Export','202207131','EMPEXPORT','ONDEMAND','Nov  5 2020 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202207131','Nov  3 2020 12:00AM','Dec 30 1899 12:00AM','202207061',NULL,'','','202207061',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202207131','EMPEXPORT','SCHEDULED','Aug 24 2022 11:01AM','ESUNLIFE',NULL,NULL,NULL,'202207131','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202207061',NULL,'','','202207061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\Sunlife\ESUNLIFE_20220713.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202207131','EMPEXPORT','TEST','Sep 20 2022 10:38AM','ESUNLIFE',NULL,NULL,NULL,'202207131','Jul 13 2022 12:00AM','Dec 30 1899 12:00AM','202207061','4074','','','202207061',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202202101','EMPEXPORT','OEACTIVE','Jun 17 2019 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202202101','Jun 17 2019 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'SMACKIN',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202202101','EMPEXPORT','OEPASSIVE',NULL,'ESUNLIFE',NULL,NULL,NULL,'202202101','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Sunlife XML Export','202202101','EMPEXPORT','ONDEMAND','Nov  5 2020 12:00AM','ESUNLIFE',NULL,NULL,NULL,'202202101','Nov  3 2020 12:00AM','Dec 30 1899 12:00AM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('File Name is Auto Generated',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202209139','EMPEXPORT','SCHEDULED','Sep 14 2022 11:01AM','ESUNLIFE',NULL,NULL,NULL,'202209139','Apr 15 2019  5:15PM','Apr 15 2019  5:15PM','202209071',NULL,'','','202209071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES ('\\us.saas\E4\Public\REF1001\Exports\Sunlife\ESUNLIFE_20220713.txt',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Purposes Only','202207139','EMPEXPORT','TEST','Sep 20 2022 10:17AM','ESUNLIFE',NULL,NULL,NULL,'202207139','Jul 13 2022 12:00AM','Dec 30 1899 12:00AM','202207069','4068','','','202207069',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -1007,8 +1007,8 @@ BEGIN
                                                             FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) JOIN dbo.Contacts WITH (NOLOCK) ON ConEEID = AudEEID JOIN dbo.DepBPlan WITH (NOLOCK) ON DbnDepRecID = ConSystemID AND AudKey3 = DbnDedCode 
                                                             WHERE AudEEID = xEEID AND AudFieldName = 'EedBenOption' AND ISNULL(AudOldValue, '') <> ISNULL(AudNewValue, ''))
                                         WHEN ISNULL(OverrideDate, '') <> '' THEN LEFT(CONVERT(VARCHAR(8),OverrideDate, 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),OverrideDate, 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),OverrideDate, 112), 7, 2) --Coverage Changes
-                                        WHEN AUD.AudFieldName = 'EecDedGroupCode' AND ISNULL(AUD.AudNewValue, '') IN ('CONPC','CALG','SURR','VISC','PTCL','SAL','CONTR','RNUN','SALS','PCSAL') THEN 
-                                                LEFT(CONVERT(VARCHAR(8),AUD.AudDateTime  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),AUD.AudDateTime  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),AUD.AudDateTime  , 112), 7, 2)  --Deduction Group Changes
+                                        WHEN AudFieldName = 'EecDedGroupCode' AND ISNULL(AudNewValue, '') IN ('CONPC','CALG','SURR','VISC','PTCL','SAL','CONTR','RNUN','SALS','PCSAL') THEN 
+                                                LEFT(CONVERT(VARCHAR(8),AudDateTime  , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),AudDateTime  , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),AudDateTime  , 112), 7, 2)  --Deduction Group Changes
                                         WHEN EjhIsRateChange = 'Y' THEN LEFT(CONVERT(VARCHAR(8),EjhJobEffDate   , 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EjhJobEffDate   , 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),EjhJobEffDate   , 112), 7, 2)  --Salary Changes
                                         ELSE LEFT(CONVERT(VARCHAR(8),GETDATE(), 112), 4) + '-' + SUBSTRING(CONVERT(VARCHAR(8),GETDATE(), 112), 5, 2) + '-' + SUBSTRING(CONVERT(VARCHAR(8),GETDATE(), 112), 7, 2)
                                 END, '') + '" ' +
@@ -1045,7 +1045,7 @@ BEGIN
         AND COID = xCOID
     LEFT JOIN dbo.BenChRsn WITH (NOLOCK)
         ON BchCode = EecTermReason
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AUD WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_Audit WITH (NOLOCK)
         ON AudEEID = xEEID
         AND AudFieldName = 'EecDedGroupCode'
         AND AudDateTime = (SELECT MAX(AudDateTime) FROM dbo.U_ESUNLIFE_Audit WITH (NOLOCK) WHERE AudEEID = xEEID AND AudFieldName = 'EecDedGroupCode')
@@ -1086,7 +1086,7 @@ BEGIN
                 GROUP BY EedEEID, EedCOID) AS BenStop
         ON xEEID = BsEEID
         AND xCOID = BsCOID
-    LEFT JOIN (
+    JOIN (
             SELECT EedEEID AS ActEEID, EedCOID AS ActCOID, COUNT(*) AS ActiveCoverages 
             FROM dbo.U_DSI_BDM_EmpDeductions WITH (NOLOCK) --where  EedEEID = 'CDWDO602J0K0'
             WHERE EedFormatCode = 'ESUNLIFE'
@@ -1095,13 +1095,10 @@ BEGIN
             GROUP BY EedEEID, EedCOID) AS ActiveCgs
         ON xEEID = ActEEID
         AND xCOID = ActCOID
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AudTermData WITH (NOLOCK)
-        ON AudTermData.audEEID = xEEID
-        AND AudTermData.audKey2 = xCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
             (
-                    (EecEmplStatus = 'A' OR (EecEmplStatus <> 'A' AND AudTermData.audDateTime BETWEEN @StartDate AND @EndDate))
+                    EecEmplStatus = 'A' 
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
                     --OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate) JCB Aug 2022
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND ((EedStopDate BETWEEN @StartDate AND @EndDate) OR (EedBenStatusDate BETWEEN @StartDate AND @EndDate)))
@@ -1109,7 +1106,7 @@ BEGIN
                 )
     AND EecEmpNo <> '208681'
     AND EedBenStatusDate  <= @EndDate
-    GROUP BY xEEID,xCOID,EecLocation,EecEmpNo,EecDateOfOriginalHire,EecStateSui,EecEmplStatus,EecSalaryOrHourly,EecTermReason,EdhChangeReason,EecDateOfTermination,EecEmplStatusStartDate,EshStatusStartDate,EEID,BchCode,EepAddressState,DedLongDesc,EecDedGroupCode,EecDateOfLastHire,OverrideDate,Aud.AudFieldName,Aud.AudOldValue,Aud.AudNewValue,Aud.AudDateTime,NewMem,EjhIsRateChange,EjhJobEffDate,Aud.AudEEID,EedDedCode,NewEmpDt
+    GROUP BY xEEID,xCOID,EecLocation,EecEmpNo,EecDateOfOriginalHire,EecStateSui,EecEmplStatus,EecSalaryOrHourly,EecTermReason,EdhChangeReason,EecDateOfTermination,EecEmplStatusStartDate,EshStatusStartDate,EEID,BchCode,EepAddressState,DedLongDesc,EecDedGroupCode,EecDateOfLastHire,OverrideDate,AudFieldName,AudOldValue,AudNewValue,AudDateTime,NewMem,EjhIsRateChange,EjhJobEffDate,AudEEID,EedDedCode,NewEmpDt
     ;
     
     ---------------------------------
@@ -1187,13 +1184,10 @@ BEGIN
                     AND audRowNo = 1) Ter
         ON xEEID = TerEEID
         AND xCOID = TerCOID
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AudTermData WITH (NOLOCK)
-        ON AudTermData.audEEID = xEEID
-        AND AudTermData.audKey2 = xCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
             (
-                    (EecEmplStatus = 'A' /*OR (EecEmplStatus <> 'A' AND AudTermData.audDateTime BETWEEN @StartDate AND @EndDate)*/)
+                    EecEmplStatus = 'A' 
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
                     --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)     
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND ((EedStopDate BETWEEN @StartDate AND @EndDate) OR (EedBenStatusDate BETWEEN @StartDate AND @EndDate))) -- JCB Aug 2022
@@ -1237,13 +1231,10 @@ BEGIN
                     AND audRowNo = 1) Ter
         ON xEEID = TerEEID
         AND xCOID = TerCOID
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AudTermData WITH (NOLOCK)
-        ON AudTermData.audEEID = xEEID
-        AND AudTermData.audKey2 = xCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
                 (
-                     (EecEmplStatus = 'A' /*OR (EecEmplStatus <> 'A' AND AudTermData.audDateTime BETWEEN @StartDate AND @EndDate)*/)
+                    EecEmplStatus = 'A' 
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
                     --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND ((EedStopDate BETWEEN @StartDate AND @EndDate) OR (EedBenStatusDate BETWEEN @StartDate AND @EndDate))) -- JCB Aug 2022
@@ -1319,13 +1310,10 @@ BEGIN
                     AND audRowNo = 1) Ter
         ON xEEID = TerEEID
         AND xCOID = TerCOID
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AudTermData WITH (NOLOCK)
-        ON AudTermData.audEEID = xEEID
-        AND AudTermData.audKey2 = xCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
                 (
-                    (EecEmplStatus = 'A' /*OR (EecEmplStatus <> 'A' AND AudTermData.audDateTime BETWEEN @StartDate AND @EndDate)*/)
+                    EecEmplStatus = 'A' 
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND ((EedStopDate BETWEEN @StartDate AND @EndDate) OR (EedBenStatusDate BETWEEN @StartDate AND @EndDate))) -- JCB Aug 2022
                 )
@@ -1365,8 +1353,8 @@ BEGIN
                                 CASE WHEN EdhChangeReason= '300' then '6' Else '2' END
                               ELSE '1' 
                          END, '') + '" ' + 
-        'StatusCd="' + ISNULL(CASE WHEN DbnBenStatus IN ('T','R') then '3' Else '1' END, '') + CASE WHEN ISNULL(AUD.AudOldValue, '') <> ISNULL(AUD.AudNewValue, '') AND AUD.AudOldValue IS NOT NULL THEN '" ' ELSE '"' END + 
-        ISNULL(CASE WHEN ISNULL(AUD.AudOldValue, '') <> ISNULL(AUD.AudNewValue, '') AND AUD.AudOldValue IS NOT NULL THEN 'OldFirstNm="' + ISNULL(AUD.AudOldValue, '') + '"' END, '') + 
+        'StatusCd="' + ISNULL(CASE WHEN DbnBenStatus IN ('T','R') then '3' Else '1' END, '') + CASE WHEN ISNULL(AudOldValue, '') <> ISNULL(AudNewValue, '') AND AudOldValue IS NOT NULL THEN '" ' ELSE '"' END + 
+        ISNULL(CASE WHEN ISNULL(AudOldValue, '') <> ISNULL(AudNewValue, '') AND AudOldValue IS NOT NULL THEN 'OldFirstNm="' + ISNULL(AudOldValue, '') + '"' END, '') + 
         '/>'
         ,drvInitialSort = EecEmpNo
         ,drvSubSort = ConSystemID
@@ -1394,7 +1382,7 @@ BEGIN
         ON EdhEEID = xEEID
         AND EdhCOID = xCOID
         AND EdhDateTimeCreated = (SELECT MAX(EdhDateTimeCreated) FROM dbo.EmpHDed WITH (NOLOCK) WHERE EdhEEID = xEEID AND EdhCOID = xCOID)
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AUD WITH (NOLOCK)
+    LEFT JOIN dbo.U_ESUNLIFE_Audit WITH (NOLOCK)
         ON AudEEID = xEEID
         AND AudFieldName = 'ConNameFirst'
         AND AudNewValue = ConNameFirst
@@ -1406,14 +1394,11 @@ BEGIN
                     AND audRowNo = 1) Ter
         ON xEEID = TerEEID
         AND xCOID = TerCOID
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AudTermData WITH (NOLOCK)
-        ON AudTermData.audEEID = xEEID
-        AND AudTermData.audKey2 = xCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
                     -- ?
                 (
-                    (EecEmplStatus = 'A' /*OR (EecEmplStatus <> 'A' AND AudTermData.audDateTime BETWEEN @StartDate AND @EndDate)*/)
+                    EecEmplStatus = 'A' 
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
                     --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)     
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND ((EedStopDate BETWEEN @StartDate AND @EndDate) OR (EedBenStatusDate BETWEEN @StartDate AND @EndDate))) -- JCB Aug 2022
@@ -1523,20 +1508,16 @@ BEGIN
                     AND audRowNo = 1) Ter
         ON xEEID = TerEEID
         AND xCOID = TerCOID
-    LEFT JOIN dbo.U_ESUNLIFE_Audit AS AudTermData WITH (NOLOCK)
-        ON AudTermData.audEEID = xEEID
-        AND AudTermData.audKey2 = xCOID
     WHERE --EXISTS(SELECT * FROM dbo.EmpDed WITH (NOLOCK) WHERE EedEEID = xEEID AND EedCOID = xCOID AND EedStartDate <= @EndDate AND EedStopDate IS NULL
             --        AND EedDedCode IN ('CCDEN','CPDEN','CDENT','CSDEN','CVDEN','CDENQ','CHLHQ','CHLTH','CCHLH','CPHLH','CHLHQ','CHLTH','CSHLH','CVHLH','CCLIF','CPLIF','CSLIF','CVLIF','CLIFE','CLTD','CCLTD','CPLTD','CSLTD','CVLTD','CELTD','CCDLI','CPDLI','CSDLI','CVDLI','CDLIF'))
                 (
-                    (EecEmplStatus = 'A' /*OR (EecEmplStatus <> 'A' AND AudTermData.audDateTime BETWEEN @StartDate AND @EndDate)*/)
+                    EecEmplStatus = 'A' 
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'A')
                     --OR (EecEmplStatus IN ('T','R') AND EedBenStatus = 'T' AND EedStopDate BETWEEN @StartDate AND @EndDate)
                     OR (EecEmplStatus IN ('T','R','L') AND EedBenStatus = 'T' AND ((EedStopDate BETWEEN @StartDate AND @EndDate) OR (EedBenStatusDate BETWEEN @StartDate AND @EndDate))) -- JCB Aug 2022
                 )
     AND EecEmpNo <> '208681'
     AND EedBenStatusDate  <= @EndDate -- JCB Aug 2022
-    --GROUP BY xEEID,xCOID,EecLocation,EecEmpNo,EecDateOfOriginalHire,EecStateSui,EecEmplStatus,EecSalaryOrHourly,EecTermReason,EdhChangeReason,EecDateOfTermination,EecEmplStatusStartDate,EshStatusStartDate,EEID,BchCode,EepAddressState,DedLongDesc,EecDedGroupCode,EecDateOfLastHire,OverrideDate,Aud.AudFieldName,Aud.AudOldValue,Aud.AudNewValue,Aud.AudDateTime,NewMem,EjhIsRateChange,EjhJobEffDate,Aud.AudEEID,EedDedCode,NewEmpDt
     ;
 
     ---------------------------------
@@ -1596,18 +1577,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202206301'
-       ,expStartPerControl     = '202206301'
-       ,expLastEndPerControl   = '202207061'
-       ,expEndPerControl       = '202207061'
-WHERE expFormatCode = 'ESUNLIFE';
-
-
-UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202207061'
-       ,expStartPerControl     = '202207061'
-       ,expLastEndPerControl   = '202207131'
-       ,expEndPerControl       = '202207131'
+    SET expLastStartPerControl = '202201011'
+       ,expStartPerControl     = '202201011'
+       ,expLastEndPerControl   = '202202101'
+       ,expEndPerControl       = '202202101'
 WHERE expFormatCode = 'ESUNLIFE';
 
 

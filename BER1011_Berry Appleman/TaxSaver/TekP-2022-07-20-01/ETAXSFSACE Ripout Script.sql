@@ -1,19 +1,20 @@
 /**********************************************************************************
 
-ETAXSFSACE: TaxSave FSA Combined Export
+ETAXSFSACE: TaxSaver FSA Combined Export
 
 FormatCode:     ETAXSFSACE
-Project:        TaxSave FSA Combined Export
-Client ID:      USG1000
-Date/time:      2022-08-23 05:50:10.570
+Project:        TaxSaver FSA Combined Export
+Client ID:      BER1011
+Date/time:      2022-09-15 06:38:14.120
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_ETAXSFSACE_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW2WUP3DB03
+Database:       ULTIPRO_WPBERRY
+Web Filename:   BER1011_DB933_EEHISTORY_ETAXSFSACE_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -126,7 +127,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ETAXSFSACE','TaxSave FSA Combined Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','ETAXSFSACEZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ETAXSFSACE','TaxSaver FSA Combined Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','ETAXSFSACEZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -158,7 +159,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ETAXSFSACEZ0','50','D','10','24',NULL,'Health Plan elected',NULL,NULL,'"drvHealthPlanElected"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ETAXSFSACEZ0','50','D','10','25',NULL,'Employee email address (work or home)',NULL,NULL,'"drvEmployeeEmailAddress"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ETAXSFSACEZ0','50','D','10','26',NULL,'Pay Cycle (W,B,S,M)',NULL,NULL,'"S"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ETAXSFSACEZ0','50','D','10','27',NULL,'Limited FSA Flag',NULL,NULL,'"N"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ETAXSFSACEZ0','50','D','10','27',NULL,'Limited FSA Flag',NULL,NULL,'"N"','(''DA''=''T'')');
 
 -----------
 -- Build web filename
@@ -171,18 +172,17 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETAXSFSACE_20220823.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETAXSFSACE_20220915.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202008239','EMPEXPORT','OEACTIVE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202008239','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208161',NULL,'','','202208161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202008239','EMPEXPORT','OEPASSIVE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202008239','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208161',NULL,'','','202208161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSave FSA Combined Export','202008239','EMPEXPORT','ONDEM_XOE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202008239','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208161',NULL,'','','202208161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSave FSA Combined Exp-Sched','202008239','EMPEXPORT','SCH_ETAXSF',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202008239','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208161',NULL,'','','202208161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSave FSA Combined Exp-Test','202008239','EMPEXPORT','TEST_XOE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202008239','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208161',NULL,'','','202208161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202208319','EMPEXPORT','OEACTIVE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202208319','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208319','EMPEXPORT','OEPASSIVE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202208319','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TaxSaver FSA Combined Export','202208319','EMPEXPORT','ONDEM_XOE',NULL,'ETAXSFSACE',NULL,NULL,NULL,'202208319','Aug 23 2022  5:05AM','Aug 23 2022  5:05AM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'TaxSaver FSA Combined Exp-Test','202208319','EMPEXPORT','TEST_XOE','Sep 14 2022  4:29PM','ETAXSFSACE',NULL,NULL,NULL,'202208319','Aug 31 2022 12:00AM','Dec 30 1899 12:00AM','202208311','272','','','202208311',dbo.fn_GetTimedKey(),NULL,'us3lKiBER1011',NULL);
 
 -----------
 -- AscImp inserts
@@ -194,10 +194,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETAXSFSACE','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -218,11 +219,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -308,11 +304,11 @@ CREATE TABLE [dbo].[U_ETAXSFSACE_drvTbl] (
     [drvAnnualGoalAmtForDayCareFSA] nvarchar(4000) NULL,
     [drvBenefitEligibilityDate2] datetime NULL,
     [drvBenefitTerminationDate2] datetime NULL,
-    [drvEmployeeStreetAddress] varchar(511) NOT NULL,
+    [drvEmployeeStreetAddress] varchar(8000) NULL,
     [drvCity] varchar(255) NULL,
     [drvStateAbbreviation] varchar(255) NULL,
     [drvZipCode] varchar(50) NULL,
-    [drvDepartmentOrLocation] varchar(25) NULL,
+    [drvDepartmentOrLocation] varchar(8000) NULL,
     [drvHealthPlanElected] varchar(1) NULL,
     [drvEmployeeEmailAddress] varchar(50) NULL
 );
@@ -368,7 +364,7 @@ Business Analyst: Lea King
 Create Date: 08/23/2022
 Service Request Number: TekP-2022-07-20-01
 
-Purpose: TaxSave FSA Combined Export
+Purpose: TaxSaver FSA Combined Export
 
 Revision History
 ----------------
@@ -453,7 +449,8 @@ BEGIN
     -- Required parameters
     --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',DATEADD(DAY, -14, @StartDate));
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
@@ -494,7 +491,7 @@ BEGIN
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
         ,PdhFSAorFSAMD            = SUM(CASE WHEN PdhDedCode IN ('FSA','FSAMD') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhFSADCorFSADN        = SUM(CASE WHEN PdhDedCode IN ('FSADC','FSAND') THEN PdhEECurAmt ELSE 0.00 END)        
+        ,PdhFSADCorFSADN        = SUM(CASE WHEN PdhDedCode IN ('FSADC','FSADN') THEN PdhEECurAmt ELSE 0.00 END)        
     INTO dbo.U_ETAXSFSACE_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_ETAXSFSACE_DedList WITH (NOLOCK)
@@ -551,11 +548,11 @@ BEGIN
         ,drvBenefitTerminationDate2 =    CASE WHEN FSADC_DedCode IS NOT NULL THEN FSADC_BenStopDate
                                         WHEN FSADN_DedCode IS NOT NULL THEN FSADN_BenStopDate
                                         END
-        ,drvEmployeeStreetAddress = CONCAT(EepAddressLine1, ' ', EepAddressLine2)
+        ,drvEmployeeStreetAddress = REPLACE(CONCAT(EepAddressLine1, ' ', EepAddressLine2), ',', '')
         ,drvCity = EepAddressCity
         ,drvStateAbbreviation = EepAddressState
         ,drvZipCode = EepAddressZipCode
-        ,drvDepartmentOrLocation = LocDesc
+        ,drvDepartmentOrLocation = REPLACE(LocDesc, ',', '')
         ,drvHealthPlanElected = HealthPlanElected
         ,drvEmployeeEmailAddress = EepAddressEMailAlternate
     INTO dbo.U_ETAXSFSACE_drvTbl
@@ -586,7 +583,7 @@ BEGIN
             GROUP BY BdmEEID, BdmCOID) AS Bdm
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    JOIN dbo.U_ETAXSFSACE_PDedHist WITH (NOLOCK)
+    LEFT JOIN dbo.U_ETAXSFSACE_PDedHist WITH (NOLOCK)
         ON xEEID = PdhEEID
     JOIN (
             SELECT EedEEID, EedCOID
@@ -598,7 +595,7 @@ BEGIN
                 ,MAX(CASE WHEN EedDedCode = 'FSADC' THEN EedEEGoalAmt ELSE 0.00 END) AS FSADCGoalAmt
                 ,MAX(CASE WHEN EedDedCode = 'FSADN' THEN EedEEGTDAmt ELSE 0.00 END) AS FSADNGTDAmt
                 ,MAX(CASE WHEN EedDedCode = 'FSADN' THEN EedEEGoalAmt ELSE 0.00 END) AS FSADNGoalAmt
-                ,MAX(CASE WHEN EedDedCode IN (' CGOAP','EPCGO','EPCOR','ICOR1','ICOR2','IPRM1','IPRM2','MEDC') THEN 'Y' END) AS HealthPlanElected
+                ,MAX(CASE WHEN EedDedCode IN ('CGOAP','EPCGO','EPCOR','ICOR1','ICOR2','IPRM1','IPRM2','MEDC') THEN 'Y' END) AS HealthPlanElected
             FROM dbo.EmpDed WITH (NOLOCK)
             GROUP BY EedEEID, EedCOID) AS EmpDed
         ON EedEEID = xEEID
@@ -635,10 +632,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202208161'
-       ,expStartPerControl     = '202208161'
-       ,expLastEndPerControl   = '202008239'
-       ,expEndPerControl       = '202008239'
+    SET expLastStartPerControl = '202208011'
+       ,expStartPerControl     = '202208011'
+       ,expLastEndPerControl   = '202208319'
+       ,expEndPerControl       = '202208319'
 WHERE expFormatCode = 'ETAXSFSACE';
 
 **********************************************************************************/
