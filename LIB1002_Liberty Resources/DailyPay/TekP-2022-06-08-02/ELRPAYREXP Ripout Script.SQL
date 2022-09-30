@@ -441,7 +441,7 @@ BEGIN
         ,drvpaygroup = EecPayGroup
         ,drvlocation = EecLocation
         ,drvpayrate = Format(EecHourlyPayRate, '0.00')
-        ,drvalternativeid = ''
+        ,drvalternativeid = EecTimeclockID
         ,drvemployeetype = CASE WHEN EecSalaryOrHourly = 'H' THEN 'Hourly' END
 
     INTO dbo.U_ELRPAYREXP_drvTbl
