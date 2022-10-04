@@ -4,17 +4,16 @@ EANCSIMEXP: SIMNSA Eligibility Export
 
 FormatCode:     EANCSIMEXP
 Project:        SIMNSA Eligibility Export
-Client ID:      ANC1000
-Date/time:      2022-10-04 12:18:52.907
+Client ID:      USG1000
+Date/time:      2022-09-30 16:44:55.070
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EWP
-Server:         EW3WUP4DB01
-Database:       ULTIPRO_WPANCON
-Web Filename:   ANC1000_8431A_EEHISTORY_EANCSIMEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    
-TestPath:      
+Environment:    EZ24
+Server:         EZ2SUP4DB01
+Database:       ULTIPRO_BETHB
+Web Filename:   USG1000_73487_EEHISTORY_EANCSIMEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
 
 **********************************************************************************/
 
@@ -180,18 +179,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANCSIMEXP_20221004.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANCSIMEXP_20220930.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202210039','EMPEXPORT','OEACTIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210039','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209261',NULL,'','','202209261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210039','EMPEXPORT','OEPASSIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210039','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209261',NULL,'','','202209261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Export','202210039','EMPEXPORT','ONDEM_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210039','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209261',NULL,'','','202209261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Sched','202210039','EMPEXPORT','SCH_EANCSI',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210039','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209261',NULL,'','','202209261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Test','202210039','EMPEXPORT','TEST_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210039','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209261',NULL,'','','202209261',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202209309','EMPEXPORT','OEACTIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202209309','EMPEXPORT','OEPASSIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Export','202209309','EMPEXPORT','ONDEM_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Sched','202209309','EMPEXPORT','SCH_EANCSI',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Test','202209309','EMPEXPORT','TEST_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -203,12 +202,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','TestPath','V',NULL);
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','UseFileName','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','UseFileName','V','N');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -222,12 +220,12 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANCSIMEXP','D10','dbo.U_EANCSIMEXP_drvTbl',NULL);
 
 -----------
--- U_dsi_Translations inserts
------------
-
-
------------
 -- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -343,7 +341,7 @@ CREATE TABLE [dbo].[U_EANCSIMEXP_drvTbl] (
     [drvPhoneBusiness] varchar(50) NULL,
     [drvMedicalPlan] varchar(8) NULL,
     [drvMedicalCoverage] varchar(1) NULL,
-    [drvMedPremMonthlyAmt] nvarchar(4000) NULL,
+    [drvMedPremMonthlyAmt] money NULL,
     [drvNumofDependents] int NULL,
     [drvEffDateforMedPlan] datetime NULL,
     [drvExpDateforMedPlan] datetime NULL
@@ -382,7 +380,18 @@ CREATE TABLE [dbo].[U_EANCSIMEXP_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
-    [PdhSource1] numeric NULL
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSource1] numeric NULL,
+    [PdhSource2] numeric NULL,
+    [PdhSource3] numeric NULL,
+    [PdhSource4] numeric NULL,
+    [PdhSource5] numeric NULL,
+    [PdhSource6] numeric NULL,
+    [PdhSource7] numeric NULL,
+    [PdhSource8] numeric NULL,
+    [PdhSource9] numeric NULL,
+    [PdhSource10] numeric NULL
 );
 
 -----------
@@ -576,10 +585,19 @@ BEGIN
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         -- YTD Payroll Amounts
-        --,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        --,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('SIM') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
     INTO dbo.U_EANCSIMEXP_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_EANCSIMEXP_DedList WITH (NOLOCK)
@@ -661,9 +679,7 @@ BEGIN
                                     END
                                 END
 
-        ,drvMedPremMonthlyAmt = CASE WHEN pgrpayfrequency = 'B' and isnull(PdhEECurAmt, '0.00') > '0.00' THEN FORMAT(PdhEECurAmt * 2,'#0.00') 
-                                     WHEN pgrpayfrequency = 'W' and isnull(PdhEECurAmt, '0.00') > '0.00' THEN FORMAT(PdhEECurAmt * 2,'#0.00') 
-                                    END
+        ,drvMedPremMonthlyAmt = CASE WHEN pgrpayfrequency = 'B' and isnill(bdmEEamt, ) THEN bdmEEamt * 2 ENd
         ,drvNumofDependents = (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EANCSIMEXP WITH (NOLOCK) WHERE BdmRecType = 'DEP')
         ,drvEffDateforMedPlan = BdmBenStartDate
         ,drvExpDateforMedPlan = BdmBenStopDate
@@ -679,8 +695,6 @@ BEGIN
         AND EecCOID = xCOID
      JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
-    LEFT JOIN dbo.U_EANCSIMEXP_PDedHist WITH (NOLOCK)
-        ON PdhEEID = xEEID
     ;
 
     --==========================================
@@ -711,10 +725,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202209261'
-       ,expStartPerControl     = '202209261'
-       ,expLastEndPerControl   = '202210039'
-       ,expEndPerControl       = '202210039'
+    SET expLastStartPerControl = '202209231'
+       ,expStartPerControl     = '202209231'
+       ,expLastEndPerControl   = '202209309'
+       ,expEndPerControl       = '202209309'
 WHERE expFormatCode = 'EANCSIMEXP';
 
 **********************************************************************************/
