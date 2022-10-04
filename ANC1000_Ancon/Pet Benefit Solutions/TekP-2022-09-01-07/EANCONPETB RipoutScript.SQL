@@ -540,7 +540,7 @@ BEGIN
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
         ,drvHomePhone = CASE WHEN ISnull(EepPhoneHomeNumber,'') <> ''  THEN STUFF(STUFF(EepPhoneHomeNumber, 7, 0, '-'), 4, 0, '-') ELSE  STUFF(STUFF(efoPhoneNumber , 7, 0, '-'), 4, 0, '-')END
-        ,drvWorkPhone = CASE WHEN ISnull(EecPhoneBusinessNumber,'') <> '' STUFF(STUFF(EecPhoneBusinessNumber, 7, 0, '-'), 4, 0, '-')
+        ,drvWorkPhone = CASE WHEN ISnull(EecPhoneBusinessNumber,'') <> '' THEn STUFF(STUFF(EecPhoneBusinessNumber, 7, 0, '-'), 4, 0, '-') END
         ,drvWorkPhoneExt = EecPhoneBusinessExt
         ,drvPersonalEmail = EepAddressEmailAlternate
         ,drvWorkEmail = EepAddressEMail
