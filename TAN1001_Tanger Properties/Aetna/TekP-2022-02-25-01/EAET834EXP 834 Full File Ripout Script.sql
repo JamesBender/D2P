@@ -4,16 +4,17 @@ EAET834EXP: Aetna Health & Welfare 834 Export
 
 FormatCode:     EAET834EXP
 Project:        Aetna Health & Welfare 834 Export
-Client ID:      USG1000
-Date/time:      2022-09-13 10:57:21.720
+Client ID:      TAN1001
+Date/time:      2022-09-29 05:32:19.860
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EAET834EXP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW1WUP4DB03
+Database:       ULTIPRO_WPTPLP
+Web Filename:   TAN1001_F4AD0_EEHISTORY_EAET834EXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -362,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAET834EXP_20220913.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAET834EXP_20220929.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -373,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202209139','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EAET834EXP',NULL,NULL,NULL,'202209139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202209139','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EAET834EXP',NULL,NULL,NULL,'202209139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aetna Health & Welfare 834 Exp','202209139','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EAET834EXP',NULL,NULL,NULL,'202209139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test File Only','202209139','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EAET834EXP',NULL,NULL,NULL,'202209139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202209139','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EAET834EXP',NULL,NULL,NULL,'202209139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202209131',NULL,'','','202209131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -391,7 +392,8 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAET834EXP','Is834','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAET834EXP','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAET834EXP','Testing','V','N');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAET834EXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAET834EXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAET834EXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -456,11 +458,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -619,8 +616,8 @@ IF OBJECT_ID('U_EAET834EXP_DrvTbl_2300') IS NULL
 CREATE TABLE [dbo].[U_EAET834EXP_DrvTbl_2300] (
     [drvHD00_HealthCoverage] varchar(2) NOT NULL,
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
-    [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
-    [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
+    [drvHD02_MaintReasonCode] char(5) NULL,
+    [drvHD03_InsuranceLineCode] char(6) NULL,
     [drvHD04_PlanCoverageDesc] varchar(31) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
@@ -863,8 +860,8 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = 'MED,DEN,VIS';
-    --SET @DedList = 'EPOAT,EPOPT,EPOSE,EPOVA,EPOWA,HDWPT,PPOWP';
+    --SET @DedList = 'MED,DEN,VIS';
+    SET @DedList = 'EPOAT,EPOPT,EPOSE,EPOVA,EPOWA,HDWPT,PPOWP';
 
     IF OBJECT_ID('U_EAET834EXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EAET834EXP_DedList;
@@ -925,6 +922,8 @@ BEGIN
     END;
 
     EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
+
+    DELETE dbo.U_dsi_bdm_EAET834EXP WHERE BdmBenOption IS NULL
 
     --=========================================
     -- Update BdmChangeReason For Dependents
@@ -1238,8 +1237,8 @@ BEGIN
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
-        ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode = 'HLT'                                     
+        ,drvHD02_MaintReasonCode = BdmDedCode -- ''
+        ,drvHD03_InsuranceLineCode = BdmBenOption -- 'HLT'                                     
         ,drvHD04_PlanCoverageDesc =    CASE WHEN BdmDedCode = 'EPOPT' THEN '001+0176133+011+00001+10100+513'
                                     WHEN BdmDedCode = 'PPOWP' THEN '001+0176133+010+00001+00100+513'
                                     WHEN BdmDedCode = 'EPOWA' THEN '001+0176133+012+00001+40100+513'

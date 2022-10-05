@@ -5,7 +5,7 @@ EWCOBNPMEX: Wex Cobra/Npm Export
 FormatCode:     EWCOBNPMEX
 Project:        Wex Cobra/Npm Export
 Client ID:      LAW1000
-Date/time:      2022-07-15 08:30:37.040
+Date/time:      2022-09-29 05:01:57.100
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -150,8 +150,8 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EWCOBNPMEXZ0','50','H','01','1',NULL,'Field Header',NULL,NULL,'"[VERSION]"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWCOBNPMEXZ0','50','H','01','2',NULL,'Version Number',NULL,NULL,'"1.1"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EWCOBNPMEXZ0','50','D','10','1',NULL,'Field Header',NULL,NULL,'"[QB]"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWCOBNPMEXZ0','50','D','10','2',NULL,'Client Name',NULL,NULL,'"Pivot Technology Services Corp 20436"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EWCOBNPMEXZ0','50','D','10','3',NULL,'Client Division Name',NULL,NULL,'"Pivot Technology Services Corp"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWCOBNPMEXZ0','50','D','10','2',NULL,'Client Name',NULL,NULL,'"Lawrys Restaurants Inc 42801"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EWCOBNPMEXZ0','50','D','10','3',NULL,'Client Division Name',NULL,NULL,'"drvClientDivisionName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EWCOBNPMEXZ0','50','D','10','4',NULL,'Salutation',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EWCOBNPMEXZ0','50','D','10','5',NULL,'First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EWCOBNPMEXZ0','50','D','10','6',NULL,'Middle Initial',NULL,NULL,'"drvNameMiddle"','(''UA''=''T,'')');
@@ -177,11 +177,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EWCOBNPMEXZ0','50','D','10','26',NULL,'Sex',NULL,NULL,'"drvSex"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EWCOBNPMEXZ0','50','D','10','27',NULL,'DOB',NULL,NULL,'"drvDateOfBirth"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EWCOBNPMEXZ0','50','D','10','28',NULL,'Tobacco Use',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EWCOBNPMEXZ0','50','D','10','29',NULL,'Employee Type',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EWCOBNPMEXZ0','50','D','10','30',NULL,'Employee Payroll Type',NULL,NULL,'"UNKNOWN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EWCOBNPMEXZ0','50','D','10','29',NULL,'Employee Type',NULL,NULL,'"FTE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EWCOBNPMEXZ0','50','D','10','30',NULL,'Employee Payroll Type',NULL,NULL,'"drvEmployeePayrollType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EWCOBNPMEXZ0','50','D','10','31',NULL,'Years of Service',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EWCOBNPMEXZ0','50','D','10','32',NULL,'Premium Coupon Type',NULL,NULL,'"COUPONBOOK"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EWCOBNPMEXZ0','50','D','10','33',NULL,'Uses HCTC',NULL,NULL,'"FALSE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EWCOBNPMEXZ0','50','D','10','33',NULL,'Uses HCTC',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EWCOBNPMEXZ0','50','D','10','34',NULL,'Active',NULL,NULL,'"TRUE"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EWCOBNPMEXZ0','50','D','10','35',NULL,'Allow Member SSO',NULL,NULL,'"FALSE"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EWCOBNPMEXZ0','50','D','10','36',NULL,'Benefit Group',NULL,NULL,'""','(''DA''=''T,'')');
@@ -228,8 +228,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EWCOBNPMEXZ0','50','D','70','1',NULL,'Field Header',NULL,NULL,'"[NPM]"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EWCOBNPMEXZ0','50','D','70','2',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EWCOBNPMEXZ0','50','D','70','3',NULL,'Individual Identifier',NULL,NULL,'""','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EWCOBNPMEXZ0','50','D','70','4',NULL,'Client Name',NULL,NULL,'"Pivot Technology Services Corp 20436"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EWCOBNPMEXZ0','50','D','70','5',NULL,'Client DivisionName',NULL,NULL,'"Pivot Technology Services Corp"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EWCOBNPMEXZ0','50','D','70','4',NULL,'Client Name',NULL,NULL,'"Lawrys Restaurants Inc 42801"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EWCOBNPMEXZ0','50','D','70','5',NULL,'Client DivisionName',NULL,NULL,'"drvClientDivisionName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EWCOBNPMEXZ0','50','D','70','6',NULL,'First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EWCOBNPMEXZ0','50','D','70','7',NULL,'Middle Initial',NULL,NULL,'"drvNameMiddle"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EWCOBNPMEXZ0','50','D','70','8',NULL,'Last Name',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
@@ -260,18 +260,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20220715.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20220929.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202106119','EMPEXPORT','OEACTIVE','May 12 2021  2:35PM','EWCOBNPMEX',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202106119','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202106119','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202106119','May 11 2021  3:59PM','May 11 2021  3:59PM','202103011','300','','','202103011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,'Wex Cobra/Npm Export','202106169','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202112319','May 11 2021  3:59PM','May 11 2021  3:59PM','202112241','300','','','202106161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202110129','EMPEXPORT','TEST_XOE','Oct 12 2021  9:26AM','EWCOBNPMEX',NULL,NULL,NULL,'202110129','Oct 12 2021 12:00AM','Dec 30 1899 12:00AM','202105011','416','','','202105011',dbo.fn_GetTimedKey(),NULL,'us3cPeACS1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202209029','EMPEXPORT','OEACTIVE','May 12 2021  2:35PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202209029','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,'Wex Cobra/Npm Export','202209029','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202209299','EMPEXPORT','TEST_XOE','Sep 22 2022 12:00AM','EWCOBNPMEX',NULL,NULL,NULL,'202209299','Sep 22 2022 12:00AM','Dec 30 1899 12:00AM','202201011','416','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -386,6 +386,7 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_NPM] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(14) NULL,
     [drvSSN] char(11) NULL,
+    [drvClientDivisionName] varchar(15) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -408,6 +409,7 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QB] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
+    [drvClientDivisionName] varchar(15) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -418,7 +420,8 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QB] (
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvSex] varchar(1) NULL,
-    [drvDateOfBirth] datetime NULL
+    [drvDateOfBirth] datetime NULL,
+    [drvEmployeePayrollType] varchar(6) NOT NULL
 );
 
 -----------
@@ -495,7 +498,7 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(16) NULL,
     [drvFieldHeader] varchar(33) NOT NULL,
-    [drvPlanName] varchar(30) NULL,
+    [drvPlanName] varchar(7) NULL,
     [drvRate] nvarchar(4000) NULL
 );
 
@@ -932,6 +935,10 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '1 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
+        ,drvClientDivisionName =    CASE WHEN EecCOID = 'QFQEM' THEN 'Illinois/Nevada'
+                                    WHEN EecCOID = 'QFQBY' THEN 'Texas'
+                                    WHEN EecCOID = 'QFOKB' THEN 'California'
+                                    END
         ,drvNameFirst = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR BdmCobraReason IN ('210') THEN ConNameFirst ELSE EepNameFirst END
         ,drvNameMiddle = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN LEFT(ConNameMiddle,1) ELSE LEFT(EepNameMiddle,1) END
         ,drvNameLast = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConNameLast ELSE EepNameLast END
@@ -946,10 +953,14 @@ BEGIN
                     ELSE CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
                     END
         ,drvDateOfBirth = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConDateOfBirth ELSE EepDateOfBirth END
+        ,drvEmployeePayrollType = CASE WHEN EecSalaryOrHourly = 'S' THEN 'SALARY' ELSE 'HOURLY' END
     INTO dbo.U_EWCOBNPMEX_drvTbl_QB
     FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
     JOIN dbo.U_dsi_BDM_EWCOBNPMEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
@@ -986,7 +997,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvEventType =    CASE WHEN BchIsCobraQualifiedEvent = 'Y' THEN
                             CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') AND EecTermType = 'V' THEN 'TERMINATION'
-                            WHEN EecEmplStatus ='T' AND EecTermReason = '202' THEN 'DEATH'
+                            WHEN EecEmplStatus ='T' AND EecTermReason IN ('203', '0803') THEN 'DEATH'
                             WHEN EdhChangeReason = '208' OR (EecEmplStatus = 'T' AND EecTermReason = '202') THEN 'RETIREMENT'
                             WHEN EecEmplStatus = 'T' AND EecTermType = 'I' THEN 'INVOLUNTARYTERMINATION'
                             WHEN EdhChangeReason = '205' THEN 'MEDICARE'
@@ -996,8 +1007,12 @@ BEGIN
                             WHEN EdhChangeReason = '206' THEN 'REDUCTIONINHOURS-ENDOFLEAVE'                            
                             END
                         END
-        ,drvEventDate =    CASE WHEN EdhChangeReason IN ('LEVNT3','LEVNT4','204','201') THEN EdhEffDate
-                        ELSE EepDateOfCOBRAEvent
+        ,drvEventDate =    CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') THEN EecDateOfTermination
+                        WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202','203') AND ISNULL(EepDateOfCOBRAEvent, '') = '' THEN EecDateOfTermination
+                        WHEN EdhChangeReason IN ('LEVNT3','LEVNT4', '204', '210', '201') THEN EdhEffDate
+                        ELSE eepDateOfCOBRAEvent
+                        --EdhChangeReason IN ('LEVNT3','LEVNT4','204','201') THEN EdhEffDate
+                        --ELSE EepDateOfCOBRAEvent
                         END
         ,drvEnrollmentDate = BdmBenStartDate 
         ,drvEmployeeSSN = eepSSN
@@ -1110,7 +1125,7 @@ BEGIN
         ,drvSort = '1 ' + xEEID + ' 4 ' +  + BdmDepRecID + ' 1'
         -- standard fields above and additional driver fields below
         ,drvSSN = ConSSN
-        ,drvRelationship =    CASE WHEN ConRelationship IN ('CHL','DA','DPC','STC') THEN 'CHILD'
+        ,drvRelationship =    CASE WHEN ConRelationship IN ('CHL','CHD','DPC','STC') THEN 'CHILD'
                                 WHEN ConRelationship = 'SPS' THEN 'SPOUSE'
                                 WHEN ConRelationship = 'DP' THEN 'DOMESTICPARTNER'
                             END
@@ -1182,16 +1197,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ,drvSort = '1 ' + xEEID + ' 6'
         -- standard fields above and additional driver fields below
         ,drvFieldHeader = '[QBPLANMEMBERSPECIFICRATEINITIAL]'
-        ,drvPlanName =    CASE WHEN BdmDedCode = 'DEN' THEN 'Aetna Dental DHMO'
-                        WHEN BdmDedCode = 'DPPO' THEN 'Aetna Dental DPPO'
-                        WHEN BdmDedCode = 'MEDCA' AND BdmBenOption IN ('AHMCH1','AHMCH2','AHMCH3','AHMCH4','AHMCH5','AHMCH6','AHMCH7') THEN 'Aetna Med HMO CA'
-                        WHEN BdmDedCode = 'MEDCA' AND BdmBenOption IN ('AHPSL1','AHPSL2','AHPSL3','AHPSL4','AHPSL5','AHPSL6','AHPSL7','APOHR6') THEN 'Aetna Med OA PPO HDHP CA/IL/NV'
-                        WHEN BdmDedCode = 'MEDNV' AND BdmBenOption IN ('HHMOH1','HHMOH2','HHMOH3','HHMOH4','HHMOH5','HHMOH6','HHMOH7','HHMOS1','HHMOS2','HHMOS3','HHMOS4','HHMOS5','HHMOS6','HHMOS7') THEN 'Aetna Med HMO IL/NV'
-                        WHEN BdmDedCode = 'MEDNV' AND BdmBenOption IN ('HPONH1','HPONH2','HPONH3','HPONH4','HPONH5','HPONH6','HPONH7','HPONS1','HPONS2','HPONS3','HPONS4','HPONS5','HPONS6','HPONS7') THEN 'Aetna Med OA PPO HDHP CA/IL/NV'                        
-                        WHEN BdmDedCode = 'MEDT2' THEN 'Aetna Med OA PPO HDHP TX'
-                        WHEN BdmDedCode = 'MEDKB' THEN 'Kaiser CA Med HSA HMO 4500 CA'
-                        WHEN BdmDedCode = '125V' THEN 'VSP Vision'
-                        WHEN BdmDedCode = 'MFSA' THEN 'Wex FSA'
+        ,drvPlanName =    CASE WHEN BdmDedCode = 'MFSA' THEN 'Wex FSA'
                         END
         ,drvRate = CASE WHEN BdmDedCode IN ('FSA','LFSA') THEN FORMAT(BdmEEAmt, '#0.00') END
     INTO dbo.U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
@@ -1201,6 +1207,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
         --AND BdmDedCode IN ('FSA')
+    WHERE BdmDedCode = 'MFSA'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_NPM
@@ -1214,6 +1221,10 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ,drvSort = '2 ' + xEEID 
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
+        ,drvClientDivisionName =    CASE WHEN EecCOID = 'QFQEM' THEN 'Illinois/Nevada'
+                                    WHEN EecCOID = 'QFQBY' THEN 'Texas'
+                                    WHEN EecCOID = 'QFOKB' THEN 'California'
+                                    END
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
         ,drvNameLast = EepNameLast
