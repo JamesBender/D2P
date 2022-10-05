@@ -1003,7 +1003,7 @@ BEGIN
         ,drvREF01_RefNumberQual = '38'
         ,drvREF02_RefNumberQual = 'ET09763'
         ,drvDTP00_DateTime0 = 'DTP'
-        ,drvDTP01_DateTimeQualifier0 = CASE WHEN @ExportCode LIKE 'OE%' THEN '382' ELSE '007' END
+        ,drvDTP01_DateTimeQualifier0 = %' THEN '382' ELSE '007' END
         ,drvDTP02_DateTimeFormatQual0 = 'D8'
         ,drvDTP03_DateTimePeriod0 = GETDATE()
         ,drvDTP00_DateTime1 = ''
