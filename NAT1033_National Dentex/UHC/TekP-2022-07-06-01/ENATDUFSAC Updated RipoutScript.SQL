@@ -564,15 +564,16 @@ BEGIN
 
     -- Set FormatCode
     SELECT @FormatCode = 'ENATDUFSAC';
-    SELECT @FileMinCovDate = '7/1/2022';
 
     -- Declare dates from Parameter file
-    SELECT
+      SELECT
          @StartPerControl = StartPerControl
         ,@EndPerControl   = EndPerControl
         ,@StartDate       = LEFT(StartPerControl,8)
         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@ExportCode      = ExportCode
+		,@FileMinCovDate  = case when cast(getdate() as date) < cast(cast(year(getdate()) as varchar) + '-07-01' as varchar) -- MW added to auto grab updated min coverage date based on year
+                                    then CONCAT(YEAR(GETDATE()) -1, '0701') ELSE CONCAT(YEAR(GETDATE()), '0701') END
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
