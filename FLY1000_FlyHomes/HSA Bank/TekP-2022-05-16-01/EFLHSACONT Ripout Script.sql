@@ -4,16 +4,17 @@ EFLHSACONT: HSA Bank Contributions Export
 
 FormatCode:     EFLHSACONT
 Project:        HSA Bank Contributions Export
-Client ID:      USG1000
-Date/time:      2022-08-05 14:58:55.530
+Client ID:      FLY1000
+Date/time:      2022-09-22 12:32:07.080
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EFLHSACONT_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP1DB04
+Database:       ULTIPRO_WPFLYH
+Web Filename:   FLY1000_1YLW4_EEHISTORY_EFLHSACONT_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -140,7 +141,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EFLHSACONTZ0','50','H','01','4',NULL,'Date',NULL,NULL,'"drvDate"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EFLHSACONTZ0','50','H','01','5',NULL,'Number of Records',NULL,NULL,'"drvNumberofRecords"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EFLHSACONTZ0','50','H','01','6',NULL,'Amount',NULL,NULL,'"drvAmount"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EFLHSACONTZ0','50','H','01','7',NULL,'Source',NULL,NULL,'"ACH"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EFLHSACONTZ0','50','H','01','7',NULL,'Source',NULL,NULL,'"ACH"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EFLHSACONTZ0','50','D','10','1',NULL,'Last Name',NULL,NULL,'"drvLastName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EFLHSACONTZ0','50','D','10','2',NULL,'First Name',NULL,NULL,'"drvFirstName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EFLHSACONTZ0','50','D','10','3',NULL,'Account Number',NULL,NULL,'""','(''DA''=''T,'')');
@@ -160,18 +161,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFLHSACONT_20220805.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFLHSACONT_20220922.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202208059','EMPEXPORT','OEACTIVE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202208059','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208059','EMPEXPORT','OEPASSIVE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202208059','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HSA Bank Contributions Export','202208059','EMPEXPORT','ONDEM_XOE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202208059','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HSA Bank Contributions E-Sched','202208059','EMPEXPORT','SCH_EFLHSA',NULL,'EFLHSACONT',NULL,NULL,NULL,'202208059','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HSA Bank Contributions E-Test','202208059','EMPEXPORT','TEST_XOE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202208059','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202208051',NULL,'','','202208051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202209029','EMPEXPORT','OEACTIVE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202209029','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202209021',NULL,'','','202209021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202209029','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202209021',NULL,'','','202209021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'HSA Bank Contributions Export','202209029','EMPEXPORT','ONDEM_XOE',NULL,'EFLHSACONT',NULL,NULL,NULL,'202209029','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202209021',NULL,'','','202209021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HSA Bank Contributions E-Sched','202209029','EMPEXPORT','SCH_EFLHSA',NULL,'EFLHSACONT',NULL,NULL,NULL,'202209029','Aug  5 2022 12:26PM','Aug  5 2022 12:26PM','202209021',NULL,'','','202209021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',3JAS5,9CHGQ',NULL,NULL,NULL,'HSA Bank Contributions E-Test','202209029','EMPEXPORT','TEST_XOE','Aug  9 2022  6:22PM','EFLHSACONT',NULL,NULL,NULL,'202209029','Aug  5 2022 12:00AM','Dec 30 1899 12:00AM','202209021','244','','','202209021',dbo.fn_GetTimedKey(),NULL,'us3cBeFLY1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -183,9 +184,10 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EFLHSACONT','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -206,11 +208,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -286,7 +283,7 @@ CREATE TABLE [dbo].[U_EFLHSACONT_drvTbl] (
     [drvLastName] varchar(100) NULL,
     [drvFirstName] varchar(100) NULL,
     [drvSSN] char(11) NULL,
-    [drvTransactionAmt] varchar(10) NULL,
+    [drvTransactionAmt] varchar(8000) NULL,
     [drvTransactiontype] varchar(2) NOT NULL
 );
 
@@ -320,10 +317,10 @@ CREATE TABLE [dbo].[U_EFLHSACONT_File] (
 
 IF OBJECT_ID('U_EFLHSACONT_Header') IS NULL
 CREATE TABLE [dbo].[U_EFLHSACONT_Header] (
-    [drvEmail] varchar(13) NOT NULL,
-    [drvDate] datetime NOT NULL,
-    [drvNumberofRecords] varchar(1) NOT NULL,
-    [drvAmount] varchar(1) NOT NULL
+    [drvEmail] varchar(20) NOT NULL,
+    [drvDate] nvarchar(4000) NULL,
+    [drvNumberofRecords] varchar(10) NOT NULL,
+    [drvAmount] varchar(11) NOT NULL
 );
 
 -----------
@@ -513,7 +510,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EFLHSACONT_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EFLHSACONT_drvTbl;
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvSort = xEEID
@@ -523,14 +520,14 @@ BEGIN
         ,drvLastName = EepNameLast
         ,drvFirstName = EepNameFirst
         ,drvSSN = eepSSN
-        ,drvTransactionAmt = pdhEEAmt
-        ,drvTransactiontype = 'EE'
+        ,drvTransactionAmt = REPLACE(SUBSTRING(pdhEEAmt, 1, LEN(pdhEEAmt) - 2), '.', '')
+        ,drvTransactiontype = 'EX'
     INTO dbo.U_EFLHSACONT_drvTbl
     FROM dbo.U_EFLHSACONT_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN (SELECT pdhEEID,
-          CAST(PdhHSAF + PdhHSAF + PdhHSF1 + PdhHSAI + PdhHSACF + PdhHSACI + PdhHSCFI1 + PdhHSCI1  AS VARCHAR(10)) AS pdhEEAmt
+          CAST(PdhHSAF + PdhHSAI1 + PdhHSF1 + PdhHSAI + PdhHSACF + PdhHSACI + PdhHSCFI1 + PdhHSCI1  AS VARCHAR(10)) AS pdhEEAmt
           FROM dbo.U_EFLHSACONT_PDedHist WITH (NOLOCK)) AS DedHis_Flattened
         ON pdhEEID = xEEID
 
@@ -546,15 +543,19 @@ BEGIN
         ,drvLastName = EepNameLast
         ,drvFirstName = EepNameFirst
         ,drvSSN = eepSSN
-        ,drvTransactionAmt = pdhERAmt
+        ,drvTransactionAmt = REPLACE(PehCurAmt,'.','')
         ,drvTransactiontype = 'ER'
     FROM dbo.U_EFLHSACONT_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN (SELECT pdhEEID,
-          CAST(PdhHSAER AS VARCHAR(10)) AS pdhERAmt
-          FROM dbo.U_EFLHSACONT_PDedHist WITH (NOLOCK)) AS DedHis_Flattened2
-        ON pdhEEID = xEEID
+    JOIN dbo.PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+        AND PehEarnCode = 'HSAER'
+        AND PehPerControl BETWEEN @StartPerControl AND @EndPerControl
+    --JOIN (SELECT pdhEEID,
+    --      CAST(PdhHSAER AS VARCHAR(10)) AS pdhERAmt
+    --      FROM dbo.U_EFLHSACONT_PDedHist WITH (NOLOCK)) AS DedHis_Flattened2
+    --    ON pdhEEID = xEEID
     ;
 
     ---------------------------------
@@ -564,21 +565,22 @@ BEGIN
         DROP TABLE dbo.U_EFLHSACONT_Header;
     SELECT DISTINCT
          drvEmail = 'jchilds@flyhomes.com' 
-        ,drvDate = GETDATE()
-        ,drvNumberofRecords = ''
-        ,drvAmount = ''
+        ,drvDate = FORMAT(GETDATE(), 'MMddyyyy')
+        ,drvNumberofRecords = '          '
+        ,drvAmount = '           '
     INTO dbo.U_EFLHSACONT_Header
     ;
     DECLARE @RCount INT,
-            @AmountTotal MONEY
+            @AmountTotal decimal
         SELECT @RCount = Count(1)
         FROM dbo.U_EFLHSACONT_drvTbl
-        SELECT  @AmountTotal = SUM(CAST(drvTransactionAmt AS money))
+        SELECT  @AmountTotal =  SUM(CAST(drvTransactionAmt AS numeric))
         FROM dbo.U_EFLHSACONT_drvTbl
 
+
     UPDATE dbo.U_EFLHSACONT_Header
-        SET drvNumberofRecords = @RCount,
-            drvAmount = @AmountTotal
+        SET drvNumberofRecords = CAST(@RCount AS VARCHAR(10)),
+            drvAmount = CAST(@AmountTotal AS VARCHAR(20))
         FROM dbo.U_EFLHSACONT_drvTbl
     ;
 
@@ -610,8 +612,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202207291'
-       ,expStartPerControl     = '202207291'
+    SET expLastStartPerControl = '202208051'
+       ,expStartPerControl     = '202208051'
        ,expLastEndPerControl   = '202208059'
        ,expEndPerControl       = '202208059'
 WHERE expFormatCode = 'EFLHSACONT';

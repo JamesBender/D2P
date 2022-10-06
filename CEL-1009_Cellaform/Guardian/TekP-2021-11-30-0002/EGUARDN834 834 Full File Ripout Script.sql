@@ -5,7 +5,7 @@ EGUARDN834: Guardian H&W 834 Export
 FormatCode:     EGUARDN834
 Project:        Guardian H&W 834 Export
 Client ID:      CEL1009
-Date/time:      2022-09-02 08:40:48.103
+Date/time:      2022-09-30 04:48:46.490
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20220902.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20220930.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -860,7 +860,7 @@ BEGIN
     -- Deduction Code List
     --==========================================
     DECLARE @DedList VARCHAR(MAX);
-    SET @DedList = 'ADD,DENT,LIFEC,LIFES,LIFEE,OBLIFE,STD,LTD,VIS3,ACCID,CIE10,CIE20,CIE5K,CIS10,CIS20,CIS5K';
+    SET @DedList = 'ADD,DENT,LIFEC,LIFES,LIFEE,OBLIFE,STD,LTD,VIS3,ACCID,CIE10,CIE20,CIE5K,CIS10,CIS20,CIS5K,DEN,VIS,VIS2';
 
     IF OBJECT_ID('U_EGUARDN834_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EGUARDN834_DedList;
@@ -1242,7 +1242,8 @@ BEGIN
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = BdmRecType
         ,drvHD03_InsuranceLineCode =    --CASE WHEN BdmRecType = 'EMP' THEN
-                                            CASE WHEN BdmDedCode = 'OBLIF' THEN 'AH'
+                                            CASE WHEN BdmDedCode = 'OBLIF' THEN 'FAC'
+                                            WHEN BdmDedCode = 'GLIFE' THEN 'AH'
                                             WHEN BdmDedCode = 'ADD' THEN 'AJ'
                                             WHEN BdmDedCode = 'STD' THEN 'STD'
                                             WHEN BdmDedCode = 'LTD' THEN 'LTD'
@@ -1250,7 +1251,7 @@ BEGIN
                                             WHEN BdmDedCode = 'DENT' THEN 'DEN'
                                             WHEN BdmDedCode = 'VIS' THEN 'VIS'
                                             WHEN BdmDedCode = 'DEN' THEN 'DEN'
-                                            WHEN BdmDedCode IN ('VIS2','VIS') THEN 'VIS'
+                                            WHEN BdmDedCode IN ('VIS2','VIS3') THEN 'VIS'
                                             WHEN BdmDedCode IN ('CIE5K','CIE10','CIE20') THEN 'AG'
                                             WHEN BdmDedCode IN ('ACCID') THEN 'EPO'
                                             --END
@@ -1258,7 +1259,7 @@ BEGIN
                                             --CASE 
                                             WHEN BdmDedCode = 'LIFES' THEN 'FAC'
                                             WHEN BdmDedCode = 'LIFEC' THEN 'FAC'
-                                            WHEN BdmDedCode IN ('VIS2','VIS') THEN 'VIS'
+                                            WHEN BdmDedCode IN ('VIS2','VIS3') THEN 'VIS'
                                             WHEN BdmDedCode = 'DEN' THEN 'DEN'
                                             WHEN BdmDedCode IN ('CIS5K','CIS10','CIS20') THEN 'AG'
                                             END
@@ -1273,10 +1274,13 @@ BEGIN
                                         --CASE 
                                         WHEN BdmDedCode = 'LIFEC' THEN FORMAT(LIFEC_Amt, '#0')
                                         WHEN BdmDedCode = 'LIFES' THEN FORMAT(LIFES_Amt, '#0')
-                                        WHEN BdmDedCode IN ('CIS5K','CIC5K') THEN '5000' --FORMAT(CIS5K_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIS5K') THEN '5000' --FORMAT(CIS5K_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIC5K') THEN '2500' --FORMAT(CIS5K_Amt, '#0') 
                                         --WHEN BdmDedCode = 'CIS5K' THEN FORMAT(12345, '#0') 
-                                        WHEN BdmDedCode IN ('CIS10', 'CIC10') THEN '10000' --FORMAT(CIS10_Amt, '#0') 
-                                        WHEN BdmDedCode IN ('CIS20', 'CIS20') THEN '20000' --FORMAT(CIS20_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIS10') THEN '10000' --FORMAT(CIS10_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIC10') THEN '5000' --FORMAT(CIS10_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIS20') THEN '20000' --FORMAT(CIS20_Amt, '#0') 
+                                        WHEN BdmDedCode IN ('CIC20') THEN '10000' --FORMAT(CIS20_Amt, '#0') 
                                         END
                                     --END
         ,drvHD05_CoverageLevelCode =    --CASE WHEN BdmRecType = 'EMP' THEN

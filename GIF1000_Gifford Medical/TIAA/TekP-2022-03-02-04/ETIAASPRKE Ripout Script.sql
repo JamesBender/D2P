@@ -5,7 +5,7 @@ ETIAASPRKE: TIAA SPARK Def Comp Export
 FormatCode:     ETIAASPRKE
 Project:        TIAA SPARK Def Comp Export
 Client ID:      GIF1000
-Date/time:      2022-09-06 16:32:05.087
+Date/time:      2022-09-19 05:38:59.753
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -192,8 +192,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ETIAASPRKEZ0','50','D','10','41',NULL,'CONTRIBUTION SOURCE AMOUNT2',NULL,NULL,'"drvContributionSourceAmount2"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ETIAASPRKEZ0','50','D','10','42',NULL,'CONTRIBUTION SOURCE CODE3',NULL,NULL,'"drvContributionSourceCode3"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ETIAASPRKEZ0','50','D','10','43',NULL,'CONTRIBUTION SOURCE AMOUNT3',NULL,NULL,'"drvContributionSourceAmount3"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ETIAASPRKEZ0','50','D','10','44',NULL,'CONTRIBUTION SOURCE CODE4',NULL,NULL,'""','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ETIAASPRKEZ0','50','D','10','45',NULL,'CONTRIBUTION SOURCE AMOUNT4',NULL,NULL,'""','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ETIAASPRKEZ0','50','D','10','44',NULL,'CONTRIBUTION SOURCE CODE4',NULL,NULL,'"drvContributionSourceCode4"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ETIAASPRKEZ0','50','D','10','45',NULL,'CONTRIBUTION SOURCE AMOUNT4',NULL,NULL,'"drvContributionSourceAmount4"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','ETIAASPRKEZ0','50','D','10','46',NULL,'CONTRIBUTION SOURCE CODE5',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ETIAASPRKEZ0','50','D','10','47',NULL,'CONTRIBUTION SOURCE AMOUNT5',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ETIAASPRKEZ0','50','D','10','48',NULL,'CONTRIBUTION SOURCE CODE6',NULL,NULL,'""','(''DA''=''T|'')');
@@ -203,7 +203,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','ETIAASPRKEZ0','50','D','10','52',NULL,'CONTRIBUTION SOURCE CODE8',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','ETIAASPRKEZ0','50','D','10','53',NULL,'CONTRIBUTION SOURCE AMOUNT8',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','ETIAASPRKEZ0','50','D','10','54',NULL,'Final Contribution Indicator',NULL,NULL,'""','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','ETIAASPRKEZ0','50','D','10','55',NULL,'LOAN NUMBER 1',NULL,NULL,'""','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','ETIAASPRKEZ0','50','D','10','55',NULL,'LOAN NUMBER 1',NULL,NULL,'"drvLoanNumber1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','ETIAASPRKEZ0','50','D','10','56',NULL,'LOAN REPAYMENT AMOUNT1',NULL,NULL,'"drvLoanRepaymentAmount1"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','ETIAASPRKEZ0','50','D','10','57',NULL,'LOAN NUMBER 2',NULL,NULL,'""','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','ETIAASPRKEZ0','50','D','10','58',NULL,'LOAN REPAYMENT AMOUNT2',NULL,NULL,'""','(''DA''=''T|'')');
@@ -285,18 +285,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETIAASPRKE_20220906.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETIAASPRKE_20220919.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Active Open Enrollment Export','202208049','EMPEXPORT','OEACTIVE',NULL,'ETIAASPRKE',NULL,NULL,NULL,'202208049','Aug  4 2022  8:31AM','Aug  4 2022  8:31AM','202107281',NULL,'','','202107281',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Passive Open Enrollment Export','202208049','EMPEXPORT','OEPASSIVE',NULL,'ETIAASPRKE',NULL,NULL,NULL,'202208049','Aug  4 2022  8:31AM','Aug  4 2022  8:31AM','202107281',NULL,'','','202107281',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'TIAA SPARK Def Comp Export','202208049','EMPEXPORT','ONDEM_XOE',NULL,'ETIAASPRKE',NULL,NULL,NULL,'202208049','Aug  4 2022  8:31AM','Aug  4 2022  8:31AM','202107281',NULL,'','','202107281',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'TIAA SPARK Def Comp Expo-Sched','202208049','EMPEXPORT','SCH_ETIAAS',NULL,'ETIAASPRKE',NULL,NULL,NULL,'202208049','Aug  4 2022  8:31AM','Aug  4 2022  8:31AM','202107281',NULL,'','','202107281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'TIAA SPARK Def Comp Expo-Test','202209019','EMPEXPORT','TEST_XOE','Sep  6 2022  4:29PM','ETIAASPRKE',NULL,NULL,NULL,'202209019','Sep  1 2022 12:00AM','Dec 30 1899 12:00AM','202208251','523','','','202208251',dbo.fn_GetTimedKey(),NULL,'us3jReGIF1000','',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'TIAA SPARK Def Comp Export','202208259','EMPEXPORT','ONDEM_XOE',NULL,'ETIAASPRKE',NULL,NULL,NULL,'202208259','Aug  4 2022  8:31AM','Aug  4 2022  8:31AM','202208251',NULL,'','','202208251',dbo.fn_GetTimedKey(),NULL,'ULTI','',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'TIAA SPARK Def Comp Expo-Sched','202208259','EMPEXPORT','SCH_ETIAAS',NULL,'ETIAASPRKE',NULL,NULL,NULL,'202208259','Aug  4 2022  8:31AM','Aug  4 2022  8:31AM','202208251',NULL,'','','202208251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'TIAA SPARK Def Comp Expo-Test','202208259','EMPEXPORT','TEST_XOE','Sep  9 2022  3:50PM','ETIAASPRKE',NULL,NULL,NULL,'202208259','Sep  1 2022 12:00AM','Dec 30 1899 12:00AM','202208251','523','','','202208251',dbo.fn_GetTimedKey(),NULL,'us3jReGIF1000','',NULL);
 
 -----------
 -- AscImp inserts
@@ -432,6 +430,9 @@ CREATE TABLE [dbo].[U_ETIAASPRKE_drvTbl] (
     [drvContributionSourceAmount2] nvarchar(4000) NULL,
     [drvContributionSourceCode3] varchar(1) NULL,
     [drvContributionSourceAmount3] nvarchar(4000) NULL,
+    [drvContributionSourceCode4] varchar(1) NULL,
+    [drvContributionSourceAmount4] nvarchar(4000) NULL,
+    [drvLoanNumber1] varchar(3) NULL,
     [drvLoanRepaymentAmount1] nvarchar(4000) NULL,
     [drvDateOfHire] datetime NULL,
     [drvEmploymentStatus] varchar(1) NULL,
@@ -551,6 +552,7 @@ Revision History
 ----------------
 Update By           Date           Request Num        Desc
 Marie Waters      09/06/2022     SR-2022-000XXXXX   Updated RESIDENCY CODE field to include Null in case statement and updated EEContributionEligDate1 to use UDF EECUDFIELD01
+Marie Waters      09/09/2022     SR-2022-000XXXXX   Added column and EecDateOfLastHire to Plan Entry Date for 408330 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ETIAASPRKE';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ETIAASPRKE';
@@ -762,12 +764,15 @@ BEGIN
         ,drvEmailAddress = EepAddressEMail
         ,drvPayrollDate = PdhPayDate
         ,drvContributionSourceCode1 = CASE WHEN DedCode_403 IS NOT NULL THEN 'F' END
-        ,drvContributionSourceAmount1 =    CASE WHEN DedCode_403 IS NOT NULL THEN FORMAT(PdhSrc1P1, '#0.00') END
+        ,drvContributionSourceAmount1 =    CASE WHEN DedCode_403 IS NOT NULL  OR PdhSrc1P1 > 0 THEN FORMAT(PdhSrc1P1, '#0.00') END
         ,drvContributionSourceCode2 = CASE WHEN DedCode_403x IS NOT NULL THEN 'E' END
-        ,drvContributionSourceAmount2 = CASE WHEN DedCode_403x IS NOT NULL THEN FORMAT(Pdhsrc2P1a + Pdhsrc2P1b, '#0.00') END
+        ,drvContributionSourceAmount2 = CASE WHEN DedCode_403x IS NOT NULL THEN FORMAT(Pdhsrc2P1a, '#0.00') END -- removed + Pdhsrc2P1b
         ,drvContributionSourceCode3 = CASE WHEN DedCode_ROTH IS NOT NULL THEN '2' END
         ,drvContributionSourceAmount3 = CASE WHEN DedCode_ROTH IS NOT NULL THEN FORMAT(PdhROTH, '#0.00') END
-        ,drvLoanRepaymentAmount1 = CASE WHEN DedCode_403l IS NOT NULL THEN FORMAT(Pdh403L, '#0.00') END
+        ,drvContributionSourceCode4 = CASE WHEN DedCode_403M IS NOT NULL THEN 'D' END -- added
+        ,drvContributionSourceAmount4 = CASE WHEN DedCode_403M IS NOT NULL THEN FORMAT(Pdhsrc2P1b, '#0.00') END -- added
+        ,drvLoanNumber1 = CASE WHEN DedCode_403l IS NOT NULL OR Pdh403L > 0 THEN '001' END
+        ,drvLoanRepaymentAmount1 = CASE WHEN DedCode_403l IS NOT NULL OR Pdh403L > 0 THEN FORMAT(Pdh403L, '#0.00') END
         ,drvDateOfHire = EecDateOfOriginalHire
         ,drvEmploymentStatus = CASE WHEN EecEmplStatus = 'A' THEN 'E' ELSE EecEmplStatus END
         ,drvEmploymentSubType =    CASE WHEN EecEmplStatus = 'A' AND EecDateOfLastHire = EecDateOfOriginalHire THEN 'O'
@@ -786,8 +791,8 @@ BEGIN
                                     ELSE 'E'
                                     END
         ,drvPlanEntryDate = CONVERT(VARCHAR(8), EecDateOfLastHire,112)
-        ,drvEEContributionEligSource1 = CASE WHEN DedCode_403 IS NOT NULL THEN 'F' END
-        ,drvEEContributionEligDate1 = CASE WHEN DedCode_403 IS NOT NULL THEN CONVERT(CHAR(8),CAST(EECUDFIELD01 AS DATETIME),112) END --CASE WHEN DedCode_403 IS NOT NULL THEN CONVERT(VARCHAR(8),EecDateOfBenefitSeniority,112) END
+        ,drvEEContributionEligSource1 = CASE WHEN DedCode_403 IS NOT NULL and DedCode_403StartDate <= PdhPayDate THEN 'F' END
+        ,drvEEContributionEligDate1 = CASE WHEN DedCode_403 IS NOT NULL and DedCode_403StartDate <= PdhPayDate THEN CONVERT(CHAR(8),CAST(EECUDFIELD01 AS DATETIME),112) END --CASE WHEN DedCode_403 IS NOT NULL THEN CONVERT(VARCHAR(8),EecDateOfBenefitSeniority,112) END
     --INTO dbo.U_ETIAASPRKE_drvTbl
     FROM dbo.U_ETIAASPRKE_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -805,12 +810,14 @@ BEGIN
     LEFT JOIN (
                 SELECT BdmEEID AS BdmP1EEID, BdmCOID AS BdmP1COID
                     ,MAX(CASE WHEN BdmDedCode = '403' THEN BdmDedCode END) AS DedCode_403
+                    ,Max(CASE WHEN BdmDedCode = '403' THEN BdmBenStartDate END) as DedCode_403StartDate
                     ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmDedCode END) AS DedCode_403x
                     ,MAX(CASE WHEN BdmDedCode IN ('403CU','403M','403PD') THEN BdmBenStopDate END) AS DedCode_403x_StopDate
                     ,MAX(CASE WHEN BdmDedCode IN ('ROTH') THEN BdmDedCode END) AS DedCode_ROTH
                     ,MAX(CASE WHEN BdmDedCode IN ('403L') THEN BdmDedCode END) AS DedCode_403l
+                    ,MAX(CASE WHEN BdmDedCode = '403M' THEN BdmDedCode END) AS DedCode_403M -- added
                 FROM dbo.U_dsi_BDM_ETIAASPRKE WITH (NOLOCK)
-                WHERE BdmDedCode IN ('403','403CU','403M','403PD','ROTH')
+                WHERE BdmDedCode IN ('403','403CU','403M','403PD','ROTH','403L')
                 GROUP BY BdmEEID, BdmCOID) AS PlanOneBdm
         ON BdmP1EEID = xEEID
         AND BdmP1COID = xCOID
@@ -866,6 +873,9 @@ BEGIN
         ,drvContributionSourceAmount2 = ''
         ,drvContributionSourceCode3 = ''
         ,drvContributionSourceAmount3 = ''
+        ,drvContributionSourceCode4 = ''
+        ,drvContributionSourceAmount4 = ''
+        ,drvLoanNumber1 = ''
         ,drvLoanRepaymentAmount1 = ''
         ,drvDateOfHire = EecDateOfOriginalHire
         ,drvEmploymentStatus = CASE WHEN EecEmplStatus = 'A' THEN 'E' ELSE EecEmplStatus END
@@ -884,7 +894,7 @@ BEGIN
                                     WHEN EecDedGroupCode IN ('PHYSF','PHYSP') AND DedCode_457 IS NOT NULL AND DedCode_457_StopDate IS NOT NULL THEN 'E'
                                     WHEN EecDedGroupCode IN ('PHYSF','PHYSP') AND DedCode_457 IS NULL THEN 'E'
                                     END
-        ,drvPlanEntryDate = ''
+        ,drvPlanEntryDate = CONVERT(VARCHAR(8), EecDateOfLastHire,112) -- added
         ,drvEEContributionEligSource1 = ''
         ,drvEEContributionEligDate1 = ''
     --INTO dbo.U_ETIAASPRKE_drvTbl
@@ -947,7 +957,7 @@ BEGIN
         DROP TABLE dbo.U_ETIAASPRKE_Trailer;
     SELECT DISTINCT
          drvRecordCount = (SELECT COUNT(*) FROM dbo.U_ETIAASPRKE_drvTbl) + 2
-        ,drvRemittanceAmountTotal = FORMAT((SELECT SUM(CAST(drvContributionSourceAmount1 AS MONEY)) + SUM(CAST(drvContributionSourceAmount2 AS MONEY)) + SUM(CAST(drvContributionSourceAmount3 AS MONEY)) FROM dbo.U_ETIAASPRKE_drvTbl WITH (NOLOCK)), '#0.00')
+        ,drvRemittanceAmountTotal = FORMAT((SELECT SUM(CAST(drvContributionSourceAmount1 AS MONEY)) + SUM(CAST(drvContributionSourceAmount2 AS MONEY)) + SUM(CAST(drvContributionSourceAmount3 AS MONEY))+ SUM(CAST(drvContributionSourceAmount4 AS MONEY)) FROM dbo.U_ETIAASPRKE_drvTbl WITH (NOLOCK)), '#0.00')
         ,drvLoanAmountTotal = FORMAT((SELECT SUM(CAST(drvLoanRepaymentAmount1 AS MONEY)) FROM dbo.U_ETIAASPRKE_drvTbl WITH (NOLOCK)), '#0.00')
     INTO dbo.U_ETIAASPRKE_Trailer
     ;

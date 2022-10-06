@@ -4,16 +4,17 @@ ETRIPACT: TripActions HRIS Export
 
 FormatCode:     ETRIPACT
 Project:        TripActions HRIS Export
-Client ID:      USG1000
-Date/time:      2022-04-20 12:09:27.500
+Client ID:      SIG1007
+Date/time:      2022-10-03 09:39:47.110
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_ETRIPACT_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EWP
+Server:         EW1WUP5DB04
+Database:       ULTIPRO_WPSGEN
+Web Filename:   SIG1007_1KC2K_EEHISTORY_ETRIPACT_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -168,7 +169,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ETRIPACT_20220420.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ETRIPACT_20221003.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -177,7 +178,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TripActions HRIS Export','202108269','EMPEXPORT','ONDEM_XOE','Aug 26 2021 12:00AM','ETRIPACT',NULL,NULL,NULL,'202108269','Aug 26 2021 12:00AM','Dec 30 1899 12:00AM','202108261',NULL,'','','202108261',dbo.fn_GetTimedKey(),NULL,'us3kMcSIG1007',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TripActions HRIS Export-Sched','202108269','EMPEXPORT','SCH_ETRIPA','Aug 26 2021 12:00AM','ETRIPACT',NULL,NULL,NULL,'202108269','Aug 26 2021 12:00AM','Dec 30 1899 12:00AM','202108261',NULL,'','','202108261',dbo.fn_GetTimedKey(),NULL,'us3kMcSIG1007',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TripActions HRIS Export-Test','202104269','EMPEXPORT','TEST_XOE','Aug 26 2021 11:28AM','ETRIPACT',NULL,NULL,NULL,'202104269','Apr 26 2021 12:00AM','Dec 30 1899 12:00AM','202104011','439','','','202104011',dbo.fn_GetTimedKey(),NULL,'us3kMcSIG1007',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TripActions HRIS Export-Test','202104209','EMPEXPORT','TEST_XOE','Apr 20 2022 12:00AM','ETRIPACT',NULL,NULL,NULL,'202104209','Apr 20 2021 12:00AM','Dec 30 1899 12:00AM','202104061','439','','','202104061',dbo.fn_GetTimedKey(),NULL,'us3jBeSIG1007',NULL);
 
 -----------
 -- AscImp inserts
@@ -192,6 +193,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIPACT','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIPACT','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIPACT','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIPACT','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ETRIPACT','UseFileName','V','Y');
 
 -----------
@@ -212,11 +214,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -269,7 +266,7 @@ CREATE TABLE [dbo].[U_ETRIPACT_drvTbl] (
     [drvOrgLvl2] varchar(8000) NULL,
     [drvCompanyName] varchar(8000) NULL,
     [drvManagerEmail] varchar(50) NULL,
-    [drvApproverEmail] varchar(50) NULL,
+    [drvApproverEmail] nvarchar(4000) NULL,
     [drvOrgLvl1] varchar(8000) NULL
 );
 
@@ -422,13 +419,15 @@ BEGIN
         ,drvEnabled = CASE WHEN EecEmplStatus = 'T' THEN 'False' ELSE 'True' END
         ,drvEmpNo = EecEmpNo
         ,drvTitle = REPLACE(JbcDesc,',',' ')
-        ,drvOrgLvl3 = REPLACE(Org3.OrgDesc,',',' ')
-        ,drvProject = REPLACE(EecProject,',',' ')
-        ,drvOrgLvl2 = REPLACE(Org2.OrgDesc,',',' ')
-        ,drvCompanyName = REPLACE(CmpCompanyName,',',' ')
+        ,drvOrgLvl3 = REPLACE(Org3.OrgDesc,',',' ') --department  
+        ,drvProject = REPLACE(EecProject,',',' ')  --costcenter
+        ,drvOrgLvl2 = REPLACE(Org2.OrgDesc,',',' ')  --Region
+        ,drvCompanyName = REPLACE(Org1.OrgDesc,',',' ')  --subsidiary   --REPLACE(CmpCompanyName,',',' ') changed per client req 8/11/22 Lea
         ,drvManagerEmail = Sup.EepAddressEMail
-        ,drvApproverEmail = Sup.EepAddressEMail
-        ,drvOrgLvl1 = REPLACE(Org1.OrgDesc,',',' ')
+        ,drvApproverEmail =    CASE WHEN Employment_TAApprover IS NOT NULL THEN Employment_TAApprover -- CodDesc IS NOT NULL THEN CodDesc 
+                            ELSE Sup.EepAddressEMail 
+                            END   
+        ,drvOrgLvl1 = REPLACE(CmpCompanyName,',',' ') --CompanyOffice  --REPLACE(Org1.OrgDesc,',',' ')  changed per client req 8/11/22 Lea
     INTO dbo.U_ETRIPACT_drvTbl
     FROM dbo.U_ETRIPACT_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -449,12 +448,16 @@ BEGIN
     JOIN dbo.OrgLevel AS Org3 WITH (NOLOCK) 
         ON Org3.OrgCode = EecOrgLvl3
         AND Org3.OrgLvl = 3
-    LEFT 
-    JOIN dbo.EmpPers Sup WITH (NOLOCK) -- supervisor  
+    LEFT JOIN dbo.EmpPers Sup WITH (NOLOCK) -- supervisor  
         ON Sup.EepEEID = EecSupervisorID  
-    LEFT
-    JOIN dbo.U_ETRIPACT_Audit WITH (NOLOCK)
+    LEFT JOIN dbo.U_ETRIPACT_Audit WITH (NOLOCK)
         ON audEEID = xEEID
+    LEFT JOIN [dbo].[fn_MP_CustomFields_EmpComp_Export](null, null, null, null) CstEED
+        ON CstEED.EecEEID = xEEID
+        AND Employment_TAApprover IS NOT NULL
+    LEFT JOIN dbo.Codes WITH (NOLOCK)
+        ON  CstEED.Employment_TAApprover = CodCode
+        AND codtable IN ('CO_TAAPPROVER')
     WHERE
         (EecEmplStatus IN ('A','L')
         OR (EecEmplStatus = 'T' AND audDateTime IS NOT NULL ))

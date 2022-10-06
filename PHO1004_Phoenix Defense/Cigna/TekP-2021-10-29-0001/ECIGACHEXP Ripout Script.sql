@@ -5,7 +5,7 @@ ECIGACHEXP: Cigna Acc/Crit Ill/Hosp Export
 FormatCode:     ECIGACHEXP
 Project:        Cigna Acc/Crit Ill/Hosp Export
 Client ID:      PHO1004
-Date/time:      2022-08-18 05:12:24.857
+Date/time:      2022-09-27 11:33:31.467
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -239,7 +239,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220818.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIGACHEXP_20220927.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -376,7 +376,7 @@ CREATE TABLE [dbo].[U_ECIGACHEXP_drvTbl] (
     [drvPlanType] varchar(8) NULL,
     [drvAiCiHcCoverTier] varchar(10) NULL,
     [drvEECIAppCovAmount] varchar(5) NULL,
-    [drvSPCIAppCovAmount] varchar(5) NOT NULL,
+    [drvSPCIAppCovAmount] varchar(5) NULL,
     [drvSpCoverageEffectiveDate] datetime NULL,
     [drvChCoverageAmount] varchar(5) NULL,
     [drvChCoverageEffectiveDate] datetime NULL,
@@ -676,7 +676,7 @@ BEGIN
                                 END
         ,drvCoverageEffectiveDate = BdmBenStartDate
         ,drvPlanType =    CASE WHEN BdmDedCode = 'VHOSP' THEN 'HC961200'
-                        WHEN BdmDedCode = 'VACC' THEN 'A962021'
+                        WHEN BdmDedCode = 'VACC' THEN 'AI962021'
                         WHEN BdmDedCode IN ('CIE','CIECH','CIEFM','CIESP') THEN 'CI961932'
                         END
 
@@ -695,7 +695,7 @@ BEGIN
 
 
         ,drvEECIAppCovAmount = CASE WHEN BdmDedCode IN ('CIE','CIESP','CIECH','CIEFM') THEN '30000' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
-        ,drvSPCIAppCovAmount = CASE WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('DP','SPS') THEN '30000' ELSE '0' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
+        ,drvSPCIAppCovAmount = CASE WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('DP','SPS') THEN '30000' END --FORMAT(BdmEEAmt, '#0') ELSE '0' END
         ,drvSpCoverageEffectiveDate =  BdmSpouseBenStartDate /*  CASE WHEN ConRelationship IN ('SPS','DP','Family') AND BdmDedCode IN ('VHOSP','VACC') THEN BdmBenStartDate
                                         WHEN BdmDedCode IN ('CIESP','CIEFM') AND ConRelationship IN ('SPS','DP','Family') THEN BdmSpouseBenStartDate
                                         END*/
@@ -711,23 +711,29 @@ BEGIN
 
         --CASE WHEN (BdmDedCode IN ('VACC','VHOSP') and ConRelationship IN ('CHD','CHL','STC','DPC')) OR BdmDedCode IN ('CICH','CIEFM') THEN BdmBenStartDate END
         --CASE WHEN BdmDedCode IN ('VACC','VHOSP','CICH','CIEFM') AND BdmChildBenStatus <> 'A' THEN BdmChildBenStartDate END
-        ,drvSpNameFirst = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameFirst END
+        ,drvSpNameFirst = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP','CIEFM') THEN ConNameFirst END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameFirst END
-        ,drvSpNameLast = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConNameLast END
+        ,drvSpNameLast = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP','CIEFM') THEN ConNameLast END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConNameLast END
-        ,drvSpSSN = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConSSN END
+        ,drvSpSSN = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP','CIEFM') THEN ConSSN END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConSSN END
-        ,drvSpGender = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConGender END
+        ,drvSpGender = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP','CIEFM') THEN ConGender END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConGender END
-        ,drvSpDateOfBirth = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP') THEN ConDateOfBirth END
+        ,drvSpDateOfBirth = CASE WHEN (ConRelationship IN ('SPS','DP') AND BdmDedCode IN ('VHOSP','VACC')) OR BdmDedCode IN ('CIESP','CIEFM') THEN ConDateOfBirth END
         --CASE WHEN BdmDedCode IN ('VHOSP','VACC','CIEFM','CIESP') THEN ConDateOfBirth END
         ,drvPayrollDeductionAmt =    FORMAT(
-                                            CASE WHEN BdmDedCode IN ('CIE') THEN PdhSourceCIE
-                                            WHEN BdmDedCode IN ('CIECH') THEN PdhSourceCIECH
-                                            WHEN BdmDedCode IN ('CIEFM') THEN PdhSourceCIEFM
-                                            WHEN BdmDedCode IN ('CIESP') THEN PdhSourceCIESP
-                                            WHEN BdmDedCode IN ('VACC') THEN PdhSourceVACC
-                                            WHEN BdmDedCode IN ('VHOSP') THEN PdhSourceVHOSP
+                                            CASE WHEN BdmDedCode IN ('CIE') THEN
+                                                CASE WHEN ISNULL(CIE_AMT, 0) > 0 THEN EedEELstAmt ELSE PdhSourceCIE END
+                                            WHEN BdmDedCode IN ('CIECH') THEN
+                                                CASE WHEN ISNULL(CIECH_AMT, 0) > 0 THEN EedEELstAmt ELSE PdhSourceCIECH END
+                                            WHEN BdmDedCode IN ('CIEFM') THEN
+                                                CASE WHEN ISNULL(CIEFM_AMT, 0) > 0 THEN EedEELstAmt ELSE PdhSourceCIEFM END
+                                            WHEN BdmDedCode IN ('CIESP') THEN
+                                                CASE WHEN ISNULL(CIESP_AMT, 0) > 0 THEN EedEELstAmt ELSE PdhSourceCIESP END
+                                            WHEN BdmDedCode IN ('VACC') THEN
+                                                CASE WHEN ISNULL(VACC_AMT, 0) > 0 THEN EedEELstAmt ELSE PdhSourceVACC END
+                                            WHEN BdmDedCode IN ('VHOSP') THEN
+                                                CASE WHEN ISNULL(VHOSP_AMT, 0) > 0 THEN EedEELstAmt ELSE PdhSourceVHOSP END
                                             END
                                         , '#0.00')
 
@@ -793,6 +799,18 @@ BEGIN
         AND ConRelationship IN ('SPS','DP')
     LEFT JOIN dbo.U_ECIGACHEXP_PDedHist WITH (NOLOCK)
         ON PdhEEID = xEEID
+    LEFT JOIN ( 
+                SELECT BcaEEID AS BcaAmtEEID, BcaCOID AS BcaAmtCOID 
+                    ,SUM(CASE WHEN BcaDedCode = 'CIE' THEN BcaBenAmtCalc END) AS CIE_AMT
+                    ,SUM(CASE WHEN BcaDedCode = 'CIECH' THEN BcaBenAmtCalc END) AS CIECH_AMT
+                    ,SUM(CASE WHEN BcaDedCode = 'CIEFM' THEN BcaBenAmtCalc END) AS CIEFM_AMT
+                    ,SUM(CASE WHEN BcaDedCode = 'CIESP' THEN BcaBenAmtCalc END) AS CIESP_AMT
+                    ,SUM(CASE WHEN BcaDedCode = 'VACC' THEN BcaBenAmtCalc END) AS VACC_AMT
+                    ,SUM(CASE WHEN BcaDedCode = 'VHOSP' THEN BcaBenAmtCalc END) AS VHOSP_AMT
+                FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH(NOLOCK)
+                GROUP BY BcaEEID, BcaCOID) AS BdmAmt
+        ON BcaAmtEEID = xEEID
+        AND BcaAmtCOID = xCOID
     ;
 
     --==========================================
