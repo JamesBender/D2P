@@ -821,7 +821,7 @@ BEGIN
                                 WHEN PdhFSAMD = 'FSAMD' THEN '0001'
                                 ELSE NULL --MW changed to use null
                         END
-        ,drvPlanEffectiveDate =  Convert(VARCHAR,CASE WHEN dbo.dsi_fnGetMinMaxDates('MAX', @StartDate, '7/1/2022') >= CAST(YEAR(@StartDate) AS CHAR(4)) + '0701' THEN  CAST(YEAR(@StartDate) AS CHAR(4)) + '0701'  --MW changed from CAST(YEAR(GETDATE()) AS CHAR(4)) + '0701' to grab correcct plan year when year changes
+        ,drvPlanEffectiveDate =  Convert(VARCHAR,CASE WHEN dbo.dsi_fnGetMinMaxDates('MAX', @StartDate, @FileMinCovDate) >= CAST(YEAR(@StartDate) AS CHAR(4)) + '0701' THEN  CAST(YEAR(@StartDate) AS CHAR(4)) + '0701'  --MW changed from CAST(YEAR(GETDATE()) AS CHAR(4)) + '0701' to grab correcct plan year when year changes
                                                             ELSE CAST(YEAR(BdmTVStartDate) AS CHAR(4)) + '0701' --MW BdmTVStartDate updates with Open Enrollment
                                                         END , 112)
         ,drvEnrollmentDate = Convert(VARCHAR,CASE WHEN @ExportCode NOT LIKE 'OE%' THEN dbo.dsi_fnGetMinMaxDates('MAX',MaxBenStartDate , @FileMinCovDate)  ELSE  BdmTVStartDate END , 112) --MW changed to use min file date and BdmTVStartDate updates with Open Enrollment  changed from CASE WHEN @ExportCode NOT LIKE 'OE%' THEN CAST(YEAR(GETDATE()) AS CHAR(4)) + '0701' ELSE '        ' END 
