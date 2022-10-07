@@ -5,7 +5,7 @@ EABDMA403B: Mutual of America 403b Export
 FormatCode:     EABDMA403B
 Project:        Mutual of America 403b Export
 Client ID:      ABI1001
-Date/time:      2022-09-09 14:38:09.663
+Date/time:      2022-10-07 12:09:45.850
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -259,7 +259,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EABDMA403BZ0','116','D','10','35',NULL,'Employee Status',NULL,NULL,'"drvEmployeeStatus"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EABDMA403BZ0','117','D','10','36',NULL,'Pay Type',NULL,NULL,'"drvPayType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EABDMA403BZ0','118','D','10','37',NULL,'Union Status',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EABDMA403BZ0','119','D','10','38',NULL,'Rehire Date',NULL,NULL,'"drvRehireDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EABDMA403BZ0','119','D','10','38',NULL,'Rehire Date',NULL,NULL,'"drvRehireDate"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EABDMA403BZ0','120','D','10','39',NULL,'Adjusted Seniority Date',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EABDMA403BZ0','121','D','10','40',NULL,'Leave of Absence Begin Date',NULL,NULL,'"drvLeaveOfAbsenceBeginDate"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EABDMA403BZ0','122','D','10','41',NULL,'Leave of Absence End Date',NULL,NULL,'"drvLeaveOfAbsenceEndDate"','(''UD101''=''T,'')');
@@ -315,7 +315,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EABDMA403B_20220909.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EABDMA403B_20221007.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -861,8 +861,8 @@ BEGIN
         ,drvEmployeeID = EecEmpNo
         ,drvEmployeeStatus = EecEmplStatus
         ,drvPayType = EecSalaryOrHourly
-        ,drvRehireDate = CASE WHEN EjhReason IN ('500', 'TRO', 'TRI' , 'TRB')  then '' 
-                                         WHEN  EecDateOfOriginalHire = EecDateOfLastHire THEN ''  
+        ,drvRehireDate = CASE WHEN EjhReason IN ('500', 'TRO', 'TRI' , 'TRB')  then Null
+                                         WHEN  EecDateOfOriginalHire = EecDateOfLastHire THEN Null 
                                          ELSE convert(nvarchar(10), EecDateOfLastHire, 101)
                                         END 
         ,drvLeaveOfAbsenceBeginDate = CASE WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate END
