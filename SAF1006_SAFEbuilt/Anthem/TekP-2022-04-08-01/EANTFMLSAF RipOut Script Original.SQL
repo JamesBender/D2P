@@ -1134,7 +1134,7 @@ SELECT
         -- standard fields above and additional driver fields below
         ,drvRecordType = '999'
         ,drvType = 'UDDT_HR_CNT_EMAIL' --HR Contact Email
-        ,drvValue = dbo.dsi_fnlib_GetSupervisorField_v2('', drvEEID, 'AddressEMail')
+        ,drvValue = _v2('', drvEEID, 'AddressEMail')
         --CAST('hr.forms@safeb.net' AS VARCHAR)
         ,drvLOB = ''
         ,drvEffDate = DR.drvEffDate
