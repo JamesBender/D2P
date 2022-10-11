@@ -5,7 +5,7 @@ EWCOBNPMEX: Wex Cobra/Npm Export
 FormatCode:     EWCOBNPMEX
 Project:        Wex Cobra/Npm Export
 Client ID:      LAW1000
-Date/time:      2022-09-29 05:01:57.100
+Date/time:      2022-10-11 05:21:14.367
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -260,7 +260,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20220929.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20221011.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -271,7 +271,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202209029','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,'Wex Cobra/Npm Export','202209029','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202209299','EMPEXPORT','TEST_XOE','Sep 22 2022 12:00AM','EWCOBNPMEX',NULL,NULL,NULL,'202209299','Sep 22 2022 12:00AM','Dec 30 1899 12:00AM','202201011','416','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202209299','EMPEXPORT','TEST_XOE','Oct 10 2022  8:42PM','EWCOBNPMEX',NULL,NULL,NULL,'202209299','Sep 29 2022 12:00AM','Dec 30 1899 12:00AM','202201011','127','','','202201011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -482,7 +482,7 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QBPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvSort] varchar(16) NULL,
+    [drvSort] varchar(14) NOT NULL,
     [drvPlanName] varchar(30) NULL,
     [drvCoverageLevel] varchar(18) NULL
 );
@@ -998,7 +998,7 @@ BEGIN
         ,drvEventType =    CASE WHEN BchIsCobraQualifiedEvent = 'Y' THEN
                             CASE WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN ('202','203') AND EecTermType = 'V' THEN 'TERMINATION'
                             WHEN EecEmplStatus ='T' AND EecTermReason IN ('203', '0803') THEN 'DEATH'
-                            WHEN EdhChangeReason = '208' OR (EecEmplStatus = 'T' AND EecTermReason = '202') THEN 'RETIREMENT'
+                            WHEN EdhChangeReason = '208' OR (EecEmplStatus = 'T' AND EecTermReason IN ('202','0619','0801')) THEN 'RETIREMENT'
                             WHEN EecEmplStatus = 'T' AND EecTermType = 'I' THEN 'INVOLUNTARYTERMINATION'
                             WHEN EdhChangeReason = '205' THEN 'MEDICARE'
                             WHEN EdhChangeReason IN ('204','LEVNT4') THEN 'DIVORCELEGALSEPARATION'
@@ -1060,12 +1060,12 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvSort = '1 ' + xEEID + ' 3'
+        ,drvSort = CONCAT(BdmDedCode, ' - ', BdmBenOption) -- '1 ' + xEEID + ' 3'
         -- standard fields above and additional driver fields below
         ,drvPlanName =    CASE WHEN BdmDedCode = 'DEN' THEN 'Aetna Dental DHMO'
-                        WHEN BdmDedCode = 'DPPO' THEN 'Aetna Dental DPPO'
-                        WHEN BdmDedCode = 'MEDCA' AND BdmBenOption IN ('AHMCH1','AHMCH2','AHMCH3','AHMCH4','AHMCH5','AHMCH6','AHMCH7') THEN 'Aetna Med HMO CA'
+                        WHEN BdmDedCode = 'DPPO' THEN 'Aetna Dental DPPO'                        
                         WHEN BdmDedCode = 'MEDCA' AND BdmBenOption IN ('AHPSL1','AHPSL2','AHPSL3','AHPSL4','AHPSL5','AHPSL6','AHPSL7','APOHR6') THEN 'Aetna Med OA PPO HDHP CA/IL/NV'
+                        WHEN BdmDedCode = 'MEDCA' AND BdmBenOption IN ('AHMCH1','AHMCH2','AHMCH3','AHMCH4','AHMCH5','AHMCH6','AHMCH7','AHMCS1') THEN 'Aetna Med HMO CA'
                         WHEN BdmDedCode = 'MEDNV' AND BdmBenOption IN ('HHMOH1','HHMOH2','HHMOH3','HHMOH4','HHMOH5','HHMOH6','HHMOH7','HHMOS1','HHMOS2','HHMOS3','HHMOS4','HHMOS5','HHMOS6','HHMOS7') THEN 'Aetna Med HMO IL/NV'
                         WHEN BdmDedCode = 'MEDNV' AND BdmBenOption IN ('HPONH1','HPONH2','HPONH3','HPONH4','HPONH5','HPONH6','HPONH7','HPONS1','HPONS2','HPONS3','HPONS4','HPONS5','HPONS6','HPONS7') THEN 'Aetna Med OA PPO HDHP CA/IL/NV'                        
                         WHEN BdmDedCode = 'MEDT2' THEN 'Aetna Med OA PPO HDHP TX'
