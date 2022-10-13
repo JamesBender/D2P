@@ -5,7 +5,7 @@ EMCPTELEXP: CirrusMD Telehealth Export
 FormatCode:     EMCPTELEXP
 Project:        CirrusMD Telehealth Export
 Client ID:      MOU1003
-Date/time:      2022-10-13 10:33:02.383
+Date/time:      2022-10-13 15:59:04.013
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -208,7 +208,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CirrusMD Telehealth Export','202210139','EMPEXPORT','ONDEM_XOE',NULL,'EMCPTELEXP',NULL,NULL,NULL,'202210139','Sep 22 2022 12:04PM','Sep 22 2022 12:04PM','202201151',NULL,'','','202201151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',QUD2P',NULL,NULL,NULL,'CirrusMD Telehlth Sch','202210139','EMPEXPORT','SCH_EMCPTE',NULL,'EMCPTELEXP',NULL,NULL,NULL,'202210139','Sep 22 2022 12:04PM','Sep 22 2022 12:04PM','202201151',NULL,'','','202201151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',QUD2P',NULL,NULL,NULL,'CirrusMD Telehealth Expo-Test','202210139','EMPEXPORT','TEST_XOE','Oct  4 2022 12:00AM','EMCPTELEXP',NULL,NULL,NULL,'202210139','Oct  4 2022 12:00AM','Dec 30 1899 12:00AM','202201151',NULL,'','','202201151',dbo.fn_GetTimedKey(),NULL,'us3kEpMOU1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',QUD2P',NULL,NULL,NULL,'CirrusMD Telehealth Expo-Test','202210139','EMPEXPORT','TEST_XOE','Oct 13 2022  3:51PM','EMCPTELEXP',NULL,NULL,NULL,'202210139','Oct 13 2022 12:00AM','Dec 30 1899 12:00AM','202210061','352','','','202210061',dbo.fn_GetTimedKey(),NULL,'us3kEpMOU1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -364,7 +364,7 @@ CREATE TABLE [dbo].[U_EMCPTELEXP_drvTbl] (
     [drvSubscriberLastName] varchar(102) NULL,
     [drvEmail] varchar(52) NULL,
     [drvLOB] varchar(12) NULL,
-    [drvSubscriberRelationship] varchar(11) NULL,
+    [drvSubscriberRelationship] varchar(11) NOT NULL,
     [drvRelationshipCode] varchar(24) NOT NULL,
     [drvEthnicityCode] varchar(64) NULL,
     [drvMedicalEnrollment] varchar(7) NOT NULL,
@@ -559,7 +559,8 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EMCPTELEXP_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EMCPTELEXP_drvTbl;
-    SELECT DISTINCT
+        
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -572,40 +573,44 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvExternalId = ''--'"' + Ltrim(rtrim(EecEmpNo)) +'-'+Ltrim(rtrim(EepNameFirst)) +'-'+EepAddressZipCode +'-'+ Format(EepDateOfBirth, 'yyyy-MM-dd') + '"'
         ,drvMemberId = ''--'"' + Ltrim(rtrim(EecEmpNo)) +'-'+Ltrim(rtrim(EepNameFirst))+'-'+EepAddressZipCode +'-'+ Format(EepDateOfBirth, 'yyyy-MM-dd') + '"'
-        ,drvNameFirst = CASE WHEN bdmRecType = 'EMP' THEN '"' + EepNameFirst + '"' ELSE '"' + ConNameFirst + '"' END
-        ,drvNameLast = CASE WHEN bdmRecType = 'EMP' THEN '"' + EepNameLast + '"' ELSE '"' + ConNameLast + '"' END
-        ,drvDateofBirth = CASE WHEN BdmRecType = 'EMP' THEN '"' + FOrmat(EepDateOfBirth, 'yyyy-MM-dd') + '"'  ELSE '"' + FORMAT(ConDateOfBirth, 'yyyy-MM-dd') + '"' END
-        ,drvGender = CASE WHEN BdmRecType = 'EMP'  and  eepgender = 'F'  THEN  '"Female"'
-                          WHEN BdmRecType = 'EMP'  and  eepgender = 'M'  THEN  '"Male"'
+        ,drvNameFirst = CASE WHEN bdmRecType = 'DEP' THEN '"' + ConNameFirst + '"' ELSE '"' + EepNameFirst + '"'  END
+        ,drvNameLast = CASE WHEN bdmRecType = 'DEP' THEN '"' + ConNameLast + '"'  ELSE '"' + EepNameLast + '"'  END
+        ,drvDateofBirth = CASE WHEN BdmRecType = 'DEP' THEN  '"' + FORMAT(ConDateOfBirth, 'yyyy-MM-dd') + '"' ELSE '"' + FOrmat(EepDateOfBirth, 'yyyy-MM-dd') + '"'  END
+        ,drvGender = CASE WHEN BdmRecType <> 'DEP'  and  eepgender = 'F'  THEN  '"Female"'
+                          WHEN BdmRecType <> 'DEP' and  eepgender = 'M'  THEN  '"Male"'
                           WHEN BdmRecType = 'DEP'  and  ConGender = 'F'  THEN  '"Female"'
                           WHEN BdmRecType = 'DEP'  and  ConGender = 'M'  THEN  '"Male"'
                         Else '"Unknown"'
                     END
-        ,drvEffectiveDate = '"' + FORMAT(dateadd(d, 14, BdmBenstartdate ), 'yyyy-MM-dd') + '"'
-        ,drvExpiryDate =  CASE WHEN EecEmplStatus = 'T' THEN '"' + FORMAT(EecDateOfTermination, 'yyyy-MM-dd') + '"' ELSE '"2099-12-31"' END
-        ,drvAddressZipCode = CASE WHEN BdmRecType = 'EMP' THEN '"' + EepAddressZipCode + '"' ELSE '"' + ConAddressZipCode + '"' END
+        ,drvEffectiveDate = CASE WHEN isnull(FORMAT(dateadd(d, 14, BdmBenstartdate ), 'yyyy-MM-dd'), '') <> '' 
+                                     THEN '"' + FORMAT(dateadd(d, 14, BdmBenstartdate ), 'yyyy-MM-dd') + '"' 
+                                    ELSE '"' + FORMAT(dateadd(d, 14,EecDateofLastHire), 'yyyy-MM-dd') + '"'  
+                                END 
+        
+        ,drvExpiryDate =  CASE     WHEN EecEmplStatus = 'T' THEN '"' + FORMAT(EecDateOfTermination, 'yyyy-MM-dd') + '"' 
+                                ELSE '"2099-12-31"' END
+        ,drvAddressZipCode = CASE WHEN BdmRecType = 'DEP' THEN '"' + ConAddressZipCode + '"'  ELSE  '"' + EepAddressZipCode + '"' END
         ,drvPrimaryPhone = CASE WHEN EfoPhoneNumber IS NOT NULL THEN '"' + EfoPhoneNumber + '"' ELSE '"' + eepPhoneHomeNumber + '"' END
-        ,drvStreetAddress = CASE WHEN BdmRecType = 'EMP' AND eepAddressLine2 IS NOT NULL THEN '"' + eepAddressLine1 + '' + rtrim(eepAddressLine2) + '"' 
-                                WHEN BdmRecType = 'DEP' AND conAddressLine2 IS NOT NULL THEN '"' + conAddressLine1 + '' + rtrim(conAddressLine2) + '"' 
-                                WHEN BdmRecType = 'EMP' AND eepAddressLine2 IS NULL THEN '"' + eepAddressLine1 + '"' 
-                                WHEN BdmRecType = 'DEP' AND conAddressLine2 IS NULL THEN '"' + conAddressLine1 + '"' 
+        ,drvStreetAddress = CASE WHEN BdmRecType = 'DEP' THEN '"' + ltrim(rtrim(conAddressLine1)) + '' + ltrim(rtrim(isnull(conAddressLine2, ''))) + '"' 
+                                ELSE  '"' + ltrim(rtrim(eepAddressLine1)) + '' + isnull(Ltrim(rtrim(eepAddressLine2)),'') + '"' 
                                 END
-        ,drvAddressCity = CASE WHEN BdmRecType = 'EMP' THEN '"' + EepAddressCity + '"' else '"' + ConAddressCity + '"' END
-        ,drvAddressState = CASE WHEN BdmRecType = 'EMP' THEN '"' + EepAddressState + '"' else '"' + conAddressState + '"' END 
+        ,drvAddressCity = CASE WHEN  BdmRecType = 'DEP ' THEN '"' + Ltrim(rtrim(ConAddressCity)) + '"'  else '"' + ltrim(rtrim(EepAddressCity)) + '"' END
+        ,drvAddressState = CASE WHEN BdmRecType =  'DEP' THEN  '"' + ltrim(rtrim(conAddressState)) + '"' else  '"' + ltrim(rtrim(EepAddressState)) + '"'END 
         ,drvSubscriberDOB =  '"' + FORMAT(EepDateOfBirth, 'yyyy-MM-dd') + '"'
         ,drvSubscriberFirstName = '"' + EepNameFirst + '"'
         ,drvSubscriberLastName = '"' + EepNameLast + '"'
-        ,drvEmail =  CASE WHEN BdmRecType <> 'DEP' and EepAddressEmailAlternate <> ''  THEN '"' + EepAddressEmailAlternate + '"' ELSE NULL END
+        ,drvEmail = CASE WHEN BdmRecType <> 'DEP' and ISNULL(EepAddressEmailAlternate, '')  NOT LIke '%.ski' and ISNULL(EepAddressEmailAlternate, '') <> ''  THEN '"' + EepAddressEmailAlternate + '"' ELSE CASE WHEn Isnull(EepAddressEmail, '') <> '' AND  EepAddressEmail NOT LIke '%.ski' THEN '"' + EepAddressEmail + '"' END END
         ,drvLOB = '"' + rtrim(EecOrglvl3) + '"'
         ,drvSubscriberRelationship = CASE WHEN  BdmRecType = 'DEP' and conrelationship IN ('SPS', 'CHL', 'STC', 'DCH', 'DPC') THEN '"Dependent"' 
-                                          WHEN BdmRecType = 'EMP' THEN  '"Primary"' END 
+                                        ELSE '"Primary"' END 
         ,drvRelationshipCode = CASE WHEN  BdmRecType = 'DEP' AND conrelationship = 'SPS' and congender = 'M' THEN '"Husband"' 
                                     WHEN  BdmRecType = 'DEP' AND conrelationship = 'SPS' and congender = 'F' THEN '"WIFE"'
                                     WHEN  BdmRecType = 'DEP' AND conrelationship IN ('SPS', 'CHL', 'STC', 'DCH', 'DPC') and congender = 'M' THEN '"SPONSORED MALE CHILD"'
                                     WHEN  BdmRecType = 'DEP' AND conrelationship IN ('SPS', 'CHL', 'STC', 'DCH', 'DPC') and congender = 'F' THEN '"SPONSORED FEMALE CHILD"'
                                     ELSE '"Primary"'
                                  END
-        ,drvEthnicityCode =   CASE WHEN coddesc = 'White' THEN '"White alone, non-Hispanic"'      --'"' + coddesc + '"'
+                            
+        ,drvEthnicityCode = CASE WHEN coddesc = 'White' THEN '"White alone, non-Hispanic"'      --'"' + coddesc + '"'
                                  WHEN coddesc in ('Hispanic or Latino' ) THEN '"Hispanic"'
                                  WHEN coddesc IN ('Black or African American') THEN '"Black or African American alone, non-Hispanic"'
                                  WHEN coddesc IN ('American Indian/Alaskan Native', 'Alaskan Native','American Indian')  THEN 'Some Other Race alone, non-Hispanic' 
@@ -614,12 +619,13 @@ BEGIN
                                  WHEN coddesc = 'Two or more races' THEN '"Multiracial, non-Hispanic"'
                                  WHEN (coddesc = 'Not specified' or isnull(coddesc ,'') = '')  THEN '' 
                                 END 
-        ,drvMedicalEnrollment = CASE WHEN bdmDedCode IN ('HDHP', 'HLTH')  and bdmBenstatus = 'A' THEN '"True"' ELSE  '"False"' END
+        ,drvMedicalEnrollment = CASE WHEN  bdmDedCode IN ('HDHP', 'HLTH')  and bdmBenstatus = 'A' THEN '"True"' ELSE  '"False"' END
         ,drvMedicalEligibility = CASE WHEN Deductionbenefitgroup IN ('YR', 'SSHCB') THEN '"True"' ELSE  '"False"' END
         ,drvEmployeeID = '"' + rtrim(EecEmpNo) + '"'
-        ,drvEmployeeType = CASE WHEN eeceetype IN ('Y10', 'YR') THEN '"' +'Full Time' +'"'                                    --'"' + EMPTYPEDESC  + '"'
+        ,drvEmployeeType = CASE WHEN eeceetype IN ('Y10', 'YR') THEN '"' +'Full Time' +'"'  --'"' + EMPTYPEDESC  + '"'
                                 WHEN eeceetype IN ('HC', 'HF', 'H10', 'HCM', 'PEK', 'SS') THEN '"' + 'Seasonal'+ '"' END 
 
+        
     INTO dbo.U_EMCPTELEXP_drvTbl
     FROM dbo.U_EMCPTELEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -627,7 +633,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EMCPTELEXP WITH (NOLOCK)
+   LEFT  JOIN dbo.U_dsi_BDM_EMCPTELEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
@@ -663,7 +669,7 @@ BEGIN
          ON AudEEID = xEEID
         AND AudCOID = xCOID
         WHERE EecEmpNo NOT IN ('4564', '4568', '4570', '3504', '3505')
-        AND (EecEmplStatus <>  'T' or (EecEmplStatus = 'T' AND AudTermDate > DATEADD(DAY, -14, @EndDate)))
+        AND (EecEmplStatus <>  'T' or (EecEmplStatus = 'T' AND AudTermDate < = DATEADD(DAY, -14, @EndDate)))
 
     ;
     -----------------------------------

@@ -4,16 +4,17 @@ EANCSIMEXP: SIMNSA Eligibility Export
 
 FormatCode:     EANCSIMEXP
 Project:        SIMNSA Eligibility Export
-Client ID:      USG1000
-Date/time:      2022-09-30 16:44:55.070
+Client ID:      ANC1000
+Date/time:      2022-10-11 16:48:12.677
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EANCSIMEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW3WUP4DB01
+Database:       ULTIPRO_WPANCON
+Web Filename:   ANC1000_8431A_EEHISTORY_EANCSIMEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -119,6 +120,8 @@ IF OBJECT_ID('U_EANCSIMEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EANCSIMEXP_E
 GO
 IF OBJECT_ID('U_EANCSIMEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EANCSIMEXP_drvTbl];
 GO
+IF OBJECT_ID('U_EANCSIMEXP_Dep_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EANCSIMEXP_Dep_drvTbl];
+GO
 IF OBJECT_ID('U_EANCSIMEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EANCSIMEXP_DedList];
 GO
 IF OBJECT_ID('U_EANCSIMEXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EANCSIMEXP_AuditFields];
@@ -140,7 +143,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EANCSIMEXPZ0','50','D','10','1',NULL,'Version',NULL,NULL,'"B"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EANCSIMEXPZ0','50','D','10','2',NULL,'Group',NULL,NULL,'"563"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EANCSIMEXPZ0','50','D','10','3',NULL,'Row Type',NULL,NULL,'"M"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EANCSIMEXPZ0','50','D','10','3',NULL,'Row Type',NULL,NULL,'"drvRowType"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EANCSIMEXPZ0','50','D','10','4',NULL,'Social Security Number',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EANCSIMEXPZ0','50','D','10','5',NULL,'ID number',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EANCSIMEXPZ0','50','D','10','6',NULL,'Last Name',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
@@ -155,7 +158,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EANCSIMEXPZ0','50','D','10','15',NULL,'Zip code',NULL,NULL,'"drvZipCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EANCSIMEXPZ0','50','D','10','16',NULL,'Phone_home',NULL,NULL,'"drvPhoneHome"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EANCSIMEXPZ0','50','D','10','17',NULL,'Phone_work',NULL,NULL,'"drvPhoneBusiness"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EANCSIMEXPZ0','50','D','10','18',NULL,'Employer',NULL,NULL,'"Ancon Marine "','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EANCSIMEXPZ0','50','D','10','18',NULL,'Employer',NULL,NULL,'"drvEmployer"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EANCSIMEXPZ0','50','D','10','19',NULL,'Medical Plan',NULL,NULL,'"drvMedicalPlan"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EANCSIMEXPZ0','50','D','10','20',NULL,'Medical Coverage',NULL,NULL,'"drvMedicalCoverage"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EANCSIMEXPZ0','50','D','10','21',NULL,'Medical Premium Monthly Amount',NULL,NULL,'"drvMedPremMonthlyAmt"','(''UA''=''T,'')');
@@ -165,8 +168,23 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EANCSIMEXPZ0','50','D','10','25',NULL,'Number of dependents',NULL,NULL,'"drvNumofDependents"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EANCSIMEXPZ0','50','D','10','26',NULL,'Effective date for MEDICAL plan',NULL,NULL,'"drvEffDateforMedPlan"','(''UD101''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EANCSIMEXPZ0','50','D','10','27',NULL,'Expiration date for MEDICAL plan',NULL,NULL,'"drvExpDateforMedPlan"','(''UD101''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EANCSIMEXPZ0','50','D','10','28',NULL,'Effective date for DENTAL plan',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EANCSIMEXPZ0','50','D','10','29',NULL,'Expiration date for DENTAL plan',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EANCSIMEXPZ0','50','D','10','28',NULL,'Effective date for DENTAL plan',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EANCSIMEXPZ0','50','D','20','1',NULL,'Version',NULL,NULL,'"B"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EANCSIMEXPZ0','51','D','20','2',NULL,'Group',NULL,NULL,'"563"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EANCSIMEXPZ0','52','D','20','3',NULL,'Row Type',NULL,NULL,'"drvRowType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EANCSIMEXPZ0','53','D','20','4',NULL,'Row Number',NULL,NULL,'"drvRowNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EANCSIMEXPZ0','54','D','20','5',NULL,'MEMBER Social Security Number',NULL,NULL,'"drvMEMBERSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EANCSIMEXPZ0','55','D','20','6',NULL,'DEPENDENT Social Security Number',NULL,NULL,'"drvDEPENDENTSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EANCSIMEXPZ0','56','D','20','7',NULL,'ID number',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EANCSIMEXPZ0','57','D','20','8',NULL,'Last Name',NULL,NULL,'"drvDepLastName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EANCSIMEXPZ0','58','D','20','9',NULL,'First Name',NULL,NULL,'"drvDepFirstName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EANCSIMEXPZ0','59','D','20','10',NULL,'Relationship',NULL,NULL,'"drvRelationship"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EANCSIMEXPZ0','60','D','20','11',NULL,'Coverage',NULL,NULL,'"drvCoverage"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EANCSIMEXPZ0','61','D','20','12',NULL,'Birth Date',NULL,NULL,'"drvDepBirthDate"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EANCSIMEXPZ0','62','D','20','13',NULL,'Effective date for MEDICAL plan',NULL,NULL,'"drvEffectivedateforMEDICAL"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EANCSIMEXPZ0','63','D','20','14',NULL,'Expiration date for MEDICAL plan',NULL,NULL,'"drvExpirationdateforMEDICAL"','(''UD101''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EANCSIMEXPZ0','64','D','20','15',NULL,'Effective date for DENTAL plan',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EANCSIMEXPZ0','65','D','20','16',NULL,'Expiration date for DENTAL plan',NULL,NULL,'""','(''SS''=''T'')');
 
 -----------
 -- Build web filename
@@ -179,18 +197,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANCSIMEXP_20220930.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANCSIMEXP_20221011.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202209309','EMPEXPORT','OEACTIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202209309','EMPEXPORT','OEPASSIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Export','202209309','EMPEXPORT','ONDEM_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Sched','202209309','EMPEXPORT','SCH_EANCSI',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Test','202209309','EMPEXPORT','TEST_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202209309','Sep 30 2022  3:49PM','Sep 30 2022  3:49PM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202210119','EMPEXPORT','OEACTIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210119','Oct 11 2022  7:40AM','Oct 11 2022  7:40AM','202210041',NULL,'','','202210041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210119','EMPEXPORT','OEPASSIVE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210119','Oct 11 2022  7:40AM','Oct 11 2022  7:40AM','202210041',NULL,'','','202210041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Export','202210119','EMPEXPORT','ONDEM_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210119','Oct 11 2022  7:40AM','Oct 11 2022  7:40AM','202210041',NULL,'','','202210041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Sched','202210119','EMPEXPORT','SCH_EANCSI',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210119','Oct 11 2022  7:40AM','Oct 11 2022  7:40AM','202210041',NULL,'','','202210041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'SIMNSA Eligibility Expor-Test','202210119','EMPEXPORT','TEST_XOE',NULL,'EANCSIMEXP',NULL,NULL,NULL,'202210119','Oct 11 2022  7:40AM','Oct 11 2022  7:40AM','202210041',NULL,'','','202210041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -202,11 +220,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EANCSIMEXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -218,14 +237,15 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -----------
 
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANCSIMEXP','D10','dbo.U_EANCSIMEXP_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EANCSIMEXP','D20','dbo.U_EANCSIMEXP_Dep_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -316,6 +336,30 @@ CREATE TABLE [dbo].[U_EANCSIMEXP_DedList] (
 );
 
 -----------
+-- Create table U_EANCSIMEXP_Dep_drvTbl
+-----------
+
+IF OBJECT_ID('U_EANCSIMEXP_Dep_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EANCSIMEXP_Dep_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] varchar(12) NULL,
+    [drvSubsort] bigint NULL,
+    [drvRowType] varchar(1) NOT NULL,
+    [drvRowNumber] bigint NULL,
+    [drvMEMBERSSN] char(11) NULL,
+    [drvDEPENDENTSSN] char(11) NULL,
+    [drvDepLastName] varchar(100) NULL,
+    [drvDepFirstName] varchar(100) NULL,
+    [drvRelationship] varchar(1) NULL,
+    [drvCoverage] varchar(1) NULL,
+    [drvDepBirthDate] datetime NULL,
+    [drvEffectivedateforMEDICAL] datetime NULL,
+    [drvExpirationdateforMEDICAL] datetime NULL
+);
+
+-----------
 -- Create table U_EANCSIMEXP_drvTbl
 -----------
 
@@ -324,13 +368,14 @@ CREATE TABLE [dbo].[U_EANCSIMEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] char(11) NULL,
+    [drvRowType] varchar(1) NULL,
+    [drvInitialSort] varchar(12) NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvSSN] char(11) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNamefFirst] varchar(100) NULL,
-    [drvGender] char(1) NULL,
-    [drvMaritalStatus] char(1) NULL,
+    [drvGender] varchar(7) NOT NULL,
+    [drvMaritalStatus] varchar(7) NULL,
     [drvDOB] datetime NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
@@ -339,10 +384,11 @@ CREATE TABLE [dbo].[U_EANCSIMEXP_drvTbl] (
     [drvZipCode] varchar(50) NULL,
     [drvPhoneHome] varchar(50) NULL,
     [drvPhoneBusiness] varchar(50) NULL,
+    [drvEmployer] varchar(12) NULL,
     [drvMedicalPlan] varchar(8) NULL,
     [drvMedicalCoverage] varchar(1) NULL,
-    [drvMedPremMonthlyAmt] money NULL,
-    [drvNumofDependents] int NULL,
+    [drvMedPremMonthlyAmt] nvarchar(4000) NULL,
+    [drvNumofDependents] nvarchar(4000) NULL,
     [drvEffDateforMedPlan] datetime NULL,
     [drvExpDateforMedPlan] datetime NULL
 );
@@ -380,18 +426,7 @@ CREATE TABLE [dbo].[U_EANCSIMEXP_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
-    [PdhEECurAmtYTD] money NULL,
-    [PdhERCurAmtYTD] money NULL,
-    [PdhSource1] numeric NULL,
-    [PdhSource2] numeric NULL,
-    [PdhSource3] numeric NULL,
-    [PdhSource4] numeric NULL,
-    [PdhSource5] numeric NULL,
-    [PdhSource6] numeric NULL,
-    [PdhSource7] numeric NULL,
-    [PdhSource8] numeric NULL,
-    [PdhSource9] numeric NULL,
-    [PdhSource10] numeric NULL
+    [PdhSource1] numeric NULL
 );
 
 -----------
@@ -421,7 +456,7 @@ Client Name: Ancon Marine
 
 Created By: Marie Waters
 Business Analyst: Kim Ephraim
-Create Date: 09/30/2022
+Create Date: 10/11/2022
 Service Request Number: TekP-2022-09-01-06
 
 Purpose: SIMNSA Eligibility Export
@@ -485,13 +520,17 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EANCSIMEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
+   
+    ---==========================================
     -- Audit Section
     --==========================================
     -- Get data from audit fields table. Add fields here if auditing
     IF OBJECT_ID('U_EANCSIMEXP_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EANCSIMEXP_AuditFields;
+
     CREATE TABLE dbo.U_EANCSIMEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EANCSIMEXP_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    INSERT INTO dbo.U_EANCSIMEXP_AuditFields VALUES ('EmpComp','EecEmplStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EANCSIMEXP_Audit','U') IS NOT NULL
@@ -512,7 +551,7 @@ BEGIN
     JOIN dbo.U_EANCSIMEXP_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    WHERE audDateTime BETWEEN DateAdd(d, -30, @StartDate) AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -551,6 +590,11 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL, COD, STC');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP'); 
+
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
@@ -585,19 +629,10 @@ BEGIN
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         -- YTD Payroll Amounts
-        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        --,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        --,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('SIM') THEN PdhEECurAmt ELSE 0.00 END)
     INTO dbo.U_EANCSIMEXP_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_EANCSIMEXP_DedList WITH (NOLOCK)
@@ -643,6 +678,72 @@ BEGIN
     --==========================================
     -- Build Driver Tables
     --==========================================
+
+
+        ---------------------------------
+    -- DETAIL RECORD - U_EANCSIMEXP_Dep_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EANCSIMEXP_Dep_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EANCSIMEXP_Dep_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvInitialSort = eepSSN + '2'
+        ,drvSubsort =   CASE WHEN (CASE WHEN ConRelationship  IN ('SPS','DP' ) THEN ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY ConRelationship DESC)  
+                               WHEN BdmNumChildren > 0  and BdmNumSpouses = 0 THEN ( ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY conSSN DESC)) END  ) = 1 THEN  
+                                 CASE WHEN ConRelationship  IN ('SPS','DP' ) THEN ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY ConRelationship DESC) 
+                                      WHEN BdmNumChildren > 0  and BdmNumSpouses = 0 THEN ( ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY conSSN DESC)) 
+                                     END 
+                                ELSE 
+                                    CASE WHEN ConRelationship  IN ('SPS','DP' ) THEN ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY ConRelationship DESC) 
+                                  ElSE  ( ROW_NUMBER() OVER (PARTITION BY eepSSN, CASE WHEN ConRelationship IN ('SPS','DP' ) THEN ConRelationship END ORDER BY conSSN DESC)+1) 
+                                  END   
+                            END               
+                        
+        -- standard fields above and additional driver fields below
+        ,drvRowType ='D'
+        ,drvRowNumber =   CASE WHEN (CASE WHEN ConRelationship  IN ('SPS','DP' ) THEN ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY ConRelationship DESC)  
+                               WHEN BdmNumChildren > 0  and BdmNumSpouses = 0 THEN ( ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY conSSN DESC)) END  ) = 1 THEN  
+                                 CASE WHEN ConRelationship  IN ('SPS','DP' ) THEN ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY ConRelationship DESC) 
+                                      WHEN BdmNumChildren > 0  and BdmNumSpouses = 0 THEN ( ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY conSSN DESC)) 
+                                     END 
+                                ELSE 
+                                    CASE WHEN ConRelationship  IN ('SPS','DP' ) THEN ROW_NUMBER() OVER (PARTITION BY eepSSN, ConRelationship ORDER BY ConRelationship DESC) 
+                                  ElSE  ( ROW_NUMBER() OVER (PARTITION BY eepSSN, CASE WHEN ConRelationship IN ('SPS','DP' ) THEN ConRelationship END ORDER BY conSSN DESC)+1) 
+                                  END   
+                            END 
+        ,drvMEMBERSSN = eepSSN
+        ,drvDEPENDENTSSN = conSSN
+        ,drvDepLastName = ConNameLast
+        ,drvDepFirstName = ConNameFirst
+        ,drvRelationship = CASE WHEN ConRelationship = 'SPS' THEN 'S'
+                                WHEN ConRelationship IN ( 'CHL', 'CHD', 'STC', 'DPC' ) THEN 'C'
+                                WHEN ConRelationship = 'DP' THEN 'D'
+                            END
+        ,drvCoverage = CASE WHEn bdmdedcode =  'SIM'  THEN 'M' END
+        ,drvDepBirthDate = ConDateOfBirth
+        ,drvEffectivedateforMEDICAL = CASE WHEN bdmdedcode =  'SIM'  THEN BdmBenStartDate END
+        ,drvExpirationdateforMEDICAL = CASE WHEN bdmdedcode =  'SIM'  THEN BdmBenStopDate END
+    INTO dbo.U_EANCSIMEXP_Dep_drvTbl
+    FROM dbo.U_EANCSIMEXP_EEList WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.U_dsi_BDM_EANCSIMEXP WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        AND bdmrectype ='DEP'
+    JOIN dbo.Contacts WITH (NOLOCK) 
+        ON ConEEID = xEEID 
+        AND ConSystemID = BdmDepRecID
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID
+        AND EecCOID = xCOID
+     LEFT JOIN  dbo.U_EANCSIMEXP_Audit WITH (NOLOCK)
+        ON xEEID = audEEID
+     Where EecEEType <> 'TES' 
+         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audFieldName = 'EecDateOfTermination' AND AudDateTime BETWEEN DATEADD(DAY, -60, @StartDate) AND @EndDate))
+        ;
     ---------------------------------
     -- DETAIL RECORD - U_EANCSIMEXP_drvTbl
     ---------------------------------
@@ -652,50 +753,77 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = eepSSN
-        ,drvSubsort = ''
+        ,drvRowType = CASE WHEN bdmrectype ='EMP' THEN 'M' END
+        ,drvInitialSort = eepSSN+ '1' 
+        ,drvSubsort =  '1'
         -- standard fields above and additional driver fields below
-        ,drvSSN = eepSSN
-        ,drvNameLast = EepNameLast
-        ,drvNamefFirst = EepNameFirst
-        ,drvGender = EepGender
-        ,drvMaritalStatus = eepMaritalStatus
-        ,drvDOB = EepDateOfBirth
-        ,drvAddressLine1 = EepAddressLine1
-        ,drvAddressLine2 = EepAddressLine2
-        ,drvAddressCity = EepAddressCity
-        ,drvAddressState = EepAddressState
-        ,drvZipCode = EepAddressZipCode
-        ,drvPhoneHome = EepPhoneHomeNumber
-        ,drvPhoneBusiness = EecPhoneBusinessNumber
-        ,drvMedicalPlan = CASE WHEN BdmDedcode = 'SIM' THEN 'P5-5-250' END
+        ,drvSSN = CASE WHEN bdmrectype ='EMP' THEN eepSSN END
+        ,drvNameLast = CASE WHEN bdmrectype ='EMP' THEN EepNameLast  END
+        ,drvNamefFirst = CASE WHEN bdmrectype ='EMP' THEN EepNameFirst   END
+        ,drvGender = CASE WHEN bdmrectype ='EMP' AND eepGender = 'Female'  THEN 'Female'
+                        WHEN  eepGender = 'M' THEN 'Male' Else 'Unknown'
+                        END
+        ,drvMaritalStatus = CASE WHEN bdmrectype ='EMP' AND eepMaritalStatus = 'M' THEN 'Married'
+                                 WHEN bdmrectype ='EMP' AND eepMaritalStatus = 'S' THEN 'Single'
+                                 WHEN bdmrectype ='EMP' AND eepMaritalStatus = 'DP'THEN 'DomPart'
+                                 Else NULL
+                                END
+        ,drvDOB =CASE WHEN bdmrectype ='EMP' THEN EepDateOfBirth  END 
+        ,drvAddressLine1 = CASE WHEN bdmrectype ='EMP' THEN EepAddressLine1  END
+        ,drvAddressLine2 = CASE WHEN bdmrectype ='EMP'THEN EepAddressLine2 END
+        ,drvAddressCity = CASE WHEN bdmrectype = 'EMP'THEN EepAddressCity END
+        ,drvAddressState = CASE WHEN bdmrectype ='EMP'THEN EepAddressState END
+        ,drvZipCode = CASE WHEN bdmrectype ='EMP'THEN EepAddressZipCode END
+        ,drvPhoneHome = CASE WHEN bdmrectype ='EMP'THEN EepPhoneHomeNumber END
+        ,drvPhoneBusiness = CASE WHEN bdmrectype ='EMP'THEN EecPhoneBusinessNumber END
+        ,drvEmployer = CASE WHEN bdmrectype ='EMP'THEN 'Ancon Marine' Else NULL END
+        ,drvMedicalPlan = CASE WHEN bdmrectype ='EMP' AND BdmDedcode = 'SIM' THEN 'P5-5-250'  Else NULL END
 
-        ,drvMedicalCoverage = CASE WHEN bdmDedcode = 'SIM' THEN 
-                                CASE WHEN BdmBenOption = 'EE'  THEN 'S'
-                                     WHEN BdmBenOption IN ('EES', 'EEDP' ) THEN '2'
-                                     WHEN BdmBenOption = 'EEC' THEN  'C'
-                                     WHEN BdmBenOption IN ( 'EEF', 'EEDPF')  THEN  'F'
-                                     ELSE '' 
+        ,drvMedicalCoverage = CASE WHEN bdmrectype ='EMP' AND bdmDedcode = 'SIM' THEN 
+                                CASE WHEN bdmrectype ='EMP' AND BdmBenOption = 'EE'  THEN 'S'
+                                     WHEN bdmrectype ='EMP' AND BdmBenOption IN ('EES', 'EEDP' ) THEN '2'
+                                     WHEN bdmrectype ='EMP' AND BdmBenOption = 'EEC' THEN  'C'
+                                     WHEN bdmrectype ='EMP' AND BdmBenOption IN ( 'EEF', 'EEDPF')  THEN  'F'
+                                     ELSE  NULL 
                                     END
                                 END
 
-        ,drvMedPremMonthlyAmt = CASE WHEN pgrpayfrequency = 'B' and isnill(bdmEEamt, ) THEN bdmEEamt * 2 ENd
-        ,drvNumofDependents = (SELECT COUNT(*) FROM dbo.U_dsi_BDM_EANCSIMEXP WITH (NOLOCK) WHERE BdmRecType = 'DEP')
-        ,drvEffDateforMedPlan = BdmBenStartDate
-        ,drvExpDateforMedPlan = BdmBenStopDate
+        ,drvMedPremMonthlyAmt = CASE WHEN bdmrectype ='EMP' AND pgrpayfrequency = 'B' and FORMAT(PdhEECurAmt * 2,'#0.00') <> '0.00' THEN FORMAT(PdhEECurAmt * 2,'#0.00') 
+                                     WHEN bdmrectype ='EMP' AND  pgrpayfrequency = 'W' and FORMAT(PdhEECurAmt * 4,'#0.00') <> '0.00' THEN FORMAT(PdhEECurAmt * 4,'#0.00') 
+                                     Else NULL
+                                    END
+        ,drvNumofDependents = CASE WHEN bdmrectype ='EMP' THEN Format((Select count(*) DepCount from dbo.U_dsi_BDM_EANCSIMEXP d WHERE d.BdmRecType = 'DEP' and d.bdmeeid = xeeid ), '0') ELSE NULL END
+        ,drvEffDateforMedPlan = CASE WHEN bdmrectype ='EMP' THEN  BdmBenStartDate ELSE NULL END
+        ,drvExpDateforMedPlan = CASE WHEN bdmrectype ='EMP' THEN  BdmBenStopDate ELSE NULL END
     INTO dbo.U_EANCSIMEXP_drvTbl
     FROM dbo.U_EANCSIMEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EANCSIMEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+        AND BdmCoID = xCoID 
+        And bdmrectype = 'EMP'
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
      JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
+    LEFT JOIN dbo.U_EANCSIMEXP_PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    LEFT JOIN  dbo.U_EANCSIMEXP_Audit WITH (NOLOCK)
+        ON xEEID = audEEID
+   -- LEFT outer JOIN dbo.U_EANCSIMEXP_Dep_drvTbl WITH (NOLOCK)
+   --     ON xEEID = drvEEID 
+    Where EecEEType <> 'TES' 
+         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audFieldName = 'EecDateOfTermination' AND AudDateTime BETWEEN DATEADD(DAY, -60, @StartDate) AND @EndDate))
+      --  Order by eepSSN ,CASE WHEN bdmrectype ='EMP' THEn '1' ELSE   '2' END
     ;
+
+    
+
+
+
+
 
     --==========================================
     -- Set FileName
@@ -716,7 +844,7 @@ END;
 --Alter the View
 ALTER VIEW dbo.dsi_vwEANCSIMEXP_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EANCSIMEXP_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+    ORDER BY  InitialSort, SubSort 
 
 --Check out iascDefF
 SELECT * FROM dbo.iascDefF
@@ -725,17 +853,17 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202209231'
-       ,expStartPerControl     = '202209231'
-       ,expLastEndPerControl   = '202209309'
-       ,expEndPerControl       = '202209309'
+    SET expLastStartPerControl = '202210041'
+       ,expStartPerControl     = '202210041'
+       ,expLastEndPerControl   = '202210119'
+       ,expEndPerControl       = '202210119'
 WHERE expFormatCode = 'EANCSIMEXP';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEANCSIMEXP_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EANCSIMEXP_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort
+CREATE VIEW dbo.dsi_vwEANCSIMEXP_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EANCSIMEXP_File (NOLOCK)
+    ORDER BY  InitialSort, SubSort
 
 GO
 
