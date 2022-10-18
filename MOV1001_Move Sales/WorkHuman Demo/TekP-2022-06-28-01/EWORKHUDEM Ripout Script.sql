@@ -5,7 +5,7 @@ EWORKHUDEM: Work Human Demo Export
 FormatCode:     EWORKHUDEM
 Project:        Work Human Demo Export
 Client ID:      MOV1001
-Date/time:      2022-07-25 05:30:23.157
+Date/time:      2022-10-11 06:03:03.947
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -183,7 +183,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDEM_20220725.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWORKHUDEM_20221011.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -191,8 +191,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export','202203049','EMPEXPORT','ONDEM_XOE','Apr  7 2022  1:13PM','EWORKHUDEM',NULL,NULL,NULL,'202203049','Mar  4 2022 12:00AM','Dec 30 1899 12:00AM','202203041','2376','','','202203041',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','PPEYL,PJ6ZD,OG4IV,NR767,R4GFV',NULL,NULL,NULL,'Work Human Demo Export-Sched','202203049','EMPEXPORT','SCH_EWORKH',NULL,'EWORKHUDEM',NULL,NULL,NULL,'202207209','Mar  4 2022  2:32PM','Mar  4 2022  2:32PM','202207061',NULL,'','','202203041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export-Test','202207111','EMPEXPORT','TEST_XOE','Jul 22 2022 10:31AM','EWORKHUDEM',NULL,NULL,NULL,'202207111','Jul 11 2022 12:00AM','Dec 30 1899 12:00AM','202207111','2287','','','202207111',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','PPEYL,PJ6ZD,OG4IV,NR767,R4GFV',NULL,NULL,NULL,'Work Human Demo Export-Sched','202203049','EMPEXPORT','SCH_EWORKH',NULL,'EWORKHUDEM',NULL,NULL,NULL,'202209289','Mar  4 2022  2:32PM','Mar  4 2022  2:32PM','202209141',NULL,'','','202203041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Work Human Demo Export-Test','202207111','EMPEXPORT','TEST_XOE','Jul 25 2022  9:16AM','EWORKHUDEM',NULL,NULL,NULL,'202207111','Jul 11 2022 12:00AM','Dec 30 1899 12:00AM','202207111','2286','','','202207111',dbo.fn_GetTimedKey(),NULL,'US3CPEMOV1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -521,7 +521,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvUniqueId = SUBSTRING(Ec.EecEmpNo, PATINDEX('%[^0]%', Ec.EecEmpNo+'.'), LEN(Ec.EecEmpNo))
         --Ec.EecEmpNo
-        ,drvLoginId = pers.EepAddressEmail
+        ,drvLoginId =  pers.EepAddressEmail
         ,drvFName = CASE WHEN pers.EepNamePreferred <> '' THEN pers.EepNamePreferred
                         ELSE pers.EepNameFirst END
         ,drvLName = pers.EepNameLast
@@ -530,11 +530,17 @@ BEGIN
         --O1.OrgDesc
         ,drvCountry = LEFT(pers.EepAddressCountry, 2) -- Cheryl follow up
         ,drvHireDt =    CASE WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire AND audOldValue = '215' THEN EC.EecDateOfLastHire                        
-                        WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EjhJobEffDate,EC.EecDateOfLastHire) >= 5 THEN EC.EecDateOfLastHire
-                        WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EjhJobEffDate,EC.EecDateOfLastHire) < 5 THEN EC.EecDateOfOriginalHire
+                        WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EC.EecDateOfOriginalHire,EC.EecDateOfLastHire) >= 5 THEN EC.EecDateOfLastHire
+                        WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EC.EecDateOfOriginalHire,EC.EecDateOfLastHire) < 5 THEN EC.EecDateOfOriginalHire
                         WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire THEN EC.EecDateOfLastHire
                         ELSE EC.EecDateOfOriginalHire
                         END
+                        --CASE WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire AND audOldValue = '215' THEN EC.EecDateOfLastHire                        
+      --                  WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EjhJobEffDate,EC.EecDateOfLastHire) >= 5 THEN EC.EecDateOfLastHire
+      --                  WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire /*AND EC.EecJobChangeReason = '101'*/ AND DATEDIFF(YEAR, EjhJobEffDate,EC.EecDateOfLastHire) < 5 THEN EC.EecDateOfOriginalHire
+      --                  WHEN EC.EecDateOfLastHire <> EC.EecDateOfOriginalHire THEN EC.EecDateOfLastHire
+      --                  ELSE EC.EecDateOfOriginalHire
+      --                  END
         ,drvManagerId = CAST(CAST(
                                     CASE WHEN Ec.EecEEType = 'POI' AND Ec.EecJobCode = 'UEX1010I' THEN Ec.EecEmpNo 
                                     ELSE EC2.EecEmpNo 
