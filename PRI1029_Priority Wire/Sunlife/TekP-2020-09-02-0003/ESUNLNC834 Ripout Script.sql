@@ -262,7 +262,7 @@ GO
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H01','U_ESUNLNC834_HdrTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H02','U_ESUNLNC834_HdrTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H03','U_ESUNLNC834_HdrTbl',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H04','U_ESUNLNC834_HdrTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H04','U_ESUNLNC_HdrTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H05','U_ESUNLNC834_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H06','U_ESUNLNC834_HdrTbl','ISNULL(drvDTP01_DateTimeQualifier1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESUNLNC834','H07','U_ESUNLNC834_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');

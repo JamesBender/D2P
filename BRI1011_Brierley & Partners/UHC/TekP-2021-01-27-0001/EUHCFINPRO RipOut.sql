@@ -861,7 +861,7 @@ BEGIN
     ;
       ---------------------------------
     -- DETAIL RECORD - U_EUHCFINPRO_drvTbl
-    -- Dependents Data -- SPOUSE
+    --  Data -- SPOUSE
     ---------------------------------
     INSERT INTO dbo.U_EUHCFINPRO_drvTbl
     SELECT DISTINCT

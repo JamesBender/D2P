@@ -4,16 +4,17 @@ EIHRELDLEX: Reliance Disability and Life Export
 
 FormatCode:     EIHRELDLEX
 Project:        Reliance Disability and Life Export
-Client ID:      USG1000
-Date/time:      2022-10-07 13:12:51.927
+Client ID:      ITH1000
+Date/time:      2022-10-10 12:21:31.977
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EIHRELDLEX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW2WUP3DB01
+Database:       ULTIPRO_WPITHAK
+Web Filename:   ITH1000_29229_EEHISTORY_EIHRELDLEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -238,18 +239,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIHRELDLEX_20221007.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIHRELDLEX_20221010.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202210059','EMPEXPORT','OEACTIVE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202210051',NULL,'','','202210051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210059','EMPEXPORT','OEPASSIVE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202210051',NULL,'','','202210051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Disability and Life E','202210059','EMPEXPORT','ONDEM_XOE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202210051',NULL,'','','202210051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Disability and -Sched','202210059','EMPEXPORT','SCH_EIHREL',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202210051',NULL,'','','202210051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Disability and -Test','202210059','EMPEXPORT','TEST_XOE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202210051',NULL,'','','202210051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202210059','EMPEXPORT','OEACTIVE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210059','EMPEXPORT','OEPASSIVE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Disability and Life E','202210059','EMPEXPORT','ONDEM_XOE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Reliance Disability and -Sched','202210059','EMPEXPORT','SCH_EIHREL',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Reliance Disability and -Test','202210059','EMPEXPORT','TEST_XOE',NULL,'EIHRELDLEX',NULL,NULL,NULL,'202210059','Oct  5 2022  9:50AM','Oct  5 2022  9:50AM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -261,11 +262,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIHRELDLEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -280,12 +282,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EIHRELDLEX','D10','dbo.U_EIHRELDLEX_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -404,7 +406,7 @@ CREATE TABLE [dbo].[U_EIHRELDLEX_drvTbl] (
     [drvWorkState] varchar(2) NULL,
     [DepartmentName] varchar(10) NULL,
     [drvPosition] varchar(150) NULL,
-    [drvIsActive] char(1) NULL,
+    [drvIsActive] varchar(1) NOT NULL,
     [drvIsFulltime] char(1) NULL,
     [drvIsExempt] char(1) NOT NULL,
     [drvAnnualSalary] money NULL,
@@ -413,9 +415,9 @@ CREATE TABLE [dbo].[U_EIHRELDLEX_drvTbl] (
     [drvSubGroupB] varchar(513) NULL,
     [drvSubGroupC] varchar(10) NULL,
     [drvIsSTDEligible] varchar(1) NOT NULL,
-    [drvStdPlanEffective] varchar(1) NULL,
+    [drvStdPlanEffective] datetime NULL,
     [drvIsLTDEligible] varchar(1) NOT NULL,
-    [drvLTDEffectiveDate] varchar(1) NULL,
+    [drvLTDEffectiveDate] datetime NULL,
     [drvHoursWorked] nvarchar(4000) NULL,
     [drvAddData01] varchar(1) NOT NULL,
     [drvAddData02] varchar(7) NULL,
@@ -454,7 +456,7 @@ CREATE TABLE [dbo].[U_EIHRELDLEX_File] (
 
 IF OBJECT_ID('U_EIHRELDLEX_Header') IS NULL
 CREATE TABLE [dbo].[U_EIHRELDLEX_Header] (
-    [drvEmployees50in75MileInd] varchar(1) NOT NULL
+    [drvEmployees50in75MileInd] varchar(33) NOT NULL
 );
 
 -----------
@@ -578,6 +580,12 @@ BEGIN
     IF OBJECT_ID('U_EIHRELDLEX_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_EIHRELDLEX_AuditFields;
     CREATE TABLE dbo.U_EIHRELDLEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    
+    INSERT INTO dbo.U_EIHRELDLEX_AuditFields VALUES ('EmpComp','EecDateofTermination');
+    INSERT INTO dbo.U_EIHRELDLEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    --INSERT INTO dbo.U_EIHRELDLEX_AuditFields VALUES ('EmpComp','EecTermReason');
+    INSERT INTO dbo.U_EIHRELDLEX_AuditFields VALUES ('EmpDed', 'EedDedCode');
+   -- INSERT INTO dbo.U_EIHRELDLEX_AuditFields VALUES ('EmpDed', 'EedBenStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EIHRELDLEX_Audit','U') IS NOT NULL
@@ -598,17 +606,17 @@ BEGIN
     JOIN dbo.U_EIHRELDLEX_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    WHERE audDateTime BETWEEN DateAdd(d, -30, @StartDate) AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EIHRELDLEX_Audit ON dbo.U_EIHRELDLEX_Audit (audEEID,audKey2);
 
-    --================
-    -- Changes Only
-    --================
-    DELETE FROM dbo.U_EIHRELDLEX_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EIHRELDLEX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_EIHRELDLEX_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EIHRELDLEX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
     --==========================================
     -- Create Deduction List
@@ -676,14 +684,14 @@ BEGIN
         -- Categorize Payroll Amounts
         ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('LTD') THEN PdhERCurAmt ELSE 0.00 END)        
+        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('LTDEE') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('SLTD') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('STD') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('STDEE') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('NYDBL') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('NYPFL') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('NJTDB') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
     INTO dbo.U_EIHRELDLEX_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_EIHRELDLEX_DedList WITH (NOLOCK)
@@ -691,6 +699,7 @@ BEGIN
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    and DedCode in ('LTD','LTDEE','SLTD','STD','STDEE','NYDBL','NYPFL','NJTDB')
     GROUP BY PdhEEID
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
@@ -758,7 +767,7 @@ BEGIN
         ,drvWorkState = LEFT(EecSITResidentStateCode,2) 
         ,DepartmentName = EecOrgLvl3 -- Description  
         ,drvPosition = jbcLongDesc -- EecJobTitle 
-        ,drvIsActive = EecEmplStatus
+        ,drvIsActive = CASE WHEN EecEmplStatus IN ('A', 'L') THEN 'Y' ELSE 'N' END
         ,drvIsFulltime = EecFulltimeorPartTime
         ,drvIsExempt = JbcFLSAType-- where JbcJobCode = EecJobCode
         ,drvAnnualSalary = EecAnnSalary 
@@ -766,13 +775,16 @@ BEGIN
         ,drvSubGroupA = LEFT(EecStateSUI,2) 
         ,drvSubGroupB = Ltrim(Rtrim(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast')  + ',' +  dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameFirst') )) --Supervisor Name - EepNameLast + EepNameFirst where EecSupervisorID = EjhEEID truncate after last name without spaces
         ,drvSubGroupC = EecOrgLvl2
-        ,drvIsSTDEligible = CASE WHEN  bdmdedcode IN ('STD', 'STDEE', 'NYDBL', 'NYPFL', 'NJTDB') and bdmbenstatus = 'A'  THEN 'Y' Else 'N' END
-        ,drvStdPlanEffective = CASE WHEN ISNull(bdmBenStartDate, '') <> '' THEN 'Y' ELSE NULL END
-        ,drvIsLTDEligible = CASE WHEN bdmdedcode IN ('SLTD','LTD', 'LTDEE') and bdmbenstatus = 'A' THEN 'Y' ELSE 'N' END
-        ,drvLTDEffectiveDate = CASE WHEN ISNull(bdmBenStartDate, '') <> '' THEN 'Y' ELSE NULL END
-        ,drvHoursWorked = FORMAT(PehCurHrsYTD, '#0.00')--total hours worked in last 12 months sum(PehCurHrs) where ErnIsRegularPayCode = Y where ErnEarnCode = PehEarnCode for per controls for last 12 months
+        ,drvIsSTDEligible = CASE WHEN bdmdedcode IN ('STD', 'STDEE') AND bdmbenstatus = 'A'  THEN 'Y'  
+                                 WHEn bdmdedcode IN ('NYDBL', 'NYPFL') AND EepAddressState = 'NY' AND bdmbenstatus = 'A'  THEN 'Y' 
+                                 WHEn bdmdedcode IN ('NJTDB') AND EepAddressState = 'NJ' AND bdmbenstatus = 'A'  THEN 'Y'
+                                 Else 'N' END
+        ,drvStdPlanEffective = CASE WHEN bdmdedcode IN ('STD', 'STDEE') AND ISNull(bdmBenStartDate, '') <> '' THEN bdmBenStartDate ELSE NULL END
+        ,drvIsLTDEligible = CASE WHEN bdmdedcode IN ('SLTD','LTD','LTDEE') and bdmbenstatus = 'A' THEN 'Y' ELSE 'N' END
+        ,drvLTDEffectiveDate = CASE WHEN bdmdedcode IN ('SLTD','LTD', 'LTDEE') AND ISNull(bdmBenStartDate, '') <> '' THEN bdmBenStartDate ELSE NULL END
+        ,drvHoursWorked = FORMAT(PehInclInDefCompHrsYTD, '#0.00')--total hours worked in last 12 months sum(PehCurHrs) where ErnIsRegularPayCode = Y where ErnEarnCode = PehEarnCode for per controls for last 12 months
         ,drvAddData01 = ''
-        ,drvAddData02 = CASE WHEN bdmDedCode = 'STD'  THEN 'Class 1'
+        ,drvAddData02 = CASE WHEN bdmDedCode IN ( 'STD' ,'NYDBL', 'NYPFL','NJTDB')  THEN 'Class 1'
                              WHEN bdmDedCode = 'STDEE' THEN 'Class 2' ELSE NULL END
 
         ,drvAddData03 = CASE WHEN bdmDedCode = 'LTD'  THEN 'Class 1'
@@ -786,7 +798,7 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EIHRELDLEX WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_BDM_EIHRELDLEX WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.JobCode WITH (NOLOCK)
@@ -801,6 +813,10 @@ BEGIN
         ON EfoEEID = xEEID
     LEFT JOIN dbo.U_EIHRELDLEX_PEarHist WITH(NOLOCK)
             ON PehEEID = xEEID
+        LEFT JOIN  dbo.U_EIHRELDLEX_Audit WITH (NOLOCK)
+        ON xEEID = audEEID
+    Where EecEEType <> 'TES' AND  BdmRecType = 'EMP' 
+         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audFieldName = 'EecDateOfTermination' AND AudDateTime BETWEEN DATEADD(DAY, -30, @StartDate) AND @EndDate))
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -808,7 +824,7 @@ BEGIN
     IF OBJECT_ID('U_EIHRELDLEX_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EIHRELDLEX_Header;
     SELECT DISTINCT
-         drvEmployees50in75MileInd = ''
+          drvEmployees50in75MileInd = 'Employees 50 in 75 Mile Indicator'
     INTO dbo.U_EIHRELDLEX_Header
     ;
 
@@ -840,8 +856,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202209281'
-       ,expStartPerControl     = '202209281'
+    SET expLastStartPerControl = '202209011'
+       ,expStartPerControl     = '202209011'
        ,expLastEndPerControl   = '202210059'
        ,expEndPerControl       = '202210059'
 WHERE expFormatCode = 'EIHRELDLEX';

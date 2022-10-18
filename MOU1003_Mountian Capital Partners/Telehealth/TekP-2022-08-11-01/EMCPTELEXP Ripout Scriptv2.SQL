@@ -5,7 +5,7 @@ EMCPTELEXP: CirrusMD Telehealth Export
 FormatCode:     EMCPTELEXP
 Project:        CirrusMD Telehealth Export
 Client ID:      MOU1003
-Date/time:      2022-09-28 16:35:18.943
+Date/time:      2022-10-13 10:33:02.383
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -199,16 +199,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMCPTELEXP_20220928.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMCPTELEXP_20221013.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CirrusMD Telehealth Export','202209229','EMPEXPORT','ONDEM_XOE',NULL,'EMCPTELEXP',NULL,NULL,NULL,'202209229','Sep 22 2022 12:04PM','Sep 22 2022 12:04PM','202209221',NULL,'','','202209221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',QUD2P',NULL,NULL,NULL,'CirrusMD Telehlth Sch','202209229','EMPEXPORT','SCH_EMCPTE',NULL,'EMCPTELEXP',NULL,NULL,NULL,'202209229','Sep 22 2022 12:04PM','Sep 22 2022 12:04PM','202209221',NULL,'','','202209221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',QUD2P',NULL,NULL,NULL,'CirrusMD Telehealth Expo-Test','202209269','EMPEXPORT','TEST_XOE','Sep 26 2022 12:00AM','EMCPTELEXP',NULL,NULL,NULL,'202209269','Sep 26 2022 12:00AM','Dec 30 1899 12:00AM','202209121',NULL,'','','202209121',dbo.fn_GetTimedKey(),NULL,'us3lKiMOU1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CirrusMD Telehealth Export','202210139','EMPEXPORT','ONDEM_XOE',NULL,'EMCPTELEXP',NULL,NULL,NULL,'202210139','Sep 22 2022 12:04PM','Sep 22 2022 12:04PM','202201151',NULL,'','','202201151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',QUD2P',NULL,NULL,NULL,'CirrusMD Telehlth Sch','202210139','EMPEXPORT','SCH_EMCPTE',NULL,'EMCPTELEXP',NULL,NULL,NULL,'202210139','Sep 22 2022 12:04PM','Sep 22 2022 12:04PM','202201151',NULL,'','','202201151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',QUD2P',NULL,NULL,NULL,'CirrusMD Telehealth Expo-Test','202210139','EMPEXPORT','TEST_XOE','Oct  4 2022 12:00AM','EMCPTELEXP',NULL,NULL,NULL,'202210139','Oct  4 2022 12:00AM','Dec 30 1899 12:00AM','202201151',NULL,'','','202201151',dbo.fn_GetTimedKey(),NULL,'us3kEpMOU1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -346,8 +346,8 @@ CREATE TABLE [dbo].[U_EMCPTELEXP_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] char(9) NULL,
     [drvSubsort] varchar(1) NOT NULL,
-    [drvExternalId] nvarchar(4000) NULL,
-    [drvMemberId] nvarchar(4000) NULL,
+    [drvExternalId] varchar(1) NOT NULL,
+    [drvMemberId] varchar(1) NOT NULL,
     [drvNameFirst] varchar(102) NULL,
     [drvNameLast] varchar(102) NULL,
     [drvDateofBirth] nvarchar(4000) NULL,
@@ -366,11 +366,11 @@ CREATE TABLE [dbo].[U_EMCPTELEXP_drvTbl] (
     [drvLOB] varchar(12) NULL,
     [drvSubscriberRelationship] varchar(11) NULL,
     [drvRelationshipCode] varchar(24) NOT NULL,
-    [drvEthnicityCode] varchar(58) NULL,
+    [drvEthnicityCode] varchar(64) NULL,
     [drvMedicalEnrollment] varchar(7) NOT NULL,
     [drvMedicalEligibility] varchar(7) NOT NULL,
     [drvEmployeeID] varchar(11) NULL,
-    [drvEmployeeType] varchar(47) NULL
+    [drvEmployeeType] varchar(11) NULL
 );
 
 -----------
@@ -485,6 +485,8 @@ BEGIN
         DROP TABLE dbo.U_EMCPTELEXP_AuditFields;
     CREATE TABLE dbo.U_EMCPTELEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
 
+     INSERT INTO dbo.U_EMCPTELEXP_AuditFields VALUES ('EmpComp','EecEmplStatus');
+
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EMCPTELEXP_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EMCPTELEXP_Audit;
@@ -568,8 +570,8 @@ BEGIN
                                     ELSE '4'
                                     END
         -- standard fields above and additional driver fields below
-        ,drvExternalId = '"' + Ltrim(rtrim(EecEmpNo)) +'-'+Ltrim(rtrim(EepNameFirst)) +'-'+EepAddressZipCode +'-'+ Format(EepDateOfBirth, 'yyyy-MM-dd') + '"'
-        ,drvMemberId = '"' + Ltrim(rtrim(EecEmpNo)) +'-'+Ltrim(rtrim(EepNameFirst))+'-'+EepAddressZipCode +'-'+ Format(EepDateOfBirth, 'yyyy-MM-dd') + '"'
+        ,drvExternalId = ''--'"' + Ltrim(rtrim(EecEmpNo)) +'-'+Ltrim(rtrim(EepNameFirst)) +'-'+EepAddressZipCode +'-'+ Format(EepDateOfBirth, 'yyyy-MM-dd') + '"'
+        ,drvMemberId = ''--'"' + Ltrim(rtrim(EecEmpNo)) +'-'+Ltrim(rtrim(EepNameFirst))+'-'+EepAddressZipCode +'-'+ Format(EepDateOfBirth, 'yyyy-MM-dd') + '"'
         ,drvNameFirst = CASE WHEN bdmRecType = 'EMP' THEN '"' + EepNameFirst + '"' ELSE '"' + ConNameFirst + '"' END
         ,drvNameLast = CASE WHEN bdmRecType = 'EMP' THEN '"' + EepNameLast + '"' ELSE '"' + ConNameLast + '"' END
         ,drvDateofBirth = CASE WHEN BdmRecType = 'EMP' THEN '"' + FOrmat(EepDateOfBirth, 'yyyy-MM-dd') + '"'  ELSE '"' + FORMAT(ConDateOfBirth, 'yyyy-MM-dd') + '"' END
@@ -593,7 +595,7 @@ BEGIN
         ,drvSubscriberDOB =  '"' + FORMAT(EepDateOfBirth, 'yyyy-MM-dd') + '"'
         ,drvSubscriberFirstName = '"' + EepNameFirst + '"'
         ,drvSubscriberLastName = '"' + EepNameLast + '"'
-        ,drvEmail = CASE WHEN BdmRecType = 'EMP' THEN '"' + EepAddressEMail + '"' ELSE '' END
+        ,drvEmail =  CASE WHEN BdmRecType <> 'DEP' and EepAddressEmailAlternate <> ''  THEN '"' + EepAddressEmailAlternate + '"' ELSE NULL END
         ,drvLOB = '"' + rtrim(EecOrglvl3) + '"'
         ,drvSubscriberRelationship = CASE WHEN  BdmRecType = 'DEP' and conrelationship IN ('SPS', 'CHL', 'STC', 'DCH', 'DPC') THEN '"Dependent"' 
                                           WHEN BdmRecType = 'EMP' THEN  '"Primary"' END 
@@ -601,20 +603,23 @@ BEGIN
                                     WHEN  BdmRecType = 'DEP' AND conrelationship = 'SPS' and congender = 'F' THEN '"WIFE"'
                                     WHEN  BdmRecType = 'DEP' AND conrelationship IN ('SPS', 'CHL', 'STC', 'DCH', 'DPC') and congender = 'M' THEN '"SPONSORED MALE CHILD"'
                                     WHEN  BdmRecType = 'DEP' AND conrelationship IN ('SPS', 'CHL', 'STC', 'DCH', 'DPC') and congender = 'F' THEN '"SPONSORED FEMALE CHILD"'
-                                    ELSE 'Primary'
+                                    ELSE '"Primary"'
                                  END
-        ,drvEthnicityCode =   CASE WHEN coddesc = 'White' THEN '"White, non-Hispanic"'      --'"' + coddesc + '"'
+        ,drvEthnicityCode =   CASE WHEN coddesc = 'White' THEN '"White alone, non-Hispanic"'      --'"' + coddesc + '"'
                                  WHEN coddesc in ('Hispanic or Latino' ) THEN '"Hispanic"'
-                                 WHEN coddesc IN ('Black or African American') THEN '"Black or African American, non-Hispanic"'
-                                 WHEN coddesc  = 'Asian' THEN '"Asian, non-Hispanic"'
-                                 WHEN coddesc IN ( 'Native Hawaiian', 'Other Pacific Islander') THEN '"Native Hawaiian and Other Pacific Islander, non-Hispanic"'
+                                 WHEN coddesc IN ('Black or African American') THEN '"Black or African American alone, non-Hispanic"'
+                                 WHEN coddesc IN ('American Indian/Alaskan Native', 'Alaskan Native','American Indian')  THEN 'Some Other Race alone, non-Hispanic' 
+                                 WHEN coddesc  = 'Asian' THEN '"Asian alone, non-Hispanic"'
+                                 WHEN coddesc IN ( 'Native Hawaiian', 'Other Pacific Islander') THEN '"Native Hawaiian and Other Pacific Islander alone, non-Hispanic"'
                                  WHEN coddesc = 'Two or more races' THEN '"Multiracial, non-Hispanic"'
                                  WHEN (coddesc = 'Not specified' or isnull(coddesc ,'') = '')  THEN '' 
                                 END 
         ,drvMedicalEnrollment = CASE WHEN bdmDedCode IN ('HDHP', 'HLTH')  and bdmBenstatus = 'A' THEN '"True"' ELSE  '"False"' END
         ,drvMedicalEligibility = CASE WHEN Deductionbenefitgroup IN ('YR', 'SSHCB') THEN '"True"' ELSE  '"False"' END
         ,drvEmployeeID = '"' + rtrim(EecEmpNo) + '"'
-        ,drvEmployeeType = '"' + EMPTYPEDESC  + '"'
+        ,drvEmployeeType = CASE WHEN eeceetype IN ('Y10', 'YR') THEN '"' +'Full Time' +'"'                                    --'"' + EMPTYPEDESC  + '"'
+                                WHEN eeceetype IN ('HC', 'HF', 'H10', 'HCM', 'PEK', 'SS') THEN '"' + 'Seasonal'+ '"' END 
+
     INTO dbo.U_EMCPTELEXP_drvTbl
     FROM dbo.U_EMCPTELEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -699,10 +704,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202209151'
-       ,expStartPerControl     = '202209151'
-       ,expLastEndPerControl   = '202209229'
-       ,expEndPerControl       = '202209229'
+    SET expLastStartPerControl = '202201151'
+       ,expStartPerControl     = '202201151'
+       ,expLastEndPerControl   = '202210139'
+       ,expEndPerControl       = '202210139'
 WHERE expFormatCode = 'EMCPTELEXP';
 
 **********************************************************************************/

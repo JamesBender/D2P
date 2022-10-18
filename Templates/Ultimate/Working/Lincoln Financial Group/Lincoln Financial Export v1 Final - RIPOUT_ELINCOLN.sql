@@ -2497,7 +2497,7 @@ BEGIN
 	--=================================================================================
 	UPDATE dbo.U_dsi_bdm_BenCalculationAmounts
 	SET BcaBenAmtCalc = CASE WHEN BcaBenAmtCalcRule = '20' THEN 0
-							 WHEN BcaBenAmtCalcRule = '30' THEN
+							 WHEN  THEN
 								CASE WHEN BcaBenAmt = 0 THEN BcaEEBenAmt
 									 ELSE BcaBenAmt
 								END
