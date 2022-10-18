@@ -4,16 +4,17 @@ EIATMETEXP: MetLife Basic And Vol Export
 
 FormatCode:     EIATMETEXP
 Project:        MetLife Basic And Vol Export
-Client ID:      USG1000
-Date/time:      2022-10-03 16:37:21.970
+Client ID:      IAT1000
+Date/time:      2022-10-06 15:05:22.697
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_EIATMETEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW4WUP4DB03
+Database:       ULTIPRO_WPIATIG
+Web Filename:   IAT1000_2BDI5_EEHISTORY_EIATMETEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,23 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwEIATMETEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEIATMETEXP_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EIATMETEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EIATMETEXP];
+GO
+IF OBJECT_ID('U_EIATMETEXP_Trailer') IS NOT NULL DROP TABLE [dbo].[U_EIATMETEXP_Trailer];
+GO
+IF OBJECT_ID('U_EIATMETEXP_Header') IS NOT NULL DROP TABLE [dbo].[U_EIATMETEXP_Header];
+GO
+IF OBJECT_ID('U_EIATMETEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EIATMETEXP_File];
+GO
+IF OBJECT_ID('U_EIATMETEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EIATMETEXP_EEList];
+GO
+IF OBJECT_ID('U_EIATMETEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EIATMETEXP_drvTbl];
+GO
+IF OBJECT_ID('U_EIATMETEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EIATMETEXP_DedList];
+GO
+IF OBJECT_ID('U_dsi_BDM_EIATMETEXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EIATMETEXP];
 GO
 
 -----------
@@ -174,7 +191,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','EIATMETEXPZ0','1','D','10','622',NULL,'EnrollmentStatus',NULL,NULL,'"drvEnrollmentStatus1"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','EIATMETEXPZ0','9','D','10','626',NULL,'Multiple of Salary selected',NULL,NULL,'"drvMultipleSalarySelected1"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','EIATMETEXPZ0','3','D','10','635',NULL,'Coverage Percentage selected',NULL,NULL,'""','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','EIATMETEXPZ0','9','D','10','638',NULL,'Basic Life Face Amount',NULL,NULL,'""','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','EIATMETEXPZ0','9','D','10','638',NULL,'Basic Life Face Amount',NULL,NULL,'"drvBasicLifeFaceAmt"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','EIATMETEXPZ0','17','D','10','647',NULL,'Filler  ',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','EIATMETEXPZ0','1','D','10','647',NULL,'Basic Life – Assigned Indicator',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','EIATMETEXPZ0','10','D','10','664',NULL,'Basic Life - StarTrak Customer Num',NULL,NULL,'""','(''DA''=''F'')');
@@ -296,7 +313,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('172','EIATMETEXPZ0','10','D','10','1602',NULL,'Dependent GUL - StarTrak Reporting Loc Num',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('173','EIATMETEXPZ0','177','D','10','1612',NULL,'Filler',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EIATMETEXPZ0','1','T','90','1',NULL,'Transaction Code',NULL,NULL,'"Z"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EIATMETEXPZ0','7','T','90','2',NULL,'Customer Number',NULL,NULL,'"CustomerNumber"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EIATMETEXPZ0','7','T','90','2',NULL,'Customer Number',NULL,NULL,'"9241091"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EIATMETEXPZ0','8','T','90','9',NULL,'Total Record Count',NULL,NULL,'"drvTotalRecordCount"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EIATMETEXPZ0','1984','T','90','17',NULL,'Filler',NULL,NULL,'""','(''DA''=''F'')');
 
@@ -311,7 +328,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIATMETEXP_20221003.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIATMETEXP_20221006.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -322,7 +339,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210039','EMPEXPORT','OEPASSIVE',NULL,'EIATMETEXP',NULL,NULL,NULL,'202210039','Oct  3 2022  4:36PM','Oct  3 2022  4:36PM','202210031',NULL,'','','202210031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MetLife Basic And Vol Export','202210039','EMPEXPORT','ONDEM_XOE',NULL,'EIATMETEXP',NULL,NULL,NULL,'202210039','Oct  3 2022  4:36PM','Oct  3 2022  4:36PM','202210031',NULL,'','','202210031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MetLife Basic And Vol Ex-Sched','202210039','EMPEXPORT','SCH_EIATME',NULL,'EIATMETEXP',NULL,NULL,NULL,'202210039','Oct  3 2022  4:36PM','Oct  3 2022  4:36PM','202210031',NULL,'','','202210031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'MetLife Basic And Vol Ex-Test','202210039','EMPEXPORT','TEST_XOE',NULL,'EIATMETEXP',NULL,NULL,NULL,'202210039','Oct  3 2022  4:36PM','Oct  3 2022  4:36PM','202210031',NULL,'','','202210031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'MetLife Basic And Vol Ex-Test','202210039','EMPEXPORT','TEST_XOE',NULL,'EIATMETEXP',NULL,NULL,NULL,'202210039','Oct  3 2022  4:36PM','Oct  3 2022  4:36PM','202210031',NULL,'','','202210031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -334,10 +351,11 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','InitialSort','C','drvSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIATMETEXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -363,9 +381,164 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_dsi_BDM_EIATMETEXP
 -----------
 
+IF OBJECT_ID('U_dsi_BDM_EIATMETEXP') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EIATMETEXP] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EIATMETEXP_DedList
+-----------
+
+IF OBJECT_ID('U_EIATMETEXP_DedList') IS NULL
+CREATE TABLE [dbo].[U_EIATMETEXP_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EIATMETEXP_drvTbl
+-----------
+
+IF OBJECT_ID('U_EIATMETEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EIATMETEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvSort] varchar(1) NOT NULL,
+    [drvEmployeeNumber] char(11) NULL,
+    [drvEmployeeID] char(12) NOT NULL,
+    [drvMemberSSN] char(11) NULL,
+    [drvMemberLastName] varchar(100) NULL,
+    [drvMemberFirstName] varchar(100) NULL,
+    [drvMemberMiddleInitial] varchar(1) NULL,
+    [drvMemberBirthDate] datetime NULL,
+    [drvMemberMaritalstatus] varchar(1) NULL,
+    [drvMemberSex] varchar(1) NULL,
+    [drvEmploymentDate] datetime NULL,
+    [drvRetirementDate] datetime NULL,
+    [drvHomeTelephone] varchar(50) NULL,
+    [drvEmailAddress] varchar(50) NULL,
+    [drvStreetAddress1] varchar(255) NULL,
+    [drvStreetAddress2] varchar(255) NULL,
+    [drvCity] varchar(255) NULL,
+    [drvState] varchar(255) NULL,
+    [drvZipcode] varchar(50) NULL,
+    [drvAnnualsalary] varchar(24) NULL,
+    [drvSalaryEffectivedate] datetime NULL,
+    [drvJobStatusCode] char(1) NULL,
+    [drvStatusEffectiveDate] datetime NULL,
+    [drvCoverageType1] varchar(1) NULL,
+    [drvCoverageStartDate1] datetime NULL,
+    [drvCoverageterminationDate1] datetime NULL,
+    [drvMetLifeGroupNumber1] varchar(6) NULL,
+    [drvMedLifeSubdivision1] varchar(4) NULL,
+    [drvMetLifeBranch1] varchar(4) NULL,
+    [drvEnrollmentStatus1] varchar(1) NULL,
+    [drvMultipleSalarySelected1] varchar(24) NULL,
+    [drvBasicLifeFaceAmt] varchar(24) NULL,
+    [drvCoverageType2] varchar(2) NULL,
+    [drvCoverageStartDate2] datetime NULL,
+    [drvCoverageTerminationdate2] datetime NULL,
+    [drvMetLifeGroupNumber2] varchar(6) NULL,
+    [drvMetLifeSubdivision2] varchar(4) NULL,
+    [MetLifeBranch2] varchar(4) NULL,
+    [drvEnrollmentStatus2] varchar(1) NULL,
+    [drvOLFaceAmount2] varchar(24) NULL,
+    [drvCovergeType3] varchar(2) NULL,
+    [drvCoverageStartDate3] datetime NULL,
+    [drvCoverageTerminationdate3] datetime NULL,
+    [drvMetLifeGroupNumber3] varchar(6) NULL,
+    [drvMetLifeSubdivisiondr3] varchar(4) NULL,
+    [drvMetlifeBranch3] varchar(4) NULL,
+    [drvEnrollmentStatus3] varchar(1) NULL,
+    [drvOAMultipleSalary] varchar(24) NULL,
+    [drvOAFaceAmount3] varchar(24) NULL
+);
+
+-----------
+-- Create table U_EIATMETEXP_EEList
+-----------
+
+IF OBJECT_ID('U_EIATMETEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EIATMETEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EIATMETEXP_File
+-----------
+
+IF OBJECT_ID('U_EIATMETEXP_File') IS NULL
+CREATE TABLE [dbo].[U_EIATMETEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] char(3000) NULL
+);
+
+-----------
+-- Create table U_EIATMETEXP_Header
+-----------
+
+IF OBJECT_ID('U_EIATMETEXP_Header') IS NULL
+CREATE TABLE [dbo].[U_EIATMETEXP_Header] (
+    [drvFileCreationDate] datetime NOT NULL
+);
+
+-----------
+-- Create table U_EIATMETEXP_Trailer
+-----------
+
+IF OBJECT_ID('U_EIATMETEXP_Trailer') IS NULL
+CREATE TABLE [dbo].[U_EIATMETEXP_Trailer] (
+    [drvTotalRecordCount] int NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EIATMETEXP]
     @SystemID char(12)
@@ -499,65 +672,88 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvEmployeeNumber = ''
-        ,drvEmployeeID = EecEmpNo
-        ,drvMemberSSN = eepSSN
-        ,drvMemberLastName = EepNameLast
-        ,drvMemberFirstName = EepNameFirst
-        ,drvMemberMiddleInitial = LEFT(EepNameMiddle,1)
-        ,drvMemberBirthDate = EepDateOfBirth
-        ,drvMemberMaritalstatus = eepMaritalStatus
-        ,drvMemberSex = ''
-        ,drvEmploymentDate = ''
-        ,drvRetirementDate = ''
-        ,drvHomeTelephone = ''
-        ,drvEmailAddress = EepAddressEMail
-        ,drvStreetAddress1 = EepAddressLine1
-        ,drvStreetAddress2 = EepAddressLine2
-        ,drvCity = EepAddressCity
-        ,drvState = EepAddressState
-        ,drvZipcode = EepAddressZipCode
-        ,drvAnnualsalary = ''
-        ,drvSalaryEffectivedate = ''
-        ,drvJobStatusCode = ''
-        ,drvStatusEffectiveDate = ''
-        ,drvCoverageType1 = ''
-        ,drvCoverageStartDate1 = ''
-        ,drvCoverageterminationDate1 = ''
-        ,drvMetLifeGroupNumber1 = ''
-        ,drvMedLifeSubdivision1 = ''
-        ,drvMetLifeBranch1 = ''
-        ,drvEnrollmentStatus1 = ''
-        ,drvMultipleSalarySelected1 = ''
-        ,drvCoverageType2 = ''
-        ,drvCoverageStartDate2 = ''
-        ,drvCoverageTerminationdate2 = ''
-        ,drvMetLifeGroupNumber2 = ''
-        ,drvMetLifeSubdivision2 = ''
-        ,MetLifeBranch2 = ''
-        ,drvEnrollmentStatus2 = ''
-        ,drvOLFaceAmount2 = ''
-        ,drvCovergeType3 = ''
-        ,drvCoverageStartDate3 = ''
-        ,drvCoverageTerminationdate3 = ''
-        ,drvMetLifeGroupNumber3 = ''
-        ,drvMetLifeSubdivisiondr3 = ''
-        ,drvMetlifeBranch3 = ''
-        ,drvEnrollmentStatus3 = ''
-        ,drvOAMultipleSalary = ''
-        ,drvOAFaceAmount3 = ''
+        ,drvEmployeeNumber                = eepSSN
+        ,drvEmployeeID                    = EepEEID
+        ,drvMemberSSN                    = eepSSN
+        ,drvMemberLastName                = EepNameLast
+        ,drvMemberFirstName                = EepNameFirst
+        ,drvMemberMiddleInitial            = LEFT(EepNameMiddle,1)
+        ,drvMemberBirthDate                = EepDateOfBirth
+        ,drvMemberMaritalstatus            = CASE WHEN EepMaritalStatus IN ('M','S') THEN eepMaritalStatus ELSE 'U' END
+        ,drvMemberSex                    = CASE WHEN EepGender IN ('M','F') THEN EepGender ELSE 'U' END
+        ,drvEmploymentDate                = EecDateOfLastHire
+        ,drvRetirementDate                = EecDateOfRetirement
+        ,drvHomeTelephone                = CASE WHEN EepPhoneHomeNumber IS NOT NULL THEN EepPhoneHomeNumber
+                                               ELSE (Select top 1 efoPhoneNumber from dbo.EmpMPhon where efoeeid = xeeid and efoPhoneType = 'CEL')
+                                          END
+        ,drvEmailAddress                = EepAddressEMail
+        ,drvStreetAddress1                = EepAddressLine1
+        ,drvStreetAddress2                = EepAddressLine2
+        ,drvCity                        = EepAddressCity
+        ,drvState                        = EepAddressState
+        ,drvZipcode                        = EepAddressZipCode
+        ,drvAnnualsalary                = dbo.dsi_fnpadzero((ISNULL(REPLACE(EecAnnSalary,'.', ''),0)),9,0)  
+        ,drvSalaryEffectivedate            = EecEmplStatusStartDate
+        ,drvJobStatusCode                = EecEmplStatus 
+        ,drvStatusEffectiveDate            = EecEmplStatusStartDate
+        ,drvCoverageType1                = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN 'L' END
+        ,drvCoverageStartDate1            = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN CASE WHEN GLIFE_BenStartDate > '2023-01-01'THEN GLIFE_BenStartDate ELSE '2023-01-01' END END
+        ,drvCoverageterminationDate1    = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN GLIFE_BenStopDate END
+        ,drvMetLifeGroupNumber1            = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN '241091' END
+        ,drvMedLifeSubdivision1            = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN '0001' END
+        ,drvMetLifeBranch1                = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN '0001' END
+        ,drvEnrollmentStatus1            = CASE WHEN GLIFE_DedCode = 'GLIFE' AND GLIFE_BdmBenStatus = 'A' THEN 'P' END
+        ,drvMultipleSalarySelected1        = CASE WHEN GLIFE_DedCode = 'GLIFE' THEN dbo.dsi_fnpadzero((ISNULL(REPLACE(GLIFE_BdmEECalcRateOrPct,'.', ''),0)),9,0)  END
+        ,drvBasicLifeFaceAmt            = dbo.dsi_fnpadzero((ISNULL(REPLACE(GLIFE_BdmEEAmt,'.', ''),0)),9,0)
+        ,drvCoverageType2                = CASE WHEN VL_DedCode = 'VL' THEN 'OL' END
+        ,drvCoverageStartDate2            = CASE WHEN VL_DedCode = 'VL' THEN CASE WHEN VL_BenStartDate > '2023-01-01'THEN VL_BenStartDate ELSE '2023-01-01' END END
+        ,drvCoverageTerminationdate2    = CASE WHEN VL_DedCode = 'VL' THEN VL_BenStopDate END
+        ,drvMetLifeGroupNumber2            = CASE WHEN VL_DedCode = 'VL' THEN '241091'END
+        ,drvMetLifeSubdivision2            = CASE WHEN VL_DedCode = 'VL' THEN '0001' END
+        ,MetLifeBranch2                    = CASE WHEN VL_DedCode = 'VL' THEN '0001' END
+        ,drvEnrollmentStatus2            = CASE WHEN VL_DedCode = 'VL' AND VL_BdmBenStatus = 'A' THEN 'P' END
+        ,drvOLFaceAmount2                = dbo.dsi_fnpadzero((ISNULL(REPLACE(VL_BdmEEAmt,'.', ''),0)),9,0)
+        ,drvCovergeType3                = CASE WHEN ADDE_DedCode = 'ADDE' THEN 'OA' END
+        ,drvCoverageStartDate3            = CASE WHEN ADDE_DedCode = 'ADDE' THEN ADDE_BenStartDate END
+        ,drvCoverageTerminationdate3    = CASE WHEN ADDE_DedCode = 'ADDE' THEN ADDE_BenStopDate END
+        ,drvMetLifeGroupNumber3            = CASE WHEN ADDE_DedCode = 'ADDE' THEN  '241091'END 
+        ,drvMetLifeSubdivisiondr3        = CASE WHEN ADDE_DedCode = 'ADDE' THEN '0001' END
+        ,drvMetlifeBranch3                = CASE WHEN ADDE_DedCode = 'ADDE' THEN '0001' END
+        ,drvEnrollmentStatus3            = CASE WHEN ADDE_DedCode = 'ADDE' AND ADDE_BdmBenStatus = 'A' THEN 'P' END
+        ,drvOAMultipleSalary            = CASE WHEN ADDE_DedCode = 'ADDE' THEN dbo.dsi_fnpadzero((ISNULL(REPLACE(ADDE_BdmEECalcRateOrPct,'.', ''),0)),9,0) END
+        ,drvOAFaceAmount3                = dbo.dsi_fnpadzero((ISNULL(REPLACE(ADDE_BdmEEAmt,'.', ''),0)),9,0) 
     INTO dbo.U_EIATMETEXP_drvTbl
     FROM dbo.U_EIATMETEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
-        AND EecCoID = xCoID
+ --       AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    JOIN dbo.U_dsi_BDM_EIATMETEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+    JOIN(SELECT BdmEEID, BdmCOID
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmDedCode END) AS GLIFE_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'VL'    THEN BdmDedCode END) AS VL_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'ADDE'    THEN BdmDedCode END) AS ADDE_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmBenStartDate END) AS GLIFE_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'VL'    THEN BdmBenStartDate END) AS VL_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'ADDE'    THEN BdmBenStartDate END) AS ADDE_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmBenStopDate END) AS GLIFE_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'VL'    THEN BdmBenStopDate END) AS VL_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'ADDE'    THEN BdmBenStopDate END) AS ADDE_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmEECalcRateOrPct END) AS GLIFE_BdmEECalcRateOrPct
+                ,MAX(CASE WHEN BdmDedCode = 'VL'    THEN BdmEECalcRateOrPct END) AS VL_BdmEECalcRateOrPct
+                ,MAX(CASE WHEN BdmDedCode = 'ADDE'    THEN BdmEECalcRateOrPct END) AS ADDE_BdmEECalcRateOrPct
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmBenStatus END) AS GLIFE_BdmBenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'VL'    THEN BdmBenStatus END) AS VL_BdmBenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'ADDE'    THEN BdmBenStatus END) AS ADDE_BdmBenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'GLIFE' THEN BdmEEAmt END) AS GLIFE_BdmEEAmt
+                ,MAX(CASE WHEN BdmDedCode = 'VL'    THEN BdmEEAmt END) AS VL_BdmEEAmt
+                ,MAX(CASE WHEN BdmDedCode = 'ADDE'    THEN BdmEEAmt END) AS ADDE_BdmEEAmt
+            FROM dbo.U_dsi_BDM_EIATMETEXP WITH (NOLOCK)
+            GROUP BY BdmEEID, BdmCOID) AS BdmFlattened
+     ON xEEID = BdmEEID
+     AND xCOID = BdmCOID
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -576,7 +772,7 @@ BEGIN
     SELECT DISTINCT
          drvTotalRecordCount = COUNT(1)
     INTO dbo.U_EIATMETEXP_Trailer
-		 FROM dbo.U_EIATMETEXP_drvTbl WITH (NOLOCK)
+         FROM dbo.U_EIATMETEXP_drvTbl WITH (NOLOCK)
 
     ;
 
@@ -615,6 +811,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EIATMETEXP';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEIATMETEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EIATMETEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
 
 GO
 
