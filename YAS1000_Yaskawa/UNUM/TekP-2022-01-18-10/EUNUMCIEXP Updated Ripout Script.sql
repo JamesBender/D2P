@@ -766,12 +766,12 @@ BEGIN
 
             ,Signature_Date = MAX((CASE WHEN EedDedCode  IN ('MMCI1','MMCI2','MMCI3','MMCS1','MMCS2','MMCS3') then  EedBenStartDate END)) 
 
-            ,MMCS1thru3 = MAX((CASE WHEN EedDedCode  IN ('(MMCS1','MMCS2','MMCS3') then EedDedCode  END))
-            ,MMCS1thru3_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('(MMCS1','MMCS2','MMCS3') then  EedEEEligDate END))
-            ,MMCS1thru3_StartDate = MAX((CASE WHEN EedDedCode  IN ('(MMCS1','MMCS2','MMCS3') then  EedBenStartDate END))
-            ,MMCS1thru3_StopDate = MAX((CASE WHEN EedDedCode  IN ('(MMCS1','MMCS2','MMCS3') then  EedBenStopDate END))
-            ,MMCS1thru3_EEAmt = MAX((CASE WHEN EedDedCode  IN ('(MMCS1','MMCS2','MMCS3') then  EedBenAmt  END))
-            ,MMCS1thru3_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('(MMCS1','MMCS2','MMCS3') then  EdhChangeReason END))
+            ,MMCS1thru3 = MAX((CASE WHEN EedDedCode  IN ('MMCS1','MMCS2','MMCS3') then EedDedCode  END))
+            ,MMCS1thru3_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('MMCS1','MMCS2','MMCS3') then  EedEEEligDate END))
+            ,MMCS1thru3_StartDate = MAX((CASE WHEN EedDedCode  IN ('MMCS1','MMCS2','MMCS3') then  EedBenStartDate END))
+            ,MMCS1thru3_StopDate = MAX((CASE WHEN EedDedCode  IN ('MMCS1','MMCS2','MMCS3') then  EedBenStopDate END))
+            ,MMCS1thru3_EEAmt = MAX((CASE WHEN EedDedCode  IN ('MMCS1','MMCS2','MMCS3') then  EedBenAmt  END))
+            ,MMCS1thru3_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('MMCS1','MMCS2','MMCS3') then  EdhChangeReason END))
                       
             FROM dbo.u_dsi_bdm_EmpDeductions WITH (NOLOCK)
             Join U_dsi_BDM_EUNUMCIEXP  WITH (NOLOCK)

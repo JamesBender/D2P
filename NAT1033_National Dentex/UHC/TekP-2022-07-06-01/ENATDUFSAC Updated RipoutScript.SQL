@@ -5,7 +5,7 @@ ENATDUFSAC: UHC FSA Combined Export
 FormatCode:     ENATDUFSAC
 Project:        UHC FSA Combined Export
 Client ID:      NAT1033
-Date/time:      2022-10-14 14:29:33.570
+Date/time:      2022-10-19 16:49:53.380
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -240,7 +240,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENATDUFSAC_20221014.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENATDUFSAC_20221019.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -251,7 +251,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208319','EMPEXPORT','OEPASSIVE',NULL,'ENATDUFSAC',NULL,NULL,NULL,'202208319','Aug 12 2022 10:25AM','Aug 12 2022 10:25AM','202208011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'UHC FSA Combined Export','202208319','EMPEXPORT','ONDEM_XOE',NULL,'ENATDUFSAC',NULL,NULL,NULL,'202208319','Aug 12 2022 10:25AM','Aug 12 2022 10:25AM','202208011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202208319','EMPEXPORT','SCH_ENATDU',NULL,'ENATDUFSAC',NULL,NULL,NULL,'202208319','Aug 12 2022 10:25AM','Aug 12 2022 10:25AM','202208011',NULL,'','','202108011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',A46KO',NULL,NULL,NULL,'UHC FSA COMB TEST','202209301','EMPEXPORT','TEST_XOE','Oct 14 2022 12:00AM','ENATDUFSAC',NULL,NULL,NULL,'202209301','Sep 30 2022 12:00AM','Sep 24 2022 12:00AM','202209301',NULL,'','','202209301',dbo.fn_GetTimedKey(),NULL,'us3kEpNAT1033',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',A46KO',NULL,NULL,NULL,'UHC FSA COMB TEST','202209301','EMPEXPORT','TEST_XOE','Oct 19 2022  4:23PM','ENATDUFSAC',NULL,NULL,NULL,'202209301','Sep 30 2022 12:00AM','Sep 24 2022 12:00AM','202209301','90','','','202209301',dbo.fn_GetTimedKey(),NULL,'us3kEpNAT1033',NULL);
 
 -----------
 -- AscImp inserts
@@ -828,14 +828,14 @@ BEGIN
                                                             ELSE CAST(YEAR(BdmTVStartDate) AS CHAR(4)) + '0701' --MW BdmTVStartDate updates with Open Enrollment
                                                         END , 112)
         ,drvEnrollmentDate = Convert(VARCHAR,CASE WHEN @ExportCode NOT LIKE 'OE%' THEN dbo.dsi_fnGetMinMaxDates('MAX',MaxBenStartDate , @FileMinCovDate)  ELSE  BdmTVStartDate END , 112) --MW changed to use min file date and BdmTVStartDate updates with Open Enrollment  changed from CASE WHEN @ExportCode NOT LIKE 'OE%' THEN CAST(YEAR(GETDATE()) AS CHAR(4)) + '0701' ELSE '        ' END 
-        ,drvContributionType1 = CASE WHEN @ExportCode NOT LIKE 'OE%' THEN 
+        ,drvContributionType1 = --CASE WHEN @ExportCode NOT LIKE 'OE%' THEN 
                                     CASE WHEN PdhFSALT = 'FSALT' THEN 'MED' 
                                         WHEN PdhFSAMD = 'FSAMD' THEN 'MED' 
                                         --WHEN PdhFSADP = 'FSADP' THEN  Null ---MT added 9/20/22 -- MW removed
                                         ELSE NULL --MW changed to use null
                                       END
-                                    ELSE NULL
-                                  END
+                                   -- ELSE NULL
+                                  --END
         ,drvContributionSource1 = CASE WHEN PdhFSALT = 'FSALT' THEN 'E' --CASE WHEN PdhFSADP  <> 'FSADP'  THEN  'E'  ELSE NULL  END ---MT added 9/20/22 -- Changed by MW 10/12/2022 Code was not accounting for PdhFSAMD or PdhFSALT
                                        WHEN PdhFSAMD = 'FSAMD' THEN 'E'
                                      ELSE Null  --MW changed to use null
@@ -950,6 +950,7 @@ BEGIN
         ) AS DedCodes
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+       Where ( EecEmplstatus <> 'T' OR (EecEmplStatus = 'T' AND  EecDateOfTermination BETWEEN  @StartDate AND @EndDate))
     
     ;
  
