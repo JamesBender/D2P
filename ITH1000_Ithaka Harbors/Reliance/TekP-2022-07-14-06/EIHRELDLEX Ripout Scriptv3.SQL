@@ -5,7 +5,7 @@ EIHRELDLEX: Reliance Disability and Life Export
 FormatCode:     EIHRELDLEX
 Project:        Reliance Disability and Life Export
 Client ID:      ITH1000
-Date/time:      2022-10-18 12:39:48.170
+Date/time:      2022-10-25 08:16:06.017
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -239,7 +239,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIHRELDLEX_20221018.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIHRELDLEX_20221025.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -781,9 +781,9 @@ BEGIN
                                  --WHEn bdmdedcode IN ('NYDBL', 'NYPFL') AND EepAddressState = 'NY' AND bdmbenstatus = 'A'  THEN 'Y' 
                                  --WHEn bdmdedcode IN ('NJTDB') AND EepAddressState = 'NJ' AND bdmbenstatus = 'A'  THEN 'Y'
                                  Else 'N' END
-        ,drvStdPlanEffective = CONVERT(VARCHAR,CASE WHEN  STDCOMBINED_Status is not null AND ISNull(STDCOMBINED_StartDate, '') <> '' THEN STDCOMBINED_StartDate ELSE NULL END,101)---CASE WHEN bdmdedcode IN ('STD', 'STDEE') AND ISNull(bdmBenStartDate, '') <> '' THEN bdmBenStartDate ELSE NULL END
+        ,drvStdPlanEffective = CONVERT(VARCHAR,CASE WHEN  STDCOMBINED_Status is not null AND EecEmplStatus <> 'T' AND ISNull(STDCOMBINED_StartDate, '') <> '' THEN STDCOMBINED_StartDate ELSE NULL END,101)---CASE WHEN bdmdedcode IN ('STD', 'STDEE') AND ISNull(bdmBenStartDate, '') <> '' THEN bdmBenStartDate ELSE NULL END
         ,drvIsLTDEligible = CASE WHEN LTDCOMBINED_Status is not null  and LTDCOMBINED_Status = 'A' THEN 'Y' ELSE 'N' END
-        ,drvLTDEffectiveDate = CONVERT(VARCHAR,CASE WHEN LTDCOMBINED_Status is not null AND ISNull(LTDCOMBINED_StartDate, '') <> '' THEN LTDCOMBINED_StartDate ELSE NULL END,101)
+        ,drvLTDEffectiveDate = CONVERT(VARCHAR,CASE WHEN LTDCOMBINED_Status is not null AND EecEmplStatus <> 'T' AND ISNull(LTDCOMBINED_StartDate, '') <> '' THEN LTDCOMBINED_StartDate ELSE NULL END,101)
         ,drvHoursWorked = CASE WHEN isnull(PehInclInDefCompHrsYTD,'0.00')<> ' 0.000' THEN Left(Ltrim(Rtrim(FORMAT(isnull(PehInclInDefCompHrsYTD,'0.00'), '#0.00'))),25) ELSE NULL END--total hours worked in last 12 months sum(PehCurHrs) where ErnIsRegularPayCode = Y where ErnEarnCode = PehEarnCode for per controls for last 12 months
         ,drvAddData01 = CASE WHEN SLTD_DedCode IN ( 'SLTD' )  THEn 'Y' ELSE 'N' END
         ,drvAddData02 = CASE WHEN STD_DedCode IN ( 'STD' )  THEN 'Class 1'

@@ -5,7 +5,7 @@ EUCCULDEMO: CultureAmp Demo Export
 FormatCode:     EUCCULDEMO
 Project:        CultureAmp Demo Export
 Client ID:      USO1001
-Date/time:      2022-10-19 14:41:02.307
+Date/time:      2022-10-26 11:07:31.680
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -191,7 +191,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUCCULDEMO_20221019.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUCCULDEMO_20221026.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -201,7 +201,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202210139','EMPEXPORT','OEACTIVE',NULL,'EUCCULDEMO',NULL,NULL,NULL,'202210139','Oct 13 2022  1:47PM','Oct 13 2022  1:47PM','202210131',NULL,'','','202210131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210139','EMPEXPORT','OEPASSIVE',NULL,'EUCCULDEMO',NULL,NULL,NULL,'202210139','Oct 13 2022  1:47PM','Oct 13 2022  1:47PM','202210131',NULL,'','','202210131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CultureAmp Demo Export-Sched','202210139','EMPEXPORT','SCH_EUCCUL',NULL,'EUCCULDEMO',NULL,NULL,NULL,'202210139','Oct 13 2022  1:47PM','Oct 13 2022  1:47PM','202210131',NULL,'','','202210131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'TestSession','202210139','EMPEXPORT','TEST_XOE',NULL,'EUCCULDEMO',NULL,NULL,NULL,'202210139','Oct 13 2022  1:47PM','Oct 13 2022  1:47PM','202210131',NULL,'','','202210131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'TestSession','202210269','EMPEXPORT','TEST_XOE','Oct 26 2022  8:38AM','EUCCULDEMO',NULL,NULL,NULL,'202210269','Oct 26 2022 12:00AM','Dec 30 1899 12:00AM','202210121','368','','','202210121',dbo.fn_GetTimedKey(),NULL,'us3lKiUSO1001A',NULL);
 
 -----------
 -- AscImp inserts
@@ -599,7 +599,7 @@ BEGIN
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
-        ,drvName = '"' + dbo.dsi_fnRemoveChars('.,/-', TRIM(EepNameFirst) + ' ' + TRIM(ISNULL(EepNameMiddle, ''))  + ' ' + TRIM(eepNameLast) + ' ' + TRIM(ISNULL(EepNameSuffix, ''))) + '"'
+        ,drvName = '"' + dbo.dsi_fnRemoveChars('.,/-', TRIM(EepNameFirst) + ' ' + Left(TRIM(ISNULL(EepNameMiddle, '')),1)  + ' ' + TRIM(eepNameLast) + ' ' + TRIM(ISNULL(EepNameSuffix, ''))) + '"'
         ,drvPreferredName =  '"' +  LTRIM(RTRIM(ISNULL(EepNamePreferred, ''))) + '"'
         ,drvEmployeeID = '"' + EepAddressEMail + '"'
         ,drvEmail = '"' + EepAddressEMail + '"'
@@ -608,7 +608,7 @@ BEGIN
         ,drvEndDate = '"' + ISNULL(CONVERT(VARCHAR, EecDateOfTermination, 23), '') + '"'
         ,drvLanguage = '"' + EecLanguageCode + '"'
         ,drvSupervisorEmail = '"' + ISNULL(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail'),'') + '"'
-        ,drvSupervisor = '"' + dbo.dsi_fnRemoveChars('.,/-', ISNULL((dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameFML')  + '' + ISNULL(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Suffix'),'')),'')) + '"'
+        ,drvSupervisor = '"' + dbo.dsi_fnRemoveChars('.,/-', ISNULL((dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameFirst')  + ' ' + Left(ISNULL(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameMiddle'),''),1) + ' ' + ISNULL(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast'),'')  + ' ' + ISNULL(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Suffix'),'')),'')) + '"'
         ,drvJobTitle = '"' + ISNULL((SELECT rEPLACE(JbcLongDesc, ',','') FROM  dbo.JobCode WITH (NOLOCK) WHERE JbcJobCode = EecJobCode),'') + '"'
         ,drvLocation = '"' + ISNULL((SELECT LocDesc from dbo.Location WITH (NOLOCK) WHERE LocCode = EecLocation),'') + '"'
         ,drvFullPartTime = '"' + CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Fulltime'
