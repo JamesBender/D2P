@@ -5,7 +5,7 @@ EBAKNCOBQB: Navia Cobra QB Export
 FormatCode:     EBAKNCOBQB
 Project:        Navia Cobra QB Export
 Client ID:      BAK1004
-Date/time:      2022-10-25 12:32:06.827
+Date/time:      2022-10-27 12:11:02.287
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -242,7 +242,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBAKNCOBQB_20221025.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBAKNCOBQB_20221027.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -450,7 +450,7 @@ IF OBJECT_ID('U_EBAKNCOBQB_QBDEPENDENT_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EBAKNCOBQB_QBDEPENDENT_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvSort] varchar(33) NULL,
+    [drvSort] varchar(31) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvSSN] char(11) NULL,
     [drvRelationship] varchar(15) NULL,
@@ -477,7 +477,7 @@ IF OBJECT_ID('U_EBAKNCOBQB_QBDEPENDENTPLANINITIAL_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EBAKNCOBQB_QBDEPENDENTPLANINITIAL_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvSort] varchar(16) NULL,
+    [drvSort] varchar(30) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvPlanName] varchar(27) NULL
 );
@@ -510,7 +510,7 @@ CREATE TABLE [dbo].[U_EBAKNCOBQB_QBPLANINITIAL_drvTbl] (
     [drvSort] varchar(16) NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvPlanName] varchar(27) NULL,
-    [drvCoverageLevel] varchar(18) NOT NULL
+    [drvCoverageLevel] varchar(18) NULL
 );
 
 -----------
@@ -806,8 +806,8 @@ BEGIN
            ,[BdmStartDate]
            ,[BdmStopDate]
            ,[BdmIsPQB]
-            ,[BdmNumSpouses]
-            ,[BdmNumChildren]
+           ,[BdmNumSpouses]
+           ,[BdmNumChildren]
 
     )
  Select distinct rectype = 'DEP', EdhCoid, EdhEEID, DbnDepRecID, DbnDepRecID, 'QB', 'Data Inserted for 204 Chg reason', 
@@ -988,7 +988,7 @@ INSERT INTO [dbo].[U_dsi_BDM_EBAKNCOBQB]
             ,dbnbenstopdate
             ,dbnBenStatusDate
             ,EecDateofTermination
-            ,edhChangereason
+            ,''
             ,dbncobrareason 
             ,dbnbenstartdate
             ,dbnbenstopdate
@@ -1031,7 +1031,7 @@ INSERT INTO [dbo].[U_dsi_BDM_EBAKNCOBQB]
     -- Build Driver Tables
     --==========================================
     ---------------------------------
-    -- DETAIL RECORD - U_EBAKNCOBQB_QB_drvTbl       ---MW changed how QB table is popuated 10/25/22   
+    -- DETAIL RECORD - U_EBAKNCOBQB_QB_drvTbl
     ---------------------------------
     IF OBJECT_ID('U_EBAKNCOBQB_QB_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EBAKNCOBQB_QB_drvTbl;
@@ -1070,7 +1070,7 @@ INSERT INTO [dbo].[U_dsi_BDM_EBAKNCOBQB]
     LEFT JOIN dbo.contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-Where  BdmRecType= 'EMP' AND BdmCobraReason = (  '200')
+Where  BdmRecType= 'EMP' AND BdmCobraReason IN (  '200', '203')
 ;
 
    INSERT INTO dbo.U_EBAKNCOBQB_QB_drvTbl
@@ -1203,16 +1203,14 @@ Where  BdmRecType <> 'EMP' AND BdmCobraReason in ( '204', 'LEVNT4', '201','LEVNT
                                 WHEN EecEmplStatus = 'T' and BdmChangeReason = '200' THEN 'TERMINATION'
                         END   
                    
-        ,drvEventDate = CASE WHEN ( BdmChangeReason in ('204', 'LEVNT4', '201','LEVNT3','202') OR  BdmCobraReason in ('204', 'LEVNT4', '201','LEVNT3','202')) THEN  BdmBenStatusDate
+         ,drvEventDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateofTermination 
+                              WHEN BdmCobraReason in ('204', 'LEVNT4', '201','LEVNT3','202','203') and isnull(BdmDateofCobraEvent, '') <> '' THEN BdmDateofCobraEvent
+                             ELSE bdmbenstatusdate
                             -- WHEN  BdmCobraReason in ('204', 'LEVNT4', '201','LEVNT3','200') THEN BdmBenStatusDate -- 10/17/22 MW Commented out 
-                            else EecDateofTermination END
+                           END
         ,drvEnrollmentDate = BdmBenStartDate
-        ,drvSSN = CASE    WHEN ( BdmChangeReason in ('204', 'LEVNT4', '201','LEVNT3','202') OR  BdmCobraReason in ('204', 'LEVNT4', '201','LEVNT3','202')) then EepSSN 
-                        END
-        ,drvNameFirst = CASE    WHEN ( BdmChangeReason in ('204', 'LEVNT4', '201','LEVNT3','202') OR  BdmCobraReason in ('204', 'LEVNT4', '201','LEVNT3','202')) then EepNameFirst + ' ' + EepNameLast 
-                               -- WHEN BdmCobraReason in ('204', 'LEVNT4','LEVNT3','202') then EepNameFirst + ' ' + EepNameLast -- 10/17/22 MW Commented out 
-                               -- ELSE ConNameFirst +' '+ ConNameLast
-                                END
+        ,drvSSN =EepSSN 
+        ,drvNameFirst =  EepNameFirst + ' ' + EepNameLast 
         --,drvInitialSort    = '21'
   --      ,drvSubSort        = drvSubSort
   --      ,drvSubSort2       = '1'
@@ -1253,24 +1251,27 @@ Where  BdmRecType <> 'EMP' AND BdmCobraReason in ( '204', 'LEVNT4', '201','LEVNT
                             When BdmDedCode ='DEN2' then 'Dental PPO'   
                             When BdmDedCode IN ('MED3','MED4') then 'High Deductible Health Plan'
                         END
-    ,drvCoverageLevel = CASE WHEN BDMChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  or ( BDMChangeReason= '200' and BdmDedCode NOT IN ('FSA',' FSALP')) AND bdmrelationship IN  ('SPS')  THEN 'EE+SPOUSE'
-                                 WHEN BDMChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  or ( BDMChangeReason= '200' and BdmDedCode NOT IN ('FSA',' FSALP')) AND bdmrelationship IN  ('DP')  THEN    'EE+DOMESTICPARTNER'
-                                 WHEN BDMChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  or ( BDMChangeReason= '200' and BdmDedCode NOT IN ('FSA',' FSALP')) AND bdmrelationship IN  ( 'CHL','DPC','STC', 'DCH' )  AND (bdmNumChildren = 1 or bdmNumDPChildren =1) THEN 'EE+CHILD'
-                                 WHEN BDMChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  or ( BDMChangeReason= '200' and BdmDedCode NOT IN ('FSA',' FSALP')) AND bdmrelationship IN  ( 'CHL','DPC','STC', 'DCH' )  AND (bdmNumChildren >- 1 or bdmNumDPChildren >=1) THEN 'EE+CHILDREN'
-                                 WHEN BDMChangeReason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  or ( BDMChangeReason= '200' and BdmDedCode NOT IN ('FSA',' FSALP')) AND (BdmNumSpouses > = 1 or bdmNumDomPartners > = 1 ) AND (bdmNumChildren >- 1 or bdmNumDPChildren >=1)  THEN 'EE+FAMILY'
-                                ELSE 'EE'
-                            END
-
---                            CASE WHEN BdmDedCode not in ( 'FSA','FSALP') THEN 
---        --(Over age dep, Divorce or Death) - 
-----(Over age dep, Divorce or Death) - 
---                   CASE         WHEN BdmBenOption = 'EES'   then 'EE+SPOUSE'     
---                                WHEN BdmBenOption = 'EEP'   then 'EE+DOMESTICPARTNER'    
---                                WHEN BdmBenOption = 'EEC'   THEN 'EE+CHILD'
-----If edhChangeReason = 204, LEVNT4, 201, LEVNT3 or 210 or Benefit Change Reason = 200 and EedDedCode NOT IN ('FSA',' FSALP') AND If bdmrelationship = more than 1 CHL,DPC,STC or DCH send EE+CHILDREN
---                                WHEN BdmBenOption = 'EEF' THEN 'EE+FAMILY'
---                                   --If bdmrelationship = SPS OR DP AND At Least 1 or more CHL,DPC,STC or DCH and EedDedCode NOT IN ('FSA',' FSALP')  send EE+FAMILY
---                                ELSE 'EE'
+        ,drvCoverageLevel = CASE WHEN (BDMChangeReason  IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') or BDMCobrareason = '210') and BdmDedCode NOT IN ('FSA',' FSALP') AND bdmrelationship IN  ('SPS') AND (bdmNumChildren = 0 or bdmNumDPChildren = 0)  THEN 'EE+SPOUSE'
+                                 --WHEN (BDMChangeReason  IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') or BDMCobrareason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210'))  and BdmDedCode NOT IN ('FSA',' FSALP') AND bdmrelationship IN  ('DP') and (BdmNumSpouses  = 0 or bdmNumDomPartners >= 1 ) AND (bdmNumChildren = 0 or bdmNumDPChildren = 0) THEN    'EE+DOMESTICPARTNER'
+                                 WHEN (BDMChangeReason  IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') or BDMCobrareason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210'))  and BdmDedCode NOT IN ('FSA',' FSALP') AND bdmrelationship IN  ( 'CHL','DPC','STC', 'DCH' )  AND ((BdmNumSpouses  = 0 or bdmNumDomPartners = 0 ) AND (bdmNumChildren = 1 or bdmNumDPChildren =1)) THEN 'EE'
+                                 WHEN (BDMChangeReason  IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') or BDMCobrareason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')) and BdmDedCode NOT IN ('FSA',' FSALP') AND bdmrelationship IN  ( 'CHL','DPC','STC', 'DCH' )  AND ((BdmNumSpouses  = 0 or bdmNumDomPartners = 0 ) AND (bdmNumChildren >= 1 or bdmNumDPChildren >=1)) THEN 'EE+CHILDREN'
+                                -- WHEN (BDMChangeReason  IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') or BDMCobrareason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210'))  and BdmDedCode NOT IN ('FSA',' FSALP') AND ((BdmNumSpouses >= 1 or bdmNumDomPartners >= 1 ) AND (bdmNumChildren >= 1 or bdmNumDPChildren >=1))  THEN 'EE+FAMILY'
+                                 WHEN (BDMChangeReason  IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') or BDMCobrareason IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210'))  and BdmDedCode NOT IN ('FSA',' FSALP') AND ((BdmNumSpouses >= 0 or bdmNumDomPartners >= 0 ) AND (bdmNumChildren = 1 or bdmNumDPChildren =1))  THEN 'EE'
+                                ELSE 
+                            
+                            CASE WHEN BdmDedCode not in ( 'FSA','FSALP') THEN 
+        --(Over age dep, Divorce or Death) - 
+--(Over age dep, Divorce or Death) - 
+                   CASE         WHEN BdmBenOption = 'EES' and BDMCobrareason NOT IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  then 'EE+SPOUSE'     
+                                WHEN BdmBenOption = 'EEP' and BDMCobrareason NOT IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210')  then 'EE+DOMESTICPARTNER'    
+                                WHEN BdmBenOption = 'EEC' and BDMCobrareason NOT IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') THEN 'EE+CHILD'
+--If edhChangeReason = 204, LEVNT4, 201, LEVNT3 or 210 or Benefit Change Reason = 200 and EedDedCode NOT IN ('FSA',' FSALP') AND If bdmrelationship = more than 1 CHL,DPC,STC or DCH send EE+CHILDREN
+                                WHEN BdmBenOption = 'EEF'and BDMCobrareason NOT IN ( '204', 'LEVNT4', '201', 'LEVNT3' , '210') THEN 'EE+FAMILY'
+                                   --If bdmrelationship = SPS OR DP AND At Least 1 or more CHL,DPC,STC or DCH and EedDedCode NOT IN ('FSA',' FSALP')  send EE+FAMILY
+                                ELSE 'EE' 
+                            END 
+                        END 
+                    END
     INTO dbo.U_EBAKNCOBQB_QBPLANINITIAL_drvTbl
     FROM dbo.U_EBAKNCOBQB_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_EBAKNCOBQB WITH (NOLOCK)
@@ -1281,7 +1282,7 @@ Where  BdmRecType <> 'EMP' AND BdmCobraReason in ( '204', 'LEVNT4', '201','LEVNT
     LEFT JOIN dbo.contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-   Where  BdmCobraReason not in ('210')
+  -- Where  BdmCobraReason not in ('210')
     ;
 
     ---------------------------------
@@ -1292,7 +1293,7 @@ Where  BdmRecType <> 'EMP' AND BdmCobraReason in ( '204', 'LEVNT4', '201','LEVNT
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
-        ,drvSort ='1 ' + xEEID + ' 4 ' + CASE WHEN  conrelationship in ('CHL', 'DP', 'SPS') THEN' 2' ELSE ' 1' END + BdmDepRecID + ' 1'  
+        ,drvSort ='1 ' + xEEID + ' 4 ' +  + BdmDepRecID + ' 1'  
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
         ,drvSSN =  ConSSN 
@@ -1340,7 +1341,7 @@ Where  BdmRecType <> 'EMP' AND BdmCobraReason in ( '204', 'LEVNT4', '201','LEVNT
     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
-        ,drvSort = '1 ' + xEEID + ' 5'
+        ,drvSort =  '1 ' + xEEID + ' 4 ' + BdmDepRecID + '2'
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
         ,drvPlanName = CASE When BdmDedCode = 'FSA' then 'Navia FSA'                                                             
@@ -1364,6 +1365,7 @@ Where  BdmRecType <> 'EMP' AND BdmCobraReason in ( '204', 'LEVNT4', '201','LEVNT
     JOIN dbo.contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
+    Where BdmCobraReason not in ('210')
     ;
 
     ---------------------------------

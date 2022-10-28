@@ -5,7 +5,7 @@ ESYNUNUMXP: UNUM LIFE
 FormatCode:     ESYNUNUMXP
 Project:        UNUM LIFE
 Client ID:      SYN1008
-Date/time:      2022-10-20 16:14:02.547
+Date/time:      2022-10-28 12:23:51.637
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -271,7 +271,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20221020.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20221028.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -282,7 +282,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208189','EMPEXPORT','OEPASSIVE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE ONDEM','202208189','EMPEXPORT','ONDEM_XOE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE Sched','202208189','EMPEXPORT','SCH_ESYNUN',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE Test','202210209','EMPEXPORT','TEST_XOE','Oct 20 2022 10:22AM','ESYNUNUMXP',NULL,NULL,NULL,'202210209','Oct 20 2022 12:00AM','Dec 30 1899 12:00AM','202209271','967','','','202209271',dbo.fn_GetTimedKey(),NULL,'us3kEpSYN1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE Test','202210289','EMPEXPORT','TEST_XOE','Oct 28 2022 12:00AM','ESYNUNUMXP',NULL,NULL,NULL,'202210289','Oct 28 2022 12:00AM','Dec 30 1899 12:00AM','202210211','953','','','202210211',dbo.fn_GetTimedKey(),NULL,'us3kEpSYN1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -847,7 +847,7 @@ SELECT DISTINCT
                                  WHEN audTerm = 'Y' THEN EecDateOfTermination
                                  WHEN audSalaryChange = 'Y' THEN EjhJobEffDate
                                  ELSE dbo.dsi_fnGetMinMaxDates('MAX',BENEFIT_STARTDATE, '07/01/2022')
-                                 
+                    
                             END
         ,drvADDTYPE = CASE WHEN EXISTS(select top 1 * from U_ESYNUNUMXP_Audit where audAction = 'Update' and audFieldName = 'EecFullTimeOrPartTime' and audEEID = xEEID and Audkey2 = xCOID and audOldValue = 'P' and audNewValue = 'F') and EecFullTimeOrPartTime = 'F' THEN 'O' ELSE '' END
         ,drvBENEFITID1 = CASE WHEN VLFEE IN ('VLFEE') THEN 'LM' END
@@ -855,7 +855,7 @@ SELECT DISTINCT
         ,drvBENEFITQUALIFYINGDATE1 = CASE WHEN VLFEE_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFEE_BenefitDate END
         ,drvBENEFITTERMDATE1 = CASE WHEN VLFEE IN ('VLFEE') and EecEmplStatus <> 'T' THEN VLFEE_StopDate END
-        ,drvBENEFITSELECTIONAMOUNT1 = CASE WHEN format(VLFEE_EEAmt,'#0.00')  > '0.00' THEN format(isnull(VLFEE_EEAmt, ''),'#0.00') else NULL END
+        ,drvBENEFITSELECTIONAMOUNT1 = CASE WHEN format(VLFEE_EEAmt,'#0.00') <> '0.00' THEN format(isnull(VLFEE_EEAmt, ''),'#0.00') else NULL END
         
         ,drvBENEFITID2 = CASE WHEN VLFSP IN ('VLFSP') THEN 'LS' END
         ,drvPLANCODE2 = CASE WHEN VLFSP IN ('VLFSP') THEN '5.AN3B' END
@@ -869,7 +869,7 @@ SELECT DISTINCT
         ,drvBENEFITQUALIFYINGDATE3 =  CASE WHEN VLFCH_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFCH_BenefitDate END
         ,drvBENEFITTERMDATE3 = CASE WHEN VLFCH IN ('VLFCH')  and  EecEmplStatus <> 'T' THEN VLFCH_StopDate END
-        ,drvBENEFITSELECTIONAMOUNT3 = CASE WHEN  format(VLFCH_EEAmt,'#0.00')  <> '0.00' THEN format(isnull(VADDE_EEAmt, ''),'#0.00')  else NULL END
+        ,drvBENEFITSELECTIONAMOUNT3 = CASE WHEN  format(VLFCH_EEAmt,'#0.00')  <> '0.00' THEN format(isnull(VLFCH_EEAmt, ''),'#0.00')  else NULL END
         ,drvBENEFITID4 = CASE WHEN VADDE IN ('VADDE') THEN 'AM' END
         ,drvPLANCODE4 = CASE WHEN VADDE IN ('VADDE') THEN '5.0N29' END
         ,drvBENEFITQUALIFYINGDATE4 = CASE WHEN VADDE_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')

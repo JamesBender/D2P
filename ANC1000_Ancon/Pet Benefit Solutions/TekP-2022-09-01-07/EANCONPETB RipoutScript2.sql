@@ -535,7 +535,7 @@ BEGIN
         ,drvInitialSort = EecEmpNo
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
-        ,drvEmployeeID = EecEmpNo
+        ,drvEmployeeID = EepSSN
         ,drvPlanCode = CASE WHEN Bdmdedcode = 'PB' and bdmbenoption = 'OP' THEN '115'
                             WHEN  Bdmdedcode = 'PB' and bdmbenoption = 'TPP' THEN '118'
                         END

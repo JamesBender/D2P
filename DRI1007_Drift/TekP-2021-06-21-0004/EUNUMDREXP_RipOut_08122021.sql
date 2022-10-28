@@ -347,7 +347,7 @@ CREATE TABLE [dbo].[U_EUNUMDREXP_File] (
     [Data] varchar(max) NULL
 );
 IF OBJECT_ID('U_EUNUMDREXP_PDedHist') IS NULL
-CREATE TABLE [dbo].[U_EUNUMDREXP_PDedHist] (
+CREATE TABLE [dbo].[U_EDREXP_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
