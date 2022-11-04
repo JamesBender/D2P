@@ -5,7 +5,7 @@ EAHIGGCOQB: Higginbotham Cobra QB Export
 FormatCode:     EAHIGGCOQB
 Project:        Higginbotham Cobra QB Export
 Client ID:      ACH1001
-Date/time:      2022-10-11 09:05:41.633
+Date/time:      2022-11-01 10:05:29.900
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -237,7 +237,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAHIGGCOQB_20221011.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAHIGGCOQB_20221101.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -247,7 +247,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202208099','EMPEXPORT','OEACTIVE',NULL,'EAHIGGCOQB',NULL,NULL,NULL,'202208099','Jul 25 2022  3:46PM','Jul 25 2022  3:46PM','202107011',NULL,'','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208099','EMPEXPORT','OEPASSIVE',NULL,'EAHIGGCOQB',NULL,NULL,NULL,'202208099','Jul 25 2022  3:46PM','Jul 25 2022  3:46PM','202107011',NULL,'','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Higginbotham Cobra QB export','202208099','EMPEXPORT','ONDEM_XOE',NULL,'EAHIGGCOQB',NULL,NULL,NULL,'202208099','Jul 25 2022  3:46PM','Jul 25 2022  3:46PM','202107011',NULL,'','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202208099','EMPEXPORT','SCH_EAHIGG',NULL,'EAHIGGCOQB',NULL,NULL,NULL,'202208099','Jul 25 2022  3:46PM','Jul 25 2022  3:46PM','202107011',NULL,'','','202107011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'NE59R',NULL,NULL,NULL,'Scheduled Session','202210149','EMPEXPORT','SCH_EAHIGG',NULL,'EAHIGGCOQB',NULL,NULL,NULL,'202210269','Jul 25 2022  3:46PM','Jul 25 2022  3:46PM','202210191',NULL,'','','202210141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test Purposes Only','202208099','EMPEXPORT','TEST_XOE','Oct  3 2022 12:00AM','EAHIGGCOQB',NULL,NULL,NULL,'202208099','Aug  9 2022 12:00AM','Dec 30 1899 12:00AM','202207011',NULL,'','','202207011',dbo.fn_GetTimedKey(),NULL,'us3rByACH1001',NULL);
 
 -----------
@@ -485,7 +485,6 @@ CREATE TABLE [dbo].[U_EAHIGGCOQB_QBDependents_drvTbl] (
     [drvSubSort] varchar(16) NOT NULL,
     [drvDepRecID] varchar(12) NULL,
     [drvDependentNumber] varchar(2) NULL,
-    [drvQBSSN] char(11) NULL,
     [drvDependentSSN] char(11) NULL,
     [drvRelationship] varchar(15) NULL,
     [drvFirstName] varchar(100) NULL,
@@ -616,7 +615,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'MDPOS, MDBP, DEN, VIS, FSA';
+    SET @DedList = 'MDPOS, MDBP, DEN, VIS, FSA, EAP)';
 
     IF OBJECT_ID('U_EAHIGGCOQB_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EAHIGGCOQB_DedList;
@@ -834,12 +833,12 @@ BEGIN
         AND EdhDedCode= bdmDedCode
     LEFT JOIN (SELECT bdmEEID, MAX(bdmBenStartDate) AS EEStartDate
           FROM dbo.U_dsi_BDM_EAHIGGCOQB
-          WHERE BdmDedCode in ('MDPOS', 'MDBP', 'DEN', 'VIS', 'FSA')
+          WHERE BdmDedCode in ('MDPOS', 'MDBP', 'DEN', 'VIS', 'FSA','EAP')
           GROUP BY  bdmEEID) AS eb
           ON eb.BdmEEID = xEEID
     LEFT JOIN (SELECT bdmSystemID, MAX(bdmBenStartDate) AS CnStartDate
           FROM dbo.U_dsi_BDM_EAHIGGCOQB
-          WHERE BdmDedCode in ('MDPOS', 'MDBP', 'DEN', 'VIS', 'FSA')
+          WHERE BdmDedCode in ('MDPOS', 'MDBP', 'DEN', 'VIS', 'FSA','EAP')
           GROUP BY  bdmSystemID) AS cb
           ON cb.bdmSystemID = ConSystemID
     ;
@@ -993,7 +992,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EAHIGGCOQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        AND BdmDedCode IN ('MDPOS','MDBP')
+        AND BdmDedCode IN ('EAP')
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON conEEID = xEEID
         AND ConSystemID = BdmSystemID
@@ -1048,13 +1047,54 @@ BEGIN
     JOIN dbo.U_EAHIGGCOQB_QB_drvTbl WITH (NOLOCK)
         ON drvEEID = xEEID
 
+    UNION
+            SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvSort =  '2_' + xEEID + '_3'
+        ,drvSubSort = '5'
+        --,drvRecordType = '[QBPLANINITIAL]'
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        -- standard fields above and additional driver fields below
+        --,drvQBSSN =  CASE WHEN edhChangeReason IN ('DEP', 'LEVNT3', 'LEVNT4', '204', '210', '201') THEN conSSN
+                     --     ELSE eepSSN
+                     --END
+        ,drvPlanName = 'HealthJoy Telemedicine'
+        --,drvStartDate = CASE WHEN edhChangeReason IN ('DEP', 'LEVNT3', 'LEVNT4', '204', '210', '201') 
+        --                     THEN CONVERT(VARCHAR,DATEADD(day, 1,DbnBenStopDate) ,101)
+        --                     ELSE CONVERT(VARCHAR, DATEADD(day, 1, bdmBenStopDate), 101)
+        --                END
+        ,drvCoverageLevel = CASE bdmBenOption WHEN 'EE' THEN 'EE'
+                                              WHEN 'EEC' THEN 'EE+CHILDREN'
+                                              WHEN 'EEF' THEN 'EE+FAMILY'
+                                              WHEN 'EES' THEN 'EE+SPOUSE'
+                            END
+    FROM dbo.U_EAHIGGCOQB_EEList WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.U_dsi_BDM_EAHIGGCOQB WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        AND BdmDedCode IN ('EAP')
+    LEFT JOIN dbo.Contacts WITH (NOLOCK)
+        ON conEEID = xEEID
+        AND ConSystemID = BdmSystemID
+    JOIN dbo.EmpHDed WITH (NOLOCK)
+        ON edhEEID = xEEID
+        AND EdhDedCode= bdmDedCode
+    LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+        ON DbnSystemID = ConSystemID
+        AND DbnDedCode = BdmDedCode
+    JOIN dbo.U_EAHIGGCOQB_QB_drvTbl WITH (NOLOCK)
+        ON drvEEID = xEEID
+
     UNION 
 
          SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvSort =  '2_' + xEEID + '_3'
-        ,drvSubSort = '5'
+        ,drvSubSort = '6'
         --,drvRecordType = '[QBPLANINITIAL]'
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
@@ -1096,7 +1136,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvSort =  '2_' + xEEID + '_3'
-        ,drvSubSort = '6'
+        ,drvSubSort = '7'
         --,drvRecordType = '[QBPLANINITIAL]'
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
@@ -1138,7 +1178,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvSort =  '2_' + xEEID + '_3'
-        ,drvSubSort = '7'
+        ,drvSubSort = '8'
         --,drvRecordType = '[QBPLANINITIAL]'
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
@@ -1296,7 +1336,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EAHIGGCOQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-        AND BdmDedCode IN ('MDPOS','MDBP')
+        AND BdmDedCode IN ('EAP')
     JOIN dbo.Contacts WITH (NOLOCK)
         ON conEEID = xEEID
         AND ConSystemID = BdmDepRecID
@@ -1309,7 +1349,7 @@ BEGIN
     JOIN dbo.U_EAHIGGCOQB_QB_drvTbl WITH (NOLOCK)
         ON drvEEID = xEEID
 
-        UNION
+    UNION
 
         SELECT DISTINCT
          drvEEID = xEEID
@@ -1339,13 +1379,43 @@ BEGIN
     JOIN dbo.U_EAHIGGCOQB_QB_drvTbl WITH (NOLOCK)
         ON drvEEID = xEEID
 
+    UNION
+
+        SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvSort =  '2_' + xEEID + '_4'
+        ,drvSubSort = '2_' + ConsystemID + '_5'
+        --,drvRecordType = '[QBDEPENDENTPLANINITIAL]'
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        -- standard fields above and additional driver fields below
+        ,drvPlanName = 'HealthJoy Telemedicine'
+    FROM dbo.U_EAHIGGCOQB_EEList WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.U_dsi_BDM_EAHIGGCOQB WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        AND BdmDedCode IN ('EAP')
+    JOIN dbo.Contacts WITH (NOLOCK)
+        ON conEEID = xEEID
+        AND ConSystemID = BdmDepRecID
+    JOIN dbo.EmpHDed WITH (NOLOCK)
+        ON edhEEID = xEEID
+        AND EdhDedCode= bdmDedCode
+    --LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+    --    ON DbnSystemID = ConSystemID
+    --    AND DbnDedCode = BdmDedCode
+    JOIN dbo.U_EAHIGGCOQB_QB_drvTbl WITH (NOLOCK)
+        ON drvEEID = xEEID
+
     UNION 
 
          SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvSort =  '2_' + xEEID + '_4'
-        ,drvSubSort = '2_' + ConsystemID + '_5'
+        ,drvSubSort = '2_' + ConsystemID + '_6'
         --,drvRecordType = '[QBDEPENDENTPLANINITIAL]'
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
@@ -1375,7 +1445,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvSort =  '2_' + xEEID + '_4'
-        ,drvSubSort = '2_' + ConsystemID + '_6'
+        ,drvSubSort = '2_' + ConsystemID + '_7'
         --,drvRecordType = '[QBDEPENDENTPLANINITIAL]'
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         -- standard fields above and additional driver fields below
