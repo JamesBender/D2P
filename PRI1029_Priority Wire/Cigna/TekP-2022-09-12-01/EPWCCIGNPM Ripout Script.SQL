@@ -461,7 +461,7 @@ BEGIN
     JOIN dbo.U_EPWCCIGNPM_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+      WHERE audDateTime BETWEEN @StartDate AND @EndDate
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -562,8 +562,12 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EPWCCIGNPM WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN  dbo.U_EPWCCIGNPM_Audit WITH (NOLOCK)
+        ON xEEID = audEEID
+        and xCOID = audKey2
         WHERE   eecEEtype <> 'TES'
         AND  BdmISCOBRACovered = 'Y'
+        AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
 
 
     --==========================================

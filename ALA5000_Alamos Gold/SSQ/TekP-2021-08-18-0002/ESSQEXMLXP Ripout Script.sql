@@ -5,7 +5,7 @@ ESSQEXMLXP: SSQ Benefits XML Export
 FormatCode:     ESSQEXMLXP
 Project:        SSQ Benefits XML Export
 Client ID:      ALA5000
-Date/time:      2022-05-18 15:17:22.253
+Date/time:      2022-10-31 08:33:10.960
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -325,7 +325,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20220518.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESSQEXMLXP_20221031.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -335,8 +335,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202111199','EMPEXPORT','OEACTIVE','Nov 24 2021  8:23AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','6','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202111199','EMPEXPORT','OEPASSIVE','Nov 24 2021  8:23AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14785','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export','202111199','EMPEXPORT','ONDEM_XOE','Nov 24 2021  8:24AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Sched','202111199','EMPEXPORT','SCH_ESSQEX','Nov 24 2021  8:26AM','ESSQEXMLXP',NULL,NULL,NULL,'202111199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202111191','14871','','','202111191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202205101','EMPEXPORT','TEST_XOE','May 10 2022 10:51AM','ESSQEXMLXP',NULL,NULL,NULL,'202205101','May 10 2022 12:00AM','Dec 30 1899 12:00AM','202205101','15390','','','202205101',dbo.fn_GetTimedKey(),NULL,'us3cPeALA5000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',8GWCL,OAXLN,8GW4G,NMZYE,NMZZE,8GVSQ,TPHJ0,8GVZ9,OCGNP,NN000,NN00X',NULL,NULL,NULL,'SSQ Benefits XML Export-Sched','202208249','EMPEXPORT','SCH_ESSQEX','Nov 24 2021  8:26AM','ESSQEXMLXP',NULL,NULL,NULL,'202210199','Nov 19 2021  5:29AM','Nov 19 2021  5:29AM','202208301','14871','','','202208241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'SSQ Benefits XML Export-Test','202210291','EMPEXPORT','TEST_XOE','Oct 29 2022  2:01PM','ESSQEXMLXP',NULL,NULL,NULL,'202210291','Oct 29 2022 12:00AM','Dec 30 1899 12:00AM','202210291','16782','','','202210291',dbo.fn_GetTimedKey(),NULL,'us3cPeALA5000',NULL);
 
 -----------
 -- AscImp inserts
@@ -741,8 +741,8 @@ Purpose: SSQ Benefits XML Export
 
 Revision History
 ----------------
-Update By           Date           Request Num        Desc
-XXXX                XX/XX/2021     SR-2021-000XXXXX   XXXXX
+Update By           Date           Request Num         Desc
+Marie Waters        10/27/2022   TekP-2021-08-18-0002  Updated logic for Eligbility date field on EmploymentRecord table
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ESSQEXMLXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ESSQEXMLXP';
@@ -1060,7 +1060,7 @@ BEGIN
         ,drvSalaryStartDate = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         ,drvSalaryAmount = FORMAT(EecAnnSalary, '#0.00')
         ,drvHiringDate = EecDateOfOriginalHire
-        ,drvEligibilityDate = EecDateOfOriginalHire
+        ,drvEligibilityDate = BdmBenStartDate -- EecDateOfOriginalHire
         ,drvStatusStartDate =    CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination
                                 WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate
                                 WHEN EecEmplStatus = 'A' AND EshEmplStatus = 'L' THEN EshStatusStopDate
@@ -1071,7 +1071,7 @@ BEGIN
                                     WHEN EecEmplStatus = 'T' AND EecTermReason IN ('211','210','213','212') THEN '300'
                                     WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202') THEN '301'
                                     WHEN EecEmplStatus = 'T' AND EecTermReason IN ('203','215') THEN '302'
-                                    WHEN  EecEmplStatus = 'T' AND EecTermReason IN ('208') THEN '304'
+                                    WHEN EecEmplStatus = 'T' AND EecTermReason IN ('208') THEN '304'
                                     WHEN EecEmplStatus = 'T' AND EecTermReason IN ('201','214') THEN '305'
                                     WHEN EecEmplStatus = 'L' AND EecLeaveReason NOT IN ('105','106','400') THEN '400'
                                     END
@@ -1086,7 +1086,15 @@ BEGIN
                                         END
     INTO dbo.U_ESSQEXMLXP_drvTbl_EmploymentRecord
     FROM dbo.U_ESSQEXMLXP_EEList WITH (NOLOCK)
-    JOIN dbo.U_dsi_BDM_ESSQEXMLXP WITH (NOLOCK)
+      JOIN (SELECT BdmEEID, BdmCOID , Min(BdmBenStartDate) as BdmBenStartDate from dbo.U_dsi_BDM_ESSQEXMLXP WITH (NOLOCK)
+                    WHERE bdmdedcode IN ( '25217', '25017', '25917', '25216', '25016,', '25916', '25018', '25211', '25011', '25911'
+                    , '25219', '25019', '25919', '25012', '25221', '25222', '25021', '25022', '25921', '25922', '25023', '25224'
+                    , '25024', '25924', '25225', '25025', '25925', '2502Q', '2522Q', '2592Q', '25026', '25226', '25926', '25127'
+                    , '25117', '25116', '25118', '25119', '25112', '25122', '25123', '25124', '2512Q', '25126', '25027', '25419'
+                    , '25412', '25416', '25417', '25418', '25422', '25423', '25424', '25427', '2542Q' )
+                    AND BdmRecType = 'EMP'
+                Group by BdmEEID, BdmCOID
+        ) BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)

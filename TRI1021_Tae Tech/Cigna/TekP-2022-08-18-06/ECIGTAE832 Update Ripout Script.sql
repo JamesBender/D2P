@@ -1210,7 +1210,7 @@ BEGIN
         ,drvHD04_PlanCoverageDesc = CASE WHEN BdmDedCode IN ('DEN') THEN 'Dental PPO Plan'
                                          WHEN BdmDedCode IN ('MED') THEN 'HMO Plan - CA Only'
                                          WHEN BdmDedCode IN ('TXDEN') THEN 'Cigna Dental Choice - TX Only' ---MW Added
-                                         WHEN BdmDedCode IN ('TXOAP') THEN 'Open Acces Plus Plan - TX Full'---MW Added
+                                         WHEN BdmDedCode IN ('TXOAP') THEN 'Open Access Plus Plan - TX Full'---MW Added
                                          WHEN BdmDedCode IN ('TXOA4') THEN 'Open Access Plus Plan - TX Limited'---MW Added
                                          WHEN BdmDedCode IN ('MEDP') and EepAddressState  = 'CA' THEN 'Open Access Plus Plan - CA'
                                          WHEN BdmDedCode IN ('MEDP') and EepAddressState  <> 'CA' THEN 'Open Access Plus Plan - All Others'

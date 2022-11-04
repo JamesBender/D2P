@@ -5,7 +5,7 @@ ECUSEQUDEM: Equifax Demographic
 FormatCode:     ECUSEQUDEM
 Project:        Equifax Demographic
 Client ID:      CIS1000
-Date/time:      2022-08-25 16:58:59.820
+Date/time:      2022-10-27 08:53:33.373
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -201,7 +201,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECUSEQUDEM_20220825.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECUSEQUDEM_20221027.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -211,8 +211,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202208099','EMPEXPORT','OEACTIVE',NULL,'ECUSEQUDEM',NULL,NULL,NULL,'202208099','Aug  9 2022 10:56AM','Aug  9 2022 10:56AM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208099','EMPEXPORT','OEPASSIVE',NULL,'ECUSEQUDEM',NULL,NULL,NULL,'202208099','Aug  9 2022 10:56AM','Aug  9 2022 10:56AM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax Demographic','202208099','EMPEXPORT','ONDEM_XOE',NULL,'ECUSEQUDEM',NULL,NULL,NULL,'202208099','Aug  9 2022 10:56AM','Aug  9 2022 10:56AM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax Demographic-Sched','202208099','EMPEXPORT','SCH_ECUSEQ',NULL,'ECUSEQUDEM',NULL,NULL,NULL,'202208099','Aug  9 2022 10:56AM','Aug  9 2022 10:56AM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Equifax Demographic-Test','202208099','EMPEXPORT','TEST_XOE',NULL,'ECUSEQUDEM',NULL,NULL,NULL,'202208099','Aug  9 2022 10:56AM','Aug  9 2022 10:56AM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',UVGMB',NULL,NULL,NULL,'Equifax Demo SCH','202208099','EMPEXPORT','SCH_ECUSEQ',NULL,'ECUSEQUDEM',NULL,NULL,NULL,'202208099','Aug  9 2022 10:56AM','Aug  9 2022 10:56AM','202208091',NULL,'','','202208091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Equifax Demographic-Test','202210111','EMPEXPORT','TEST_XOE','Oct 11 2022  5:51PM','ECUSEQUDEM',NULL,NULL,NULL,'202210111','Oct 11 2022 12:00AM','Dec 30 1899 12:00AM','201910011','7888','','','201910011',dbo.fn_GetTimedKey(),NULL,'us3kEpCIS1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -315,7 +315,11 @@ CREATE TABLE [dbo].[U_ECUSEQUDEM_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL
+    [audRowNo] bigint NULL,
+    [audFullTimePartTimeChange] varchar(1) NOT NULL,
+    [audNewHire] varchar(1) NOT NULL,
+    [audReHire] varchar(1) NOT NULL,
+    [audTerm] varchar(1) NOT NULL
 );
 
 -----------
@@ -350,20 +354,20 @@ CREATE TABLE [dbo].[U_ECUSEQUDEM_drvTbl] (
     [drvSort] char(11) NULL,
     [drvEmployeeUniqueIdentifier] char(11) NULL,
     [drvControlledGroupCode] varchar(3) NOT NULL,
-    [drvEffectiveDateTime] datetime NULL,
+    [drvEffectiveDateTime] nvarchar(4000) NULL,
     [drvDataSource] varchar(3) NOT NULL,
-    [drvIsInvalid] varchar(3) NOT NULL,
+    [drvIsInvalid] varchar(2) NOT NULL,
     [drvTransactionType] varchar(3) NULL,
     [drvSSN] char(11) NULL,
     [drvStatus] varchar(1) NOT NULL,
     [drvNameFirst] varchar(6000) NULL,
     [drvNameLast] varchar(6000) NULL,
-    [drvNameMiddle] varchar(1) NULL,
+    [drvNameMiddle] varchar(6000) NULL,
     [drvSuffix] varchar(1) NOT NULL,
     [drvAddressLine1] varchar(6000) NULL,
     [drvAddressLine2] varchar(6000) NULL,
-    [drvAddressCity] varchar(255) NULL,
-    [drvAddressState] varchar(2) NULL,
+    [drvAddressCity] varchar(6000) NULL,
+    [drvAddressState] varchar(6000) NULL,
     [drvZipCode] varchar(50) NULL,
     [drvAddressCountry] varchar(2) NULL,
     [drvACAEmployeeDesignationCode] varchar(2) NULL,
@@ -373,8 +377,8 @@ CREATE TABLE [dbo].[U_ECUSEQUDEM_drvTbl] (
     [DefaultPIN] int NULL,
     [AdjustedHireDate] datetime NULL,
     [WorkNumberDivision] varchar(1) NOT NULL,
-    [EmailAddress] varchar(50) NULL,
-    [PrimaryPhoneNumber] varchar(50) NULL
+    [EmailAddress] varchar(50) NOT NULL,
+    [PrimaryPhoneNumber] varchar(50) NOT NULL
 );
 
 -----------
@@ -481,11 +485,11 @@ BEGIN
     IF OBJECT_ID('U_ECUSEQUDEM_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_ECUSEQUDEM_AuditFields;
     CREATE TABLE dbo.U_ECUSEQUDEM_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-   -- INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecDateofTermination');
+       INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecFullTimeOrPartTime');
+    INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+    INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecDateOfOriginalHire');
+    INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecDateOfTermination');
     INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecEmplStatus');
-   -- INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpComp','EecTermReason');
-    --INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpDed', 'EedDedCode');
-   -- INSERT INTO dbo.U_ECUSEQUDEM_AuditFields VALUES ('EmpDed', 'EedBenStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_ECUSEQUDEM_Audit','U') IS NOT NULL
@@ -501,13 +505,18 @@ BEGIN
         ,audOldValue
         ,audNewValue
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        ,audFullTimePartTimeChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecFullTimeOrPartTime' AND ISNULL(audNewValue, '') IN( 'P','F') AND ISNULL(audOldValue, '') IN ('P', 'F') THEN 'Y' ELSE 'N' END
+        ,audNewHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
+        ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
+
     INTO dbo.U_ECUSEQUDEM_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
     JOIN dbo.U_ECUSEQUDEM_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE';
+    AND audAction = 'Update';
 
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_ECUSEQUDEM_Audit ON dbo.U_ECUSEQUDEM_Audit (audEEID,audKey2);
@@ -580,12 +589,20 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvEmployeeUniqueIdentifier = EepSSN
         ,drvControlledGroupCode = 'CGX'
-        ,drvEffectiveDateTime = CASE WHEN audFieldName = 'EecEmplStatus'  AND audNewValue IN ( 'T', 'S', 'L','R') THEN auddatetime  
-                                    ELSE 
-                                        CASE WHEN EecEmplStatus = 'A' THEN EecDateOfOriginalHire ELSE EecDateOfTermination END
-                                    END
+          ,drvEffectiveDateTime = FORMaT((CASE WHEN (EecDateOfLastHire <> EecDateOfOriginalHire AND EecJobChangeReason = '101') OR (EecHireSource = 'REHIRE')  THEN  EecDateOfLastHire
+                                      WHEN EecEmplStatus IN ( 'T', 'S','R')  THEN EecDateOfTermination 
+                                      WHEN audNewValue IN ( 'T', 'S','R') THEN audDateTime
+                                      WHEN audNewValue IN ( 'L') THEN EecEmplStatusStartDate 
+                                      WHEN audFullTimePartTimeChange = 'Y' THEN audDateTime
+                                    Else EecDateOfOriginalHire
+                                END), 'MM/dd/yyyy HH:mm:ss')
+        
+                                --CASE WHEN audFieldName = 'EecEmplStatus'  AND audNewValue IN ( 'T', 'S', 'L','R') THEN auddatetime  
+                                --    ELSE 
+                                --        GetDate() --CASE WHEN EecEmplStatus = 'A' THEN EecDateOfOriginalHire ELSE EecDateOfTermination END
+                                --    END
         ,drvDataSource = 'UKG'
-        ,drvIsInvalid =  'No' --- CASE WHEN EecEmplStatus IN ('A','T','S','L','R') THEN 'Yes' ELSE 'No' END
+        ,drvIsInvalid =   'No' --- CASE WHEN EecEmplStatus IN ('A','T','S','L','R') THEN 'Yes' ELSE 'No' END
         ,drvTransactionType = CASE WHEN EecEmplStatus IN ( 'A', 'L')  THEN 'HIR'
                                    WHEN EecEmplStatus = 'T' THEN 'TER'
                                    WHEN EecEmplStatus IN ( 'R', 'S' )  THEN 'JOB'
@@ -597,13 +614,13 @@ BEGIN
                            Else 'I' 
                           END
         ,drvNameFirst = dbo.dsi_fnRemoveChars('.,/-',EepNameFirst)
-        ,drvNameLast = dbo.dsi_fnRemoveChars('.,/-',EepNameLast)
-        ,drvNameMiddle = Case When LEFT(EepNameMiddle,1) = 'Z' THEn ''  ELSE LEFT(EepNameMiddle,1) END
+        ,drvNameLast = dbo.dsi_fnRemoveChars('.,/-',Replace(EepNameLast,'%é%', 'e'))
+        ,drvNameMiddle = dbo.dsi_fnRemoveChars('.,/-',Case When LEFT(EepNameMiddle,1) = 'Z' THEn ''  ELSE LEFT(EepNameMiddle,1) END)
         ,drvSuffix = ''
         ,drvAddressLine1 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine1)
         ,drvAddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
-        ,drvAddressCity = EepAddressCity
-        ,drvAddressState = Left(eepAddressState, 2)
+        ,drvAddressCity  = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
+        ,drvAddressState = dbo.dsi_fnRemoveChars('.,/-',Left(eepAddressState, 2))
         ,drvZipCode = EepAddressZipCode
         ,drvAddressCountry =  CASE WHEN EepAddressCountry = 'USA' THEN 'US' END
         ,drvACAEmployeeDesignationCode = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'FT'
@@ -615,8 +632,8 @@ BEGIN
         ,DefaultPIN = Year(EepDateOfBirth)
         ,AdjustedHireDate = EecDateOfLastHire
         ,WorkNumberDivision = ''
-        ,EmailAddress = CASE WHEN EepAddressEMail is not null then eepAddressEMail ELSE EepAddressEmailAlternate END
-        ,PrimaryPhoneNumber = CASE WHEN eepPhoneHomeNumber is not Null then eepPhoneHomeNumber ELSE (Select efoPhoneNumber FROM dbo.LodEMPhon WITH (NOLOCK) where efoPhoneType = 'CEL' and efoeeid = xeeid) END
+        ,EmailAddress =  ISNULL(CASE WHEN EepAddressEMail is not null then eepAddressEMail ELSE EepAddressEmailAlternate END , 'donotreply@cision.com') 
+        ,PrimaryPhoneNumber = ISNULL(CASE WHEN eepPhoneHomeNumber is not Null then eepPhoneHomeNumber ELSE (Select efoPhoneNumber FROM dbo.LodEMPhon WITH (NOLOCK) where efoPhoneType = 'CEL' and efoeeid = xeeid) END, 5555555555)
     INTO dbo.U_ECUSEQUDEM_drvTbl
     FROM dbo.U_ECUSEQUDEM_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -627,7 +644,9 @@ BEGIN
    Left Join dbo.U_ECUSEQUDEM_Audit WITH (NOLOCK)
        ON AudEEID = xEEID 
        Where eepAddressCountry = 'USA'
+         AND eeceetype = 'REG' and xCoID in ('OEXEV','UVGMB','39NL5','UVGS')
     --JOIN dbo.U_dsi_BDM_ECUSEQUDEM WITH (NOLOCK)
+    --AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN  @StartDate AND @EndDate))
  
     ;
 

@@ -5,7 +5,7 @@ ECUSEQULOA: Equifax LOA Export
 FormatCode:     ECUSEQULOA
 Project:        Equifax LOA Export
 Client ID:      CIS1000
-Date/time:      2022-08-26 10:08:44.830
+Date/time:      2022-10-27 07:20:31.950
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -161,7 +161,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECUSEQULOA_20220826.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECUSEQULOA_20221027.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -170,7 +170,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax LOA Export','202208109','EMPEXPORT','ONDEM_XOE',NULL,'ECUSEQULOA',NULL,NULL,NULL,'202208109','Aug 10 2022  9:41AM','Aug 10 2022  9:41AM','202108031',NULL,'','','202108031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Equifax LOA Export-Sched','202208109','EMPEXPORT','SCH_ECUSEQ',NULL,'ECUSEQULOA',NULL,NULL,NULL,'202208109','Aug 10 2022  9:41AM','Aug 10 2022  9:41AM','202108031',NULL,'','','202108031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Equifax LOA Export-Test','202208109','EMPEXPORT','TEST_XOE',NULL,'ECUSEQULOA',NULL,NULL,NULL,'202208109','Aug 10 2022  9:41AM','Aug 10 2022  9:41AM','202108031',NULL,'','','202108031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Equifax LOA Export-Test','202210119','EMPEXPORT','TEST_XOE','Oct 11 2022  6:00PM','ECUSEQULOA',NULL,NULL,NULL,'202210119','Oct 11 2022 12:00AM','Dec 30 1899 12:00AM','201910011','144','','','201910011',dbo.fn_GetTimedKey(),NULL,'us3kEpCIS1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -309,7 +309,7 @@ CREATE TABLE [dbo].[U_ECUSEQULOA_drvTbl] (
     [drvSort] varchar(1) NOT NULL,
     [drvEmployerFEIN] char(9) NULL,
     [drvEmployeeUniqueIdentifier] char(11) NULL,
-    [drvIsInvalid] varchar(3) NOT NULL,
+    [drvIsInvalid] varchar(2) NOT NULL,
     [drvLOAStartDate] datetime NULL,
     [drvLOAEndDate] datetime NULL,
     [drvLOAHours] decimal NULL
@@ -500,7 +500,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvEmployerFEIN = CmpFedTaxID
         ,drvEmployeeUniqueIdentifier = EepSSN
-        ,drvIsInvalid = 'No' --CASE WHEN EecEmplStatus IN ( 'A', 'T', 'S', 'L', 'R' ) THEN 'Yes' ELSE 'No' END
+        ,drvIsInvalid = 'No'   --CASE WHEN EecEmplStatus IN ( 'L') THEN 'Yes' ELSE 'No' END
         ,drvLOAStartDate = CASE WHEN EshEmplStatus = 'L' THEN EshStatusStartDate END
         ,drvLOAEndDate = CASE WHEN EshEmplStatus  = 'L' THEN EshStatusStopDate  END
         ,drvLOAHours =  CASE WHEN EecEmplStatus IN ( 'A', 'L')  AND PehEarnCode = 'INTUN' THEN CurHours END
@@ -547,6 +547,7 @@ BEGIN
         AND EshCOID = xCOID
           WHERE  audLOA = 'Y'
           and isnull(EepSSN, '')  <> ''
+          AND eeceetype = 'REG' and xCoID in ('OEXEV','UVGMB','39NL5','UVGS') 
     --==========================================
     -- Set FileName
     --==========================================

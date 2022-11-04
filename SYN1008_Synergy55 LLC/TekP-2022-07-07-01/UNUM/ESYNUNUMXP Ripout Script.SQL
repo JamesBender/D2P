@@ -5,7 +5,7 @@ ESYNUNUMXP: UNUM LIFE
 FormatCode:     ESYNUNUMXP
 Project:        UNUM LIFE
 Client ID:      SYN1008
-Date/time:      2022-09-22 13:33:48.073
+Date/time:      2022-10-28 12:23:51.637
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -271,7 +271,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20220922.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESYNUNUMXP_20221028.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -282,7 +282,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208189','EMPEXPORT','OEPASSIVE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE ONDEM','202208189','EMPEXPORT','ONDEM_XOE',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE Sched','202208189','EMPEXPORT','SCH_ESYNUN',NULL,'ESYNUNUMXP',NULL,NULL,NULL,'202208189','Aug 18 2022  2:46PM','Aug 18 2022  2:46PM','202208181',NULL,'','','202208181',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE Test','202209099','EMPEXPORT','TEST_XOE','Sep  9 2022 12:00AM','ESYNUNUMXP',NULL,NULL,NULL,'202209099','Sep  9 2022 12:00AM','Dec 30 1899 12:00AM','202208311',NULL,'','','202208311',dbo.fn_GetTimedKey(),NULL,'us3kEpSYN1008',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','516RA,516UK,516D5,51674,KGM6D,BFBZ1,8V0N2,PU4I4,8V0S6,8V0TG,8V0PH',NULL,NULL,NULL,'UNUM LIFE Test','202210289','EMPEXPORT','TEST_XOE','Oct 28 2022 12:00AM','ESYNUNUMXP',NULL,NULL,NULL,'202210289','Oct 28 2022 12:00AM','Dec 30 1899 12:00AM','202210211','953','','','202210211',dbo.fn_GetTimedKey(),NULL,'us3kEpSYN1008',NULL);
 
 -----------
 -- AscImp inserts
@@ -664,7 +664,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'VLFEE,VLFCH,VLFSP,VADDC,VADDE,VADDS,GTL,GADD,LTDER';
+    SET @DedList = 'VLFEE,VLFCH,VLFSP,VADDC,VADDE,VADDS,GLIFE,GADD,LTDER'-- Client requested replacing GTL with GLIFE
 
     IF OBJECT_ID('U_ESYNUNUMXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ESYNUNUMXP_DedList;
@@ -840,14 +840,14 @@ SELECT DISTINCT
         ,drvSPOUSEGDR = CASE WHEN VLFSP IN ('VLFSP') THEN (select Top 1 ConGender from Contacts where ConRelationship In ('SPS','DP') and ConEEID = xEEID) END
         ,drvSPOUSEDOB = CASE WHEN VLFSP IN ('VLFSP') THEN (select Top 1 ConDateOfBirth from Contacts where ConRelationship In ('SPS','DP') and ConEEID = xEEID) END
         ,drvCLASS = CASE WHEN VLFSP IN ('VLFSP') or VLFEE IN ('VLFEE') OR VLFCH in ('VLFCH')  OR VADDC in ('VADDC')  OR VADDE IN ('VADDE') OR VADDS IN ('VADDS' )THEN '1000' 
-                         WHEN GTL in ('GTL') or  GADD in ('GADD') OR LTDER IN ('LTDER') THEN '1001'
+                         WHEN GLIFE in ('GLIFE') or  GADD in ('GADD') OR LTDER IN ('LTDER') THEN '1001' -- Replaced GTL
                     END
-        ,drvSIGNATUREDATE = CASE WHEN Ltrim(RTrim(PolicyNumber)) = '915349'   THEN Signature_Date END
+        ,drvSIGNATUREDATE = CASE WHEN Ltrim(RTrim(PolicyNumber)) = '915349'   THEN dbo.dsi_fnGetMinMaxDates('MAX',Signature_Date, '07/01/2022') END
         ,drvEFFECTIVEDATE = CASE WHEN audReHire = 'Y' THEN EecDateOfLastHire
                                  WHEN audTerm = 'Y' THEN EecDateOfTermination
                                  WHEN audSalaryChange = 'Y' THEN EjhJobEffDate
-                                 ELSE 
-                                 BENEFIT_STARTDATE
+                                 ELSE dbo.dsi_fnGetMinMaxDates('MAX',BENEFIT_STARTDATE, '07/01/2022')
+                    
                             END
         ,drvADDTYPE = CASE WHEN EXISTS(select top 1 * from U_ESYNUNUMXP_Audit where audAction = 'Update' and audFieldName = 'EecFullTimeOrPartTime' and audEEID = xEEID and Audkey2 = xCOID and audOldValue = 'P' and audNewValue = 'F') and EecFullTimeOrPartTime = 'F' THEN 'O' ELSE '' END
         ,drvBENEFITID1 = CASE WHEN VLFEE IN ('VLFEE') THEN 'LM' END
@@ -855,7 +855,7 @@ SELECT DISTINCT
         ,drvBENEFITQUALIFYINGDATE1 = CASE WHEN VLFEE_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFEE_BenefitDate END
         ,drvBENEFITTERMDATE1 = CASE WHEN VLFEE IN ('VLFEE') and EecEmplStatus <> 'T' THEN VLFEE_StopDate END
-        ,drvBENEFITSELECTIONAMOUNT1 = CASE WHEN format(VLFEE_EEAmt,'#0.00')  > '0.00' THEN format(isnull(VLFEE_EEAmt, ''),'#0.00') else NULL END
+        ,drvBENEFITSELECTIONAMOUNT1 = CASE WHEN format(VLFEE_EEAmt,'#0.00') <> '0.00' THEN format(isnull(VLFEE_EEAmt, ''),'#0.00') else NULL END
         
         ,drvBENEFITID2 = CASE WHEN VLFSP IN ('VLFSP') THEN 'LS' END
         ,drvPLANCODE2 = CASE WHEN VLFSP IN ('VLFSP') THEN '5.AN3B' END
@@ -869,7 +869,7 @@ SELECT DISTINCT
         ,drvBENEFITQUALIFYINGDATE3 =  CASE WHEN VLFCH_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
                     THEN VLFCH_BenefitDate END
         ,drvBENEFITTERMDATE3 = CASE WHEN VLFCH IN ('VLFCH')  and  EecEmplStatus <> 'T' THEN VLFCH_StopDate END
-        ,drvBENEFITSELECTIONAMOUNT3 = CASE WHEN  format(VLFCH_EEAmt,'#0.00')  <> '0.00' THEN format(isnull(VADDE_EEAmt, ''),'#0.00')  else NULL END
+        ,drvBENEFITSELECTIONAMOUNT3 = CASE WHEN  format(VLFCH_EEAmt,'#0.00')  <> '0.00' THEN format(isnull(VLFCH_EEAmt, ''),'#0.00')  else NULL END
         ,drvBENEFITID4 = CASE WHEN VADDE IN ('VADDE') THEN 'AM' END
         ,drvPLANCODE4 = CASE WHEN VADDE IN ('VADDE') THEN '5.0N29' END
         ,drvBENEFITQUALIFYINGDATE4 = CASE WHEN VADDE_ChangeReason IN ('LEVNT2', 'LEVNT3', 'LEVNT4', 'LEVNT5', '105', '201', '202', '203', '204', '210', '300', '303')
@@ -901,7 +901,7 @@ SELECT DISTINCT
           JOIN (
              Select Distinct  EedEEID, Eedcoid,PolicyNumber = CASE 
                                 WHEN EedDedCode  IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS') THEN ' 915349' 
-                                WHEN EedDedCode  IN ('GTL', 'GADD', 'LTDER')  THEN '915346' 
+                                WHEN EedDedCode  IN ('GLIFE', 'GADD', 'LTDER')  THEN '915346' -- Replaced GTL
                                END
            
             
@@ -943,7 +943,7 @@ SELECT DISTINCT
             ,VADDE_EEAmt = MAX((CASE WHEN EedDedCode  IN ('VADDE') then   EedBenAmt  END))
             ,VADDE_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('VADDE') then  EdhChangeReason END))
 
-            ,BENEFIT_STARTDATE = MAX((CASE WHEN EedDedCode  IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS', 'GTL', 'GADD', 'LTDER') then  EedBenStartDate END))
+            ,BENEFIT_STARTDATE = MAX((CASE WHEN EedDedCode  IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS', 'GLIFE', 'GADD', 'LTDER') then  EedBenStartDate END))-- Replaced GTL
             ,VADDS = MAX((CASE WHEN EedDedCode  IN ('VADDS') then EedDedCode  END))
             ,VADDS_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  EedEEEligDate END))
             ,VADDS_StartDate = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  EedBenStartDate END))
@@ -953,7 +953,7 @@ SELECT DISTINCT
             --,VADDS_BenOption = MAX((CASE WHEN EedDedCode  IN ('VADDS') then  bdmBenOption END))
 
             ,Signature_Date = MAX((CASE WHEN EedDedCode  IN ('VLFCH', 'VLFEE', 'VLFSP') then  EedBenStartDate END)) 
-            ,GTL = MAX((CASE WHEN EedDedCode  IN ('GTL')  then EedDedCode  END))
+            ,GLIFE = MAX((CASE WHEN EedDedCode  IN ('GLIFE')  then EedDedCode  END)) -- Replaced GTL
             --,GTL_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  EedEEEligDate END))
             --,GTL_StartDate = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  EedBenStartDate END))
             --,GTL_StopDate = MAX((CASE WHEN EedDedCode  IN ('GTL') and  EedBenAmt  > 0 then  EedBenStopDate END))
@@ -983,12 +983,12 @@ SELECT DISTINCT
             JOIN dbo.EmpHDed WITH (NOLOCK)
                 ON edhEEID = EedEEID
                 AND EdhDedCode= EedDedCode
-            where  EedDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS', 'GTL', 'GADD', 'LTDER')
+            where  EedDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS', 'GLIFE', 'GADD', 'LTDER')-- Replaced GTL
                             AND EedFormatCode = 'ESYNUNUMXP'
                         
             GROUP BY EedEEID,Eedcoid,CASE 
                                 WHEN EedDedCode IN ('VLFEE','VLFCH','VLFSP','VADDC','VADDE','VADDS') THEN ' 915349' 
-                                WHEN EedDedCode IN ('GTL', 'GADD', 'LTDER') THEN '915346' 
+                                WHEN EedDedCode IN ('GLIFE', 'GADD', 'LTDER') THEN '915346' -- Replaced GTL
                                END
                      
     ) as BdmConsolidated 

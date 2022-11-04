@@ -4,16 +4,17 @@ EGPVITDEMO: Vitality Wellness Demo Export
 
 FormatCode:     EGPVITDEMO
 Project:        Vitality Wellness Demo Export
-Client ID:      USG1000
-Date/time:      2022-10-12 12:27:50.600
+Client ID:      GRE1021
+Date/time:      2022-10-17 13:41:35.103
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EGPVITDEMO_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW2WUP3DB03
+Database:       ULTIPRO_WPGREPL
+Web Filename:   GRE1021_96C5A_EEHISTORY_EGPVITDEMO_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -224,7 +225,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGPVITDEMO_20221012.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGPVITDEMO_20221017.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -235,7 +236,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210129','EMPEXPORT','OEPASSIVE',NULL,'EGPVITDEMO',NULL,NULL,NULL,'202210129','Oct 12 2022 11:52AM','Oct 12 2022 11:52AM','202210121',NULL,'','','202210121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Vitality Wellness Demo Export','202210129','EMPEXPORT','ONDEM_XOE',NULL,'EGPVITDEMO',NULL,NULL,NULL,'202210129','Oct 12 2022 11:52AM','Oct 12 2022 11:52AM','202210121',NULL,'','','202210121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Vitality Wellness Demo E-Sched','202210129','EMPEXPORT','SCH_EGPVIT',NULL,'EGPVITDEMO',NULL,NULL,NULL,'202210129','Oct 12 2022 11:52AM','Oct 12 2022 11:52AM','202210121',NULL,'','','202210121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Vitality Wellness Demo E-Test','202210129','EMPEXPORT','TEST_XOE',NULL,'EGPVITDEMO',NULL,NULL,NULL,'202210129','Oct 12 2022 11:52AM','Oct 12 2022 11:52AM','202210121',NULL,'','','202210121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Vitality Wellness Demo E-Test','202210129','EMPEXPORT','TEST_XOE',NULL,'EGPVITDEMO',NULL,NULL,NULL,'202210129','Oct 12 2022 11:52AM','Oct 12 2022 11:52AM','202210121',NULL,'','','202210121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -247,11 +248,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EGPVITDEMO','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -266,12 +268,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGPVITDEMO','D10','dbo.U_EGPVITDEMO_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -600,8 +602,8 @@ BEGIN
         ,drvInitialSort = ''
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
-        ,drvUniqueIdentifier = 'GUP' + Convert(Varchar(8),EepDateOfBirth,112) + Right(EepSSN,5) + 'P'
-        ,drvPrimaryEmployeeID = Right(EepSSN,5) + Convert(Varchar(8),EepDateOfBirth,112)
+        ,drvUniqueIdentifier = 'GUP' + Convert(Varchar(8),EepDateOfBirth,112) + Right(ltrim(rtrim(EepSSN)),5) + 'P'
+        ,drvPrimaryEmployeeID = Right(ltrim(rtrim(EepSSN)),5) + Convert(Varchar(8),EepDateOfBirth,112)
         ,drvSecondaryEmployeeID = ''
         ,drvProductCodeEffectiveDate = CASE WHEN  Convert(Varchar(10),EecDateOfLastHire,101) >= '01/01/2023' then Convert(Varchar(10),EecDateOfLastHire,101) else '01/01/2023' END
         ,drvEmployerBranchID = CASE WHEN EecLocation  = 'CORP' and BdmDedCode IN ('MD4', 'MD1' , 'HDP35') then 'CM'
@@ -632,14 +634,16 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.U_dsi_BDM_EGPVITDEMO WITH (NOLOCK)
         ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+       AND BdmCoID = xCoID
      LEFT JOIN (
                 SELECT OrgCode AS OrgLvl1Code, OrgDesc AS OrgLvl1Desc
-                FROM dbo.vw_int_OrgLevel WITH (NOLOCK)) AS Lvl1
+                FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
+                Where  Orglvl = '1') AS Lvl1
         ON EecOrgLvl1 = OrgLvl1Code
      LEFT JOIN (
                 SELECT OrgCode AS OrgLvl4Code, OrgDesc AS OrgLvl4Desc
-                FROM dbo.vw_int_OrgLevel WITH (NOLOCK)) AS Lvl4
+                FROM dbo.vw_int_OrgLevel WITH (NOLOCK)
+                Where  Orglvl = '4') AS Lvl4
         ON EecOrgLvl4 = OrgLvl4Code
     LEFT JOIn dbo.U_EGPVITDEMO_Audit WITH (NOLOCK)
         ON audEEID= xEEID
