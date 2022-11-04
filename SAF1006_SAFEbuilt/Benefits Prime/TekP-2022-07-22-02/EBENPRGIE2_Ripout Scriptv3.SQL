@@ -5,7 +5,7 @@ EBENPRGIE2: Benefits Prime Demographic ExportV2
 FormatCode:     EBENPRGIE2
 Project:        Benefits Prime Demographic ExportV2
 Client ID:      SAF1006
-Date/time:      2022-09-28 13:58:44.177
+Date/time:      2022-11-04 11:02:36.980
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -159,16 +159,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBENPRGIE2_20220928.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBENPRGIE2_20221104.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Benefits Prime Demographic Exp','202208109','EMPEXPORT','ONDEM_XOE',NULL,'EBENPRGIE2',NULL,NULL,NULL,'202208109','Aug 21 2020 12:37PM','Aug 21 2020 12:37PM','202208101',NULL,'','','202208101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',CWMD1,V7CQG',NULL,NULL,NULL,'Benefits Prime Demograph-Sched','202208109','EMPEXPORT','SCH_EBENPR',NULL,'EBENPRGIE2',NULL,NULL,NULL,'202208109','Aug 21 2020 12:37PM','Aug 21 2020 12:37PM','202208101',NULL,'','','202208101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Benefits Prime Demograph-Test','202208109','EMPEXPORT','TEST_XOE','Sep 10 2022 12:00AM','EBENPRGIE2',NULL,NULL,NULL,'202208109','Aug 10 2022 12:00AM','Dec 30 1899 12:00AM','202208101','1246','','','202208101',dbo.fn_GetTimedKey(),NULL,'us3cPeSAF1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Benefits Prime Demographic Exp','202210269','EMPEXPORT','ONDEM_XOE',NULL,'EBENPRGIE2',NULL,NULL,NULL,'202210269','Aug 21 2020 12:37PM','Aug 21 2020 12:37PM','202208151',NULL,'','','202208151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',CWMD1,V7CQG',NULL,NULL,NULL,'Benefits Prime Demograph-Sched','202210269','EMPEXPORT','SCH_EBENPR',NULL,'EBENPRGIE2',NULL,NULL,NULL,'202210269','Aug 21 2020 12:37PM','Aug 21 2020 12:37PM','202208151',NULL,'','','202208151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Benefits Prime Demograph-Test','202210269','EMPEXPORT','TEST_XOE','Oct 26 2022  8:44AM','EBENPRGIE2',NULL,NULL,NULL,'202210269','Oct 26 2022 12:00AM','Dec 30 1899 12:00AM','202208151','1337','','','202208151',dbo.fn_GetTimedKey(),NULL,'us3cPeSAF1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -223,7 +223,10 @@ CREATE TABLE [dbo].[U_EBENPRGIE2_Audit] (
     [audDateTime] datetime NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL
+    [audRowNo] bigint NULL,
+    [AudTerm] varchar(1) NOT NULL,
+    [AudFullPart] varchar(1) NOT NULL,
+    [AudPriorSalary] varchar(1) NOT NULL
 );
 
 -----------
@@ -297,6 +300,7 @@ Revision History
 ----------------
 Update By           Date           Request Num        Desc
 Marie Waters      08/01/2022     TekP-2022-07-22-02   Remove and add columns
+Marie Waters      11/04/2022     TekP-2022-07-22-02   Removed '401' from being excluded 11/22 and changed how Prior Salary was being pulled. 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EBENPRGIE2';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EBENPRGIE2';
@@ -360,15 +364,15 @@ BEGIN
     
     -- Insert tables/fields to be audited
     INSERT INTO dbo.U_EBENPRGIE2_AuditFields VALUES ('EmpComp','EecFulltimeorParttime');  
-   -- INSERT INTO dbo.U_EBENPRGIE2_AuditFields VALUES ('EmpComp','EecTermReason');
+    INSERT INTO dbo.U_EBENPRGIE2_AuditFields VALUES ('EmpComp','EecAnnSalary');
     INSERT INTO dbo.U_EBENPRGIE2_AuditFields VALUES ('EmpComp','EecEmplStatus');
              
     -- Create audit table
     IF OBJECT_ID('U_EBENPRGIE2_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EBENPRGIE2_Audit;
-  SELECT *
+    SELECT *
   INTO dbo.U_EBENPRGIE2_Audit 
-  FROM (SELECT 
+ FROM (SELECT 
          audEEID  = audKey1Value
         ,audKey2 = audKey2Value
         ,audKey3 = audKey3Value
@@ -379,6 +383,9 @@ BEGIN
         ,audOldValue 
         ,audNewValue
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+        ,AudTerm = CASE WHEN   audFieldName = 'EecEmplStatus' and audNewValue IN ('T') THEN 'Y' ELSE 'N' END
+        ,AudFullPart = CASE WHEN  audFieldName = 'EecFullTimeOrPartTime' and audOldValue  = 'F' and audNewValue  = 'P' THEN 'Y' ELSE 'N' END
+        ,AudPriorSalary = CASE WHEN audFieldName = 'EecAnnSalary' AND audoldvalue <> '0' AND audNewValue <> '0' THEN 'Y' ELSE 'N' END
     FROM dbo.vw_AuditData WITH (NOLOCK) 
     JOIN dbo.U_EBENPRGIE2_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
@@ -386,8 +393,7 @@ BEGIN
     
         WHERE audDateTime BETWEEN  dateadd(D, -14, @StartDate) AND @EndDate
              AND audAction = 'Update'
-             and  audFieldName = 'EecEmplStatus'
-             and audNewValue In ('T')
+          
         Group by    audKey1Value
         , audKey2Value
         ,audKey3Value
@@ -398,40 +404,6 @@ BEGIN
         ,audOldValue
         ,audNewValue) rn
         where audRowNo = 1
-
-    Union 
-
-    Select * from (Select   audEEID  = audKey1Value
-                            ,audKey2 = audKey2Value
-                            ,audKey3 = audKey3Value
-                            ,audTableName2 =audTableName
-                            ,audFieldName2 = audFieldName
-                            ,audAction2 = audAction
-                            ,audDateTime2 =audDateTime
-                            ,audOldValue2 = audOldValue 
-                            ,audNewValue2 =audNewValue
-                            ,audRowNo2 = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-                            FROM dbo.vw_AuditData WITH (NOLOCK) 
-                        JOIN dbo.U_EBENPRGIE2_AuditFields WITH (NOLOCK) 
-                            ON audTableName = aTableName
-                            AND audFieldName = aFieldName
-                             WHERE audDateTime BETWEEN  @StartDate  AND @EndDate
-                                 and audAction = 'Update'
-                                and audFieldName = 'EecFullTimeOrPartTime'
-                                and audOldValue  = 'F' and audNewValue = 'P'
-                            Group by    audKey1Value
-                            ,audKey2Value
-                            ,audKey3Value
-                            ,audTableName
-                            ,audFieldName
-                            ,audAction
-                            ,audDateTime 
-                            ,audOldValue
-                            ,audNewValue
-                            ) rn
-                            where audRowNo2 = 1
-                            
-       
        
 
     -- Create Index
@@ -453,12 +425,12 @@ BEGIN
         ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
-        ,drvEffectiveSalaryDate = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
+        ,drvEffectiveSalaryDate = Case when isnull(MaxJobEffDate, '') <> '' THEn MaxJobEffDate else  dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, EecDateInJob, EecDateOfLastHire) END --dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         ,drvWorkLocationState = LocAddressState
        -- ,drvAlternativeEmail = EepAddressEMailAlternate
        -- ,drvPreferredLanguage = EecLanguageCode
         ,drvBusinessTitle = REPLACE(JbcDesc, ',', ' ') --REPLACE(EecJobtitle, ',', ' ') --
-        ,drvPreviousAnnualSalary = Format(CASE WHEN ejhannsalary is not null THEN ejhannsalary  END, '0.00')
+        ,drvPreviousAnnualSalary = CASE WHEN ISNULL(AudPriorSal,'') <> ''  THEN FORMAT(cast(AudPriorSal  as numeric),'0.00') END
         ,drvDateLastWorked = CASE WHEN EecEmplStatus = 'T' THEN EecDateLastWorked END
         ,drvUKGTermReason =  CASE WHEN EecTermReason = '202' THEN 'Retirement/Early Retirement'
                                   WHEN EecTermReason = '203' THEN 'Death'
@@ -478,21 +450,30 @@ BEGIN
         ON EecJobCode = jbcJobCode
     Left Join dbo.U_EBENPRGIE2_Audit  WITH (NOLOCK)
         ON audEEID = xEEID
-    LEFT JOIN (SELECT  EjhEEID, EjhCOID, EjhReason, Max(EjhJobEffDate) AS MaxJobEffDate, ejhannsalary
-                FROM (
-                        SELECT distinct EjhEEID, EjhCOID, EjhReason, EjhJobEffDate, ejhannsalary ,ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
-                        FROM dbo.EmpHJob WITH (NOLOCK)
-                         Join dbo.U_EBENPRGIE2_Audit  WITH (NOLOCK)
-                         ON audEEID = EjhEEID
-                        Where audFieldName  = 'EecFullTimeOrPartTime'
-                        AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate) AS InnerEjh
-                WHERE RN = 1
-                --and ejheeid = 'CF536K01O0K0'
-                Group By EjhEEID, EjhCOID, EjhReason ,ejhannsalary) SAL
+    LEFT JOIN (    
+                    SELECT  EjhEEID, EjhCOID, EjhReason, Max(AudDateTime) AS MaxJobEffDate, ejhannsalary,  FORMAT(cast(audoldValue as numeric),'0.00')  AS AudPriorSal
+                       FROM ( SELECT distinct EjhEEID, EjhCOID, EjhReason, AudDateTime, ejhannsalary, audoldValue ,ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY AudDateTime, EjhJobEffDate  DESC) AS RN
+                                    FROM dbo.EmpHJob WITH (NOLOCK)
+                                    Join dbo.U_EBENPRGIE2_Audit  WITH (NOLOCK)
+                                     ON audEEID = EjhEEID
+                                    Where audFieldName  = 'EecAnnSalary'
+                                    and AudPriorSalary = 'Y'
+                                    AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate
+                                    and audEEID in (select aud.audeeid from dbo.U_EBENPRGIE2_Audit aud WITH (NOLOCK)
+                                                        Where aud.audFieldName  = 'EecFullTimeOrPartTime'
+                                                        and aud.AudFullPart  = 'Y'
+                                                        AND aud.AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate
+                                                        and   audRowNo = 1
+                                                        )                       
+                        ) AS InnerEjh
+                  WHERE RN = 1
+                --and  EjhEEID = 'E711HU000030'
+                Group by EjhEEID, EjhCOID, EjhReason, AudDateTime, ejhannsalary, audOldValue ) SAL
+   
             ON EjhEEID = xEEID
             and EjhCOID = xCOID
 
-    WHERE ( EecOrgLvl3 <> 'ACQ' and EecEEType NOT IN  ( 'TES', 'CON', 'Z', 'BRD') and EecDedGroupCode NOT IN  ('NONE' , '401'))
+    WHERE ( EecOrgLvl3 <> 'ACQ' and EecEEType NOT IN  ( 'TES', 'CON', 'Z', 'BRD') and EecDedGroupCode NOT IN  ('NONE' )) -- Removed '401' from being excluded 11/22
     and (EecEmplStatus <> 'T' or (  EecEmplStatus <> 'T' OR (AudNewValue = 'T'  AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate)))
     ;
 
@@ -524,10 +505,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202209151'
-       ,expStartPerControl     = '202209151'
-       ,expLastEndPerControl   = '202209269'
-       ,expEndPerControl       = '202209269'
+    SET expLastStartPerControl = '202208151'
+       ,expStartPerControl     = '202208151'
+       ,expLastEndPerControl   = '202210269'
+       ,expEndPerControl       = '202210269'
 WHERE expFormatCode = 'EBENPRGIE2';
 
 **********************************************************************************/
