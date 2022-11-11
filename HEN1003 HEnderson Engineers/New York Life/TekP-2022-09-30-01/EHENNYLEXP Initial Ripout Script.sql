@@ -4,15 +4,15 @@ EHENNYLEXP: NY Life LTD/STD Export
 
 FormatCode:     EHENNYLEXP
 Project:        NY Life LTD/STD Export
-Client ID:      HEN1003
-Date/time:      2022-11-11 11:24:34.010
+Client ID:      USG1000
+Date/time:      2022-11-08 16:54:35.720
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EWP
-Server:         EW3WUP4DB03
-Database:       ULTIPRO_WPHNDRS
-Web Filename:   HEN1003_C9727_EEHISTORY_EHENNYLEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+Environment:    EZ24
+Server:         EZ2SUP4DB01
+Database:       ULTIPRO_YOSHI
+Web Filename:   USG1000_12634_EEHISTORY_EHENNYLEXP_ExportCode_YYYYMMDD_HHMMSS.txt
 ExportPath:    
 TestPath:      
 
@@ -122,10 +122,6 @@ IF OBJECT_ID('U_EHENNYLEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHENNYLEXP_d
 GO
 IF OBJECT_ID('U_EHENNYLEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EHENNYLEXP_DedList];
 GO
-IF OBJECT_ID('U_EHENNYLEXP_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EHENNYLEXP_AuditFields];
-GO
-IF OBJECT_ID('U_EHENNYLEXP_Audit') IS NOT NULL DROP TABLE [dbo].[U_EHENNYLEXP_Audit];
-GO
 IF OBJECT_ID('U_dsi_BDM_EHENNYLEXP') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EHENNYLEXP];
 GO
 
@@ -141,7 +137,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EHENNYLEXPZ0','2','H','01','1',NULL,'File Record Identifier',NULL,NULL,'"HD"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EHENNYLEXPZ0','15','H','01','2',NULL,'DUNS Number',NULL,NULL,'"783933336"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHENNYLEXPZ0','1','H','01','3',NULL,'Production/Test Indicator',NULL,NULL,'"drvProdTestIndicator"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHENNYLEXPZ0','1','H','01','3',NULL,'Production/Test Indicator',NULL,NULL,'"drvProdTestIndicator"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHENNYLEXPZ0','8','H','01','4',NULL,'File Creation Date',NULL,NULL,'"drvFileCreationDate"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EHENNYLEXPZ0','35','H','01','5',NULL,'Employer Name',NULL,NULL,'"Henderson Companies"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EHENNYLEXPZ0','1','H','01','6',NULL,'File Type',NULL,NULL,'"2"','(''DA''=''F'')');
@@ -165,7 +161,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EHENNYLEXPZ0','8','D','10','15',NULL,'Employee Date of Birth',NULL,NULL,'"drvDateOfBirth"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EHENNYLEXPZ0','1','D','10','16',NULL,'Employee Gender',NULL,NULL,'"drvGender"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EHENNYLEXPZ0','1','D','10','17',NULL,'Employee Marital Status',NULL,NULL,'"drvMaritalStatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHENNYLEXPZ0','4','D','10','18',NULL,'Employeeâ€™s PIN Number',NULL,NULL,'""','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHENNYLEXPZ0','4','D','10','18',NULL,'Employee’s PIN Number',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EHENNYLEXPZ0','1','D','10','19',NULL,'Employee Smoker Status',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EHENNYLEXPZ0','34','D','10','20',NULL,'Employee E-mail Address',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EHENNYLEXPZ0','1','D','10','21',NULL,'Reserved',NULL,NULL,'""','(''DA''=''F'')');
@@ -203,7 +199,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','EHENNYLEXPZ0','1','D','10','53',NULL,'Commission Bonus Indicator',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','EHENNYLEXPZ0','1','D','10','54',NULL,'Work At Home Indicator',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','EHENNYLEXPZ0','1','D','10','55',NULL,'Exempt Indicator',NULL,NULL,'""','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','EHENNYLEXPZ0','5','D','10','56',NULL,'Number of Hours Worked Per Week',NULL,NULL,'"drvNumberofHoursWorkedPerWeek"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','EHENNYLEXPZ0','5','D','10','56',NULL,'Number of Hours Worked Per Week',NULL,NULL,'"drvNumberofHoursWorkedPerSeek"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','EHENNYLEXPZ0','2','D','10','57',NULL,'Tax Filing State Code',NULL,NULL,'"drvTaxFilingState"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','EHENNYLEXPZ0','9','D','10','58',NULL,'Occupation Classification Code',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','EHENNYLEXPZ0','65','D','10','59',NULL,'Job Description',NULL,NULL,'""','(''DA''=''F'')');
@@ -218,7 +214,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','EHENNYLEXPZ0','30','D','10','68',NULL,'Health Plan Description',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','EHENNYLEXPZ0','6','D','10','69',NULL,'Accrued Sick Time',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','EHENNYLEXPZ0','1','D','10','70',NULL,'Key Employee Indicator',NULL,NULL,'""','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','EHENNYLEXPZ0','4','D','10','71',NULL,'Actual Annual Hours',NULL,NULL,'"drvActualAnnualHours"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','EHENNYLEXPZ0','4','D','10','71',NULL,'Actual Annual Hours',NULL,NULL,'"drvActualAnnualHours"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EHENNYLEXPZ0','2','D','10','72',NULL,'Work State',NULL,NULL,'"drvWorkState"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','EHENNYLEXPZ0','9','D','10','73',NULL,'Washington UBI',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EHENNYLEXPZ0','20','D','10','74',NULL,'Reserved',NULL,NULL,'""','(''DA''=''F'')');
@@ -348,7 +344,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHENNYLEXP_20221111.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHENNYLEXP_20221108.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -401,6 +397,11 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 
 -----------
+-- U_dsi_Translations_v3 inserts
+-----------
+
+
+-----------
 -- Create table U_dsi_BDM_EHENNYLEXP
 -----------
 
@@ -449,34 +450,6 @@ CREATE TABLE [dbo].[U_dsi_BDM_EHENNYLEXP] (
 );
 
 -----------
--- Create table U_EHENNYLEXP_Audit
------------
-
-IF OBJECT_ID('U_EHENNYLEXP_Audit') IS NULL
-CREATE TABLE [dbo].[U_EHENNYLEXP_Audit] (
-    [audEEID] varchar(255) NOT NULL,
-    [audKey2] varchar(255) NOT NULL,
-    [audKey3] varchar(255) NOT NULL,
-    [audTableName] varchar(128) NOT NULL,
-    [audFieldName] varchar(128) NOT NULL,
-    [audAction] varchar(6) NOT NULL,
-    [audDateTime] datetime NOT NULL,
-    [audOldValue] nvarchar(2000) NULL,
-    [audNewValue] nvarchar(2000) NULL,
-    [audRowNo] bigint NULL
-);
-
------------
--- Create table U_EHENNYLEXP_AuditFields
------------
-
-IF OBJECT_ID('U_EHENNYLEXP_AuditFields') IS NULL
-CREATE TABLE [dbo].[U_EHENNYLEXP_AuditFields] (
-    [aTableName] varchar(30) NULL,
-    [aFieldName] varchar(30) NULL
-);
-
------------
 -- Create table U_EHENNYLEXP_DedList
 -----------
 
@@ -504,7 +477,7 @@ CREATE TABLE [dbo].[U_EHENNYLEXP_drvTbl] (
     [drvNameSuffix] varchar(30) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvGender] char(1) NULL,
-    [drvMaritalStatus] varchar(1) NULL,
+    [drvMaritalStatus] char(1) NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
@@ -513,20 +486,19 @@ CREATE TABLE [dbo].[U_EHENNYLEXP_drvTbl] (
     [drvEECountry] varchar(6) NOT NULL,
     [drvCountryCode] varchar(2) NOT NULL,
     [drvPhoneNumber] varchar(50) NULL,
-    [drvEmploymentStatusCode] varchar(2) NULL,
+    [drvEmploymentStatusCode] varchar(2) NOT NULL,
     [drvEmployeeStatusEffDate] datetime NULL,
-    [drvEmployeeType] varchar(1) NULL,
+    [drvEmployeeType] char(3) NULL,
     [drvDateOfLastHire] datetime NULL,
-    [drvEarningsForDisabProduct] nvarchar(4000) NULL,
+    [drvEarningsForDisabProduct] varchar(1) NOT NULL,
     [drvSalariedIndicator] varchar(1) NOT NULL,
     [drvFullTimeIndicator] varchar(1) NOT NULL,
-    [drvNumberofHoursWorkedPerWeek] varchar(30) NULL,
-    [drvTaxFilingState] varchar(2) NULL,
-    [drvActualAnnualHours] varchar(24) NULL,
+    [drvNumberofHoursWorkedPerSeek] varchar(1) NOT NULL,
+    [drvTaxFilingState] varchar(255) NULL,
     [drvWorkState] varchar(255) NULL,
-    [drvProvisionEffectiveDate] datetime NULL,
+    [drvProvisionEffectiveDate] varchar(1) NOT NULL,
     [drvExtendedEEEmailAddress] varchar(50) NULL,
-    [drvExtendedSupEmailAddress1] varchar(256) NULL
+    [drvExtendedSupEmailAddress1] varchar(255) NULL
 );
 
 -----------
@@ -559,8 +531,7 @@ CREATE TABLE [dbo].[U_EHENNYLEXP_File] (
 
 IF OBJECT_ID('U_EHENNYLEXP_Header') IS NULL
 CREATE TABLE [dbo].[U_EHENNYLEXP_Header] (
-    [drvProdTestIndicator] varchar(1) NOT NULL,
-    [drvFileCreationDate] datetime NOT NULL
+    [drvFileCreationDate] varchar(1) NOT NULL
 );
 
 -----------
@@ -569,7 +540,7 @@ CREATE TABLE [dbo].[U_EHENNYLEXP_Header] (
 
 IF OBJECT_ID('U_EHENNYLEXP_Trailer') IS NULL
 CREATE TABLE [dbo].[U_EHENNYLEXP_Trailer] (
-    [drvNumberOfRecords] nvarchar(4000) NULL
+    [drvNumberOfRecords] varchar(1) NOT NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHENNYLEXP]
@@ -644,10 +615,6 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EHENNYLEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-    --Clean Terms not within date Range
-    DELETE FROM dbo.U_EHENNYLEXP_EEList WHERE xEEID IN (SELECT EecEEID FROM dbo.EmpComp WITH (NOLOCK) 
-    WHERE EecEmplStatus = 'T' AND EecDateOfTermination NOT BETWEEN @StartDate AND @EndDate)
-
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -694,10 +661,6 @@ BEGIN
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-
-
-
-
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -707,31 +670,26 @@ BEGIN
     IF OBJECT_ID('U_EHENNYLEXP_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EHENNYLEXP_drvTbl;
     SELECT DISTINCT
-            drvEEID = xEEID
+         drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvEmployeeIdNumber = EecEmpNo
-        ,drvNameLast = Upper(EepNameLast)
-        ,drvNameFirst = Upper(EepNameFirst)
-        ,drvNameMiddle = Upper(LEFT(EepNameMiddle,1))
-        ,drvNameSuffix = Upper(NULLIF(EepNameSuffix,'Z'))
+        ,drvNameLast = EepNameLast
+        ,drvNameFirst = EepNameFirst
+        ,drvNameMiddle = LEFT(EepNameMiddle,1)
+        ,drvNameSuffix = NULLIF(EepNameSuffix,'Z')
         ,drvDateOfBirth = EepDateOfBirth
         ,drvGender = EepGender
-        ,drvMaritalStatus = CASE eepMaritalStatus WHEN 'D' THEN 'D'
-                                                  WHEN 'W' THEN 'W' 
-                                                  WHEN 'M' THEN 'M' 
-                                                  WHEN 'S' THEN 'I' 
-                                                  WHEN 'Z' THEN 'K' 
-                                                END
-        ,drvAddressLine1 = Upper(EepAddressLine1)
-        ,drvAddressLine2 = Upper(EepAddressLine2)
-        ,drvAddressCity = Upper(EepAddressCity)
+        ,drvMaritalStatus = eepMaritalStatus
+        ,drvAddressLine1 = EepAddressLine1
+        ,drvAddressLine2 = EepAddressLine2
+        ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
-        ,drvEECountry = CASE WHEN EepAddressCountry = 'USA' THEN 'US'
+,drvEECountry = CASE WHEN EepAddressCountry = 'USA' THEN 'US'
                              WHEN EepAddressCountry = 'CAN' THEN 'Canada'
                              ELSE 'ZZ'
                         END
@@ -740,31 +698,19 @@ BEGIN
                              ELSE 'ZZ'
                         END
         ,drvPhoneNumber = EepPhoneHomeNumber
-        ,drvEmploymentStatusCode =   CASE EecEmplstatus WHEN 'A' THEN 'AC' 
-                                                        WHEN 'L' THEN 'L1' 
-                                                        WHEN 'T' THEN 'TE' 
-                                                        WHEN 'O' THEN 'KS' 
-                                                        WHEN 'R' THEN 'LO' 
-                                                    END
-        ,drvEmployeeStatusEffDate = CASE WHEN EecEmplstatus <> 'A' THEN EecEmplStatusStartDate ELSE NULL END
-        ,drvEmployeeType = CASE WHEN EecEEType = 'REG' THEN 'P'
-                                WHEN EecEEType IN ( 'INT', 'TMP') THEN 'T'
-                            END
+        ,drvEmploymentStatusCode = CASE EecEmplstatus WHEN 'A' THEN 'AC' WHEN 'L' THEN 'L1' WHEN 'T' THEN 'T' ELSE '' END  --Todo Check others codes
+        ,drvEmployeeStatusEffDate = EecEmplStatusStartDate
+        ,drvEmployeeType = EecEEType
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvEarningsForDisabProduct = FORMAT(EecAnnSalary * 100, '000000000')
-        ,drvSalariedIndicator = CASE WHEN EecSalaryOrHourly = 'S' THEN 'Y' ELSE 'N' END
-        ,drvFullTimeIndicator = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Y' ELSE 'N' END
-        ,drvNumberofHoursWorkedPerWeek = CONVERT(VARCHAR,dbo.dsi_fnPadZero((Case EecPayPeriod When 'W' then EecScheduledWorkHrs 
-                                                           When 'B' then (EecScheduledWorkHrs / 2) 
-                                                           When 'S' then ((EecScheduledWorkHrs * 24) / 52) 
-                                                           When 'M' then ((EecScheduledWorkHrs * 12) / 52)
-                                                          END) *100 ,5,0))    --  MW Changed from CONVERT(VARCHAR,dbo.dsi_fnPadZero((CASE WHEN EecFullTimeORPartTime = 'F' THEN 40 ELSE EecScheduledWorkHrs END) *100 ,5,0))
-        ,drvTaxFilingState = LEFT(EecStateSUI, 2)
-        ,drvActualAnnualHours = dbo.dsi_fnPadZero((PehCurHrs12Mo),4,0)
-        ,drvWorkState = LocAddressState
-        ,drvProvisionEffectiveDate = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_StartDate  ELSE STD_StartDate END
-        ,drvExtendedEEEmailAddress = Upper(EepAddressEMail)
-        ,drvExtendedSupEmailAddress1 = Upper(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail'))
+        ,drvEarningsForDisabProduct = ''
+        ,drvSalariedIndicator = ''
+        ,drvFullTimeIndicator = ''
+        ,drvNumberofHoursWorkedPerSeek = ''
+        ,drvTaxFilingState = EepAddressState
+        ,drvWorkState = EepAddressState
+        ,drvProvisionEffectiveDate = ''
+        ,drvExtendedEEEmailAddress = EepAddressEMail
+        ,drvExtendedSupEmailAddress1 = EepAddressLine1
     INTO dbo.U_EHENNYLEXP_drvTbl
     FROM dbo.U_EHENNYLEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -772,46 +718,9 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    --JOIN dbo.U_dsi_BDM_EHENNYLEXP WITH (NOLOCK)
-    --    ON BdmEEID = xEEID 
-        --AND BdmCoID = xCoID
-    JOIN(
-                    SELECT BdmEEID, BdmCOID
-                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmDedCode END) AS STD_DedCode
-                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmDedCode END) AS LTD_DedCode
-
-                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStatus END) AS STD_BenStatus
-                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmBenStatus END) AS LTD_BenStatus
-
-                ,MAX((CASE WHEN bdmDedCode IN('STD') THEN BdmBenStartDate END)) AS STD_StartDate
-                ,MAX((CASE WHEN bdmDedCode IN('LTD') THEN BdmBenStartDate END)) AS LTD_StartDate 
-
-            FROM dbo.U_dsi_BDM_EHENNYLEXP WITH (NOLOCK)
-            GROUP BY BdmEEID, BdmCOID) AS BDM
+    JOIN dbo.U_dsi_BDM_EHENNYLEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
-    JOIN dbo.Location WITH (NOLOCK)
-        ON LocCode = EecLocation
- Left Join ( 
-                    SELECT DISTINCT
-                         PehEEID
-                        
-                        -- Rolling 12 Mo Payroll Amount/Hours
-                        ,PehCurAmt12Mo          = SUM(PehCurAmt)
-                        ,PehCurHrs12Mo           = Replace(Round(SUM(PehCurHrs),0),'.000000','')
-                    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-                    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-                        ON PehGenNumber = PrgGenNumber
-                JOIN dbo.EarnCode WITH (NOLOCK)
-                        ON ErnEarnCode = PehEarnCode
-                    WHERE   PrgPayDate >  DateAdd(y,-1,DateAdd(d,DateDiff(d,0, Getdate()-365),0))
-                   AND PrgPayDate  <= DateAdd(d,DateDiff(d,0,Getdate()),0)
-                    AND ErnIsRegularPayCode = 'Y'
-                    GROUP BY PehEEID
-                    
-                ) Hrs
-        ON PehEEID = XEEID
-    Where eecEEtype <> 'TES'
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -819,8 +728,7 @@ BEGIN
     IF OBJECT_ID('U_EHENNYLEXP_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EHENNYLEXP_Header;
     SELECT DISTINCT
-         drvProdTestIndicator = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T' ELSE 'P' END
-        ,drvFileCreationDate = GETDATE()
+         drvFileCreationDate = ''
     INTO dbo.U_EHENNYLEXP_Header
     ;
     ---------------------------------
@@ -829,7 +737,7 @@ BEGIN
     IF OBJECT_ID('U_EHENNYLEXP_Trailer','U') IS NOT NULL
         DROP TABLE dbo.U_EHENNYLEXP_Trailer;
     SELECT DISTINCT
-         drvNumberOfRecords = FORMAT((SELECT COUNT(*) FROM dbo.U_EHENNYLEXP_drvTbl), '000000000')
+         drvNumberOfRecords = ''
     INTO dbo.U_EHENNYLEXP_Trailer
     ;
 
