@@ -5,7 +5,7 @@ EMCPRMNPM: Rocky Mountain Reserve COBRA Newly Eligible
 FormatCode:     EMCPRMNPM
 Project:        Rocky Mountain Reserve COBRA Newly Eligible
 Client ID:      MOU1003
-Date/time:      2022-08-23 08:00:51.400
+Date/time:      2022-11-17 09:16:43.940
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -171,7 +171,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMCPRMNPM_20220823.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMCPRMNPM_20221117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -180,9 +180,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202208089','EMPEXPORT','OEACTIVE',NULL,'EMCPRMNPM',NULL,NULL,NULL,'202208089','Aug  8 2022  2:17PM','Aug  8 2022  2:17PM','202208081',NULL,'','','202208081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202208089','EMPEXPORT','OEPASSIVE',NULL,'EMCPRMNPM',NULL,NULL,NULL,'202208089','Aug  8 2022  2:17PM','Aug  8 2022  2:17PM','202208081',NULL,'','','202208081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Rocky Mountain Reserve COBRA N','202208089','EMPEXPORT','ONDEM_XOE',NULL,'EMCPRMNPM',NULL,NULL,NULL,'202208089','Aug  8 2022  2:17PM','Aug  8 2022  2:17PM','202208081',NULL,'','','202208081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Rocky Mountain Reserve C-Sched','202208089','EMPEXPORT','SCH_EMCPRM',NULL,'EMCPRMNPM',NULL,NULL,NULL,'202208089','Aug  8 2022  2:17PM','Aug  8 2022  2:17PM','202208081',NULL,'','','202208081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Rocky Mountain Reserve C-Test','202208229','EMPEXPORT','TEST_XOE','Aug 22 2022 12:00AM','EMCPRMNPM',NULL,NULL,NULL,'202208229','Aug 22 2022 12:00AM','Dec 30 1899 12:00AM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'us3cPeMOU1003A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Rocky Mountain Reserve COBRA N','202211131','EMPEXPORT','ONDEM_XOE','Nov 16 2022 10:53PM','EMCPRMNPM',NULL,NULL,NULL,'202211131','Nov 13 2022 12:00AM','Dec 30 1899 12:00AM','202211061','4','','','202211061',dbo.fn_GetTimedKey(),NULL,'us3cPeMOU1003A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',EDOV9,QUD1J,S1SFJ,S2H89,QUD2P',NULL,NULL,NULL,'Rocky Mountain Reserve C-Sched','202208319','EMPEXPORT','SCH_EMCPRM',NULL,'EMCPRMNPM',NULL,NULL,NULL,'202211139','Aug  8 2022  2:17PM','Aug  8 2022  2:17PM','202211061',NULL,'','','202208311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Rocky Mountain Reserve C-Test','202211131','EMPEXPORT','TEST_XOE','Nov 16 2022 10:27PM','EMCPRMNPM',NULL,NULL,NULL,'202211131','Nov 13 2022 12:00AM','Dec 30 1899 12:00AM','202211061','4','','','202211061',dbo.fn_GetTimedKey(),NULL,'us3cPeMOU1003A',NULL);
 
 -----------
 -- AscImp inserts
@@ -427,7 +427,7 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EMCPRMNPM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-
+    /*
     --==========================================
     -- Audit Section
     --==========================================
@@ -436,7 +436,7 @@ BEGIN
         DROP TABLE dbo.U_EMCPRMNPM_AuditFields;
     CREATE TABLE dbo.U_EMCPRMNPM_AuditFields (aTableName varchar(30),aFieldName varchar(30));
     
-    INSERT INTO dbo.U_EMCPRMNPM_AuditFields VALUES ('EmpComp','EecEmplStatus');
+   -- INSERT INTO dbo.U_EMCPRMNPM_AuditFields VALUES ('EmpComp','EecEmplStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EMCPRMNPM_Audit','U') IS NOT NULL
@@ -454,14 +454,17 @@ BEGIN
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
     INTO dbo.U_EMCPRMNPM_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_EMCPRMNPM_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
+    --JOIN dbo.U_EMCPRMNPM_AuditFields WITH (NOLOCK) 
+        --ON audTableName = aTableName
+        --AND audFieldName = aFieldName
     WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audTableName = 'EmpComp'
+    AND audFieldName = 'EecEmplStatus'
     AND audAction <> 'DELETE';
 
     -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EMCPRMNPM_Audit ON dbo.U_EMCPRMNPM_Audit (audEEID,audKey2);
+    CREATE CLUSTERED INDEX CDX_U_EMCPRMNPM_Audit ON dbo.U_EMCPRMNPM_Audit (audEEID,audKey2); 
+    */
 
     ----================
     ---- Changes Only

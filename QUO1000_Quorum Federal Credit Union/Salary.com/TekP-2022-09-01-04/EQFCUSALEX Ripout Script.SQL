@@ -5,7 +5,7 @@ EQFCUSALEX: Salary.Com Job History
 FormatCode:     EQFCUSALEX
 Project:        Salary.Com Job History
 Client ID:      QUO1000
-Date/time:      2022-11-03 16:20:38.253
+Date/time:      2022-11-09 09:22:37.130
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -139,9 +139,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQFCUSALEXZ0','50','H','01','2',NULL,'CompanyJobTitle',NULL,NULL,'"CompanyJobTitle"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQFCUSALEXZ0','50','H','01','3',NULL,'StructureCode',NULL,NULL,'"StructureCode"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EQFCUSALEXZ0','50','H','01','4',NULL,'GradeCode',NULL,NULL,'"GradeCode"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQFCUSALEXZ0','50','H','01','5',NULL,'CompanyJobDesc',NULL,NULL,'"CompanyJobDesc"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQFCUSALEXZ0','10000','H','01','5',NULL,'CompanyJobDesc',NULL,NULL,'"CompanyJobDesc"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQFCUSALEXZ0','50','H','01','6',NULL,'JobLevel',NULL,NULL,'"JobLevel"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQFCUSALEXZ0','50','H','01','7',NULL,'JobFamily',NULL,NULL,'"JobFamily"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQFCUSALEXZ0','200','H','01','7',NULL,'JobFamily',NULL,NULL,'"JobFamily"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQFCUSALEXZ0','50','H','01','8',NULL,'JobFunction',NULL,NULL,'"JobFunction"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQFCUSALEXZ0','50','H','01','9',NULL,'JobFocus',NULL,NULL,'"JobFocus"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EQFCUSALEXZ0','50','H','01','10',NULL,'JobFLSAStatus',NULL,NULL,'"JobFLSAStatus"','(''DA''=''T|'')');
@@ -167,7 +167,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EQFCUSALEXZ0','50','H','01','30',NULL,'BasePhilPercentile',NULL,NULL,'"BasePhilPercentile"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EQFCUSALEXZ0','50','H','01','31',NULL,'TCCPhilPercentile',NULL,NULL,'"TCCPhilPercentile"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EQFCUSALEXZ0','50','H','01','32',NULL,'Department',NULL,NULL,'"Department"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQFCUSALEXZ0','50','H','01','33',NULL,'EEOCategory',NULL,NULL,'"EEOCategory"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQFCUSALEXZ0','50','H','01','33',NULL,'EEOCategory',NULL,NULL,'"EEOCategory"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EQFCUSALEXZ0','50','H','01','34',NULL,'End',NULL,NULL,'"End"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EQFCUSALEXZ0','50','D','10','1',NULL,'CompanyJobCode',NULL,NULL,'"drvCompanyJobCode"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQFCUSALEXZ0','50','D','10','2',NULL,'CompanyJobTitle',NULL,NULL,'"drvCompanyJobTitle"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQFCUSALEXZ0','50','D','10','3',NULL,'StructureCode',NULL,NULL,'"drvStructureCode"','(''UA''=''T|'')');
@@ -175,16 +176,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQFCUSALEXZ0','10000','D','10','5',NULL,'CompanyJobDesc',NULL,NULL,'"drvCompanyJobDesc"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQFCUSALEXZ0','50','D','10','6',NULL,'JobLevel',NULL,NULL,'"drvJobLevel"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EQFCUSALEXZ0','200','D','10','7',NULL,'JobFamily',NULL,NULL,'"drvJobFamily"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQFCUSALEXZ0','50','D','10','8',NULL,'JobFunction',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQFCUSALEXZ0','50','D','10','9',NULL,'JobFocus',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EQFCUSALEXZ0','20','D','10','10',NULL,'JobFLSAStatus',NULL,NULL,'"drvJobFLSAStatus"','(UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQFCUSALEXZ0','1','D','10','8',NULL,'JobFunction',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EQFCUSALEXZ0','1','D','10','9',NULL,'JobFocus',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EQFCUSALEXZ0','50','D','10','10',NULL,'JobFLSAStatus',NULL,NULL,'"drvJobFLSAStatus"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EQFCUSALEXZ0','1','D','10','11',NULL,'JobPoints',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EQFCUSALEXZ0','1','D','10','12',NULL,'DefaultComparisonCode',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EQFCUSALEXZ0','1','D','10','13',NULL,'IsBonusEligible',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EQFCUSALEXZ0','1','D','10','14',NULL,'BonusTargetPercent',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EQFCUSALEXZ0','1','D','10','15',NULL,'JobAdjustment',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EQFCUSALEXZ0','20','D','10','16',NULL,'SalaryPlanCode',NULL,NULL,'"drvSalaryPlanCode"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EQFCUSALEXZ0','1','D','10','17',NULL,'IsUseDefaultPlanData',NULL,NULL,'"drvIsUseDefaultPlanData"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EQFCUSALEXZ0','50','D','10','16',NULL,'SalaryPlanCode',NULL,NULL,'"drvSalaryPlanCode"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EQFCUSALEXZ0','10','D','10','17',NULL,'IsUseDefaultPlanData',NULL,NULL,'"drvIsUseDefaultPlanData"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EQFCUSALEXZ0','10','D','10','18',NULL,'SalaryRangeMin',NULL,NULL,'"drvSalaryRangeMin"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EQFCUSALEXZ0','10','D','10','19',NULL,'SalaryRangeMid',NULL,NULL,'"drvSalaryRangeMid"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EQFCUSALEXZ0','10','D','10','20',NULL,'SalaryRangeMax',NULL,NULL,'"drvSalaryRangeMax"','(''UA''=''T|'')');
@@ -197,10 +198,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EQFCUSALEXZ0','1','D','10','27',NULL,'LTI7',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EQFCUSALEXZ0','1','D','10','28',NULL,'LTI8',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EQFCUSALEXZ0','1','D','10','29',NULL,'LTI9',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EQFCUSALEXZ0','6','D','10','30',NULL,'BasePhilPercentile',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EQFCUSALEXZ0','6','D','10','31',NULL,'TCCPhilPercentile',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EQFCUSALEXZ0','200','D','10','32',NULL,'Department',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQFCUSALEXZ0','200','D','10','33',NULL,'EEOCategory',NULL,NULL,'"drvEEOCategory"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EQFCUSALEXZ0','1','D','10','30',NULL,'BasePhilPercentile',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EQFCUSALEXZ0','1','D','10','31',NULL,'TCCPhilPercentile',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EQFCUSALEXZ0','1','D','10','32',NULL,'Department',NULL,NULL,'""','(''SS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQFCUSALEXZ0','10','D','10','33',NULL,'EEOCategory',NULL,NULL,'"drvEEOCategory"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EQFCUSALEXZ0','1','D','10','34',NULL,'End',NULL,NULL,'"drvEnd"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -213,7 +215,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUSALEX_20221103.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUSALEX_20221109.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -222,7 +224,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.Com Job History','202210319','EMPEXPORT','ONDEM_XOE',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.Com Job History-Sched','202210319','EMPEXPORT','SCH_EQFCUS',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Salary.Com Job History-Test','202210319','EMPEXPORT','TEST_XOE',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Salary.Com Job History-Test','202211081','EMPEXPORT','TEST_XOE','Nov  8 2022  8:31AM','EQFCUSALEX',NULL,NULL,NULL,'202211081','Nov  8 2022 12:00AM','Dec 30 1899 12:00AM','202211011','260','','','202211011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -363,7 +365,7 @@ CREATE TABLE [dbo].[U_EQFCUSALEX_drvTbl] (
     [drvCompanyJobCode] char(8) NOT NULL,
     [drvCompanyJobTitle] varchar(25) NOT NULL,
     [drvStructureCode] char(1) NOT NULL,
-    [drvGradeCode] char(3) NULL,
+    [drvGradeCode] char(15) NULL,
     [drvCompanyJobDesc] varchar(max) NULL,
     [drvJobLevel] varchar(45) NULL,
     [drvJobFamily] varchar(45) NULL,
@@ -373,7 +375,8 @@ CREATE TABLE [dbo].[U_EQFCUSALEX_drvTbl] (
     [drvSalaryRangeMin] money NULL,
     [drvSalaryRangeMid] money NULL,
     [drvSalaryRangeMax] money NULL,
-    [drvEEOCategory] char(3) NOT NULL
+    [drvEEOCategory] char(3) NOT NULL,
+    [drvEnd] varchar(1) NOT NULL
 );
 
 -----------
@@ -519,8 +522,7 @@ BEGIN
     IF OBJECT_ID('U_EQFCUSALEX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EQFCUSALEX_drvTbl;
        SELECT DISTINCT
-     
-         drvEEID = xEEID
+        drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = EecEmpNo
@@ -529,8 +531,12 @@ BEGIN
         ,drvCompanyJobCode = Job.JbcJobCode
         ,drvCompanyJobTitle = job.JbcDesc
         ,drvStructureCode = job.JbcFLSAType 
-        ,drvGradeCode = job.JbcSalaryGrade
-        ,drvCompanyJobDesc = LTRIM(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(         (dbo.usp_removeHTML(job.JbcNotes)),'&#8226;',''),'<h1 style="text-align: left">',''),'<div class="WordSection1">',' '),'<h1 style="margin-left: 45.0pt; text-align: left;">',' ')         ,'<ol style="margin-top: 0in"> <li class="MsoNormal">',' '),'<h1 style="text-align: justify">',' '),'<li class="MsoNormal">',' '),'<ol style="margin-top: 0in">',' '),'<h1 style="margin-left: .5in; text-align: left;">',' ')         ,'<h1 style="margin-left: .5in; text-align: justify;">',' '),'<li class="MsoNormal" style="line-height: 107%">',' '),'&#183;         ',' '),'<li class="MsoNormal" style="line-height: normal">',' ')         ,'<h2 style="text-align: justify">',' '),'<li class="MsoNormal" style="color: #333333; text-align: justify;">',' '),'                                                                                    </h2>',' ')
+        ,drvGradeCode = job.slgDesc
+        ,drvCompanyJobDesc = LTRIM(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(
+        (dbo.usp_removeHTML(job.JbcNotes)),'&#8226;',''),'<h1 style="text-align: left">',''),'<div class="WordSection1">',' '),'<h1 style="margin-left: 45.0pt; text-align: left;">',' ')
+        ,'<ol style="margin-top: 0in"> <li class="MsoNormal">',' '),'<h1 style="text-align: justify">',' '),'<li class="MsoNormal">',' '),'<ol style="margin-top: 0in">',' '),'<h1 style="margin-left: .5in; text-align: left;">',' ')
+        ,'<h1 style="margin-left: .5in; text-align: justify;">',' '),'<li class="MsoNormal" style="line-height: 107%">',' '),'&#183;         ',' '),'<li class="MsoNormal" style="line-height: normal">',' ')
+        ,'<h2 style="text-align: justify">',' '),'<li class="MsoNormal" style="color: #333333; text-align: justify;">',' '),'                                                                                    </h2>',' ')
         ,'      ',' '))-- JbcNotes --Full Job Description
         ,drvJobLevel = CODDESC --his field will use the platform config field on the job business rule - Send code and description example value = A04 - Specialist
         ,drvJobFamily = job.JbcJobFamilyDesc
@@ -541,7 +547,7 @@ BEGIN
         ,drvSalaryRangeMid = SlgAnnualMed --Midpoint Salary value on the job code - example value for job code = HRISANST - the value is 65866.00y
         ,drvSalaryRangeMax = SlgAnnualMax --Maximum Salary value on the job code - example value for job code = HRISANST - the value is 79017.00
         ,drvEEOCategory = JbcEEOCategory
-       -- ,drvEnd = ''
+        ,drvEnd = 'X'
     INTO dbo.U_EQFCUSALEX_drvTbl
     FROM dbo.U_EQFCUSALEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -566,17 +572,18 @@ BEGIN
                 , SlgAnnualMed = ( SlgAnnualMax + SlgAnnualMin)/2
                 , JbcStatus
                 , EEOCategory1 = CASE JbcEEOCategory
-                                     WHEN '1.1' THEN 'Executive/Senior Level Officials and Managers'
-                                     WHEN '1.2' THEN 'First/Mid-Level Officials and Managers'
-                                     WHEN '2' THEN 'Professionals'
-                                     WHEN '3' THEN 'Technicians'
-                                     WHEN '4' THEN 'Sales Workers'
-                                     WHEN '5' THEN 'Administrative Support Workers'
-                                     WHEN '6' THEN 'Craft Workers'
-                                     WHEN '7' THEN 'Operatives'
-                                     WHEN '8' THEN 'Laborers and Helpers'
-                                     WHEN '9' THEN 'Service Workers'
+                                      WHEN '1.1' THEN '1.1-Executive/Senior Level Officials and Managers'
+                                     WHEN '1.2' THEN '1.2-First/Mid-Level Officials and Managers'
+                                     WHEN '2' THEN '2-Professionals'
+                                     WHEN '3' THEN '3-Technicians'
+                                     WHEN '4' THEN '4-Sales Workers'
+                                     WHEN '5' THEN '5-Administrative Support Workers'
+                                     WHEN '6' THEN '6-Craft Workers'
+                                     WHEN '7' THEN '7-Operatives'
+                                     WHEN '8' THEN '8-Laborers and Helpers'
+                                     WHEN '9' THEN '9-Service Workers'
                                 END
+                               
                 FROM dbo.JobCode  WITH (NOLOCK)
                 Left Join SalGrade WITH (NOLOCK)
                 ON jbcSalaryGrade = SlgSalgrade
