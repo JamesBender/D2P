@@ -562,7 +562,7 @@ BEGIN
         ,drvDateofbirth = EepDateOfBirth
         ,drvDateofhire = EecDateOfOriginalHire
         ,drvDateoftermination = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvDateofrehire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire ELSE NULL END
+        ,drvDateof = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire ELSE NULL END
         ,drvGrossCompensation = CASE WHEN  pehCurAmt = 0.00 THEN '0.00' ELSE  CONVERT(VARCHAR, CONVERT(MONEY, pehCurAmt)) END
         ,drvEligibleCompensation = CASE WHEN  pehCurAmt = 0.00 THEN '0.00' ELSE  CONVERT(VARCHAR, CONVERT(MONEY, pehCurAmt)) END -- feeback to change to all earn codes--CASE WHEN  pehCurAmt_ExclBonus = 0.00 THEN '0.00' ELSE  CONVERT(VARCHAR, CONVERT(MONEY, pehCurAmt_ExclBonus))END
         ,drvHours =  CONVERT(VARCHAR, CONVERT(DECIMAL(10,0), PehCurHrs)) 

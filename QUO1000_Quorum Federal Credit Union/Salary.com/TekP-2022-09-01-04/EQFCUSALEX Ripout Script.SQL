@@ -5,7 +5,7 @@ EQFCUSALEX: Salary.Com Job History
 FormatCode:     EQFCUSALEX
 Project:        Salary.Com Job History
 Client ID:      QUO1000
-Date/time:      2022-11-09 09:22:37.130
+Date/time:      2022-11-21 14:43:49.953
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -201,7 +201,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EQFCUSALEXZ0','1','D','10','30',NULL,'BasePhilPercentile',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EQFCUSALEXZ0','1','D','10','31',NULL,'TCCPhilPercentile',NULL,NULL,'""','(''SS''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EQFCUSALEXZ0','1','D','10','32',NULL,'Department',NULL,NULL,'""','(''SS''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQFCUSALEXZ0','10','D','10','33',NULL,'EEOCategory',NULL,NULL,'"drvEEOCategory"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EQFCUSALEXZ0','200','D','10','33',NULL,'EEOCategory',NULL,NULL,'"drvEEOCategory"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EQFCUSALEXZ0','1','D','10','34',NULL,'End',NULL,NULL,'"drvEnd"','(''UA''=''T'')');
 
 -----------
@@ -215,7 +215,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUSALEX_20221109.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUSALEX_20221121.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -224,7 +224,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.Com Job History','202210319','EMPEXPORT','ONDEM_XOE',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.Com Job History-Sched','202210319','EMPEXPORT','SCH_EQFCUS',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Salary.Com Job History-Test','202211081','EMPEXPORT','TEST_XOE','Nov  8 2022  8:31AM','EQFCUSALEX',NULL,NULL,NULL,'202211081','Nov  8 2022 12:00AM','Dec 30 1899 12:00AM','202211011','260','','','202211011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.Com Job History-Test','202211211','EMPEXPORT','TEST_XOE','Nov 21 2022 11:59AM','EQFCUSALEX',NULL,NULL,NULL,'202211211','Nov 21 2022 12:00AM','Dec 30 1899 12:00AM','202211071','260','','','202211071',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -357,10 +357,10 @@ CREATE TABLE [dbo].[U_EQFCUSALEX_DedList] (
 
 IF OBJECT_ID('U_EQFCUSALEX_drvTbl') IS NULL
 CREATE TABLE [dbo].[U_EQFCUSALEX_drvTbl] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
+    [drvEEID] varchar(1) NOT NULL,
+    [drvCoID] varchar(1) NOT NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] char(9) NULL,
+    [drvInitialSort] varchar(14) NOT NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvCompanyJobCode] char(8) NOT NULL,
     [drvCompanyJobTitle] varchar(25) NOT NULL,
@@ -375,7 +375,7 @@ CREATE TABLE [dbo].[U_EQFCUSALEX_drvTbl] (
     [drvSalaryRangeMin] money NULL,
     [drvSalaryRangeMid] money NULL,
     [drvSalaryRangeMax] money NULL,
-    [drvEEOCategory] char(3) NOT NULL,
+    [drvEEOCategory] varchar(49) NULL,
     [drvEnd] varchar(1) NOT NULL
 );
 
@@ -522,10 +522,10 @@ BEGIN
     IF OBJECT_ID('U_EQFCUSALEX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EQFCUSALEX_drvTbl;
        SELECT DISTINCT
-        drvEEID = xEEID
-        ,drvCoID = xCoID
+        drvEEID = ''
+        ,drvCoID = ''
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = EecEmpNo
+        ,drvInitialSort = 'Job.JbcJobCode'
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvCompanyJobCode = Job.JbcJobCode
@@ -546,7 +546,7 @@ BEGIN
         ,drvSalaryRangeMin = SlgAnnualMin -- Minimum Salary value on the job code - example value for job code = HRISANST - the value is 52715.00
         ,drvSalaryRangeMid = SlgAnnualMed --Midpoint Salary value on the job code - example value for job code = HRISANST - the value is 65866.00y
         ,drvSalaryRangeMax = SlgAnnualMax --Maximum Salary value on the job code - example value for job code = HRISANST - the value is 79017.00
-        ,drvEEOCategory = JbcEEOCategory
+        ,drvEEOCategory = EEOCategory1
         ,drvEnd = 'X'
     INTO dbo.U_EQFCUSALEX_drvTbl
     FROM dbo.U_EQFCUSALEX_EEList WITH (NOLOCK)
