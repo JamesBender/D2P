@@ -5,7 +5,7 @@ EHENNYLEXP: NY Life LTD/STD Export
 FormatCode:     EHENNYLEXP
 Project:        NY Life LTD/STD Export
 Client ID:      USG1000
-Date/time:      2022-11-08 16:54:35.720
+Date/time:      2022-11-09 14:42:01.360
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -161,7 +161,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EHENNYLEXPZ0','8','D','10','15',NULL,'Employee Date of Birth',NULL,NULL,'"drvDateOfBirth"','(''UD112''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EHENNYLEXPZ0','1','D','10','16',NULL,'Employee Gender',NULL,NULL,'"drvGender"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EHENNYLEXPZ0','1','D','10','17',NULL,'Employee Marital Status',NULL,NULL,'"drvMaritalStatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHENNYLEXPZ0','4','D','10','18',NULL,'Employee�s PIN Number',NULL,NULL,'""','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHENNYLEXPZ0','4','D','10','18',NULL,'Employee’s PIN Number',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EHENNYLEXPZ0','1','D','10','19',NULL,'Employee Smoker Status',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EHENNYLEXPZ0','34','D','10','20',NULL,'Employee E-mail Address',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EHENNYLEXPZ0','1','D','10','21',NULL,'Reserved',NULL,NULL,'""','(''DA''=''F'')');
@@ -344,7 +344,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EHENNYLEXP_20221108.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EHENNYLEXP_20221109.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -477,7 +477,7 @@ CREATE TABLE [dbo].[U_EHENNYLEXP_drvTbl] (
     [drvNameSuffix] varchar(30) NULL,
     [drvDateOfBirth] datetime NULL,
     [drvGender] char(1) NULL,
-    [drvMaritalStatus] char(1) NULL,
+    [drvMaritalStatus] varchar(1) NULL,
     [drvAddressLine1] varchar(255) NULL,
     [drvAddressLine2] varchar(255) NULL,
     [drvAddressCity] varchar(255) NULL,
@@ -486,19 +486,19 @@ CREATE TABLE [dbo].[U_EHENNYLEXP_drvTbl] (
     [drvEECountry] varchar(6) NOT NULL,
     [drvCountryCode] varchar(2) NOT NULL,
     [drvPhoneNumber] varchar(50) NULL,
-    [drvEmploymentStatusCode] varchar(2) NOT NULL,
+    [drvEmploymentStatusCode] varchar(2) NULL,
     [drvEmployeeStatusEffDate] datetime NULL,
     [drvEmployeeType] char(3) NULL,
     [drvDateOfLastHire] datetime NULL,
-    [drvEarningsForDisabProduct] varchar(1) NOT NULL,
+    [drvEarningsForDisabProduct] nvarchar(4000) NULL,
     [drvSalariedIndicator] varchar(1) NOT NULL,
     [drvFullTimeIndicator] varchar(1) NOT NULL,
-    [drvNumberofHoursWorkedPerSeek] varchar(1) NOT NULL,
+    [drvNumberofHoursWorkedPerSeek] varchar(30) NULL,
     [drvTaxFilingState] varchar(255) NULL,
     [drvWorkState] varchar(255) NULL,
-    [drvProvisionEffectiveDate] varchar(1) NOT NULL,
+    [drvProvisionEffectiveDate] datetime NULL,
     [drvExtendedEEEmailAddress] varchar(50) NULL,
-    [drvExtendedSupEmailAddress1] varchar(255) NULL
+    [drvExtendedSupEmailAddress1] varchar(256) NULL
 );
 
 -----------
@@ -615,6 +615,10 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EHENNYLEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
+    --Clean Terms not within date Range
+    DELETE FROM dbo.U_EHENNYLEXP_EEList WHERE xEEID IN (SELECT EecEEID FROM dbo.EmpComp WITH (NOLOCK) 
+    WHERE EecEmplStatus = 'T' AND EecDateOfTermination NOT BETWEEN @StartDate AND @EndDate)
+
     --==========================================
     -- Create Deduction List
     --==========================================
@@ -683,13 +687,13 @@ BEGIN
         ,drvNameSuffix = NULLIF(EepNameSuffix,'Z')
         ,drvDateOfBirth = EepDateOfBirth
         ,drvGender = EepGender
-        ,drvMaritalStatus = eepMaritalStatus
+        ,drvMaritalStatus = CASE eepMaritalStatus WHEN 'D' THEN 'D' WHEN 'W' THEN 'W' WHEN 'M' THEN 'M' WHEN 'S' THEN 'S' WHEN 'Z' THEN 'K' END
         ,drvAddressLine1 = EepAddressLine1
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddressCity = EepAddressCity
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
-,drvEECountry = CASE WHEN EepAddressCountry = 'USA' THEN 'US'
+        ,drvEECountry = CASE WHEN EepAddressCountry = 'USA' THEN 'US'
                              WHEN EepAddressCountry = 'CAN' THEN 'Canada'
                              ELSE 'ZZ'
                         END
@@ -698,19 +702,19 @@ BEGIN
                              ELSE 'ZZ'
                         END
         ,drvPhoneNumber = EepPhoneHomeNumber
-        ,drvEmploymentStatusCode = CASE EecEmplstatus WHEN 'A' THEN 'AC' WHEN 'L' THEN 'L1' WHEN 'T' THEN 'T' ELSE '' END  --Todo Check others codes
+        ,drvEmploymentStatusCode = CASE EecEmplstatus WHEN 'A' THEN 'AC' WHEN 'L' THEN 'L1' WHEN 'T' THEN 'T' WHEN 'O' THEN 'KS' WHEN 'R' THEN 'LO' END
         ,drvEmployeeStatusEffDate = EecEmplStatusStartDate
         ,drvEmployeeType = EecEEType
         ,drvDateOfLastHire = EecDateOfLastHire
-        ,drvEarningsForDisabProduct = ''
-        ,drvSalariedIndicator = ''
-        ,drvFullTimeIndicator = ''
-        ,drvNumberofHoursWorkedPerSeek = ''
+        ,drvEarningsForDisabProduct = FORMAT(EecAnnSalary * 100, '000000000')
+        ,drvSalariedIndicator = CASE WHEN EecSalaryOrHourly = 'S' THEN 'Y' ELSE 'N' END
+        ,drvFullTimeIndicator = CASE WHEN EecFullTimeOrPartTime = 'F' THEN 'Y' ELSE 'N' END
+        ,drvNumberofHoursWorkedPerSeek = CONVERT(VARCHAR,dbo.dsi_fnPadZero((CASE WHEN EecFullTimeORPartTime = 'F' THEN 40 ELSE EecScheduledWorkHrs END) *100 ,5,0))
         ,drvTaxFilingState = EepAddressState
-        ,drvWorkState = EepAddressState
-        ,drvProvisionEffectiveDate = ''
+        ,drvWorkState = LocAddressState
+        ,drvProvisionEffectiveDate = CASE WHEN LTD_DedCode IS NOT NULL THEN LTD_StartDate END
         ,drvExtendedEEEmailAddress = EepAddressEMail
-        ,drvExtendedSupEmailAddress1 = EepAddressLine1
+        ,drvExtendedSupEmailAddress1 = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail')
     INTO dbo.U_EHENNYLEXP_drvTbl
     FROM dbo.U_EHENNYLEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -718,9 +722,26 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EHENNYLEXP WITH (NOLOCK)
+    --JOIN dbo.U_dsi_BDM_EHENNYLEXP WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+        --AND BdmCoID = xCoID
+    JOIN(
+                    SELECT BdmEEID, BdmCOID
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmDedCode END) AS STD_DedCode
+                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmDedCode END) AS LTD_DedCode
+
+                ,MAX(CASE WHEN BdmDedCode = 'STD' THEN BdmBenStatus END) AS STD_BenStatus
+                ,MAX(CASE WHEN BdmDedCode = 'LTD' THEN BdmBenStatus END) AS LTD_BenStatus
+
+                ,MAX((CASE WHEN bdmDedCode IN('STD')   then BdmBenStartDate END)) AS STD_StartDate
+                ,MAX((CASE WHEN bdmDedCode IN('LTD')   then BdmBenStartDate END)) AS LTD_StartDate 
+
+            FROM dbo.U_dsi_BDM_ENYLIFTDEX WITH (NOLOCK)
+            GROUP BY BdmEEID, BdmCOID) AS BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
     ;
     ---------------------------------
     -- HEADER RECORD
