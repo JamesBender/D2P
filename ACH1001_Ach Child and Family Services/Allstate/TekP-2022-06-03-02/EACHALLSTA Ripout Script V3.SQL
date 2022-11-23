@@ -1066,7 +1066,7 @@ BEGIN
     LEFT JOIN  dbo.U_EACHALLSTA_Audit WITH (NOLOCK)
         ON xEEID = audEEID
         Where Bdmdedcode = 'ACCID'
-        AND EecEEType <> 'TES' AND  BdmRecType = 'EMP' 
+        AND EecEETypeES' AND  BdmRecType = 'EMP' 
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
     ;
     ---------------------------------
