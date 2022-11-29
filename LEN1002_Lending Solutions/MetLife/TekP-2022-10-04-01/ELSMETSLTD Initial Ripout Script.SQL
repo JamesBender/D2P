@@ -661,7 +661,7 @@ Business Analyst: Katherine Ricca
 Create Date: 11/23/2022
 Service Request Number: TekP-2022-10-04-01
 
-Purpose: MetLife STD/LTD/Absence Export
+Purpose: MetLWHENe STD/LTD/Absence Export
 
 Revision History
 ----------------
