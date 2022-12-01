@@ -5,7 +5,7 @@ EEQFPAYEXP: Equifax Payroll Export
 FormatCode:     EEQFPAYEXP
 Project:        Equifax Payroll Export
 Client ID:      CIS1000
-Date/time:      2022-11-11 14:40:37.130
+Date/time:      2022-11-30 07:48:26.930
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -197,7 +197,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EEQFPAYEXPZ0','50','D','10','25',NULL,'WorkLocationAddressLine2',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EEQFPAYEXPZ0','50','D','10','26',NULL,'WorkLocationCity',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EEQFPAYEXPZ0','50','D','10','27',NULL,'WorkLocationState',NULL,NULL,'"drvWorkLocationState"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EEQFPAYEXPZ0','50','D','10','28',NULL,'WorkLocationZIP',NULL,NULL,'""','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EEQFPAYEXPZ0','50','D','10','28',NULL,'WorkLocationZIP',NULL,NULL,'"drvWorkLocationZip"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EEQFPAYEXPZ0','50','D','10','29',NULL,'WorkLocationCountry',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EEQFPAYEXPZ0','50','D','10','30',NULL,'WorkRegion',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EEQFPAYEXPZ0','50','D','10','31',NULL,'Division',NULL,NULL,'""','(''DA''=''T,'')');
@@ -217,7 +217,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EEQFPAYEXP_20221111.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EEQFPAYEXP_20221130.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -226,7 +226,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Equifax Payroll Export','202208159','EMPEXPORT','ONDEM_XOE',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208159','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',UVGMB',NULL,NULL,NULL,'Equifax Payroll SCH','202208159','EMPEXPORT','SCH_EEQFPA',NULL,'EEQFPAYEXP',NULL,NULL,NULL,'202208159','Aug  9 2022  1:51PM','Aug  9 2022  1:51PM','202208011',NULL,'','','202208011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OEXEV,UVGMB,39NL5,UVGSI',NULL,NULL,NULL,'Equifax Payroll Export-Test','202210319','EMPEXPORT','TEST_XOE','Nov 10 2022  5:04PM','EEQFPAYEXP',NULL,NULL,NULL,'202210319','Oct 31 2022 12:00AM','Dec 30 1899 12:00AM','202210311','1343','','','202210311',dbo.fn_GetTimedKey(),NULL,'us3kEpCIS1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','OEXEV,UVGMB,39NL5,UVGSI',NULL,NULL,NULL,'Equifax Payroll Export-Test','202211151','EMPEXPORT','TEST_XOE','Nov 28 2022  7:02PM','EEQFPAYEXP',NULL,NULL,NULL,'202211151','Nov 15 2022 12:00AM','Nov 15 2022 12:00AM','202211151','1349','','','202211151',dbo.fn_GetTimedKey(),NULL,'us3kEpCIS1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -317,7 +317,8 @@ CREATE TABLE [dbo].[U_EEQFPAYEXP_drvTbl] (
     [drvGrossPay] nvarchar(4000) NULL,
     [drvW2Box1Deductions] nvarchar(4000) NULL,
     [drvJobTitle] varchar(6000) NULL,
-    [drvWorkLocationState] varchar(2) NULL
+    [drvWorkLocationState] varchar(2) NULL,
+    [drvWorkLocationZip] varchar(6000) NULL
 );
 
 -----------
@@ -393,7 +394,8 @@ Purpose: Equifax Payroll Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-Marie Waters       11/112022     TekP-2022-05-25-02        Update code to add double quotes, pull job title and work zipcodes correctly 
+Marie Waters       11/11/2022     TekP-2022-05-25-02        Update code to add double quotes, pull job title and work zipcodes correctly 
+Marie Waters       11/30/2022     TekP-2022-05-25-02        Update code for Job Title and added the WorkLocationZip to the query
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EEQFPAYEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EEQFPAYEXP';
@@ -566,8 +568,9 @@ BEGIN
         ,drvHoursWorked = FORMAT(PehCurHrs, '#0.00')
         ,drvGrossPay = FORMAT(PthGrossAmt, '#0.00')
         ,drvW2Box1Deductions = FORMAT(PthCurTaxableWages, '#0.00')
-        ,drvJobTitle =  dbo.dsi_fnRemoveChars('.,/-()',JbcDesc)
+        ,drvJobTitle =  CASE WHEN  ISNULL(dbo.dsi_fnRemoveChars('.,/-()',JbcDesc), '') = '' THEN 'Missing Job Title' ELSE dbo.dsi_fnRemoveChars('.,/-()',JbcDesc) END
         ,drvWorkLocationState = LEFT(EecSITResidentStateCode, 2)
+        ,drvWorkLocationZip = dbo.dsi_fnRemoveChars('-',EepAddressZipCode)
     INTO dbo.U_EEQFPAYEXP_drvTbl
     FROM dbo.U_EEQFPAYEXP_EEList WITH (NOLOCK)
     JOIN dbo.Company WITH (NOLOCK)

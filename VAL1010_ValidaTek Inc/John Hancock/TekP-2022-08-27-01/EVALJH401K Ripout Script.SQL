@@ -5,7 +5,7 @@ EVALJH401K: John Hancock 401K
 FormatCode:     EVALJH401K
 Project:        John Hancock 401K
 Client ID:      VAL1016
-Date/time:      2022-11-10 07:02:43.870
+Date/time:      2022-11-30 09:26:52.027
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -170,56 +170,57 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EVALJH401KZ0','1','D','10','27',NULL,'Hourly/Salary Code',NULL,NULL,'"drvHourlySalaryCode"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EVALJH401KZ0','8','D','10','28',NULL,'Hours, YTD',NULL,NULL,'"drvHoursYTD"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EVALJH401KZ0','8','D','10','29',NULL,'Date of Match Eligibility',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EVALJH401KZ0','20','D','10','30',NULL,'Total plan year to date plan compensation',NULL,NULL,'"drvTotalplanyearyodatecomp"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EVALJH401KZ0','20','D','10','31',NULL,'Total period to date plan compensation ',NULL,NULL,'"drvTotalperiodtodateplancomp"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EVALJH401KZ0','20','D','10','32',NULL,'Total plan year to date gross compensation',NULL,NULL,'"drvTotalyeartodategrosscomp"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EVALJH401KZ0','20','D','10','33',NULL,'Total period to date gross compensation',NULL,NULL,'"drvTotalperiodtodategrosscomp"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EVALJH401KZ0','20','D','10','34',NULL,'Total year to date match compensation',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EVALJH401KZ0','20','D','10','35',NULL,'Total period to date match compensation',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EVALJH401KZ0','20','D','10','36',NULL,'Total Managed Account Annualized compensation',NULL,NULL,'"drvTotalManagedAcctAnnualcomp"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EVALJH401KZ0','20','D','10','37',NULL,'Total plan year to date profit sharing compensatio',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EVALJH401KZ0','20','D','10','38',NULL,'Total period to date 401(k) contributions',NULL,NULL,'"drvTotalperiod401contrib"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EVALJH401KZ0','20','D','10','39',NULL,'Total period to date match contributions',NULL,NULL,'"drvTotalperiodmatchcontrib"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EVALJH401KZ0','20','D','10','40',NULL,'Total period to date profit sharing contributions',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EVALJH401KZ0','20','D','10','41',NULL,'Total period to date after tax contributions',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EVALJH401KZ0','20','D','10','42',NULL,'Total period to date catch-up contributions',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EVALJH401KZ0','20','D','10','43',NULL,'Total period to date Roth 401(k) contributions',NULL,NULL,'"drvTotalperiodRoth401contrib"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EVALJH401KZ0','20','D','10','44',NULL,'Total period to date Roth catch up contributions',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EVALJH401KZ0','20','D','10','45',NULL,'Total period to date loan repayments',NULL,NULL,'"drvTotalperiodloanrepayments"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','EVALJH401KZ0','1','D','10','46',NULL,'Work Status',NULL,NULL,'"drvWorkStatus"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','EVALJH401KZ0','8','D','10','47',NULL,'Payroll Pay Date',NULL,NULL,'"drvPayrollPayDate"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','EVALJH401KZ0','1','D','10','48',NULL,'Eligible for NQ plan',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','EVALJH401KZ0','20','D','10','49',NULL,'Total Period to Date Non-Qualified Basic Salary De',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','EVALJH401KZ0','20','D','10','50',NULL,'Total Period to Date Non-Qualified Bonus Contribut',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','EVALJH401KZ0','20','D','10','51',NULL,'Total Period to Date Non-Qualified Match Contribut',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','EVALJH401KZ0','20','D','10','52',NULL,'Total Period to Date Non-Qualified Miscellaneous 1',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','EVALJH401KZ0','20','D','10','53',NULL,'Total Period to Date Non-Qualified Miscellaneous 2',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','EVALJH401KZ0','20','D','10','54',NULL,'Total Period to Date Non-Qualified ER 1 Contributi',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','EVALJH401KZ0','20','D','10','55',NULL,'Total Period to Date Non-Qualified ER 2 Contributi',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','EVALJH401KZ0','8','D','10','56',NULL,'Payroll Period Ending Date',NULL,NULL,'"drvPayrollPeriodEndingDate"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','EVALJH401KZ0','8','D','10','57',NULL,'Retirement Eligibility Date',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','EVALJH401KZ0','1','D','10','58',NULL,'Pension Plan Excludable Code',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','EVALJH401KZ0','20','D','10','59',NULL,'Pensionable Compensation, YTD',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','EVALJH401KZ0','20','D','10','60',NULL,'Pensionable Compensation, PTD',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','EVALJH401KZ0','20','D','10','61',NULL,'Pensionable Hours, YTD',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','EVALJH401KZ0','20','D','10','62',NULL,'Pensionable Hours, PTD',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','EVALJH401KZ0','20','D','10','63',NULL,'Pension Vesting Hours, YTD',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','EVALJH401KZ0','20','D','10','64',NULL,'Pension Vesting Hours, PTD',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','EVALJH401KZ0','10','D','10','65',NULL,'Pension Plan-Specific Numeric 1',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','EVALJH401KZ0','10','D','10','66',NULL,'Pension Plan-Specific Numeric 2',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','EVALJH401KZ0','10','D','10','67',NULL,'Pension Plan-Specific Numeric 3',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','EVALJH401KZ0','10','D','10','68',NULL,'Pension Plan-Specific Numeric 4',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','EVALJH401KZ0','10','D','10','69',NULL,'Pension Plan-Specific Numeric 5',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','EVALJH401KZ0','8','D','10','70',NULL,'Pension Plan-Specific Date 1',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','EVALJH401KZ0','8','D','10','71',NULL,'Pension Plan-Specific Date 2',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EVALJH401KZ0','8','D','10','72',NULL,'Pension Plan-Specific Date 3',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','EVALJH401KZ0','8','D','10','73',NULL,'Pension Plan-Specific Date 4',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EVALJH401KZ0','8','D','10','74',NULL,'Pension Plan-Specific Date 5',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EVALJH401KZ0','10','D','10','75',NULL,'Pension Plan-Specific Alphanumeric 1',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','EVALJH401KZ0','10','D','10','76',NULL,'Pension Plan-Specific Alphanumeric 2',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('77','EVALJH401KZ0','10','D','10','77',NULL,'Pension Plan-Specific Alphanumeric 3',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('78','EVALJH401KZ0','10','D','10','78',NULL,'Pension Plan-Specific Alphanumeric 4',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('79','EVALJH401KZ0','10','D','10','79',NULL,'Pension Plan-Specific Alphanumeric 5',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EVALJH401KZ0','8','D','10','30',NULL,'Spanish Indicator',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EVALJH401KZ0','20','D','10','31',NULL,'Total plan year to date plan compensation',NULL,NULL,'"drvTotalplanyearyodatecomp"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EVALJH401KZ0','20','D','10','32',NULL,'Total period to date plan compensation ',NULL,NULL,'"drvTotalperiodtodateplancomp"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EVALJH401KZ0','20','D','10','33',NULL,'Total plan year to date gross compensation',NULL,NULL,'"drvTotalyeartodategrosscomp"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EVALJH401KZ0','20','D','10','34',NULL,'Total period to date gross compensation',NULL,NULL,'"drvTotalperiodtodategrosscomp"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EVALJH401KZ0','20','D','10','35',NULL,'Total year to date match compensation',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EVALJH401KZ0','20','D','10','36',NULL,'Total period to date match compensation',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EVALJH401KZ0','20','D','10','37',NULL,'Total Managed Account Annualized compensation',NULL,NULL,'"drvTotalManagedAcctAnnualcomp"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EVALJH401KZ0','20','D','10','38',NULL,'Total plan year to date profit sharing compensatio',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EVALJH401KZ0','20','D','10','39',NULL,'Total period to date 401(k) contributions',NULL,NULL,'"drvTotalperiod401contrib"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EVALJH401KZ0','20','D','10','40',NULL,'Total period to date match contributions',NULL,NULL,'"drvTotalperiodmatchcontrib"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EVALJH401KZ0','20','D','10','41',NULL,'Total period to date profit sharing contributions',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EVALJH401KZ0','20','D','10','42',NULL,'Total period to date after tax contributions',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EVALJH401KZ0','20','D','10','43',NULL,'Total period to date catch-up contributions',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EVALJH401KZ0','20','D','10','44',NULL,'Total period to date Roth 401(k) contributions',NULL,NULL,'"drvTotalperiodRoth401contrib"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EVALJH401KZ0','20','D','10','45',NULL,'Total period to date Roth catch up contributions',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','EVALJH401KZ0','20','D','10','46',NULL,'Total period to date loan repayments',NULL,NULL,'"drvTotalperiodloanrepayments"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','EVALJH401KZ0','1','D','10','47',NULL,'Work Status',NULL,NULL,'"drvWorkStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','EVALJH401KZ0','8','D','10','48',NULL,'Payroll Pay Date',NULL,NULL,'"drvPayrollPayDate"','(''UDMDY''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','EVALJH401KZ0','1','D','10','49',NULL,'Eligible for NQ plan',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','EVALJH401KZ0','20','D','10','50',NULL,'Total Period to Date Non-Qualified Basic Salary De',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','EVALJH401KZ0','20','D','10','51',NULL,'Total Period to Date Non-Qualified Bonus Contribut',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','EVALJH401KZ0','20','D','10','52',NULL,'Total Period to Date Non-Qualified Match Contribut',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','EVALJH401KZ0','20','D','10','53',NULL,'Total Period to Date Non-Qualified Miscellaneous 1',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','EVALJH401KZ0','20','D','10','54',NULL,'Total Period to Date Non-Qualified Miscellaneous 2',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','EVALJH401KZ0','20','D','10','55',NULL,'Total Period to Date Non-Qualified ER 1 Contributi',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','EVALJH401KZ0','20','D','10','56',NULL,'Total Period to Date Non-Qualified ER 2 Contributi',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','EVALJH401KZ0','8','D','10','57',NULL,'Payroll Period Ending Date',NULL,NULL,'"drvPayrollPeriodEndingDate"','(''UDMDY''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','EVALJH401KZ0','8','D','10','58',NULL,'Retirement Eligibility Date',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','EVALJH401KZ0','1','D','10','59',NULL,'Pension Plan Excludable Code',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','EVALJH401KZ0','20','D','10','60',NULL,'Pensionable Compensation, YTD',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','EVALJH401KZ0','20','D','10','61',NULL,'Pensionable Compensation, PTD',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','EVALJH401KZ0','20','D','10','62',NULL,'Pensionable Hours, YTD',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','EVALJH401KZ0','20','D','10','63',NULL,'Pensionable Hours, PTD',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','EVALJH401KZ0','20','D','10','64',NULL,'Pension Vesting Hours, YTD',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','EVALJH401KZ0','20','D','10','65',NULL,'Pension Vesting Hours, PTD',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','EVALJH401KZ0','10','D','10','66',NULL,'Pension Plan-Specific Numeric 1',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','EVALJH401KZ0','10','D','10','67',NULL,'Pension Plan-Specific Numeric 2',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','EVALJH401KZ0','10','D','10','68',NULL,'Pension Plan-Specific Numeric 3',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','EVALJH401KZ0','10','D','10','69',NULL,'Pension Plan-Specific Numeric 4',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','EVALJH401KZ0','10','D','10','70',NULL,'Pension Plan-Specific Numeric 5',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','EVALJH401KZ0','8','D','10','71',NULL,'Pension Plan-Specific Date 1',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','EVALJH401KZ0','8','D','10','72',NULL,'Pension Plan-Specific Date 2',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','EVALJH401KZ0','8','D','10','73',NULL,'Pension Plan-Specific Date 3',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','EVALJH401KZ0','8','D','10','74',NULL,'Pension Plan-Specific Date 4',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','EVALJH401KZ0','8','D','10','75',NULL,'Pension Plan-Specific Date 5',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','EVALJH401KZ0','10','D','10','76',NULL,'Pension Plan-Specific Alphanumeric 1',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('77','EVALJH401KZ0','10','D','10','77',NULL,'Pension Plan-Specific Alphanumeric 2',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('78','EVALJH401KZ0','10','D','10','78',NULL,'Pension Plan-Specific Alphanumeric 3',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('79','EVALJH401KZ0','10','D','10','79',NULL,'Pension Plan-Specific Alphanumeric 4',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('80','EVALJH401KZ0','10','D','10','80',NULL,'Pension Plan-Specific Alphanumeric 5',NULL,NULL,'""','(''SS''=''T'')');
 
 -----------
 -- Build web filename
@@ -232,7 +233,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EVALJH401K_20221110.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EVALJH401K_20221130.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -241,7 +242,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock 401K','202211039','EMPEXPORT','ONDEM_XOE',NULL,'EVALJH401K',NULL,NULL,NULL,'202211039','Nov  3 2022 10:12AM','Nov  3 2022 10:12AM','202211031',NULL,'','','202211031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock 401K-Sched','202211039','EMPEXPORT','SCH_EVALJH',NULL,'EVALJH401K',NULL,NULL,NULL,'202211039','Nov  3 2022 10:12AM','Nov  3 2022 10:12AM','202211031',NULL,'','','202211031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'John Hancock 401K-Test','202210219','EMPEXPORT','TEST_XOE','Nov  9 2022 12:00AM','EVALJH401K',NULL,NULL,NULL,'202210219','Oct 21 2022 12:00AM','Dec 30 1899 12:00AM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'us3lKiVAL1016',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'John Hancock 401K-Test','202210219','EMPEXPORT','TEST_XOE','Nov 15 2022 12:00AM','EVALJH401K',NULL,NULL,NULL,'202210219','Oct 21 2022 12:00AM','Dec 30 1899 12:00AM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'us3lKiVAL1016',NULL);
 
 -----------
 -- AscImp inserts
@@ -390,7 +391,7 @@ CREATE TABLE [dbo].[U_EVALJH401K_drvTbl] (
     [drvOriginalDateofHire] varchar(8000) NULL,
     [drvDateofTermination] varchar(8000) NULL,
     [drvDateofRehire] varchar(8000) NULL,
-    [drvStatus] varchar(8000) NULL,
+    [drvStatus] varchar(1) NULL,
     [drvGender] char(1) NULL,
     [drvEmployeeFileNumber] char(9) NULL,
     [drvPayrollfrequency] varchar(1) NOT NULL,
@@ -409,8 +410,8 @@ CREATE TABLE [dbo].[U_EVALJH401K_drvTbl] (
     [drvTotalperiodRoth401contrib] nvarchar(4000) NULL,
     [drvTotalperiodloanrepayments] nvarchar(4000) NULL,
     [drvWorkStatus] char(1) NULL,
-    [drvPayrollPayDate] varchar(8000) NULL,
-    [drvPayrollPeriodEndingDate] varchar(8000) NULL
+    [drvPayrollPayDate] datetime NULL,
+    [drvPayrollPeriodEndingDate] datetime NULL
 );
 
 -----------
@@ -446,6 +447,7 @@ CREATE TABLE [dbo].[U_EVALJH401K_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
+    [PdhDedCalcBasisAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
     [PdhERCurAmtYTD] money NULL,
     [PdhEECurAmt401Cont] numeric NULL,
@@ -483,7 +485,8 @@ CREATE TABLE [dbo].[U_EVALJH401K_PTaxHist] (
     [PthEEID] char(12) NOT NULL,
     [PthGrossAmtYTD] money NULL,
     [PthGrossAmt] numeric NULL,
-    [PthCurTaxableWages] numeric NULL
+    [PthYTDTaxableWages] numeric NULL,
+    [PthPeriodtoDateTaxableWages] numeric NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVALJH401K]
@@ -515,7 +518,6 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVALJH401K', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVALJH401K', 'TEST_XOE';
-
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVALJH401K', 'SCH_EVALJH';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EVALJH401K';
@@ -659,6 +661,7 @@ BEGIN
         -- Current Payroll Amounts
         ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhDedCalcBasisAmt = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl and PdhDedCode IN ('81', '81B', '401','82', 'ROT') THEN PdhDedCalcBasisAmt ELSE 0.00 END)
         
         -- YTD Payroll Amounts
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
@@ -709,7 +712,7 @@ BEGIN
         -- YTD Payroll Amount/Hours
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
-        ,PehCurAmt81B     = SUM(CASE WHEN PehEarnCode = '81B' THEN pehCurAmt ELSE 0.00 END)
+        ,PehCurAmt81B     = SUM(CASE WHEN PehEarnCode = 'B' THEN pehCurAmt ELSE 0.00 END)
         -- Current Include Deferred Comp Amount/Hours
         ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
         ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
@@ -730,11 +733,12 @@ BEGIN
     -----------------------------
     IF OBJECT_ID('U_EVALJH401K_PTaxHist','U') IS NOT NULL
         DROP TABLE dbo.U_EVALJH401K_PTaxHist;
-    SELECT DISTINCT
+     SELECT DISTINCT
          PthEEID 
         ,PthGrossAmtYTD        = SUM(PthCurGrossWages) 
         ,PthGrossAmt           = SUM(CASE WHEN PthPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PthCurGrossWages ELSE 0.00 END)
-        ,PthCurTaxableWages    = SUM(CASE WHEN PthPerControl BETWEEN @StartPerControl AND @EndPerControl AND PthTaxCode LIKE '%USFIT%' THEN PthCurTaxableWages ELSE 0.00 END)
+        ,PthYTDTaxableWages    = SUM(CASE WHEN  PthTaxCode LIKE '%USFIT%' THEN PthCurTaxableWages ELSE 0.00 END)
+        ,PthPeriodtoDateTaxableWages = SUM(CASE WHEN PthPerControl BETWEEN @StartPerControl AND @EndPerControl AND PthTaxCode LIKE '%USFIT%' THEN PthCurTaxableWages ELSE 0.00 END)
     INTO dbo.U_EVALJH401K_PTaxHist
     FROM dbo.U_EVALJH401K_EEList WITH (NOLOCK)
     JOIN dbo.PayReg WITH (NOLOCK)
@@ -773,28 +777,38 @@ BEGIN
         ,drvOriginalDateofHire = REPLACE(CONVERT (CHAR(10), eecdateoforiginalhire, 101),'/','')
         ,drvDateofTermination = CASE WHEN EecEmplStatus = 'T' THEN REPLACE(CONVERT (CHAR(10), EecDateOfTermination , 101),'/','')END
         ,drvDateofRehire = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN  REPLACE(CONVERT (CHAR(10),EecDateOfLastHire, 101),'/','') END
-        ,drvStatus = CASE WHEN EecEmplStatus = 'T 'and eectermreason = '203' THEN 'D' ELSE REPLACE(CONVERT (CHAR(10), EecEmplStatus, 101),'/','') END
+        ,drvStatus = CASE WHEN EecEmplStatus = 'T 'and eectermreason = '203' THEN 'D' ELSE EecEmplStatus END --REPLACE(CONVERT (CHAR(10), EecEmplStatus, 101),'/','') END
         ,drvGender = EepGender
         ,drvEmployeeFileNumber = eecempno
         ,drvPayrollfrequency = 'S'
         ,drvExcludableCode = CASE WHEN EecEEType = 'INT' THEN 'X' END
         ,drvEmployeeCorpEmail = EepAddressEMail
         ,drvEmployeeCorporHomePhone = CASE WHEN ISNULL(efoPhoneNumber, '') <> '' THEN efoPhoneNumber ELSE Eepphonehomenumber END
-
         ,drvHourlySalaryCode = EecSalaryOrHourly
         ,drvHoursYTD = Format(PehCurHrsYTD, '0.00')
         ,drvTotalplanyearyodatecomp = Format(PehInclInDefCompYTD, '0.00')
-        ,drvTotalperiodtodateplancomp = Format(PehInclInDefCompHrs , '0.00')
-        ,drvTotalyeartodategrosscomp = Format(PthCurTaxableWages , '0.00')
-        ,drvTotalperiodtodategrosscomp = Format(PthGrossAmt , '0.00')
+        ,drvTotalperiodtodateplancomp = CASE WHEN PdhDedCalcBasisAmt <> 0.00 THEN Format(PdhDedCalcBasisAmt , '0.00')
+                                            ELSE Format(PehInclInDefComp, '0.00')
+                                        END
+                    --Format(PehInclInDefCompHrs , '0.00')
+        ,drvTotalyeartodategrosscomp = Format(PthYTDTaxableWages  , '0.00')
+        ,drvTotalperiodtodategrosscomp = Format(PthPeriodtoDateTaxableWages , '0.00')
         ,drvTotalManagedAcctAnnualcomp = Format(PehCurAmt81B + EecAnnSalary, '0.00')
         ,drvTotalperiod401contrib = Format(PdhEECurAmt401Cont, '0.00')  
         ,drvTotalperiodmatchcontrib = Format(PdhERCurAmtMatchCont, '0.00')
         ,drvTotalperiodRoth401contrib = Format(PdhEECurAmtROTHCont, '0.00')
         ,drvTotalperiodloanrepayments = Format(PdhEECurAmtLoan, '0.00')
         ,drvWorkStatus = EecFullTimeOrPartTime
-        ,drvPayrollPayDate = REPLACE(CONVERT (CHAR(10), prgpaydate, 101),'/','')
-        ,drvPayrollPeriodEndingDate = REPLACE(CONVERT (CHAR(10), PrgPeriodEndDate, 101),'/','')
+        ,drvPayrollPayDate = CASE WHEN PrgPayDate IS NOT NULL THEN
+                            CASE WHEN PayGroupDate > PrgPayDate THEN PayGroupDate ELSE PrgPayDate END
+                            ELSE PayGroupDate
+                        END
+                --REPLACE(CONVERT (CHAR(10), prgpaydate, 101),'/','')
+        ,drvPayrollPeriodEndingDate = CASE WHEN PrgPeriodEndDate IS NOT NULL THEN
+                            CASE WHEN PrgPeriodEnd > PrgPeriodEndDate THEN PrgPeriodEnd ELSE PrgPeriodEndDate END
+                            ELSE PrgPeriodEnd
+                        END
+                        --REPLACE(CONVERT (CHAR(10), PrgPeriodEndDate, 101),'/','')
     INTO dbo.U_EVALJH401K_drvTbl
     FROM dbo.U_EVALJH401K_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -820,6 +834,16 @@ BEGIN
         ON pdhEEID =XEEID
     LEFT JOIN dbo.U_EVALJH401K_Audit WITH (NOLOCK)
         ON audeeid = XEEID
+    JOIN (
+
+            SELECT PgpPayGroup, LEFT(MAX(PgpPeriodControl),8) as PayGroupDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
+                   FROM dbo.PgPayPer WITH (NOLOCK)
+                   WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
+                   --AND PgpPeriodType IN ('R','S')
+                   GROUP BY PgpPayGroup
+                   
+                   ) AS Pay_Group_Dates
+        ON EecPayGroup = PgpPayGroup
       where cmpCoid ='YL7G9' 
         AND EecEEType <> 'TES'
         and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN @StartDate AND @EndDate) or PehCurAmt > 0.00)
