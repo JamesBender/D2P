@@ -961,7 +961,7 @@ BEGIN
         ,drvEmploymentTermReasonCode = CASE WHEN  EecEmplStatus = 'T' AND  EecTermReason IN ('202','RET') THEN 'RETIRED'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DECEASED'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN  ('202','RET','203') THEN 'TERMINATED'
-                                      
+                                        WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and BdmBenStatus = 'T' and bdmchangereason = '201' THEN 'INELIGIBLE'
                                     END
         ,drvAdjustedServiceDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112) END
         ,drvEmploymentStatusCode = CASE WHEN  EecEmplStatus = 'T' AND  EecTermReason IN ('202','RET') THEN 'RETIRED'

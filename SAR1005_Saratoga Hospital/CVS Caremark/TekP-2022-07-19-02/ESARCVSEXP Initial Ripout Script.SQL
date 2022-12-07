@@ -5,7 +5,7 @@ ESARCVSEXP: CVS Caremark Export
 FormatCode:     ESARCVSEXP
 Project:        CVS Caremark Export
 Client ID:      SAR1005
-Date/time:      2022-11-22 15:47:07.933
+Date/time:      2022-12-07 10:17:47.400
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -371,18 +371,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESARCVSEXP_20221122.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESARCVSEXP_20221207.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202211159','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202211159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202211159','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202211159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202211159','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202211159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CVS Caremark Export','202211159','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202211159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202211159','EMPEXPORT','TEST_XOE','Nov 22 2022 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202211159','Nov 15 2022 12:00AM','Dec 30 1899 12:00AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'us3mWaSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment','202303019','EMPEXPORT','OEACTIVE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202303019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202303019','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202303019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202303019','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202303019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',0X9TU',NULL,NULL,NULL,'CVS Caremark Export Sch','202303019','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202303019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202212069','EMPEXPORT','TEST_XOE','Dec  6 2022  3:41PM','ESARCVSEXP',NULL,NULL,NULL,'202212069','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202211291','32410','','','202211291',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -527,26 +527,11 @@ CREATE TABLE [dbo].[U_ESARCVSEXP_Audit] (
     [audEEID] char(12) NULL,
     [audCOID] char(5) NULL,
     [audConSystemID] varchar(255) NULL,
-    [audKey1] varchar(255) NOT NULL,
-    [audKey2] varchar(255) NOT NULL,
-    [audKey3] varchar(255) NOT NULL,
-    [audTableName] varchar(128) NOT NULL,
-    [audFieldName] varchar(128) NOT NULL,
-    [audAction] varchar(6) NOT NULL,
-    [audDateTime] datetime NOT NULL,
-    [audOldValue] nvarchar(2000) NULL,
-    [audNewValue] nvarchar(2000) NULL,
-    [audEffectiveDate] smalldatetime NULL,
-    [audRowNo] bigint NULL,
-    [audDedChange] varchar(1) NOT NULL,
-    [audBenOptionChange] varchar(1) NOT NULL,
     [audSSNChange] varchar(1) NOT NULL,
     [audNameChange] varchar(1) NOT NULL,
     [audDemoChange] varchar(1) NOT NULL,
     [audAddrChange] varchar(1) NOT NULL,
-    [audNewlyEnroll] varchar(1) NOT NULL,
-    [audReEnroll] varchar(1) NOT NULL,
-    [audTermPlan] varchar(1) NOT NULL
+    [audDateTime] varchar(8) NULL
 );
 
 -----------
@@ -592,15 +577,15 @@ CREATE TABLE [dbo].[U_ESARCVSEXP_DrvTbl] (
     [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual1] char(11) NULL,
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual2] varchar(4) NOT NULL,
-    [drvREF01_RefNumberQual3] varchar(1) NOT NULL,
-    [drvREF02_RefNumberQual3] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual2] varchar(10) NULL,
+    [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(4) NULL,
     [drvREF01_RefNumberQual4] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual4] varchar(1) NOT NULL,
     [drvDTP00_DateTime1] varchar(3) NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NULL,
-    [drvDTP03_DateTimePeriod1] datetime NULL,
+    [drvDTP03_DateTimePeriod1] varchar(8) NULL,
     [drvDTP00_DateTime2] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
@@ -762,7 +747,7 @@ CREATE TABLE [dbo].[U_ESARCVSEXP_HdrTbl] (
     [drvBGN07_TransTypeCode] varchar(1) NOT NULL,
     [drvBGN08_ActionCode] varchar(1) NOT NULL,
     [drvREF01_RefNumberQual] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual] varchar(5) NOT NULL,
+    [drvREF02_RefNumberQual] varchar(4) NOT NULL,
     [drvDTP00_DateTime0] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier0] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual0] varchar(2) NOT NULL,
@@ -906,7 +891,7 @@ BEGIN
         ,@ExportCode      = ExportCode
         ,@RunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(5), GETDATE(), 108),':',SPACE(0))
-        ,@FileMinCovDate  = ''
+        ,@FileMinCovDate  = '01/01/2023'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = 'ESARCVSEXP';
 
@@ -964,7 +949,7 @@ INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpPers','EepDateOfBirth');
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpPers','EepIsDisabled');
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpPers','EepMaritalStatus');
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpPers','EepPhoneHomeHumber');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpComp','EecDateOfLastHire');
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpComp','EecDateOfTermination');
 -- Dependent Information
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('Contacts','ConSSN');
@@ -982,86 +967,87 @@ INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('Contacts','ConAddressState');
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('Contacts','ConAddressZipCode');
 INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('Contacts','ConAddressCountry');
 -- Employee Deduction/Benefit Information
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedDedCode');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenStatus');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenOption');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenStartDate');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenStopDate');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedDedCode');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenStatus');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenOption');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenStartDate');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('EmpDed','EedBenStopDate');
 -- Dependent Deduction/Benefit Information
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnDedCode');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnBenStatus');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnBenStartDate');
-INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnBenStopDate');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnDedCode');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnBenStatus');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnBenStartDate');
+--INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DepBPlan','DbnBenStopDate');
 -- Deduction/Benefit Information
 --INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DedCode','DedBenAmt');
 --INSERT INTO dbo.U_ESARCVSEXP_AuditFields VALUES ('DedCode','DedBenAmtRateOrPct');
 -- Create audit table based on fields defined above
 IF OBJECT_ID('U_ESARCVSEXP_Audit','U') IS NOT NULL
     DROP TABLE dbo.U_ESARCVSEXP_Audit;
-SELECT audEEID = xEEID
-    ,audCOID = xCOID
-    ,audConSystemID =  CASE WHEN audTableName = 'Contacts' THEN audKey3Value
-                            WHEN audTableName = 'DepBPlan' THEN DbnDepRecID
-                       END
-    ,audKey1 = audKey1Value
-    ,audKey2 = audKey2Value
-    ,audKey3 = audKey3Value
-    ,audTableName
-    ,audFieldName
-    ,audAction
-    ,audDateTime
-    ,audOldValue
-    ,audNewValue
-    ,audEffectiveDate
-    ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    ,audDedChange = CASE WHEN audTableName IN ('EmpDed','DepBPlan','DedCode') THEN 'Y'
-                         ELSE 'N'
-                    END
-    ,audBenOptionChange = CASE WHEN audFieldName IN ('EedBenOption') THEN 'Y'
-                               ELSE 'N'
-                          END
-    ,audSSNChange = CASE WHEN audFieldName IN ('EepSSN','ConSSN') THEN 'Y'
-                          ELSE 'N'
-                    END
-    ,audNameChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Name%' THEN 'Y'
-                          WHEN audTableName IN ('EmpPers') AND audFieldName LIKE '%Prefix%' THEN 'Y'
-                          WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Suffix%' THEN 'Y'
-                          ELSE 'N'
-                     END
-    ,audDemoChange = CASE WHEN audFieldName IN ('EepGender','EepDateOfBirth','EepMaritalStatus','ConGender','ConDateOfBirth','ConRelationship') THEN 'Y'
-                          ELSE 'N'
-                     END
-    ,audAddrChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Address%' THEN 'Y'
-                          ELSE 'N'
-                     END
-    ,audNewlyEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') = '' AND audNewValue = 'A' THEN 'Y'
-                           ELSE 'N'
-                      END
-    ,audReEnroll = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND ISNULL(audOldValue,'') NOT IN ('A','') AND audNewValue = 'A' THEN 'Y'
-                        WHEN audFieldName IN ('EedBenStartDate','DbnBenStartDate') AND ISNULL(audOldValue,'') <> '' AND ISNULL(audNewValue,'') <> '' THEN 'Y'
-                        ELSE 'N'
-                   END
-    ,audTermPlan = CASE WHEN audFieldName IN ('EedBenStatus','DbnBenStatus') AND audOldValue = 'A' AND ISNULL(audNewValue,'') NOT IN ('A','') THEN 'Y'
-                        WHEN audFieldName IN ('EedBenStopDate','DbnBenStopDate') AND ISNULL(audNewValue,'') <> '' THEN 'Y'
-                        ELSE 'N'
-                   END
-INTO dbo.U_ESARCVSEXP_Audit
-FROM dbo.U_ESARCVSEXP_EEList WITH (NOLOCK)
-JOIN dbo.vw_AuditData WITH (NOLOCK)
-    ON xEEID = audKey1Value
-JOIN dbo.U_ESARCVSEXP_AuditFields WITH (NOLOCK)
-    ON aTableName = audTableName
-    AND aFieldName = audFieldName
-LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
-    ON DbnEEID = xEEID
-    AND DbnDedCode = audKey2Value
-    AND DbnSystemID = audKey3Value
-WHERE audDateTime BETWEEN @StartDate AND @EndDate
-AND ISNULL(audNewValue, '') <> ''
-AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
-    OR (audTableName = 'EmpDed' AND audKey3Value IN (SELECT DedCode FROM dbo.U_ESARCVSEXP_DedList))
-    OR (audTableName = 'DepBPlan' AND audKey2Value IN (SELECT DedCode FROM dbo.U_ESARCVSEXP_DedList))
-);
+
+    SELECT  DISTINCT a.audEEID
+             ,audCOID
+             ,audConSystemID 
+             ,audSSNChange
+             ,audNameChange
+             ,audDemoChange
+             ,audAddrChange
+            -- ,audterm 
+             ,audDateTime = CONVERT(VARCHAR(8),(Max(audDateTime)),112)
+             INTO dbo.U_ESARCVSEXP_Audit 
+    FROM (
+        SELECT audEEID = xEEID
+            ,audCOID = xCOID
+            ,audConSystemID =  CASE WHEN audTableName = 'Contacts' THEN audKey3Value                
+                               END
+            ,audTableName
+            ,audFieldName
+            ,audAction
+            ,audDateTime
+            ,audOldValue
+            ,audNewValue
+            ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audFieldName DESC)
+            ,audSSNChange = CASE WHEN audFieldName IN ('EepSSN','ConSSN') THEN 'Y'
+                                  ELSE 'N'
+                            END
+            ,audNameChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Name%' THEN 'Y'
+                                  WHEN audTableName IN ('EmpPers') AND audFieldName LIKE '%Prefix%' THEN 'Y'
+                                  WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Suffix%' THEN 'Y'
+                                  ELSE 'N'
+                             END
+            ,audDemoChange = CASE WHEN audFieldName IN ('EepGender','EepDateOfBirth','EepMaritalStatus','ConGender','ConDateOfBirth','ConRelationship') THEN 'Y'
+                                  ELSE 'N'
+                             END
+            ,audAddrChange = CASE WHEN audTableName IN ('EmpPers','Contacts') AND audFieldName LIKE '%Address%' THEN 'Y'
+                                  ELSE 'N'
+                             END
+            --,audterm =  CASE WHEN audTableName IN ('EmpComp','EecDateOfTermination') AND ISNULL(audOldValue,'') = '' AND audNewValue = 'T' THEN 'Y'
+            --                       ELSE 'N'
+            --                 END
+
+        --INTO dbo.U_ESARCVSEXP_Audit
+        FROM dbo.U_ESARCVSEXP_EEList WITH (NOLOCK)
+        JOIN dbo.vw_AuditData WITH (NOLOCK)
+            ON xEEID = audKey1Value
+        JOIN dbo.U_ESARCVSEXP_AuditFields WITH (NOLOCK)
+            ON aTableName = audTableName
+            AND aFieldName = audFieldName
+        LEFT JOIN dbo.DepBPlan WITH (NOLOCK)
+            ON DbnEEID = xEEID
+            AND DbnDedCode = audKey2Value
+            AND DbnSystemID = audKey3Value
+        WHERE audDateTime BETWEEN @StartDate AND @EndDate
+        AND ISNULL(audNewValue, '') <> ''
+         )a where audRowNo  = 1
+        and (audSSNChange = 'Y' or audNameChange = 'Y' or audDemoChange = 'Y' or audAddrChange = 'Y' )
+        Group by audEEID
+             ,audCOID
+             ,audConSystemID 
+             ,audSSNChange
+             ,audNameChange
+             ,audDemoChange
+             ,audAddrChange
+        
+    ;
 
     --==========================================
     -- BDM Section
@@ -1210,8 +1196,8 @@ AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
         ,drvBGN07_TransTypeCode = ''
         ,drvBGN08_ActionCode = '4'
         ,drvREF01_RefNumberQual = '38'
-        ,drvREF02_RefNumberQual = '222DC'
-        ,drvDTP00_DateTime0 = 'DPT'
+        ,drvREF02_RefNumberQual = '22DC'
+        ,drvDTP00_DateTime0 = 'DTP'
         ,drvDTP01_DateTimeQualifier0 = CASE WHEN @FormatCode LIke 'OE%' THEN '382' ELSE '007' END
         ,drvDTP02_DateTimeFormatQual0 = 'D8'
         ,drvDTP03_DateTimePeriod0 = @RunDate
@@ -1299,30 +1285,34 @@ AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
         ,drvREF02_RefNumberQual1 = EepSsn
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = '1L'
-        ,drvREF02_RefNumberQual2 = '22DC'
+        ,drvREF02_RefNumberQual2 = CASE WHEN BDMDedCode IN ( '903', '904', '905', '906') THEN 'PPO1ACTIVE'
+                                        WHEN BDMDedCode IN ( '24', '24P', '111','111P') THEN 'PPO2ACTIVE'
+                                    END
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual3 = ''
-        ,drvREF02_RefNumberQual3 = ''
+        ,drvREF01_RefNumberQual3 = 'DX'
+        ,drvREF02_RefNumberQual3 = CASE WHEN BDMDedCode IN ( '903', '904', '905', '906') THEN 'PPO1'
+                                        WHEN BDMDedCode IN ( '24', '24P', '111','111P') THEN 'PPO2'
+                                    END
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = CASE WHEN (audDemoChange = 'Y' or audNameChange = 'Y' or audAddrChange = 'Y') THEN 'DPT' END
-        ,drvDTP01_DateTimeQualifier1 = CASE WHEN (audDemoChange = 'Y' or audNameChange = 'Y' or audAddrChange = 'Y') THEN '303' END
-        ,drvDTP02_DateTimeFormatQual1 =  CASE WHEN (audDemoChange = 'Y' or audNameChange = 'Y' or audAddrChange = 'Y') THEN 'D8' END
-        ,drvDTP03_DateTimePeriod1 = CASE WHEN (audDemoChange = 'Y' or audNameChange = 'Y' or audAddrChange = 'Y') THEN audDateTime END
+        ,drvDTP00_DateTime1 = CASE WHEN audDateTime  is not null THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier1 = CASE WHEN audDateTime  is not null THEN '303' END
+        ,drvDTP02_DateTimeFormatQual1 =  CASE WHEN audDateTime  is not null THEN 'D8' END
+        ,drvDTP03_DateTimePeriod1 = CASE WHEN audDateTime  is not null THEN audDateTime END
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = 'DPT'
+        ,drvDTP00_DateTime2 = 'DTP'
         ,drvDTP01_DateTimeQualifier2 = '336'--'303'
-        ,drvDTP02_DateTimeFormatQual2 = 'D*'--'D8'
+        ,drvDTP02_DateTimeFormatQual2 = 'D8'--'D8'
         ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire --CASE WHEN (audDemoChange = 'Y' or audNameChange = 'Y' or audAddrChange = 'Y') THEN audDateTime END
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 = 'DPT'
+        ,drvDTP00_DateTime3 = 'DTP'
         ,drvDTP01_DateTimeQualifier3 = '356'
         ,drvDTP02_DateTimeFormatQual3 = 'D8'
         ,drvDTP03_DateTimePeriod3 = Bdmbenstartdate
      -- If drvDTP00_DateTime4 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime4 = ''--'DPT'
+        ,drvDTP00_DateTime4 = ''--'DTP'
         ,drvDTP01_DateTimeQualifier4 = ''--'356'
         ,drvDTP02_DateTimeFormatQual4 = ''--'D8'
         ,drvDTP03_DateTimePeriod4 = ''--Bdmbenstartdate
@@ -1341,9 +1331,9 @@ AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' and EepNamePrefix <> 'Z' THEN EepNamePrefix END
+        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' and EepNameSuffix <> 'Z' THEN EepNameSuffix
+                                     WHEN BdmRecType = 'DEP' and ConNameSuffix <> 'Z' THEN ConNameSuffix
                                 END
         ,drvNM108_IDCodeQualifier1 =    CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                             WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN '34'
@@ -1440,9 +1430,10 @@ AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-        LEFT JOIN  dbo.U_ESARCVSEXP_Audit WITH (NOLOCK)
+  LEFT JOIN  dbo.U_ESARCVSEXP_Audit WITH (NOLOCK)
        ON AudEEID = XEEID
-       AND AudCOID = XCOID;
+       AND AudCOID = XCOID
+       and audConSystemID = BdmDepRecID ;
 
     /**************************************************************************************************************
         DETAIL RECORDS
@@ -1461,17 +1452,15 @@ AND ((audTableName NOT IN ('EmpDed','DepBPlan'))
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
-        ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedCode IN ('24', '24P', '903', '904', '111','111P','905', '906') THEN 'HLT'
+        ,drvHD03_InsuranceLineCode = CASE --WHEN BdmDedCode IN ('24', '24P', '903', '904', '111','111P','905', '906') THEN 'HLT'
                                           WHEN BdmDedCode IN ('24', '24P', '903', '904', '111','111P','905', '906') THEN 'PDG'
-                                           
                                      END
         ,drvHD04_PlanCoverageDesc = ''
-        ,drvHD05_CoverageLevelCode = 
-                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES,DP')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE1')) THEN 'E1D'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('FAM')) THEN 'FAM'
-                                                END
+        ,drvHD05_CoverageLevelCode = CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
+                                          WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES,DP')) THEN 'ESP'
+                                          WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE1')) THEN 'E1D'
+                                          WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('FAM')) THEN 'FAM'
+                                     END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
         ,drvDTP00_DateTime_348 = 'DTP'
@@ -1592,10 +1581,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '201810011'
-       ,ExpStartPerControl     = '201810011'
-       ,ExpLastEndPerControl   = '201810019'
-       ,ExpEndPerControl       = '201810019'
+    SET ExpLastStartPerControl = '202210011'
+       ,ExpStartPerControl     = '202210011'
+       ,ExpLastEndPerControl   = '202301019'
+       ,ExpEndPerControl       = '202301019'
 WHERE ExpFormatCode = 'ESARCVSEXP';
 
 **********************************************************************************/
