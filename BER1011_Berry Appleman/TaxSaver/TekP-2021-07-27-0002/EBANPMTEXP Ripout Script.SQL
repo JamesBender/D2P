@@ -421,7 +421,7 @@ BEGIN
     SELECT DISTINCT
          DedCode = DedDedCode
         ,DedType = DedDedType
-    INTO dbo.U_EBANPMTEXP_DedList
+    INTO dbo.U_EBATEXP_DedList
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;

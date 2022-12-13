@@ -5,7 +5,7 @@ EQFCUEMPEX: Salary.com Employee File Export
 FormatCode:     EQFCUEMPEX
 Project:        Salary.com Employee File Export
 Client ID:      QUO1000
-Date/time:      2022-12-06 17:35:37.543
+Date/time:      2022-12-12 15:46:50.047
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -375,16 +375,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUEMPEX_20221206.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUEMPEX_20221212.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.com Employee File Expor','202211169','EMPEXPORT','ONDEM_XOE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202211169','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202210091',NULL,'','','202210091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.com Employee File-Sched','202211169','EMPEXPORT','SCH_EQFCUE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202211169','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202210091',NULL,'','','202210091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.com Employee File-Test','202212051','EMPEXPORT','TEST_XOE','Dec  5 2022  6:00PM','EQFCUEMPEX',NULL,NULL,NULL,'202212051','Dec  5 2022 12:00AM','Dec 30 1899 12:00AM','202210011','178','','','202210011',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.com Employee File Expor','202212169','EMPEXPORT','ONDEM_XOE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202212169','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202210091',NULL,'','','202210091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.com Employee File-Sched','202212169','EMPEXPORT','SCH_EQFCUE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202212169','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202210091',NULL,'','','202210091',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.com Employee File-Test','202212169','EMPEXPORT','TEST_XOE','Dec 10 2022 12:59PM','EQFCUEMPEX',NULL,NULL,NULL,'202212169','Dec  5 2022 12:00AM','Dec 30 1899 12:00AM','202210091','135','','','202210091',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -844,22 +844,22 @@ BEGIN
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
         ,PdhMEDAmt       = SUM(CASE WHEN ltrim(rtrim(PdhDedType)) IN ('MED') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhDENAmt       = SUM(CASE WHEN PdhDedType IN ('DEN') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhVISAmt       = SUM(CASE WHEN PdhDedType IN ('VIS') THEN PdhEECurAmt ELSE 0.00 END)        
-        ,PdhLIFEAmt      = SUM(CASE WHEN PdhDedType IN (' GTL', 'LIFEE', 'LIFEC', 'LIFES') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhADDAmt       = SUM(CASE WHEN PdhDedCode IN ('ADDCH, ADDEE, ADDSP') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSTDAmt       = SUM(CASE WHEN PdhDedType IN ('STD') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhLTDAmt       = SUM(CASE WHEN PdhDedType IN ('LTD') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,Pdh401KAmt      = SUM(CASE WHEN PdhDedType IN ('DEF')  THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhDENAmt       = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('DEN') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhVISAmt       = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('VIS') THEN PdhEECurAmt ELSE 0.00 END)        
+        ,PdhLIFEAmt      = SUM(CASE WHEN PdhDedCode IN ('GTL', 'LIFEE', 'LIFEC', 'LIFES') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhADDAmt       = SUM(CASE WHEN PdhDedCode IN ('ADDCH', 'ADDEE', 'ADDSP') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSTDAmt       = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('STD') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhLTDAmt       = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('LTD') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,Pdh401KAmt      = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('DEF')  THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         ,Pdh401KLoan     = SUM(CASE WHEN PdhDedCode IN ('401L') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhMEDERAmt     = SUM(CASE WHEN PdhDedType IN ('MED') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhDENERAmt     = SUM(CASE WHEN PdhDedType IN ('DEN') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhVISERAmt     = SUM(CASE WHEN PdhDedType IN ('VIS') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhLIFEERAmt    = SUM(CASE WHEN PdhDedCode IN (' GTL', 'LIFEE', 'LIFEC', 'LIFES') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhADDERAmt     = SUM(CASE WHEN PdhDedCode IN ('ADDCH, ADDEE, ADDSP') THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhSTDERAmt     = SUM(CASE WHEN PdhDedType IN ('STD') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
-        ,PdhLTDERAmt     = SUM(CASE WHEN PdhDedType IN ('LTD') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
-        ,Pdh401KERAmt    = SUM(CASE WHEN PdhDedType IN ('DEF') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhMEDERAmt     = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('MED') THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhDENERAmt     = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('DEN') THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhVISERAmt     = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('VIS') THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhLIFEERAmt    = SUM(CASE WHEN PdhDedCode IN ('GLIFE', 'LIFEE', 'LIFEC', 'LIFES') THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhADDERAmt     = SUM(CASE WHEN PdhDedCode IN ('ADDCH', 'ADDEE', 'ADDSP', 'ADDCO') THEN PdhERCurAmt ELSE 0.00 END)
+        ,PdhSTDERAmt     = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('STD') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
+        ,PdhLTDERAmt     = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('LTD') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
+        ,Pdh401KERAmt    = SUM(CASE WHEN Ltrim(rtrim(PdhDedType)) IN ('DEF') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
         --,PdhTUTAmt     = SUM(CASE WHEN PdhDedCode IN ('TUITN', 'TUITT') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
         --,PdhPHRAmt     = SUM(CASE WHEN PdhDedCode IN ('CELLR') THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
         ,Pdh401KEmpMatchRolling12  = SUM(CASE WHEN PdhDedType IN ('DEF') AND left(PdhPerControl,8) >= DATEADD(DAY, -365, Left(@StartPerControl, 8)) THEN ISNULL(PdhERCurAmt, 0) ELSE 0.00 END)
@@ -945,7 +945,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EQFCUEMPEX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EQFCUEMPEX_drvTbl;
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -994,31 +994,32 @@ BEGIN
         ,drvADDEE = CASE WHEN FORMAT(PdhADDAmt, '0.00') > '0.00' THEN FORMAT(PdhADDAmt, '0.00') ELSE '0.00' END
         ,drvSTDEE = CASE WHEN FORMAT(PdhSTDAmt, '0.00') > '0.00' THEN  FORMAT(PdhSTDAmt, '0.00') ELSE '0.00' END
         ,drvLTDEE = CASE WHEN FORMAT(PdhLTDAmt, '0.00') > '0.00' THEN FORMAT(PdhLTDAmt, '0.00') ELSE '0.00' END
-        ,drvFourZeroOneKEE = CASE WHEN FORMAT(Pdh401KAmt , '0.00') > '0.00' THEN FORMAT(Pdh401KAmt , '0.00') ELSE '0.00' END
+        ,drvFourZeroOneKEE = CASE WHEN FORMAT(Pdh401KLoan , '0.00') > '0.00' THEN FORMAT(Pdh401KLoan , '0.00') ELSE '0.00' END
         ,drvFICATaxSocialEE = CASE WHEN FORMAT(PthFICAEE, '0.00') > '0.00' THEN FORMAT(PthFICAEE, '0.00') ELSE '0.00' END
         ,drvFICATaxMedicareEE = CASE WHEN FORMAT(PthMEDTaxEE, '0.00') > '0.00' THEn FORMAT(PthMEDTaxEE, '0.00') ELSE '0.00' END
         ,drvMedicalER = CASE WHEN FORMAT(PdhMedERAmt, '0.00') > '0.00' THEN FORMAT(PdhMedERAmt, '0.00') ELSE '0.00' END
-        ,drvDentalER = CASE WHEN FORMAT(PdhDENERAmt, '0.00') > '0.00' THEN FORMAT(PdhMedERAmt, '0.00') ELSE '0.00' END
+        ,drvDentalER = CASE WHEN FORMAT(PdhDENERAmt, '0.00') > '0.00' THEN FORMAT(PdhDENERAmt, '0.00') ELSE '0.00' END
         ,drvVisionER = CASE WHEN FORMAT(PdhVISERAmt, '0.00') > '0.00' THEN FORMAT(PdhVISERAmt, '0.00') ELSE '0.00' END
         ,drvLifeER = CASE WHEN FORMAT(PdhLIFEERAmt, '0.00') > '0.00' THEN FORMAT(PdhLIFEERAmt, '0.00') ELSE '0.00' END
         ,drvADDER = CASE WHEN FORMAT(PdhADDERAmt, '0.00') > '0.00' THEN FORMAT(PdhADDERAmt, '0.00') ELSE '0.00' END
         ,drvSTDER = CASE WHEN FORMAT(PdhSTDERAmt, '0.00') > '0.00' THEN FORMAT(PdhSTDERAmt, '0.00') ELSE '0.00' END
         ,drvLTDER = CASE WHEN FORMAT(PdhLTDERAmt, '0.00') > '0.00' THEN FORMAT(PdhLTDERAmt, '0.00') ELSE '0.00' END
-        ,drvFourZeroOneKER = CASE WHEN FORMAT(Pdh401KERAmt + Pdh401KLoan, '0.00') > '0.00' THEn FORMAT(Pdh401KERAmt + Pdh401KLoan, '0.00') ELSE '0.00' END
+        
+        ,drvFourZeroOneKER = CASE WHEN FORMAT(Pdh401KERAmt +  Pdh401KLoan , '0.00') > '0.00' THEN FORMAT(Pdh401KERAmt +  Pdh401KLoan, '0.00') ELSE '0.00' END
         ,drvTuitionReimbER = CASE WHEN FORMAT(PehTUTAmt , '0.00') > '0.00' THEN FORMAT(PehTUTAmt , '0.00') ELSE '0.00' END
         ,drvPhoneReimbER = CASE WHEN FORMAT(PehPHRAmt, '0.00') > '0.00' THEN FORMAT(PehPHRAmt , '0.00') ELSE '0.00' END
         ,drvFICATaxSocialER = CASE WHEN FORMAT(PthFICAER, '0.00') > '0.00' THEN FORMAT(PthFICAER, '0.00') ELSE '0.00' END
         ,drvFICATaxMedicareER = CASE WHEn FORMAT(PthMEDTaxER, '0.00') > '0.00' THEN FORMAT(PthMEDTaxER, '0.00') ELSE '0.00' END
         ,drvEmail = EepAddressEMail
         ,drvIsRemoteWorker = CASE WHEN RemoteWork IS not null THEN '1' ELSE '0' END
-        ,drvAnnEmplyrSponMedDenVisBen = FORMAT(((PdhMEDERAmt + PdhDENERAmt ) + (PdhVISERAmt * 26 )),'0.00') 
+        ,drvAnnEmplyrSponMedDenVisBen = CASE WHEN FORMAT(((PdhMEDERAmt + PdhDENERAmt ) + (PdhVISERAmt * 26 )),'0.00') > '0.00' THEN FORMAT(((PdhMEDERAmt + PdhDENERAmt ) + (PdhVISERAmt * 26 )),'0.00') ELSE '0.00' END
         ,drvSplitDollarCompensation = CASE WHEN FORMAT(EECUDFIELD19, '0.00') > '0.00' THEN FORMAT(EECUDFIELD19, '0.00')  ELSE '0.00' END
         ,drvDeferredCompensation = CASE WHEN FORMAT(EECUDFIELD10 , '0.00') > '0.00' THEN FORMAT(EECUDFIELD10 , '0.00')  ELSE '0.00' END 
         ,drvHRAUsedYTD = CASE WHEN FORMAT(EECUDFIELD20, '0.00') > '0.00' THEN FORMAT(EECUDFIELD20, '0.00')  ELSE '0.00' END
         ,drv401KEmployerMatch = CASE WHEN FORMAT(Pdh401KEmpMatchRolling12,'0.00') > '0.00' THEN FORMAT(Pdh401KEmpMatchRolling12,'0.00')  ELSE '0.00' END
         ,drvCommission = CASE WHEN FORMAT(PehCommRolling12 ,'0.00') > '0.00' THEN FORMAT(PehCommRolling12 ,'0.00')  ELSE '0.00' END
-        ,drvTotalCompandBenefits = FORMAT( ( Pdh401KEmpMatchRolling12 + PehCommRolling12 + EecAnnSalary) +((PdhMEDERAmt + PdhDENERAmt + PdhVISERAmt) * .26 )     ,'0.00')            
-        ,drvTargetSuccessShare = FORMAT(EecAnnSalary * OrgDesc14 ,'0.00')
+        ,drvTotalCompandBenefits = CASE WHEN FORMAT( ((PdhMEDERAmt + PdhDENERAmt ) + (PdhVISERAmt * 26 )) +  (isnull(EECUDFIELD19, 0.00) + isnull(EECUDFIELD10,0.00)   + isnull(EECUDFIELD20,0.00) + isnull(Pdh401KEmpMatchRolling12, 0.00) +  isnull(PehCommRolling12, 0.00) ), '0.00')> '0.00' THEN  FORMAT( ((PdhMEDERAmt + PdhDENERAmt ) + (PdhVISERAmt * 26 )) +  (isnull(EECUDFIELD19, 0.00) + isnull(EECUDFIELD10,0.00)   + isnull(EECUDFIELD20,0.00) + isnull(Pdh401KEmpMatchRolling12, 0.00) +  isnull(PehCommRolling12, 0.00) ), '0.00') ELSE '0.00' END
+        ,drvTargetSuccessShare = CASE WHEN FORMAT(EecAnnSalary * OrgDesc14 ,'0.00') >'0.00' THEn FORMAT(EecAnnSalary * OrgDesc14 ,'0.00') ELSE '0.00' END
         ,drvMaximum401kMatch = CASE WHEN (EecAnnSalary * .06) > 18300.00 THEN '18300.00' ELSE FORMAT((EecAnnSalary * .06),'0.00')  END
     INTO dbo.U_EQFCUEMPEX_drvTbl
     FROM dbo.U_EQFCUEMPEX_EEList WITH (NOLOCK)
@@ -1143,8 +1144,8 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202210091'
        ,expStartPerControl     = '202210091'
-       ,expLastEndPerControl   = '202211169'
-       ,expEndPerControl       = '202211169'
+       ,expLastEndPerControl   = '202212169'
+       ,expEndPerControl       = '202212169'
 WHERE expFormatCode = 'EQFCUEMPEX';
 
 **********************************************************************************/

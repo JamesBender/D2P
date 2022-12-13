@@ -5,7 +5,7 @@ EWCOBNPMEX: Wex Cobra/Npm Export
 FormatCode:     EWCOBNPMEX
 Project:        Wex Cobra/Npm Export
 Client ID:      LAW1000
-Date/time:      2022-12-06 13:47:29.473
+Date/time:      2022-12-09 13:39:00.393
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -264,7 +264,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20221206.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20221209.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -275,7 +275,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202209029','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,'Wex Cobra/Npm Export','202209029','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202211259','EMPEXPORT','TEST_XOE','Dec  6 2022 12:00AM','EWCOBNPMEX',NULL,NULL,NULL,'202211259','Nov 25 2022 12:00AM','Dec 30 1899 12:00AM','202209011','56','','','202209011',dbo.fn_GetTimedKey(),NULL,'us3mWaLAW1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202212091','EMPEXPORT','TEST_XOE','Dec  9 2022 10:19AM','EWCOBNPMEX',NULL,NULL,NULL,'202212091','Dec  9 2022 12:00AM','Dec 30 1899 12:00AM','202209011','58','','','202209011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -418,7 +418,7 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_NPM] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(14) NULL,
     [drvSSN] char(11) NULL,
-    [drvClientDivisionName] varchar(15) NULL,
+    [drvClientDivisionName] varchar(10) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -441,7 +441,7 @@ CREATE TABLE [dbo].[U_EWCOBNPMEX_drvTbl_QB] (
     [drvCoID] char(5) NULL,
     [drvDepRecID] char(12) NULL,
     [drvSort] varchar(16) NULL,
-    [drvClientDivisionName] varchar(15) NULL,
+    [drvClientDivisionName] varchar(10) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
     [drvNameLast] varchar(100) NULL,
@@ -1092,7 +1092,7 @@ BEGIN
         ,drvDepRecID = bdmDepRecId--CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvSort = '1 ' + xEEID + ' 1'--EdhChangeReason + ' ' + ConNameFirst -- '1 ' + xEEID + ' 1'
         -- standard fields above and additional driver fields below
-        ,drvClientDivisionName =    CASE WHEN EecCOID = 'QFQEM' THEN 'Illinois/Nevada'
+        ,drvClientDivisionName =    CASE WHEN EecCOID = 'QFQEM' THEN 'Nevada'
                                     WHEN EecCOID = 'QFQBY' THEN 'Texas'
                                     WHEN EecCOID = 'QFOKB' THEN 'California'
                                     END
@@ -1102,18 +1102,18 @@ BEGIN
                               WHEN Bdmrelationship = 'EMP' THEN    LEFT(EepNameMiddle,1) END
         ,drvNameLast = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )  THEN ConNameLast 
                             WHEN Bdmrelationship = 'EMP' THEN    EepNameLast END
-        ,drvSSN = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConSSN 
+        ,drvSSN = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' ) THEN ConSSN 
                        WHEN Bdmrelationship = 'EMP' THEN  eepSSN END
-        ,drvAddressLine1 = REPLACE(CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConAddressLine1 WHEN Bdmrelationship = 'EMP' THEN   EepAddressLine1 END, ',', '')
-        ,drvAddressLine2 = REPLACE(CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConAddressLine2 WHEN Bdmrelationship = 'EMP' THEN   EepAddressLine2 END, ',','')
-        ,drvAddressCity = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConAddressCity WHEN Bdmrelationship = 'EMP' THEN   EepAddressCity END
-        ,drvAddressState = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConAddressState WHEN Bdmrelationship = 'EMP' THEN   EepAddressState END
-        ,drvAddressZipCode = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConAddressZipCode WHEN Bdmrelationship = 'EMP' THEN   EepAddressZipCode END
-        ,drvSex =    CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN 
+        ,drvAddressLine1 = REPLACE(CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN ConAddressLine1 WHEN Bdmrelationship = 'EMP' THEN   EepAddressLine1 END, ',', '')
+        ,drvAddressLine2 = REPLACE(CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN ConAddressLine2 WHEN Bdmrelationship = 'EMP' THEN   EepAddressLine2 END, ',','')
+        ,drvAddressCity = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN ConAddressCity WHEN Bdmrelationship = 'EMP' THEN   EepAddressCity END
+        ,drvAddressState = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN ConAddressState WHEN Bdmrelationship = 'EMP' THEN   EepAddressState END
+        ,drvAddressZipCode = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN ConAddressZipCode WHEN Bdmrelationship = 'EMP' THEN   EepAddressZipCode END
+        ,drvSex =    CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN 
                         CASE WHEN ConGender IN ('M','F') THEN ConGender ELSE 'U' END
                     ELSE CASE WHEN Bdmrelationship = 'EMP' and EepGender IN ('M','F') THEN EepGender ELSE 'U' END
                     END
-        ,drvDateOfBirth = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') THEN ConDateOfBirth WHEN Bdmrelationship = 'EMP' THEN EepDateOfBirth END
+        ,drvDateOfBirth = CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' )THEN ConDateOfBirth WHEN Bdmrelationship = 'EMP' THEN EepDateOfBirth END
         ,drvEmployeePayrollType = CASE WHEN EecSalaryOrHourly = 'S' THEN 'SALARY' ELSE 'HOURLY' END
     INTO dbo.U_EWCOBNPMEX_drvTbl_QB
     FROM dbo.U_EWCOBNPMEX_EEList WITH (NOLOCK)
@@ -1384,7 +1384,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ,drvSort = '2 ' + xEEID 
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
-        ,drvClientDivisionName =    CASE WHEN EecCOID = 'QFQEM' THEN 'Illinois/Nevada'
+        ,drvClientDivisionName =    CASE WHEN EecCOID = 'QFQEM' THEN 'Nevada'
                                     WHEN EecCOID = 'QFQBY' THEN 'Texas'
                                     WHEN EecCOID = 'QFOKB' THEN 'California'
                                     END

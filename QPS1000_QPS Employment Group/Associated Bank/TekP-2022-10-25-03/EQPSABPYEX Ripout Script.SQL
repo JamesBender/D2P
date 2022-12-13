@@ -5,7 +5,7 @@ EQPSABPYEX: Assoc Bank FSA and HSA Payroll Export
 FormatCode:     EQPSABPYEX
 Project:        Assoc Bank FSA and HSA Payroll Export
 Client ID:      QPS1000
-Date/time:      2022-12-02 11:36:17.927
+Date/time:      2022-12-13 02:33:39.070
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -160,7 +160,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EQPSABPYEXZ0','7','D','10','8',NULL,'Tax Year ',NULL,NULL,'"Current"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EQPSABPYEXZ0','2','T','90','1',NULL,'Record Type ',NULL,NULL,'"FF "','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQPSABPYEXZ0','20','T','90','2',NULL,'Record Count ',NULL,NULL,'"drvRecordCount"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQPSABPYEXZ0','3','T','90','3',NULL,'Admin Code ',NULL,NULL,'"DBI "','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQPSABPYEXZ0','3','T','90','3',NULL,'Admin Code ',NULL,NULL,'"ABK "','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EQPSABPYEXZ0','6','T','90','4',NULL,'Employer Code ',NULL,NULL,'"Q5P7S2"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EQPSABPYEXZ0','8','T','90','5',NULL,'Created Date ',NULL,NULL,'"drvCreatedDate"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EQPSABPYEXZ0','6','T','90','6',NULL,'Created Time ',NULL,NULL,'"drvCreatedTime"','(''UA''=''T'')');
@@ -176,16 +176,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQPSABPYEX_20221202.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQPSABPYEX_20221213.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assoc Bank FSA and HSA Payroll','202212029','EMPEXPORT','ONDEM_XOE',NULL,'EQPSABPYEX',NULL,NULL,NULL,'202212029','Dec  2 2022 10:32AM','Dec  2 2022 10:32AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assoc Bank FSA and HSA P-Sched','202212029','EMPEXPORT','SCH_EQPSAB',NULL,'EQPSABPYEX',NULL,NULL,NULL,'202212029','Dec  2 2022 10:32AM','Dec  2 2022 10:32AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Assoc Bank FSA and HSA P-Test','202212029','EMPEXPORT','TEST_XOE',NULL,'EQPSABPYEX',NULL,NULL,NULL,'202212029','Dec  2 2022 10:32AM','Dec  2 2022 10:32AM','202211151',NULL,'','','202211151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assoc Bank FSA and HSA Payroll','202212019','EMPEXPORT','ONDEM_XOE',NULL,'EQPSABPYEX',NULL,NULL,NULL,'202212019','Dec  2 2022 10:32AM','Dec  2 2022 10:32AM','202212011',NULL,'','','202212011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Assoc Bank FSA and HSA P-Sched','202212019','EMPEXPORT','SCH_EQPSAB',NULL,'EQPSABPYEX',NULL,NULL,NULL,'202212019','Dec  2 2022 10:32AM','Dec  2 2022 10:32AM','202212011',NULL,'','','202212011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Assoc Bank FSA and HSA P-Test','202212019','EMPEXPORT','TEST_XOE',NULL,'EQPSABPYEX',NULL,NULL,NULL,'202212019','Dec  2 2022 10:32AM','Dec  2 2022 10:32AM','202212011',NULL,'','','202212011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -372,6 +372,7 @@ CREATE TABLE [dbo].[U_EQPSABPYEX_Header] (
 IF OBJECT_ID('U_EQPSABPYEX_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_EQPSABPYEX_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
+    [PdhDedCode] char(5) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
     [PdhEECurAmtYTD] money NULL,
@@ -567,15 +568,16 @@ BEGIN
         DROP TABLE dbo.U_EQPSABPYEX_PDedHist;
     SELECT DISTINCT
          PdhEEID
+        ,PdhDedCode
         -- Current Payroll Amounts
-        ,PdhEECurAmt    = SUM(CASE WHEN PdhDedCode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC') 
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhDedCode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC','HSAER') 
                 AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
         -- YTD Payroll Amounts
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC','HSAER') THEN PdhEECurAmt ELSE 0.00 END)
       --  ,PdhHSAER     = SUM(CASE WHEN PdhDedCode IN ('HSAER') THEN 0.01 ELSE 0.00 END)
         --,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
         --,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
@@ -593,7 +595,7 @@ BEGIN
     AND PdhPerControl <= @EndPerControl
     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
     AND PdhDedCode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC', 'HSAER')
-    GROUP BY PdhEEID
+    GROUP BY PdhEEID,PdhDedCode
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
     );
@@ -635,7 +637,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EQPSABPYEX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EQPSABPYEX_drvTbl;
-    SELECT DISTINCT
+       SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -646,11 +648,12 @@ BEGIN
         ,drvPlanName = CASE WHEN Bdmdedcode  IN ('FSA', 'HEFSA') THEN 'Medical FSA'
                             WHEN Bdmdedcode  = 'FSAD' THEN 'Dependent Care FSA'
                             WHEN Bdmdedcode  = 'LFSA' THEN 'Limited FSA'
-                            WHEN Bdmdedcode  IN ( 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC') THEN 'Health Savings Account'
+                            WHEN Bdmdedcode  IN ('HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAIC', 'HSAER') THEN 'Health Savings Account'
                         END
         ,drvContribDate = REPLACE(CONVERT (CHAR(10),PrgPayDate , 101),'/','') 
-        ,drvContribDesc = CASE WHEN Bdmdedcode IN ('HSAER')  THEN 'Employer Contribution' else 'Payroll Deduction' END
-         ,drvContribAmt = CASE WHEN Bdmdedcode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSACI', 'HSAF', 'HSAI', 'HSAI') and Format(PdhEECurAmt, '0.00')> '0.00' THEN Format(PdhEECurAmt, '0.00') END
+        ,drvContribDesc = CASE WHEN Bdmdedcode IN ('HSAER') THEN 'Employer Contribution' else 'Payroll Deduction' END
+         ,drvContribAmt = CASE WHEN Bdmdedcode IN ('FSA', 'HEFSA', 'FSAD', 'LFSA', 'HSACF', 'HSAIC', 'HSAF', 'HSAI', 'HSAI','HSAER') and Format(Isnull(PdhEECurAmt,'0.00'), '0.00') <> '0.00' THEN Format(Isnull(PdhEECurAmt,'0.00'), '0.00') END
+
     INTO dbo.U_EQPSABPYEX_drvTbl
     FROM dbo.U_EQPSABPYEX_EEList WITH (NOLOCK)
    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -661,15 +664,19 @@ BEGIN
         AND BdmCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-     LEFT JOIN dbo.U_EQPSABPYEX_Audit WITH (NOLOCK)
-        ON audEEID = xEEID
-        AND audKey2 = xCOID
     LEFT JOIN dbo.U_EQPSABPYEX_PEarHist WITH (NOLOCK)
         ON PehEEID = XEEID
-    LEFT JOIN dbo.U_EQPSABPYEX_PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EQPSABPYEX_PDedHist WITH (NOLOCK)
         ON PdhEEID = XEEID
+      -- and PdhDedCode = BdmDedCode
+    LEFT JOIN dbo.U_EQPSABPYEX_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
      Where eecEEtype <> 'TES'
-        And  EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN @StartDate AND @EndDate)
+        AND Isnull(PdhEECurAmt,'0.00') > '0.00'
+        AND EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND Format(Isnull(PdhEECurAmt,'0.00'), '0.00') <> '0.00' )
+        --AND EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND (audDateTime BETWEEN @StartDate AND @EndDate) or Format(Isnull(PdhEECurAmt,'0.00'), '0.00') > '0.00')
+
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -721,10 +728,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202211151'
-       ,expStartPerControl     = '202211151'
-       ,expLastEndPerControl   = '202212029'
-       ,expEndPerControl       = '202212029'
+    SET expLastStartPerControl = '202212011'
+       ,expStartPerControl     = '202212011'
+       ,expLastEndPerControl   = '202212019'
+       ,expEndPerControl       = '202212019'
 WHERE expFormatCode = 'EQPSABPYEX';
 
 **********************************************************************************/
