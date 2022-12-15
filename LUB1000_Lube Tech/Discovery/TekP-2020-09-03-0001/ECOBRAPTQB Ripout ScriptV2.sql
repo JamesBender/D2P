@@ -1233,7 +1233,7 @@ FROM dbo.U_ECOBRAPTQB_drvTbl_QBDEP
     JOIN dbo.U_dsi_BDM_ECOBRAPTQB WITH (NOLOCK)
         ON BdmEEID = drvEEID 
         AND BdmCoID = drvCOID
-    --JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+    --JOIN  WITH (NOLOCK)
     --    ON DbnEEID = drvEEID 
     --    AND DbnCoID = drvCOID
     --    AND DbnFormatCode = @FormatCode 

@@ -5,7 +5,7 @@ ESMWSAKNXP: Sakon Demographic Export
 FormatCode:     ESMWSAKNXP
 Project:        Sakon Demographic Export
 Client ID:      UST1001
-Date/time:      2022-11-21 10:20:28.253
+Date/time:      2022-12-14 16:46:37.393
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -225,7 +225,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESMWSAKNXP_20221121.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESMWSAKNXP_20221214.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -332,7 +332,7 @@ CREATE TABLE [dbo].[U_ESMWSAKNXP_drvTbl] (
     [drvCountry] varchar(8000) NULL,
     [drvManagerID] varchar(5) NULL,
     [drvManagerFirstName] varchar(256) NULL,
-    [drvManagerLastName] varchar(256) NULL,
+    [drvManagerLastName] varchar(8000) NULL,
     [drvManagerEmailID] varchar(256) NULL,
     [drvCostCenter] char(10) NULL,
     [drvCostCenterDesc] varchar(8000) NULL,
@@ -344,7 +344,9 @@ CREATE TABLE [dbo].[U_ESMWSAKNXP_drvTbl] (
     [drvDepartment] varchar(8000) NULL,
     [drvBusinessEntity] varchar(40) NULL,
     [drvBusinessLocation] varchar(8000) NULL,
-    [drvTerminationDate] varchar(8000) NULL
+    [drvTerminationDate] varchar(8000) NULL,
+    [OrgCode] char(10) NULL,
+    [OrgDesc] varchar(25) NULL
 );
 
 -----------
@@ -488,7 +490,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ESMWSAKNXP_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ESMWSAKNXP_drvTbl;
-     SELECT DISTINCT
+    SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -511,10 +513,13 @@ BEGIN
         ,drvState = REPLACE(EepAddressState, ',', '')
         ,drvZIPCode = EepAddressZipCode
         ,drvCountry = REPLACE(EepAddressCountry, ',', '')
-        ,drvManagerID = RIGHT(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'empno'),5)
-        ,drvManagerFirstName =  dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Namefirst')
-        ,drvManagerLastName = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast') 
-        ,drvManagerEmailID = CASE WHEN dbo.dsi_fnlib_GetSupervisorField('', xEEID, 'AddressEMail')  Like '%.com%' THEN dbo.dsi_fnlib_GetSupervisorField('', xEEID, 'AddressEMail') END
+        ,drvManagerID = CASE WHEN ol1.OrgDesc = 'CEO' THEN RIGHT(EecEmpNo,5) ELSE RIGHT(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'empno'),5) END
+        ,drvManagerFirstName =  CASE WHEN ol1.OrgDesc = 'CEO' THEN EepNameFirst ELSE dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Namefirst') END
+        ,drvManagerLastName = CASE WHEN ol1.OrgDesc = 'CEO' THEN REPLACE(EepNameLast,',', '') ELSE dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast') END
+        ,drvManagerEmailID = CASE WHEN ol1.OrgDesc = 'CEO' AND EepAddressEMail Like '%.com%' THEN EepAddressEMail 
+                                ELSE  
+                                    CASE WHEN dbo.dsi_fnlib_GetSupervisorField('', xEEID, 'AddressEMail')  Like '%.com%' THEN dbo.dsi_fnlib_GetSupervisorField('', xEEID, 'AddressEMail') END
+                                END
         ,drvCostCenter = OL4.OrgCode
         ,drvCostCenterDesc = REPLACE(OL4.OrgDesc,',', '')
         ,drvGLCode = OL4.OrgCode
@@ -526,6 +531,8 @@ BEGIN
         ,drvBusinessEntity = CmpCompanyName
         ,drvBusinessLocation = REPLACE(LocDesc,',', '')
         ,drvTerminationDate = REPLACE(CONVERT (CHAR(10),CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END, 101),'/','')
+        ,ol1.OrgCode
+        ,ol1.OrgDesc
     INTO dbo.U_ESMWSAKNXP_drvTbl
     FROM dbo.U_ESMWSAKNXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -538,6 +545,9 @@ BEGIN
     LEFT JOIN dbo.OrgLevel OL4 WITH (NOLOCK)
         On OL4.OrgLvl = 4
         and OL4.OrgCode = EecOrgLvl4
+    LEFT JOIN dbo.OrgLevel OL1 WITH (NOLOCK)
+        On OL1.OrgLvl = 2
+        and OL1.OrgCode = EecOrgLvl2
     LEFT JOIN dbo.company  WITH (NOLOCK)
         ON EecCOID = cmpCoID 
         AND cmpcompanycode in ('1010S', '1010A', '1054S', '1033S')

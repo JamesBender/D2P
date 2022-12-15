@@ -5,7 +5,7 @@ EDSCPRUEXP: Prudential Life/Illness/Accident/Hospital Export
 FormatCode:     EDSCPRUEXP
 Project:        Prudential Life/Illness/Accident/Hospital Export
 Client ID:      DCS1000
-Date/time:      2022-12-13 03:13:45.633
+Date/time:      2022-12-15 11:17:57.367
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -383,7 +383,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EDSCPRUEXP_20221213.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EDSCPRUEXP_20221215.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -394,7 +394,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210219','EMPEXPORT','OEPASSIVE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Prudential Life/Illness/Accide','202210219','EMPEXPORT','ONDEM_XOE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',U6X8D',NULL,NULL,NULL,'Prudential Life/Illness/-Sched','202210219','EMPEXPORT','SCH_EDSCPR',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Prudential Life/Illness/-Test','202212129','EMPEXPORT','TEST_XOE','Dec 12 2022  5:10PM','EDSCPRUEXP',NULL,NULL,NULL,'202212129','Dec 12 2022 12:00AM','Dec 30 1899 12:00AM','201901011','9193','','','201901011',dbo.fn_GetTimedKey(),NULL,'us3kEpDCS1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Prudential Life/Illness/-Test','202212151','EMPEXPORT','TEST_XOE','Dec 15 2022 10:34AM','EDSCPRUEXP',NULL,NULL,NULL,'202212151','Dec 15 2022 12:00AM','Dec 30 1899 12:00AM','202106011','14063','','','202106011',dbo.fn_GetTimedKey(),NULL,'us3kEpDCS1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -628,7 +628,7 @@ CREATE TABLE [dbo].[U_EDSCPRUEXP_drvTbl_EMP] (
     [drvRehireDate] varchar(8) NULL,
     [drvRetirementDate] varchar(8) NULL,
     [drvEmploymentTerminationDate] varchar(8) NULL,
-    [drvEmploymentTermReasonCode] varchar(10) NULL,
+    [drvEmploymentTermReasonCode] varchar(16) NULL,
     [drvAdjustedServiceDate] varchar(8) NULL,
     [drvEmploymentStatusCode] varchar(16) NOT NULL,
     [drvEmploymentStatusEffDate] varchar(8) NULL,
@@ -802,7 +802,7 @@ BEGIN
     JOIN dbo.U_EDSCPRUEXP_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate    
+    WHERE audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate    
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -939,7 +939,7 @@ BEGIN
     LEFT JOIN  dbo.U_EDSCPRUEXP_Audit WITH (NOLOCK)
         ON xEEID = audEEID
         and xcoid = audKey2
-     WHERE eeceetype = 'REG' and  EepAddressCountry = 'USA' AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
+     WHERE eeceetype = 'REG' and  EepAddressCountry = 'USA' AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and eectermreason <> 'TRO' AND audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
     ;
     
     ---------------------------------
@@ -961,14 +961,15 @@ BEGIN
         ,drvRehireDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire AND (EecJobChangeReason = '101' OR EecHireSource = 'REHIRE') THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112) END
         ,drvRetirementDate = CASE WHEN EecEmplStatus = 'T' AND EecTermReason IN ('202','RET') THEN CONVERT(VARCHAR(8),EecDateOfTermination,112) END
         ,drvEmploymentTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN CONVERT(VARCHAR(8),EecDateOfTermination,112) END
-        ,drvEmploymentTermReasonCode = CASE WHEN  EecEmplStatus = 'T' AND  EecTermReason IN ('202','RET') THEN 'RETIRED'
-                                        WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DECEASED'
+        ,drvEmploymentTermReasonCode = CASE WHEN  EecEmplStatus = 'T' AND  (EecTermReason IN ('202','RET') Or BdmChangereason = '204' )THEN 'RETIRED'
+                                        WHEN EecEmplStatus = 'T' AND ( EecTermReason = '203' or BdmChangereason = '210' ) THEN 'DECEASED'
+                                        WHEN EecEmplStatus = 'L'  THEN 'LEAVE OF ABSENCE'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN  ('202','RET','203') THEN 'TERMINATED'
                                         WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and BdmBenStatus = 'T' and bdmchangereason = '201' THEN 'INELIGIBLE'
                                     END
         ,drvAdjustedServiceDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112) END
         ,drvEmploymentStatusCode = CASE WHEN  EecEmplStatus = 'T' AND  EecTermReason IN ('202','RET') THEN 'RETIRED'
-                                        WHEN EecEmplStatus = 'T' AND EecTermReason = '203' THEN 'DECEASED'
+                                        WHEN EecEmplStatus = 'T' AND ( EecTermReason = '203' or BdmChangereason = '210' ) THEN 'DECEASED'
                                         WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN  ('202','RET','203') THEN 'TERMINATED'
                                         WHEN EecEmplStatus = 'L' THEN 'LEAVE OF ABSENCE'
                                         ELSE 'ACTIVE'
@@ -1001,7 +1002,7 @@ BEGIN
     LEFT JOIN  dbo.U_EDSCPRUEXP_Audit WITH (NOLOCK)
         ON xEEID = audEEID
         and xcoid = audKey2
-    WHERE eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' AND audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
+    WHERE eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' and eectermreason <> 'TRO' AND audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
     ;
 
   
@@ -1064,11 +1065,12 @@ BEGIN
                                           WHEN  BdmBenStatus = 'T' THEN 'TERMINATED'
                                         END
             ,drvCoverageStatusEffDate = CONVERT(VARCHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate), 112) 
-            ,drvCoverageTermReductionCode  = CASE WHEN EecTermReason = '202' THEN 'RETIREMENT'
+            ,drvCoverageTermReductionCode  = CASE 
+                                                  WHEN EecTermReason = '202' THEN 'RETIREMENT'
                                                   WHEN Bdmbenstatus = 'T' and EecTermType = 'V' THEN 'CANCELLED'
                                                   WHEN Bdmbenstatus = 'T' and EecTermType = 'I' THEN 'INVOLUNTARY'
-                                                 -- WHEN BdmChangeReason = '204' THEN 'DIVORCE' 
-                                                  WHEN BdmChangeReason = '204' AND Bdmdedcode NOT IN ('ACCHI','ACCLO') THEN 'DIVORCE'
+                                                  WHEN BdmChangeReason = '204' THEN 'DIVORCE' 
+                                                --  WHEN BdmChangeReason = '204' AND Bdmdedcode NOT IN ('ACCHI','ACCLO') THEN 'DIVORCE'
                                                   WHEN BdmChangeReason = '201' THEN 'AGE'
                                                 END
             ,drvVoluntaryBasis = ''--CASE WHEN Bdmdedcode IN  ('ACCHI','ACCLO') THEN 'TREATMENT' END
@@ -1080,6 +1082,7 @@ BEGIN
            and bdmbenstatus IN ( 'A' , 'T')
         JOIN dbo.EmpDed WITH(NOLOCK)
             ON EedEEID = xEEID
+            and eedCoid = xCoid
             AND EedDedCode = BdmDedCode
          JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
             ON EecEEID = xEEID 
@@ -1090,7 +1093,7 @@ BEGIN
             ON xEEID = audEEID
             and xcoid = audKey2
          WHERE BdmDedCode IN ('GLIFE','GLIFC','GLIFX') and eeceetype = 'REG'
-           and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' AND audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
+           and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'    OR (EecEmplStatus = 'T' and eectermreason <> 'TRO' AND audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
 
     Union
 
@@ -1160,10 +1163,10 @@ BEGIN
                                         END
             ,drvCoverageStatusEffDate = CONVERT(VARCHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate), 112)
             ,drvCoverageTermReductionCode  = CASE WHEN EecTermReason = '202' THEN 'RETIREMENT'
-                                                  WHEN Bdmbenstatus = 'T' and EecTermType = 'V' THEN 'CANCELLED'
+                                                  WHEN (Bdmbenstatus = 'T' and EecTermType = 'V' )THEN 'CANCELLED'
                                                   WHEN Bdmbenstatus = 'T' and EecTermType = 'I' THEN 'INVOLUNTARY'
-                                                 -- WHEN BdmChangeReason = '204' THEN 'DIVORCE' 
-                                                  WHEN BdmChangeReason = '204' AND Bdmdedcode NOT IN ('ACCHI','ACCLO') THEN 'DIVORCE'
+                                                  WHEN BdmChangeReason = '204' THEN 'DIVORCE' 
+                                                --  WHEN BdmChangeReason = '204' AND Bdmdedcode NOT IN ('ACCHI','ACCLO') THEN 'DIVORCE'
                                                   WHEN BdmChangeReason = '201' THEN 'AGE'
                                                 END
             ,drvVoluntaryBasis = CASE WHEN Bdmdedcode IN  ('ACCHI','ACCLO') THEN 'TREATMENT' END
@@ -1175,6 +1178,7 @@ BEGIN
            and bdmbenstatus IN ( 'A' , 'T')
         JOIN dbo.EmpDed WITH(NOLOCK)
             ON EedEEID = xEEID
+            and eedCoid = xCoid
             AND EedDedCode = BdmDedCode
          JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
             ON EecEEID = xEEID 
@@ -1184,7 +1188,7 @@ BEGIN
          LEFT JOIN  dbo.U_EDSCPRUEXP_Audit WITH (NOLOCK)
             ON xEEID = audEEID
             and xcoid = audKey2
-         WHERE  eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' AND audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
+         WHERE  eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' and eectermreason <> 'TRO' AND audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
         ) a
 
 
@@ -1360,7 +1364,7 @@ BEGIN
      LEFT JOIN  dbo.U_EDSCPRUEXP_Audit WITH (NOLOCK)
         ON xEEID = audEEID
         and xcoid = audKey2
-       WHERE eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' AND audDateTime BETWEEN DATEADD(DAY, -7, @EndDate) AND @EndDate))
+       WHERE eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' and eectermreason <> 'TRO' AND audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
  
     ;
     ---------------------------------

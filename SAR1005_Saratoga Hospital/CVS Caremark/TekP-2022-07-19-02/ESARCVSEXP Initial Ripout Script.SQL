@@ -5,7 +5,7 @@ ESARCVSEXP: CVS Caremark Export
 FormatCode:     ESARCVSEXP
 Project:        CVS Caremark Export
 Client ID:      SAR1005
-Date/time:      2022-12-09 13:57:07.640
+Date/time:      2022-12-14 11:04:49.430
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -371,18 +371,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESARCVSEXP_20221209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESARCVSEXP_20221214.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202301019','EMPEXPORT','OEACTIVE','Dec  8 2022  9:03AM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202301011','21455','','','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202301019','EMPEXPORT','OEPASSIVE','Dec  9 2022  2:36AM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202301011','33850','','','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202303019','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202303019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',0X9TU',NULL,NULL,NULL,'CVS Caremark Export Sch','202303019','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202303019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202212069','EMPEXPORT','TEST_XOE','Dec  6 2022  3:41PM','ESARCVSEXP',NULL,NULL,NULL,'202212069','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202211291','32410','','','202211291',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment','202301019','EMPEXPORT','OEACTIVE','Dec  8 2022  9:03AM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202212021','21455','','','202212021',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202301019','EMPEXPORT','OEPASSIVE','Dec 12 2022  9:19AM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202212021','34538','','','202212021',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202301019','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',0X9TU',NULL,NULL,NULL,'CVS Caremark Export Sch','202301019','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202301019','EMPEXPORT','TEST_XOE','Dec  6 2022  3:41PM','ESARCVSEXP',NULL,NULL,NULL,'202301019','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202212021','32410','','','202212021',dbo.fn_GetTimedKey(),NULL,'us3kEpSAR1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -527,10 +527,6 @@ CREATE TABLE [dbo].[U_ESARCVSEXP_Audit] (
     [audEEID] char(12) NULL,
     [audCOID] char(5) NULL,
     [audConSystemID] varchar(255) NULL,
-    [audSSNChange] varchar(1) NULL,
-    [audNameChange] varchar(1) NULL,
-    [audDemoChange] varchar(1) NULL,
-    [audAddrChange] varchar(1) NULL,
     [audDateTime] varchar(8) NULL
 );
 
@@ -920,12 +916,12 @@ BEGIN
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCoID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_ESARCVSEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
-    IF @ExportCode LIKE 'OE%'
-    BEGIN
-        -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
-        DELETE FROM dbo.U_ESARCVSEXP_EEList
-        WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ESARCVSEXP_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
-    END;
+    --IF @ExportCode LIKE 'OE%'
+    --BEGIN
+    --    -- Remove Employees that Do Not Have a Benefit Plan in Deduction Code List
+    --    DELETE FROM dbo.U_ESARCVSEXP_EEList
+    --    WHERE NOT EXISTS (SELECT 1 FROM dbo.EmpDed JOIN dbo.U_ESARCVSEXP_DedList ON DedCode = EedDeDCode WHERE EedEEID = xEEID);
+    --END;
     -- Get data from audit fields table.  Add fields here if auditing
 IF OBJECT_ID('U_ESARCVSEXP_AuditFields','U') IS NOT NULL
     DROP TABLE dbo.U_ESARCVSEXP_AuditFields;
@@ -987,10 +983,10 @@ IF OBJECT_ID('U_ESARCVSEXP_Audit','U') IS NOT NULL
     SELECT  DISTINCT a.audEEID
              ,audCOID
              ,audConSystemID 
-             ,audSSNChange = MAX(audSSNChange)
-             ,audNameChange = Max(audNameChange)
-             ,audDemoChange = MAX(audDemoChange)
-             ,audAddrChange = MAX(audAddrChange)
+            -- ,audSSNChange = MAX(audSSNChange)
+            -- ,audNameChange = Max(audNameChange)
+            -- ,audDemoChange = MAX(audDemoChange)
+            -- ,audAddrChange = MAX(audAddrChange)
             -- ,audterm 
              ,audDateTime = CONVERT(VARCHAR(8),(Max(audDateTime)),112)
              INTO dbo.U_ESARCVSEXP_Audit 
@@ -1068,7 +1064,7 @@ IF OBJECT_ID('U_ESARCVSEXP_Audit','U') IS NOT NULL
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL, LD, SS, SON, SD, STC,DAU');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -1102,7 +1098,7 @@ IF OBJECT_ID('U_ESARCVSEXP_Audit','U') IS NOT NULL
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL, LD, SS, SON, SD, STC,DAU');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','@DomPartnerCSV');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
 
     --Set if OE
     IF @ExportCode LIKE '%PASSIVE'
@@ -1248,7 +1244,7 @@ IF OBJECT_ID('U_ESARCVSEXP_Audit','U') IS NOT NULL
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
                                         ELSE
                                             CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SPS')) THEN '01'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@DomPartnerCSV')) THEN '53'
+                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('DP')) THEN '53'
                                             WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL, LD, SS, SON, SD, STC,DAU')) THEN '19'
                                             ELSE '19'
                                             END
@@ -1433,7 +1429,8 @@ IF OBJECT_ID('U_ESARCVSEXP_Audit','U') IS NOT NULL
   LEFT JOIN  dbo.U_ESARCVSEXP_Audit WITH (NOLOCK)
        ON AudEEID = XEEID
        AND AudCOID = XCOID
-       and audConSystemID = BdmDepRecID ;
+       and audConSystemID = BdmDepRecID 
+       ;
 
     /**************************************************************************************************************
         DETAIL RECORDS

@@ -5,7 +5,7 @@ EPWSWAB401: Charles Schwab TPA 401K
 FormatCode:     EPWSWAB401
 Project:        Charles Schwab TPA 401K
 Client ID:      PRI1029
-Date/time:      2022-11-10 13:29:01.097
+Date/time:      2022-12-14 17:50:00.400
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -252,16 +252,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPWSWAB401_20221110.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPWSWAB401_20221214.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Charles Schwab TPA 401K','202211019','EMPEXPORT','ONDEM_XOE',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Charles Schwab TPA 401K-Sched','202211019','EMPEXPORT','SCH_EPWSWA',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Charles Schwab TPA 401K-Test','202211019','EMPEXPORT','TEST_XOE',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',XRAEE,XRS43',NULL,NULL,NULL,'Charles Schwab TPA 401K ONDEM','202211019','EMPEXPORT','ONDEM_XOE',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',XRS43,XRAEE',NULL,NULL,NULL,'Charles Schwab TPA 401K-Sched','202211019','EMPEXPORT','SCH_EPWSWA',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',XRAEE,XRS43',NULL,NULL,NULL,'Charles Schwab TPA 401K-Test','202212029','EMPEXPORT','TEST_XOE','Dec  1 2022 12:00AM','EPWSWAB401',NULL,NULL,NULL,'202212029','Dec  2 2022 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'us3kEpPRI1029',NULL);
 
 -----------
 -- AscImp inserts
@@ -402,7 +402,7 @@ CREATE TABLE [dbo].[U_EPWSWAB401_drvTbl] (
     [drvRecordID] varchar(3) NOT NULL,
     [drvPlanID] varchar(3) NOT NULL,
     [drvSocialSecurityNumber] varchar(13) NULL,
-    [drvEmployeeName] varchar(206) NULL,
+    [drvEmployeeName] varchar(204) NULL,
     [drvPretax] nvarchar(4000) NULL,
     [drvRothBonus1] nvarchar(4000) NULL,
     [drvPreTaxBonus] nvarchar(4000) NULL,
@@ -436,7 +436,7 @@ CREATE TABLE [dbo].[U_EPWSWAB401_drvTbl] (
     [drvPayrollStatus] char(1) NULL,
     [drvPayLocation] char(6) NULL,
     [drvReportingDivision] varchar(10) NULL,
-    [drvAlternateKey1] char(5) NULL,
+    [drvAlternateKey1] char(5) NOT NULL,
     [drvAlternateKey2] char(9) NULL,
     [drvWorkHomeTelephoneNumber] varchar(12) NULL,
     [drvEmailAddress] varchar(50) NULL,
@@ -533,10 +533,10 @@ CREATE TABLE [dbo].[U_EPWSWAB401_PEarHist] (
 IF OBJECT_ID('U_EPWSWAB401_Trailer') IS NULL
 CREATE TABLE [dbo].[U_EPWSWAB401_Trailer] (
     [drvPayPeriodEndingDate] varchar(8000) NULL,
-    [drvContributionSource1Total] numeric NULL,
-    [drvContributionSource2Total] numeric NULL,
-    [drvContributionSource3Total] numeric NULL,
-    [drvLoanPaymentTotal] numeric NULL
+    [drvContributionSource1Total] nvarchar(4000) NULL,
+    [drvContributionSource2Total] nvarchar(4000) NULL,
+    [drvContributionSource3Total] nvarchar(4000) NULL,
+    [drvLoanPaymentTotal] nvarchar(4000) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EPWSWAB401]
@@ -610,38 +610,38 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EPWSWAB401_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
-    -- Audit Section
-    --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_EPWSWAB401_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_EPWSWAB401_AuditFields;
-    CREATE TABLE dbo.U_EPWSWAB401_AuditFields (aTableName varchar(30),aFieldName varchar(30));
-    INSERT INTO dbo.U_EPWSWAB401_AuditFields VALUES ('EmpComp','EecDateofTermination');
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_EPWSWAB401_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_EPWSWAB401_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audCOID = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_EPWSWAB401_Audit
-    FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_EPWSWAB401_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE';
+ --   --==========================================
+ --   -- Audit Section
+ --   --==========================================
+ --   -- Get data from audit fields table. Add fields here if auditing
+ --   IF OBJECT_ID('U_EPWSWAB401_AuditFields','U') IS NOT NULL
+ --       DROP TABLE dbo.U_EPWSWAB401_AuditFields;
+ --   CREATE TABLE dbo.U_EPWSWAB401_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    --INSERT INTO dbo.U_EPWSWAB401_AuditFields VALUES ('EmpComp','EecDateofTermination');
+ --   -- Create audit table based on fields defined above
+ --   IF OBJECT_ID('U_EPWSWAB401_Audit','U') IS NOT NULL
+ --       DROP TABLE dbo.U_EPWSWAB401_Audit;
+ --   SELECT 
+ --       audEEID  = audKey1Value
+ --       ,audCOID = audKey2Value
+ --       ,audKey3 = audKey3Value
+ --       ,audTableName
+ --       ,audFieldName
+ --       ,audAction
+ --       ,audDateTime
+ --       ,audOldValue
+ --       ,audNewValue
+ --       ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+ --   INTO dbo.U_EPWSWAB401_Audit
+ --   FROM dbo.vw_AuditData WITH (NOLOCK) 
+ --   JOIN dbo.U_EPWSWAB401_AuditFields WITH (NOLOCK) 
+ --       ON audTableName = aTableName
+ --       AND audFieldName = aFieldName
+ --   WHERE audDateTime >=   year(@EndDate -1)
+ --   AND audAction <> 'DELETE';
 
-    -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_EPWSWAB401_Audit ON dbo.U_EPWSWAB401_Audit (audEEID,audCOID);
+ --   -- Create Index
+ --   CREATE CLUSTERED INDEX CDX_U_EPWSWAB401_Audit ON dbo.U_EPWSWAB401_Audit (audEEID,audCOID);
 
     ----================
     ---- Changes Only
@@ -653,7 +653,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '401,401FB,401PB,81.82,ROT,RTHFB,RTHPB,401F,401CF,401P,401CP,ROTH,401M,401L,401L2';
+    SET @DedList = '401,401FB,401PB,81,82,ROT,RTHFB,RTHPB,401F,401CF,401P,401CP,ROTH,401M,401L,401L2';
 
     IF OBJECT_ID('U_EPWSWAB401_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EPWSWAB401_DedList;
@@ -741,7 +741,7 @@ BEGIN
         ON DedCode = PdhDedCode
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
-    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
     GROUP BY PdhEEID
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
@@ -797,8 +797,8 @@ BEGIN
         ,drvRecordID = '100'
         ,drvPlanID = 'PCS'
         ,drvSocialSecurityNumber = Stuff(stuff(eepSSN,6,0,'-'),4,0,'-')
-        ,drvEmployeeName = UPPER(CASE WHEN isnull(EepNameMiddle, '') <> '' THEN '"'+Ltrim(rtrim(EepNameLast)) +', ' + ltrim(rtrim(EepNameFirst)) + ' ' + Left(EepNameMiddle, 1)+ '"'
-                                ELSE '"'+Ltrim(rtrim(EepNameLast)) +', ' + ltrim(rtrim(EepNameFirst)) + '"' 
+        ,drvEmployeeName = UPPER(CASE WHEN isnull(EepNameMiddle, '') <> '' THEN Ltrim(rtrim(EepNameLast)) +', ' + ltrim(rtrim(EepNameFirst)) + ' ' + Left(EepNameMiddle, 1)
+                                ELSE Ltrim(rtrim(EepNameLast)) +', ' + ltrim(rtrim(EepNameFirst)) 
                             END)
                         
         ,drvPretax = CASE WHEN (Pdh81EE + Pdh401EE) < 0.00 THEN FORMAT(Pdh81EE + Pdh401EE,'-00000000.00') ELSE ISNULL(FORMAT(Pdh81EE + Pdh401EE,'000000000.00'),'000000000.00') END
@@ -835,11 +835,11 @@ BEGIN
         ,drvBirthDate = replace(convert(char(10), EepDateOfBirth, 101), '/', '')
         ,drvHireDate = replace(convert(char(10), EecDateOfOriginalHire, 101), '/', '') 
         ,drvTerminationDate =replace(convert(char(10), EecDateOfTermination, 101), '/', '') 
-        ,drvRehireDate = replace(convert(char(10), EecDateOfLastHire, 101), '/', '') 
+        ,drvRehireDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN  replace(convert(char(10), EecDateOfLastHire, 101), '/', '') END
         ,drvPayrollStatus = eecemplstatus                                
         ,drvPayLocation = EecPayGroup
         ,drvReportingDivision = Eecorglvl4
-        ,drvAlternateKey1 = CmpCompanyCode
+        ,drvAlternateKey1 = EecCoID --CmpCompanyCode
         ,drvAlternateKey2 = EecEmpNo
         ,drvWorkHomeTelephoneNumber = CASE WHEN ISNULL(EecPhoneBusinessNumber,'') <> ''  THEN LEFT(EecPhoneBusinessNumber, 3) + '-' + SUBSTRING(EecPhoneBusinessNumber, 3, 3) + '-' + RIGHT(EecPhoneBusinessNumber, 4)  ELSE '501-372-5444' END
         ,drvEmailAddress = EepAddressEMailAlternate
@@ -879,12 +879,8 @@ BEGIN
                 WHERE RN = 1) AS EshDates 
         ON EshEEID = xEEID 
         AND EshCOID = xCOID
-        
-    LEFT JOIN dbo.U_EPWSWAB401_Audit WITH (NOLOCK)
-        ON  audeeid = xeeid
-        AND audCoID = xCoID
         WHERE eecEEtype <> 'TES'
-         AND ( EecEmplstatus <> 'T' OR (EecEmplStatus = 'T' AND  EecDateOfTermination BETWEEN  @StartDate AND @EndDate or (PehCurAmt > 0.00 or PdhEECurAmt > 0.00) )) 
+         AND ( EecEmplstatus <> 'T' OR (EecEmplStatus = 'T' AND  EecDateOfTermination BETWEEN cast(Year(@Startdate) as varchar(4)) +'-01-01' AND @EndDate or (PehCurAmt > 0.00 or PdhEECurAmt > 0.00) )) 
     
     ;
     ---------------------------------
