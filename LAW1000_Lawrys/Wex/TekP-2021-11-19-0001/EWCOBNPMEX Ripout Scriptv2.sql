@@ -5,7 +5,7 @@ EWCOBNPMEX: Wex Cobra/Npm Export
 FormatCode:     EWCOBNPMEX
 Project:        Wex Cobra/Npm Export
 Client ID:      LAW1000
-Date/time:      2022-12-09 13:39:00.393
+Date/time:      2022-12-16 09:21:51.340
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -264,7 +264,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20221209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20221216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -275,7 +275,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202209029','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,'Wex Cobra/Npm Export','202209029','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202212091','EMPEXPORT','TEST_XOE','Dec  9 2022 10:19AM','EWCOBNPMEX',NULL,NULL,NULL,'202212091','Dec  9 2022 12:00AM','Dec 30 1899 12:00AM','202209011','58','','','202209011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202212121','EMPEXPORT','TEST_XOE','Dec 12 2022  9:21AM','EWCOBNPMEX',NULL,NULL,NULL,'202212121','Dec 12 2022 12:00AM','Dec  6 2022 12:00AM','202209011','58','','','202209011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -1345,7 +1345,8 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
     WHERE BdmRecType = 'DEP'
-             AND (ConRelationship NOT IN ('SPS', 'DP') AND BdmCobraReason NOT IN ('201', 'LEVNT3'))
+
+             AND BdmCobraReason NOT IN ('201', 'LEVNT3')
            and ltrim(rtrim(isnull(bdmDepRecId,''))) not in (Select ltrim(rtrim(ISNULL(drvDepRecID,''))) from  dbo.U_EWCOBNPMEX_drvTbl_QB )
     ;
     ---------------------------------
@@ -1453,7 +1454,7 @@ AND ExpExportCode = 'TEST_XOE'
 GO
 CREATE VIEW dbo.dsi_vwEWCOBNPMEX_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_EWCOBNPMEX_File (NOLOCK)
-    ORDER BY  InitialSort, SubSort;
+    ORDER BY  InitialSort, SubSort, RIGHT(RecordSet,2);
 
 GO
 

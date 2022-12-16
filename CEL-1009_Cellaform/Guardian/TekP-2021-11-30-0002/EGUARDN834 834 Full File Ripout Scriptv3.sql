@@ -5,7 +5,7 @@ EGUARDN834: Guardian H&W 834 Export
 FormatCode:     EGUARDN834
 Project:        Guardian H&W 834 Export
 Client ID:      CEL1009
-Date/time:      2022-12-14 15:06:26.983
+Date/time:      2022-12-16 10:22:47.970
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20221214.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20221216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -1244,7 +1244,7 @@ BEGIN
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = '' -- MW removed BdmRecType 10/19/22
         ,drvHD03_InsuranceLineCode =    --CASE WHEN BdmRecType = 'EMP' THEN
-                                            CASE WHEN BdmDedCode = 'OBLIF' THEN 'FAC'
+                                            CASE WHEN BdmDedCode = 'OBLIFE' THEN 'FAC'
                                             WHEN BdmDedCode = 'GLIFE' THEN 'AH'
                                             WHEN BdmDedCode = 'ADD' THEN 'AJ'
                                             WHEN BdmDedCode = 'STD' THEN 'STD'
@@ -1289,7 +1289,7 @@ BEGIN
                                         END
                                     --END
         ,drvHD05_CoverageLevelCode =    --CASE WHEN BdmRecType = 'EMP' THEN
-                                            CASE WHEN BdmDedCode IN ('OBLIFE','STD','LTD','LIFEE','ADD','DEN','VIS','CIE5K','CIE10','CIE20','ACCID') THEN 'EMP' --END
+                                            CASE WHEN BdmDedCode IN ('OBLIFE','GLIFE','STD','LTD','LIFEE','ADD','DEN','VIS','CIE5K','CIE10','CIE20','ACCID') THEN 'EMP' --END
                                         --ELSE
                                             --CASE 
                                             WHEN BdmDedCode IN ('LIFES','DEN','VIS') AND ConRelationship = 'SPS' THEN 'SPO'

@@ -5,7 +5,7 @@ EANPRIN834: Principal Benefit Export
 FormatCode:     EANPRIN834
 Project:        Principal Benefit Export
 Client ID:      ANC1000
-Date/time:      2022-12-09 08:42:45.587
+Date/time:      2022-12-16 12:11:39.073
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -378,7 +378,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20221209.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20221216.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -389,7 +389,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202211049','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202211049','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal Benefit Export','202211049','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202212061','EMPEXPORT','TEST_XOE','Dec  6 2022 11:04AM','EANPRIN834',NULL,NULL,NULL,'202212061','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202211291','14937','','','202211291',dbo.fn_GetTimedKey(),NULL,'us3kEpANC1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202212061','EMPEXPORT','TEST_XOE','Dec  9 2022 12:00AM','EANPRIN834',NULL,NULL,NULL,'202212061','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202211291','14937','','','202211291',dbo.fn_GetTimedKey(),NULL,'us3cPeANC1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -1483,10 +1483,15 @@ BEGIN
                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') and EECUDFIELD15 is not null   THEN  'L1'  
                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') and EECUDFIELD13 is not null   THEN  'L1' 
                                               END
-        ,drvAMT02_MonetaryAmount1 =  Replace(CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1  IN ('RELI1') THEN EECUDFIELD14 
-                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3  IN ('RELI3') THEN EECUDFIELD15
-                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4  IN ('RELI4') THEN EECUDFIELD13
-                                           END, '.00' , '')
+        ,drvAMT02_MonetaryAmount1 =  REPLACE(CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND ReliBdmAmt1 <> 0.00  THEN ReliBdmAmt1
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND ReliBdmAmt3 <> 0.00  THEN ReliBdmAmt3
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND ReliBdmAmt4 <> 0.00  THEN ReliBdmAmt4
+                                           When bdmdedcode  IN ('ADEN2','AVIS', 'UNUM') THEN Null
+                                         END, '.00' , '')
+                                    --Replace(CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1  IN ('RELI1') THEN EECUDFIELD14 
+         --                                  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3  IN ('RELI3') THEN EECUDFIELD15
+         --                                  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4  IN ('RELI4') THEN EECUDFIELD13
+         --                                  END, '.00' , '')
                                     
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
         ,drvAMT00_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') and ReliBdmAmt1 <> 0.00  THEN 'AMT'
