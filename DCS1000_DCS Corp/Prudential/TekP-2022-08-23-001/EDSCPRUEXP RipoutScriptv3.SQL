@@ -5,7 +5,7 @@ EDSCPRUEXP: Prudential Life/Illness/Accident/Hospital Export
 FormatCode:     EDSCPRUEXP
 Project:        Prudential Life/Illness/Accident/Hospital Export
 Client ID:      DCS1000
-Date/time:      2022-12-15 11:17:57.367
+Date/time:      2022-12-19 17:22:23.490
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -162,8 +162,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EDSCPRUEXPZ0','32','D','10','3',NULL,'AssociateID',NULL,NULL,'"drvAssociateID"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EDSCPRUEXPZ0','9','D','10','4',NULL,'Associate Social Security Number',NULL,NULL,'"drvAssociateSSN"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EDSCPRUEXPZ0','25','D','10','5',NULL,'Associate Gender Code',NULL,NULL,'"drvAssociateGenderCode"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EDSCPRUEXPZ0','8','D','10','6',NULL,'Associate Date of Birth',NULL,NULL,'"drvAssociateDateofBirth"','(''UA''=''T~'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EDSCPRUEXPZ0','8','D','10','7',NULL,'Associate Date of Death',NULL,NULL,'""','(SS''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EDSCPRUEXPZ0','8','D','10','6',NULL,'Associate Date of Birth',NULL,NULL,'drvAssociateDateofBirth','(''UA''=''T~'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EDSCPRUEXPZ0','8','D','10','7',NULL,'Associate Date of Death',NULL,NULL,'drvAssociateDateofDeath','(UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EDSCPRUEXPZ0','25','D','10','8',NULL,'Associate Smoker Status Code',NULL,NULL,'""','(SS''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EDSCPRUEXPZ0','30','D','10','9',NULL,'Associate Marital Status Code',NULL,NULL,'"drvAssociateMaritalStatusCode"','(''UA''=''T~'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EDSCPRUEXPZ0','30','D','10','10',NULL,'Associate Prefix Title Code',NULL,NULL,'""','(SS''=''T~'')');
@@ -383,18 +383,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EDSCPRUEXP_20221215.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EDSCPRUEXP_20221219.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202210219','EMPEXPORT','OEACTIVE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210219','EMPEXPORT','OEPASSIVE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Prudential Life/Illness/Accide','202210219','EMPEXPORT','ONDEM_XOE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',U6X8D',NULL,NULL,NULL,'Prudential Life/Illness/-Sched','202210219','EMPEXPORT','SCH_EDSCPR',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202210219','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202210211',NULL,'','','202210211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Prudential Life/Illness/-Test','202212151','EMPEXPORT','TEST_XOE','Dec 15 2022 10:34AM','EDSCPRUEXP',NULL,NULL,NULL,'202212151','Dec 15 2022 12:00AM','Dec 30 1899 12:00AM','202106011','14063','','','202106011',dbo.fn_GetTimedKey(),NULL,'us3kEpDCS1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301119','EMPEXPORT','OEACTIVE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202301119','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202301111',NULL,'','','202301111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301119','EMPEXPORT','OEPASSIVE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202301119','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202301111',NULL,'','','202301111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Prudential Life/Illness/Accide','202301119','EMPEXPORT','ONDEM_XOE',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202301119','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202301111',NULL,'','','202301111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',U6X8D',NULL,NULL,NULL,'Prudential Life/Illness/-Sched','202301119','EMPEXPORT','SCH_EDSCPR',NULL,'EDSCPRUEXP',NULL,NULL,NULL,'202301119','Oct 21 2022  1:34PM','Oct 21 2022  1:34PM','202301111',NULL,'','','202301111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Prudential Life/Illness/-Test','202212191','EMPEXPORT','TEST_XOE','Dec 19 2022  4:50PM','EDSCPRUEXP',NULL,NULL,NULL,'202212191','Dec 19 2022 12:00AM','Dec 30 1899 12:00AM','202212121','11213','','','202212121',dbo.fn_GetTimedKey(),NULL,'us3kEpDCS1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -541,6 +541,7 @@ CREATE TABLE [dbo].[U_EDSCPRUEXP_drvTbl_AST] (
     [drvAssociateSSN] char(11) NULL,
     [drvAssociateGenderCode] varchar(7) NOT NULL,
     [drvAssociateDateofBirth] varchar(8) NULL,
+    [drvDepDateOfDeath] varchar(8) NULL,
     [drvAssociateMaritalStatusCode] varchar(8) NOT NULL,
     [drvAssociateLastName] varchar(100) NULL,
     [drvAssociateFirstName] varchar(100) NULL,
@@ -570,7 +571,7 @@ IF OBJECT_ID('U_EDSCPRUEXP_drvTbl_COV') IS NULL
 CREATE TABLE [dbo].[U_EDSCPRUEXP_drvTbl_COV] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
+    [drvDepRecID] char(12) NULL,
     [drvInitialSort] varchar(13) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvClientControlNumber] varchar(5) NOT NULL,
@@ -891,6 +892,7 @@ BEGIN
                                         ELSE 'UNKNOWN'
                                     END
         ,drvAssociateDateofBirth = CONVERT(VARCHAR(8),EepDateOfBirth,112)
+        ,drvDepDateOfDeath = CONVERT(VARCHAR(8),EepDateDeceased,112)
         ,drvAssociateMaritalStatusCode = CASE WHEN EepMaritalStatus = 'S' THEN 'SINGLE'
                                             WHEN EepMaritalStatus = 'M' THEN 'MARRIED'
                                             WHEN EepMaritalStatus = 'D' THEN 'DIVORCED'
@@ -968,9 +970,9 @@ BEGIN
                                         WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and BdmBenStatus = 'T' and bdmchangereason = '201' THEN 'INELIGIBLE'
                                     END
         ,drvAdjustedServiceDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112) END
-        ,drvEmploymentStatusCode = CASE WHEN  EecEmplStatus = 'T' AND  EecTermReason IN ('202','RET') THEN 'RETIRED'
-                                        WHEN EecEmplStatus = 'T' AND ( EecTermReason = '203' or BdmChangereason = '210' ) THEN 'DECEASED'
-                                        WHEN EecEmplStatus = 'T' AND EecTermReason NOT IN  ('202','RET','203') THEN 'TERMINATED'
+        ,drvEmploymentStatusCode = CASE --WHEN  EecEmplStatus = 'T' AND  EecTermReason IN ('202','RET') THEN 'RETIRED'
+                                       -- WHEN EecEmplStatus = 'T' AND ( EecTermReason = '203' or BdmChangereason = '210' ) THEN 'DECEASED'
+                                        WHEN EecEmplStatus = 'T'  THEN 'TERMINATED' --AND EecTermReason NOT IN  ('202','RET','203'
                                         WHEN EecEmplStatus = 'L' THEN 'LEAVE OF ABSENCE'
                                         ELSE 'ACTIVE'
                                     END
@@ -1017,7 +1019,7 @@ BEGIN
          SELECT DISTINCT
              drvEEID = xEEID
             ,drvCoID = xCoID
-            ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+            ,drvDepRecID = BdmDepRecID --DELETE IF NOT USING DEPENDENT DATA
             ,drvInitialSort = '2-' + eepSSN
             ,drvSubSort = '4'
             -- standard fields above and additional driver fields below
@@ -1097,15 +1099,16 @@ BEGIN
 
     Union
 
-     SELECT DISTINCT
+        SELECT DISTINCT
              drvEEID = xEEID
             ,drvCoID = xCoID
-            ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+            ,drvDepRecID = BdmDepRecID --DELETE IF NOT USING DEPENDENT DATA
             ,drvInitialSort = '2-' + eepSSN
             ,drvSubSort = '4'
             -- standard fields above and additional driver fields below
             ,drvClientControlNumber = '47449'
             ,drvAssociateID = EecEmpNo
+        
             ,drvProductCode = CASE WHEN BdmDedCode IN ('GLIFE','GLIFC','GLIFX') THEN 'BGL' 
                                     WHEN BdmDedCode IN ('LIFE1','LIFE2','LIFE3','LIFE4','LIFE5','LIFE6') THEN 'OGL'
                                     WHEN Bdmdedcode IN  ('LIFES','LIFEC') THEN 'ODGL'
@@ -1115,16 +1118,20 @@ BEGIN
                                     WHEN Bdmdedcode IN ('CR30C','CR30E','CR30F','CR30S','CR10C','CR10E','CR10F','CR10S','CRITC','CRITE','CRITF','CRITS') THEN 'VCI'
 
                                 END
-                        
-            ,drvCoverageTierCode = CASE WHEN BdmDedCode IN ('GLIFE','GLIFC','GLIFX','LIFE1','LIFE2','LIFE3','LIFE4','LIFE5','LIFE6','CR10E','CR30E','CRITE') THEN 'EE' 
-                                        --WHEN BdmDedCode IN ('CR10E','CR30E','CRITE') THEN 'EE'
-                                        WHEN BdmDedCode IN ('LIFES','CR10S','CR30S','CRITS') THEN 'SP' --AND BdmBenOption = 'EES'
-                                        WHEN BdmDedCode IN ('LIFEC','CR10C','CR30C','CRITC') THEN 'CH' --AND BdmBenOption = 'EEC'
+            
+               ,drvCoverageTierCode = CASE WHEN BdmDedCode IN ('GLIFE','GLIFC','GLIFX','LIFE1','LIFE2','LIFE3','LIFE4','LIFE5','LIFE6','CR10E','CR30E','CRITE') THEN 'EE' 
+                                        WHEN BDMRecTYPE = 'EMP' and BdmDedCode IN ('CR10F','CR30F','CRITF','CRITS', 'CRITC','CR30S') THEN 'EE'
+                                        WHEN BDMRecTYPE = 'DEP' and BdmDedCode IN ('CR10S','CR30S','CRITS') THEN 'SP'
+                                        WHEn BdmDedCode = 'LIFES' THEN 'SP'
+                                        WHEn BdmDedCode = 'LIFEC' THEN 'CH'
+                                        WHEN BDMRecTYPE = 'DEP' and bdmrelationship IN ('CHL', 'DIS','DPC','STC') and BdmDedCode IN ('CR10C','CR30C','CRITC') THEN 'CH' --AND BdmBenOption = 'EEC'
+                                        WHEN bdmRelationship  IN ('DP', 'SPS')  and  BdmDedCode IN ('CR10F','CR30F','CRITF') THEN 'SP' --AND BdmBenOption = 'EES'
+                                        WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and BdmDedCode IN ('CR10F','CR30F','CRITF') THEN 'CH' --AND BdmBenOption = 'EEC'
                                         WHEN BdmDedCode IN ('ACCHI','ACCLO','HOSHI','HOSLO') AND BdmBenOption = 'EE' THEN 'EE'
                                         WHEN BdmDedCode IN ('ACCHI','ACCLO','HOSHI','HOSLO') AND BdmBenOption = 'EES' THEN 'ES'
                                         WHEN BdmDedCode IN ('ACCHI','ACCLO','HOSHI','HOSLO') AND BdmBenOption = 'EEC' THEN 'EC'
                                         WHEN BdmDedCode IN ('ACCHI','ACCLO','HOSHI','HOSLO') AND BdmBenOption = 'EEF' THEN 'FM' --AND BdmBenOption = 'EEF'
-                                        WHEN BdmDedCode IN ('CR10F','CR30F','CRITF') THEN 'FM'
+                                       -- WHEN BdmDedCode IN ('CR10F','CR30F','CRITF') THEN 'FM'
                                     END
             ,drvProductPlanCode = CASE WHEN BdmDedCode IN ('CR30C','CR30E','CR30F','CR30S','CR10C','CR10E','CR10F','CR10S','CRITC','CRITE','CRITF','CRITS') THEN '6166'
                                         WHEN BdmDedCode IN ('ACCHI') THEN '6162'
@@ -1132,26 +1139,24 @@ BEGIN
                                         WHEN Bdmdedcode IN ('HOSHI') THEN '6164'
                                         WHEN Bdmdedcode IN ('HOSLO') THEN '6165'
                                     END
-            
-            ,drvCoverageAmount =   CASE WHEN EedDedCode = 'GLIFE' AND EedBenStatus = 'T' THEN Format(EecAnnSalary*1.00,'0.00') 
+         
+              ,drvCoverageAmount =   CASE WHEN EedDedCode = 'GLIFE' AND EedBenStatus = 'T' THEN Format(EecAnnSalary*1.00,'0.00') 
                                         WHEN EedDedCode = 'GLIFC' AND EedBenStatus = 'T' THEN '50000.00'
                                         WHEN EedDedCode = 'GLIFX' AND EedBenStatus = 'T' THEN Format(EecAnnSalary*2.00, '0.00') 
                                         WHEN eedDedCode IN ('LIFE1','LIFE2','LIFE3','LIFE4','LIFE5','LIFE6','LIFES','LIFEC') AND BdmBenStatus = 'T' THEN FORMAT(EedBenAmt , '0.00') 
                                         --WHEN eedDedCode IN ('GLIFE','GLIFC','GLIFX','LIFE1','LIFE2','LIFE3','LIFE4','LIFE5','LIFE6','LIFES','LIFEC') AND BdmBenStatus <> 'T' and  FORMAT(EedBenAmt , '0.00') > '0.00'THEN FORMAT(EedBenAmt , '0.00') 
-                                                WHEN  EedDedCode = 'CR10E' THEN '10000.00'
-                                                WHEN  EedDedCode = 'CR30E' THEN '30000.00'
-                                                WHEN  EedDedCode = 'CRITE' THEN '20000.00'
-                                                WHEN  EedDedCode = 'CR10S' THEN '5000.00'
-                                                WHEN  EedDedCode = 'CR30S' THEN '15000.00'
-                                                WHEN  EedDedCode = 'CRITS' THEN '10000.00'
-                                                WHEN  EedDedCode = 'CR10C' THEN '5000.00'
-                                                WHEN  EedDedCode = 'CR30C' THEN '15000.00'
-                                                WHEN  EedDedCode = 'CRITC' THEN '10000.00'
-                                                WHEN  EedDedCode = 'CR10F' THEN '5000.00'
-                                                WHEN  EedDedCode = 'CR30F' THEN '15000.00'
-                                                WHEN  EedDedCode = 'CRITF' THEN '10000.00'
-
-
+                                                WHEN BDMRecTYPE = 'EMP' and  BdmDedCode IN ('CR10E','CR10F','CR10C','CR10S') THEN '10000.00'
+                                                WHEN BDMRecTYPE = 'EMP' and  BdmDedCode IN ('CR30E','CR30F','CR30C','CR30S') THEN '30000.00'
+                                                WHEN BDMRecTYPE = 'EMP' and  BdmDedCode IN ('CRITE','CRITF','CRITS','CRITC') THEN '20000.00'
+                                                WHEN bdmRelationship  IN ('DP', 'SPS')  and   BdmDedCode IN ('CR10S','CR10F') and Bdmbenstatus <> 'W' THEN '5000.00'
+                                                WHEN bdmRelationship  IN ('DP', 'SPS')  and   BdmDedCode IN ('CR30S','CR30F') THEN '15000.00'
+                                                WHEN bdmRelationship  IN ('DP', 'SPS')  and   BdmDedCode IN ('CRITS','CRITF') THEN '10000.00'
+                                                WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and  BdmDedCode IN ('CR10C','CR10F') THEN '5000.00'
+                                                WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and  BdmDedCode IN ('CR30C','CR30F') THEN '15000.00'
+                                                WHEN bdmrelationship IN ('CHL', 'DIS','DPC','STC') and  BdmDedCode IN ('CRITC','CRITF') THEN '10000.00'
+                                                                                              
+                                                                                        
+                                             
                                               -- WHEN eedDedCode IN ('CR10E','CR30E','CRITE') and EedBenAmt Between  10000.00 AND  30000.00 THEN EedBenAmt
                                               -- WHEN eedDedCode IN ('CR10S','CR30S','CRITS') and EedBenAmt between 5000.00 AND 15000.00 THEN EedBenAmt
                                               -- WHEN eedDedCode IN ('CR10C','CR30C','CRITC') and EedBenAmt Between 5000.00 AND 15000.00 THEN EedBenAmt
@@ -1163,7 +1168,7 @@ BEGIN
                                         END
             ,drvCoverageStatusEffDate = CONVERT(VARCHAR(8),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate), 112)
             ,drvCoverageTermReductionCode  = CASE WHEN EecTermReason = '202' THEN 'RETIREMENT'
-                                                  WHEN (Bdmbenstatus = 'T' and EecTermType = 'V' )THEN 'CANCELLED'
+                                               --   WHEN (Bdmbenstatus = 'T' and EecTermType = 'V' )THEN 'CANCELLED'
                                                   WHEN Bdmbenstatus = 'T' and EecTermType = 'I' THEN 'INVOLUNTARY'
                                                   WHEN BdmChangeReason = '204' THEN 'DIVORCE' 
                                                 --  WHEN BdmChangeReason = '204' AND Bdmdedcode NOT IN ('ACCHI','ACCLO') THEN 'DIVORCE'
@@ -1191,6 +1196,7 @@ BEGIN
          WHERE  eeceetype = 'REG' and  EepAddressCountry = 'USA' and (EecEmplStatus <> 'T'   OR (EecEmplStatus = 'T' and eectermreason <> 'TRO' AND audDateTime BETWEEN DATEADD(DAY, -7, @StartDate) AND @EndDate))
         ) a
 
+;
 
  --  SELECT DISTINCT
  --        drvEEID = xEEID
@@ -1434,10 +1440,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202110141'
-       ,expStartPerControl     = '202110141'
-       ,expLastEndPerControl   = '202210219'
-       ,expEndPerControl       = '202210219'
+    SET expLastStartPerControl = '202301111'
+       ,expStartPerControl     = '202301111'
+       ,expLastEndPerControl   = '202301119'
+       ,expEndPerControl       = '202301119'
 WHERE expFormatCode = 'EDSCPRUEXP';
 
 **********************************************************************************/

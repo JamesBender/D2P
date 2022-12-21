@@ -5,7 +5,7 @@ ELSMETSLTD: MetLife STD/LTD/Absence Export
 FormatCode:     ELSMETSLTD
 Project:        MetLife STD/LTD/Absence Export
 Client ID:      LEN1002
-Date/time:      2022-11-28 19:24:31.243
+Date/time:      2022-12-21 11:12:55.030
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -184,25 +184,25 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ELSMETSLTDZ0','2','D','10','38',NULL,'STD Coverage',NULL,NULL,'"drvSTDCoverage"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ELSMETSLTDZ0','8','D','10','39',NULL,'STD Coverage Start Date',NULL,NULL,'"drvSTDStartDate"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ELSMETSLTDZ0','8','D','10','40',NULL,'STD Coverage Stop Date',NULL,NULL,'"drvSTDStopDate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ELSMETSLTDZ0','7','D','10','41',NULL,'STD Report Number',NULL,NULL,'"0243864"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ELSMETSLTDZ0','4','D','10','42',NULL,'STD SubCode',NULL,NULL,'"0001"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ELSMETSLTDZ0','7','D','10','41',NULL,'STD Report Number',NULL,NULL,'"drvSTDReportNumber"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ELSMETSLTDZ0','4','D','10','42',NULL,'STD SubCode',NULL,NULL,'"drvSTDSubCode"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ELSMETSLTDZ0','4','D','10','43',NULL,'STD SubPoint',NULL,NULL,'"drvSTDSubPoint"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ELSMETSLTDZ0','2','D','10','44',NULL,'STD Plan code',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ELSMETSLTDZ0','8','D','10','45',NULL,'STD Flat Benefit Amount',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','ELSMETSLTDZ0','1','D','10','46',NULL,'STD Contributory Plan Indicator',NULL,NULL,'"drvSTDContribPlanIndicator"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ELSMETSLTDZ0','3','D','10','47',NULL,'STD Contributory Plan Percentage',NULL,NULL,'"drvSTDContribPlanPercentage"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ELSMETSLTDZ0','3','D','10','48',NULL,'STD Contributory Pretax Percentage',NULL,NULL,'"0"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ELSMETSLTDZ0','3','D','10','48',NULL,'STD Contributory Pretax Percentage',NULL,NULL,'"drvSTDContributoryPretaxPercentage"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','ELSMETSLTDZ0','2','D','10','49',NULL,'LTD Coverage',NULL,NULL,'"LT"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','ELSMETSLTDZ0','8','D','10','50',NULL,'LTD Coverage Start Date',NULL,NULL,'"drvLTDStartDate"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','ELSMETSLTDZ0','8','D','10','51',NULL,'LTD Coverage Stop Date',NULL,NULL,'"drvLTDStopDate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','ELSMETSLTDZ0','7','D','10','52',NULL,'LTD Report Number',NULL,NULL,'"0244940"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','ELSMETSLTDZ0','4','D','10','53',NULL,'LTD SubCode',NULL,NULL,'"0001"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('52','ELSMETSLTDZ0','7','D','10','52',NULL,'LTD Report Number',NULL,NULL,'"drvLTDReportNumber"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','ELSMETSLTDZ0','4','D','10','53',NULL,'LTD SubCode',NULL,NULL,'"drvLTDSubCode"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','ELSMETSLTDZ0','4','D','10','54',NULL,'LTD SubPoint',NULL,NULL,'"drvLTDSubPoint"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','ELSMETSLTDZ0','2','D','10','55',NULL,'LTD Plan code',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','ELSMETSLTDZ0','8','D','10','56',NULL,'LTD Salary',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','ELSMETSLTDZ0','1','D','10','57',NULL,'LTD Contributory Plan Indicator',NULL,NULL,'"drvLTDContribPlanIndicator"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','ELSMETSLTDZ0','3','D','10','58',NULL,'LTD Contributory Plan Percentage',NULL,NULL,'"drvLTDContribPlanPercentage"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','ELSMETSLTDZ0','3','D','10','59',NULL,'LTD Contributory Pre-tax Percentage',NULL,NULL,'"0"','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','ELSMETSLTDZ0','3','D','10','59',NULL,'LTD Contributory Pre-tax Percentage',NULL,NULL,'"drvLTDContributoryPretaxPercentage"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','ELSMETSLTDZ0','2','D','10','60',NULL,'NY PFL Coverage',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','ELSMETSLTDZ0','8','D','10','61',NULL,'NY PFL Coverage Start Date',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','ELSMETSLTDZ0','8','D','10','62',NULL,'NY PFL Coverage Stop Date',NULL,NULL,'""','(''SS''=''F'')');
@@ -210,11 +210,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','ELSMETSLTDZ0','4','D','10','64',NULL,'NY PFL SubCode',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','ELSMETSLTDZ0','4','D','10','65',NULL,'NY PFL SubPoint',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','ELSMETSLTDZ0','2','D','10','66',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','ELSMETSLTDZ0','1','D','10','67',NULL,'Job Status Code  (full time/part time indicator)',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','ELSMETSLTDZ0','8','D','10','68',NULL,'Job Status full time/part time As of Date',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','ELSMETSLTDZ0','1','D','10','67',NULL,'Job Status Code  (full time/part time indicator)',NULL,NULL,'"drvJobStatusCode"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','ELSMETSLTDZ0','8','D','10','68',NULL,'Job Status full time/part time As of Date',NULL,NULL,'"drvJobStatus"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','ELSMETSLTDZ0','1','D','10','69',NULL,'Variable Work Schedule Indicator',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','ELSMETSLTDZ0','2','D','10','70',NULL,'Work Hours Per Day',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','ELSMETSLTDZ0','4','D','10','71',NULL,'Hours Worked in Past 12 Months',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','ELSMETSLTDZ0','4','D','10','71',NULL,'Hours Worked in Past 12 Months',NULL,NULL,'"drvHoursWorkedPast12Mo"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','ELSMETSLTDZ0','8','D','10','72',NULL,'Hours Worked in Past 12 Months Start Date',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','ELSMETSLTDZ0','8','D','10','73',NULL,'Total Hrs Wkd in Prior12 Mos End Dt',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','ELSMETSLTDZ0','1','D','10','74',NULL,'Temp to Permanent indicator',NULL,NULL,'""','(''SS''=''F'')');
@@ -234,8 +234,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('88','ELSMETSLTDZ0','4','D','10','88',NULL,'Paid Medical Leave SubPoint (Branch)',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('89','ELSMETSLTDZ0','5','D','10','89',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('90','ELSMETSLTDZ0','2','D','10','90',NULL,'Absence Management Coverage',NULL,NULL,'"AM"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('91','ELSMETSLTDZ0','8','D','10','91',NULL,'Absence Management Coverage Start Date',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('92','ELSMETSLTDZ0','8','D','10','92',NULL,'Absence Management Coverage Stop Date',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('91','ELSMETSLTDZ0','8','D','10','91',NULL,'Absence Management Coverage Start Date',NULL,NULL,'"drvAbsenceManagementCoverageStartDate"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('92','ELSMETSLTDZ0','8','D','10','92',NULL,'Absence Management Coverage Stop Date',NULL,NULL,'"drvAbsenceManagementCoverageStopDate"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('93','ELSMETSLTDZ0','7','D','10','93',NULL,'Absence Management Report Number',NULL,NULL,'"0318297"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('94','ELSMETSLTDZ0','4','D','10','94',NULL,'Absence Management SubCode',NULL,NULL,'"0001"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('95','ELSMETSLTDZ0','4','D','10','95',NULL,'Absence Management SubPoint',NULL,NULL,'"0001"','(''DA''=''F'')');
@@ -416,7 +416,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELSMETSLTD_20221128.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELSMETSLTD_20221221.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -565,7 +565,7 @@ CREATE TABLE [dbo].[U_ELSMETSLTD_drvTbl] (
     [drvInitialSort] varchar(13) NOT NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvSSN] varchar(13) NOT NULL,
-    [drvPersonnelID] char(9) NULL,
+    [drvPersonnelID] varchar(24) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddle] varchar(1) NULL,
@@ -580,31 +580,42 @@ CREATE TABLE [dbo].[U_ELSMETSLTD_drvTbl] (
     [drvAddressState] varchar(255) NULL,
     [drvAddressZipCode] varchar(50) NULL,
     [drvWorkState] varchar(2) NULL,
-    [drvFedMartialTaxCode] varchar(1) NULL,
+    [drvFedMartialTaxCode] varchar(1) NOT NULL,
     [drvFedExeptions] int NULL,
     [drvStatusCode] varchar(1) NULL,
     [drvStatusDate] varchar(8000) NULL,
-    [drvSalaryAmount] nvarchar(4000) NULL,
+    [drvSalaryAmount] varchar(24) NULL,
     [drvSalaryEffectiveDate] varchar(8000) NULL,
-    [drvWeeklyScheduledHours] nvarchar(4000) NULL,
+    [drvWeeklyScheduledHours] varchar(24) NULL,
     [drvSTDCoverage] varchar(2) NULL,
     [drvSTDStartDate] varchar(8000) NULL,
     [drvSTDStopDate] varchar(8000) NULL,
+    [drvSTDReportNumber] varchar(7) NULL,
+    [drvSTDSubCode] varchar(4) NULL,
     [drvSTDSubPoint] varchar(4) NULL,
     [drvSTDContribPlanIndicator] varchar(1) NOT NULL,
     [drvSTDContribPlanPercentage] varchar(3) NOT NULL,
+    [drvSTDContributoryPretaxPercentage] varchar(1) NULL,
     [drvLTDStartDate] varchar(8000) NULL,
     [drvLTDStopDate] varchar(8000) NULL,
+    [drvLTDReportNumber] varchar(7) NULL,
+    [drvLTDSubCode] varchar(4) NULL,
     [drvLTDSubPoint] varchar(4) NOT NULL,
-    [drvLTDContribPlanIndicator] varchar(3) NOT NULL,
-    [drvLTDContribPlanPercentage] varchar(1) NULL,
+    [drvLTDContribPlanIndicator] varchar(1) NOT NULL,
+    [drvLTDContribPlanPercentage] varchar(3) NOT NULL,
+    [drvLTDContributoryPretaxPercentage] varchar(1) NULL,
+    [drvJobStatusCode] varchar(1) NOT NULL,
+    [drvJobStatus] varchar(1) NOT NULL,
+    [drvHoursWorkedPast12Mo] varchar(1) NOT NULL,
+    [drvAbsenceManagementCoverageStartDate] varchar(1) NOT NULL,
+    [drvAbsenceManagementCoverageStopDate] varchar(1) NOT NULL,
     [drvOriginalHireDate] varchar(8000) NULL,
     [drvLTDTemporary] varchar(1) NULL,
     [drvWorkPhoneNumber] varchar(50) NULL,
     [drvWorkEmail] varchar(50) NULL,
-    [drvAnnualWeeklyHours] nvarchar(4000) NULL,
-    [drvLOAApproverID1] varchar(256) NULL,
-    [drvCustDefinedField1] char(9) NULL
+    [drvAnnualWeeklyHours] varchar(3) NULL,
+    [drvLOAApproverID1] varchar(24) NULL,
+    [drvCustDefinedField1] varchar(24) NULL
 );
 
 -----------
@@ -661,7 +672,7 @@ Business Analyst: Katherine Ricca
 Create Date: 11/23/2022
 Service Request Number: TekP-2022-10-04-01
 
-Purpose: MetLife STD/LTD/Absence Export
+Purpose: MetLIFE STD/LTD/Absence Export
 
 Revision History
 ----------------
@@ -787,7 +798,7 @@ BEGIN
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
@@ -805,7 +816,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ELSMETSLTD_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ELSMETSLTD_drvTbl;
-   SELECT DISTINCT
+    SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE WHEN NOT USING DEPENDENT DATA
@@ -813,7 +824,7 @@ BEGIN
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvSSN = Concat('00',EepSSN)
-        ,drvPersonnelID = eecempNo
+        ,drvPersonnelID = dbo.dsi_fnPadZero(eecempNo,9,0)
         ,drvNameLast = EepNameLast
         ,drvNameFirst = EepNameFirst
         ,drvNameMiddle = LEFT(EepNameMiddle,1)
@@ -833,10 +844,14 @@ BEGIN
         ,drvAddressState = EepAddressState
         ,drvAddressZipCode = EepAddressZipCode
         ,drvWorkState = LEFT(EecStateSUI,2)
-        ,drvFedMartialTaxCode = Case WHEN EetFilingStatus =  'M' THEN 'M'
-                                     WHEN EetFilingStatus = 'S' THEN 'S'
-                                     WHEN EetFilingStatus = 'Exempt' THEN 'E'
-                                    END
+        ,drvFedMartialTaxCode = Case EepMaritalStatus When 'M' THEN 'M'
+                                                      When 'S' then 'S'
+                                                    ELSE 'U'
+                                                    END
+                                --Case WHEN EetFilingStatus =  'M' THEN 'M'
+        --                             WHEN EetFilingStatus = 'S' THEN 'S'
+        --                             WHEN EetFilingStatus = 'Exempt' THEN 'E'
+        --                            END
         ,drvFedExeptions = EetExemptions
         ,drvStatusCode = Case EecEmplStatus
                                 When 'A' then 'A'
@@ -848,25 +863,40 @@ BEGIN
                               WHEN eecemplstatus = 'A' THEN EecDateOfLastHire
                               WHEN EecEmplStatus = 'L' THEN EecEmplStatusStartDate
                             END,101),'/','')
-        ,drvSalaryAmount = Format(EecAnnSalary, '0.00')
+        ,drvSalaryAmount = dbo.dsi_fnPadZero(Case EecPayPeriod
+                                When 'W' then EecScheduledWorkHrs
+                                When 'B' then (EecScheduledWorkHrs / 2)
+                                When 'S' then ((EecScheduledWorkHrs * 24) / 52)
+                                When 'M' then ((EecScheduledWorkHrs * 12) / 52) END,9,0)
         ,drvSalaryEffectiveDate = REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX', dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire), EecDateOfLastHire) ,101),'/','')
-        ,drvWeeklyScheduledHours = FORMAT(EecScheduledWorkHrs * 2, '0.00')
-        ,drvSTDCoverage = CASE WHEN BdmdedCode in ('STDER', 'STDVL') AND EecFulltimeOrPartTime IN ('F', 'P') then 'ST' END
-        ,drvSTDStartDate = CASE WHEN BdmdedCode in ('STDER', 'STDVL') THEN REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate),101),'/','') END
-        ,drvSTDStopDate = CASE WHEN BdmdedCode in ('STDER', 'STDVL') THEN REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStopDate, @FileMinCovDate),101),'/','') END
-        ,drvSTDSubPoint = CASE WHEN  BdmdedCode in ('STDER', 'STDVL') THEN 
+        ,drvWeeklyScheduledHours = dbo.dsi_fnPadZero(EecScheduledWorkHrs * 2,9,0)
+        ,drvSTDCoverage = CASE WHEN STD IS NOT NULL AND EecFulltimeOrPartTime IN ('F', 'P') then 'ST' END
+        ,drvSTDStartDate = CASE WHEN STD IS NOT NULL  THEN REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',STDStartDate, @FileMinCovDate),101),'/','') END
+        ,drvSTDStopDate = CASE WHEN STD IS NOT NULL  THEN REPLACE(CONVERT(VARCHAR(10),STDStopDate,101),'/','') END
+        ,drvSTDReportNumber= CASE WHEN STD IS NOT NULL  THEN'0243864' END
+        ,drvSTDSubCode = CASE WHEN STD IS NOT NULL  THEN '0001' END
+        ,drvSTDSubPoint = CASE WHEN  STD IS NOT NULL  THEN 
                                 CASE WHEN JbcEEOCategory = '1.1' then '0001'
                                      WHEN JbcEEOCategory = '1.2' then '0002'
                                   ELSE  '0003'
                                 END
                            END
-        ,drvSTDContribPlanIndicator = CASE WHEN  BdmdedCode in ('STDER', 'STDVL') AND  JbcEEOCategory in ('1.1', '1.2') THEN 'N' ELSE 'Y' END
-        ,drvSTDContribPlanPercentage = CASE WHEN  BdmdedCode in ('STDER', 'STDVL') AND JbcEEOCategory in ('1.1', '1.2') THEN '100' ELSE '0' END
-        ,drvLTDStartDate = CASE WHEN BdmdedCode in ('LTDER','LTDVL') THEN REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate),101),'/','') END
-        ,drvLTDStopDate = CASE WHEN BdmdedCode in ('LTDER','LTDVL') THEN REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStopDate, @FileMinCovDate),101),'/','') END
-        ,drvLTDSubPoint = CASE WHEN BdmdedCode in ('LTDER','LTDVL') AND JbcEEOCategory in ('1.1', '1.2') THEN '0001' ELSE '0002' END
-        ,drvLTDContribPlanIndicator = CASE WHEN BdmdedCode in ('LTDER','LTDVL') AND JbcEEOCategory in ('1.1', '1.2') THEN'100' ELSE '0' END
-        ,drvLTDContribPlanPercentage = CASE WHEN BdmdedCode in ('LTDER','LTDVL') THEN '0' END
+        ,drvSTDContribPlanIndicator = CASE WHEN STD IS NOT NULL AND  JbcEEOCategory in ('1.1', '1.2') THEN 'N' ELSE 'Y' END
+        ,drvSTDContribPlanPercentage = CASE WHEN  STD IS NOT NULL AND JbcEEOCategory in ('1.1', '1.2') THEN '100' ELSE '0' END
+        ,drvSTDContributoryPretaxPercentage =CASE WHEN  STD IS NOT NULL THEN '0' END
+        ,drvLTDStartDate = CASE WHEN LTD IS NOT NULL THEN REPLACE(CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',LTDStartDate, @FileMinCovDate),101),'/','') END
+        ,drvLTDStopDate = CASE WHEN LTD IS NOT NULL  THEN REPLACE(CONVERT(VARCHAR(10),LTDStopDate,101),'/','') END
+        ,drvLTDReportNumber = CASE WHEN LTD IS NOT NULL  THEN '0244940' END
+        ,drvLTDSubCode = CASE WHEN LTD IS NOT NULL  THEN '0001'  END
+        ,drvLTDSubPoint = CASE WHEN LTD IS NOT NULL  AND JbcEEOCategory in ('1.1', '1.2') THEN '0001' ELSE '0002' END
+        ,drvLTDContribPlanIndicator = CASE WHEN LTD IS NOT NULL  AND JbcEEOCategory in ('1.1', '1.2') THEN'N' ELSE 'Y' END
+        ,drvLTDContribPlanPercentage = CASE WHEN LTD IS NOT NULL  AND JbcEEOCategory in ('1.1', '1.2') THEN'100' ELSE '0' END
+        ,drvLTDContributoryPretaxPercentage = CASE WHEN LTD IS NOT NULL  THEN '0' END
+        ,drvJobStatusCode = ''
+        ,drvJobStatus = ''
+        ,drvHoursWorkedPast12Mo = ''
+        ,drvAbsenceManagementCoverageStartDate = ''
+        ,drvAbsenceManagementCoverageStopDate = ''
         ,drvOriginalHireDate = REPLACE(CONVERT(VARCHAR(10),EecDateOfLastHire,101),'/','')
         ,drvLTDTemporary = CASE WHEN EecEEType = 'REG' THEN 'R'
                                 WHEN EecEEType = 'TMP' THEN 'T'
@@ -875,9 +905,9 @@ BEGIN
                             END
         ,drvWorkPhoneNumber = EecPhoneBusinessNumber
         ,drvWorkEmail = EepAddressEMail
-        ,drvAnnualWeeklyHours = Format(EecScheduledWorkHrs/2, '0.00')
-        ,drvLOAApproverID1 = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'empno')
-        ,drvCustDefinedField1 = eecempno
+        ,drvAnnualWeeklyHours = Left(REPLACE(EecScheduledWorkHrs/2, '.', ''),3)
+        ,drvLOAApproverID1 = dbo.dsi_fnPadZero(SupSSN,9,0)
+        ,drvCustDefinedField1 = dbo.dsi_fnPadZero(eecempno,9,0)
     INTO dbo.U_ELSMETSLTD_drvTbl
     FROM dbo.U_ELSMETSLTD_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -885,19 +915,45 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_ELSMETSLTD WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+    JOIN (Select BDMEEID ,BdmCoID 
+                ,Max(Case when BdmdedCode in ('STDER', 'STDVL') THEN 'STD' END) AS STD  
+                ,Max(Case when BdmdedCode in ('STDER', 'STDVL') THEN BdmBenStartDate END) AS STDStartDate
+                ,Max(Case when BdmdedCode in ('STDER', 'STDVL') THEN BdmBenStopDate END) AS STDStopDate
+                ,Max(Case when BdmdedCode in ('LTDER','LTDVL') THEN 'LTD' END) AS LTD  
+                ,Max(Case when BdmdedCode in ('LTDER','LTDVL') THEN BdmBenStartDate END) AS LTDStartDate
+                ,Max(Case when BdmdedCode in ('LTDER','LTDVL') THEN BdmBenStopDate END) AS LTDStopDate
+                from dbo.U_dsi_BDM_ELSMETSLTD  WITH (NOLOCK)
+                where  BdmdedCode in ('STDER', 'STDVL','LTDER','LTDVL')
+                Group by BDMEEID,BdmCoID) AS Bc
+        ON Bc.BdmEEID = xEEID 
+        AND Bc.BdmCoID = xCoID
     LEFT JOIN dbo.JobCode WITH (NOLOCK)
         ON jbcjobcode = EecJobcode
     Left JOIN dbo.EmpTax WITH (NOLOCK)
         ON EetEeid = XEEID
-        AND Eeteeid = XCOID
+        AND EetCOID = XCOID
+        and EetTaxCode ='USFIT'
+    LEFT JOIN (
+        -- Supervisor Name and Email Information
+        SELECT DISTINCT SupEEID = SUP.EecEEID
+            ,SupEmpNo = SUP.EecEmpNo
+            ,SupSSN = Ep.EepSSN
+            ,SupNameFirst = EP.EepNameFirst
+            ,SupNameLast = EP.EepNameLast
+            ,SupNameEmail = EP.EepAddressEmail
+        FROM dbo.EmpComp EC (NOLOCK)
+        JOIN dbo.EmpComp SUP (NOLOCK)
+            ON EC.EecSupervisorID = SUP.EecEEID
+            AND SUP.EecCoID = dbo.dsi_bdm_fn_GetCurrentCOID(SUP.EecEEID)
+            AND ISNULL(EC.EecSupervisorID, '') <> ''
+        JOIN dbo.EmpPers EP (NOLOCK)
+            ON SUP.EecEEID = EP.Eepeeid
+    ) Supervisor
+        ON Supervisor.SupEEID = EecSupervisorID
     LEFT JOIN  dbo.U_ELSMETSLTD_Audit WITH (NOLOCK)
         ON xEEID = audEEID
-    WHERE eecEEtype <> 'TES'
+    WHERE eecEEtype <> 'TES' 
      AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN DATEADD(DAY, -14, @StartDate) AND @EndDate))
-
     ;
     ---------------------------------
     -- HEADER RECORD
