@@ -5,7 +5,7 @@ ECBHCIGEXP: Cigna Accident and Critical Illness Export
 FormatCode:     ECBHCIGEXP
 Project:        Cigna Accident and Critical Illness Export
 Client ID:      EDU1002
-Date/time:      2022-12-21 15:43:03.453
+Date/time:      2022-12-27 16:25:03.413
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -241,14 +241,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECBHCIGEXP_20221221.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECBHCIGEXP_20221227.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301089','EMPEXPORT','OEACTIVE',NULL,'ECBHCIGEXP',NULL,NULL,NULL,'202301089','Dec  8 2022  1:20PM','Dec  8 2022  1:20PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301089','EMPEXPORT','OEACTIVE',NULL,'ECBHCIGEXP',NULL,NULL,NULL,'202301089','Dec  8 2022  1:20PM','Dec  8 2022  1:20PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301089','EMPEXPORT','OEPASSIVE',NULL,'ECBHCIGEXP',NULL,NULL,NULL,'202301089','Dec  8 2022  1:20PM','Dec  8 2022  1:20PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna Accident and Critical Il','202301089','EMPEXPORT','ONDEM_XOE',NULL,'ECBHCIGEXP',NULL,NULL,NULL,'202301089','Dec  8 2022  1:20PM','Dec  8 2022  1:20PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna Accident and Criti-Sched','202301089','EMPEXPORT','SCH_ECBHCI',NULL,'ECBHCIGEXP',NULL,NULL,NULL,'202301089','Dec  8 2022  1:20PM','Dec  8 2022  1:20PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
@@ -388,7 +388,7 @@ CREATE TABLE [dbo].[U_ECBHCIGEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] char(11) NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvEENameFirst] varchar(100) NULL,
     [drvEENameLast] varchar(100) NULL,
@@ -407,22 +407,22 @@ CREATE TABLE [dbo].[U_ECBHCIGEXP_drvTbl] (
     [drvCovEffDate] varchar(10) NULL,
     [drvPlanType] varchar(5) NULL,
     [drvAICIHCCoverageTier] varchar(10) NULL,
-    [drvCIApprovedCovAmt] varchar(5) NULL,
-    [drvSPApprovedCovAmt] varchar(5) NULL,
-    [drvSPCovEffDate] varchar(10) NULL,
-    [drvCHCIApprovedCovAmt] varchar(5) NULL,
-    [drvCHCovEffDate] varchar(10) NULL,
-    [drvSPFirstName] varchar(100) NULL,
-    [drvSPLastName] varchar(100) NULL,
-    [drvSPSSN] char(11) NULL,
-    [drvSPGender] char(1) NULL,
-    [drvSPDOB] varchar(10) NULL,
+    [drvCIApprovedCovAmt] varchar(30) NULL,
+    [drvSPApprovedCovAmt] varchar(30) NULL,
+    [drvSPCovEffDate] varchar(30) NULL,
+    [drvCHCIApprovedCovAmt] varchar(30) NULL,
+    [drvCHCovEffDate] varchar(30) NULL,
+    [drvSpFirstName] varchar(100) NULL,
+    [drvSpLastName] varchar(100) NULL,
+    [drvSpSSN] char(11) NULL,
+    [drvSpGender] char(1) NULL,
+    [drvSpDOB] varchar(30) NULL,
     [drvspsmoker] varchar(1) NULL,
-    [drvPayrollDedAmt] nvarchar(4000) NULL,
+    [drvPayrollDedAmt] varchar(30) NULL,
     [drvAITermSatusCode] varchar(1) NULL,
-    [drvATTermStatusEffDate] varchar(10) NULL,
+    [drvATTermStatusEffDate] varchar(30) NULL,
     [drvCITermSatusCode] varchar(1) NULL,
-    [drvCTTermStatusEffDate] varchar(10) NULL
+    [drvCTTermStatusEffDate] varchar(30) NULL
 );
 
 -----------
@@ -604,11 +604,11 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-    
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'RateEffDate',@EndDate);
 
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
-
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'RateEffDate',@EndDate);
     -- Required OE parameters
     IF @ExportCode LIKE '%PASSIVE'
     BEGIN
@@ -620,13 +620,11 @@ BEGIN
         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
     END;
 
-
-    -- Run BDM Module
+       -- Run BDM Module
 
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
-
 
     UPDATE dbo.U_dsi_bdm_ECBHCIGEXP
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
@@ -644,6 +642,9 @@ BEGIN
        AND DbnDedCode = BdmDedCode
    WHERE BdmRecType = 'DEP' AND DbnFormatCode = @FormatCode AND DbnValidForExport = 'Y';
 
+ 
+   
+
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -652,11 +653,11 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ECBHCIGEXP_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ECBHCIGEXP_drvTbl;
-   SELECT DISTINCT
+SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = ''
+        ,drvInitialSort = eepSSN
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvEENameFirst = EepNameFirst
@@ -675,90 +676,149 @@ BEGIN
                                     ELSE  'A' 
                                 END
                         END
-                          
-                            
+  
         ,drvStatusDate = CONVERT(VARCHAR(10),CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination 
                               WHEN EecEmplStatus = 'L' THEN DateADD(d, -1, EshStatusStartDate )
                             END, 101)
-        ,drvLOAType = CASE WHEn EecEmplStatus = 'L' THEN 'U' END
-        ,drvBenefitElected = CASE WHEN Bdmdedcode IN ('ACC10','ACC12') THEN 'AI'
-                                  WHEN  Bdmdedcode IN ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10'
-                                                , '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN  'CIIR'
-                                END
-        ,drvCovEffDate = CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) , 101)
-        ,drvPlanType = CASE WHEN Bdmdedcode IN ('ACC10','ACC12') THEN 'PLAN1'
-                                  WHEN  Bdmdedcode IN ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10'
-                                                , '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN  'PLAN1'
+        ,drvLOAType = CASE WHEN EecEmplStatus = 'L' THEN 'U' END
+        ,drvBenefitElected = PLAN_Code
+        ,drvCovEffDate = CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',StartDate, @FileMinCovDate) , 101)
+        ,drvPlanType = CASE PLAN_Code 
+                                    WHEN 'AI' THEN 'PLAN1'
+                                    WHEN 'CIIR' THEN  'PLAN1'
                                 END
                             
-        ,drvAICIHCCoverageTier =   CASE WHEN Bdmdedcode  IN ('ACC10','ACC12') and BdmBenOption  = 'EE' THEN 'EE'
-                                        WHEN Bdmdedcode  IN ('ACC10','ACC12') and BdmBenOption  = 'EESPOU' THEN 'EE Plus SP'
-                                        WHEN Bdmdedcode  IN ('ACC10','ACC12') and BdmBenOption  = 'EECHLD' THEN  'EE Plus CH'
-                                        WHEN Bdmdedcode  IN ('ACC10','ACC12') and BdmBenOption  IN ('EEFAM' , 'EEDPF')  THEN  'Family'
-                                        WHEN Bdmdedcode  IN ('10E10', '20E10', '30E10', '10E12', '20E12', '30E12') THEN 'EE'
-                                        WHEN Bdmdedcode  IN ('10C10', '20C10', '30C10', '10C12', '20C12', '30C12') THEN 'EE Plus CH'
-                                        WHEN Bdmdedcode  IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12') THEN 'EE Plus SP'
-                                        WHEN Bdmdedcode  IN ('10F10', '20F10', '30F10', '10F12', '20F12', '30F12') THEN 'Family'
-                                    END
-        ,drvCIApprovedCovAmt = CASE WHEN Bdmdedcode  IN ('10E10', '10C10', '10S10', '10F10', '10E12', '10C12', '10S12', '10F12') THEN '10000'
-                                    WHEN Bdmdedcode  IN ('20E10', '20C10', '20S10', '20F10', '20E12', '20C12', '20S12', '20F12') THEN  '20000'
-                                    WHEN Bdmdedcode  IN ('30E10', '30C10', '30S10', '30F10', '30E12', '30C12', '30S12', '30F12') THEN '30000'
-                                END
-        ,drvSPApprovedCovAmt = CASE WHEN Bdmdedcode  IN ('10S10', '10F10', '10S12', '10F12') THEN '5000'
-                                    WHEN Bdmdedcode  IN ('20S10', '20F10', '20S12', '20F12') THEN '10000'
-                                    WHEN Bdmdedcode  IN ('30S10', '30F10', '30S12', '30F12') THEN '15000'
-                                END
-                            
-        ,drvSPCovEffDate = CONVERT(VARCHAR(10),CASE WHEN Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12') THEN CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) , 101)  -- BdmBenStartDate END, 101)
-                                WHEN Bdmdedcode IN ('ACC10' , 'ACC12') and Bdmrelationship IN ('SPS' , 'DPA') THEN CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) , 101) END, 101)
-        ,drvCHCIApprovedCovAmt  =  CASE WHEN Bdmdedcode IN ('10C10', '10F10', '10C12', '10F12') THEN '5000'
-                                        WHEN Bdmdedcode IN ('20C10', '20F10', '20C12', '20F12') THEN '10000'
-                                        WHEN Bdmdedcode IN ('30C10', '30F10', '30C12', '30F12') THEN '15000'
-                                    END
-        ,drvCHCovEffDate = CONVERT(VARCHAR(10),CASE WHEN  Bdmdedcode IN ('10C10', '20C10', '30C10', '10C12', '20C12', '30C12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12') THEN CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) , 101)
-                                    WHEN Bdmdedcode IN ('ACC10' , 'ACC12') and BdmRelationship IN ('CHL', 'CHI','STC') THEN CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) , 101) END, 101)
-                            --CONVERT(VARCHAR(10),CASE WHEN  Bdmdedcode IN ('10C10', '20C10', '30C10', '10C12', '20C12', '30C12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12', 'ACC10' , 'ACC12') 
-                                --and BdmRelationship IN ('CHL', 'CHI','STC') THEN CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) , 101) END, 101)
-        ,drvSPFirstName = CASE WHEN Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12', 'ACC10' , 'ACC12') and Conrelationship IN ('SPS' , 'DPA') THEN ConNameFirst END
-        ,drvSPLastName = CASE WHEN Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12', 'ACC10' , 'ACC12') and Conrelationship IN ('SPS' , 'DPA') THEN ConNameLast END
-        ,drvSPSSN = CASE WHEN  Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12', 'ACC10' , 'ACC12') and Conrelationship IN ('SPS' , 'DPA') THEN ConSSN ENd
-        ,drvSPGender = CASE WHEN  Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12', 'ACC10' , 'ACC12') and Conrelationship IN ('SPS' , 'DPA') THEN ConGender END
-        ,drvSPDOB = CONVERT(VARCHAR(10),CASE WHEN  Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12', 'ACC10' , 'ACC12') and Conrelationship IN ('SPS' , 'DPA')  THEN ConDateOfBirth END, 101)
-        ,drvspsmoker = CASE WHEN Bdmdedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12') and Bdmrelationship IN ('SPS' , 'DPA') THEN 'N' END
-        ,drvPayrollDedAmt = CASE WHEn Format(EedEELstAmt, '0.00') <> '0.00' THEN Format(EedEELstAmt, '0.00') ELSE '' END ---EedEELstAmt - if blank or 0, need to calc from dbo.u_dsi_bdm_BenCalculationAmounts
-        ,drvAITermSatusCode = CASE WHEN Bdmdedcode IN ('ACC10', 'ACC12') and EecEmplStatus <> 'T' and BdmBenStatus IN ( 'T' , 'C') THEN 'T' END
-        ,drvATTermStatusEffDate = CONVERT(VARCHAR(10),CASE WHEN Bdmdedcode IN ('ACC10', 'ACC12') and EecEmplStatus <> 'T' and BdmBenStatus IN ('T', 'C') THEN BdmBenStopDate END, 101)
-        ,drvCITermSatusCode = CASE WHEN Bdmdedcode IN ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12',
-                                                            '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') and EecEmplStatus <> 'T' and BdmBenStatus IN ( 'T' , 'C') THEN 'T' END
-        ,drvCTTermStatusEffDate = CONVERT(VARCHAR(10),CASE WHEN Bdmdedcode IN ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12',
-                                                            '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') and EecEmplStatus <> 'T' and BdmBenStatus IN ( 'T' , 'C') THEN BdmBenStopDate END, 101)
+        ,drvAICIHCCoverageTier =   CASE WHEN PLAN_Code IN ('AI' ) THEN
+                                            CASE WHEN BenOptions in ('EEF','EEDPF') THEN 'Family' 
+                                                 WHEN BenOptions in ('EE') THEN 'EE'
+                                                 WHEN BenOptions in ('EES','EEDP') THEN 'EE Plus SP'
+                                                 WHEN BenOptions in ('EEC') THEN 'EE Plus CH'
+                                                 ELSE 'EE'
+                                               END
+                                        WHEN PLAN_Code IN ('CIIR') and IsFamily = '1' THEN 'Family'
+                                        WHEN PLAN_Code IN ('CIIR') and IsEE = '1' THEN 'EE'
+                                        WHEN PLAN_Code IN ('CIIR') and IsSpouse = '1' THEN 'EE Plus SP'
+                                        WHEN PLAN_Code IN ('CIIR') and IsCH = '1' THEN 'EE Plus CH'
+                                       END
+                                    
+        ,drvCIApprovedCovAmt = CAST(Amount as varchar)
+        ,drvSPApprovedCovAmt = CASE WHEN IsSpouse is not null or IsFamily is not null then CAST(SPS_AMT as varchar) END                 
+        ,drvSPCovEffDate = Convert(varchar,CASE WHEN Plan_Code = 'AI' and BenOptions not in ('EE','EEC') then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime))
+                                                WHEN PLAN_Code = 'CIIR' and (IsSpouse is not null or IsFamily is not null) then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime)) 
+                                           END, 101) 
+        ,drvCHCIApprovedCovAmt  =  CASE WHEN IsCH is not null or IsFamily is not null then Cast( CONVERT(DECIMAL(10,0),(Cast (Amount as money) * 0.50)) as varchar) END
+        ,drvCHCovEffDate = convert(varchar,CASE WHEN Plan_Code = 'AI' and BenOptions not in ('EE','EES') then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime))
+                                                WHEN PLAN_Code in ('CIIR','CIIR_Dep') and (IsCH is not null or IsFamily is not null) then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime) ) 
+                                                END, 101)  
+        ,drvSpFirstName = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConNameFirst from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpLastName = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConNameLast from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpSSN =  CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConSSN from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpGender = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConGender from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpDOB = convert(varchar,CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConDateOfBirth from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END, 101)  
+        
+        ,drvspsmoker = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) THEN 'N' END
+        ,drvPayrollDedAmt =   CASE WHEN PLAN_Code = 'AI' THEN CAST(BenefitAmounts.AI as varchar)  
+                                   WHEN PLAN_Code = 'CIIR' and BenefitAmounts.CIIR is not null THEN CAST(BenefitAmounts.CIIR + ISNULL(BenefitAmounts.CIIR_Dep,0) as varchar)
+                                   WHEN PLAN_Code = 'CIIR' and BenefitAmounts.CIIR is  null THEN CAST((Select Max(EedEeLstAmt) from dbo.empdedfull   WITH (NOLOCK) where eedeeid = xeeid and eeddedcode in ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12' )) as varchar)
+                                 END
+        ,drvAITermSatusCode = CASE WHEN Plan_Code = 'AI' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN 'T' END
+        ,drvATTermStatusEffDate = CASE WHEN Plan_Code = 'AI' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN convert(varchar,StopDate, 101)  END
+        ,drvCITermSatusCode = CASE WHEN Plan_Code = 'CIIR' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN 'T' END
+        ,drvCTTermStatusEffDate = CASE WHEN Plan_Code = 'CIIR' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN convert(varchar,StopDate, 101) END
     INTO dbo.U_ECBHCIGEXP_drvTbl
     FROM dbo.U_ECBHCIGEXP_EEList WITH (NOLOCK)
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+    JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+    JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_ECBHCIGEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
- LEFT JOIN (
-                SELECT EedEEID AS MpEEID, EedCOID AS MpCOID, EedDedCode, EedEELstAmt, EedERLstAmt, EedBenAmt
-                FROM dbo.EmpDed WITH (NOLOCK)
-                WHERE EedBenStatus = 'A'
-                and EedDedCode IN  ('10E10','10C10','10S10','10F10','20E10','20C10','20S10','20F10','30E10','30C10','30S10','30F10','10E12','10C12','10S12','10F12','20E12','20C12','20S12','20F12','30E12','30C12','30S12','30F12','ACC10','ACC12')
-                ) AS MED_PRIEM
-        ON MpEEID = xEEID
-        AND MpCOID = xCOID
-   LEFT JOIN dbo.Contacts WITH (NOLOCK)
-        ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecId 
+    JOIN (Select bdmeeid,bdmcoid,
+                        IsFamily = MAX(    CASE 
+                                                      WHEN bdmDedCode IN('10F10', '20F10', '30F10', '10F12', '20F12', '30F12')  THEN '1'                             END 
+                                                 ),
+                        IsEE = MAX(    CASE 
+                                                      WHEN bdmDedCode IN('10E10', '20E10', '30E10', '10E12', '20E12', '30E12' )  THEN '1'                             END 
+                                                 ),
+                        IsCH = MAX(    CASE 
+                                                      WHEN bdmDedCode IN('10C10', '20C10', '30C10', '10C12', '20C12', '30C12')  THEN '1'                             END 
+                                                 ),  
+                        IsSpouse = MAX(    CASE 
+                                                      WHEN bdmDedCode IN('10S10', '20S10', '30S10', '10S12', '20S12', '30S12')  THEN '1'                             END 
+                                                 ),                    
+                        BenOptions= MAX(    CASE
+                                                      WHEN bdmDedCode IN ('ACC10','ACC12') THEN BdmBenOption
+                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN BdmBenOption
+                                                 END 
+                                                 ),    
+                                                 CASE 
+                                                      WHEN bdmDedCode IN ('ACC10','ACC12') THEN 'AI'
+                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN 'CIIR'
+                                                 END AS PLAN_Code,
+                        StartDate= MAX(    CASE 
+                                                      WHEN bdmDedCode IN ('ACC10','ACC12') THEN bdmbenstartdate
+                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12' ) THEN bdmbenstartdate
+                                                 END 
+                                                 ),
+                        StopDate= MAX(    CASE 
+                                                      WHEN bdmDedCode IN ('ACC10','ACC12') THEN bdmbenstopdate
+                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12' )   THEN bdmbenstopdate
+                                                 END 
+                                                 ),
+
+                        SPS = MAX(CASE WHEN bdmdedcode in ('10S10', '10F10', '10S12', '10F12','20S10', '20F10', '20S12', '20F12','30S10', '30F10', '30S12', '30F12') THEN '1' END ) ,
+                        SPS_AMT = MAX(CASE  WHEN BdmDedCode IN ('10S10', '10F10', '10S12', '10F12')  THEN '5000'
+                                        WHEN BdmDedCode IN ('20S10', '20F10', '20S12', '20F12')  THEN '10000'
+                                        WHEN BdmDedCode IN ('30S10', '30F10', '30S12', '30F12')  THEN '15000'
+                                     END ) ,
+                        CHD = MAX(CASE WHEN bdmdedcode in ('10C10', '20C10', '30C10', '10C12', '20C12', '30C12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12') THEN '1' END ) ,
+
+                        BenefitAmount =  MAX(CASE 
+                                                      WHEN bdmDedCode in ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN bdmeeamt 
+                                                      WHEN bdmdedcode IN ('ACC10','ACC12') THEN bdmeeamt
+                                                      END
+                                                 ),
+
+                        Amount = MAX(CASE WHEN bdmDedCode IN ('10C10', '10F10', '10C12', '10F12') THEN '10000'
+                                                WHEN bdmDedCode IN('20C10', '20F10', '20C12', '20F12') THEN '20000'
+                                                WHEN bdmDedCode IN('30C10', '30F10', '30C12', '30F12') THEN '30000'
+                           
+                                                END),
+                        BenStatus= MAX(    CASE 
+                                                      WHEN bdmDedCode IN ('ACC10','ACC12') THEN BdmBenStatus
+                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12' )   THEN BdmBenStatus
+                                                 END 
+                                                 )
+                    FROM dbo.U_dsi_BDM_ECBHCIGEXP WITH (NOLOCK)
+                    GROUP BY bdmeeid,bdmcoid,CASE 
+                                                      WHEN bdmDedCode IN ('ACC10','ACC12') THEN 'AI'
+                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12' )  THEN 'CIIR'
+                                                 END
+                    ) as bdmConsolidated
+         ON bdmConsolidated.BdmCOID =  xCOID
+         AND bdmConsolidated.BdmEEID =  xeeid
+    LEFT JOIN (Select bcacoid, bcaeeid,
+                           CIIR = MAX(CASE WHEN  bcadedcode IN ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12')  THEN BcaEEAmt END ) ,
+                           AI = MAX(CASE WHEN  bcadedcode IN ('ACC10','ACC12') THEN BcaEEAmt END ) ,
+                           CIIR_SP = MAX(CASE WHEN  bcadedcode IN ('10S10', '20S10', '30S10', '10S12', '20S12', '30S12')  THEN BcaEEAmt END ) ,
+                           CIIR_Dep = MAX(CASE WHEN  bcadedcode IN ('10C10', '20C10', '30C10', '10C12', '20C12', '30C12', '10F10', '20F10', '30F10', '10F12', '20F12', '30F12') THEN  EedEeLstAmt END )
+                        FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH (NOLOCK)
+                        JOIN dbo.EmpDedFull WITH (NOLOCK) 
+                        ON bcaeeid = eedeeid 
+                        AND bcacoid =  eedcoid
+                        AND bcadedcode = eeddedcode
+                        WHERE bcaformatcode = 'ECBHCIGEXP'
+                        GROUP BY bcacoid, bcaeeid
+                ) AS BenefitAmounts
+         ON BenefitAmounts.bcaeeid =  xeeid
+        AND BenefitAmounts.bcacoid =xcoid
     LEFT JOIN dbo.U_ECBHCIGEXP_Audit WITH (NOLOCK) 
-     ON audEEID = bdmeeid
-        AND audKey2 = bdmCoID
-        AND audFieldName = 'EecDateofTermination'
-        AND audNewValue is not null
-        and audDateTime BETWEEN @startdate AND @enddate
+         ON audEEID = bdmeeid
+         AND audKey2 = bdmCoID
+         AND audFieldName = 'EecDateofTermination'
+         AND audNewValue is not null
+         AND audDateTime BETWEEN @startdate AND @enddate
      LEFT JOIN (
                 SELECT EshEEID, EshCOID,  EshEmplStatus, EshStatusStartDate, EshStatusStopDate
                 FROM (
@@ -768,7 +828,6 @@ BEGIN
                 WHERE RN = 1) AS EshDates 
         ON EshEEID = xEEID 
         AND EshCOID = xCOID
-
     WHERE  EecEEType <> 'TES' 
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN  @StartDate AND @EndDate))
     ;
