@@ -4,16 +4,17 @@ EBGCTDCEXP: TDC (Cornerstone) Employee Export
 
 FormatCode:     EBGCTDCEXP
 Project:        TDC (Cornerstone) Employee Export
-Client ID:      USG1000
-Date/time:      2022-12-16 16:26:33.623
+Client ID:      BOY1000
+Date/time:      2023-01-06 14:25:35.673
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EBGCTDCEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    E13
+Server:         E1SUP3DB02
+Database:       ULTIPRO_BGCA
+Web Filename:   BOY1000_66914_EEHISTORY_EBGCTDCEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -254,7 +255,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBGCTDCEXP_20221216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBGCTDCEXP_20230106.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -263,7 +264,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TDC (Cornerstone) Employee Exp','202212169','EMPEXPORT','ONDEM_XOE',NULL,'EBGCTDCEXP',NULL,NULL,NULL,'202212169','Dec 16 2022  3:24PM','Dec 16 2022  3:24PM','202212161',NULL,'','','202212161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TDC (Cornerstone) Employ-Sched','202212169','EMPEXPORT','SCH_EBGCTD',NULL,'EBGCTDCEXP',NULL,NULL,NULL,'202212169','Dec 16 2022  3:24PM','Dec 16 2022  3:24PM','202212161',NULL,'','','202212161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'TDC (Cornerstone) Employ-Test','202212169','EMPEXPORT','TEST_XOE',NULL,'EBGCTDCEXP',NULL,NULL,NULL,'202212169','Dec 16 2022  3:24PM','Dec 16 2022  3:24PM','202212161',NULL,'','','202212161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'TDC (Cornerstone) Employ-Test','202212169','EMPEXPORT','TEST_XOE',NULL,'EBGCTDCEXP',NULL,NULL,NULL,'202212169','Dec 16 2022  3:24PM','Dec 16 2022  3:24PM','202212161',NULL,'','','202212161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -275,11 +276,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBGCTDCEXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -295,12 +297,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBGCTDCEXP','T90','dbo.U_EBGCTDCEXP_Trailer',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -343,21 +345,22 @@ CREATE TABLE [dbo].[U_EBGCTDCEXP_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubsort] varchar(1) NOT NULL,
-    [drvUserID] varchar(1) NOT NULL,
+    [drvUserID] char(9) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
-    [drvUsername] varchar(1) NOT NULL,
-    [drvApprover] varchar(1) NOT NULL,
-    [drvManager] varchar(1) NOT NULL,
-    [Yes] varchar(1) NOT NULL,
-    [drvfOriginalHireDate] datetime NULL,
-    [drvDateofLastHire] datetime NULL,
-    [drvStatus] varchar(1) NOT NULL,
-    [drvTerminationDate] datetime NULL,
-    [drvDivision] varchar(1) NOT NULL,
-    [drvJobTitle] varchar(1) NOT NULL,
-    [drvSalaryGrade] varchar(1) NOT NULL,
-    [drvDepartment] varchar(1) NOT NULL
+    [drvUsername] char(9) NULL,
+    [drvApprover] char(12) NULL,
+    [drvManager] char(12) NULL,
+    [drvEmail] varchar(50) NULL,
+    [drvfOriginalHireDate] varchar(10) NULL,
+    [drvDateofLastHire] varchar(10) NULL,
+    [drvStatus] varchar(8) NOT NULL,
+    [drvtermreason] varchar(1) NOT NULL,
+    [drvTerminationDate] varchar(10) NULL,
+    [drvDivision] varchar(10) NULL,
+    [drvJobTitle] char(8) NULL,
+    [drvSalaryGrade] char(3) NULL,
+    [drvDepartment] varchar(10) NULL
 );
 
 -----------
@@ -489,11 +492,11 @@ BEGIN
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EBGCTDCEXP_Audit ON dbo.U_EBGCTDCEXP_Audit (audEEID,audKey2);
 
-    --================
-    -- Changes Only
-    --================
-    DELETE FROM dbo.U_EBGCTDCEXP_EEList
-    WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EBGCTDCEXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_EBGCTDCEXP_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EBGCTDCEXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
     --==========================================
     -- Build Driver Tables
@@ -517,11 +520,11 @@ BEGIN
         ,drvApprover = EecSupervisorID
         ,drvManager = EecSupervisorID
         ,drvEmail = EepAddressEMail
-        ,drvfOriginalHireDate = EecDateOfLastHire
-        ,drvDateofLastHire = EecDateOfLastHire
-        ,drvStatus = CASE WHEn  EecEmplStatus <> 'T' then 'Active' else 'Inactive' END
+        ,drvfOriginalHireDate = CONVERT(VARCHAR(10),EecDateOfLastHire, 101)
+        ,drvDateofLastHire = CONVERT(VARCHAR(10),EecDateOfLastHire, 101)
+        ,drvStatus = CASE WHEN  EecEmplStatus <> 'T' then 'Active' else 'Inactive' END
         ,drvtermreason = ''
-        ,drvTerminationDate = CASE WHEN EecDateofTermination IS NOT NULL then EecDateOfTermination END
+        ,drvTerminationDate = CONVERT(VARCHAR(10),CASE WHEN EecDateofTermination IS NOT NULL then EecDateOfTermination END, 101)
         ,drvDivision = EecOrgLvl1
         ,drvJobTitle = EecJobCode
         ,drvSalaryGrade = JbcSalaryGrade

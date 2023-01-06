@@ -5,7 +5,7 @@ EAKNEWEPXP: California New Employee Export
 FormatCode:     EAKNEWEPXP
 Project:        California New Employee Export
 Client ID:      AMY1001
-Date/time:      2023-01-03 17:59:37.293
+Date/time:      2023-01-06 10:31:44.707
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -173,7 +173,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAKNEWEPXP_20230103.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAKNEWEPXP_20230106.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -267,7 +267,7 @@ CREATE TABLE [dbo].[U_EAKNEWEPXP_drvTbl] (
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
     [drvZipCode] varchar(5) NULL,
-    [drvEmpStartDate] varchar(1) NOT NULL
+    [drvEmpStartDate] char(8) NULL
 );
 
 -----------
@@ -301,7 +301,7 @@ CREATE TABLE [dbo].[U_EAKNEWEPXP_File] (
 IF OBJECT_ID('U_EAKNEWEPXP_Header') IS NULL
 CREATE TABLE [dbo].[U_EAKNEWEPXP_Header] (
     [drvFEIN] varchar(9) NULL,
-    [drvStateEmployerAcctNumber] varchar(10) NULL,
+    [drvStateEmployerAcctNumber] varchar(8) NULL,
     [drvBranchCode] varchar(1) NOT NULL,
     [drvEmployerName] varchar(12) NOT NULL,
     [drvStreetAddress] varchar(30) NULL,
@@ -451,7 +451,7 @@ BEGIN
         ,drvCity = UPPER(EepAddressCity)
         ,drvState = UPPER(EepAddressState)
         ,drvZipCode = UPPER(Left(EepAddressZipCode,5))
-        ,drvEmpStartDate = ''
+        ,drvEmpStartDate =  Convert(CHAR(8),CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire ELSE EecDateOfOriginalHire  END , 112)
     INTO dbo.U_EAKNEWEPXP_drvTbl
     FROM dbo.U_EAKNEWEPXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -475,8 +475,8 @@ BEGIN
          drvFEIN = CASE WHEN  cmpcoid = 'RXHL3' THEN '465460581' 
                         WHEn  cmpcoid = 'RXHFX' THEN '680154899'
                         END
-        ,drvStateEmployerAcctNumber = CASE WHEN cmpCompanycode = 'AKI'  THEN '352-5489-5' 
-                                           WHEN cmpCompanycode = 'AKDT' THEN '045-9042-8'
+        ,drvStateEmployerAcctNumber = CASE WHEN cmpCompanycode = 'AKI'  THEN '35254895' --  1/6/2023 MW Removed dashes
+                                           WHEN cmpCompanycode = 'AKDT' THEN '04590428' --  1/6/2023 MW Removed dashes
                                          END
         ,drvBranchCode = ''
         ,drvEmployerName = 'Amys Kitchen'

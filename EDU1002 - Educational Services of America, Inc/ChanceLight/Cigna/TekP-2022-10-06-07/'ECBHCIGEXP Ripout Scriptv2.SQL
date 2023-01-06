@@ -5,7 +5,7 @@ ECBHCIGEXP: Cigna Accident and Critical Illness Export
 FormatCode:     ECBHCIGEXP
 Project:        Cigna Accident and Critical Illness Export
 Client ID:      EDU1002
-Date/time:      2022-12-27 16:25:03.413
+Date/time:      2023-01-05 15:18:27.150
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -241,7 +241,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECBHCIGEXP_20221227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECBHCIGEXP_20230105.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -620,11 +620,6 @@ BEGIN
         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
     END;
 
-       -- Run BDM Module
-
-    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
-
-    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
 
     UPDATE dbo.U_dsi_bdm_ECBHCIGEXP
         SET BdmUSGField1 = CONVERT(VARCHAR(20),EedBenAmt)
@@ -641,6 +636,13 @@ BEGIN
        AND DbnCOID = BdmCOID
        AND DbnDedCode = BdmDedCode
    WHERE BdmRecType = 'DEP' AND DbnFormatCode = @FormatCode AND DbnValidForExport = 'Y';
+       -- Run BDM Module
+
+    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
+
+    
 
  
    
@@ -689,10 +691,10 @@ SELECT DISTINCT
                                 END
                             
         ,drvAICIHCCoverageTier =   CASE WHEN PLAN_Code IN ('AI' ) THEN
-                                            CASE WHEN BenOptions in ('EEF','EEDPF') THEN 'Family' 
+                                            CASE WHEN BenOptions in ('EEF','EEDPF','EEFAM') THEN 'Family' 
                                                  WHEN BenOptions in ('EE') THEN 'EE'
-                                                 WHEN BenOptions in ('EES','EEDP') THEN 'EE Plus SP'
-                                                 WHEN BenOptions in ('EEC') THEN 'EE Plus CH'
+                                                 WHEN BenOptions in ('EES','EEDP', 'EESPOU') THEN 'EE Plus SP'
+                                                 WHEN BenOptions in ('EEC','EECHLD') THEN 'EE Plus CH'
                                                  ELSE 'EE'
                                                END
                                         WHEN PLAN_Code IN ('CIIR') and IsFamily = '1' THEN 'Family'
@@ -703,28 +705,29 @@ SELECT DISTINCT
                                     
         ,drvCIApprovedCovAmt = CAST(Amount as varchar)
         ,drvSPApprovedCovAmt = CASE WHEN IsSpouse is not null or IsFamily is not null then CAST(SPS_AMT as varchar) END                 
-        ,drvSPCovEffDate = Convert(varchar,CASE WHEN Plan_Code = 'AI' and BenOptions not in ('EE','EEC') then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime))
+        ,drvSPCovEffDate = Convert(varchar,CASE WHEN PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD') then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime))
                                                 WHEN PLAN_Code = 'CIIR' and (IsSpouse is not null or IsFamily is not null) then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime)) 
                                            END, 101) 
         ,drvCHCIApprovedCovAmt  =  CASE WHEN IsCH is not null or IsFamily is not null then Cast( CONVERT(DECIMAL(10,0),(Cast (Amount as money) * 0.50)) as varchar) END
-        ,drvCHCovEffDate = convert(varchar,CASE WHEN Plan_Code = 'AI' and BenOptions not in ('EE','EES') then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime))
+        ,drvCHCovEffDate = convert(varchar,CASE WHEN PLAN_Code = 'AI' and BenOptions not in ('EE','EES') then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime))
                                                 WHEN PLAN_Code in ('CIIR','CIIR_Dep') and (IsCH is not null or IsFamily is not null) then dbo.dsi_fnGetMinMaxDates('MAX',StartDate, CAST('1/1/2021' as datetime) ) 
                                                 END, 101)  
-        ,drvSpFirstName = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConNameFirst from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
-        ,drvSpLastName = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConNameLast from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
-        ,drvSpSSN =  CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConSSN from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
-        ,drvSpGender = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConGender from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
-        ,drvSpDOB = convert(varchar,CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConDateOfBirth from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END, 101)  
+        ,drvSpFirstName = CASE WHEN (PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConNameFirst from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpLastName = CASE WHEN (PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConNameLast from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpSSN =  CASE WHEN (PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConSSN from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpGender = CASE WHEN (PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConGender from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END
+        ,drvSpDOB = convert(varchar,CASE WHEN (PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD')) or (IsSpouse is not null or IsFamily is not null) then (Select top 1 ConDateOfBirth from dbo.Contacts WITH (NOLOCK) where ConEEID = BdmEEID and ConRelationship in ('SPS','DP') and ConIsDependent = 'Y') END, 101)  
         
-        ,drvspsmoker = CASE WHEN (Plan_Code = 'AI' and BenOptions not in ('EE','EEC')) or (IsSpouse is not null or IsFamily is not null) THEN 'N' END
-        ,drvPayrollDedAmt =   CASE WHEN PLAN_Code = 'AI' THEN CAST(BenefitAmounts.AI as varchar)  
+        ,drvspsmoker = CASE WHEN (PLAN_Code = 'AI' and BenOptions not in ('EE','EECHLD')) or (IsSpouse is not null or IsFamily is not null) THEN 'N' END
+        ,drvPayrollDedAmt =   CASE WHEN PLAN_Code = 'AI' THEN CAST(BenefitAmounts.AI as varchar) 
+                                   WHEN PLAN_Code = 'AI' AND BenefitAmounts.AI is null THEN  CAST((Select Max(EedEeLstAmt) from dbo.empdedfull   WITH (NOLOCK) where eedeeid = xeeid and eeddedcode in ('ACC10','ACC12')) as varchar)
                                    WHEN PLAN_Code = 'CIIR' and BenefitAmounts.CIIR is not null THEN CAST(BenefitAmounts.CIIR + ISNULL(BenefitAmounts.CIIR_Dep,0) as varchar)
                                    WHEN PLAN_Code = 'CIIR' and BenefitAmounts.CIIR is  null THEN CAST((Select Max(EedEeLstAmt) from dbo.empdedfull   WITH (NOLOCK) where eedeeid = xeeid and eeddedcode in ('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12' )) as varchar)
                                  END
-        ,drvAITermSatusCode = CASE WHEN Plan_Code = 'AI' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN 'T' END
-        ,drvATTermStatusEffDate = CASE WHEN Plan_Code = 'AI' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN convert(varchar,StopDate, 101)  END
-        ,drvCITermSatusCode = CASE WHEN Plan_Code = 'CIIR' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN 'T' END
-        ,drvCTTermStatusEffDate = CASE WHEN Plan_Code = 'CIIR' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN convert(varchar,StopDate, 101) END
+        ,drvAITermSatusCode = CASE WHEN PLAN_Code = 'AI' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN 'T' END
+        ,drvATTermStatusEffDate = CASE WHEN PLAN_Code = 'AI' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN convert(varchar,StopDate, 101)  END
+        ,drvCITermSatusCode = CASE WHEN PLAN_Code = 'CIIR' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN 'T' END
+        ,drvCTTermStatusEffDate = CASE WHEN PLAN_Code = 'CIIR' AND BenStatus in ('T','C') and eecemplstatus <> 'T' THEN convert(varchar,StopDate, 101) END
     INTO dbo.U_ECBHCIGEXP_drvTbl
     FROM dbo.U_ECBHCIGEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpComp WITH (NOLOCK)
@@ -749,7 +752,7 @@ SELECT DISTINCT
                                                  ),                    
                         BenOptions= MAX(    CASE
                                                       WHEN bdmDedCode IN ('ACC10','ACC12') THEN BdmBenOption
-                                                      WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN BdmBenOption
+                                                    --  WHEN bdmDedCode IN('10E10', '10C10', '10S10', '10F10', '20E10', '20C10', '20S10', '20F10', '30E10', '30C10', '30S10', '30F10', '10E12', '10C12', '10S12', '10F12', '20E12', '20C12', '20S12', '20F12', '30E12', '30C12', '30S12', '30F12') THEN BdmBenOption
                                                  END 
                                                  ),    
                                                  CASE 
@@ -780,9 +783,10 @@ SELECT DISTINCT
                                                       END
                                                  ),
 
-                        Amount = MAX(CASE WHEN bdmDedCode IN ('10C10', '10F10', '10C12', '10F12') THEN '10000'
-                                                WHEN bdmDedCode IN('20C10', '20F10', '20C12', '20F12') THEN '20000'
-                                                WHEN bdmDedCode IN('30C10', '30F10', '30C12', '30F12') THEN '30000'
+                        
+                        Amount = MAX(CASE WHEN bdmDedCode IN ('10E10', '10C10', '10S10', '10F10', '10E12', '10C12', '10S12', '10F12') THEN '10000'
+                                                WHEN bdmDedCode IN ('20E10', '20C10', '20S10', '20F10', '20E12', '20C12', '20S12', '20F12') THEN '20000'
+                                                WHEN bdmDedCode IN ('30E10', '30C10', '30S10', '30F10', '30E12', '30C12', '30S12', '30F12') THEN '30000'
                            
                                                 END),
                         BenStatus= MAX(    CASE 
