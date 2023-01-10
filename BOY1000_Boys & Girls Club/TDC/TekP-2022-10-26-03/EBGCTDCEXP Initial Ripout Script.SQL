@@ -5,7 +5,7 @@ EBGCTDCEXP: TDC (Cornerstone) Employee Export
 FormatCode:     EBGCTDCEXP
 Project:        TDC (Cornerstone) Employee Export
 Client ID:      BOY1000
-Date/time:      2023-01-06 14:25:35.673
+Date/time:      2023-01-10 09:50:32.800
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -255,7 +255,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBGCTDCEXP_20230106.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBGCTDCEXP_20230110.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -349,8 +349,8 @@ CREATE TABLE [dbo].[U_EBGCTDCEXP_drvTbl] (
     [drvNameFirst] varchar(100) NULL,
     [drvNameLast] varchar(100) NULL,
     [drvUsername] char(9) NULL,
-    [drvApprover] char(12) NULL,
-    [drvManager] char(12) NULL,
+    [drvApprover] varchar(256) NULL,
+    [drvManager] varchar(256) NULL,
     [drvEmail] varchar(50) NULL,
     [drvfOriginalHireDate] varchar(10) NULL,
     [drvDateofLastHire] varchar(10) NULL,
@@ -517,8 +517,8 @@ BEGIN
         ,drvNameFirst = EepNameFirst
         ,drvNameLast = EepNameLast
         ,drvUsername = EecEmpno
-        ,drvApprover = EecSupervisorID
-        ,drvManager = EecSupervisorID
+        ,drvApprover = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Empno') 
+        ,drvManager = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Empno') 
         ,drvEmail = EepAddressEMail
         ,drvfOriginalHireDate = CONVERT(VARCHAR(10),EecDateOfLastHire, 101)
         ,drvDateofLastHire = CONVERT(VARCHAR(10),EecDateOfLastHire, 101)
@@ -554,6 +554,7 @@ BEGIN
     Left Join dbo.U_EBGCTDCEXP_Audit
         ON audeeid = xeeid
         and audKey2 = xcoid
+
        WHERE (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime BETWEEN  @StartDate  AND @EndDate  ))
     ;
 

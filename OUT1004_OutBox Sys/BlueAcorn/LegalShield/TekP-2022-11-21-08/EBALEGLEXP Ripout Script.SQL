@@ -5,7 +5,7 @@ EBALEGLEXP: LegalShield Export
 FormatCode:     EBALEGLEXP
 Project:        LegalShield Export
 Client ID:      OUT1004
-Date/time:      2023-01-06 13:22:19.720
+Date/time:      2023-01-10 09:21:48.947
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -171,7 +171,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EBALEGLEXPZ0','25','D','10','25',NULL,'Filler',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EBALEGLEXPZ0','1','D','10','26',NULL,'Activity Flag',NULL,NULL,'"drvActivityFlag"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EBALEGLEXPZ0','50','D','10','27',NULL,'Email Address',NULL,NULL,'"drvEmailAddress"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EBALEGLEXPZ0','6','D','10','28',NULL,'Filler',NULL,NULL,'"drvFiller"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EBALEGLEXPZ0','6','D','10','28',NULL,'Filler',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EBALEGLEXPZ0','2','D','10','29',NULL,'Member Pay Period',NULL,NULL,'"drvMemberPayPeriod"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EBALEGLEXPZ0','2','D','10','30',NULL,'Filler',NULL,NULL,'""','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EBALEGLEXPZ0','10','D','10','31',NULL,'Filler',NULL,NULL,'""','(''DA''=''T,'')');
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBALEGLEXP_20230106.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBALEGLEXP_20230110.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -504,7 +504,8 @@ BEGIN
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
             ,@EndPerControl     VARCHAR(9)
-            ,@FileRunDate       VARCHAR(8);
+            ,@FileRunDate       VARCHAR(8)
+            ,@MinCovDate        DATETIME;;
 
     -- Set FormatCode
     SELECT @FormatCode = 'EBALEGLEXP';
@@ -517,6 +518,7 @@ BEGIN
         ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
         ,@ExportCode      = ExportCode
         ,@FileRunDate         = CONVERT(VARCHAR(8),GETDATE(),112)
+        ,@MinCovDate      = '01/01/2023'
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
@@ -633,7 +635,7 @@ BEGIN
         ,drvInitialSort = ''
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
-        ,drvMbrCoverageEffDate = CONVERT(CHAR(10),BdmBenStartDate,112)
+        ,drvMbrCoverageEffDate = CONVERT(CHAR(10),dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate),112)
         ,drvMbrLastName = dbo.dsi_fnRemoveChars(',',EepNameLast)
         ,drvMbrFirstName = dbo.dsi_fnRemoveChars(',',EepNameFirst)
         ,drvMbrMiddleInitial = LEFT(EepNameMiddle,1)

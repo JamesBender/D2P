@@ -5,7 +5,7 @@ ECDSLGLEXP: LegalEASE Export
 FormatCode:     ECDSLGLEXP
 Project:        LegalEASE Export
 Client ID:      CIR1003
-Date/time:      2022-12-29 13:08:12.030
+Date/time:      2023-01-09 08:04:14.890
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -149,8 +149,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECDSLGLEXPZ0','50','H','01','12',NULL,'telephoneNumber',NULL,NULL,'"telephoneNumber"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECDSLGLEXPZ0','50','H','01','13',NULL,'emailAddress',NULL,NULL,'"emailAddress"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECDSLGLEXPZ0','50','H','01','14',NULL,'employeeStatus',NULL,NULL,'"employeeStatus"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECDSLGLEXPZ0','50','H','01','15',NULL,'planEffectiveDate',NULL,NULL,'"planEffectiveDate"','(''DA''=''T'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECDSLGLEXPZ0','50','H','01','16',NULL,'planTerminationDate',NULL,NULL,'"planTerminationDate"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECDSLGLEXPZ0','50','H','01','15',NULL,'planEffectiveDate',NULL,NULL,'"planEffectiveDate"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECDSLGLEXPZ0','50','H','01','16',NULL,'planTerminationDate',NULL,NULL,'"planTerminationDate"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECDSLGLEXPZ0','50','D','10','1',NULL,'groupId',NULL,NULL,'"drvgroupId"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECDSLGLEXPZ0','50','D','10','2',NULL,'employeeId',NULL,NULL,'"drvemployeeId"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECDSLGLEXPZ0','50','D','10','3',NULL,'nameLast',NULL,NULL,'"drvnameLast"','(''UA''=''T|'')');
@@ -179,16 +179,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECDSLGLEXP_20221229.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECDSLGLEXP_20230109.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202212279','EMPEXPORT','ONDEM_XOE',NULL,'ECDSLGLEXP',NULL,NULL,NULL,'202212279','Dec 27 2022  9:31AM','Dec 27 2022  9:31AM','202212271',NULL,'','','202212271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202212279','EMPEXPORT','SCH_ECDSLG',NULL,'ECDSLGLEXP',NULL,NULL,NULL,'202212279','Dec 27 2022  9:31AM','Dec 27 2022  9:31AM','202212271',NULL,'','','202212271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,NULL,'202212279','EMPEXPORT','TEST_XOE',NULL,'ECDSLGLEXP',NULL,NULL,NULL,'202212279','Dec 27 2022  9:31AM','Dec 27 2022  9:31AM','202212271',NULL,'','','202212271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'LegalEASE Ondemand','202301279','EMPEXPORT','ONDEM_XOE','Jan  6 2023 12:00AM','ECDSLGLEXP',NULL,NULL,NULL,'202301279','Dec 27 2022 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'us3mWaCIR1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'LegalEASE Scheduled','202301279','EMPEXPORT','SCH_ECDSLG','Jan  6 2023 12:00AM','ECDSLGLEXP',NULL,NULL,NULL,'202301279','Dec 27 2022 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'us3mWaCIR1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'LegalEASE Test Only','202301279','EMPEXPORT','TEST_XOE','Jan  6 2023 12:00AM','ECDSLGLEXP',NULL,NULL,NULL,'202301279','Dec 27 2022 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'us3mWaCIR1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -324,9 +324,9 @@ CREATE TABLE [dbo].[U_ECDSLGLEXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] char(9) NULL,
     [drvSubsort] varchar(1) NOT NULL,
-    [drvgroupId] varchar(1) NOT NULL,
+    [drvgroupId] varchar(14) NOT NULL,
     [drvemployeeId] char(9) NULL,
     [drvnameLast] varchar(100) NULL,
     [drvnameFirst] varchar(100) NULL,
@@ -525,7 +525,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = ''
+        ,drvInitialSort = EecEmpNo
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvgroupId = 'LELG-CIRRUSAIR'
@@ -549,7 +549,7 @@ BEGIN
                                   WHEN EecEmplStatus = 'L' THEN 'L'
                                 END
         ,drvplanEffectiveDate = FORMAT(EedBenStartDate ,'yyyy-MM-dd')
-        ,drvplanTerminationDate = FORMAT(EedBenStopDate ,'yyyy-MM-dd') --CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvplanTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN FORMAT(EedBenStopDate ,'yyyy-MM-dd') END --- EecDateOfTermination
     INTO dbo.U_ECDSLGLEXP_drvTbl
     FROM dbo.U_ECDSLGLEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -570,8 +570,8 @@ BEGIN
     LEFT JOIN dbo.U_ECDSLGLEXP_Audit WITH (NOLOCK)
         ON audeeid = xeeid
         and audCOID = XCOID
-        WHERE EecEEType <> 'TES' 
-        and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime BETWEEN  @StartDate  AND @EndDate  ))
+        WHERE EecEEType <> 'TES' and  ((EedBenstatus IN ( 'A')
+        and (EecEmplStatus <> 'T' )) OR (EedBenstatus IN ('T') AND EecEmplStatus = 'T' AND AudDateTime BETWEEN  @StartDate  AND @EndDate  ))
     ;
 
     --==========================================

@@ -5,7 +5,7 @@ EMOAANT834: Elevance Health Anthem 834 Export
 FormatCode:     EMOAANT834
 Project:        Elevance Health Anthem 834 Export
 Client ID:      MUT1001
-Date/time:      2022-12-27 12:47:55.387
+Date/time:      2023-01-10 16:21:05.310
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMOAANT834_20221227.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMOAANT834_20230110.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -527,7 +527,7 @@ CREATE TABLE [dbo].[U_EMOAANT834_DedList] (
 IF OBJECT_ID('U_EMOAANT834_DrvTbl') IS NULL
 CREATE TABLE [dbo].[U_EMOAANT834_DrvTbl] (
     [drvINS01_YesNoCond] varchar(1) NOT NULL,
-    [drvINS02_RelationshipCode] varchar(2) NOT NULL,
+    [drvINS02_RelationshipCode] varchar(2) NULL,
     [drvINS03_MaintTypeCode] varchar(3) NOT NULL,
     [drvINS04_MaintReasonCode] varchar(2) NOT NULL,
     [drvINS05_BenefitStatusCode] varchar(1) NOT NULL,
@@ -618,7 +618,7 @@ CREATE TABLE [dbo].[U_EMOAANT834_DrvTbl_2300] (
     [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NULL,
-    [drvHD04_PlanCoverageDesc] varchar(69) NULL,
+    [drvHD04_PlanCoverageDesc] varchar(8) NULL,
     [drvHD05_CoverageLevelCode] varchar(3) NULL,
     [drvDTP00_DateTime_348] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier_348] varchar(3) NOT NULL,
@@ -713,16 +713,16 @@ CREATE TABLE [dbo].[U_EMOAANT834_HdrTbl] (
     [drvDTP01_DateTimeQualifier0] varchar(1) NOT NULL,
     [drvDTP02_DateTimeFormatQual0] varchar(1) NOT NULL,
     [drvDTP03_DateTimePeriod0] varchar(1) NOT NULL,
-    [drvDTP00_DateTime1] varchar(1) NOT NULL,
+    [drvDTP00_DateTime1] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] varchar(8) NULL,
     [drvQTY01_QuantityQual1] varchar(2) NOT NULL,
     [drvQTY02_Quantity1] int NULL,
-    [drvQTY01_QuantityQual2] varchar(1) NOT NULL,
-    [drvQTY02_Quantity2] varchar(1) NOT NULL,
-    [drvQTY01_QuantityQual3] varchar(1) NOT NULL,
-    [drvQTY02_Quantity3] varchar(1) NOT NULL,
+    [drvQTY01_QuantityQual2] varchar(2) NOT NULL,
+    [drvQTY02_Quantity2] int NULL,
+    [drvQTY01_QuantityQual3] varchar(2) NOT NULL,
+    [drvQTY02_Quantity3] int NULL,
     [drvN101_EntityIDCodeSponsor1] varchar(2) NOT NULL,
     [drvN102_Name1] varchar(17) NOT NULL,
     [drvN103_IDCodeQual1] varchar(2) NOT NULL,
@@ -816,7 +816,7 @@ SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EMOAANT834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EMOAANT834';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EMOAANT834';
 SELECT * FROM dbo.AscExp WHERE expFormatCode = 'EMOAANT834';
-SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EMOAANT834' ORDER BY RunID DESC;
+
 
 Execute Export
 --------------
@@ -1010,17 +1010,17 @@ BEGIN
         ,drvDTP01_DateTimeQualifier0 = ''
         ,drvDTP02_DateTimeFormatQual0 = ''
         ,drvDTP03_DateTimePeriod0 = ''
-        ,drvDTP00_DateTime1 = ''
+        ,drvDTP00_DateTime1 = 'DTP'
         ,drvDTP01_DateTimeQualifier1 = '007'
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = @RunDate
-        ,drvQTY01_QuantityQual1 = 'TO'
-        ,drvQTY02_Quantity1 = (SELECT COUNT(*) FROM dbo.U_dsi_bdm_EMOAANT834 WITH (NOLOCK))--sum of the ET and DT
-        ,drvQTY01_QuantityQual2 = ''
-        ,drvQTY02_Quantity2 = ''
-        ,drvQTY01_QuantityQual3 = ''
-        ,drvQTY02_Quantity3 = ''
-        ,drvN101_EntityIDCodeSponsor1 = 'PS'
+        ,drvQTY01_QuantityQual1 = 'DT'
+        ,drvQTY02_Quantity1 = (SELECT COUNT(DISTINCT bdmDepRecId)  FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='DEP')--
+        ,drvQTY01_QuantityQual2 = 'ET'
+        ,drvQTY02_Quantity2 = (SELECT COUNT( DISTINCT bdmEEID) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='EMP')--
+        ,drvQTY01_QuantityQual3 = 'TO'
+        ,drvQTY02_Quantity3 = (SELECT COUNT(DISTINCT bdmDepRecId) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='DEP')+(SELECT COUNT( DISTINCT bdmEEID) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='EMP')
+        ,drvN101_EntityIDCodeSponsor1 = 'P5'
         ,drvN102_Name1 = 'Mutual of America'
         ,drvN103_IDCodeQual1 = '24'
         ,drvN104_IDCode1 = '131614399'
@@ -1061,9 +1061,9 @@ BEGIN
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
                                         ELSE
                                             CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SPS')) THEN '01'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@DomPartnerCSV')) THEN '53'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('')) THEN '19'
-                                            ELSE '19'
+                                          --  WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('DP')) THEN '53'
+                                           -- WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('')) THEN '19'
+                                           -- ELSE '19'
                                             END
                                         END
         ,drvINS03_MaintTypeCode = '030' --Audit or Compare
@@ -1097,7 +1097,7 @@ BEGIN
         ,drvREF02_RefNumberQual1 = EepSSN
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = '1L'
-        ,drvREF02_RefNumberQual2 = 'NY046GRX'
+        ,drvREF02_RefNumberQual2 = 'NY046GRS'
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'F6'
         ,drvREF02_RefNumberQual3 = EECUDFIELD15
@@ -1256,8 +1256,8 @@ BEGIN
                                      --      WHEN BdmDedType IN ('VIS') THEN 'VIS'
                                      --      ELSE ''
                                      --END
-        ,drvHD04_PlanCoverageDesc = CASE WHEN BdmDedCode = 'RPPOM' then 'NYELMO00 NY GRS Mutual of America Empire MediBlue Freedom MA 0P (PPO)'
-                                         WHEN BdmDedCode = 'REPOM' then 'NYELMO01 NY GRS Mutual of America Empire MediBlue Freedom MA 25 (PPO)'
+        ,drvHD04_PlanCoverageDesc = CASE WHEN BdmDedCode = 'RPPOM' then 'NYELMO00'   --Vendor wanted the description removed for both codes CB 12/29/2022
+                                         WHEN BdmDedCode = 'REPOM' then 'NYELMO01'
                                         END
         ,drvHD05_CoverageLevelCode = --'EMP'
                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('RTINDM')) THEN 'EMP'    --Correct Benefit Options

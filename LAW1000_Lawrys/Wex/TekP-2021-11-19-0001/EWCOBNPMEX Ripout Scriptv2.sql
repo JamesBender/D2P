@@ -5,7 +5,7 @@ EWCOBNPMEX: Wex Cobra/Npm Export
 FormatCode:     EWCOBNPMEX
 Project:        Wex Cobra/Npm Export
 Client ID:      LAW1000
-Date/time:      2022-12-28 08:19:08.170
+Date/time:      2023-01-10 12:18:18.293
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -264,7 +264,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20221228.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWCOBNPMEX_20230110.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -274,8 +274,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Open Enrollment Export','202209029','EMPEXPORT','OEACTIVE','May 12 2021  2:35PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202209029','EMPEXPORT','OEPASSIVE','May 12 2021  2:36PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Discovery QB and NPM Export','202209029','EMPEXPORT','ONDEM_XOE','May 12 2021  2:37PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','XBO8J,XBOH9,XBOY6,XMKY0',NULL,NULL,NULL,'Wex Cobra/Npm Export','202209029','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202209029','May 11 2021  3:59PM','May 11 2021  3:59PM','202201011','300','','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202212161','EMPEXPORT','TEST_XOE','Dec 16 2022 10:20PM','EWCOBNPMEX',NULL,NULL,NULL,'202212161','Dec 16 2022 12:00AM','Dec 30 1899 12:00AM','201501011','874','','','201501011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',QFQBY,QFOKB,QFQEM',NULL,NULL,NULL,'Wex Cobra/Npm Export','202301109','EMPEXPORT','SCH_EWCOBN','May 12 2021  2:38PM','EWCOBNPMEX',NULL,NULL,NULL,'202301109','May 11 2021  3:59PM','May 11 2021  3:59PM','202301101','300','','','202301101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','QFQEM,QFQBY,QFOKB',NULL,NULL,NULL,'Discovery QB and NPM Exp-Test','202301101','EMPEXPORT','TEST_XOE','Jan 10 2023 12:00AM','EWCOBNPMEX',NULL,NULL,NULL,'202301101','Jan 10 2023 12:00AM','Jan  3 2023 12:00AM','202212011','5','','','202212011',dbo.fn_GetTimedKey(),NULL,'us3cPeLAW1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -1144,8 +1144,10 @@ BEGIN
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecId
-    Where CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' ) THEN ConNameFirst 
-                             WHEN BdmRecType = 'EMP' and Bdmrelationship = 'EMP' THEN EepNameFirst END is not null
+    Where (CASE WHEN EdhChangeReason IN ('201','302','LEVNT4','204','210','LEVNT3') OR (BdmCobraReason IN ('203','0803') and BdmSessionID = '1' ) THEN ConNameFirst 
+                             WHEN BdmRecType = 'EMP' and Bdmrelationship = 'EMP' THEN EepNameFirst END is not null)
+                                AND (Left(eepssn, 3) Not in ('999','888')  or  Left(conssn, 3) Not in ('999','888'))
+                             
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBEVENT
@@ -1212,7 +1214,8 @@ BEGIN
                 ) AS X
             WHERE RN = 1) AS Edh
         ON EdhEEID = xEEID
-        AND EdhCoID = xCOID  
+        AND EdhCoID = xCOID
+        Where     Left(eepssn, 3) Not in ('999','888')  
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBPLANINITIAL
@@ -1276,6 +1279,7 @@ BEGIN
             WHERE RN = 1) AS Edh
         ON EdhEEID = xEEID
         AND EdhCoID = xCOID 
+        Where      Left(eepssn, 3) Not in ('999','888') 
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBDEPENDENT
@@ -1310,6 +1314,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = bdmEEID
         AND ConSystemID = BdmDepRecID
     Where ltrim(rtrim(isnull(bdmDepRecId,''))) not in (Select ltrim(rtrim(ISNULL(drvDepRecID,''))) from  dbo.U_EWCOBNPMEX_drvTbl_QB )
+        AND (Left(eepssn, 3) Not in ('999','888')  or  Left(conssn, 3) Not in ('999','888'))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBDEPENDENTPLANINITIAL
@@ -1349,6 +1354,7 @@ JOIN dbo.Contacts WITH (NOLOCK)
 
              AND BdmCobraReason NOT IN ('201', 'LEVNT3')
            and ltrim(rtrim(isnull(bdmDepRecId,''))) not in (Select ltrim(rtrim(ISNULL(drvDepRecID,''))) from  dbo.U_EWCOBNPMEX_drvTbl_QB )
+              AND (Left(eepssn, 3) Not in ('999','888')  or  Left(conssn, 3) Not in ('999','888'))
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_QBPLANMEMBERSPECIFICRATEINITIAL
@@ -1371,7 +1377,10 @@ JOIN dbo.Contacts WITH (NOLOCK)
         AND BdmCoID = xCoID
         AND BdmRunId = 'QB'
         --AND BdmDedCode IN ('FSA')
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
     WHERE BdmDedCode = 'MFSA'
+        AND Left(eepssn, 3) Not in ('999','888')  
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EWCOBNPMEX_drvTbl_NPM
@@ -1411,7 +1420,8 @@ JOIN dbo.Contacts WITH (NOLOCK)
         AND BdmCoID = xCoID
         AND BdmRunId = 'NPM'
         AND BdmRelationship IN ('Emp','SPS','DP')
-    --WHERE BdmBenStartDate BETWEEN @StartDate AND @EndDate    
+    --WHERE BdmBenStartDate BETWEEN @StartDate AND @EndDate
+    Where  Left(eepssn, 3) Not in ('999','888')  
     ;
 
     --==========================================

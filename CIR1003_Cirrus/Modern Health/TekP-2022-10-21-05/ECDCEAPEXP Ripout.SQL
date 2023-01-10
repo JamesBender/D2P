@@ -5,7 +5,7 @@ ECDCEAPEXP: Modern Health EAP Export
 FormatCode:     ECDCEAPEXP
 Project:        Modern Health EAP Export
 Client ID:      CIR1003
-Date/time:      2023-01-04 16:49:39.240
+Date/time:      2023-01-09 07:29:04.397
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -173,16 +173,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECDCEAPEXP_20230104.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECDCEAPEXP_20230109.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export','202301049','EMPEXPORT','ONDEM_XOE',NULL,'ECDCEAPEXP',NULL,NULL,NULL,'202301049','Jan  4 2023  3:54PM','Jan  4 2023  3:54PM','202301041',NULL,'','','202301041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export-Sched','202301049','EMPEXPORT','SCH_ECDCEA',NULL,'ECDCEAPEXP',NULL,NULL,NULL,'202301049','Jan  4 2023  3:54PM','Jan  4 2023  3:54PM','202301041',NULL,'','','202301041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Modern Health EAP Export-Test','202301049','EMPEXPORT','TEST_XOE',NULL,'ECDCEAPEXP',NULL,NULL,NULL,'202301049','Jan  4 2023  3:54PM','Jan  4 2023  3:54PM','202301041',NULL,'','','202301041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708,KD723,KD74A',NULL,NULL,NULL,'Modern Health EAP OnDemand','202301049','EMPEXPORT','ONDEM_XOE',NULL,'ECDCEAPEXP',NULL,NULL,NULL,'202301049','Jan  4 2023  3:54PM','Jan  4 2023  3:54PM','202301041',NULL,'','','202301041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708,KD723,KD74A',NULL,NULL,NULL,'Modern Health EAP Sch Wk','202301049','EMPEXPORT','SCH_ECDCEA',NULL,'ECDCEAPEXP',NULL,NULL,NULL,'202301049','Jan  4 2023  3:54PM','Jan  4 2023  3:54PM','202301041',NULL,'','','202301041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','KD708,KD723',NULL,NULL,NULL,'Modern Health EAP Test','202301059','EMPEXPORT','TEST_XOE','Jan  5 2023 12:00AM','ECDCEAPEXP',NULL,NULL,NULL,'202301059','Jan  5 2023 12:00AM','Dec 30 1899 12:00AM','202212291',NULL,'','','202212291',dbo.fn_GetTimedKey(),NULL,'us3kEpCIR1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -265,8 +265,8 @@ CREATE TABLE [dbo].[U_ECDCEAPEXP_drvTbl] (
     [drvDOB] varchar(8000) NULL,
     [drvEmployeeID] char(9) NULL,
     [drvEmploymentStartDate] varchar(8000) NULL,
-    [drvDepartment] varchar(1) NOT NULL,
-    [drvOfficeLocation] varchar(1) NOT NULL,
+    [drvDepartment] varchar(25) NULL,
+    [drvOfficeLocation] varchar(40) NULL,
     [drvRole] varchar(1) NOT NULL,
     [drvCountry] varchar(1) NOT NULL,
     [drvGender] varchar(7) NOT NULL,
@@ -427,8 +427,8 @@ BEGIN
         ,drvDOB = REPLACE(CONVERT (CHAR(10),EepDateOfBirth, 101),'/','')
         ,drvEmployeeID = EecEmpNo
         ,drvEmploymentStartDate = CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN REPLACE(CONVERT (CHAR(10),EecDateOfLastHire, 101),'/','')  else REPLACE(CONVERT (CHAR(10),EecDateOfLastHire, 101),'/','') END 
-        ,drvDepartment = ''
-        ,drvOfficeLocation = ''
+        ,drvDepartment = OrgDesc
+        ,drvOfficeLocation = CmpCompanyName
         ,drvRole = ''
         ,drvCountry = ''
         ,drvGender = CASE WHEN eepgender = 'M' THEN 'Male'
@@ -448,13 +448,18 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.Orglevel WITH (NOLOCK)
+        ON OrgCode = EecOrgLvl1
+        AND orgLvl = 1
+    LEFT JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoid = XCOID
     LEFT JOIN dbo.Codes WITH(NOLOCK)
          ON CodCode = EepEthnicId
          AND CodTable = 'ETHNICCODE'
         LEFT JOIN dbo.U_ECDCEAPEXP_Audit WITH (NOLOCK)
         ON audEEID = XEEID 
         AND audCOID = XCOID
-      WHERE  EecPayGroup <> 'No Pay Group' and EecEEType <> 'TES'
+      WHERE  EecPayGroup <> 'NPG' and EecEEType <> 'TES' and EepNameLast <> 'Test' ----EecEmpNo <> ('123456','111111','888888','777777','333333','222222','444444','666666','555555') added logic to exclude Test EEs w/Last Name = Test KE 20230105
       AND (EecEmplStatus <>'T' OR (EecEmplStatus = 'T' and audDateTime Between @Startdate and @EndDate))
     ;
 

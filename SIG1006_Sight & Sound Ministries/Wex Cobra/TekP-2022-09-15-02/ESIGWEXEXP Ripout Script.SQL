@@ -5,7 +5,7 @@ ESIGWEXEXP: WEX COBRA NPM Export
 FormatCode:     ESIGWEXEXP
 Project:        WEX COBRA NPM Export
 Client ID:      SIG1006
-Date/time:      2022-12-22 08:10:09.307
+Date/time:      2023-01-10 15:29:11.797
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -254,18 +254,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESIGWEXEXP_20221222.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESIGWEXEXP_20230110.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202212079','EMPEXPORT','OEACTIVE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202212079','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202210011',NULL,'','','202210011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202212079','EMPEXPORT','OEPASSIVE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202212079','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202210011',NULL,'','','202210011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX COBRA NPM Export','202212079','EMPEXPORT','ONDEM_XOE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202212079','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202210011',NULL,'','','202210011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX COBRA NPM Export-Sched','202212079','EMPEXPORT','SCH_ESIGWE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202212079','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202210011',NULL,'','','202210011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX COBRA NPM Export-Test','202212079','EMPEXPORT','TEST_XOE','Dec 21 2022 12:00AM','ESIGWEXEXP',NULL,NULL,NULL,'202212079','Dec 21 2022 12:00AM','Dec 30 1899 12:00AM','202210011',NULL,'','','202210011',dbo.fn_GetTimedKey(),NULL,'us3lKiSIG1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301099','EMPEXPORT','OEACTIVE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202301099','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301099','EMPEXPORT','OEPASSIVE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202301099','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX COBRA NPM Export','202301099','EMPEXPORT','ONDEM_XOE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202301099','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'WEX COBRA NPM Export-Sched','202301099','EMPEXPORT','SCH_ESIGWE',NULL,'ESIGWEXEXP',NULL,NULL,NULL,'202301099','Dec  7 2022  3:38PM','Dec  7 2022  3:38PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'WEX COBRA NPM Export-Test','202301099','EMPEXPORT','TEST_XOE','Jan  9 2023 12:00AM','ESIGWEXEXP',NULL,NULL,NULL,'202301099','Jan  9 2023 12:00AM','Dec 30 1899 12:00AM','202301011','61','','','202301011',dbo.fn_GetTimedKey(),NULL,'us3lKiSIG1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -406,7 +406,7 @@ CREATE TABLE [dbo].[U_ESIGWEXEXP_drvTbl_DEP] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(31) NULL,
+    [drvInitialSort] varchar(32) NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvSSN] char(11) NULL,
     [drvRelationship] varchar(15) NULL,
@@ -426,7 +426,7 @@ CREATE TABLE [dbo].[U_ESIGWEXEXP_drvTbl_DEPPLANINTIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(30) NULL,
+    [drvInitialSort] varchar(32) NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvPlanName] varchar(28) NULL
 );
@@ -697,25 +697,7 @@ BEGIN
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
 
-    -- COBRA parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','QB');
-   -- INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'AddToPreviousRun','Y');  --- only used for NPM/QB combined files
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4'); -- Eep/ConCobraReason first, then EdhChangeReason. Include CHGRP for elig. ben groups – 
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3'); -- EedBenStopDate and DbnBenStopDate, unless Eep/ConDateOfCOBRAEvent exists – 
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraPQBType','1'); -- If no EE or spouse, ALL children are PQB (not just oldest) – include this line if deps are sent as QB and not the employee.  
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraReasonsDepPQB','201,204,210,LEVNT3,LEVNT4'); -- Add valid dependent edhchangereasons
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidCobraReasonsEmp','201,204,210,LEVNT3,LEVNT4'); -- Invalidate employee when Cobra Reason is a dependent PQB reason – Add valid dependent edhchangereasons (should be same as previous line above)
-
-
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidTermReasonsEmp','203'); -- Invalidate employee when Cobra Reason is "Death".  Add the Death employment term reason (eectermreason)
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons – used when clients have Platform Configurable fields.  Add any other field names the client is using.
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS'); -- update to the spouse relationship code
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild', 'CHL,DCH,DPC,STC'); -- update to the child relationship codes
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP'); -- update to the domestic partner relationship code
-
-
+    
     -- Required OE parameters
     IF @ExportCode LIKE '%PASSIVE'
     BEGIN
@@ -726,166 +708,86 @@ BEGIN
     BEGIN
         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
     END;
-
-
-    -- Run BDM Module
+        -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
-    
-    --==========================================
-    --NPM Section
-    --==========================================
 
+     --==========================================
+    -- BDM Section for NPM
+    --==========================================
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'EndDateTime',@EndDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'TermSelectionOption','AuditDate');
 
     -- NPM parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','NPM');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'AddToPreviousRun','Y');  -- only used for NPM/QB combined files
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','X'); -- DedIsCobraCovered = 'Y'
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'NewEnrolleeType','4'); -- All new enrollees where no previous plan exists
-    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'TableType','EMP'); -- Only include employees on NPM file
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'TableType','EMP'); -- Only include employees on NPM file
     INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'GetChangeReason', 'Y')
 
-    -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
-
-    -- Required OE parameters
-    IF @ExportCode LIKE '%PASSIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
-    END;
-
-    IF @ExportCode LIKE '%ACTIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
-    END;
-
-
-    -- Run BDM Module
+    -- Run BDM for NPM
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
+    --==========================================
+    -- BDM Section for QB
+    --==========================================
+    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
-    
-    
-    
-    ---==========================================
- --   -- Insert into BDM Reason code 201 and 204
- --   --==========================================
-    INSERT INTO [dbo].[U_dsi_BDM_ESIGWEXEXP]
-    (    [BdmRecType]
-           ,[BdmCOID]
-           ,[BdmEEID]
-           ,[BdmDepRecID]
-           ,[BdmSystemID]
-           ,[BdmRunID]
-           ,[BdmDedRowStatus]
-           ,[BdmRelationship]
-           ,[BdmDateOfBirth]
-           ,[BdmDedCode]
-           ,[BdmBenOption]
-           ,[BdmBenStartDate]
-           ,[BdmBenStopDate]
-           ,[BdmBenStatusDate]
-           ,[BdmDateOFCobraEvent]
-           ,[BdmChangeReason]
-           ,[BdmCobraReason]
-           ,[BdmStartDate]
-           ,[BdmStopDate]
-           ,[BdmIsPQB]
-    )
-    Select rectype = 'DEP'
-        ,DbnCoid
-        ,DbnEEID
-        ,DbnDepRecID
-        ,DbnDepRecID
-        ,'QB'
-        ,'Data Inserted for 204 Chg reason'
-        ,DbnRelationship
-        ,DbnDateOfBirth
-        ,DbnDedCode
-        ,DbnBenOption
-        ,DbnBenStartDate
-        ,DbnBenStopDate
-        ,DbnBenStatusDate
-        ,DbnBenStatusDate
-        ,'204'
-        ,'204'
-        ,DbnBenStartDate
-        ,DbnBenStopDate
-        ,'Y'
-    FROM dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
-    JOIN dbo.emphded WITH (NOLOCK)
-        ON dbneeid = edheeid 
-    WHERE edhChangeReason IN ('204') 
-        and DbnBenstopdate BETWEEN @startdate AND @enddate 
-        AND dbnValidForExport = 'N'
-        AND dbnformatcode = 'ESIGWEXEXP'
+    -- Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'EndDateTime',@EndDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'TermSelectionOption','AuditDate');
 
-    INSERT INTO [dbo].[U_dsi_BDM_ESIGWEXEXP]
-    (    [BdmRecType]
-           ,[BdmCOID]
-           ,[BdmEEID]
-           ,[BdmDepRecID]
-           ,[BdmSystemID]
-           ,[BdmRunID]
-           ,[BdmDedRowStatus]
-           ,[BdmRelationship]
-           ,[BdmDateOfBirth]
-           ,[BdmDedCode]
-           ,[BdmBenOption]
-           ,[BdmBenStartDate]
-           ,[BdmBenStopDate]
-           ,[BdmBenStatusDate]
-           ,[BdmDateOFCobraEvent]
-           ,[BdmChangeReason]
-           ,[BdmCobraReason]
-           ,[BdmStartDate]
-           ,[BdmStopDate]
-           ,[BdmIsPQB]
-    )
-    Select rectype = 'DEP'
-        ,DbnCoid
-        ,DbnEEID
-        ,DbnDepRecID
-        ,DbnDepRecID
-        ,'QB'
-        ,'Data Inserted for 201 Chg reason'
-        ,DbnRelationship
-        ,DbnDateOfBirth
-        ,DbnDedCode
-        ,DbnBenOption
-        ,DbnBenStartDate
-        ,DbnBenStopDate
-        ,DbnBenStatusDate
-        ,DbnBenStatusDate
-        ,'201'
-        ,'201'
-        ,DbnBenStartDate
-        ,DbnBenStopDate
-        ,'Y'
-    FROM dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
-    JOIN dbo.emphded WITH (NOLOCK)
-        ON dbneeid = edheeid 
-    WHERE edhChangeReason IN ('201') 
-        and DbnBenstopdate BETWEEN @startdate AND @enddate 
-        AND dbnValidForExport = 'N'
-        AND dbnformatcode = 'ESIGWEXEXP'
-
-
-
- --====================================================
- --   -- Insert into BDM Reason  (Death)
- --            SPS or 1st child is EMP
- --=====================================================
+    -- COBRA parameters
         
-        INSERT INTO [dbo].[U_dsi_BDM_ESIGWEXEXP]
-        (    [BdmRecType]
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','QB');
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'AddToPreviousRun','Y'); -- only used for NPM/QB combined files
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4'); -- Eep/ConCobraReason first, then BDMChangeReason. Include CHGRP for elig. ben groups – 
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3'); -- EedBenStopDate and DbnBenStopDate, unless Eep/ConDateOfCOBRAEvent exists – 
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraPQBType','1'); -- If no EE or spouse, ALL children are PQB (not just oldest) – 
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraReasonsDepPQB','201,204,210,LEVNT3,LEVNT4'); 
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidCobraReasonsEmp','201,204,210,LEVNT3,LEVNT4'); -- Invalidate employee WHEN Cobra Reason is a dependent PQB reason – 
+    
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidTermReasonsEmp','203'); -- Invalidate employee WHEN Cobra Reason is "Death".  
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons – used WHEN clients have Platform Configurable fields.  Client doesn’t use PCF fields.
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS'); --- update to the spouse relationship code
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL,DCH, DPC,STC');  -- update to the child relationship codes
+
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP'); --- update to the domestic partner relationship code
+    
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard'); --- same for all files
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'GetChangeReason', 'Y')
+
+    -- Run BDM for QB
+    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+        
+    
+    
+
+
+    ---========================================================================
+ --   -- Insert into BDM Reason code 201 (Dependent at Max Age) - Only show EE
+ --   --======================================================================
+
+    INSERT INTO [dbo].[U_dsi_BDM_ESIGWEXEXP]
+    (    [BdmRecType]
            ,[BdmCOID]
            ,[BdmEEID]
            ,[BdmDepRecID]
@@ -906,59 +808,172 @@ BEGIN
            ,[BdmStartDate]
            ,[BdmStopDate]
            ,[BdmIsPQB]
-           ,[BdmIsCobraCovered]
-           ,[BdmSessionID]
-        )
-        Select Distinct 
-         rectype = CASE WHEN ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEEID, EdhDedCode, ConRelationship desc) = 1 THEN 'EMP' ELSE 'DEP' END
-            ,EdhCoid
-            ,EdhEEID
-            ,BdmDepRecID = consystemID
-            ,consystemID
-            ,BdmRunID = 'QB'
-            ,BdmDedRowStatus='Data Inserted for 200/203 (Death)'
-            ,ConRelationship
-            ,ConDateOfBirth
-            ,EdhDedCode
-            ,EdhBenOption
-            ,EdhBenStatus
-            ,EdhBenStartDate
-            ,EdhBenStopDate
-            ,EdhBenStatusDate
-            ,EecDateofTermination
-            ,BdmChangeReason ='210' 
-            ,BdmCobraReason ='203'
-            ,BdmStartDate =EdhStartDate 
-            ,BdmStopDate =EdhBenStopDate
-            ,BdmIsPQB ='Y'
-            ,BdmIsCobraCovered='Y'
-            , BdmSessionID = ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEEID, EdhDedCode, ConRelationship desc)
-            FROM dbo.emphded WITH (NOLOCK)
+            ,[BdmIsCobraCovered]
+    )
+    Select distinct
+        'EMP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 201 (Dep at Max Age Dep/Loss of elig)'
+        ,'Emp'
+        ,EepDateofBirth
+        ,'EE'
+        ,DbnBenStatus
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        ,EdhBenStopDate
+        ,EdhBenStatusDate
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,EdhStartDate
+        ,EdhStopDate
+        ,'Y'
+        ,'Y'
+    FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = edheeid 
     JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
-        ON dbneeid = edheeid
+        ON dbneeid = edheeid 
         AND DbnCoID = EdhCoID
         AND EdhDedCode = DbnDedCode
         AND EdhBenOption = DbnBenOption
         AND dbnformatcode = 'ESIGWEXEXP'
-        AND edhChangeReason IN ('200')
+    WHERE edhChangeReason IN ('201','LEVNT3') 
+        and DbnBenstopdate BETWEEN @startdate AND @enddate 
         AND dbnValidForExport = 'N'
-    JOIN dbo.U_ESIGWEXEXP_Audit WITH (NOLOCK)
-        ON audEEID = dbneeid
-        AND audKey2 = DbnCoID
-        AND audFieldName = 'EecDateofTermination'
-        AND audNewValue is not null
-        and audDateTime BETWEEN @startdate AND @enddate
-    JOIN EmpComp WITH (NOLOCK)
-        ON dbnEEID = EecEEID
-        AND EecTermReason IN ('203', '0803', '210')
-        AND DbnBenStatus = 'T'
-        AND EecEmplStatus = 'T'
-    JOIN dbo.contacts WITH (NOLOCK)
-            ON ConEEID = edheeid 
-            AND ConRelationship in ('CHL','DIS', 'DPC','STC','DP','SPS')
-        Order by dbo.EmpHDed.EdhEEID, dbo.EmpHDed.EdhDedCode, dbo.contacts.ConRelationship desc
+            AND DbnBenStatus = 'T'
 
-    Delete from dbo.U_dsi_BDM_ESIGWEXEXP where bdmdedcode not in (Select dedcode from U_ESIGWEXEXP_DedList)
+--    ========================================================================
+ --  Insert into BDM Reason code 204 / LEVNT4 (Divorce/Separation) 
+ --  ======================================================================
+    INSERT INTO [dbo].[U_dsi_BDM_ESIGWEXEXP]
+           ([BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+    )
+    SELECT Distinct rectype = 'DEP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 204/LEVNT4 (Divorce/Separation)'
+        ,DbnRelationship
+        ,DbnDateOfBirth
+        ,EdhDedCode
+        ,DbnBenOption
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        --,EdhBenStopDate
+        ,DbnBenStopDate
+        ,EdhBenStatusDate
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,EdhStartDate
+        ,EdhStopDate
+        ,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
+        ,'Y'
+    FROM dbo.emphded WITH (NOLOCK)
+        JOIN dbo.U_dsi_BDM_DepDeductions 
+            ON dbneeid = edheeid 
+            AND DbnCoID = EdhCoID
+            AND EdhDedCode = DbnDedCode
+            AND EdhBenOption = DbnBenOption
+            AND dbnformatcode = 'ESIGWEXEXP'
+    WHERE edhChangeReason in ('204','LEVNT4') 
+       -- AND DbnRelationShip = 'SPS'
+        AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
+        AND dbnValidForExport = 'N'
+
+--  --====================================================
+ --   Insert into BDM Reason code 302 (Remove Dependent)
+ --   --==================================================
+    INSERT INTO [dbo].[U_dsi_BDM_ESIGWEXEXP]
+    (    [BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+    )
+    Select Distinct rectype = 'EMP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 302 (Remove Dependent)'
+        ,DbnRelationship
+        ,DbnDateOfBirth
+        ,EdhDedCode
+        ,DbnBenOption
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        ,DbnBenStopDate
+        ,edhEffDate
+        ,edhEffDate
+        ,edhChangeReason
+        ,'302'
+        ,EdhStartDate
+        ,EdhStopDate
+        ,'Y'
+        ,'Y'
+    FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+        ON dbneeid = edheeid 
+        AND DbnCoID = EdhCoID
+        AND EdhDedCode = DbnDedCode
+        AND EdhBenOption = DbnBenOption
+        AND dbnformatcode = 'ESIGWEXEXP'
+    WHERE edhChangeReason IN ('302') 
+        and DbnBenstopdate BETWEEN @startdate AND @enddate 
+        AND dbnValidForExport = 'N'
+        AND DbnBenStatus = 'T'
+
+      Delete from dbo.U_dsi_BDM_ESIGWEXEXP where bdmdedcode not in (Select dedcode from U_ESIGWEXEXP_DedList)
+    
+    
+
 
     --==========================================
     -- Build Driver Tables
@@ -1025,21 +1040,23 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ESIGWEXEXP_drvTbl_QBEVENT','U') IS NOT NULL
         DROP TABLE dbo.U_ESIGWEXEXP_drvTbl_QBEVENT;
-    SELECT DISTINCT
+     
+  SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = '1 ' + xEEID + ' 2'
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
+    
         ,drvEvent = CASE WHEN BdmChangeReason IN ( '204', 'RSD', 'LEVNT4' ) THEN 'DIVORCELEGALSEPARATION'
                          WHEN EecEmplStatus = 'T' and EecTermReason  = '203' THEN 'DEATH'
-                         WHEN BdmChangeReason IN ( '201' , 'LEVNT3') THEN 'INELIGIBLEDEPENDENT'
+                         WHEN (BdmChangeReason IN ( '201' , 'LEVNT3') or EDHChangeReason IN ( '201' , 'LEVNT3')) THEN 'INELIGIBLEDEPENDENT'
                          WHEN EecEmplStatus = 'T'and EecTermReason = '202' THEN 'RETIREMENT' 
-                         WHEN BDMChangeReason IN ('203' , 'CSFTPT') THEN  'REDUCTIONINHOURS-STATUSCHANGE'
+                         WHEN (EdhChangeReason IN ('203' , 'CSFTPT') or BdmCobraReason IN ('203' , 'CSFTPT') )  THEN  'REDUCTIONINHOURS-STATUSCHANGE'
                          WHEN BdmChangeReason = '206' THEN 'REDUCTIONINHOURS-ENDOFLEAVE'
                          WHEN EecEmplStatus = 'T' and EecTermReason  = 'LAYOFF' THEN 'REDUCTIONINFORCE'
-                         WHEN EecEmplStatus = 'T' and eectermtype = 'I' and EecTermReason NOT IN ('202', '203' , 'LAYOFF') THEN 'INVOLUNTARYTERMINATION'
+                         WHEN EecEmplStatus = 'T' and eectermtype = 'I' and EecTermReason NOT IN ('202', '203' , 'LAYOFF')  and eectermtype  <> 'V'THEN 'INVOLUNTARYTERMINATION'
                          WHEN EecEmplStatus = 'T' and EecTermReason NOT IN ( '202', '203' , 'LAYOFF') and eectermtype  = 'V' THEN 'TERMINATION'
                         END
         ,drvEventDate = CONVERT(VARCHAR(10),CASE WHEN bdmChangeReason IN ('204', 'RSD', 'LEVNT4', '201', 'LEVNT3' ,'210' ) THEN EdhEffDate ELSE EecDateofTermination END, 101)
@@ -1079,7 +1096,7 @@ BEGIN
                 ) AS X
             WHERE RN = 1) AS Edh
         ON EdhEEID = xEEID
-        AND EdhCoID = xCOID  
+        AND EdhCoID = xCOID 
     --LEFT JOIN dbo.U_ESIGWEXEXP_Audit WITH (NOLOCK) 
     --    ON audEEID = bdmeeid
     --    AND audKey2 = bdmCoID
@@ -1150,7 +1167,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = '1 ' + xEEID + ' 4 ' +  + BdmDepRecID + ' 1'
+        ,drvInitialSort  = '1 ' + xEEID + ' 4' + CASE WHEN  conrelationship in ('CHL', 'DIS', 'DPC', 'STC') THEN' 2' ELSE ' 1' END + BdmDepRecID + ' 1'  
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvSSN = ConSSN
@@ -1197,7 +1214,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort ='1 ' + xEEID + ' 4 ' + BdmDepRecID + '2'
+        ,drvInitialSort = '1 ' + xEEID + ' 4' + CASE WHEN  conrelationship in ('CHL', 'DIS', 'DPC', 'STC') THEN' 2' ELSE ' 1' END + BdmDepRecID + ' 2'
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvPlanName = CASE WHEN BDMDedcode IN ('DEN', 'DENS') THEN 'Guardian Dental'
@@ -1212,7 +1229,7 @@ BEGIN
          AND BdmCoID = xCoID
          AND bdmRunID = 'QB'
          AND BdmRecType = 'DEP' 
-        -- AND BdmIsPQB = 'N'
+         AND BdmIsPQB = 'N'
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
@@ -1265,7 +1282,7 @@ BEGIN
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
         AND BdmRunId = 'NPM'
-        AND BdmRelationship IN ('Emp','SPS','DP')
+       -- AND BdmRelationship IN ('Emp','SPS','DP')
     ;
 
     --==========================================
