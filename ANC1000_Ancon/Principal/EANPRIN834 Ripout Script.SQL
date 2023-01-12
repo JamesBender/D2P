@@ -5,7 +5,7 @@ EANPRIN834: Principal Benefit Export
 FormatCode:     EANPRIN834
 Project:        Principal Benefit Export
 Client ID:      ANC1000
-Date/time:      2022-12-01 15:48:53.357
+Date/time:      2023-01-12 08:27:33.107
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -378,7 +378,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20221201.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230112.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -389,7 +389,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202211049','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202211049','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal Benefit Export','202211049','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202211111','EMPEXPORT','TEST_XOE','Nov 29 2022  5:44PM','EANPRIN834',NULL,NULL,NULL,'202211111','Nov 11 2022 12:00AM','Dec 30 1899 12:00AM','202211011','17113','','','202211011',dbo.fn_GetTimedKey(),NULL,'us3kEpANC1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202212061','EMPEXPORT','TEST_XOE','Dec 20 2022 12:00AM','EANPRIN834',NULL,NULL,NULL,'202212061','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202211291','14937','','','202211291',dbo.fn_GetTimedKey(),NULL,'us3cPeANC1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -587,14 +587,14 @@ CREATE TABLE [dbo].[U_EANPRIN834_DrvTbl] (
     [drvINS12_DateTimePeriod] varchar(8) NULL,
     [drvREF01_RefNumberQual1] varchar(1) NOT NULL,
     [drvREF02_RefNumberQual1] char(11) NULL,
-    [drvREF01_RefNumberQual2] varchar(1) NOT NULL,
+    [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(7) NOT NULL,
     [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual3] varchar(5) NULL,
     [drvREF01_RefNumberQual4] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual4] varchar(5) NULL,
-    [drvREF01_RefNumberQual5] varchar(2) NULL,
-    [drvREF02_RefNumberQual5] varchar(5) NULL,
+    [drvREF01_RefNumberQual5] varchar(1) NOT NULL,
+    [drvREF02_RefNumberQual5] varchar(1) NOT NULL,
     [drvDTP00_DateTime1] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
@@ -615,8 +615,8 @@ CREATE TABLE [dbo].[U_EANPRIN834_DrvTbl] (
     [drvDTP01_DateTimeQualifier5] varchar(3) NULL,
     [drvDTP02_DateTimeFormatQual5] varchar(2) NULL,
     [drvDTP03_DateTimePeriod5] datetime NULL,
-    [drvNM103_NameLast1] varchar(6000) NULL,
-    [drvNM104_NameFirst1] varchar(6000) NULL,
+    [drvNM103_NameLast1] varchar(8000) NULL,
+    [drvNM104_NameFirst1] varchar(8000) NULL,
     [drvNM105_NameMiddleInitial1] varchar(6000) NULL,
     [drvNM106_NamePrefix1] varchar(1) NOT NULL,
     [drvNM107_NameSuffix1] varchar(30) NULL,
@@ -633,14 +633,14 @@ CREATE TABLE [dbo].[U_EANPRIN834_DrvTbl] (
     [drvN302_AddressLine2] varchar(6000) NULL,
     [drvN401_City] varchar(6000) NULL,
     [drvN402_State] varchar(255) NULL,
-    [drvN403_Zip] varchar(50) NULL,
+    [drvN403_Zip] varchar(5) NULL,
     [drvN404_CountryCode] char(3) NULL,
     [drvDMG02_DateTimePeriod1] varchar(8) NULL,
     [drvDMG03_GenderCode1] varchar(1) NULL,
     [drvDMG04_MaritalStatusCode1] varchar(1) NULL,
     [drvICM01_FrequencyCode] varchar(1) NULL,
     [drvICM02_MonetaryAmount] money NULL,
-    [drvICM03_Quantity] money NULL,
+    [drvICM03_Quantity] varchar(2) NULL,
     [drvICM04_LocationID] varchar(1) NOT NULL,
     [drvAMT00_SegmentID1] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode1] varchar(1) NOT NULL,
@@ -696,10 +696,10 @@ CREATE TABLE [dbo].[U_EANPRIN834_DrvTbl_2300] (
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
     [drvAMT00_AmountQualifierCode1] varchar(3) NULL,
     [drvAMT01_AmountQualifierCode1] varchar(2) NULL,
-    [drvAMT02_MonetaryAmount1] varchar(25) NULL,
+    [drvAMT02_MonetaryAmount1] varchar(8000) NULL,
     [drvAMT00_AmountQualifierCode2] varchar(3) NULL,
     [drvAMT01_AmountQualifierCode2] varchar(2) NULL,
-    [drvAMT02_MonetaryAmount2] money NULL,
+    [drvAMT02_MonetaryAmount2] varchar(8000) NULL,
     [drvLS01_LoopIDCode] varchar(1) NOT NULL,
     [drvLX01_AssignedNumber] varchar(1) NOT NULL,
     [drvN101_EntityIDCodeSponsor] varchar(1) NOT NULL,
@@ -1183,29 +1183,33 @@ BEGIN
         ,drvREF01_RefNumberQual1 = ''
         ,drvREF02_RefNumberQual1 = eepssn
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
-        ,drvREF01_RefNumberQual2 = ''
+        ,drvREF01_RefNumberQual2 = '1L'
         ,drvREF02_RefNumberQual2 = '1161386'
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'DX'
         ,drvREF02_RefNumberQual3 = CASE WHEN EecCoID IN ('49VMT','49VPF','BQLK7') THEN '00001'
                                         WHEN EecCoID IN ('49VSW')  THEN '00002' 
                                     END
-
+        
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = 'ZZ'
-        ,drvREF02_RefNumberQual4 =  CASE When LocAddressState = 'CA' THEN '00001'
-                                           When LocAddressState <> 'CA'  THEN '00002'
+        ,drvREF02_RefNumberQual4 =   CASE  WHEN  EepAddressState = 'CA' THEN '00001'
+                                           WHEN  EepAddressState <> 'CA'  THEN '00002'
                                         END
+        
+                                    --CASE When LocAddressState = 'CA' THEN '00001'
+         --                                  When LocAddressState <> 'CA'  THEN '00002'
+         --                               END
 
     -- If drvREF01_RefNumberQual4 is Populated, then send REF Segment
 
                                     
-        ,drvREF01_RefNumberQual5 =  CASE WHEN Reli3DedCod = 'RELI3'  THEN   '17' END
+        ,drvREF01_RefNumberQual5 =  ''--CASE WHEN Reli3DedCod = 'RELI3'  THEN   '17' END
                                         
   
-        ,drvREF02_RefNumberQual5 = CASE WHEN Reli3DedCod = 'RELI3'   and  Ltrim(rtrim(LocAddressState)) IN ( 'CA')  THEN '00001'
-                                            WHEN Reli3DedCod = 'RELI3' and  Ltrim(rtrim(LocAddressState)) NOT IN ( 'CA') THEN '00002'
-                                      END
+        ,drvREF02_RefNumberQual5 = ''--CASE WHEN Reli3DedCod = 'RELI3'   and  Ltrim(rtrim(LocAddressState)) IN ( 'CA')  THEN '00001'
+                                     --       WHEN Reli3DedCod = 'RELI3' and  Ltrim(rtrim(LocAddressState)) NOT IN ( 'CA') THEN '00002'
+                                      --END
 
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
         ,drvDTP00_DateTime1 =  'DTP' 
@@ -1236,15 +1240,15 @@ BEGIN
         --=====================
         -- LOOP 2100A RECORDS
         --=====================
-        ,drvNM103_NameLast1 = dbo.dsi_fnRemoveChars('.,/-',
+          ,drvNM103_NameLast1 = Replace(dbo.dsi_fnRemoveChars('.,/-`',
                               CASE WHEN BdmRecType = 'EMP' THEN EepNameLast
                                    WHEN BdmRecType = 'DEP' THEN ConNameLast
-                              END)
-        ,drvNM104_NameFirst1 = dbo.dsi_fnRemoveChars('.,/-',
+                              END), 'í','i')
+        ,drvNM104_NameFirst1 =  Replace(dbo.dsi_fnRemoveChars('.,/-`',
                                CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
                                     WHEN BdmRecType = 'DEP' THEN ConNameFirst
-                               END)
-        ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
+                              END), 'í','i')
+        ,drvNM105_NameMiddleInitial1 =  dbo.dsi_fnRemoveChars('.,/-',
                                        CASE WHEN BdmRecType = 'EMP' AND LEFT(EepNameMiddle,1) <> 'Z' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' AND LEFT(ConNameMiddle,1) <> 'Z' THEN LEFT(ConNameMiddle,1)
                                        END)
@@ -1273,7 +1277,7 @@ BEGIN
         ,drvN302_AddressLine2 = dbo.dsi_fnRemoveChars('.,/-',EepAddressLine2)
         ,drvN401_City = dbo.dsi_fnRemoveChars('.,/-',EepAddressCity)
         ,drvN402_State = EepAddressState
-        ,drvN403_Zip = EepAddressZipCode
+        ,drvN403_Zip = left(EepAddressZipCode,5)
         ,drvN404_CountryCode = CASE WHEN EepAddressCountry NOT IN ('US','USA') THEN EepAddressCountry END
         ,drvDMG02_DateTimePeriod1 = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(VARCHAR(8),EepDateOfBirth,112)
                                          WHEN BdmRecType = 'DEP' THEN CONVERT(VARCHAR(8),ConDateOfBirth,112)
@@ -1287,8 +1291,15 @@ BEGIN
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN ICM01 IS NOT NULL AND BdmRecType = 'EMP' THEN '7' END
-        ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
-        ,drvICM03_Quantity = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecScheduledWorkHrs) END
+        ,drvICM02_MonetaryAmount = Round(CASE WHEN BdmRecType = 'EMP' THEN EecAnnSalary END,2)
+        ,drvICM03_Quantity = Left (CASE WHEN BdmRecType = 'EMP' THEN 
+                                        Case EecPayPeriod
+                                            When 'W' then EecScheduledWorkHrs
+                                            When 'B' then (EecScheduledWorkHrs / 2)
+                                            When 'S' then ((EecScheduledWorkHrs * 24) / 52)
+                                            When 'M' then ((EecScheduledWorkHrs * 12) / 52) 
+                                        END
+                                        END, 2)
         ,drvICM04_LocationID = ''        --CASE WHEN BdmRecType = 'EMP' THEN
          --                               CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
          --                                   ELSE CONVERT(CHAR(4),YEAR(GETDATE())) + '0101'
@@ -1409,7 +1420,7 @@ BEGIN
    SELECT DISTINCT a.* 
     INTO dbo.U_EANPRIN834_DrvTbl_2300 
       FROM( 
-    SELECT DISTINCT
+      SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = 'HD'
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
@@ -1431,8 +1442,12 @@ BEGIN
                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI3') THEN '1'
                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI4') THEN '1'
                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI5') THEN '1'
-                                         WHEN bdmdedcode  IN ('ADEN2') AND LocAddressState = 'CA' THEN '1'
-                                         WHEN bdmdedcode  IN ('ADEN2') AND LocAddressState <> 'CA' THEN '2'
+                                         WHEN BdmRecType = 'EMP' AND bdmdedcode  IN ('ADEN2') AND EepAddressState = 'CA' THEN '1'
+                                         WHEN BdmRecType = 'EMP' AND bdmdedcode  IN ('ADEN2') AND EepAddressState <> 'CA' THEN '2'
+                                         WHEN BdmRecType = 'DEP' AND bdmdedcode  IN ('ADEN2') AND ConAddressState = 'CA' THEN '1'
+                                         WHEN BdmRecType = 'DEP' AND bdmdedcode  IN ('ADEN2') AND ConAddressState <> 'CA' THEN '2'
+                                        -- WHEN bdmdedcode  IN ('ADEN2') AND LocAddressState = 'CA' THEN '1'
+                                        -- WHEN bdmdedcode  IN ('ADEN2') AND LocAddressState <> 'CA' THEN '2'
                                          WHEN bdmdedcode  IN ('AVIS') THEN '1' 
                                         END
 
@@ -1468,22 +1483,53 @@ BEGIN
         ,drvREF01_RefNumberQual2 = ''
         ,drvREF02_RefNumberQual2 = ''
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1', 'RELI3','RELI4') AND (EECUDFIELD14 is not null or EECUDFIELD15 is not null or EECUDFIELD13 is not null) THEN  'AMT' ELSE NULL END
-        ,drvAMT01_AmountQualifierCode1 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1', 'RELI3','RELI4') AND (EECUDFIELD14 is not null or EECUDFIELD15 is not null or EECUDFIELD13 is not null) THEN 'L1' ELSE NULL END
-        ,drvAMT02_MonetaryAmount1 = CASE   WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1  IN ('RELI1') THEN EECUDFIELD14 
-                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3  IN ('RELI3') THEN EECUDFIELD15
-                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4  IN ('RELI4') THEN EECUDFIELD13
-                                           END
+         ,drvAMT00_AmountQualifierCode1 =  CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND EECUDFIELD14 is not null THEN 'AMT'
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND EECUDFIELD14 is null and  ReliBdmAmt1 >= 0.00 THEn 'AMT'
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND EECUDFIELD15 is not null THEN 'AMT'
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND EECUDFIELD15 is null  and  ReliBdmAmt3  >= 0.00 THEN 'AMT'
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND EECUDFIELD13 is not null THEN 'AMT'
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND EECUDFIELD13 is null and   ReliBdmAmt4 >= 0.00 THEN 'AMT'
+                                           When bdmdedcode  IN ('ADEN2','AVIS', 'UNUM') THEN Null
+                                        END
+        ,drvAMT01_AmountQualifierCode1 =   CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND EECUDFIELD14 is not null THEN 'L1'
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND EECUDFIELD14 is null and  ReliBdmAmt1  >= 0.00 THEN 'L1'
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND EECUDFIELD15 is not null THEN 'L1'
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND EECUDFIELD15 is null  and  ReliBdmAmt3  >= 0.00 THEN 'L1'
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND EECUDFIELD13 is not null THEN 'L1'
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND EECUDFIELD13 is null and   ReliBdmAmt4  >= 0.00 THEN 'L1'
+                                           When bdmdedcode  IN ('ADEN2','AVIS', 'UNUM') THEN Null
+                                        END
+                                            
+        ,drvAMT02_MonetaryAmount1 =  REPLACE(CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND EECUDFIELD14 is not null THEN EECUDFIELD14
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND EECUDFIELD14 is null and   ReliBdmAmt1  >= 0.00 THEN ReliBdmAmt1 
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND EECUDFIELD15 is not null THEN EECUDFIELD15
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND EECUDFIELD15 is null  and  ReliBdmAmt3  >= 0.00 THEN ReliBdmAmt3
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND EECUDFIELD13 is not null THEN EECUDFIELD13
+                                                WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND EECUDFIELD13 is null and   ReliBdmAmt4  >= 0.00 THEN ReliBdmAmt4
+                                           When bdmdedcode  IN ('ADEN2','AVIS', 'UNUM') THEN Null
+                                         END, '.00' , '')
+                                    --Replace(CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1  IN ('RELI1') THEN EECUDFIELD14 
+         --                                  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3  IN ('RELI3') THEN EECUDFIELD15
+         --                                  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4  IN ('RELI4') THEN EECUDFIELD13
+         --                                  END, '.00' , '')
                                     
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1', 'RELI3','RELI4')  THEN  'AMT' END
-        ,drvAMT01_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1', 'RELI3','RELI4')  THEN 'A2' END
-                
-        ,drvAMT02_MonetaryAmount2 =  CASE  WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND ReliBdmAmt1 <> 0.00  THEN ReliBdmAmt1
-                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND ReliBdmAmt3 <> 0.00  THEN ReliBdmAmt3
-                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND ReliBdmAmt4 <> 0.00  THEN ReliBdmAmt4
+        ,drvAMT00_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') and ReliBdmAmt1 >= 0.00  THEN 'AMT'
+                                              WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') and ReliBdmAmt3 >= 0.00  THEN  'AMT' 
+                                              WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') and ReliBdmAmt4 >= 0.00  THEN  'AMT'
+                                              END
+        ,drvAMT01_AmountQualifierCode2 = CASE WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI1') and ReliBdmAmt1 >= 0.00  THEN 'A2'
+                                              WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') and ReliBdmAmt3 >= 0.00  THEN  'A2' 
+                                              WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') and ReliBdmAmt4 >= 0.00  THEN  'A2'
+                                              END
+        ,drvAMT02_MonetaryAmount2 =  REPLACE(CASE  WHEN  bdmdedcode IN ('RELI1') AND ReliDedCode1 IN ('RELI1') AND ReliBdmAmt1 >= 0.00  THEN ReliBdmAmt1
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI3') AND ReliDedCode3 IN ('RELI3') AND ReliBdmAmt3 >= 0.00  THEN ReliBdmAmt3
+                                           WHEN BdmRecType = 'EMP' AND bdmdedcode IN ('RELI4') AND ReliDedCode4 IN ('RELI4') AND ReliBdmAmt4 >= 0.00  THEN ReliBdmAmt4
                                            When bdmdedcode  IN ('ADEN2','AVIS', 'UNUM') THEN Null
-                                         END
+                                           
+                                         END, '.00' , '')
+
+
 
 
 
@@ -1568,12 +1614,6 @@ BEGIN
     WHERE EecEEType <> 'TES'
     AND BdmDedCode in ('UNUM','RELI1','RELI3','RELI4','RELI5','ADEN2','AVIS')
     AND  (BdmBenStatus = 'A' or (BdmBenStatus = 'T' and EecEmplStatus = 'T'  and audDateTime Between @Startdate and @EndDate))
-
-
-  
-   
-
-
 
 Union 
 

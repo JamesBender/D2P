@@ -5,7 +5,7 @@ EGUARDN834: Guardian H&W 834 Export
 FormatCode:     EGUARDN834
 Project:        Guardian H&W 834 Export
 Client ID:      CEL1009
-Date/time:      2022-12-16 10:22:47.970
+Date/time:      2023-01-12 13:00:53.543
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20221216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUARDN834_20230112.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment','202203089','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EGUARDN834',NULL,NULL,NULL,'202203089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203081',NULL,'','','202203081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202203089','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EGUARDN834',NULL,NULL,NULL,'202203089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203081',NULL,'','','202203081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Guardian H&W 834 Export','202203089','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EGUARDN834',NULL,NULL,NULL,'202203089','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202203081',NULL,'','','202203081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',KSOJ8',NULL,NULL,NULL,'Test File Only','202207159','EMPEXPORT','TEST_XOE','Jun 16 2022  4:15PM','EGUARDN834',NULL,NULL,NULL,'202207159','Jun 16 2022 12:00AM','Dec 30 1899 12:00AM','202206021','10222','','','202206021',dbo.fn_GetTimedKey(),NULL,'us3cBeCEL1009A',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','KSOJ8',NULL,NULL,NULL,'Test File Only','202301139','EMPEXPORT','TEST_XOE','Jun 16 2022  4:15PM','EGUARDN834',NULL,NULL,NULL,'202301139','Jun 16 2022 12:00AM','Dec 30 1899 12:00AM','202212291','10222','','','202212291',dbo.fn_GetTimedKey(),NULL,'us3cBeCEL1009A',NULL);
 
 -----------
 -- AscImp inserts
@@ -808,6 +808,7 @@ Revision History
 Update By           Date           Request Num        Desc
 Marie Waters      10/19/2022     TekP-2021-11-30-0002  Added 7 back to ICM01, removed BdmRecType from HD02 and formated date for ICM04
 Marie Waters      10/19/2022     TekP-2021-12-14-0002  Added additional codes to mapping and dedlist 
+Marie Waters      01/12/2023     TekP-2021-12-14-0002  Added Benoption codeing to HD05 for 'ACCID','DEN','VIS'
 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGUARDN834';
@@ -1289,7 +1290,11 @@ BEGIN
                                         END
                                     --END
         ,drvHD05_CoverageLevelCode =    --CASE WHEN BdmRecType = 'EMP' THEN
-                                            CASE WHEN BdmDedCode IN ('OBLIFE','GLIFE','STD','LTD','LIFEE','ADD','DEN','VIS','CIE5K','CIE10','CIE20','ACCID') THEN 'EMP' --END
+                                            CASE WHEN BdmDedCode IN ('OBLIFE','GLIFE','STD','LTD','LIFEE','ADD','CIE5K','CIE10','CIE20') THEN 'EMP' --END
+                                                 WHEN BdmDedCode IN ('ACCID','DEN','VIS') and BdmBenoption = 'EE' THEN 'EMP'
+                                                 WHEN BdmDedCode IN ('ACCID','DEN','VIS') and BdmBenoption = 'EES' THEN 'SPO'
+                                                 WHEN BdmDedCode IN ('ACCID','DEN','VIS') and BdmBenoption = 'EEC' THEN 'CHD'
+                                                 WHEN BdmDedCode IN ('ACCID','DEN','VIS') and BdmBenoption = 'EEF' THEN 'FAM'
                                         --ELSE
                                             --CASE 
                                             WHEN BdmDedCode IN ('LIFES','DEN','VIS') AND ConRelationship = 'SPS' THEN 'SPO'
