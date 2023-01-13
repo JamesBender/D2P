@@ -5,7 +5,7 @@ ECPIMETEXP:
 FormatCode:     ECPIMETEXP
 Project:        
 Client ID:      ECP1000
-Date/time:      2023-01-10 13:59:49.327
+Date/time:      2023-01-13 09:29:25.260
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -249,7 +249,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECPIMETEXP_20230110.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECPIMETEXP_20230113.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -260,7 +260,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301099','EMPEXPORT','OEPASSIVE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','ONDEM_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','SCH_ECPIME',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','TEST_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','TEST_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -419,8 +419,8 @@ CREATE TABLE [dbo].[U_ECPIMETEXP_drvTbl] (
     [drvSubsort] varchar(14) NULL,
     [drvTransactionCode] varchar(1) NOT NULL,
     [drvCustomerNumber] varchar(7) NULL,
-    [drvEmployeeSSN] char(11) NULL,
-    [drvMemberSSN] char(11) NULL,
+    [drvEmployeeSSN] varchar(24) NULL,
+    [drvMemberSSN] varchar(24) NULL,
     [drvPersonelID] varchar(1) NOT NULL,
     [drvLastname] varchar(131) NULL,
     [drvFirstname] varchar(100) NULL,
@@ -828,8 +828,12 @@ BEGIN
         ,drvCustomerNumber = CASE WHEN DEN_DedCode IS NOT NULL THEN '0246188'
                                   WHEN SELECT_DedCode IS NOT NULL THEN '9246188'
                                 END
-        ,drvEmployeeSSN = eepSSN
-        ,drvMemberSSN = CASE WHEN BdmRecType = 'DEP' THEN Conssn ELSE EepSSN END
+        ,drvEmployeeSSN = CASE WHEN (left(eepSSN, 3) IN ('888', '999') or eepSSN ='111111111') THEN '00000000000' ELSE dbo.dsi_fnpadzero(eepSSN,11,0) END
+        ,drvMemberSSN = CASE WHEN BdmRecType = 'EMP' THEN CASE WHEN  (left(eepSSN, 3) IN ('888', '999') or eepSSN ='111111111') THEN '00000000000' ELSE dbo.dsi_fnpadzero(eepSSN,11,0) END
+                            ELSE CASE
+                                WHEN BdmRecType = 'DEP' THEN CASE WHEN (left(conSSN, 3) IN ('888', '999') or conSSN ='111111111') THEN '0000000000' ELSE dbo.dsi_fnpadzero(CONSSN,11,0) END
+                              END
+                              END
         ,drvPersonelID = ''
     
         ,drvLastname = CASE WHEN BdmRecType = 'EMP' THEN CASE WHEN Ltrim(Rtrim(EepNameSuffix)) NOT IN ( 'Z') THEN EepNameLast + ' ' +  EepNameSuffix    ELSE EepNameLast END
@@ -870,7 +874,7 @@ BEGIN
         ,drvEmpworkstatuscodeeffdate = REPLACE(CONVERT (CHAR(10), CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' THEN EecDateOfTermination Else EecEmplStatusStartDate END, 101),'/','')
         ,drvEmployeesmokerstatus = CASE WHEN BdmRecType = 'EMP' AND FAMILL_DedCode  IS NOT NULL AND  EepISSmoker = 'Y' THEN 'S' Else 'N' END
         ,drvSpousesmokerstatus = CASE WHEN BdmRecType = 'DEP' AND ConRelationship IN ('DP','SPS') AND EEILL_DedCode IS NOT NULL AND ConISSmoker = 'Y' THEN 'S' Else 'N' END
-        ,drvDentalCoverage = CASE  WHEN BdmRecType = 'EMP' AND DEN_DedCode IS NOT NULL THEN 'D' END
+        ,drvDentalCoverage = CASE  WHEN  DEN_DedCode IS NOT NULL THEN 'D' END
         ,drvCoverageeffectivedateDen = CASE  WHEN  DEN_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', DEN_BenStartDate, @FileMinCovDate), 101),'/','') END
         ,drvCoverageenddateDen = CASE  WHEN BdmRecType = 'EMP' AND DEN_DedCode IS NOT NULL THEN  REPLACE(CONVERT (CHAR(10),  DEN_BenStopDate, 101),'/','') 
                                     WHEN BdmRecType = 'DEP' AND DEN_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10),  DEN_BenStopDate, 101),'/','') 
@@ -976,8 +980,8 @@ BEGIN
                 ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')  THEN BdmEEAmt END) AS FAMILL_EEAmt    
          FROM dbo.U_dsi_BDM_ECPIMETEXP WITH (NOLOCK)
          JOIN dbo.DedCode d WITH (NOLOCK)
-        ON BdmDedCode = d.DedDedCode
-        Where  BdmBenStatus = 'A'
+             ON BdmDedCode = d.DedDedCode
+            Where  BdmBenStatus = 'A'
             GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId
             ) BDM
          ON BdmEEID = XEEID
@@ -990,7 +994,7 @@ BEGIN
                 WHERE BcaDedCode IN ('CIEE1','CIEE2')
                 and BcaFormatCode ='ECPIMETEXP'
                 GROUP BY BcaEEID, BcaCOID) CI ON CI.BcaEEID = xEEID AND CI.BcaCOID = xCOID
-    LEFT JOIN (SELECT BcaEEID, BcaCOID, SUM(BcaBenAmtCalc) AS BcaBenAmtCalcCD
+   LEFT JOIN (SELECT BcaEEID, BcaCOID, SUM(BcaBenAmtCalc) AS BcaBenAmtCalcCD
                     FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH(NOLOCK)
                     WHERE BcaDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')
                     and BcaFormatCode ='ECPIMETEXP'

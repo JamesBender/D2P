@@ -5,7 +5,7 @@ EFORENREXP: Forma Enrollment Export
 FormatCode:     EFORENREXP
 Project:        Forma Enrollment Export
 Client ID:      DRI1005
-Date/time:      2023-01-12 10:59:09.563
+Date/time:      2023-01-12 16:36:34.523
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -717,9 +717,11 @@ BEGIN
                                     CASE WHEN ALLbdmdedcode IS NOT NULL  THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenStartDate, CAST(cast (YEAR(getdate() )as varchar ) + '0101' as datetime) )  END
                                 END
         ,drvPlanEndDate = CASE WHEN @ExportCode LIKE 'OE%' THEN 
-                                    CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN  CAST(cast (YEAR(getdate()+1 )as varchar ) + '1201' as datetime)   END
+                                    CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN  CAST(cast (YEAR(getdate()+1 )as varchar ) + '1231' as datetime)   END
                                WHEN @ExportCode NOT LIKE 'OE%' THEN 
-                                    CASE WHEN ALLbdmdedcode IS NOT NULL  THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenStartDate, CAST(cast (YEAR(getdate() )as varchar ) + '1201' as datetime) )  END
+                                    CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenstopDate, CAST(cast (YEAR(getdate() )as varchar ) + '1231' as datetime) )
+                                         WHEN ALLbdmdedcode is not null   and EecEmplStatus = 'T'  THEN BdmBenstopDate 
+                                    END
                               END
         ,drvEmployeePayPeriodElection =   ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhPARK) as varchar),'0.00') 
                                                WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhTRAN) as varchar),'0.00')
