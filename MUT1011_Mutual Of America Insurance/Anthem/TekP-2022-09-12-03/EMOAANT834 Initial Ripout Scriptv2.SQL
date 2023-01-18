@@ -5,7 +5,7 @@ EMOAANT834: Elevance Health Anthem 834 Export
 FormatCode:     EMOAANT834
 Project:        Elevance Health Anthem 834 Export
 Client ID:      MUT1001
-Date/time:      2023-01-10 16:21:05.310
+Date/time:      2023-01-17 12:07:20.837
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -192,12 +192,12 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EMOAANT834Z0','3','H','08','1',NULL,'QTY Segment ID (Header)',NULL,NULL,'"QTY"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EMOAANT834Z0','2','H','08','2',NULL,'Quantity Qualifier',NULL,NULL,'"drvQTY01_QuantityQual1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EMOAANT834Z0','15','H','08','3',NULL,'Quantity',NULL,NULL,'"drvQTY02_Quantity1"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EMOAANT834Z0','3','H','09','1',NULL,'QTY Segment ID (Header)',NULL,NULL,'"QTY"','(''DA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EMOAANT834Z0','2','H','09','2',NULL,'Quantity Qualifier',NULL,NULL,'"drvQTY01_QuantityQual2"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EMOAANT834Z0','15','H','09','3',NULL,'Quantity',NULL,NULL,'"drvQTY02_Quantity2"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EMOAANT834Z0','3','H','10','1',NULL,'QTY Segment ID (Header)',NULL,NULL,'"QTY"','(''DA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EMOAANT834Z0','2','H','10','2',NULL,'Quantity Qualifier',NULL,NULL,'"drvQTY01_QuantityQual3"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EMOAANT834Z0','15','H','10','3',NULL,'Quantity',NULL,NULL,'"drvQTY02_Quantity3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EMOAANT834Z0','3','H','08','4',NULL,'QTY Segment ID (Header)',NULL,NULL,'"QTY"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EMOAANT834Z0','2','H','08','5',NULL,'Quantity Qualifier',NULL,NULL,'"drvQTY01_QuantityQual2"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EMOAANT834Z0','15','H','08','6',NULL,'Quantity',NULL,NULL,'"drvQTY02_Quantity2"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EMOAANT834Z0','3','H','08','7',NULL,'QTY Segment ID (Header)',NULL,NULL,'"QTY"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EMOAANT834Z0','2','H','08','8',NULL,'Quantity Qualifier',NULL,NULL,'"drvQTY01_QuantityQual3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EMOAANT834Z0','15','H','08','9',NULL,'Quantity',NULL,NULL,'"drvQTY02_Quantity3"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EMOAANT834Z0','2','H','11','1',NULL,'N1 Segment ID (Loop1000A/B)',NULL,NULL,'"N1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EMOAANT834Z0','3','H','11','2',NULL,'Entity Identifier Code/Sponsor',NULL,NULL,'"drvN101_EntityIDCodeSponsor1"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EMOAANT834Z0','60','H','11','3',NULL,'Name',NULL,NULL,'"drvN102_Name1"','(''UA''=''T*'')');
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMOAANT834_20230110.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMOAANT834_20230117.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -411,9 +411,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H05','U_EMOAANT834_HdrTbl','ISNULL(drvREF01_RefNumberQual,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H06','U_EMOAANT834_HdrTbl','ISNULL(drvDTP00_DateTime0,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H07','U_EMOAANT834_HdrTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H08','U_EMOAANT834_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H09','U_EMOAANT834_HdrTbl','ISNULL(drvQTY01_QuantityQual2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H10','U_EMOAANT834_HdrTbl','ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H08','U_EMOAANT834_HdrTbl','ISNULL(drvQTY01_QuantityQual1,'''') <> '''' OR ISNULL(drvQTY01_QuantityQual2,'''')  <> '''' OR ISNULL(drvQTY01_QuantityQual3,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H11','U_EMOAANT834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','H12','U_EMOAANT834_HdrTbl','ISNULL(drvN101_EntityIDCodeSponsor2,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EMOAANT834','D13','U_EMOAANT834_DrvTbl',NULL);
@@ -718,7 +716,7 @@ CREATE TABLE [dbo].[U_EMOAANT834_HdrTbl] (
     [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod1] varchar(8) NULL,
     [drvQTY01_QuantityQual1] varchar(2) NOT NULL,
-    [drvQTY02_Quantity1] int NULL,
+    [drvQTY02_Quantity1] varchar(1) NOT NULL,
     [drvQTY01_QuantityQual2] varchar(2) NOT NULL,
     [drvQTY02_Quantity2] int NULL,
     [drvQTY01_QuantityQual3] varchar(2) NOT NULL,
@@ -798,7 +796,7 @@ CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EMOAANT834]
 AS
 SET NOCOUNT ON;
 /**********************************************************************************
-Client: @CustomerName
+Client: Mutual of America
 
 Created By: Marie Waters
 Business Analyst: Curlin Beck
@@ -816,6 +814,7 @@ SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EMOAANT834';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EMOAANT834';
 SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EMOAANT834';
 SELECT * FROM dbo.AscExp WHERE expFormatCode = 'EMOAANT834';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EMOAANT834' ORDER BY RunID DESC;
 
 
 Execute Export
@@ -1015,9 +1014,9 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = @RunDate
         ,drvQTY01_QuantityQual1 = 'DT'
-        ,drvQTY02_Quantity1 = (SELECT COUNT(DISTINCT bdmDepRecId)  FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='DEP')--
+        ,drvQTY02_Quantity1 = '0' -- (SELECT COUNT(DISTINCT bdmDepRecId)  FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='DEP')--
         ,drvQTY01_QuantityQual2 = 'ET'
-        ,drvQTY02_Quantity2 = (SELECT COUNT( DISTINCT bdmEEID) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='EMP')--
+        ,drvQTY02_Quantity2 = (SELECT COUNT(DISTINCT bdmDepRecId) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='DEP')+(SELECT COUNT( DISTINCT bdmEEID) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='EMP') -- (SELECT COUNT( DISTINCT bdmEEID) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='EMP')--
         ,drvQTY01_QuantityQual3 = 'TO'
         ,drvQTY02_Quantity3 = (SELECT COUNT(DISTINCT bdmDepRecId) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='DEP')+(SELECT COUNT( DISTINCT bdmEEID) FROM dbo.U_dsi_bdm_EMOAANT834 WHERE bdmRecType='EMP')
         ,drvN101_EntityIDCodeSponsor1 = 'P5'
