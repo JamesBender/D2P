@@ -5,7 +5,7 @@ EAKNEWEPXP: California New Employee Export
 FormatCode:     EAKNEWEPXP
 Project:        California New Employee Export
 Client ID:      AMY1001
-Date/time:      2023-01-09 08:28:56.200
+Date/time:      2023-01-20 12:44:19.330
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -173,7 +173,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAKNEWEPXP_20230109.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAKNEWEPXP_20230120.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -182,7 +182,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'California New Employee Export','202301039','EMPEXPORT','ONDEM_XOE',NULL,'EAKNEWEPXP',NULL,NULL,NULL,'202301039','Jan  3 2023 12:00PM','Jan  3 2023 12:00PM','202301031',NULL,'','','202301031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'California New Employee -Sched','202301039','EMPEXPORT','SCH_EAKNEW',NULL,'EAKNEWEPXP',NULL,NULL,NULL,'202301039','Jan  3 2023 12:00PM','Jan  3 2023 12:00PM','202301031',NULL,'','','202301031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','RXHL3,RXHFX',NULL,NULL,NULL,'California New Employee -Test','202301039','EMPEXPORT','TEST_XOE',NULL,'EAKNEWEPXP',NULL,NULL,NULL,'202301069','Jan  3 2023 12:00PM','Jan  3 2023 12:00PM','202212301',NULL,'','','202301031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','RXHL3,RXHFX',NULL,NULL,NULL,'California New Employee -Test','202301069','EMPEXPORT','TEST_XOE','Jan 20 2023 12:00AM','EAKNEWEPXP',NULL,NULL,NULL,'202301069','Jan  6 2023 12:00AM','Dec 30 1899 12:00AM','202212301',NULL,'',NULL,'202212301',dbo.fn_GetTimedKey(),NULL,'us3mWaAMY1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -304,7 +304,7 @@ CREATE TABLE [dbo].[U_EAKNEWEPXP_Header] (
     [drvFEIN] varchar(9) NULL,
     [drvStateEmployerAcctNumber] varchar(8) NULL,
     [drvBranchCode] varchar(1) NOT NULL,
-    [drvEmployerName] varchar(12) NOT NULL,
+    [drvEmployerName] varchar(40) NULL,
     [drvStreetAddress] varchar(30) NULL,
     [drvCity] varchar(30) NULL,
     [drvState] varchar(2) NULL,
@@ -477,11 +477,11 @@ BEGIN
          drvFEIN = CASE WHEN  cmpcoid = 'RXHL3' THEN '465460581' 
                         WHEn  cmpcoid = 'RXHFX' THEN '680154899'
                         END
-        ,drvStateEmployerAcctNumber = CASE WHEN cmpCompanycode = 'AKI'  THEN '35254895' --  1/6/2023 MW Removed dashes
-                                           WHEN cmpCompanycode = 'AKDT' THEN '04590428' --  1/6/2023 MW Removed dashes
+        ,drvStateEmployerAcctNumber = CASE WHEN cmpcoid = 'RXHFX' THEN '35254895' --  1/6/2023 MW Removed dashes
+                                           WHEN cmpcoid = 'RXHL3' THEN '04590428' --  1/6/2023 MW Removed dashes
                                          END
         ,drvBranchCode = ''
-        ,drvEmployerName = 'Amys Kitchen'
+        ,drvEmployerName = UPPER(CmpCompanyName)
         ,drvStreetAddress = UPPER(cmpAddressLine1)
         ,drvCity = UPPER(cmpAddressCity)
         ,drvState = UPPER(cmpAddressState)

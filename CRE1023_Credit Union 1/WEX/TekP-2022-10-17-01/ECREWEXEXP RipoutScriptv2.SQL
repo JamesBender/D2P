@@ -5,7 +5,7 @@ ECREWEXEXP: Wex FSA Export
 FormatCode:     ECREWEXEXP
 Project:        Wex FSA Export
 Client ID:      CRE1023
-Date/time:      2022-12-20 18:29:03.480
+Date/time:      2023-01-24 11:08:50.830
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -242,7 +242,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECREWEXEXPZ0','30','D','30','5',NULL,'Contribution Description',NULL,NULL,'"Payroll Deduction"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECREWEXEXPZ0','9','D','30','6',NULL,'Contribution Amount',NULL,NULL,'"drvContAmt"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECREWEXEXPZ0','6','D','30','7',NULL,'Amount Type',NULL,NULL,'"Actual"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECREWEXEXPZ0','7','D','30','8',NULL,'Tax Year',NULL,NULL,'"Current"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECREWEXEXPZ0','7','D','30','8',NULL,'Tax Year',NULL,NULL,'""','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECREWEXEXPZ0','2','T','90','1',NULL,'Record Type',NULL,NULL,'"FF"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECREWEXEXPZ0','20','T','90','2',NULL,'Record Count',NULL,NULL,'"drvRecordCount"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECREWEXEXPZ0','3','T','90','3',NULL,'Administrator Code',NULL,NULL,'"DBI"','(''DA''=''T|'')');
@@ -261,7 +261,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECREWEXEXP_20221220.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECREWEXEXP_20230124.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -272,7 +272,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202212059','EMPEXPORT','OEPASSIVE',NULL,'ECREWEXEXP',NULL,NULL,NULL,'202212059','Dec  5 2022 11:12AM','Dec  5 2022 11:12AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'OnDemand Export','202212059','EMPEXPORT','ONDEM_XOE',NULL,'ECREWEXEXP',NULL,NULL,NULL,'202212059','Dec  5 2022 11:12AM','Dec  5 2022 11:12AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Export','202212059','EMPEXPORT','SCH_ECREWE',NULL,'ECREWEXEXP',NULL,NULL,NULL,'202212059','Dec  5 2022 11:12AM','Dec  5 2022 11:12AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',4PVXR',NULL,NULL,NULL,'Test Export','202212269','EMPEXPORT','TEST_XOE',NULL,'ECREWEXEXP',NULL,NULL,NULL,'202212269','Dec  5 2022 11:12AM','Dec  5 2022 11:12AM','202212011',NULL,'','','202212011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','4PVXR',NULL,NULL,NULL,'Test Export','202301139','EMPEXPORT','TEST_XOE','Jan 23 2023 12:00AM','ECREWEXEXP',NULL,NULL,NULL,'202301139','Jan 13 2023 12:00AM','Dec 30 1899 12:00AM','202301131',NULL,'','','202301131',dbo.fn_GetTimedKey(),NULL,'us3cBeCRE1023',NULL);
 
 -----------
 -- AscImp inserts
@@ -431,7 +431,7 @@ CREATE TABLE [dbo].[U_ECREWEXEXP_drvTbl_EN] (
     [drvInitialSort] varchar(16) NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvPartFileImportID] char(11) NULL,
-    [drvPlanName] varchar(20) NULL,
+    [drvPlanName] varchar(18) NULL,
     [drvEnrollEffDate] varchar(8000) NULL,
     [drvPartElecAmt] nvarchar(4000) NULL,
     [drvEnrollTermDate] varchar(8000) NULL
@@ -597,7 +597,8 @@ BEGIN
             ,@EndPerControl     VARCHAR(9)
             ,@RunDate           VARCHAR(8)
             ,@RunTime           VARCHAR(6)
-            ,@PdhPayDate         VARCHAR(8);
+            ,@PdhPayDate         VARCHAR(8)
+            ,@FileMinCovDate    DATETIME;
 
     -- Set FormatCode
     SELECT @FormatCode = 'ECREWEXEXP';
@@ -611,6 +612,7 @@ BEGIN
         ,@ExportCode      = ExportCode
         ,@RunDate         = REPLACE(CONVERT (CHAR(10),GETDATE(), 101),'/','')
         ,@RunTime         = REPLACE(CONVERT(VARCHAR(10), GETDATE(), 108),':',SPACE(0))
+        ,@FileMinCovDate  = ('1/1/2023')
     FROM dbo.U_dsi_Parameters WITH (NOLOCK)
     WHERE FormatCode = @FormatCode;
 
@@ -748,7 +750,7 @@ BEGIN
     FROM dbo.PDedHist WITH (NOLOCK)
     JOIN dbo.U_ECREWEXEXP_DedList WITH (NOLOCK)
         ON DedCode = PdhDedCode
-        AND PdhDedCode in ('FSA' ) 
+        AND PdhDedCode in ('FSA', 'FSADC' ) 
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
@@ -851,11 +853,12 @@ BEGIN
         ,drvSubsort = CASE  WHEN Bdmdedcode  = 'FSA' then '1' Else '2' END
         -- standard fields above and additional driver fields below
         ,drvPartFileImportID = eepssn
-        ,drvPlanName = CASE WHEN Bdmdedcode  = 'FSA' THEN  'FSA - Medical FSA'
-                            WHEN Bdmdedcode  = 'FSADC'  THEn 'FSA - Dependent Care'
+        ,drvPlanName = CASE WHEN Bdmdedcode  = 'FSA' THEN  'Medical FSA'   --Updated the Plan Names CB 20221229
+                            WHEN Bdmdedcode  = 'FSADC'  THEn 'Dependent Care FSA'
                         END
-        ,drvEnrollEffDate = REPLACE(CONVERT (CHAR(10),CASE WHEN  Bdmdedcode  IN (  'FSA', 'FSADC') THEN Bdmbenstartdate END, 101),'/','')
-        ,drvPartElecAmt = CASE WHEN Bdmdedcode  IN (  'FSA', 'FSADC') THEN FORMAT(BdmEEGoalAmt, '0.00') else '0.00' END
+        ,drvEnrollEffDate = REPLACE(CONVERT (CHAR(10),CASE WHEN  Bdmdedcode  IN (  'FSA', 'FSADC') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStatusDate, @FileMinCovDate) END , 101),'/','')
+        ,drvPartElecAmt = CASE WHEN Bdmdedcode  = 'FSADC' THEN FORMAT(PdhEECurAmtFSADC, '0.00')
+                            WHEN Bdmdedcode  = 'FSA' THEN FORMAT(PdhEECurAmtFSA, '0.00') else '0.00' END
         ,drvEnrollTermDate = REPLACE(CONVERT (CHAR(10),CASE WHEN Bdmdedcode  IN (  'FSA', 'FSADC') and  EecEmplStatus = 'T' THEN Bdmbenstopdate END, 101),'/','')
     INTO dbo.U_ECREWEXEXP_drvTbl_EN
     FROM dbo.U_ECREWEXEXP_EEList WITH (NOLOCK)
@@ -888,7 +891,7 @@ BEGIN
         ,drvSubsort = CASE  WHEN Bdmdedcode  = 'FSA' then '1' Else '2' END
         -- standard fields above and additional driver fields below
         ,drvPartFileImportID = eepssn
-        ,drvPlanName = CASE WHEN Bdmdedcode  = 'FSA' THEN  'FSA - Medical'
+        ,drvPlanName = CASE WHEN Bdmdedcode  = 'FSA' THEN  'Medical FSA'  --Updated the Plan Names CB 20221229
                             WHEN Bdmdedcode  = 'FSADC' THEN 'Dependent Care FSA' END
         ,drvContDate = @PdhPayDate
         ,drvContAmt = CASE WHEN Bdmdedcode  = 'FSA' and  FORMAT(PdhEECurAmtFSA, '#0.00') > '0.00' THEN FORMAT(PdhEECurAmtFSA, '#0.00') 

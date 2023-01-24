@@ -1,19 +1,20 @@
 /**********************************************************************************
 
-EIRCFULLCT: 
+EIRCFULLCT: FULLCOUNT Employee Demographics Export
 
 FormatCode:     EIRCFULLCT
-Project:        
-Client ID:      USG1000
-Date/time:      2023-01-12 12:03:51.143
+Project:        FULLCOUNT Employee Demographics Export
+Client ID:      ING1005
+Date/time:      2023-01-24 11:58:54.580
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EIRCFULLCT_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW4WUP4DB03
+Database:       ULTIPRO_WPINGLE
+Web Filename:   ING1005_47FIT_EEHISTORY_EIRCFULLCT_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -128,7 +129,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EIRCFULLCT',NULL,'N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EIRCFULLCTZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EIRCFULLCT','FULLCOUNT Employee Demographics Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EIRCFULLCTZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -154,16 +155,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIRCFULLCT_20230112.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIRCFULLCT_20230124.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301129','EMPEXPORT','ONDEM_XOE',NULL,'EIRCFULLCT',NULL,NULL,NULL,'202301129','Jan 12 2023 11:45AM','Jan 12 2023 11:45AM','202301121',NULL,'','','202301121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301129','EMPEXPORT','SCH_EIRCFU',NULL,'EIRCFULLCT',NULL,NULL,NULL,'202301129','Jan 12 2023 11:45AM','Jan 12 2023 11:45AM','202301121',NULL,'','','202301121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301129','EMPEXPORT','TEST_XOE',NULL,'EIRCFULLCT',NULL,NULL,NULL,'202301129','Jan 12 2023 11:45AM','Jan 12 2023 11:45AM','202301121',NULL,'','','202301121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FULLCOUNT Demographic Export','202301129','EMPEXPORT','ONDEM_XOE',NULL,'EIRCFULLCT',NULL,NULL,NULL,'202301129','Jan 12 2023 11:45AM','Jan 12 2023 11:45AM','202301121',NULL,'','','202301121',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'FULLCOUNT Demographic - Sched','202301129','EMPEXPORT','SCH_EIRCFU','Jan 24 2023 12:00AM','EIRCFULLCT',NULL,NULL,NULL,'202301129','Jan 12 2023 12:00AM','Dec 30 1899 12:00AM','202301121',NULL,'','','202301121',dbo.fn_GetTimedKey(),NULL,'us3mWaING1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'FULLCOUNT Demo - Test Only','202301129','EMPEXPORT','TEST_XOE','Jan 24 2023 12:00AM','EIRCFULLCT',NULL,NULL,NULL,'202301129','Jan 12 2023 12:00AM','Dec 30 1899 12:00AM','202301121',NULL,'','','202301121',dbo.fn_GetTimedKey(),NULL,'us3mWaING1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -175,11 +176,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EIRCFULLCT','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -193,12 +195,12 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EIRCFULLCT','D10','dbo.U_EIRCFULLCT_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -265,6 +267,7 @@ CREATE TABLE [dbo].[U_EIRCFULLCT_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
+    [audTerm] varchar(1) NOT NULL,
     [audRowNo] bigint NULL
 );
 
@@ -303,8 +306,8 @@ CREATE TABLE [dbo].[U_EIRCFULLCT_drvTbl] (
     [drvFirstName] varchar(100) NULL,
     [drvBillingID] char(9) NULL,
     [drvFullCountCommunityID] varchar(4) NULL,
-    [drvEffectiveStartDate] datetime NULL,
-    [drvEffectiveEndDate] datetime NULL,
+    [drvEffectiveStartDate] varchar(10) NULL,
+    [drvEffectiveEndDate] varchar(10) NULL,
     [drvSwipeCardID] char(12) NULL,
     [drvEmailAddress] varchar(50) NULL
 );
@@ -345,7 +348,7 @@ Business Analyst: Curlin Beck
 Create Date: 01/12/2023
 Service Request Number: TekP-2022-12-06-03
 
-Purpose: 
+Purpose: FULLCOUNT Employee Demographics Export
 
 Revision History
 ----------------
@@ -425,6 +428,7 @@ BEGIN
         ,audDateTime
         ,audOldValue
         ,audNewValue
+        ,audTerm = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Y' ELSE 'N' END
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
     INTO dbo.U_EIRCFULLCT_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
@@ -498,10 +502,10 @@ BEGIN
                                         WHEN EecPayGroup = 'IRC' THEN '6080'
                                         WHEN EecPayGroup = 'IKF' THEN '5700'
                                     END
-        ,drvEffectiveStartDate = EecDateOfLastHire
-        ,drvEffectiveEndDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvEffectiveStartDate = Convert(Varchar (10),EecDateOfLastHire, 110) 
+        ,drvEffectiveEndDate = CASE WHEN EecEmplStatus = 'T' THEN Convert(Varchar (10),EecDateOfTermination , 110) END
         ,drvSwipeCardID = EecTimeclockID
-        ,drvEmailAddress = CASE WHEN ISNULL(EepAddressEMail, '') <> ''  THEN EepAddressEMail ELSE EepAddressEmailAlternate     END
+        ,drvEmailAddress = CASE WHEN ISNULL(EepAddressEMail, '') <> ''  THEN EepAddressEMail ELSE EepAddressEmailAlternate  END
     INTO dbo.U_EIRCFULLCT_drvTbl
     FROM dbo.U_EIRCFULLCT_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -514,7 +518,7 @@ BEGIN
     --    AND BdmCoID = xCoID
      left JOIN dbo.U_EIRCFULLCT_Audit with (nolock)
         ON audeeid = xEEID and audKey2 = xCOID
-        where eecemplstatus in ('A', 'L')  or ((EecEmplStatus in ('T') and eecTermReason <> 'TRO' and audDateTime between (DATEADD( D,-14, @enddate)) and @enddate)) 
+        where eecemplstatus in ('A', 'L')  or ((EecEmplStatus in ('T') and eecTermReason <> 'TRO' and  audTerm = 'Y' and audDateTime between (DATEADD( D,-14, @enddate)) and @enddate)) 
            
     ;
 
