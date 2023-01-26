@@ -5,7 +5,7 @@ EWFBCBS834: BCBS MN Medical 834 Export
 FormatCode:     EWFBCBS834
 Project:        BCBS MN Medical 834 Export
 Client ID:      WIN1008
-Date/time:      2023-01-20 07:21:53.420
+Date/time:      2023-01-25 07:39:10.327
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EWFBCBS834_20230120.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EWFBCBS834_20230125.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -999,7 +999,7 @@ BEGIN
         ,drvBGN05_TimeCode = ''
         ,drvBGN06_RefID = ''
         ,drvBGN07_TransTypeCode = ''
-        ,drvBGN08_ActionCode = '4'
+        ,drvBGN08_ActionCode = 'RX'
         ,drvREF01_RefNumberQual = ''
         ,drvREF02_RefNumberQual = ''
         ,drvDTP00_DateTime0 = ''

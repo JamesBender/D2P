@@ -552,7 +552,7 @@ CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECREWEXEXP]
 AS
 SET NOCOUNT ON;
 /**********************************************************************************
-Client Name: Credit Union 2
+Client Name: Credit Union 1
 
 Created By: Marie Waters
 Business Analyst: Curlin Beck

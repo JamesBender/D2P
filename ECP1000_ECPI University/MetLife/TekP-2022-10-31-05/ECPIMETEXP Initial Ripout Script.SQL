@@ -4,16 +4,17 @@ ECPIMETEXP:
 
 FormatCode:     ECPIMETEXP
 Project:        
-Client ID:      USG1000
-Date/time:      2022-12-13 11:16:07.107
+Client ID:      ECP1000
+Date/time:      2023-01-13 09:29:25.260
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ECPIMETEXP_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    E23
+Server:         E2SUP3DB05
+Database:       ULTIPRO_ECPI
+Web Filename:   ECP1000_59685_EEHISTORY_ECPIMETEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -109,9 +110,15 @@ IF OBJECT_ID('dsi_vwECPIMETEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwECPIM
 GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_ECPIMETEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECPIMETEXP];
 GO
+IF OBJECT_ID('U_ECPIMETEXP_Trailer') IS NOT NULL DROP TABLE [dbo].[U_ECPIMETEXP_Trailer];
+GO
+IF OBJECT_ID('U_ECPIMETEXP_Header') IS NOT NULL DROP TABLE [dbo].[U_ECPIMETEXP_Header];
+GO
 IF OBJECT_ID('U_ECPIMETEXP_File') IS NOT NULL DROP TABLE [dbo].[U_ECPIMETEXP_File];
 GO
 IF OBJECT_ID('U_ECPIMETEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_ECPIMETEXP_EEList];
+GO
+IF OBJECT_ID('U_ECPIMETEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_ECPIMETEXP_drvTbl];
 GO
 IF OBJECT_ID('U_ECPIMETEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_ECPIMETEXP_DedList];
 GO
@@ -176,14 +183,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ECPIMETEXPZ0','1','D','10','313',NULL,'Handicapped dependent indicator',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ECPIMETEXPZ0','30','D','10','314',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ECPIMETEXPZ0','1','D','10','344',NULL,'Dental Coverage',NULL,NULL,'"drvDentalCoverage"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ECPIMETEXPZ0','8','D','10','345',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ECPIMETEXPZ0','8','D','10','353',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ECPIMETEXPZ0','7','D','10','361',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumber"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ECPIMETEXPZ0','4','D','10','368',NULL,'Subcode',NULL,NULL,'"drvSubcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ECPIMETEXPZ0','4','D','10','372',NULL,'Branch',NULL,NULL,'"drvBranch"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ECPIMETEXPZ0','8','D','10','345',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedateDen"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ECPIMETEXPZ0','8','D','10','353',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddateDen"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ECPIMETEXPZ0','7','D','10','361',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumberDen"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ECPIMETEXPZ0','4','D','10','368',NULL,'Subcode',NULL,NULL,'"drvSubcodeDen"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ECPIMETEXPZ0','4','D','10','372',NULL,'Branch',NULL,NULL,'"drvBranchDen"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('46','ECPIMETEXPZ0','2','D','10','376',NULL,'Plan code',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ECPIMETEXPZ0','1','D','10','378',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ECPIMETEXPZ0','1','D','10','379',NULL,'Members Covered Code',NULL,NULL,'"drvMembersCoveredCode"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('47','ECPIMETEXPZ0','1','D','10','378',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatusDen"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('48','ECPIMETEXPZ0','1','D','10','379',NULL,'Members Covered Code',NULL,NULL,'"drvMembersCoveredCodeDen"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('49','ECPIMETEXPZ0','2','D','10','380',NULL,'COBRA indicator',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('50','ECPIMETEXPZ0','1','D','10','382',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('51','ECPIMETEXPZ0','8','D','10','383',NULL,'Facility ID',NULL,NULL,'""','(''SS''=''F'')');
@@ -191,41 +198,41 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('53','ECPIMETEXPZ0','1','D','10','393',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('54','ECPIMETEXPZ0','1030','D','10','394',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('55','ECPIMETEXPZ0','2','D','10','1424',NULL,'Accident Insurance',NULL,NULL,'"drvAccidentInsurance"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','ECPIMETEXPZ0','8','D','10','1426',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','ECPIMETEXPZ0','8','D','10','1434',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','ECPIMETEXPZ0','7','D','10','1442',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumber"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','ECPIMETEXPZ0','4','D','10','1449',NULL,'Subcode',NULL,NULL,'"drvSubcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','ECPIMETEXPZ0','4','D','10','1453',NULL,'Branch',NULL,NULL,'"drvBranch"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','ECPIMETEXPZ0','1','D','10','1457',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','ECPIMETEXPZ0','1','D','10','1458',NULL,'Members covered code',NULL,NULL,'"drvMemberscoveredcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','ECPIMETEXPZ0','1','D','10','1459',NULL,'Enrollment status',NULL,NULL,'"drvEnrollmentstatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','ECPIMETEXPZ0','2','D','10','1460',NULL,'Voluntary Cancel Indicator',NULL,NULL,'"drvVoluntaryCancelIndicator"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','ECPIMETEXPZ0','1','D','10','1462',NULL,'Takeover Indicator',NULL,NULL,'"drvTakeoverIndicator"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('56','ECPIMETEXPZ0','8','D','10','1426',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedateAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('57','ECPIMETEXPZ0','8','D','10','1434',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddateAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('58','ECPIMETEXPZ0','7','D','10','1442',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumberAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('59','ECPIMETEXPZ0','4','D','10','1449',NULL,'Subcode',NULL,NULL,'"drvSubcodeAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('60','ECPIMETEXPZ0','4','D','10','1453',NULL,'Branch',NULL,NULL,'"drvBranchAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('61','ECPIMETEXPZ0','1','D','10','1457',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatusAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('62','ECPIMETEXPZ0','1','D','10','1458',NULL,'Members covered code',NULL,NULL,'"drvMemberscoveredcodeAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('63','ECPIMETEXPZ0','1','D','10','1459',NULL,'Enrollment status',NULL,NULL,'"drvEnrollmentstatusAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('64','ECPIMETEXPZ0','2','D','10','1460',NULL,'Voluntary Cancel Indicator',NULL,NULL,'"drvVoluntaryCancelIndicatorAcc"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('65','ECPIMETEXPZ0','1','D','10','1462',NULL,'Takeover Indicator',NULL,NULL,'"drvTakeoverIndicatorAcc"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('66','ECPIMETEXPZ0','77','D','10','1463',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('67','ECPIMETEXPZ0','2','D','10','1540',NULL,'Employee Critical Illness Attained Age',NULL,NULL,'"drvEmpCriticalIllsAttainedAge"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','ECPIMETEXPZ0','8','D','10','1542',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','ECPIMETEXPZ0','8','D','10','1550',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','ECPIMETEXPZ0','7','D','10','1558',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumber"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','ECPIMETEXPZ0','4','D','10','1565',NULL,'Subcode',NULL,NULL,'"drvSubcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','ECPIMETEXPZ0','4','D','10','1569',NULL,'Branch',NULL,NULL,'"drvBranch"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','ECPIMETEXPZ0','1','D','10','1573',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','ECPIMETEXPZ0','1','D','10','1574',NULL,'Members covered code',NULL,NULL,'"drvMemberscoveredcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','ECPIMETEXPZ0','1','D','10','1575',NULL,'Enrollment status',NULL,NULL,'"drvEnrollmentstatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','ECPIMETEXPZ0','8','D','10','1576',NULL,'Benefit amount',NULL,NULL,'"drvBenefitamount"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('77','ECPIMETEXPZ0','2','D','10','1584',NULL,'Voluntary Cancel Indicator',NULL,NULL,'"drvVoluntaryCancelIndicator"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('68','ECPIMETEXPZ0','8','D','10','1542',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedateEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('69','ECPIMETEXPZ0','8','D','10','1550',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddateEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('70','ECPIMETEXPZ0','7','D','10','1558',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumberEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('71','ECPIMETEXPZ0','4','D','10','1565',NULL,'Subcode',NULL,NULL,'"drvSubcodeEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('72','ECPIMETEXPZ0','4','D','10','1569',NULL,'Branch',NULL,NULL,'"drvBranchEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('73','ECPIMETEXPZ0','1','D','10','1573',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatusEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('74','ECPIMETEXPZ0','1','D','10','1574',NULL,'Members covered code',NULL,NULL,'"drvMemberscoveredcodeEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('75','ECPIMETEXPZ0','1','D','10','1575',NULL,'Enrollment status',NULL,NULL,'"drvEnrollmentstatusEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('76','ECPIMETEXPZ0','8','D','10','1576',NULL,'Benefit amount',NULL,NULL,'"drvBenefitamountEmpCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('77','ECPIMETEXPZ0','2','D','10','1584',NULL,'Voluntary Cancel Indicator',NULL,NULL,'"drvVoluntaryCancelIndicatorEmpCI"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('78','ECPIMETEXPZ0','1','D','10','1586',NULL,'Takeover Indicator',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('79','ECPIMETEXPZ0','19','D','10','1587',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('80','ECPIMETEXPZ0','2','D','10','1606',NULL,'Dependent Critical Illness Attained Age',NULL,NULL,'"drvDepCriticalIllAttainedAge"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('81','ECPIMETEXPZ0','8','D','10','1608',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('82','ECPIMETEXPZ0','8','D','10','1616',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('83','ECPIMETEXPZ0','7','D','10','1624',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumber"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('84','ECPIMETEXPZ0','4','D','10','1631',NULL,'Subcode',NULL,NULL,'"drvSubcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('85','ECPIMETEXPZ0','4','D','10','1635',NULL,'Branch',NULL,NULL,'"drvBranch"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('86','ECPIMETEXPZ0','1','D','10','1639',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('87','ECPIMETEXPZ0','1','D','10','1640',NULL,'Members covered code',NULL,NULL,'"drvMemberscoveredcode"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('88','ECPIMETEXPZ0','1','D','10','1641',NULL,'Enrollment status',NULL,NULL,'"drvEnrollmentstatus"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('89','ECPIMETEXPZ0','8','D','10','1642',NULL,'Benefit amount',NULL,NULL,'"drvBenefitamount"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('90','ECPIMETEXPZ0','2','D','10','1650',NULL,'Voluntary Cancel Indicator',NULL,NULL,'"drvVoluntaryCancelIndicator"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('81','ECPIMETEXPZ0','8','D','10','1608',NULL,'Coverage effective date',NULL,NULL,'"drvCoverageeffectivedateDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('82','ECPIMETEXPZ0','8','D','10','1616',NULL,'Coverage end date',NULL,NULL,'"drvCoverageenddateDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('83','ECPIMETEXPZ0','7','D','10','1624',NULL,'Report/group number',NULL,NULL,'"drvReportgroupnumberDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('84','ECPIMETEXPZ0','4','D','10','1631',NULL,'Subcode',NULL,NULL,'"drvSubcodeDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('85','ECPIMETEXPZ0','4','D','10','1635',NULL,'Branch',NULL,NULL,'"drvBranchDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('86','ECPIMETEXPZ0','1','D','10','1639',NULL,'Coverage Status',NULL,NULL,'"drvCoverageStatusDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('87','ECPIMETEXPZ0','1','D','10','1640',NULL,'Members covered code',NULL,NULL,'"drvMemberscoveredcodeDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('88','ECPIMETEXPZ0','1','D','10','1641',NULL,'Enrollment status',NULL,NULL,'"drvEnrollmentstatusDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('89','ECPIMETEXPZ0','8','D','10','1642',NULL,'Benefit amount',NULL,NULL,'"drvBenefitamountDepCI"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('90','ECPIMETEXPZ0','2','D','10','1650',NULL,'Voluntary Cancel Indicator',NULL,NULL,'"drvVoluntaryCancelIndicatorDepCI"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('91','ECPIMETEXPZ0','1','D','10','1652',NULL,'Takeover Indicator',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('92','ECPIMETEXPZ0','19','D','10','1653',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECPIMETEXPZ0','1','T','90','1',NULL,'Record Type',NULL,NULL,'"Z"','(''DA''=''F'')');
@@ -242,18 +249,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECPIMETEXP_20221213.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECPIMETEXP_20230113.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202212139','EMPEXPORT','OEACTIVE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202212139','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202212131',NULL,'','','202212131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202212139','EMPEXPORT','OEPASSIVE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202212139','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202212131',NULL,'','','202212131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202212139','EMPEXPORT','ONDEM_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202212139','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202212131',NULL,'','','202212131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202212139','EMPEXPORT','SCH_ECPIME',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202212139','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202212131',NULL,'','','202212131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202212139','EMPEXPORT','TEST_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202212139','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202212131',NULL,'','','202212131',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301099','EMPEXPORT','OEACTIVE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301099','EMPEXPORT','OEPASSIVE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','ONDEM_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','SCH_ECPIME',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,NULL,'202301099','EMPEXPORT','TEST_XOE',NULL,'ECPIMETEXP',NULL,NULL,NULL,'202301099','Dec 13 2022  6:41AM','Dec 13 2022  6:41AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -265,11 +272,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','SubSort','C','drvSubsort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECPIMETEXP','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -285,12 +293,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECPIMETEXP','T90','dbo.U_ECPIMETEXP_Trailer',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -371,6 +379,7 @@ CREATE TABLE [dbo].[U_ECPIMETEXP_Audit] (
     [audNewlyEnroll] varchar(1) NOT NULL,
     [audReEnroll] varchar(1) NOT NULL,
     [audTermPlan] varchar(1) NOT NULL,
+    [audTerminated] varchar(1) NOT NULL,
     [audReHire] varchar(1) NOT NULL,
     [audSalaryChange] varchar(1) NOT NULL,
     [audBenAmt] nvarchar(2000) NULL,
@@ -398,6 +407,84 @@ CREATE TABLE [dbo].[U_ECPIMETEXP_DedList] (
 );
 
 -----------
+-- Create table U_ECPIMETEXP_drvTbl
+-----------
+
+IF OBJECT_ID('U_ECPIMETEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_ECPIMETEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] varchar(1) NOT NULL,
+    [drvSubsort] varchar(14) NULL,
+    [drvTransactionCode] varchar(1) NOT NULL,
+    [drvCustomerNumber] varchar(7) NULL,
+    [drvEmployeeSSN] varchar(24) NULL,
+    [drvMemberSSN] varchar(24) NULL,
+    [drvPersonelID] varchar(1) NOT NULL,
+    [drvLastname] varchar(131) NULL,
+    [drvFirstname] varchar(100) NULL,
+    [drvMiddleInitial] varchar(1) NULL,
+    [drvBirthdate] varchar(8000) NULL,
+    [drvMaritalstatus] varchar(1) NULL,
+    [drvGender] char(1) NULL,
+    [drvRelationship] varchar(2) NOT NULL,
+    [drvDateofhire] varchar(8000) NULL,
+    [drvStreetaddressI] varchar(255) NULL,
+    [drvStreetaddress2] varchar(255) NULL,
+    [drvCity] varchar(255) NULL,
+    [drvState] varchar(255) NULL,
+    [drvZipcode] varchar(50) NULL,
+    [drvPhoneNumber] varchar(50) NULL,
+    [drvEmailAddress] varchar(50) NULL,
+    [drvEmployeeworkstatuscode] varchar(1) NULL,
+    [drvEmpworkstatuscodeeffdate] varchar(8000) NULL,
+    [drvEmployeesmokerstatus] varchar(1) NOT NULL,
+    [drvSpousesmokerstatus] varchar(1) NOT NULL,
+    [drvDentalCoverage] varchar(1) NULL,
+    [drvCoverageeffectivedateDen] varchar(8000) NULL,
+    [drvCoverageenddateDen] varchar(8000) NULL,
+    [drvReportgroupnumberDen] varchar(6) NULL,
+    [drvSubcodeDen] varchar(4) NULL,
+    [drvBranchDen] varchar(4) NULL,
+    [drvCoverageStatusDen] varchar(1) NULL,
+    [drvMembersCoveredCodeDen] varchar(1) NULL,
+    [drvAccidentInsurance] varchar(2) NULL,
+    [drvCoverageeffectivedateAcc] varchar(8000) NULL,
+    [drvCoverageenddateAcc] varchar(8000) NULL,
+    [drvReportgroupnumberAcc] varchar(2) NULL,
+    [drvSubcodeAcc] varchar(2) NULL,
+    [drvBranchAcc] varchar(2) NULL,
+    [drvCoverageStatusAcc] varchar(1) NULL,
+    [drvMemberscoveredcodeAcc] varchar(1) NULL,
+    [drvEnrollmentstatusAcc] varchar(1) NULL,
+    [drvVoluntaryCancelIndicatorAcc] varchar(2) NULL,
+    [drvTakeoverIndicatorAcc] varchar(1) NOT NULL,
+    [drvEmpCriticalIllsAttainedAge] varchar(2) NULL,
+    [drvCoverageeffectivedateEmpCI] varchar(8000) NULL,
+    [drvCoverageenddateEmpCI] varchar(8000) NULL,
+    [drvReportgroupnumberEmpCI] varchar(6) NULL,
+    [drvSubcodeEmpCI] varchar(4) NULL,
+    [drvBranchEmpCI] varchar(4) NULL,
+    [drvCoverageStatusEmpCI] varchar(1) NULL,
+    [drvMemberscoveredcodeEmpCI] varchar(1) NULL,
+    [drvEnrollmentstatusEmpCI] varchar(1) NULL,
+    [drvBenefitamountEmpCI] varchar(24) NULL,
+    [drvVoluntaryCancelIndicatorEmpCI] varchar(2) NULL,
+    [drvDepCriticalIllAttainedAge] varchar(2) NULL,
+    [drvCoverageeffectivedateDepCI] varchar(8000) NULL,
+    [drvCoverageenddateDepCI] varchar(8000) NULL,
+    [drvReportgroupnumberDepCI] varchar(7) NULL,
+    [drvSubcodeDepCI] varchar(4) NULL,
+    [drvBranchDepCI] varchar(4) NULL,
+    [drvCoverageStatusDepCI] varchar(1) NULL,
+    [drvMemberscoveredcodeDepCI] varchar(1) NULL,
+    [drvEnrollmentstatusDepCI] varchar(1) NULL,
+    [drvBenefitamountDepCI] varchar(24) NULL,
+    [drvVoluntaryCancelIndicatorDepCI] varchar(2) NULL
+);
+
+-----------
 -- Create table U_ECPIMETEXP_EEList
 -----------
 
@@ -419,6 +506,26 @@ CREATE TABLE [dbo].[U_ECPIMETEXP_File] (
     [SubSort2] varchar(100) NULL,
     [SubSort3] varchar(100) NULL,
     [Data] char(2000) NULL
+);
+
+-----------
+-- Create table U_ECPIMETEXP_Header
+-----------
+
+IF OBJECT_ID('U_ECPIMETEXP_Header') IS NULL
+CREATE TABLE [dbo].[U_ECPIMETEXP_Header] (
+    [drvEntityName] varchar(24) NOT NULL,
+    [drvDateFileCreated] varchar(8000) NULL,
+    [drvChangesonlyInd] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_ECPIMETEXP_Trailer
+-----------
+
+IF OBJECT_ID('U_ECPIMETEXP_Trailer') IS NULL
+CREATE TABLE [dbo].[U_ECPIMETEXP_Trailer] (
+    [drvTotalRecordCount] int NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECPIMETEXP]
@@ -546,6 +653,7 @@ BEGIN
 
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
 
    --==========================================
     -- Audit Section
@@ -655,6 +763,7 @@ BEGIN
                             WHEN audFieldName IN ('EedBdmBenStopDate','DbnBdmBenStopDate') AND ISNULL(audNewValue,'') <> '' THEN 'Y'
                             ELSE 'N'
                        END
+        ,audTerminated = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' AND ISNULL(audOldValue,'') = 'A' THEN 'Y' ELSE 'N' END
         ,audReHire = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Y' ELSE 'N' END
         ,audSalaryChange = CASE WHEN audTableName = 'EmpComp' AND audFieldName = 'EecAnnSalary' AND ISNULL(audOldValue,'') <> ISNULL(audNewValue,'') THEN 'Y' ELSE 'N' END
         ,audBenAmt = CASE WHEN audTableName = 'EmpDed' AND audFieldName = 'EedBenAmount' AND ISNULL(audOldValue,'') <> ISNULL(audNewValue,'') THEN audOldValue ELSE audNewValue END
@@ -692,7 +801,8 @@ BEGIN
         OR audNameChange = 'Y'
         OR audDemoChange = 'Y'
         OR audNewlyEnroll = 'Y'
-        OR audTermPlan = 'Y')
+        OR audTermPlan = 'Y'
+        or audTerminated = 'Y')
         );
     END;
 
@@ -704,7 +814,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ECPIMETEXP_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ECPIMETEXP_drvTbl;
-    SELECT DISTINCT
+   SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -715,16 +825,25 @@ BEGIN
                                  WHEN 'EMP' THEN 'E'
                                  ELSE 'D'
                              END
-        ,drvCustomerNumber = CASE WHEN BdmDedCode in ('DPPOL','DPPOH') THEN '0246188'
-                                  WHEN BdmDedCode in ('MACCL','MACCH','CIEE1','CIEE2','CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN '9246188'
+        ,drvCustomerNumber = CASE WHEN DEN_DedCode IS NOT NULL THEN '0246188'
+                                  WHEN SELECT_DedCode IS NOT NULL THEN '9246188'
                                 END
-        ,drvEmployeeSSN = eepSSN
-        ,drvMemberSSN = CASE WHEN BdmRecType = 'DEP' THEN Conssn ELSE EepSSN END
+        ,drvEmployeeSSN = CASE WHEN (left(eepSSN, 3) IN ('888', '999') or eepSSN ='111111111') THEN '00000000000' ELSE dbo.dsi_fnpadzero(eepSSN,11,0) END
+        ,drvMemberSSN = CASE WHEN BdmRecType = 'EMP' THEN CASE WHEN  (left(eepSSN, 3) IN ('888', '999') or eepSSN ='111111111') THEN '00000000000' ELSE dbo.dsi_fnpadzero(eepSSN,11,0) END
+                            ELSE CASE
+                                WHEN BdmRecType = 'DEP' THEN CASE WHEN (left(conSSN, 3) IN ('888', '999') or conSSN ='111111111') THEN '0000000000' ELSE dbo.dsi_fnpadzero(CONSSN,11,0) END
+                              END
+                              END
         ,drvPersonelID = ''
-        ,drvLastname = CASE WHEN BdmRecType = 'EMP' THEN EepNameLast + ' ' +  EepNameSuffix ELSE ConNameLast + ' ' +  ConNameSuffix END
+    
+        ,drvLastname = CASE WHEN BdmRecType = 'EMP' THEN CASE WHEN Ltrim(Rtrim(EepNameSuffix)) NOT IN ( 'Z') THEN EepNameLast + ' ' +  EepNameSuffix    ELSE EepNameLast END
+                            ELSE 
+                          CASE WHEN BdmRecType = 'DEP' THEN CASE WHEN Ltrim(Rtrim(ConNameSuffix)) <> 'Z' THEN ConNameLast + ' ' +  ConNameSuffix     ELSE ConNameLast END
+                            END
+                        END
         ,drvFirstname = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst ELSE ConNameFirst END
         ,drvMiddleInitial = CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1) ELSE LEFT(ConNameMiddle,1) END
-        ,drvBirthdate = CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END
+        ,drvBirthdate = REPLACE(CONVERT (CHAR(10),CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth ELSE ConDateOfBirth END, 101),'/','')
         ,drvMaritalstatus = CASE WHEN BdmRecType = 'EMP'  and ISNULL(EepMaritalStatus, '') NOT IN  ( 'Z' , '') THEN EepMaritalStatus
                                  WHEN BdmRecType = 'EMP'  and ISNULL(EepMaritalStatus, '') In ( 'Z' , '')  THEN 'U' 
                                  When ConRelationship = 'SPS' THEN 'M'ELSE 'S' END
@@ -736,7 +855,7 @@ BEGIN
                                 WHEN ConRelationship IN ('CHL','STC','DPC','DCH') THEN '02'
                                 ELSE '00'
                                 END
-        ,drvDateofhire = CASE WHEN BdmRecType = 'EMP' THEN EecDateOfLastHire END
+        ,drvDateofhire = CASE WHEN BdmRecType = 'EMP' THEN REPLACE(CONVERT (CHAR(10),EecDateOfLastHire, 101),'/','') END
         ,drvStreetaddressI = CASE WHEN BdmRecType = 'EMP' THEN EepAddressLine1 END
         ,drvStreetaddress2 = CASE WHEN BdmRecType = 'EMP' THEN EepAddressLine2 END
         ,drvCity = CASE WHEN BdmRecType = 'EMP' THEN EepAddressCity END
@@ -744,7 +863,7 @@ BEGIN
         ,drvZipcode = CASE WHEN BdmRecType = 'EMP' THEN  EepAddressZipCode END
         ,drvPhoneNumber = CASE WHEN BdmRecType = 'EMP' THEN EepPhoneHomeNumber END
         ,drvEmailAddress = CASE WHEN BdmRecType = 'EMP' THEN EepAddressEMail END
-        ,drvEmployeeworkstatuscode = CASE When BdmDedCode in ('DPPOL','DPPOH','MACCL','MACCH','CIEE1','CIEE2','CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN
+        ,drvEmployeeworkstatuscode = CASE When ALL_DedCode IS NOT NULL THEN
                                                  CASE WHEN Eecemplstatus = 'T' AND Eectermreason = '203' THEN 'D' 
                                                       WHEN Eecemplstatus = 'T' AND Eectermreason = '202' THEN 'R'
                                                       WHEN Eecemplstatus = 'T' and Eectermreason NOT IN ( '202', '203') THEN 'T'
@@ -752,67 +871,67 @@ BEGIN
                                                      ELSE 'A'
                                                     END
                                                 END
-        ,drvEmpworkstatuscodeeffdate = CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' THEN EecDateOfTermination Else EecEmplStatusStartDate END
-        ,drvEmployeesmokerstatus = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode  IN ('CIEE1'',CIEE2','CIEF1','CIEF2','CIEC1','CIEC2') AND  EepISSmoker = 'Y' THEN 'S' Else 'N' END
-        ,drvSpousesmokerstatus = CASE WHEN BdmRecType = 'DEP' AND ConRelationship IN ('DP','SPS') AND BdmDedCode  IN ('CIES1','CIES2') AND ConISSmoker = 'Y' THEN 'S' Else 'N' END
-        ,drvDentalCoverage = CASE  WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('DPPOL','DPPOH') THEN 'D' END
-        ,drvCoverageeffectivedate = CASE  WHEN  BdmDedCode IN ('DPPOL','DPPOH') THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 101),'/','') END
-        ,drvCoverageenddate = CASE  WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('DPPOL','DPPOH') THEN  REPLACE(CONVERT (CHAR(10),  BdmBenStopDate, 101),'/','') 
-                                    WHEN BdmRecType = 'DEP' AND BdmDedCode IN ('DPPOL','DPPOH') THEN REPLACE(CONVERT (CHAR(10),  BdmBenStopDate, 101),'/','') 
+        ,drvEmpworkstatuscodeeffdate = REPLACE(CONVERT (CHAR(10), CASE WHEN BdmRecType = 'EMP' AND EecEmplStatus = 'T' THEN EecDateOfTermination Else EecEmplStatusStartDate END, 101),'/','')
+        ,drvEmployeesmokerstatus = CASE WHEN BdmRecType = 'EMP' AND FAMILL_DedCode  IS NOT NULL AND  EepISSmoker = 'Y' THEN 'S' Else 'N' END
+        ,drvSpousesmokerstatus = CASE WHEN BdmRecType = 'DEP' AND ConRelationship IN ('DP','SPS') AND EEILL_DedCode IS NOT NULL AND ConISSmoker = 'Y' THEN 'S' Else 'N' END
+        ,drvDentalCoverage = CASE  WHEN  DEN_DedCode IS NOT NULL THEN 'D' END
+        ,drvCoverageeffectivedateDen = CASE  WHEN  DEN_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', DEN_BenStartDate, @FileMinCovDate), 101),'/','') END
+        ,drvCoverageenddateDen = CASE  WHEN BdmRecType = 'EMP' AND DEN_DedCode IS NOT NULL THEN  REPLACE(CONVERT (CHAR(10),  DEN_BenStopDate, 101),'/','') 
+                                    WHEN BdmRecType = 'DEP' AND DEN_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10),  DEN_BenStopDate, 101),'/','') 
                                     END
-        ,drvReportgroupnumber = CASE  WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN  '318620' END
-        ,drvSubcode = CASE  WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN  '0001' END
-        ,drvBranch = CASE WHEN BdmDedCode IN ('DPPOH') THEN '0001'
-                          WHEN BdmDedCode IN ('DPPO') THEN '0002'
+        ,drvReportgroupnumberDen = CASE  WHEN DEN_DedCode IS NOT NULL THEN  '318620' END
+        ,drvSubcodeDen = CASE  WHEN DEN_DedCode IS NOT NULL THEN  '0001' END
+        ,drvBranchDen = CASE WHEN DEN_DedCode IN  ('DPPOH') THEN '0001'
+                          WHEN DEN_DedCode IN  ('DPPO') THEN '0002'
                          END
-        ,drvCoverageStatus = CASE  WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN 'A' END
-        ,drvMembersCoveredCode = CASE When BdmDedCode IN  ('DPPOL','DPPOH') THEN 
-                                    Case When BdmBenOption = 'EEONLY' THEN '1'
-                                         When BdmBenOption = 'EECHD'  THEN '2'
-                                         When BdmBenOption = 'EESP'   THEN '3'
-                                         When BdmBenOption = 'EEFAM'  THEN '4'
+        ,drvCoverageStatusDen = CASE  WHEN DEN_DedCode IS NOT NULL THEN 'A' END
+        ,drvMembersCoveredCodeDen = CASE When DEN_DedCode IS NOT NULL THEN 
+                                    Case When DEN_BdmBenOption = 'EEONLY' THEN '1'
+                                         When DEN_BdmBenOption = 'EECHD'  THEN '2'
+                                         When DEN_BdmBenOption = 'EESP'   THEN '3'
+                                         When DEN_BdmBenOption = 'EEFAM'  THEN '4'
                                         END
                                     END
-        ,drvAccidentInsurance = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 'AH' END
-        ,drvCoverageeffectivedate = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 101),'/','') END
-        ,drvCoverageenddate = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN REPLACE(CONVERT (CHAR(10),  BdmBenStopDate, 101),'/','') END
-        ,drvReportgroupnumber = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 'AH' END
-        ,drvSubcode = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 'AH' END
-        ,drvBranch = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 'AH' END
-        ,drvCoverageStatus = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 'A' END
-        ,drvMemberscoveredcode = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 
-                                    Case When BdmBenOption = 'EEONLY' THEN '1'
-                                         When BdmBenOption = 'EECHD'  THEN '2'
-                                         When BdmBenOption = 'EESP'   THEN '3'
-                                         When BdmBenOption = 'EEFAM'  THEN '4'
+        ,drvAccidentInsurance = CASE WHEN  Acc_DedCode IS NOT NULL THEN 'AH' END
+        ,drvCoverageeffectivedateAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', Acc_BenStopDate, @FileMinCovDate), 101),'/','') END
+        ,drvCoverageenddateAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10),  Acc_BenStopDate, 101),'/','') END
+        ,drvReportgroupnumberAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN 'AH' END
+        ,drvSubcodeAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN 'AH' END
+        ,drvBranchAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN 'AH' END
+        ,drvCoverageStatusAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN 'A' END
+        ,drvMemberscoveredcodeAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN 
+                                    Case When Acc_BdmBenOption = 'EEONLY' THEN '1'
+                                         When Acc_BdmBenOption = 'EECHD'  THEN '2'
+                                         When Acc_BdmBenOption = 'EESP'   THEN '3'
+                                         When Acc_BdmBenOption = 'EEFAM'  THEN '4'
                                         END
                                     END
-        ,drvEnrollmentstatus = CASE WHEN  BdmDedCode IN ('MACCL','MACCH') THEN 'P' END
-        ,drvVoluntaryCancelIndicator = CASE WHEN BdmRecType = 'EMP' AND eecemplstatus = 'A' AND BdmDedCode IN ('MACCL','MACCH') AND Bdmbenstatus <> 'A' THEN 'CE' END
-        ,drvTakeoverIndicator =  ''
-        ,drvEmpCriticalIllsAttainedAge = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN 'GE' END
-        ,drvCoverageeffectivedate =  CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 101),'/','') END
-        ,drvCoverageenddate = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN REPLACE(CONVERT (CHAR(10),  BdmBenStopDate, 101),'/','')  END
-        ,drvReportgroupnumber = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN '246475' END
-        ,drvSubcode = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN '0001' END
-        ,drvBranch = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN '0001' END
-        ,drvCoverageStatus = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN 'A' END
-        ,drvMemberscoveredcode = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') AND BdmBenOption = 'EEONLY' Then '1' END
-        ,drvEnrollmentstatus = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN 'P' END
-        ,drvBenefitamount = CASE WHEN BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') THEN dbo.dsi_fnpadzero((ISNULL(REPLACE( BdmEEAmt,'.', ''),0)),9,0) END
+        ,drvEnrollmentstatusAcc = CASE WHEN  Acc_DedCode IS NOT NULL THEN 'P' END
+        ,drvVoluntaryCancelIndicatorAcc = CASE WHEN BdmRecType = 'EMP' AND eecemplstatus = 'A' AND Acc_DedCode IS NOT NULL AND Acc_Bdmbenstatus <> 'A' THEN 'CE' END
+        ,drvTakeoverIndicatorAcc =  ''
+        ,drvEmpCriticalIllsAttainedAge = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN 'GE' END
+        ,drvCoverageeffectivedateEmpCI =  CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', EEILL_BenStartDate, @FileMinCovDate), 101),'/','') END
+        ,drvCoverageenddateEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10),  EEILL_BenStopDate, 101),'/','')  END
+        ,drvReportgroupnumberEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN '246475' END
+        ,drvSubcodeEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL  THEN '0001' END
+        ,drvBranchEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN '0001' END
+        ,drvCoverageStatusEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN 'A' END
+        ,drvMemberscoveredcodeEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL AND EEILL_BdmBenOption = 'EEONLY' Then '1' END
+        ,drvEnrollmentstatusEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN 'P' END
+        ,drvBenefitamountEmpCI = CASE WHEN BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL THEN dbo.dsi_fnpadzero((ISNULL(REPLACE( BcaBenAmtCalcCI,'.', ''),0)),9,0) END
                                 
-        ,drvVoluntaryCancelIndicator = CASE WHEN eecemplstatus = 'A'  AND BdmRecType = 'EMP' AND BdmDedCode IN ('CIEE1','CIEE2') AND Bdmbenstatus <> 'A' THEN 'CE' END
-        ,drvDepCriticalIllAttainedAge = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN 'GD' END
-        ,drvCoverageeffectivedate = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX', BdmBenStartDate, @FileMinCovDate), 101),'/','') END
-        ,drvCoverageenddate = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN REPLACE(CONVERT (CHAR(10),  BdmBenStopDate, 101),'/','')  END
-        ,drvReportgroupnumber = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN '0246475' END
-        ,drvSubcode = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN '0001' END
-        ,drvBranch = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN '0001' END
-        ,drvCoverageStatus = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN 'A' END
-        ,drvMemberscoveredcode = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') AND BdmBenOption = 'EEFAM' THEN '4' END
-        ,drvEnrollmentstatus = CASE WHEN BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')THEN 'P' END
-        ,drvBenefitamount = CASE WHEN BdmRecType = 'EMP' AND  BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN dbo.dsi_fnpadzero((ISNULL(REPLACE( BdmEEAmt,'.', ''),0)),9,0) END
-        ,drvVoluntaryCancelIndicator = CASE WHEN eecemplstatus = 'A'  AND BdmDedCode  IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')AND Bdmbenstatus <> 'A' THEN 'CE' END
+        ,drvVoluntaryCancelIndicatorEmpCI = CASE WHEN eecemplstatus = 'A'  AND BdmRecType = 'EMP' AND EEILL_DedCode IS NOT NULL AND EEILL_Bdmbenstatus <> 'A' THEN 'CE' END
+        ,drvDepCriticalIllAttainedAge = CASE WHEN FAMILL_DedCode IS NOT NULL  THEN 'GD' END
+        ,drvCoverageeffectivedateDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10), dbo.dsi_fnGetMinMaxDates('MAX',  FAMILL_BenStartDate, @FileMinCovDate), 101),'/','') END
+        ,drvCoverageenddateDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN REPLACE(CONVERT (CHAR(10),  FAMILL_BenStopDate, 101),'/','')  END
+        ,drvReportgroupnumberDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN '0246475' END
+        ,drvSubcodeDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN '0001' END
+        ,drvBranchDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN '0001' END
+        ,drvCoverageStatusDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN 'A' END
+        ,drvMemberscoveredcodeDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL  AND FAMILL_BdmBenOption = 'EEFAM' THEN '4' END
+        ,drvEnrollmentstatusDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN 'P' END
+        ,drvBenefitamountDepCI = CASE WHEN FAMILL_DedCode IS NOT NULL THEN dbo.dsi_fnpadzero((ISNULL(REPLACE( BcaBenAmtCalcCD,'.', ''),0)),9,0) END
+        ,drvVoluntaryCancelIndicatorDepCI = CASE WHEN eecemplstatus = 'A'  AND FAMILL_DedCode IS NOT NULL AND FAMILL_BdmBenStatus <> 'A' THEN 'CE' END
     INTO dbo.U_ECPIMETEXP_drvTbl
     FROM dbo.U_ECPIMETEXP_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -820,12 +939,73 @@ BEGIN
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-    JOIN dbo.U_dsi_BDM_ECPIMETEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+    JOIN (
+            SELECT Distinct Bdmeeid AS BdmEEID, BdmCOID AS BdmCOID, BdmRecType, BdmDepRecId
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2')  THEN BdmDedCode END) AS EEILL_DedCode
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH')  THEN BdmDedCode END) AS DEN_DedCode
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH')  THEN BdmDedCode END) AS Acc_DedCode
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')   THEN BdmDedCode END) AS FAMILL_DedCode
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH','MACCL','MACCH','CIEE1','CIEE2','CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN BdmDedCode END) AS ALL_DedCode
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH','CIEE1','CIEE2','CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN BdmDedCode END) AS SELECT_DedCode
+
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2')  THEN BdmBenStartDate END) AS EEILL_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH')  THEN BdmBenStartDate END) AS DEN_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH')  THEN BdmBenStartDate END) AS Acc_BenStartDate
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')  THEN BdmBenStartDate END) AS FAMILL_BenStartDate
+
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2') THEN BdmBenStopDate END) AS EEILL_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN BdmBenStopDate END) AS DEN_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH') THEN BdmBenStopDate END) AS Acc_BenStopDate
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')   THEN BdmBenStopDate END) AS FAMILL_BenStopDate
+                
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2') THEN Left(Replace((DedBenAmtRateOrPct * .10),'.', ''),5) END) AS EEILL_BdmEECalcRateOrPct
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN Left(Replace((DedBenAmtRateOrPct  * .10),'.', ''),5) END) AS DEN_BdmEECalcRateOrPct
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH') THEN Left(Replace((DedBenAmtRateOrPct  * .10),'.', ''),5) END) AS Acc_BdmEECalcRateOrPct
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')  THEN Left(Replace((d.DedEECalcRateOrPct ),'.', ''),5) END) AS FAMILL_BdmEECalcRateOrPct
+
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2') THEN BdmBenStatus END) AS EEILL_BdmBenStatus
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN BdmBenStatus END) AS DEN_BdmBenStatus
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH') THEN BdmBenStatus END) AS Acc_BdmBenStatus
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN BdmBenStatus END) AS FAMILL_BdmBenStatus
+
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2') THEN BdmBenOption END) AS EEILL_BdmBenOption
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH') THEN BdmBenOption END) AS DEN_BdmBenOption
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH') THEN BdmBenOption END) AS Acc_BdmBenOption
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2') THEN BdmBenOption END) AS FAMILL_BdmBenOption
+
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEE1','CIEE2')THEN BdmEEAmt  END)  AS EEILL_BdmBenAmt
+                ,MAX(CASE WHEN BdmDedCode IN ('DPPOL','DPPOH')   THEN BdmEEAmt END) AS DEN_BdmBenAmt
+                ,MAX(CASE WHEN BdmDedCode IN ('MACCL','MACCH')  THEN BdmEEAmt END) AS Acc_BdmBenAmt
+               
+                ,MAX(CASE WHEN BdmDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')  THEN BdmEEAmt END) AS FAMILL_EEAmt    
+         FROM dbo.U_dsi_BDM_ECPIMETEXP WITH (NOLOCK)
+         JOIN dbo.DedCode d WITH (NOLOCK)
+             ON BdmDedCode = d.DedDedCode
+            Where  BdmBenStatus = 'A'
+            GROUP BY BdmEEID, BdmCOID, BdmRecType, BdmDepRecId
+            ) BDM
+         ON BdmEEID = XEEID
+         and BdmCOID = XCOID
+    --JOIN dbo.U_dsi_BDM_ECPIMETEXP WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+   LEFT JOIN (SELECT BcaEEID, BcaCOID, SUM(BcaBenAmtCalc) AS BcaBenAmtCalcCI
+                FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH(NOLOCK)
+                WHERE BcaDedCode IN ('CIEE1','CIEE2')
+                and BcaFormatCode ='ECPIMETEXP'
+                GROUP BY BcaEEID, BcaCOID) CI ON CI.BcaEEID = xEEID AND CI.BcaCOID = xCOID
+   LEFT JOIN (SELECT BcaEEID, BcaCOID, SUM(BcaBenAmtCalc) AS BcaBenAmtCalcCD
+                    FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH(NOLOCK)
+                    WHERE BcaDedCode IN ('CIEF1','CIEF2','CIES1','CIES2','CIEC1','CIEC2')
+                    and BcaFormatCode ='ECPIMETEXP'
+                    GROUP BY BcaEEID, BcaCOID) CD ON CD.BcaEEID = xEEID AND CD.BcaCOID = xCOID
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON xEEID = ConEEID
-        AND BdmDepRecId = ConSystemId
+      AND BdmDepRecId = ConSystemId
+    LEFT JOIN dbo.U_ECPIMETEXP_Audit  WITH (NOLOCK)
+        ON AudEEID = XEEID
+        and AudCOID = XCOID
+    Where EecEEType <> 'TES' and (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and audTerminated = 'Y'AND AudDateTime BETWEEN  @StartDate  AND @EndDate  ))
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -833,8 +1013,8 @@ BEGIN
     IF OBJECT_ID('U_ECPIMETEXP_Header','U') IS NOT NULL
         DROP TABLE dbo.U_ECPIMETEXP_Header;
     SELECT DISTINCT
-         drvEntityName = ''
-        ,drvDateFileCreated = @RunDate
+         drvEntityName = 'Novateur Education, Inc.'
+        ,drvDateFileCreated = REPLACE(CONVERT (CHAR(10),@RunDate, 101),'/','')
         ,drvChangesonlyInd = CASE WHEN (@Exportcode LIKE ('%Changes%')) THEN 'Y' ELSE 'N' END
     INTO dbo.U_ECPIMETEXP_Header
     ;
@@ -876,10 +1056,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202212061'
-       ,expStartPerControl     = '202212061'
-       ,expLastEndPerControl   = '202212139'
-       ,expEndPerControl       = '202212139'
+    SET expLastStartPerControl = '202301011'
+       ,expStartPerControl     = '202301011'
+       ,expLastEndPerControl   = '202301099'
+       ,expEndPerControl       = '202301099'
 WHERE expFormatCode = 'ECPIMETEXP';
 
 **********************************************************************************/
