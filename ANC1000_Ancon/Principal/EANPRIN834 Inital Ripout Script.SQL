@@ -5,7 +5,7 @@ EANPRIN834: Principal Benefit Export
 FormatCode:     EANPRIN834
 Project:        Principal Benefit Export
 Client ID:      ANC1000
-Date/time:      2023-01-24 09:57:31.307
+Date/time:      2023-01-12 08:27:33.107
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -378,7 +378,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230124.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230112.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -389,7 +389,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202211049','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202211049','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal Benefit Export','202211049','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EANPRIN834',NULL,NULL,NULL,'202211049','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202211041',NULL,'','','202211041',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202301199','EMPEXPORT','TEST_XOE','Dec 20 2022 12:00AM','EANPRIN834',NULL,NULL,NULL,'202301199','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202301011','14937','','','202301011',dbo.fn_GetTimedKey(),NULL,'us3cPeANC1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','49VMT,49VPF,49VSW,BQLK7',NULL,NULL,NULL,'Test File Only','202212061','EMPEXPORT','TEST_XOE','Dec 20 2022 12:00AM','EANPRIN834',NULL,NULL,NULL,'202212061','Dec  6 2022 12:00AM','Dec 30 1899 12:00AM','202211291','14937','','','202211291',dbo.fn_GetTimedKey(),NULL,'us3cPeANC1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -670,8 +670,8 @@ CREATE TABLE [dbo].[U_EANPRIN834_DrvTbl] (
 
 IF OBJECT_ID('U_EANPRIN834_DrvTbl_2300') IS NULL
 CREATE TABLE [dbo].[U_EANPRIN834_DrvTbl_2300] (
-    [drvHD00_HealthCoverage] varchar(2) NULL,
-    [drvHD01_MaintTypeCode] varchar(3) NULL,
+    [drvHD00_HealthCoverage] varchar(2) NOT NULL,
+    [drvHD01_MaintTypeCode] varchar(3) NOT NULL,
     [drvHD02_MaintReasonCode] varchar(1) NOT NULL,
     [drvHD03_InsuranceLineCode] varchar(3) NOT NULL,
     [drvHD04_PlanCoverageDesc] varchar(1) NULL,
@@ -1013,38 +1013,8 @@ BEGIN
          INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'ACTIVE');
     END;
 
+    EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
 
-    INSERT INTO dbo.U_dsi_bdm_DepDeductions (dbnformatcode, dbncoid, dbneeid, dbndeprecid, dedeebenamt, dbnbenoption, dbnbenstatus, dbnbenstartdate, dbnbenstopdate, dbndedcode, dbnvalidforexport, deddedcode, deddedtype)
-      (SELECT eedformatcode
-              , ee.eedcoid
-              , ee.eedeeid
-              , consystemid
-              , ee.eedbenamt
-              , ee.eedbenoption
-              , ee.eedbenstatus
-              , ee.eedbenstartdate
-              , ee.eedbenstopdate
-              , ee.eeddedcode
-              , ee.eedvalidforexport
-              , ee.eeddedcode
-              , ee.deddedtype
-         FROM dbo.empded ed WITH (nolock)
-         JOIN dbo.emppers WITH (nolock) ON eepeeid = ed.eedeeid
-         JOIN dbo.u_dsi_bdm_EmpDeductions ee WITH (nolock) 
-            ON ee.eedeeid = ed.eedeeid 
-            AND ee.eedcoid = ed.eedcoid
-            AND eedFormatCode = @FormatCode AND eedValidForExport = 'Y'
-            AND ee.eeddedcode = ed.eeddedcode
-         JOIN dbo.contacts WITH (nolock) 
-            ON eedDepRecID = consystemid
-        WHERE ee.eeddedcode IN ('RELI3')
-        --AND NOT Exists (SELECT 1 FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode = ee.eeddedcode)
-        AND  (ee.eedeeid  not in  (SELECT dbneeid FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode In ('ADEN2','AVIS')))
-        OR  consystemid  IN   (SELECT DbnDepRecID FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' and dbndedcode In ('ADEN2','AVIS') and dbnBenstopdate is not null 
-                and dbnRelationship = 'SPS'))
-        ;
-    --EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
-    EXEC dbo.dsi_bdm_sp_BuildConsolidatedTable 'EANPRIN834', 'Standard';
     --=========================================
     -- Update BdmChangeReason For Dependents
     --=========================================
@@ -1242,20 +1212,20 @@ BEGIN
                                       --END
 
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'DTP' END
-        ,drvDTP01_DateTimeQualifier1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE '300' END
-        ,drvDTP02_DateTimeFormatQual1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'D8' END
-        ,drvDTP03_DateTimePeriod1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE BenStartDate END
+        ,drvDTP00_DateTime1 =  'DTP' 
+        ,drvDTP01_DateTimeQualifier1 = '300'
+        ,drvDTP02_DateTimeFormatQual1 = 'D8'
+        ,drvDTP03_DateTimePeriod1 = BenStartDate
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'DTP' END
-        ,drvDTP01_DateTimeQualifier2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE '303' END
-        ,drvDTP02_DateTimeFormatQual2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'D8' END
-        ,drvDTP03_DateTimePeriod2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END
+        ,drvDTP00_DateTime2 = 'DTP'
+        ,drvDTP01_DateTimeQualifier2 = '303'
+        ,drvDTP02_DateTimeFormatQual2 = 'D8'
+        ,drvDTP03_DateTimePeriod2 = dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'DTP' END
-        ,drvDTP01_DateTimeQualifier3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE '336' END
-        ,drvDTP02_DateTimeFormatQual3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'D8' END
-        ,drvDTP03_DateTimePeriod3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE EecDateOfLastHire END
+        ,drvDTP00_DateTime3 = 'DTP'
+        ,drvDTP01_DateTimeQualifier3 = '336'
+        ,drvDTP02_DateTimeFormatQual3 = 'D8'
+        ,drvDTP03_DateTimePeriod3 = EecDateOfLastHire
        --If drvDTP00_DateTime4 is Populated, then send DTP Segment
         ,drvDTP00_DateTime4 = CASE WHEN EecEmplStatus = 'T'  THEN'DTP' END
         ,drvDTP01_DateTimeQualifier4 = CASE WHEN EecEmplStatus = 'T'  THEN '337' END
@@ -1318,8 +1288,6 @@ BEGIN
                                 END
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN
                                                 CASE EepMaritalStatus WHEN 'M' THEN 'M' ELSE 'I' END
-                                            ELSE 
-                                               CASE WHEN BdmRecType = 'DEP' and conrelationship = 'SPS' THEN 'M' END
                                        END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
         ,drvICM01_FrequencyCode = CASE WHEN ICM01 IS NOT NULL AND BdmRecType = 'EMP' THEN '7' END
@@ -1454,29 +1422,8 @@ BEGIN
       FROM( 
       SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
-        drvHD00_HealthCoverage =  CASE WHEN CASE WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('UNUM') THEN 'BLF'
-                                         -- WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('UNUM') THEN 'ADD'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI1') THEN 'EVL'
-                                         -- WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI1') THEN 'EVA'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI3') THEN 'SVL'
-                                        --  WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI3') THEN 'SVA'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI4') THEN 'CVL'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI5') THEN 'LTD'
-                                          WHEN bdmdedcode  IN ('ADEN2') THEN 'DEN'
-                                          WHEN bdmdedcode  IN ('AVIS') THEN 'VIS'
-                                           
-                                     END IS not null then 'HD' END
-        ,drvHD01_MaintTypeCode = CASE WHEN CASE WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('UNUM') THEN 'BLF'
-                                         -- WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('UNUM') THEN 'ADD'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI1') THEN 'EVL'
-                                         -- WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI1') THEN 'EVA'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI3') THEN 'SVL'
-                                        --  WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI3') THEN 'SVA'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI4') THEN 'CVL'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('RELI5') THEN 'LTD'
-                                          WHEN bdmdedcode  IN ('ADEN2') THEN 'DEN'
-                                          WHEN bdmdedcode  IN ('AVIS') THEN 'VIS'
-                                         END IS not null THEN  '030' END  --Audit or Compare
+        drvHD00_HealthCoverage = 'HD'
+        ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
         ,drvHD03_InsuranceLineCode = CASE WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('UNUM') THEN 'BLF'
                                          -- WHEN BdmRecType = 'EMP' AND  bdmdedcode  IN ('UNUM') THEN 'ADD'
@@ -1518,10 +1465,10 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
         ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
-        ,drvDTP00_DateTime_349 = CASE WHEN BdmStopDate IS NOT NULL THEN 'DTP' END
-        ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmStopDate IS NOT NULL THEN '349' END
-        ,drvDTP02_DateTimeFormatQual_349 = CASE WHEN BdmStopDate IS NOT NULL THEN 'D8' END
-        ,drvDTP03_DateTimePeriod_349 = DATEADD(d, 1 ,BdmStopDate )
+        ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
+        ,drvDTP02_DateTimeFormatQual_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'D8' END
+        ,drvDTP03_DateTimePeriod_349 = DATEADD(d, 1 ,BdmBenStopDate )
         -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
         ,drvDTP00_DateTime_303 = ''
         ,drvDTP01_DateTimeQualifier_303 = ''--'303'
@@ -1672,30 +1619,8 @@ Union
 
  SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
-        drvHD00_HealthCoverage = CASE WHEN CASE --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('UNUM') THEN 'BLF'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('UNUM') THEN 'ADD'
-                                          --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI1') THEN 'EVL'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI1') THEN 'EVA'
-                                         -- WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI3') THEN 'SVL'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI3') THEN 'SVA'
-                                          --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI4') THEN 'CVL'
-                                          --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI5') THEN 'LTD'
-                                          --WHEN BdmDedType IN ('ADEN2') THEN 'DEN'
-                                          --WHEN BdmDedType IN ('AVIS') THEN 'VIS'
-                                         
-                                     END is not null then 'HD' END
-        ,drvHD01_MaintTypeCode = CASE WHEN CASE --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('UNUM') THEN 'BLF'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('UNUM') THEN 'ADD'
-                                          --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI1') THEN 'EVL'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI1') THEN 'EVA'
-                                         -- WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI3') THEN 'SVL'
-                                          WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI3') THEN 'SVA'
-                                          --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI4') THEN 'CVL'
-                                          --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('RELI5') THEN 'LTD'
-                                          --WHEN BdmDedType IN ('ADEN2') THEN 'DEN'
-                                          --WHEN BdmDedType IN ('AVIS') THEN 'VIS'
-                                         
-                                     END is not null then '030' END --Audit or Compare
+        drvHD00_HealthCoverage = 'HD'
+        ,drvHD01_MaintTypeCode = '030' --Audit or Compare
         ,drvHD02_MaintReasonCode = ''
         ,drvHD03_InsuranceLineCode = CASE --WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('UNUM') THEN 'BLF'
                                           WHEN BdmRecType = 'EMP' AND  bdmdedcode IN ('UNUM') THEN 'ADD'
@@ -1733,10 +1658,10 @@ Union
         ,drvDTP02_DateTimeFormatQual_348 = 'D8'
         ,drvDTP03_DateTimePeriod_348 = dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, @FileMinCovDate) 
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
-        ,drvDTP00_DateTime_349 = CASE WHEN BdmStopDate IS NOT NULL THEN 'DTP' END
-        ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmStopDate IS NOT NULL THEN '349' END
-        ,drvDTP02_DateTimeFormatQual_349 = CASE WHEN BdmStopDate IS NOT NULL THEN 'D8' END
-        ,drvDTP03_DateTimePeriod_349 = DATEADD(d, 1 ,BdmStopDate )
+        ,drvDTP00_DateTime_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN '349' END
+        ,drvDTP02_DateTimeFormatQual_349 = CASE WHEN BdmBenStopDate IS NOT NULL THEN 'D8' END
+        ,drvDTP03_DateTimePeriod_349 = DATEADD(d, 1 ,BdmBenStopDate )
         -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
         ,drvDTP00_DateTime_303 = ''
         ,drvDTP01_DateTimeQualifier_303 = ''--'303'
@@ -1865,14 +1790,6 @@ UPDATE dbo.AscExp
        ,ExpLastEndPerControl   = '201810019'
        ,ExpEndPerControl       = '201810019'
 WHERE ExpFormatCode = 'EANPRIN834';
-
-
-UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '202301011'
-       ,ExpStartPerControl     = '202301011'
-       ,ExpLastEndPerControl   = '202301199'
-       ,ExpEndPerControl       = '202301199'
-WHERE ExpFormatCode = 'EANPRIN834' and expexportCode = 'TEST_XOE';
 
 **********************************************************************************/
 GO
