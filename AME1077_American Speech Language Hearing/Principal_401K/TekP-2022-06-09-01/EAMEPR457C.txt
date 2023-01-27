@@ -1,0 +1,697 @@
+/**********************************************************************************
+
+EAMEPR457C: Principal 457b Contribution
+
+FormatCode:     EAMEPR457C
+Project:        Principal 457b Contribution
+Client ID:      AME1077
+Date/time:      2022-12-21 09:03:13.410
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    EWP
+Server:         EW3WUP3DB03
+Database:       ULTIPRO_WPASLHA
+Web Filename:   AME1077_F3A0E_EEHISTORY_EAMEPR457C_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_SavePath') IS NOT NULL DROP TABLE dbo.U_EAMEPR457C_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EAMEPR457C'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'EAMEPR457C'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'EAMEPR457C'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EAMEPR457C')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EAMEPR457C'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EAMEPR457C'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EAMEPR457C'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EAMEPR457C'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EAMEPR457C'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EAMEPR457C'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EAMEPR457C'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EAMEPR457C'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EAMEPR457C'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwEAMEPR457C_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEAMEPR457C_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EAMEPR457C') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EAMEPR457C];
+GO
+IF OBJECT_ID('U_EAMEPR457C_Trailer_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_Trailer_drvTbl];
+GO
+IF OBJECT_ID('U_EAMEPR457C_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_PEarHist];
+GO
+IF OBJECT_ID('U_EAMEPR457C_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_PDedHist];
+GO
+IF OBJECT_ID('U_EAMEPR457C_Header_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_Header_drvTbl];
+GO
+IF OBJECT_ID('U_EAMEPR457C_File') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_File];
+GO
+IF OBJECT_ID('U_EAMEPR457C_EEList') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_EEList];
+GO
+IF OBJECT_ID('U_EAMEPR457C_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_drvTbl];
+GO
+IF OBJECT_ID('U_EAMEPR457C_DedList') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_DedList];
+GO
+IF OBJECT_ID('U_EAMEPR457C_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_AuditFields];
+GO
+IF OBJECT_ID('U_EAMEPR457C_Audit') IS NOT NULL DROP TABLE [dbo].[U_EAMEPR457C_Audit];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EAMEPR457C','Principal 457b Contribution','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EAMEPR457CZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMEPR457CZ0','50','H','01','1',NULL,'Pay Period End Date:',NULL,NULL,'"Pay Period End Date:"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMEPR457CZ0','50','H','01','2',NULL,'Pay Period End Date:',NULL,NULL,'"drvPayPeriod"','(''UD101''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMEPR457CZ0','50','D','05','1',NULL,'SSN',NULL,NULL,'"SSN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMEPR457CZ0','50','D','05','2',NULL,'Company Provided ID',NULL,NULL,'"Company Provided ID"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMEPR457CZ0','50','D','05','3',NULL,'Contract',NULL,NULL,'"Contract"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAMEPR457CZ0','50','D','05','4',NULL,'Last Name',NULL,NULL,'"Last Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EAMEPR457CZ0','50','D','05','5',NULL,'First Name',NULL,NULL,'"First Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EAMEPR457CZ0','50','D','05','6',NULL,'Middle Initial',NULL,NULL,'"Middle Initial"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EAMEPR457CZ0','50','D','05','7',NULL,'Employee Deferral Credits',NULL,NULL,'"Employee Deferral Credits"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EAMEPR457CZ0','50','D','05','8',NULL,'Employer Discretionary Credits',NULL,NULL,'"Employer Discretionary Credits"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMEPR457CZ0','50','D','10','1',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMEPR457CZ0','50','D','10','2',NULL,'Company Provided ID',NULL,NULL,'"drvEmpNo"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMEPR457CZ0','50','D','10','3',NULL,'Contract',NULL,NULL,'"drvContract"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EAMEPR457CZ0','50','D','10','4',NULL,'Last Name',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EAMEPR457CZ0','50','D','10','5',NULL,'First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EAMEPR457CZ0','50','D','10','6',NULL,'Middle Initial',NULL,NULL,'"drvMiddleInitial"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EAMEPR457CZ0','50','D','10','7',NULL,'Employee Deferral Credits',NULL,NULL,'"drvEmpDefCredits"','(''UNT2''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EAMEPR457CZ0','50','D','10','8',NULL,'Employer Discretionary Credits',NULL,NULL,'"drvEmpDisCredits"','(''UNT2''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAMEPR457CZ0','50','T','90','1',NULL,'Extra Commas',NULL,NULL,'"drvCommas"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAMEPR457CZ0','50','T','90','2',NULL,'Employee Deferral Credits',NULL,NULL,'"drvTotalEmpDefCredits"','(''UNT2''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAMEPR457CZ0','50','T','90','3',NULL,'Employer Discretionary Credits',NULL,NULL,'"drvTotalEmpDisCredits"','(''UNT2''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'EAMEPR457C_20221221.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202211289','EMPEXPORT','OEACTIVE',NULL,'EAMEPR457C',NULL,NULL,NULL,'202211289','Nov 28 2022  2:39PM','Nov 28 2022  2:39PM','202101211',NULL,'','','202101211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202211289','EMPEXPORT','OEPASSIVE',NULL,'EAMEPR457C',NULL,NULL,NULL,'202211289','Nov 28 2022  2:39PM','Nov 28 2022  2:39PM','202101211',NULL,'','','202101211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal 457b Contribution','202211289','EMPEXPORT','ONDEM_XOE',NULL,'EAMEPR457C',NULL,NULL,NULL,'202211289','Nov 28 2022  2:39PM','Nov 28 2022  2:39PM','202101211',NULL,'','','202101211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Principal 457b Contribut-Sched','202211289','EMPEXPORT','SCH_EAMEPR',NULL,'EAMEPR457C',NULL,NULL,NULL,'202211289','Nov 28 2022  2:39PM','Nov 28 2022  2:39PM','202101211',NULL,'','','202101211',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Principal 457b Contribut-Test','202212161','EMPEXPORT','TEST_XOE','Dec 16 2022  9:08PM','EAMEPR457C',NULL,NULL,NULL,'202212161','Dec 16 2022 12:00AM','Dec  9 2022 12:00AM','202212161','9','','','202212161',dbo.fn_GetTimedKey(),NULL,'us3cPeAME1077',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMEPR457C','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMEPR457C','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMEPR457C','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMEPR457C','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAMEPR457C','UseFileName','V','Y');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMEPR457C','H01','dbo.U_EAMEPR457C_Header_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMEPR457C','D05','None',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMEPR457C','D10','dbo.U_EAMEPR457C_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EAMEPR457C','T90','dbo.U_EAMEPR457C_Trailer_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_EAMEPR457C_Audit
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_Audit') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_AuditFields
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_DedList
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_DedList') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_drvTbl
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvSort] char(9) NULL,
+    [drvSSN] char(11) NULL,
+    [drvEmpNo] char(9) NULL,
+    [drvContract] varchar(6) NOT NULL,
+    [drvNameLast] varchar(100) NULL,
+    [drvNameFirst] varchar(100) NULL,
+    [drvMiddleInitial] varchar(1) NULL,
+    [drvEmpDefCredits] numeric NULL,
+    [drvEmpDisCredits] numeric NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_EEList
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_EEList') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_File
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_File') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(1000) NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_Header_drvTbl
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_Header_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_Header_drvTbl] (
+    [drvPayPeriod] datetime NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_PDedHist
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_PEarHist
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
+
+-----------
+-- Create table U_EAMEPR457C_Trailer_drvTbl
+-----------
+
+IF OBJECT_ID('U_EAMEPR457C_Trailer_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EAMEPR457C_Trailer_drvTbl] (
+    [drvCommas] varchar(5) NOT NULL,
+    [drvTotalEmpDefCredits] numeric NULL,
+    [drvTotalEmpDisCredits] numeric NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EAMEPR457C]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: American Speech-Language-Hearing Asso
+
+Created By: Marie Thomerson
+Business Analyst: 
+Create Date: 11/28/2022
+Service Request Number: TekP-2022-06-09-03
+
+Purpose: Principal 457b Contribution
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EAMEPR457C';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EAMEPR457C';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EAMEPR457C';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EAMEPR457C';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EAMEPR457C' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAMEPR457C', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAMEPR457C', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAMEPR457C', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAMEPR457C', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EAMEPR457C', 'SCH_EAMEPR';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EAMEPR457C', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EAMEPR457C';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EAMEPR457C_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EAMEPR457C_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EAMEPR457C_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_AuditFields;
+    CREATE TABLE dbo.U_EAMEPR457C_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    INSERT INTO dbo.U_EAMEPR457C_AuditFields VALUES ('EmpComp','EecEmplStatus');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EAMEPR457C_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EAMEPR457C_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EAMEPR457C_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EAMEPR457C_Audit ON dbo.U_EAMEPR457C_Audit (audEEID,audKey2);
+
+    --================
+    -- Changes Only
+    --================
+    --DELETE FROM dbo.U_EAMEPR457C_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EAMEPR457C_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+
+    --==========================================
+    -- Create Deduction List
+    --==========================================
+    DECLARE @DedList VARCHAR(MAX)
+    SET @DedList = '457, 457B, 457ER';
+
+    IF OBJECT_ID('U_EAMEPR457C_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_DedList;
+    SELECT DISTINCT
+         DedCode = DedDedCode
+        ,DedType = DedDedType
+    INTO dbo.U_EAMEPR457C_DedList
+    FROM dbo.fn_ListToTable(@DedList)
+    JOIN dbo.DedCode WITH (NOLOCK)
+        ON DedDedCode = Item;
+
+    --==========================================
+    -- Build Working Tables
+    --==========================================
+
+    -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+    IF OBJECT_ID('U_EAMEPR457C_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_PDedHist;
+    SELECT DISTINCT
+         PdhEEID
+        -- Current Payroll Amounts
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+    INTO dbo.U_EAMEPR457C_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    --JOIN dbo.U_EAMEPR457C_DedList WITH (NOLOCK)
+    --    ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    AND PdhDedCode in ('457', '457B', '457ER')
+    GROUP BY PdhEEID
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );
+
+    -----------------------------
+    -- Working Table - PEarHist
+    -----------------------------
+    IF OBJECT_ID('U_EAMEPR457C_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_PEarHist;
+    SELECT DISTINCT
+         PehEEID
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_EAMEPR457C_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID
+    HAVING SUM(PehCurAmt) <> 0.00;
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EAMEPR457C_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EAMEPR457C_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvSort = EecEmpNo
+        -- standard fields above and additional driver fields below
+        ,drvSSN = eepSSN
+        ,drvEmpNo = EecEmpNo
+        ,drvContract = '823359'
+        ,drvNameLast = EepNameLast
+        ,drvNameFirst = EepNameFirst
+        ,drvMiddleInitial = LEFT(EepNameMiddle,1)
+        ,drvEmpDefCredits = PdhEECurAmt
+        ,drvEmpDisCredits = PdhERCurAmt
+    INTO dbo.U_EAMEPR457C_drvTbl
+    FROM dbo.U_EAMEPR457C_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+                     --    And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+                     --and EXISTS (Select 1 from dbo.U_EAMEPR457C_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.U_EAMEPR457C_PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    ;
+    ---------------------------------
+    -- HEADER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EAMEPR457C_Header_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_Header_drvTbl;
+    SELECT DISTINCT
+         drvPayPeriod = MAX(PrgPayDate) --EecPayPeriod
+    INTO dbo.U_EAMEPR457C_Header_drvTbl
+    FROM dbo.U_EAMEPR457C_PEarHist WITH (NOLOCK)
+    ;
+    ---------------------------------
+    -- TRAILER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EAMEPR457C_Trailer_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EAMEPR457C_Trailer_drvTbl;
+    SELECT DISTINCT
+        drvCommas = ',,,,,'
+        ,drvTotalEmpDefCredits = sum(drvEmpDefCredits)
+        ,drvTotalEmpDisCredits = sum(drvEmpDisCredits)
+    INTO dbo.U_EAMEPR457C_Trailer_drvTbl
+    FROM dbo.U_EAMEPR457C_drvTbl WITH (NOLOCK)
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEAMEPR457C_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EAMEPR457C_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out iascDefF
+SELECT * FROM dbo.iascDefF
+WHERE AdfHeaderSystemID LIKE 'EAMEPR457C%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202201211'
+       ,expStartPerControl     = '202201211'
+       ,expLastEndPerControl   = '202211289'
+       ,expEndPerControl       = '202211289'
+WHERE expFormatCode = 'EAMEPR457C';
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEAMEPR457C_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EAMEPR457C_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'EAMEPR457C' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'EAMEPR457C'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'EAMEPR457C'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EAMEPR457C', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EAMEPR457C', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EAMEPR457C', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
