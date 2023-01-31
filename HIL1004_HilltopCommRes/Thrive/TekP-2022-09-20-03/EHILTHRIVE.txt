@@ -1,0 +1,1085 @@
+/**********************************************************************************
+
+EHILTHRIVE: Thrive Pass FSA Export
+
+FormatCode:     EHILTHRIVE
+Project:        Thrive Pass FSA Export
+Client ID:      HIL1004
+Date/time:      2023-01-13 09:57:11.650
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    EWP
+Server:         EW3WUP3DB02
+Database:       ULTIPRO_WPHCR
+Web Filename:   HIL1004_4F60B_EEHISTORY_EHILTHRIVE_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_SavePath') IS NOT NULL DROP TABLE dbo.U_EHILTHRIVE_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EHILTHRIVE'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'EHILTHRIVE'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'EHILTHRIVE'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EHILTHRIVE')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EHILTHRIVE'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EHILTHRIVE'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EHILTHRIVE'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EHILTHRIVE'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EHILTHRIVE'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EHILTHRIVE'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EHILTHRIVE'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EHILTHRIVE'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EHILTHRIVE'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwEHILTHRIVE_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEHILTHRIVE_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EHILTHRIVE') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHILTHRIVE];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_PEarHist];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_PDedHist];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_IH_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_IH_drvTbl];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_IC_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_IC_drvTbl];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_IB_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_IB_drvTbl];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_HDR_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_HDR_drvTbl];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_File') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_File];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_EEList') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_EEList];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_drvTbl];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_DedList') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_DedList];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_AuditFields];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_Audit') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_Audit];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_30_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_30_drvTbl];
+GO
+IF OBJECT_ID('U_EHILTHRIVE_20_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EHILTHRIVE_20_drvTbl];
+GO
+IF OBJECT_ID('U_dsi_BDM_EHILTHRIVE') IS NOT NULL DROP TABLE [dbo].[U_dsi_BDM_EHILTHRIVE];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EHILTHRIVE','Thrive Pass FSA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','EHILTHRIVEZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EHILTHRIVEZ0','50','H','01','1',NULL,'Record ID*',NULL,NULL,'"IA"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EHILTHRIVEZ0','50','H','01','2',NULL,'Number of Rows in the File*',NULL,NULL,'"drvNumberofRows"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHILTHRIVEZ0','50','H','01','3',NULL,'EDI Password*',NULL,NULL,'"drvEDIPassword"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHILTHRIVEZ0','50','H','01','4',NULL,'Import Template Name*',NULL,NULL,'"ThrivePass_Import"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EHILTHRIVEZ0','50','H','01','5',NULL,'Results Template Name*',NULL,NULL,'"ThrivePass_Result"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EHILTHRIVEZ0','50','H','01','6',NULL,'Export Template Name*',NULL,NULL,'"ThrivePass_Export"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EHILTHRIVEZ0','50','D','10','1',NULL,'Record ID*',NULL,NULL,'"IB"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EHILTHRIVEZ0','50','D','10','2',NULL,'TPA ID*',NULL,NULL,'"drvTPAID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHILTHRIVEZ0','50','D','10','3',NULL,'Employer ID*',NULL,NULL,'"THP469"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHILTHRIVEZ0','50','D','10','4',NULL,'Employee ID*',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EHILTHRIVEZ0','50','D','10','5',NULL,'Last Name*',NULL,NULL,'"drvNameLast"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EHILTHRIVEZ0','50','D','10','6',NULL,'First Name*',NULL,NULL,'"drvNameFirst"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EHILTHRIVEZ0','50','D','10','7',NULL,'Middle Initial',NULL,NULL,'"drvNameMiddle"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EHILTHRIVEZ0','50','D','10','8',NULL,'Phone',NULL,NULL,'"drvHomePhone"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EHILTHRIVEZ0','50','D','10','9',NULL,'Mobile Number',NULL,NULL,'"drvCel"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EHILTHRIVEZ0','50','D','10','10',NULL,'Address Line 1*',NULL,NULL,'"drvAddressLine1"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EHILTHRIVEZ0','50','D','10','11',NULL,'Address Line 2',NULL,NULL,'"drvAddressLine2"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EHILTHRIVEZ0','50','D','10','12',NULL,'City*',NULL,NULL,'"drvAddressCity"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EHILTHRIVEZ0','50','D','10','13',NULL,'State*',NULL,NULL,'"drvAddressState"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EHILTHRIVEZ0','50','D','10','14',NULL,'Zip*',NULL,NULL,'"drvAddressZipCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EHILTHRIVEZ0','50','D','10','15',NULL,'Country*',NULL,NULL,'"US"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EHILTHRIVEZ0','50','D','10','16',NULL,'Email',NULL,NULL,'""','(SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EHILTHRIVEZ0','50','D','10','17',NULL,'Employee Status',NULL,NULL,'"drvEmployeeStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHILTHRIVEZ0','50','D','10','18',NULL,'Gender',NULL,NULL,'"drvGenderGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EHILTHRIVEZ0','50','D','10','19',NULL,'Marital Status',NULL,NULL,'"drvMaritalStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','EHILTHRIVEZ0','50','D','10','20',NULL,'Shipping Address Line 1',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','EHILTHRIVEZ0','50','D','10','21',NULL,'Shipping Address Line 2',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','EHILTHRIVEZ0','50','D','10','22',NULL,'Shipping Address City',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','EHILTHRIVEZ0','50','D','10','23',NULL,'Shipping Address State',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','EHILTHRIVEZ0','50','D','10','24',NULL,'Shipping Address Zip',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','EHILTHRIVEZ0','50','D','10','25',NULL,'Shipping Address Country',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','EHILTHRIVEZ0','50','D','10','26',NULL,'Birth Date*',NULL,NULL,'"drvBirthDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','EHILTHRIVEZ0','50','D','10','27',NULL,'Remarks',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','EHILTHRIVEZ0','50','D','10','28',NULL,'Employee Social Security Number*',NULL,NULL,'"drvEmployeeNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','EHILTHRIVEZ0','50','D','10','29',NULL,'Processing Notes',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','EHILTHRIVEZ0','50','D','10','30',NULL,'Alternate ID',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','EHILTHRIVEZ0','50','D','10','31',NULL,'Eligibility Date',NULL,NULL,'"drvDateofLastHire"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','EHILTHRIVEZ0','50','D','10','32',NULL,'Termination Date',NULL,NULL,'"drvTerminationDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','EHILTHRIVEZ0','50','D','10','33',NULL,'Division',NULL,NULL,'"Red Compass Realty"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','EHILTHRIVEZ0','50','D','10','34',NULL,'Class',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','EHILTHRIVEZ0','50','D','10','35',NULL,'Filler 1',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','EHILTHRIVEZ0','50','D','10','36',NULL,'Filler 2',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','EHILTHRIVEZ0','50','D','10','37',NULL,'Filler 3',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','EHILTHRIVEZ0','50','D','10','38',NULL,'Filler 4',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EHILTHRIVEZ0','50','D','10','39',NULL,'Filler 5',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EHILTHRIVEZ0','50','D','10','40',NULL,'Employee Mothers Maiden Name',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EHILTHRIVEZ0','50','D','10','41',NULL,'Record Tracking Number',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EHILTHRIVEZ0','50','D','20','1',NULL,'Record ID*',NULL,NULL,'"IC"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EHILTHRIVEZ0','50','D','20','2',NULL,'TPA ID*',NULL,NULL,'"drvTPAID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHILTHRIVEZ0','50','D','20','3',NULL,'Employer ID*',NULL,NULL,'"THP469"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHILTHRIVEZ0','50','D','20','4',NULL,'Employee ID*',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EHILTHRIVEZ0','50','D','20','5',NULL,'Plan ID*',NULL,NULL,'"drvPlanID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EHILTHRIVEZ0','50','D','20','6',NULL,'Account Type Code*',NULL,NULL,'"drvAccountTypeCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EHILTHRIVEZ0','50','D','20','7',NULL,'Plan Start Date*',NULL,NULL,'"drvPlanStartDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EHILTHRIVEZ0','50','D','20','8',NULL,'Plan End Date*',NULL,NULL,'"drvPlanEndDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EHILTHRIVEZ0','50','D','20','9',NULL,'Account Status*',NULL,NULL,'"drvAccountStatus"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EHILTHRIVEZ0','50','D','20','10',NULL,'Coverage Tier ID',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EHILTHRIVEZ0','50','D','20','11',NULL,'Original Prefunded/Annual Election Amount*',NULL,NULL,'"drvOriginalPrefundedAmt"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EHILTHRIVEZ0','50','D','20','12',NULL,'Effective Date*',NULL,NULL,'"drvEffectiveDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EHILTHRIVEZ0','50','D','20','13',NULL,'Termination Date**',NULL,NULL,'"drvTerminationDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EHILTHRIVEZ0','50','D','20','14',NULL,'Auto Deposit Calendar ID',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EHILTHRIVEZ0','50','D','20','15',NULL,'Auto Deposit Last Allocation Date',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EHILTHRIVEZ0','50','D','20','16',NULL,'Auto Add Dependents',NULL,NULL,'"1"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EHILTHRIVEZ0','50','D','20','17',NULL,'Employer Annual Election*',NULL,NULL,'"drvEmployerAnnElection"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHILTHRIVEZ0','50','D','20','18',NULL,'Record Tracking Number',NULL,NULL,'""','(''SS''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EHILTHRIVEZ0','50','D','30','1',NULL,'Record ID*',NULL,NULL,'"IH"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EHILTHRIVEZ0','50','D','30','2',NULL,'TPA ID*',NULL,NULL,'"drvTPAID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EHILTHRIVEZ0','50','D','30','3',NULL,'Employer ID*',NULL,NULL,'"THP469"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EHILTHRIVEZ0','50','D','30','4',NULL,'Employee ID*',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EHILTHRIVEZ0','50','D','30','5',NULL,'Plan ID*',NULL,NULL,'"drvPlanID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EHILTHRIVEZ0','50','D','30','6',NULL,'Account Type Code*',NULL,NULL,'"drvAccountTypeCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EHILTHRIVEZ0','50','D','30','7',NULL,'Plan Start Date*',NULL,NULL,'"drvPlanStartDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EHILTHRIVEZ0','50','D','30','8',NULL,'Plan End Date*',NULL,NULL,'"drvPlanEndDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EHILTHRIVEZ0','50','D','30','9',NULL,'Deposit Type*',NULL,NULL,'"1"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EHILTHRIVEZ0','50','D','30','10',NULL,'Special Deposit Subtype',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EHILTHRIVEZ0','50','D','30','11',NULL,'Employee Deposit Amount*',NULL,NULL,'"drvEmployeeDepositAmt"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','EHILTHRIVEZ0','50','D','30','12',NULL,'Employer Deposit Amount*',NULL,NULL,'"drvEmployerDepositAmt"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','EHILTHRIVEZ0','50','D','30','13',NULL,'Effective Date*',NULL,NULL,'"drvEffectiveDate"','(''UD112''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EHILTHRIVEZ0','50','D','30','14',NULL,'Display Date',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EHILTHRIVEZ0','50','D','30','15',NULL,'Enforce Account Effective Dates',NULL,NULL,'"0"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EHILTHRIVEZ0','50','D','30','16',NULL,'Enforce Participant Eligibility Dates',NULL,NULL,'"0"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EHILTHRIVEZ0','50','D','30','17',NULL,'Note',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','EHILTHRIVEZ0','50','D','30','18',NULL,'Duplicate Deposit Check Flag*',NULL,NULL,'"1"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','EHILTHRIVEZ0','50','D','30','19',NULL,'Record Tracking Number',NULL,NULL,'""','(''SS''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'EHILTHRIVE_20230113.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301049','EMPEXPORT','OEACTIVE',NULL,'EHILTHRIVE',NULL,NULL,NULL,'202301049','Jan  4 2023 11:01AM','Jan  4 2023 11:01AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301049','EMPEXPORT','OEPASSIVE',NULL,'EHILTHRIVE',NULL,NULL,NULL,'202301049','Jan  4 2023 11:01AM','Jan  4 2023 11:01AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Thrive Pass FSA Export','202301049','EMPEXPORT','ONDEM_XOE',NULL,'EHILTHRIVE',NULL,NULL,NULL,'202301049','Jan  4 2023 11:01AM','Jan  4 2023 11:01AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Thrive Pass FSA Export-Sched','202301049','EMPEXPORT','SCH_EHILTH',NULL,'EHILTHRIVE',NULL,NULL,NULL,'202301049','Jan  4 2023 11:01AM','Jan  4 2023 11:01AM','202202281',NULL,'','','202202281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',TUPSU,Z570H',NULL,NULL,NULL,'Thrive Pass FSA Export-Test','202301209','EMPEXPORT','TEST_XOE',NULL,'EHILTHRIVE',NULL,NULL,NULL,'202301209','Jan  4 2023 11:01AM','Jan  4 2023 11:01AM','202212231',NULL,'','','202212231',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHILTHRIVE','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHILTHRIVE','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHILTHRIVE','InitialSort','C','drvEmpNoSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHILTHRIVE','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHILTHRIVE','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EHILTHRIVE','UseFileName','V','Y');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EHILTHRIVE','H01','dbo.U_EHILTHRIVE_HDR_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EHILTHRIVE','D10','dbo.U_EHILTHRIVE_IB_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EHILTHRIVE','D20','dbo.U_EHILTHRIVE_IC_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EHILTHRIVE','D30','dbo.U_EHILTHRIVE_IH_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_dsi_BDM_EHILTHRIVE
+-----------
+
+IF OBJECT_ID('U_dsi_BDM_EHILTHRIVE') IS NULL
+CREATE TABLE [dbo].[U_dsi_BDM_EHILTHRIVE] (
+    [BdmRecType] varchar(3) NOT NULL,
+    [BdmCOID] char(5) NULL,
+    [BdmEEID] char(12) NOT NULL,
+    [BdmDepRecID] char(12) NULL,
+    [BdmSystemID] char(12) NULL,
+    [BdmRunID] varchar(32) NULL,
+    [BdmDedRowStatus] varchar(256) NULL,
+    [BdmRelationship] char(3) NULL,
+    [BdmDateOfBirth] datetime NULL,
+    [BdmDedCode] char(5) NULL,
+    [BdmDedType] varchar(32) NULL,
+    [BdmBenOption] char(6) NULL,
+    [BdmBenStatus] char(1) NULL,
+    [BdmBenStartDate] datetime NULL,
+    [BdmBenStopDate] datetime NULL,
+    [BdmBenStatusDate] datetime NULL,
+    [BdmBenOptionDate] datetime NULL,
+    [BdmChangeReason] char(6) NULL,
+    [BdmStartDate] datetime NULL,
+    [BdmStopDate] datetime NULL,
+    [BdmIsCobraCovered] char(1) NULL,
+    [BdmCobraReason] char(6) NULL,
+    [BdmDateOfCOBRAEvent] datetime NULL,
+    [BdmIsPQB] char(1) NULL,
+    [BdmIsChildOldest] char(1) NULL,
+    [BdmUSGField1] varchar(256) NULL,
+    [BdmUSGField2] varchar(256) NULL,
+    [BdmUSGDate1] datetime NULL,
+    [BdmUSGDate2] datetime NULL,
+    [BdmTVStartDate] datetime NULL,
+    [BdmSessionID] varchar(32) NULL,
+    [BdmEEAmt] money NULL,
+    [BdmEECalcRateOrPct] decimal NULL,
+    [BdmEEGoalAmt] money NULL,
+    [BdmEEMemberOrCaseNo] char(40) NULL,
+    [BdmERAmt] money NULL,
+    [BdmNumSpouses] int NULL,
+    [BdmNumChildren] int NULL,
+    [BdmNumDomPartners] int NULL,
+    [BdmNumDPChildren] int NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_20_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_20_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_20_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] varchar(1) NOT NULL,
+    [drvTPAID] varchar(1) NOT NULL,
+    [drvSSN] char(11) NULL,
+    [drvPlanID] varchar(1) NOT NULL,
+    [drvAccountTypeCode] varchar(1) NOT NULL,
+    [drvPlanStartDate] varchar(1) NOT NULL,
+    [drvPlanEndDate] varchar(1) NOT NULL,
+    [drvEffectiveDate] varchar(1) NOT NULL,
+    [drvTerminationDate] datetime NULL,
+    [drvEmployerAnnElection] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_30_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_30_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_30_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] varchar(1) NOT NULL,
+    [drvTPAID] varchar(1) NOT NULL,
+    [drvSSN] char(11) NULL,
+    [drvPlanID] varchar(1) NOT NULL,
+    [drvAccountTypeCode] varchar(1) NOT NULL,
+    [drvPlanStartDate] varchar(1) NOT NULL,
+    [drvPlanEndDate] varchar(1) NOT NULL,
+    [drvEmployeeDepositAmt] varchar(1) NOT NULL,
+    [drvEmployerDepositAmt] varchar(1) NOT NULL,
+    [drvEffectiveDate] varchar(1) NOT NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_Audit
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_Audit') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_AuditFields
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_DedList
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_DedList') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] char(11) NULL,
+    [drvSSN] char(11) NULL,
+    [drvNameLast] varchar(100) NULL,
+    [drvNameFirst] varchar(100) NULL,
+    [drvNameMiddle] varchar(1) NULL,
+    [drvHomePhone] varchar(50) NULL,
+    [drvCel] varchar(16) NULL,
+    [drvAddressLine1] varchar(255) NULL,
+    [drvAddressLine2] varchar(255) NULL,
+    [drvAddressCity] varchar(255) NULL,
+    [drvAddressState] varchar(255) NULL,
+    [drvAddressZipCode] varchar(50) NULL,
+    [drvEmployeeStatus] varchar(1) NOT NULL,
+    [drvGenderGender] varchar(1) NOT NULL,
+    [drvMaritalStatus] varchar(1) NOT NULL,
+    [drvBirthDate] datetime NULL,
+    [drvEmployeeNumber] varchar(1) NOT NULL,
+    [drvDateofLastHire] datetime NULL,
+    [drvTerminationDate] datetime NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_EEList
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_EEList') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_File
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_File') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(3000) NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_HDR_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_HDR_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_HDR_drvTbl] (
+    [drvNumberofRows] int NULL,
+    [drvEDIPassword] varchar(6) NOT NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_IB_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_IB_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_IB_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] char(11) NULL,
+    [drvTPAID] varchar(10) NOT NULL,
+    [drvSSN] char(11) NULL,
+    [drvNameLast] varchar(100) NULL,
+    [drvNameFirst] varchar(100) NULL,
+    [drvNameMiddle] varchar(1) NULL,
+    [drvHomePhone] varchar(50) NULL,
+    [drvCel] varchar(16) NULL,
+    [drvAddressLine1] varchar(255) NULL,
+    [drvAddressLine2] varchar(255) NULL,
+    [drvAddressCity] varchar(255) NULL,
+    [drvAddressState] varchar(255) NULL,
+    [drvAddressZipCode] varchar(50) NULL,
+    [drvEmployeeStatus] varchar(1) NOT NULL,
+    [drvGenderGender] varchar(1) NOT NULL,
+    [drvMaritalStatus] varchar(1) NOT NULL,
+    [drvBirthDate] datetime NULL,
+    [drvEmployeeNumber] char(11) NULL,
+    [drvDateofLastHire] datetime NULL,
+    [drvTerminationDate] datetime NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_IC_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_IC_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_IC_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] char(11) NULL,
+    [drvTPAID] varchar(6) NOT NULL,
+    [drvSSN] char(11) NULL,
+    [drvPlanID] varchar(3) NULL,
+    [drvAccountTypeCode] varchar(3) NULL,
+    [drvPlanStartDate] varchar(8) NULL,
+    [drvPlanEndDate] varchar(8) NULL,
+    [drvAccountStatus] varchar(1) NOT NULL,
+    [drvOriginalPrefundedAmt] money NULL,
+    [drvEffectiveDate] datetime NULL,
+    [drvTerminationDate] datetime NULL,
+    [drvEmployerAnnElection] money NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_IH_drvTbl
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_IH_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_IH_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvEmpNoSort] char(11) NULL,
+    [drvTPAID] varchar(6) NOT NULL,
+    [drvSSN] char(11) NULL,
+    [drvPlanID] varchar(3) NULL,
+    [drvAccountTypeCode] varchar(3) NULL,
+    [drvPlanStartDate] varchar(8) NULL,
+    [drvPlanEndDate] varchar(8) NULL,
+    [drvEmployeeDepositAmt] money NULL,
+    [drvEmployerDepositAmt] nvarchar(4000) NULL,
+    [drvEffectiveDate] datetime NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_PDedHist
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSource107] numeric NULL,
+    [PdhSource106] numeric NULL,
+    [PdhSource3] numeric NULL,
+    [PdhSource4] numeric NULL,
+    [PdhSource5] numeric NULL,
+    [PdhSource6] numeric NULL,
+    [PdhSource7] numeric NULL,
+    [PdhSource8] numeric NULL,
+    [PdhSource9] numeric NULL,
+    [PdhSource10] numeric NULL
+);
+
+-----------
+-- Create table U_EHILTHRIVE_PEarHist
+-----------
+
+IF OBJECT_ID('U_EHILTHRIVE_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EHILTHRIVE_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EHILTHRIVE]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Hilltop Community Resources, Inc.
+
+Created By: Marie Thomerson
+Business Analyst: Curlin Beck
+Create Date: 01/04/2023
+Service Request Number: TekP-2022-09-20-03
+
+Purpose: Thrive Pass FSA Export
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2023     SR-2023-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EHILTHRIVE';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EHILTHRIVE';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EHILTHRIVE';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EHILTHRIVE';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EHILTHRIVE' ORDER BY RunID DESC;
+
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202202281'
+       ,expStartPerControl     = '202202281'
+       ,expLastEndPerControl   = '202301049'
+       ,expEndPerControl       = '202301049'
+WHERE expFormatCode = 'EHILTHRIVE';
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHILTHRIVE', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHILTHRIVE', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHILTHRIVE', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHILTHRIVE', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EHILTHRIVE', 'SCH_EHILTH';
+
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'EHILTHRIVE';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EHILTHRIVE', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EHILTHRIVE';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EHILTHRIVE_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EHILTHRIVE_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EHILTHRIVE_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_AuditFields;
+    CREATE TABLE dbo.U_EHILTHRIVE_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+
+    INSERT INTO dbo.U_EHILTHRIVE_AuditFields VALUES ('Empcomp','eecEmplStatus');
+
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EHILTHRIVE_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EHILTHRIVE_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EHILTHRIVE_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_EHILTHRIVE_Audit ON dbo.U_EHILTHRIVE_Audit (audEEID,audKey2);
+
+    --==========================================
+    -- Create Deduction List
+    --==========================================
+    DECLARE @DedList VARCHAR(MAX)
+    SET @DedList = '106,107';
+
+    IF OBJECT_ID('U_EHILTHRIVE_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_DedList;
+    SELECT DISTINCT
+         DedCode = DedDedCode
+        ,DedType = DedDedType
+    INTO dbo.U_EHILTHRIVE_DedList
+    FROM dbo.fn_ListToTable(@DedList)
+    JOIN dbo.DedCode WITH (NOLOCK)
+        ON DedDedCode = Item;
+
+    --==========================================
+    -- BDM Section
+    --==========================================
+    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+
+    -- Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','106, 107');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+
+    -- Non-Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL');
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP');
+
+    -- Required OE parameters
+    IF @ExportCode LIKE '%PASSIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+    END;
+
+    IF @ExportCode LIKE '%ACTIVE'
+    BEGIN
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+    END;
+
+
+    -- Run BDM Module
+    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+
+    --==========================================
+    -- Build Working Tables
+    --==========================================
+
+    -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+    IF OBJECT_ID('U_EHILTHRIVE_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_PDedHist;
+    SELECT DISTINCT
+         PdhEEID
+        -- Current Payroll Amounts
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        -- Categorize Payroll Amounts
+        ,PdhSource107   = SUM(CASE WHEN PdhDedCode IN ('107') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource106   = SUM(CASE WHEN PdhDedCode IN ('106') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('106','107') THEN PdhEECurAmt ELSE 0.00 END)        
+        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    INTO dbo.U_EHILTHRIVE_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    --JOIN dbo.U_EHILTHRIVE_DedList WITH (NOLOCK)
+    --    ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );
+
+
+    -----------------------------
+    -- Working Table - PEarHist
+    -----------------------------
+    IF OBJECT_ID('U_EHILTHRIVE_PEarHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_PEarHist;
+    SELECT DISTINCT
+         PehEEID
+        ,PrgPayDate             = MAX(PrgPayDate)
+        -- Current Payroll Amount/Hours
+        ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt ELSE 0.00 END)
+        ,PehCurHrs              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurHrs ELSE 0.00 END)
+        -- YTD Payroll Amount/Hours
+        ,PehCurAmtYTD           = SUM(PehCurAmt)
+        ,PehCurHrsYTD           = SUM(PehCurHrs)
+        -- Current Include Deferred Comp Amount/Hours
+        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        -- YTD Include Deferred Comp Amount/Hours
+        ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
+        ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
+    INTO dbo.U_EHILTHRIVE_PEarHist
+    FROM dbo.vw_int_PayReg WITH (NOLOCK)
+    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
+        ON PehGenNumber = PrgGenNumber
+    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+    AND PehPerControl <= @EndPerControl
+    GROUP BY PehEEID
+    HAVING SUM(PehCurAmt) <> 0.00;
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EHILTHRIVE_IB_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EHILTHRIVE_IB_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_IB_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvEmpNoSort = eepSSN
+        -- standard fields above and additional driver fields below
+        ,drvTPAID = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T01611' ELSE 'T02104' END   -- Updated TPA ID values CB 20230112
+        ,drvSSN = eepSSN
+        ,drvNameLast = EepNameLast
+        ,drvNameFirst = EepNameFirst
+        ,drvNameMiddle = LEFT(EepNameMiddle,1)
+        ,drvHomePhone = EepPhoneHomeNumber
+        ,drvCel = dbo.dsi_fnlib_GetPhoneNumber(EepEEID, 'CEL') 
+        ,drvAddressLine1 = EepAddressLine1
+        ,drvAddressLine2 = EepAddressLine2
+        ,drvAddressCity = EepAddressCity
+        ,drvAddressState = EepAddressState
+        ,drvAddressZipCode = EepAddressZipCode
+        ,drvEmployeeStatus = CASE WHEN EecEmplStatus = 'T' then '5' else '2' END
+        ,drvGenderGender = CASE WHEN EepGender = 'M' THEN '1' 
+                                WHEN EepGender = 'F' THEN '2'
+                                ELSE '0' END
+        ,drvMaritalStatus = CASE when EepMaritalStatus  = 'S' THEN '1'
+                                when EepMaritalStatus  = 'M' THEN '2'
+                                when EepMaritalStatus  = 'W' THEN '4'
+                                when EepMaritalStatus  = 'D' THEN '5'
+                                Else '0' END
+        ,drvBirthDate = EepDateOfBirth
+        ,drvEmployeeNumber = EepSSN
+        ,drvDateofLastHire = EecDateOfLastHire
+        ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+    INTO dbo.U_EHILTHRIVE_IB_drvTbl
+    FROM dbo.U_EHILTHRIVE_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+                 And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+          and EXISTS (Select 1 from dbo.U_EHILTHRIVE_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.U_dsi_BDM_EHILTHRIVE WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+        --AND BdmRecType = 'EMP'
+    ;
+    ---------------------------------
+    -- DETAIL RECORD - U_EHILTHRIVE_IC_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EHILTHRIVE_IC_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_IC_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvEmpNoSort = eepSSN
+        -- standard fields above and additional driver fields below
+        ,drvTPAID = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T01611' ELSE 'T02104' END   -- Updated TPA ID values CB 20230112
+        ,drvSSN = eepSSN
+        ,drvPlanID = CASE    WHEN BdmDedCode = '107' THEN 'DCA' 
+                            WHEN BdmDedCode = '106' THEN 'FSA' END
+        ,drvAccountTypeCode = CASE    WHEN BdmDedCode = '107' THEN 'DCA' 
+                                    WHEN BdmDedCode = '106' THEN 'FSA' END
+        ,drvPlanStartDate =  CASE WHEN month(@StartDate) > 6 THEN CAST(year(@StartDate) as VARCHAR(4)) + '0701' WHEN month(@StartDate) < 7 THEN CAST(year(@StartDate)-1 as VARCHAR(4)) + '0701'  END
+        ,drvPlanEndDate =  CASE WHEN month(@StartDate) > 5 THEN CAST(year(@StartDate)+1 as VARCHAR(4)) + '0630' WHEN month(@StartDate) < 6 THEN CAST(year(@StartDate) as VARCHAR(4)) + '0630'  END
+        ,drvAccountStatus = CASE WHEN EecEmplStatus = 'T' THEN '5' ELSE '2' END
+        ,drvOriginalPrefundedAmt = BdmEEGoalAmt
+        ,drvEffectiveDate = BdmBenStartDate
+        ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvEmployerAnnElection = CASE WHEN BdmDedCode = '107' then (BdmEEGoalAmt)/2 else '0.00' END
+    INTO dbo.U_EHILTHRIVE_IC_drvTbl
+    FROM dbo.U_EHILTHRIVE_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+                         And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+          and EXISTS (Select 1 from dbo.U_EHILTHRIVE_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.U_dsi_BDM_EHILTHRIVE WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    ;
+    ---------------------------------
+    -- DETAIL RECORD - U_EHILTHRIVE_IH_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EHILTHRIVE_IH_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_IH_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvEmpNoSort = eepSSN
+        -- standard fields above and additional driver fields below
+        ,drvTPAID = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T01611' ELSE 'T02104' END   -- Updated TPA ID values CB 20230112 
+        ,drvSSN = eepSSN
+        ,drvPlanID = CASE    WHEN BdmDedCode = '107' THEN 'DCA' 
+                            WHEN BdmDedCode = '106' THEN 'FSA' END
+        ,drvAccountTypeCode = CASE    WHEN BdmDedCode = '107' THEN 'DCA' 
+                                    WHEN BdmDedCode = '106' THEN 'FSA' END
+        --,drvPlanStartDate =  CAST(year(GetDate()) as VARCHAR(4)) + '0701'              --Corrected the date format to YYYYMMDD CB 01/12/2023
+        --,drvPlanEndDate =    CAST((year(GetDate())+1) as VARCHAR(4)) + '0630'          --Corrected the date format to YYYYMMDD CB 01/12/2023
+        ,drvPlanStartDate =  CASE WHEN month(@StartDate) > 6 THEN CAST(year(@StartDate) as VARCHAR(4)) + '0701' WHEN month(@StartDate) < 7 THEN CAST(year(@StartDate)-1 as VARCHAR(4)) + '0701'  END
+        ,drvPlanEndDate =  CASE WHEN month(@StartDate) > 5 THEN CAST(year(@StartDate)+1 as VARCHAR(4)) + '0630' WHEN month(@StartDate) < 6 THEN CAST(year(@StartDate) as VARCHAR(4)) + '0630'  END
+
+        ,drvEmployeeDepositAmt = FORMAT(PdhSource3,'0.00')
+        ,drvEmployerDepositAmt = CASE WHEN BdmDedCode = '107' THEN FORMAT(PdhSource107,'0.00') ELSE '0.00' END
+        ,drvEffectiveDate = PrgPaydate
+    INTO dbo.U_EHILTHRIVE_IH_drvTbl
+    FROM dbo.U_EHILTHRIVE_EEList WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+                                 And (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO'
+          and EXISTS (Select 1 from dbo.U_EHILTHRIVE_Audit where audEEID = xEEID and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+    JOIN dbo.U_dsi_BDM_EHILTHRIVE WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    LEFT JOIN dbo.U_EHILTHRIVE_PDedHist WITH (NOLOCK)
+        ON PdhEEID = xEEID
+    LEFT JOIN dbo.U_EHILTHRIVE_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+    ;
+    ---------------------------------
+    -- HEADER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EHILTHRIVE_HDR_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EHILTHRIVE_HDR_drvTbl;
+    SELECT DISTINCT
+         drvNumberofRows = count(drvEEID)+1
+        ,drvEDIPassword = CASE WHEN @ExportCode LIKE '%TEST%' THEN 'T01611' ELSE 'T02104' END   -- Updated TPA ID values CB 20230112
+    INTO dbo.U_EHILTHRIVE_HDR_drvTbl
+    FROM dbo.U_EHILTHRIVE_IB_drvTbl WITH (NOLOCK)
+    --JOIN dbo.U_dsi_BDM_EHILTHRIVE WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'TEST_HILLTOP_PRETAX_IBICIH_' + REPLACE(CONVERT(VARCHAR(10),GETDATE(),101),'/','') + '_hhmmss.mbi'
+                                  ELSE 'HILLTOP_PRETAX_IBICIH_' + REPLACE(CONVERT(VARCHAR(10),GETDATE(),101),'/','') + '_hhmmss.mbi'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEHILTHRIVE_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EHILTHRIVE_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out iascDefF
+SELECT * FROM dbo.iascDefF
+WHERE AdfHeaderSystemID LIKE 'EHILTHRIVE%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202202281'
+       ,expStartPerControl     = '202202281'
+       ,expLastEndPerControl   = '202301049'
+       ,expEndPerControl       = '202301049'
+WHERE expFormatCode = 'EHILTHRIVE';
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEHILTHRIVE_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EHILTHRIVE_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'EHILTHRIVE' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'EHILTHRIVE'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'EHILTHRIVE'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EHILTHRIVE', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EHILTHRIVE', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EHILTHRIVE', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout

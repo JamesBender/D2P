@@ -1,0 +1,631 @@
+/**********************************************************************************
+
+EVOYFSAEXP: VOYA FSA Contribution Export
+
+FormatCode:     EVOYFSAEXP
+Project:        VOYA FSA Contribution Export
+Client ID:      HIG1001
+Date/time:      2023-01-27 10:26:30.237
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    E13
+Server:         E1SUP3DB03
+Database:       ULTIPRO_HIW
+Web Filename:   HIG1001_32143_EEHISTORY_EVOYFSAEXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_SavePath') IS NOT NULL DROP TABLE dbo.U_EVOYFSAEXP_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'EVOYFSAEXP'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'EVOYFSAEXP'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'EVOYFSAEXP'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'EVOYFSAEXP')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'EVOYFSAEXP'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'EVOYFSAEXP'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'EVOYFSAEXP'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'EVOYFSAEXP'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'EVOYFSAEXP'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'EVOYFSAEXP'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'EVOYFSAEXP'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'EVOYFSAEXP'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'EVOYFSAEXP'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwEVOYFSAEXP_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEVOYFSAEXP_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_EVOYFSAEXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVOYFSAEXP];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_Trailer') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_Trailer];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_PEarHist') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_PEarHist];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_PDedHist') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_PDedHist];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_Header') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_Header];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_File') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_File];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_EEList') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_EEList];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_drvTbl];
+GO
+IF OBJECT_ID('U_EVOYFSAEXP_DedList') IS NOT NULL DROP TABLE [dbo].[U_EVOYFSAEXP_DedList];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','EVOYFSAEXP','VOYA FSA Contribution Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','1000','S','N','EVOYFSAEXPZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOYFSAEXPZ0','2','H','01','1',NULL,'Record Type',NULL,NULL,'"FH"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOYFSAEXPZ0','3','H','01','2',NULL,'Admin Code',NULL,NULL,'"VYA"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOYFSAEXPZ0','6','H','01','3',NULL,'Employer Code',NULL,NULL,'"HWP1"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOYFSAEXPZ0','1','H','01','4',NULL,'Synchronize Flag',NULL,NULL,'"N"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOYFSAEXPZ0','8','H','01','5',NULL,'Created Date',NULL,NULL,'"drvCreatedDate"','(''UDMDY''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOYFSAEXPZ0','6','H','01','6',NULL,'Created Time',NULL,NULL,'"drvCreatedTime"','(''UDHMS''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVOYFSAEXPZ0','6','H','01','7',NULL,'File Version',NULL,NULL,'"2"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOYFSAEXPZ0','2','D','10','1',NULL,'Record Type',NULL,NULL,'"CT"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOYFSAEXPZ0','20','D','10','2',NULL,'Participant File Import ID',NULL,NULL,'"drvParticipantFileImportID"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOYFSAEXPZ0','50','D','10','3',NULL,'Plan Name',NULL,NULL,'"drvPlanName"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOYFSAEXPZ0','8','D','10','4',NULL,'Contribution Date',NULL,NULL,'"drvContributionDate"','(''UDMDY''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOYFSAEXPZ0','30','D','10','5',NULL,'Contribution Description',NULL,NULL,'"drvContributionDescription"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOYFSAEXPZ0','9','D','10','6',NULL,'Contribution Amount',NULL,NULL,'"drvContributionAmount"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EVOYFSAEXPZ0','6','D','10','7',NULL,'Amount Type',NULL,NULL,'"drvAmountType"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EVOYFSAEXPZ0','7','D','10','8',NULL,'Tax Year',NULL,NULL,'"drvTaxYear"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EVOYFSAEXPZ0','2','T','90','1',NULL,'Record Type',NULL,NULL,'"FF"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EVOYFSAEXPZ0','20','T','90','2',NULL,'Record Count',NULL,NULL,'"drvRecordCount"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EVOYFSAEXPZ0','3','T','90','3',NULL,'Admin code',NULL,NULL,'"drvAdmincode"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EVOYFSAEXPZ0','6','T','90','4',NULL,'Employer Code',NULL,NULL,'"drvEmployerCode"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EVOYFSAEXPZ0','8','T','90','5',NULL,'Created Date',NULL,NULL,'"drvCreatedDate"','(''UDMDY''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EVOYFSAEXPZ0','6','T','90','6',NULL,'Created Time',NULL,NULL,'"drvCreatedTime"','(''UDHMS''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'EVOYFSAEXP_20230127.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202212119','EMPEXPORT','OEACTIVE',NULL,'EVOYFSAEXP',NULL,NULL,NULL,'202212119','Dec 11 2022  3:37PM','Dec 11 2022  3:37PM','202212111',NULL,'','','202212111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202212119','EMPEXPORT','OEPASSIVE',NULL,'EVOYFSAEXP',NULL,NULL,NULL,'202212119','Dec 11 2022  3:37PM','Dec 11 2022  3:37PM','202212111',NULL,'','','202212111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'VOYA FSA Contribution Export','202212119','EMPEXPORT','ONDEM_XOE',NULL,'EVOYFSAEXP',NULL,NULL,NULL,'202212119','Dec 11 2022  3:37PM','Dec 11 2022  3:37PM','202212111',NULL,'','','202212111',dbo.fn_GetTimedKey(),NULL,'ULTI',',ZRQUV,LRPQF,LRPS4,E806B',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,'Scheduled Session','202212119','EMPEXPORT','SCH_EVOYXP',NULL,'EVOYFSAEXP',NULL,NULL,NULL,'202212119','Dec 11 2022  3:37PM','Dec 11 2022  3:37PM','202212111',NULL,'','','202212111',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL,NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expCOIDList,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,'Test Purposes Only','202212199','EMPEXPORT','TEST_XOE','Dec 11 2022 12:00AM','EVOYFSAEXP',NULL,NULL,NULL,'202212199','Dec 11 2022 12:00AM','Dec 30 1899 12:00AM','202212021',NULL,'','','202212021',dbo.fn_GetTimedKey(),NULL,'us3mLaHIG1001',',ZRQUV,LRPQF,LRPS4,E806B',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','SubSort2','C','drvSubSort2');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','UDESPath','C','\\us.saas\0\data_exchange\\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EVOYFSAEXP','UseFileName','V','Y');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EVOYFSAEXP','H01','dbo.U_EVOYFSAEXP_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EVOYFSAEXP','D10','dbo.U_EVOYFSAEXP_drvTbl',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EVOYFSAEXP','T90','dbo.U_EVOYFSAEXP_Trailer',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_EVOYFSAEXP_DedList
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_DedList') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_DedList] (
+    [DedCode] char(5) NOT NULL,
+    [DedType] char(4) NOT NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_drvTbl
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvInitialSort] char(11) NULL,
+    [drvSubSort] varchar(1) NOT NULL,
+    [drvSubSort2] varchar(1) NOT NULL,
+    [drvParticipantFileImportID] char(11) NULL,
+    [drvPlanName] varchar(22) NOT NULL,
+    [drvContributionDate] datetime NULL,
+    [drvContributionDescription] varchar(17) NOT NULL,
+    [drvContributionAmount] varchar(30) NULL,
+    [drvAmountType] varchar(6) NOT NULL,
+    [drvTaxYear] varchar(3) NOT NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_EEList
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_EEList') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_File
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_File') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(1000) NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_Header
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_Header') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_Header] (
+    [drvCreatedDate] datetime NOT NULL,
+    [drvCreatedTime] datetime NOT NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_PDedHist
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_PDedHist') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_PDedHist] (
+    [PdhEEID] char(12) NOT NULL,
+    [PdhEECurAmt] numeric NULL,
+    [PdhERCurAmt] numeric NULL,
+    [PdhEECurAmtYTD] money NULL,
+    [PdhERCurAmtYTD] money NULL,
+    [PdhSourceType] varchar(22) NOT NULL,
+    [PdhEE] numeric NULL,
+    [PdhER] numeric NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_PEarHist
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_PEarHist') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_PEarHist] (
+    [PehEEID] char(12) NOT NULL,
+    [PrgPayDate] datetime NULL,
+    [PehCurAmt] numeric NULL,
+    [PehCurHrs] decimal NULL,
+    [PehCurAmtYTD] money NULL,
+    [PehCurHrsYTD] decimal NULL,
+    [PehInclInDefComp] money NULL,
+    [PehInclInDefCompHrs] decimal NULL,
+    [PehInclInDefCompYTD] money NULL,
+    [PehInclInDefCompHrsYTD] decimal NULL
+);
+
+-----------
+-- Create table U_EVOYFSAEXP_Trailer
+-----------
+
+IF OBJECT_ID('U_EVOYFSAEXP_Trailer') IS NULL
+CREATE TABLE [dbo].[U_EVOYFSAEXP_Trailer] (
+    [drvRecordCount] varchar(30) NULL,
+    [drvAdmincode] varchar(3) NOT NULL,
+    [drvEmployerCode] varchar(4) NOT NULL,
+    [drvCreatedDate] datetime NOT NULL,
+    [drvCreatedTime] datetime NOT NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EVOYFSAEXP]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Highwoods Realty Limited Partnership
+
+Created By: Marco Lagrosa
+Business Analyst: Curlin Beck
+Create Date: 12/11/2022
+Service Request Number: TekP-2022-11-15-02
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202301271'
+       ,expStartPerControl     = '202301271'
+       ,expLastEndPerControl   = '202301279'
+       ,expEndPerControl       = '202301279'
+WHERE expFormatCode = 'EVOYFSAEXP';
+
+
+Purpose: VOYA FSA Contribution Export
+
+Revision History
+----------------
+Update By           Date			Request Num        Desc
+Marie Thomerson     01/13/2023		SR-2022-000XXXXX   took out the max in PDedHist and put it as a group because the mulitple plan folk were not showing MT
+Marie Thomerson		01/27/2023		TekP-2022-11-15-02 Added HSAER logic
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EVOYFSAEXP';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EVOYFSAEXP';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'EVOYFSAEXP';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'EVOYFSAEXP';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'EVOYFSAEXP' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVOYFSAEXP', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVOYFSAEXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVOYFSAEXP', 'OEPASSIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVOYFSAEXP', 'OEACTIVE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EVOYFSAEXP', 'SCHEDULED';
+
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'EVOYFSAEXP';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EVOYFSAEXP', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'EVOYFSAEXP';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_EVOYFSAEXP_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_EVOYFSAEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+    --==========================================
+    -- Create Deduction List
+    --==========================================
+    DECLARE @DedList VARCHAR(MAX)
+    SET @DedList = '125DC,FXMED,FXLTD,HSAI,HSAIC,HSAF,HSAFC,HSAER';
+    IF OBJECT_ID('U_EVOYFSAEXP_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_EVOYFSAEXP_DedList;
+    SELECT DISTINCT
+         DedCode = DedDedCode
+        ,DedType = DedDedType
+    INTO dbo.U_EVOYFSAEXP_DedList
+    FROM dbo.fn_ListToTable(@DedList)
+    JOIN dbo.DedCode WITH (NOLOCK)
+        ON DedDedCode = Item;
+
+    --==========================================
+    -- Build Working Tables
+    --==========================================
+
+    -----------------------------
+    -- Working Table - PDedHist
+    -----------------------------
+    IF OBJECT_ID('U_EVOYFSAEXP_PDedHist','U') IS NOT NULL
+        DROP TABLE dbo.U_EVOYFSAEXP_PDedHist;
+    SELECT DISTINCT
+         PdhEEID
+        -- Current Payroll Amounts
+        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        -- YTD Payroll Amounts
+        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+        -- Categorize Payroll Amounts
+        ,PdhSourceType =  CASE WHEN PdhDedCode in ('125DC') THEN  'Dependent Care FSA' 
+                                WHEN PdhDedCode in ('FXMED') THEN  'Health FSA' 
+                                WHEN PdhDedCode in ('FXLTD') THEN  'Limited Purpose FSA'
+                                WHEN PdhDedCode in ('HSAER') THEN  'Employer Contribution' --Add line for HSA Employer Deduction 20230118 CB
+                                ELSE 'Health Savings Account' END -- took out the max and put it as a group because the mulitple plan folk were not showing MT
+        ,PdhEE   = SUM(CASE WHEN PdhDedCode IN ('HSAI','HSAIC','HSAF','HSAFC','125DC','FXMED','FXLTD') THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhER   = SUM(CASE WHEN PdhDedCode IN ('HSAER') THEN PdhEECurAmt ELSE 0.00 END)  -- Correct the Deduction code for the HSA Employer CB 20230118
+    INTO dbo.U_EVOYFSAEXP_PDedHist
+    FROM dbo.PDedHist WITH (NOLOCK)
+    JOIN dbo.U_EVOYFSAEXP_DedList WITH (NOLOCK)
+        ON DedCode = PdhDedCode
+    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    AND PdhPerControl <= @EndPerControl
+    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    GROUP BY PdhEEID, CASE WHEN PdhDedCode in ('125DC') THEN  'Dependent Care FSA' 
+                                WHEN PdhDedCode in ('FXMED') THEN  'Health FSA' 
+                                WHEN PdhDedCode in ('FXLTD') THEN  'Limited Purpose FSA'
+                                WHEN PdhDedCode in ('HSAER') THEN  'Employer Contribution'  --Add line for HSA Employer Deduction 20230118 CB
+                                ELSE 'Health Savings Account' END
+    HAVING (SUM(PdhEECurAmt) <> 0.00
+        OR SUM(PdhERCurAmt) <> 0.00
+    );
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_EVOYFSAEXP_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_EVOYFSAEXP_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_EVOYFSAEXP_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvInitialSort = eepSSN
+        ,drvSubSort = ''
+        ,drvSubSort2 = ''
+        -- standard fields above and additional driver fields below
+        ,drvParticipantFileImportID = eepSSN
+        ,drvPlanName = PdhSourceType
+        ,drvContributionDate = CASE WHEN PdhSourceType = 'FSA' THEN CAST('01/01/' + CAST( YEAR(GETDATE()) as varchar) as DATETIME) ELSE PayDate END
+        ,drvContributionDescription = 'Payroll Deduction'
+        ,drvContributionAmount = CAST( CONVERT(DECIMAL(10,2),PdhEECurAmt) as varchar)
+        ,drvAmountType = 'Actual'
+        ,drvTaxYear = '   '
+    INTO dbo.U_EVOYFSAEXP_drvTbl
+    FROM dbo.U_EVOYFSAEXP_EEList WITH (NOLOCK)
+    JOIN dbo.U_EVOYFSAEXP_PDedHist WITH (NOLOCK)
+        ON Pdheeid = xEEID 
+    JOIN dbo.EmpComp WITH (NOLOCK)
+        on eeceeid =  xEEID
+        and eeccoid =  xCoID
+    JOIN dbo.Emppers WITH (NOLOCK)
+        on eepeeid =  xEEID
+    LEFT JOIN (SELECT PgpPayGroup, LEFT(MAX(PgpPeriodControl),8) as PayDate, MAX(PgpPeriodStartDate) PrgPeriodStart, MAX(PgpPeriodEndDate) PrgPeriodEnd 
+                   FROM dbo.PgPayPer WITH (NOLOCK)
+                   WHERE PgpPeriodControl BETWEEN @StartPerControl AND @EndPerControl 
+                   GROUP BY PgpPayGroup) as PayGrp
+     on PayGrp.PgpPayGroup = eecpaygroup
+    ;
+    ---------------------------------
+    -- HEADER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EVOYFSAEXP_Header','U') IS NOT NULL
+        DROP TABLE dbo.U_EVOYFSAEXP_Header;
+    SELECT DISTINCT
+         drvCreatedDate = GETDATE()
+        ,drvCreatedTime = GETDATE()
+    INTO dbo.U_EVOYFSAEXP_Header
+    ;
+    ---------------------------------
+    -- TRAILER RECORD
+    ---------------------------------
+    IF OBJECT_ID('U_EVOYFSAEXP_Trailer','U') IS NOT NULL
+        DROP TABLE dbo.U_EVOYFSAEXP_Trailer;
+    SELECT DISTINCT
+         drvRecordCount = CAST ( (Select count(*) from dbo.U_EVOYFSAEXP_drvTbl) as varchar)
+        ,drvAdmincode = 'VYA'
+        ,drvEmployerCode = 'HWP1'
+        ,drvCreatedDate = GETDATE()
+        ,drvCreatedTime = GETDATE()
+    INTO dbo.U_EVOYFSAEXP_Trailer
+    ;
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE '%TEST%' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwEVOYFSAEXP_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_EVOYFSAEXP_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out iascDefF
+SELECT * FROM dbo.iascDefF
+WHERE AdfHeaderSystemID LIKE 'EVOYFSAEXP%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202212041'
+       ,expStartPerControl     = '202212041'
+       ,expLastEndPerControl   = '202212119'
+       ,expEndPerControl       = '202212119'
+WHERE expFormatCode = 'EVOYFSAEXP';
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEVOYFSAEXP_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EVOYFSAEXP_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort, SubSort2
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'EVOYFSAEXP' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'EVOYFSAEXP'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'EVOYFSAEXP'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EVOYFSAEXP', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'EVOYFSAEXP', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'EVOYFSAEXP', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout

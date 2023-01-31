@@ -1,0 +1,84 @@
+ 
+    /***** Positive Pay Best Practice **************************************************************************************************************
+        Best Practice is to pull checks issued from history (PayReg).
+        
+        When to use M_Batch?
+            - If the customer is always NOT going to post manual checks, and those checks will not post with the regular payroll.
+            - The customer must produce the positive pay file between the PRINT and POST steps in the payroll process, which is very limiting.
+            - If a customer forgets and post the payroll, then you cannot re-create the Positive Pay File.
+        NOTE: You should only pull from PayReg or M_Batch, but not both..  
+    ***********************************************************************************************************************************************/
+
+ SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvInitialSort = ISNULL(PrgDocNo,0)
+        -- standard fields above and additional driver fields below    
+        ,drvBankAcctNo = RIGHT('00000000000000000000' + LTRIM(RTRIM(BnkBankAcctNo)),20)
+        ,drvRecordTypeCode = CASE WHEN PrgIsVoidingRecord = 'Y' THEN 'V'
+                                  ELSE 'O'
+                             END
+        ,drvDocNo = RIGHT('000000000000000000' + LTRIM(RTRIM(PrgDocNo)),18)
+        ,drvCheckAmt = ABS(PrgCheckAmt)
+        ,drvPayDate = PrgPayDate
+        ,drvEmpNo = EecEmpNo
+        ,drvPayeeName = ckhEEfullname
+        ,drvIsVoided = CASE WHEN ISNULL(PrgIsVoided,'') = 'Y' THEN 'V'
+                            ELSE 'I'
+                       END
+    INTO dbo.U_@CustomFormatCode_drvTbl
+    FROM dbo.U_@CustomFormatCode_EEList
+    JOIN dbo.PayReg WITH (NOLOCK)
+        ON PrgEEID = xEEID
+        AND PrgCoID = xCOID
+    JOIN dbo.Bank WITH (NOLOCK)
+        ON PrgCoBankID = BnkCoBankID
+    LEFT JOIN dbo.ChkHead WITH (NOLOCK)
+        ON ckhEEID = xEEID
+        AND CONVERT(VARCHAR(10),LTRIM(RTRIM(PrgDocNo))) = CONVERT(VARCHAR(10),LTRIM(RTRIM(ckhCheckNo)))
+        AND PrgGenNumber = ckhGenNumber
+    WHERE Prgpercontrol BETWEEN @StartPerControl AND @EndPerControl
+    AND PrgCheckAddMode IN ('R','M','A','D','B')
+    AND PrgPrinted = 'Y'
+    AND PrgTransactionType IN ('C')
+    AND (PrgPostOnly = 'N'
+        OR PrgIsVoidingRecord = 'Y'
+    );
+
+
+   --SELECT DISTINCT
+    --        drvEEID = xEEID
+    --    ,drvCoID = xCoID
+    --    ,drvInitialSort = ISNULL(BnkBankAcctNo,'')
+    --    -- standard fields above and additional driver fields below
+ --       ,drvBankAcctNo = RIGHT('00000000000000000000' + LTRIM(RTRIM(BnkBankAcctNo)),20)
+ --       ,drvRecordTypeCode = CASE WHEN MbtIsVoidingRecord = 'Y' THEN 'V'
+ --                                 ELSE 'O'
+ --                            END
+ --       ,drvDocNo = RIGHT('000000000000000000' + LTRIM(RTRIM(MbtDocNo)),18)
+ --       ,drvCheckAmt = ABS(MbtCheckAmt)
+ --       ,drvPayDate = MbtPayDate
+ --       ,drvEmpNo = EecEmpNo
+    --    ,drvPayeeName = ckhEEfullname
+    --    ,drvIsVoided = CASE WHEN ISNULL(MbtIsVoided,'') = 'Y' THEN 'V'
+    --                        ELSE 'I'
+    --                   END
+
+    --INTO dbo.U_@CustomFormatCode_drvTbl
+    --FROM dbo.U_@CustomFormatCode_EEList WITH (NOLOCK)
+    --JOIN dbo.m_batch WITH (NOLOCK)
+    --    ON MbtEEID = xEEID
+    --    AND MbtCoID = xCOID
+    --JOIN dbo.Bank WITH (NOLOCK)
+    --    ON MbtCoBankID = bnkcobankid
+    --LEFT JOIN dbo.ChkHead WITH (NOLOCK)
+    --    ON ckheeid = xEEID
+    --    AND CONVERT(VARCHAR(10),LTRIM(RTRIM(MbtDocNo))) = CONVERT(VARCHAR(10),LTRIM(RTRIM(ckhCheckNo)))
+    --    AND MbtGenNumber = ckhGenNumber
+    --WHERE MbtPerControl BETWEEN @StartPerControl AND @EndPerControl
+    --AND MbtCheckAddMode IN ('R','M','A','D','B')
+    --AND MbtPrinted = 'Y'
+    --AND MbtTransactionType IN ('C')
+    --AND (MbtPostOnly = 'N'
+    --    OR MbtIsVoidingRecord = 'Y'
+    --);
