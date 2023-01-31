@@ -5,7 +5,7 @@ EPERADSNEX: Active Directory ServiceNow Export
 FormatCode:     EPERADSNEX
 Project:        Active Directory ServiceNow Export
 Client ID:      PER1023
-Date/time:      2022-12-21 16:25:01.240
+Date/time:      2023-01-31 17:33:53.920
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -185,16 +185,17 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPERADSNEX_20221221.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPERADSNEX_20230131.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Directory-FullFile','202212229','EMPEXPORT','FULLFILE','Jan 31 2023 12:00AM','EPERADSNEX',NULL,NULL,NULL,'202212229','Dec 22 2022 12:00AM','Dec 30 1899 12:00AM','202212151',NULL,'',NULL,'202212151',dbo.fn_GetTimedKey(),NULL,'us3mWaPER1023',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Directory ServiceNow Ex','202212219','EMPEXPORT','ONDEM_XOE',NULL,'EPERADSNEX',NULL,NULL,NULL,'202212219','Dec  2 2022  2:05PM','Dec  2 2022  2:05PM','202211251',NULL,'','','202211251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Directory Service-Sched','202212219','EMPEXPORT','SCH_EPERAD',NULL,'EPERADSNEX',NULL,NULL,NULL,'202212219','Dec  2 2022  2:05PM','Dec  2 2022  2:05PM','202211251',NULL,'','','202211251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Directory Service-Test','202212219','EMPEXPORT','TEST_XOE',NULL,'EPERADSNEX',NULL,NULL,NULL,'202212219','Dec  2 2022  2:05PM','Dec  2 2022  2:05PM','202211251',NULL,'','','202211251',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Active Directory Service-Test','202212229','EMPEXPORT','TEST_XOE','Dec 22 2022 12:00AM','EPERADSNEX',NULL,NULL,NULL,'202212229','Dec 22 2022 12:00AM','Dec 30 1899 12:00AM','202212151',NULL,'','','202212151',dbo.fn_GetTimedKey(),NULL,'us3kEpPER1023',NULL);
 
 -----------
 -- AscImp inserts
@@ -222,7 +223,7 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 -- U_dsi_SQLClauses inserts
 -----------
 
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPERADSNEX','H01','dbo.U_EPERADSNEX_Header',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPERADSNEX','H01','None',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPERADSNEX','D10','dbo.U_EPERADSNEX_drvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EPERADSNEX','T90','dbo.U_EPERADSNEX_Trailer',NULL);
 
@@ -251,6 +252,7 @@ CREATE TABLE [dbo].[U_EPERADSNEX_Audit] (
     [audDateTime] datetime NOT NULL,
     [audOldValue] nvarchar(2000) NULL,
     [audNewValue] nvarchar(2000) NULL,
+    [audChangeType] varchar(11) NOT NULL,
     [audRowNo] bigint NULL
 );
 
@@ -273,7 +275,7 @@ CREATE TABLE [dbo].[U_EPERADSNEX_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] char(9) NULL,
     [drvSubsort] varchar(1) NOT NULL,
     [drvCN] varchar(6000) NULL,
     [drvCompany] varchar(7) NOT NULL,
@@ -360,6 +362,7 @@ Execute Export
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPERADSNEX', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPERADSNEX', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPERADSNEX', 'SCH_EPERAD';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EPERADSNEX', 'FULLFILE';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'EPERADSNEX', @AllObjects = 'Y', @IsWeb = 'Y'
 **********************************************************************************/
@@ -407,7 +410,19 @@ BEGIN
         DROP TABLE dbo.U_EPERADSNEX_AuditFields;
     CREATE TABLE dbo.U_EPERADSNEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
      INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecOrgLvl1');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecOrgLvl2');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecJobCode');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpPers','EepNameFirst');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpPers','EepNameLast');
 
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpPers','EepAddressEMail');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecPhoneBusinessNumber');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecCOID');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecLocation');
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpComp','EecEEType'); 
+     INSERT INTO dbo.U_EPERADSNEX_AuditFields VALUES ('EmpMPhon','EfoPhoneNumber');
+     
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_EPERADSNEX_Audit','U') IS NOT NULL
         DROP TABLE dbo.U_EPERADSNEX_Audit;
@@ -421,6 +436,16 @@ BEGIN
         ,audDateTime
         ,audOldValue
         ,audNewValue
+        ,audChangeType = CASE WHEN audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = '' AND ISNULL(audNewValue,'') = 'A' THEN 'NewHire'
+                              WHEN audFieldName = 'EecEmplStatus' AND ISNULL(audOldValue,'') = 'T' AND ISNULL(audNewValue,'') = 'A' THEN 'Rehire'
+                              WHEN audFieldName = 'EecEmplStatus' AND ISNULL(audNewValue,'') = 'T' THEN 'Term'
+                              WHEN audFieldName = 'EecJobCode' AND ISNULL(audNewValue,'') <> '' THEN 'JobCode'
+                              WHEN audFieldName = 'EepNameFirst' AND ISNULL(audOldValue,'') <> '' AND ISNULL(audNewValue,'') <> '' THEN 'FirstName'
+                              WHEN audFieldName = 'EepNameLast' AND ISNULL(audOldValue,'') <> '' AND ISNULL(audNewValue,'') <> '' THEN 'LastName'
+                              WHEN audFieldName IN ('EecEEType','EecCOID','EecLocation','EecDateOfRetirement') AND ISNULL(audNewValue,'') <> '' THEN 'Transfer'
+                              WHEN audFieldName In ('EfoPhoneNumber', 'EecPhoneBusinessNumber' )  AND ISNULL(audOldValue,'') <> ISNULL(audNewValue,'') THEN 'PhoneChange'
+                              ELSE ''
+                        END
         ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
     INTO dbo.U_EPERADSNEX_Audit
     FROM dbo.vw_AuditData WITH (NOLOCK) 
@@ -436,8 +461,12 @@ BEGIN
     ----================
     ---- Changes Only
     ----================
-    --DELETE FROM dbo.U_EPERADSNEX_EEList
-    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EPERADSNEX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+       IF (@Exportcode NOT IN ('FULLFILE'))
+    BEGIN
+            -- Remove Employees with No Changes in Audit
+        DELETE FROM dbo.U_EPERADSNEX_EELIST
+        WHERE NOT EXISTS (SELECT 1 FROM dbo.U_EPERADSNEX_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+     END;
 
     --==========================================
     -- Build Driver Tables
@@ -451,7 +480,7 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = ''
+        ,drvInitialSort = EecEmpNo
         ,drvSubsort = ''
         -- standard fields above and additional driver fields below
         ,drvCN = dbo.dsi_fnRemoveChars(',',Concat(Ltrim(Rtrim(EepNameFirst)), ' ' ,Ltrim(RTrim(EepNameLast))))
@@ -466,12 +495,12 @@ BEGIN
         ,drvEmployeeNumber = EecEmpNo
         ,drvGivenName = EepNamePreferred
         ,drvHomePhone = EepPhoneHomeNumber
-        ,drvManager = dbo.dsi_fnRemoveChars(',',dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Namefirst')  + '' +  dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast'))
+        ,drvManager = dbo.dsi_fnRemoveChars(',',dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Namefirst')  + ' ' +  dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast'))
         ,drvMobilePhone = EfoPhoneNumber
         ,drvOfficePhone = EecPhoneBusinessNumber
-        ,drvPostalCode = EepAddressZipCode
-        ,drvState = EepAddressState
-        ,drvStreetAddress = dbo.dsi_fnRemoveChars(',',EepAddressLine1)
+        ,drvPostalCode = LocAddressZipCode --EepAddressZipCode
+        ,drvState =  LocAddressState---EepAddressState
+        ,drvStreetAddress = dbo.dsi_fnRemoveChars(',',LocAddressLine1+ ' ' +LocAddressLine2)
         ,drvTitle = dbo.dsi_fnRemoveChars(',',JbcDesc)
         ,drvPager = dbo.dsi_fnRemoveChars(',',Concat('PDGS','-',OL2.OrgDesc ))
     INTO dbo.U_EPERADSNEX_drvTbl
@@ -481,6 +510,8 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+     JOIN dbo.Location WITH (NOLOCK)
+        ON LocCode = EecLocation
      LEFT JOIN dbo.OrgLevel OL1 WITH (NOLOCK)
         On OL1.OrgLvl = 1
         and OL1.OrgCode = EecOrgLvl1
@@ -500,7 +531,8 @@ BEGIN
    LEFT JOIN dbo.U_EPERADSNEX_Audit WITH (NOLOCK)
         ON audEEID = XEEID 
         AND audKey2 = XCOID
-    WHERE  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN  @StartDate AND @EndDate))
+    WHERE EecEEType <> 'TES' and  (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN  @StartDate AND @EndDate))
+
     ;
 
     --==========================================

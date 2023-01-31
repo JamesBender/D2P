@@ -654,7 +654,7 @@ BEGIN
                 , MAX(Case WHEN Bdmdedcode IN ('TSAMT', 'TSAM2') THEN  Bdmdedcode END) TRANSITDedCode
                 FROM dbo.U_dsi_BDM_ELHMFSAHSA WITH (NOLOCK)
                 WHERE BdmDedCode IN ('FSAMD','FSADC','HSA','HSAER','TSAM2','TSAMT')
-                Group by BdmEEID, BdmCOID
+                Group by BdmEEID, BdmCOID ,Bdmdedcode
             ) BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID

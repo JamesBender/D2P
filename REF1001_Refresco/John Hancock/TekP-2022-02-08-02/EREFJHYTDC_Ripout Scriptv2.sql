@@ -5,7 +5,7 @@ EREFJHYTDC: John Hancock YTD Comp
 FormatCode:     EREFJHYTDC
 Project:        John Hancock YTD Comp
 Client ID:      REF1001
-Date/time:      2023-01-30 18:26:07.007
+Date/time:      2023-01-31 12:07:35.037
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -165,7 +165,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREFJHYTDC_20230130.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREFJHYTDC_20230131.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -174,7 +174,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp','202112319','EMPEXPORT','ONDEM_XOE',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202112319','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock YTD Comp-Sched','202112319','EMPEXPORT','SCH_EREFJH',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202112319','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp-Test','202212319','EMPEXPORT','TEST_XOE','Jan 23 2023 12:59PM','EREFJHYTDC',NULL,NULL,NULL,'202212319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202201011','5222','','','202201011',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp-Test','202212319','EMPEXPORT','TEST_XOE','Jan 31 2023  9:44AM','EREFJHYTDC',NULL,NULL,NULL,'202212319','Dec 31 2021 12:00AM','Dec 30 1899 12:00AM','202201011','8222','','','202201011',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -530,55 +530,7 @@ BEGIN
              -- AND  peheeid IN ( 'CDNA5X00W0K0', 'CDN9Y101Z0K0','CDN9WY00U0K0')
         GROUP BY peheeid
         HAVING SUM(PehCurAmt) <> 0.00
-    --          SELECT DISTINCT
- --        PehEEID
- --       ,PrgPayDate             = MAX(PrgPayDate)
- --       -- Current Payroll Amount
- --       ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt END)
- --       -- YTD Payroll Amount
- --       ,PehCurAmtYTD           = SUM(PehCurAmt)
- --       -- Current Include Deferred Comp Amount
- --       ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
- --       -- YTD Include Deferred Comp Amount
- --       ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-    --    ,PehPlanComp 
-    --    ,PehMatchPlanComp
- --   INTO dbo.U_EREFJHYTDC_PEarHist
- --   FROM dbo.vw_int_PayReg WITH (NOLOCK)
- --   JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
- --       ON PehGenNumber = PrgGenNumber
-    --LEFT JOIN ( SELECT DISTINCT
-    --                     PehEEID as PehEEID2 
- --                         ,PehPlanComp  = Isnull(SUM( CASE WHEN BdmDedcode in ('401K', '401K1', 'ROTH', 'ROTH1') and  PehInclInDefComp = 'Y' THEN
-    --                                          CASE  
-    --                                                     WHEN Cast(Year(@Enddate)  as varchar) + '-01-01' < =  BdmBenStartDate and  PrgPayDate between Cast(Year(@Enddate)  as varchar) + '-01-01'  and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-    --                                                    END 
-    --                                         END),0.00)
-                        
-    --                    ,PehMatchPlanComp =  ISNULL(SUM( CASE WHEN BdmDedcode in ('401KM', '401SB') and  PehInclInDefComp = 'Y' THEN 
-    --                                                CASE WHEN Cast(Year(@Enddate)  as varchar) + '-01-01'  < =  BdmBenStartDate and  PrgPayDate between Cast(Year(@Enddate)  as varchar) + '-01-01'  and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-    --                                                     WHEN Cast(Year(@Enddate)  as varchar) + '-01-01'  > =  BdmBenStartDate and  PrgPayDate between Cast(Year(@Enddate)  as varchar) + '-01-01'  and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-    --                                                    END 
-                                    
-    --                                                END), 0.00)
-    --                FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    --                JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-    --                    ON PehGenNumber = PrgGenNumber
-    --                LEFT JOIn dbo.U_dsi_BDM_EREFJHYTDC WITH (NOLOCK)
-    --                    ON BdmEEID = pehEEID
-    --                    AND BdmCOID = pehCOID 
-    --                and bdmDedCode in ('401K', '401K1', 'ROTH', 'ROTH1', '401KM', '401SB') 
-    --                WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    --                AND PehPerControl <= @EndPerControl
-    --                GROUP BY PehEEID
-    --    ) PD 
-    --    ON Pd.PehEEID2 = PehEEID
- --   WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
- --   AND PehPerControl <= @EndPerControl
-    ----and peheeid = 'CDN9Y101Z0K0'
- --   GROUP BY PehEEID, PehPlanComp ,PehMatchPlanComp
- --   HAVING SUM(PehCurAmt) <> 0.00;
-
+    
 
      -----------------------------
     -- Working Table - PTaxHist
@@ -640,6 +592,8 @@ BEGIN
         LEFT JOIN dbo.LabUnion 
         ON unicode = EecUnionLocal
     where  EecUnionLocal NOT In ('830','PAW22000') 
+    and (EecEmplstatus <> 'T' or (EecEmplstatus = 'T' and eecDateofTermination between @Startdate and @Enddate and (PehCurAmtYTD  <> 0.00  or PehInclInDefCompYTD  <> 0.00  or PehPlanComp <> 0.00  or PehMatchPlanComp <> 0.00 )))
+
         
     ;
 
