@@ -5,7 +5,7 @@ EBALEGLEXP: LegalShield Export
 FormatCode:     EBALEGLEXP
 Project:        LegalShield Export
 Client ID:      OUT1004
-Date/time:      2023-01-10 09:21:48.947
+Date/time:      2023-01-30 07:11:42.930
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -211,18 +211,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBALEGLEXP_20230110.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBALEGLEXP_20230130.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301159','EMPEXPORT','OEACTIVE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301159','EMPEXPORT','OEPASSIVE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'LegalShield Export','202301159','EMPEXPORT','ONDEM_XOE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'LegalShield Export-Sched','202301159','EMPEXPORT','SCH_EBALEG',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'LegalShield Export-Test','202301159','EMPEXPORT','TEST_XOE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2IIJU',NULL,NULL,NULL,'LegalShield Active OE','202301159','EMPEXPORT','OEACTIVE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2IIJU',NULL,NULL,NULL,'LegalShield Passive OE','202301159','EMPEXPORT','OEPASSIVE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'LegalShield On Demand','202301159','EMPEXPORT','ONDEM_XOE',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'LegalShield Export-Sched','202301159','EMPEXPORT','SCH_EBALEG',NULL,'EBALEGLEXP',NULL,NULL,NULL,'202301159','Jan  6 2023 12:41PM','Jan  6 2023 12:41PM','202212301',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2IIJU',NULL,NULL,NULL,'LegalShield Export-Test','202301259','EMPEXPORT','TEST_XOE','Jan 25 2023 12:00AM','EBALEGLEXP',NULL,NULL,NULL,'202301259','Jan 25 2023 12:00AM','Dec 30 1899 12:00AM','202301041',NULL,'','','202301041',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -684,6 +684,7 @@ BEGIN
         ON audEeid = Xeeid
         AND audCOID = XCOID
       WHERE EecEEType <> 'TES' AND ( EecEmplStatus <> 'T' OR  (EecEmplStatus = 'T' and auddatetime between @startdate and @EndDate))  
+      and  EecDedGroupCode = 'BAICI'
     ;
     ---------------------------------
     -- DETAIL RECORD - U_EBALEGLEXP_drvTbl_D
@@ -725,6 +726,7 @@ BEGIN
         ON audEeid = Xeeid
         AND audCOID = XCOID
         WHERE EecEEType <> 'TES' AND ( EecEmplStatus <> 'T' OR  (EecEmplStatus = 'T' and auddatetime between @startdate and @EndDate)) 
+        and  EecDedGroupCode = 'BAICI'
     ;
      ---------------------------------
     -- HEADER RECORD

@@ -4,16 +4,17 @@ ECIRACOBQB: Alerus COBRA QB Export
 
 FormatCode:     ECIRACOBQB
 Project:        Alerus COBRA QB Export
-Client ID:      USG1000
-Date/time:      2023-01-24 16:49:42.807
+Client ID:      CIR1003
+Date/time:      2023-01-27 08:49:49.973
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ECIRACOBQB_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW1WUP4DB03
+Database:       ULTIPRO_WPCIRR
+Web Filename:   CIR1003_B61C4_EEHISTORY_ECIRACOBQB_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -235,18 +236,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIRACOBQB_20230124.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIRACOBQB_20230127.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301249','EMPEXPORT','OEACTIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301249','EMPEXPORT','OEPASSIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Alerus COBRA QB Export','202301249','EMPEXPORT','ONDEM_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Alerus COBRA QB Export-Sched','202301249','EMPEXPORT','SCH_ECIRAC',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Alerus COBRA QB Export-Test','202301249','EMPEXPORT','TEST_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301249','EMPEXPORT','OEACTIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301249','EMPEXPORT','OEPASSIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Alerus COBRA QB Export','202301249','EMPEXPORT','ONDEM_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Alerus COBRA QB Export-Sched','202301249','EMPEXPORT','SCH_ECIRAC',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Alerus COBRA QB Export-Test','202301249','EMPEXPORT','TEST_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202301249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -258,11 +259,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECIRACOBQB','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -282,12 +284,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECIRACOBQB','D60','dbo.U_ECIRACOBQB_drvTbl_QBPLANMEMSPCRATE',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -386,7 +388,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QB] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(14) NULL,
+    [drvInitialSort] varchar(16) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvClentName] varchar(25) NOT NULL,
     [drvClientDivisionName] varchar(25) NOT NULL,
@@ -407,7 +409,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QB] (
     [drvCountry] char(3) NULL,
     [drvPremiumAddressAsPrimary] varchar(4) NOT NULL,
     [drvGender] varchar(1) NULL,
-    [drvDOB] datetime NULL,
+    [drvDOB] varchar(10) NULL,
     [drvEEType] varchar(3) NULL
 );
 
@@ -420,7 +422,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBDEPENDENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(26) NULL,
+    [drvInitialSort] varchar(31) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvSSN] char(11) NULL,
     [drvRelationship] varchar(15) NULL,
@@ -430,7 +432,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBDEPENDENT] (
     [drvLastName] varchar(100) NULL,
     [drvAddressSameAsQB] varchar(5) NOT NULL,
     [drvSex] char(1) NULL,
-    [drvDOB] datetime NULL
+    [drvDOB] varchar(10) NULL
 );
 
 -----------
@@ -442,7 +444,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBDEPPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(33) NULL,
+    [drvInitialSort] varchar(30) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvPlanName] varchar(34) NULL
 );
@@ -456,13 +458,13 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBEVENT] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(14) NULL,
+    [drvInitialSort] varchar(16) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvEventType] varchar(29) NULL,
-    [drvEventDate] datetime NULL,
-    [drvEnrollmentDate] char(10) NULL,
+    [drvEventDate] varchar(10) NULL,
+    [drvEnrollmentDate] varchar(10) NULL,
     [drvEmployeeSSN] char(11) NULL,
-    [drvEmployeeName] varchar(1) NOT NULL
+    [drvEmployeeName] varchar(201) NULL
 );
 
 -----------
@@ -474,7 +476,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBPLANINITIAL] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(14) NULL,
+    [drvInitialSort] varchar(16) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvPlanName] varchar(34) NULL,
     [drvCoverageLevel] varchar(11) NULL,
@@ -490,7 +492,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBPLANMEMSPCRATE] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(16) NULL,
+    [drvInitialSort] varchar(30) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvRecordTypeRateInitial] varchar(33) NULL,
     [drvPlanName] varchar(11) NULL,
@@ -647,7 +649,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'MHSA,MPPO,MHSA2,DEN,VIS,FSA,GLIFE,GLBD,GLEXC,GLMAX,LIFEC,LIFEE,LIFES,WHSA,WPPO,WHSA2';
+    SET @DedList = 'MHSA,MPPO,MHSA2,DEN,VIS,FSA,GLIFE,GLBD,GLEXC,GLMAX,WHSA,WPPO,WHSA2';---LIFEE,LIFEC,LIFES
 
     IF OBJECT_ID('U_ECIRACOBQB_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ECIRACOBQB_DedList;
@@ -670,9 +672,28 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-
+            
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+
+    -- COBRA parameters
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RunID','QB');
+    --    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'AddToPreviousRun','Y');  -- only used for NPM/QB combined files
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'UseCobraCoveredDeds','Y'); -- DedIsCobraCovered = 'Y'
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraType','4'); -- Eep/ConCobraReason first, then EdhChangeReason. Include CHGRP for elig. ben groups – 
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraDate','3'); -- EedBenStopDate and DbnBenStopDate, unless Eep/ConDateOfCOBRAEvent exists – 
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraPQBType','1'); -- If no EE or spouse, ALL children are PQB (not just oldest) – include this line if deps are sent as QB and not the employee.  If the EE is sent as the QB even for non-EE events indicate this up above in question #3.
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CobraReasonsDepPQB', 'LEVNT4,DLS,D,NLED,LOCD') -- Add valid dependent edhchangereasons
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidCobraReasonsEmp', 'LEVNT4,DLS,D,NLED,LOCD') ;-- Invalidate employee when Cobra Reason is a dependent PQB reason – Add valid dependent edhchangereasons (should be same as previous line above)
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'InvalidTermReasonsEmp','D'); -- Invalidate employee when Cobra Reason is "Death".  Add the Death employment term reason (eectermreason)
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'ConCobraReasonPCF','DependentCOBRAReason'); -- Valid dependent PQB reasons – used when clients have Platform Configurable fields.  Add any other field names the client is using.
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS'); -- update to the spouse relationship code
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild', 'CHL,DCH,DPC,STC'); -- update to the child relationship codes
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsDomPartner','DP'); -- update to the domestic partner relationship code
+
+        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard'); -- same for all files
+        
 
     -- Required OE parameters
     IF @ExportCode LIKE '%PASSIVE'
@@ -684,10 +705,209 @@ BEGIN
     BEGIN
         INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
     END;
-
-
+    
     -- Run BDM Module
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
+
+    ---========================================================================
+ --   -- Insert into BDM Reason code 201 (Dependent at Max Age) - Only show EE
+ --   --======================================================================
+
+    INSERT INTO [dbo].[U_dsi_BDM_ECIRACOBQB]
+    (    [BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmEEAmt]
+    )
+    Select distinct
+        'EMP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 201 (Dep at Max Age Dep/Loss of elig)'
+        ,'Emp'
+        ,EepDateofBirth
+        ,DbnDedCode
+        ,DbnBenStatus
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        ,EdhBenStopDate
+        ,EdhBenStatusDate
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,EdhStartDate
+        ,EdhStopDate
+        ,'Y'
+        ,'Y'
+        ,edheeamt
+    FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = edheeid 
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+        ON dbneeid = edheeid 
+        AND DbnCoID = EdhCoID
+        AND EdhDedCode = DbnDedCode
+        AND EdhBenOption = DbnBenOption
+        AND dbnformatcode = 'ECIRACOBQB'
+    WHERE edhChangeReason IN ('201','LEVNT3') 
+        and DbnBenstopdate BETWEEN @startdate AND @enddate 
+        AND dbnValidForExport = 'N'
+            AND DbnBenStatus = 'T'
+
+--    ========================================================================
+ --  Insert into BDM Reason code 204 / LEVNT4 (Divorce/Separation) 
+ --  ======================================================================
+    INSERT INTO [dbo].[U_dsi_BDM_ECIRACOBQB]
+           ([BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmEEAmt]
+    )
+    SELECT Distinct rectype = 'DEP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 204/LEVNT4 (Divorce/Separation)'
+        ,DbnRelationship
+        ,DbnDateOfBirth
+        ,EdhDedCode
+        ,DbnBenOption
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        --,EdhBenStopDate
+        ,DbnBenStopDate
+        ,EdhBenStatusDate
+        ,EdhEffDate
+        ,edhChangeReason
+        ,edhChangeReason
+        ,EdhStartDate
+        ,EdhStopDate
+        ,CASE WHEN DbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
+        ,'Y'
+        ,edheeamt
+    FROM dbo.emphded WITH (NOLOCK)
+        JOIN dbo.U_dsi_BDM_DepDeductions 
+            ON dbneeid = edheeid 
+            AND DbnCoID = EdhCoID
+            AND EdhDedCode = DbnDedCode
+            AND EdhBenOption = DbnBenOption
+            AND dbnformatcode = 'ECIRACOBQB'
+    WHERE edhChangeReason in ('204','LEVNT4') 
+        AND DbnRelationShip = 'SPS'
+        AND DbnBenStopDate BETWEEN @StartDate AND @EndDate
+        AND dbnValidForExport = 'N'
+
+--  --====================================================
+ --   Insert into BDM Reason code 302 (Remove Dependent)
+ --   --==================================================
+    INSERT INTO [dbo].[U_dsi_BDM_ECIRACOBQB]
+    (    [BdmRecType]
+           ,[BdmCOID]
+           ,[BdmEEID]
+           ,[BdmDepRecID]
+           ,[BdmSystemID]
+           ,[BdmRunID]
+           ,[BdmDedRowStatus]
+           ,[BdmRelationship]
+           ,[BdmDateOfBirth]
+           ,[BdmDedCode]
+           ,[BdmBenOption]
+           ,[BdmBenStatus]
+           ,[BdmBenStartDate]
+           ,[BdmBenStopDate]
+           ,[BdmBenStatusDate]
+           ,[BdmDateOFCobraEvent]
+           ,[BdmChangeReason]
+           ,[BdmCobraReason]
+           ,[BdmStartDate]
+           ,[BdmStopDate]
+           ,[BdmIsPQB]
+            ,[BdmIsCobraCovered]
+            ,[BdmEEAmt] 
+    )
+    Select Distinct rectype = 'EMP'
+        ,EdhCoid
+        ,EdhEEID
+        ,DbnDepRecID
+        ,DbnDepRecID
+        ,'QB'
+        ,'Data Inserted for 302 (Remove Dependent)'
+        ,DbnRelationship
+        ,DbnDateOfBirth
+        ,EdhDedCode
+        ,DbnBenOption
+        ,DbnBenStatus
+        ,EdhBenStartDate
+        ,DbnBenStopDate
+        ,edhEffDate
+        ,edhEffDate
+        ,edhChangeReason
+        ,'302'
+        ,EdhStartDate
+        ,EdhStopDate
+        ,'Y'
+        ,'Y'
+        ,edheeamt
+    FROM dbo.emphded WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
+        ON dbneeid = edheeid 
+        AND DbnCoID = EdhCoID
+        AND EdhDedCode = DbnDedCode
+        AND EdhBenOption = DbnBenOption
+        AND dbnformatcode = 'ECIRACOBQB'
+    WHERE edhChangeReason IN ('302') 
+        and DbnBenstopdate BETWEEN @startdate AND @enddate 
+        AND dbnValidForExport = 'N'
+        AND DbnBenStatus = 'T'
+
+ 
+
+
+ 
 
     --==========================================
     -- Build Driver Tables
@@ -701,8 +921,8 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = xEEID + ' 1'
-        ,drvSubSort = ''
+        ,drvInitialSort = '1 ' + xEEID + ' 1'
+        ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvClentName = 'Cirrus Design Corporation'
         ,drvClientDivisionName = 'Cirrus Design Corporation'
@@ -723,7 +943,7 @@ BEGIN
         ,drvCountry = EepAddressCountry
         ,drvPremiumAddressAsPrimary = 'TRUE'
         ,drvGender = CASE WHEN EepGender IN ('M', 'F') THEN EepGender ELSE 'U' END
-        ,drvDOB = EepDateOfBirth
+        ,drvDOB = CONVERT(VARCHAR(10), EepDateOfBirth, 101)
         ,drvEEType = CASE When EecFullTimeOrPartTime = 'F' then 'FTE'
                           When EecFullTimeOrPartTime = 'P' then 'PTE'
                         END
@@ -747,12 +967,12 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ECIRACOBQB_drvTbl_QBEVENT','U') IS NOT NULL
         DROP TABLE dbo.U_ECIRACOBQB_drvTbl_QBEVENT;
-     SELECT DISTINCT
+    SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = xEEID + ' 2'
-        ,drvSubSort = ''
+        ,drvInitialSort = '1 ' + xEEID + ' 2'
+        ,drvSubSort = '2'
         -- standard fields above and additional driver fields below
         ,drvEventType = CASE WHEN  (BdmChangeReason IN ('200','TOE')  OR EecTermReason IN ('A','COW','JA','LD','LDNR','M','NOB','NOCA','NONCF','NOP','NOS','NOUWJD','OC' ,'PR','RM','WC' ,'WS')) THEN 'TERMINATION'
                                 WHEN EecTermReason IN ('DCOP','FCTC','FJA','I','IB','MA','MR', 'POAOD' ,'PV','T','UP', 'WCR') THEN 'INVOLUNTARYTERMINATION'
@@ -765,11 +985,11 @@ BEGIN
                                 WHEN (BdmChangeReason = 'R'  OR EecTermReason = 'R' ) THEN 'RETIREMENT'
                                 WHEN (BdmChangeReason = 'D' OR EecTermReason = 'D') THEN 'DEATH'
                             END
-        ,drvEventDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination ELSE BdmBenStopDate END
+        ,drvEventDate = CONVERT(VARCHAR(10), CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination ELSE BdmBenStopDate END, 101)
 
-        ,drvEnrollmentDate = CASE WHEN BdmDedcode IN ('DEN','FSA','GLBD','GLEXC','GLIFE','GLMAX','MHSA','MHSA2','MPPO','VIS','WHSA','WHSA2','WPPO') THEN CONVERT(CHAR(10),dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate),112) END
+        ,drvEnrollmentDate =  CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX', @MinCovDate, BdmBenStartDate),101) 
         ,drvEmployeeSSN = eepSSN
-        ,drvEmployeeName = ''
+        ,drvEmployeeName = EepNameFirst + ' ' + EepNameLast
     INTO dbo.U_ECIRACOBQB_drvTbl_QBEVENT
     FROM dbo.U_ECIRACOBQB_EEList WITH (NOLOCK)
    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -777,23 +997,46 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
+     JOIN (SELECT
+                 BdmEEID
+                ,BdmCoID
+                ,BdmDepRecID
+                ,BdmRecType
+                ,BdmChangeReason = MAX(BdmChangeReason)
+                ,BdmCobraReason = MAX(BdmCobraReason)
+                ,BdmBenStartDate = MIN(BdmBenStartDate)
+                ,BdmBenStopDate = MAX(BdmBenStopDate)
+                ,BdmDateOfCOBRAEvent = MAX(BdmDateOfCOBRAEvent)
+                ,BdmUSGDate1 = MAX(BdmUSGDate1)
+                ,BdmStopDate = Max(bdmstopdate)
+              FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
+            Where BdmRunId = 'QB'
+              GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType) BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+
+   
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECIRACOBQB_drvTbl_QBPLANINITIAL
     ---------------------------------
     IF OBJECT_ID('U_ECIRACOBQB_drvTbl_QBPLANINITIAL','U') IS NOT NULL
         DROP TABLE dbo.U_ECIRACOBQB_drvTbl_QBPLANINITIAL;
-   SELECT DISTINCT
+  SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = xEEID + ' 3'
-        ,drvSubSort = ''
+        ,drvInitialSort = '1 ' + xEEID + ' 3'
+        ,drvSubSort = '3'
         -- standard fields above and additional driver fields below
-        ,drvPlanName = CASE WHEN BdmDedcode = 'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
+        ,drvPlanName = CASE WHEN BdmDedcode =  'DEN' THEN 'Delta Dental'
+                            WHEN BdmDedcode =  'FSA' THEN 'Further FSA'
+                            WHEN BdmDedcode IN  ('GLBD', 'GLEXC','GLIFE','GLMAX') THEN 'NYL Basic Life'
+                            WHEN BdmDedcode =  'MHSA' THEN 'BCBS $1500 HSA Medical'
+                            WHEN BdmDedcode =  'MHSA2' THEN 'BCBS $3000 HSA Medical'
+                            WHEN BdmDedcode =  'MPPO' THEN 'BCBS Traditional Medical'
+                            WHEN BdmDedcode =  'VIS' THEN 'EyeMed Vision'
+                            WHEN BdmDedcode = 'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
                             WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN 'Modern Health EAP'
@@ -816,12 +1059,20 @@ BEGIN
                             WHEN BdmDedCode IN  ('FSA', 'GLBD','GLEXC','GLIFE','GLMAX') THEN 'EE'
                             END    
 
-        ,drvNumberOfUnit = CASE WHEN BdmDedCode IN ('GLBD', 'GLEXC','GLIFE','GLMAX') THEN (BdmEEAmt/1000) END
+     ,drvNumberOfUnit = CASE WHEN BdmDedCode IN ('GLBD', 'GLEXC','GLIFE','GLMAX') THEN (BcaEEBenAmt/1000) END
     INTO dbo.U_ECIRACOBQB_drvTbl_QBPLANINITIAL
     FROM dbo.U_ECIRACOBQB_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND BdmRunId = 'QB'
+        and bdmIsPQB = 'Y'
+        and bdmdedcode IN  ('DEN','FSA','GLBD','GLEXC','GLIFE','GLMAX','MHSA','MHSA2','MPPO','VIS','WHSA','WHSA2','WPPO')
+    LEFt JOIN u_dsi_bdm_BenCalculationAmounts
+        ON bdmeeid = bcaeeid 
+        AND bdmcoid = bcacoid 
+        and bcaformatcode = 'ECIRACOBQB'
+        and BcaDedCode IN ('GLBD', 'GLEXC','GLIFE','GLMAX')
      LEFT JOIN (
             SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, EdhBenOption, BchIsCobraQualifiedEvent 
             FROM (
@@ -845,8 +1096,8 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = xEEID + ' 4'+ ConSystemID
-        ,drvSubSort = ''
+        ,drvInitialSort = '1 ' + xEEID + ' 4 ' +  BdmDepRecID + ' 1'  
+        ,drvSubSort = '4'
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvRelationship = CASE WHEN ConRelationship = 'SPS' THEN 'SPOUSE'
@@ -860,7 +1111,7 @@ BEGIN
         ,drvAddressSameAsQB = Case ConAddressIsDifferent WHEN 'N' THEN 'TRUE' ELSE 'FALSE' END
 
         ,drvSex = CASE WHEN ConGender IN ('M','F') THEN ConGender END
-        ,drvDOB = EepDateOfBirth
+        ,drvDOB = CONVERT(VARCHAR(10), ConDateOfBirth,101)
     INTO dbo.U_ECIRACOBQB_drvTbl_QBDEPENDENT
     FROM dbo.U_ECIRACOBQB_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -868,6 +1119,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND bdmdedcode IN  ('DEN','FSA','GLBD','GLEXC','GLIFE','GLMAX','MHSA','MHSA2','MPPO','VIS','WHSA','WHSA2','WPPO')
      JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
@@ -881,8 +1133,8 @@ BEGIN
         drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = xEEID + ' 4 ' + ConSystemID + ' ' + BdmDedcode
-        ,drvSubSort = ''
+        ,drvInitialSort = '1 ' + xEEID + ' 4 ' + BdmDepRecID + '2'
+        ,drvSubSort = '5'
         -- standard fields above and additional driver fields below
         ,drvPlanName = CASE WHEN BdmDedcode = 'DEN' THEN 'Delta Dental'
                             WHEN BdmDedcode = 'FSA' THEN 'Further FSA'
@@ -903,6 +1155,7 @@ BEGIN
     JOIN dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+        AND bdmdedcode IN  ('DEN','FSA','GLBD','GLEXC','GLIFE','GLMAX','MHSA','MHSA2','MPPO','VIS','WHSA','WHSA2','WPPO')
      JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
@@ -916,8 +1169,8 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = xEEID + ' 5 2'
-        ,drvSubSort = ''
+        ,drvInitialSort = '1 ' + xEEID + ' 4 ' + BdmDepRecID + '3'
+        ,drvSubSort = '6'
         -- standard fields above and additional driver fields below
         ,drvRecordTypeRateInitial = CASE WHEN BdmDedCode = 'FSA' THEN '[QBPLANMEMBERSPECIFICRATEINITIAL]' END
         ,drvPlanName = CASE WHEN BdmDedCode = 'FSA' THEN 'Further FSA' END
@@ -950,7 +1203,7 @@ END;
 --Alter the View
 ALTER VIEW dbo.dsi_vwECIRACOBQB_Export AS
     SELECT TOP 20000000 Data FROM dbo.U_ECIRACOBQB_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+    ORDER BY  InitialSort, SubSort,RIGHT(RecordSet,2);
 
 --Check out iascDefF
 SELECT * FROM dbo.iascDefF
@@ -967,9 +1220,9 @@ WHERE expFormatCode = 'ECIRACOBQB';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwECIRACOBQB_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_ECIRACOBQB_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort
+CREATE VIEW dbo.dsi_vwECIRACOBQB_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ECIRACOBQB_File (NOLOCK)
+    ORDER BY  InitialSort, SubSort,RIGHT(RecordSet,2);
 
 GO
 

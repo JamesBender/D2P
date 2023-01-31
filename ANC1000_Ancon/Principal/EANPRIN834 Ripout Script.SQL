@@ -5,7 +5,7 @@ EANPRIN834: Principal Benefit Export
 FormatCode:     EANPRIN834
 Project:        Principal Benefit Export
 Client ID:      ANC1000
-Date/time:      2023-01-24 09:57:31.307
+Date/time:      2023-01-27 07:44:32.043
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -378,7 +378,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230124.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230127.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -1037,11 +1037,11 @@ BEGIN
             AND ee.eeddedcode = ed.eeddedcode
          JOIN dbo.contacts WITH (nolock) 
             ON eedDepRecID = consystemid
-        WHERE ee.eeddedcode IN ('RELI3')
+            WHERE ee.eeddedcode IN ('RELI3')
         --AND NOT Exists (SELECT 1 FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode = ee.eeddedcode)
-        AND  (ee.eedeeid  not in  (SELECT dbneeid FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode In ('ADEN2','AVIS')))
+        AND ( (ee.eedeeid  not in  (SELECT dbneeid FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode In ('ADEN2','AVIS')))
         OR  consystemid  IN   (SELECT DbnDepRecID FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' and dbndedcode In ('ADEN2','AVIS') and dbnBenstopdate is not null 
-                and dbnRelationship = 'SPS'))
+                and dbnRelationship = 'SPS')))
         ;
     --EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
     EXEC dbo.dsi_bdm_sp_BuildConsolidatedTable 'EANPRIN834', 'Standard';
@@ -1241,21 +1241,22 @@ BEGIN
                                      --       WHEN Reli3DedCod = 'RELI3' and  Ltrim(rtrim(LocAddressState)) NOT IN ( 'CA') THEN '00002'
                                       --END
 
-        -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'DTP' END
-        ,drvDTP01_DateTimeQualifier1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE '300' END
-        ,drvDTP02_DateTimeFormatQual1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'D8' END
-        ,drvDTP03_DateTimePeriod1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE BenStartDate END
+      
+               -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
+        ,drvDTP00_DateTime1 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid)) THEN '' ELSE 'DTP' END
+        ,drvDTP01_DateTimeQualifier1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE '300' END
+        ,drvDTP02_DateTimeFormatQual1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE 'D8' END
+        ,drvDTP03_DateTimePeriod1 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE BenStartDate END
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'DTP' END
-        ,drvDTP01_DateTimeQualifier2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE '303' END
-        ,drvDTP02_DateTimeFormatQual2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'D8' END
-        ,drvDTP03_DateTimePeriod2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END
+        ,drvDTP00_DateTime2 = CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE 'DTP' END
+        ,drvDTP01_DateTimeQualifier2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE '303' END
+        ,drvDTP02_DateTimeFormatQual2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE 'D8' END
+        ,drvDTP03_DateTimePeriod2 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN ''  ELSE dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END
         -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'DTP' END
-        ,drvDTP01_DateTimeQualifier3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE '336' END
-        ,drvDTP02_DateTimeFormatQual3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE 'D8' END
-        ,drvDTP03_DateTimePeriod3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3')) THEN '' ELSE EecDateOfLastHire END
+        ,drvDTP00_DateTime3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE 'DTP' END
+        ,drvDTP01_DateTimeQualifier3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE '336' END
+        ,drvDTP02_DateTimeFormatQual3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE 'D8' END
+        ,drvDTP03_DateTimePeriod3 =  CASE WHEN (BdmRecType = 'DEP' and conrelationship = 'SPS' AND  bdmdedcode IN ('RELI3') and BdmDepRecID not in (SELECT d.BdmDepRecID  FROM dbo.U_dsi_bdm_EANPRIN834 d Where  d.bdmdedcode in ('ADEN2','AVIS') and d.bdmeeid = bdmeeid))  THEN '' ELSE EecDateOfLastHire END
        --If drvDTP00_DateTime4 is Populated, then send DTP Segment
         ,drvDTP00_DateTime4 = CASE WHEN EecEmplStatus = 'T'  THEN'DTP' END
         ,drvDTP01_DateTimeQualifier4 = CASE WHEN EecEmplStatus = 'T'  THEN '337' END
@@ -1434,6 +1435,7 @@ BEGIN
     WHERE EecEEType <> 'TES'
     AND CmpCompanyCode IN ('ANCON', 'CPS', 'HH', 'VOLT')
        AND  (BdmBenStatus = 'A' or (BdmBenStatus = 'T' and EecEmplStatus = 'T'  and audDateTime Between @Startdate and @EndDate))
+     
 ;
 
     /**************************************************************************************************************

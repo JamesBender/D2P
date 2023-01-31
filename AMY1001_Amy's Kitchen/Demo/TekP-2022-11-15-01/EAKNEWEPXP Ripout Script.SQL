@@ -5,7 +5,7 @@ EAKNEWEPXP: California New Employee Export
 FormatCode:     EAKNEWEPXP
 Project:        California New Employee Export
 Client ID:      AMY1001
-Date/time:      2023-01-20 12:44:19.330
+Date/time:      2023-01-27 09:31:01.373
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -145,7 +145,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EAKNEWEPXPZ0','2','H','01','8',NULL,'State',NULL,NULL,'"drvState"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EAKNEWEPXPZ0','5','H','01','9',NULL,'ZIP Code/Foreign Postal Code',NULL,NULL,'"drvZipCode"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','EAKNEWEPXPZ0','4','H','01','10',NULL,'ZIP Code Extension',NULL,NULL,'""','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EAKNEWEPXPZ0','33','H','01','11',NULL,'Blank',NULL,NULL,'""','(''DA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','EAKNEWEPXPZ0','41','H','01','11',NULL,'Blank',NULL,NULL,'""','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EAKNEWEPXPZ0','2','D','10','1',NULL,'Record Identifier',NULL,NULL,'"W4"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EAKNEWEPXPZ0','9','D','10','2',NULL,'Employee SSN',NULL,NULL,'"drvSSN"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EAKNEWEPXPZ0','16','D','10','3',NULL,'Employee First Name',NULL,NULL,'"drvNameFirst"','(''UA''=''F'')');
@@ -173,16 +173,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EAKNEWEPXP_20230120.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EAKNEWEPXP_20230127.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'California New Employee Export','202301039','EMPEXPORT','ONDEM_XOE',NULL,'EAKNEWEPXP',NULL,NULL,NULL,'202301039','Jan  3 2023 12:00PM','Jan  3 2023 12:00PM','202301031',NULL,'','','202301031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'California New Employee -Sched','202301039','EMPEXPORT','SCH_EAKNEW',NULL,'EAKNEWEPXP',NULL,NULL,NULL,'202301039','Jan  3 2023 12:00PM','Jan  3 2023 12:00PM','202301031',NULL,'','','202301031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','RXHL3,RXHFX',NULL,NULL,NULL,'California New Employee -Test','202301069','EMPEXPORT','TEST_XOE','Jan 20 2023 12:00AM','EAKNEWEPXP',NULL,NULL,NULL,'202301069','Jan  6 2023 12:00AM','Dec 30 1899 12:00AM','202212301',NULL,'',NULL,'202212301',dbo.fn_GetTimedKey(),NULL,'us3mWaAMY1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'RXHL3,RXHFX',NULL,NULL,NULL,'California New Employee Export','202301269','EMPEXPORT','ONDEM_XOE','Jan 26 2023 12:00AM','EAKNEWEPXP',NULL,NULL,NULL,'202301269','Jan 26 2023 12:00AM','Dec 30 1899 12:00AM','202301261',NULL,'','','202301261',dbo.fn_GetTimedKey(),NULL,'us3mWaAMY1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'RXHL3,RXHFX',NULL,NULL,NULL,'California New Employee -Sched','202301269','EMPEXPORT','SCH_EAKNEW','Jan 26 2023 12:00AM','EAKNEWEPXP',NULL,NULL,NULL,'202301269','Jan 26 2023 12:00AM','Dec 30 1899 12:00AM','202301261',NULL,'','','202301261',dbo.fn_GetTimedKey(),NULL,'us3mWaAMY1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','RXHL3,RXHFX',NULL,NULL,NULL,'California New Employee -Test','202301269','EMPEXPORT','TEST_XOE','Jan 26 2023 12:00AM','EAKNEWEPXP',NULL,NULL,NULL,'202301269','Jan 26 2023 12:00AM','Dec 30 1899 12:00AM','202301261',NULL,'','','202301261',dbo.fn_GetTimedKey(),NULL,'us3mWaAMY1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -195,6 +195,9 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','EEList','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','SubSort2','C','drvSubsort2');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','Testing','V','Y');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','TestPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EAKNEWEPXP','UseFileName','V','Y');
@@ -260,6 +263,9 @@ CREATE TABLE [dbo].[U_EAKNEWEPXP_drvTbl] (
     [drvEEID] char(12) NULL,
     [drvCoID] char(5) NULL,
     [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] char(5) NULL,
+    [drvSubSort] varchar(1) NULL,
+    [drvSubsort2] char(11) NULL,
     [drvSSN] char(11) NULL,
     [drvNameFirst] varchar(100) NULL,
     [drvNameMiddleInitial] varchar(1) NULL,
@@ -302,13 +308,16 @@ CREATE TABLE [dbo].[U_EAKNEWEPXP_File] (
 IF OBJECT_ID('U_EAKNEWEPXP_Header') IS NULL
 CREATE TABLE [dbo].[U_EAKNEWEPXP_Header] (
     [drvFEIN] varchar(9) NULL,
-    [drvStateEmployerAcctNumber] varchar(8) NULL,
+    [drvStateEmployerAcctNumber] varchar(16) NULL,
     [drvBranchCode] varchar(1) NOT NULL,
-    [drvEmployerName] varchar(40) NULL,
+    [drvEmployerName] varchar(6000) NULL,
     [drvStreetAddress] varchar(30) NULL,
     [drvCity] varchar(30) NULL,
     [drvState] varchar(2) NULL,
-    [drvZipCode] varchar(5) NULL
+    [drvZipCode] varchar(5) NULL,
+    [drvInitialSort] char(5) NOT NULL,
+    [drvSubSort] char(5) NOT NULL,
+    [drvSubsort2] varchar(1) NOT NULL
 );
 
 -----------
@@ -317,7 +326,10 @@ CREATE TABLE [dbo].[U_EAKNEWEPXP_Header] (
 
 IF OBJECT_ID('U_EAKNEWEPXP_Trailer') IS NULL
 CREATE TABLE [dbo].[U_EAKNEWEPXP_Trailer] (
-    [drvNumberOfEmployeesReported] int NULL
+    [drvNumberOfEmployeesReported] varchar(24) NULL,
+    [drvInitialSort] char(5) NULL,
+    [drvSubSort] char(5) NULL,
+    [drvSubsort2] char(5) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EAKNEWEPXP]
@@ -329,7 +341,7 @@ Client Name: Amy's Kitchen
 
 Created By: Marie Waters
 Business Analyst: Katherine Ricca
-Create Date: 01/03/2023
+Create Date: 01/26/2023
 Service Request Number: TekP-2022-11-15-01
 
 Purpose: California New Employee Export
@@ -358,7 +370,7 @@ BEGIN
     --==========================================
     -- Declare variables
     --==========================================
-    DECLARE  @FormatCode        VARCHAR(10)
+   DECLARE  @FormatCode        VARCHAR(10)
             ,@ExportCode        VARCHAR(10)
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
@@ -426,6 +438,7 @@ BEGIN
     -- Create Index
     CREATE CLUSTERED INDEX CDX_U_EAKNEWEPXP_Audit ON dbo.U_EAKNEWEPXP_Audit (audEEID,audKey2);
 
+
     ----================
     ---- Changes Only
     ----================
@@ -444,52 +457,63 @@ BEGIN
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvInitialSort = XCoid
+        ,drvSubSort = CASE WHEN  Xcoid = 'RXHL3' THEN '1' 
+                        WHEN  Xcoid = 'RXHFX' THEN '2'
+                        END
+        ,drvSubsort2 = eepSSN
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
         ,drvNameFirst = UPPER(EepNameFirst)
         ,drvNameMiddleInitial = UPPER(LEFT(EepNameMiddle,1))
         ,drvNameLast = UPPER(EepNameLast)
-        ,drvStreetAddress = EepAddressLine1
+        ,drvStreetAddress = UPPER(EepAddressLine1)
         ,drvCity = UPPER(EepAddressCity)
         ,drvState = UPPER(EepAddressState)
         ,drvZipCode = UPPER(Left(EepAddressZipCode,5))
         ,drvEmpStartDate =  Convert(CHAR(8),CASE WHEN EecDateOfOriginalHire <> EecDateOfLastHire THEN EecDateOfLastHire ELSE EecDateOfOriginalHire  END , 112)
     INTO dbo.U_EAKNEWEPXP_drvTbl
     FROM dbo.U_EAKNEWEPXP_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
+     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+      JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoID = xCoID
      Left Join dbo.U_EAKNEWEPXP_Audit
         ON audeeid = xeeid
         and audKey2 = xcoid
      WHERE audNewHire = 'Y' --- (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime BETWEEN  @StartDate  AND @EndDate  ))
          AND EecEEType <> 'TES'
-         AND xCoID IN  ('RXHL3', 'RXHFX')
+        
     ;
     ---------------------------------
     -- HEADER RECORD
     ---------------------------------
     IF OBJECT_ID('U_EAKNEWEPXP_Header','U') IS NOT NULL
         DROP TABLE dbo.U_EAKNEWEPXP_Header;
-    SELECT DISTINCT
-         drvFEIN = CASE WHEN  cmpcoid = 'RXHL3' THEN '465460581' 
-                        WHEn  cmpcoid = 'RXHFX' THEN '680154899'
+     SELECT DISTINCT
+          drvFEIN = CASE WHEN  cmpcoid = 'RXHL3' THEN '465460581' 
+                         WHEN  cmpcoid = 'RXHFX' THEN '680154899'
                         END
-        ,drvStateEmployerAcctNumber = CASE WHEN cmpcoid = 'RXHFX' THEN '35254895' --  1/6/2023 MW Removed dashes
-                                           WHEN cmpcoid = 'RXHL3' THEN '04590428' --  1/6/2023 MW Removed dashes
+        ,drvStateEmployerAcctNumber = CASE WHEN cmpcoid = 'RXHFX' THEN '35254895        ' --  1/6/2023 MW Removed dashes
+                                           WHEN cmpcoid = 'RXHL3' THEN '04590428        ' --  1/6/2023 MW Removed dashes
                                          END
         ,drvBranchCode = ''
-        ,drvEmployerName = UPPER(CmpCompanyName)
+        ,drvEmployerName = UPPER(dbo.dsi_fnRemoveChars('.'''',/-',CmpCompanyName))
         ,drvStreetAddress = UPPER(cmpAddressLine1)
         ,drvCity = UPPER(cmpAddressCity)
         ,drvState = UPPER(cmpAddressState)
         ,drvZipCode = UPPER(Left(cmpAddressZipCode,5))
+        ,drvInitialSort =  cmpcoid                
+        ,drvSubSort = cmpcoid              
+        ,drvSubsort2 = '1'
     INTO dbo.U_EAKNEWEPXP_Header
     FROM dbo.U_EAKNEWEPXP_EEList WITH (NOLOCK)
     JOIN dbo.Company WITH (NOLOCK)
         ON CmpCoID = xCoID
+    
     ;
     ---------------------------------
     -- TRAILER RECORD
@@ -497,9 +521,22 @@ BEGIN
     IF OBJECT_ID('U_EAKNEWEPXP_Trailer','U') IS NOT NULL
         DROP TABLE dbo.U_EAKNEWEPXP_Trailer;
     SELECT DISTINCT
-         drvNumberOfEmployeesReported = (Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK))
-    INTO dbo.U_EAKNEWEPXP_Trailer
+          drvNumberOfEmployeesReported = dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = xCOID), 11,0)
+         ,drvInitialSort = xCOID
+         ,drvSubSort =  xCOID
+         ,drvSubsort2 = xCOID
+   INTO dbo.U_EAKNEWEPXP_Trailer
+   FROM dbo.U_EAKNEWEPXP_EEList WITH (NOLOCK)
+    JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoID = xCoID
+     Join dbo.U_EAKNEWEPXP_Audit
+        ON audeeid = xeeid
+        and audKey2 = xcoid
+        and audNewHire = 'Y' 
+        
     ;
+
+
 
     --==========================================
     -- Set FileName
@@ -513,14 +550,41 @@ BEGIN
                              END
         WHERE FormatCode = @FormatCode;
     END
-
+    
 END;
 /**********************************************************************************
-
 --Alter the View
 ALTER VIEW dbo.dsi_vwEAKNEWEPXP_Export AS
-    SELECT TOP 20000000 Data FROM dbo.U_EAKNEWEPXP_File (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+     SELECT TOP 20000000 Data FROM (
+                                                    
+                                SELECT f.RecordSet
+                                      ,InitialSort = CASE WHEN 'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data THEN t.drvInitialSort  
+                                                          WHEN 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)  THEN h.drvInitialSort   
+                                                        ELSE f.InitialSort 
+                                                    END
+                                    , Subsort =CASE WHEN 'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data   and  t.drvSubsort = 'RXHL3' THEN '1'
+                                                    WHEN 'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data and  t.drvSubsort = 'RXHFX'THEN '2'  
+                                                          WHEN 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)  and   h.drvSubSort   = 'RXHL3' THEN '1' 
+                                                          WHEN 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)  and   h.drvSubSort   = 'RXHFX' THEN '2' 
+                                                        ELSE f.Subsort 
+                                                    END
+                                    ,f.Subsort2
+                                    ,f.subsort3
+                                    ,f.Data
+                                FROM dbo.U_EAKNEWEPXP_File f with (NOLOCK)
+                                Left JOIN dbo.U_EAKNEWEPXP_Trailer t with (NOLOCK) 
+                                    ON  'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data
+                                LEFT JOIn  dbo.U_EAKNEWEPXP_Header h with (NOLOCK) 
+                                    ON 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)
+        
+                                )d
+
+        ORDER BY  InitialSort, SubSort , RIGHT(RecordSet,2)
+
+----Alter the View
+--ALTER VIEW dbo.dsi_vwEAKNEWEPXP_Export AS
+--    SELECT TOP 20000000 Data FROM dbo.U_EAKNEWEPXP_File (NOLOCK)
+--      ORDER BY  InitialSort, SubSort , RIGHT(RecordSet,2);
 
 --Check out iascDefF
 SELECT * FROM dbo.iascDefF
@@ -529,17 +593,42 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202212271'
-       ,expStartPerControl     = '202212271'
-       ,expLastEndPerControl   = '202301039'
-       ,expEndPerControl       = '202301039'
+    SET expLastStartPerControl = '202301191'
+       ,expStartPerControl     = '202301191'
+       ,expLastEndPerControl   = '202301269'
+       ,expEndPerControl       = '202301269'
 WHERE expFormatCode = 'EAKNEWEPXP';
 
 **********************************************************************************/
 GO
-CREATE VIEW dbo.dsi_vwEAKNEWEPXP_Export AS 
-    SELECT TOP 200000000 Data FROM dbo.U_EAKNEWEPXP_File WITH (NOLOCK)
-    ORDER BY RIGHT(RecordSet,2), InitialSort
+CREATE VIEW dbo.dsi_vwEAKNEWEPXP_Export AS
+
+     SELECT TOP 20000000 Data FROM (
+                            
+                            
+                                SELECT f.RecordSet
+                                      ,InitialSort = CASE WHEN 'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data THEN t.drvInitialSort  
+                                                          WHEN 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)  THEN h.drvInitialSort   
+                                                        ELSE f.InitialSort 
+                                                    END
+                                    , Subsort =CASE WHEN 'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data   and  t.drvSubsort = 'RXHL3' THEN '1'
+                                                    WHEN 'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data and  t.drvSubsort = 'RXHFX'THEN '2'  
+                                                          WHEN 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)  and   h.drvSubSort   = 'RXHL3' THEN '1' 
+                                                          WHEN 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)  and   h.drvSubSort   = 'RXHFX' THEN '2' 
+                                                        ELSE f.Subsort 
+                                                    END
+                                    ,f.Subsort2
+                                    ,f.subsort3
+                                    ,f.Data
+                                FROM dbo.U_EAKNEWEPXP_File f with (NOLOCK)
+                                Left JOIN dbo.U_EAKNEWEPXP_Trailer t with (NOLOCK) 
+                                    ON  'T4' + dbo.dsi_fnpadzero((Select COUNT(DISTINCT drvSSN) FROM dbo.U_EAKNEWEPXP_drvTbl WITH (NOLOCK) WHERE drvCoid = t.drvInitialSort ), 11,0) = f.Data
+                                LEFT JOIn  dbo.U_EAKNEWEPXP_Header h with (NOLOCK) 
+                                    ON 'E4' + convert(Varchar(9),h.drvFEIN)= Left(f.Data,11)
+        
+                                )d
+
+        ORDER BY  InitialSort, SubSort , RIGHT(RecordSet,2)
 
 GO
 
