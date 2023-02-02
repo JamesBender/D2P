@@ -5,7 +5,7 @@ EBENPRGIE2: Benefits Prime Demographic ExportV2
 FormatCode:     EBENPRGIE2
 Project:        Benefits Prime Demographic ExportV2
 Client ID:      SAF1006
-Date/time:      2022-12-29 11:48:18.047
+Date/time:      2023-02-02 11:20:39.983
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -159,7 +159,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBENPRGIE2_20221229.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBENPRGIE2_20230202.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -168,7 +168,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Benefits Prime Demographic Exp','202210111','EMPEXPORT','ONDEM_XOE',NULL,'EBENPRGIE2',NULL,NULL,NULL,'202210111','Aug 21 2020 12:37PM','Aug 21 2020 12:37PM','202210081',NULL,'','','202210081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',CWMD1,V7CQG',NULL,NULL,NULL,'Benefits Prime Demograph-Sched','202210111','EMPEXPORT','SCH_EBENPR',NULL,'EBENPRGIE2',NULL,NULL,NULL,'202210111','Aug 21 2020 12:37PM','Aug 21 2020 12:37PM','202210081',NULL,'','','202210081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Benefits Prime Demograph-Test','202211291','EMPEXPORT','TEST_XOE','Dec 28 2022  3:36PM','EBENPRGIE2',NULL,NULL,NULL,'202211291','Nov 29 2022 12:00AM','Dec 30 1899 12:00AM','202211281','1721','','','202211281',dbo.fn_GetTimedKey(),NULL,'us3cPeSAF1006',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Benefits Prime Demograph-Test','202301301','EMPEXPORT','TEST_XOE','Feb  2 2023 10:02AM','EBENPRGIE2',NULL,NULL,NULL,'202301301','Jan 30 2023 12:00AM','Dec 30 1899 12:00AM','202301291','1738','','','202301291',dbo.fn_GetTimedKey(),NULL,'us3cPeSAF1006',NULL);
 
 -----------
 -- AscImp inserts
@@ -246,7 +246,7 @@ CREATE TABLE [dbo].[U_EBENPRGIE2_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvSort] varchar(1) NOT NULL,
     [drvSSN] char(11) NULL,
-    [drvEffectiveSalaryDate] char(8) NULL,
+    [drvEffectiveSalaryDate] date NULL,
     [drvWorkLocationState] varchar(255) NULL,
     [drvBusinessTitle] varchar(8000) NULL,
     [drvPreviousAnnualSalary] nvarchar(4000) NULL,
@@ -425,7 +425,8 @@ BEGIN
         ,drvSort = ''
         -- standard fields above and additional driver fields below
         ,drvSSN = eepSSN
-        ,drvEffectiveSalaryDate =  Convert(CHAR(8),Case when EecEmplStatus = 'A' and isnull(PTDATE, '') <> '' THEN PTDATE else  dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END,112) --dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
+        ,drvEffectiveSalaryDate =  CAST(dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, @EndDate,EecDateInJob) AS DATE)
+                    --Convert(CHAR(8),Case when EecEmplStatus = 'A' and isnull(PTDATE, '') <> '' THEN PTDATE else  dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire) END,112) --dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(xEEID, xCOID, GETDATE(), EecDateOfLastHire)
         ,drvWorkLocationState = LocAddressState
        -- ,drvAlternativeEmail = EepAddressEMailAlternate
        -- ,drvPreferredLanguage = EecLanguageCode
@@ -437,7 +438,10 @@ BEGIN
                                   WHEN EecEmplStatus = 'T' THEN Convert(CHAR(8),EecDateLastWorked,112) 
                                 
                                   END
-        ,drvUKGTermReason =  CASE WHEN EecFullTimeOrPartTime = 'P'  and PTDATE is not null  and REHIRE is null THEN 'Ineligible-F/T to P/T'
+        ,drvUKGTermReason =  CASE 
+                                  WHEN EecEmplStatus = 'A' and EecJobChangeReason = '101' and EecFullTimeOrPartTime = 'P' THEN Null
+                                  WHEN EecFullTimeOrPartTime = 'P' and EecEmplStatus = 'T' THEN Null
+                                  WHEN EecFullTimeOrPartTime = 'P'  and PTDATE is not null  and REHIRE is null  and PT is null THEN 'Ineligible-F/T to P/T'
                                   WHEN EecTermReason = '202' THEN 'Retirement/Early Retirement'
                                   WHEN EecTermReason = '203' THEN 'Death'
                                   WHEN EecTermReason = '999' THEN 'Disability'
@@ -465,24 +469,25 @@ BEGIN
                     ,PTDATE
                     ,FTDATE
                     ,FTSAL
-                    ,REHIRE = CASE WHEN FTTERMDATE < PTDATE  THEN 'Rehired' END FROM    (SELECT PTEEID ,  PTCOID , PTSAL, PTDATE From ( Select  ejheeid AS PTEEID, EjhCoID AS PTCOID, EjhJobCode, EjhAnnSalary AS PTSAL, EjhIntegrationEffDate AS PTDATE,  RN = ROW_NUMBER() OVER (PARTITION BY ejheeid, Ejhemplstatus ORDER BY EjhIntegrationEffDate  DESC) 
+                    ,PT = CASE WHEN PTDATE is not null and FTDATE is null then 'PT' END
+                    ,REHIRE = CASE WHEN FTTERMDATE < PTDATE  and FTTERMDATE < FTDATE and FTDATE < PTDATE THEN 'Rehired' END FROM    (SELECT PTEEID ,  PTCOID , PTSAL, PTDATE From ( Select  ejheeid AS PTEEID, EjhCoID AS PTCOID, EjhJobCode, EjhAnnSalary AS PTSAL, EjhIntegrationEffDate AS PTDATE,  RN = ROW_NUMBER() OVER (PARTITION BY ejheeid, Ejhemplstatus ORDER BY EjhIntegrationEffDate  DESC) 
                      FROM dbo.EmpHJob WITH (NOLOCK) WHERE Ejhemplstatus = 'A'  AND EjhFullTimeOrPartTime = 'P' 
-                    -- and ejheeid = 'D4IQNM000030' 
+                     --and ejheeid = 'CF538P01M0K0' 
                      ) PT WHERE  rn = 1) PTHIRE
 
                 LEFT JOIN ( SELECT FTEEID ,FTCOID ,FTSAL,FTDATE From ( Select  ejheeid AS FTEEID, EjhCoID AS FTCOID, EjhJobCode, EjhAnnSalary AS FTSAL, EjhIntegrationEffDate AS FTDATE,  RN = ROW_NUMBER() OVER (PARTITION BY ejheeid, Ejhemplstatus ORDER BY EjhIntegrationEffDate  DESC) 
                      FROM dbo.EmpHJob WITH (NOLOCK) WHERE Ejhemplstatus = 'A'  AND EjhFullTimeOrPartTime = 'F' 
-                    -- and ejheeid = 'CF53QC00I0K0' 
+                    -- and ejheeid = 'CF538P01M0K0' 
                      ) FT WHERE  rn = 1)  FTHIRE ON FTEEID = PTEEID
 
 
                 Left JOIN (SELECT FTTERMEEID ,FTTERMCOID FTTERMSAL,FTTERMDATE From ( Select  ejheeid AS FTTERMEEID, EjhCoID AS FTTERMCOID, EjhJobCode, EjhAnnSalary AS FTTERMSAL, EjhIntegrationEffDate AS FTTERMDATE, EjhFullTimeOrPartTime, RN = ROW_NUMBER() OVER (PARTITION BY ejheeid, Ejhemplstatus ORDER BY EjhIntegrationEffDate  DESC) 
                      FROM dbo.EmpHJob WITH (NOLOCK) WHERE Ejhemplstatus = 'T'  and EjhFullTimeOrPartTime = 'F'
-                    -- and ejheeid = 'CF53QC00I0K0' 
+                    -- and ejheeid = 'CF538P01M0K0' 
                      ) FT WHERE  rn = 1) FTTERM ON  FTEEID = FTTERMEEID 
 
                      Where ISNULL(PTDATE, '') >=  ISNULL(FTDATE ,'')
-                --     and pteeid = 'D4IQNM000030'
+                     --and pteeid = 'CF538P01M0K0'
             ) SAL
             ON SAL.PTEEID = xEEID
     Left Join dbo.U_EBENPRGIE2_Audit AUD  WITH (NOLOCK)

@@ -5,7 +5,7 @@ EANPRIN834: Principal Benefit Export
 FormatCode:     EANPRIN834
 Project:        Principal Benefit Export
 Client ID:      ANC1000
-Date/time:      2023-01-27 07:44:32.043
+Date/time:      2023-02-02 11:13:24.937
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -378,7 +378,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230127.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230202.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -1263,10 +1263,10 @@ BEGIN
         ,drvDTP02_DateTimeFormatQual4 = CASE WHEN EecEmplStatus = 'T' THEN 'D8' END
         ,drvDTP03_DateTimePeriod4 = CASE WHEN EecEmplStatus = 'T' THEN EecDateLastWorked END
         -- If drvDTP00_DateTime5 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and EjhFullTimeOrPartTime = 'P') THEN 'DTP' END
-        ,drvDTP01_DateTimeQualifier5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and EjhFullTimeOrPartTime = 'P') THEN '356' END
-        ,drvDTP02_DateTimeFormatQual5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and EjhFullTimeOrPartTime = 'P' ) THEN 'D8' END
-        ,drvDTP03_DateTimePeriod5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and EjhFullTimeOrPartTime = 'P' ) THEN  EjhJobEffDate END
+        ,drvDTP00_DateTime5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and (PT = 'PT' and FT = 'FT' ) and FTDATE > PTDate) THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier5 = CASE WHEN  (EecFullTimeOrPartTime = 'F' and(PT = 'PT'  and FT = 'FT')  and FTDATE > PTDate) THEN '356' END
+        ,drvDTP02_DateTimeFormatQual5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and(PT = 'PT'  and FT = 'FT') and FTDATE > PTDate)  THEN 'D8' END
+        ,drvDTP03_DateTimePeriod5 = CASE WHEN (EecFullTimeOrPartTime = 'F' and(PT = 'PT' and FT = 'FT') and FTDATE > PTDate ) THEN FtDATE  END
         --=====================
         --=====================
         -- LOOP 2100A RECORDS
@@ -1416,17 +1416,28 @@ BEGIN
   ) RELI3
   ON ReliEEID = bdmeeid
 
-   Left  JOIN (
-            SELECT EjhEEID, EjhCOID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, EjhJobEffDate
-            FROM (
-                SELECT EjhEEID, EjhCOID, EjhFullTimeOrPartTime, EjhIntegrationEffDate, EjhJobEffDate, ROW_NUMBER() OVER (PARTITION BY EjhEEID, EjhCOID ORDER BY EjhIntegrationEffDate DESC) AS RN
-                FROM dbo.EmpHJob WITH (NOLOCK)
-                --where ejheeid = 'CW0BIU001020'
-                WHERE EjhIntegrationEffDate <= @EndDate
-                ) AS JH
-            WHERE RN = 1 ) AS JHT
-        ON EjhEEID = xEEID
-        AND EjhCOID = xCOID
+   Left  JOIN (  SELECT PTEEID 
+                    ,PTCOID
+                    ,PT
+                    ,PTDATE
+                    ,FT
+                    ,FTDATE
+                    FROM    (SELECT PTEEID ,  PTCOID , PTSAL, PTDATE,  PT = 'PT' From ( Select  ejheeid AS PTEEID, EjhCoID AS PTCOID, EjhJobCode, EjhAnnSalary AS PTSAL, EjhIntegrationEffDate AS PTDATE,  RN = ROW_NUMBER() OVER (PARTITION BY ejheeid, Ejhemplstatus ORDER BY EjhIntegrationEffDate  DESC) 
+                     FROM dbo.EmpHJob WITH (NOLOCK) WHERE Ejhemplstatus = 'A'  AND EjhFullTimeOrPartTime = 'P' 
+                    -- and ejheeid =  'DML0FZ000020' 
+                     ) PT WHERE  rn = 1) PTHIRE
+
+                LEFT JOIN ( SELECT FTEEID ,FTCOID ,FTDATE , FT='FT' From ( Select  ejheeid AS FTEEID, EjhCoID AS FTCOID, EjhJobCode,MIN(EjhIntegrationEffDate) AS FTDATE
+                     FROM dbo.EmpHJob WITH (NOLOCK) WHERE Ejhemplstatus = 'A'  and EjhFullTimeOrPartTime = 'F'
+                    --and ejheeid = 'DML0FZ000020' 
+                     Group by ejheeid, EjhCoID, EjhJobCode) FT )  FTHIRE ON FTEEID = PTEEID
+            
+                     Where ISNULL(PTDATE, '') < =  ISNULL(FTDATE ,'')
+                
+           ) FT
+        
+        ON PTEEID = xEEID
+        AND PTCOID = xCOID
 
       JOIN dbo.PayGroup WITH (NOLOCK)
         ON PgrPayGroup = EecPayGroup
