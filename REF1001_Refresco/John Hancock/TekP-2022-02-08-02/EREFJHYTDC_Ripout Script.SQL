@@ -5,7 +5,7 @@ EREFJHYTDC: John Hancock YTD Comp
 FormatCode:     EREFJHYTDC
 Project:        John Hancock YTD Comp
 Client ID:      REF1001
-Date/time:      2023-01-20 16:48:49.713
+Date/time:      2023-02-03 13:48:38.580
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -165,7 +165,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREFJHYTDC_20230120.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREFJHYTDC_20230203.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -174,7 +174,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp','202112319','EMPEXPORT','ONDEM_XOE',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202112319','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'John Hancock YTD Comp-Sched','202112319','EMPEXPORT','SCH_EREFJH',NULL,'EREFJHYTDC',NULL,NULL,NULL,'202112319','Apr 22 2022  1:51PM','Apr 22 2022  1:51PM','202101011',NULL,'','','202101011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp-Test','202212311','EMPEXPORT','TEST_XOE','Jan 20 2023 12:00AM','EREFJHYTDC',NULL,NULL,NULL,'202212311','Dec 31 2022 12:00AM','Dec 30 1899 12:00AM','202211041','5695','','','202211041',dbo.fn_GetTimedKey(),NULL,'us3mWaREF1001',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'John Hancock YTD Comp-Test','202212319','EMPEXPORT','TEST_XOE','Feb  3 2023 12:23PM','EREFJHYTDC',NULL,NULL,NULL,'202212319','Dec 31 2022 12:00AM','Dec 30 1899 12:00AM','202201011','6525','','','202201011',dbo.fn_GetTimedKey(),NULL,'LKING16',NULL);
 
 -----------
 -- AscImp inserts
@@ -341,13 +341,12 @@ CREATE TABLE [dbo].[U_EREFJHYTDC_PDedHist] (
 IF OBJECT_ID('U_EREFJHYTDC_PEarHist') IS NULL
 CREATE TABLE [dbo].[U_EREFJHYTDC_PEarHist] (
     [PehEEID] char(12) NOT NULL,
-    [PrgPayDate] datetime NULL,
     [PehCurAmt] money NULL,
     [PehCurAmtYTD] money NULL,
     [PehInclInDefComp] money NULL,
     [PehInclInDefCompYTD] money NULL,
-    [PehPlanComp] money NULL,
-    [PehMatchPlanComp] money NULL
+    [PehPlanComp] money NOT NULL,
+    [PehMatchPlanComp] money NOT NULL
 );
 
 -----------
@@ -431,57 +430,57 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EREFJHYTDC_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-     --==========================================
-    -- Create Deduction List
-    --==========================================
-    DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = '401K,401K1,ROTH,ROTH1,401KM,401SB';
+     ----==========================================
+  --  -- Create Deduction List
+  --  --==========================================
+  --  DECLARE @DedList VARCHAR(MAX)
+  --  SET @DedList = '401K,401K1,ROTH,ROTH1,401KM,401SB';
 
-    IF OBJECT_ID('U_EREFJHYTDC_DedList','U') IS NOT NULL
-        DROP TABLE dbo.U_EREFJHYTDC_DedList;
-    SELECT DISTINCT
-         DedCode = DedDedCode
-        ,DedType = DedDedType
-    INTO dbo.U_EREFJHYTDC_DedList
-    FROM dbo.fn_ListToTable(@DedList)
-    JOIN dbo.DedCode WITH (NOLOCK)
-        ON DedDedCode = Item;
+  --  IF OBJECT_ID('U_EREFJHYTDC_DedList','U') IS NOT NULL
+  --      DROP TABLE dbo.U_EREFJHYTDC_DedList;
+  --  SELECT DISTINCT
+  --       DedCode = DedDedCode
+  --      ,DedType = DedDedType
+  --  INTO dbo.U_EREFJHYTDC_DedList
+  --  FROM dbo.fn_ListToTable(@DedList)
+  --  JOIN dbo.DedCode WITH (NOLOCK)
+  --      ON DedDedCode = Item;
 
-          --==========================================
-    -- BDM Section
-    --==========================================
-    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+        --  --==========================================
+  --  -- BDM Section
+  --  --==========================================
+  --  DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
-    -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+  --  -- Required parameters
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
    
-    -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS, DP');
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','DIS, CHL, DPC, STC');
-    -- Run BDM Module
-    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+  --  -- Non-Required parameters
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS, DP');
+  --  INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'RelationshipsChild','DIS, CHL, DPC, STC');
+  --  -- Run BDM Module
+  --  EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
 
-    -- Required OE parameters
-    IF @ExportCode LIKE '%PASSIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
-    END;
+  --  -- Required OE parameters
+  --  IF @ExportCode LIKE '%PASSIVE'
+  --  BEGIN
+  --      INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+  --  END;
 
-    IF @ExportCode LIKE '%ACTIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
-    END;
+  --  IF @ExportCode LIKE '%ACTIVE'
+  --  BEGIN
+  --      INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+  --  END;
 
 
-    -- Run BDM Module
-    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+  --  -- Run BDM Module
+  --  EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     --==========================================
     -- Build Working Tables
@@ -495,9 +494,9 @@ BEGIN
         DROP TABLE dbo.U_EREFJHYTDC_PEarHist;
 
 
-         SELECT DISTINCT
+        SELECT DISTINCT
          PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
+      
         -- Current Payroll Amount
         ,PehCurAmt              = SUM(CASE WHEN PehPerControl >= @StartPerControl THEN PehCurAmt END)
         -- YTD Payroll Amount
@@ -506,44 +505,36 @@ BEGIN
         ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
         -- YTD Include Deferred Comp Amount
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehPlanComp 
-        ,PehMatchPlanComp
-    INTO dbo.U_EREFJHYTDC_PEarHist
-    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-        ON PehGenNumber = PrgGenNumber
-    LEFT JOIN ( SELECT DISTINCT
-                         PehEEID as PehEEID2 
-                          ,PehPlanComp  = Isnull(SUM( CASE WHEN BdmDedcode in ('401K', '401K1', 'ROTH', 'ROTH1') and  PehInclInDefComp = 'Y' THEN
-                                              CASE WHEN Cast(Year(@Enddate)  as varchar) + '-01-01'  < =  BdmBenStartDate and  PrgPayDate between BdmBenStartDate and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-                                                         WHEN Cast(Year(@Enddate)  as varchar) + '-01-01'  > =  BdmBenStartDate and  PrgPayDate between BdmBenStartDate and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-                                                        END 
-                                             END),0.00)
-                        
-                        ,PehMatchPlanComp =  ISNULL(SUM( CASE WHEN BdmDedcode in ('401KM', '401SB') and  PehInclInDefComp = 'Y' THEN 
-                                                    CASE WHEN Cast(Year(@Enddate)  as varchar) + '-01-01'  < =  BdmBenStartDate and  PrgPayDate between BdmBenStartDate and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-                                                         WHEN Cast(Year(@Enddate)  as varchar) + '-01-01'  > =  BdmBenStartDate and  PrgPayDate between BdmBenStartDate and Cast(Year(@Enddate)  as varchar) + '-12-31' THEN  Pehcuramt 
-                                                        END 
-                                    
-                                                    END), 0.00)
-                    FROM dbo.vw_int_PayReg WITH (NOLOCK)
-                    JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
-                        ON PehGenNumber = PrgGenNumber
-                    LEFT JOIn dbo.U_dsi_BDM_EREFJHYTDC WITH (NOLOCK)
-                        ON BdmEEID = pehEEID
-                        AND BdmCOID = pehCOID 
-                    and bdmDedCode in ('401K', '401K1', 'ROTH', 'ROTH1', '401KM', '401SB') 
-                    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-                    AND PehPerControl <= @EndPerControl
-                    GROUP BY PehEEID
-        ) PD 
-        ON Pd.PehEEID2 = PehEEID
-    WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
-    AND PehPerControl <= @EndPerControl
-    --and peheeid = 'EHTW1N000020'
-    GROUP BY PehEEID, PehPlanComp ,PehMatchPlanComp
-    HAVING SUM(PehCurAmt) <> 0.00;
+        
+        ,PehPlanComp  = Isnull(SUM(CASE WHEN (EecUnionLocal IN ('682', '688') and PehInclInDefComp = 'Y') and Left(PehPerControl, 8)  >= Convert(CHAR(8),DATEADD(s,+1,DATEADD(mm, DATEDIFF(m,0,EecDateoforiginalHire +90)+1,0)),112) THEN Pehcuramt 
+                                                                    
+                         ELSE CASE WHEN (EecUnionLocal NOT IN ('682', '688') and PehInclInDefComp = 'Y') and Left(PehPerControl, 8)  >= Convert(CHAR(8),EecDateoforiginalHire ,112) THEN Pehcuramt END
+                            END),0.00)
 
+        ,PehMatchPlanComp =  Isnull(SUM(Case WHEN (EecUnionLocal NOT IN ('TRU688', '688', '525U05','NON525') and Eeddedcode IN ('401KM', '401SB') and PehInclInDefComp = 'Y') AND Left(PehPerControl, 8) >= eedbenstartdate THEN PehCurAmt 
+                                END),0.00)
+        --,PehMatchPlanComp =  Isnull(SUM(Case WHEN (EecUnionLocal NOT IN ( 'TRU688', '688', '525U05','NON525' ) and Eeddedcode IN ('401KM', '401SB') and  PehInclInDefComp = 'Y') AND  Left(PehPerControl, 8) > = Convert(CHAR(8),EecDateoforiginalHire,112)   THEN PehCurAmt 
+                                          
+        --                            END),0.00)
+
+        INTO dbo.U_EREFJHYTDC_PEarHist
+        FROM dbo.PEarHist WITH (NOLOCK)                
+        JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EecEEid  = peheeid 
+           AND EecCOID = pehCOID
+        Left Join dbo.Empded WITH (NOLOCK)
+            ON Eedeeid = peheeid
+            and eedcoid = PehCoid
+            AND Eeddedcode IN ('401KM', '401SB')
+        WHERE LEFT(PehPerControl,4) = LEFT(@EndPerControl,4)
+              AND PehPerControl <= @EndPerControl 
+              AND PehPerControl between @StartPerControl and @EndPerControl
+            -- and peheeid IN ( 'CDN9QJ0000K0')
+             -- AND  peheeid IN ( 'CDNA5X00W0K0', 'CDN9Y101Z0K0','CDN9WY00U0K0')
+        GROUP BY peheeid
+        HAVING SUM(PehCurAmt) <> 0.00
+    ;
+    
 
      -----------------------------
     -- Working Table - PTaxHist
@@ -582,12 +573,12 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,dvrSSN                        = eepSSN
         ,dvrEmployeeName            = CONCAT(Eepnamelast, ',' , '' , eepnamefirst)
-        ,dvrGrossComp                = FORMAT(PehCurAmtYTD,'0.00')
-        ,dvrPlanComp                = FORMAT(round(PehInclInDefCompYTD, 2), '0.00')
+        ,dvrGrossComp                = FORMAT(ISNULL(PehCurAmtYTD ,'0.00'),'0.00')
+        ,dvrPlanComp                = FORMAT(ISNULL(round(PehInclInDefCompYTD , 2),'0.00'), '0.00')
         ,drvEligiblePlanComp        = FORMAT(ISNULL(Round(PehPlanComp, 2),'0.00'), '0.00')
         ,dvrMatchEligiblePlanComp    = ISNULL(FORMAT(CASE WHEN EecUnionLocal NOT IN ('TRU688', '688', '525U05', 'NON525') THEN PehMatchPlanComp END, '0.00'), '0.00')
         ,drvUnionCode                = CASE WHEN EecUnionLocal <> 'N' THEN EecUnionLocal END
-    ,drvUnionName                    = CASE WHEN unishortdesc <> 'No' THEN unishortdesc END
+        ,drvUnionName                    = CASE WHEN unishortdesc <> 'No' THEN unishortdesc END
     INTO dbo.U_EREFJHYTDC_drvTbl
     FROM dbo.U_EREFJHYTDC_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
@@ -600,12 +591,14 @@ BEGIN
     --    AND BdmCOID = xCOID 
     --LEFT JOIN dbo.U_EREFJHYTDC_PTaxHist WITH (NOLOCK)
     --    On PthEeid =  xeeid
-    LEFT Join dbo.U_EREFJHYTDC_PEarHist WITH (NOLOCK)
-        On PehEeid =  xeeid
-        Left Join dbo.LabUnion 
+    LEFT JOIN dbo.U_EREFJHYTDC_PEarHist WITH (NOLOCK)
+        On Peheeid =  xeeid
+        LEFT JOIN dbo.LabUnion 
         ON unicode = EecUnionLocal
-    where PehInclInDefCompYTD > 0.00
-    and  EecUnionLocal NOT In ('830','PAW22000') 
+    where  EecUnionLocal NOT In ('830','PAW22000') 
+    and (EecEmplstatus <> 'T' or (EecEmplstatus = 'T' and eecDateofTermination between @Startdate and @Enddate and (PehCurAmtYTD  <> 0.00  or PehInclInDefCompYTD  <> 0.00  or PehPlanComp <> 0.00  or PehMatchPlanComp <> 0.00 )))
+
+        
     ;
 
     --==========================================
@@ -636,11 +629,11 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202211041'
-       ,expStartPerControl     = '202204151'
-       ,expLastEndPerControl   = '202204229'
-       ,expEndPerControl       = '202204229'
-WHERE expFormatCode = 'EREFJHYTDC' and exportcode = 'TEST_XOE';
+    SET expLastStartPerControl = '202201011'
+       ,expStartPerControl     = '202201011'
+       ,expLastEndPerControl   = '202212319'
+       ,expEndPerControl       = '202212319'
+WHERE expFormatCode = 'EREFJHYTDC' and expexportcode = 'TEST_XOE';
 
 **********************************************************************************/
 GO
