@@ -374,6 +374,8 @@ BEGIN
     IF OBJECT_ID('U_ESGMHEAPEX_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_ESGMHEAPEX_AuditFields;
     CREATE TABLE dbo.U_ESGMHEAPEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_ESGMHEAPEX_AuditFields VALUES ('EmpComp','EecDateOfTermination');
+    INSERT INTO dbo.U_ESGMHEAPEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
 
     -- Create audit table based on fields defined above
     IF OBJECT_ID('U_ESGMHEAPEX_Audit','U') IS NOT NULL
@@ -456,6 +458,14 @@ BEGIN
     LEFT JOIN dbo.Codes WITH(NOLOCK)
         ON CodCode = EepEthnicId
         AND CodTable = 'ETHNICCODE'
+    LEFT JOIN dbo.U_ESGMHEAPEX_Audit WITH (NOLOCK)
+       ON  audeeid = xEEID
+        AND audKey2 = xCoID
+
+		WHERE   EecEEType <> 'TES' 
+        AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN @StartDate AND @EndDate))
+    
+
 
     --==========================================
     -- Set FileName

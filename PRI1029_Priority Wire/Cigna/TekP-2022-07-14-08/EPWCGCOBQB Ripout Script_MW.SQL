@@ -5,7 +5,7 @@ EPWCGCOBQB: Cigna/Allegiance Cobra QB Export
 FormatCode:     EPWCGCOBQB
 Project:        Cigna/Allegiance Cobra QB Export
 Client ID:      PRI1029
-Date/time:      2023-02-07 15:48:11.957
+Date/time:      2023-02-08 15:43:31.583
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -233,7 +233,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPWCGCOBQB_20230207.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPWCGCOBQB_20230208.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -244,7 +244,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202210209','EMPEXPORT','OEPASSIVE',NULL,'EPWCGCOBQB',NULL,NULL,NULL,'202210209','Oct 20 2022 12:22PM','Oct 20 2022 12:22PM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Cigna/Allegiance Cobra QB Expo','202210209','EMPEXPORT','ONDEM_XOE',NULL,'EPWCGCOBQB',NULL,NULL,NULL,'202210209','Oct 20 2022 12:22PM','Oct 20 2022 12:22PM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Cigna/Allegiance Cobra Q-Sched','202210209','EMPEXPORT','SCH_EPWCGC',NULL,'EPWCGCOBQB',NULL,NULL,NULL,'202210209','Oct 20 2022 12:22PM','Oct 20 2022 12:22PM','202209011',NULL,'','','202209011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',XRAEE,XRS43',NULL,NULL,NULL,'Allegiance Cobra QE Test','202303079','EMPEXPORT','TEST_XOE','Feb  7 2023 12:00AM','EPWCGCOBQB',NULL,NULL,NULL,'202303079','Mar  7 2023 12:00AM','Dec 30 1899 12:00AM','202212011','425','','','202212011',dbo.fn_GetTimedKey(),NULL,'us3kEpPRI1029',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',XRAEE,XRS43',NULL,NULL,NULL,'Allegiance Cobra QE Test','202303089','EMPEXPORT','TEST_XOE','Feb  8 2023  2:19PM','EPWCGCOBQB',NULL,NULL,NULL,'202303089','Mar  8 2023 12:00AM','Dec 30 1899 12:00AM','202212011','432','','','202212011',dbo.fn_GetTimedKey(),NULL,'us3kEpPRI1029',NULL);
 
 -----------
 -- AscImp inserts
@@ -1140,7 +1140,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EPWCGCOBQB_QBPlanInitial_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EPWCGCOBQB_QBPlanInitial_drvTbl;
-      SELECT DISTINCT
+       SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -1151,16 +1151,34 @@ BEGIN
                               WHEN BdmDedCode = 'DEN' THEN 'Delta Dental Plan '
                               WHEN BdmDedCode = 'VIS' THEN 'SunLife Vision Plan'
                          END
-                    
-        ,drvCoverageLevel = CASE WHEN BdmDedCode IN ('MED', 'DEN', 'VIS') THEN 
+
+       ,drvCoverageLevel =     CASE WHEN  (BdmDedCode IN ('DEN', 'MED', 'VIS') and BdmCobraReason  NOT IN ('201','302','LEVNT3','204','210','LEVNT4')) THEN 
                         
                                       CASE WHEN BdmBenOption = 'EE' THEN 'EE' 
                                            WHEN BdmBenOption IN ('EEC', 'EECH') THEN 'EE+CHILDREN'
                                            WHEN BdmBenOption IN ('EEF', 'EEDPF', 'EEF2') THEN 'EE+FAMILY'
                                            WHEN BdmBenOption IN ('EES', 'EEDP') THEN 'EE+SPOUSE'
-                                      END
-                                ELSE 'EE'
-                                END
+                                         ELSE 'EE'
+                                     END
+                                
+                            ELSE                    
+                                CASE WHEN  BdmDedCode IN ('DEN') and BdmCobraReason  IN ('201','302','LEVNT3','204','210','LEVNT4') THEN
+                                        CASE WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_EPWCGCOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
+                                             WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_EPWCGCOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1  THEN 'EE+CHILDREN'
+                                             WHEN BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_EPWCGCOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
+                                         ELSE 'EE'
+                                     END
+                             ELSE
+                                CASE WHEN  BdmDedCode IN ('MED', 'VIS') and BdmCobraReason  IN ('201','302','LEVNT3','204','210','LEVNT4') THEN
+                                        CASE WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_EPWCGCOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1  THEN 'EE+CHILDREN'
+                                             WHEN BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_EPWCGCOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1  THEN 'EE+CHILDREN'
+                                             WHEN BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_EPWCGCOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH'))> 1  THEN  'EE+CHILDREN'
+                                         ELSE 'EE'                        
+                                    END
+                               END
+                          END
+                    END
+                        
                         
     INTO dbo.U_EPWCGCOBQB_QBPlanInitial_drvTbl
     FROM dbo.U_EPWCGCOBQB_EEList WITH (NOLOCK)
@@ -1175,6 +1193,8 @@ BEGIN
         AND BdmRunId = 'QB'
         AND bdmrelationship <> 'MOM'
         AND BdmBenOption <> 'C'
+
+         and bdmIsPQB = 'Y'
     LEFT JOIN (
             SELECT EdhEEID, EdhCOID, EdhEffDate,edhChangeReason, BchIsCobraQualifiedEvent 
             FROM (

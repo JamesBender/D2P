@@ -5,7 +5,7 @@ ELHMFSAHSA: HealthEquity HSA Payroll Export
 FormatCode:     ELHMFSAHSA
 Project:        HealthEquity HSA Payroll Export
 Client ID:      LAR1002
-Date/time:      2023-02-08 17:38:44.250
+Date/time:      2023-02-09 11:01:14.840
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -172,18 +172,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELHMFSAHSA_20230208.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELHMFSAHSA_20230209.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202301199','EMPEXPORT','OEACTIVE',NULL,'ELHMFSAHSA',NULL,NULL,NULL,'202301199','Jan 19 2023  8:01AM','Jan 19 2023  8:01AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202301199','EMPEXPORT','OEPASSIVE',NULL,'ELHMFSAHSA',NULL,NULL,NULL,'202301199','Jan 19 2023  8:01AM','Jan 19 2023  8:01AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'GUX0K,GJKFU,GJKM5,B3CUB,B3CPR,B3CW8,AZPEM,B3DJD,AZWE8,INEXS,B3FF0,B3D9I,AZOQ2,AZOUC,AZOWO,AZOYS,AZP42,AZP6Q,B3CNL,AZP9A,B3EYC,B3FBA,AZPH6,AZPJ1,AZPRC,AZPMS,B3EBW,AZPYQ,B3E9R,AZQ0S,AZQ2N,AZQ4P,AZQ7R,B3D03,AZW52,AZW7R,AZW9P,B3CS8,B3CYB,B3D1Z,B3D44,B3D5X,B3D7U,B3DB6,B3ESW,B3DL6,B3E7O,B3EDU,B3EFT,B3EHU,B3ELB,B3ENC,B3EP8,B3ER7,B3EWL,AZPP3,AZTMC,B3F06,B3F8X,B3FID,B3FK0,B3FLQ,B3G84,B3GAB,B3HAH,B3HCE,B3HEF,B3HFZ,B3HHN,B3FGI,B3DGX,B3DCY,B3DEU,AZTPR,B3EJI,B3EUR,B3FD5,GSYM8,B3GGN',NULL,NULL,NULL,'HealthEquity HSA Payroll Expor','202302019','EMPEXPORT','ONDEM_XOE',NULL,'ELHMFSAHSA',NULL,NULL,NULL,'202302019','Jan 19 2023  8:01AM','Jan 19 2023  8:01AM','202301191',NULL,'eecPaygroup','DHC,DRE,LRE,MEG,MFO,MLR,MMC,MPM,PFS,SLB,SSC','202301191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity HSA Payroll-Sched','202301199','EMPEXPORT','SCH_ELHMFS',NULL,'ELHMFSAHSA',NULL,NULL,NULL,'202301199','Jan 19 2023  8:01AM','Jan 19 2023  8:01AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',GUX0K,GJKFU,GJKM5,B3CUB,B3CPR,B3CW8,AZPEM,B3DJD,AZWE8,INEXS,B3FF0,B3D9I,AZOQ2,AZOUC,AZOWO,AZOYS,AZP42,AZP6Q,B3CNL,AZP9A,B3EYC,B3FBA,AZPH6,AZPJ1,AZPRC,AZPMS,B3EBW,AZPYQ,B3E9R,AZQ0S,AZQ2N,AZQ4P,AZQ7R,B3D03,AZW52,AZW7R,AZW9P,B3CS8,B3CYB,B3D1Z,B3D44,B3D5X,B3D7U,B3DB6,B3ESW,B3DL6,B3E7O,B3EDU,B3EFT,B3EHU,B3ELB,B3ENC,B3EP8,B3ER7,B3EWL,AZPP3,AZTMC,B3F06,B3F8X,B3FID,B3FK0,B3FLQ,B3G84,B3GAB,B3HAH,B3HCE,B3HEF,B3HFZ,B3HHN,B3FGI,B3DGX,B3DCY,B3DEU,AZTPR,B3EJI,B3EUR,B3FD5,GSYM8,B3GGN',NULL,NULL,NULL,'HealthEquity HSA Payroll-Test','202301199','EMPEXPORT','TEST_XOE','Jan 25 2023 12:00AM','ELHMFSAHSA',NULL,NULL,NULL,'202301199','Jan 25 2023 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'eecPayGroup','DHC,DRE,LRE,MEG,MFO,MLR,MMC,MPM,PFS,SLB,SSC','202301011',dbo.fn_GetTimedKey(),NULL,'us3mWaLAR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',GUX0K,GJKFU,GJKM5,B3CUB,B3CPR,B3CW8,AZPEM,B3DJD,AZWE8,INEXS,B3FF0,B3D9I,AZOQ2,AZOUC,AZOWO,AZOYS,AZP42,AZP6Q,B3CNL,AZP9A,B3EYC,B3FBA,AZPH6,AZPJ1,AZPRC,AZPMS,B3EBW,AZPYQ,B3E9R,AZQ0S,AZQ2N,AZQ4P,AZQ7R,B3D03,AZW52,AZW7R,AZW9P,B3CS8,B3CYB,B3D1Z,B3D44,B3D5X,B3D7U,B3DB6,B3ESW,B3DL6,B3E7O,B3EDU,B3EFT,B3EHU,B3ELB,B3ENC,B3EP8,B3ER7,B3EWL,AZPP3,AZTMC,B3F06,B3F8X,B3FID,B3FK0,B3FLQ,B3G84,B3GAB,B3HAH,B3HCE,B3HEF,B3HFZ,B3HHN,B3FGI,B3DGX,B3DCY,B3DEU,AZTPR,B3EJI,B3EUR,B3FD5,GSYM8,B3GGN',NULL,NULL,NULL,'HealthEquity HSA Payroll-Test','202301209','EMPEXPORT','TEST_XOE','Jan 25 2023 12:00AM','ELHMFSAHSA',NULL,NULL,NULL,'202301209','Jan 25 2023 12:00AM','Dec 30 1899 12:00AM','202301201',NULL,'eecPayGroup','DHC,DRE,LRE,MEG,MFO,MLR,MMC,MPM,PFS,SLB,SSC','202301201',dbo.fn_GetTimedKey(),NULL,'us3mWaLAR1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -325,7 +323,7 @@ CREATE TABLE [dbo].[U_ELHMFSAHSA_drvTbl] (
     [drvLastName] varchar(8000) NULL,
     [drvFirstName] varchar(8000) NULL,
     [drvPlanCode] varchar(35) NULL,
-    [drvPreTaxPayrollDeduction] nvarchar(4000) NOT NULL,
+    [drvPreTaxPayrollDeduction] nvarchar(4000) NULL,
     [drvPostTaxPayrollDeduction] nvarchar(4000) NULL,
     [drvPreTaxProgramSponContrib] nvarchar(4000) NULL,
     [drvFundingDate] varchar(30) NULL
@@ -362,6 +360,7 @@ CREATE TABLE [dbo].[U_ELHMFSAHSA_File] (
 IF OBJECT_ID('U_ELHMFSAHSA_PDedHist') IS NULL
 CREATE TABLE [dbo].[U_ELHMFSAHSA_PDedHist] (
     [PdhEEID] char(12) NOT NULL,
+    [PdhDedCode] char(5) NOT NULL,
     [PdhEECurAmt] numeric NULL,
     [PdhERCurAmt] numeric NULL,
     [PdhFSAMD] numeric NULL,
@@ -411,8 +410,7 @@ Execute Export
 --------------
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ELHMFSAHSA', 'ONDEM_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ELHMFSAHSA', 'TEST_XOE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ELHMFSAHSA', 'OEPASSIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'ELHMFSAHSA', 'OEACTIVE';
+
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ELHMFSAHSA', 'SCH_ELHMFS';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'ELHMFSAHSA';
@@ -496,9 +494,9 @@ BEGIN
     --DELETE FROM dbo.U_ELHMFSAHSA_EEList
     --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_ELHMFSAHSA_Audit WHERE audEEID = xEEID AND audRowNo = 1);
 
-    --==========================================
-    -- Create Deduction List
-    --==========================================
+    ----==========================================
+    ---- Create Deduction List
+    ----==========================================
     DECLARE @DedList VARCHAR(MAX)
     SET @DedList = 'FSAMD,FSADC,HSA,HSAER,TSAM2,TSAMT';
 
@@ -513,34 +511,34 @@ BEGIN
         ON DedDedCode = Item;
 
 
-    --==========================================
-    -- BDM Section
-    --==========================================
-    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+    ----==========================================
+    ---- BDM Section
+    ----==========================================
+    --DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
-    -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+    ---- Required parameters
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
 
-    -- Non-Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    ---- Non-Required parameters
+    --INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
 
-    -- Required OE parameters
-    IF @ExportCode LIKE '%PASSIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
-    END;
+    ---- Required OE parameters
+    --IF @ExportCode LIKE '%PASSIVE'
+    --BEGIN
+    --    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','PASSIVE');
+    --END;
 
-    IF @ExportCode LIKE '%ACTIVE'
-    BEGIN
-        INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
-    END;
+    --IF @ExportCode LIKE '%ACTIVE'
+    --BEGIN
+    --    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'OEType','ACTIVE');
+    --END;
 
 
-    -- Run BDM Module
-    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+    ---- Run BDM Module
+    --EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     --==========================================
     -- Build Working Tables
@@ -553,15 +551,16 @@ BEGIN
         DROP TABLE dbo.U_ELHMFSAHSA_PDedHist;
     SELECT DISTINCT
          PdhEEID
+        ,PdhDedCode
         -- Current Payroll Amounts
         ,PdhEECurAmt     = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt     = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        ,PdhFSAMD        = SUM(CASE WHEN PdhDedCode IN ('FSAMD') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)
-        ,PdhFSADC        = SUM(CASE WHEN PdhDedCode IN ('FSADC') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)
-        ,PdhHSA          = SUM(CASE WHEN PdhDedCode IN ('HSA') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)  
-        ,PdhHSAER        = SUM(CASE WHEN PdhDedCode IN ('HSAER') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)  
-        ,PdhTSAMT        = SUM(CASE WHEN PdhDedCode IN ('TSAMT') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhTSAM2        = SUM(CASE WHEN PdhDedCode IN ('TSAM2') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        --,PdhERCurAmt     = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+        --,PdhFSAMD        = SUM(CASE WHEN PdhDedCode IN ('FSAMD') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)
+        --,PdhFSADC        = SUM(CASE WHEN PdhDedCode IN ('FSADC') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)
+        --,PdhHSA          = SUM(CASE WHEN PdhDedCode IN ('HSA') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)  
+        --,PdhHSAER        = SUM(CASE WHEN PdhDedCode IN ('HSAER') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt  ELSE 0.00 END)  
+        --,PdhTSAMT        = SUM(CASE WHEN PdhDedCode IN ('TSAMT') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        --,PdhTSAM2        = SUM(CASE WHEN PdhDedCode IN ('TSAM2') AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
         
     INTO dbo.U_ELHMFSAHSA_PDedHist
     FROM dbo.PDedHist WITH (NOLOCK)
@@ -570,7 +569,8 @@ BEGIN
     WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
     AND PdhPerControl <= @EndPerControl
     AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID
+    and PdhDedCode IN ('FSAMD','FSADC','HSA','HSAER','TSAM2','TSAMT')
+    GROUP BY PdhEEID,PdhDedCode
     HAVING (SUM(PdhEECurAmt) <> 0.00
         OR SUM(PdhERCurAmt) <> 0.00
     );
@@ -582,7 +582,7 @@ BEGIN
         DROP TABLE dbo.U_ELHMFSAHSA_PEarHist;
     SELECT DISTINCT
          PehEEID
-        ,PrgPayDate             = MAX(PrgPayDate)
+        ,PrgPayDate = MAX(PrgPayDate)
 
     INTO dbo.U_ELHMFSAHSA_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
@@ -613,20 +613,20 @@ BEGIN
         ,drvUniqueID = eepSSN
         ,drvLastName = REPLACE(EepNameLast, ',', '')
         ,drvFirstName = REPLACE(EepNameFirst, ',', '')
-        ,drvPlanCode = CASE WHEN  PdhHSA > 0  THEN 'HSA'
+        ,drvPlanCode = CASE WHEN  PdhDedCode = 'HSA'  THEN 'HSA' 
                             --WHEN Bdmdedcode IN ('HSAER') THEN 'HSAER'
-                            WHEN PdhFSAMD > 0  THEN 'HCFSA' + Cast(YEAR(GETDATE())as varchar)
-                            WHEN  PdhFSADC > 0 THEN 'DCFSA' + Cast(YEAR(GETDATE())as varchar)
-                            WHEN ( PdhTSAMT > 0 or PdhTSAM2 > 0 )THEN 'Mass Transit'
+                            WHEN PdhDedCode = 'FSAMD'  THEN 'HCFSA' + Cast(YEAR(GETDATE())as varchar)
+                            WHEN PdhDedCode = 'FSADC'  THEN 'DCFSA' + Cast(YEAR(GETDATE())as varchar)
+                            WHEN PdhDedCode IN ('TSAMT', 'TSAM2') THEN 'Mass Transit'
                          END
 
-        ,drvPreTaxPayrollDeduction = ISNULL(CASE WHEN  PdhFSAMD > 0 THEN FORMAT(PdhFSAMD, '0.00')
-                                          WHEN  PdhFSADC > 0 THEN FORMAT(PdhFSADC, '0.00')
-                                          WHEN  PdhHSA > 0 THEN FORMAT(PdhHSA, '0.00') 
-                                          WHEN  PdhTSAMT > 0 THEN FORMAT(PdhTSAMT, '0.00')
-                                        END, '0.00')
-        ,drvPostTaxPayrollDeduction = CASE WHEN   FORMAT(PdhTSAM2, '0.00') > '0.00' THEN FORMAT(PdhTSAM2, '0.00') END
-        ,drvPreTaxProgramSponContrib = CASE WHEN  PdhHSAER > 0.00 THEN FORMaT(PdhHSAER,'0.00') END
+        ,drvPreTaxPayrollDeduction = CASE WHEN PdhDedCode = 'FSAMD' and FORMAT(PdhEECurAmt, '0.00') <> '0.00' THEN FORMAT(PdhEECurAmt, '0.00')
+                                          WHEN PdhDedCode = 'FSADC' and FORMAT(PdhEECurAmt, '0.00') <> '0.00' THEN FORMAT(PdhEECurAmt, '0.00')
+                                          WHEN PdhDedCode = 'HSA' and FORMAT(HSACURAMT, '0.00') > '0.00' THEN FORMAT(HSACURAMT, '0.00') 
+                                          WHEN PdhDedCode = 'TSAMT'  THEN FORMAT(PdhEECurAmt, '0.00')
+                                        END
+        ,drvPostTaxPayrollDeduction = CASE WHEN  PdhDedCode IN ('TSAM2') and  FORMAT(PdhEECurAmt, '0.00') > '0.00' THEN FORMAT(PdhEECurAmt, '0.00') END
+        ,drvPreTaxProgramSponContrib = CASE WHEN PdhDedCode = 'HSA' and FORMaT(HSAERCURAMT,'0.00') > '0.00' THEN FORMaT(HSAERCURAMT,'0.00') END
         ,drvFundingDate = CONVERT(VARCHAR,DATEADD(day, -2,PrgPayDate ) ,101)
     INTO dbo.U_ELHMFSAHSA_drvTbl
     FROM dbo.U_ELHMFSAHSA_EEList WITH (NOLOCK)
@@ -635,29 +635,33 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    --JOIN (Select BdmEEID, BdmCOID
-    --            , MAX(Case WHEN Bdmdedcode IN ('HSA', 'HSAER') THEN  Bdmdedcode END) HSADedCode
-    --            , MAX(Case WHEN Bdmdedcode IN ('FSAMD') THEN  Bdmdedcode END) FSAMDDedCode
-    --            , MAX(Case WHEN Bdmdedcode IN ('FSADC') THEN  Bdmdedcode END) FSADCDedCode
-    --            , MAX(Case WHEN Bdmdedcode IN ('TSAMT') THEN  Bdmdedcode END) TSAMTDedCode
-    --            , MAX(Case WHEN Bdmdedcode IN ('TSAM2') THEN  Bdmdedcode END) TSAM2DedCode
-    --            , MAX(Case WHEN Bdmdedcode IN ('TSAMT', 'TSAM2') THEN  Bdmdedcode END) TRANSITDedCode
-    --            FROM dbo.U_dsi_BDM_ELHMFSAHSA WITH (NOLOCK)
-                
-    --            WHERE BdmDedCode IN ('FSAMD','FSADC','HSA','HSAER','TSAM2','TSAMT')
-             --   and bdmbenstatus is not null
-    --            Group by BdmEEID, BdmCOID, Bdmdedcode
-    --        ) BDM
-    --    ON BdmEEID = xEEID 
-    --    AND BdmCoID = xCoID
-     JOIN dbo.U_ELHMFSAHSA_PDedHist WITH (NOLOCK)
+    JOIN (
+            SELECT Pdheeid 
+            ,CASE WHEN PdhDedCode NOT IN ( 'HSA' ,'HSAER') THEN PdhDedCode END  AS PdhDedCode
+            ,HSACURAMT = Null
+            ,HSAERCURAMT = Null
+            ,CASE WHEN PdhDedCode NOT IN ( 'HSA' ,'HSAER') THEN PdhEECurAmt END  AS PdhEECurAmt
+            FROM dbo.U_ELHMFSAHSA_PDedHist  WITH (NOLOCK)
+            Where  PdhDedCode NOT IN ( 'HSA' ,'HSAER') 
+            Group by Pdheeid, PdhDedCode, PdhEECurAmt
+         union
+            SELECT Pdheeid 
+            ,MAX(CASE WHEN PdhDedCode IN ( 'HSA' ,'HSAER') THEN 'HSA' END)  AS PdhDedCode
+            ,MAX(CASE WHEN PdhDedCode IN ( 'HSA' ) THEN PdhEECurAmt END)  AS HSACURAMT 
+            ,MAX(CASE WHEN PdhDedCode IN ('HSAER') and PdhEECurAmt > 0.00 THEN PdhEECurAmt END)  AS HSAERCURAMT
+            ,PdhEECurAmt = null
+            FROM dbo.U_ELHMFSAHSA_PDedHist  WITH (NOLOCK)
+            Where  PdhDedCode  IN ( 'HSA' ,'HSAER') 
+            and  ( PdhDedCode IN ('HSAER') and PdhEECurAmt > 0.00)   OR ( PdhDedCode IN ( 'HSA' ) and PdhEECurAmt <> 0.00 )
+            Group by Pdheeid
+            ) AS PDH
         ON PdhEEID = xEEID
-    JOIN dbo.U_ELHMFSAHSA_PEarHist
+    Left JOIN dbo.U_ELHMFSAHSA_PEarHist
         ON PehEEID = xEEID
     LEFT JOIN dbo.U_ELHMFSAHSA_Audit WITH (NOLOCK)
         ON audEEID = xEEID
     WHERE EecEEtype <> 'TES'
-       AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and ((FORMAT(PdhHSAER,'0.00') > '0.00' or FORMAT(PdhFSAMD,'0.00') > '0.00' or FORMAT(PdhFSADC,'0.00') > '0.00' or FORMAT(PdhHSA,'0.00') > '0.00' or FORMAT(PdhTSAMT,'0.00') > '0.00' or FORMAT(PdhTSAM2,'0.00') > '0.00') or audFieldName = 'EecDateOfTermination' and audDateTime  BETWEEN  @StartDate AND @EndDate)))
+       AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and ((FORMAT(PdhEECurAmt,'0.00') <> '0.00' or FORMAT(HSACURAMT,'0.00') > '0.00' or FORMAT(HSAERCURAMT,'0.00') > '0.00' ) or audFieldName = 'EecDateOfTermination' and audDateTime  BETWEEN  @StartDate AND @EndDate)))
 
     ;
 
@@ -689,10 +693,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202301011'
-       ,expStartPerControl     = '202301011'
-       ,expLastEndPerControl   = '202301199'
-       ,expEndPerControl       = '202301199'
+    SET expLastStartPerControl = '202301201'
+       ,expStartPerControl     = '202301201'
+       ,expLastEndPerControl   = '202301209'
+       ,expEndPerControl       = '202301209'
 WHERE expFormatCode = 'ELHMFSAHSA' and expexportcode = 'TEST_XOE';
 
 **********************************************************************************/
