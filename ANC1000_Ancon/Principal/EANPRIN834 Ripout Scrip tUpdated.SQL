@@ -5,7 +5,7 @@ EANPRIN834: Principal Benefit Export
 FormatCode:     EANPRIN834
 Project:        Principal Benefit Export
 Client ID:      ANC1000
-Date/time:      2023-02-10 15:36:44.183
+Date/time:      2023-02-13 16:51:29.330
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -378,7 +378,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230210.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EANPRIN834_20230213.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -1041,7 +1041,7 @@ BEGIN
         --AND NOT Exists (SELECT 1 FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode = ee.eeddedcode)
         AND ( (ee.eedeeid  not in  (SELECT dbneeid FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' AND dbndeprecid = ed.eeddeprecid AND dbndedcode In ('ADEN2','AVIS')))
         OR  consystemid  IN   (SELECT DbnDepRecID FROM dbo.U_dsi_bdm_DepDeductions WHERE dbnformatcode = 'EANPRIN834' and dbndedcode In ('ADEN2','AVIS') and dbnBenstopdate is not null 
-                and dbnRelationship = 'SPS')))
+                and  dbnRelationship IN ('SPS', 'DP'))))
         ;
     --EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
     EXEC dbo.dsi_bdm_sp_BuildConsolidatedTable 'EANPRIN834', 'Standard';
@@ -1465,7 +1465,7 @@ BEGIN
         DROP TABLE dbo.U_EANPRIN834_DrvTbl_2300;
        
     
- SELECT DISTINCT a.* 
+     SELECT DISTINCT a.* 
   INTO dbo.U_EANPRIN834_DrvTbl_2300 
       FROM( 
       SELECT DISTINCT
@@ -1652,7 +1652,8 @@ BEGIN
     JOIN dbo.U_dsi_bdm_EANPRIN834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
-        AND BdmDedCode IN ('UNUM','RELI1','RELI3','RELI4','RELI5','ADEN2','AVIS') 
+       -- AND BdmDedCode IN ('UNUM','RELI1','RELI3','RELI4','RELI5','ADEN2','AVIS') 
+        and bdmBenstatus <>  'W'
     Left JOIN ( Select Distinct 
                EedEEID
              ,EedCoID
@@ -1662,6 +1663,7 @@ BEGIN
              ,EEdBenStartDate
              ,EedBenStatusDate
              ,EEdBenStopDate 
+             ,eedBenstatus 
             FROM dbo.empded ed WITH (nolock)
          --JOIN dbo.emppers WITH (nolock) ON eepeeid = eedeeid
          --JOIN dbo.u_dsi_bdm_EmpDeductions ee WITH (nolock) 
@@ -1671,6 +1673,8 @@ BEGIN
             --AND eedValidForExport = 'Y'
             --AND ee.eeddedcode = eeddedcode
             Where EedDedCode IN ('UNUM','RELI1','RELI3','RELI4','RELI5','ADEN2','AVIS')
+                 and eedBenstatus <> 'W'
+                 and (eedbenstopdate is null or eedbenstopdate > '2022-01-01')
             ) Ded
          ON EedEEID = BDMEEId
          AND EedCoID = BdmCOID
@@ -1683,12 +1687,13 @@ BEGIN
                         ,MAX(CASE WHEN  EedDedCode IN ('RELI1') THEN EedBenAmt END) AS ReliBdmAmt1
                         ,MAX(CASE WHEN  EedDedCode IN ('RELI3') THEN EedBenAmt END) AS ReliBdmAmt3
                         ,MAX(CASE WHEN  EedDedCode IN ('RELI4') THEN EedBenAmt END) AS ReliBdmAmt4
-                     ,MAX(BdmBenStatusDate) AS ReliBenStatusDate
-                    ,MAX(EEdBenStartDate) AS RelBenStartDate
+                        ,MAX(BdmBenStatusDate) AS ReliBenStatusDate
+                        ,MAX(EEdBenStartDate) AS RelBenStartDate
                  FROM  dbo.U_dsi_bdm_EANPRIN834 WITH (NOLOCK)
                   Join  dbo.EmpDed WITH(NOLOCK)
                     on bdmeeid = eedeeid 
                     and eeddedcode = bdmdedcode
+                     AND BDMBenStatus <> 'W'
                  WHERE EedDedCode IN  ('RELI1', 'RELI3','RELI4')
                 GROUP BY BdmEEID, BdmCOID
                 
@@ -1705,10 +1710,11 @@ BEGIN
 
     WHERE EecEEType <> 'TES'
    
-    AND  (BdmBenStatus = 'A' or (BdmBenStatus = 'T' and EecEmplStatus = 'T'  and audDateTime Between @Startdate and @EndDate))
+    AND  ((BdmBenStatus = 'A'  OR EedBenstatus = 'A' )or ((EedBenStatus = 'T' or BdmBenStatus = 'T') and EecEmplStatus = 'T'  and audDateTime Between @Startdate and @EndDate))
 
 Union 
 
+ 
  SELECT DISTINCT
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
         drvHD00_HealthCoverage = CASE WHEN CASE --WHEN BdmRecType = 'EMP' AND   EedDedCode = 'UNUM'THEN 'BLF'
@@ -1748,7 +1754,7 @@ Union
                                           --WHEN BdmDedType IN ('AVIS') THEN 'VIS'
                                            ELSE ''
                                      END
-        ,drvHD04_PlanCoverageDesc = CASE WHEN BdmRecType = 'EMP' AND  EedDedCode = 'UNUM' THEN '1'
+        ,drvHD04_PlanCoverageDesc = CASE WHEN BdmRecType = 'EMP' AND   EedDedCode = 'UNUM' THEN '1'
                                          WHEN BdmRecType = 'EMP' AND   EedDedCode IN ('RELI1') THEN '1'
                                          WHEN BdmRecType = 'EMP' AND   EedDedCode IN ('RELI3') THEN '1'
                                         -- WHEN BdmRecType = 'EMP' AND   EedDedCode IN ('RELI4') THEN '1'
@@ -1840,19 +1846,20 @@ Union
                            
    -- INTO dbo.U_EANPRIN834_DrvTbl_2300
     FROM dbo.U_EANPRIN834_EELIST WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
+     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
     JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    JOIN dbo.U_dsi_bdm_EANPRIN834 WITH (NOLOCK)
+    LEFT JOIN dbo.U_dsi_bdm_EANPRIN834 WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
-     AND BdmDedCode IN  ('RELI1', 'RELI3','UNUM')
+      --  AND BdmDedCode IN  ('RELI1', 'RELI3','UNUM')
+    -- and BdmBenstatus <> 'W'
     LEft JOIN ( Select Distinct 
-              eepeeid AS EedEEID
+              EedEEID
              ,EedCoID
              ,EedDedCode
             -- ,DedDedType 
@@ -1860,9 +1867,12 @@ Union
              ,EEdBenStartDate
              ,EedBenStatusDate
              ,EEdBenStopDate 
+             , EedBenstatus
             FROM dbo.empded ed WITH (nolock)
-         JOIN dbo.emppers WITH (nolock) ON eepeeid = eedeeid
+        
          Where EedDedCode IN ('RELI1', 'RELI3','UNUM')
+              and eedBenstatus <> 'W'
+             and (eedbenstopdate is null or eedbenstopdate > '2022-01-01')
          --JOIN dbo.u_dsi_bdm_EmpDeductions ee WITH (nolock) 
             --ON ee.eedeeid = eedeeid 
             --AND ee.eedcoid = eedcoid
@@ -1881,9 +1891,10 @@ Union
       -- AND  CmpCompanyCode IN ('ANCON', 'CPS', 'HH', 'VOLT')
      LEFT JOIN dbo.U_EANPRIN834_Audit WITH (NOLOCK)
         ON  audeeid = Xeeid
-    WHERE EecEEType <> 'TES'
-
-      AND  (BdmBenStatus = 'A' or (BdmBenStatus = 'T' and EecEmplStatus = 'T'  and audDateTime Between @Startdate and @EndDate))
+        WHERE EecEEType <> 'TES'
+     
+   
+      AND  ((BdmBenStatus = 'A'  OR EedBenstatus = 'A' )or ((EedBenStatus = 'T' or BdmBenStatus = 'T') and EecEmplStatus = 'T'  and audDateTime Between @Startdate and @EndDate))
     ) a
 
     Where drvHD00_HealthCoverage is not null

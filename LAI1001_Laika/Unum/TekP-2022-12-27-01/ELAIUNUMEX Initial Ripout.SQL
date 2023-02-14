@@ -1,19 +1,20 @@
 /**********************************************************************************
 
-ELAIUNUMEX: Unum_STD_ LTD,_FMLA Export
+ELAIUNUMEX: Unum STD LTD FMLA Export
 
 FormatCode:     ELAIUNUMEX
-Project:        Unum_STD_ LTD,_FMLA Export
-Client ID:      USG1000
-Date/time:      2023-02-10 18:25:19.600
+Project:        Unum STD LTD FMLA Export
+Client ID:      LAI1001
+Date/time:      2023-02-13 09:21:37.900
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_YOSHI
-Web Filename:   USG1000_12634_EEHISTORY_ELAIUNUMEX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP1DB03
+Database:       ULTIPRO_WPLAIKA
+Web Filename:   LAI1001_K8KNG_EEHISTORY_ELAIUNUMEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -132,7 +133,7 @@ GO
 -- AscDefH inserts
 -----------
 
-INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ELAIUNUMEX','Unum_STD_ LTD,_FMLA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','ELAIUNUMEXZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ELAIUNUMEX','Unum STD LTD FMLA Export','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','ELAIUNUMEXZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
 
 -----------
 -- AscDefF inserts
@@ -268,7 +269,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELAIUNUMEX_20230210.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELAIUNUMEX_20230213.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -277,9 +278,9 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202302109','EMPEXPORT','OEACTIVE',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202302109','EMPEXPORT','OEPASSIVE',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum_STD_ LTD,_FMLA Export','202302109','EMPEXPORT','ONDEM_XOE',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum_STD_ LTD,_FMLA Expo-Sched','202302109','EMPEXPORT','SCH_ELAIUN',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum_STD_ LTD,_FMLA Expo-Test','202302109','EMPEXPORT','TEST_XOE',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum STD LTD FMLA Export','202302109','EMPEXPORT','ONDEM_XOE',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Unum_STD_ LTD_FMLA Expo-Sched','202302109','EMPEXPORT','SCH_ELAIUN',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Unum_STD_ LTD_FMLA Expo-Test','202302109','EMPEXPORT','TEST_XOE',NULL,'ELAIUNUMEX',NULL,NULL,NULL,'202302109','Feb 10 2023  6:24PM','Feb 10 2023  6:24PM','202302101',NULL,'','','202302101',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -291,11 +292,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ELAIUNUMEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -316,11 +318,6 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 -----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -422,35 +419,35 @@ CREATE TABLE [dbo].[U_ELAIUNUMEX_drvTbl] (
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvEESSN] char(11) NULL,
-    [drvID] varchar(1) NOT NULL,
-    [drvEEIDTYPE] varchar(1) NOT NULL,
+    [drvID] char(9) NULL,
+    [drvEEIDTYPE] varchar(4) NOT NULL,
     [drvEEFIRSTNAME] varchar(100) NULL,
     [drvEEMIDDLEINITIAL] varchar(1) NULL,
     [drvEELASTNAME] varchar(100) NULL,
-    [drvEESTADDR1] varchar(1) NOT NULL,
-    [drvEESTADDR2] varchar(1) NOT NULL,
+    [drvEESTADDR1] varchar(8000) NULL,
+    [drvEESTADDR2] varchar(8000) NULL,
     [drvEECITY] varchar(255) NULL,
-    [drvEERDCSTPVC] varchar(1) NOT NULL,
-    [drvEEPOSTALCD] varchar(1) NOT NULL,
-    [drvEECNTRYCD] varchar(1) NOT NULL,
-    [drvEEWRKSTPVC] varchar(1) NOT NULL,
-    [drvEEDOB] datetime NULL,
+    [drvEERDCSTPVC] varchar(2) NULL,
+    [drvEEPOSTALCD] varchar(50) NULL,
+    [drvEECNTRYCD] varchar(2) NULL,
+    [drvEEWRKSTPVC] varchar(255) NULL,
+    [drvEEDOB] char(10) NULL,
     [drvEEGENDER] char(1) NULL,
-    [drvMARITALSTATUS] char(1) NULL,
-    [drvEEJOBTLE] varchar(1) NOT NULL,
-    [drvMOSTRCNTHIREDATE] datetime NULL,
-    [drvORGHIREDATE] datetime NULL,
-    [drvEETERMDATE] datetime NULL,
-    [drvEESTATUS] varchar(1) NOT NULL,
-    [drvWKLYSCHWRKHRS] varchar(1) NOT NULL,
-    [drvDATEOFLSTSLYCHG] varchar(1) NOT NULL,
+    [drvMARITALSTATUS] varchar(7) NOT NULL,
+    [drvEEJOBTLE] varchar(25) NOT NULL,
+    [drvMOSTRCNTHIREDATE] varchar(10) NULL,
+    [drvORGHIREDATE] varchar(10) NULL,
+    [drvEETERMDATE] varchar(10) NULL,
+    [drvEESTATUS] varchar(3) NOT NULL,
+    [drvWKLYSCHWRKHRS] nvarchar(4000) NULL,
+    [drvDATEOFLSTSLYCHG] nvarchar(4000) NULL,
     [drvEEHOMEPHONE] varchar(50) NULL,
-    [drvMGRFIRSTNAME] varchar(100) NULL,
-    [drvMGRLASTNAME] varchar(100) NULL,
-    [drvMGREMAIL] varchar(50) NULL,
-    [drvEESCNDMGREMAIL] varchar(50) NULL,
-    [drvEETHRDMGREMAIL] varchar(50) NULL,
-    [drvHRWRKEDINPSTMNTHS] varchar(1) NOT NULL,
+    [drvMGRFIRSTNAME] varchar(256) NULL,
+    [drvMGRLASTNAME] varchar(256) NULL,
+    [drvMGREMAIL] varchar(256) NULL,
+    [drvEESCNDMGREMAIL] varchar(1) NOT NULL,
+    [drvEETHRDMGREMAIL] varchar(1) NOT NULL,
+    [drvHRWRKEDINPSTMNTHS] nvarchar(4000) NULL,
     [drvWRKONSUN] varchar(1) NOT NULL,
     [drvWRKONMON] varchar(1) NOT NULL,
     [drvWRKONTUES] varchar(1) NOT NULL,
@@ -458,26 +455,26 @@ CREATE TABLE [dbo].[U_ELAIUNUMEX_drvTbl] (
     [drvWRKONTHURS] varchar(1) NOT NULL,
     [drvWRKONFRI] varchar(1) NOT NULL,
     [drvWRKONSAT] varchar(1) NOT NULL,
-    [drvOFFCENAME] varchar(1) NOT NULL,
+    [drvOFFCENAME] varchar(9) NOT NULL,
     [drvEEWRKMAILSTADDR1] varchar(1) NOT NULL,
     [drvEEWRKMAILSTADDR2] varchar(1) NOT NULL,
     [drvEEWRKMAILSTADDR3] varchar(1) NOT NULL,
-    [drvEEWRKCITY] varchar(255) NULL,
+    [drvEEWRKCITY] varchar(1) NOT NULL,
     [drvEEWRKPOSTALCD] varchar(1) NOT NULL,
     [drvFMLARPTINGGRP] varchar(1) NOT NULL,
     [drvKEYEE] varchar(1) NOT NULL,
-    [drvEESALMD] varchar(1) NOT NULL,
-    [drvProduct] varchar(1) NOT NULL,
-    [drvPOLICYNBR] varchar(1) NOT NULL,
-    [drvDivision] varchar(1) NOT NULL,
+    [drvEESALMD] char(1) NULL,
+    [drvProduct] varchar(3) NULL,
+    [drvPOLICYNBR] varchar(6) NULL,
+    [drvDivision] varchar(3) NOT NULL,
     [drvPOLICYELGGRP1] varchar(1) NOT NULL,
     [drvEEPOSTTAXCNTRBPCT1] varchar(1) NOT NULL,
     [drvPOLICYELGGRP2] varchar(1) NOT NULL,
-    [drvEEPOSTTAXCNTRBPCT2] varchar(1) NOT NULL,
-    [drvEarnings] varchar(1) NOT NULL,
-    [drvEARNINGSPRD] varchar(1) NOT NULL,
-    [drvEFFDATEOFEECOVG] varchar(1) NOT NULL,
-    [drvCOVGTERMDATE] datetime NULL
+    [drvEEPOSTTAXCNTRBPCT2] varchar(3) NOT NULL,
+    [drvEarnings] money NULL,
+    [drvEARNINGSPRD] varchar(2) NULL,
+    [drvEFFDATEOFEECOVG] nvarchar(4000) NULL,
+    [drvCOVGTERMDATE] nvarchar(4000) NULL
 );
 
 -----------
@@ -557,7 +554,7 @@ Business Analyst: Katherine Ricca
 Create Date: 02/10/2023
 Service Request Number: TekP-2022-12-27-01 
 
-Purpose: Unum_STD_ LTD,_FMLA Export
+Purpose: Unum STD LTD FMLA Export
 
 Revision History
 ----------------
@@ -587,16 +584,17 @@ BEGIN
     --==========================================
     -- Declare variables
     --==========================================
-    DECLARE  @FormatCode        VARCHAR(10)
+     DECLARE  @FormatCode        VARCHAR(10)
             ,@ExportCode        VARCHAR(10)
             ,@StartDate         DATETIME
             ,@EndDate           DATETIME
             ,@StartPerControl   VARCHAR(9)
-            ,@EndPerControl     VARCHAR(9);
+            ,@EndPerControl     VARCHAR(9)
+            ,@FileMinCovDate    DATETIME;
 
     -- Set FormatCode
     SELECT @FormatCode = 'ELAIUNUMEX';
-
+    SELECT @FileMinCovDate = '1/1/2023';
     -- Declare dates from Parameter file
     SELECT
          @StartPerControl = StartPerControl
@@ -618,38 +616,38 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_ELAIUNUMEX_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
-    --==========================================
-    -- Audit Section
-    --==========================================
-    -- Get data from audit fields table. Add fields here if auditing
-    IF OBJECT_ID('U_ELAIUNUMEX_AuditFields','U') IS NOT NULL
-        DROP TABLE dbo.U_ELAIUNUMEX_AuditFields;
-    CREATE TABLE dbo.U_ELAIUNUMEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+ --   --==========================================
+ --   -- Audit Section
+ --   --==========================================
+ --   -- Get data from audit fields table. Add fields here if auditing
+ --   IF OBJECT_ID('U_ELAIUNUMEX_AuditFields','U') IS NOT NULL
+ --       DROP TABLE dbo.U_ELAIUNUMEX_AuditFields;
+ --   CREATE TABLE dbo.U_ELAIUNUMEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    --INSERT INTO dbo.U_ELAIUNUMEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
+ --   -- Create audit table based on fields defined above
+ --   IF OBJECT_ID('U_ELAIUNUMEX_Audit','U') IS NOT NULL
+ --       DROP TABLE dbo.U_ELAIUNUMEX_Audit;
+ --   SELECT 
+ --       audEEID  = audKey1Value
+ --       ,audKey2 = audKey2Value
+ --       ,audKey3 = audKey3Value
+ --       ,audTableName
+ --       ,audFieldName
+ --       ,audAction
+ --       ,audDateTime
+ --       ,audOldValue
+ --       ,audNewValue
+ --       ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+ --   INTO dbo.U_ELAIUNUMEX_Audit
+ --   FROM dbo.vw_AuditData WITH (NOLOCK) 
+ --   JOIN dbo.U_ELAIUNUMEX_AuditFields WITH (NOLOCK) 
+ --       ON audTableName = aTableName
+ --       AND audFieldName = aFieldName
+ --   WHERE audDateTime BETWEEN @StartDate AND @EndDate
+ --   AND audAction <> 'DELETE';
 
-    -- Create audit table based on fields defined above
-    IF OBJECT_ID('U_ELAIUNUMEX_Audit','U') IS NOT NULL
-        DROP TABLE dbo.U_ELAIUNUMEX_Audit;
-    SELECT 
-        audEEID  = audKey1Value
-        ,audKey2 = audKey2Value
-        ,audKey3 = audKey3Value
-        ,audTableName
-        ,audFieldName
-        ,audAction
-        ,audDateTime
-        ,audOldValue
-        ,audNewValue
-        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
-    INTO dbo.U_ELAIUNUMEX_Audit
-    FROM dbo.vw_AuditData WITH (NOLOCK) 
-    JOIN dbo.U_ELAIUNUMEX_AuditFields WITH (NOLOCK) 
-        ON audTableName = aTableName
-        AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN @StartDate AND @EndDate
-    AND audAction <> 'DELETE';
-
-    -- Create Index
-    CREATE CLUSTERED INDEX CDX_U_ELAIUNUMEX_Audit ON dbo.U_ELAIUNUMEX_Audit (audEEID,audKey2);
+ --   -- Create Index
+ --   CREATE CLUSTERED INDEX CDX_U_ELAIUNUMEX_Audit ON dbo.U_ELAIUNUMEX_Audit (audEEID,audKey2);
 
     ----================
     ---- Changes Only
@@ -661,7 +659,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'DED1,DED2';
+    SET @DedList = 'LTD,BLTD,EXLTD,LKSTD';
 
     IF OBJECT_ID('U_ELAIUNUMEX_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_ELAIUNUMEX_DedList;
@@ -680,7 +678,7 @@ BEGIN
     DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
 
     -- Required parameters
-    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes','MED,DEN,VIS');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
@@ -710,38 +708,38 @@ BEGIN
     -----------------------------
     -- Working Table - PDedHist
     -----------------------------
-    IF OBJECT_ID('U_ELAIUNUMEX_PDedHist','U') IS NOT NULL
-        DROP TABLE dbo.U_ELAIUNUMEX_PDedHist;
-    SELECT DISTINCT
-         PdhEEID
-        -- Current Payroll Amounts
-        ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
-        -- YTD Payroll Amounts
-        ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
-        ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
-        -- Categorize Payroll Amounts
-        ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
-        ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-    INTO dbo.U_ELAIUNUMEX_PDedHist
-    FROM dbo.PDedHist WITH (NOLOCK)
-    JOIN dbo.U_ELAIUNUMEX_DedList WITH (NOLOCK)
-        ON DedCode = PdhDedCode
-    WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
-    AND PdhPerControl <= @EndPerControl
-    AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
-    GROUP BY PdhEEID
-    HAVING (SUM(PdhEECurAmt) <> 0.00
-        OR SUM(PdhERCurAmt) <> 0.00
-    );
+    --IF OBJECT_ID('U_ELAIUNUMEX_PDedHist','U') IS NOT NULL
+    --    DROP TABLE dbo.U_ELAIUNUMEX_PDedHist;
+    --SELECT DISTINCT
+    --     PdhEEID
+    --    -- Current Payroll Amounts
+    --    ,PdhEECurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhERCurAmt    = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)
+    --    -- YTD Payroll Amounts
+    --    ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
+    --    ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
+    --    -- Categorize Payroll Amounts
+    --    ,PdhSource1     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource2     = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource3     = SUM(CASE WHEN PdhDedCode IN ('MATCH') THEN PdhERCurAmt ELSE 0.00 END)        
+    --    ,PdhSource4     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource5     = SUM(CASE WHEN PdhDedCode IN ('ROTHC') THEN PdhEECurAmt ELSE 0.00 END)
+    --    ,PdhSource6     = SUM(CASE WHEN PdhDedCode IN ('401KL1') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource7     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --    ,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+    --INTO dbo.U_ELAIUNUMEX_PDedHist
+    --FROM dbo.PDedHist WITH (NOLOCK)
+    --JOIN dbo.U_ELAIUNUMEX_DedList WITH (NOLOCK)
+    --    ON DedCode = PdhDedCode
+    --WHERE LEFT(PdhPerControl,4) = LEFT(@EndPerControl,4)
+    --AND PdhPerControl <= @EndPerControl
+    --AND PdhPerControl BETWEEN @StartPerControl AND @EndPerControl -- Filter for Current Payroll Dates. If you need YTD Totals, then remove or comment out this line.
+    --GROUP BY PdhEEID
+    --HAVING (SUM(PdhEECurAmt) <> 0.00
+    --    OR SUM(PdhERCurAmt) <> 0.00
+    --);
 
 
     -----------------------------
@@ -788,35 +786,38 @@ BEGIN
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
         ,drvEESSN = eepSSN
-        ,drvID = ''
-        ,drvEEIDTYPE = ''
+        ,drvID = EecEmpno
+        ,drvEEIDTYPE = 'EEID'
         ,drvEEFIRSTNAME = EepNameFirst
         ,drvEEMIDDLEINITIAL = LEFT(EepNameMiddle,1)
         ,drvEELASTNAME = EepNameLast
-        ,drvEESTADDR1 = ''
-        ,drvEESTADDR2 = ''
+        ,drvEESTADDR1 = REPLACE(EepAddressLine1, ',', '')
+        ,drvEESTADDR2 = REPLACE(EepAddressLine2, ',', '')
         ,drvEECITY = EepAddressCity
-        ,drvEERDCSTPVC = ''
-        ,drvEEPOSTALCD = ''
-        ,drvEECNTRYCD = ''
-        ,drvEEWRKSTPVC = ''
-        ,drvEEDOB = EepDateOfBirth
-        ,drvEEGENDER = EepGender
-        ,drvMARITALSTATUS = eepMaritalStatus
-        ,drvEEJOBTLE = ''
-        ,drvMOSTRCNTHIREDATE = EecDateOfLastHire
-        ,drvORGHIREDATE = EecDateOfLastHire
-        ,drvEETERMDATE = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvEESTATUS = ''
-        ,drvWKLYSCHWRKHRS = ''
-        ,drvDATEOFLSTSLYCHG = ''
+        ,drvEERDCSTPVC = LEFT(eepaddressstate,2)
+        ,drvEEPOSTALCD = EepAddressZipCode
+        ,drvEECNTRYCD = LEFT(eepAddressCountry,2)
+        ,drvEEWRKSTPVC = LocAddressState
+        ,drvEEDOB = convert(char(10),EepDateOfBirth, 101)
+        ,drvEEGENDER = CASE WHEN EepGender IN ('M', 'F') THEN EepGender END
+        ,drvMARITALSTATUS = CASE WHEN EepMaritalStatus  IN ('M') THEN 'Married'
+                                 WHEN EepMaritalStatus  IN ('S') THEN ' Single' 
+                                ELSE 'UNK'  
+                            END
+        ,drvEEJOBTLE = JbcDesc
+        ,drvMOSTRCNTHIREDATE = convert(varchar(10),EecDateOfLastHire, 101)
+        ,drvORGHIREDATE = convert(varchar(10),EecDateOfLastHire, 101)
+        ,drvEETERMDATE = CASE WHEN EecEmplStatus = 'T' THEN convert(varchar(10),EecDateOfTermination,101) END
+        ,drvEESTATUS = CASE WHEN EecEmplStatus = 'L' THEN 'LOA' ELSE 'ACT' END
+        ,drvWKLYSCHWRKHRS = FORMAT(EecScheduledWorkHrs*26/52, '0.00')
+        ,drvDATEOFLSTSLYCHG = FORMaT(dbo.dsi_fnlib_GetAnnSalary_EffDate_WithStartDate(EecEEID, EecCOID, GetDate(),EecDateOfLastHire), 'MM/dd/yyyy')
         ,drvEEHOMEPHONE = EepPhoneHomeNumber
-        ,drvMGRFIRSTNAME = EepNameFirst
-        ,drvMGRLASTNAME = EepNameLast
-        ,drvMGREMAIL = EepAddressEMail
-        ,drvEESCNDMGREMAIL = EepAddressEMail
-        ,drvEETHRDMGREMAIL = EepAddressEMail
-        ,drvHRWRKEDINPSTMNTHS = ''
+        ,drvMGRFIRSTNAME = dbo.dsi_fnlib_GetSupervisorField_V2(EecCoID, EecEEID, 'NameFirst')
+        ,drvMGRLASTNAME = dbo.dsi_fnlib_GetSupervisorField_V2(EecCoID, EecEEID, 'NameLast')
+        ,drvMGREMAIL = dbo.dsi_fnlib_GetSupervisorField_V2(EecCoID, EecEEID, 'AddressEmail') 
+        ,drvEESCNDMGREMAIL = ''
+        ,drvEETHRDMGREMAIL = ''
+        ,drvHRWRKEDINPSTMNTHS = FORMAT(PehCurHrsYTD, '#0.00')
         ,drvWRKONSUN = ''
         ,drvWRKONMON = ''
         ,drvWRKONTUES = ''
@@ -824,26 +825,37 @@ BEGIN
         ,drvWRKONTHURS = ''
         ,drvWRKONFRI = ''
         ,drvWRKONSAT = ''
-        ,drvOFFCENAME = ''
+        ,drvOFFCENAME = 'Laika LLC'
         ,drvEEWRKMAILSTADDR1 = ''
         ,drvEEWRKMAILSTADDR2 = ''
         ,drvEEWRKMAILSTADDR3 = ''
-        ,drvEEWRKCITY = EepAddressCity
+        ,drvEEWRKCITY = ''
         ,drvEEWRKPOSTALCD = ''
         ,drvFMLARPTINGGRP = ''
         ,drvKEYEE = ''
-        ,drvEESALMD = ''
-        ,drvProduct = ''
-        ,drvPOLICYNBR = ''
-        ,drvDivision = ''
-        ,drvPOLICYELGGRP1 = ''
-        ,drvEEPOSTTAXCNTRBPCT1 = ''
-        ,drvPOLICYELGGRP2 = ''
-        ,drvEEPOSTTAXCNTRBPCT2 = ''
-        ,drvEarnings = ''
-        ,drvEARNINGSPRD = ''
-        ,drvEFFDATEOFEECOVG = ''
-        ,drvCOVGTERMDATE = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvEESALMD = EecSalaryOrHourly
+        ,drvProduct = CASE WHEN STD_DedCode = 'LKSTD' THEN '192' END
+        ,drvPOLICYNBR = CASE WHEN STD_DedCode = 'LKSTD' THEN '617390' END
+        ,drvDivision = '100'
+        ,drvPOLICYELGGRP1 = CASE WHEN CbpBenGroupCode IN ( 'EXEC', 'OOAE') THEN '1' ELSE '2' END
+        ,drvEEPOSTTAXCNTRBPCT1 = '0'
+        ,drvPOLICYELGGRP2 = CASE WHEN BLTD_DedCode = 'BLTD' THEN '1' 
+                                 WHEN EXLTD_DedCode = 'EXLTD' THEN  '2'
+                               ELSE '3'
+                            END
+        ,drvEEPOSTTAXCNTRBPCT2 = CASE WHEN BLTD_DedCode = 'BLTD' then '100' ELSE '0' END
+        ,drvEarnings = CASE WHEN STD_DedCode= 'LKSTD' THEN eecannsalary/52
+                            WHEN LTD3_DedCode IN ( 'BLTD', 'EXLTD', 'LTD' ) THEN eecannsalary/12
+                            END
+        ,drvEARNINGSPRD = CASE WHEN STD_DedCode = 'LKSTD' THEN 'WK'
+                            WHEN LTD3_DedCode IN ( 'BLTD', 'EXLTD', 'LTD' ) THEN 'MO'
+                            END
+        ,drvEFFDATEOFEECOVG = CASE WHEN STD_DedCode = 'LKSTD' THEN Format(dbo.dsi_fnGetMinMaxDates('MAX',STD_BenStartDate,@FileMinCovDate), 'MM/dd/yyyy')
+                            WHEN LTD3_DedCode IN ( 'BLTD', 'EXLTD', 'LTD' ) THEN Format(dbo.dsi_fnGetMinMaxDates('MAX',LTD_BenStartDate,@FileMinCovDate), 'MM/dd/yyyy')
+                            END
+        ,drvCOVGTERMDATE = CASE WHEN STD_DedCode = 'LKSTD' THEN Format(STD_BenStopDate, 'MM/dd/yyyy')
+                            WHEN LTD3_DedCode IN ( 'BLTD', 'EXLTD', 'LTD' ) THEN Format(LTD_BenStopDate, 'MM/dd/yyyy')
+                            END
     INTO dbo.U_ELAIUNUMEX_drvTbl
     FROM dbo.U_ELAIUNUMEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -853,9 +865,31 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    JOIN dbo.U_dsi_BDM_ELAIUNUMEX WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+      LEFT JOIN (
+                SELECT BdmEEID, BdmCOID
+                    ,MAX(CASE WHEN BdmDedCode IN ('BLTD') THEN BdmDedCode END) AS BLTD_DedCode
+                    ,MAX(CASE WHEN BdmDedCode IN ('EXLTD') THEN BdmDedCode END) AS EXLTD_DedCode
+                    ,MAX(CASE WHEN BdmDedCode IN ('BLTD', 'EXLTD', 'LTD') THEN BdmDedCode END) AS LTD3_DedCode
+                    
+                    ,MAX(CASE WHEN BdmDedCode = 'LKSTD' THEN BdmDedCode END) AS STD_DedCode
+                    ,MAX(CASE WHEN BdmDedCode = 'LKSTD' THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2020')  END) AS STD_BenStartDate
+                    ,MAX(CASE WHEN BdmDedCode IN ('BLTD', 'EXLTD', 'LTD') THEN dbo.dsi_fnGetMinMaxDates('MAX',BdmBenStartDate, '1/1/2020')  END) AS LTD_BenStartDate 
+                    ,MAX(CASE WHEN BdmDedCode = 'LKSTD' THEN BdmBenStopDate END) AS STD_BenStopDate
+                    ,MAX(CASE WHEN BdmDedCode IN ('BLTD', 'EXLTD', 'LTD') THEN BdmBenStopDate END) AS LTD_BenStopDate
+                FROM dbo.U_dsi_BDM_ELAIUNUMEX WITH (NOLOCK)
+                GROUP BY BdmEEID, BdmCOID
+            ) AS Bdm_Flattened
+        ON BdmEEID = xEEID
+        AND BdmCOID = xCOID
+      JOIN dbo.Location WITH(NOLOCK)
+           ON LocCode = EecLocation
+    LEFT JOIN dbo.U_ELAIUNUMEX_PEarHist WITH (NOLOCK)
+        ON PehEEID = xEEID
+     LEFT JOIN dbo.BenProgTI L1 WITH (NOLOCK)
+        ON (L1.CbpDedCode = LTD3_DedCode
+        OR L1.CbpDedCode = STD_DedCode)
+   
+    WHERE EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and EecDateOfTermination BETWEEN @StartDate AND @EndDate)
     ;
 
     --==========================================
