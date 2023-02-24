@@ -4,16 +4,17 @@ ESGMHEAPEX: Modern Health EAP Export
 
 FormatCode:     ESGMHEAPEX
 Project:        Modern Health EAP Export
-Client ID:      USG1000
-Date/time:      2023-01-20 09:58:47.633
+Client ID:      STE1028
+Date/time:      2023-02-22 07:54:21.863
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ESGMHEAPEX_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP5DB02
+Database:       ULTIPRO_WPSTEG
+Web Filename:   STE1028_36CFI_EEHISTORY_ESGMHEAPEX_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -132,32 +133,34 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESGMHEAPEXZ0','50','H','01','1',NULL,'LastName',NULL,NULL,'"LastName"','(''DA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESGMHEAPEXZ0','50','H','01','2',NULL,'FirstName',NULL,NULL,'"FirstName"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESGMHEAPEXZ0','50','H','01','3',NULL,'Email',NULL,NULL,'"Email"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESGMHEAPEXZ0','50','H','01','4',NULL,'EmployeeID',NULL,NULL,'"EmployeeID"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESGMHEAPEXZ0','50','H','01','5',NULL,'DOB',NULL,NULL,'"DOB"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESGMHEAPEXZ0','50','H','01','6',NULL,'EmploymentStartDate',NULL,NULL,'"EmploymentStartDate"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESGMHEAPEXZ0','50','H','01','7',NULL,'Department',NULL,NULL,'"Department"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESGMHEAPEXZ0','50','H','01','8',NULL,'OfficeLocation',NULL,NULL,'"OfficeLocation"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESGMHEAPEXZ0','50','H','01','9',NULL,'Role',NULL,NULL,'"Role"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESGMHEAPEXZ0','50','H','01','10',NULL,'Country',NULL,NULL,'"Country"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESGMHEAPEXZ0','50','H','01','11',NULL,'Gender',NULL,NULL,'"Gender"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESGMHEAPEXZ0','50','H','01','12',NULL,'Race',NULL,NULL,'"Race"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESGMHEAPEXZ0','50','H','01','13',NULL,'Ethnicity',NULL,NULL,'"Ethnicity"','(''DA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESGMHEAPEXZ0','50','H','01','14',NULL,'PostalCode',NULL,NULL,'"PostalCode"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESGMHEAPEXZ0','50','H','01','3',NULL,'Suffix',NULL,NULL,'"Suffix"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESGMHEAPEXZ0','50','H','01','4',NULL,'Email',NULL,NULL,'"Email"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESGMHEAPEXZ0','50','H','01','5',NULL,'EmployeeID',NULL,NULL,'"EmployeeID"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESGMHEAPEXZ0','50','H','01','6',NULL,'DOB',NULL,NULL,'"DOB"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESGMHEAPEXZ0','50','H','01','7',NULL,'EmploymentStartDate',NULL,NULL,'"EmploymentStartDate"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESGMHEAPEXZ0','50','H','01','8',NULL,'Department',NULL,NULL,'"Department"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESGMHEAPEXZ0','50','H','01','9',NULL,'OfficeLocation',NULL,NULL,'"OfficeLocation"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESGMHEAPEXZ0','50','H','01','10',NULL,'Role',NULL,NULL,'"Role"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESGMHEAPEXZ0','50','H','01','11',NULL,'Country',NULL,NULL,'"Country"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESGMHEAPEXZ0','50','H','01','12',NULL,'Gender',NULL,NULL,'"Gender"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESGMHEAPEXZ0','50','H','01','13',NULL,'Race',NULL,NULL,'"Race"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESGMHEAPEXZ0','50','H','01','14',NULL,'Ethnicity',NULL,NULL,'"Ethnicity"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESGMHEAPEXZ0','50','H','01','15',NULL,'PostalCode',NULL,NULL,'"PostalCode"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESGMHEAPEXZ0','50','D','10','1',NULL,'LastName',NULL,NULL,'"drvLastName"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESGMHEAPEXZ0','50','D','10','2',NULL,'FirstName',NULL,NULL,'"drvFirstName"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESGMHEAPEXZ0','50','D','10','3',NULL,'Email',NULL,NULL,'"drvEmail"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESGMHEAPEXZ0','50','D','10','4',NULL,'EmployeeID',NULL,NULL,'"drvEmployeeID"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESGMHEAPEXZ0','50','D','10','5',NULL,'DOB',NULL,NULL,'"drvDOB"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESGMHEAPEXZ0','50','D','10','6',NULL,'EmploymentStartDate',NULL,NULL,'"drvEmploymentStartDate"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESGMHEAPEXZ0','50','D','10','7',NULL,'Department',NULL,NULL,'"drvDepartment"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESGMHEAPEXZ0','50','D','10','8',NULL,'OfficeLocation',NULL,NULL,'"drvOfficeLocation"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESGMHEAPEXZ0','50','D','10','9',NULL,'Role',NULL,NULL,'"drvRole"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESGMHEAPEXZ0','50','D','10','10',NULL,'Country',NULL,NULL,'"drvCountry"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESGMHEAPEXZ0','50','D','10','11',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESGMHEAPEXZ0','50','D','10','12',NULL,'Race',NULL,NULL,'"drvRace"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESGMHEAPEXZ0','50','D','10','13',NULL,'Ethnicity',NULL,NULL,'"drvEthnicity"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESGMHEAPEXZ0','50','D','10','14',NULL,'PostalCode',NULL,NULL,'"drvPostalCode"','(''UA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESGMHEAPEXZ0','50','D','10','3',NULL,'Suffix',NULL,NULL,'"drvSuffix"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESGMHEAPEXZ0','50','D','10','4',NULL,'Email',NULL,NULL,'"drvEmail"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESGMHEAPEXZ0','50','D','10','5',NULL,'EmployeeID',NULL,NULL,'"drvEmployeeID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESGMHEAPEXZ0','50','D','10','6',NULL,'DOB',NULL,NULL,'"drvDOB"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESGMHEAPEXZ0','50','D','10','7',NULL,'EmploymentStartDate',NULL,NULL,'"drvEmploymentStartDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESGMHEAPEXZ0','50','D','10','8',NULL,'Department',NULL,NULL,'"drvDepartment"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESGMHEAPEXZ0','50','D','10','9',NULL,'OfficeLocation',NULL,NULL,'"drvOfficeLocation"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESGMHEAPEXZ0','50','D','10','10',NULL,'Role',NULL,NULL,'"drvRole"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESGMHEAPEXZ0','50','D','10','11',NULL,'Country',NULL,NULL,'"drvCountry"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESGMHEAPEXZ0','50','D','10','12',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESGMHEAPEXZ0','50','D','10','13',NULL,'Race',NULL,NULL,'"drvRace"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ESGMHEAPEXZ0','50','D','10','14',NULL,'Ethnicity',NULL,NULL,'"drvEthnicity"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ESGMHEAPEXZ0','50','D','10','15',NULL,'PostalCode',NULL,NULL,'"drvPostalCode"','(''UA''=''T'')');
 
 -----------
 -- Build web filename
@@ -170,16 +173,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESGMHEAPEX_20230120.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESGMHEAPEX_20230222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export','202301209','EMPEXPORT','ONDEM_XOE',NULL,'ESGMHEAPEX',NULL,NULL,NULL,'202301209','Jan 20 2023  9:47AM','Jan 20 2023  9:47AM','202301201',NULL,'','','202301201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export-Sched','202301209','EMPEXPORT','SCH_ESGMHE',NULL,'ESGMHEAPEX',NULL,NULL,NULL,'202301209','Jan 20 2023  9:47AM','Jan 20 2023  9:47AM','202301201',NULL,'','','202301201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export-Test','202301209','EMPEXPORT','TEST_XOE',NULL,'ESGMHEAPEX',NULL,NULL,NULL,'202301209','Jan 20 2023  9:47AM','Jan 20 2023  9:47AM','202301201',NULL,'','','202301201',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export','202302229','EMPEXPORT','ONDEM_XOE',NULL,'ESGMHEAPEX',NULL,NULL,NULL,'202302229','Feb 22 2023  7:44AM','Feb 22 2023  7:44AM','202302221',NULL,'','','202302221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Modern Health EAP Export-Sched','202302229','EMPEXPORT','SCH_ESGMHE',NULL,'ESGMHEAPEX',NULL,NULL,NULL,'202302229','Feb 22 2023  7:44AM','Feb 22 2023  7:44AM','202302221',NULL,'','','202302221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Modern Health EAP Export-Test','202302229','EMPEXPORT','TEST_XOE',NULL,'ESGMHEAPEX',NULL,NULL,NULL,'202302229','Feb 22 2023  7:44AM','Feb 22 2023  7:44AM','202302221',NULL,'','','202302221',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -191,11 +194,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESGMHEAPEX','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -210,12 +214,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESGMHEAPEX','D10','dbo.U_ESGMHEAPEX_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -260,11 +264,12 @@ CREATE TABLE [dbo].[U_ESGMHEAPEX_drvTbl] (
     [drvSubSort] varchar(1) NOT NULL,
     [drvLastName] varchar(100) NULL,
     [drvFirstName] varchar(100) NULL,
+    [drvSuffix] varchar(30) NULL,
     [drvEmail] varchar(50) NULL,
     [drvEmployeeID] char(9) NULL,
-    [drvDOB] varchar(8) NULL,
-    [drvEmploymentStartDate] varchar(8) NULL,
-    [drvDepartment] varchar(1) NOT NULL,
+    [drvDOB] varchar(8000) NULL,
+    [drvEmploymentStartDate] varchar(8000) NULL,
+    [drvDepartment] varchar(25) NULL,
     [drvOfficeLocation] char(2) NULL,
     [drvRole] varchar(1) NOT NULL,
     [drvCountry] char(3) NULL,
@@ -330,6 +335,7 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESGMHEAPEX', 'TEST_XOE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'ESGMHEAPEX', 'SCH_ESGMHE';
 
 EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ESGMHEAPEX', @AllObjects = 'Y', @IsWeb = 'Y'
+
 **********************************************************************************/
 BEGIN
 
@@ -373,7 +379,7 @@ BEGIN
     -- Get data from audit fields table. Add fields here if auditing
     IF OBJECT_ID('U_ESGMHEAPEX_AuditFields','U') IS NOT NULL
         DROP TABLE dbo.U_ESGMHEAPEX_AuditFields;
-    CREATE TABLE dbo.U_ESGMHEAPEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+   CREATE TABLE dbo.U_ESGMHEAPEX_AuditFields (aTableName varchar(30),aFieldName varchar(30));
     INSERT INTO dbo.U_ESGMHEAPEX_AuditFields VALUES ('EmpComp','EecDateOfTermination');
     INSERT INTO dbo.U_ESGMHEAPEX_AuditFields VALUES ('EmpComp','EecEmplStatus');
 
@@ -416,7 +422,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ESGMHEAPEX_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ESGMHEAPEX_drvTbl;
-   SELECT DISTINCT
+  SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -425,6 +431,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvLastName = EepNameLast
         ,drvFirstName = EepNameFirst
+        ,drvSuffix =  CASE WHEN EepNameSuffix <> 'Z' THEN ISNULL(EepNameSuffix, '')  END
         ,drvEmail = EepAddressEMail
         ,drvEmployeeID = EecEmpNo
         ,drvDOB = REPLACE(CONVERT (CHAR(10),EepDateOfBirth, 101),'/','')
@@ -458,14 +465,13 @@ BEGIN
     LEFT JOIN dbo.Codes WITH(NOLOCK)
         ON CodCode = EepEthnicId
         AND CodTable = 'ETHNICCODE'
-    LEFT JOIN dbo.U_ESGMHEAPEX_Audit WITH (NOLOCK)
+            LEFT JOIN dbo.U_ESGMHEAPEX_Audit WITH (NOLOCK)
        ON  audeeid = xEEID
         AND audKey2 = xCoID
-
-		WHERE   EecEEType <> 'TES' 
+        WHERE   EecEEType <> 'TES' 
         AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN @StartDate AND @EndDate))
     
-
+    ;
 
     --==========================================
     -- Set FileName
@@ -495,10 +501,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202301131'
-       ,expStartPerControl     = '202301131'
-       ,expLastEndPerControl   = '202301209'
-       ,expEndPerControl       = '202301209'
+    SET expLastStartPerControl = '202302151'
+       ,expStartPerControl     = '202302151'
+       ,expLastEndPerControl   = '202302229'
+       ,expEndPerControl       = '202302229'
 WHERE expFormatCode = 'ESGMHEAPEX';
 
 **********************************************************************************/

@@ -5,7 +5,7 @@ EMOAANT834: Elevance Health Anthem 834 Export
 FormatCode:     EMOAANT834
 Project:        Elevance Health Anthem 834 Export
 Client ID:      MUT1001
-Date/time:      2023-01-17 12:07:20.837
+Date/time:      2023-02-24 08:41:06.920
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMOAANT834_20230117.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMOAANT834_20230224.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202301059','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EMOAANT834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202301059','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EMOAANT834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Elevance Health Anthem 834 Exp','202301059','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EMOAANT834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',CR6ZZ',NULL,NULL,NULL,'Test File Only','202301059','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EMOAANT834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','CR6ZZ',NULL,NULL,NULL,'Test File Only','202302239','EMPEXPORT','TEST_XOE','Feb 23 2023 12:00AM','EMOAANT834',NULL,NULL,NULL,'202302239','Feb 23 2023 12:00AM','Dec 30 1899 12:00AM','202302091',NULL,'','','202302091',dbo.fn_GetTimedKey(),NULL,'us3cBeMUT1001',NULL);
 
 -----------
 -- AscImp inserts
@@ -1053,8 +1053,9 @@ BEGIN
         --=====================
         --LOOP 2000 RECORDS
         --=====================
-        drvINS01_YesNoCond = CASE BdmRecType
-                                 WHEN 'EMP' THEN 'Y'
+        drvINS01_YesNoCond = CASE 
+                                 WHEN BdmRecType = 'DEP' AND ConRelationship IN ('SPS') THEN 'Y'
+                                 WHEN BdmRecType = 'EMP' THEN 'Y'
                                  ELSE 'N'
                              END
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
@@ -1093,13 +1094,15 @@ BEGIN
         ,drvINS11_DateTimeFormatQual = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN 'D8' END
         ,drvINS12_DateTimePeriod = CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
         ,drvREF01_RefNumberQual1 = ''
-        ,drvREF02_RefNumberQual1 = EepSSN
+        ,drvREF02_RefNumberQual1 =  CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN EepSSN Else CONSSN
+                               -- WHEN BdmRecType = 'DEP' AND NOT (ConSSN IN ('000000000','999999999', '111111111','888888888', '123456789') OR RIGHT(ConSSN, 3) IN ('111','000','999','998')) THEN ConSSN
+                            END                
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual2 = '1L'
         ,drvREF02_RefNumberQual2 = 'NY046GRS'
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual3 = 'F6'
-        ,drvREF02_RefNumberQual3 = EECUDFIELD15
+        ,drvREF02_RefNumberQual3 = CASE When EECUDFIELD14 IS NOT NULL and BdmRecType = 'DEP' then EecUDFIELD14 else EECUDFIELD15 END  --Corrected the Medicare # so the spouse and employee number will pull. 20230214 CB
         -- If drvREF01_RefNumberQual3 is Populated, then send REF Segment
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''
@@ -1262,7 +1265,7 @@ BEGIN
                                                CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('RTINDM')) THEN 'EMP'    --Correct Benefit Options
                                                 --     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES')) THEN 'ESP'
                                                 --   --  WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('')) THEN 'ECH'
-                                                    WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('RTFAMM')) THEN 'FAM'      --Correct Benefit Options
+                                                    WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('RTFAMM')) THEN 'EMP'      --Correct Benefit Options
                                                 END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment

@@ -4,16 +4,17 @@ EJMTSABADM: Saba Demographics Export
 
 FormatCode:     EJMTSABADM
 Project:        Saba Demographics Export
-Client ID:      USG1000
-Date/time:      2023-02-16 13:19:43.230
+Client ID:      JOH1012
+Date/time:      2023-02-22 15:24:23.250
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EJMTSABADM_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    EWP
+Server:         EW3WUP4DB03
+Database:       ULTIPRO_WPJMT
+Web Filename:   JOH1012_C631C_EEHISTORY_EJMTSABADM_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -105,7 +106,19 @@ IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_T
 -- Drop export-specific objects
 -----------
 
+IF OBJECT_ID('dsi_vwEJMTSABADM_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwEJMTSABADM_Export];
+GO
 IF OBJECT_ID('dsi_sp_BuildDriverTables_EJMTSABADM') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EJMTSABADM];
+GO
+IF OBJECT_ID('U_EJMTSABADM_File') IS NOT NULL DROP TABLE [dbo].[U_EJMTSABADM_File];
+GO
+IF OBJECT_ID('U_EJMTSABADM_EEList') IS NOT NULL DROP TABLE [dbo].[U_EJMTSABADM_EEList];
+GO
+IF OBJECT_ID('U_EJMTSABADM_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_EJMTSABADM_drvTbl];
+GO
+IF OBJECT_ID('U_EJMTSABADM_AuditFields') IS NOT NULL DROP TABLE [dbo].[U_EJMTSABADM_AuditFields];
+GO
+IF OBJECT_ID('U_EJMTSABADM_Audit') IS NOT NULL DROP TABLE [dbo].[U_EJMTSABADM_Audit];
 GO
 
 -----------
@@ -204,16 +217,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EJMTSABADM_20230216.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EJMTSABADM_20230222.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Saba Demographics Export','202302169','EMPEXPORT','ONDEM_XOE',NULL,'EJMTSABADM',NULL,NULL,NULL,'202302169','Feb 16 2023 12:37PM','Feb 16 2023 12:37PM','202302161',NULL,'','','202302161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Saba Demographics Export','202302169','EMPEXPORT','ONDEM_XOE',NULL,'EJMTSABADM',NULL,NULL,NULL,'202302169','Feb 16 2023 12:37PM','Feb 16 2023 12:37PM','202302161',NULL,'','','202302161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Saba Demographics Export-Sched','202302169','EMPEXPORT','SCH_EJMTSA',NULL,'EJMTSABADM',NULL,NULL,NULL,'202302169','Feb 16 2023 12:37PM','Feb 16 2023 12:37PM','202302161',NULL,'','','202302161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Saba Demographics Export-Test','202302169','EMPEXPORT','TEST_XOE',NULL,'EJMTSABADM',NULL,NULL,NULL,'202302169','Feb 16 2023 12:37PM','Feb 16 2023 12:37PM','202302161',NULL,'','','202302161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Saba Demographics Export-Test','202302169','EMPEXPORT','TEST_XOE',NULL,'EJMTSABADM',NULL,NULL,NULL,'202302169','Feb 16 2023 12:37PM','Feb 16 2023 12:37PM','202302161',NULL,'','','202302161',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -225,11 +238,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EJMTSABADM','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -244,14 +258,116 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EJMTSABADM','D10','dbo.U_EJMTSABADM_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
 -----------
 
 
 -----------
--- U_dsi_Translations_v3 inserts
+-- Create table U_EJMTSABADM_Audit
 -----------
 
+IF OBJECT_ID('U_EJMTSABADM_Audit') IS NULL
+CREATE TABLE [dbo].[U_EJMTSABADM_Audit] (
+    [audEEID] varchar(255) NOT NULL,
+    [audKey2] varchar(255) NOT NULL,
+    [audKey3] varchar(255) NOT NULL,
+    [audTableName] varchar(128) NOT NULL,
+    [audFieldName] varchar(128) NOT NULL,
+    [audAction] varchar(6) NOT NULL,
+    [audDateTime] datetime NOT NULL,
+    [audOldValue] nvarchar(2000) NULL,
+    [audNewValue] nvarchar(2000) NULL,
+    [audRowNo] bigint NULL
+);
+
+-----------
+-- Create table U_EJMTSABADM_AuditFields
+-----------
+
+IF OBJECT_ID('U_EJMTSABADM_AuditFields') IS NULL
+CREATE TABLE [dbo].[U_EJMTSABADM_AuditFields] (
+    [aTableName] varchar(30) NULL,
+    [aFieldName] varchar(30) NULL
+);
+
+-----------
+-- Create table U_EJMTSABADM_drvTbl
+-----------
+
+IF OBJECT_ID('U_EJMTSABADM_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_EJMTSABADM_drvTbl] (
+    [drvEEID] char(12) NULL,
+    [drvCoID] char(5) NULL,
+    [drvDepRecID] varchar(12) NULL,
+    [drvInitialSort] varchar(1) NOT NULL,
+    [drvSubSort] varchar(1) NOT NULL,
+    [drvSubjectUserName] varchar(50) NULL,
+    [drvManagerUsername] varchar(256) NULL,
+    [drvHRRepUsername] varchar(7) NOT NULL,
+    [drvCareerCoach] varchar(1) NOT NULL,
+    [drvFirstname] varchar(100) NULL,
+    [drvLastname] varchar(100) NULL,
+    [drvEmail] varchar(50) NULL,
+    [drvEmployeeID] char(12) NULL,
+    [drvHireDate] varchar(30) NULL,
+    [drvLastPromotionDate] varchar(30) NULL,
+    [drvJobTitle] varchar(25) NOT NULL,
+    [drvDepartment] varchar(25) NULL,
+    [drvDivision] varchar(25) NULL,
+    [drvCompany] varchar(40) NULL,
+    [drvLocation] varchar(25) NULL,
+    [drvJobCode] char(8) NULL,
+    [drvBaseSalary] nvarchar(4000) NULL,
+    [drvVariablePayBonusTarget] varchar(1) NOT NULL,
+    [drvDeactivateUser] varchar(1) NOT NULL,
+    [drvJobDescriptionID] varchar(1) NOT NULL,
+    [drvHoursWorkedPerYear] varchar(4) NOT NULL,
+    [drvHourlyRate] nvarchar(4000) NULL,
+    [drvHourlyBaseSalaryPayType] varchar(1) NULL,
+    [drvCurrencyISOcode] varchar(3) NOT NULL,
+    [drvDayFormCode] varchar(1) NOT NULL,
+    [drvFormCode] varchar(1) NOT NULL,
+    [drvCorporateTitle] varchar(30) NULL,
+    [drvPreviousRate] nvarchar(4000) NULL,
+    [drvPreviousEffectiveDate] varchar(30) NULL,
+    [drvndPreviousRate] nvarchar(4000) NULL,
+    [drvndEffectiveDate] varchar(30) NULL,
+    [drvGLCodeDepartment] char(15) NULL,
+    [drvGLCodeOffice] char(15) NULL,
+    [drvPhone] varchar(50) NULL,
+    [drvMiddleInitial] varchar(1) NULL,
+    [drvTerminationDate] varchar(30) NULL,
+    [drvSalaryType] char(1) NOT NULL
+);
+
+-----------
+-- Create table U_EJMTSABADM_EEList
+-----------
+
+IF OBJECT_ID('U_EJMTSABADM_EEList') IS NULL
+CREATE TABLE [dbo].[U_EJMTSABADM_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_EJMTSABADM_File
+-----------
+
+IF OBJECT_ID('U_EJMTSABADM_File') IS NULL
+CREATE TABLE [dbo].[U_EJMTSABADM_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(3000) NULL
+);
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_EJMTSABADM]
     @SystemID char(12)
@@ -320,7 +436,41 @@ BEGIN
     DELETE FROM dbo.U_EJMTSABADM_EEList
     WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
     AND xEEID IN (SELECT xEEID FROM dbo.U_EJMTSABADM_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+           
 
+    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_EJMTSABADM_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_EJMTSABADM_AuditFields;
+    CREATE TABLE dbo.U_EJMTSABADM_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_EJMTSABADM_AuditFields VALUES ('EmpComp','EecEmplStatus');
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_EJMTSABADM_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_EJMTSABADM_Audit;
+    SELECT 
+         audEEID  = audKey1Value
+        ,audKey2 = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_EJMTSABADM_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_EJMTSABADM_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE'
+    AND audNewValue = 'T' ;
+    -- Create Index
+   
+   CREATE CLUSTERED INDEX CDX_U_EJMTSABADM_Audit ON dbo.U_EJMTSABADM_Audit (audEEID,audKey2);
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -329,51 +479,51 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EJMTSABADM_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EJMTSABADM_drvTbl;
-    SELECT DISTINCT
+     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = ''
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
-        ,drvSubjectUserName = LEFT(EepAddressEMail, CHARINDEX('@', EepAddressEMail) - 1)
-        ,drvManagerUsername = LEFT(dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail') , CHARINDEX('@', (dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail')) - 1)) --susUsername where EecSupervisorID = EjhEEID
+        ,drvSubjectUserName = SUBSTRING (EepAddressEMail,0, CHARINDEX('@', EepAddressEMail))
+        ,drvManagerUsername =  SUBSTRING (dbo.dsi_fnlib_GetSupervisorField_v2('', EecEEID, 'AddressEMail') ,0, CHARINDEX('@', (dbo.dsi_fnlib_GetSupervisorField_v2('', EecEEID, 'AddressEMail')) ))--, CHARINDEX('@', (dbo.dsi_fnlib_GetSupervisorField_v2('', EecEEID, 'AddressEMail')) - 1)) --susUsername where EecSupervisorID = EjhEEID
         ,drvHRRepUsername = 'Jameson'
         ,drvCareerCoach = ''
-        ,drvFirstname = CASE WHEN EepNamePreferred is not null then  EepNamePreferred else EepNameFirst END
+        ,drvFirstname = CASE WHEN ISNULL(EepNamePreferred, '') <> '' then  EepNamePreferred else EepNameFirst END
         ,drvLastname = EepNameLast
         ,drvEmail = EepAddressEMail
         ,drvEmployeeID = CASE WHEN Left(eepEEID, 1 ) NOT IN ('9', 'C') THEN eepEEID END  -- EecEmpNo
-        ,drvHireDate = EecDateOfLastHire
-        ,drvLastPromotionDate = EJH.EjhJobEffDate --when EjhReason = 300
+        ,drvHireDate = Convert(varchar,EecDateOfLastHire, 101)
+        ,drvLastPromotionDate = Convert(varchar,EJH.EjhJobEffDate,101) --when EjhReason = 300
         ,drvJobTitle = JbcDesc
         ,drvDepartment =  OrgDesc11 --where OrgCode = EecOrgLvl1
         ,drvDivision =  OrgDesc12 --where OrgCode = EecOrgLvl2
         ,drvCompany = CASE When CmpCOID <> '3L7Uw' THEN  CmpCompanyName  END
         ,drvLocation = LocDesc 
         ,drvJobCode = EecJobCode
-        ,drvBaseSalary = Eecannsalary
+        ,drvBaseSalary = Format(Eecannsalary, '0.00')
         ,drvVariablePayBonusTarget = ''
         ,drvDeactivateUser = ''
         ,drvJobDescriptionID = ''
         ,drvHoursWorkedPerYear = '2080'
-        ,drvHourlyRate =  EJH.EjhHourlyPayRate
+        ,drvHourlyRate =  Format(EJH.EjhHourlyPayRate, '0.00')
         ,drvHourlyBaseSalaryPayType = CASE WHEN EecSalaryOrHourly = 'S' THEN  'N'
                                            WHEN EecSalaryOrHourly = 'H' THEN  'Y'
                                         END
         ,drvCurrencyISOcode = 'USD'
         ,drvDayFormCode = ''
         ,drvFormCode = ''
-        ,drvCorporateTitle = EecDateInJob
-        ,drvPreviousRate = PJH.EjhHourlyPayRate
-        ,drvPreviousEffectiveDate = PJH.EjhJobEffDate
-        ,drvndPreviousRate =  PJH.EjhHourlyPayRate --Previous where EjhIsRateChange = Y
-        ,drvndEffectiveDate = PJH.EjhJobEffDate -- Previous where EjhIsRateChange = Y
+        ,drvCorporateTitle = Convert(varchar,EecDateInJob, 101)
+        ,drvPreviousRate = Format(EJH.EjhHourlyPayRate, '0.00')
+        ,drvPreviousEffectiveDate = Convert(varchar,EJH.EjhJobEffDate, 101)
+        ,drvndPreviousRate =  FORMaT(PJH.EjhHourlyPayRate, '0.00') --Previous where EjhIsRateChange = Y
+        ,drvndEffectiveDate = Convert(varchar,PJH.EjhJobEffDate, 101) -- Previous where EjhIsRateChange = Y
         ,drvGLCodeDepartment = OrgGLSegment1 --OrgGLSegment for EecOrgLvl1
         ,drvGLCodeOffice = OrgGLSegment2 --OrgGLSegment for EecOrgLvl2
         ,drvPhone = EecPhoneBusinessNumber
         ,drvMiddleInitial = LEFT(EepNameMiddle,1)
-        ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+        ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN Convert(varchar,EecDateOfTermination,101) END
         ,drvSalaryType = JbcFLSAType
     INTO dbo.U_EJMTSABADM_drvTbl
     FROM dbo.U_EJMTSABADM_EEList WITH (NOLOCK)
@@ -389,7 +539,7 @@ BEGIN
             FROM (
                     SELECT EjhEEID, EjhCOID, EjhJObCode, EjhFLSACategory, EjhJobEffDate, EjhWeeklyHours, EjhHourlyPayRate, ROW_NUMBER() OVER(PARTITION BY EjhEEID, EjhCOID ORDER BY EjhJobEffDate DESC) AS RN
                     FROM dbo.EmpHJob WITH (NOLOCK)
-                    WHERE EjhReason = '300') AS X
+                    WHERE EjhIsRateChange = 'Y') AS X
             WHERE RN = 1) AS EJH
         ON EJH.EjhEEID = xEEID
         AND EJH.EjhCOID = xCOID
@@ -417,8 +567,13 @@ BEGIN
          ON OrgCode12 = EecOrgLvl2
         JOIN dbo.LOCATION WITH (NOLOCK)
         ON LocCode = EecLocation
-     JOIN dbo.Company WITH (NOLOCK)
-     ON CmpCoID = XCOID
+    JOIN dbo.Company WITH (NOLOCK)
+        ON CmpCoID = XCOID
+    LEFT JOIN dbo.U_EJMTSABADM_Audit WITH (NOLOCK)
+        ON audEEID = xEEID
+        AND audKey2 = xCOID
+     Where EecEmplStatus <> 'T' OR (EecEmplStatus = 'T'  AND eectermreason <>'TRO'  AND AudDateTime IS NOT NULL AND AudDateTime BETWEEN @StartDate AND @EndDate)
+ 
     ;
 
     --==========================================
@@ -456,6 +611,10 @@ UPDATE dbo.AscExp
 WHERE expFormatCode = 'EJMTSABADM';
 
 **********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwEJMTSABADM_Export AS 
+    SELECT TOP 200000000 Data FROM dbo.U_EJMTSABADM_File WITH (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort
 
 GO
 
