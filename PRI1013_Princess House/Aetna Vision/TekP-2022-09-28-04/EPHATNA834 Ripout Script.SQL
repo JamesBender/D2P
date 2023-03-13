@@ -5,7 +5,7 @@ EPHATNA834: Aetna Vision 834 Export
 FormatCode:     EPHATNA834
 Project:        Aetna Vision 834 Export
 Client ID:      PRI1013
-Date/time:      2022-12-29 07:52:23.623
+Date/time:      2023-03-13 13:58:49.410
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -162,7 +162,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EPHATNA834Z0','15','H','02','4',NULL,'Receiver ID',NULL,NULL,'"drvGS03_ReceiverID"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','EPHATNA834Z0','8','H','02','5',NULL,'Date',NULL,NULL,'"drvGS04_Date"','(''UD112''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','EPHATNA834Z0','8','H','02','6',NULL,'Time',NULL,NULL,'"drvGS05_Time"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPHATNA834Z0','9','H','02','7',NULL,'Group Control Number',NULL,NULL,'"0001"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','EPHATNA834Z0','9','H','02','7',NULL,'Group Control Number',NULL,NULL,'"1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','EPHATNA834Z0','2','H','02','8',NULL,'Responsible Agency Code',NULL,NULL,'"X"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','EPHATNA834Z0','12','H','02','9',NULL,'Version/Release  Code',NULL,NULL,'"005010X220A1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPHATNA834Z0','2','H','03','1',NULL,'ST Segment ID (Header)',NULL,NULL,'"ST"','(''DA''=''T*'')');
@@ -347,7 +347,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPHATNA834Z0','9','T','90','3',NULL,'Transaction Set Control Number',NULL,NULL,'"0001"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPHATNA834Z0','2','T','91','1',NULL,'GE Segment ID (Trailer)',NULL,NULL,'"GE"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPHATNA834Z0','6','T','91','2',NULL,'Number of Transaction Sets Inc',NULL,NULL,'"1"','(''DA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPHATNA834Z0','9','T','91','3',NULL,'Group Control Number',NULL,NULL,'"0001"','(''DA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPHATNA834Z0','9','T','91','3',NULL,'Group Control Number',NULL,NULL,'"1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EPHATNA834Z0','3','T','92','1',NULL,'IEA Segment ID (Trailer)',NULL,NULL,'"IEA"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EPHATNA834Z0','5','T','92','2',NULL,'Number of Functional Groups In',NULL,NULL,'"1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EPHATNA834Z0','9','T','92','3',NULL,'Interchange Control Number',NULL,NULL,'"000000001"','(''DA''=''T*'')');
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPHATNA834_20221229.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPHATNA834_20230313.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202301059','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EPHATNA834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202301059','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EPHATNA834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Aetna Vision 834 Export','202301059','EMPEXPORT','SCHEDULED','Oct  1 2018 12:00AM','EPHATNA834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202301059','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EPHATNA834',NULL,NULL,NULL,'202301059','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Test File Only','202303139','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EPHATNA834',NULL,NULL,NULL,'202303139','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202302271',NULL,'','','202302271',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -690,7 +690,7 @@ CREATE TABLE [dbo].[U_EPHATNA834_File] (
 IF OBJECT_ID('U_EPHATNA834_HdrTbl') IS NULL
 CREATE TABLE [dbo].[U_EPHATNA834_HdrTbl] (
     [drvISA05_SenderIDQual] varchar(2) NOT NULL,
-    [drvISA06_SenderID] varchar(8) NOT NULL,
+    [drvISA06_SenderID] varchar(9) NOT NULL,
     [drvISA07_ReceiverIDQual] varchar(2) NOT NULL,
     [drvISA08_ReceiverID] varchar(9) NOT NULL,
     [drvISA09_InterchangeDate] varchar(6) NULL,
@@ -986,7 +986,7 @@ BEGIN
     IF OBJECT_ID('U_EPHATNA834_HdrTbl','U') IS NOT NULL
         DROP TABLE dbo.U_EPHATNA834_HdrTbl;
     SELECT DISTINCT drvISA05_SenderIDQual = '30'
-        ,drvISA06_SenderID = '22332093'
+        ,drvISA06_SenderID = '223320693'
         ,drvISA07_ReceiverIDQual = 'ZZ'
         ,drvISA08_ReceiverID = '042064683'
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
@@ -1005,7 +1005,7 @@ BEGIN
         ,drvBGN08_ActionCode = '4'
         ,drvREF01_RefNumberQual = '38'
         ,drvREF02_RefNumberQual = '0193054'
-        ,drvDTP00_DateTime0 = 'DPT'
+        ,drvDTP00_DateTime0 = 'DTP'
         ,drvDTP01_DateTimeQualifier0 = '007'
         ,drvDTP02_DateTimeFormatQual0 = 'D8'
         ,drvDTP03_DateTimePeriod0 = @RunDate
@@ -1055,9 +1055,9 @@ BEGIN
                              END
         ,drvINS02_RelationshipCode =    CASE WHEN BdmRecType = 'EMP' THEN '18'
                                         ELSE
-                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SP')) THEN '01'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('@DomPartnerCSV')) THEN '53'
-                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL')) THEN '19'
+                                            CASE WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('SP')) THEN '01' 
+                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('DP,FIA')) THEN '53'--MW Changed 3/10/23
+                                            WHEN ConRelationship IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('CHL,STC,DPC')) THEN '19' --MW Changed 3/10/23
                                             ELSE '19'
                                             END
                                         END
@@ -1100,7 +1100,7 @@ BEGIN
         ,drvREF01_RefNumberQual4 = ''
         ,drvREF02_RefNumberQual4 = ''
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = 'DPT'
+        ,drvDTP00_DateTime1 = 'DTP'
         ,drvDTP01_DateTimeQualifier1 = '336'
         ,drvDTP02_DateTimeFormatQual1 = 'D8'
         ,drvDTP03_DateTimePeriod1 = eecdateoflasthire  
@@ -1248,54 +1248,59 @@ BEGIN
                                            WHEN BdmDedType IN ('VIS') THEN 'VIS'
                                            ELSE ''
                                      END
-        ,drvHD04_PlanCoverageDesc = CASE WHEN EecLocation IN ('RHL','TXRH')  THEN 
-                                       CASE WHEn EepAddressState = 'MA'  then '003+0193054+010+00001+00100+088' 
-                                            WHEn EepAddressState = 'AZ'  then '003+0193054+010+00001+00200+088' 
-                                            WHEn EepAddressState = 'CA'  then '003+0193054+010+00001+00300+088'  
-                                            WHEn EepAddressState = 'FL'  then '003+0193054+010+00001+00400+088'
-                                            WHEn EepAddressState = 'GA'  then '003+0193054+010+00001+00500+088'  
-                                            WHEn EepAddressState = 'IL'  then '003+0193054+010+00001+00600+088'
-                                            WHEn EepAddressState = 'IN'  then '003+0193054+010+00001+00700+088'  
-                                            WHEn EepAddressState = 'ME'  then '003+0193054+010+00001+00800+088'
-                                            WHEn EepAddressState = 'MI'  then '003+0193054+010+00001+00900+088'  
-                                            WHEn EepAddressState = 'MO'  then '003+0193054+010+00001+01000+088'
-                                            WHEn EepAddressState = 'NY'  then '003+0193054+010+00001+01100+088'  
-                                            WHEn EepAddressState = 'NC'  then '003+0193054+010+00001+01200+088'
-                                            WHEn EepAddressState = 'ND'  then '003+0193054+010+00001+01300+088'  
-                                            WHEn EepAddressState = 'PA'  then '003+0193054+010+00001+01400+088'
-                                            WHEn EepAddressState = 'RI'  then '003+0193054+010+00001+01500+088'  
-                                            WHEn EepAddressState = 'SC'  then '003+0193054+010+00001+01600+088'
-                                            WHEn EepAddressState = 'TN'  then '003+0193054+010+00001+01700+088'  
-                                            WHEn EepAddressState = 'TX'  then '003+0193054+010+00001+01800+088'
-                                            WHEn EepAddressState = 'MA'  then '003+0193054+010+00002+00100+088' 
-                                        END
-                                        ELSE CASE WHEN EecLocation NOT IN ('RHL','TXRH')  THEN 
-                                        CASE
-                                            WHEn EepAddressState = 'AZ'  then '003+0193054+010+00002+00200+088'
-                                            WHEn EepAddressState = 'CA'  then '003+0193054+010+00002+00300+088'  
-                                            WHEn EepAddressState = 'FL'  then '003+0193054+010+00002+00400+088'
-                                            WHEn EepAddressState = 'GA'  then '003+0193054+010+00002+00500+088'  
-                                            WHEn EepAddressState = 'IL'  then '003+0193054+010+00002+00600+088'
-                                            WHEn EepAddressState = 'IN'  then '003+0193054+010+00002+00700+088'  
-                                            WHEn EepAddressState = 'ME'  then '003+0193054+010+00002+00800+088'
-                                            WHEn EepAddressState = 'MI'  then '003+0193054+010+00002+00900+088'  
-                                            WHEn EepAddressState = 'MO'  then '003+0193054+010+00002+01000+088'
-                                            WHEn EepAddressState = 'NY'  then '003+0193054+010+00002+01100+088'  
-                                            WHEn EepAddressState = 'NC'  then '003+0193054+010+00002+01200+088'
-                                            WHEn EepAddressState = 'ND'  then '003+0193054+010+00002+01300+088'  
-                                            WHEn EepAddressState = 'PA'  then '003+0193054+010+00002+01400+088'
-                                            WHEn EepAddressState = 'RI'  then '003+0193054+010+00002+01500+088'  
-                                            WHEn EepAddressState = 'SC'  then '003+0193054+010+00002+01600+088'
-                                            WHEn EepAddressState = 'TN'  then '003+0193054+010+00002+01700+088'  
-                                            WHEn EepAddressState = 'TX'  then '003+0193054+010+00002+01800+088'
+       ,drvHD04_PlanCoverageDesc = --CASE WHEN EecLocation IN ('RHL','TXRH')  THEN 
+                                       CASE WHEN EepAddressState = 'MA'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00100+088' -- MW Added EecPaygroup for each 3/8/22
+                                            WHEN EepAddressState = 'AZ'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00200+088' 
+                                            WHEN EepAddressState = 'CA'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00300+088'  
+                                            WHEN EepAddressState = 'FL'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00400+088'
+                                            WHEN EepAddressState = 'GA'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00500+088'  
+                                            WHEN EepAddressState = 'IL'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00600+088'
+                                            WHEN EepAddressState = 'IN'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00700+088'  
+                                            WHEN EepAddressState = 'ME'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00800+088'
+                                            WHEN EepAddressState = 'MI'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+00900+088'  
+                                            WHEN EepAddressState = 'MO'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01000+088'
+                                            WHEN EepAddressState = 'NY'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01100+088'  
+                                            WHEN EepAddressState = 'NC'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01200+088'
+                                            WHEN EepAddressState = 'ND'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01300+088'  
+                                            WHEN EepAddressState = 'PA'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01400+088'
+                                            WHEN EepAddressState = 'RI'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01500+088'  
+                                            WHEN EepAddressState = 'SC'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01600+088'
+                                            WHEN EepAddressState = 'TN'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01700+088'  
+                                            WHEN EepAddressState = 'TX'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+01800+088'
+                                            WHEN EepAddressState = 'NJ'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+19900+088' -- MW Added NJ 3/8/22 
+                                            WHEN EepAddressState = 'CO'  and eecpaygroup = 'CORP' then '003+0193054+010+00001+02000+088' -- MW Added CO 3/8/22
+                                           
+                                        --END
+                                        --ELSE CASE WHEN EecLocation NOT IN ('RHL','TXRH')  THEN 
+                                        --CASE
+                                            WHEN EepAddressState = 'AZ'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00200+088'-- MW Added EecPaygroup for each 3/8/22
+                                            WHEN EepAddressState = 'CA'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00300+088'  
+                                            WHEN EepAddressState = 'FL'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00400+088'
+                                            WHEN EepAddressState = 'GA'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00500+088'  
+                                            WHEN EepAddressState = 'IL'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00600+088'
+                                            WHEN EepAddressState = 'IN'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00700+088'  
+                                            WHEN EepAddressState = 'ME'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00800+088'
+                                            WHEN EepAddressState = 'MI'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00900+088'  
+                                            WHEN EepAddressState = 'MO'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01000+088'
+                                            WHEN EepAddressState = 'NY'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01100+088'  
+                                            WHEN EepAddressState = 'NC'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01200+088'
+                                            WHEN EepAddressState = 'ND'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01300+088'  
+                                            WHEN EepAddressState = 'PA'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01400+088'
+                                            WHEN EepAddressState = 'RI'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01500+088'  
+                                            WHEN EepAddressState = 'SC'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01600+088'
+                                            WHEN EepAddressState = 'TN'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01700+088'  
+                                            WHEN EepAddressState = 'TX'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+01800+088'
+                                            WHEN EepAddressState = 'MA'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+00200+088'
+                                            WHEN EepAddressState = 'NJ'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+19900+088'-- MW Added NJ 3/8/22
+                                            WHEN EepAddressState = 'CO'  and eecpaygroup = 'DIST' then '003+0193054+010+00002+02000+088'-- MW Added CO 3/8/22
                     END
-                    END
-                END
+                    --END
+               -- END
         ,drvHD05_CoverageLevelCode = 
                                                 CASE WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE')) THEN 'EMP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EES')) THEN 'ESP'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE1D')) THEN 'ECH'
-                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('FAM')) THEN 'FAM'
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE1'))  and XEEID IN (Select distinct b. Bdmeeid from dbo.U_dsi_bdm_EPHATNA834 b where b.bdmrelationship  IN ( 'SPS', 'FIA' , 'DP')  and b.bdmrelationship  NOT IN ( 'CHL') )  THEN 'ESP'  --MW Adjusted 03/13/23
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EE1')) and XEEID IN (Select distinct b. Bdmeeid from dbo.U_dsi_bdm_EPHATNA834 b where b.bdmrelationship  IN ( 'CHL') and b.bdmrelationship  NOT IN ( 'SPS', 'FIA' , 'DP')  ) THEN 'ECH' --MW Adjusted 03/13/23
+                                                     WHEN BdmBenOption IN (SELECT * FROM dbo.dsi_BDM_fn_ListToTable('EEF')) THEN 'FAM'
                                                 END
                                      
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
@@ -1416,11 +1421,11 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET ExpLastStartPerControl = '202301011'
-       ,ExpStartPerControl     = '202301011'
-       ,ExpLastEndPerControl   = '202301059'
-       ,ExpEndPerControl       = '202301059'
-WHERE ExpFormatCode = 'EPHATNA834';
+    SET ExpLastStartPerControl = '202302221'
+       ,ExpStartPerControl     = '202302221'
+       ,ExpLastEndPerControl   = '202303089'
+       ,ExpEndPerControl       = '202303089'
+WHERE ExpFormatCode = 'EPHATNA834' and expexportcode ='TEST_XOE'  ;
 
 **********************************************************************************/
 GO

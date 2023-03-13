@@ -5,7 +5,7 @@ EMCPVOYAXP: VOYA 401K Census Export
 FormatCode:     EMCPVOYAXP
 Project:        VOYA 401K Census Export
 Client ID:      MOU1003
-Date/time:      2023-01-05 12:51:53.867
+Date/time:      2023-03-13 13:55:34.377
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -229,16 +229,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EMCPVOYAXP_20230105.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EMCPVOYAXP_20230313.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'VOYA 401K Census Export','202212319','EMPEXPORT','ONDEM_XOE',NULL,'EMCPVOYAXP',NULL,NULL,NULL,'202212319','Jan  5 2023 10:19AM','Jan  5 2023 10:19AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'VOYA 401K Census Export-Sched','202212319','EMPEXPORT','SCH_EMCPVO',NULL,'EMCPVOYAXP',NULL,NULL,NULL,'202212319','Jan  5 2023 10:19AM','Jan  5 2023 10:19AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'VOYA 401K Census Export-Test','202212319','EMPEXPORT','TEST_XOE',NULL,'EMCPVOYAXP',NULL,NULL,NULL,'202212319','Jan  5 2023 10:19AM','Jan  5 2023 10:19AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'EDOV9,QUD1J,S2H89,QUD2P',NULL,NULL,NULL,'VOYA 401K Census OnDemand','202212319','EMPEXPORT','ONDEM_XOE',NULL,'EMCPVOYAXP',NULL,NULL,NULL,'202212319','Jan  5 2023 10:19AM','Jan  5 2023 10:19AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',EDOV9,QUD1J,S2H89,QUD2P',NULL,NULL,NULL,'VOYA 401K Census SCH','202212319','EMPEXPORT','SCH_EMCPVO',NULL,'EMCPVOYAXP',NULL,NULL,NULL,'202212319','Jan  5 2023 10:19AM','Jan  5 2023 10:19AM','202211011',NULL,'','','202211011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',EDOV9,QUD1J,S2H89,QUD2P',NULL,NULL,NULL,'VOYA 401K Census Export-Test','202303061','EMPEXPORT','TEST_XOE','Mar  6 2023  5:22PM','EMCPVOYAXP',NULL,NULL,NULL,'202303061','Mar  6 2023 12:00AM','Dec 30 1899 12:00AM','202302271','257','','','202302271',dbo.fn_GetTimedKey(),NULL,'us3kEpMOU1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -479,8 +479,6 @@ CREATE TABLE [dbo].[U_EMCPVOYAXP_PEarHist] (
     [PehCurHrs] decimal NULL,
     [PehCurAmtYTD] money NULL,
     [PehCurHrsYTD] decimal NULL,
-    [PehInclInDefComp] money NULL,
-    [PehInclInDefCompHrs] decimal NULL,
     [PehInclInDefCompYTD] money NULL,
     [PehInclInDefCompHrsYTD] decimal NULL
 );
@@ -646,13 +644,13 @@ BEGIN
         ,PdhEECurAmtYTD = SUM(PdhEECurAmt)
         ,PdhERCurAmtYTD = SUM(PdhERCurAmt)
         -- Categorize Payroll Amounts
-        ,Pdh401k     = SUM(CASE WHEN PdhDedCode IN ('401K') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhRoth    = SUM(CASE WHEN PdhDedCode IN ('ROTH') THEN PdhEECurAmt ELSE 0.00 END)
-        ,Pdh401KM     = SUM(CASE WHEN PdhDedCode IN ('401KM') THEN PdhERCurAmt ELSE 0.00 END)        
-        ,Pdh401CU     = SUM(CASE WHEN PdhDedCode IN ('401CU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,PdhRTHCU     = SUM(CASE WHEN PdhDedCode IN ('RTHCU') THEN PdhEECurAmt ELSE 0.00 END)
-        ,Pdh401KL     = SUM(CASE WHEN PdhDedCode IN ('401KL') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
-        ,Pdh401KL2     = SUM(CASE WHEN PdhDedCode IN ('401KL2') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,Pdh401k     = SUM(CASE WHEN PdhDedCode IN ('401K') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhRoth    = SUM(CASE WHEN PdhDedCode IN ('ROTH') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,Pdh401KM     = SUM(CASE WHEN PdhDedCode IN ('401KM') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhERCurAmt ELSE 0.00 END)        
+        ,Pdh401CU     = SUM(CASE WHEN PdhDedCode IN ('401CU') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,PdhRTHCU     = SUM(CASE WHEN PdhDedCode IN ('RTHCU') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
+        ,Pdh401KL     = SUM(CASE WHEN PdhDedCode IN ('401KL') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
+        ,Pdh401KL2     = SUM(CASE WHEN PdhDedCode IN ('401KL2') and PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         --,PdhSource8     = SUM(CASE WHEN PdhDedCode IN ('401KL3') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         --,PdhSource9     = SUM(CASE WHEN PdhDedCode IN ('401KL4') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
         --,PdhSource10    = SUM(CASE WHEN PdhDedCode IN ('401KL5') THEN ISNULL(PdhEECurAmt, 0) ELSE 0.00 END)
@@ -684,8 +682,8 @@ BEGIN
         ,PehCurAmtYTD           = SUM(PehCurAmt)
         ,PehCurHrsYTD           = SUM(PehCurHrs)
         -- Current Include Deferred Comp Amount/Hours
-        ,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
-        ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
+        --,PehInclInDefComp       = SUM(CASE WHEN PehInclInDefComp = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurAmt END)
+       -- ,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
         -- YTD Include Deferred Comp Amount/Hours
         ,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
         ,PehInclInDefCompHrsYTD = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END)
@@ -716,7 +714,7 @@ BEGIN
                                 WHEN 'B' THEN '6'
                                 WHEN 'W' THEN '7'
                             END
-        ,drvPayDate = CONVERT(VARCHAR(8),PrgPayDate, 112)
+        ,drvPayDate = Case when isnull(CONVERT(VARCHAR(8),PrgPayDate, 112), '' ) <> '' THEN CONVERT(VARCHAR(8),PrgPayDate, 112) ELSE CONVERT(VARCHAR(8),getdate() , 112) END
         ,drvSSN = eepSSN
         ,drvEmployeeNumber = EecEmpNo
         ,EecFullTimeOrPartTime
@@ -728,16 +726,16 @@ BEGIN
                                         WHEN 'AZSB' THEN '1003'
                                         WHEN 'PAJ'  THEN '1004'
                                         WHEN 'SIP'  THEN '1005'
-                                        WHEN 'HES' THEN '1006'
-                                        WHEN 'NVR' THEN '1007'
+                                        WHEN 'HES'  THEN '1006'
+                                        WHEN 'NVR'  THEN '1007'
                                         WHEN 'EAGL' THEN '1008'
-                                        WHEN 'DMC' THEN '1010' 
-                                        WHEN 'BHR' THEN '1011'  
-                                        WHEN 'SJR' THEN ''
-                                        WHEN 'KML' THEN ''
+                                        WHEN 'DMC'  THEN '1010' 
+                                        WHEN 'BHR'  THEN '1011'  
+                                        WHEN 'SJR'  THEN '1001'
+                                        WHEN 'KML'  THEN ''
                                         WHEN 'ELK'  THEN ''
                                         WHEN 'MTL'  THEN ''
-                                    END
+                                      END
                                     ELSE
                                 CASE WHEN EecFullTimeOrPartTime = 'P' THEN 
                                     CASE EecOrgLvl3
@@ -746,13 +744,13 @@ BEGIN
                                         WHEN 'AZSB' THEN '2003'
                                         WHEN 'PAJ'  THEN '2004'
                                         WHEN 'SIP'  THEN '2005'
-                                        WHEN 'HES' THEN '2006'
-                                        WHEN 'NVR' THEN '2007'
+                                        WHEN 'HES'  THEN '2006'
+                                        WHEN 'NVR'  THEN '2007'
                                         WHEN 'EAGL' THEN '2008'
-                                        WHEN 'DMC' THEN '2010' 
-                                        WHEN 'BHR' THEN '2011' 
-                                        WHEN 'SJR' THEN ''
-                                        WHEN 'KML' THEN ''
+                                        WHEN 'DMC'  THEN '2010' 
+                                        WHEN 'BHR'  THEN '2011' 
+                                        WHEN 'SJR'  THEN '2001'
+                                        WHEN 'KML'  THEN ''
                                         WHEN 'ELK'  THEN ''
                                         WHEN 'MTL'  THEN ''
                                     END
@@ -774,18 +772,18 @@ BEGIN
         ,drvDateOfBirth = CONVERT(VARCHAR(8),EepDateOfBirth , 112)
         ,drvDateOfOriginalHire = CONVERT(VARCHAR(8),EecDateOfOriginalHire , 112)
         ,drvDateOfTermination = CASE WHEN EecEmplStatus = 'T' THEN CONVERT(VARCHAR(8),EecDateOfTermination  , 112) END
-        ,drvDateOfRehire = CONVERT(VARCHAR(8),CASE WHEN EecDateOfLastHire <> EecDateOfOriginalHire AND (EecJobChangeReason = '101' OR EecHireSource = 'REHIRE') then EecDateOfLastHire Else EecDateOfOriginalHire END, 112)
+        ,drvDateOfRehire = CONVERT(VARCHAR(8),CASE WHEN EecDateOfLastHire <> EecDateOfOriginalHire AND (EecJobChangeReason = '101' OR EecHireSource = 'REHIRE') then EecDateOfLastHire Else EecDateOfBenefitSeniority END, 112)
         ,drvLeaveOfAbsenceStartDate = CASE WHEN EecEmplStatus = 'L' THEN CONVERT(VARCHAR(8),EecEmplStatusStartDate, 112) END
         ,drvLeaveOfAbsenceEndDate =  CASE WHEN EecEmplStatus = 'A' and  EshEmplStatus = 'L' THEN CONVERT(VARCHAR(8),EshStatusStopDate, 112) END
         ,drvPlanYtdHours = FORMaT(PehCurHrsYTD, '0000')
         ,drvCurrentPeriodHours = FORMaT(PehCurHrs, '0000')
-        ,drvContributionAmountSource1 = Case when isnull(dbo.dsi_fnPadZero(REPLACE(Pdh401k + Pdh401CU, '.',''),9, 0), '' ) <> '' THEN  dbo.dsi_fnPadZero(REPLACE(Pdh401k + Pdh401CU, '.',''),9, 0) ELSE dbo.dsi_fnPadZero('',9, 0) END
-        ,drvContributionAmountSource2 = CASE WHEn ISNULL(dbo.dsi_fnPadZero(REPLACE(PdhROTH + PdhRTHCU, '.',''),9,0), '' ) <> '' THEN dbo.dsi_fnPadZero(REPLACE(PdhROTH + PdhRTHCU, '.',''),9,0) ELSE dbo.dsi_fnPadZero('',9, 0) END
-        ,drvContributionAmountSource3 = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(Pdh401KM, '.',''),9,0), '') <> '' THEn dbo.dsi_fnPadZero(REPLACE(Pdh401KM, '.',''),9,0) ELSE dbo.dsi_fnPadZero('',9, 0) END
+        ,drvContributionAmountSource1 =  Case when isnull(dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401k + Pdh401CU as decimal(18,8)),'0.######'), '.',''),9, 0), '' ) <> '' THEN  dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401k + Pdh401CU as decimal(18,8)),'0.######'), '.',''),9, 0)  END --ELSE dbo.dsi_fnPadZero('',9, 0)
+        ,drvContributionAmountSource2 = CASE WHEn ISNULL(dbo.dsi_fnPadZero(REPLACE(format(cast(PdhROTH + PdhRTHCU as decimal(18,8)),'0.######'), '.',''),9,0), '' ) <> '' THEN dbo.dsi_fnPadZero(REPLACE(format(cast(PdhROTH + PdhRTHCU as decimal(18,8)),'0.######'), '.',''),9,0)  END --ELSE dbo.dsi_fnPadZero('',9, 0)
+        ,drvContributionAmountSource3 = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401KM as decimal(18,8)),'0.######'), '.',''),9,0), '') <> '' THEn dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401KM as decimal(18,8)),'0.######'), '.',''),9,0)  END --ELSE dbo.dsi_fnPadZero('',9, 0)
         ,drvLoanNumber1 = '001'
-        ,drvEmployeeLoanPayment1 = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(Pdh401KL, '.',''),9,0), '') <> '' THEN dbo.dsi_fnPadZero(REPLACE(Pdh401KL, '.',''),9,0) ELSE dbo.dsi_fnPadZero('',9, 0) END
+        ,drvEmployeeLoanPayment1 = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401KL as decimal(18,8)),'0.######'), '.',''),9,0), '') <> '' THEN dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401KL as decimal(18,8)),'0.######'), '.',''),9,0)  END --ELSE dbo.dsi_fnPadZero('',9, 0)
         ,drvLoanNumber2 = '002'
-        ,drvEmployeeLoanPayment2 = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(Pdh401KL2, '.',''),9,0), '') <> '' THEN dbo.dsi_fnPadZero(REPLACE(Pdh401KL2, '.',''),9,0) ELSE dbo.dsi_fnPadZero('',9, 0) END
+        ,drvEmployeeLoanPayment2 = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401KL2 as decimal(18,8)),'0.######'), '.',''),9,0), '') <> '' THEN dbo.dsi_fnPadZero(REPLACE(format(cast(Pdh401KL2 as decimal(18,8)),'0.######'), '.',''),9,0) END ---ELSE dbo.dsi_fnPadZero('',9, 0)
         ,drvLoanNumber3 = '000'
         ,drvEmployeeLoanPayment3 = ''
         ,drvLoanNumber4 = '000'
@@ -797,7 +795,7 @@ BEGIN
         ,drvEmployeeEligibilityCode = CASE WHEN  EecEmplStatus = 'A' AND BdmBenstatus = 'A' THEN 'Y'
                                            WHEN EecEEType IN ('CON','INT','SUM','TMP','VOL') or EecEmplStatus = 'T' THEN 'I' 
                                          END
-        ,drvYtdGrossCompensation = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(PehCurAmtYTD, '.',''),11,0), '') <> '' THEN dbo.dsi_fnPadZero(REPLACE(PehCurAmtYTD, '.',''),11,0) ELSE dbo.dsi_fnPadZero('',11, 0) END
+        ,drvYtdGrossCompensation = CASE WHEN ISNULL(dbo.dsi_fnPadZero(REPLACE(PehCurAmtYTD, '.',''),11,0), '') <> '' THEN dbo.dsi_fnPadZero(REPLACE(PehCurAmtYTD, '.',''),11,0)  END --ELSE dbo.dsi_fnPadZero('',11, 0)
         ,drvYtdTestAdpAcpCompensation = '00000000000'
         ,drvYtdAllocationBenefitComp = '00000000000'
         ,drvReserved = '00000000000'
@@ -833,7 +831,6 @@ BEGIN
     ;
 
 
-    ;
 
     --==========================================
     -- Set FileName
