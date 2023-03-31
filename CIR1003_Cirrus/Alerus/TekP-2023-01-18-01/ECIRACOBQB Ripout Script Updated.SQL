@@ -5,7 +5,7 @@ ECIRACOBQB: Alerus COBRA QB Export
 FormatCode:     ECIRACOBQB
 Project:        Alerus COBRA QB Export
 Client ID:      CIR1003
-Date/time:      2023-03-29 08:22:16.197
+Date/time:      2023-03-31 10:14:47.573
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -236,7 +236,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIRACOBQB_20230329.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIRACOBQB_20230331.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -247,7 +247,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202212249','EMPEXPORT','OEPASSIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708',NULL,NULL,NULL,'Alerus COBRA QB ONDEMAND','202212249','EMPEXPORT','ONDEM_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708',NULL,NULL,NULL,'Alerus COBQB SCH WK TUE 210P E','202212249','EMPEXPORT','SCH_ECIRAC',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','KD708,KD723',NULL,NULL,NULL,'Alerus COBRA QB Test','202303239','EMPEXPORT','TEST_XOE','Mar 28 2023  6:18PM','ECIRACOBQB',NULL,NULL,NULL,'202303239','Mar 23 2023 12:00AM','Dec 30 1899 12:00AM','202212011','0','','','202212011',dbo.fn_GetTimedKey(),NULL,'us3kEpCIR1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','KD708,KD723',NULL,NULL,NULL,'Alerus COBRA QB Test','202303319','EMPEXPORT','TEST_XOE','Mar 31 2023  9:42AM','ECIRACOBQB',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202301011','0','','','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpCIR1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -479,7 +479,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBPLANINITIAL] (
     [drvInitialSort] varchar(16) NULL,
     [drvSubSort] varchar(1) NOT NULL,
     [drvPlanName] varchar(34) NULL,
-    [drvCoverageLevel] varchar(11) NULL,
+    [drvCoverageLevel] varchar(12) NULL,
     [drvNumberOfUnit] varchar(4) NULL
 );
 
@@ -782,50 +782,42 @@ BEGIN
            ,[BdmIsCobraCovered]
            ,[BdmSessionID]
         )
-        Select Distinct 
-            rectype = CASE WHEN ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEEID, EdhDedCode, ConRelationship desc) = 1 THEN 'EMP' ELSE 'DEP' END
-            ,EdhCoid
-            ,EdhEEID
-            ,BdmDepRecID = consystemID
-            ,consystemID
-            ,BdmRunID = 'QB'
-            ,BdmDedRowStatus='Data Inserted for 200/203 (Death)'
-            ,ConRelationship
-            ,ConDateOfBirth
-            ,EdhDedCode
-            ,EdhBenOption
-            ,EdhBenStatus
-            ,EdhBenStartDate
-            ,EdhBenStopDate
-            ,EdhBenStatusDate
-            ,EecDateofTermination
-            ,BdmChangeReason = 'D' 
-            ,BdmCobraReason  ='D'
-            ,BdmStartDate =EdhStartDate 
-            ,BdmStopDate =EdhBenStopDate
-            ,'N'
-            ,'Y'
-            ,'Y'
-         
-            FROM dbo.emphded WITH (NOLOCK)
-            JOIN dbo.U_dsi_BDM_DepDeductions WITH (NOLOCK)
-                ON dbneeid = edheeid
-                AND DbnCoID = EdhCoID
-                AND EdhDedCode = DbnDedCode
-                AND EdhBenOption = DbnBenOption
-                AND dbnformatcode = 'ECIRACOBQB'
-                AND edhChangeReason IN ('200')
-                AND dbnValidForExport = 'N'
-            AND edhBenstopdate BETWEEN @startdate AND @enddate
-            JOIN EmpComp WITH (NOLOCK)
+       
+
+                Select CASE WHEN ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhEEID, EdhDedCode, dbnRelationship desc) = 1 THEN 'EMP' ELSE 'DEP' END
+                ,EdhCoid
+                ,EdhEEID
+                ,DbnDepRecID
+                ,DbnDepRecID
+                ,'QB'
+                ,'Data Inserted for 200/203 (Death)'
+                ,DbnRelationship
+                ,DbnDateOfBirth
+                ,EdhDedCode
+                ,EdhBenOption
+                ,EdhBenstatus
+                ,edhBenStartDate
+                ,edhBenStopDate
+                ,edhBenStatusDate
+                ,EecDateofTermination
+                ,'D'
+                ,'D'
+                ,edhStartDate
+                ,edhStopDate
+                ,CASE WHEN dbnRelationShip = 'SPS' THEN 'Y' ELSE 'N' END
+                ,'Y'
+                ,'Y'
+                FROM  dbo.emphded with (nolock)
+                JOIN dbo.U_dsi_BDM_DepDeductions on dbneeid = edheeid and dbnformatcode = 'ECIRACOBQB'
+                JOIN EmpComp WITH (NOLOCK)
                 ON dbnEEID = EecEEID
                 AND EecTermReason IN ('203', 'D' )
-                AND DbnBenStatus = 'T'
+                AND edhBenStatus = 'A'
                 AND EecEmplStatus = 'T'
-            JOIN dbo.contacts WITH (NOLOCK)
-                    ON ConEEID = edheeid 
-                    AND ConRelationship in ('CHL','DIS', 'DPC','STC','DP','SPS')
-                    Order by dbo.EmpHDed.EdhEEID, dbo.EmpHDed.EdhDedCode, dbo.contacts.ConRelationship desc
+                and edhbenoption <> 'Z'
+                and edhbenoption Not in ( 'EE', 'NTU')
+                and edhbenoption <> 'Z'
+                and dbnBenstatusDate between @startdate and @enddate 
 
       ---========================================================================
  --   -- Insert into BDM Reason code 201 (Dependent at Max Age) - Only show EE
@@ -1080,7 +1072,7 @@ BEGIN
         ON efoeeid =Xeeid
         and efoPhoneType = 'CEL'
     WHERE BdmRunID = 'QB'
-        AND BdmRecType = 'EMP' and BdmChangeReason NOT IN ('NLED','LEVNT3','DLS','LEVNT4')
+        AND BdmRecType = 'EMP' and BdmChangeReason NOT IN ('NLED','LEVNT3','DLS','LEVNT4','D')
           
 
         INSERT INTO dbo.U_ECIRACOBQB_drvTbl_QB
@@ -1161,7 +1153,7 @@ BEGIN
         ON ConEEID = BdmEEID
         AND ConSystemID = BdmDepRecId
         AND ConRelationship in ('CHL','DIS', 'DPC','STC','DP','SPS')
-    WHERE   BdmRecType = 'DEP' and BdmChangeReason  IN ('NLED','LEVNT3','DLS','LEVNT4')
+    WHERE   BdmRecType = 'DEP' and BdmChangeReason  IN ('NLED','LEVNT3','DLS','LEVNT4','D')
 
 
     ;
@@ -1227,21 +1219,21 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_ECIRACOBQB_drvTbl_QBPLANINITIAL','U') IS NOT NULL
         DROP TABLE dbo.U_ECIRACOBQB_drvTbl_QBPLANINITIAL;
-   SELECT DISTINCT
+     SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = '1 ' + xEEID + ' 3'
         ,drvSubSort = '3'
-
+    
         -- standard fields above and additional driver fields below
         ,drvPlanName = CASE WHEN BdmDedcode =  'DEN' THEN 'Delta Dental'
                             WHEN BdmDedcode =  'FSA' THEN 'Further FSA'
                             WHEN BdmDedcode IN  ('GLBD', 'GLEXC','GLIFE','GLMAX') AND BdmBenStatus IN ('T') THEN 'NYL Basic Life'
                             WHEN BdmDedcode =  'MHSA' THEN 'BCBS $1500 HSA Medical'
                             WHEN BdmDedcode =  'LIFEE' AND BdmBenStatus IN ('T')  THEN 'NYL Employee Voluntary Life'  ---ke update 20230210 
-                            WHEN BdmDedcode =  'LIFES' AND BdmBenStatus IN ('T') and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN 'NYL Spouse Voluntary Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
-                            WHEN BdmDedcode =  'LIFEC' AND BdmBenStatus IN ('T') and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN 'NYL Child Vol Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
+                            WHEN BdmDedcode =  'LIFES' AND BdmBenStatus IN ('T') and (BdmChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') or EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3')) THEN 'NYL Spouse Voluntary Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
+                            WHEN BdmDedcode =  'LIFEC' AND BdmBenStatus IN ('T') and ( BdmChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') or EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3')) THEN 'NYL Child Vol Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
                             WHEN BdmDedcode =  'MHSA2' THEN 'BCBS $3000 HSA Medical'
                             WHEN BdmDedcode =  'MPPO' THEN 'BCBS Traditional Medical'
                             WHEN BdmDedcode =  'VIS' THEN 'EyeMed Vision'
@@ -1251,29 +1243,35 @@ BEGIN
                             WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                             --WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN 'Modern Health EAP'
                         END
-                    
+        
         ,drvCoverageLevel = CASE WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO','WHSA','WHSA2','WPPO','DEN','VIS') THEN  
-                                CASE WHEN EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN
-                                    CASE WHEN BdmBenOption = 'EE' OR (BdmBenOption IS NULL AND EdhBenOption = 'EE') THEN 'EE'
-                                        WHEN BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC') THEN 'EE+CHILDREN'
+                                CASE WHEN BdmChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN
+                                   CASE WHEN BdmBenOption = 'EE' OR (BdmBenOption IS NULL AND EdhBenOption = 'EE') THEN 'EE'
+                                        WHEN BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC') and BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
+                                        WHEN BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC') AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
                                         WHEN BdmBenOption IN ('EEF','EEDPF') OR (BdmBenOption IS NULL AND EdhBenOption IN ('EEF','EEDPF')) THEN 'EE+FAMILY'
                                         WHEN BdmBenOption IN ('EES','EEDP') OR (BdmBenOption IS NULL AND EdhBenOption IN ('EES','EEDP')) THEN 'EE+SPOUSE'
                                     END
                                 ELSE
+                                  
                                     CASE WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO','WHSA','WHSA2','WPPO','DEN','VIS') and BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
                                         WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO','WHSA','WHSA2','WPPO','DEN','VIS') and BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
                                         WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO','WHSA','WHSA2','WPPO','DEN','VIS') and BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
                                         ELSE 'EE'
                                     END
                                 END 
-                            WHEN  BdmDedCode IN  ('FSA', 'GLBD','GLEXC','GLIFE','GLMAX','LIFEE','LIFES','LIFEC') THEN 'EE'  ---ke update 20230210 *added LIFEE, LEFES, LIFEC
-                            END    
+                                WHEN  BdmDedCode IN  ('FSA', 'GLBD','GLEXC','GLIFE','GLMAX','LIFEE') THEN 'EE'  ---ke update 20230210 *added LIFEE, LEFES, LIFEC
+                                WHEN  BdmDedCode IN  ('LIFES') THEN 'SPOUSEONLY' --ke added logic to include life plan coverage level. 20230330
+                                WHEN  BdmDedCode IN  ('LIFEC')  and BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'CHILDRENONLY' --ke added logic to include life plan coverage level. 20230330
+                                WHEN BdmDedCode IN  ('LIFEC')  and BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'CHILDONLY'--ke added logic to include life plan coverage level. 20230330
+                            END
 
      ,drvNumberOfUnit = Convert(varchar(4),CASE WHEN   BdmDedCode IN ('LIFEE','LIFES','LIFEC') and Units <> '0' THEN Units  --MW removed'GLBD','GLEXC','GLIFE','GLMAX'--- (Replace(BcaEEBenAmt,'.00','')/1000) ---removed 'FSA' as NumberOfUnits is not required. KE 20230215 
                                                 WHEN bdmdedcode IN ('GLBD','GLEXC','GLIFE','GLMAX') THEN (select top 1 (Replace(Format((PdhDedCalcBasisAmt), '00'),'.00','')/1000) from dbo.pDedHist A WITH (NOLOCK) where pdhEEID = xEEID AND PdhCOID = xCOID AND pdhDedCode IN ('GLBD','GLEXC','GLIFE','GLMAX')  order by A.PdhPerControl desc)
                                 END)
+                                    
                                         
-    INTO dbo.U_ECIRACOBQB_drvTbl_QBPLANINITIAL
+   INTO dbo.U_ECIRACOBQB_drvTbl_QBPLANINITIAL
     FROM dbo.U_ECIRACOBQB_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
@@ -1319,9 +1317,9 @@ BEGIN
                             WHEN BdmDedcode =  'FSA' THEN 'Further FSA'
                             WHEN BdmDedcode IN  ('GLBD', 'GLEXC','GLIFE','GLMAX') AND BdmBenStatus IN ('T') THEN 'NYL Basic Life'
                             WHEN BdmDedcode =  'MHSA' THEN 'BCBS $1500 HSA Medical'
-                            WHEN BdmDedcode =  'LIFEE' AND BdmBenStatus IN ('T')  THEN 'NYL Employee Voluntary Life'  ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
-                            WHEN BdmDedcode =  'LIFES' AND BdmBenStatus IN ('T') and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN 'NYL Spouse Voluntary Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
-                            WHEN BdmDedcode =  'LIFEC' AND BdmBenStatus IN ('T') and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN 'NYL Child Vol Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
+                            WHEN BdmDedcode =  'LIFEE' AND BdmBenStatus IN ('T')  THEN 'NYL Employee Voluntary Life'  ---ke update 20230210 
+                            WHEN BdmDedcode =  'LIFES' AND BdmBenStatus IN ('T') and (BdmChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') or EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3')) THEN 'NYL Spouse Voluntary Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
+                            WHEN BdmDedcode =  'LIFEC' AND BdmBenStatus IN ('T') and ( BdmChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') or EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3')) THEN 'NYL Child Vol Life'   ---ke update 20230210 --MW added and EdhChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') 3/14/23
                             WHEN BdmDedcode =  'MHSA2' THEN 'BCBS $3000 HSA Medical'
                             WHEN BdmDedcode =  'MPPO' THEN 'BCBS Traditional Medical'
                             WHEN BdmDedcode =  'VIS' THEN 'EyeMed Vision'
