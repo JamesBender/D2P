@@ -4,16 +4,17 @@ EBAFLORQBE: Flores COBRA QB Insured Export
 
 FormatCode:     EBAFLORQBE
 Project:        Flores COBRA QB Insured Export
-Client ID:      USG1000
-Date/time:      2023-03-15 12:43:29.990
+Client ID:      OUT1004
+Date/time:      2023-04-03 07:42:38.440
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_EBAFLORQBE_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    NWP
+Server:         NW1WUP1DB03
+Database:       ULTIPRO_WPOUTB
+Web Filename:   OUT1004_VA7H4_EEHISTORY_EBAFLORQBE_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -144,7 +145,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','EBAFLORQBEZ0','10','D','10','14',NULL,'Date of Event',NULL,NULL,'"drvDateofEvent"','(''UA''=''F|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','EBAFLORQBEZ0','10','D','10','15',NULL,'Date Premiums Paid Through',NULL,NULL,'"drvDatePremiumPaidThrough"','(''UA''=''F|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','EBAFLORQBEZ0','10','D','10','16',NULL,'Location',NULL,NULL,'"drvLocation"','(''UA''=''F|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EBAFLORQBEZ0','1','D','10','17',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''F|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','EBAFLORQBEZ0','1','D','10','17',NULL,'Gender',NULL,NULL,'"drvGender"','(''UA''=''F'')');
 
 -----------
 -- Build web filename
@@ -157,16 +158,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBAFLORQBE_20230315.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBAFLORQBE_20230403.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA QB Insured Export','202303159','EMPEXPORT','ONDEM_XOE',NULL,'EBAFLORQBE',NULL,NULL,NULL,'202303159','Mar 15 2023 11:07AM','Mar 15 2023 11:07AM','202303151',NULL,'','','202303151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Flores COBRA QB Insured Export','202303159','EMPEXPORT','ONDEM_XOE',NULL,'EBAFLORQBE',NULL,NULL,NULL,'202303159','Mar 15 2023 11:07AM','Mar 15 2023 11:07AM','202303151',NULL,'','','202303151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA QB Insured -Sched','202303159','EMPEXPORT','SCH_EBAFLO',NULL,'EBAFLORQBE',NULL,NULL,NULL,'202303159','Mar 15 2023 11:07AM','Mar 15 2023 11:07AM','202303151',NULL,'','','202303151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA QB Insured -Test','202303159','EMPEXPORT','TEST_XOE',NULL,'EBAFLORQBE',NULL,NULL,NULL,'202303159','Mar 15 2023 11:07AM','Mar 15 2023 11:07AM','202303151',NULL,'','','202303151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',2IIJU',NULL,NULL,NULL,'Flores COBRA QB Insured -Test','202303319','EMPEXPORT','TEST_XOE','Mar 31 2023  2:35PM','EBAFLORQBE',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202303151','8','','','202303151',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -178,11 +179,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('EBAFLORQBE','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -196,12 +198,12 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EBAFLORQBE','D10','dbo.U_EBAFLORQBE_drvTbl',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -501,8 +503,8 @@ BEGIN
     ,DbnDedCode --EdhDedCode
     ,DbnBenOption
     ,DbnBenStatus
-    ,EdhBenStartDate
-    ,EdhBenStopDate
+    ,dbnBenStartDate
+    ,dbnBenStopDate
     ,EdhBenStatusDate
     ,EdhBenStatusDate
     ,'204'
@@ -562,7 +564,7 @@ BEGIN
                             AND BdmCOID = xCOID) 
         ,drvDatePremiumPaidThrough = ''
         ,drvLocation = ''
-        ,drvGender = EepGender
+        ,drvGender = CASE WHEN BdmChangeReason IN ('204', 'LEVNT4', '201', 'LEVNT3', '210') OR EecTermReason = '203' then ConGender else EepGender END
     INTO dbo.U_EBAFLORQBE_drvTbl
     FROM dbo.U_EBAFLORQBE_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -614,6 +616,13 @@ UPDATE dbo.AscExp
        ,expEndPerControl       = '202303159'
 WHERE expFormatCode = 'EBAFLORQBE';
 
+
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202303151'
+       ,expStartPerControl     = '202303151'
+       ,expLastEndPerControl   = '202303319'
+       ,expEndPerControl       = '202303319'
+WHERE expFormatCode = 'EBAFLORQBE' and expexportcode = 'TEST_XOE ;
 **********************************************************************************/
 GO
 CREATE VIEW dbo.dsi_vwEBAFLORQBE_Export AS 

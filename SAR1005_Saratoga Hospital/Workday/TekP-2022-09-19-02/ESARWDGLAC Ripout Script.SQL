@@ -4,16 +4,17 @@ ESARWDGLAC: Workday GL Payroll Accrual
 
 FormatCode:     ESARWDGLAC
 Project:        Workday GL Payroll Accrual
-Client ID:      USG1000
-Date/time:      2023-03-31 15:11:36.067
+Client ID:      SAR1005
+Date/time:      2023-04-03 13:29:18.717
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
-Environment:    EZ24
-Server:         EZ2SUP4DB01
-Database:       ULTIPRO_BETHB
-Web Filename:   USG1000_73487_EEHISTORY_ESARWDGLAC_ExportCode_YYYYMMDD_HHMMSS.txt
-ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+Environment:    E22
+Server:         E2SUP2DB03
+Database:       ULTIPRO_SARH
+Web Filename:   SAR1005_F769B_EEHISTORY_ESARWDGLAC_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    
+TestPath:      
 
 **********************************************************************************/
 
@@ -189,7 +190,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESARWDGLAC_20230331.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESARWDGLAC_20230403.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -198,7 +199,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Workday GL Payroll Accrual','202303319','EMPEXPORT','ONDEM_XOE',NULL,'ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023  3:07PM','Mar 31 2023  3:07PM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Sched','202303319','EMPEXPORT','SCH_ESARWD',NULL,'ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023  3:07PM','Mar 31 2023  3:07PM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Test','202303319','EMPEXPORT','TEST_XOE',NULL,'ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023  3:07PM','Mar 31 2023  3:07PM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Test','202303319','EMPEXPORT','TEST_XOE','Apr  3 2023 12:00AM','ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202303011',NULL,'','','202303011',dbo.fn_GetTimedKey(),NULL,'us3mWaSAR1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -210,11 +211,12 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 -----------
 
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','EEList','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','ExportPath','V',NULL);
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','InitialSort','C','drvInitialSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','SubSort','C','drvSubSort');
 INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','Testing','V','Y');
-INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','UseFileName','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ESARWDGLAC','UseFileName','V','Y');
 
 -----------
 -- U_dsi_RecordSetDetails inserts
@@ -233,12 +235,12 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','T90','None',NULL);
 
 -----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
 -- U_dsi_Translations_v2 inserts
------------
-
-
------------
--- U_dsi_Translations_v3 inserts
 -----------
 
 
@@ -248,14 +250,11 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 
 IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Batch') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLAC_drvTbl_Batch] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvBATCHMONYR] varchar(1) NOT NULL,
-    [drvPayDate] varchar(1) NOT NULL,
-    [drvGLEOM] varchar(1) NOT NULL
+    [drvBATCHMONYR] varchar(35) NOT NULL,
+    [drvPayDate] varchar(8) NULL,
+    [drvGLEOM] varchar(8) NULL
 );
 
 -----------
@@ -264,13 +263,10 @@ CREATE TABLE [dbo].[U_ESARWDGLAC_drvTbl_Batch] (
 
 IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Hours') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLAC_drvTbl_Hours] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] varchar(11) NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvGLAcctNumber] varchar(1) NOT NULL,
-    [drvHours] varchar(1) NOT NULL
+    [drvGLAcctNumber] varchar(11) NULL,
+    [drvHours] nvarchar(4000) NULL
 );
 
 -----------
@@ -279,14 +275,11 @@ CREATE TABLE [dbo].[U_ESARWDGLAC_drvTbl_Hours] (
 
 IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Period') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLAC_drvTbl_Period] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
-    [drvDepRecID] varchar(12) NULL,
-    [drvInitialSort] varchar(1) NOT NULL,
+    [drvInitialSort] varchar(11) NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvGLAcctNumber] varchar(1) NOT NULL,
-    [drvAmount1] varchar(1) NOT NULL,
-    [drvAmount2] varchar(1) NOT NULL
+    [drvGLAcctNumber] varchar(11) NULL,
+    [drvAmount1] nvarchar(4000) NULL,
+    [drvAmount2] nvarchar(4000) NULL
 );
 
 -----------
@@ -319,7 +312,7 @@ CREATE TABLE [dbo].[U_ESARWDGLAC_File] (
 
 IF OBJECT_ID('U_ESARWDGLAC_Header') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLAC_Header] (
-    [drvPaydate] varchar(1) NOT NULL
+    [drvPaydate] varchar(8) NULL
 );
 
 -----------
@@ -328,9 +321,9 @@ CREATE TABLE [dbo].[U_ESARWDGLAC_Header] (
 
 IF OBJECT_ID('U_ESARWDGLAC_Header_Batch') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLAC_Header_Batch] (
-    [drvBATCHMONYR] varchar(1) NOT NULL,
-    [drvPayDate] varchar(1) NOT NULL,
-    [drvGLEOM] varchar(1) NOT NULL
+    [drvBATCHMONYR] varchar(13) NOT NULL,
+    [drvPaydate] varchar(8) NULL,
+    [drvGLEOM] varchar(8) NULL
 );
 GO
 CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ESARWDGLAC]
@@ -410,17 +403,22 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Period','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Period;
     SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = ''
+         --drvEEID = xEEID
+        --,drvCoID = xCoID
+       -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+         drvInitialSort = LEFT(vGLAcctNumber,11)
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
-        ,drvGLAcctNumber = ''
-        ,drvAmount1 = ''
-        ,drvAmount2 = ''
+        ,drvGLAcctNumber = LEFT(vGLAcctNumber,11)
+        ,drvAmount1 = Format((SUM(vDebitAmt) * 100), '0')
+        ,drvAmount2 = Format((SUM(vCreditAmt) * 100), '0')
     INTO dbo.U_ESARWDGLAC_drvTbl_Period
     FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
+    JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
+    ON vEEID = XEEID
+    AND vCOID = XCOID
+    Where VPercontrol Between @StartPerControl and @EndPerControl
+    Group by LEFT(vGLAcctNumber,11)
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ESARWDGLAC_drvTbl_Batch
@@ -428,17 +426,22 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Batch','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Batch;
     SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = ''
+        -- drvEEID = xEEID
+       -- ,drvCoID = xCoID
+       -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+         drvInitialSort = ''
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
-        ,drvBATCHMONYR = ''
-        ,drvPayDate ='' 
-        ,drvGLEOM = ''
+        ,drvBATCHMONYR = Concat('BATCH',Cast(Year(MAX(vPeriodEndDate))as varchar))
+        ,drvPayDate =Convert(Varchar(8) ,MAX(vPaydate), 112)
+        ,drvGLEOM = CONVERT(VARCHAR(8),DATEADD(D,-1,DATEADD(MM,DATEDIFF(M,0,vPeriodEndDate)+1,0)),112)
     INTO dbo.U_ESARWDGLAC_drvTbl_Batch
     FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
+    JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
+    ON vEEID = XEEID
+    AND vCOID = XCOID
+    Where VPercontrol Between @StartPerControl and @EndPerControl
+    Group by vPeriodEndDate
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ESARWDGLAC_drvTbl_Hours
@@ -446,16 +449,21 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Hours','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Hours;
     SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
-        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-        ,drvInitialSort = ''
+        -- drvEEID = xEEID
+       -- ,drvCoID = xCoID
+        --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+         drvInitialSort = LEFT(vGLAcctNumber,11)
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
-        ,drvGLAcctNumber = ''
-        ,drvHours = ''
+        ,drvGLAcctNumber = LEFT(vGLAcctNumber,11)
+        ,drvHours =  Format(ROUND(SUM(vAllocHrs),2) * 100.00, '0') 
     INTO dbo.U_ESARWDGLAC_drvTbl_Hours
     FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
+    JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
+    ON vEEID = XEEID
+    AND vCOID = XCOID
+    Where VPercontrol Between @StartPerControl and @EndPerControl
+    Group by LEFT(vGLAcctNumber,11)
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -463,8 +471,11 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLAC_Header','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLAC_Header;
     SELECT DISTINCT
-         drvPaydate = ''
+         drvPaydate = Convert(Varchar(8) ,MAX(vPaydate), 112)
     INTO dbo.U_ESARWDGLAC_Header
+    FROM dbo.vw_Dsi_Tmpalloc With (Nolock)
+    Where VPercontrol Between @StartPerControl and @EndPerControl
+    Group by vPeriodEndDate
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -472,10 +483,13 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLAC_Header_Batch','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLAC_Header_Batch;
     SELECT DISTINCT
-         drvBATCHMONYR = ''
-        ,drvPayDate = ''
-        ,drvGLEOM = ''
+         drvBATCHMONYR = Concat('BATCH',Convert(Varchar(8) ,MAX(vPeriodEndDate), 112))
+        ,drvPaydate = Convert(Varchar(8) ,MAX(vPaydate), 112)
+        ,drvGLEOM = CONVERT(VARCHAR(8),DATEADD(D,-1,DATEADD(MM,DATEDIFF(M,0,vPeriodEndDate)+1,0)),112)
     INTO dbo.U_ESARWDGLAC_Header_Batch
+    FROM dbo.vw_Dsi_Tmpalloc With (Nolock)
+    Where VPercontrol Between @StartPerControl and @EndPerControl
+    Group by vPeriodEndDate
     ;
 
     --==========================================

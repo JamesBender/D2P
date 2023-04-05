@@ -5,7 +5,7 @@ ELHMFSAHSA: HealthEquity HSA Payroll Export
 FormatCode:     ELHMFSAHSA
 Project:        HealthEquity HSA Payroll Export
 Client ID:      LAR1002
-Date/time:      2023-03-22 07:34:18.353
+Date/time:      2023-04-04 07:19:56.873
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -172,7 +172,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELHMFSAHSA_20230322.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELHMFSAHSA_20230404.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -181,7 +181,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'GUX0K,GJKFU,GJKM5,B3CUB,B3CPR,B3CW8,AZPEM,B3DJD,AZWE8,INEXS,B3FF0,B3D9I,AZOQ2,AZOUC,AZOWO,AZOYS,AZP42,AZP6Q,B3CNL,AZP9A,B3EYC,B3FBA,AZPH6,AZPJ1,AZPRC,AZPMS,B3EBW,AZPYQ,B3E9R,AZQ0S,AZQ2N,AZQ4P,AZQ7R,B3D03,AZW52,AZW7R,AZW9P,B3CS8,B3CYB,B3D1Z,B3D44,B3D5X,B3D7U,B3DB6,B3ESW,B3DL6,B3E7O,B3EDU,B3EFT,B3EHU,B3ELB,B3ENC,B3EP8,B3ER7,B3EWL,AZPP3,AZTMC,B3F06,B3F8X,B3FID,B3FK0,B3FLQ,B3G84,B3GAB,B3HAH,B3HCE,B3HEF,B3HFZ,B3HHN,B3FGI,B3DGX,B3DCY,B3DEU,AZTPR,B3EJI,B3EUR,B3FD5,GSYM8,B3GGN',NULL,NULL,NULL,'HealthEquity HSA Payroll Expor','202302019','EMPEXPORT','ONDEM_XOE',NULL,'ELHMFSAHSA',NULL,NULL,NULL,'202302019','Jan 19 2023  8:01AM','Jan 19 2023  8:01AM','202301191',NULL,'eecPaygroup','DHC,DRE,LRE,MEG,MFO,MLR,MMC,MPM,PFS,SLB,SSC','202301191',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity HSA Payroll-Sched','202301199','EMPEXPORT','SCH_ELHMFS',NULL,'ELHMFSAHSA',NULL,NULL,NULL,'202301199','Jan 19 2023  8:01AM','Jan 19 2023  8:01AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','GUX0K,GJKFU,GJKM5,B3CUB,B3CPR,B3CW8,AZPEM,AZWE8,B3FF0,B3D9I,AZOQ2,AZOUC,AZOWO,AZOYS,AZP42,AZP6Q,B3CNL,AZP9A,B3EYC,B3FBA,AZPH6,AZPJ1,AZPRC,AZPMS,B3EBW,AZPYQ,B3E9R,AZQ0S,AZQ2N,AZQ4P,AZQ7R,B3D03,AZW52,AZW7R,AZW9P,B3CS8,B3CYB,B3D1Z,B3D44,B3D5X,B3D7U,B3DB6,B3ESW,B3DL6,B3E7O,B3EDU,B3EFT,B3EHU,B3ELB,B3ENC,B3EP8,B3ER7,B3EWL,AZPP3,AZTMC,B3F06,B3F8X,B3FID,B3FK0,B3FLQ,B3G84,B3GAB,B3HAH,B3HCE,B3HEF,B3HFZ,B3HHN,B3DJD,INEXS,B3FGI,B3DGX,B3DCY,B3DEU,AZTPR,B3EJI,B3EUR,B3FD5,GSYM8,B3GGN',NULL,NULL,NULL,'HealthEquity HSA Payroll-Test','202302079','EMPEXPORT','TEST_XOE','Feb  9 2023 12:00AM','ELHMFSAHSA',NULL,NULL,NULL,'202302079','Jan 20 2023 12:00AM','Dec 30 1899 12:00AM','202302071',NULL,'eecPaygroup','DHC,DRE,LRE,MEG,MFO,MLR,MMC,MPM,PFS,SLB,SSC','202302071',dbo.fn_GetTimedKey(),NULL,'us3mWaLAR1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','GUX0K,GJKFU,GJKM5,AZWE8,B3FF0,B3D9I,B3DJD,INEXS,B3DGX,B3DCY,B3EJI,B3CUB,B3CPR,B3CW8,AZPEM,AZOQ2,AZOUC,AZOWO,AZOYS,AZP42,AZP6Q,B3CNL,AZP9A,B3EYC,B3FBA,AZPH6,AZPJ1,AZPRC,AZPMS,B3EBW,AZPYQ,B3E9R,AZQ0S,AZQ2N,AZQ4P,AZQ7R,B3D03,AZW52,AZW7R,AZW9P,B3CS8,B3CYB,B3D1Z,B3D44,B3D5X,B3D7U,B3DB6,B3ESW,B3DL6,B3E7O,B3EDU,B3EFT,B3EHU,B3ELB,B3ENC,B3EP8,B3ER7,B3EWL,AZPP3,AZTMC,B3F06,B3F8X,B3FID,B3FK0,B3FLQ,B3G84,B3GAB,B3HAH,B3HCE,B3HEF,B3HFZ,B3HHN,B3FGI,B3DEU,AZTPR,B3EUR,B3FD5,GSYM8,B3GGN',NULL,NULL,NULL,'HealthEquity HSA Payroll-Test','202303319','EMPEXPORT','TEST_XOE','Feb  9 2023 12:00AM','ELHMFSAHSA',NULL,NULL,NULL,'202303319','Jan 20 2023 12:00AM','Dec 30 1899 12:00AM','202303151',NULL,'eecPaygroup','DHC,DRE,LRE,MEG,MFO,MLR,MMC,MPM,PFS,SLB,SSC','202303151',dbo.fn_GetTimedKey(),NULL,'us3mWaLAR1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -545,7 +545,7 @@ BEGIN
         DROP TABLE dbo.U_ELHMFSAHSA_PDedHist;
     SELECT DISTINCT
          PdhEEID
-        ,prgpaygroup = MAX(PdhPayGroup)
+        ,prgpaygroup = MAX(PdhPayGroup) -- MW added 3/22/2023
         ,PdhDedCode
         -- Current Payroll Amounts
         ,PdhEECurAmt     = SUM(CASE WHEN PdhPerControl BETWEEN @StartPerControl AND @EndPerControl THEN PdhEECurAmt ELSE 0.00 END)
@@ -597,7 +597,7 @@ BEGIN
     IF OBJECT_ID('U_ELHMFSAHSA_drvTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ELHMFSAHSA_drvTbl;
   
- SELECT DISTINCT
+SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -615,13 +615,13 @@ BEGIN
                             WHEN PdhDedCode IN ('TSAMT', 'TSAM2') THEN 'Mass Transit'
                          END
 
-        ,drvPreTaxPayrollDeduction = CASE WHEN PdhDedCode = 'FSAMD' and FORMAT(PdhEECurAmt, '0.00') <> '0.00' THEN FORMAT(PdhEECurAmt, '0.00')
-                                          WHEN PdhDedCode = 'FSADC' and FORMAT(PdhEECurAmt, '0.00') <> '0.00' THEN FORMAT(PdhEECurAmt, '0.00')
-                                          WHEN PdhDedCode = 'HSA' and FORMAT(HSACURAMT, '0.00') > '0.00' THEN FORMAT(HSACURAMT, '0.00') 
-                                          WHEN PdhDedCode = 'TSAMT'  THEN FORMAT(PdhEECurAmt, '0.00')
+        ,drvPreTaxPayrollDeduction = CASE --WHEN PdhDedCode = 'FSAMD' and FORMAT(PdhEECurAmt, '0.00') <> '0.00' THEN FORMAT(PdhEECurAmt, '0.00') -- 4/4/23 MW commented out per layout
+                                          --WHEN PdhDedCode = 'FSADC' and FORMAT(PdhEECurAmt, '0.00') <> '0.00' THEN FORMAT(PdhEECurAmt, '0.00') -- 4/4/23 MW commented out per layout
+                                          WHEN PdhDedCode = 'HSA' and HSACURAMT > 0.00 THEN FORMAT(HSACURAMT, '0.00') 
+                                         -- WHEN PdhDedCode = 'TSAMT'  THEN FORMAT(PdhEECurAmt, '0.00') -- 4/4/23 MW commented out per layout
                                         END
-        ,drvPostTaxPayrollDeduction = CASE WHEN  PdhDedCode IN ('TSAM2') and  FORMAT(PdhEECurAmt, '0.00') > '0.00' THEN FORMAT(PdhEECurAmt, '0.00') END
-        ,drvPreTaxProgramSponContrib = CASE WHEN PdhDedCode = 'HSA' and FORMaT(HSAERCURAMT,'0.00') > '0.00' THEN FORMaT(HSAERCURAMT,'0.00') END
+        ,drvPostTaxPayrollDeduction = CASE WHEN  PdhDedCode IN ('TSAM2') and  PdhEECurAmt > 0.00 THEN FORMAT(PdhEECurAmt, '0.00') END
+        ,drvPreTaxProgramSponContrib = CASE WHEN PdhDedCode = 'HSA' and HSAERCURAMT > 0.00 THEN FORMaT(HSAERCURAMT,'0.00') END
         ,drvFundingDate = CONVERT(VARCHAR,DATEADD(day, -2,PrgPayDate ) ,101)
     INTO dbo.U_ELHMFSAHSA_drvTbl
     FROM dbo.U_ELHMFSAHSA_EEList WITH (NOLOCK)
@@ -658,7 +658,7 @@ BEGIN
     LEFT JOIN dbo.U_ELHMFSAHSA_Audit WITH (NOLOCK)
         ON audEEID = xEEID
     WHERE EecEEtype <> 'TES'
-       AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and ((FORMAT(PdhEECurAmt,'0.00') <> '0.00' or FORMAT(HSACURAMT,'0.00') > '0.00' or FORMAT(HSAERCURAMT,'0.00') > '0.00' ) or audFieldName = 'EecDateOfTermination' and audDateTime  BETWEEN  @StartDate AND @EndDate)))
+       AND (EecEmplStatus <> 'T' OR (EecEmplStatus = 'T' and ((PdhEECurAmt <> 0.00 or HSACURAMT > 0.00 or HSAERCURAMT > 0.00) or audFieldName = 'EecDateOfTermination' and audDateTime  BETWEEN  @StartDate AND @EndDate)))
 
     ;
 
@@ -690,10 +690,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202301201'
-       ,expStartPerControl     = '202301201'
-       ,expLastEndPerControl   = '202301209'
-       ,expEndPerControl       = '202301209'
+    SET expLastStartPerControl = '202303151'
+       ,expStartPerControl     = '202303151'
+       ,expLastEndPerControl   = '202303319'
+       ,expEndPerControl       = '202303319'
 WHERE expFormatCode = 'ELHMFSAHSA' and expexportcode = 'TEST_XOE';
 
 **********************************************************************************/
