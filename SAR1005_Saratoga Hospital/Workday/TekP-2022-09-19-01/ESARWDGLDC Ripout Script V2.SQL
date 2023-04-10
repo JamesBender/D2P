@@ -5,7 +5,7 @@ ESARWDGLDC: Workday GL Payroll Debit Credit
 FormatCode:     ESARWDGLDC
 Project:        Workday GL Payroll Debit Credit
 Client ID:      SAR1005
-Date/time:      2023-04-05 13:35:32.800
+Date/time:      2023-04-06 09:40:09.007
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -136,7 +136,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLDCZ0','2','H','01','3',NULL,'GL',NULL,NULL,'"GL"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESARWDGLDCZ0','1','H','01','4',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLDCZ0','20','H','01','5',NULL,'TRANSACTION PAYROLL',NULL,NULL,'"TRANSACTION PAYROLL"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLDCZ0','2','H','01','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLDCZ0','26','H','01','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLDCZ0','2','H','02','1',NULL,'RecType',NULL,NULL,'"05"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLDCZ0','12','H','02','2',NULL,'BATCHMMDDYY',NULL,NULL,'"drvBatchMMDDYY"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLDCZ0','1','H','02','3',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
@@ -149,15 +149,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESARWDGLDCZ0','8','H','02','10',NULL,'Paydate',NULL,NULL,'"drvPaydate"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESARWDGLDCZ0','8','H','02','11',NULL,'GLEOM',NULL,NULL,'"drvGLEOM"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESARWDGLDCZ0','7','H','02','12',NULL,'PAYROLL',NULL,NULL,'"PAYROLL"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESARWDGLDCZ0','2','H','02','13',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ESARWDGLDCZ0','4','H','02','13',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLDCZ0','2','D','10','1',NULL,'"10"',NULL,NULL,'"10"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLDCZ0','11','D','10','2',NULL,'GLAcctNum',NULL,NULL,'"drvGLAcctNum"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLDCZ0','13','D','10','3',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESARWDGLDCZ0','13','D','10','4',NULL,'DebitAmount',NULL,NULL,'"drvDebitAmount"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLDCZ0','13','D','10','5',NULL,'CreditAmount',NULL,NULL,'"drvCreditAmount"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLDCZ0','7','D','10','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLDCZ0','11','D','10','5',NULL,'CreditAmount',NULL,NULL,'"drvCreditAmount"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLDCZ0','9','D','10','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLDCZ0','2','T','90','1',NULL,'Trailer',NULL,NULL,'"99"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLDCZ0','2','T','90','2',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 
 -----------
 -- Build web filename
@@ -170,7 +169,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESARWDGLDC_20230405.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESARWDGLDC_20230406.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -274,7 +273,7 @@ CREATE TABLE [dbo].[U_ESARWDGLDC_Header] (
 
 IF OBJECT_ID('U_ESARWDGLDC_Header_Batch') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLDC_Header_Batch] (
-    [drvBatchMMDDYY] varchar(13) NOT NULL,
+    [drvBatchMMDDYY] nvarchar(4000) NOT NULL,
     [drvPaydate] varchar(8) NULL,
     [drvGLEOM] varchar(8) NULL
 );
@@ -389,7 +388,7 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLDC_Header_Batch','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLDC_Header_Batch;
   SELECT DISTINCT
-         drvBatchMMDDYY = Concat('BATCH',Convert(Varchar(8) ,MAX(vPeriodEndDate), 112))
+         drvBatchMMDDYY = Concat('BATCH',UPPER(CONVERT(CHAR(3), DATENAME(MONTH,MAX(vPeriodEndDate)))) ,FORmaT(MAX(vPeriodEndDate), 'dd'), Convert(Varchar(8) ,RIGHT(YEAR(MAX(vPeriodEndDate)),2), 112))
         ,drvPaydate = Convert(Varchar(8) ,MAX(vPaydate), 112)
         ,drvGLEOM = CONVERT(VARCHAR(8),DATEADD(D,-1,DATEADD(MM,DATEDIFF(M,0,vPeriodEndDate)+1,0)),112)
     INTO dbo.U_ESARWDGLDC_Header_Batch

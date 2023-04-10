@@ -5,7 +5,7 @@ ESARWDGLAC: Workday GL Payroll Accrual
 FormatCode:     ESARWDGLAC
 Project:        Workday GL Payroll Accrual
 Client ID:      SAR1005
-Date/time:      2023-04-05 13:34:24.173
+Date/time:      2023-04-06 09:39:19.150
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -140,7 +140,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLACZ0','2','H','01','3',NULL,'GL',NULL,NULL,'"GL"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESARWDGLACZ0','1','H','01','4',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLACZ0','20','H','01','5',NULL,'TRANSACTIONS PAYROLL',NULL,NULL,'"TRANSACTIONS PAYROLL"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLACZ0','2','H','01','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLACZ0','26','H','01','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLACZ0','2','H','02','1',NULL,'RecType',NULL,NULL,'"05"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLACZ0','12','H','02','2',NULL,'BATCHMONYR',NULL,NULL,'"drvBATCHMONYR"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLACZ0','1','H','02','3',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
@@ -151,32 +151,14 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESARWDGLACZ0','8','H','02','8',NULL,'PayDate',NULL,NULL,'"drvPayDate"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESARWDGLACZ0','8','H','02','9',NULL,'GLEOM',NULL,NULL,'"drvGLEOM"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESARWDGLACZ0','7','H','02','10',NULL,'PAYROLL',NULL,NULL,'"PAYROLL"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESARWDGLACZ0','2','H','02','11',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESARWDGLACZ0','4','H','02','11',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLACZ0','2','D','10','1',NULL,'RecType',NULL,NULL,'"10"','(''DA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLACZ0','11','D','10','2',NULL,'GLAcctNumber',NULL,NULL,'"drvGLAcctNumber"','(''UA''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLACZ0','13','D','10','3',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESARWDGLACZ0','13','D','10','4',NULL,'Amount1',NULL,NULL,'"drvAmount1"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLACZ0','13','D','10','5',NULL,'Amount2',NULL,NULL,'"drvAmount2"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLACZ0','7','D','10','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLACZ0','2','D','20','1',NULL,'RectType',NULL,NULL,'"06"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLACZ0','12','D','20','2',NULL,'BATCHMONYR',NULL,NULL,'"drvBATCHMONYR"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLACZ0','1','D','20','3',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESARWDGLACZ0','7','D','20','4',NULL,'REGULAR',NULL,NULL,'"REGULAR"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLACZ0','1','D','20','5',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLACZ0','3','D','20','6',NULL,'PR',NULL,NULL,'"PR "','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ESARWDGLACZ0','5','D','20','7',NULL,'HOURS',NULL,NULL,'"HOURS"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ESARWDGLACZ0','1','D','20','8',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ESARWDGLACZ0','8','D','20','9',NULL,'PayDate',NULL,NULL,'"drvPayDate"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ESARWDGLACZ0','8','D','20','10',NULL,'GLEOM',NULL,NULL,'"drvGLEOM"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ESARWDGLACZ0','7','D','20','11',NULL,'PAYROLL',NULL,NULL,'"PAYROLL"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ESARWDGLACZ0','4','D','20','12',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLACZ0','2','D','30','1',NULL,'RectType',NULL,NULL,'"10"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLACZ0','25','D','30','2',NULL,'GLAcctNumber',NULL,NULL,'"drvGLAcctNumber"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ESARWDGLACZ0','13','D','30','3',NULL,'Hours',NULL,NULL,'"drvHours"','(''UA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ESARWDGLACZ0','13','D','30','4',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLACZ0','2','D','30','5',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ESARWDGLACZ0','11','D','10','5',NULL,'Amount2',NULL,NULL,'"drvAmount2"','(''UA''=''F'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ESARWDGLACZ0','9','D','10','6',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ESARWDGLACZ0','2','T','90','1',NULL,'Trailer',NULL,NULL,'"99"','(''DA''=''F'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ESARWDGLACZ0','2','T','90','2',NULL,'Filler',NULL,NULL,'""','(''SS''=''F'')');
 
 -----------
 -- Build web filename
@@ -189,16 +171,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ESARWDGLAC_20230405.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ESARWDGLAC_20230406.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Workday GL Payroll Accrual','202303319','EMPEXPORT','ONDEM_XOE',NULL,'ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023  3:07PM','Mar 31 2023  3:07PM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Sched','202303319','EMPEXPORT','SCH_ESARWD',NULL,'ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023  3:07PM','Mar 31 2023  3:07PM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Test','202303319','EMPEXPORT','TEST_XOE','Apr  3 2023 12:00AM','ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202303011',NULL,'','','202303011',dbo.fn_GetTimedKey(),NULL,'us3mWaSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'0X9TU',NULL,NULL,NULL,'Workday GL Payroll Accrual','202303319','EMPEXPORT','ONDEM_XOE','Apr  6 2023 12:00AM','ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'us3mWaSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Sched','202303319','EMPEXPORT','SCH_ESARWD','Apr  6 2023 12:00AM','ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202303311',NULL,'','','202303311',dbo.fn_GetTimedKey(),NULL,'us3mWaSAR1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Workday GL Payroll Accru-Test','202303319','EMPEXPORT','TEST_XOE','Apr  6 2023 12:00AM','ESARWDGLAC',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202303011',NULL,'','','202303011',dbo.fn_GetTimedKey(),NULL,'us3mWaSAR1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -229,8 +211,6 @@ INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VA
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','H01','dbo.U_ESARWDGLAC_Header',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','H02','dbo.U_ESARWDGLAC_Header_Batch',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','D10','dbo.U_ESARWDGLAC_drvTbl_Period',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','D20','dbo.U_ESARWDGLAC_drvTbl_Batch',NULL);
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','D30','dbo.U_ESARWDGLAC_drvTbl_Hours',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ESARWDGLAC','T90','None',NULL);
 
 -----------
@@ -320,7 +300,7 @@ CREATE TABLE [dbo].[U_ESARWDGLAC_Header] (
 
 IF OBJECT_ID('U_ESARWDGLAC_Header_Batch') IS NULL
 CREATE TABLE [dbo].[U_ESARWDGLAC_Header_Batch] (
-    [drvBATCHMONYR] varchar(13) NOT NULL,
+    [drvBATCHMONYR] nvarchar(4000) NOT NULL,
     [drvPaydate] varchar(8) NULL,
     [drvGLEOM] varchar(8) NULL
 );
@@ -409,8 +389,8 @@ BEGIN
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
         ,drvGLAcctNumber = LEFT(vGLAcctNumber,11)
-     ,drvAmount1 = CONVERT(VARCHAR,dbo.usi_fn_PadL(Format((SUM(vDebitAmt) * 100), '0'), 13, ' '))
-        ,drvAmount2 = CONVERT(VARCHAR,dbo.usi_fn_PadL(Format((SUM(vCreditAmt) * 100), '0'), 13, ' '))
+        ,drvAmount1 = CONVERT(VARCHAR,dbo.usi_fn_PadL(Format((SUM(vDebitAmt) * 100), '0'), 13, ' '))
+        ,drvAmount2 = CONVERT(VARCHAR,dbo.usi_fn_PadL(Format((SUM(vCreditAmt) * 100), '0'), 11, ' '))
     INTO dbo.U_ESARWDGLAC_drvTbl_Period
     FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
     JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
@@ -419,50 +399,50 @@ BEGIN
     Where VPercontrol Between @StartPerControl and @EndPerControl
     Group by LEFT(vGLAcctNumber,11)
     ;
-    ---------------------------------
-    -- DETAIL RECORD - U_ESARWDGLAC_drvTbl_Batch
-    ---------------------------------
-    IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Batch','U') IS NOT NULL
-        DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Batch;
-    SELECT DISTINCT
-        -- drvEEID = xEEID
-       -- ,drvCoID = xCoID
-       -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-         drvInitialSort = ''
-        ,drvSubSort = ''
-        -- standard fields above and additional driver fields below
-        ,drvBATCHMONYR = Concat('BATCH',Cast(Year(MAX(vPeriodEndDate))as varchar))
-        ,drvPayDate =Convert(Varchar(8) ,MAX(vPaydate), 112)
-        ,drvGLEOM = CONVERT(VARCHAR(8),DATEADD(D,-1,DATEADD(MM,DATEDIFF(M,0,vPeriodEndDate)+1,0)),112)
-    INTO dbo.U_ESARWDGLAC_drvTbl_Batch
-    FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
-    JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
-    ON vEEID = XEEID
-    AND vCOID = XCOID
-    Where VPercontrol Between @StartPerControl and @EndPerControl
-    Group by vPeriodEndDate
-    ;
-    ---------------------------------
-    -- DETAIL RECORD - U_ESARWDGLAC_drvTbl_Hours
-    ---------------------------------
-    IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Hours','U') IS NOT NULL
-        DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Hours;
-    SELECT DISTINCT
-        -- drvEEID = xEEID
-       -- ,drvCoID = xCoID
-        --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
-         drvInitialSort = LEFT(vGLAcctNumber,11)
-        ,drvSubSort = ''
-        -- standard fields above and additional driver fields below
-        ,drvGLAcctNumber = LEFT(vGLAcctNumber,11)
-        ,drvHours =  CONVERT(VARCHAR,dbo.usi_fn_PadL(Format(ROUND(SUM(vAllocHrs),2) * 100.00,  '0'), 13, ' '))
-    INTO dbo.U_ESARWDGLAC_drvTbl_Hours
-    FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
-    JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
-    ON vEEID = XEEID
-    AND vCOID = XCOID
-    Where VPercontrol Between @StartPerControl and @EndPerControl
-    Group by LEFT(vGLAcctNumber,11)
+    -----------------------------------
+    ---- DETAIL RECORD - U_ESARWDGLAC_drvTbl_Batch
+    -----------------------------------
+    --IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Batch','U') IS NOT NULL
+    --    DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Batch;
+    --SELECT DISTINCT
+    --    -- drvEEID = xEEID
+    --   -- ,drvCoID = xCoID
+    --   -- ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+    --     drvInitialSort = ''
+    --    ,drvSubSort = ''
+    --    -- standard fields above and additional driver fields below
+    --    ,drvBATCHMONYR = Concat('BATCH',Cast(Year(MAX(vPeriodEndDate))as varchar))
+    --    ,drvPayDate =Convert(Varchar(8) ,MAX(vPaydate), 112)
+    --    ,drvGLEOM = CONVERT(VARCHAR(8),DATEADD(D,-1,DATEADD(MM,DATEDIFF(M,0,vPeriodEndDate)+1,0)),112)
+    --INTO dbo.U_ESARWDGLAC_drvTbl_Batch
+    --FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
+    --JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
+    --ON vEEID = XEEID
+    --AND vCOID = XCOID
+    --Where VPercontrol Between @StartPerControl and @EndPerControl
+    --Group by vPeriodEndDate
+    --;
+    -----------------------------------
+    ---- DETAIL RECORD - U_ESARWDGLAC_drvTbl_Hours
+    -----------------------------------
+    --IF OBJECT_ID('U_ESARWDGLAC_drvTbl_Hours','U') IS NOT NULL
+    --    DROP TABLE dbo.U_ESARWDGLAC_drvTbl_Hours;
+    --SELECT DISTINCT
+    --    -- drvEEID = xEEID
+    --   -- ,drvCoID = xCoID
+    --    --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+    --     drvInitialSort = LEFT(vGLAcctNumber,11)
+    --    ,drvSubSort = ''
+    --    -- standard fields above and additional driver fields below
+    --    ,drvGLAcctNumber = LEFT(vGLAcctNumber,11)
+    --    ,drvHours =  CONVERT(VARCHAR,dbo.usi_fn_PadL(Format(ROUND(SUM(vAllocHrs),2) * 100.00,  '0'), 13, ' '))
+    --INTO dbo.U_ESARWDGLAC_drvTbl_Hours
+    --FROM dbo.U_ESARWDGLAC_EEList WITH (NOLOCK)
+    --JOIN  dbo.vw_Dsi_Tmpalloc With (Nolock)
+    --ON vEEID = XEEID
+    --AND vCOID = XCOID
+    --Where VPercontrol Between @StartPerControl and @EndPerControl
+    --Group by LEFT(vGLAcctNumber,11)
     ;
     ---------------------------------
     -- HEADER RECORD
@@ -482,7 +462,7 @@ BEGIN
     IF OBJECT_ID('U_ESARWDGLAC_Header_Batch','U') IS NOT NULL
         DROP TABLE dbo.U_ESARWDGLAC_Header_Batch;
     SELECT DISTINCT
-         drvBATCHMONYR = Concat('BATCH',Convert(Varchar(8) ,MAX(vPeriodEndDate), 112))
+         drvBATCHMONYR = Concat('BATCH',UPPER(CONVERT(CHAR(3), DATENAME(MONTH,MAX(vPeriodEndDate)))) ,FORmaT(MAX(vPeriodEndDate), 'dd'), Convert(Varchar(8) ,RIGHT(YEAR(MAX(vPeriodEndDate)),2), 112))
         ,drvPaydate = Convert(Varchar(8) ,MAX(vPaydate), 112)
         ,drvGLEOM = CONVERT(VARCHAR(8),DATEADD(D,-1,DATEADD(MM,DATEDIFF(M,0,vPeriodEndDate)+1,0)),112)
     INTO dbo.U_ESARWDGLAC_Header_Batch
