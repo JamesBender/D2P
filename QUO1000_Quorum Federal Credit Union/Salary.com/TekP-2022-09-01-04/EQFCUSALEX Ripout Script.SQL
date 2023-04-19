@@ -5,7 +5,7 @@ EQFCUSALEX: Salary.Com Job History
 FormatCode:     EQFCUSALEX
 Project:        Salary.Com Job History
 Client ID:      QUO1000
-Date/time:      2022-11-21 14:43:49.953
+Date/time:      2023-04-14 09:28:55.193
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -215,7 +215,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUSALEX_20221121.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUSALEX_20230414.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -223,8 +223,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.Com Job History','202210319','EMPEXPORT','ONDEM_XOE',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.Com Job History-Sched','202210319','EMPEXPORT','SCH_EQFCUS',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202210319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202210311',NULL,'','','202210311',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.Com Job History-Test','202211211','EMPEXPORT','TEST_XOE','Nov 21 2022 11:59AM','EQFCUSALEX',NULL,NULL,NULL,'202211211','Nov 21 2022 12:00AM','Dec 30 1899 12:00AM','202211071','260','','','202211071',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','IAGFG,SSMNA',NULL,NULL,NULL,'Salary.Com Job History-Sched','202302079','EMPEXPORT','SCH_EQFCUS',NULL,'EQFCUSALEX',NULL,NULL,NULL,'202303319','Oct 31 2022 10:57AM','Oct 31 2022 10:57AM','202303171',NULL,'','','202302071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.Com Job History-Test','202303171','EMPEXPORT','TEST_XOE','Mar 27 2023  9:18AM','EQFCUSALEX',NULL,NULL,NULL,'202303171','Mar 17 2023 12:00AM','Mar 10 2023 12:00AM','202303031','101','','','202303031',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -364,18 +364,18 @@ CREATE TABLE [dbo].[U_EQFCUSALEX_drvTbl] (
     [drvSubsort] varchar(1) NOT NULL,
     [drvCompanyJobCode] char(8) NOT NULL,
     [drvCompanyJobTitle] varchar(25) NOT NULL,
-    [drvStructureCode] char(1) NOT NULL,
+    [drvStructureCode] varchar(2) NOT NULL,
     [drvGradeCode] char(15) NULL,
     [drvCompanyJobDesc] varchar(max) NULL,
     [drvJobLevel] varchar(45) NULL,
     [drvJobFamily] varchar(45) NULL,
     [drvJobFLSAStatus] char(1) NOT NULL,
-    [drvSalaryPlanCode] char(15) NULL,
+    [drvSalaryPlanCode] varchar(1) NOT NULL,
     [drvIsUseDefaultPlanData] varchar(1) NOT NULL,
-    [drvSalaryRangeMin] money NULL,
-    [drvSalaryRangeMid] money NULL,
-    [drvSalaryRangeMax] money NULL,
-    [drvEEOCategory] varchar(49) NULL,
+    [drvSalaryRangeMin] varchar(1) NOT NULL,
+    [drvSalaryRangeMid] varchar(1) NOT NULL,
+    [drvSalaryRangeMax] varchar(1) NOT NULL,
+    [drvEEOCategory] varchar(45) NULL,
     [drvEnd] varchar(1) NOT NULL
 );
 
@@ -412,7 +412,7 @@ Client Name: Quorum Federal Credit Union
 
 Created By: Marie Waters
 Business Analyst: Cheryl Petitti
-Create Date: 10/31/2022
+Create Date: 10/31/202
 Service Request Number: TekP-2022-09-01-04
 
 Purpose: Salary.Com Job History
@@ -420,6 +420,8 @@ Purpose: Salary.Com Job History
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
+Marie Waters        03/07/2023       TekP-2022-09-01-04   Removed numbers from EEOCategory1 
+Marie Waters        04/14/2023       TekP-2022-09-01-04   Removed dash from EEOCategory1, Changed SalaryPlanCode, SalaryRangeMin, SalaryRangeMid , SalaryRangeMax to send blanks 
 XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EQFCUSALEX';
@@ -530,22 +532,22 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvCompanyJobCode = Job.JbcJobCode
         ,drvCompanyJobTitle = job.JbcDesc
-        ,drvStructureCode = job.JbcFLSAType 
+        ,drvStructureCode = CASE WHEN job.JbcFLSAType = 'N' THEN 'NE' ELSE job.JbcFLSAType END 
         ,drvGradeCode = job.slgDesc
-        ,drvCompanyJobDesc = LTRIM(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(
+        ,drvCompanyJobDesc = LTRIM(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(Replace(
         (dbo.usp_removeHTML(job.JbcNotes)),'&#8226;',''),'<h1 style="text-align: left">',''),'<div class="WordSection1">',' '),'<h1 style="margin-left: 45.0pt; text-align: left;">',' ')
         ,'<ol style="margin-top: 0in"> <li class="MsoNormal">',' '),'<h1 style="text-align: justify">',' '),'<li class="MsoNormal">',' '),'<ol style="margin-top: 0in">',' '),'<h1 style="margin-left: .5in; text-align: left;">',' ')
         ,'<h1 style="margin-left: .5in; text-align: justify;">',' '),'<li class="MsoNormal" style="line-height: 107%">',' '),'&#183;         ',' '),'<li class="MsoNormal" style="line-height: normal">',' ')
-        ,'<h2 style="text-align: justify">',' '),'<li class="MsoNormal" style="color: #333333; text-align: justify;">',' '),'                                                                                    </h2>',' ')
+        ,'<h2 style="text-align: justify">',' '),'<li class="MsoNormal" style="color: #333333; text-align: justify;">',' '),'                                                                                    </h2>',' '),'-',' ')
         ,'      ',' '))-- JbcNotes --Full Job Description
         ,drvJobLevel = CODDESC --his field will use the platform config field on the job business rule - Send code and description example value = A04 - Specialist
         ,drvJobFamily = job.JbcJobFamilyDesc
         ,drvJobFLSAStatus = job.JbcFLSAType
-        ,drvSalaryPlanCode = SlgDesc --Send the description value not the code example value = E06NYM
+        ,drvSalaryPlanCode = ''--SlgDesc --Send the description value not the code example value = E06NYM -- 4/14/2023 Client requssted to send blank
         ,drvIsUseDefaultPlanData = '' --Blank
-        ,drvSalaryRangeMin = SlgAnnualMin -- Minimum Salary value on the job code - example value for job code = HRISANST - the value is 52715.00
-        ,drvSalaryRangeMid = SlgAnnualMed --Midpoint Salary value on the job code - example value for job code = HRISANST - the value is 65866.00y
-        ,drvSalaryRangeMax = SlgAnnualMax --Maximum Salary value on the job code - example value for job code = HRISANST - the value is 79017.00
+        ,drvSalaryRangeMin = ''--SlgAnnualMin -- Minimum Salary value on the job code - example value for job code = HRISANST - the value is 52715.00-- 4/14/2023 Client requssted to send blank
+        ,drvSalaryRangeMid = ''--SlgAnnualMed --Midpoint Salary value on the job code - example value for job code = HRISANST - the value is 65866.00y-- 4/14/2023 Client requssted to send blank
+        ,drvSalaryRangeMax = ''-- SlgAnnualMax --Maximum Salary value on the job code - example value for job code = HRISANST - the value is 79017.00-- 4/14/2023 Client requssted to send blank
         ,drvEEOCategory = EEOCategory1
         ,drvEnd = 'X'
     INTO dbo.U_EQFCUSALEX_drvTbl
@@ -572,16 +574,16 @@ BEGIN
                 , SlgAnnualMed = ( SlgAnnualMax + SlgAnnualMin)/2
                 , JbcStatus
                 , EEOCategory1 = CASE JbcEEOCategory
-                                      WHEN '1.1' THEN '1.1-Executive/Senior Level Officials and Managers'
-                                     WHEN '1.2' THEN '1.2-First/Mid-Level Officials and Managers'
-                                     WHEN '2' THEN '2-Professionals'
-                                     WHEN '3' THEN '3-Technicians'
-                                     WHEN '4' THEN '4-Sales Workers'
-                                     WHEN '5' THEN '5-Administrative Support Workers'
-                                     WHEN '6' THEN '6-Craft Workers'
-                                     WHEN '7' THEN '7-Operatives'
-                                     WHEN '8' THEN '8-Laborers and Helpers'
-                                     WHEN '9' THEN '9-Service Workers'
+                                     WHEN '1.1' THEN 'Executive/Senior Level Officials and Managers' --'1.1-Executive/Senior Level Officials and Managers'
+                                     WHEN '1.2' THEN 'First/Mid Level Officials and Managers' --'1.2-First/Mid-Level Officials and Managers'-- 4/14/2023 Client requted to remove dash
+                                     WHEN '2' THEN 'Professionals' --'2-Professionals'
+                                     WHEN '3' THEN 'Technicians' --'3-Technicians'
+                                     WHEN '4' THEN 'Sales Workers' --'4-Sales Workers'
+                                     WHEN '5' THEN 'Administrative Support Workers' --'5-Administrative Support Workers'
+                                     WHEN '6' THEN 'Craft Workers' --'6-Craft Workers'
+                                     WHEN '7' THEN 'Operatives' --'7-Operatives'
+                                     WHEN '8' THEN 'Laborers and Helpers' --'8-Laborers and Helpers'
+                                     WHEN '9' THEN 'Service Workers' --'9-Service Workers'
                                 END
                                
                 FROM dbo.JobCode  WITH (NOLOCK)

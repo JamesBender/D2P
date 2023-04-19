@@ -5,7 +5,7 @@ EIVBRFSAEN: Benefit Resource FSA Enrollment
 FormatCode:     EIVBRFSAEN
 Project:        Benefit Resource FSA Enrollment
 Client ID:      IVO1000
-Date/time:      2023-02-22 12:22:39.110
+Date/time:      2023-04-13 15:39:58.657
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -209,7 +209,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EIVBRFSAEN_20230222.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EIVBRFSAEN_20230413.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -380,7 +380,7 @@ CREATE TABLE [dbo].[U_EIVBRFSAEN_drvTbl] (
     [drvFundingFrequency] varchar(2) NULL,
     [drvInsuranceCode] varchar(6) NOT NULL,
     [drvInsuranceDate] varchar(8) NULL,
-    [drvAccountType] varchar(1) NOT NULL,
+    [drvAccountType] varchar(3) NOT NULL,
     [drvElectionEffDate] varchar(8) NULL,
     [drvElectionEndDate] varchar(8) NULL,
     [drvPerDeduction] money NULL,
@@ -691,7 +691,12 @@ BEGIN
 
         ,drvInsuranceCode = 'MED000'
         ,drvInsuranceDate = CONVERT(VARCHAR(8), Bdmbenstartdate,112)
-        ,drvAccountType = ''
+
+        ,drvAccountType = CASE  WHEN bdmdedcode IN ( 'FSA','FSAW') and bdmdedcode2 is not null and BDM2.BdmStopDate is null then 'MDL'
+                                 WHEN bdmdedcode IN ( 'FSA','FSAW') and bdmdedcode2 is null  then 'MED'
+                                 WHEN bdmdedcode in ('FSADC','FSADW') THEN 'DCA'
+                                Else  'HSA'
+                            END
         ,drvElectionEffDate = CONVERT(VARCHAR(8), Bdmbenstartdate,112)
         ,drvElectionEndDate = CONVERT(VARCHAR(8),Bdmbenstopdate, 112)
         ,drvPerDeduction = BdmEEAmt
@@ -700,7 +705,7 @@ BEGIN
         ,drvUserDefined2 = ''
         ,drvSSOValue = ''
         ,drvCoverageCode = ''
-    INTO dbo.U_EIVBRFSAEN_drvTbl
+   INTO dbo.U_EIVBRFSAEN_drvTbl
     FROM dbo.U_EIVBRFSAEN_EEList WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
@@ -710,6 +715,14 @@ BEGIN
     JOIN dbo.U_dsi_BDM_EIVBRFSAEN WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
+    LEFT JOIN (Select b2.Bdmeeid, b2.BdmCoid, MAX(b2.BdmDedCode)as BdmDedCode2, max(b2.BdmBenStartdate) as BdmStartDate, MAX(b2.BdmBenStopdate) As BdmStopDate FROM dbo.U_dsi_BDM_EIVBRFSAEN b2 WITH (NOLOCK)
+       Where  (b2.bdmdedcode in ('HSA1','HSA10','HSA11','HSA12','HSA13','HSA14','HSA15','HSA16','HSA17','HSA18','HSA19','HSA1W','HSA2','HSA20','HSA21','HSA22','HSA23','HSA24','HSA2W','HSA3','HSA3W','HSA4','HSA4W','HSA5','HSA5W','HSA6','HSA6W','HSA7','HSA7W','HSA8','HSA8W','HSA9') 
+       --And b2.BdmBenstatus = 'A'
+       )
+       Group by  b2.Bdmeeid, b2.BdmCoid, b2.BdmDedCode
+       )BDM2
+    ON Bdm2.Bdmeeid = XEEID 
+    and Bdm2.BdmCoid =  XCOID
      LEFT JOIN (
                 SELECT EfoEEID, EfoPhoneNumber
                 FROM (

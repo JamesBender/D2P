@@ -453,7 +453,7 @@ BEGIN
             FROM (
                     SELECT DISTINCT  ConEEID, ConSystemId, ConNameFirst, ConNameLast, ConDateOfBirth, ConGender , conrelationship--, ROW_NUMBER() OVER(PARTITION BY ConEEID ORDER BY ConDateOfBirth) AS RN
                                 FROM dbo.Contacts WITH (NOLOCK)
-                                JOIN dbo.U_dsi_BDM_EBAFLORELC iBdm WITH (NOLOCK)
+                                JOIN dbo.U_dsi_BDM_EBAFLORQBD iBdm WITH (NOLOCK)
                                     ON iBdm.BdmEEID = ConEEID
                                     AND iBdm.BdmDepRecID = ConSystemId
                                     AND iBdm.BdmRunId = 'QB'

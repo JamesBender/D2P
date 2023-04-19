@@ -5,7 +5,7 @@ EBAFLORELC: Flores COBRA Election Export
 FormatCode:     EBAFLORELC
 Project:        Flores COBRA Election Export
 Client ID:      OUT1004
-Date/time:      2023-03-15 14:43:01.227
+Date/time:      2023-04-18 07:52:36.210
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -132,7 +132,7 @@ INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStatic
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EBAFLORELCZ0','9','D','10','1',NULL,'Employee ID Number of the Insured',NULL,NULL,'"drvEmployeeIDNumber"','(''UA''=''F|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EBAFLORELCZ0','1','D','10','2',NULL,'Dependent Number',NULL,NULL,'"drvDependentNumber"','(''UA''=''F|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EBAFLORELCZ0','6','D','10','3',NULL,'Plan Code Enrolled In',NULL,NULL,'"drvPlanCode"','(''UA''=''F|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EBAFLORELCZ0','7','D','10','4',NULL,'Monthly Premium',NULL,NULL,'"drvMonthlyPremium"','(''UA''=''F|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EBAFLORELCZ0','7','D','10','4',NULL,'Monthly Premium',NULL,NULL,'"drvMonthlyPremium"','(''UA''=''F'')');
 
 -----------
 -- Build web filename
@@ -145,7 +145,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EBAFLORELC_20230315.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EBAFLORELC_20230418.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -154,7 +154,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Election Export','202303159','EMPEXPORT','ONDEM_XOE',NULL,'EBAFLORELC',NULL,NULL,NULL,'202303159','Mar 15 2023 12:47PM','Mar 15 2023 12:47PM','202301081',NULL,'','','202301081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Flores COBRA Election Ex-Sched','202303159','EMPEXPORT','SCH_EBAFLO',NULL,'EBAFLORELC',NULL,NULL,NULL,'202303159','Mar 15 2023 12:47PM','Mar 15 2023 12:47PM','202301081',NULL,'','','202301081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Flores COBRA Election Ex-Test','202303159','EMPEXPORT','TEST_XOE',NULL,'EBAFLORELC',NULL,NULL,NULL,'202303159','Mar 15 2023 12:47PM','Mar 15 2023 12:47PM','202301081',NULL,'','','202301081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2IIJU',NULL,NULL,NULL,'Flores COBRA Election Ex-Test','202304179','EMPEXPORT','TEST_XOE','Apr 17 2023  7:04PM','EBAFLORELC',NULL,NULL,NULL,'202304179','Apr 17 2023 12:00AM','Dec 30 1899 12:00AM','202301011','26','eecPayGroup','BAHOUR,BAUSA','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -560,7 +560,27 @@ BEGIN
         ON ConEEID = xEEID
         AND ConSystemId = BdmDepRecId
     WHERE BdmRunID = 'QB'     
-    and bdmdedcode IN ('FSAM','HDHP','PPO' ,'BAVIS')
+    --and bdmdedcode IN ('FSAM','HDHP','PPO' ,'BAVIS')
+      AND  CASE WHEN BdmDedCode  = 'FSAM'  AND BdmBenOption = 'EE' THEN '9000' 
+                            WHEN BdmDedCode  = 'FSAD'  AND BdmBenOption = 'EE' THEN '9000'
+                            WHEN BdmDedCode  = 'LPFSA' AND BdmBenOption = 'EE' THEN '9000'
+                            WHEN BdmDedCode  = 'HDHP'  AND BdmBenOption = 'EE' THEN '3020'
+                            WHEN BdmDedCode  = 'HDHP'  AND BdmBenOption IN ('EES',' EEDP') THEN '3021'
+                            WHEN BdmDedCode  = 'HDHP'  AND BdmBenOption = 'EEC' THEN '3022'
+                            WHEN BdmDedCode  = 'HDHP'  AND BdmBenOption IN ('EEF','EEDPF') THEN '3023'
+                            WHEN BdmDedCode  = 'PPO'   AND BdmBenOption = 'EE' THEN '6030'
+                            WHEN BdmDedCode  = 'PPO'   AND BdmBenOption IN ('EES',' EEDP') THEN '6031'
+                            WHEN BdmDedCode  = 'PPO'   AND BdmBenOption = 'EEC' THEN '3032'
+                            WHEN BdmDedCode  = 'PPO'   AND BdmBenOption IN ('EEF','EEDPF') THEN '6033'
+                            WHEN BdmDedCode  = 'BADEN' AND BdmBenOption = 'EE' THEN '4010'
+                            WHEN BdmDedCode  = 'BADEN' AND BdmBenOption IN ('EES',' EEDP') THEN '4011'
+                            WHEN BdmDedCode  = 'BADEN' AND BdmBenOption = 'EEC' THEN '4012'
+                            WHEN BdmDedCode  = 'BADEN' AND BdmBenOption IN ('EEF','EEDPF') THEN '4013'
+                            WHEN BdmDedCode  = 'BAVIS' AND BdmBenOption = 'EE' THEN '10070'
+                            WHEN BdmDedCode  = 'BAVIS' AND BdmBenOption IN ('EES',' EEDP') THEN '10071'
+                            WHEN BdmDedCode  = 'BAVIS' AND BdmBenOption = 'EEC' THEN '10072'
+                            WHEN BdmDedCode  = 'BAVIS' AND BdmBenOption IN ('EEF','EEDPF') THEN '10073'
+                        END IS NOT NULL
     ;
 
     --==========================================

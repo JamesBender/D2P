@@ -5,7 +5,7 @@ ELSMETEXPO: MetLife Termed Employees/Conversion/Portability
 FormatCode:     ELSMETEXPO
 Project:        MetLife Termed Employees/Conversion/Portability
 Client ID:      LEN1002
-Date/time:      2023-01-19 16:59:44.040
+Date/time:      2023-04-14 16:44:57.227
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELSMETEXPO_20230119.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELSMETEXPO_20230414.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -375,14 +375,14 @@ CREATE TABLE [dbo].[U_ELSMETEXPO_drvTbl] (
     [drvSPOUSEPORT] varchar(1) NOT NULL,
     [drvCHILD] nvarchar(4000) NULL,
     [drvCHILDPORT] varchar(1) NOT NULL,
-    [drvPADD] varchar(1) NOT NULL,
-    [drvPADDPORT] varchar(1) NOT NULL,
-    [drvOADD] varchar(1) NOT NULL,
-    [drvOADDPORT] varchar(1) NOT NULL,
-    [drvSO_ADD] varchar(1) NOT NULL,
-    [drvSO_ADDPORT] varchar(1) NOT NULL,
-    [drvCO_ADD] varchar(1) NOT NULL,
-    [drvCO_ADDPORT] varchar(1) NOT NULL,
+    [drvPADD] nvarchar(4000) NULL,
+    [drvPADDPORT] varchar(1) NULL,
+    [drvOADD] nvarchar(4000) NULL,
+    [drvOADDPORT] varchar(1) NULL,
+    [drvSO_ADD] nvarchar(4000) NULL,
+    [drvSO_ADDPORT] varchar(1) NULL,
+    [drvCO_ADD] nvarchar(4000) NULL,
+    [drvCO_ADDPORT] varchar(1) NULL,
     [drvVADD] varchar(1) NOT NULL,
     [drvVADDPORT] varchar(1) NOT NULL,
     [drvVADDFAM] varchar(1) NOT NULL,
@@ -585,29 +585,29 @@ BEGIN
         ,drvZIP = eepaddresszipcode
         ,drvPHONE = Eepphonehomenumber
         ,drvCOUNTRYCODE = LEFT(EepAddressCountry, 2)
-        ,drvBASIC = CASE WHEN EecEmplStatus = 'T' and GIFE_DedCode IS NOT NULL THEN FORMAT(GLIFE_EEAmt, '0.00')  END
+        ,drvBASIC = CASE WHEN EecEmplStatus = 'T' and GIFE_DedCode IS NOT NULL and GLIFE_EEAmt <> 0.00 THEN FORMAT(GLIFE_EEAmt, '0.00')  END
         ,drvBASICPORT = CASE WHEN EecEmplStatus = 'T' and GIFE_DedCode IS NOT NULL THEN 'Y' ELSE 'N' END
-        ,drvOPTIONAL = CASE WHEN EecEmplStatus = 'T' and LIFEE_DedCode IS  NOT NULL THEN FORMAT(LIFEE_BdmEEAmt,' 0.00') END
-        ,drvOPTIONALPORT = CASE WHEN EecEmplStatus = 'T' and LIFEE_DedCode IS  NOT NULL THEN 'Y' ELSE 'N' END
-        ,drvSPOUSE = CASE WHEN EecEmplStatus = 'T' and LIFES_DedCode IS  NOT NULL  THEN Format(LIFES_BdmEEAmt, '0.00') END
-        ,drvSPOUSEPORT = CASE WHEN EecEmplStatus = 'T' and LIFES_DedCode IS  NOT NULL  THEN 'Y' ELSE 'N' END
-        ,drvCHILD = CASE WHEN EecEmplStatus = 'T' and LIFEC_DedCode IS  NOT NULL  THEN Format(LIFEC_BdmEEAmt, '0.00') END
-        ,drvCHILDPORT = CASE WHEN EecEmplStatus = 'T' and LIFEC_DedCode IS  NOT NULL  THEN 'Y' ELSE 'N' END
-        ,drvPADD = ''
-        ,drvPADDPORT = ''
-        ,drvOADD = ''
-        ,drvOADDPORT = ''
-        ,drvSO_ADD = ''
-        ,drvSO_ADDPORT = ''
-        ,drvCO_ADD = ''
-        ,drvCO_ADDPORT = ''
+        ,drvOPTIONAL = CASE WHEN EecEmplStatus = 'T' and LIFEE_DedCode IS  NOT NULL and LIFEE_BdmEEAmt <> 0.00 THEN FORMAT(LIFEE_BdmEEAmt,' 0.00') END
+        ,drvOPTIONALPORT = CASE WHEN EecEmplStatus = 'T' and LIFEE_DedCode IS  NOT NULL and ISNULL(LIFEE_BdmEEAmt, '0.00') <> '0.00' THEN 'Y' ELSE 'N' END
+        ,drvSPOUSE = CASE WHEN EecEmplStatus = 'T' and LIFES_DedCode IS  NOT NULL and LIFES_BdmEEAmt <> 0.00  THEN Format(LIFES_BdmEEAmt, '0.00') END
+        ,drvSPOUSEPORT = CASE WHEN EecEmplStatus = 'T' and LIFES_DedCode IS  NOT NULL  and ISNULL(LIFES_BdmEEAmt, '0.00') <> 0.00 THEN 'Y' ELSE 'N' END
+        ,drvCHILD = CASE WHEN EecEmplStatus = 'T' and LIFEC_DedCode IS  NOT NULL  and LIFEC_BdmEEAmt <> 0.00 THEN Format(LIFEC_BdmEEAmt, '0.00') END
+        ,drvCHILDPORT = CASE WHEN EecEmplStatus = 'T' and LIFEC_DedCode IS  NOT NULL and LIFEC_BdmEEAmt <> 0.00  THEN 'Y' ELSE 'N' END
+        ,drvPADD = CASE WHEN EecEmplStatus = 'T' and   GIFE_DedCode IS NOT NULL and GLIFE_EEAmt <> 0.00 THEN FORMAT(GLIFE_EEAmt, '0.00')  END
+        ,drvPADDPORT = CASE WHEN EecEmplStatus = 'T' and   GIFE_DedCode IS NOT NULL THEN  'Y'  END
+        ,drvOADD = CASE WHEN EecEmplStatus = 'T' and LIFEE_DedCode IS  NOT NULL and LIFEE_BdmEEAmt <> 0.00 THEN FORMAT(LIFEE_BdmEEAmt,' 0.00') END
+        ,drvOADDPORT = CASE WHEN EecEmplStatus = 'T' and LIFEE_DedCode IS  NOT NULL and ISNULL(LIFEE_BdmEEAmt, '0.00') <> '0.00' THEN 'Y'  END
+        ,drvSO_ADD = CASE WHEN EecEmplStatus = 'T' and LIFES_DedCode IS  NOT NULL and LIFES_BdmEEAmt <> 0.00  THEN Format(LIFES_BdmEEAmt, '0.00') END
+        ,drvSO_ADDPORT = CASE WHEN EecEmplStatus = 'T' and LIFES_DedCode IS  NOT NULL  and ISNULL(LIFES_BdmEEAmt, '0.00') <> 0.00 THEN 'Y' END
+        ,drvCO_ADD = CASE WHEN EecEmplStatus = 'T' and LIFEC_DedCode IS  NOT NULL  and LIFEC_BdmEEAmt <> 0.00 THEN Format(LIFEC_BdmEEAmt, '0.00') END
+        ,drvCO_ADDPORT = CASE WHEN EecEmplStatus = 'T' and LIFEC_DedCode IS  NOT NULL and LIFEC_BdmEEAmt <> 0.00  THEN 'Y' END
         ,drvVADD = ''
         ,drvVADDPORT = ''
         ,drvVADDFAM = ''
         ,drvVADDFAMPORT = ''
         ,drvDOB = CONVERT(VARCHAR(10),EepDateofBirth,101)
-        ,drvBENEFITENDDATE = CASE WHEN EecEmplStatus = 'T' and EedBenStopDate IS NOT NULL THEN EedBenStopDate END
-        ,drvSTATUS = CASE WHEN EecEmplStatus <> 'A' THEN EecEmplStatus END
+        ,drvBENEFITENDDATE =  EedBenStopDate 
+        ,drvSTATUS = EecEmplStatus 
         ,drvComments = EepAddressEmailAlternate
     INTO dbo.U_ELSMETEXPO_drvTbl
     FROM dbo.U_ELSMETEXPO_EEList WITH (NOLOCK)
@@ -632,13 +632,15 @@ BEGIN
                     ON bdmeeid = EedEEID
                     AND bdmcoid = EedCOID
                     AND EedDedCode = EedDedcode 
+                    and EedBenStopDate between @Startdate and @EndDate
+                    Where BdmBenstatus NOT IN ('W', 'C')
                  GROUP BY BdmEEID, BdmCOID) BDM
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     LEFT JOIN dbo.U_ELSMETEXPO_Audit WITH (NOLOCK)
         ON audEEID = xEEID
         AND audCOID = xCOID
-    WHERE EecEEType <> 'TES' AND (EecEmplStatus <> 'A' or (EecEmplStatus = 'T' and AudTerm = 'Y'))
+    WHERE  EecEmplStatus IN ( 'T', 'R')
     ;
 
     --==========================================

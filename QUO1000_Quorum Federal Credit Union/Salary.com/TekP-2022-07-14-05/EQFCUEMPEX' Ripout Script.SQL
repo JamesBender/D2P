@@ -5,7 +5,7 @@ EQFCUEMPEX: Salary.com Employee File Export
 FormatCode:     EQFCUEMPEX
 Project:        Salary.com Employee File Export
 Client ID:      QUO1000
-Date/time:      2023-03-24 09:01:36.303
+Date/time:      2023-04-14 09:06:56.527
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -251,7 +251,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('108','EQFCUEMPEXZ0','50','H','01','108',NULL,'TotalComp',NULL,NULL,'"TotalComp"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('109','EQFCUEMPEXZ0','50','H','01','109',NULL,'Target Success Share',NULL,NULL,'"Target Success Share"','(''DA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('110','EQFCUEMPEXZ0','50','H','01','110',NULL,'Maximum 401k Match',NULL,NULL,'"Maximum 401k Match"','(''DA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('111','EQFCUEMPEXZ0','50','H','01','111',NULL,'End',NULL,NULL,'"End"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('111','EQFCUEMPEXZ0','50','H','01','111',NULL,'Rank Score Name',NULL,NULL,'"Rank Score Name"','(''DA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('112','EQFCUEMPEXZ0','50','H','01','112',NULL,'End',NULL,NULL,'"End"','(''DA''=''T'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EQFCUEMPEXZ0','50','D','10','1',NULL,'EmployeeID',NULL,NULL,'"drvEmployeeID"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EQFCUEMPEXZ0','50','D','10','2',NULL,'EmployeeStateCode',NULL,NULL,'"drvEmployeeStateCode"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EQFCUEMPEXZ0','50','D','10','3',NULL,'EmployeeZipCode',NULL,NULL,'"drvEmployeeZipCode"','(''UA''=''T|'')');
@@ -362,7 +363,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('108','EQFCUEMPEXZ0','50','D','10','108',NULL,'Total Compensation and Benefits',NULL,NULL,'"drvTotalCompandBenefits"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('109','EQFCUEMPEXZ0','50','D','10','109',NULL,'Target Success Share',NULL,NULL,'"drvTargetSuccessShare"','(''UA''=''T|'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('110','EQFCUEMPEXZ0','50','D','10','110',NULL,'Maximum 401k Match',NULL,NULL,'"drvMaximum401kMatch"','(''UA''=''T|'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('111','EQFCUEMPEXZ0','50','D','10','111',NULL,'End',NULL,NULL,'"x"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('111','EQFCUEMPEXZ0','50','D','10','111',NULL,'Rank Score Name',NULL,NULL,'"drvRankScoreName"','(''UA''=''T|'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('112','EQFCUEMPEXZ0','50','D','10','112',NULL,'End',NULL,NULL,'"x"','(''DA''=''T'')');
 
 -----------
 -- Build web filename
@@ -375,7 +377,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUEMPEX_20230324.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EQFCUEMPEX_20230414.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -383,8 +385,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 -----------
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Salary.com Employee File Expor','202212169','EMPEXPORT','ONDEM_XOE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202212169','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202212011',NULL,'','','202212011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','IAGFG,SSMNA',NULL,NULL,NULL,'Salary.com Employee File-Sched','202302079','EMPEXPORT','SCH_EQFCUE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202303179','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202303031',NULL,'','','202302071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.com Employee File-Test','202303021','EMPEXPORT','TEST_XOE','Mar 13 2023 10:09AM','EQFCUEMPEX',NULL,NULL,NULL,'202303021','Mar  2 2023 12:00AM','Dec 30 1899 12:00AM','202302161','151','','','202302161',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','IAGFG,SSMNA',NULL,NULL,NULL,'Salary.com Employee File-Sched','202302079','EMPEXPORT','SCH_EQFCUE',NULL,'EQFCUEMPEX',NULL,NULL,NULL,'202304139','Nov 16 2022  1:46PM','Nov 16 2022  1:46PM','202303301',NULL,'','','202302071',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','IAGFG',NULL,NULL,NULL,'Salary.com Employee File-Test','202303171','EMPEXPORT','TEST_XOE','Mar 27 2023  9:20AM','EQFCUEMPEX',NULL,NULL,NULL,'202303171','Mar 17 2023 12:00AM','Mar 10 2023 12:00AM','202303031','151','','','202303031',dbo.fn_GetTimedKey(),NULL,'us3cPeQUO1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -528,8 +530,8 @@ CREATE TABLE [dbo].[U_EQFCUEMPEX_drvTbl] (
     [drvEmployeeCountryCode] char(3) NULL,
     [drvCompanyJobCode] char(8) NULL,
     [drvTierCode] varchar(10) NULL,
-    [drvStructureCode] varchar(2) NOT NULL,
-    [drvSalaryPlanCode] char(15) NULL,
+    [drvStructureCode] varchar(1) NOT NULL,
+    [drvSalaryPlanCode] varchar(1) NOT NULL,
     [drvBaseSalary] nvarchar(4000) NULL,
     [drvIsSalaried] varchar(1) NULL,
     [drvIsExempt] varchar(1) NOT NULL,
@@ -551,8 +553,8 @@ CREATE TABLE [dbo].[U_EQFCUEMPEX_drvTbl] (
     [drvDateStartedJob] varchar(10) NULL,
     [drvTerminationDate] varchar(10) NULL,
     [drvSigningBonus] nvarchar(4000) NULL,
-    [drvPerfRatingScaleCode] varchar(8000) NULL,
-    [drvPerformanceNum] nvarchar(4000) NULL,
+    [drvPerfRatingScaleCode] varchar(18) NULL,
+    [drvPerformanceNum] varchar(1) NOT NULL,
     [drvLastReviewDate] varchar(10) NULL,
     [drvNextReviewDate] varchar(10) NULL,
     [drvIsActive] varchar(1) NOT NULL,
@@ -588,7 +590,8 @@ CREATE TABLE [dbo].[U_EQFCUEMPEX_drvTbl] (
     [drvCommission] nvarchar(4000) NULL,
     [drvTotalCompandBenefits] nvarchar(4000) NULL,
     [drvTargetSuccessShare] nvarchar(4000) NULL,
-    [drvMaximum401kMatch] nvarchar(4000) NULL
+    [drvMaximum401kMatch] nvarchar(4000) NULL,
+    [drvRankScoreName] varchar(8000) NULL
 );
 
 -----------
@@ -697,6 +700,7 @@ Purpose: Salary.com Employee File Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
+Marie Waters        04/14/2023      TekP-2022-07-14-05New column 'Rank Score Name' added, coding changed for PerfRatingScaleCode and changed to send blanks for StructureCode, SalaryPlanCode and PerformanceNum 
 XXXX                XX/XX/2022     SR-2022-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EQFCUEMPEX';
@@ -960,8 +964,8 @@ BEGIN
         ,drvEmployeeCountryCode = LocAddressCountry
         ,drvCompanyJobCode = EecJobCode
         ,drvTierCode = EecOrgLvl3
-        ,drvStructureCode = CASE WHEN JbcFLSAType = 'N' THEN 'NE' ELSE JbcFLSAType END -- MW Updated 3/24/2023
-        ,drvSalaryPlanCode = SlgDesc --EjhSalaryGrade  -- MW Updated 3/24/2023
+        ,drvStructureCode = '' -- CASE WHEN JbcFLSAType = 'N' THEN 'NE' ELSE JbcFLSAType END -- MW Updated 3/24/2023 --4/14/2023 Client requested to send blank
+        ,drvSalaryPlanCode = ''-- SlgDesc --EjhSalaryGrade  -- MW Updated 3/24/2023 --4/14/2023 Client requested to send blank
         ,drvBaseSalary = CASE WHEN EecSalaryOrHourly = 'S' THEN Format(eecannsalary, '0.00') else Format(EecHourlyPayRate, '0.00') END
         ,drvIsSalaried = CASE WHEN EecSalaryOrHourly = 'S' THEN '1' WHEN EecSalaryOrHourly = 'H' THEN '0' END
         ,drvIsExempt =  CASE WHEN EecOrgLvl2 = 'SAL' THEN  '1' ELSE '0' END
@@ -983,8 +987,8 @@ BEGIN
         ,drvDateStartedJob = CONVERT(VARCHAR(10),EecDateInJob,101)
         ,drvTerminationDate = CASE WHEN EecEmplStatus = 'T' THEN CONVERT(VARCHAR(10),EecDateOfTermination,101) END
         ,drvSigningBonus = CASE WHEN FORMAT(PehBonso, '0.00') > '0.00' THEN FORMAT(PehBonso, '0.00') ELSE '0.00' END
-        ,drvPerfRatingScaleCode = Replace(RatingCodeDesc, '(%)', '')
-        ,drvPerformanceNum = ManGoalRatingCode 
+        ,drvPerfRatingScaleCode = CASE WHEN Replace(RatingCodeDesc, '(%)', '') is not null then 'Performance Review' END --4/14/2023 Client requested to send 'Performance Review' when Replace(RatingCodeDesc, '(%)', '') is not null
+        ,drvPerformanceNum = ''-- ManGoalRatingCode --4/14/2023 Client requested to send blank
         ,drvLastReviewDate = CONVERT(VARCHAR(10),EecDateOfLastPerfReview,101)
         ,drvNextReviewDate = CONVERT(VARCHAR(10),EecDateOfNextPerfReview,101)
         ,drvIsActive = CASE WHEN EecEmplStatus IN ( 'A', 'L') THEN '1'  ELSE '0' END
@@ -1025,7 +1029,8 @@ BEGIN
                                     END
         ,drvTargetSuccessShare = CASE WHEN FORMAT(EecAnnSalary * OrgDesc14 ,'0.00') >'0.00' THEn FORMAT(EecAnnSalary * OrgDesc14 ,'0.00') ELSE '0.00' END
     
-        ,drvMaximum401kMatch = CASE WHEN ((PehBonus + EecAnnSalary) * .06)  > 18300.00 THEN '18300.00' ELSE FORMAT(((PehBonus + EecAnnSalary) * .06),'0.00') END
+        ,drvMaximum401kMatch = CASE WHEN ((PehBonus + EecAnnSalary) * .06)  > 18300.00 THEN '18300.00' ELSE FORMAT(((PehBonus + EecAnnSalary) * .06),'0.00') END -- 4/14/2023 Client requested new column
+        ,drvRankScoreName = Replace(RatingCodeDesc, '(%)', '')
     INTO dbo.U_EQFCUEMPEX_drvTbl
     FROM dbo.U_EQFCUEMPEX_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)

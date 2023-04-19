@@ -5,7 +5,7 @@ EINSGURDEX: Guardian FMLA and STD Export
 FormatCode:     EINSGURDEX
 Project:        Guardian FMLA and STD Export
 Client ID:      INS1016
-Date/time:      2023-04-07 13:14:40.853
+Date/time:      2023-04-13 07:30:00.063
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -411,7 +411,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EINSGURDEX_20230407.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EINSGURDEX_20230413.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -662,7 +662,7 @@ CREATE TABLE [dbo].[U_EINSGURDEX_drvTbl_ES] (
     [drvAddressLine2] varchar(255) NULL,
     [drvAddresscity] varchar(255) NULL,
     [drvAddressstate] varchar(255) NULL,
-    [drvAddresszipcode] varchar(50) NULL,
+    [drvAddresszipcode] varchar(5) NULL,
     [drvAddresscountry] char(3) NULL,
     [drvHomePhone] varchar(50) NULL
 );
@@ -1125,7 +1125,7 @@ BEGIN
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
     WHERE --LEFT(PehPerControl,4) = LEFT(@EndPerControl,4) AND
-    convert(varchar,PehPerControl, 112)  > = Convert(varchar ,dateadd(month,datediff(month,0,Left(getdate(), 8))-12,0), 112)
+    convert(varchar,PehPerControl, 112)  > = Convert(varchar ,dateadd(month,datediff(month,0,@EndDate)-12,0), 112)
     and pehearncode in ('BEREV', 'FMILL', 'HOL', 'JURY', 'OPHOL', 'PAR', 'PFML', 'REG', 'RETRO', 'SABB', 'SICK', 'VAC')
     GROUP BY PehEEID
     HAVING SUM(PehCurAmt) <> 0.00;
@@ -1193,7 +1193,7 @@ BEGIN
         ,drvGender = EepGender
         ,drvMaritalStatus = eepMaritalStatus
         ,drvIsFullTime = CASE WHEN EecFullTimeOrPartTime = 'F' THEN '1' else  '0' END
-        ,drvIsHourly = ''
+        ,drvIsHourly = CASE WHEN EecSalaryOrHourly = 'H' THEN '1' else  '0' END
         ,drvJobTitle = EecJobtitle
         ,drvWorkStateCode = LocAddressState
         ,drvWorkLocation = EecLocation
@@ -1203,7 +1203,7 @@ BEGIN
         ,drvAddressLine2 = EepAddressLine2
         ,drvAddresscity = EepAddressCity
         ,drvAddressstate = EepAddressState
-        ,drvAddresszipcode = EepAddressZipCode
+        ,drvAddresszipcode = Left(EepAddressZipCode, 5)
         ,drvAddresscountry = EepAddressCountry
         ,drvHomePhone = CASE WHEN ISNULL(eepphonehomenumber, '') <> '' THEN  eepphonehomenumber 
                              WHEN ISNULL(eepphonehomenumber, '') = '' and ISNULL(dbo.dsi_fnlib_GetPhoneNumber(EecEEID,'CEL'),'') <> '' then dbo.dsi_fnlib_GetPhoneNumber(EecEEID,'CEL') END
@@ -1265,7 +1265,7 @@ BEGIN
         ,drvSubSort = eecempno
         -- standard fields above and additional driver fields below
         ,drvUniqueID = eecempno
-        ,drvContactUniqueID = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'eecempno')
+        ,drvContactUniqueID = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'EmpNo')
         ,drvContactEmail = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'AddressEMail')
     INTO dbo.U_EINSGURDEX_drvTbl_CO
     FROM dbo.U_EINSGURDEX_EEList WITH (NOLOCK)
