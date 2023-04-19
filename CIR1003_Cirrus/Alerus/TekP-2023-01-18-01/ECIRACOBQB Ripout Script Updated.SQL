@@ -5,7 +5,7 @@ ECIRACOBQB: Alerus COBRA QB Export
 FormatCode:     ECIRACOBQB
 Project:        Alerus COBRA QB Export
 Client ID:      CIR1003
-Date/time:      2023-03-31 10:14:47.573
+Date/time:      2023-04-19 10:18:01.423
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -209,11 +209,11 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECIRACOBQBZ0','62','D','40','9',NULL,'Phone',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECIRACOBQBZ0','63','D','40','10',NULL,'Phone2',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECIRACOBQBZ0','64','D','40','11',NULL,'AddressSameAsQB',NULL,NULL,'"drvAddressSameAsQB"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECIRACOBQBZ0','65','D','40','12',NULL,'Address1',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECIRACOBQBZ0','66','D','40','13',NULL,'Address2',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECIRACOBQBZ0','67','D','40','14',NULL,'City',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECIRACOBQBZ0','68','D','40','15',NULL,'StateOrProvince',NULL,NULL,'""','(''SS''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECIRACOBQBZ0','69','D','40','16',NULL,'PostalCode',NULL,NULL,'""','(''SS''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECIRACOBQBZ0','65','D','40','12',NULL,'Address1',NULL,NULL,'"drvAddress1"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECIRACOBQBZ0','66','D','40','13',NULL,'Address2',NULL,NULL,'"drvAddress2"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECIRACOBQBZ0','67','D','40','14',NULL,'City',NULL,NULL,'"drvCity"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECIRACOBQBZ0','68','D','40','15',NULL,'StateOrProvince',NULL,NULL,'"drvState"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECIRACOBQBZ0','69','D','40','16',NULL,'PostalCode',NULL,NULL,'"drvZip"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECIRACOBQBZ0','70','D','40','17',NULL,'Country',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECIRACOBQBZ0','71','D','40','18',NULL,'EnrollmentDate ',NULL,NULL,'""','(''SS''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ECIRACOBQBZ0','72','D','40','19',NULL,'Sex',NULL,NULL,'"drvSex"','(''UA''=''T,'')');
@@ -236,18 +236,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ECIRACOBQB_20230331.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ECIRACOBQB_20230419.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202212249','EMPEXPORT','OEACTIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202212249','EMPEXPORT','OEPASSIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708',NULL,NULL,NULL,'Alerus COBRA QB ONDEMAND','202212249','EMPEXPORT','ONDEM_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708',NULL,NULL,NULL,'Alerus COBQB SCH WK TUE 210P E','202212249','EMPEXPORT','SCH_ECIRAC',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202212249','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202201011',NULL,'','','202201011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','KD708,KD723',NULL,NULL,NULL,'Alerus COBRA QB Test','202303319','EMPEXPORT','TEST_XOE','Mar 31 2023  9:42AM','ECIRACOBQB',NULL,NULL,NULL,'202303319','Mar 31 2023 12:00AM','Dec 30 1899 12:00AM','202301011','0','','','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpCIR1003',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202304109','EMPEXPORT','OEACTIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202304109','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202303281',NULL,'','','202303281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202304109','EMPEXPORT','OEPASSIVE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202304109','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202303281',NULL,'','','202303281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KD708',NULL,NULL,NULL,'Alerus COBRA QB ONDEMAND','202304109','EMPEXPORT','ONDEM_XOE',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202304109','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202303281',NULL,'','','202303281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','KD708,KD723,KD74A',NULL,NULL,NULL,'Alerus COBQB SCH WK TUE 210P E','202304109','EMPEXPORT','SCH_ECIRAC',NULL,'ECIRACOBQB',NULL,NULL,NULL,'202304179','Jan 24 2023  4:40PM','Jan 24 2023  4:40PM','202304101',NULL,'','','202303281',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','KD708,KD723,KD74A',NULL,NULL,NULL,'Alerus COBRA QB Test','202304179','EMPEXPORT','TEST_XOE','Apr 19 2023  9:51AM','ECIRACOBQB',NULL,NULL,NULL,'202304179','Apr 17 2023 12:00AM','Dec 30 1899 12:00AM','202304101','0','','','202304101',dbo.fn_GetTimedKey(),NULL,'us3kEpCIR1003',NULL);
 
 -----------
 -- AscImp inserts
@@ -406,7 +406,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QB] (
     [drvCity] varchar(255) NULL,
     [drvState] varchar(255) NULL,
     [drvPostalCode] varchar(50) NULL,
-    [drvCountry] char(3) NULL,
+    [drvCountry] varchar(1) NOT NULL,
     [drvPremiumAddressAsPrimary] varchar(4) NOT NULL,
     [drvGender] varchar(1) NULL,
     [drvDOB] varchar(10) NULL,
@@ -431,6 +431,11 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBDEPENDENT] (
     [drvMiddleInitial] varchar(1) NULL,
     [drvLastName] varchar(100) NULL,
     [drvAddressSameAsQB] varchar(5) NOT NULL,
+    [drvAddress1] varchar(255) NULL,
+    [drvAddress2] varchar(255) NULL,
+    [drvCity] varchar(255) NULL,
+    [drvState] varchar(255) NULL,
+    [drvZip] varchar(50) NULL,
     [drvSex] char(1) NULL,
     [drvDOB] varchar(10) NULL
 );
@@ -540,7 +545,8 @@ Purpose: Alerus COBRA QB Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-Kim Ephraim (ke)   02/10/2023     SR-2023-000XXXXX   added dedcodes LIFEE,LIFES,LIFEC to logic; update FSA amt logic to not sent '0'
+Kim Ephraim (ke)   02/10/2023     TekP-2023-01-18-01  added dedcodes LIFEE,LIFES,LIFEC to logic; update FSA amt logic to not sent '0'
+Marie Waters       04/19/2023     TekP-2023-01-18-01  Added Conditional Address fields for QBDependent  
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECIRACOBQB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECIRACOBQB';
@@ -1035,7 +1041,7 @@ BEGIN
         ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvClentName = 'Cirrus Design Corporation'
-        ,drvClientDivisionName = 'Cirrus Design Corporation'
+        ,drvClientDivisionName = CASE WHEN EepAddressState IN ('WI') THEN 'Wisconsin' ELSE 'Cirrus Design Corporation' END  --'Cirrus Design Corporation'
         ,drvSalutation = ''
         ,drvFirstName = EepNameFirst
         ,drvMiddleInitial = LEFT(EepNameMiddle,1)
@@ -1050,7 +1056,7 @@ BEGIN
         ,drvCity = EepAddressCity
         ,drvState = EepAddressState
         ,drvPostalCode = EepAddressZipCode
-        ,drvCountry = EepAddressCountry
+        ,drvCountry = '' --EepAddressCountry 20230418 KAE per vendor request
         ,drvPremiumAddressAsPrimary = 'TRUE'
         ,drvGender = CASE WHEN EepGender IN ('M', 'F') THEN EepGender ELSE 'U' END
         ,drvDOB = CONVERT(VARCHAR(10), EepDateOfBirth, 101)
@@ -1111,7 +1117,7 @@ BEGIN
         ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvClentName = 'Cirrus Design Corporation'
-        ,drvClientDivisionName = 'Cirrus Design Corporation'
+        ,drvClientDivisionName = CASE WHEN ConAddressState IN ('WI') THEN 'Wisconsin' ELSE 'Cirrus Design Corporation' END --'Cirrus Design Corporation'
         ,drvSalutation = ''
         ,drvFirstName = ConNameFirst
         ,drvMiddleInitial = LEFT(ConNameMiddle,1)
@@ -1121,13 +1127,13 @@ BEGIN
         ,drvEmail = ''
         ,drvPhone = ''
         ,drvPhone2 = ''
-        ,drvAddress1 = ConAddressLine1
-        ,drvAddress2 = ConAddressLine2
-        ,drvCity = ConAddressCity
-        ,drvState = ConAddressState
-        ,drvPostalCode = ConAddressZipCode
-        ,drvCountry = ConAddressCountry
-        ,drvPremiumAddressAsPrimary = 'TRUE'
+        ,drvAddress1 = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressLine1 ELSE '' END
+        ,drvAddress2 = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressLine2 ELSE '' END
+        ,drvCity = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressCity ELSE '' END
+        ,drvState = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressState ELSE '' END
+        ,drvPostalCode = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressZipCode ELSE '' END
+        ,drvCountry = '' --ConAddressCountry 20230418 KAE per vendor request
+        ,drvPremiumAddressAsPrimary = CASE WHEN ConAddressIsDifferent  = 'Y' THEN 'TRUE' ELSE 'FALSE' END --'TRUE'
         ,drvGender = CASE WHEN ConGender IN ('M', 'F') THEN ConGender ELSE 'U' END
         ,drvDOB = CONVERT(VARCHAR(10), ConDateOfBirth, 101)
         ,drvEEType = CASE When EecFullTimeOrPartTime = 'F' then 'FTE'
@@ -1240,15 +1246,16 @@ BEGIN
                             WHEN BdmDedcode = 'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
-                            WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
+                            --WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                             --WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN 'Modern Health EAP'
                         END
         
         ,drvCoverageLevel = CASE WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO','WHSA','WHSA2','WPPO','DEN','VIS') THEN  
-                                CASE WHEN BdmChangeReason NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN
+                                   CASE WHEN ISNULL(BdmChangeReason,'') NOT IN ('LEVNT4', 'DLS', 'D', 'NLED','LEVNT3') THEN
                                    CASE WHEN BdmBenOption = 'EE' OR (BdmBenOption IS NULL AND EdhBenOption = 'EE') THEN 'EE'
-                                        WHEN BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC') and BdmRelationship = 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
-                                        WHEN BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC') AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
+                                        WHEN (BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC')) and BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) = 1 THEN 'EE+CHILD'
+                                        WHEN (BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC')) and BdmRelationship <> 'SPS' AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) >= 1 THEN 'EE+CHILDREN'
+                                        WHEN (BdmBenOption = 'EEC' OR (BdmBenOption IS NULL AND EdhBenOption = 'EEC')) AND (SELECT COUNT(DISTINCT BdmDepRecId) FROM dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK) WHERE BdmRunId = 'QB' AND BdmEEID = xEEID AND BdmRecType = 'DEP' AND BdmRelationship IN ('CHL','DPC','STC','DCH')) > 1 THEN 'EE+CHILDREN'
                                         WHEN BdmBenOption IN ('EEF','EEDPF') OR (BdmBenOption IS NULL AND EdhBenOption IN ('EEF','EEDPF')) THEN 'EE+FAMILY'
                                         WHEN BdmBenOption IN ('EES','EEDP') OR (BdmBenOption IS NULL AND EdhBenOption IN ('EES','EEDP')) THEN 'EE+SPOUSE'
                                     END
@@ -1326,9 +1333,32 @@ BEGIN
                             WHEN BdmDedcode = 'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
-                            WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
+                            --WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                             --WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN 'Modern Health EAP'
                         END IS NOT NULL
+            
+
+                UNION
+
+                SELECT DISTINCT
+                     drvEEID = xEEID
+                    ,drvCoID = xCoID
+                    ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+                    ,drvInitialSort = '1 ' + xEEID + ' 3'
+                    ,drvSubSort = '3'
+    
+                    -- standard fields above and additional driver fields below
+                    ,drvPlanName ='Modern Health EAP'
+                    ,drvCoverageLevel  = 'EE'
+                    ,drvNumberOfUnit =''
+                FROM dbo.U_ECIRACOBQB_EEList WITH (NOLOCK)
+                JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+                    ON EecEEID = xEEID 
+                    AND EecCoID = xCoID
+                JOIN dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
+                    ON BdmEEID = xEEID 
+                    AND BdmCoID = xCoID
+
     ;
     ---------------------------------
     -- DETAIL RECORD - U_ECIRACOBQB_drvTbl_QBDEPENDENT
@@ -1351,8 +1381,12 @@ BEGIN
         ,drvFirstName = ConNameFirst
         ,drvMiddleInitial = LEFT(ConNameMiddle,1)
         ,drvLastName = ConNameLast
-        ,drvAddressSameAsQB = Case ConAddressIsDifferent WHEN 'N' THEN 'TRUE' ELSE 'FALSE' END
-
+        ,drvAddressSameAsQB = Case ConAddressIsDifferent WHEN 'Y' THEN 'TRUE' ELSE 'FALSE' END
+        ,drvAddress1 = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressLine1 END
+        ,drvAddress2 = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressLine2 END
+        ,drvCity = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressCity END
+        ,drvState = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressState END
+        ,drvZip = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressZipCode END
         ,drvSex = CASE WHEN ConGender IN ('M','F') THEN ConGender END
         ,drvDOB = CONVERT(VARCHAR(10), ConDateOfBirth,101)
     INTO dbo.U_ECIRACOBQB_drvTbl_QBDEPENDENT
@@ -1395,7 +1429,7 @@ BEGIN
                             WHEN BdmDedcode =  'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
                             WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
                             WHEN BdmDedcode =  'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
-                            WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
+                            --WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                            -- WHEN BdmDedcode  IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN ' Modern Health EAP'
 
                         END 
@@ -1430,7 +1464,7 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvRecordTypeRateInitial = CASE WHEN BdmDedCode = 'FSA' THEN '[QBPLANMEMBERSPECIFICRATEINITIAL]' END
         ,drvPlanName = CASE WHEN BdmDedCode = 'FSA' THEN 'Further FSA' END
-        ,drvRate =  CASE WHEN BdmDedCode = 'FSA'AND BDMEEAMT <> 0.00 THEN (BdmEEAmt*2) END  ---ke update 20230210
+        ,drvRate =  CASE WHEN BdmDedCode = 'FSA' AND BDMEEAMT <> 0.00 THEN (BdmEEAmt*2) END  ---ke update 20230210
     INTO dbo.U_ECIRACOBQB_drvTbl_QBPLANMEMSPCRATE
     FROM dbo.U_ECIRACOBQB_EEList WITH (NOLOCK)
     JOIN dbo.U_dsi_BDM_ECIRACOBQB WITH (NOLOCK)
@@ -1471,10 +1505,10 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 
 --Update Dates
 UPDATE dbo.AscExp
-    SET expLastStartPerControl = '202201011'
-       ,expStartPerControl     = '202201011'
-       ,expLastEndPerControl   = '202212249'
-       ,expEndPerControl       = '202212249'
+    SET expLastStartPerControl = '202303281'
+       ,expStartPerControl     = '202303281'
+       ,expLastEndPerControl   = '202304109'
+       ,expEndPerControl       = '202304109'
 WHERE expFormatCode = 'ECIRACOBQB';
 
 **********************************************************************************/
