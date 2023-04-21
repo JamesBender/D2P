@@ -5,7 +5,7 @@ ECIRACOBQB: Alerus COBRA QB Export
 FormatCode:     ECIRACOBQB
 Project:        Alerus COBRA QB Export
 Client ID:      CIR1003
-Date/time:      2023-04-19 10:18:01.423
+Date/time:      2023-04-19 14:19:52.950
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -451,7 +451,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBDEPPLANINITIAL] (
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(30) NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvPlanName] varchar(34) NULL
+    [drvPlanName] varchar(37) NULL
 );
 
 -----------
@@ -483,7 +483,7 @@ CREATE TABLE [dbo].[U_ECIRACOBQB_drvTbl_QBPLANINITIAL] (
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(16) NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvPlanName] varchar(34) NULL,
+    [drvPlanName] varchar(37) NULL,
     [drvCoverageLevel] varchar(12) NULL,
     [drvNumberOfUnit] varchar(4) NULL
 );
@@ -545,8 +545,7 @@ Purpose: Alerus COBRA QB Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
-Kim Ephraim (ke)   02/10/2023     TekP-2023-01-18-01  added dedcodes LIFEE,LIFES,LIFEC to logic; update FSA amt logic to not sent '0'
-Marie Waters       04/19/2023     TekP-2023-01-18-01  Added Conditional Address fields for QBDependent  
+Kim Ephraim (ke)   02/10/2023     SR-2023-000XXXXX   added dedcodes LIFEE,LIFES,LIFEC to logic; update FSA amt logic to not sent '0'
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECIRACOBQB';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECIRACOBQB';
@@ -1041,7 +1040,7 @@ BEGIN
         ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvClentName = 'Cirrus Design Corporation'
-        ,drvClientDivisionName = CASE WHEN EepAddressState IN ('WI') THEN 'Wisconsin' ELSE 'Cirrus Design Corporation' END  --'Cirrus Design Corporation'
+        ,drvClientDivisionName =  CASE WHEN XEEID IN ( Select distinct b2.bdmeeid FROM dbo.U_dsi_BDM_ECIRACOBQB b2 WHERE b2.BdmDedCode IN ('WHSA','WPPO','WHSA2') ) THEN  'Wisconsin' ELSE 'Cirrus Design Corporation'    END    --'Cirrus Design Corporation'
         ,drvSalutation = ''
         ,drvFirstName = EepNameFirst
         ,drvMiddleInitial = LEFT(EepNameMiddle,1)
@@ -1117,7 +1116,7 @@ BEGIN
         ,drvSubSort = '1'
         -- standard fields above and additional driver fields below
         ,drvClentName = 'Cirrus Design Corporation'
-        ,drvClientDivisionName = CASE WHEN ConAddressState IN ('WI') THEN 'Wisconsin' ELSE 'Cirrus Design Corporation' END --'Cirrus Design Corporation'
+        ,drvClientDivisionName =  CASE WHEN XEEID IN ( Select distinct b2.bdmeeid FROM dbo.U_dsi_BDM_ECIRACOBQB b2 WHERE b2.BdmDedCode IN ('WHSA','WPPO','WHSA2') ) THEN  'Wisconsin' ELSE 'Cirrus Design Corporation'    END  --'Cirrus Design Corporation'
         ,drvSalutation = ''
         ,drvFirstName = ConNameFirst
         ,drvMiddleInitial = LEFT(ConNameMiddle,1)
@@ -1133,7 +1132,7 @@ BEGIN
         ,drvState = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressState ELSE '' END
         ,drvPostalCode = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressZipCode ELSE '' END
         ,drvCountry = '' --ConAddressCountry 20230418 KAE per vendor request
-        ,drvPremiumAddressAsPrimary = CASE WHEN ConAddressIsDifferent  = 'Y' THEN 'TRUE' ELSE 'FALSE' END --'TRUE'
+        ,drvPremiumAddressAsPrimary = CASE WHEN ConAddressIsDifferent  = 'N' THEN 'TRUE' ELSE 'FALSE' END --'TRUE'
         ,drvGender = CASE WHEN ConGender IN ('M', 'F') THEN ConGender ELSE 'U' END
         ,drvDOB = CONVERT(VARCHAR(10), ConDateOfBirth, 101)
         ,drvEEType = CASE When EecFullTimeOrPartTime = 'F' then 'FTE'
@@ -1243,9 +1242,9 @@ BEGIN
                             WHEN BdmDedcode =  'MHSA2' THEN 'BCBS $3000 HSA Medical'
                             WHEN BdmDedcode =  'MPPO' THEN 'BCBS Traditional Medical'
                             WHEN BdmDedcode =  'VIS' THEN 'EyeMed Vision'
-                            WHEN BdmDedcode = 'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
-                            WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
-                            WHEN BdmDedcode = 'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
+                            WHEN BdmDedcode = 'WHSA' THEN 'BCBS WI $1500 HSA Medical Wisconsin'
+                            WHEN BdmDedcode = 'WHSA2' THEN 'BCBS WI $3000 HSA Medical Wisconsin'
+                            WHEN BdmDedcode = 'WPPO' THEN 'BCBS WI Traditional Medical Wisconsin'
                             --WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                             --WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN 'Modern Health EAP'
                         END
@@ -1330,9 +1329,9 @@ BEGIN
                             WHEN BdmDedcode =  'MHSA2' THEN 'BCBS $3000 HSA Medical'
                             WHEN BdmDedcode =  'MPPO' THEN 'BCBS Traditional Medical'
                             WHEN BdmDedcode =  'VIS' THEN 'EyeMed Vision'
-                            WHEN BdmDedcode = 'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
-                            WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
-                            WHEN BdmDedcode = 'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
+                            WHEN BdmDedcode = 'WHSA' THEN 'BCBS WI $1500 HSA Medical Wisconsin'
+                            WHEN BdmDedcode = 'WHSA2' THEN 'BCBS WI $3000 HSA Medical Wisconsin'
+                            WHEN BdmDedcode = 'WPPO' THEN 'BCBS WI Traditional Medical Wisconsin'
                             --WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                             --WHEN BdmDedCode IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN 'Modern Health EAP'
                         END IS NOT NULL
@@ -1381,12 +1380,12 @@ BEGIN
         ,drvFirstName = ConNameFirst
         ,drvMiddleInitial = LEFT(ConNameMiddle,1)
         ,drvLastName = ConNameLast
-        ,drvAddressSameAsQB = Case ConAddressIsDifferent WHEN 'Y' THEN 'TRUE' ELSE 'FALSE' END
-        ,drvAddress1 = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressLine1 END
-        ,drvAddress2 = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressLine2 END
-        ,drvCity = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressCity END
-        ,drvState = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressState END
-        ,drvZip = CASE WHEN ConAddressIsDifferent  = 'Y' THEN ConAddressZipCode END
+        ,drvAddressSameAsQB = Case ConAddressIsDifferent WHEN 'N' THEN 'TRUE' ELSE 'FALSE' END
+        ,drvAddress1 = Case ConAddressIsDifferent WHEN 'N' THEN ConAddressLine1 END
+        ,drvAddress2 = Case ConAddressIsDifferent WHEN 'N' THEN ConAddressLine1 END
+        ,drvCity = Case ConAddressIsDifferent WHEN 'N' THEN ConAddressCity END
+        ,drvState = Case ConAddressIsDifferent WHEN 'N' THEN ConAddressState END
+        ,drvZip = Case ConAddressIsDifferent WHEN 'N' THEN ConAddressZipCode END
         ,drvSex = CASE WHEN ConGender IN ('M','F') THEN ConGender END
         ,drvDOB = CONVERT(VARCHAR(10), ConDateOfBirth,101)
     INTO dbo.U_ECIRACOBQB_drvTbl_QBDEPENDENT
@@ -1426,9 +1425,9 @@ BEGIN
                             WHEN BdmDedcode =  'MHSA2' THEN 'BCBS $3000 HSA Medical'
                             WHEN BdmDedcode =  'MPPO' THEN 'BCBS Traditional Medical'
                             WHEN BdmDedcode =  'VIS' THEN 'EyeMed Vision'
-                            WHEN BdmDedcode =  'WHSA' THEN 'BCBS $1500 HSA Medical Wisconsin'
-                            WHEN BdmDedcode = 'WHSA2' THEN 'BCBS $3000 HSA Medical Wisconsin'
-                            WHEN BdmDedcode =  'WPPO' THEN 'BCBS Traditional Medical Wisconsin'
+                            WHEN BdmDedcode =  'WHSA' THEN 'BCBS WI $1500 HSA Medical Wisconsin'
+                            WHEN BdmDedcode = 'WHSA2' THEN 'BCBS WI $3000 HSA Medical Wisconsin'
+                            WHEN BdmDedcode =  'WPPO' THEN 'BCBS WI Traditional Medical Wisconsin'
                             --WHEN EecPayGroup <> 'No Pay Group' AND EecEEType = 'REG' THEN 'Modern Health EAP'
                            -- WHEN BdmDedcode  IN ('MHSA','MHSA2','MPPO', 'WHSA','WHSA2','WPPO') THEN ' Modern Health EAP'
 
