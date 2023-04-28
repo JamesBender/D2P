@@ -5,7 +5,7 @@ EREUNUMEXP: Unum Accident_Critical Illness_Hospital
 FormatCode:     EREUNUMEXP
 Project:        Unum Accident_Critical Illness_Hospital
 Client ID:      RAN1005
-Date/time:      2023-04-26 10:03:12.060
+Date/time:      2023-04-27 09:55:29.137
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -265,7 +265,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EREUNUMEXP_20230426.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EREUNUMEXP_20230427.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -696,7 +696,7 @@ BEGIN
         ,drvEETOBACCOUSE = ''
         ,drvMOSTRCNTHIREDATE = REPLACE(CONVERT (CHAR(10), EecDateOfLastHire, 101),'/','')
         ,drvEETERMDATE = CASE WHEN EecEmplStatus = 'T' THEN REPLACE(CONVERT (CHAR(10), EecDateOfTermination, 101),'/','') END
-         ,drvPRODUCT1 = CASE WHEN  CIBdmDedCode   is not null THEN '822' END
+        ,drvPRODUCT1 = CASE WHEN  CIBdmDedCode   is not null THEN '822' END
         ,drvPOLICYNBR1 = CASE WHEN CIBdmDedCode  is not null THEN '704712' END
         ,drvDIVISION1 = CASE WHEN  CIBdmDedCode  is not null  THEN '1' END
         ,drvPOLICYELGGRP1 = CASE WHEN CIBdmDedCode  is not null THEN '1'END
@@ -707,9 +707,9 @@ BEGIN
         ,drvEFFDATEOFEECOVG1 =  CASE WHEN CIBdmDedCode  IS NOT NULL THEN  REPLACE(CONVERT (CHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',CIBdmBenStartDate, @FileMinCovDate), 101),'/','')  END
         ,drvCOVGTERMDATE1 = CASE WHEN CIBdmDedCode  IS NOT NULL THEN REPLACE(CONVERT (CHAR(10),CIBdmBenStopDate, 101),'/','')  END
         ,drvEEBENAMT1 = CASE WHEN CIBdmDedCode  IS NOT NULL and format(CIBdmBenAmt, '0.00')  > '0.00' THEN REPLACE(CIBdmBenAmt, '.00','') END
-        ,drvCISPIND1 = CASE WHEN CIBdmDedCode  IS NOT NULL  AND  sp.ConDateOfBirth is not null   THEN 'Y'  END --ELSE 'N'
-        ,drvEFFDATEOFSPCOVG1 = CASE WHEN  CIBdmDedCode  IS NOT NULL  AND  sp.ConDateOfBirth is not null   THEN REPLACE(CONVERT (CHAR(10),CIBdmBenStartDate, 101),'/','')  END 
-        ,drvSPCOVGTERMDATE1 = CASE WHEN  CIBdmDedCode  IS NOT NULL AND sp.ConDateOfBirth is not null THEN REPLACE(CONVERT (CHAR(10),CIBdmBenStopDate, 101),'/','')  END 
+        ,drvCISPIND1 = CASE WHEN CIBdmDedCode  IS NOT NULL  AND   CIBDepRecID  is not null  THEN 'Y'  END --ELSE 'N'
+        ,drvEFFDATEOFSPCOVG1 = CASE WHEN  CIBdmDedCode  IS NOT NULL  AND  CIBDepRecID  is not null   THEN REPLACE(CONVERT (CHAR(10),CIBdmBenStartDate, 101),'/','')  END 
+        ,drvSPCOVGTERMDATE1 = CASE WHEN  CIBdmDedCode  IS NOT NULL AND CIBDepRecID is not null THEN REPLACE(CONVERT (CHAR(10),CIBdmBenStopDate, 101),'/','')  END 
         ,drvEFFDATEOFCHCOVG1 = ''
         ,drvCHCOVGTERMDATE1 = ''
         ,drvPRODUCT2 = CASE WHEN  AccBdmDedCode  is not null THEN '824' END
@@ -791,7 +791,7 @@ BEGIN
         LEFT JOIN dbo.contacts SP3 WITH (NOLOCK)
         ON Sp3.ConEEID = xEEID
         AND Sp3.ConSystemID = HospDepRecID     
-        AND Sp3.ConRelationship IN ('SPS', 'DOM')
+        AND Sp3.ConRelationship IN ('SPS','SPO','DP')
      LEFT JOIN dbo.Contacts CHILD WITH (NOLOCK)
         ON CHILD.ConEEID = xEEID
         AND CHILD.ConRelationship IN ('CHL','STC','DCH','DPC')

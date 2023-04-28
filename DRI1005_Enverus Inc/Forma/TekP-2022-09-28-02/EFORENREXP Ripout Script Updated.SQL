@@ -5,7 +5,7 @@ EFORENREXP: Forma Enrollment Export
 FormatCode:     EFORENREXP
 Project:        Forma Enrollment Export
 Client ID:      DRI1005
-Date/time:      2023-03-13 15:38:40.933
+Date/time:      2023-04-27 15:29:28.867
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -196,7 +196,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EFORENREXP_20230313.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EFORENREXP_20230427.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -206,8 +206,8 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','J213F',NULL,NULL,NULL,'Active Open Enrollment Export','202301011','EMPEXPORT','OEACTIVE','Jan  3 2023 12:00AM','EFORENREXP',NULL,NULL,NULL,'202301011','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpDRI1005',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Passive Open Enrollment Export','202211259','EMPEXPORT','OEPASSIVE','Nov 23 2022 12:00AM','EFORENREXP',NULL,NULL,NULL,'202211259','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202211251',NULL,'','','202211251',dbo.fn_GetTimedKey(),NULL,'us3kEpDRI1005',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','J213F',NULL,NULL,NULL,'Forma Enrollment Export ONDEM','202301141','EMPEXPORT','ONDEM_XOE','Jan 18 2023 12:00AM','EFORENREXP',NULL,NULL,NULL,'202301141','Jan 14 2023 12:00AM','Dec 30 1899 12:00AM','202301011',NULL,'','','202301011',dbo.fn_GetTimedKey(),NULL,'us3kEpDRI1005',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','J213F',NULL,NULL,NULL,'FORMA PreTax SCH WK SAT 9P EST','202301069','EMPEXPORT','SCH_EFOREN','Jan 11 2023 12:00AM','EFORENREXP',NULL,NULL,NULL,'202303109','Jan  6 2023 12:00AM','Dec 30 1899 12:00AM','202303031',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'us3mWaDRI1005',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','J213F',NULL,NULL,NULL,'Test Purposes Only','202303101','EMPEXPORT','TEST_XOE','Mar  9 2023 11:21AM','EFORENREXP',NULL,NULL,NULL,'202303101','Mar 10 2023 12:00AM','Dec 30 1899 12:00AM','202301031','1020','','','202301031',dbo.fn_GetTimedKey(),NULL,'us3kEpDRI1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','J213F',NULL,NULL,NULL,'FORMA PreTax SCH WK SAT 9P EST','202301069','EMPEXPORT','SCH_EFOREN','Jan 11 2023 12:00AM','EFORENREXP',NULL,NULL,NULL,'202304219','Jan  6 2023 12:00AM','Dec 30 1899 12:00AM','202304141',NULL,'','','202212301',dbo.fn_GetTimedKey(),NULL,'us3mWaDRI1005',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','J213F',NULL,NULL,NULL,'Test Purposes Only','202304151','EMPEXPORT','TEST_XOE','Apr 27 2023  2:49PM','EFORENREXP',NULL,NULL,NULL,'202304151','Apr 15 2023 12:00AM','Dec 30 1899 12:00AM','202304081','1371','','','202304081',dbo.fn_GetTimedKey(),NULL,'us3kEpDRI1005',NULL);
 
 -----------
 -- AscImp inserts
@@ -379,7 +379,7 @@ CREATE TABLE [dbo].[U_EFORENREXP_drvPT] (
     [drvAccountStartDate] datetime NULL,
     [drvAccountEndDate] datetime NULL,
     [drvQLEChange] varchar(5) NOT NULL,
-    [drvQLEType] varchar(28) NOT NULL,
+    [drvQLEType] varchar(28) NULL,
     [drvCoverageTier] varchar(10) NULL
 );
 
@@ -463,6 +463,7 @@ Revision History
 Update By           Date           Request Num        Desc
 Marie Waters        01/11/2023     TekP-2022-09-28-02  Totally re-worked file. File was populating dupes and BDM needed flattening.
 Marie Waters        03/13/2023     TekP-2022-09-28-02  Corrected BDM query as it was using just 'TRAN','PARK' dedcodes BDMstartdate needed to ref all dedcodes
+Marie Waters        04/27/2023       TekP-2022-09-28-02  Made changes to the EN section for terms when there is no BDMStopDate entered and code should flip from true back to false on next run
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EFORENREXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EFORENREXP';
@@ -736,7 +737,7 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EFORENREXP_drvPT','U') IS NOT NULL
         DROP TABLE dbo.U_EFORENREXP_drvPT;
-     SELECT DISTINCT
+          SELECT DISTINCT
          drvEEID = xEEID
         ,drvCoID = xCoID
         ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
@@ -765,41 +766,44 @@ BEGIN
                                     CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN  CAST(cast (YEAR(@Startdate +1 )as varchar ) + '1231' as datetime)   END
                                WHEN @ExportCode NOT LIKE 'OE%' THEN 
                                     CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenstopDate, CAST(cast (YEAR(@Startdate )as varchar ) + '1231' as datetime) )
-                                         WHEN ALLbdmdedcode is not null   and EecEmplStatus = 'T'  THEN BdmBenstopDate 
+                                         WHEN ALLbdmdedcode is not null   and EecEmplStatus = 'T' and BdmBenstopDate is not null THEN BdmBenstopDate 
+                                         WHEN ALLbdmdedcode is not null   and EecEmplStatus = 'T' AND ( edhChangeReason in ('403') OR EecTermReason in ('202', '203','208','100','104','217','108','110','109','205','101','209'))   THEN EECDateofTermination
                                     END
                               END
-        ,drvEmployeePayPeriodElection =   ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhPARK) as varchar),'0.00') 
-                                               WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhTRAN) as varchar),'0.00')
-                                               WHEN FSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhFSA) as varchar),'0.00') 
-                                               WHEN FSADbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhFSAD ) as varchar),'0.00')
-                                               WHEN HSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhHSA ) as varchar),'0.00')
+
+        ,drvEmployeePayPeriodElection =ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhPARK) as varchar),'0.00') 
+                                                   WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhTRAN) as varchar),'0.00')
+                                                   WHEN FSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhFSA) as varchar),'0.00') 
+                                                   WHEN FSADbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhFSAD ) as varchar),'0.00')
+                                                   WHEN HSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhHSA ) as varchar),'0.00')
+                                                END,'0.00')
+        ,drvEmployerPayPeriodElection = CASE WHEN HSAbdmdedcode IS NOT NULL  THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) ELSE '0.00' END --ISNULL(CASE WHEN ERHSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) END,'0.00')
+        ,drvEmployeeElection =  ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),ParkBdmEEGoalAmt) as varchar),'0.00') 
+                                            WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),TRANBdmEEGoalAmt) as varchar),'0.00')
+                                            WHEN FSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),FSABdmEEGoalAmt) as varchar),'0.00') 
+                                            WHEN FSADbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),FSADBdmEEGoalAmt ) as varchar),'0.00')
+                                            WHEN HSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),HSABdmEEGoalAmt ) as varchar),'0.00')
                                             END,'0.00')
-        ,drvEmployerPayPeriodElection =    CASE WHEN HSAbdmdedcode IS NOT NULL  THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) ELSE '0.00' END --ISNULL(CASE WHEN ERHSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) END,'0.00')
-        ,drvEmployeeElection =            ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),ParkBdmEEGoalAmt) as varchar),'0.00') 
-                                               WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),TRANBdmEEGoalAmt) as varchar),'0.00')
-                                               WHEN FSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),FSABdmEEGoalAmt) as varchar),'0.00') 
-                                               WHEN FSADbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),FSADBdmEEGoalAmt ) as varchar),'0.00')
-                                               WHEN HSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),HSABdmEEGoalAmt ) as varchar),'0.00')
-                                            END,'0.00')
+                                            
         ,drvEmployerElection =  CASE WHEN HSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmtYTD) as varchar) ELSE '0.00' END --ISNULL(CASE WHEN ERHSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) END,'0.00')
         ,drvAccountStatus = CASE WHEN bdmbenstatus <> 'A' THEN 'Terminated' else 'Active' END
-        ,drvAccountStartDate = CASE WHEN  EecEmplStatus = 'T' AND edhChangeReason = '403' OR EecTermReason IN ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN EdhEffDate --MW Added 3/10/23
-                                    WHEN EecEmplStatus = 'A' AND edhChangeReason IN ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4') THEN EdhEffDate --MW Added 3/10/23
-                                    WHEN EecEmplStatus = 'L' THEN EdhEffDate --MW Added 3/10/23
+        ,drvAccountStartDate = CASE --WHEN  EecEmplStatus = 'T' AND edhChangeReason = '403' OR EecTermReason IN ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN EdhEffDate --MW Added 3/10/23
+                                    --WHEN EecEmplStatus = 'A' AND edhChangeReason IN ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4') THEN EdhEffDate --MW Added 3/10/23
+                                    --WHEN EecEmplStatus = 'L' THEN EdhEffDate --MW Added 3/10/23
                                     WHEN ALLbdmdedcode IS NOT NULL  THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenStartDate, CAST(cast (YEAR(@Startdate )as varchar ) + '0101' as datetime) )  END
         ,drvAccountEndDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
-        ,drvQLEChange = CASE  WHEN EecEmplStatus = 'A' AND bdmChangeReason  in ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4') THEN 'TRUE'
-                             WHEN EecEmplStatus = 'T' AND bdmChangeReason  in ('403') OR EecTermReason in ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN 'TRUE'
-                             WHEN EecEmplStatus = 'L' THEN 'TRUE'   
+        ,drvQLEChange =  CASE WHEN EecEmplStatus = 'A' AND edhChangeReason  in ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4') and EdhEffDate Between @Startdate and @EndDate THEN 'TRUE'
+                              WHEN EecEmplStatus = 'T' AND ( edhChangeReason in ('403') OR EecTermReason in ('202', '203','208','100','104','217','108','110','109','205','101','209'))  THEN 'TRUE'
+                            -- WHEN EecEmplStatus = 'L' THEN 'TRUE'   
                        ELSE 'FALSE' END
-        ,drvQLEType = CASE WHEN EecEmplStatus = 'L' THEN 'OTHER'
-                            WHEN bdmChangeReason in ('LEVNT4') THEN 'Marital Status Change'  
+        ,drvQLEType = CASE --WHEN EecEmplStatus = 'L' THEN 'OTHER'
+                            WHEN bdmChangeReason in ('LEVNT4') and EdhEffDate Between @Startdate and @EndDate THEN 'Marital Status Change'  
 
-                            WHEN bdmChangeReason in ('105', '303', 'LEVNT2','LEVNT3' ) THEN 'Dependent Eligibility Change'
+                            WHEN bdmChangeReason in ('105', '303', 'LEVNT2','LEVNT3' ) and EdhEffDate Between @Startdate and @EndDate THEN 'Dependent Eligibility Change'
  
-                WHEN EecEmplStatus IN ('A','T') AND bdmChangeReason in ('403') OR EecTermReason  in ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN 'Employment Status Change'  
-            WHEN  bdmbenstatus in ('T','C') AND EecEmplStatus =  'A' AND bdmChangeReason in ('202') THEN 'Health Coverage Change'
-ELSE '' END
+                WHEN  EecEmplStatus IN ('A','T') AND( bdmChangeReason in ('403') OR EecTermReason  in ('202', '203','208','100','104','217','108','110','109','205','101','209') ) and EdhEffDate Between @Startdate and @EndDate THEN 'Employment Status Change'  
+                WHEN  bdmbenstatus in ('T','C') AND EecEmplStatus =  'A' AND edhChangeReason in ('202') and EdhEffDate Between @Startdate and @EndDate THEN 'Health Coverage Change'
+           END
         ,drvCoverageTier = CASE WHEN INDbdmdedcode  IS NOT NULL THEN 'Individual'
                                 WHEN FAMbdmdedcode  IS NOT NULL THEN 'Family'
                                 WHEN FSADbdmdedcode IS NOT NULL THEN 'Separately'
@@ -826,20 +830,16 @@ ELSE '' END
                         ,MAX(CASE WHEN bdmdedcode IN ('FSAD') THEN bdmdedcode END ) AS FSADbdmdedcode
                         ,MAX(CASE WHEN bdmdedcode IN ('ERHSA') THEN bdmdedcode END ) AS ERHSAbdmdedcode
                         ,MAX(CASE WHEN bdmdedcode IN ('FSA','FSAD') THEN bdmdedcode END ) AS FSA2bdmdedcode 
-                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF') THEN bdmdedcode END ) AS HSAbdmdedcode
-                        ,MAX(CASE WHEN bdmdedcode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN bdmdedcode END ) AS ALLbdmdedcode
+                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4','HSAF4','HSCI4','HSCF4','HSAI','HSAF','HSACI','HSACF') THEN bdmdedcode END ) AS HSAbdmdedcode
+                        ,MAX(CASE WHEN bdmdedcode IN ('PARK','TRAN','FSA','FSAD','HSAI4','HSAF4','HSCI4','HSCF4','HSAI','HSAF','HSACI','HSACF','ERHSA') THEN bdmdedcode END ) AS ALLbdmdedcode
                         ,MAX(CASE WHEN bdmdedcode IN ('HSAI4', 'HSCI4', 'HSAI', 'HSACI') THEN bdmdedcode END ) AS INDbdmdedcode
                         ,MAX(CASE WHEN bdmdedcode IN ('HSAF4', 'HSCF4', 'HSAF', 'HSACF') THEN bdmdedcode END ) AS FAMbdmdedcode
-
-                        ,MAX(CASE WHEN bdmdedcode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN BdmBenStartDate END ) AS BdmBenStartDate
-                        ,MAX(CASE WHEN bdmdedcode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN BdmBenStopDate END ) AS BdmBenStopDate
-
-                        ,MAX(CASE WHEN bdmdedcode IN ('FSA', 'FSAD') THEN BdmBenStopDate END ) AS FSABdmBenStopDate
-                       
-                       
-                        ,MAX(CASE WHEN bdmdedcode IN ('FSA') THEN BdmEEGoalAmt END ) as FSABdmEEGoalAmt
+                        ,MAX(CASE WHEN bdmdedcode IN ('PARK','TRAN','FSA','FSAD','HSAI4','HSAF4','HSCI4','HSCF4','HSAI','HSAF','HSACI','HSACF','ERHSA') THEN BdmBenStartDate END ) AS BdmBenStartDate
+                        ,MAX(CASE WHEN bdmdedcode IN ('PARK','TRAN','FSA','FSAD','HSAI4','HSAF4','HSCI4','HSCF4','HSAI','HSAF','HSACI','HSACF','ERHSA') THEN BdmBenStopDate END ) AS BdmBenStopDate
+                        ,MAX(CASE WHEN bdmdedcode IN ('FSA','FSAD') THEN BdmBenStopDate END ) AS FSABdmBenStopDate 
+                        ,MAX(CASE WHEN bdmdedcode IN ('FSA')  THEN BdmEEGoalAmt END ) as FSABdmEEGoalAmt
                         ,MAX(CASE WHEN bdmdedcode IN ('FSAD') THEN BdmEEGoalAmt END ) as FSADBdmEEGoalAmt
-                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN BdmEEGoalAmt END ) as HSABdmEEGoalAmt
+                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4','HSAF4','HSCI4','HSCF4','HSAI','HSAF','HSACI','HSACF','ERHSA') THEN BdmEEGoalAmt END ) as HSABdmEEGoalAmt
                         ,MAX(CASE WHEN bdmdedcode IN ('PARK') THEN  BdmEEGoalAmt END ) as ParkBdmEEGoalAmt
                         ,MAX(CASE WHEN bdmdedcode IN ('TRAN') THEN  BdmEEGoalAmt END ) as TRANBdmEEGoalAmt
                         ,MAX(bdmChangeReason) as bdmChangeReason
@@ -862,14 +862,148 @@ ELSE '' END
                     JOIN dbo.BenChRsn WITH (NOLOCK)
                         ON EdhChangeReason = BchCode
                     WHERE  EdhDedCode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA')
-                     and edhChangeReason IN ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4', '403')
+                     and edhChangeReason IN ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4', '403', '202')
                     ) AS RS
             WHERE RN = 1
        
             GROUP BY EdhEEID, EdhCoID ) AS Edh
         ON EdhEEID = xEEID
         AND EdhCOID = xCOID
-    WHERE EecEEType <> 'TES' and (EecEmplStatus <> 'T' or  EecEmplStatus = 'T'  AND eectermreason <>'TRO' AND EecDateOfTermination between @Startdate and @Enddate) 
+        WHERE EecEEType <> 'TES' and (EecEmplStatus <> 'T' or  EecEmplStatus = 'T'  AND eectermreason <>'TRO' AND EecDateOfTermination between @Startdate and @Enddate) 
+--     SELECT DISTINCT
+--         drvEEID = xEEID
+--        ,drvCoID = xCoID
+--        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+--        ,drvINitialSort = eepSSN
+--        ,drvSubSort = '2'
+--        ,drvSubSort2 = ''
+--        -- standard fields above and additional driver fields below
+--        ,drvRecordType = 'EN'
+--        ,drvCompanyID = 'enverus'
+--        ,drvEmployeeID = EecEmpNo
+--        ,drvEmployeeWorkEmail = EepAddressEMail
+        
+--        ,drvAccountType = CASE WHEN PARKbdmdedcode IS NOT NULL  THEN 'PARKING'
+--                               WHEN TRANbdmdedcode IS NOT NULL  THEN 'TRANSIT'
+--                               WHEN FSAbdmdedcode  IS NOT NULL  THEN 'FSA' 
+--                               WHEN FSADbdmdedcode IS NOT NULL  THEN 'DCFSA'
+--                               WHEN HSAbdmdedcode  IS NOT NULL  THEN 'HSA'
+--                               --WHEN BdmdedCode = 'ERHSA' THEN 'HSAER'
+--                            END
+--         ,drvPlanStartDate = CASE WHEN @ExportCode LIKE 'OE%' THEN 
+--                                    CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL) THEN  CAST(cast (YEAR(@Startdate+1 )as varchar ) + '0101' as datetime)   END
+--                                 WHEN @ExportCode NOT LIKE 'OE%' THEN 
+--                                    CASE WHEN ALLbdmdedcode IS NOT NULL  THEN CAST(cast (YEAR(@Startdate )as varchar ) + '0101' as datetime) END -- dbo.dsi_fnGetMINMaxDates('MAX',BdmBenStartDate, CAST(cast (YEAR(getdate() )as varchar ) + '0101' as datetime) )  END
+--                                END
+--        ,drvPlanEndDate = CASE WHEN @ExportCode LIKE 'OE%' THEN 
+--                                    CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN  CAST(cast (YEAR(@Startdate +1 )as varchar ) + '1231' as datetime)   END
+--                               WHEN @ExportCode NOT LIKE 'OE%' THEN 
+--                                    CASE WHEN (FSADbdmdedcode IS NOT NULL or FSAbdmdedcode IS NOT NULL)   THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenstopDate, CAST(cast (YEAR(@Startdate )as varchar ) + '1231' as datetime) )
+--                                         WHEN ALLbdmdedcode is not null   and EecEmplStatus = 'T'  THEN BdmBenstopDate 
+--                                    END
+--                              END
+--        ,drvEmployeePayPeriodElection =   ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhPARK) as varchar),'0.00') 
+--                                               WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhTRAN) as varchar),'0.00')
+--                                               WHEN FSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhFSA) as varchar),'0.00') 
+--                                               WHEN FSADbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhFSAD ) as varchar),'0.00')
+--                                               WHEN HSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),PdhHSA ) as varchar),'0.00')
+--                                            END,'0.00')
+--        ,drvEmployerPayPeriodElection =    CASE WHEN HSAbdmdedcode IS NOT NULL  THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) ELSE '0.00' END --ISNULL(CASE WHEN ERHSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) END,'0.00')
+--        ,drvEmployeeElection =            ISNULL(CASE WHEN PARKbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),ParkBdmEEGoalAmt) as varchar),'0.00') 
+--                                               WHEN TRANbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),TRANBdmEEGoalAmt) as varchar),'0.00')
+--                                               WHEN FSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),FSABdmEEGoalAmt) as varchar),'0.00') 
+--                                               WHEN FSADbdmdedcode IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),FSADBdmEEGoalAmt ) as varchar),'0.00')
+--                                               WHEN HSAbdmdedcode  IS NOT NULL THEN ISNULL(CAST(CONVERT(DECIMAL(10,2),HSABdmEEGoalAmt ) as varchar),'0.00')
+--                                            END,'0.00')
+--        ,drvEmployerElection =  CASE WHEN HSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmtYTD) as varchar) ELSE '0.00' END --ISNULL(CASE WHEN ERHSAbdmdedcode IS NOT NULL THEN CAST(CONVERT(DECIMAL(10,2),PehCurAmt) as varchar) END,'0.00')
+--        ,drvAccountStatus = CASE WHEN bdmbenstatus <> 'A' THEN 'Terminated' else 'Active' END
+--        ,drvAccountStartDate = CASE WHEN  EecEmplStatus = 'T' AND edhChangeReason = '403' OR EecTermReason IN ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN EdhEffDate --MW Added 3/10/23
+--                                    WHEN EecEmplStatus = 'A' AND edhChangeReason IN ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4') THEN EdhEffDate --MW Added 3/10/23
+--                                    WHEN EecEmplStatus = 'L' THEN EdhEffDate --MW Added 3/10/23
+--                                    WHEN ALLbdmdedcode IS NOT NULL  THEN dbo.dsi_fnGetMINMaxDates('MAX',BdmBenStartDate, CAST(cast (YEAR(@Startdate )as varchar ) + '0101' as datetime) )  END
+--        ,drvAccountEndDate = CASE WHEN EecEmplStatus = 'T' THEN EecDateOfTermination END
+--        ,drvQLEChange = CASE  WHEN EecEmplStatus = 'A' AND bdmChangeReason  in ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4') THEN 'TRUE'
+--                             WHEN EecEmplStatus = 'T' AND bdmChangeReason  in ('403') OR EecTermReason in ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN 'TRUE'
+--                             WHEN EecEmplStatus = 'L' THEN 'TRUE'   
+--                       ELSE 'FALSE' END
+--        ,drvQLEType = CASE WHEN EecEmplStatus = 'L' THEN 'OTHER'
+--                            WHEN bdmChangeReason in ('LEVNT4') THEN 'Marital Status Change'  
+
+--                            WHEN bdmChangeReason in ('105', '303', 'LEVNT2','LEVNT3' ) THEN 'Dependent Eligibility Change'
+ 
+--                WHEN EecEmplStatus IN ('A','T') AND bdmChangeReason in ('403') OR EecTermReason  in ('202', '203','208','100','104','217','108','110','109','205','101','209') THEN 'Employment Status Change'  
+--            WHEN  bdmbenstatus in ('T','C') AND EecEmplStatus =  'A' AND bdmChangeReason in ('202') THEN 'Health Coverage Change'
+--ELSE '' END
+--        ,drvCoverageTier = CASE WHEN INDbdmdedcode  IS NOT NULL THEN 'Individual'
+--                                WHEN FAMbdmdedcode  IS NOT NULL THEN 'Family'
+--                                WHEN FSADbdmdedcode IS NOT NULL THEN 'Separately'
+--                            END
+
+
+
+--    INTO dbo.U_EFORENREXP_drvPT
+--    FROM dbo.U_EFORENREXP_EEList WITH (NOLOCK)
+--    JOIN dbo.vw_INt_EmpComp WITH (NOLOCK)
+--        ON EecEEID = xEEID 
+--        AND EecCoID = xCoID
+--    JOIN dbo.EmpPers WITH (NOLOCK)
+--        ON EepEEID = xEEID
+
+--    JOIN (
+--                        SELECT  BdmEEID
+--                        ,BdmCOID
+--                        ,bdmbenstatus
+--                        ,bdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('TRAN') THEN bdmdedcode END ) AS TRANbdmdedcode 
+--                        ,MAX(CASE WHEN bdmdedcode IN ('PARK') THEN bdmdedcode END ) AS PARKbdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('FSA') THEN bdmdedcode END ) AS FSAbdmdedcode 
+--                        ,MAX(CASE WHEN bdmdedcode IN ('FSAD') THEN bdmdedcode END ) AS FSADbdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('ERHSA') THEN bdmdedcode END ) AS ERHSAbdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('FSA','FSAD') THEN bdmdedcode END ) AS FSA2bdmdedcode 
+--                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF') THEN bdmdedcode END ) AS HSAbdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN bdmdedcode END ) AS ALLbdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4', 'HSCI4', 'HSAI', 'HSACI') THEN bdmdedcode END ) AS INDbdmdedcode
+--                        ,MAX(CASE WHEN bdmdedcode IN ('HSAF4', 'HSCF4', 'HSAF', 'HSACF') THEN bdmdedcode END ) AS FAMbdmdedcode
+
+--                        ,MAX(CASE WHEN bdmdedcode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN BdmBenStartDate END ) AS BdmBenStartDate
+--                        ,MAX(CASE WHEN bdmdedcode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN BdmBenStopDate END ) AS BdmBenStopDate
+
+--                        ,MAX(CASE WHEN bdmdedcode IN ('FSA', 'FSAD') THEN BdmBenStopDate END ) AS FSABdmBenStopDate
+                       
+                       
+--                        ,MAX(CASE WHEN bdmdedcode IN ('FSA') THEN BdmEEGoalAmt END ) as FSABdmEEGoalAmt
+--                        ,MAX(CASE WHEN bdmdedcode IN ('FSAD') THEN BdmEEGoalAmt END ) as FSADBdmEEGoalAmt
+--                        ,MAX(CASE WHEN bdmdedcode IN ('HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA') THEN BdmEEGoalAmt END ) as HSABdmEEGoalAmt
+--                        ,MAX(CASE WHEN bdmdedcode IN ('PARK') THEN  BdmEEGoalAmt END ) as ParkBdmEEGoalAmt
+--                        ,MAX(CASE WHEN bdmdedcode IN ('TRAN') THEN  BdmEEGoalAmt END ) as TRANBdmEEGoalAmt
+--                        ,MAX(bdmChangeReason) as bdmChangeReason
+--                        FROM dbo.U_dsi_BDM_EFORENREXP WITH (NOLOCK)
+--                        WHERE bdmbenstatus IN ('A', 'T')
+--                        Group by BdmEEID ,BdmCOID ,bdmbenstatus,bdmdedcode
+        
+--                ) BDM 
+--        ON BdmEEID = xEEID 
+--        AND BdmCoID = xCoID
+--    LEFT  JOIN dbo.U_EFORENREXP_PDedHist WITH (NOLOCK) -- MW Changed to Left JOIN 1/3/2023
+--        on PdhEEID = xeeid
+--    LEFT JOIN dbo.U_EFORENREXP_PEarHist  WITH (NOLOCK)
+--        on peheeid = xeeid
+--    LEFT JOIN ( --MW Added JOIN 3/10/23
+--                SELECT EdhEEID, EdhCOID, MAX(EdhEffDate) AS EdhEffDate, MAX(EdhChangeReason) AS EdhChangeReason, MAX(BchIsCobraQualifiedEvent) AS BchIsCobraQualifiedEvent
+--                FROM (
+--                    SELECT EdhEEID, EdhCOID, EdhDedCode, EdhEffDate,edhChangeReason,  BchIsCobraQualifiedEvent, ROW_NUMBER() OVER (PARTITION by EdhEEID, EdhCOID, EdhDedCode ORDER BY EdhDateTimeCreated desc) AS RN
+--                    FROM dbo.EmpHDed WITH (NOLOCK)
+--                    JOIN dbo.BenChRsn WITH (NOLOCK)
+--                        ON EdhChangeReason = BchCode
+--                    WHERE  EdhDedCode IN ('PARK', 'TRAN', 'FSA', 'FSAD', 'HSAI4', 'HSAF4', 'HSCI4', 'HSCF4', 'HSAI', 'HSAF', 'HSACI', 'HSACF','ERHSA')
+--                     and edhChangeReason IN ('105','202','303','LEVNT2', 'LEVNT3','LEVNT4', '403')
+--                    ) AS RS
+--            WHERE RN = 1
+       
+--            GROUP BY EdhEEID, EdhCoID ) AS Edh
+--        ON EdhEEID = xEEID
+--        AND EdhCOID = xCOID
+--    WHERE EecEEType <> 'TES' and (EecEmplStatus <> 'T' or  EecEmplStatus = 'T'  AND eectermreason <>'TRO' AND EecDateOfTermination between @Startdate and @Enddate) 
     ;
 
     --==========================================
