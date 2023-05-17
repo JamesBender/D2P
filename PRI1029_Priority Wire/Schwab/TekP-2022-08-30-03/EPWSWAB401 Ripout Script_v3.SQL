@@ -5,7 +5,7 @@ EPWSWAB401: Charles Schwab TPA 401K
 FormatCode:     EPWSWAB401
 Project:        Charles Schwab TPA 401K
 Client ID:      PRI1029
-Date/time:      2023-03-21 10:30:36.227
+Date/time:      2023-05-01 07:25:54.770
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -252,7 +252,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPWSWAB401_20230321.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPWSWAB401_20230501.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -261,7 +261,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',XRAEE,XRS43',NULL,NULL,NULL,'Charles Schwab TPA 401K ONDEM','202211019','EMPEXPORT','ONDEM_XOE',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',XRS43,XRAEE',NULL,NULL,NULL,'Charles Schwab TPA 401K-Sched','202211019','EMPEXPORT','SCH_EPWSWA',NULL,'EPWSWAB401',NULL,NULL,NULL,'202211019','Nov  1 2022  2:56PM','Nov  1 2022  2:56PM','202209151',NULL,'','','202209151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','XRAEE',NULL,NULL,NULL,'Charles Schwab TPA 401K-Test','202301309','EMPEXPORT','TEST_XOE','Mar 20 2023 11:27AM','EPWSWAB401',NULL,NULL,NULL,'202301309','Jan 30 2023 12:00AM','Dec 30 1899 12:00AM','202301301','524','eecPayGroup','HOURLY','202301301',dbo.fn_GetTimedKey(),NULL,'us3kEpPRI1029',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','XRAEE',NULL,NULL,NULL,'Charles Schwab TPA 401K-Test','202303241','EMPEXPORT','TEST_XOE','Mar 28 2023  8:14PM','EPWSWAB401',NULL,NULL,NULL,'202303241','Mar 24 2023 12:00AM','Mar 18 2023 12:00AM','202303241','536','eecPayGroup','HOURLY','202303241',dbo.fn_GetTimedKey(),NULL,'us3kEpPRI1029',NULL);
 
 -----------
 -- AscImp inserts
@@ -808,9 +808,9 @@ BEGIN
         ,drvPayPeriodPlanTestComp = CASE WHEN PehInclInDefComp < 0.00 THEN FORMAT(PehInclInDefComp,'-00000000.00') ELSE ISNULL(FORMAT(PehInclInDefComp,'000000000.00'),'000000000.00') END 
         ,drvPayPeriodGrossTotalComp = CASE WHEN PehInclInDefComp < 0.00 THEN FORMAT(PehInclInDefComp,'-00000000.00') ELSE ISNULL(FORMAT(PehInclInDefComp,'000000000.00'),'000000000.00') END
         ,drvPayPeriodAdditionalComp = '000000000.00' --
-        ,drvPayPeriodHoursPaid =  ISNULL(CASE WHEN EecSalaryorHourly = 'S'  AND PehInclInDefCompHrs < = '40' THEN '45'  ---- ISNULL(FORMAT(PehInclInDefCompHrs,'0000') , '0000')
+        ,drvPayPeriodHoursPaid =  ISNULL(CASE WHEN EecSalaryorHourly = 'S'  AND PehInclInDefCompHrs < = '40' THEN '0045'  ---- ISNULL(FORMAT(PehInclInDefCompHrs,'0000') , '0000')
                                               WHEN EecSalaryOrHourly = 'S'  AND PehInclInDefCompHrs = '0'    THEN '0000'
-                                              WHEN EecSalaryorHourly = 'S'  AND PehInclInDefCompHrs > '40' THEN '90' 
+                                              WHEN EecSalaryorHourly = 'S'  AND PehInclInDefCompHrs > '40' THEN '0090' 
                                               WHEN EecSalaryorHourly = 'H' THEN FORMAT(PehInclInDefCompHrs,'0000') 
                                             END, '0000')
         ,drvYTDPreTax = CASE WHEN (Pdh401YTD + Pdh81YTD) < 0.00 THEN FORMAT(Pdh401YTD + Pdh81YTD,'-00000000.00') ELSE ISNULL(FORMAT(Pdh401YTD + Pdh81YTD,'000000000.00'),'000000000.00') END
@@ -821,10 +821,10 @@ BEGIN
         ,drvYTDPlanTestComp = ISNULL(FORMAT(PehInclInDefCompYTD,'000000000.00'),'000000000.00') ----ISNULL(FORMAT(PehCurAmtErnCodes,'000000000.00'),'000000000.00')
         ,drvYTDGrossTotalComp = ISNULL(FORMAT(PehInclInDefCompYTD,'000000000.00'),'000000000.00')  ----ISNULL(FORMAT(PehCurAmtErnCodes,'000000000.00'),'000000000.00')
         ,drvSalary = ISNULL(FORMAT(EecAnnSalary,'000000000.00'),'000000000.00')
-        ,drvPlanYTDHoursPaid =  ISNULL(CASE WHEN EecSalaryorHourly = 'S' AND PehCurHrs < = '40' THEN '45' --ISNULL(FORMAT(PehInclInDefCompHrsYTD, '0000'), '0000')  
+        ,drvPlanYTDHoursPaid =  ISNULL(CASE WHEN EecSalaryorHourly = 'S' AND PehCurHrs < = '40' THEN '0045' --ISNULL(FORMAT(PehInclInDefCompHrsYTD, '0000'), '0000')  
                                             WHEN EecSalaryOrHourly = 'S' AND PehCurHrs = '0'  THEN '0000'
-                                            WHEN EecSalaryorHourly = 'S' AND PehCurHrs >  '40' THEN '90' 
-                                            WHEN EecSalaryorHourly = 'H' THEN FORMAT(PehCurHrs,'0000') 
+                                            WHEN EecSalaryorHourly = 'S' AND PehCurHrs >  '40' THEN '0090' 
+                                            WHEN EecSalaryorHourly = 'H' THEN FORMAT(PehCurHrsYTD,'0000') 
                                         END, '0000')
         ,drvPayFrequency = CASE WHEN PgrPayFrequency = 'W' THEN 'W'
                                 WHEN PgrPayFrequency = 'M' THEN 'M'
@@ -890,7 +890,8 @@ BEGIN
         ON EshEEID = xEEID 
         AND EshCOID = xCOID
         WHERE eecEEtype <> 'TES'
-         AND ( EecEmplstatus <> 'T' OR (EecEmplStatus = 'T' AND  EecDateOfTermination BETWEEN cast(Year(@Startdate) as varchar(4)) +'-01-01' AND @EndDate or (PehCurAmt > 0.00 or PdhEECurAmt > 0.00) )) 
+         AND ( EecEmplstatus <> 'T' OR (EecEmplStatus = 'T' AND  Cast(LefT(EecDateOfTermination, 10)as varchar(10))  BETWEEN cast(Year(@Startdate) as varchar(4)) +'-01-01' AND Cast(LefT(@EndDate , 10)as varchar(10))  or (ISNULL(PehCurAmt, '0.00') > 0.00 or ISNULL(PdhEECurAmt, '0.00') > 0.00) )) 
+    
     
     ;
     ---------------------------------

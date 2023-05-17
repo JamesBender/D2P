@@ -1,0 +1,754 @@
+/**********************************************************************************
+
+ECCAVOYAXP: Voya Hospital Accident and Critical Illness
+
+FormatCode:     ECCAVOYAXP
+Project:        Voya Hospital Accident and Critical Illness
+Client ID:      USG1000
+Date/time:      2023-05-15 14:58:07.863
+Ripout version: 7.4
+Export Type:    Web
+Status:         Testing
+Environment:    EZ24
+Server:         EZ2SUP4DB01
+Database:       ULTIPRO_BETHB
+Web Filename:   USG1000_73487_EEHISTORY_ECCAVOYAXP_ExportCode_YYYYMMDD_HHMMSS.txt
+ExportPath:    \\ez2sup4db01\ultiprodata\[Name]\Exports\
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_ECCAVOYAXP_SavePath') IS NOT NULL DROP TABLE dbo.U_ECCAVOYAXP_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'ECCAVOYAXP'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'ECCAVOYAXP'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'ECCAVOYAXP'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'ECCAVOYAXP')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'ECCAVOYAXP'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'ECCAVOYAXP'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'ECCAVOYAXP'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'ECCAVOYAXP'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'ECCAVOYAXP'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'ECCAVOYAXP'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'ECCAVOYAXP'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'ECCAVOYAXP'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'ECCAVOYAXP'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_sp_BuildDriverTables_ECCAVOYAXP') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECCAVOYAXP];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','ECCAVOYAXP','Voya Hospital Accident and Critical Illness','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','3000','S','N','ECCAVOYAXPZ0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECCAVOYAXPZ0','50','H','01','1',NULL,'GBPID',NULL,NULL,'"GBPID"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECCAVOYAXPZ0','50','H','01','2',NULL,'ACCT',NULL,NULL,'"ACCT"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECCAVOYAXPZ0','50','H','01','3',NULL,'EEID',NULL,NULL,'"EEID"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECCAVOYAXPZ0','50','H','01','4',NULL,'REL',NULL,NULL,'"REL"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECCAVOYAXPZ0','50','H','01','5',NULL,'SSN',NULL,NULL,'"SSN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECCAVOYAXPZ0','50','H','01','6',NULL,'LASTNM',NULL,NULL,'"LASTNM"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECCAVOYAXPZ0','50','H','01','7',NULL,'FIRSTNM',NULL,NULL,'"FIRSTNM"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECCAVOYAXPZ0','50','H','01','8',NULL,'MIDDLE',NULL,NULL,'"MIDDLE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECCAVOYAXPZ0','50','H','01','9',NULL,'NMSUFFIX',NULL,NULL,'"NMSUFFIX"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECCAVOYAXPZ0','50','H','01','10',NULL,'ADD1',NULL,NULL,'"ADD1"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECCAVOYAXPZ0','50','H','01','11',NULL,'ADD2',NULL,NULL,'"ADD2"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECCAVOYAXPZ0','50','H','01','12',NULL,'CITY',NULL,NULL,'"CITY"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECCAVOYAXPZ0','50','H','01','13',NULL,'ST',NULL,NULL,'"ST"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECCAVOYAXPZ0','50','H','01','14',NULL,'ZIP',NULL,NULL,'"ZIP"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECCAVOYAXPZ0','50','H','01','15',NULL,'COUNTRY',NULL,NULL,'"COUNTRY"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECCAVOYAXPZ0','50','H','01','16',NULL,'DOB',NULL,NULL,'"DOB"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECCAVOYAXPZ0','50','H','01','17',NULL,'GENDER',NULL,NULL,'"GENDER"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECCAVOYAXPZ0','50','H','01','18',NULL,'PHONE',NULL,NULL,'"PHONE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ECCAVOYAXPZ0','50','H','01','19',NULL,'EMAIL',NULL,NULL,'"EMAIL"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ECCAVOYAXPZ0','50','H','01','20',NULL,'TOB',NULL,NULL,'"TOB"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ECCAVOYAXPZ0','50','H','01','21',NULL,'DISABILITY',NULL,NULL,'"DISABILITY"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ECCAVOYAXPZ0','50','H','01','22',NULL,'EEJT',NULL,NULL,'"EEJT"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ECCAVOYAXPZ0','50','H','01','23',NULL,'SALARY',NULL,NULL,'"SALARY"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ECCAVOYAXPZ0','50','H','01','24',NULL,'DEDFREQ',NULL,NULL,'"DEDFREQ"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECCAVOYAXPZ0','50','H','01','25',NULL,'EEST',NULL,NULL,'"EEST"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECCAVOYAXPZ0','50','H','01','26',NULL,'EEDOH',NULL,NULL,'"EEDOH"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECCAVOYAXPZ0','50','H','01','27',NULL,'ETD',NULL,NULL,'"ETD"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECCAVOYAXPZ0','50','H','01','28',NULL,'TKVR',NULL,NULL,'"TKVR"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ECCAVOYAXPZ0','50','H','01','29',NULL,'WRKL',NULL,NULL,'"WRKL"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ECCAVOYAXPZ0','50','H','01','30',NULL,'CHSSN',NULL,NULL,'"CHSSN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ECCAVOYAXPZ0','50','H','01','31',NULL,'PLTP',NULL,NULL,'"PLTP"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ECCAVOYAXPZ0','50','H','01','32',NULL,'BFCLS',NULL,NULL,'"BFCLS"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ECCAVOYAXPZ0','50','H','01','33',NULL,'VOYAED',NULL,NULL,'"VOYAED"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ECCAVOYAXPZ0','50','H','01','34',NULL,'ERPD',NULL,NULL,'"ERPD"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ECCAVOYAXPZ0','50','H','01','35',NULL,'EEPD',NULL,NULL,'"EEPD"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ECCAVOYAXPZ0','50','H','01','36',NULL,'BTD',NULL,NULL,'"BTD"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ECCAVOYAXPZ0','50','H','01','37',NULL,'OCED',NULL,NULL,'"OCED"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ECCAVOYAXPZ0','50','H','01','38',NULL,'TIER',NULL,NULL,'"TIER"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ECCAVOYAXPZ0','50','H','01','39',NULL,'TERMINATION CODES',NULL,NULL,'"TERMINATION CODES"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ECCAVOYAXPZ0','50','H','01','40',NULL,'PAYTYPE',NULL,NULL,'"PAYTYPE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ECCAVOYAXPZ0','50','H','01','41',NULL,'HRLYWAGE',NULL,NULL,'"HRLYWAGE"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ECCAVOYAXPZ0','50','H','01','42',NULL,'HRSWEEK',NULL,NULL,'"HRSWEEK"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ECCAVOYAXPZ0','50','H','01','43',NULL,'SINFO',NULL,NULL,'"SINFO"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ECCAVOYAXPZ0','50','H','01','44',NULL,'REMARKS',NULL,NULL,'"REMARKS"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ECCAVOYAXPZ0','50','H','01','45',NULL,'MCI',NULL,NULL,'"MCI"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','ECCAVOYAXPZ0','8','D','10','1',NULL,'GBPID',NULL,NULL,'"drvGBPID"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','ECCAVOYAXPZ0','4','D','10','2',NULL,'ACCT',NULL,NULL,'"drvACCT"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','ECCAVOYAXPZ0','15','D','10','3',NULL,'EEID',NULL,NULL,'"drvEEIDEE"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','ECCAVOYAXPZ0','2','D','10','4',NULL,'REL',NULL,NULL,'"drvREL"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','ECCAVOYAXPZ0','9','D','10','5',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','ECCAVOYAXPZ0','30','D','10','6',NULL,'LASTNM',NULL,NULL,'"drvLASTNM"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','ECCAVOYAXPZ0','20','D','10','7',NULL,'FIRSTNM',NULL,NULL,'"drvFIRSTNM"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('8','ECCAVOYAXPZ0','10','D','10','8',NULL,'MIDDLE',NULL,NULL,'"drvMIDDLE"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','ECCAVOYAXPZ0','10','D','10','9',NULL,'NMSUFFIX',NULL,NULL,'"drvNMSUFFIX"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','ECCAVOYAXPZ0','30','D','10','10',NULL,'ADD1',NULL,NULL,'"drvADD1"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','ECCAVOYAXPZ0','30','D','10','11',NULL,'ADD2',NULL,NULL,'"drvADD2"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('12','ECCAVOYAXPZ0','30','D','10','12',NULL,'CITY',NULL,NULL,'"drvCITY"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('13','ECCAVOYAXPZ0','3','D','10','13',NULL,'ST',NULL,NULL,'"drvST"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('14','ECCAVOYAXPZ0','9','D','10','14',NULL,'ZIP',NULL,NULL,'"drvZIP"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('15','ECCAVOYAXPZ0','31','D','10','15',NULL,'COUNTRY',NULL,NULL,'"drvCOUNTRY"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('16','ECCAVOYAXPZ0','8','D','10','16',NULL,'DOB',NULL,NULL,'"drvDOB"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('17','ECCAVOYAXPZ0','1','D','10','17',NULL,'GENDER',NULL,NULL,'"drvGENDER"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('18','ECCAVOYAXPZ0','13','D','10','18',NULL,'PHONE',NULL,NULL,'"drvPHONE"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('19','ECCAVOYAXPZ0','65','D','10','19',NULL,'EMAIL',NULL,NULL,'"drvEMAIL"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('20','ECCAVOYAXPZ0','3','D','10','20',NULL,'TOB',NULL,NULL,'"drvTOB"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('21','ECCAVOYAXPZ0','50','D','10','21',NULL,'DISABILITY',NULL,NULL,'"drvDISABILITY"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('22','ECCAVOYAXPZ0','30','D','10','22',NULL,'EEJT',NULL,NULL,'"drvEEJT"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('23','ECCAVOYAXPZ0','11','D','10','23',NULL,'SALARY',NULL,NULL,'"drvSALARY"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('24','ECCAVOYAXPZ0','5','D','10','24',NULL,'DEDFREQ',NULL,NULL,'"drvDEDFREQ"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('25','ECCAVOYAXPZ0','30','D','10','25',NULL,'EEST',NULL,NULL,'"drvEEST"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('26','ECCAVOYAXPZ0','8','D','10','26',NULL,'EEDOH',NULL,NULL,'"drvEEDOH"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('27','ECCAVOYAXPZ0','8','D','10','27',NULL,'ETD',NULL,NULL,'"drvETD"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('28','ECCAVOYAXPZ0','1','D','10','28',NULL,'TKVR',NULL,NULL,'"drvTKVR"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('29','ECCAVOYAXPZ0','10','D','10','29',NULL,'WRKL',NULL,NULL,'"drvWRKL"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('30','ECCAVOYAXPZ0','1','D','10','30',NULL,'CHSSN',NULL,NULL,'"drvCHSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('31','ECCAVOYAXPZ0','4','D','10','31',NULL,'PLTP',NULL,NULL,'"drvPLTP"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('32','ECCAVOYAXPZ0','30','D','10','32',NULL,'BFCLS',NULL,NULL,'"drvBFCLS"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('33','ECCAVOYAXPZ0','8','D','10','33',NULL,'VOYAED',NULL,NULL,'"drvVOYAED"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('34','ECCAVOYAXPZ0','6','D','10','34',NULL,'ERPD',NULL,NULL,'"drvERPD"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('35','ECCAVOYAXPZ0','6','D','10','35',NULL,'EEPD',NULL,NULL,'"drvEEPD"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('36','ECCAVOYAXPZ0','8','D','10','36',NULL,'BTD',NULL,NULL,'"drvBTD"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('37','ECCAVOYAXPZ0','8','D','10','37',NULL,'OCED',NULL,NULL,'"drvOCED"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('38','ECCAVOYAXPZ0','3','D','10','38',NULL,'TIER',NULL,NULL,'"drvTIER"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','ECCAVOYAXPZ0','8','D','10','39',NULL,'TERMINATION CODES',NULL,NULL,'"drvTERMINATIONCODES"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','ECCAVOYAXPZ0','1','D','10','40',NULL,'PAYTYPE',NULL,NULL,'"drvPAYTYPE"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','ECCAVOYAXPZ0','6','D','10','41',NULL,'HRLYWAGE',NULL,NULL,'"drvHRLYWAGE"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','ECCAVOYAXPZ0','6','D','10','42',NULL,'HRSWEEK',NULL,NULL,'"drvHRSWEEK"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','ECCAVOYAXPZ0','50','D','10','43',NULL,'SINFO',NULL,NULL,'"drvSINFO"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','ECCAVOYAXPZ0','30','D','10','44',NULL,'REMARKS',NULL,NULL,'"drvREMARKS"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','ECCAVOYAXPZ0','7','D','10','45',NULL,'MCI',NULL,NULL,'"drvMCI"','(''UA''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'ECCAVOYAXP_20230515.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Voya Hospital Accident and Cri','202305159','EMPEXPORT','ONDEM_XOE',NULL,'ECCAVOYAXP',NULL,NULL,NULL,'202305159','May 15 2023  2:44PM','May 15 2023  2:44PM','202305151',NULL,'','','202305151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Voya Hospital Accident a-Sched','202305159','EMPEXPORT','SCH_ECCAVO',NULL,'ECCAVOYAXP',NULL,NULL,NULL,'202305159','May 15 2023  2:44PM','May 15 2023  2:44PM','202305151',NULL,'','','202305151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Voya Hospital Accident a-Test','202305159','EMPEXPORT','TEST_XOE',NULL,'ECCAVOYAXP',NULL,NULL,NULL,'202305159','May 15 2023  2:44PM','May 15 2023  2:44PM','202305151',NULL,'','','202305151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCAVOYAXP','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCAVOYAXP','ExportPath','V','\\ez2sup4db01\ultiprodata\[Name]\Exports\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCAVOYAXP','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCAVOYAXP','SubSort','C','drvSubSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCAVOYAXP','Testing','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('ECCAVOYAXP','UseFileName','V','N');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECCAVOYAXP','H01','None',NULL);
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('ECCAVOYAXP','D10','dbo.U_ECCAVOYAXP_drvTbl',NULL);
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v3 inserts
+-----------
+
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_ECCAVOYAXP]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: Archdiocese of Washington
+
+Created By: Marie Waters
+Business Analyst: Katherine Ricca
+Create Date: 05/15/2023
+Service Request Number: TekP-2022-10-31-07
+
+Purpose: Voya Hospital Accident and Critical Illness
+
+Revision History
+----------------
+Update By           Date           Request Num        Desc
+XXXX                XX/XX/2023     SR-2023-000XXXXX   XXXXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'ECCAVOYAXP';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'ECCAVOYAXP';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'ECCAVOYAXP';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'ECCAVOYAXP';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ECCAVOYAXP' ORDER BY RunID DESC;
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECCAVOYAXP', 'ONDEM_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECCAVOYAXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'ECCAVOYAXP', 'SCH_ECCAVO';
+
+EXEC dbo.dsi_BDM_sp_ErrorCheck 'ECCAVOYAXP';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'ECCAVOYAXP', @AllObjects = 'Y', @IsWeb = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --==========================================
+    -- Declare variables
+    --==========================================
+    DECLARE  @FormatCode        VARCHAR(10)
+            ,@ExportCode        VARCHAR(10)
+            ,@StartDate         DATETIME
+            ,@EndDate           DATETIME
+            ,@StartPerControl   VARCHAR(9)
+            ,@EndPerControl     VARCHAR(9);
+
+    -- Set FormatCode
+    SELECT @FormatCode = 'ECCAVOYAXP';
+
+    -- Declare dates from Parameter file
+    SELECT
+         @StartPerControl = StartPerControl
+        ,@EndPerControl   = EndPerControl
+        ,@StartDate       = LEFT(StartPerControl,8)
+        ,@EndDate         = DATEADD(S,-1,DATEADD(D,1,LEFT(EndPerControl,8)))
+        ,@ExportCode      = ExportCode
+    FROM dbo.U_dsi_Parameters WITH (NOLOCK)
+    WHERE FormatCode = @FormatCode;
+
+    --==========================================
+    -- Clean EE List 
+    -- Caution: Careful of cleaning EE List if including paycheck data
+    --==========================================
+
+    -- Cleans EE List of terms where EE active in another company (transfer), or active in more than one company
+    DELETE FROM dbo.U_ECCAVOYAXP_EEList
+    WHERE xCoID <> dbo.dsi_BDM_fn_GetCurrentCOID(xEEID)
+    AND xEEID IN (SELECT xEEID FROM dbo.U_ECCAVOYAXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
+
+
+    -    --==========================================
+    -- Audit Section
+    --==========================================
+    -- Get data from audit fields table. Add fields here if auditing
+    IF OBJECT_ID('U_ECCAVOYAXP_AuditFields','U') IS NOT NULL
+        DROP TABLE dbo.U_ECCAVOYAXP_AuditFields;
+    CREATE TABLE dbo.U_ECCAVOYAXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));
+    INSERT INTO dbo.U_ECCAVOYAXP_AuditFields VALUES ('empcomp','eecemplstatus'); 
+    -- Create audit table based on fields defined above
+    IF OBJECT_ID('U_ECCAVOYAXP_Audit','U') IS NOT NULL
+        DROP TABLE dbo.U_ECCAVOYAXP_Audit;
+    SELECT 
+        audEEID  = audKey1Value
+        ,AudCOID = audKey2Value
+        ,audKey3 = audKey3Value
+        ,audTableName
+        ,audFieldName
+        ,audAction
+        ,audDateTime
+        ,audOldValue
+        ,audNewValue
+        ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)
+    INTO dbo.U_ECCAVOYAXP_Audit
+    FROM dbo.vw_AuditData WITH (NOLOCK) 
+    JOIN dbo.U_ECCAVOYAXP_AuditFields WITH (NOLOCK) 
+        ON audTableName = aTableName
+        AND audFieldName = aFieldName
+    WHERE audDateTime BETWEEN @StartDate AND @EndDate
+    AND audAction <> 'DELETE';
+
+    -- Create Index
+    CREATE CLUSTERED INDEX CDX_U_ECCAVOYAXP_Audit ON dbo.U_ECCAVOYAXP_Audit (audEEID,AudCOID);
+
+    ----================
+    ---- Changes Only
+    ----================
+    --DELETE FROM dbo.U_ECCAVOYAXP_EEList
+    --WHERE NOT EXISTS (SELECT 1 FROM dbo.U_ECCAVOYAXP_Audit WHERE audEEID = xEEID AND audRowNo = 1);
+
+    --==========================================
+    -- Create Deduction List
+    --==========================================
+    DECLARE @DedList VARCHAR(MAX)
+    SET @DedList = 'AC,CI,CI2,CIC1,CIC5,CIS10,CIS20,HI';
+
+
+
+    IF OBJECT_ID('U_ECCAVOYAXP_DedList','U') IS NOT NULL
+        DROP TABLE dbo.U_ECCAVOYAXP_DedList;
+    SELECT DISTINCT
+         DedCode = DedDedCode
+        ,DedType = DedDedType
+    INTO dbo.U_ECCAVOYAXP_DedList
+    FROM dbo.fn_ListToTable(@DedList)
+    JOIN dbo.DedCode WITH (NOLOCK)
+        ON DedDedCode = Item;
+
+
+    --==========================================
+    -- BDM Section
+    --==========================================
+    DELETE FROM dbo.U_dsi_BDM_Configuration WHERE FormatCode = @FormatCode;
+
+    -- Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'DedCodes',@DedList);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
+
+    -- Non-Required parameters
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
+    INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'CountDependents','Y');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsSpouse','SPS,');
+    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'RelationshipsChild','CHL, DD, STC, COD');
+    -- Run BDM Module
+    EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
+    EXEC dbo.dsi_bdm_sp_CalculateBenefitAmounts @FormatCode;
+
+
+                 INSERT INTO dbo.U_dsi_BDM_ECCAVOYAXP 
+             (    
+                  BdmRecType
+                 ,BdmCOID
+                 ,BdmEEID
+                 ,BdmDepRecID
+                 ,BdmSystemID
+                 ,BdmRunID
+                 ,BdmDedRowStatus
+                 ,BdmRelationship
+                 ,BdmDateOfBirth
+                 ,BdmDedCode
+                 ,BdmDedType
+                 ,BdmBenOption
+                 ,BdmBenStatus
+                 ,BdmBenStartDate
+                 ,BdmBenStopDate
+                 ,BdmBenStatusDate
+                 ,BdmBenOptionDate
+                 ,BdmChangeReason
+                 ,BdmStartDate
+                 ,BdmStopDate
+                 ,BdmIsCobraCovered
+                 ,BdmCobraReason
+                 ,BdmDateOfCOBRAEvent
+                 ,BdmIsPQB
+                 ,BdmIsChildOldest
+                 ,BdmUSGField1
+                 ,BdmUSGField2
+                 ,BdmUSGDate1
+                 ,BdmUSGDate2
+                 ,BdmTVStartDate
+                 ,BdmSessionID
+                 ,BdmEEAmt
+                 ,BdmEECalcRateOrPct
+                 ,BdmEEGoalAmt
+                 ,BdmEEMemberOrCaseNo
+                 ,BdmERAmt
+                 ,BdmNumSpouses
+                 ,BdmNumChildren
+                 ,BdmNumDomPartners
+                 ,BdmNumDPChildren
+             )
+      
+      
+                 SELECT BdmRecType ='DEP'
+        
+                , ee.eedcoid
+                , ee.eedeeid
+                , consystemid
+                , NULL
+                , NULL
+                , NULL
+                , conRelationship
+                , ConDateofBirth
+                , ee.eeddedcode
+                , ee.DedDedType
+                , ee.eedbenoption
+                , ee.eedbenstatus
+                , ee.eedbenstartdate
+                , ee.eedbenstopdate
+                , ee.EedBenStatusDate
+                , ee.EedBenOptionDate
+                , ee.EedChangeReason
+                , ee.eedbenstartdate
+                , ee.eedbenstopdate
+                , ee.eedvalidforexport
+                , ee.EedCobraReason
+                , ee. EedDateOfCOBRAEvent
+                , ee.EedIsPQB
+                , NULL
+                , NULL
+                , NULL
+                , NULL
+                , NULL
+                , ee.EedTVStartDate 
+                , ee.EedSessionID
+                , ee.EedBenAmt
+                , ee.EedEECalcRateOrPct
+                , ee.EedEEGoalAmt
+                , NULL
+                , ee.EedERAmt
+                 , BdmNumSpouses=1
+                , 0
+                , 0
+                , 0
+
+             FROM dbo.empded ed WITH (nolock)
+             JOIN dbo.emppers WITH (nolock) ON eepeeid = ed.eedeeid
+             JOIN dbo.u_dsi_bdm_EmpDeductions ee WITH (nolock) 
+                ON ee.eedeeid = ed.eedeeid 
+                AND ee.eedcoid = ed.eedcoid
+                AND eedFormatCode = 'ECCAVOYAXP' AND eedValidForExport = 'Y'
+                AND ee.eeddedcode = ed.eeddedcode
+             JOIN dbo.contacts WITH (nolock) 
+                ON eedDepRecID = consystemid
+                WHERE ee.eeddedcode IN ('CI1','CI2','CIC1','CIC5','CIS10','CIS20','AC','HI') 
+                and ConRelationship IN ('SPS')
+  
+
+    --==========================================
+    -- Build Driver Tables
+    --==========================================
+    ---------------------------------
+    -- DETAIL RECORD - U_ECCAVOYAXP_drvTbl
+    ---------------------------------
+    IF OBJECT_ID('U_ECCAVOYAXP_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_ECCAVOYAXP_drvTbl;
+    SELECT DISTINCT
+         drvEEID = xEEID
+        ,drvCoID = xCoID
+        ,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvInitialSort = ''
+        ,drvSubSort = ''
+        -- standard fields above and additional driver fields below
+        ,drvGBPID = '00732303'
+        ,drvACCT = '0002'
+        ,drvEEIDEE = EecEmpNo
+        ,drvREL =  CASE WHEN BdmRecType = 'EMP' THEN 'EE'
+                        WHEN BdmRecType = 'DEP'and ConRelationship= 'SPS' THEN 'SP'
+                        WHEN BdmRecType = 'DEP'and ConRelationship in ('CHL', 'COD', 'STC', 'DD') THEN 'CH'
+                    END
+        ,drvSSN = CASE WHEN BdmRecType = 'EMP' THEN eepSSN
+                       WHEN BdmRecType = 'DEP' THEN ConSSN 
+                    END
+        ,drvLASTNM = CASE WHEN BdmRecType = 'EMP' THEN eepNameLast
+                       WHEN BdmRecType = 'DEP' THEN ConNameLast
+                    END
+        ,drvFIRSTNM = CASE WHEN BdmRecType = 'EMP' THEN EepNameFirst
+                       WHEN BdmRecType = 'DEP' THEN ConNameFirst
+                    END
+        ,drvMIDDLE = CASE WHEN BdmRecType = 'EMP' THEN EepNameMiddle
+                       WHEN BdmRecType = 'DEP' THEN ConNameMiddle
+                    END
+        ,drvNMSUFFIX = ''
+        ,drvADD1 = REPLACE(CASE WHEN BdmRecType = 'EMP' THEN EepAddressLine1
+                       WHEN BdmRecType = 'DEP' and ConAddressIsDifferent= 'Y' THEN ConAddressLine1 ELSE EepAddressLine1
+                     END, ',', '')
+        ,drvADD2 = REPLACE(CASE WHEN BdmRecType = 'EMP' THEN EepAddressLine2
+                       WHEN BdmRecType = 'DEP' and ConAddressIsDifferent= 'Y' THEN ConAddressLine2 ELSE EepAddressLine2
+                     END, ',', '')
+        ,drvCITY = REPLACE( CASE WHEN BdmRecType = 'EMP' THEN EepAddressCity
+                       WHEN BdmRecType = 'DEP' and ConAddressIsDifferent= 'Y' THEN ConAddressCity ELSE EepAddressCity
+                     END, ',', '')
+        ,drvST = REPLACE(CASE WHEN BdmRecType = 'EMP' THEN EepAddressState
+                       WHEN BdmRecType = 'DEP' and ConAddressIsDifferent= 'Y' THEN ConAddressState ELSE EepAddressState
+                     END, ',', '')
+        ,drvZIP = CASE WHEN BdmRecType = 'EMP' THEN EepAddressZipCode
+                       WHEN BdmRecType = 'DEP' and ConAddressIsDifferent= 'Y' THEN ConAddressZipCode ELSE EepAddressZipCode
+                     END
+        ,drvCOUNTRY = REPLACE(CASE WHEN BdmRecType = 'EMP' THEN EepAddressCountry
+                       WHEN BdmRecType = 'DEP' and ConAddressIsDifferent= 'Y' THEN ConAddressCountry ELSE EepAddressCountry
+                     END, ',', '')
+        
+        ,drvDOB = REPLACE(CONVERT (CHAR(10),CASE WHEN BdmRecType = 'EMP' THEN EepDateOfBirth
+                       WHEN BdmRecType = 'DEP' THEN ConDateOfBirth
+                    END, 101),'/','')
+        ,drvGENDER = CASE WHEN BdmRecType = 'EMP' THEN EepGender
+                       WHEN BdmRecType = 'DEP' THEN ConGender
+                    END
+        ,drvPHONE = CASE WHEN BdmRecType = 'EMP' THEN EepPhoneHomeNumber
+                       WHEN BdmRecType = 'DEP' THEN ConPhoneHomeNumber
+                    END
+        ,drvEMAIL = CASE WHEN BdmRecType = 'EMP' THEN EepAddressEMail
+                       WHEN BdmRecType = 'DEP' THEN ConEmailAddr
+                    END
+        
+        ,drvTOB = 'N/A'
+        ,drvDISABILITY = CASE WHEN BdmRecType = 'DEP'and ConRelationship in ('CHL', 'COD', 'STC', 'DD') and ConIsDisabled= 'Y' THEN 'Disabled' END
+        ,drvEEJT =  REPLACE(CASE WHEN BdmRecType = 'EMP' THEN JbcDesc END, ',', '')
+        ,drvSALARY = CASE WHEN BdmRecType = 'EMP' THEN Format(EecAnnSalary, '00.00') END
+        ,drvDEDFREQ = CASE WHEN BdmRecType = 'EMP' THEN PgrPayFrequency  END
+        ,drvEEST = CASE WHEN BdmRecType = 'EMP' THEN EecEmplStatus END
+        ,drvEEDOH = CASE WHEN BdmRecType = 'EMP' THEN REPLACE(CONVERT (CHAR(10),EecDateOfLastHire, 101),'/','') END
+        ,drvETD = CASE WHEN BdmRecType = 'EMP' THEN REPLACE(CONVERT (CHAR(10),EecDateOfTermination, 101),'/','') END
+        ,drvTKVR = 'N'
+        ,drvWRKL = REPLACE(CASE WHEN BdmRecType = 'EMP' THEN LocAddressState END, ',', '')
+        ,drvCHSSN = ''
+        ,drvPLTP = CASE WHEN BdmDedCode in ('CI1','CI2','CIC1','CIC5','CIS10','CIS20') then 'CI'
+                        WHEN BdmDedCode in ('AC') then 'AC'
+                        WHEN BdmDedCode in ('HI') then 'HI'
+                    END
+        ,drvBFCLS = CASE WHEN BdmDedCode in ('AC') THEN 'Low'
+                        -- WHEN BdmDedCode in ('HI') then 'High'
+                        END
+        ,drvVOYAED =REPLACE(CONVERT (CHAR(10), BdmBenStartDate, 101),'/','')
+        ,drvERPD =  ''
+        ,drvEEPD =  CASE   WHEN BdmDedCode IN ('AC') THEN NULL
+                           WHEN BdmDedCode = 'HI' THEN '200'
+                           WHEN BdmRecType = 'EMP' and BdmDedCode IN ('CI1','CI2','CIS10','CIS20') and BdmRelationship IN ('EMP')  THEN REPLACE(BcaEEBenAmt, '.00', '')
+                        
+                           WHEN BdmRecType = 'DEP' and BdmDedCode IN ('CI1','CI2','CIS10','CIS20') and BdmRelationship IN ('SPS') THEN REPLACE(BcaEEBenAmt, '.00', '')
+                          
+                           WHEN BdmRecType = 'DEP' and BdmDedCode IN ('CIC1','CIC5') and BdmRelationship IN ('CHL', 'COD', 'STC', 'DD')  THEN REPLACE(BcaEEBenAmt, '.00', '')
+                          
+                         END
+        
+                    
+        ,drvBTD = REPLACE(CONVERT (CHAR(10), BdmBenStopDate, 101),'/','')
+        ,drvOCED = ''
+        ,drvTIER = CASE WHEN  BdmRecType = 'EMP'  and BdmDedCode in ('CI1','CI2','CIC1','CIC5','CIS10','CIS20') and  BdmBenoption  is null and BdmNumSpouses = 0   AND BdmNumChildren =  0  THEN 'EMP'
+                        WHEN  BdmRecType = 'DEP' and BdmDedCode in ('CI1','CI2','CIC1','CIC5','CIS10','CIS20')  and BdmNumSpouses >= 1 and BdmNumChildren =  0 THEN  'ESP'
+                        WHEN  BdmRecType = 'DEP' AND BdmDedCode in ('CI1','CI2','CIC1','CIC5','CIS10','CIS20')  and BdmNumSpouses = 0   AND BdmNumChildren = 1 THEN 'ECH'
+                        WHEN  BdmDedCode in ('CI1','CI2','CIC1','CIC5','CIS10','CIS20') and  BdmBenoption  is null and ( BdmNumSpouses >= 0 or BdmRelationship IN ('SPS' ) ) AND BdmNumChildren >= 1  THEN 'FAM'
+                   
+                    END
+        ,drvTERMINATIONCODES = ''
+        ,drvPAYTYPE = CASE WHEN BdmRecType = 'EMP' THEN EecSalaryOrHourly END
+        ,drvHRLYWAGE = ''
+        ,drvHRSWEEK = ''
+        ,drvSINFO = ''
+        ,drvREMARKS = ''
+        ,drvMCI = ''
+    INTO dbo.U_ECCAVOYAXP_drvTbl
+    FROM dbo.U_ECCAVOYAXP_EEList WITH (NOLOCK)
+    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+        ON EecEEID = xEEID 
+        AND EecCoID = xCoID
+    JOIN dbo.EmpPers WITH (NOLOCK)
+        ON EepEEID = xEEID
+     JOIN dbo.JobCode WITH (NOLOCK)
+        ON JbcJobCode = EecJobCode
+    JOIN dbo.PayGroup WITH (NOLOCK)
+        ON PgrPayGroup = EecPayGroup
+    LEFT JOIN dbo.location WITH (NOLOCK)
+        ON LocCode = EecLocation
+    JOIN dbo.U_dsi_BDM_ECCAVOYAXP WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
+    LEFT JOIN dbo.u_dsi_bdm_BenCalculationAmounts 
+        ON bdmeeid = bcaeeid 
+        AND bdmcoid = bcacoid
+       AND bdmdedcode = bcadedcode  and BcaEEBenAmt <> 0.00
+        LEFT JOIN dbo.contacts WITH (NOLOCK)
+        ON ConEEID = xEEID
+        AND ConSystemID = BdmDepRecID
+    LEFT JOIn dbo.U_ECCAVOYAXP_Audit WITH (NOLOCK)
+        ON audeeid =Xeeid 
+        AND AudCOID =  XCoid
+        where eecEEtype <> 'TES' and (eecEmplStatus <> 'T' or (Eecemplstatus = 'T' and audDateTime Is not null ))
+        AND (BdmRecType = 'EMP' AND BdmDedCode IN ('AC','HI','CI1','CI2','CIC1','CIC5','CIS10','CIS20')
+         OR BdmRecType = 'DEP' AND BdmDedCode IN ('AC','HI','CI1','CI2','CIC1','CIC5','CIS10','CIS20'))
+
+    --==========================================
+    -- Set FileName
+    --==========================================
+    IF (dbo.dsi_fnVariable(@FormatCode,'UseFileName') = 'N')
+    BEGIN
+        UPDATE dbo.U_dsi_Parameters
+            SET ExportFile = CASE WHEN dbo.dsi_fnVariable(@FormatCode,'Testing') = 'Y' THEN 'Test_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  WHEN @ExportCode LIKE 'OE%' THEN 'OE_Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                                  ELSE 'Filename_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+                             END
+        WHERE FormatCode = @FormatCode;
+    END
+
+END;
+/**********************************************************************************
+
+--Alter the View
+ALTER VIEW dbo.dsi_vwECCAVOYAXP_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_ECCAVOYAXP_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out iascDefF
+SELECT * FROM dbo.iascDefF
+WHERE AdfHeaderSystemID LIKE 'ECCAVOYAXP%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET expLastStartPerControl = '202305081'
+       ,expStartPerControl     = '202305081'
+       ,expLastEndPerControl   = '202305159'
+       ,expEndPerControl       = '202305159'
+WHERE expFormatCode = 'ECCAVOYAXP';
+
+**********************************************************************************/
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'ECCAVOYAXP' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'ECCAVOYAXP'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'ECCAVOYAXP'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECCAVOYAXP', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'ECCAVOYAXP', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'ECCAVOYAXP', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout

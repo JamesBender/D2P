@@ -5,7 +5,7 @@ EAHAVANEXP: Vanguard 401K Export
 FormatCode:     EAHAVANEXP
 Project:        Vanguard 401K Export
 Client ID:      AME1048
-Date/time:      2023-05-09 12:23:22.650
+Date/time:      2023-05-09 13:44:22.827
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -488,23 +488,23 @@ CREATE TABLE [dbo].[U_EAHAVANEXP_DedList] (
 
 IF OBJECT_ID('U_EAHAVANEXP_drvTbl_Contribution') IS NULL
 CREATE TABLE [dbo].[U_EAHAVANEXP_drvTbl_Contribution] (
-    [drvEEID] char(12) NULL,
-    [drvCoID] char(5) NULL,
+    [drvEEID] varchar(1) NOT NULL,
+    [drvCoID] varchar(1) NOT NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvSSN] char(11) NULL,
-    [drvContributionSource1] varchar(3) NULL,
-    [drvContributionTotalAmt1] varchar(25) NULL,
-    [drvContributionSource2] varchar(3) NULL,
-    [drvContributionAmount2] varchar(25) NULL,
-    [drvContributionSource3] varchar(3) NULL,
-    [drvContributionAmount3] varchar(25) NULL,
-    [drvContributionSource4] varchar(3) NULL,
-    [drvContributionAmount4] varchar(25) NULL,
-    [drvContributionSource5] varchar(3) NULL,
-    [drvContributionAmount5] varchar(25) NULL,
-    [drvContributionSource6] varchar(3) NULL,
-    [drvContributionAmount6] varchar(25) NULL
+    [drvSSN] varchar(1) NOT NULL,
+    [drvContributionSource1] varchar(209) NOT NULL,
+    [drvContributionTotalAmt1] varchar(1) NOT NULL,
+    [drvContributionSource2] varchar(1) NOT NULL,
+    [drvContributionAmount2] varchar(1) NOT NULL,
+    [drvContributionSource3] varchar(1) NOT NULL,
+    [drvContributionAmount3] varchar(1) NOT NULL,
+    [drvContributionSource4] varchar(1) NOT NULL,
+    [drvContributionAmount4] varchar(1) NOT NULL,
+    [drvContributionSource5] varchar(1) NOT NULL,
+    [drvContributionAmount5] varchar(1) NOT NULL,
+    [drvContributionSource6] varchar(1) NOT NULL,
+    [drvContributionAmount6] varchar(1) NOT NULL
 );
 
 -----------
@@ -1021,7 +1021,7 @@ BEGIN
                                        WHEN ISNULL(Pdh401RC,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '-'
                                     END    
         ,drvContributionSource6 = CASE WHEN ISNULL(Pdh401ER,0) <> 0.00  THEN 'DDD' END
-        ,drvContributionAmount6 = CASE WHEN ISNULL(Pdh401ER,0) > 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '+'
+        ,drvContributionAmount6 =  CASE WHEN ISNULL(Pdh401ER,0) > 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '+'
                                        WHEN ISNULL(Pdh401ER,0) < 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '-'
                                     END    
     INTO dbo.U_EAHAVANEXP_drvTbl_Participant
@@ -1046,56 +1046,126 @@ BEGIN
     ---------------------------------
     IF OBJECT_ID('U_EAHAVANEXP_drvTbl_Contribution','U') IS NOT NULL
         DROP TABLE dbo.U_EAHAVANEXP_drvTbl_Contribution;
-    SELECT DISTINCT
-         drvEEID = xEEID
-        ,drvCoID = xCoID
+
+
+       SELECT    
+         drvEEID = ''
+        ,drvCoID = ''
         --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
         ,drvInitialSort = ''
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
-        ,drvSSN = eepSSN
-        ,drvContributionSource1 = CASE WHEN ISNULL(Pdh401P,0)<> 0.00 THEN 'AAA' END
-        ,drvContributionTotalAmt1 = CASE WHEN ISNULL(Pdh401P,0) > 0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401P, '.', ''), 9, 0) + '+'
-                                         WHEN ISNULL(Pdh401P,0) < 0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401P, '.', ''), 9, 0) + '-'
+        ,drvSSN = ''
+        ,drvContributionSource1 =  Concat(drvContributionSource1 + ' ' +  Cast(drvContributionTotalAmt1 as varchar),+ '' + 
+                                       drvContributionSource2 + ' ' +  Cast(drvContributionAmount2 as varchar), + '' + 
+                                       drvContributionSource3 + ' ' +  Cast(drvContributionAmount3 as varchar), + '' +
+                                       drvContributionSource4 + ' ' +  Cast(drvContributionAmount4 as varchar), + '' +
+                                       drvContributionSource5 + ' ' +  Cast(drvContributionAmount5 as varchar), + '' +
+                                       drvContributionSource6  + ' ' +  Cast(drvContributionAmount6 as varchar))
+        ,drvContributionTotalAmt1 =''
+        ,drvContributionSource2 = ''
+        ,drvContributionAmount2 = ''
+        ,drvContributionSource3 = ''
+        ,drvContributionAmount3 = ''
+        ,drvContributionSource4 = ''
+        ,drvContributionAmount4 =''
+        ,drvContributionSource5 = ''
+        ,drvContributionAmount5 = ''
+        ,drvContributionSource6 = ''
+        ,drvContributionAmount6 = ''
+   
+  INTO dbo.U_EAHAVANEXP_drvTbl_Contribution 
+   
+   FROM (SELECT DISTINCT
+         drvEEID = ''
+        ,drvCoID = ''
+        --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+        ,drvInitialSort = ''
+        ,drvSubSort = ''
+        -- standard fields above and additional driver fields below
+        ,drvSSN = ''
+        ,drvContributionSource1 = CASE WHEN ISNULL(sum(Pdh401P),0)<> 0.00 THEN 'AAA' END  
+        ,drvContributionTotalAmt1 = Cast(CASE WHEN ISNULL(SUm(Pdh401P),0) > 0.00 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401P), '.', ''), 9, 0) + '+'
+                                         WHEN ISNULL(sum(Pdh401P),0) < 0.00 THEN dbo.dsi_fnpadzero(Replace(sum(Pdh401P), '.', ''), 9, 0) + '-'
+                                    END    as Varchar)
+         ,drvContributionSource2 = CASE WHEN ISNULL(sum(Pdh401KA),0) <>  0.00 THEN 'GGG' END
+        ,drvContributionAmount2 = CASE WHEN ISNULL(sum(Pdh401KA),0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(sum(Pdh401KA), '.', ''), 9, 0) + '+'
+                                       WHEN ISNULL(sum(Pdh401KA),0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(sum(Pdh401KA), '.', ''), 9, 0) + '-'
                                     END    
-         ,drvContributionSource2 = CASE WHEN ISNULL(Pdh401KA,0) <>  0.00 THEN 'GGG' END
-        ,drvContributionAmount2 = CASE WHEN ISNULL(Pdh401KA,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KA, '.', ''), 9, 0) + '+'
-                                       WHEN ISNULL(Pdh401KA,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KA, '.', ''), 9, 0) + '-'
+        ,drvContributionSource3 = CASE WHEN ISNULL(sum(Pdh401KC),0) <>  0.00 THEN 'JJJ' END
+        ,drvContributionAmount3 = CASE WHEN ISNULL(sum(Pdh401KC),0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(sum(Pdh401KC), '.', ''), 9, 0) + '+'
+                                       WHEN ISNULL(sum(Pdh401KC),0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(sum(Pdh401KC), '.', ''), 9, 0) + '-'
                                     END    
-        ,drvContributionSource3 = CASE WHEN ISNULL(Pdh401KC,0) <>  0.00 THEN 'JJJ' END
-        ,drvContributionAmount3 = CASE WHEN ISNULL(Pdh401KC,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KC, '.', ''), 9, 0) + '+'
-                                       WHEN ISNULL(Pdh401KC,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KC, '.', ''), 9, 0) + '-'
+        ,drvContributionSource4 = CASE WHEN ISNULL(SUM(Pdh401R),0) <>  0.00 THEN 'NRB' END
+        ,drvContributionAmount4 = CASE WHEN ISNULL(SUM(Pdh401R),0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401R), '.', ''), 9, 0) + '+'
+                                       WHEN ISNULL(SUM(Pdh401R),0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401R), '.', ''), 9, 0) + '-'
                                     END    
-        ,drvContributionSource4 = CASE WHEN ISNULL(Pdh401R,0) <>  0.00 THEN 'NRB' END
-        ,drvContributionAmount4 = CASE WHEN ISNULL(Pdh401R,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401R, '.', ''), 9, 0) + '+'
-                                       WHEN ISNULL(Pdh401R,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401R, '.', ''), 9, 0) + '-'
+        ,drvContributionSource5 = CASE WHEN ISNULL(SUM(Pdh401RC),0) <>  0.00 THEN 'NRC' END
+        ,drvContributionAmount5 = CASE WHEN ISNULL(SUM(Pdh401RC),0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401RC), '.', ''), 9, 0) + '+'
+                                       WHEN ISNULL(SUM(Pdh401RC),0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401RC), '.', ''), 9, 0) + '-'
                                     END    
-        ,drvContributionSource5 = CASE WHEN ISNULL(Pdh401RC,0) <>  0.00 THEN 'NRC' END
-        ,drvContributionAmount5 = CASE WHEN ISNULL(Pdh401RC,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '+'
-                                       WHEN ISNULL(Pdh401RC,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '-'
+        ,drvContributionSource6 = CASE WHEN ISNULL(SUM(Pdh401ER),0) <> 0.00  THEN 'DDD' END
+        ,drvContributionAmount6 = CASE WHEN ISNULL(SUM(Pdh401ER),0) > 0 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401ER), '.', ''), 9, 0) + '+'
+                                       WHEN ISNULL(SUM(Pdh401ER),0) < 0 THEN dbo.dsi_fnpadzero(Replace(SUM(Pdh401ER), '.', ''), 9, 0) + '-'
                                     END    
-        ,drvContributionSource6 = CASE WHEN ISNULL(Pdh401ER,0) <> 0.00  THEN 'DDD' END
-        ,drvContributionAmount6 = CASE WHEN ISNULL(Pdh401ER,0) > 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '+'
-                                       WHEN ISNULL(Pdh401ER,0) < 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '-'
-                                    END    
-    INTO dbo.U_EAHAVANEXP_drvTbl_Contribution
-    FROM dbo.U_EAHAVANEXP_EEList WITH (NOLOCK)
-    JOIN dbo.EmpPers WITH (NOLOCK)
-        ON EepEEID = xEEID
-    JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
-        ON EecEEID = xEEID 
-        AND EecCoID = xCoID
-    LEFT JOIN dbo.U_dsi_BDM_EAHAVANEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    JOIN dbo.U_EAHAVANEXP_PEarHist  WITH (NOLOCK)
-        ON PehEEID = XEEID
-    Left JOIN dbo.U_EAHAVANEXP_PDedHist WITH (NOLOCK)
-        ON PdhEEID = XEEID
-        WHERE (ISNULL(Pdh401ER,0) <> 0 or ISNULL(Pdh401RC,0) <> 0 or ISNULL(Pdh401KC,0) <> 0 or ISNULL(Pdh401KA,0)<> 0 or ISNULL(Pdh401P, 0) <> 0  or ISNULL(Pdh401R,0) <> 0)
-        AND (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO' and (ISNULL(Pdh401ER,0) <> 0 or ISNULL(Pdh401RC,0) <> 0 or ISNULL(Pdh401KC,0) <> 0 or ISNULL(Pdh401KA,0)<> 0 or ISNULL(Pdh401P, 0) <> 0 )or ISNULL(Pdh401R,0) <> 0))
-        --and  xeeid ='8UT1SE0001T0'
-      ; 
+   -- INTO dbo.U_EAHAVANEXP_drvTbl_Contribution
+    FROM dbo.U_EAHAVANEXP_PEarHist  WITH (NOLOCK)
+       
+    JOIN dbo.U_EAHAVANEXP_PDedHist WITH (NOLOCK)
+        ON PdhEEID = PehEEID
+        WHERE (ISNULL(Pdh401ER,0) <> 0 or ISNULL((Pdh401RC),0) <> 0 or ISNULL(Pdh401KC,0) <> 0 or ISNULL(Pdh401KA,0)<> 0 or ISNULL(Pdh401P, 0) <> 0  or ISNULL(Pdh401R,0) <> 0)
+        )a
+       
+ --   SELECT DISTINCT
+ --        drvEEID = xEEID
+ --       ,drvCoID = xCoID
+ --       --,drvDepRecID = CONVERT(varchar(12),'1') --DELETE IF NOT USING DEPENDENT DATA
+ --       ,drvInitialSort = ''
+ --       ,drvSubSort = ''
+ --       -- standard fields above and additional driver fields below
+ --       ,drvSSN = eepSSN
+ --       ,drvContributionSource1 = CASE WHEN ISNULL(Pdh401P,0)<> 0.00 THEN 'AAA' END
+ --       ,drvContributionTotalAmt1 = CASE WHEN ISNULL(Pdh401P,0) > 0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401P, '.', ''), 9, 0) + '+'
+    --                                     WHEN ISNULL(Pdh401P,0) < 0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401P, '.', ''), 9, 0) + '-'
+    --                                END    
+ --        ,drvContributionSource2 = CASE WHEN ISNULL(Pdh401KA,0) <>  0.00 THEN 'GGG' END
+ --       ,drvContributionAmount2 = CASE WHEN ISNULL(Pdh401KA,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KA, '.', ''), 9, 0) + '+'
+    --                                   WHEN ISNULL(Pdh401KA,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KA, '.', ''), 9, 0) + '-'
+    --                                END    
+ --       ,drvContributionSource3 = CASE WHEN ISNULL(Pdh401KC,0) <>  0.00 THEN 'JJJ' END
+ --       ,drvContributionAmount3 = CASE WHEN ISNULL(Pdh401KC,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KC, '.', ''), 9, 0) + '+'
+    --                                   WHEN ISNULL(Pdh401KC,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401KC, '.', ''), 9, 0) + '-'
+    --                                END    
+ --       ,drvContributionSource4 = CASE WHEN ISNULL(Pdh401R,0) <>  0.00 THEN 'NRB' END
+ --       ,drvContributionAmount4 = CASE WHEN ISNULL(Pdh401R,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401R, '.', ''), 9, 0) + '+'
+    --                                   WHEN ISNULL(Pdh401R,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401R, '.', ''), 9, 0) + '-'
+    --                                END    
+ --       ,drvContributionSource5 = CASE WHEN ISNULL(Pdh401RC,0) <>  0.00 THEN 'NRC' END
+ --       ,drvContributionAmount5 = CASE WHEN ISNULL(Pdh401RC,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '+'
+    --                                   WHEN ISNULL(Pdh401RC,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '-'
+    --                                END    
+ --       ,drvContributionSource6 = CASE WHEN ISNULL(Pdh401ER,0) <> 0.00  THEN 'DDD' END
+ --       ,drvContributionAmount6 = CASE WHEN ISNULL(Pdh401ER,0) > 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '+'
+    --                                   WHEN ISNULL(Pdh401ER,0) < 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '-'
+    --                                END    
+ --   INTO dbo.U_EAHAVANEXP_drvTbl_Contribution
+ --   FROM dbo.U_EAHAVANEXP_EEList WITH (NOLOCK)
+ --   JOIN dbo.EmpPers WITH (NOLOCK)
+ --       ON EepEEID = xEEID
+    --JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
+ --       ON EecEEID = xEEID 
+ --       AND EecCoID = xCoID
+ --   LEFT JOIN dbo.U_dsi_BDM_EAHAVANEXP WITH (NOLOCK)
+ --       ON BdmEEID = xEEID 
+ --       AND BdmCoID = xCoID
+    --JOIN dbo.U_EAHAVANEXP_PEarHist  WITH (NOLOCK)
+ --       ON PehEEID = XEEID
+    --Left JOIN dbo.U_EAHAVANEXP_PDedHist WITH (NOLOCK)
+    --    ON PdhEEID = XEEID
+ --       WHERE (ISNULL(Pdh401ER,0) <> 0 or ISNULL(Pdh401RC,0) <> 0 or ISNULL(Pdh401KC,0) <> 0 or ISNULL(Pdh401KA,0)<> 0 or ISNULL(Pdh401P, 0) <> 0  or ISNULL(Pdh401R,0) <> 0)
+    --    AND (eecemplstatus <> 'T' OR (eecemplstatus = 'T' and eectermreason <> 'TRO' and (ISNULL(Pdh401ER,0) <> 0 or ISNULL(Pdh401RC,0) <> 0 or ISNULL(Pdh401KC,0) <> 0 or ISNULL(Pdh401KA,0)<> 0 or ISNULL(Pdh401P, 0) <> 0 )or ISNULL(Pdh401R,0) <> 0))
+    --    --and  xeeid ='8UT1SE0001T0'
+    --  ; 
   
     ---------------------------------
     -- DETAIL RECORD - U_EAHAVANEXP_drvTbl_Loans

@@ -5,7 +5,7 @@ EGUAKLJEXP: Guardian 834 Export
 FormatCode:     EGUAKLJEXP
 Project:        Guardian 834 Export
 Client ID:      KAD1000
-Date/time:      2023-03-28 17:16:25.497
+Date/time:      2023-05-02 17:43:42.223
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -242,6 +242,10 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUAKLJEXPZ0','3','D','18','2',NULL,'Date/Time Qualifier',NULL,NULL,'"drvDTP01_DateTimeQualifier2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUAKLJEXPZ0','3','D','18','3',NULL,'Date/Time Format',NULL,NULL,'"drvDTP02_DateTimeFormatQual2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EGUAKLJEXPZ0','35','D','18','4',NULL,'Date/Time Period',NULL,NULL,'"drvDTP03_DateTimePeriod2"','(''UD112''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGUAKLJEXPZ0','3','D','19','1',NULL,'DTP Segment ID (Loop 2000)',NULL,NULL,'"drvDTP00_DateTime3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUAKLJEXPZ0','3','D','19','2',NULL,'Date/Time Qualifier',NULL,NULL,'"drvDTP01_DateTimeQualifier3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUAKLJEXPZ0','3','D','19','3',NULL,'Date/Time Format',NULL,NULL,'"drvDTP02_DateTimeFormatQual3"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EGUAKLJEXPZ0','35','D','19','4',NULL,'Date/Time Period',NULL,NULL,'"drvDTP03_DateTimePeriod3"','(''UD112''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGUAKLJEXPZ0','3','D','20','1',NULL,'NM1 Segment ID (Loop 2100A)',NULL,NULL,'"NM1"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUAKLJEXPZ0','3','D','20','2',NULL,'Entity Identifier Code',NULL,NULL,'"IL"','(''DA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUAKLJEXPZ0','1','D','20','3',NULL,'Entity Type Qualifier',NULL,NULL,'"1"','(''DA''=''T*'')');
@@ -285,7 +289,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGUAKLJEXPZ0','3','D','27','1',NULL,'ACM Segment ID (Loop1000A)',NULL,NULL,'"drvAMT00_SegmentID2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUAKLJEXPZ0','18','D','27','2',NULL,'Monetary Amount',NULL,NULL,'"drvAMT01_AmountQualifierCode2"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUAKLJEXPZ0','1','D','27','3',NULL,'Credit/Debit Flag Code',NULL,NULL,'"drvAMT02_MonetaryAmount2"','(''UA''=''T*'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGUAKLJEXPZ0','1','D','28','1',NULL,'HLH Segment ID (Loop1000A)',NULL,NULL,'"drvHLH00_SegmentID"','(''UA''=''T*'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','EGUAKLJEXPZ0','3','D','28','1',NULL,'HLH Segment ID (Loop1000A)',NULL,NULL,'"drvHLH00_SegmentID"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','EGUAKLJEXPZ0','8','D','28','2',NULL,'Health-Related Code',NULL,NULL,'"drvHLH01_HealthRelatedCode"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','EGUAKLJEXPZ0','10','D','28','3',NULL,'Height',NULL,NULL,'"drvHLH02_Height"','(''UA''=''T*'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','EGUAKLJEXPZ0','10','D','28','4',NULL,'Weight',NULL,NULL,'"drvHLH03_Weight1"','(''UA''=''T*'')');
@@ -356,7 +360,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUAKLJEXP_20230328.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUAKLJEXP_20230502.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -368,8 +372,8 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',FGFGE',NULL,NULL,NULL,'Guardian Active OE','202301319','EMPEXPORT','OEACTIVE','Nov 23 2022 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',FGFGE',NULL,NULL,NULL,'Guardian Passive OE','202301319','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',FGFGE',NULL,NULL,NULL,'Guardian 834 OnDemand','202301319','EMPEXPORT','ONDEM_XOE','Nov 16 2020 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202301241','7788','','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N',',FGFGE',NULL,NULL,NULL,'Guardian 834 SCH WK DAY HMM ET','202301319','EMPEXPORT','SCH_GUAKLE','Nov 16 2020 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202301241','7788','','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','FGFGE,FGFJT',NULL,NULL,NULL,'Guardian 834 Test Session','202303289','EMPEXPORT','TEST_XOE','Mar 28 2023  9:43AM','EGUAKLJEXP',NULL,NULL,NULL,'202303289','Mar 28 2023 12:00AM','Dec 30 1899 12:00AM','202303211','23700','','','202303211',dbo.fn_GetTimedKey(),NULL,'us3kEpKAD1000',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',FGFGE',NULL,NULL,NULL,'Guardian 834 SCH WK DAY HMM ET','202301319','EMPEXPORT','SCH_GUAKLE','Nov 16 2020 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202301241','7788','','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','FGFGE,FGFJT',NULL,NULL,NULL,'Guardian 834 Test Session','202305029','EMPEXPORT','TEST_XOE','May  2 2023  5:43PM','EGUAKLJEXP',NULL,NULL,NULL,'202305029','May  2 2023 12:00AM','Dec 30 1899 12:00AM','202304111','26270','','','202304111',dbo.fn_GetTimedKey(),NULL,'us3kEpKAD1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -417,6 +421,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D16','U_EGUAKLJEXP_DrvTbl','ISNULL(drvREF01_RefNumberQual3,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D17','U_EGUAKLJEXP_DrvTbl','ISNULL(drvDTP00_DateTime1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D18','U_EGUAKLJEXP_DrvTbl','ISNULL(drvDTP00_DateTime2,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D19','U_EGUAKLJEXP_DrvTbl','ISNULL(drvDTP00_DateTime3,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D20','U_EGUAKLJEXP_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D21','U_EGUAKLJEXP_DrvTbl','ISNULL(drvPER03_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER05_CommNumberQualifier,'''') <> '''' OR ISNULL(drvPER07_CommNumberQualifier,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D22','U_EGUAKLJEXP_DrvTbl',NULL);
@@ -425,7 +430,7 @@ INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClaus
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D25','U_EGUAKLJEXP_DrvTbl','ISNULL(drvICM01_FrequencyCode,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D26','U_EGUAKLJEXP_DrvTbl','ISNULL(drvAMT00_SegmentID1,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D27','U_EGUAKLJEXP_DrvTbl','ISNULL(drvAMT00_SegmentID2,'''') <> ''''');
-INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D28','U_EGUAKLJEXP_DrvTbl','ISNULL(drvHLH00_SegmentID,'''') <> ''''');
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D28','U_EGUAKLJEXP_DrvTbl',NULL);
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D40','U_EGUAKLJEXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D41','U_EGUAKLJEXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_348,'''') <> ''''');
 INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('EGUAKLJEXP','D42','U_EGUAKLJEXP_DrvTbl_2300','ISNULL(drvHD00_HealthCoverage,'''') <> '''' AND ISNULL(drvDTP00_DateTime_349,'''') <> ''''');
@@ -564,18 +569,18 @@ CREATE TABLE [dbo].[U_EGUAKLJEXP_DrvTbl] (
     [drvREF01_RefNumberQual2] varchar(2) NOT NULL,
     [drvREF02_RefNumberQual2] varchar(4) NOT NULL,
     [drvREF01_RefNumberQual3] varchar(2) NOT NULL,
-    [drvREF02_RefNumberQual3] varchar(3) NOT NULL,
+    [drvREF02_RefNumberQual3] varchar(4) NOT NULL,
     [drvDTP00_DateTime1] varchar(3) NULL,
-    [drvDTP01_DateTimeQualifier1] varchar(3) NOT NULL,
-    [drvDTP02_DateTimeFormatQual1] varchar(2) NOT NULL,
+    [drvDTP01_DateTimeQualifier1] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual1] varchar(2) NULL,
     [drvDTP03_DateTimePeriod1] datetime NULL,
-    [drvDTP00_DateTime2] varchar(3) NULL,
+    [drvDTP00_DateTime2] varchar(3) NOT NULL,
     [drvDTP01_DateTimeQualifier2] varchar(3) NOT NULL,
     [drvDTP02_DateTimeFormatQual2] varchar(2) NOT NULL,
     [drvDTP03_DateTimePeriod2] datetime NULL,
     [drvDTP00_DateTime3] varchar(3) NULL,
-    [drvDTP01_DateTimeQualifier3] varchar(3) NOT NULL,
-    [drvDTP02_DateTimeFormatQual3] varchar(2) NOT NULL,
+    [drvDTP01_DateTimeQualifier3] varchar(3) NULL,
+    [drvDTP02_DateTimeFormatQual3] varchar(2) NULL,
     [drvDTP03_DateTimePeriod3] datetime NULL,
     [drvNM103_NameLast1] varchar(6000) NULL,
     [drvNM104_NameFirst1] varchar(6000) NULL,
@@ -610,7 +615,7 @@ CREATE TABLE [dbo].[U_EGUAKLJEXP_DrvTbl] (
     [drvAMT00_SegmentID2] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
-    [drvHLH00_SegmentID] varchar(1) NOT NULL,
+    [drvHLH00_SegmentID] varchar(3) NOT NULL,
     [drvHLH01_HealthRelatedCode] varchar(1) NULL,
     [drvHLH02_Height] varchar(1) NOT NULL,
     [drvHLH03_Weight1] varchar(1) NOT NULL,
@@ -622,7 +627,7 @@ CREATE TABLE [dbo].[U_EGUAKLJEXP_DrvTbl] (
     [drvCOID] char(5) NULL,
     [drvDepRecID] char(12) NULL,
     [drvSSN] char(11) NULL,
-    [drvInitialSort] varchar(12) NULL,
+    [drvInitialSort] varchar(11) NULL,
     [drvSubSort] char(21) NULL
 );
 
@@ -673,7 +678,7 @@ CREATE TABLE [dbo].[U_EGUAKLJEXP_DrvTbl_2300] (
     [drvCOID] char(5) NULL,
     [drvDepRecID] char(12) NULL,
     [drvSSN] char(11) NULL,
-    [drvInitialSort] char(12) NULL,
+    [drvInitialSort] varchar(11) NULL,
     [drvSubSort] varchar(23) NULL
 );
 
@@ -794,7 +799,7 @@ BEGIN
     -- Update Record Count in SE Segment 
     --==================================== 
     DECLARE @RecordCount INT; 
-    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_EGUAKLJEXP_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE')); 
+    SET @RecordCount = (SELECT COUNT(*) FROM dbo.U_EGUAKLJEXP_File WHERE LEFT(Data, CHARINDEX('*',Data) - 1) NOT IN ('ISA','GS','IEA','GE')); --MT do not change this!
  
     UPDATE dbo.U_EGUAKLJEXP_File 
     SET Data = REPLACE(Data,'9999',@RecordCount) 
@@ -822,8 +827,10 @@ Purpose: Guardian 834 Export
 
 Revision History
 ----------------
-Update By         Date           Request Num        Desc
-Marie Waters      03/28/2023    TekP-2022-09-08-01  Updated the Update statements for BdmUSGField1 for the AG codes and adjusted sort 
+Update By           Date           Request Num        Desc
+Marie Waters        0502/2023       TekP-2022-09-08-01 Updated the After collect to subtract extra spaces on file. Added case statement to where clause and moved Term logic to Where clause
+XXXX                XX/XX/20XX     SR-20XX-000XXXXX   XXXXX 
+
 
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGUAKLJEXP';
@@ -847,7 +854,9 @@ EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'FULLFILE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'CHANGES';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'OEPASSIVE';
 EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'OEACTIVE';
-EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'SCHEDULED';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'SCH_GUAKLE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'TEST_XOE';
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'EGUAKLJEXP', 'ONDEM_XOE';
 
 EXEC dbo.dsi_BDM_sp_ErrorCheck 'EGUAKLJEXP';
 
@@ -869,8 +878,8 @@ BEGIN
             ,@EndPerControl     VARCHAR(9)
             ,@RunDate           VARCHAR(8)
             ,@RunTime           VARCHAR(4)
-            ,@MEDFileMinCovDate    DATETIME
-            ,@VISFileMinCovDate        DATETIME;
+            ,@MEDFileMinCovDate   DATETIME
+            ,@VISFileMinCovDate   DATETIME;
 
     -- Declare dates from Parameter file
 
@@ -920,7 +929,7 @@ BEGIN
     JOIN dbo.U_EGUAKLJEXP_AuditFields WITH (NOLOCK) 
         ON audTableName = aTableName
         AND audFieldName = aFieldName
-    WHERE audDateTime BETWEEN DATEADD(D,-30,@StartDate) AND @EndDate
+    WHERE audDateTime BETWEEN @StartDate AND DATEADD(D,-14,@EndDate)
     AND audAction <> 'DELETE';
 
     -- Create Index
@@ -991,11 +1000,13 @@ BEGIN
          INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'PASSIVE');
     END;
 
+
     IF @ExportCode LIKE '%ACTIVE'
 
     BEGIN
          INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode, 'OEType', 'ACTIVE');
     END;
+
 
     EXEC dbo.dsi_bdm_sp_PopulateDeductionsTable @FormatCode;
 
@@ -1079,15 +1090,22 @@ BEGIN
     --Clean up 
     Delete from dbo.U_dsi_bdm_EGUAKLJEXP where bdmdedcode in ('VLADC','VLADS') and bdmrectype = 'EMP'
 
+
     --==========================================
     -- Build Driver Tables
     --==========================================
 
     /**************************************************************************************************************
+
         HEADER RECORDS
+
             - ISA, GS, ST, BGN, REF, QTY Segments
+
             - LOOP 1000A/1000B RECORDS - N1 Segments
+
     ***************************************************************************************************************/
+
+
 
     -------------------
 
@@ -1096,51 +1114,93 @@ BEGIN
     -------------------
 
     IF OBJECT_ID('U_EGUAKLJEXP_HdrTbl','U') IS NOT NULL
+
         DROP TABLE dbo.U_EGUAKLJEXP_HdrTbl;
 
     SELECT DISTINCT drvISA05_SenderIDQual = '30'
+
         ,drvISA06_SenderID = '450313305      ' ---'V123456' update with BCBS supplied ID. kae 01312023
+
         ,drvISA07_ReceiverIDQual = '30'
+
         ,drvISA08_ReceiverID = '135123390     '
+
         ,drvISA09_InterchangeDate = RIGHT(@RunDate,6)
+
         ,drvISA10_InterchangeTime = @RunTime
+
         ,drvISA15_UsageIndicator = CASE WHEN @ExportCode LIKE 'TEST%' THEN 'T' ELSE 'P' END
+
         ,drvGS02_SenderID = '450313305      '
+
         ,drvGS03_ReceiverID = '135123390     '
+
         ,drvGS04_Date = @RunDate
+
         ,drvGS05_Time = @RunTime
+
         ,drvBGN03_Date = @RunDate
+
         ,drvBGN04_Time = @RunTime
+
         ,drvBGN05_TimeCode = 'ET'
+
         ,drvBGN06_RefID = ''
+
         ,drvBGN07_TransTypeCode = ''
+
         ,drvBGN08_ActionCode = 'RX'
+
         ,drvREF01_RefNumberQual = '38'
+
         ,drvREF02_RefNumberQual = '00042413'
+
         ,drvDTP00_DateTime0 = 'DTP'
+
         ,drvDTP01_DateTimeQualifier0 = '007'
+
         ,drvDTP02_DateTimeFormatQual0 = 'D8'
+
         ,drvDTP03_DateTimePeriod0 = @RunDate
+
         ,drvQTY01_QuantityQual1 = ''
+
         ,drvQTY02_Quantity1 = ''
+
         ,drvQTY01_QuantityQual2 = ''
+
         ,drvQTY02_Quantity2 = ''
+
         ,drvQTY01_QuantityQual3 = ''
+
         ,drvQTY02_Quantity3 = ''
+
         ,drvN101_EntityIDCodeSponsor1 = 'P5'
+
         ,drvN102_Name1 = 'KLJ SOLUTIONS HOLDING CO.'  --'KLJ Engineering' update with BCBS supplied ID. kae 01312023
+
         ,drvN103_IDCodeQual1 = 'FI'
+
         ,drvN104_IDCode1 = '450313305'
+
         ,drvN101_EntityIDCodeSponsor2 = 'IN'
+
         ,drvN102_Name2 = 'Guardian'
+
         ,drvN103_IDCodeQual2 = 'FI'
+
         ,drvN104_IDCode2 = '135123390'
 
     INTO dbo.U_EGUAKLJEXP_HdrTbl
+
     FROM dbo.U_EGUAKLJEXP_EELIST WITH (NOLOCK)
+
     JOIN dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK)
+
         ON BdmEEID = xEEID
-        AND BdmCOID = xCOID;
+
+        AND BdmCOID = xCOID
+        ;
 
 
 
@@ -1149,15 +1209,23 @@ BEGIN
         DETAIL RECORDS
 
             -- LOOP 2000 RECORDS - INS, REF, DTP Segments
+
             -- LOOP 2100A RECORDS - NM1, PER, N3, N4, DMG, ICM Segments
+
             -- LOOP 2100B RECORDS - NM1, DMG Segments
 
     ***************************************************************************************************************/
-        
+
+
+
     -------------------
+
     -- DETAIL RECORD 
+
     -------------------
+
     IF OBJECT_ID('U_EGUAKLJEXP_DrvTbl','U') IS NOT NULL
+
         DROP TABLE dbo.U_EGUAKLJEXP_DrvTbl;
 
     SELECT DISTINCT
@@ -1169,11 +1237,17 @@ BEGIN
         --=====================
 
         drvINS01_YesNoCond = CASE BdmRecType
+
                                  WHEN 'EMP' THEN 'Y'
+
                                  ELSE 'N'
+
                              END
+
         ,drvINS02_RelationshipCode = CASE WHEN BdmRecType = 'EMP' THEN '18'
+
                                           ELSE
+
                                                 CASE WHEN ConRelationship IN ('SPS') THEN '01'
                                                      --WHEN ConRelationship IN ('CHL', 'DIS', 'DPC','CRT','GRC','STC') THEN '19'
                                                      WHEN ConRelationship IN ('DP') THEN '53'
@@ -1181,27 +1255,35 @@ BEGIN
                                                      WHEN ConRelationship IN ('GRC') THEN '05'
                                                      WHEN ConRelationship IN ('STC') THEN '17'
                                                      ELSE '19'
+
                                                 END
+
                                      END
+
         ,drvINS03_MaintTypeCode = '030' --Audit or Compare
+
         ,drvINS04_MaintReasonCode = 'XN' --Notification Only
+
         ,drvINS05_BenefitStatusCode = 'A'
+
         ,drvINS0601_MEDICAREPLANCODE = 'E'
+
         ,drvINS0602_EligibilityRsnCode = ''
+
         ,drvINS07_COBRAQualEventCode = ''
+
         ,drvINS08_EmploymentStatusCode = CASE WHEN BdmRecType = 'EMP' THEN 
-                                                CASE WHEN eecEmplstatus = 'L' THEN 'L1'
-                                                     WHEN eecEmplstatus = 'T' THEN 'TE'
-                                                     WHEN eecEmplstatus = 'A' THEN 'AC'
-                                                    END        
-                                                END
+                CASE WHEN eecEmplstatus = 'L' THEN 'L1'
+                     WHEN eecEmplstatus = 'T' THEN 'TE'
+                     WHEN eecEmplstatus = 'A' THEN 'AC'
+                END
+        
+         END
         ,drvINS09_StudentStatusCode = ''/*CASE WHEN BdmRecType = 'DEP' THEN
 
                                                 CASE WHEN ConIsStudent = 'Y' THEN 'F' END --Full-time
-
                                       END*/
-
-        ,drvINS10_ResponseCode = CASE WHEN BdmRecType = 'DEP' THEN 
+       ,drvINS10_ResponseCode = CASE WHEN BdmRecType = 'DEP' THEN 
                                         CASE WHEN ConIsDisabled = 'Y' THEN 'Y'
                                              ELSE 'N'
                                         END
@@ -1210,7 +1292,6 @@ BEGIN
         ,drvINS12_DateTimePeriod = ''--CASE WHEN ISNULL(EepDateDeceased, '') <> '' THEN CONVERT(VARCHAR(8),EepDateDeceased,112) END
 
         -- If drvREF01_RefNumberQual1 is Populated, then send REF Segment
-
         ,drvREF01_RefNumberQual1 = '1L'
         ,drvREF02_RefNumberQual1 = '00042413'
 
@@ -1219,22 +1300,23 @@ BEGIN
         ,drvREF01_RefNumberQual2 = '3H'   
         ,drvREF02_RefNumberQual2 = '0000'
         ,drvREF01_RefNumberQual3 = 'ZZ'
-        ,drvREF02_RefNumberQual3 = '001'
+        ,drvREF02_RefNumberQual3 = CASE WHEN EepAddressState = 'TX' THEN '0003' ELSE '0001' END
         -- If drvDTP00_DateTime1 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime1 = CASE WHEN eecEmplstatus = 'T' and EecTermReason = '202' THEN 'DTP' END
-        ,drvDTP01_DateTimeQualifier1 = '286'
-        ,drvDTP02_DateTimeFormatQual1 = 'D8'
+        ,drvDTP00_DateTime1 = CASE WHEN EecDateOfRetirement is not null THEN 'DTP' END
+        ,drvDTP01_DateTimeQualifier1 = CASE WHEN EecDateOfRetirement is not null THEN '286' END
+        ,drvDTP02_DateTimeFormatQual1 = CASE WHEN EecDateOfRetirement is not null THEN 'D8' END
         ,drvDTP03_DateTimePeriod1 = EecDateOfRetirement 
         -- If drvDTP00_DateTime2 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime2 = CASE WHEN bdmrectype ='EMP' THEN 'DTP' END
+        ,drvDTP00_DateTime2 =  'DTP' 
         ,drvDTP01_DateTimeQualifier2 = '336'
         ,drvDTP02_DateTimeFormatQual2 = 'D8'
         ,drvDTP03_DateTimePeriod2 = EecDateOfLastHire
     -- If drvDTP00_DateTime3 is Populated, then send DTP Segment
-        ,drvDTP00_DateTime3 = CASE WHEN bdmrectype ='EMP' and EecDateOfTermination >= '20230101' THEN 'DTP' END
-        ,drvDTP01_DateTimeQualifier3 = '337'
-        ,drvDTP02_DateTimeFormatQual3 = 'D8'
+        ,drvDTP00_DateTime3 = CASE WHEN EecDateOfTermination IS NOT NULL THEN  'DTP' END
+        ,drvDTP01_DateTimeQualifier3 = CASE WHEN EecDateOfTermination IS NOT NULL THEN '337' END
+        ,drvDTP02_DateTimeFormatQual3 = CASE WHEN EecDateOfTermination IS NOT NULL THEN 'D8' END
         ,drvDTP03_DateTimePeriod3 = EecDateOfTermination
+     
         --=====================
 
         -- LOOP 2100A RECORDS
@@ -1252,12 +1334,12 @@ BEGIN
         ,drvNM105_NameMiddleInitial1 = dbo.dsi_fnRemoveChars('.,/-',
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
-                                        END)
+                                       END)
         ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
         ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN                                      
-                                     CASE WHEN ConNameSuffix = 'Z' THEN '' ELSE ConNameSuffix                                      
-                                     END
+                                     WHEN BdmRecType = 'DEP' THEN 
+                                    CASE WHEN ConNameSuffix = 'Z' THEN '' ELSE ConNameSuffix 
+                                   END
                                 END
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                           WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN '34'
@@ -1268,12 +1350,12 @@ BEGIN
         ,drvPER02_Name = ''
         ,drvPER03_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN 'HP'
                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN 'EM'
-                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN 'HP'
-                                           END
+                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN 'HP'
+                                             END
         ,drvPER04_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') = '' THEN ISNULL(EepPhoneHomeNumber,'') 
-                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(eepAddressEMail,'')
-                                             WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN  ISNULL(EepPhoneHomeNumber,'') 
-                                           END
+                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') = '' and ISNULL(eepAddressEMail,'') <> '' THEN ISNULL(eepAddressEMail,'')
+                                              WHEN BdmRecType = 'EMP' and ISNULL(EepPhoneHomeNumber,'') <> '' and ISNULL(eepAddressEMail,'') <> '' THEN  ISNULL(EepPhoneHomeNumber,'') 
+                                             END
         ,drvPER05_CommNumberQualifier = CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN 'EM' END
         ,drvPER06_CommunicationNumber = CASE WHEN BdmRecType = 'EMP' and ISNULL(eepAddressEMail,'') <> '' and   ISNULL(EepPhoneHomeNumber,'') <> '' THEN ISNULL(eepAddressEMail,'') END
         ,drvPER07_CommNumberQualifier = ''
@@ -1293,9 +1375,10 @@ BEGIN
         ,drvDMG04_MaritalStatusCode1 = CASE WHEN BdmRecType = 'EMP' THEN  
                                                 CASE WHEN EepMaritalStatus = 'S' THEN 'I' 
                                                      WHEN EepMaritalStatus = 'M' THEN 'M' 
-                                                     WHEN EepMaritalStatus = 'D' THEN 'D' 
-                                                     WHEN EepMaritalStatus = 'Z' THEN 'R' 
-                                                    WHEN  EepMaritalStatus = 'P' THEN 'S' 
+                                                     ELSE 'R'
+                                                    -- WHEN EepMaritalStatus = 'D' THEN 'D' 
+                                                    -- WHEN EepMaritalStatus = 'Z' THEN 'R' 
+                                                    --WHEN  EepMaritalStatus = 'P' THEN 'S' 
                                                  END
                                        END
 
@@ -1305,13 +1388,9 @@ BEGIN
         ,drvICM02_MonetaryAmount = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecAnnSalary) END
         ,drvICM03_Quantity = CASE WHEN BdmRecType = 'EMP' THEN CONVERT(MONEY,EecScheduledWorkHrs) END
         ,drvICM04_LocationID = CASE WHEN BdmRecType = 'EMP' THEN
-
                                         CASE WHEN YEAR(EecDateOfLastHire) = YEAR(GETDATE()) THEN CONVERT(VARCHAR(8),EecDateOfLastHire,112)
-
                                             ELSE CONVERT(CHAR(4),YEAR(GETDATE())) + '0101'
-
-                                        END
-
+                                       END
                                END
 
         -- If drvAMT00_AmountQualifierCode1 = 'AMT' is Populated, then Send AMT Segment
@@ -1328,17 +1407,18 @@ BEGIN
 
         -- If drvHLH00_SegmentID = 'HLH' is Populated, then Send HLH Segment
 
-        ,drvHLH00_SegmentID = ''
+        ,drvHLH00_SegmentID = 'HLH'
         ,drvHLH01_HealthRelatedCode = CASE WHEN BdmRecType = 'EMP' THEN
                                                 CASE EepIsSmoker
-                                                     WHEN 'Y' THEN 'T' --Tobacco Use
-                                                     ELSE 'N' --None
+                                                    WHEN 'Y' THEN 'T' --Tobacco Use
+                                                    WHEN ISNULL(EepIsSmoker,'')  THEN 'N'
+                                                    ELSE 'N'--None
                                                 END
-
                                            WHEN BdmRecType = 'DEP' THEN
                                                 CASE ConIsSmoker
-                                                     WHEN 'Y' THEN 'T' --Tobacco Use
-                                                     ELSE 'N' --None
+                                                    WHEN 'Y' THEN 'T' --Tobacco Use
+                                                    WHEN ISNULL(ConIsSmoker,'')  THEN 'N'
+                                                    ELSE 'N' --None
                                                 END
                                       END
         ,drvHLH02_Height = ''
@@ -1349,13 +1429,12 @@ BEGIN
         ,drvHLH07_Description2 = ''
 
         ---------------------------------
-
         ,drvEEID = xEEID
         ,drvCOID = xCOID
         ,drvDepRecID = ConSystemID
         ,drvSSN = EepSSN
-        ,drvInitialSort = RTRIM(xEEID)
-        ,drvSubSort = CONVERT(CHAR(9),RTRIM(xEEID)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+        ,drvInitialSort = RTRIM(EepSSN)
+        ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
 
     INTO dbo.U_EGUAKLJEXP_DrvTbl
     FROM dbo.U_EGUAKLJEXP_EELIST WITH (NOLOCK)
@@ -1364,49 +1443,69 @@ BEGIN
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        AND EecEEType <>'TES'
-                        and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
-                        and EXISTS(select 1 from dbo.U_EGUAKLJEXP_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+       
     LEFT JOIN dbo.Location WITH (NOLOCK)
         ON LocCode = EecLocation
-    LEFT JOIN dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK)
+    JOIN dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
+        AND BdmBenstatus NOT In ('W','C')
     LEFT JOIN dbo.TrmReasn WITH (NOLOCK)
         ON TchCode = EecTermReason
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
-        AND ConSystemID = BdmDepRecID;
+        AND ConSystemID = BdmDepRecID
+        WHERE EecEEType = 'REG' 
+        AND EecFullTimeOrPartTime <> 'P'
+        AND (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                 and EXISTS(select 1 from dbo.U_EGUAKLJEXP_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')));
 
 
     /**************************************************************************************************************
+
         DETAIL RECORDS
 
             -- LOOP 2300 RECORDS - HD, DTP, AMT Segments
+
             -- Loop 2700 RECORDS - LX Segments
+
             -- Loop 2750 RECORDS - N1, REF Segments
+
     ***************************************************************************************************************/
 
+
+
     -------------------
+
     -- DETAIL RECORD 
+
     -------------------
 
     IF OBJECT_ID('U_EGUAKLJEXP_DrvTbl_2300','U') IS NOT NULL
+
         DROP TABLE dbo.U_EGUAKLJEXP_DrvTbl_2300;
 
     SELECT DISTINCT
+
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
+
         drvHD00_HealthCoverage = CASE WHEN BdmDedType IN ('DEN','DRG','LTC' ,'LTD' ,'OPC' ,'OPS' ,'OPT','OT1','PRP','STD','VIS' ) THEN 'HD'
                                  END
+
         ,drvHD01_MaintTypeCode = '030' --Audit or Compare
+
         ,drvHD02_MaintReasonCode = CASE WHEN BdmDedType IN ('MED') THEN ''
+
                                            WHEN BdmDedType IN ('DEN') THEN ''
+
                                            WHEN BdmDedType IN ('VIS') THEN ''
+
                                      END
+
         ,drvHD03_InsuranceLineCode = CASE WHEN BdmDedCode in ('ADDER') THEN 'AJ'
                                           WHEN BdmDedCode in ('ACCHI') THEN 'EPO'
                                           WHEN BdmDedCode in ('ACCLO') THEN 'EPO'
-                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')   THEN 'AG'
+                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') THEN 'AG'
                                           WHEN BdmDedCode in ('DEN') THEN 'DEN'
                                           WHEN BdmDedCode in ('GLIFE') THEN 'AH'
                                           WHEN BdmDedCode in ('HOSP') THEN 'POS'
@@ -1417,13 +1516,20 @@ BEGIN
                                           WHEN BdmDedCode in ('EAPER') THEN 'MOD'
                                           WHEN BdmDedCode in ('VLADC','VLADE','VLADS') THEN 'HLT'
                                      END
+
         ,drvHD04_PlanCoverageDesc = CASE WHEN BdmDedType IN ('MED') THEN ''
+
                                            WHEN BdmDedType IN ('DEN') THEN ''
+
                                            WHEN BdmDedType IN ('VIS') THEN ''
+
                                            WHEN BdmDedCode = 'ACCHI' THEN 'PREMIER'
                                            WHEN BdmDedCode = 'ACCLO' THEN 'ADVANTAGE'
+
                                      END
+
         ,drvHD05_CoverageLevelCode = CASE WHEN BdmDedType IN ('DEN','DRG','LTC' ,'LTD' ,'OPC' ,'OPS' ,'OPT','OT1','PRP','STD','VIS' ) THEN
+
                                                 CASE WHEN BdmBenOption IN ('EE') THEN 'EMP'
                                                      WHEN BdmBenOption IN ('EES','EEP') THEN 'ESP'
                                                      WHEN BdmBenOption IN ('EEC','EEP') THEN 'ECH'
@@ -1433,8 +1539,11 @@ BEGIN
                                                      WHEN BdmDedCode IN ('VLADC','CIC12','CIC25','CIC37','CIC5') THEN 'ECH'
                                                      WHEN BdmDedCode IN ('VLADE','ADDER','GLIFE','LTDER','STDER','LTDUP','EAPER','CIE10','CIE15','CIE20','CIE5') THEN 'EMP'
                                                 END
+
                                      END
+
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
+
         ,drvDTP00_DateTime_348 = CASE WHEN BdmDedType IN ('DEN','DRG','LTC' ,'LTD' ,'OPC' ,'OPS' ,'OPT','OT1','PRP','STD','VIS' ) THEN 'DTP' END
         ,drvDTP01_DateTimeQualifier_348 = CASE WHEN BdmDedType IN ('DEN','DRG','LTC' ,'LTD' ,'OPC' ,'OPS' ,'OPT','OT1','PRP','STD','VIS' ) THEN '348' END
         ,drvDTP02_DateTimeFormatQual_348 = CASE WHEN BdmDedType IN ('DEN','DRG','LTC' ,'LTD' ,'OPC' ,'OPS' ,'OPT','OT1','PRP','STD','VIS' ) THEN 'D8' END
@@ -1492,8 +1601,8 @@ BEGIN
         ,drvCOID = xCOID
         ,drvDepRecID = ConSystemID
         ,drvSSN = EepSSN
-        ,drvInitialSort = xEEID
-        ,drvSubSort = CONVERT(CHAR(9),RTRIM(xEEID)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+        ,drvInitialSort = RTRIM(EepSSN)
+        ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
                       +  CASE WHEN BdmDedCode in ('ADDER') THEN '1'
                                           WHEN BdmDedCode in ('ACCHI') THEN '2'
                                           WHEN BdmDedCode in ('ACCLO') THEN '3'
@@ -1515,20 +1624,23 @@ BEGIN
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-        AND EecEEType <>'TES'
-                        and (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
-                 and EXISTS(select 1 from dbo.U_EGUAKLJEXP_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+     
     JOIN dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK)
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
+        AND BdmBenstatus NOT In ('W','C')
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
-        Where CONVERT(CHAR(9),RTRIM(xEEID)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
+        WHERE  EecEEType = 'REG' 
+        AND EecFullTimeOrPartTime <> 'P'
+        AND (eecemplstatus <> 'T' OR (eecemplstatus= 'T' and eectermreason <>'TRO' 
+                 and EXISTS(select 1 from dbo.U_EGUAKLJEXP_Audit where audEEID = xEEID AND audKey2 = xcoid and audfieldname = 'eecemplstatus' and audNewValue = 'T')))
+                 AND CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,'')) 
                       +  CASE WHEN BdmDedCode in ('ADDER') THEN '1'
                                           WHEN BdmDedCode in ('ACCHI') THEN '2'
                                           WHEN BdmDedCode in ('ACCLO') THEN '3'
-                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BdmUSGField1, '') <> ''THEN '4'
+                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BdmUSGField1, '') <> ''THEN '4' -- MW added and ISNULL(BdmUSGField1, '') <> ''
                                           WHEN BdmDedCode in ('DEN') THEN '5'
                                           WHEN BdmDedCode in ('GLIFE') THEN '6'
                                           WHEN BdmDedCode in ('HOSP') THEN '7'
@@ -1538,65 +1650,87 @@ BEGIN
                                           WHEN BdmDedCode in ('VIS') THEN '11'
                                           WHEN BdmDedCode in ('EAPER') THEN '12'
                                           WHEN BdmDedCode in ('VLADC','VLADE','VLADS') THEN '13'
-                                     END is not null
-                                     ;
+                                     END is not null  --MW Added 5/2/2023 to remove blank AG 
 
     --Create rows for FAC
      INSERT INTO dbo.U_EGUAKLJEXP_DrvTbl_2300
-     SELECT DISTINCT
+ SELECT DISTINCT
 
         -- If drvHD00_HealthCoverage Populated, then send HD Segment
 
-         drvHD00_HealthCoverage 
+        drvHD00_HealthCoverage 
+
         ,drvHD01_MaintTypeCode
+
         ,drvHD02_MaintReasonCode
+
         ,drvHD03_InsuranceLineCode = 'FAC'
+
         ,drvHD04_PlanCoverageDesc 
+
         ,drvHD05_CoverageLevelCode 
 
         -- If drvDTP00_DateTime_348 Populated, then send DTP*348 Segment
 
         ,drvDTP00_DateTime_348 
+
         ,drvDTP01_DateTimeQualifier_348 
+
         ,drvDTP02_DateTimeFormatQual_348 
+
         ,drvDTP03_DateTimePeriod_348
+
         -- If drvDTP00_DateTime_349 Populated, then send DTP*349 Segment
 
         ,drvDTP00_DateTime_349 
+
         ,drvDTP01_DateTimeQualifier_349
+
         ,drvDTP02_DateTimeFormatQual_349
+
         ,drvDTP03_DateTimePeriod_349 
 
         -- If drvDTP00_DateTime_303 = 'DTP', then Send DTP*303 Segment
 
         ,drvDTP00_DateTime_303 
+
         ,drvDTP01_DateTimeQualifier_303 
+
         ,drvDTP02_DateTimeFormatQual_303
+
         ,drvDTP03_DateTimePeriod_303 
 
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
 
         ,drvREF00_RefNumberQual1
+
         ,drvREF01_RefNumberQual1 
+
         ,drvREF02_RefNumberQual1 
 
 
         -- If drvREF01_RefNumberQual2 is Populated, then send REF Segment
 
         ,drvREF00_RefNumberQual2
+
         ,drvREF01_RefNumberQual2
+
         ,drvREF02_RefNumberQual2 
 
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
 
         ,drvAMT00_AmountQualifierCode1 
+
         ,drvAMT01_AmountQualifierCode1 
+
         ,drvAMT02_MonetaryAmount1 
 
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
 
         ,drvAMT00_AmountQualifierCode2 
-        ,drvAMT01_AmountQualifierCode2
+
+        ,drvAMT01_AmountQualifierCode2 
+
         ,drvAMT02_MonetaryAmount2 
 
         --=====================
@@ -1607,9 +1741,12 @@ BEGIN
 
         -- If drvLS01_LoopIDCode is Populated, then send LS Segment
 
-        ,drvLS01_LoopIDCode
+        ,drvLS01_LoopIDCode 
+
         -- If drvLX01_AssignedNumber is Populated, then send LX Segment
+
         ,drvLX01_AssignedNumber 
+
         --=====================
 
         -- Loop 2750 RECORDS
@@ -1619,23 +1756,36 @@ BEGIN
         -- If drvN101_EntityIDCodeSponsor is Populated, then send N1 Segment
 
         ,drvN101_EntityIDCodeSponsor 
+
         ,drvN102_Name 
+
         -- If drvREF01_RefNumberQual is Populated, then send REF Segment
+
         ,drvREF01_RefNumberQual 
+
         ,drvREF02_RefNumberDesc 
+
         -- If drvLE01_LoopIDCode is Populated, then send LE Segment
+
         ,drvLE01_LoopIDCode 
 
         ---------------------------------
 
         ,drvEEID 
+
         ,drvCOID 
-        ,drvDepRecID
+
+        ,drvDepRecID 
+
         ,drvSSN 
-        ,drvInitialSort
-        ,drvSubSort = CONVERT(CHAR(9),RTRIM(drvEeid)) + CONVERT(CHAR(12),ISNULL(drvDepRecID,''))
+
+        ,drvInitialSort 
+
+        ,drvSubSort = CONVERT(CHAR(9),RTRIM(drvSSN)) + CONVERT(CHAR(12),ISNULL(drvDepRecID,''))
+
                       + '14'
-    FROM dbo.U_EGUAKLJEXP_DrvTbl_2300 where drvHD03_InsuranceLineCode = 'HLT'
+
+    FROM dbo.U_EGUAKLJEXP_DrvTbl_2300 where drvHD03_InsuranceLineCode = 'HLT' 
 
     /**************************************************************************************************
 
@@ -1652,9 +1802,11 @@ BEGIN
     --------------------
 
     IF OBJECT_ID('U_EGUAKLJEXP_TrlTbl') IS NOT NULL
+
         DROP TABLE dbo.U_EGUAKLJEXP_TrlTbl;
 
     SELECT DISTINCT drvSE01_SegmentCount = '9999'
+
     INTO dbo.U_EGUAKLJEXP_TrlTbl;
 
 
@@ -1666,11 +1818,18 @@ BEGIN
     --==========================================
 
     IF (dbo.dsi_fnVariable('EGUAKLJEXP','UseFileName') = 'N')
-      BEGIN
-           UPDATE dbo.U_dsi_Parameters
+
+    BEGIN
+
+        UPDATE dbo.U_dsi_Parameters
+
             SET ExportFile = 'NATMA_EGUAKLJEXP_' + CONVERT(VARCHAR(8),GETDATE(),112) + '.txt'
+
         WHERE FormatCode = 'EGUAKLJEXP';
-     END;
+
+    END;
+
+
 
 END;
 
@@ -1681,8 +1840,11 @@ END;
 --Alter the View
 
 ALTER VIEW dbo.dsi_vwEGUAKLJEXP_Export AS
+
     SELECT TOP 20000000 DATA FROM dbo.U_EGUAKLJEXP_File (NOLOCK)
+
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
+
 GO
 
 
@@ -1690,7 +1852,9 @@ GO
 --Check out AscDefF
 
 SELECT * FROM dbo.AscDefF
+
 WHERE AdfHeaderSystemID LIKE 'EGUAKLJEXP%'
+
 ORDER BY AdfSetNumber, AdfFieldNumber;
 
 
@@ -1698,10 +1862,15 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 --Update Dates
 
 UPDATE dbo.AscExp
+
     SET ExpLastStartPerControl = '202301241'
+
        ,ExpStartPerControl     = '202301241'
+
        ,ExpLastEndPerControl   = '202301319'
+
        ,ExpEndPerControl       = '202301319'
+
 WHERE ExpFormatCode = 'EGUAKLJEXP';
 
 
@@ -1709,7 +1878,9 @@ WHERE ExpFormatCode = 'EGUAKLJEXP';
 **********************************************************************************/
 GO
 CREATE VIEW dbo.dsi_vwEGUAKLJEXP_Export AS
+
     SELECT TOP 20000000 DATA FROM dbo.U_EGUAKLJEXP_File (NOLOCK)
+
     ORDER BY CASE LEFT(Recordset,1) WHEN 'H' THEN 1 WHEN 'D' THEN 2 ELSE 3 END, InitialSort, SubSort, RIGHT(Recordset,2)
 
 GO
