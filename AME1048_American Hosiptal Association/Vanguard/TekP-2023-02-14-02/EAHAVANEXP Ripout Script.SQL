@@ -1072,7 +1072,7 @@ BEGIN
                                     END    
         ,drvContributionSource5 = CASE WHEN ISNULL(Pdh401RC,0) <>  0.00 THEN 'NRC' END
         ,drvContributionAmount5 = CASE WHEN ISNULL(Pdh401RC,0) >  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '+'
-                                       WHEN ISNULL(Pdh401RC,0) <  0.00 THEN dbo.dsi_fnpadzero(Replace(Pdh401RC, '.', ''), 9, 0) + '-'
+                                       WHEN ISNULL(Pdh401RC,0) <  0.00 THEN dbo.dsi_fnzero(Replace(Pdh401RC, '.', ''), 9, 0) + '-'
                                     END    
         ,drvContributionSource6 = CASE WHEN ISNULL(Pdh401ER,0) <> 0.00  THEN 'DDD' END
         ,drvContributionAmount6 = CASE WHEN ISNULL(Pdh401ER,0) > 0 THEN dbo.dsi_fnpadzero(Replace(Pdh401ER, '.', ''), 9, 0) + '+'

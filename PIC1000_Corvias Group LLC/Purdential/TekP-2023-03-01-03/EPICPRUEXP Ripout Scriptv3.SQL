@@ -5,7 +5,7 @@ EPICPRUEXP: Prudential Voluntary Life Export
 FormatCode:     EPICPRUEXP
 Project:        Prudential Voluntary Life Export
 Client ID:      PIC1000
-Date/time:      2023-05-25 14:08:03.780
+Date/time:      2023-06-08 07:31:22.653
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -410,7 +410,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EPICPRUEXP_20230525.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EPICPRUEXP_20230608.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -419,7 +419,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Prudential Voluntary Life Expo','202304149','EMPEXPORT','ONDEM_XOE',NULL,'EPICPRUEXP',NULL,NULL,NULL,'202304149','Apr 14 2023  1:44PM','Apr 14 2023  1:44PM','202304141',NULL,'','','202304141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',P1QVW,CLMFC,FO23O',NULL,NULL,NULL,'Prudential Voluntary Lif-Sched','202304219','EMPEXPORT','SCH_EPICPR',NULL,'EPICPRUEXP',NULL,NULL,NULL,'202304219','Apr 14 2023  1:44PM','Apr 14 2023  1:44PM','202304081',NULL,'','','202304081',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','P1QVW,CLMFC,FO23O',NULL,NULL,NULL,'Prudential Voluntary Lif-Test','202305199','EMPEXPORT','TEST_XOE',NULL,'EPICPRUEXP',NULL,NULL,NULL,'202305199','Apr 14 2023  1:44PM','Apr 14 2023  1:44PM','202305061',NULL,'','','202305061',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','P1QVW,CLMFC,FO23O',NULL,NULL,NULL,'Prudential Voluntary Lif-Test','202306079','EMPEXPORT','TEST_XOE','Jun  7 2023  2:36PM','EPICPRUEXP',NULL,NULL,NULL,'202306079','Jun  7 2023 12:00AM','Dec 30 1899 12:00AM','202305241','8364','','','202305241',dbo.fn_GetTimedKey(),NULL,'us3lKiPIC1000',NULL);
 
 -----------
 -- AscImp inserts
@@ -634,7 +634,7 @@ CREATE TABLE [dbo].[U_EPICPRUEXP_drvTbl_Cov] (
     [drvAssociateID] char(9) NULL,
     [drvProductCode] varchar(3) NULL,
     [drvCoverageEffDate] varchar(30) NULL,
-    [drvCoverageEndDate] datetime NULL,
+    [drvCoverageEndDate] varchar(30) NULL,
     [drvClaimBranchCode] varchar(5) NULL
 );
 
@@ -758,6 +758,7 @@ Purpose: Prudential Voluntary Life Export
 Revision History
 ----------------
 Update By           Date           Request Num        Desc
+Marie Waters        06/08/2023       TekP-2023-03-01-03  changed perahist to a left join and added a case statement to the hours field on the absence query per request
 XXXX                XX/XX/2023     SR-2023-000XXXXX   XXXXX
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EPICPRUEXP';
@@ -920,14 +921,15 @@ BEGIN
         --,PehInclInDefCompHrs    = SUM(CASE WHEN PehInclInDefCompHrs = 'Y' AND PehPerControl >= @StartPerControl THEN PehCurHrs END)
         ---- YTD Include Deferred Comp Amount/Hours
         --,PehInclInDefCompYTD    = SUM(CASE WHEN PehInclInDefComp = 'Y' THEN PehCurAmt END)
-        ,PehCompHrs12MO = Format(SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END), '0.00')
+        ,PehCompHrs12MO = Format(SUM(CASE WHEN PehIsRegularPayCode = 'Y' THEN PehCurHrs END), '0.00')  
+                    --Format(SUM(CASE WHEN PehInclInDefCompHrs = 'Y' THEN PehCurHrs END), '0.00') 
     INTO dbo.U_EPICPRUEXP_PEarHist
     FROM dbo.vw_int_PayReg WITH (NOLOCK)
     JOIN dbo.vw_int_PEarHist WITH (NOLOCK)
         ON PehGenNumber = PrgGenNumber
-    WHERE  PehPerControl  between CONVERT(VARCHAR, DATEADD(D,-365,@EndDate), 112) + '1' and @EndPerControl
+    WHERE PehPerControl between CONVERT(VARCHAR, DATEADD(D,-365,@StartDate), 112) + '1' and @EndPerControl
     GROUP BY PehEEID
-    HAVING SUM(PehCurHrs) > 0.00;
+    --HAVING SUM(PehCurHrs) > 0.00;
     --==========================================
     -- Build Driver Tables
     --==========================================
@@ -976,9 +978,9 @@ BEGIN
         JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-    JOIN dbo.U_dsi_BDM_EPICPRUEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
+    --JOIN dbo.U_dsi_BDM_EPICPRUEXP WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
     LEFT JOIN (
                 SELECT EfoEEID, EfoPhoneNumber
                 FROM (
@@ -990,7 +992,7 @@ BEGIN
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+    WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
     
     ;
@@ -1028,15 +1030,15 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.JobCode WITH (NOLOCK)
         ON JbcJobCode = EecJobCode
-    JOIN dbo.U_dsi_BDM_EPICPRUEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID 
+    --JOIN dbo.U_dsi_BDM_EPICPRUEXP WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID 
     LEFT JOIN dbo.LOCATION WITH (NOLOCK)
        ON LocCode = EecLocation
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+    WHERE EecEEType NOT In ( 'TES', 'INT')  and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
     ;
 
@@ -1057,8 +1059,8 @@ BEGIN
                                WHEN Bdm2.BdmDedCode = 'BLIF2' THEN 'LTD'
                               END
         ,drvCoverageEffDate = Convert(varchar,DATEADD(month, DATEDIFF(month, 2, dateadd(d, 90, EecDateOfSeniority)), 0) , 112)
-        ,drvCoverageEndDate =   CASE WHEN Bdm1.BdmDedCode = 'BLIF2' and bdm1.BdmBenStopDate is not null THEN Convert(varchar,bdm1.BdmBenStopDate, 112)
-							   WHEN Bdm2.BdmDedCode = 'BLIF2' and bdm2.BdmBenStopDate is not null THEN Convert(varchar,bdm2.BdmBenStopDate, 112)
+        ,drvCoverageEndDate =  CASE WHEN Bdm1.BdmDedCode = 'BLIF2' and bdm1.BdmBenStopDate is not null THEN Convert(varchar,bdm1.BdmBenStopDate, 112)
+                               WHEN Bdm2.BdmDedCode = 'BLIF2' and bdm2.BdmBenStopDate is not null THEN Convert(varchar,bdm2.BdmBenStopDate, 112)
                               END
         ,drvClaimBranchCode = CASE WHEN Bdm1.BdmDedCode = 'BLIF2' THEN '00001' --'STD'
                                WHEN Bdm2.BdmDedCode = 'BLIF2' THEN '00001'
@@ -1078,7 +1080,7 @@ BEGIN
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+    WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
     ;
 
@@ -1096,22 +1098,22 @@ BEGIN
         -- standard fields above and additional driver fields below
         ,drvAssociateID = EecEmpNo
         ,drvFMLABranchCode = '00001'
-        ,drvHrsWorkedLast12Mts = PehCompHrs12MO
+        ,drvHrsWorkedLast12Mts = CASE WHEN PehCompHrs12MO is not null then PehCompHrs12MO ELSE '0.00' END
         ,drvFileRunDate = @Rundate
     INTO dbo.U_EPICPRUEXP_drvTbl_Absence
     FROM dbo.U_EPICPRUEXP_EEList WITH (NOLOCK)
-     JOIN dbo.U_dsi_BDM_EPICPRUEXP WITH (NOLOCK)
+    JOIN dbo.U_dsi_BDM_EPICPRUEXP WITH (NOLOCK)
         ON BdmEEID = xEEID 
         AND BdmCoID = xCoID
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
-     JOIN dbo.U_EPICPRUEXP_PEarHist WITH (NOLOCK)
+    LEFT JOIN dbo.U_EPICPRUEXP_PEarHist WITH (NOLOCK)
         ON PehEEID = xEEID 
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+        WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
     ;
     ---------------------------------
@@ -1150,7 +1152,7 @@ BEGIN
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-        WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+        WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
         and EecEmpNo not in ('001000','998899')
 
 Union
@@ -1181,7 +1183,7 @@ SELECT DISTINCT
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+    WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
     Union
     SELECT DISTINCT
@@ -1211,7 +1213,7 @@ SELECT DISTINCT
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-        WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+        WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
         and EecEmpNo not in ('001000','998899')
         )a
     Where drvReportingCode is not null and drvReportingValue is not null
@@ -1248,7 +1250,7 @@ SELECT DISTINCT
     LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+    WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
 
     Union
@@ -1279,7 +1281,7 @@ SELECT DISTINCT
      LEFT JOIN dbo.U_EPICPRUEXP_Audit WITH (NOLOCK)
         ON AudEEID = XEEID 
         and AudCOID = XCOID
-    WHERE EecEEType <> 'TES' and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
+    WHERE EecEEType NOT In ( 'TES', 'INT') and (eecemplstatus <> 'T' or (eecemplstatus = 'T'  and eecTermReason <> 'TRO' and audTerm = 'Y' AND eecDateofTermination between DATEADD( D,-30, @enddate) and @enddate))
     and EecEmpNo not in ('001000','998899')
     ;
     ---------------------------------
