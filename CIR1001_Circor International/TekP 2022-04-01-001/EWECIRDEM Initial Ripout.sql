@@ -398,7 +398,7 @@ Purpose: Web Benefits Demo Export
 Revision History
 ----------------
 10/20/2021 by AP:
-    - Wrapped SSN, Company Name, Job Title in quotes.
+    - Wrapped SSN, Company Name, Job Title in s.
     - Removed commas from address1 and address2.
     - Updated department, hr rep, salary grade and work site output.
     - Benefit seniority date and manager id fields added.

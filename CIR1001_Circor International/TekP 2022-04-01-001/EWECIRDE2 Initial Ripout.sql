@@ -379,7 +379,7 @@ Revision History
     - Fixed duplicate SSN issue (problem with orgs not filtering on orglevel number).
     - Set zip to first 5 digits.
     - Termination reason updated with new values.
-    - Manager and Manager ID issue fixed (sometimes manager is not in the same company id as employee).
+    - Manager and r ID issue fixed (sometimes manager is not in the same company id as employee).
     - Removed commas from company name.
     - HR Rep updated.
     - Manager name formatting updated.
