@@ -575,7 +575,7 @@ CREATE TABLE [dbo].[U_ESCHWABTES_Transfer] (
     [drvhiredate] varchar(8000) NULL,
     [drvplandate] char(8) NULL,
     [drvtermdate] varchar(8000) NULL,
-    [drvrehiredt] varchar(8000) NULL,
+    [drvdt] varchar(8000) NULL,
     [drvstatus] varchar(1) NULL,
     [drvrptdivision] char(10) NULL,
     [drvaltkey1] char(1) NULL,
