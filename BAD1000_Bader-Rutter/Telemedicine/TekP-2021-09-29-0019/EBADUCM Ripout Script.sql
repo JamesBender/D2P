@@ -718,7 +718,7 @@ ORDER BY AdfSetNumber, AdfFieldNumber;
 --Update Dates
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202101021'
-       ,expStartPerControl     = '202101021'
+       ,expStartPerControl     = '202021'
        ,expLastEndPerControl   = '202112099'
        ,expEndPerControl       = '202112099'
 WHERE expFormatCode = 'EBADUCM';
