@@ -900,9 +900,9 @@ BEGIN
                                        CASE WHEN BdmRecType = 'EMP' THEN LEFT(EepNameMiddle,1)
                                             WHEN BdmRecType = 'DEP' THEN LEFT(ConNameMiddle,1)
                                        END)
-        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNamePrefix END
-        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' THEN EepNameSuffix
-                                     WHEN BdmRecType = 'DEP' THEN ConNameSuffix
+        ,drvNM106_NamePrefix1 = CASE WHEN BdmRecType = 'EMP' and EepNamePrefix <> 'Z' THEN EepNamePrefix END
+        ,drvNM107_NameSuffix1 = CASE WHEN BdmRecType = 'EMP' and EepNameSuffix <> 'Z' THEN EepNameSuffix
+                                     WHEN BdmRecType = 'DEP' and ConNameSuffix <> 'Z' THEN ConNameSuffix
                                 END
         ,drvNM108_IDCodeQualifier1 = CASE WHEN BdmRecType = 'EMP' AND ISNULL(EepSSN, '') <> '' THEN '34'
                                           WHEN BdmRecType = 'DEP' AND ISNULL(ConSSN, '') <> '' THEN '34'
