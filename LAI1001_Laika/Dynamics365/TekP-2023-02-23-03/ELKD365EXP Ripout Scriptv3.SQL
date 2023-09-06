@@ -5,7 +5,7 @@ ELKD365EXP: Dynamics 365 Payroll Expense
 FormatCode:     ELKD365EXP
 Project:        Dynamics 365 Payroll Expense
 Client ID:      LAI1001
-Date/time:      2023-07-20 20:32:04.580
+Date/time:      2023-08-30 15:43:28.520
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -181,16 +181,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ELKD365EXP_20230720.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ELKD365EXP_20230830.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Dynamics 365 Payroll Expense','202305109','EMPEXPORT','ONDEM_XOE',NULL,'ELKD365EXP',NULL,NULL,NULL,'202305109','May 10 2023 11:15AM','May 10 2023 11:15AM','202305031',NULL,'','','202305031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Dynamics 365 Payroll Exp-Sched','202305109','EMPEXPORT','SCH_ELKD3X',NULL,'ELKD365EXP',NULL,NULL,NULL,'202305109','May 10 2023 11:15AM','May 10 2023 11:15AM','202305031',NULL,'','','202305031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','W7V17',NULL,NULL,NULL,'Dynamics 365 Payroll Exp-Test','202307079','EMPEXPORT','TEST_XOE',NULL,'ELKD365EXP',NULL,NULL,NULL,'202307079','May 10 2023 11:15AM','May 10 2023 11:15AM','202306241',NULL,'','','202306241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','W7V17',NULL,NULL,NULL,'Dynamics 365 Payroll Expense','202308189','EMPEXPORT','ONDEM_XOE',NULL,'ELKD365EXP',NULL,NULL,NULL,'202308189','May 10 2023 11:15AM','May 10 2023 11:15AM','202308051',NULL,'','','202308051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',W7V17',NULL,NULL,NULL,'Dynamics 365 Payroll Exp-Sched','207305319','EMPEXPORT','SCH_ELKD3X',NULL,'ELKD365EXP',NULL,NULL,NULL,'207305319','May 10 2023 11:15AM','May 10 2023 11:15AM','202305031',NULL,'','','202305031',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','W7V17',NULL,NULL,NULL,'Dynamics 365 Payroll Exp-Test','202308189','EMPEXPORT','TEST_XOE',NULL,'ELKD365EXP',NULL,NULL,NULL,'202308189','May 10 2023 11:15AM','May 10 2023 11:15AM','202308051',NULL,'','','202308051',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -345,7 +345,6 @@ SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM
 SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'ELKD365EXP' ORDER BY RunID DESC;
 
 
-
 UPDATE dbo.AscExp
     SET expLastStartPerControl = '202306151'
        ,expStartPerControl     = '202306151'
@@ -442,7 +441,9 @@ BEGIN
     --having Sum(vDebitAmt) <> 0.00
     --order by veeid, LEFT(vGLAcctNumber,11),VGLBaseSeg
 
-
+     ----==========================================
+    ---- Create Working Table
+    ----==========================================
     IF OBJECT_ID('dbo.U_ELKD365EXP_WorkingTbl','U') IS NOT NULL
         DROP TABLE dbo.U_ELKD365EXP_WorkingTbl;
 
@@ -478,13 +479,21 @@ BEGIN
             ,lDescription =  Concat('UKG', cast(Month(MAX(VPercontrolDate))as varchar) ,'/',cast(YEAR(Max(VPercontrolDate))as varchar),'_PR-GL_', 'PP',cast(datepart(wk,max(VPercontrolDate))/2 as varchar) )
             ,DocumentDate =Convert(varchar,MAX(vPaydate), 101)
             ,TransDate = Convert(varchar,MAX(vPeriodEndDate), 101)
-            ,AccountDisplayValue =  CASE WHEN (Left(max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
-                                        WHEN  (Left(max(VGLBaseSeg), 1) NOT IN ( '5', '6') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM(vGLBaseSeg),'.','' ,'.','','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
-                                     END
-            ,DefaultDimensionDisplayVal =  CASE WHEN (Left(Max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
-                                                WHEN(Left(max(VGLBaseSeg), 1) NOT IN ( '6', '5') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM((vGLBaseSeg)),'.','' ,'.','','.',LTRIm(RTRIM(Replace((vProject), 'Z',''))),'.',vEmpNo))
+            ,AccountDisplayValue =  CASE WHEN max(VGLBaseSeg) = '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.', '20'  ,'.','890','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))            
+                                                WHEN max(VGLBaseSeg) <> '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
                                             END
-            ,lText =  Concat(Convert(varchar, MAX(vPeriodStartDate), 101),'-',convert(Varchar, Max(vPeriodEndDate), 101) ,'/',max(VAcctDesc))
+                                            --MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+             --CASE WHEN (Left(max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                                      --  WHEN  (Left(max(VGLBaseSeg), 1) NOT IN ( '5', '6') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM(vGLBaseSeg),'.','' ,'.','','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                                    -- END
+            ,DefaultDimensionDisplayVal =  CASE WHEN max(VGLBaseSeg) = '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.', '20'  ,'.','890','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))            
+                                                WHEN max(VGLBaseSeg) <> '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                                            END
+                                            --MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                      --CASE WHEN (Left(Max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+             --                                   WHEN(Left(max(VGLBaseSeg), 1) NOT IN ( '6', '5') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM((vGLBaseSeg)),'.','' ,'.','','.',LTRIm(RTRIM(Replace((vProject), 'Z',''))),'.',vEmpNo))
+             --                               END
+            ,lText =  Concat(Convert(varchar, MAX(vPeriodStartDate), 101),'-',convert(Varchar, Max(vPeriodEndDate), 101) ,'_',max(VAcctDesc))
          
     --INTO dbo.U_ELKD365EXP_DebitTbl
      FROM --dbo.U_ELKD365EXP_EEList WITH (NOLOCK)
@@ -497,7 +506,7 @@ BEGIN
     having Sum(vDebitAmt) <> 0.00
     --order by veeid,vcode, LEFT(vGLAcctNumber,11),VGLBaseSeg
     ) a
-    Group by   eeid, vcode, GLAcctNumber, AccountDisplayValue, DefaultDimensionDisplayVal, lText
+    Group by    AccountDisplayValue, DefaultDimensionDisplayVal, lText
 
     INSERT  INTO dbo.U_ELKD365EXP_WorkingTbl
     (
@@ -549,13 +558,21 @@ BEGIN
             ,lDescription =  Concat('UKG', cast(Month(MAX(VPercontrolDate))as varchar) ,'/',cast(YEAR(Max(VPercontrolDate))as varchar),'_PR-GL_', 'PP',cast(datepart(wk,max(VPercontrolDate))/2 as varchar) )
             ,DocumentDate =Convert(varchar,MAX(vPaydate), 101)
             ,TransDate = Convert(varchar,MAX(vPeriodEndDate), 101)
-            ,AccountDisplayValue =  CASE WHEN (Left(max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
-                                        WHEN  (Left(max(VGLBaseSeg), 1) NOT IN ( '5', '6') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM(vGLBaseSeg),'.','' ,'.','','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
-                                     END
-            ,DefaultDimensionDisplayVal =  CASE WHEN (Left(Max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
-                                                WHEN(Left(max(VGLBaseSeg), 1) NOT IN ( '6', '5') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM((vGLBaseSeg)),'.','' ,'.','','.',LTRIm(RTRIM(Replace((vProject), 'Z',''))),'.',vEmpNo))
+            ,AccountDisplayValue =   CASE WHEN max(VGLBaseSeg) = '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.', '20'  ,'.','890','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))            
+                                                WHEN max(VGLBaseSeg) <> '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
                                             END
-            ,lText =  Concat(Convert(varchar, MAX(vPeriodStartDate), 101),'-',convert(Varchar, Max(vPeriodEndDate), 101) ,'/',max(VAcctDesc))
+                                            --MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                                    --CASE WHEN (Left(max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+         --                               WHEN  (Left(max(VGLBaseSeg), 1) NOT IN ( '5', '6') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM(vGLBaseSeg),'.','' ,'.','','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+         --                            END
+            ,DefaultDimensionDisplayVal =  CASE WHEN max(VGLBaseSeg) = '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.', '20'  ,'.','890','.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))            
+                                                WHEN max(VGLBaseSeg) <> '671040' THEN MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                                            END
+                                --MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                              --CASE WHEN (Left(Max(VGLBaseSeg), 1) IN ( '5', '6') or max(VGLBaseSeg) = '212020')  THEN  MAX(Concat(RTRIM(vGLBaseSeg),'.',RTRIM(vOrgLvl1Seg) ,'.',RTRIM(vOrgLvl2Seg),'.',LTRIm(RTRIM(Replace(vProject, 'Z',''))),'.',vEmpNo))
+                     --                           WHEN(Left(max(VGLBaseSeg), 1) NOT IN ( '6', '5') and max(VGLBaseSeg) <> '212020')  THEN MAX(Concat(RTRIM((vGLBaseSeg)),'.','' ,'.','','.',LTRIm(RTRIM(Replace((vProject), 'Z',''))),'.',vEmpNo))
+                     --                       END
+            ,lText =  Concat(Convert(varchar, MAX(vPeriodStartDate), 101),'-',convert(Varchar, Max(vPeriodEndDate), 101) ,'_',max(VAcctDesc))
     
  --  INTO dbo.U_ELKD365EXP_CreditTbl
    FROM dbo.vw_Dsi_Tmpalloc With (Nolock) 
@@ -567,7 +584,7 @@ BEGIN
     having Sum(vCreditAmt) <> 0.00
     --order by veeid,vcode, LEFT(vGLAcctNumber,11), VGLBaseSeg 
     ) a
-    Group by   eeid, vcode, GLAcctNumber, AccountDisplayValue, DefaultDimensionDisplayVal, lText
+    Group by    AccountDisplayValue, DefaultDimensionDisplayVal, lText
 --    order by eeid, vcode, GLAcctNumber, a.DebitAmt, a.CreditAmt
 
     

@@ -5,7 +5,7 @@ EALICIG834: CIGNA Medical 834 Export
 FormatCode:     EALICIG834
 Project:        CIGNA Medical 834 Export
 Client ID:      ALI1002
-Date/time:      2023-08-24 15:52:21.870
+Date/time:      2023-08-15 17:12:28.223
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -363,7 +363,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EALICIG834_20230824.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EALICIG834_20230815.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -374,7 +374,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment','202308159','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EALICIG834',NULL,NULL,NULL,'202308159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202308151',NULL,'','','202308151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'On-Demand Only','202308159','EMPEXPORT','ONDM_XOE','Oct  1 2018 12:00AM','EALICIG834',NULL,NULL,NULL,'202308159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202308151',NULL,'','','202308151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'CIGNA Medical 834 Export','202308159','EMPEXPORT','SCH_EALICI','Oct  1 2018 12:00AM','EALICIG834',NULL,NULL,NULL,'202308159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202308151',NULL,'','','202308151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','',NULL,NULL,NULL,'Test File Only','202310011','EMPEXPORT','TEST_XOE','Aug 16 2023 12:00AM','EALICIG834',NULL,NULL,NULL,'202310011','Oct  1 2023 12:00AM','Dec 30 1899 12:00AM','202308161',NULL,'','','202308161',dbo.fn_GetTimedKey(),NULL,'us3aBoALI1002',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'Test File Only','202308159','EMPEXPORT','TEST_XOE','Oct  1 2018 12:00AM','EALICIG834',NULL,NULL,NULL,'202308159','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202308151',NULL,'','','202308151',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 
 -----------
 -- AscImp inserts
@@ -1252,11 +1252,11 @@ BEGIN
                                          WHEN BdmDedcode = 'AQNQ' and  (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) <>'CA' THEN 'OAP1'
                                          WHEN BdmDedcode = 'AQNQ' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) = 'CA' THEN 'OAPCA'
                                         END
-                                       WHEN  BdmRectype = 'DEP' THEN
+                                        WHEN  BdmRectype = 'DEP' THEN
                                         CASE WHEN BdmDedcode = 'AQUO' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) <>'CA' THEN 'HDHP1'
-                                             WHEN BdmDedcode = 'AQUO' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) = 'CA' THEN 'HDHCA'
-                                             WHEN BdmDedcode = 'AQNQ' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) <>'CA' THEN 'OAP1'
-                                             WHEN BdmDedcode = 'AQNQ' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) = 'CA' THEN 'OAPCA'
+                                         WHEN BdmDedcode = 'AQUO' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) = 'CA' THEN 'HDHCA'
+                                         WHEN BdmDedcode = 'AQNQ' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) <>'CA' THEN 'OAP1'
+                                         WHEN BdmDedcode = 'AQNQ' and (Select s.EepaddressState FROM dbo.EmpPers s WITH (NOLOCK) where  s.EepEEID = xEEID) = 'CA' THEN 'OAPCA'
                                         END
                                     END
         ,drvHD05_CoverageLevelCode = 
@@ -1284,42 +1284,8 @@ BEGIN
         -- If drvREF00_RefNumberQual1 is Populated, then send REF Segment
         ,drvREF00_RefNumberQual1 = 'REF'
         ,drvREF01_RefNumberQual1 = '1L'
-        ,drvREF02_RefNumberQual1 = CONCAT('3345765',   CASE WHEN eecorglvl3 = 'ACCTTM' THEN 'ACCT'
-                                                            WHEN eecorglvl3 = 'ACCTMA' THEN 'ACMT'
-                                                            WHEN eecorglvl3 = 'ALLTTM' THEN 'ALLT'
-                                                            WHEN eecorglvl3 = 'ASCENG' THEN 'ASCE'
-                                                            WHEN eecorglvl3 = 'ASCPRO' THEN 'ASCP'
-                                                            WHEN eecorglvl3 = 'CUSUTM' THEN 'CUST'
-                                                            WHEN eecorglvl3 = 'EXECTM' THEN 'EXEC'
-                                                            WHEN eecorglvl3 = 'EXPENT' THEN 'EXPE'
-                                                            WHEN eecorglvl3 = 'EXPSMB' THEN 'EXPS'
-                                                            WHEN eecorglvl3 = 'FACTM'  THEN 'FACT'
-                                                            WHEN eecorglvl3 = 'FEDTM'  THEN 'FEDT'
-                                                            WHEN eecorglvl3 = 'HITRM'  THEN 'HITR'
-                                                            WHEN eecorglvl3 = 'HRTEAM' THEN 'HRTE'
-                                                            WHEN eecorglvl3 = 'ISOTM'  THEN 'ISOT'
-                                                            WHEN eecorglvl3 = 'ITTEAM' THEN 'ITTE'
-                                                            WHEN eecorglvl3 = 'LCTM'   THEN 'LCTM'
-                                                            WHEN eecorglvl3 = 'MIDLAR' THEN 'MIDL'
-                                                            WHEN eecorglvl3 = 'MKTGTM' THEN 'MKTG'
-                                                            WHEN eecorglvl3 = 'NEWLEN' THEN 'NEWE'
-                                                            WHEN eecorglvl3 = 'NEWLSM' THEN 'NSMB'
-                                                            WHEN eecorglvl3 = 'NEWLST' THEN 'NSTA'
-                                                            WHEN eecorglvl3 = 'LDTEAM' THEN 'OPDT'
-                                                            WHEN eecorglvl3 = 'PCITM'  THEN 'PCIT'
-                                                            WHEN eecorglvl3 = 'PMTEAM' THEN 'PMTE'
-                                                            WHEN eecorglvl3 = 'RPQATM' THEN 'RPQA'
-                                                            WHEN eecorglvl3 = 'SDLTM'  THEN 'SDLT'
-                                                            WHEN eecorglvl3 = 'SFTEAM' THEN 'SFTE'
-                                                            WHEN eecorglvl3 = 'SLSSUT' THEN 'SLSS'
-                                                            WHEN eecorglvl3 = 'SLSTM'  THEN 'SLST'
-                                                            WHEN eecorglvl3 = 'SMBTM'  THEN 'SMBT'
-                                                            WHEN eecorglvl3 = 'SOCTM'  THEN 'SOCT'
-                                                            WHEN eecorglvl3 = 'TATEAM' THEN 'TATE'
-                                                            WHEN eecorglvl3 = 'TECHTM' THEN 'TECH' 
-                                                        ELSE LEFT(eecorglvl3,4) 
-                                                    END ,'  ',                                     
-                                    CASE WHEN BdmDedcode = 'AQUO' and eepaddressstate <>'CA' THEN 'HDHP1'
+        ,drvREF02_RefNumberQual1 = CONCAT('3345765', CASE WHEN eecorglvl3 = 'ACCTMA' THEN 'ACMT' ELSE LEFT(eecorglvl3,4) END
+                                    ,'  ', CASE WHEN BdmDedcode = 'AQUO' and eepaddressstate <>'CA' THEN 'HDHP1'
                                          WHEN BdmDedcode = 'AQUO' and eepaddressstate = 'CA' THEN 'HDHCA'
                                          WHEN BdmDedcode = 'AQNQ' and eepaddressstate <>'CA' THEN 'OAP1'
                                          WHEN BdmDedcode = 'AQNQ' and eepaddressstate = 'CA' THEN 'OAPCA'
