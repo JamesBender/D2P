@@ -5,7 +5,7 @@ ENOMHECONT: HealthEquity HSA Contribution
 FormatCode:     ENOMHECONT
 Project:        HealthEquity HSA Contribution
 Client ID:      NOM1002
-Date/time:      2023-08-01 07:23:01.450
+Date/time:      2023-09-13 09:45:09.683
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -150,16 +150,16 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'ENOMHECONT_20230801.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'ENOMHECONT_20230913.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity HSA Contribution','202307249','EMPEXPORT','ONDEM_XOE',NULL,'ENOMHECONT',NULL,NULL,NULL,'202307249','Jul 24 2023  7:30AM','Jul 24 2023  7:30AM','202307011',NULL,'','','202307011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'HealthEquity HSA Contrib-Sched','202307249','EMPEXPORT','SCH_ENOMHE',NULL,'ENOMHECONT',NULL,NULL,NULL,'202307249','Jul 24 2023  7:30AM','Jul 24 2023  7:30AM','202307011',NULL,'','','202307011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',NULL,NULL,NULL,NULL,'HealthEquity HSA Contrib-Test','202307249','EMPEXPORT','TEST_XOE',NULL,'ENOMHECONT',NULL,NULL,NULL,'202307249','Jul 24 2023  7:30AM','Jul 24 2023  7:30AM','202307011',NULL,'','','202307011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KGE99',NULL,NULL,NULL,'HealthEquity HSA Contribution','202307249','EMPEXPORT','ONDEM_XOE',NULL,'ENOMHECONT',NULL,NULL,NULL,'202307249','Jul 24 2023  7:30AM','Jul 24 2023  7:30AM','202307011',NULL,'','','202307011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',KGE99',NULL,NULL,NULL,'HealthEquity HSA Contrib-Sched','202307249','EMPEXPORT','SCH_ENOMHE',NULL,'ENOMHECONT',NULL,NULL,NULL,'202307249','Jul 24 2023  7:30AM','Jul 24 2023  7:30AM','202307011',NULL,'','','202307011',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',KGE99',NULL,NULL,NULL,'HealthEquity HSA Contrib-Test','202309019','EMPEXPORT','TEST_XOE','Sep 13 2023 12:00AM','ENOMHECONT',NULL,NULL,NULL,'202309019','Sep  1 2023 12:00AM','Dec 30 1899 12:00AM','202309011',NULL,'','','202309011',dbo.fn_GetTimedKey(),NULL,'us3kEpNOM1002',NULL);
 
 -----------
 -- AscImp inserts
@@ -220,13 +220,13 @@ CREATE TABLE [dbo].[U_ENOMHECONT_drvTbl] (
     [drvDepRecID] varchar(12) NULL,
     [drvInitialSort] varchar(1) NOT NULL,
     [drvSubSort] varchar(1) NOT NULL,
-    [drvMemberSSN] char(11) NULL,
-    [drvDepositDate] varchar(1) NOT NULL,
+    [drvMemberSSN] varchar(13) NULL,
+    [drvDepositDate] varchar(30) NULL,
     [drvContributionType] varchar(2) NULL,
     [drvAmount] nvarchar(4000) NULL,
     [drvMemberFirstName] varchar(100) NULL,
     [drvMemberLastName] varchar(100) NULL,
-    [drvEmployeeID] char(9) NULL
+    [drvEmployeeID] varchar(24) NULL
 );
 
 -----------
@@ -408,8 +408,8 @@ BEGIN
         ,drvInitialSort = ''
         ,drvSubSort = ''
         -- standard fields above and additional driver fields below
-        ,drvMemberSSN = eepSSN
-        ,drvDepositDate = ''
+        ,drvMemberSSN = stuff(stuff(eepSSN,6,0,'-'),4,0,'-')
+        ,drvDepositDate = convert(varchar, pgrPayDate, 112)
         ,drvContributionType = CASE WHEN PdhHSA is not null and FORMAT(PdhHSA, '0.00') > '0.00' THEN 'EE'
                                      WHEN  PdhHSAER is not null and FORMAT(PdhHSAER, '0.00') > '0.00'  THEN 'ER'
                                      END
@@ -419,7 +419,7 @@ BEGIN
                                      END
         ,drvMemberFirstName = EepNameFirst
         ,drvMemberLastName = EepNameLast
-        ,drvEmployeeID = EecEmpNo
+        ,drvEmployeeID =   CASE  WHEN LEN(EecEmpNo) < 7 THEN  dbo.dsi_fnpadzero(EecEmpNo, 7, 0) ELSE EecEmpNo END
     INTO dbo.U_ENOMHECONT_drvTbl
     FROM dbo.U_ENOMHECONT_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
@@ -429,6 +429,8 @@ BEGIN
         ON EepEEID = xEEID
     JOIN dbo.U_ENOMHECONT_PDedHist WITH (NOLOCK)
        ON pdheeid =xeeid
+     JOIN dbo.PayGroup WITH (NOLOCK)
+        ON PgrPayGroup = EecPayGroup
        where (FORMAT(PdhHSAER, '0.00') > '0.00' or  FORMAT(PdhHSA, '0.00') > '0.00') 
      
     ;
