@@ -1,0 +1,1263 @@
+/**********************************************************************************
+
+IEMPRN: Empyrean Deduction Earning Import
+
+FormatCode:     IEMPRN
+Project:        Empyrean Deduction Earning Import
+Client ID:      APO1003
+Date/time:      2023-09-13 11:57:26.963
+Ripout version: 7.4
+Export Type:    Web
+Status:         Production
+Environment:    N23
+Server:         N2D023DB01
+Database:       ULTIPRO_APGRP
+Web Filename:   APO1003_85CA0_EEHISTORY_IEMPRN_ExportCode_YYYYMMDD_HHMMSS.txt
+ArchivePath:   \\us.saas\n2\APO1003\APO1003\Imports\Empyrean\Archive\
+ExportPath:    \\us.saas\n2\APO1003\APO1003\Imports\Empyrean\Report\
+ImportPath:    \\us.saas\n2\APO1003\APO1003\Imports\Empyrean\
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_IEMPRN_SavePath') IS NOT NULL DROP TABLE dbo.U_IEMPRN_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'IEMPRN'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'IEMPRN'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'IEMPRN'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'IEMPRN')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'IEMPRN'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'IEMPRN'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'IEMPRN'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'IEMPRN'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'IEMPRN'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'IEMPRN'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'IEMPRN'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'IEMPRN'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'IEMPRN'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwIEMPRN_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwIEMPRN_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_IEMPRN') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_IEMPRN];
+GO
+IF OBJECT_ID('U_IEMPRN_Raw') IS NOT NULL DROP TABLE [dbo].[U_IEMPRN_Raw];
+GO
+IF OBJECT_ID('U_IEMPRN_Import') IS NOT NULL DROP TABLE [dbo].[U_IEMPRN_Import];
+GO
+IF OBJECT_ID('U_IEMPRN_File') IS NOT NULL DROP TABLE [dbo].[U_IEMPRN_File];
+GO
+IF OBJECT_ID('U_IEMPRN_EEList') IS NOT NULL DROP TABLE [dbo].[U_IEMPRN_EEList];
+GO
+IF OBJECT_ID('U_IEMPRN_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_IEMPRN_drvTbl];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N',NULL,'Y','0',NULL,NULL,'N',NULL,'N','E','013010','BENEFITIMP','SDF','IEMPRN','Empyrean Deduction Earning Import','N','I','FORM_ASCIIIMPORTBENEFITS','N','N',dbo.fn_GetTimedKey(),'D',NULL,'S','N','IEMPRNZ1','N',NULL,'N',NULL,'N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0',NULL,NULL,'N',NULL,'N',NULL,'013010','EMPEXPORT','CDE','IEMPRN','Empyrean Deduction Earning Import','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','IEMPRNZ0','N',NULL,'C','dbo.dsi_sp_switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','IEMPRNZ0','50','H','01','1',NULL,'Company Code',NULL,NULL,'"Company Code"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','IEMPRNZ0','50','H','01','2',NULL,'Employee Number',NULL,NULL,'"Employee Number"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','IEMPRNZ0','50','H','01','3',NULL,'Employee Name',NULL,NULL,'"Employee Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','IEMPRNZ0','50','H','01','4',NULL,'Deduction Plan Code',NULL,NULL,'"Deduction Plan Code"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','IEMPRNZ0','50','H','01','5',NULL,'Import Type',NULL,NULL,'"Import Type"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','IEMPRNZ0','50','H','01','6',NULL,'Action',NULL,NULL,'"Action"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','IEMPRNZ0','50','H','01','7',NULL,'Error Message',NULL,NULL,'"Error Message"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','IEMPRNZ0','50','D','10','1',NULL,'Company Code',NULL,NULL,'"drvCompanyCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','IEMPRNZ0','50','D','10','2',NULL,'Company Code',NULL,NULL,'"drvEmployeeNumber"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','IEMPRNZ0','100','D','10','3',NULL,'Employee Name',NULL,NULL,'"drvEmployeeName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','IEMPRNZ0','50','D','10','4',NULL,'Deduction Plan Code',NULL,NULL,'"drvDeductionPlanCode"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','IEMPRNZ0','50','D','10','5',NULL,'Import Type',NULL,NULL,'"drvImportType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','IEMPRNZ0','50','D','10','6',NULL,'Action',NULL,NULL,'"drvAction"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('7','IEMPRNZ0','250','D','10','7',NULL,'Error Message',NULL,NULL,'"drvError"','(''UA''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'IEMPRN_20230913.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Import Deduction/Benefit Plans','201801019','EMPEXPORT','DEDUCTIONS','Sep  1 2023  8:38AM','IEMPRN',NULL,NULL,NULL,'201801019','Jan  1 2018 12:00AM','Dec 30 1899 12:00AM','201801011','74','','','201801011',dbo.fn_GetTimedKey(),NULL,'usgsbhagat',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Earnings','201801019','EMPEXPORT','EARNINGS','Sep  1 2023  8:40AM','IEMPRN',NULL,NULL,NULL,'201801019','Jan  1 2018 12:00AM','Dec 30 1899 12:00AM','201801011','0','','','201801011',dbo.fn_GetTimedKey(),NULL,'usgsbhagat',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,'PMTG5,PGWFV,PGX6E,PH1F3,PGWV0,DHFFF,PGX10,PGX3V,PH0XN,M7S7G,PH156,PH12Y,PH0UW,PH1CS',NULL,NULL,NULL,'Stop Deduction/Benefit Plans','201801029','EMPEXPORT','STOPDEDS','Sep  1 2023  8:35AM','IEMPRN',NULL,NULL,NULL,'201801029','Jan  2 2018 12:00AM','Dec 30 1899 12:00AM','201801011','50','','','201801011',dbo.fn_GetTimedKey(),NULL,'usgsbhagat',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Test Earnings','201801019','EMPEXPORT','TESTEARN','Sep  1 2023  8:39AM','IEMPRN',NULL,NULL,NULL,'201801019','Jan  1 2018 12:00AM','Dec 30 1899 12:00AM','201801011','0','','','201801011',dbo.fn_GetTimedKey(),NULL,'usgsbhagat',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+INSERT INTO [dbo].[AscImp] (impCOID,impDateAccruedThru,impDateOfRollover,impDatePendingMoved,impDesc,impEEIdentifier,impEngine,impExceptions,impFormatCode,impImportCode,impImported,impPayPeriodID,impPosted,impReset,impSessionType,impSource,impSystemID,impUser,impValid,impVerified) VALUES (NULL,NULL,NULL,NULL,'Empyrean Ded Earn Import','E','BENEFITIMP','0','IEMPRN','IEMPRN',NULL,NULL,'Sep  1 2023  8:38AM','Sep  1 2023  8:38AM',NULL,'VALIDATE / RESET / POST (DO NOT CLICK IMPORT BUTTON)',dbo.fn_GetTimedKey(),'USGSBHAGAT','0','Sep  1 2023  8:38AM');
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','ArchivePath','V','\\us.saas\n2\APO1003\APO1003\Imports\Empyrean\Archive\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','ExportPath','V','\\us.saas\n2\APO1003\APO1003\Imports\Empyrean\Report\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','ImportPath','V','\\us.saas\n2\APO1003\APO1003\Imports\Empyrean\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','InitialSort','C','drvInitialSort');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','NoEmpty','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IEMPRN','UseFileName','V','Y');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('IEMPRN','D10','dbo.U_IEMPRN_drvTbl (NOLOCK)',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_IEMPRN_drvTbl
+-----------
+
+IF OBJECT_ID('U_IEMPRN_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_IEMPRN_drvTbl] (
+    [drvSurrogateKey] varchar(50) NULL,
+    [drvEmployeeName] varchar(100) NULL,
+    [drvCompanyCode] varchar(50) NULL,
+    [drvEmployeeNumber] varchar(50) NULL,
+    [drvSocialSecurityNumber] varchar(50) NULL,
+    [drvDeductionPlanCode] varchar(50) NULL,
+    [drvBenefitStatus] varchar(50) NULL,
+    [drvBenefitStatusDate] varchar(50) NULL,
+    [drvBenefitStartDate] varchar(50) NULL,
+    [drvBenefitStopDate] varchar(50) NULL,
+    [drvDeductionStartDate] varchar(50) NULL,
+    [drvDeductionStopDate] varchar(50) NULL,
+    [drvCoverageLevelCode] varchar(50) NULL,
+    [drvBenefitAmountRateorPercentage] money NULL,
+    [drvCoverageAmount] money NULL,
+    [drvAnnualGoalAmount] money NULL,
+    [drvEEDeductionAmt] money NULL,
+    [drvEEDeductionPercent] money NULL,
+    [drvERDeductionAmt] money NULL,
+    [drvERDeductionPercent] money NULL,
+    [drvDeductionisOffset] varchar(50) NULL,
+    [drvMemberorCaseNumber] varchar(50) NULL,
+    [drvChangeReasonCode] varchar(50) NULL,
+    [drvDoNotUse] varchar(50) NULL,
+    [drvPendingEffectiveDate] varchar(50) NULL,
+    [drvAction] varchar(50) NULL,
+    [drvError] varchar(250) NULL,
+    [drvImported] tinyint NOT NULL DEFAULT ((0)),
+    [drvEEID] varchar(12) NULL,
+    [drvCOID] varchar(5) NULL,
+    [drvDedCode] varchar(50) NULL,
+    [drvEarnCode] varchar(50) NULL,
+    [drvImportType] varchar(50) NULL,
+    [drvPendingUpdateID] char(20) NULL,
+    [drvInitialSort] varchar(50) NULL,
+    [drvEligDate] varchar(50) NULL
+);
+
+-----------
+-- Create table U_IEMPRN_EEList
+-----------
+
+IF OBJECT_ID('U_IEMPRN_EEList') IS NULL
+CREATE TABLE [dbo].[U_IEMPRN_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_IEMPRN_File
+-----------
+
+IF OBJECT_ID('U_IEMPRN_File') IS NULL
+CREATE TABLE [dbo].[U_IEMPRN_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(2000) NULL
+);
+
+-----------
+-- Create table U_IEMPRN_Import
+-----------
+
+IF OBJECT_ID('U_IEMPRN_Import') IS NULL
+CREATE TABLE [dbo].[U_IEMPRN_Import] (
+    [RowNo] int NOT NULL,
+    [FileName] varchar(max) NULL,
+    [EEID] char(12) NULL,
+    [COID] char(5) NULL,
+    [RunID] varchar(50) NULL,
+    [Error] varchar(250) NULL,
+    [PayPeriodStartDate] datetime NULL,
+    [PayPeriodEndDate] datetime NULL,
+    [PriorPayPeriodStartDate] datetime NULL,
+    [PriorPayPeriodEndDate] datetime NULL,
+    [NextPayPeriodStartDate] datetime NULL,
+    [NextPayPeriodEndDate] datetime NULL,
+    [CompanyCode] varchar(100) NULL,
+    [EmployeeNo] varchar(10) NULL,
+    [EmployeeName] varchar(250) NULL,
+    [Field1] varchar(max) NULL,
+    [Field2] varchar(max) NULL,
+    [Field3] varchar(max) NULL,
+    [Field4] varchar(max) NULL,
+    [Field5] varchar(max) NULL,
+    [Field6] varchar(max) NULL,
+    [Field7] varchar(max) NULL,
+    [Field8] varchar(max) NULL,
+    [Field9] varchar(max) NULL,
+    [Field10] varchar(max) NULL,
+    [Field11] varchar(max) NULL,
+    [Field12] varchar(max) NULL,
+    [Field13] varchar(max) NULL,
+    [Field14] varchar(max) NULL,
+    [Field15] varchar(max) NULL,
+    [Field16] varchar(max) NULL,
+    [Field17] varchar(max) NULL,
+    [Field18] varchar(max) NULL,
+    [Field19] varchar(max) NULL,
+    [Field20] varchar(max) NULL,
+    [UDField1] varchar(250) NULL,
+    [UDField2] varchar(250) NULL,
+    [UDField3] varchar(250) NULL,
+    [UDField4] varchar(250) NULL,
+    [UDField5] varchar(250) NULL
+);
+
+-----------
+-- Create table U_IEMPRN_Raw
+-----------
+
+IF OBJECT_ID('U_IEMPRN_Raw') IS NULL
+CREATE TABLE [dbo].[U_IEMPRN_Raw] (
+    [Data] varchar(max) NULL,
+    [RowNo] int IDENTITY(1,1) NOT NULL,
+    [RunID] varchar(50) NULL,
+    [FileName] varchar(max) NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_IEMPRN]
+    @SystemID char(12)
+AS
+SET NOCOUNT ON;
+/**********************************************************************************
+Client Name: University Of Phoenix
+
+Created By: J. Brian Jones
+Business Analyst: Bridget Amsden
+Create Date: 10/24/2018
+Service Request Number: SR-2018-00202291
+
+Purpose: Empyrean Deduciton Earning
+
+Revision History
+----------------
+Update By        Date        Request Num        Desc
+XXX              XX/XX/20XX  SR-20XX-00000000   XXX
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'IEMPRN';
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'IEMPRN';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'IEMPRN';
+SELECT ExpFormatCode, ExpExportCode, ExpStartPerControl, ExpEndPerControl,* FROM dbo.AscExp WHERE expFormatCode = 'IEMPRN';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'IEMPRN' ORDER BY RunID DESC;
+
+--Update Drive Mappings in U_DSI_Configuration
+---------------------------------------------------
+select * From U_DSI_Configuration where cfgname like '%path%' order by 4
+TEST
+update U_DSI_Configuration set cfgvalue = '\\US.SAAS\ez\APO1003\APO1003\Imports\Empyrean\Archive\' where formatcode = 'IEMPRN' and cfgname = 'ArchivePath'
+update U_DSI_Configuration set cfgvalue = '\\US.SAAS\ez\APO1003\APO1003\Imports\Empyrean\Report\' where formatcode = 'IEMPRN' and cfgname = 'ExportPath'
+update U_DSI_Configuration set cfgvalue = '\\US.SAAS\ez\APO1003\APO1003\Imports\Empyrean\' where formatcode = 'IEMPRN' and cfgname = 'ImportPath'
+PROD
+update U_DSI_Configuration set cfgvalue = '\\us.saas\n2\APO1003\APO1003\Imports\Empyrean\Archive\' where formatcode = 'IEMPRN' and cfgname = 'ArchivePath'
+update U_DSI_Configuration set cfgvalue = '\\us.saas\n2\APO1003\APO1003\Imports\Empyrean\Report\' where formatcode = 'IEMPRN' and cfgname = 'ExportPath'
+update U_DSI_Configuration set cfgvalue = '\\us.saas\n2\APO1003\APO1003\Imports\Empyrean\' where formatcode = 'IEMPRN' and cfgname = 'ImportPath'
+
+Execute Export
+--------------
+update ascexp set expascfilename = 'UOPX_PAYROLL_CHANGES_20181128.txt' where expformatcode = 'IEMPRN'
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'IEMPRN', 'STOPDEDS';   -- Process Deduction STOP
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'IEMPRN', 'DEDUCTIONS'; -- Process Deduction ADD/CHANGES
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'IEMPRN', 'EARNINGS';   -- Process Earnings (ADD/CHANGES/STOP)
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'IEMPRN', 'TESTEARN';   -- Report Earnings (ADD/CHANGES/STOP) - Do Not Update
+
+EXEC dbo._dsi_usp_ExportRipOut @FormatCode = 'IEMPRN', @AllObjects = 'Y'
+**********************************************************************************/
+BEGIN
+
+    --========================================
+    -- Declare Variables
+    --========================================
+    DECLARE  @FormatCode VARCHAR(10)
+            ,@ImportPath VARCHAR(1000)
+            ,@FileName VARCHAR(1000)
+            ,@SrcPath VARCHAR(2000)
+            ,@BulkIns VARCHAR(2000)
+            ,@dbName VARCHAR(25)
+            ,@ExportCode VARCHAR(12);
+
+    SET @FormatCode = 'IEMPRN';
+    SET @dbName = RTRIM(DB_NAME());
+    SET @ExportCode = (SELECT ExportCode FROM dbo.U_dsi_Parameters (NOLOCK) WHERE FormatCode = @FormatCode);
+
+    --Set directory and filename where import file is located
+    SET @ImportPath = dbo.Dsi_fnVariable(@FormatCode,'ImportPath');
+    SET @FileName = (SELECT expAscFileName FROM dbo.AscExp WHERE expFormatCode = @FormatCode AND expExportCode = @ExportCode);
+    SET @SrcPath = ISNULL(@ImportPath,'') + ISNULL(@FileName,'');
+
+    -- Remove FilePath from @FileName, If Exists
+    IF (CHARINDEX('\',REVERSE(@filename)) > 0)
+    BEGIN
+        SET @FileName = REVERSE(LEFT(REVERSE(@FileName),CHARINDEX('\',REVERSE(@FileName))-1));
+    END;
+
+    --========================================
+    -- Set File Name for Log / Error Report
+    --========================================
+    UPDATE dbo.U_dsi_Parameters
+    SET ExportFile = 'DeductionEarningImport_' + LTRIM(RTRIM(ExportCode)) + '_'
+                        + CONVERT(CHAR(8),GETDATE(),112)                             -- YYYYMMDD
+                        + REPLACE(CONVERT(VARCHAR(8),GETDATE(),108),':',SPACE(0))  -- HHMMSS
+                        + '.csv'
+    WHERE FormatCode = @FormatCode;
+
+    --==================================================
+    -- Create Driver Table for Error Report
+    --==================================================
+    IF object_id('U_IEMPRN_drvTbl','U') IS NOT NULL
+        DROP TABLE dbo.U_IEMPRN_drvTbl;
+    CREATE TABLE dbo.U_IEMPRN_drvTbl (
+         drvSurrogateKey VARCHAR(50) NULL
+        ,drvEmployeeName VARCHAR(100) NULL
+        ,drvCompanyCode VARCHAR(50) NULL
+        ,drvEmployeeNumber VARCHAR(50) NULL
+        ,drvSocialSecurityNumber VARCHAR(50) NULL
+        ,drvDeductionPlanCode VARCHAR(50) NULL
+        ,drvBenefitStatus VARCHAR(50) NULL
+        ,drvBenefitStatusDate VARCHAR(50) NULL
+        ,drvBenefitStartDate VARCHAR(50) NULL
+        ,drvBenefitStopDate VARCHAR(50) NULL
+        ,drvDeductionStartDate VARCHAR(50) NULL
+        ,drvDeductionStopDate VARCHAR(50) NULL
+        ,drvCoverageLevelCode VARCHAR(50) NULL
+        ,drvBenefitAmountRateorPercentage MONEY NULL
+        ,drvCoverageAmount MONEY NULL
+        ,drvAnnualGoalAmount MONEY NULL
+        ,drvEEDeductionAmt MONEY NULL
+        ,drvEEDeductionPercent MONEY NULL
+        ,drvERDeductionAmt MONEY NULL
+        ,drvERDeductionPercent MONEY NULL
+        ,drvDeductionisOffset VARCHAR(50) NULL
+        ,drvMemberorCaseNumber VARCHAR(50) NULL
+        ,drvChangeReasonCode VARCHAR(50) NULL
+        ,drvDoNotUse VARCHAR(50) NULL
+        ,drvPendingEffectiveDate VARCHAR(50) NULL
+        ,drvAction VARCHAR(50) NULL
+        ,drvError VARCHAR(250) NULL
+        ,drvImported TINYINT DEFAULT 0 NOT NULL
+        ,drvEEID VARCHAR(12) NULL
+        ,drvCOID VARCHAR(5) NULL
+        ,drvDedCode VARCHAR(50) NULL
+        ,drvEarnCode VARCHAR(50) NULL
+        ,drvImportType VARCHAR(50) NULL
+        ,drvPendingUpdateID CHAR(20) NULL
+        ,drvInitialSort VARCHAR(50) NULL 
+        ,drvEligDate varchar(50) NULL
+    );
+
+    --========================================
+    -- Benefit Import Module (Load File)
+    --========================================
+    BEGIN TRY
+        DELETE FROM dbo.U_dsi_BIM_Configuration WHERE FormatCode = @FormatCode;
+
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'RunID','DEDUCTION');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FilePath',@ImportPath);
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FileName',@FileName);
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1,ParmValue2) VALUES (@FormatCode,'FileFormat','Fixed','');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FieldCount','20');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',1,1,9,'Social Security Number');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',2,10,7,'Employee ID');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',3,17,2,'Scheduled Pay Rate Frequency');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',4,19,6,'Deduction Label Code');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',5,25,8,'Deduction Begin Date');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',6,33,8,'Deduction End Date');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',7,41,12,'Amount');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',8,53,5,'Contribution Rate');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',9,58,12,'FSA Goal Amount');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',10,70,12,'Filler');
+        INSERT INTO dbo.U_dsi_BIM_Configuration(FormatCode,ParmName,ParmValue1,ParmValue2,ParmValue3,ParmValue4) VALUES (@FormatCode,'FixedLayout',11,82,319,'Filler');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1,ParmValue2) VALUES (@FormatCode,'KeyEEID','Field2','Employee#');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'CopyFiles','Y');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'PayrollType','Non-Closed');
+
+        EXEC dbo.dsi_BIM_sp_PopulateImportTable @FormatCode;
+
+        /*
+        select * From U_IEMPRN_Raw
+        select * From U_IEMPRN_Import order by Field9 desc
+        */
+
+        -- return
+        ----------------------------------------------------------
+        -- Only Retain Records where SSN in Field# 1 is Numeric
+        ----------------------------------------------------------
+        DELETE FROM dbo.U_IEMPRN_Import WHERE ISNUMERIC(Field1) = 0 AND ISNULL(Error,'') = '';
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IEMPRN_drvTbl (drvError)
+       SELECT 'Error Processing Fixed File (BIM): ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    --==============================================================
+    -- If Error During BIM, then Report Error and Stop Processing
+    --==============================================================
+    IF EXISTS (SELECT 1 FROM dbo.U_IEMPRN_Import WHERE ISNULL(Error,'') <> '')
+    BEGIN
+        INSERT INTO dbo.U_IEMPRN_drvTbl (drvError,drvImported)
+        SELECT Error, 2 FROM dbo.U_IEMPRN_Import WHERE ISNULL(Error,'') <> '';
+
+        -- Stop Processing
+        RETURN;
+    END;
+
+    --=====================================================================
+    -- Determine the Pay Group and Pay Date and if the Benefit Start Date needs to be adjusted
+    --=====================================================================
+    UPDATE dbo.U_IEMPRN_Import
+    SET Field15 = EecPayGroup
+        --,Field16 = PgpPayDate
+    FROM dbo.EmpComp WITH (NOLOCK)
+    WHERE EEID = eecEEId
+    AND COID = eeccoid
+
+    UPDATE dbo.U_IEMPRN_Import
+    SET Field16 = PgpPayDate
+    FROM dbo.PGPayPer WITH (NOLOCK)
+    WHERE Field15 = pgpPayGroup
+    AND cast(PayPeriodStartDate as date) = cast(pgpPeriodStartDate as date)
+    AND cast(PayPeriodEndDate as date) = cast(pgpPeriodEndDate as date)
+
+    --select * From U_IEMPRN_Import where year(PayPeriodStartDate) <> year(Convert(Date, Field16))
+
+
+--ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+--ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+--ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+--JBJ 10/24/18
+--ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+--ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+--ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
+
+--return
+
+    --=====================================================================
+    -- Set Add/Change/Stop flag
+    --=====================================================================
+    --UPDATE dbo.U_IEMPRN_Import
+    --SET Field22 = 'ADD'
+    --WHERE not exists(select 1 from EmpDed(nolock) where eeid = EedEEID and coid = EedCoID and Field4 = EedDedCode)
+
+    --UPDATE dbo.U_IEMPRN_Import
+    --SET Field22 = 'STOP'
+    --WHERE cast(Field7 as money) = 0.00
+
+    --UPDATE dbo.U_IEMPRN_Import
+    --SET Field22 = 'CHANGE'
+    --WHERE Field22 not in ('ADD','STOP')
+
+    UPDATE dbo.U_IEMPRN_Import
+    SET Field4 = LTRIM(RTRIM(Field4))
+
+    --=====================================================================
+    -- Flag Earnings in RunID based on Deduction Offset Flag in Field# 19
+    --=====================================================================
+    UPDATE dbo.U_IEMPRN_Import
+    SET RunID = 'EARNING'
+    WHERE EXISTS (SELECT 1 FROM dbo.EarnCode WITH (NOLOCK) WHERE ErnEarncode = Field4);
+
+    --===============================================================
+    -- Filter Records for STOPDEDS / DEDUCTIONS / EARNINGS
+    --===============================================================
+    IF (@ExportCode = 'STOPDEDS')
+    BEGIN
+        DELETE FROM dbo.U_IEMPRN_Import
+        WHERE (RunID = 'Earning'
+               OR cast(Field7 as money) <> 0.00  -- Amount is zero
+               )
+        ;
+    END;
+    IF (@ExportCode = 'DEDUCTIONS')
+    BEGIN
+        DELETE FROM dbo.U_IEMPRN_Import
+        WHERE (RunID = 'Earning' 
+                OR cast(Field7 as money) = 0.00  -- Amount is zero
+                )
+        ;
+    END;
+    IF (@ExportCode IN ('TESTEARN','EARNINGS'))
+    BEGIN
+        DELETE FROM dbo.U_IEMPRN_Import WHERE RunID = 'DEDUCTION';
+    END;
+
+    -- select * From U_IEMPRN_Import
+    --return
+
+    /***************************************
+        Build Driver Table - Error Report
+        select * From U_IEMPRN_Import
+        select * From U_IEMPRN_drvTbl order by drvannualgoalamount desc
+    ****************************************/
+    BEGIN TRY
+        INSERT INTO dbo.U_IEMPRN_drvTbl (drvSurrogateKey,drvEmployeeName,drvCompanyCode,drvEmployeeNumber,drvSocialSecurityNumber,drvDeductionPlanCode,drvBenefitStatus
+            ,drvBenefitStatusDate,drvBenefitStartDate,drvBenefitStopDate,drvDeductionStartDate,drvDeductionStopDate,drvCoverageLevelCode,drvBenefitAmountRateorPercentage,drvCoverageAmount
+            ,drvAnnualGoalAmount,drvEEDeductionAmt,drvEEDeductionPercent,drvERDeductionAmt,drvERDeductionPercent,drvDeductionisOffset,drvMemberorCaseNumber,drvChangeReasonCode,drvDoNotUse
+            ,drvPendingEffectiveDate,drvAction,drvError,drvImported,drvEEID,drvCOID,drvDedCode,drvEarnCode,drvImportType,drvInitialSort,drvEligDate)
+        SELECT DISTINCT
+             drvSurrogateKey = RTRIM(EEID) + RTRIM(COID) + Field4 -- Deduction Code
+            ,drvEmployeeName = RTRIM(EepNameFirst) + SPACE(1) + EepNameLast
+            ,drvCompanyCode = CompanyCode
+            ,drvEmployeeNumber = Field2
+            ,drvSocialSecurityNumber = Field1
+            ,drvDeductionPlanCode = Field4
+            ,drvBenefitStatus = Case when cast(Field7 as money) = 0.00 then 'T' else 'A' end
+            ,drvBenefitStatusDate = GETDATE()        
+            ,drvBenefitStartDate = CASE WHEN year(PayPeriodStartDate) <> year(Convert(Date, Field16)) then cast('01/01/'+cast(year(Convert(Date, Field16)) as varchar(4)) as datetime)
+                                        ELSE PayPeriodStartDate
+                                        END
+            ,drvBenefitStopDate = PayPeriodStartDate-1
+            ,drvDeductionStartDate = PayPeriodStartDate
+            ,drvDeductionStopDate = PayPeriodStartDate-1
+            ,drvCoverageLevelCode = NULL        --Field11
+            ,drvBenefitAmountRateorPercentage = NULL        --CONVERT(MONEY,Field12)
+            ,drvCoverageAmount = NULL        --CONVERT(MONEY,Field13)
+            ,drvAnnualGoalAmount = CONVERT(MONEY,Field9)
+            ,drvEEDeductionAmt = CONVERT(MONEY,Field7)
+            ,drvEEDeductionPercent = NULL
+            ,drvERDeductionAmt = NULL        --CONVERT(MONEY,Field17)
+            ,drvERDeductionPercent = NULL        --CONVERT(MONEY,Field18)
+            ,drvDeductionisOffset = NULL        --Field19
+            ,drvMemberorCaseNumber = NULL        --Field7
+            ,drvChangeReasonCode = NULL            --Determine later during LodEDed population
+            ,drvDoNotUse = NULL        --Field22
+            ,drvPendingEffectiveDate = getdate()
+            ,drvAction = CASE WHEN EEID IS NULL THEN 'REJECTED' -- Unable to match [Employee Number] in file
+                              WHEN COID IS NULL THEN 'REJECTED' -- Unable to match [Company Code] in file
+                              WHEN EecEmplStatus = 'T' THEN 'REJECTED' -- Terminated Employee
+                              WHEN RunID = 'DEDUCTION' AND DedDedCode IS NULL THEN 'REJECTED' --[Deduction Code] Not Setup in UltiPro
+                              WHEN RunID = 'EARNING' AND ErnEarnCode IS NULL THEN 'REJECTED' --[Earning Code] Not Setup in UltiPro
+                              -- Process Add/Change/Restart or Stops for Deductions
+                              WHEN RunID = 'DEDUCTION' THEN
+                                   CASE WHEN cast(Field7 as money) = 0.00 THEN        --Amount = 0.00
+                                            CASE WHEN EedDedCode IS NOT NULL THEN 'STOP'
+                                                 ELSE 'REJECTED' -- No Benefit Plan for Employee to Stop
+                                            END
+                                        WHEN EedDedCode IS NOT NULL THEN
+                                            CASE WHEN COALESCE(EedStopDate,EedBenStopDate) IS NOT NULL THEN 'RESTART'
+                                                 ELSE 'CHANGE'
+                                            END
+                                        ELSE 'ADD'
+                                   END
+                              -- Process Add/Change/Restart/Stops for Earnings
+                              WHEN RunID = 'EARNING' THEN
+                                   CASE WHEN cast(Field7 as money) = 0.00 THEN
+                                            CASE WHEN EeeEarnCode IS NOT NULL THEN 'STOP'
+                                                 ELSE 'REJECTED' -- No Earning Code for Employee to Stop
+                                            END
+                                        WHEN EeeEarnCode IS NOT NULL THEN
+                                            CASE WHEN EeeStopDate IS NOT NULL THEN 'RESTART'
+                                                ELSE 'CHANGE'
+                                            END
+                                        ELSE 'ADD'
+                                   END
+                              -- Reject All Others
+                              ELSE 'REJECTED'
+                         END
+            ,drvError = CASE WHEN EEID IS NULL THEN 'Record Rejected: Unable to match [Employee Number] in file to Employee in UltiPro.'
+                             WHEN COID IS NULL THEN 'Record Rejected: Unable to match [Company Code] in file to Employee in UltiPro.'
+                             WHEN EecEmplStatus = 'T' THEN 'Record Rejected: Terminated Employee - Do Not Process.'
+                             WHEN RunID = 'DEDUCTION' AND DedDedCode IS NULL THEN 'Record Rejected: [Deduction Code] Not Setup in UltiPro. '
+                             WHEN RunID = 'EARNING' AND ErnEarnCode IS NULL THEN 'Record Rejected: [Earning Code] Not Setup in UltiPro. '
+                             WHEN RunID = 'DEDUCTION' AND EedDedCode IS NULL AND cast(Field7 as money) = 0.00 THEN 'Record Rejected: Cannot STOP Record - Deduction/Benefit Plan Does Not Exist for Employee in UltiPro.'
+                             WHEN RunID = 'EARNING' AND EeeEarnCode IS NULL AND cast(Field7 as money) = 0.00 THEN 'Record Rejected: Cannot STOP Record - Earning Code Does Not Exist for Employee in UltiPro.'
+                        END
+            ,drvImported = CASE -- 0 = Initial Load, 1 = Imported/Updated, 2 = Rejected
+                                WHEN EEID IS NULL THEN 2 -- Unable to match [Employee Number] in file
+                                WHEN COID IS NULL THEN 2 -- Unable to match [Company Code] in file
+                                WHEN EecEmplStatus = 'T' THEN 2 -- Terminated Employee
+                                WHEN RunID = 'DEDUCTION' AND DedDedCode IS NULL THEN 2 -- [Deduction Code] Not Setup in UltiPro
+                                WHEN RunID = 'EARNING' AND ErnEarnCode IS NULL THEN 2 -- [Earning Code] Not Setup in UltiPro
+                                WHEN RunID = 'DEDUCTION' AND EedDedCode IS NULL AND cast(Field7 as money) = 0.00 THEN 2 -- No Benefit Plan for Employee to Stop
+                                WHEN RunID = 'EARNING' AND EeeEarnCode IS NULL AND cast(Field7 as money) = 0.00 THEN 2 -- No Benefit Plan for Employee to Stop
+                                ELSE 0
+                           END
+            ,drvEEID = EEID
+            ,drvCOID = COID
+            ,drvDedCode = CASE WHEN RunID = 'DEDUCTION' THEN DedDedCode END
+            ,drvEarnCode = CASE WHEN RunID = 'EARNING' THEN ErnEarncode END
+            ,drvImportType = RunID
+            ,drvInitialSort = ISNULL(Field4,'')
+            ,drvEligDate = CASE WHEN coalesce(eedeeeligDate, PayPeriodStartDate) < eecdateofbenefitseniority then eecdateofbenefitseniority
+                                ELSE coalesce(eedeeeligDate, PayPeriodStartDate)
+                                END
+        FROM dbo.U_IEMPRN_Import
+        LEFT JOIN dbo.EmpPers WITH (NOLOCK)
+            ON eepEEID = EEID
+        LEFT JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EecEEID = EEID
+            AND EecCOID = COID
+        LEFT JOIN dbo.DedCode WITH (NOLOCK)
+            ON DedDedCode = Field4
+        LEFT JOIN dbo.EmpDed WITH (NOLOCK)
+            ON EedEEID = EEID
+            AND EedCoID = COID
+            AND EedDedCode = DedDedCode
+        LEFT JOIN dbo.EarnCode WITH (NOLOCK)
+            ON ErnEarncode = Field4
+        LEFT JOIN dbo.EmpEarn WITH (NOLOCK)
+            ON EeeEEID = EEID
+            AND EeeCoID = COID
+            AND EeeEarnCode = ErnEarncode;
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IEMPRN_drvTbl (drvError)
+       SELECT 'Error Processing File: ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    --=======================================================
+    -- Employee has Multiple Deductions in File
+    --=======================================================
+    UPDATE dbo.U_IEMPRN_drvTbl
+        SET drvAction = 'REJECTED'
+            ,drvError = 'Record Rejected: Employee has Duplicate Deduction Codes in File.'
+            ,drvImported = 2
+    WHERE drvImported = 0 AND drvImportType = 'DEDUCTION'
+    AND drvSurrogateKey IN (SELECT drvSurrogateKey FROM dbo.U_IEMPRN_drvTbl WHERE drvImported = 0 AND drvImportType IN ('DEDUCTION') GROUP BY drvSurrogateKey HAVING COUNT(*) > 1);
+
+    --=======================================================
+    -- Employee has Multiple Earnings in File
+    --=======================================================
+    UPDATE dbo.U_IEMPRN_drvTbl
+        SET drvAction = 'REJECTED'
+            ,drvError = 'Record Rejected: Employee has Duplicate Earning Codes in File.'
+            ,drvImported = 2
+    WHERE drvImported = 0 AND drvImportType = 'EARNING'
+    AND drvSurrogateKey IN (SELECT drvSurrogateKey FROM dbo.U_IEMPRN_drvTbl WHERE drvImported = 0 AND drvImportType = 'EARNING' GROUP BY drvSurrogateKey HAVING COUNT(*) > 1);
+
+    --============================================
+    -- Update PendingUpdateID for Valid Records
+    --============================================
+    UPDATE dbo.U_IEMPRN_drvTbl
+        SET drvPendingUpdateID = LEFT('IEMPRN' + dbo.fn_GetTimedKey(),20)
+    WHERE drvImported = 0;
+
+    --========================================
+    -- Populate LOD Tables
+    --========================================
+    BEGIN TRY
+        --=========================================
+        -- Clear LOD tables
+        --=========================================
+        DELETE LodEDed FROM LodEDed where exists(select 1 from LodCntrl where CntPendingUpdateID = EedPendingUpdateID and CntSessionID = 'IEMPRN')
+        DELETE LodCntrl FROM LodCntrl where CntSessionID = 'IEMPRN'
+        DELETE LodEComp FROM LodEComp where EecSessionID = 'IEMPRN'
+
+        --=========================================
+        -- Populate Lod Control Table (LodCntrl)
+        --=========================================
+        INSERT INTO dbo.LodCntrl (CntCoID,CntEEID,CntPendingEffDate,CntPendingImportType,CntPendingSource,CntPendingStatus,CntPendingUpdateID,CntSessionID)
+        SELECT DISTINCT
+            CntCoID = drvCOID
+            ,CntEEID = drvEEID
+            ,CntPendingEffDate = CONVERT(CHAR(10),GETDATE(),101)
+            ,CntPendingImportType = 'P'
+            ,CntPendingSource = 'C'
+            ,CntPendingStatus = 'A'
+            ,CntPendingUpdateID = drvPendingUpdateID
+            ,CntSessionID = 'IEMPRN'
+        FROM dbo.U_IEMPRN_drvTbl WITH (NOLOCK)
+        WHERE drvImported = 0 AND drvImportType = 'DEDUCTION';
+
+        ------------------------------------------------
+        -- Populate Lod Employee Comp Table (LodEComp)
+        ------------------------------------------------
+        INSERT INTO dbo.LodEComp (EecEEID,EecCOID,EecEmpNo,EecCompanyCode,EecPendingTransType,EecPendingEffDate,EecPendingUpdateID,EecSessionID)
+        SELECT DISTINCT
+            EecEEID = drvEEID
+            ,EecCOID = drvCOID
+            ,EecEmpNo = EecEmpNo
+            ,EecCompanyCode = CmpCompanyCode
+            ,EecPendingTransType = 'U'
+            ,EecPendingEffDate = CONVERT(CHAR(10),GETDATE(),101)
+            ,EecPendingUpdateID = drvPendingUpdateID
+            ,EecSessionID = 'IEMPRN'
+        FROM dbo.U_IEMPRN_drvTbl WITH (NOLOCK)
+        JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EecEEID = drvEEID
+            AND EecCOID = drvCOID
+        JOIN dbo.Company WITH (NOLOCK)
+            ON CmpCOID = drvCOID
+        WHERE drvImported = 0 AND drvImportType = 'DEDUCTION';
+
+        --------------------------------------------
+        -- Populate Lod Deduction Table (LodEDed)
+        --------------------------------------------
+        INSERT INTO dbo.LodEDed (EedEEID,EedCOID,EedDedCode,EedEEMemberOrCaseNo,EedEECalcRateOrPct,EedERCalcRateOrPct,EedEEAmt,EedERAmt,EedBenAmt,EedBenAmtRateOrPct,EedEEGoalAmt
+            ,EedBenStartDate,EedBenStatusDate,EedBenStopDate,EedStartDate,EedStopDate,EedBenStatus,EedChangeReason,EedBenOption,EedPendingEffDate,EedPendingTransType
+            ,EedInclInAddlChk,EedInclInManlChk,EedPendingUpdateID, EedEEEligDate)    --EedEECalcRule,EedERCalcRule
+        SELECT DISTINCT EedEEID = drvEEID
+            ,EedCOID = drvCOID
+            ,EedDedCode = drvDedCode
+            ,EedEEMemberOrCaseNo = drvMemberorCaseNumber
+            ,EedEECalcRateOrPct = CASE -- Only Populate for Employee (EE) Non-Flat Amount Calc Rule ('20')
+                                       WHEN DedEECalcRule <> '20' AND NULLIF(drvEEDeductionPercent,'') IS NOT NULL THEN
+                                           CASE WHEN drvAction = 'STOP' THEN CONVERT(MONEY,0.00)
+                                                ELSE CONVERT(MONEY,drvEEDeductionPercent)
+                                           END
+                                  END
+            ,EedERCalcRateOrPct = CASE -- Only Populate for Employer (ER) Non-Flat Amount Calc Rule ('20')
+                                      WHEN DedEECalcRule <> '20' AND NULLIF(drvERDeductionPercent,'') IS NOT NULL THEN
+                                            CASE WHEN drvAction = 'STOP' THEN CONVERT(MONEY,0.00)
+                                                 ELSE CONVERT(MONEY,drvERDeductionPercent)
+                                            END
+                                  END
+            ,EedEEAmt = CASE -- Only Populate for Employee (EE) Flat Amount Calc Rule ('20')
+                            WHEN DedEECalcRule = '20' AND NULLIF(drvEEDeductionAmt,'') IS NOT NULL THEN
+                                CASE WHEN drvAction = 'STOP' THEN CONVERT(MONEY,0.00)
+                                     ELSE CONVERT(MONEY,drvEEDeductionAmt)
+                                END
+                            ELSE CONVERT(MONEY,0.00)
+                        END
+            ,EedERAmt = CASE -- Only Populate for Employer (ER) Flat Amount Calc Rule ('20')
+                            WHEN DedERCalcRule = '20' AND NULLIF(drvERDeductionAmt,'') IS NOT NULL THEN
+                                CASE WHEN drvAction = 'STOP' THEN CONVERT(MONEY,0.00)
+                                     ELSE CONVERT(MONEY,drvERDeductionAmt)
+                                END
+                            ELSE CONVERT(MONEY,0.00)
+                        END
+            ,EedBenAmt = CASE WHEN NULLIF(drvCoverageAmount,'') IS NOT NULL THEN CONVERT(MONEY,drvCoverageAmount)
+                         END
+            ,EedBenAmtRateOrPct = CASE WHEN NULLIF(drvBenefitAmountRateorPercentage,'') IS NOT NULL THEN CONVERT(MONEY,drvBenefitAmountRateorPercentage)
+                                  END
+            ,EedEEGoalAmt = CASE -- Only Populate if Deduction Goal Rule is Setup ('Z' = <No goal>)
+                                 WHEN DedEEGoalRule <> 'Z' THEN CONVERT(MONEY,drvAnnualGoalAmount)
+                                 ELSE CONVERT(MONEY,0.00)
+                            END
+            ,EedBenStartDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN '01/01/1900'
+                                    WHEN drvAction IN ('ADD','RESTART','CHANGE') THEN CONVERT(DATETIME,drvBenefitStartDate)
+                                    ELSE '12/30/1899'
+                                END
+            ,EedBenStatusDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN '01/01/1900'
+                                     WHEN drvAction IN ('ADD','RESTART','CHANGE') THEN CONVERT(DATETIME,drvBenefitStartDate)
+                                     WHEN drvAction = 'STOP' THEN CONVERT(DATETIME,drvBenefitStopDate)
+                                     ELSE '12/30/1899'
+                                END
+            ,EedBenStopDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN '01/01/1900'
+                                   WHEN drvAction = 'STOP' THEN CONVERT(DATETIME,drvBenefitStopDate)
+                                   ELSE '01/01/1900'
+                              END
+            ,EedStartDate = CASE WHEN drvAction IN ('ADD','RESTART') THEN CONVERT(DATETIME,drvDeductionStartDate)
+                                 ELSE '12/30/1899'
+                            END
+            ,EedStopDate = CASE WHEN drvAction = 'STOP' THEN CONVERT(DATETIME,drvDeductionStopDate)
+                                ELSE '01/01/1900'
+                           END
+            ,EedBenStatus = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN NULL
+                                 WHEN drvAction = 'STOP' THEN 'T'
+                                 ELSE 'A'
+                            END
+            ,EedChangeReason = CASE WHEN drvAction = 'ADD' THEN '400'
+                                    WHEN drvAction = 'STOP' THEN '401'
+                                    WHEN drvAction IN ('CHANGE','RESTART') THEN '402'
+                               END
+            ,EedBenOption = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN NULL
+                                 WHEN NULLIF(drvCoverageLevelCode,'') IS NOT NULL THEN drvCoverageLevelCode
+                            END
+            ,EedPendingEffDate = CONVERT(CHAR(10),GETDATE(),101)
+            ,EedPendingTransType = CASE WHEN drvAction = 'ADD' THEN 'A'
+                                        ELSE 'U'
+                                   END
+            ,EedInclInAddlChk = DedInclInAddlChk
+            ,EedInclInManlChk = DedInclInManlChk
+            --,EedEECalcRule = DedEECalcRule    -- This may need to be set if existing records don't match Deduction/Benefit Plan Calc Rule (i.e., changing from Option Rate Schedule to Flat Amount)
+            --,EedERCalcRule = DedERCalcRule    -- This may need to be set if existing records don't match Deduction/Benefit Plan Calc Rule (i.e., changing from Option Rate Schedule to Flat Amount)
+            ,EedPendingUpdateID = drvPendingUpdateID
+            ,EedEEEligDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN '01/01/1900'
+                                  ELSE CONVERT(DATETIME,drvEligDate)
+                                  END
+        FROM dbo.U_IEMPRN_drvTbl WITH (NOLOCK)
+        JOIN dbo.DedCode WITH (NOLOCK)
+            ON DedDedCode = drvDedCode
+        WHERE drvImported = 0 AND drvImportType = 'DEDUCTION';
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IEMPRN_drvTbl (drvError)
+       SELECT 'Error Loading Deductions for Validation/Posting: ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    --=========================================
+    -- Create Earnings and Offset Deductions
+    --=========================================
+    IF (@ExportCode = 'EARNINGS')
+    BEGIN TRY
+        -----------------------------------------------------------
+        -- Update Existing Earnings Records (CHANGE/STOP/RESTART)
+        -----------------------------------------------------------
+        UPDATE EmpEarn
+            SET 
+            -- select 
+            EeeAmt = CASE WHEN drvEEDeductionAmt IS NOT NULL THEN CONVERT(DECIMAL(16,6),drvEEDeductionAmt)
+                              ELSE EeeAmt
+                         END
+                ,EeeStartDate = CASE WHEN drvDeductionStartDate IS NOT NULL THEN CONVERT(DATETIME,drvDeductionStartDate)
+                                     ELSE EeeStartDate
+                                END
+                ,EeeStopDate = CASE WHEN drvAction = 'STOP' THEN CONVERT(DATETIME,drvDeductionStopDate)
+                                    ELSE NULL
+                                    --WHEN EeeStopDate = '1900-01-01 00:00:00.000' THEN NULL --If Date is set to 01/01/1900, then Earnings will not be applied
+         --                           WHEN drvDeductionStopDate IS NOT NULL THEN CONVERT(DATETIME,drvDeductionStopDate)
+         --                           ELSE EeeStopDate
+                               END
+                ,EeeDatetimeChanged = GETDATE()
+                -- select *
+        FROM dbo.EmpEarn WITH (NOLOCK)
+        JOIN dbo.U_IEMPRN_drvTbl WITH (NOLOCK)    -- Select * from U_IEMPRN_drvTbl
+            ON drvEEID = EeeEEID
+            AND drvCOID = EeeCoID
+            AND drvEarnCode = EeeEarnCode
+        JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EecEEID = EeeEEID
+            AND EecCOID = EeeCoID
+        WHERE drvImported = 0 AND drvImportType = 'EARNING' AND drvAction IN ('CHANGE','STOP','RESTART');
+
+        -------------------------------
+        -- Insert New Earning Records
+        -------------------------------
+        INSERT INTO dbo.EmpEarn (Eee1099rDistCode1,Eee1099rDistCode2,EeeAmt,EeeBlockFIT,EeeBlockLIT,EeeBlockSIT,EeeCalcSequence,EeeCoID
+            ,EeeDatetimeChanged,EeeDatetimeCreated,EeeDisplayInPDE,EeeEarnCode,EeeEEID,EeeGLExpAcct,EeeIsActive,EeeIsSuppWages,EeePromptForAddlCheck
+            ,EeeSkipForMassUpdate,EeeStartDate,EeeStopDate,EeeSystemID)
+        SELECT 
+            Eee1099rDistCode1      = Ern1099rDistCode1
+            ,Eee1099rDistCode2     = Ern1099rDistCode2
+            ,EeeAmt                = CONVERT(DECIMAL(16,6),drvEEDeductionAmt)
+            ,EeeBlockFIT           = ErnBlockFIT
+            ,EeeBlockLIT           = ErnBlockLIT
+            ,EeeBlockSIT           = ErnBlockSIT
+            ,EeeCalcSequence       = ErnCalcSequence
+            ,EeeCoID               = drvCOID
+            ,EeeDatetimeChanged    = GETDATE()
+            ,EeeDatetimeCreated    = GETDATE()
+            ,EeeDisplayInPDE       = ErnDisplayInPde
+            ,EeeEarnCode           = drvEarnCode
+            ,EeeEEID               = drvEEID
+            ,EeeGLExpAcct          = ErnGlExpAcct
+            ,EeeIsActive           = 'Y'
+            ,EeeIsSuppWages        = 'N'
+            ,EeePromptForAddlCheck = ErnPromptForAddlCheck
+            ,EeeSkipForMassUpdate  = 'N'
+            ,EeeStartDate          = CONVERT(DATETIME,drvDeductionStartDate)
+            ,EeeStopDate           = NULL    --CONVERT(DATETIME,drvDeductionStopDate)
+            ,EeeSystemID           = dbo.fn_GetTimedKey() 
+        FROM dbo.U_IEMPRN_drvTbl WITH (NOLOCK)
+        JOIN dbo.EarnCode WITH (NOLOCK)
+            ON ErnEarncode = drvEarnCode
+        JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EecEEID = drvEEID
+            AND EecCOID = drvCOID
+        WHERE drvImported = 0 AND drvImportType = 'EARNING' AND drvAction = 'ADD';
+
+        -----------------------------------------
+        -- Create Deduction OffSet For Earnings
+        -----------------------------------------
+        DECLARE @RecordCount INT, @LoopCount INT, @EEID VARCHAR(12), @COID VARCHAR(5);
+        SET @LoopCount = 1;
+
+        DECLARE @DedOffSet AS TABLE (
+            RowID    INT IDENTITY(1,1)
+            ,EEID    VARCHAR(12)
+            ,COID    VARCHAR(5)
+        );
+
+        INSERT INTO @DedOffSet (EEID, COID)
+        SELECT DISTINCT drvEEID, drvCOID
+        FROM dbo.U_IEMPRN_drvTbl WITH (NOLOCK)
+        WHERE drvImported = 0 AND drvImportType = 'EARNING';
+
+        SET @RecordCount = @@ROWCOUNT;
+
+        -- Create Deduction Offset for Each Employee
+        WHILE @LoopCount <= @RecordCount
+        BEGIN
+            -- Get EEID, COID for Each Employee
+            SELECT @EEID = EEID, @COID = COID
+            FROM @DedOffSet WHERE RowID = @LoopCount
+
+            -- Create Deduction Offset
+            PRINT 'Create Deduction Offset'
+            PRINT '@EEID: ' + ISNULL(@EEID,'')
+            PRINT '@COID: ' + ISNULL(@COID,'')
+            EXEC dbo.sp_usg_AddOffSettingDeductions @EEID, @COID;
+
+            -- Update Loop Count
+            SET @LoopCount = @LoopCount + 1;
+        END
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IEMPRN_drvTbl (drvError)
+       SELECT 'Error Processing Earnings in UltiPro: ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    --=======================
+    -- Report Successful
+    --=======================
+    UPDATE dbo.U_IEMPRN_drvTbl
+        SET drvError = CASE WHEN @ExportCode = 'TESTEARN' THEN 'Report Only - Do Not Update'
+                            WHEN drvImportType = 'DEDUCTION' THEN 'Loaded Successfully'
+                            WHEN drvImportType = 'EARNING' THEN
+                                CASE WHEN drvAction = 'ADD' THEN 'Imported Successfully'
+                                     ELSE 'Updated Successfully'
+                                END
+                       END
+            ,drvImported = 1
+    WHERE drvImported = 0
+    AND ((@ExportCode = 'TESTEARN')
+        OR (drvImportType = 'DEDUCTION' AND EXISTS (SELECT 1 FROM dbo.LodEDed WHERE EedPendingUpdateID = drvPendingUpdateID))
+        OR (drvImportType = 'EARNING' AND EXISTS (SELECT 1 FROM dbo.EmpEarn WHERE EeeEEID = drvEEID AND EeeCOID = drvCOID AND EeeEarnCode = drvEarnCode))
+    );
+
+    --============================
+    -- Reject Remaining Records
+    --============================
+    UPDATE dbo.U_IEMPRN_drvTbl
+        SET drvError = 'Record Rejected'
+            ,drvAction = 'REJECTED'
+            ,drvImported = 2
+    WHERE drvImported = 0;
+
+    --select * From U_IEMPRN_drvTbl order by drvError
+
+END
+/**********************************************************************************
+
+--Create the View
+CREATE VIEW dbo.dsi_vwIEMPRN_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_IEMPRN_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+GO
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID IN (SELECT AdhSystemID FROM dbo.AscDefH WHERE AdhFormatCode = 'IEMPRN')
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET ExpLastStartPerControl = '201801011'
+       ,ExpStartPerControl     = '201801011'
+       ,ExpLastEndPerControl   = '201801019'
+       ,ExpEndPerControl       = '201801019'
+WHERE ExpFormatCode = 'IEMPRN';
+
+TESTING
+
+sp_geteeid 'hedges'        --297901522     
+sp_geteeid 'sanford'        --570352043  
+535584996  - Jackie Dunbar
+561254062  - Susan Callahan    
+534802834  - Sharon Kinared 
+TERM - 402762817      Brinegar    Sherman 
+
+select eepeeid, eepssn, eepnamelast, eepnamefirst, eepnamemiddle, eepnamepreferred, * from emppers where eepnamelast = 'sanford'
+select eepssn, eepnamelast, eepnamefirst, eepnamemiddle, eepnamepreferred, * from emppers where eepeeid = '9PSC4B0000K0'
+select eecempno, EecSupervisorID, EecEmplStatus, eecjobcode, jbclongdesc from empcomp join jobcode(nolock) on eecjobcode = JbcJobCode where eeceeid = 'AF2WXF0010K0'
+
+select eeceeid, eepssn, eepnamelast, eepnamefirst, eecempno, EecSupervisorID, EecEmplStatus, eecjobcode, jbclongdesc from empcomp(nolock) join emppers(nolock) on eeceeid = eepeeid 
+join jobcode(nolock) on eecjobcode = JbcJobCode 
+where eecemplstatus <> 'T'
+and EecSupervisorID = 'AF2WXF0010K0'
+
+/*
+    declare @Thisdate datetime
+    --Populate variable with today's date
+    select @Thisdate = getdate()
+    --Call UltiPro SP to validate data from Aon Hewitt into production tables
+    --insert into dbo.U_PREM_AHBEN_LOG (PALDateTime,PALProcedure, PalMessage) values (getdate(),'U_PREM_AHBen_Driver','Calling HRMS_BenefitImport to validate and post records')
+    --  No need to validate - Post step will validate - exec dbo.HRMS_BenefitImport  'AHBENIMPPR',@Thisdate,'Y'  --'Y' flag will validate
+    --Call UltiPro SP to post data from Aon Hewitt into production tables
+    exec dbo.HRMS_BenefitImport  'IEMPRN',@Thisdate,'Y'     --'N' flag will post
+*/
+
+select IrrMessage, IrrFieldName, EecEmpNo, EepNameLast, EepNameFirst, EecDedGroupCode, EecEmplStatus, led.EedDedCode, led.EedBenoption, led.EedBenStatus as LEDEedBenStatus, 
+led.EedEEEligDate as LEDEedEEEligDate, led.EedStartDate as LEDDedStartDate,
+led.EedBenStartDate as LEDEedBenStartDate, led.EedBenStopDate as LEDEedBenStopDate, led.EedEEGoalAmt as LEDEedEEGoalAmt, EecDateOfBenefitSeniority, 
+ed.EedBenStatus as EDEedBenStatus, ed.eedbenstartdate as EDeedbenstartdate, ed.EedBenStopDate as EDEedBenStopDate, DedDedEffStartDate
+-- select *
+from ImpErrs(nolock)
+join LodCntrl(nolock) on IrrPendingUpdateID = CntPendingUpdateID and CntSessionID = 'IEMPRN' and IrrMessage like 'E%'
+join empcomp(nolock) on cnteeid = eeceeid and cntcoid = eeccoid
+join emppers(nolock) on cnteeid = eepeeid
+join lodeded(nolock) led on IrrPendingUpdateID = led.EedPendingUpdateID and IrrRecID = led.EedRecID
+left join empded(nolock) ed on eeccoid = ed.eedcoid and eeceeid = ed.eedeeid and led.eeddedcode = ed.eeddedcode
+left join dedcode(nolock) on led.EedDedCode = DedDedCode
+--where EecDedGroupCode ='RN30' and led.EedDedCode = 'CDHP'
+order by 1
+
+--E0044
+select distinct IrrMessage,led.EedDedCode, led.EedBenoption, count(1) as TheCount
+from ImpErrs(nolock)
+join LodCntrl(nolock) on IrrPendingUpdateID = CntPendingUpdateID and CntSessionID = 'IEMPRN' and IrrMessage like 'E0044%'
+join empcomp(nolock) on cnteeid = eeceeid and cntcoid = eeccoid
+join emppers(nolock) on cnteeid = eepeeid
+join lodeded(nolock) led on IrrPendingUpdateID = led.EedPendingUpdateID and IrrRecID = led.EedRecID
+left join empded(nolock) ed on eeccoid = ed.eedcoid and eeceeid = ed.eedeeid and led.eeddedcode = ed.eeddedcode
+left join dedcode(nolock) on led.EedDedCode = DedDedCode
+Group by IrrMessage,led.EedDedCode, led.EedBenoption
+order by 1
+
+--E0045
+select IrrMessage, EecDedGroupCode, led.EedDedCode, count(1) as TheCount
+from ImpErrs(nolock)
+join LodCntrl(nolock) on IrrPendingUpdateID = CntPendingUpdateID and CntSessionID = 'IEMPRN' and IrrMessage like 'E0045%'
+join empcomp(nolock) on cnteeid = eeceeid and cntcoid = eeccoid
+join emppers(nolock) on cnteeid = eepeeid
+join lodeded(nolock) led on IrrPendingUpdateID = led.EedPendingUpdateID and IrrRecID = led.EedRecID
+left join empded(nolock) ed on eeccoid = ed.eedcoid and eeceeid = ed.eedeeid and led.eeddedcode = ed.eeddedcode
+left join dedcode(nolock) on led.EedDedCode = DedDedCode
+group by IrrMessage, EecDedGroupCode, led.EedDedCode
+order by 1,2,3
+
+--select * from ascimp where impFormatCode = 'IEMPRN'
+
+select * from U_IEMPRN_drvTbl
+where drvimporttype = 'deduction'
+and drvaction <> 'REJECTED'
+and drvbenefitstartdate < eedeeeligdate
+or drvbenefitstartdate < eecdateofbenefitseniority
+or eedeeeligdate < eecdateofbenefitseniority
+
+select * from empded(nolock) where eedeeid = '9PKH1G0010K0' and eeddedcode = 'ADD'
+
+select eepssn, eecempno, eepnamelast, eepnamefirst, eecemplstatus, eecdateofbenefitseniority, eeddedcode, eedbenstatus, eedstartdate, eedstopdate, eedbenstartdate, eedbenstopdate
+from empcomp(nolock)
+join emppers(nolock) on eeceeid = eepeeid
+join empded(nolock) on eeccoid = eedcoid and eeceeid = eedeeid
+where eecemplstatus <> 'T'
+and eedbenstartdate is not null
+and eedeeeligdate < eecdateofbenefitseniority
+
+SELECT CmpCompanyCode, EecCoID, EecEEID, eepssn,EecEmpNo, eepnamelast, eepnamefirst, EecEmplStatus, EecEmplStatusStartDate, EecDateOfOriginalHire, EecDateOfLastHire, EecDateOfTermination, EecTermReason, EecAnnSalary, EecDateLastWorked, EecPayGroup, EecDedGroupCode, EecEarnGroupCode, EecEEType, EecFullTimeOrPartTime, EecJobCode, EecLocation
+FROM dbo.EmpComp WITH (NOLOCK)
+JOIN dbo.Company WITH (NOLOCK) ON CmpCoID = EecCoID
+JOIN dbo.EmpPers WITH (NOLOCK) ON eeceeid = eepeeid
+--join dbo.EmpDed WITH (NOLOCK) on eeccoid = eedcoid and eeceeid = eedeeid
+WHERE eecemplstatus <> 'T'
+order by 3
+
+SELECT DedDedType, DedDedCode, DedLongDesc, DedBenPlanAdmin, DedBenPlanProvider, DedEEViewPlanDesc, DedStubDesc
+FROM dbo.DedCode
+--WHERE DedDedType IN ('')
+ORDER BY deddedtype, DedDedCode
+
+sp_geteeid 'weber'        --C9WF2Q0000K0
+select * from U_IEMPRN_drvTbl where drveeid = 'C9WF2Q0000K0'
+
+sp_geteeid '126324'
+SELECT CmpCompanyCode, EecCoID, EecEEID, EecEmpNo, eepnamelast, eepnamefirst, EecEmplStatus, eeeearncode, eeeamt, eeestartdate, eeestopdate
+FROM dbo.EmpComp WITH (NOLOCK)
+JOIN dbo.Company WITH (NOLOCK) ON CmpCoID = EecCoID
+JOIN dbo.EmpPers WITH (NOLOCK) ON eeceeid = eepeeid
+join dbo.EmpEarn WITH (NOLOCK) on eeccoid = eeecoid and eeceeid = eeeeeid
+WHERE EecEEID = '9RSRMN00N0K0'
+and eeeearncode like '%DP'
+
+Select * from paygroup
+
+SELECT DedDedType, DedDedCode, DedLongDesc, DedBenPlanAdmin, DedBenPlanProvider, DedEEViewPlanDesc, DedStubDesc
+FROM dbo.DedCode
+WHERE DedDedCode like 'LIF%'
+
+Select pgpperiodcontrol, pgpperiodstartdate, pgpperiodenddate, pgpdatetimeperiodopened, PgpDateTimePeriodClosed, * 
+from dbo.pgpayper with (NOLOCK) where pgppaygroup = 'UPXEX'
+order by 1 desc
+
+sp_geteeid '111995'
+
+**********************************************************************************/
+GO
+CREATE VIEW dbo.dsi_vwIEMPRN_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_IEMPRN_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'IEMPRN' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'IEMPRN'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'IEMPRN'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'IEMPRN', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'IEMPRN', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'IEMPRN', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
