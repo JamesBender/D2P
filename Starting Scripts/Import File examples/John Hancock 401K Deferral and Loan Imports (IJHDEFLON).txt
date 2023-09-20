@@ -1,0 +1,977 @@
+/**********************************************************************************
+
+IJHDEFLON: John Hancock 401K Def and Loan Imports
+
+FormatCode:     IJHDEFLON
+Project:        John Hancock 401K Def and Loan Imports
+Client ID:      REF1001
+Date/time:      2023-09-20 08:27:48.100
+Ripout version: 7.4
+Export Type:    Web
+Status:         Production
+Environment:    E43
+Server:         E4SUP3DB01
+Database:       ULTIPRO_RBUS
+Web Filename:   REF1001_XAC7C_EEHISTORY_IJHDEFLON_ExportCode_YYYYMMDD_HHMMSS.txt
+ArchivePath:   \\us.saas\e4\Public\REF1001\Imports\JHancock\Archive\
+ExportPath:    
+ImportPath:    \\us.saas\e4\Public\REF1001\Imports\JHancock\
+TestPath:      
+
+**********************************************************************************/
+
+SET NOCOUNT ON;
+
+-----------
+-- Drop the SavePath table if it exists
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_SavePath') IS NOT NULL DROP TABLE dbo.U_IJHDEFLON_SavePath
+
+
+-----------
+-- Create U_dsi_RipoutParms if it doesn't exist
+-----------
+
+IF OBJECT_ID('U_dsi_RipoutParms') IS NULL BEGIN
+
+   CREATE TABLE dbo.U_dsi_RipoutParms (
+   rpoFormatCode  VARCHAR(10)   NOT NULL,
+   rpoParmType    VARCHAR(64)   NOT NULL,
+   rpoParmValue01 VARCHAR(1024) NULL,
+   rpoParmValue02 VARCHAR(1024) NULL,
+   rpoParmValue03 VARCHAR(1024) NULL,
+   rpoParmValue04 VARCHAR(1024) NULL,
+   rpoParmValue05 VARCHAR(1024) NULL
+)
+END
+
+
+-----------
+-- Clear U_dsi_RipoutParms
+-----------
+
+DELETE FROM dbo.U_dsi_RipoutParms WHERE rpoFormatCode = 'IJHDEFLON'
+
+
+-----------
+-- Add paths to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02)
+SELECT
+
+FormatCode,
+'Path',
+CfgName,
+CfgValue
+
+FROM dbo.U_Dsi_Configuration
+WHERE FormatCode = 'IJHDEFLON'
+AND CfgName LIKE '%path%'
+
+
+-----------
+-- Add AscExp expSystemIDs to U_dsi_RipoutParms
+-----------
+
+INSERT INTO dbo.U_dsi_RipoutParms (rpoFormatCode, rpoParmType, rpoParmValue01, rpoParmValue02) 
+SELECT
+
+ExpFormatCode,
+'expSystemID',
+ExpExportCode,
+ExpSystemID
+
+FROM dbo.AscExp
+WHERE ExpFormatCode = 'IJHDEFLON'
+
+
+-----------
+-- Delete configuration data
+-----------
+
+DELETE [dbo].[AscDefF] WHERE EXISTS (SELECT 1 FROM dbo.AscDefH WHERE AdfHeaderSystemID = AdhSystemID AND AdhFormatCode = 'IJHDEFLON')
+DELETE FROM [dbo].[AscExp]                 WHERE ExpFormatCode = 'IJHDEFLON'
+DELETE FROM [dbo].[AscImp]                 WHERE ImpFormatCode = 'IJHDEFLON'
+DELETE FROM [dbo].[AscDefH]                WHERE AdhFormatCode = 'IJHDEFLON'
+DELETE FROM [dbo].[U_dsi_Configuration]    WHERE FormatCode    = 'IJHDEFLON'
+DELETE FROM [dbo].[U_dsi_SQLClauses]       WHERE FormatCode    = 'IJHDEFLON'
+DELETE FROM [dbo].[U_dsi_RecordSetDetails] WHERE FormatCode    = 'IJHDEFLON'
+
+IF OBJECT_ID('dbo.U_dsi_Translations')    IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations]    WHERE FormatCode = 'IJHDEFLON'
+IF OBJECT_ID('dbo.U_dsi_Translations_v2') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v2] WHERE FormatCode = 'IJHDEFLON'
+IF OBJECT_ID('dbo.U_dsi_Translations_v3') IS NOT NULL DELETE FROM [dbo].[U_dsi_Translations_v3] WHERE FormatCode = 'IJHDEFLON'
+
+
+-----------
+-- Drop export-specific objects
+-----------
+
+IF OBJECT_ID('dsi_vwIJHDEFLON_Export') IS NOT NULL DROP VIEW [dbo].[dsi_vwIJHDEFLON_Export];
+GO
+IF OBJECT_ID('dsi_sp_BuildDriverTables_IJHDEFLON') IS NOT NULL DROP PROCEDURE [dbo].[dsi_sp_BuildDriverTables_IJHDEFLON];
+GO
+IF OBJECT_ID('U_IJHDEFLON_Raw') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_Raw];
+GO
+IF OBJECT_ID('U_IJHDEFLON_RankNewLoan') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_RankNewLoan];
+GO
+IF OBJECT_ID('U_IJHDEFLON_Rank') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_Rank];
+GO
+IF OBJECT_ID('U_IJHDEFLON_Loans') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_Loans];
+GO
+IF OBJECT_ID('U_IJHDEFLON_Import') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_Import];
+GO
+IF OBJECT_ID('U_IJHDEFLON_File') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_File];
+GO
+IF OBJECT_ID('U_IJHDEFLON_EEList') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_EEList];
+GO
+IF OBJECT_ID('U_IJHDEFLON_drvTbl') IS NOT NULL DROP TABLE [dbo].[U_IJHDEFLON_drvTbl];
+GO
+
+-----------
+-- AscDefH inserts
+-----------
+
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N',NULL,'Y','0',NULL,NULL,'N',NULL,'N','E','013010','BENEFITIMP','SDF','IJHDEFLON','John Hancock 401K Def and Loan Imports','N','I','FORM_ASCIIIMPORTBENEFITS','N','N',dbo.fn_GetTimedKey(),'D',NULL,'S','N','IJHDEFLON0Z1','N',NULL,'N','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+INSERT INTO [dbo].[AscDefH] (AdhAccrCodesUsed,AdhAggregateAtLevel,AdhAuditStaticFields,AdhChildTable,AdhClientTableList,AdhCustomDLLFileName,AdhDedCodesUsed,AdhDelimiter,AdhEarnCodesUsed,AdhEEIdentifier,AdhEndOfRecord,AdhEngine,AdhFileFormat,AdhFormatCode,AdhFormatName,AdhFundCodesUsed,AdhImportExport,AdhInputFormName,AdhIsAuditFormat,AdhIsSQLExport,AdhModifyStamp,AdhOutputMediaType,AdhRecordSize,AdhSortBy,AdhSysFormat,AdhSystemID,AdhTaxCodesUsed,AdhYearStartFixedDate,AdhYearStartOption,AdhPreProcessSQL,AdhRespectZeroPayRate,AdhCreateTClockBatches,AdhThirdPartyPay) VALUES ('N','C','Y','0','','','N','','N','','013010','EMPEXPORT','CDE','IJHDEFLON','John Hancock 401K Def and Loan Imports','N','E','FORM_EMPEXPORT','N','C',dbo.fn_GetTimedKey(),'D','2000','S','N','IJHDEFLON0Z0','N','Jan  1 1900 12:00AM','C','dbo.dsi_sp_Switchbox_v2','N',NULL,'N');
+
+-----------
+-- AscDefF inserts
+-----------
+
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','IJHDEFLON0Z0','50','H','01','1',NULL,'SSN',NULL,NULL,'"SSN"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','IJHDEFLON0Z0','50','H','01','2',NULL,'Name',NULL,NULL,'"Name"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','IJHDEFLON0Z0','50','H','01','3',NULL,'Beginning Date',NULL,NULL,'"Beginnning Date"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','IJHDEFLON0Z0','50','H','01','4',NULL,'Deduction Type',NULL,NULL,'"Deduction Type"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','IJHDEFLON0Z0','50','H','01','5',NULL,'Loan Number',NULL,NULL,'"Loan Number"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','IJHDEFLON0Z0','50','H','01','6',NULL,'Value',NULL,NULL,'"Value"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','IJHDEFLON0Z0','50','H','01','9',NULL,'Import Type',NULL,NULL,'"Import Type"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','IJHDEFLON0Z0','50','H','01','10',NULL,'Action',NULL,NULL,'"Action"','(''DA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','IJHDEFLON0Z0','50','H','01','11',NULL,'Error Message',NULL,NULL,'"Error Message"','(''DA''=''T'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('1','IJHDEFLON0Z0','50','D','10','1',NULL,'SSN',NULL,NULL,'"drvSSN"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('2','IJHDEFLON0Z0','50','D','10','2',NULL,'Name',NULL,NULL,'"drvName"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('3','IJHDEFLON0Z0','50','D','10','3',NULL,'Beginning Date',NULL,NULL,'"drvBegDate"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('4','IJHDEFLON0Z0','50','D','10','4',NULL,'Deduction Type',NULL,NULL,'"drvDedType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('5','IJHDEFLON0Z0','50','D','10','5',NULL,'Loan Number',NULL,NULL,'"drvLoanNo"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('6','IJHDEFLON0Z0','50','D','10','6',NULL,'Value',NULL,NULL,'"drvValue"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('9','IJHDEFLON0Z0','50','D','10','9',NULL,'Import Type',NULL,NULL,'"drvImportType"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('10','IJHDEFLON0Z0','50','D','10','10',NULL,'Action',NULL,NULL,'"drvAction"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('11','IJHDEFLON0Z0','250','D','10','11',NULL,'Error',NULL,NULL,'"drvError"','(''UA''=''T'')');
+
+-----------
+-- Build web filename
+-----------
+
+/*01*/ DECLARE @COUNTRY char(2) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 1) = 'T' THEN 'ca' ELSE 'us' END);
+/*02*/ DECLARE @SERVER varchar(6) = (SELECT CASE WHEN LEFT(@@SERVERNAME, 3) IN ('WP1','WP2','WP3','WP4','WP5') THEN 'WP' WHEN LEFT(@@SERVERNAME, 2) IN ('NW','EW','WP') THEN LEFT(@@SERVERNAME, 3) ELSE LEFT(@@SERVERNAME, 2) END);
+/*03*/ SET @SERVER = CASE WHEN LEFT(@@SERVERNAME, 2) IN ('NZ','EZ') THEN @SERVER + '\' + LEFT(@@SERVERNAME, 3) ELSE @SERVER END;
+/*04*/ DECLARE @UDARNUM varchar(10) = (SELECT LTRIM(RTRIM(CmmContractNo)) FROM dbo.CompMast);
+/*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
+/*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
+/*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
+/*08*/ DECLARE @FileName varchar(1000) = 'IJHDEFLON_20230920.txt';
+/*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
+
+-----------
+-- AscExp inserts
+-----------
+
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'401k Deferral & Loan Import','201812211','EMPEXPORT','IMPORT','Jan  8 2019 12:00AM','IJHDEFLON',NULL,NULL,NULL,'202309149','Dec 21 2018 12:00AM','Dec 30 1899 12:00AM','202309011','6','','','201812211',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','DAJ4C,DCQJ1,DAJ8D,CIUJE,CITIX',NULL,NULL,NULL,'Montly Per Import','201911149','EMPEXPORT','IMPORTPER','Nov 18 2019 12:00AM','IJHDEFLON',NULL,NULL,NULL,'202309039','Nov 14 2019 12:00AM','Dec 30 1899 12:00AM','202309011',NULL,'','','201911011',dbo.fn_GetTimedKey(),NULL,'ULTI_RBUS',NULL);
+
+-----------
+-- AscImp inserts
+-----------
+
+INSERT INTO [dbo].[AscImp] (impCOID,impDateAccruedThru,impDateOfRollover,impDatePendingMoved,impDesc,impEEIdentifier,impEngine,impExceptions,impFormatCode,impImportCode,impImported,impPayPeriodID,impPosted,impReset,impSessionType,impSource,impSystemID,impUser,impValid,impVerified) VALUES ('',NULL,NULL,NULL,'JHancock DefLoan Imp HotTopic','E','BENEFITIMP','12','IJHDEFLON','IJHDEFLON',NULL,NULL,'May 30 2017  9:45AM','Nov 20 2018  5:33PM',NULL,'VALIDATE / POST / RESET ONLY (DO NOT CLICK IMPORT)',dbo.fn_GetTimedKey(),'ULTI_RBUS','33','Nov 20 2018  5:34PM');
+
+-----------
+-- U_dsi_Configuration inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','ArchivePath','V','\\us.saas\e4\Public\REF1001\Imports\JHancock\Archive\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','EEList','V','Y');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','ExportPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','ImportPath','V','\\us.saas\e4\Public\REF1001\Imports\JHancock\');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','InitialSort','C','ISNULL(drvInitialSort,'''')');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','NoEmpty','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','Testing','V','N');
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','TestPath','V',NULL);
+INSERT INTO [dbo].[U_dsi_Configuration] (FormatCode,CfgName,CfgType,CfgValue) VALUES ('IJHDEFLON','UseFileName','V','Y');
+
+-----------
+-- U_dsi_RecordSetDetails inserts
+-----------
+
+
+-----------
+-- U_dsi_SQLClauses inserts
+-----------
+
+INSERT INTO [dbo].[U_dsi_SQLClauses] (FormatCode,RecordSet,FromClause,WhereClause) VALUES ('IJHDEFLON','D10','dbo.U_IJHDEFLON_drvTbl WITH (NOLOCK)',NULL);
+
+-----------
+-- U_dsi_Translations inserts
+-----------
+
+
+-----------
+-- U_dsi_Translations_v2 inserts
+-----------
+
+
+-----------
+-- Create table U_IJHDEFLON_drvTbl
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_drvTbl') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_drvTbl] (
+    [drvSurrogateKey] varchar(50) NULL,
+    [drvSSN] varchar(50) NULL,
+    [drvName] varchar(50) NULL,
+    [drvBenStartDate] varchar(10) NULL,
+    [drvBegDate] varchar(50) NULL,
+    [drvDedType] varchar(50) NULL,
+    [drvLoanNo] varchar(50) NULL,
+    [drvValue] varchar(50) NULL,
+    [drvAction] varchar(50) NULL,
+    [drvError] varchar(250) NULL,
+    [drvImported] tinyint NOT NULL DEFAULT ((0)),
+    [drvEmpNo] varchar(50) NULL,
+    [drvEEID] varchar(12) NULL,
+    [drvHomeCOID] varchar(5) NULL,
+    [drvLoanID] varchar(50) NULL,
+    [drvDedCode] varchar(50) NULL,
+    [drvImportType] varchar(50) NULL,
+    [drvPeriodStartDate] varchar(50) NULL,
+    [drvPeriodStopDate] varchar(50) NULL,
+    [drvPendingUpdateID] char(20) NULL,
+    [drvInitialSort] varchar(50) NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_EEList
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_EEList') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_EEList] (
+    [xCOID] char(5) NULL,
+    [xEEID] char(12) NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_File
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_File') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_File] (
+    [RecordSet] char(3) NOT NULL,
+    [InitialSort] varchar(100) NOT NULL,
+    [SubSort] varchar(100) NOT NULL,
+    [SubSort2] varchar(100) NULL,
+    [SubSort3] varchar(100) NULL,
+    [Data] varchar(2000) NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_Import
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_Import') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_Import] (
+    [RowNo] int NOT NULL,
+    [FileName] varchar(max) NULL,
+    [EEID] char(12) NULL,
+    [COID] char(5) NULL,
+    [RunID] varchar(50) NULL,
+    [Error] varchar(250) NULL,
+    [PayPeriodStartDate] datetime NULL,
+    [PayPeriodEndDate] datetime NULL,
+    [PriorPayPeriodStartDate] datetime NULL,
+    [PriorPayPeriodEndDate] datetime NULL,
+    [NextPayPeriodStartDate] datetime NULL,
+    [NextPayPeriodEndDate] datetime NULL,
+    [CompanyCode] varchar(100) NULL,
+    [EmployeeNo] varchar(10) NULL,
+    [EmployeeName] varchar(250) NULL,
+    [Field1] varchar(max) NULL,
+    [Field2] varchar(max) NULL,
+    [Field3] varchar(max) NULL,
+    [Field4] varchar(max) NULL,
+    [Field5] varchar(max) NULL,
+    [Field6] varchar(max) NULL,
+    [Field7] varchar(max) NULL,
+    [Field8] varchar(max) NULL,
+    [Field9] varchar(max) NULL,
+    [Field10] varchar(max) NULL,
+    [Field11] varchar(max) NULL,
+    [Field12] varchar(max) NULL,
+    [Field13] varchar(max) NULL,
+    [Field14] varchar(max) NULL,
+    [Field15] varchar(max) NULL,
+    [Field16] varchar(max) NULL,
+    [UDField1] varchar(250) NULL,
+    [UDField2] varchar(250) NULL,
+    [UDField3] varchar(250) NULL,
+    [UDField4] varchar(250) NULL,
+    [UDField5] varchar(250) NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_Loans
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_Loans') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_Loans] (
+    [EedEEID] char(12) NOT NULL,
+    [EedCoID] char(5) NOT NULL,
+    [LN1] varchar(3) NULL,
+    [LN1STOP] datetime NULL,
+    [LN1Num] varchar(max) NULL,
+    [LN2] varchar(3) NULL,
+    [LN2STOP] datetime NULL,
+    [LN2Num] varchar(max) NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_Rank
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_Rank') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_Rank] (
+    [reeid] char(12) NULL,
+    [rcoid] char(5) NULL,
+    [rfield1] varchar(max) NULL,
+    [field5] varchar(max) NULL,
+    [field6] varchar(max) NULL,
+    [field11] varchar(max) NULL,
+    [rUDField1] varchar(250) NULL,
+    [RankNum] bigint NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_RankNewLoan
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_RankNewLoan') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_RankNewLoan] (
+    [reeid] char(12) NULL,
+    [rcoid] char(5) NULL,
+    [rfield1] varchar(max) NULL,
+    [rfield5] varchar(max) NULL,
+    [rfield6] varchar(max) NULL,
+    [rfield11] varchar(max) NULL,
+    [rUDField1] varchar(250) NULL,
+    [RankNum] bigint NULL
+);
+
+-----------
+-- Create table U_IJHDEFLON_Raw
+-----------
+
+IF OBJECT_ID('U_IJHDEFLON_Raw') IS NULL
+CREATE TABLE [dbo].[U_IJHDEFLON_Raw] (
+    [Field1] varchar(max) NULL,
+    [Field2] varchar(max) NULL,
+    [Field3] varchar(max) NULL,
+    [Field4] varchar(max) NULL,
+    [Field5] varchar(max) NULL,
+    [Field6] varchar(max) NULL,
+    [Field7] varchar(max) NULL,
+    [Field8] varchar(max) NULL,
+    [Field9] varchar(max) NULL,
+    [Field10] varchar(max) NULL,
+    [Field11] varchar(max) NULL,
+    [Field12] varchar(max) NULL,
+    [Field13] varchar(max) NULL,
+    [Field14] varchar(max) NULL,
+    [Field15] varchar(max) NULL,
+    [Field16] varchar(max) NULL,
+    [RowNo] int IDENTITY(1,1) NOT NULL,
+    [RunID] varchar(50) NULL,
+    [FileName] varchar(max) NULL
+);
+GO
+CREATE PROCEDURE [dbo].[dsi_sp_BuildDriverTables_IJHDEFLON]
+    @SystemID char(12)
+AS
+/**********************************************************************************
+Client Name: Refresco Beverage
+
+Created By: Cyndi Diaz
+Business Analyst: Emily Gaddy
+Create Date: 11/13/2018
+Service Request Number: SR-2018-00210476
+
+Purpose: John Hancock 401K Deferral and Loan Imports
+
+Revision History
+----------------
+Update By           Date            Request Num         Desc
+Lynn Manning        01/11/2019                            Commented out the file name update to U_Dsi_Parameters;
+                                                        Set expAscFileName = '\\us.saas\e4\E43\Downloads\V10\Exports\RBUS\EmployeeHistoryExport\IJHDEFLON.csv' ;
+                                                        Allow Copy Files and Archive Files process for Web imports;
+                                                        Define the file name for the Web Import to contain '*co45sl*' ;
+                                                        Add "DELETE FROM dbo.U_dsi_BIM_LodEDed WHERE EedFormatCode = @FormatCode" to remove old imported records from BIM;
+                                                        Add "WHERE drvImported = 0" when inserting into U_Dsi_BIM_LodEDed;
+DAgyei              09/24/2019        SR-2019-00246092    Updated import logic.
+Rebecca Lodge       08/31/2022      SR-2022-00367202    Update Benefit Start Date Logic for new hires
+D.Agyei             10/05/2022      SR-2022-00368392    Updated new loan logic to fix issue on ee's with multiple new loans at the same time. 
+
+SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'IJHDEFLON'; 
+SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'IJHDEFLON';
+SELECT * FROM dbo.U_dsi_Parameters WHERE FormatCode = 'IJHDEFLON';
+SELECT * FROM dbo.AscExp WHERE ExpFormatCode = 'IJHDEFLON';
+SELECT * FROM dbo.U_dsi_InterfaceActivityLog WHERE FormatCode = 'IJHDEFLON' ORDER BY RunID DESC
+
+Execute Export
+--------------
+EXEC dbo.dsi_sp_TestSwitchbox_v2 'IJHDEFLON', 'IMPORT';
+
+EXEC dbo._dsi_usp_ExportRipOut_v7_4 @FormatCode = 'IJHDEFLON', @AllObjects = 'Y', @isweb='Y'
+**********************************************************************************/
+BEGIN
+
+    /***********************
+        DECLARE VARIABLES
+    ************************/
+    DECLARE    @ImportPath VARCHAR(100),
+               @FileName VARCHAR(100),
+               @ExportCode VARCHAR(12),
+               @FormatCode VARCHAR(10),
+               @EnableStandardWebImport CHAR(1);
+
+    SET @FormatCode = 'IJHDEFLON'
+    SET @ExportCode = (SELECT ExportCode FROM dbo.U_dsi_Parameters (NOLOCK) WHERE FormatCode = @FormatCode);
+
+    --Set directory and filename where import file is located
+    SET @ImportPath = dbo.Dsi_fnVariable(@FormatCode,'ImportPath');
+    SET @FileName = (SELECT expAscFileName FROM dbo.AscExp WHERE expFormatCode = @FormatCode AND expExportCode = @ExportCode);
+    SET @EnableStandardWebImport = 'Y'; --Enables Standard Web Import ('Y'), or BackOffice LOD Tables ('N')
+
+
+    --==================================================
+    -- Create Driver Table for Error Report
+    --==================================================
+    IF object_id('U_IJHDEFLON_drvTbl','U') IS NOT NULL 
+        DROP TABLE dbo.U_IJHDEFLON_drvTbl;     
+    CREATE TABLE dbo.U_IJHDEFLON_drvTbl (
+        drvSurrogateKey VARCHAR(50) NULL
+        ,drvSSN VARCHAR(50) NULL
+        ,drvName VARCHAR(50) NULL
+        ,drvBenStartDate VARCHAR(10) NULL
+        ,drvBegDate VARCHAR(50) NULL
+        ,drvDedType VARCHAR(50) NULL
+        ,drvLoanNo VARCHAR(50) NULL
+        ,drvValue VARCHAR(50) NULL
+        ,drvAction VARCHAR(50) NULL
+        ,drvError VARCHAR(250) NULL
+        ,drvImported TINYINT DEFAULT 0 NOT NULL
+        ,drvEmpNo VARCHAR(50) NULL
+        ,drvEEID VARCHAR(12) NULL
+        ,drvHomeCOID VARCHAR(5) NULL
+        ,drvLoanID VARCHAR(50) NULL
+        --,drvLoanGoalAmount VARCHAR(50) NULL-- DA Added
+        ,drvDedCode VARCHAR(50) NULL
+        ,drvImportType VARCHAR(50) NULL
+        ,drvPeriodStartDate VARCHAR(50) NULL
+        ,drvPeriodStopDate VARCHAR(50) NULL
+        ,drvPendingUpdateID CHAR(20) NULL
+        ,drvInitialSort VARCHAR(50) NULL
+    );
+
+    --==============================================
+    -- Benefit Import Module (BIM Code)
+    --==============================================
+    BEGIN TRY
+        DELETE FROM dbo.U_dsi_BIM_Configuration WHERE FormatCode = @FormatCode;
+
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'RunID','DEDUCTION');                --SELECT * FROM U_dsi_BIM_Configuration WHERE FORMATCODE = 'IJHDEFLON'
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FilePath',@ImportPath);
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1,ParmValue2) VALUES (@FormatCode,'FileFormat','Delimited',',');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FieldCount','16');
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1,ParmValue2) VALUES (@FormatCode,'KeyEEID','Field3', 'SSN'); --'Employee#'  AS SF19339824 updated to SSN for BIM compatibility 
+        INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'PayrollType','Regular'); --Regular --PayGroup --Non-Closed --Non-Opened
+
+        -- For Web Validate Mode Only, then Copy Files.  Otherwise Archive Files
+        IF (dbo.dsi_BIM_fn_GetValidateModeSetting() = 'TRUE')
+        BEGIN
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'CopyFiles','Y');
+        END
+        ELSE
+        BEGIN
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'ArchiveFiles','Y');
+        END;
+
+        -- For Web, Sweep Files in 'ImportPath' folder for Deferral Files Only
+        IF (@EnableStandardWebImport = 'Y') and @ExportCode = 'IMPORT'
+        BEGIN
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'MultipleFiles','Y'); -- Sweep Folder and Import Files                --SELECT * FROM U_dsi_BIM_Configuration
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FileName','*co45sl_wek*'); --File Name contains "Deduction"
+        END
+
+         IF (@EnableStandardWebImport = 'Y') and @ExportCode = 'IMPORTPER'
+        BEGIN
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'MultipleFiles','Y'); -- Sweep Folder and Import Files                --SELECT * FROM U_dsi_BIM_Configuration
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FileName','*co45sl_per*'); --File Name contains "Deduction"
+        END
+
+          IF (@EnableStandardWebImport IS NULL) --ELSE
+        BEGIN
+            INSERT INTO dbo.U_dsi_BIM_Configuration (FormatCode,ParmName,ParmValue1) VALUES (@FormatCode,'FileName',@FileName);
+        END;
+
+        EXEC dbo.dsi_BIM_sp_PopulateImportTable @FormatCode;
+
+        ----------------------------------------------------------
+        -- Only Retain Records where SSN in Field# 3 is Numeric
+        ----------------------------------------------------------
+        DELETE FROM dbo.U_IJHDEFLON_Import WHERE Field1 NOT IN ('PTXP','PTCP','RTHP','RCUP','LOAN','LPAY','LREM');
+
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IJHDEFLON_drvTbl (drvError)
+       SELECT 'Error Processing Fixed File (BIM): ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    --==============================================================
+    -- If Error During BIM, then Report Error and Stop Processing
+    --==============================================================
+    IF EXISTS (SELECT 1 FROM dbo.U_IJHDEFLON_Import WHERE ISNULL(Error,'') <> '')
+    BEGIN
+        INSERT INTO dbo.U_IJHDEFLON_drvTbl (drvError,drvImported)
+        SELECT Error, 2 FROM dbo.U_IJHDEFLON_Import WHERE ISNULL(Error,'') <> '';
+
+        -- Stop Processing
+        RETURN;
+    END;
+
+
+        --======================================================================
+        -- Using UDFIELD1 to store the Ultipro dedcode --DA 9/24/2019        
+        --=======================================================================
+        UPDATE dbo.U_IJHDEFLON_Import SET UDFIELD1 = null; 
+
+        -- Populate for deferrals
+        UPDATE dbo.U_IJHDEFLON_Import 
+        SET UDFIELD1 =
+                        CASE WHEN Field1 = 'PTXP' THEN
+                                    CASE WHEN EecDedGroupCode NOT IN ('SANBU','STLUN') THEN '401K' ELSE '401K1' END
+                            WHEN Field1 = 'PTCP' THEN
+                                    CASE WHEN EecDedGroupCode NOT IN ('SANBU','STLUN') THEN '4CU' ELSE '4CU1' END
+                            WHEN Field1 = 'RTHP' THEN
+                                    CASE WHEN EecDedGroupCode NOT IN ('SANBU','STLUN') THEN 'ROTH' ELSE 'ROTH1' END
+                            WHEN Field1 = 'RCUP' THEN
+                                    CASE WHEN EecDedGroupCode NOT IN ('SANBU','STLUN') THEN 'RCU' ELSE 'RCU1' END
+                        END
+        FROM dbo.U_IJHDEFLON_Import WITH (NOLOCK)
+        JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EEID = EecEEID AND COID = EecCOID;
+
+
+        -- Process LOAN stops
+        UPDATE dbo.U_IJHDEFLON_Import
+        SET UDFIELD1 = eedDedCode
+        FROM dbo.U_IJHDEFLON_Import WITH (NOLOCK)
+        JOIN dbo.EmpDed WITH (NOLOCK) ON EEID = EedEEID AND COID = EedCOID AND EedDedCode IN ('4L1','4L2')
+        WHERE FIELD1 IN ('LPAY')
+        AND EedStopDate IS NULL
+        AND Field16 = EedNotes
+        AND UDField1 IS NULL;
+
+        -- Process LOAN changes
+        UPDATE dbo.U_IJHDEFLON_Import
+        SET UDFIELD1 = EedDedCode
+        FROM dbo.U_IJHDEFLON_Import WITH (NOLOCK)
+        JOIN dbo.EmpDed WITH (NOLOCK) ON EEID = EedEEID AND COID = EedCOID AND EedDedCode IN ('4L1','4L2')
+        WHERE FIELD1 IN ('LOAN','LPAY','LREM')
+        AND EedStopDate IS NULL
+        AND Field11 > '0.00'
+        AND (Field16 = EedNotes OR Field11 = eedeeamt)
+        AND UDFIELD1 is NULL;
+
+
+        -- Process new loans
+        UPDATE dbo.U_IJHDEFLON_Import
+        SET UDFIELD1 = CASE
+        --WHEN ISNULL(L1EEID,'') = '' AND ISNULL(L2EEID,'') = '' THEN '4L1'
+        WHEN ISNULL(L1EEID,'') = '' THEN '4L1'
+        WHEN ISNULL(L2EEID,'') = '' THEN '4L2'
+        --WHEN ISNULL(L1StopDate,'') < ISNULL(L2StopDate,'') THEN '4L1'
+        WHEN L1StopDate is not null then '4L1'
+        ELSE '4L2'
+        END
+        FROM dbo.U_IJHDEFLON_Import WITH (NOLOCK)
+        LEFT JOIN
+        ( SELECT EedEEID L1EEID, EedCOID L1COID, EedDedCode L1DedCode, EedStopDate L1StopDate
+            FROM EmpDed WITH (NOLOCK)
+            WHERE ISNULL(EedDedCode,'') = '4L1' ) L1
+        ON L1EEID = EEID
+        AND L1COID = COID
+        LEFT JOIN
+        ( SELECT EedEEID L2EEID, EedCOID L2COID, EedDedCode L2DedCode, EedStopDate L2StopDate
+            FROM EmpDed WITH (NOLOCK)
+            WHERE ISNULL(EedDedCode,'') = '4L2' ) L2
+        ON L2EEID = EEID
+        AND L2COID = COID
+        WHERE FIELD1 IN ('LOAN','LPAY','LREM')
+        AND Field11 > '0.00'
+        AND UDFIELD1 IS NULL;
+
+        --DA ranking for LPAY and LOAN
+        IF object_id('U_IJHDEFLON_Rank','U') IS NOT NULL 
+        DROP TABLE dbo.U_IJHDEFLON_Rank; 
+
+        SELECT DISTINCT 
+        reeid = eeid, rcoid = coid, rfield1 = field1, field5, field6,field11, rUDField1 = UDField1, RANK()OVER(ORDER BY field1) AS RankNum
+        INTO dbo.U_IJHDEFLON_Rank
+        FROM dbo.U_IJHDEFLON_Import where field1 in ('LPAY','LOAN') AND eeid in (select eeid  from dbo.U_IJHDEFLON_Import
+        group by eeid having count(*)>1)
+
+        -- DA Upated changes when stoping and restarting the same loan 
+        UPDATE dbo.U_IJHDEFLON_Import
+        SET UDFIELD1 = rUDFIELD1  
+        FROM dbo.U_IJHDEFLON_Import I WITH (NOLOCK)
+        JOIN dbo.EmpDed WITH (NOLOCK) ON EEID = EedEEID AND COID = EedCOID AND EedDedCode IN ('4L1','4L2')
+        JOIN dbo.U_IJHDEFLON_Rank WITH (NOLOCK) ON REEID = I.EEID AND I.COID = RCOID
+        WHERE RankNum = 3 
+        AND EedStopDate IS NULL
+        AND I.Field11 > '0.00'
+        AND (Field16 <> EedNotes)-- OR Field11 = eedeeamt)
+        
+
+                --DA ranking for LREM and LOAN -- DA 10/05/2022 to fix issue on ee's taking multiple loans at the same time. 
+        IF object_id('U_IJHDEFLON_RankNewLoan','U') IS NOT NULL 
+        DROP TABLE dbo.U_IJHDEFLON_RankNewLoan; 
+        SELECT DISTINCT 
+        reeid = eeid, rcoid = coid, rfield1 = field1, rfield5 = field5, rfield6 = field6, rfield11 = field11, rUDField1 = UDField1, RANK()OVER(ORDER BY field1, field11) AS RankNum
+        INTO dbo.U_IJHDEFLON_RankNewLoan
+        FROM dbo.U_IJHDEFLON_Import where field1 in ('LREM','LOAN') AND eeid in (select eeid  from dbo.U_IJHDEFLON_Import
+        group by eeid having count(*)>1)
+
+        -- Process new loans
+        UPDATE dbo.U_IJHDEFLON_Import -- DA 10/05/2022 to fix issue on ee's taking multiple loans at the same time. 
+        SET UDFIELD1 = CASE
+        WHEN  RankNum = 1 THEN '4L1'
+        WHEN  RankNum = 2 then '4L2'
+        END
+        FROM dbo.U_IJHDEFLON_Import WITH (NOLOCK)
+        JOIN dbo.U_IJHDEFLON_RankNewLoan WITH (NOLOCK) ON REEID = EEID AND COID = RCOID AND UDFIELD1 =RUDFIELD1 AND FIELD11 =rFIELD11
+        WHERE FIELD1 IN ('LOAN','LPAY','LREM')
+        AND Field11 > '0.00'  
+        ;
+
+    /***************************************
+        Build Driver Table - Deferrals
+    ****************************************/
+    BEGIN TRY
+        --===================================================
+        -- Load Deferral (401K / Roth) Information
+        --===================================================
+
+        --SELECT * FROM U_IJHDEFLON_drvTbl
+        INSERT INTO dbo.U_IJHDEFLON_drvTbl(drvSurrogateKey,drvSSN,drvValue,drvBenStartDate,drvBegDate,drvAction,drvError,drvImported,
+        drvEmpNo,drvEEID,drvHomeCOID,drvLoanID,drvDedCode,drvName,drvImportType,drvPendingUpdateID,drvInitialSort)   --drvLoanGoalAmount  --drvPeriodStartDate,drvPeriodStopDate,    --SELECT * FROM U_IJHDEFLON_drvTbl
+        SELECT DISTINCT 
+            drvSurrogateKey = CONVERT(VARCHAR(50),RTRIM(EEID) + RTRIM(COID))
+            ,drvSSN = CONVERT(VARCHAR(50),ISNULL(EepSSN,Field2))
+            ,drvValue = CASE WHEN Field1 IN ('PTXP','PTCP','RTHP','RCUP') THEN 
+                                (CASE WHEN ISNUMERIC(LTRIM(RTRIM(Field10))) = 1 THEN Convert(Decimal(10,2),LTRIM(RTRIM(Field10)))/100.00 ELSE NULL END)
+                             WHEN Field1 IN ('LOAN','LPAY','LREM') THEN 
+                                (CASE WHEN ISNUMERIC(Field11) = 1 THEN CAST(Field11 AS NUMERIC(10,2)) ELSE NULL END)
+                         END
+            ,drvBenStartDate = CONVERT(VARCHAR(10),COALESCE(EedEEEligDate,EecDateOfLastHire),101) -- RLodge 11/3/2022
+            ,drvBegDate = LEFT(Field2, 2) + '/' + SUBSTRING(Field2, 3, 2) + '/' + RIGHT(RTRIM(Field2), 4)
+            ,drvAction = CONVERT(VARCHAR(50),
+                         CASE    
+                                WHEN NULLIF(Field3,'') IS NULL THEN 'REJECTED' --Missing [SSN] Value in File.
+                                WHEN EEID IS NULL THEN 'REJECTED' --Unable to Match Employee in UltiPro based on [SSN] Value in File.
+                                WHEN EecEmplStatus = 'T' THEN 'REJECTED' --Terminated Employees
+                                -- Deferrals
+                                WHEN Field1 IN ('PTXP','PTCP','RTHP','RCUP') THEN
+                                    CASE WHEN EedDedCode IS NOT NULL AND (CONVERT(MONEY,Field10)/10000) = 0.00 THEN 'STOP'
+                                         WHEN EedDedCode IS NULL AND (CONVERT(MONEY,Field10)/10000) = 0.00 THEN 'REJECTED' -- No deduction to stop
+                                         WHEN EedDedCode IS NOT NULL AND COALESCE(EedBenStopDate,EedStopDate) IS NOT NULL AND (CONVERT(MONEY,Field10)/10000) > 0.00 THEN 'RESTART'
+                                         ELSE 'CHANGE'
+                                    END
+                                -- Loans
+                                WHEN Field1 IN ('LOAN','LPAY','LREM') THEN
+                                    CASE WHEN EedDedCode IS NOT NULL AND Field1 = 'LPAY' /*AND (CONVERT(MONEY,Field11)/10000) = 0.00*/ THEN 'STOP'
+                                         WHEN EedDedCode IS NULL AND Field1 = 'LPAY' /*AND (CONVERT(MONEY,Field11)/10000) = 0.00*/ THEN 'REJECTED'  -- Nothing to stop
+                                         WHEN EedDedCode IS NOT NULL AND COALESCE(EedBenStopDate,EedStopDate) IS NOT NULL AND (CONVERT(MONEY,Field11)/10000) > 0.00 THEN 'RESTART'
+                                         ELSE 'CHANGE'
+                                    END
+                                ELSE 'ADD'
+                         END)
+            ,drvError = CONVERT(VARCHAR(250),
+                        CASE WHEN NULLIF(Field3,'') IS NULL THEN 'Record Rejected: Missing [SSN] Value in File.'
+                             WHEN EEID IS NULL THEN 'Record Rejected: Unable to Match Employee in UltiPro based on [SSN] Value in File.'
+                             WHEN EecEmplStatus = 'T' THEN 'Record Rejected: Employee is Terminated in UltiPro - Do Not Process.'
+                             WHEN Field1 IN ('PTXP','PTCP','RTHP','RCUP') AND EedDedCode IS NULL AND (CONVERT(MONEY,Field10)/10000) = 0.00 THEN 'Record Rejected: Cannot Process "STOP" Record - Deduction/Benefit Plan Does Not Exist or is already stopped for Employee in UltiPro.'
+                             WHEN Field1 IN ('LOAN','LPAY','LREM') AND EedDedCode IS NULL AND (CONVERT(MONEY,Field11)/10000) = 0.00 THEN 'Record Rejected: Cannot Process "STOP" Record - Deduction/Benefit Plan Does Not Exist or is already stopped for Employee in UltiPro.'
+                        END)
+            ,drvImported = CASE -- 0 = Initial Load, 1 = Imported/Updated, 2 = Rejected
+                                WHEN NULLIF(Field2,'') IS NULL THEN 2 --Missing [SSN] Value in File.
+                                WHEN EEID IS NULL THEN 2 --Unable to Match Employee in UltiPro based on [SSN] Value in File.
+                                WHEN EecEmplStatus = 'T' THEN 2 -- 'Record Rejected: Employee is Terminated in UltiPro - Do Not Process.'
+                                WHEN Field1 IN ('PTXP','PTCP','RTHP','RCUP') AND EedDedCode IS NULL AND (CONVERT(MONEY,Field10)/10000) = 0.00 THEN 2 -- 'Record Rejected: Cannot Process "STOP" Record - Deduction/Benefit Plan Does Not Exist or is already stopped for Employee in UltiPro.'
+                                WHEN Field1 IN ('LOAN','LPAY','LREM') AND EedDedCode IS NULL AND (CONVERT(MONEY,Field11)/10000) = 0.00 THEN 2 -- 'Record Rejected: Cannot Process "STOP" Record - Deduction/Benefit Plan Does Not Exist or is already stopped for Employee in UltiPro.'
+                               ELSE 0
+                           END
+            ,drvEmpNo = EecEmpNo
+            ,drvEEID = EEID
+            ,drvHomeCOID = dbo.dsi_fn_GetCurrentCOID(EecEEID)
+            ,drvLoanID = CASE WHEN Field16 = RTRIM(eedNotes) THEN RTRIM(eedNotes)
+                              ELSE Field16
+                            END
+            --,drvLoanGoalAmount = CONVERT(VARCHAR(50),Field14)--DA added
+            ,drvDedCode = UDField1
+            ,drvName = EepNameFirst + ' ' + EepNameLast
+            ,drvImportType = ''  --CONVERT(VARCHAR(50),ImportType)
+            --,drvPeriodStartDate = CONVERT(VARCHAR(50),CONVERT(CHAR(10),PgpPeriodStartDate,101))
+            --,drvPeriodStopDate = CONVERT(VARCHAR(50),CONVERT(CHAR(10),PgpPeriodStartDate - 1,101))
+            ,drvPendingUpdateID = CONVERT(VARCHAR(20),NULL)
+            ,drvInitialSort = CONVERT(VARCHAR(50), Field3)
+        FROM dbo.U_IJHDEFLON_Import                        --SELECT * FROM U_IJHDEFLON_Import
+        LEFT JOIN dbo.EmpComp WITH (NOLOCK)
+            ON EecEEID = EEID
+            AND EecCoID = COID
+        LEFT JOIN dbo.EmpPers WITH (NOLOCK)
+            ON eepEEID = EEID
+        LEFT JOIN dbo.Company WITH (NOLOCK)
+            ON CmpCoID = COID
+        LEFT JOIN dbo.EmpDed WITH (NOLOCK)
+            ON EedEEID = EEID
+            AND EedCoID = COID
+            AND EedDedCode = UDField1
+            order by drvAction desc
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IJHDEFLON_drvTbl (drvError)
+       SELECT 'Error Processing Deferral File: ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    -- SELECT drvAction, drvImported, * FROM dbo.U_IJHDEFLON_drvTbl 
+
+    --------------------------------------
+    -- Update SurrogateKey With DedCode
+    --------------------------------------
+    UPDATE dbo.U_IJHDEFLON_drvTbl SET drvSurrogateKey  = drvSurrogateKey + drvDedCode;
+
+    /**************************************************
+        Update PendingUpdateID for Valid Records
+    **************************************************/
+    UPDATE dbo.U_IJHDEFLON_drvTbl
+        SET drvPendingUpdateID = LEFT('IJHDEFLO' + dbo.fn_GetTimedKey(),20)
+    WHERE drvImported = 0;
+
+    /*************************
+       POPULATE LOD TABLES
+    **************************/
+    --============================================================
+    -- Generate XML File for Standard Web Import for Automation - ADDS, RESTARTS, CHANGES, and STOPS from file
+    --============================================================
+
+    IF (@EnableStandardWebImport = 'Y')
+
+    BEGIN TRY
+        
+         --------------------------------------------
+        -- Populate BIM Lod Deduction Table for Web
+        --------------------------------------------
+        DELETE FROM dbo.U_dsi_BIM_LodEDed WHERE EedFormatCode = @FormatCode;
+
+        --===========================================================================================
+        -- Populate Lod Deduction Table (U_dsi_BIM_LodEDed) 
+        --===========================================================================================
+        INSERT INTO dbo.U_dsi_BIM_LodEDed (EedFormatCode,EedEEID,EedCOID,EedDedCode,EedEECalcRateOrPct,EedEEAmt,EedBenStartDate,EedStartDate,EedBenStatusDate,EedBenStopDate,EedStopDate
+            ,EedBenStatus,EedChangeReason,EedPendingTransType,EedPendingEffDate,EedInclInAddlChk,EedInclInManlChk,EedPendingUpdateID,EedNotes,EedEEGTDAmt)-- EedEEGoalAmt --EedEECalcRule --DA EedEEGoalAmt,EedEEGTDAmt
+        SELECT EedFormatCode = @FormatCode
+            ,EedEEID = drvEEID
+            ,EedCOID = drvHomeCOID
+            ,EedDedCode = drvDedCode
+            ,EedEECalcRateOrPct = CASE -- Only Populate for Employee (EE) Non-Flat Amount Calc Rule ('20')
+                                       WHEN DedEECalcRule <> '20' THEN
+                                           CASE WHEN drvAction = 'STOP' THEN CONVERT(MONEY,0.00)
+                                                WHEN drvAction IN ('ADD','CHANGE','RESTART') THEN CONVERT(MONEY,drvValue) * 100
+                                            END
+                                  END
+            ,EedEEAmt = CASE -- Only Populate for Employee (EE) Non-Flat Amount Calc Rule ('20')
+                                       WHEN DedEECalcRule = '20' THEN
+                                           CASE WHEN drvAction = 'STOP' THEN CONVERT(MONEY,0.00)
+                                                WHEN drvAction IN ('ADD','CHANGE','RESTART') THEN CONVERT(MONEY,drvValue)
+                                            END
+                                  END
+            ,EedBenStartDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN NULL
+                                    WHEN drvAction IN ('ADD','RESTART') THEN drvBenStartDate
+                                    ELSE '12/30/1899'
+                               END
+            ,EedStartDate = CASE --WHEN drvAction IN ('CHANGE') and RankNum = 1 THEN drvBegDate
+                                WHEN drvAction IN ('ADD','RESTART') THEN drvBegDate
+                                 ELSE '12/30/1899'
+                            END
+            ,EedBenStatusDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN NULL
+                                     WHEN drvAction IN ('ADD','CHANGE','RESTART') THEN drvBegDate
+                                     ELSE '12/30/1899'
+                                END
+            ,EedBenStopDate = CASE WHEN ISNULL(DedIsBenefit,'N') = 'N' THEN NULL
+                                   WHEN drvAction = 'STOP' THEN drvBegDate
+                                   ELSE '01/01/1900'
+                              END
+            ,EedStopDate = CASE WHEN drvAction = 'STOP' THEN drvBegDate
+                                ELSE '01/01/1900'
+                           END
+            ,EedBenStatus = CASE WHEN ISNULL(DedIsBenefit,'N') = 'Y' THEN
+                                 CASE WHEN drvValue = 0.00 THEN 'T' ELSE 'A' END
+                            END
+            ,EedChangeReason = CASE WHEN drvAction = 'ADD' THEN '400'
+                                    WHEN drvAction = 'STOP' THEN '401'
+                                    WHEN drvAction IN ('CHANGE','RESTART') THEN '402'
+                                    ELSE '402'
+                               END
+            ,EedPendingTransType = CASE WHEN drvAction = 'ADD' THEN 'A'
+                                        ELSE 'U'
+                                   END
+            ,EedPendingEffDate = CONVERT(CHAR(10),GETDATE(),101)
+            ,EedInclInAddlChk = DedInclInAddlChk
+            ,EedInclInManlChk = DedInclInManlChk
+            ,EedPendingUpdateID = drvPendingUpdateID
+            ,EedNotes = drvLoanID
+            --,EedEEGoalAmt = CASE --DA added field
+   --                        WHEN drvAction IN ('ADD','CHANGE','RESTART') THEN CONVERT(MONEY,drvLoanGoalAmount)
+   --                    END
+            ,EedEEGTDAmt = CASE WHEN drvAction = 'RESTART' THEN CONVERT(MONEY,0.00)--DA Added field
+                                WHEN drvAction IN ('CHANGE') and RankNum = 1 THEN CONVERT(MONEY,0.00) END
+            --,EedEECalcRule = DedEECalcRule    -- This may need to be set if existing records don't match Deduction/Benefit Plan Calc Rule (i.e., changing from % to Flat Amount)
+        FROM dbo.U_IJHDEFLON_drvTbl WITH (NOLOCK)
+        JOIN dbo.DedCode WITH (NOLOCK)
+            ON DedDedCode = drvDedCode
+        LEFT JOIN dbo.U_IJHDEFLON_Rank WITH (NOLOCK) ON REEID = drvEEID AND drvHomeCOID = RCOID and RankNum = 1 
+        WHERE
+            drvImported = 0 ;
+
+        DECLARE @XMLFilePath VARCHAR(1000) = '' --dbo.Dsi_fnVariable(@FormatCode,'ArchivePath') 
+               ,@XMLArchiveFilePath VARCHAR(1000) = dbo.Dsi_fnVariable(@FormatCode,'ArchivePath');
+
+        EXEC dbo.dsi_BIM_sp_GenerateXML @FormatCode, 'Deductions', @XMLFilePath, @XMLArchiveFilePath;
+    END TRY
+    BEGIN CATCH
+       -- Report SQL Error in Error Report File
+       INSERT INTO dbo.U_IJHDEFLON_drvTbl (drvError)
+       SELECT 'Error Loading Records for Validation/Posting: ' + ISNULL(ERROR_MESSAGE(),'');
+
+       -- Stop Processing
+       RETURN;
+    END CATCH;
+
+    -- SELECT * FROM dbo.U_dsi_BIM_LodEDed
+
+    --===========================
+    -- Report Successful Update
+    --===========================
+    UPDATE dbo.u_IJHDEFLON_drvTbl
+        SET drvError = 'Imported Successfully'
+            ,drvImported = 1
+    WHERE drvImported = 0
+    AND EXISTS (SELECT 1 FROM dbo.U_dsi_BIM_LodEDed WHERE EedPendingUpdateID = drvPendingUpdateID);
+
+    /*******************************
+        Reject Remaining Records
+    *******************************/
+    UPDATE dbo.u_IJHDEFLON_drvTbl
+        SET drvError = 'Record Rejected'
+            ,drvAction = 'REJECTED'
+            ,drvImported = 2
+    WHERE drvImported = 0;
+
+END
+/*
+
+--Create the View
+CREATE VIEW dbo.dsi_vwIJHDEFLON_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_IJHDEFLON_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+--Check out AscDefF
+SELECT * FROM dbo.AscDefF
+WHERE AdfHeaderSystemID LIKE 'IJHDEFLON%'
+ORDER BY AdfSetNumber, AdfFieldNumber;
+
+--Update Dates
+UPDATE dbo.AscExp
+    SET ExpLastStartPerControl = '201606011'
+       ,ExpStartPerControl     = '201606011'
+       ,ExpLastEndPerControl   = '201606019'
+       ,ExpEndPerControl       = '201606019'
+WHERE ExpFormatCode = 'IJHDEFLON';
+
+*/
+GO
+--Create the View
+CREATE VIEW dbo.dsi_vwIJHDEFLON_Export AS
+    SELECT TOP 20000000 Data FROM dbo.U_IJHDEFLON_File (NOLOCK)
+    ORDER BY RIGHT(RecordSet,2), InitialSort, SubSort;
+
+GO
+
+
+-----------
+-- This is a web export; insert a record into the CustomTemplates table to make it visible
+-----------
+
+INSERT INTO dbo.CustomTemplates (Engine, EngineCode)
+SELECT Engine = AdhEngine, EngineCode = AdhFormatCode
+  FROM dbo.AscDefH WITH (NOLOCK)
+ WHERE AdhFormatCode = 'IJHDEFLON' AND AdhEngine = 'EMPEXPORT'
+   AND NOT EXISTS (SELECT 1 FROM dbo.CustomTemplates WHERE EngineCode = AdhFormatCode AND Engine = AdhEngine);
+
+
+-----------
+-- Restore target paths from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.U_dsi_Configuration
+   SET CfgValue = rpoParmValue02
+  FROM dbo.U_dsi_Configuration
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = FormatCode AND rpoParmValue01 = CfgName
+ WHERE rpoFormatCode = 'IJHDEFLON'
+   AND rpoParmType = 'Path'
+
+
+-----------
+-- Restore expSystemIDs from U_dsi_RipoutParms
+-----------
+
+UPDATE dbo.AscExp
+   SET expSystemID = rpoParmValue02
+  FROM dbo.AscExp
+  JOIN dbo.U_dsi_RipoutParms WITH (NOLOCK) ON rpoFormatCode = expFormatCode AND rpoParmValue01 = expExportCode
+ WHERE rpoFormatCode = 'IJHDEFLON'
+   AND rpoParmType = 'expSystemID'
+
+
+-----------
+-- This is a web export; set paths to NULL
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'IJHDEFLON', 'ExportPath', 'V', NULL
+EXEC dbo.dsi_sp_UpdateConfig 'IJHDEFLON', 'TestPath', 'V', NULL
+
+
+-----------
+-- This is a web export; set UseFileName = Y
+-----------
+
+EXEC dbo.dsi_sp_UpdateConfig 'IJHDEFLON', 'UseFileName', 'V', 'Y'
+
+
+-- End ripout
