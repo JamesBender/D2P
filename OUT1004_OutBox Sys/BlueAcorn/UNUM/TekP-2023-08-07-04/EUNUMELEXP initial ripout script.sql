@@ -595,7 +595,7 @@ BEGIN
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'StartDateTime',@StartDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'EndDateTime',@EndDate);
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES(@FormatCode,'TermSelectionOption','AuditDate');
-    INSERT INTO dbo.U_dsi_bdm_Configuration VALUES (@FormatCode,'GetChangeReason','Y');
+
     -- Non-Required parameters
     INSERT INTO dbo.U_dsi_BDM_Configuration VALUES (@FormatCode,'BuildConsolidatedTable','Standard');
 
@@ -680,9 +680,9 @@ BEGIN
                        END
         ,drvEEF_Date_Of_EeCovg2 = Case when Crit is not null  then CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',Crit_StartDate, @FileMinCovDate),101) END
         ,drvCovgTermDate2 = Case when  Crit is not null AND Crit_Status IN ('T') THEN CONVERT(VARCHAR(10),Crit_StopDate,101) END
-        ,drvBenAmt2 = Case when Crit1 is not null  THEN '"$10,000"'
-                        when Crit2 is not null THEN '"$20,000"'
-                        when Crit3 is not null  THEN '"$30,000"' END
+        ,drvBenAmt2 = Case when Crit1 is not null  THEN '$10,000'
+                        when Crit2 is not null THEN '$20,000'
+                        when Crit3 is not null  THEN '$30,000' END
         ,drvCiSpInd2 = Case when  ConRelationship in ('SPS','DP') AND Crit_Spouse is not null AND Crit_Spouse_Status IN ('A') THEN 'Y'
                         ELSE 'N'
                         END
@@ -715,82 +715,85 @@ BEGIN
         AND EecCoID = xCoID
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
+    JOIN dbo.U_dsi_BDM_EUNUMELEXP WITH (NOLOCK)
+        ON BdmEEID = xEEID 
+        AND BdmCoID = xCoID
     LEFT JOIN dbo.Contacts with (NOLOCK)
         on coneeid = xeeid
         and consystemid = bdmdeprecid
      LEFT Join dbo.U_EUNUMELEXP_Audit with (NOLOCK)
         ON audEEID = xEEID
-	left JOIN (
+	JOIN (
 
-             Select Distinct  BdmEEID, Bdmcoid
+             Select Distinct  EedEEID, Eedcoid
 
-            ,Crit = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then BdmDedCode  END))
+            ,Crit = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then EedDedCode  END))
 
-            ,Crit_BenefitDate = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmEEEligDate END))
+            ,Crit_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedEEEligDate END))
 
-            ,Crit_StartDate = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmBenStartDate END))
+            ,Crit_StartDate = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedBenStartDate END))
 
-            ,Crit_StopDate = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmBenStopDate END))
+            ,Crit_StopDate = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedBenStopDate END))
 
-            ,Crit_Status = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmBenStatus  END))
+            ,Crit_Status = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedBenStatus  END))
 
-            ,Crit_ChangeReason = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmChangeReason END))
+            ,Crit_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EdhChangeReason END))
 
-          ,Crit1 = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S') then BdmDedCode  END))
-          ,Crit2 = MAX((CASE WHEN BdmDedCode  IN ('CR20E','CR20S') then BdmDedCode  END))
-          ,Crit3 = MAX((CASE WHEN BdmDedCode  IN ('CR30E','CR30S') then BdmDedCode  END))        
+          ,Crit1 = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S') then EedDedCode  END))
+          ,Crit2 = MAX((CASE WHEN EedDedCode  IN ('CR20E','CR20S') then EedDedCode  END))
+          ,Crit3 = MAX((CASE WHEN EedDedCode  IN ('CR30E','CR30S') then EedDedCode  END))        
  
 
            
 
-            ,Crit_Spouse = MAX((CASE WHEN BdmDedCode  IN ('CR10S','CR20S','CR30S') then BdmDedCode  END))
+            ,Crit_Spouse = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then EedDedCode  END))
 
-            ,Crit_Spouse_BenefitDate = MAX((CASE WHEN BdmDedCode  IN('CR10S','CR20S','CR30S')then  BdmEEEligDate END))
+            ,Crit_Spouse_BenefitDate = MAX((CASE WHEN EedDedCode  IN('CR10S','CR20S','CR30S')then  EedEEEligDate END))
 
-            ,Crit_Spouse_StartDate = MAX((CASE WHEN BdmDedCode  IN ('CR10S','CR20S','CR30S') then  BdmBenStartDate END))
+            ,Crit_Spouse_StartDate = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then  EedBenStartDate END))
 
-            ,Crit_Spouse_StopDate = MAX((CASE WHEN BdmDedCode  IN ('CR10S','CR20S','CR30S') then  BdmBenStopDate END))
+            ,Crit_Spouse_StopDate = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then  EedBenStopDate END))
 
-            ,Crit_Spouse_Status = MAX((CASE WHEN BdmDedCode  IN ('CR10S','CR20S','CR30S') then   BdmbenStatus  END))
+            ,Crit_Spouse_Status = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then   EedbenStatus  END))
 
-            ,Crit_Spouse_ChangeReason = MAX((CASE WHEN BdmDedCode  IN ('CR10S','CR20S','CR30S') then  bdmChangeReason END))
+            ,Crit_Spouse_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then  EdhChangeReason END))
 
  
 
            
-			,BAACC = MAX((CASE WHEN BdmDedCode  IN ('BAACC') then BdmDedCode  END))
+			,BAACC = MAX((CASE WHEN EedDedCode  IN ('BAACC') then EedDedCode  END))
 
-            ,BAACC_BenefitDate = MAX((CASE WHEN BdmDedCode  IN ('BAACC') then  BdmEEEligDate END))
+            ,BAACC_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EedEEEligDate END))
 
-            ,BAACCStartDate = MAX((CASE WHEN BdmDedCode  IN ('BAACC') then  BdmBenStartDate END))
+            ,BAACCStartDate = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EedBenStartDate END))
 
-            ,BAACCStopDate = MAX((CASE WHEN BdmDedCode  IN ('BAACC') then  BdmBenStopDate END))
+            ,BAACCStopDate = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EedBenStopDate END))
 
-            ,BAACC_EEAmt = MAX((CASE WHEN BdmDedCode  IN ('BAACC') then   BdmBenAmt  END))
-			,BAACC_BenStatus =  MAX((CASE WHEN BdmDedCode  IN ('BAACC') then   BdmBenStatus  END))
+            ,BAACC_EEAmt = MAX((CASE WHEN EedDedCode  IN ('BAACC') then   EedBenAmt  END))
+			,BAACC_BenStatus =  MAX((CASE WHEN EedDedCode  IN ('BAACC') then   EedBenStatus  END))
 
-            ,BAACC_ChangeReason = MAX((CASE WHEN BdmDedCode  IN ('BAACC') then  bdmChangeReason END))
+            ,BAACC_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EdhChangeReason END))
 
 
-			  ,BAHOS = MAX((CASE WHEN BdmDedCode  IN ('BAHOS') then BdmDedCode  END))
+			  ,BAHOS = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then EedDedCode  END))
 
-            ,BAHOS_BenefitDate = MAX((CASE WHEN BdmDedCode  IN ('BAHOS') then  BdmEEEligDate END))
+            ,BAHOS_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EedEEEligDate END))
 
-            ,BAHOS_StartDate = MAX((CASE WHEN BdmDedCode  IN ('BAHOS') then  BdmBenStartDate END))
+            ,BAHOS_StartDate = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EedBenStartDate END))
 
-            ,BAHOS_StopDate = MAX((CASE WHEN BdmDedCode  IN ('BAHOS') then  BdmBenStopDate END))
+            ,BAHOS_StopDate = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EedBenStopDate END))
 
-            ,BAHOS_Status = MAX((CASE WHEN BdmDedCode  IN ('BAHOS') then   BdmBenStatus  END))
+            ,BAHOS_Status = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then   EedBenStatus  END))
 
-            ,BAHOS_ChangeReason = MAX((CASE WHEN BdmDedCode  IN ('BAHOS') then  bdmChangeReason END))
+            ,BAHOS_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EdhChangeReason END))
 			FROM dbo.u_dsi_bdm_EmpDeductions WITH (NOLOCK)
-            Join dbo.U_dsi_BDM_EUNUMELEXP  WITH (NOLOCK)
-                ON BdmDedCode = BdmDedCode 
+            Join U_dsi_BDM_EUNUMELEXP  WITH (NOLOCK)
+                ON BdmDedCode = EedDedCode 
                 AND bdmeeid = EedEEID
             JOIN dbo.EmpHDed WITH (NOLOCK)
                 ON edhEEID = EedEEID
                 AND EdhDedCode= EedDedCode
-            where  EedDedCode IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S','BAACC','BAHOS')-- Replaced GTL
+            where  EedDedCode IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S','BAACC','BAHOS','MED','DENT')-- Replaced GTL
                             AND EedFormatCode = 'EUNUMELEXP'
 			group by  EedEEID, Eedcoid
              ) as BdmConsolidated 
