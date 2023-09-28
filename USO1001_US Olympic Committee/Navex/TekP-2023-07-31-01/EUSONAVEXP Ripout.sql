@@ -426,7 +426,9 @@ BEGIN
         ,drvDept = OrgDesc
         ,drvJobTitle = JbcDesc
         ,drvManager = dbo.dsi_fnlib_GetSupervisorField('',EecEEID,'EmpNo')
-        ,drvManagerName = dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast') + ', ' + dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Namefirst')
+        ,drvManagerName = Case When dbo.dsi_fnlib_GetSupervisorField('',EecEEID,'NameFirst') <> '' then dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'NameLast') + ', ' + dbo.dsi_fnlib_GetSupervisorField('', EecEEID, 'Namefirst')
+                          else ''
+                          end
         ,drvManagerEmail = dbo.dsi_fnlib_GetSupervisorField('',EecEEID,'AddressEMail')
         ,drvHireDate = EecDateOfLastHire
         ,drvEmpType = EecEEType
