@@ -572,7 +572,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'CR10E,CR10S,CR20E,CR20S,CR30E,CR30S,BAACC,BAHOS,MED,DENT';
+    SET @DedList = 'CR10E,CR10S,CR20E,CR20S,CR30E,CR30S,BAACC,BAHOS';
 
     IF OBJECT_ID('U_EUNUMELEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EUNUMELEXP_DedList;
