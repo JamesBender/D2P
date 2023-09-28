@@ -1310,7 +1310,7 @@ BEGIN
         ,drvInitialSort = RTRIM(EepSSN)
         ,drvSubSort = CONVERT(CHAR(9),RTRIM(EepSSN)) + CONVERT(CHAR(12),ISNULL(ConSystemID,''))
                       + CASE BdmDedType
-                             WHEN 'MED' THEN '1'
+                             WHEN 'MED' 
                              WHEN 'DEN' THEN '2'
                              WHEN 'VIS' THEN '3'
                              ELSE '9'
