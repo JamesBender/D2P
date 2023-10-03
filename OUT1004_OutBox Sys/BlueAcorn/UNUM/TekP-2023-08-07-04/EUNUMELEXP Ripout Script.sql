@@ -5,7 +5,7 @@ EUNUMELEXP: UNUM Eligibility Critical Illness Accident
 FormatCode:     EUNUMELEXP
 Project:        UNUM Eligibility Critical Illness Accident
 Client ID:      OUT1004
-Date/time:      2023-09-28 12:56:43.563
+Date/time:      2023-10-03 08:14:35.040
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -180,7 +180,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EUNUMELEXPZ0','2','D','10','39',NULL,'CHOICE',NULL,NULL,'"drvchoice2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EUNUMELEXPZ0','10','D','10','40',NULL,'EFF_DATE_OF_EE_COVG',NULL,NULL,'"drvEEF_Date_Of_EeCovg2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EUNUMELEXPZ0','10','D','10','41',NULL,'COVG_TERM_DATE',NULL,NULL,'"drvCovgTermDate2"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EUNUMELEXPZ0','10','D','10','42',NULL,'EE_BEN_AMT',NULL,NULL,'"drvBenAmt2"','(''UA''=''Q,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EUNUMELEXPZ0','10','D','10','42',NULL,'EE_BEN_AMT',NULL,NULL,'"drvBenAmt2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EUNUMELEXPZ0','1','D','10','43',NULL,'CI_SP_IND',NULL,NULL,'"drvCiSpInd2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EUNUMELEXPZ0','10','D','10','44',NULL,'EFF_DATE_OF_SP_COVG',NULL,NULL,'"drvEEF_Date_Of_SpCovg2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EUNUMELEXPZ0','10','D','10','45',NULL,'SP_COVG_TERM_DATE',NULL,NULL,'"drvSP_Covg_TermDate2"','(''UA''=''T,'')');
@@ -211,7 +211,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMELEXP_20230928.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMELEXP_20231003.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -222,7 +222,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'Passive Open Enrollment Export','202309149','EMPEXPORT','OEPASSIVE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'UNUM Elig Crit Illness ONDEM','202309149','EMPEXPORT','ONDEM_XOE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'UNUM Eligibility Crit Il-Sched','202309149','EMPEXPORT','SCH_EUNUME',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2IIJU',NULL,NULL,NULL,'UNUM Eligibility Crit Il-Test','202309269','EMPEXPORT','TEST_XOE','Sep 26 2023  3:29PM','EUNUMELEXP',NULL,NULL,NULL,'202309269','Sep 26 2023 12:00AM','Dec 30 1899 12:00AM','202309011','134','eecPayGroup','BAHOUR,BAUSA','202309011',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2IIJU',NULL,NULL,NULL,'UNUM Eligibility Crit Il-Test','202309289','EMPEXPORT','TEST_XOE','Sep 28 2023  2:44PM','EUNUMELEXP',NULL,NULL,NULL,'202309289','Sep 28 2023 12:00AM','Dec 30 1899 12:00AM','202309011','103','eecPayGroup','BAHOUR,BAUSA','202309011',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -400,7 +400,7 @@ CREATE TABLE [dbo].[U_EUNUMELEXP_drvTbl] (
     [drvchoice2] varchar(1) NULL,
     [drvEEF_Date_Of_EeCovg2] varchar(10) NULL,
     [drvCovgTermDate2] varchar(10) NULL,
-    [drvBenAmt2] varchar(7) NULL,
+    [drvBenAmt2] varchar(5) NULL,
     [drvCiSpInd2] varchar(1) NOT NULL,
     [drvEEF_Date_Of_SpCovg2] varchar(10) NULL,
     [drvSP_Covg_TermDate2] varchar(10) NULL,
@@ -682,9 +682,9 @@ BEGIN
                        END
         ,drvEEF_Date_Of_EeCovg2 = Case when Crit is not null  then CONVERT(VARCHAR(10),dbo.dsi_fnGetMinMaxDates('MAX',Crit_StartDate, @FileMinCovDate),101) END
         ,drvCovgTermDate2 = Case when  Crit is not null AND Crit_Status IN ('T') THEN CONVERT(VARCHAR(10),Crit_StopDate,101) END
-        ,drvBenAmt2 = Case when Crit1 is not null THEN '$10,000'
-                                 when Crit2 is not null THEN '$20,000'
-                                 when Crit3 is not null THEN '$30,000' 
+        ,drvBenAmt2 = Case when Crit1 is not null THEN '10000'
+                                 when Crit2 is not null THEN '20000'
+                                 when Crit3 is not null THEN '30000' 
                                 END 
         ,drvCiSpInd2 = Case when  Crit_Spouse is not null AND Crit_Spouse_Status IN ('A') THEN 'Y'
                         ELSE 'N'
@@ -716,7 +716,9 @@ BEGIN
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN (
-             Select Distinct  BdmEEID, Bdmcoid
+            SELECT DISTINCT
+             BdmEEID
+            ,Bdmcoid
             ,Crit = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then BdmDedCode  END))
             ,Crit_BenefitDate = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmBenStartDate END))
             ,Crit_StartDate = MAX((CASE WHEN BdmDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  BdmBenStartDate END))
