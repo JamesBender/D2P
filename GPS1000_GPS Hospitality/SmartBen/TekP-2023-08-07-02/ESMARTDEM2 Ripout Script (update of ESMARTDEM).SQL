@@ -366,6 +366,7 @@ N Wetherbee         05/01/2017                        Updates to drvAnnSalary an
 M Souza                11/14/2017        SF 10008499          Created new Audit Fileds table to increase speed 
 Anthony Ramos        01/14/2020        SF 16510290          Corrected audit table to correctly join data
 Lisa Marcus            09/21/2022        SR-2022-00370937  Adding "Continuous year" logic per Christy Wasdin
+Marie Waters           10/2/2023         TekP-2023-08-07-02  Added  Home email, office email, phone and cell phone columns
 
 
 Select * From dbo.U_dsi_Configuration Where FormatCode = 'ESMARTDEM2';
@@ -492,10 +493,10 @@ Select Distinct
       ,drvDepartment        = right('000000' + rtrim(ltrim(EecLocation)),6)
       ,drvCodePayroll       = EecEmpNo
       ,drvSuffix            = NULLIF(EepNameSuffix,'Z')
-      ,drvHomeEmail         = eepaddressemailalternate
-      ,drvOfficeEmail       = eepaddressemail
-      ,drvPhone             = eepphonehomenumber
-      ,drvCellPhone         = EfoPhoneNumber
+      ,drvHomeEmail         = eepaddressemailalternate -- MW added
+      ,drvOfficeEmail       = eepaddressemail -- MW added
+      ,drvPhone             = eepphonehomenumber -- MW added
+      ,drvCellPhone         = EfoPhoneNumber -- MW added
       ,drvEEID              = xEEID
       ,drvCoID              = xCoID
   INTO dbo.U_ESMARTDEM2_drvTbl
