@@ -5,7 +5,7 @@ EUNUMELEXP: UNUM Eligibility Critical Illness Accident
 FormatCode:     EUNUMELEXP
 Project:        UNUM Eligibility Critical Illness Accident
 Client ID:      OUT1004
-Date/time:      2023-09-19 15:57:24.807
+Date/time:      2023-09-28 11:07:19.497
 Ripout version: 7.4
 Export Type:    Web
 Status:         Testing
@@ -180,7 +180,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('39','EUNUMELEXPZ0','2','D','10','39',NULL,'CHOICE',NULL,NULL,'"drvchoice2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('40','EUNUMELEXPZ0','10','D','10','40',NULL,'EFF_DATE_OF_EE_COVG',NULL,NULL,'"drvEEF_Date_Of_EeCovg2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('41','EUNUMELEXPZ0','10','D','10','41',NULL,'COVG_TERM_DATE',NULL,NULL,'"drvCovgTermDate2"','(''UA''=''T,'')');
-INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EUNUMELEXPZ0','10','D','10','42',NULL,'EE_BEN_AMT',NULL,NULL,'"drvBenAmt2"','(''UA''=''T,'')');
+INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('42','EUNUMELEXPZ0','10','D','10','42',NULL,'EE_BEN_AMT',NULL,NULL,'"drvBenAmt2"','(''UA''=''Q,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('43','EUNUMELEXPZ0','1','D','10','43',NULL,'CI_SP_IND',NULL,NULL,'"drvCiSpInd2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('44','EUNUMELEXPZ0','10','D','10','44',NULL,'EFF_DATE_OF_SP_COVG',NULL,NULL,'"drvEEF_Date_Of_SpCovg2"','(''UA''=''T,'')');
 INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,AdfSetNumber,AdfStartPos,AdfTableName,AdfTargetField,AdfVariableName,AdfVariableType,AdfExpression,AdfForCond) VALUES ('45','EUNUMELEXPZ0','10','D','10','45',NULL,'SP_COVG_TERM_DATE',NULL,NULL,'"drvSP_Covg_TermDate2"','(''UA''=''T,'')');
@@ -211,18 +211,18 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMELEXP_20230919.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EUNUMELEXP_20230928.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
 -- AscExp inserts
 -----------
 
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Active Open Enrollment Export','202309149','EMPEXPORT','OEACTIVE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Passive Open Enrollment Export','202309149','EMPEXPORT','OEPASSIVE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Eligibility Crit Illness','202309149','EMPEXPORT','ONDEM_XOE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,NULL,NULL,NULL,NULL,'UNUM Eligibility Crit Il-Sched','202309149','EMPEXPORT','SCH_EUNUME',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2IIJU',NULL,NULL,NULL,'UNUM Eligibility Crit Il-Test','202309199','EMPEXPORT','TEST_XOE','Sep 19 2023 12:00AM','EUNUMELEXP',NULL,NULL,NULL,'202309199','Sep 19 2023 12:00AM','Dec 30 1899 12:00AM','202309011',NULL,'','','202309011',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'Active Open Enrollment Export','202309149','EMPEXPORT','OEACTIVE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'Passive Open Enrollment Export','202309149','EMPEXPORT','OEPASSIVE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'UNUM Elig Crit Illness ONDEM','202309149','EMPEXPORT','ONDEM_XOE',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',2IIJU',NULL,NULL,NULL,'UNUM Eligibility Crit Il-Sched','202309149','EMPEXPORT','SCH_EUNUME',NULL,'EUNUMELEXP',NULL,NULL,NULL,'202309149','Sep 14 2023  2:35PM','Sep 14 2023  2:35PM','202309141',NULL,'','','202309141',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','2IIJU',NULL,NULL,NULL,'UNUM Eligibility Crit Il-Test','202309269','EMPEXPORT','TEST_XOE','Sep 26 2023  3:29PM','EUNUMELEXP',NULL,NULL,NULL,'202309269','Sep 26 2023 12:00AM','Dec 30 1899 12:00AM','202309011','134','eecPayGroup','BAHOUR,BAUSA','202309011',dbo.fn_GetTimedKey(),NULL,'us3kEpOUT1004',NULL);
 
 -----------
 -- AscImp inserts
@@ -561,8 +561,16 @@ BEGIN
     AND xEEID IN (SELECT xEEID FROM dbo.U_EUNUMELEXP_EEList GROUP BY xEEID HAVING COUNT(1) > 1);
 
 
- --==========================================   --   -- Audit Section   --   --==========================================   --   -- Get data from audit fields table. Add fields here if auditing      IF OBJECT_ID('U_EUNUMELEXP_AuditFields','U') IS NOT NULL         DROP TABLE dbo.U_EUNUMELEXP_AuditFields;     CREATE TABLE dbo.U_EUNUMELEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));       --INSERT INTO dbo.U_EUNUMELEXP_AuditFields VALUES ('EmpComp','EecDateofTermination');      INSERT INTO dbo.U_EUNUMELEXP_AuditFields VALUES ('EmpComp','EecEmplStatus');   --   -- Create audit table based on fields defined above      IF OBJECT_ID('U_EUNUMELEXP_Audit','U') IS NOT NULL          DROP TABLE dbo.U_EUNUMELEXP_Audit;      SELECT           audEEID = audKey1Value          ,audCoid = audKey2Value          ,audKey3 = audKey3Value          ,audTableName          ,audFieldName          ,audAction          ,audDateTime          ,audOldValue          ,audNewValue          ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)      INTO dbo.U_EUNUMELEXP_Audit      FROM dbo.vw_AuditData WITH (NOLOCK)      JOIN dbo.U_EUNUMELEXP_AuditFields WITH (NOLOCK)          ON audTableName = aTableName          AND audFieldName = aFieldName      WHERE audDateTime BETWEEN @StartDate AND @EndDate      AND audNewValue ='T'      AND audAction <> 'DELETE';      --   -- Create Index     CREATE CLUSTERED INDEX CDX_U_EUNUMELEXP_Audit ON dbo.U_EUNUMELEXP_Audit (audEEID,audCoid);      ----==========================================
-    --================
+ --==========================================   
+ --   -- Audit Section   --   
+ --==========================================   
+ --   -- Get data from audit fields table. Add fields here if auditing      
+ --IF OBJECT_ID('U_EUNUMELEXP_AuditFields','U') IS NOT NULL         
+ --DROP TABLE dbo.U_EUNUMELEXP_AuditFields;     
+ --CREATE TABLE dbo.U_EUNUMELEXP_AuditFields (aTableName varchar(30),aFieldName varchar(30));       
+ ----INSERT INTO dbo.U_EUNUMELEXP_AuditFields VALUES ('EmpComp','EecDateofTermination');      
+ --INSERT INTO dbo.U_EUNUMELEXP_AuditFields VALUES ('EmpComp','EecEmplStatus');   --   -- Create audit table based on fields defined above      IF OBJECT_ID('U_EUNUMELEXP_Audit','U') IS NOT NULL          DROP TABLE dbo.U_EUNUMELEXP_Audit;      SELECT           audEEID = audKey1Value          ,audCoid = audKey2Value          ,audKey3 = audKey3Value          ,audTableName          ,audFieldName          ,audAction          ,audDateTime          ,audOldValue          ,audNewValue          ,audRowNo = ROW_NUMBER() OVER (PARTITION BY audKey1Value, audKey2Value, audKey3Value, audFieldName ORDER BY audDateTime DESC)      INTO dbo.U_EUNUMELEXP_Audit      FROM dbo.vw_AuditData WITH (NOLOCK)      JOIN dbo.U_EUNUMELEXP_AuditFields WITH (NOLOCK)          ON audTableName = aTableName          AND audFieldName = aFieldName      WHERE audDateTime BETWEEN @StartDate AND @EndDate      AND audNewValue ='T'      AND audAction <> 'DELETE';      --   -- Create Index     CREATE CLUSTERED INDEX CDX_U_EUNUMELEXP_Audit ON dbo.U_EUNUMELEXP_Audit (audEEID,audCoid);      ----==========================================
+ --   --================
     -- Changes Only
     --================
     --DELETE FROM dbo.U_EUNUMELEXP_EEList
@@ -572,7 +580,7 @@ BEGIN
     -- Create Deduction List
     --==========================================
     DECLARE @DedList VARCHAR(MAX)
-    SET @DedList = 'CR10E,CR10S,CR20E,CR20S,CR30E,CR30S,BAACC,BAHOS';
+    SET @DedList = 'CR10E,CR10S,CR20E,CR20S,CR30E,CR30S,BAACC,BAHOS,MED,DENT';
 
     IF OBJECT_ID('U_EUNUMELEXP_DedList','U') IS NOT NULL
         DROP TABLE dbo.U_EUNUMELEXP_DedList;
@@ -583,7 +591,6 @@ BEGIN
     FROM dbo.fn_ListToTable(@DedList)
     JOIN dbo.DedCode WITH (NOLOCK)
         ON DedDedCode = Item;
-
 
     --==========================================
     -- BDM Section
@@ -615,10 +622,6 @@ BEGIN
     EXEC dbo.dsi_BDM_sp_PopulateDeductionsTable @FormatCode;
 
     --==========================================
-    -- Build Working Tables
-    --==========================================
-
-    --==========================================
     -- Build Driver Tables
     --==========================================
     ---------------------------------
@@ -642,7 +645,6 @@ BEGIN
         ,drvMiddleInit = LEFT(EepNameMiddle,1)
         ,drvLastName = EepNameLast
         ,drvSt_Addr1 = replace(eepAddressLine1,',',' ')
-
         ,drvSt_Addr2 = replace(eepAddressLine2,',',' ')
         ,drvCity = replace(EepAddressCity,',',' ')
         ,drvRdc_StPvc = left(EepAddressState,2)
@@ -703,90 +705,51 @@ BEGIN
         ,drvSP_Covg_TermDate3 = Case when ConRelationship in ('SPS','DP') AND BAHOS IN ('BAHOS')  THEN CONVERT(VARCHAR(10),BAHOS_StopDate,101) END
         ,drvDate_Of_ChCovg3 = ''
         ,drvCH_Covg_TermDate3 = ''
-
-
-
-        
-
      INTO dbo.U_EUNUMELEXP_drvTbl
     FROM dbo.U_EUNUMELEXP_EEList WITH (NOLOCK)
     JOIN dbo.vw_int_EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID 
         AND EecCoID = xCoID
+		AND EecDedGroupCode = 'BAICI'
+        and EecEEType <> 'TES'
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
-    JOIN dbo.U_dsi_BDM_EUNUMELEXP WITH (NOLOCK)
-        ON BdmEEID = xEEID 
-        AND BdmCoID = xCoID
-    LEFT JOIN dbo.Contacts with (NOLOCK)
-        on coneeid = xeeid
-        and consystemid = bdmdeprecid
-     LEFT Join dbo.U_EUNUMELEXP_Audit with (NOLOCK)
-        ON audEEID = xEEID
-	JOIN (
-
-             Select Distinct  EedEEID, Eedcoid
-
+    --JOIN dbo.U_dsi_BDM_EUNUMELEXP WITH (NOLOCK)
+    --    ON BdmEEID = xEEID 
+    --    AND BdmCoID = xCoID
+     --LEFT Join dbo.U_EUNUMELEXP_Audit with (NOLOCK)
+     --   ON audEEID = xEEID
+    JOIN (
+             Select Distinct  EedEEID, Eedcoid, bdmdeprecid
             ,Crit = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then EedDedCode  END))
-
             ,Crit_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedEEEligDate END))
-
             ,Crit_StartDate = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedBenStartDate END))
-
             ,Crit_StopDate = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedBenStopDate END))
-
             ,Crit_Status = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EedBenStatus  END))
-
             ,Crit_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S') then  EdhChangeReason END))
-
-          ,Crit1 = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S') then EedDedCode  END))
-          ,Crit2 = MAX((CASE WHEN EedDedCode  IN ('CR20E','CR20S') then EedDedCode  END))
-          ,Crit3 = MAX((CASE WHEN EedDedCode  IN ('CR30E','CR30S') then EedDedCode  END))        
- 
-
-           
-
+			,Crit1 = MAX((CASE WHEN EedDedCode  IN ('CR10E','CR10S') then EedDedCode  END))
+			,Crit2 = MAX((CASE WHEN EedDedCode  IN ('CR20E','CR20S') then EedDedCode  END))
+			,Crit3 = MAX((CASE WHEN EedDedCode  IN ('CR30E','CR30S') then EedDedCode  END))        
             ,Crit_Spouse = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then EedDedCode  END))
-
             ,Crit_Spouse_BenefitDate = MAX((CASE WHEN EedDedCode  IN('CR10S','CR20S','CR30S')then  EedEEEligDate END))
-
             ,Crit_Spouse_StartDate = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then  EedBenStartDate END))
-
             ,Crit_Spouse_StopDate = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then  EedBenStopDate END))
-
             ,Crit_Spouse_Status = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then   EedbenStatus  END))
-
             ,Crit_Spouse_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('CR10S','CR20S','CR30S') then  EdhChangeReason END))
-
- 
-
-           
-			,BAACC = MAX((CASE WHEN EedDedCode  IN ('BAACC') then EedDedCode  END))
-
+            ,BAACC = MAX((CASE WHEN EedDedCode  IN ('BAACC') then EedDedCode  END))
             ,BAACC_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EedEEEligDate END))
-
             ,BAACCStartDate = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EedBenStartDate END))
-
             ,BAACCStopDate = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EedBenStopDate END))
-
             ,BAACC_EEAmt = MAX((CASE WHEN EedDedCode  IN ('BAACC') then   EedBenAmt  END))
-			,BAACC_BenStatus =  MAX((CASE WHEN EedDedCode  IN ('BAACC') then   EedBenStatus  END))
-
+            ,BAACC_BenStatus =  MAX((CASE WHEN EedDedCode  IN ('BAACC') then   EedBenStatus  END))
             ,BAACC_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('BAACC') then  EdhChangeReason END))
-
-
-			  ,BAHOS = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then EedDedCode  END))
-
+            ,BAHOS = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then EedDedCode  END))
             ,BAHOS_BenefitDate = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EedEEEligDate END))
-
             ,BAHOS_StartDate = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EedBenStartDate END))
-
             ,BAHOS_StopDate = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EedBenStopDate END))
-
             ,BAHOS_Status = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then   EedBenStatus  END))
-
             ,BAHOS_ChangeReason = MAX((CASE WHEN EedDedCode  IN ('BAHOS') then  EdhChangeReason END))
-			FROM dbo.u_dsi_bdm_EmpDeductions WITH (NOLOCK)
+            FROM dbo.u_dsi_bdm_EmpDeductions WITH (NOLOCK)
             Join U_dsi_BDM_EUNUMELEXP  WITH (NOLOCK)
                 ON BdmDedCode = EedDedCode 
                 AND bdmeeid = EedEEID
@@ -794,16 +757,15 @@ BEGIN
                 ON edhEEID = EedEEID
                 AND EdhDedCode= EedDedCode
             where  EedDedCode IN ('CR10E','CR10S','CR20E','CR20S','CR30E','CR30S','BAACC','BAHOS','MED','DENT')-- Replaced GTL
-                            AND EedFormatCode = 'EUNUMELEXP'
-			group by  EedEEID, Eedcoid
+            AND EedFormatCode = 'EUNUMELEXP' AND bdmBenStatus IN ('A','T') 
+            group by  EedEEID, Eedcoid,bdmdeprecid
              ) as BdmConsolidated 
         ON EedEEID = xEEID 
         AND EedCoID = xCoID           
-    Where EecDedGroupCode = 'BAICI'
-        and EecEEType <> 'TES'
-        AND bdmBenStatus IN ('A','T')
-        
-    ;
+    LEFT JOIN dbo.Contacts with (NOLOCK)
+        on coneeid = xeeid
+        and consystemid = bdmdeprecid
+            ;
 
     --==========================================
     -- Set FileName
