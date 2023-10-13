@@ -5,7 +5,7 @@ EGUAKLJEXP: Guardian 834 Export
 FormatCode:     EGUAKLJEXP
 Project:        Guardian 834 Export
 Client ID:      KAD1000
-Date/time:      2023-10-09 10:33:59.270
+Date/time:      2023-10-12 07:50:22.427
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -360,7 +360,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUAKLJEXP_20231009.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUAKLJEXP_20231012.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -372,7 +372,7 @@ INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompani
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','',',FGFGE',NULL,NULL,NULL,'Guardian Active OE','202301319','EMPEXPORT','OEACTIVE','Nov 23 2022 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Jan  1 2023 12:00AM','Dec 30 1899 12:00AM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,NULL,NULL,',FGFGE',NULL,NULL,NULL,'Guardian Passive OE','202301319','EMPEXPORT','OEPASSIVE','Oct  1 2018 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Oct  1 2018 12:00AM','Dec 30 1899 12:00AM','202301241',NULL,'','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','FGFGE,FGFJT',NULL,NULL,NULL,'Guardian 834 OnDemand','202301319','EMPEXPORT','ONDEM_XOE','Sep 18 2023 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202301319','Jan 31 2023 12:00AM','Dec 30 1899 12:00AM','202301241','7788','','','202301241',dbo.fn_GetTimedKey(),NULL,'us3kEpKAD1000',NULL);
-INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','FGFGE',NULL,NULL,NULL,'Guardian834 SCH WK WED 1115P E','202301319','EMPEXPORT','SCH_GUAKLE','Nov 16 2020 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202310039','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202309261','7788','','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
+INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'Null','N','FGFGE',NULL,NULL,NULL,'Guardian834 SCH WK WED 1115P E','202301319','EMPEXPORT','SCH_GUAKLE','Nov 16 2020 12:00AM','EGUAKLJEXP',NULL,NULL,NULL,'202310109','Nov 10 2020 12:00AM','Dec 30 1899 12:00AM','202310031','7788','','','202301241',dbo.fn_GetTimedKey(),NULL,'ULTI',NULL);
 INSERT INTO [dbo].[AscExp] (expAscFileName,expAsOfDate,expCOID,expCOIDAllCompanies,expCOIDList,expDateOrPerControl,expDateTimeRangeEnd,expDateTimeRangeStart,expDesc,expEndPerControl,expEngine,expExportCode,expExported,expFormatCode,expGLCodeTypes,expGLCodeTypesAll,expGroupBy,expLastEndPerControl,expLastPayDate,expLastPeriodEndDate,expLastStartPerControl,expNoOfRecords,expSelectByField,expSelectByList,expStartPerControl,expSystemID,expTaxCalcGroupID,expUser,expIEXSystemID) VALUES (RTRIM(@FilePath) + LTRIM(RTRIM(@FileName)),NULL,'','','FGFGE,FGFJT',NULL,NULL,NULL,'Guardian 834 Test Session','202309111','EMPEXPORT','TEST_XOE','Oct  9 2023  7:44AM','EGUAKLJEXP',NULL,NULL,NULL,'202309111','Sep 11 2023 12:00AM','Dec 30 1899 12:00AM','202308091','25942','','','202308091',dbo.fn_GetTimedKey(),NULL,'us3kEpKAD1000',NULL);
 
 -----------
@@ -834,6 +834,8 @@ Ryan Denzer-King    08/22/2023                        Update to fix code for pop
 Marie Waters        09/18/2023      TekP-2022-09-08-01 Updated the file to use EMP record for Life Amounts 
 Marie Waters        09/26/2023      TekP-2022-09-08-01 Updated the file to use the bdmdedcode vs bdmdedtype for HD05 
 Marie Waters        10/04/2023      TekP-2022-09-08-01 Reworked the HD05 Benoption case statements
+Marie Waters        10/12/2023      TekP-2022-09-08-01 Reworked the AMT02_MonetaryAmount1 case statements
+
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGUAKLJEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EGUAKLJEXP';
@@ -1487,13 +1489,22 @@ BEGIN
         ,drvREF01_RefNumberQual2 = ''--CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         ,drvREF02_RefNumberQual2 = ''--CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
-        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADE','VLADS') and ISNULL(BdmUSGField1,'') <> '' THEN 'AMT' END
-        ,drvAMT01_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADE','VLADS') and ISNULL(BdmUSGField1,'') <> '' THEN 'FK' END
-        ,drvAMT02_MonetaryAmount1 =  CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADE','VLADS') and ISNULL(BdmUSGField1,'') <> '' THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BdmUSGField1)),'.00',''))
-                                          WHEN BdmDedcode  = 'VLADC' and CONVERT(INT,REPLACE(Ltrim(RTrim(BdmUSGField1)),'.00','')) is not null  THEN 10000  
-                                        -- WHEN BdmDedcode  = 'VLADC'  and  CONVERT(INT,REPLACE(LTrim(RTrim(BdmUSGField1)),'.00','')) <>  '1000' THEN CONVERT(INT,REPLACE(BdmUSGField1,'.00',''))
+        ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADE','VLADS') and ISNULL(BcaEEBenAmt,'') <> '' THEN 'AMT' END
+        ,drvAMT01_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADE','VLADS') and ISNULL(BcaEEBenAmt,'') <> '' THEN 'FK' END
+        ,drvAMT02_MonetaryAmount1 =   CASE WHEN BdmRectype  =  'DEP' AND BdmDedCode IN ('VLADS','VLADC','CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BcaEEBenAmt,'') <> '' THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BcaEEBenAmt)),'.00',''))
+                                             ELSE 
+                                         CASE WHEN BdmRectype  =  'EMP' THEN 
+                                             CASE WHEN BdmDedcode  IN ('VLADC','VLADE','VLADS')   and ISNULL(BcaEEBenAmt,'') <> 0 THEN 10000 
+                                                   WHEN BdmDedcode  IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')   and ISNULL(BcaEEBenAmt,'') <> 0 THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BcaEEBenAmt)),'.00','')) 
+                                                  END
+                                               END
+                                        END
+        
+                --                      CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADE','VLADS') and ISNULL(BdmUSGField1,'') <> '' THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BdmUSGField1)),'.00',''))
+                                        --  WHEN BdmDedcode  = 'VLADC' and CONVERT(INT,REPLACE(Ltrim(RTrim(BdmUSGField1)),'.00','')) is not null  THEN 10000  
+                                        ---- WHEN BdmDedcode  = 'VLADC'  and  CONVERT(INT,REPLACE(LTrim(RTrim(BdmUSGField1)),'.00','')) <>  '1000' THEN CONVERT(INT,REPLACE(BdmUSGField1,'.00',''))
                         
-                                         END
+                                        -- END
         -- If drvAMT00_AmountQualifierCode2 is Populated, then Send AMT Segment
         ,drvAMT00_AmountQualifierCode2 = ''--CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
         ,drvAMT01_AmountQualifierCode2 = ''--CASE WHEN BdmDedType IN ('MED','DEN','VIS') THEN '' END
@@ -1530,7 +1541,7 @@ BEGIN
                       +  CASE WHEN BdmDedCode in ('ADDER') THEN '1'
                                           WHEN BdmDedCode in ('ACCHI') THEN '2'
                                           WHEN BdmDedCode in ('ACCLO') THEN '3'
-                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BdmUSGField1, '') <> ''THEN '4' -- MW added and ISNULL(BdmUSGField1, '') <> ''
+                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BcaEEBenAmt, '') <> ''THEN '4' -- MW added and ISNULL(BdmUSGField1, '') <> ''
                                           WHEN BdmDedCode in ('DEN') THEN '5'
                                           WHEN BdmDedCode in ('GLIFE') THEN '6'
                                           WHEN BdmDedCode in ('HOSP') THEN '7'
@@ -1542,13 +1553,13 @@ BEGIN
                                           WHEN BdmDedCode  IN ('VLADC','VLADS','VLADE')  THEN '13'
                                      END
   INTO dbo.U_EGUAKLJEXP_DrvTbl_2300
-    FROM dbo.U_EGUAKLJEXP_EELIST WITH (NOLOCK)
+   FROM dbo.U_EGUAKLJEXP_EELIST WITH (NOLOCK)
     JOIN dbo.EmpPers WITH (NOLOCK)
         ON EepEEID = xEEID
     JOIN dbo.EmpComp WITH (NOLOCK)
         ON EecEEID = xEEID
         AND EecCOID = xCOID
-    JOIN (     SELECT
+    JOIN (                  SELECT DISTINCT
                                      BdmEEID
                                     ,BdmCoID
                                     ,BdmDepRecID
@@ -1558,7 +1569,7 @@ BEGIN
                                     ,BdmBenStatus = MAX(BdmBenStatus)
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
-                                    ,BdmUSGField1 = Max(BdmUSGField1)
+                                    --,BdmUSGField1 = Max(BdmUSGField1)
                                     from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADC','CIC12','CIC25','CIC37','CIC5') --and bdmeeid = 'CG8DZQ0130K0'
                     and bdmeeid  in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where   Bdmdedcode IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')  )
                         AND BdmBenstatus NOT In ('W','C')
@@ -1576,14 +1587,14 @@ BEGIN
                                     ,BdmBenStatus = MAX(BdmBenStatus)
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
-                                    ,BdmUSGField1 = Max(BdmUSGField1)
+                                    --,BdmUSGField1 = Max(BdmUSGField1)
                                     from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADC','CIC12','CIC25','CIC37','CIC5') --and bdmeeid = 'CG8DZQ0130K0'
                     and bdmeeid  Not in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')  )
                     and bdmeeid  in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADE','CIE10','CIE15','CIE20','CIE5')  )
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType,  BdmDedCode
                     Union 
-                     SELECT
+                     SELECT DISTINCT
                                      BdmEEID
                                     ,BdmCoID
                                     ,BdmDepRecID
@@ -1593,7 +1604,7 @@ BEGIN
                                     ,BdmBenStatus = MAX(BdmBenStatus)
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
-                                    ,BdmUSGField1 = Max(BdmUSGField1)
+                                    --,BdmUSGField1 = Max(BdmUSGField1)
                                     from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') 
                     and bdmeeid  in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADE','CIE10','CIE15','CIE20','CIE5')   )
                     and bdmeeid  Not in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode   IN ('VLADC','CIC12','CIC25','CIC37','CIC5')  )
@@ -1602,7 +1613,7 @@ BEGIN
 
                     Union
 
-                     SELECT
+                     SELECT DISTINCT
                                      BdmEEID
                                     ,BdmCoID
                                     ,BdmDepRecID
@@ -1612,7 +1623,7 @@ BEGIN
                                     ,BdmBenStatus = MAX(BdmBenStatus)
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
-                                    ,BdmUSGField1 = Max(BdmUSGField1)
+                                    --,BdmUSGField1 = Max(BdmUSGField1)
                                     from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADE','CIE10','CIE15','CIE20','CIE5') --and bdmeeid = 'CG8DZQ0130K0'
                     and bdmeeid  not in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where   Bdmdedcode  IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75', 'VLADC','CIC12','CIC25','CIC37','CIC5'))  
                         AND BdmBenstatus NOT In ('W','C')
@@ -1620,7 +1631,7 @@ BEGIN
 
                     Union
 
-                     SELECT
+                     SELECT DISTINCT
                                      BdmEEID
                                     ,BdmCoID
                                     ,BdmDepRecID
@@ -1630,7 +1641,7 @@ BEGIN
                                     ,BdmBenStatus = MAX(BdmBenStatus)
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
-                                    ,BdmUSGField1 = Max(BdmUSGField1)
+                                    --,BdmUSGField1 = Max(BdmUSGField1)
                                     from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where    Bdmdedcode NOT IN ('VLADE','CIE10','CIE15','CIE20','CIE5','VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75', 'VLADC','CIC12','CIC25','CIC37','CIC5')  
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType,BdmDedCode
@@ -1639,7 +1650,16 @@ BEGIN
         ON BdmEEID = xEEID
         AND BdmCOID = xCOID
         AND BdmBenstatus NOT In ('W','C')
-     --AND (BdmDedCode NOT IN ('CIC12','CIC25','CIC37','CIC5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADS') OR BdmRecType = 'DEP')
+    LEFT JOIN  (SELECT Bcaeeid, bcacoid, bcadeprecid, bcadedcode, BcaEEBenAmt
+                                                FROM dbo.U_dsi_bdm_BenCalculationAmounts WITH(NOLOCK)
+                                                WHERE BcaFormatCode ='EGUAKLJEXP'
+                                            ) BCA
+                                        ON Bcaeeid = Bdmeeid
+                                        and bcacoid = bdmcoid 
+                                        and isnull(bcadeprecid, '')  = Isnull(bdmdeprecid, '')
+                                        and bcadedcode = bdmdedcode
+ 
+       --AND (BdmDedCode NOT IN ('CIC12','CIC25','CIC37','CIC5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADS') OR BdmRecType = 'DEP')
     LEFT JOIN dbo.Contacts WITH (NOLOCK)
         ON ConEEID = xEEID
         AND ConSystemID = BdmDepRecID
@@ -1653,7 +1673,7 @@ BEGIN
                       +  CASE WHEN BdmDedCode in ('ADDER') THEN '1'
                                           WHEN BdmDedCode in ('ACCHI') THEN '2'
                                           WHEN BdmDedCode in ('ACCLO') THEN '3'
-                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BdmUSGField1, '') <> ''THEN '4' -- MW added and ISNULL(BdmUSGField1, '') <> ''
+                                          WHEN BdmDedCode in ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BcaEEBenAmt, '') <> ''THEN '4' -- MW added and ISNULL(BdmUSGField1, '') <> ''
                                           WHEN BdmDedCode in ('DEN') THEN '5'
                                           WHEN BdmDedCode in ('GLIFE') THEN '6'
                                           WHEN BdmDedCode in ('HOSP') THEN '7'
