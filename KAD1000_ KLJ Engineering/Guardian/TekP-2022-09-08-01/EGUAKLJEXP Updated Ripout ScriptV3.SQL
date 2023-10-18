@@ -5,7 +5,7 @@ EGUAKLJEXP: Guardian 834 Export
 FormatCode:     EGUAKLJEXP
 Project:        Guardian 834 Export
 Client ID:      KAD1000
-Date/time:      2023-10-12 07:50:22.427
+Date/time:      2023-10-18 08:16:13.567
 Ripout version: 7.4
 Export Type:    Web
 Status:         Production
@@ -360,7 +360,7 @@ INSERT INTO [dbo].[AscDefF] (AdfFieldNumber,AdfHeaderSystemID,AdfLen,AdfRecType,
 /*05*/ DECLARE @ENVIRONMENT varchar(7) = (SELECT CASE WHEN SUBSTRING(@@SERVERNAME,3,1) = 'D' THEN @UDARNUM WHEN SUBSTRING(@@SERVERNAME,4,1) = 'D' THEN LEFT(@@SERVERNAME,3) + 'Z' ELSE RTRIM(LEFT(@@SERVERNAME,PATINDEX('%[0-9]%',@@SERVERNAME)) + SUBSTRING(@@SERVERNAME,PATINDEX('%UP[0-9]%',@@SERVERNAME)+2,1)) END);
 /*06*/ SET @ENVIRONMENT = CASE WHEN @ENVIRONMENT = 'EW21' THEN 'WP6' WHEN @ENVIRONMENT = 'EW22' THEN 'WP7' ELSE @ENVIRONMENT END;
 /*07*/ DECLARE @COCODE varchar(5) = (SELECT RTRIM(CmmCompanyCode) FROM dbo.CompMast);
-/*08*/ DECLARE @FileName varchar(1000) = 'EGUAKLJEXP_20231012.txt';
+/*08*/ DECLARE @FileName varchar(1000) = 'EGUAKLJEXP_20231018.txt';
 /*09*/ DECLARE @FilePath varchar(1000) = '\\' + @COUNTRY + '.saas\' + @SERVER + '\' + @ENVIRONMENT + '\Downloads\V10\Exports\' + @COCODE + '\EmployeeHistoryExport\';
 
 -----------
@@ -663,7 +663,7 @@ CREATE TABLE [dbo].[U_EGUAKLJEXP_DrvTbl_2300] (
     [drvREF02_RefNumberQual2] varchar(1) NOT NULL,
     [drvAMT00_AmountQualifierCode1] varchar(3) NULL,
     [drvAMT01_AmountQualifierCode1] varchar(2) NULL,
-    [drvAMT02_MonetaryAmount1] int NULL,
+    [drvAMT02_MonetaryAmount1] money NULL,
     [drvAMT00_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT01_AmountQualifierCode2] varchar(1) NOT NULL,
     [drvAMT02_MonetaryAmount2] varchar(1) NOT NULL,
@@ -829,13 +829,12 @@ Revision History
 ----------------
 Update By           Date           Request Num        Desc
 Marie Waters        05/02/2023      TekP-2022-09-08-01 Updated the After collect to subtract extra spaces on file. Added case statement to where clause and move
-Marie Waters        050/2/2023      TekP-2022-09-08-01 Updated the code for populating the BDM dep amount
+Marie Waters        05/2/2023       TekP-2022-09-08-01 Updated the code for populating the BDM dep amount
 Ryan Denzer-King    08/22/2023                        Update to fix code for population benefit amounts 
 Marie Waters        09/18/2023      TekP-2022-09-08-01 Updated the file to use EMP record for Life Amounts 
 Marie Waters        09/26/2023      TekP-2022-09-08-01 Updated the file to use the bdmdedcode vs bdmdedtype for HD05 
 Marie Waters        10/04/2023      TekP-2022-09-08-01 Reworked the HD05 Benoption case statements
 Marie Waters        10/12/2023      TekP-2022-09-08-01 Reworked the AMT02_MonetaryAmount1 case statements
-
 
 SELECT * FROM dbo.U_dsi_Configuration WHERE FormatCode = 'EGUAKLJEXP';
 SELECT * FROM dbo.U_dsi_SqlClauses WHERE FormatCode = 'EGUAKLJEXP';
@@ -1410,8 +1409,6 @@ BEGIN
                                                     WHEN BdmRecType = 'EMP' AND BdmBenOption IN ('ECH') THEN 'ECH'
                                                     WHEN BdmRecType = 'EMP' AND BdmBenOption IN ('FAM') THEN 'FAM'
                                                     
-
-                                                    
                                                     WHEN BdmRecType = 'Emp' AND Ltrim(Rtrim(BdmDedCode)) NOT IN ('ADDER','VLADE','STDER','LTDER','EAPER','LTDUP','GLIFE','CIE10','CIE15','CIE20','CIE5') and ((SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID and ConRelationship IN ('SPS','DP','CHL','CRT','DIS','GRC','STC')) = 0 ) THEN 'EMP'
                                                     WHEN BdmRecType = 'EMP' AND  BdmDedCode  NOT IN ('ADDER','VLADE','STDER','LTDER','EAPER','LTDUP','GLIFE','CIE10','CIE15','CIE20','CIE5') and (SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID and ConRelationship IN ('SPS','DP')) = 1 THEN 'ESP'
                                                     WHEN BdmRecType = 'EMP' AND BdmDedCode NOT IN ('ADDER','STDER','LTDER','EAPER','LTDUP','VLADC','GLIFE','CIC12','CIC25','CIC37','CIC5') and ((SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID and ConRelationship IN ('SPS','DP')) = '0'  and ((SELECT COUNT(*) FROM dbo.Contacts Con WITH (NOLOCK) WHERE Con.ConEEID = xEEID and ConRelationship IN ('CHL','CRT','DIS','GRC','STC')) >= 1 ) ) THEN 'ECH'
@@ -1491,15 +1488,16 @@ BEGIN
         -- If drvAMT00_AmountQualifierCode1 is Populated, then Send AMT Segment
         ,drvAMT00_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADE','VLADS') and ISNULL(BcaEEBenAmt,'') <> '' THEN 'AMT' END
         ,drvAMT01_AmountQualifierCode1 = CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADC','VLADE','VLADS') and ISNULL(BcaEEBenAmt,'') <> '' THEN 'FK' END
-        ,drvAMT02_MonetaryAmount1 =   CASE WHEN BdmRectype  =  'DEP' AND BdmDedCode IN ('VLADS','VLADC','CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BcaEEBenAmt,'') <> '' THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BcaEEBenAmt)),'.00',''))
+        ,drvAMT02_MonetaryAmount1 =   CASE WHEN BdmRectype  =  'DEP' AND BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BcaEEBenAmt,'') <> '' THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BcaEEBenAmt)),'.00',''))
+                                           WHEN  BdmRectype  =  'DEP' and BdmDedcode  IN ('VLADC','VLADS')  THEN (select CONVERT(INT,REPLACE(BdmUSGField1,'.00','')) from dbo.U_dsi_bdm_EGUAKLJEXP where  BdmDedcode IN ('VLADC','VLADS') and Bdmeeid = Xeeid and bdmrectype = 'EMP')
                                              ELSE 
                                          CASE WHEN BdmRectype  =  'EMP' THEN 
-                                             CASE WHEN BdmDedcode  IN ('VLADC','VLADE','VLADS')   and ISNULL(BcaEEBenAmt,'') <> 0 THEN 10000 
-                                                   WHEN BdmDedcode  IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')   and ISNULL(BcaEEBenAmt,'') <> 0 THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BcaEEBenAmt)),'.00','')) 
+                                             CASE -- WHEN BdmDedcode  IN ('VLADC','VLADE','VLADS') and ISNULL(BcaEEBenAmt,'') <> 0 THEN BcaEEBenAmt                                             
+                                                  WHEN  BdmRectype  =  'EMP' and BdmDedcode  IN ('VLADC','VLADE','VLADS')  THEN (select CONVERT(INT,REPLACE(BdmUSGField1,'.00','')) from dbo.U_dsi_bdm_EGUAKLJEXP where  BdmDedcode = 'VLADE' and Bdmeeid = Xeeid and bdmrectype = 'EMP')
+                                                  WHEN BdmDedcode  IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') and ISNULL(BcaEEBenAmt,'') <> 0 THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BcaEEBenAmt)),'.00','')) 
                                                   END
                                                END
                                         END
-        
                 --                      CASE WHEN BdmDedCode IN ('CIC12','CIC25','CIC37','CIC5','CIE10','CIE15','CIE20','CIE5','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75','VLADE','VLADS') and ISNULL(BdmUSGField1,'') <> '' THEN CONVERT(INT,REPLACE(Ltrim(RTrim(BdmUSGField1)),'.00',''))
                                         --  WHEN BdmDedcode  = 'VLADC' and CONVERT(INT,REPLACE(Ltrim(RTrim(BdmUSGField1)),'.00','')) is not null  THEN 10000  
                                         ---- WHEN BdmDedcode  = 'VLADC'  and  CONVERT(INT,REPLACE(LTrim(RTrim(BdmUSGField1)),'.00','')) <>  '1000' THEN CONVERT(INT,REPLACE(BdmUSGField1,'.00',''))
@@ -1571,7 +1569,7 @@ BEGIN
                                     ,BdmBenStopDate = MAX(BdmStopDate)
                                     --,BdmUSGField1 = Max(BdmUSGField1)
                                     from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADC','CIC12','CIC25','CIC37','CIC5') --and bdmeeid = 'CG8DZQ0130K0'
-                    and bdmeeid  in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where   Bdmdedcode IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')  )
+                    and bdmeeid in (Select Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')  )
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType, BdmDedCode 
 
@@ -1588,9 +1586,9 @@ BEGIN
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
                                     --,BdmUSGField1 = Max(BdmUSGField1)
-                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADC','CIC12','CIC25','CIC37','CIC5') --and bdmeeid = 'CG8DZQ0130K0'
-                    and bdmeeid  Not in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')  )
-                    and bdmeeid  in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADE','CIE10','CIE15','CIE20','CIE5')  )
+                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode IN ('VLADC','CIC12','CIC25','CIC37','CIC5') --and bdmeeid = 'CG8DZQ0130K0'
+                    and bdmeeid Not in (Select Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75')  )
+                    and bdmeeid in (Select Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode IN ('VLADE','CIE10','CIE15','CIE20','CIE5')  )
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType,  BdmDedCode
                     Union 
@@ -1605,9 +1603,9 @@ BEGIN
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
                                     --,BdmUSGField1 = Max(BdmUSGField1)
-                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') 
-                    and bdmeeid  in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADE','CIE10','CIE15','CIE20','CIE5')   )
-                    and bdmeeid  Not in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode   IN ('VLADC','CIC12','CIC25','CIC37','CIC5')  )
+                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75') 
+                    and bdmeeid in (Select Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode IN ('VLADE','CIE10','CIE15','CIE20','CIE5')   )
+                    and bdmeeid Not in (Select Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode IN ('VLADC','CIC12','CIC25','CIC37','CIC5')  )
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType, BdmDedCode
 
@@ -1624,7 +1622,7 @@ BEGIN
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
                                     --,BdmUSGField1 = Max(BdmUSGField1)
-                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode  IN ('VLADE','CIE10','CIE15','CIE20','CIE5') --and bdmeeid = 'CG8DZQ0130K0'
+                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where  Bdmdedcode IN ('VLADE','CIE10','CIE15','CIE20','CIE5') --and bdmeeid = 'CG8DZQ0130K0'
                     and bdmeeid  not in ( Select  Bdmeeid from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where   Bdmdedcode  IN ('VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75', 'VLADC','CIC12','CIC25','CIC37','CIC5'))  
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType,BdmDedCode
@@ -1642,7 +1640,7 @@ BEGIN
                                     ,BdmBenStartDate = MIN(BdmBenStartDate)
                                     ,BdmBenStopDate = MAX(BdmStopDate)
                                     --,BdmUSGField1 = Max(BdmUSGField1)
-                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where    Bdmdedcode NOT IN ('VLADE','CIE10','CIE15','CIE20','CIE5','VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75', 'VLADC','CIC12','CIC25','CIC37','CIC5')  
+                                    from dbo.U_dsi_bdm_EGUAKLJEXP WITH (NOLOCK) where Bdmdedcode NOT IN ('VLADE','CIE10','CIE15','CIE20','CIE5','VLADS','CIS10','CIS25','CIS50','CIS75','CTS10','CTS25','CTS50','CTS75', 'VLADC','CIC12','CIC25','CIC37','CIC5')  
                         AND BdmBenstatus NOT In ('W','C')
                     GROUP BY BdmEEID, BdmCoID, BdmDepRecID, BdmRecType,BdmDedCode
 
@@ -1682,7 +1680,7 @@ BEGIN
                                           WHEN BdmDedCode in ('STDER') THEN '10'
                                           WHEN BdmDedCode in ('VIS') THEN '11'
                                           WHEN BdmDedCode in ('EAPER') THEN '12'
-                                          WHEN BdmDedCode  IN ('VLADC','VLADS','VLADE')   THEN '13'
+                                          WHEN BdmDedCode IN ('VLADC','VLADS','VLADE')   THEN '13'
                                      END is not null
     --Create rows for FAC
      INSERT INTO dbo.U_EGUAKLJEXP_DrvTbl_2300
