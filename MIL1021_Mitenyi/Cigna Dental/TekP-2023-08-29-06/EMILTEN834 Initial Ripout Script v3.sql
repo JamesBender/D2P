@@ -371,7 +371,7 @@ BEGIN
                                      WHEN BdmRecType = 'DEP'  AND EepGender IN ('M','F') THEN ConGender
                                      ELSE 'U'
                                 END
-        ,drvDMG04_MaritalStatusCode1 = CASE WHEN EepMaritalStatus IN ('S','M') THEN EepMaritalStatus
+        ,drvDMG04_MaritalStatusCode1 = CASE WHEN EepMaritalStatus IN ('S','M') AND BdmRecType = 'EMP' THEN EepMaritalStatus
                                         ELSE ''
                                         END
         --If drvICM01_FrequencyCode is Populated, then send ICM Segment
